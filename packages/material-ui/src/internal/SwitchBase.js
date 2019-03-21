@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 import IconButton from '../IconButton';
 
 export const styles = {
@@ -191,10 +192,6 @@ SwitchBase.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
-   */
-  disableRipple: PropTypes.bool,
-  /**
    * The icon to display when the component is unchecked.
    */
   icon: PropTypes.node.isRequired,
@@ -202,6 +199,11 @@ SwitchBase.propTypes = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Attributes applied to the `input` element.
    */
@@ -258,5 +260,5 @@ SwitchBase.propTypes = {
 };
 
 export default withStyles(styles, { name: 'MuiPrivateSwitchBase' })(
-  withFormControlContext(SwitchBase),
+  withForwardedRef(withFormControlContext(SwitchBase)),
 );

@@ -1,25 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
-import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 
-const styles = createStyles({
+const useStyles = makeStyles({
   root: {
     width: 230,
   },
 });
 
-interface Props extends WithStyles<typeof styles> {}
-
-function TypographyMenu(props: Props) {
-  const { classes } = props;
+function TypographyMenu() {
+  const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
@@ -49,8 +46,4 @@ function TypographyMenu(props: Props) {
   );
 }
 
-(TypographyMenu as any).propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(TypographyMenu);
+export default TypographyMenu;

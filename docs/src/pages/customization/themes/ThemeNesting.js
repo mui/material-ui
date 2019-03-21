@@ -1,5 +1,6 @@
 import React from 'react';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import orange from '@material-ui/core/colors/orange';
 import green from '@material-ui/core/colors/green';
@@ -22,12 +23,12 @@ const innerTheme = createMuiTheme({
 
 function ThemeNesting() {
   return (
-    <MuiThemeProvider theme={outerTheme}>
+    <ThemeProvider theme={outerTheme}>
       <Checkbox defaultChecked />
-      <MuiThemeProvider theme={innerTheme}>
+      <ThemeProvider theme={innerTheme}>
         <Checkbox defaultChecked />
-      </MuiThemeProvider>
-    </MuiThemeProvider>
+      </ThemeProvider>
+    </ThemeProvider>
   );
 }
 

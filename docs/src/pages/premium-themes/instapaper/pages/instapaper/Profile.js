@@ -4,13 +4,13 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/styles';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import atoms from '../../components/atoms';
 import molecules from '../../components/molecules';
 import Header from '../../components/instapaper/Header';
 import theme from '../../theme/instapaper/theme';
 import withTheme from './withTheme';
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 
 const { Avatar, Icon, Typography } = atoms;
 const { Tabs, Tab } = molecules;

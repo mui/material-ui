@@ -20,8 +20,6 @@ We need to make sure the `Divider` is rendered as a `li` to match the HTML5 spec
 
 ## Inset Dividers
 
-The `inset` property has now been deprecated. You should now use `variant="inset"`.
-
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
 ## Subheader Dividers

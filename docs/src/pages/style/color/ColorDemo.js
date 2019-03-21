@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const styles = theme => ({
   root: {
@@ -25,7 +25,6 @@ const styles = theme => ({
     height: 24,
   },
   menuButton: {
-    marginLeft: -12,
     marginRight: 20,
   },
   code: {
@@ -68,7 +67,12 @@ function ColorDemo(props) {
         <div className={classes.statusBar} style={{ backgroundColor: primary.dark }} />
         <AppBar position="static" style={{ backgroundColor: primary.main }}>
           <Toolbar style={{ color: primary.contrastText }}>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">
@@ -89,7 +93,7 @@ function ColorDemo(props) {
 \`\`\``}
         />
         <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="Add">
-          <AddIcon nativeColor={secondary.contrastText} />
+          <AddIcon htmlColor={secondary.contrastText} />
         </Fab>
       </div>
     </div>

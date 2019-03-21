@@ -31,6 +31,12 @@ A simple example with no frills.
 
 {{"demo": "pages/demos/tables/SimpleTable.js"}}
 
+## Dense Table
+
+A simple example of a dense table with no frills.
+
+{{"demo": "pages/demos/tables/DenseTable.js"}}
+
 ## Sorting & Selecting
 
 This example demonstrates the use of `Checkbox` and clickable rows for selection, with a custom `Toolbar`. It uses the `TableSortLabel` component to help style column headings.
@@ -64,7 +70,9 @@ A simple example with spanning rows & columns.
 
 ## Virtualized Table
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more.
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component.
+It renders 200 rows and can easily handle more.
+Virtualization helps with performance issues.
 
 {{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 
@@ -76,3 +84,4 @@ For more advanced use cases you might be able to take advantage of:
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
 - [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI table.
+- [mui-tables](https://parkerself.gitbook.io/mui-table/) Customizable table for managing complex data. Features a summary row, de-duplication & merging, as well as filtering, search, etc.

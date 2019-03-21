@@ -45,7 +45,7 @@ const color = HUE[SHADE];
 
 ## 颜色工具
 
-使用Material-UI文档测试[material.io/design/color](https://material.io/design/color/)颜色方案,只需使用下面的调色板和滑块选择颜色. 或者, 您可以在“Primary”和“Secondary”文本字段中输入十六进制值.
+使用Material-UI文档测试[material.io/design/color](https://material.io/design/color/)颜色方案,只需使用下面的调色板和滑块选择颜色. 或者，您可以在“Primary”和“Secondary”文本字段中输入十六进制值。
 
 {{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 
@@ -104,4 +104,4 @@ const theme = createMuiTheme({
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/) 是一款使用 Material Design 创建 Material-UI 主题的在线工具。
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) 一款只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
-- [材质调色板生成器](https://material.io/inline-tools/color/)：“材质”调板生成器可用于为您输入的任何颜色生成调色板。
+- [Material调色板生成器](https://material.io/inline-tools/color/)：Material调色板生成器可用于通过您输入的任何颜色生成调色板。

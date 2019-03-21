@@ -1,7 +1,7 @@
 import warning from 'warning';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
-import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 
 export function titleize(string) {
   warning(
@@ -16,6 +16,10 @@ export function titleize(string) {
 }
 
 export function pageToTitle(page) {
+  if (page.title === false) {
+    return null;
+  }
+
   if (page.title) {
     return page.title;
   }
@@ -27,6 +31,10 @@ export function pageToTitle(page) {
   }
 
   return titleize(name);
+}
+
+export function pageToTitleI18n(page, t) {
+  return t(`pages.${page.pathname}`, { ignoreWarning: true }) || pageToTitle(page);
 }
 
 /**
@@ -79,6 +87,12 @@ export function getDependencies(raw, options = {}) {
     react: reactVersion,
   };
   const versions = {
+    '@material-ui/core': 'next',
+    '@material-ui/icons': 'next',
+    '@material-ui/lab': 'next',
+    '@material-ui/styles': 'next',
+    '@material-ui/system': 'next',
+    '@material-ui/utils': 'next',
     'date-fns': 'next',
   };
   const re = /^import\s.*\sfrom\s+'([^']+)|import\s'([^']+)'/gm;
@@ -110,4 +124,20 @@ export function getDependencies(raw, options = {}) {
 export function getCookie(name) {
   const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
   return document.cookie.replace(regex, '$1');
+}
+
+export function pathnameToLanguage(pathname) {
+  const userLanguage = pathname.substring(1, 3);
+
+  if (LANGUAGES.indexOf(userLanguage) !== -1 && pathname.indexOf(`/${userLanguage}/`) === 0) {
+    return {
+      userLanguage,
+      canonical: userLanguage === 'en' ? pathname : pathname.substring(3),
+    };
+  }
+
+  return {
+    userLanguage: 'en',
+    canonical: pathname,
+  };
 }

@@ -40,7 +40,6 @@ function handleRender(req, res) {
     palette: {
       primary: green,
       accent: red,
-      type: 'light',
     },
     typography: {
       useNextVariants: true,

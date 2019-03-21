@@ -16,15 +16,15 @@ export const styles = {
 /**
  * Must be used as the last child of ListItem to function properly.
  */
-function ListItemSecondaryAction(props) {
+const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
   const { children, classes, className, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} {...other}>
+    <div className={clsx(classes.root, className)} ref={ref} {...other}>
       {children}
     </div>
   );
-}
+});
 
 ListItemSecondaryAction.propTypes = {
   /**

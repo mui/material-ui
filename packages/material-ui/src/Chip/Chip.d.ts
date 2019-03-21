@@ -3,12 +3,12 @@ import { StandardProps, PropTypes } from '..';
 
 export interface ChipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ChipClassKey> {
-  avatar?: React.ReactElement<any>;
+  avatar?: React.ReactElement;
   clickable?: boolean;
   color?: PropTypes.Color;
-  component?: React.ReactType<ChipProps>;
-  deleteIcon?: React.ReactElement<any>;
-  icon?: React.ReactElement<any>;
+  component?: React.ElementType<ChipProps>;
+  deleteIcon?: React.ReactElement;
+  icon?: React.ReactElement;
   label?: React.ReactNode;
   onDelete?: React.EventHandler<any>;
   variant?: 'default' | 'outlined';
@@ -19,22 +19,25 @@ export type ChipClassKey =
   | 'colorPrimary'
   | 'colorSecondary'
   | 'clickable'
-  | 'clickablePrimary'
-  | 'clickableSecondary'
+  | 'clickableColorPrimary'
+  | 'clickableColorSecondary'
   | 'deletable'
-  | 'deletablePrimary'
-  | 'deletableSecondary'
+  | 'deletableColorPrimary'
+  | 'deletableColorSecondary'
   | 'outlined'
   | 'outlinedPrimary'
   | 'outlinedSecondary'
   | 'avatar'
-  | 'avatarPrimary'
-  | 'avatarSecondary'
+  | 'avatarColorPrimary'
+  | 'avatarColorSecondary'
   | 'avatarChildren'
+  | 'icon'
+  | 'iconColorPrimary'
+  | 'iconColorSecondary'
   | 'label'
   | 'deleteIcon'
-  | 'deleteIconPrimary'
-  | 'deleteIconSecondary'
+  | 'deleteIconColorPrimary'
+  | 'deleteIconColorSecondary'
   | 'deleteIconOutlinedColorPrimary'
   | 'deleteIconOutlinedColorSecondary';
 

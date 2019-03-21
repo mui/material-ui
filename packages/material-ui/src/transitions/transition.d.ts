@@ -2,7 +2,7 @@ import {
   TransitionProps as _TransitionProps,
   TransitionActions,
 } from 'react-transition-group/Transition';
-import { TransitionEventHandler, CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 
 export type TransitionHandlerKeys =
   | 'onEnter'

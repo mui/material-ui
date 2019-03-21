@@ -8,7 +8,7 @@ import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import getStylesCreator from '../../packages/material-ui/src/styles/getStylesCreator';
+import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 
 function ensureExists(pat, mask, cb) {
   mkdir(pat, mask, err => {
@@ -129,7 +129,9 @@ function buildDocs(options) {
 
   let reactAPI;
   try {
-    reactAPI = docgenParse(src);
+    reactAPI = docgenParse(src, null, null, {
+      filename: componentObject.filename,
+    });
   } catch (err) {
     console.log('Error parsing src for', componentObject.filename);
     throw err;

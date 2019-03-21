@@ -1,15 +1,15 @@
 ---
-title: Portal React component
+title: Componente React Modal
 components: Portal
 ---
 # Portal
 
-<p class="description">The portal component renders its children into a new "subtree" outside of current component hierarchy.</p>
+<p class="description">O componente portal renderiza seu filho em uma nova sub-árvore fora da hierarquia do componente atual.</p>
 
-The children of the portal component will be appended to the `container` specified.
+O filho do componente portal será adicionado ao `container` especificado.
 
-The component is used internally by the [`Modal`](/utils/modal/) and [`Popper`](/utils/popper/) components. On the server, the content won't be rendered. You have to wait for the client side hydratation to see the children.
+O componente é usado internamente pelos componentes [`Modal`](/utils/modal/) e [`Popper`](/utils/popper/). No servidor, o conteúdo não será renderizado. Você deve esperar pelo lado do servidor fazer o `hydration` para ver o filho.
 
-## Simple Portal
+## Simples Portal
 
 {{"demo": "pages/utils/portal/SimplePortal.js"}}

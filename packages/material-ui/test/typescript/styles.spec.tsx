@@ -3,19 +3,18 @@ import {
   createStyles,
   withStyles,
   createMuiTheme,
-  MuiThemeProvider,
   Theme,
   withTheme,
   StyleRules,
   StyleRulesCallback,
   StyledComponentProps,
   WithStyles,
+  WithTheme,
 } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button/Button';
-import blue from '@material-ui/core/colors/blue';
-import { WithTheme } from '@material-ui/core/styles/withTheme';
+import { ThemeProvider } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
+import { blue } from '@material-ui/core/colors';
 import { StandardProps } from '@material-ui/core';
-import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
 interface ComponentProps extends WithStyles<typeof styles> {
@@ -37,9 +36,10 @@ const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) 
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({ classes, text }) => (
-  <div className={classes.root}>{text}</div>
-);
+const Component: React.FunctionComponent<ComponentProps & WithStyles<typeof styles>> = ({
+  classes,
+  text,
+}) => <div className={classes.root}>{text}</div>;
 
 const StyledExampleTwo = withStyles(styles)(Component);
 <StyledExampleTwo text="I am styled!" />;
@@ -54,9 +54,10 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({ classes, children }) => (
-  <div className={classes.root}>{children}</div>
-);
+const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof styles>> = ({
+  classes,
+  children,
+}) => <div className={classes.root}>{children}</div>;
 
 const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
@@ -153,18 +154,18 @@ const theme2 = createMuiTheme({
   },
 });
 
-const t1 = createMuiTheme().spacing(1);
-const t2 = createMuiTheme().spacing(1, 2);
-const t3 = createMuiTheme().spacing(1, 2, 3);
-const t4 = createMuiTheme().spacing(1, 2, 3, 4);
+const t1: number = createMuiTheme().spacing(1);
+const t2: string = createMuiTheme().spacing(1, 2);
+const t3: string = createMuiTheme().spacing(1, 2, 3);
+const t4: string = createMuiTheme().spacing(1, 2, 3, 4);
 // $ExpectError
 const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
 
 function OverridesTheme() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Button>{'Overrides'}</Button>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 
@@ -306,7 +307,7 @@ withStyles(theme =>
     });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
-    children?: React.ReactElement<any>;
+    children?: React.ReactElement;
     inset?: boolean;
     row?: boolean;
   }
@@ -409,7 +410,7 @@ withStyles(theme =>
   // $ExpectError
   const StyledComponent = withStyles(styles)(Component);
 
-  // implicit SFC
+  // implicit FunctionComponent
   withStyles(styles)((props: Props) => null); // $ExpectError
   withStyles(styles)((props: Props & WithStyles<typeof styles>) => null); // $ExpectError
   withStyles(styles)((props: Props & { children?: React.ReactNode }) => null); // $ExpectError
@@ -419,8 +420,10 @@ withStyles(theme =>
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
-  const StatelessComponent: React.SFC<Props> = props => null;
-  const StatelessComponentWithStyles: React.SFC<Props & WithStyles<typeof styles>> = props => null;
+  const StatelessComponent: React.FunctionComponent<Props> = props => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<
+    Props & WithStyles<typeof styles>
+  > = props => null;
   withStyles(styles)(StatelessComponent); // $ExpectError
   withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
 }

@@ -59,7 +59,7 @@ export const styles = theme => ({
   },
 });
 
-function MobileStepper(props) {
+const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
   const {
     activeStep,
     backButton,
@@ -76,16 +76,16 @@ function MobileStepper(props) {
   const className = clsx(classes.root, classes[`position${capitalize(position)}`], classNameProp);
 
   return (
-    <Paper square elevation={0} className={className} {...other}>
+    <Paper square elevation={0} className={className} ref={ref} {...other}>
       {backButton}
       {variant === 'dots' && (
         <div className={classes.dots}>
-          {[...new Array(steps)].map((_, step) => {
+          {[...new Array(steps)].map((_, index) => {
             const dotClassName = clsx(classes.dot, {
-              [classes.dotActive]: step === activeStep,
+              [classes.dotActive]: index === activeStep,
             });
             // eslint-disable-next-line react/no-array-index-key
-            return <div key={step} className={dotClassName} />;
+            return <div key={index} className={dotClassName} />;
           })}
         </div>
       )}
@@ -100,7 +100,7 @@ function MobileStepper(props) {
       {nextButton}
     </Paper>
   );
-}
+});
 
 MobileStepper.propTypes = {
   /**

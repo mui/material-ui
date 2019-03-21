@@ -14,9 +14,9 @@ Material-UI prend en charge les dernières versions stables de tous les principa
 
 ## Serveur
 
-Because Material-UI supports server-side rendering, we need to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). We also try to support the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1). Right now, we support **node v8.x** and newer versions.
+Parce que Material-UI prend en charge le rendu côté serveur, nous devons prendre en charge les dernières versions stables de [Node.js.](https://github.com/nodejs/node). Nous essayons également de supporter les [versions LTS en maintenance](https://github.com/nodejs/Release#lts-schedule1) . Actuellement, nous supportons node **v8.x** et les nouvelles versions.
 
-### CSS prefixing
+### Préfixes CSS
 
 Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/279) an additional postprocessing step that adds vendor specific prefixes. These prefixes are automatically added on the client thanks to [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
 

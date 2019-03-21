@@ -13,7 +13,7 @@ export const styles = theme => ({
     display: 'inline-block',
     fill: 'currentColor',
     flexShrink: 0,
-    fontSize: 24,
+    fontSize: theme.typography.pxToRem(24),
     transition: theme.transitions.create('fill', {
       duration: theme.transitions.duration.shorter,
     }),
@@ -44,15 +44,15 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: {
-    fontSize: 20,
+    fontSize: theme.typography.pxToRem(20),
   },
   /* Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: {
-    fontSize: 35,
+    fontSize: theme.typography.pxToRem(35),
   },
 });
 
-function SvgIcon(props) {
+const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
   const {
     children,
     classes,
@@ -60,7 +60,7 @@ function SvgIcon(props) {
     color,
     component: Component,
     fontSize,
-    nativeColor,
+    htmlColor,
     titleAccess,
     viewBox,
     ...other
@@ -78,16 +78,17 @@ function SvgIcon(props) {
       )}
       focusable="false"
       viewBox={viewBox}
-      color={nativeColor}
+      color={htmlColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
       role={titleAccess ? 'img' : 'presentation'}
+      ref={ref}
       {...other}
     >
       {children}
       {titleAccess ? <title>{titleAccess}</title> : null}
     </Component>
   );
-}
+});
 
 SvgIcon.propTypes = {
   /**
@@ -105,7 +106,7 @@ SvgIcon.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * You can use the `nativeColor` property to apply a color attribute to the SVG element.
+   * You can use the `htmlColor` property to apply a color attribute to the SVG element.
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**
@@ -120,7 +121,7 @@ SvgIcon.propTypes = {
   /**
    * Applies a color attribute to the SVG element.
    */
-  nativeColor: PropTypes.string,
+  htmlColor: PropTypes.string,
   /**
    * The shape-rendering attribute. The behavior of the different options is described on the
    * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).

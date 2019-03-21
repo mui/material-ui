@@ -21,7 +21,7 @@ export const styles = {
  * It provides compact row layout.
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
-function FormGroup(props) {
+const FormGroup = React.forwardRef(function FormGroup(props, ref) {
   const { classes, className, children, row, ...other } = props;
 
   return (
@@ -33,12 +33,13 @@ function FormGroup(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     >
       {children}
     </div>
   );
-}
+});
 
 FormGroup.propTypes = {
   /**

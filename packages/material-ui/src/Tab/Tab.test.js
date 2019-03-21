@@ -28,35 +28,42 @@ describe('<Tab />', () => {
   });
 
   it('should render with the root class', () => {
-    const wrapper = shallow(<Tab textColor="inherit" />);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mount(<Tab textColor="inherit" />);
+    const root = wrapper.find(`.${classes.root}`).first();
+    assert.strictEqual(root.exists(), true);
+    assert.strictEqual(root.type(), ButtonBase);
   });
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
-      const wrapper = shallow(<Tab textColor="inherit" className="woofTab" />);
-      assert.strictEqual(wrapper.hasClass('woofTab'), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const wrapper = mount(<Tab textColor="inherit" className="woofTab" />);
+      assert.strictEqual(
+        wrapper
+          .find(`.${classes.root}`)
+          .first()
+          .hasClass('woofTab'),
+        true,
+      );
     });
   });
 
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {
-      const wrapper = shallow(<Tab selected textColor="secondary" />);
-      assert.strictEqual(wrapper.hasClass(classes.selected), true);
-      assert.strictEqual(wrapper.hasClass(classes.textColorSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.props()['aria-selected'], true);
+      const wrapper = mount(<Tab selected textColor="secondary" />);
+      const root = wrapper.find(`.${classes.root}`).first();
+      assert.strictEqual(root.hasClass(classes.selected), true);
+      assert.strictEqual(root.hasClass(classes.textColorSecondary), true);
+      assert.strictEqual(root.props()['aria-selected'], true);
     });
   });
 
   describe('prop: disabled', () => {
     it('should render with the disabled and root classes', () => {
-      const wrapper = shallow(<Tab disabled textColor="secondary" />);
-      assert.strictEqual(wrapper.hasClass(classes.disabled), true);
-      assert.strictEqual(wrapper.hasClass(classes.textColorSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const wrapper = mount(<Tab disabled textColor="secondary" />);
+      const tab = wrapper.find('button');
+      assert.strictEqual(tab.hasClass(classes.disabled), true);
+      assert.strictEqual(tab.hasClass(classes.textColorSecondary), true);
+      assert.strictEqual(tab.hasClass(classes.root), true);
     });
   });
 
@@ -87,25 +94,25 @@ describe('<Tab />', () => {
 
   describe('prop: icon', () => {
     it('should render icon element', () => {
-      const wrapper = shallow(<Tab textColor="inherit" icon={icon} />);
-      const iconWrapper = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(iconWrapper.is(Icon), true);
+      const wrapper = mount(<Tab textColor="inherit" icon={icon} />);
+      assert.strictEqual(wrapper.find(Icon).exists(), true);
     });
   });
 
   describe('prop: textColor', () => {
     it('should support the inherit value', () => {
-      const wrapper = shallow(<Tab selected textColor="inherit" />);
-      assert.strictEqual(wrapper.hasClass(classes.selected), true);
-      assert.strictEqual(wrapper.hasClass(classes.textColorInherit), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const wrapper = mount(<Tab textColor="inherit" selected />);
+      const tab = wrapper.find('button');
+      assert.strictEqual(tab.hasClass(classes.selected), true);
+      assert.strictEqual(tab.hasClass(classes.textColorInherit), true);
+      assert.strictEqual(tab.hasClass(classes.root), true);
     });
   });
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const wrapper = shallow(<Tab textColor="inherit" fullWidth />);
-      assert.strictEqual(wrapper.hasClass(classes.fullWidth), true);
+      const wrapper = mount(<Tab textColor="inherit" fullWidth />);
+      assert.strictEqual(wrapper.find(`button`).hasClass(classes.fullWidth), true);
     });
   });
 

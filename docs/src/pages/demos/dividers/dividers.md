@@ -23,8 +23,6 @@ The examples below show two ways of achieving this.
 
 ## Inset Dividers
 
-The `inset` property has now been deprecated. You should now use `variant="inset"`.
-
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
 ## Subheader Dividers

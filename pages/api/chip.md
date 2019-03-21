@@ -23,7 +23,7 @@ Chips represent complex entities in small blocks, such as a contact.
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">clickable</span> | <span class="prop-type">bool</span> |   | If true, the chip will appear clickable, and will raise when pressed, even if the onClick property is not defined. If false, the chip will not be clickable, even if onClick property is defined. This can be used, for example, along with the component property to indicate an anchor Chip is clickable. |
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br></span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
-| <span class="prop-name">component</span> | <span class="prop-type">element type</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">deleteIcon</span> | <span class="prop-type">element</span> |   | Override the default delete icon element. Shown only if `onDelete` is set. |
 | <span class="prop-name">icon</span> | <span class="prop-type">element</span> |   | Icon element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |   | The content of the label. |
@@ -44,8 +44,8 @@ This property accepts the following keys:
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">clickable</span> | Styles applied to the root element if `onClick` is defined or `clickable={true}`.
-| <span class="prop-name">clickableColorPrimary</span> | 
-| <span class="prop-name">clickableColorSecondary</span> | 
+| <span class="prop-name">clickableColorPrimary</span> | Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`.
+| <span class="prop-name">clickableColorSecondary</span> | Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`.
 | <span class="prop-name">deletable</span> | Styles applied to the root element if `onDelete` is defined.
 | <span class="prop-name">deletableColorPrimary</span> | Styles applied to the root element if `onDelete` and `color="primary"` is defined.
 | <span class="prop-name">deletableColorSecondary</span> | Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
@@ -67,7 +67,7 @@ This property accepts the following keys:
 | <span class="prop-name">deleteIconOutlinedColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Chip/Chip.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Chip/Chip.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

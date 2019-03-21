@@ -102,7 +102,7 @@ export const styles = theme => ({
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
  */
-function CircularProgress(props) {
+const CircularProgress = React.forwardRef(function CircularProgress(props, ref) {
   const {
     classes,
     className,
@@ -148,6 +148,7 @@ function CircularProgress(props) {
         className,
       )}
       style={{ width: size, height: size, ...rootStyle, ...style }}
+      ref={ref}
       role="progressbar"
       {...rootProps}
       {...other}
@@ -169,7 +170,7 @@ function CircularProgress(props) {
       </svg>
     </div>
   );
-}
+});
 
 CircularProgress.propTypes = {
   /**
@@ -190,7 +191,6 @@ CircularProgress.propTypes = {
    * This only works if variant is `indeterminate`.
    */
   disableShrink: chainPropTypes(PropTypes.bool, props => {
-    /* istanbul ignore if */
     if (props.disableShrink && props.variant !== 'indeterminate') {
       return new Error(
         'Material-UI: you have provided the `disableShrink` property ' +

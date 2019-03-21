@@ -87,15 +87,14 @@ import * as colors from './colors';
 
 export { colors };
 export {
-  createGenerateClassName,
   createMuiTheme,
-  jssPreset,
-  MuiThemeProvider,
+  createStyles,
+  makeStyles,
   StyleRulesCallback,
   Theme,
+  useTheme,
   withStyles,
   WithStyles,
-  createStyles,
   withTheme,
   WithTheme,
 } from './styles';

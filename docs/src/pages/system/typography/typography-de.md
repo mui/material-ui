@@ -1,4 +1,4 @@
-# Typography
+# Typografie
 
 <p class="description">Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.</p>
 
@@ -23,7 +23,7 @@
 
 {{"demo": "pages/system/typography/FontWeight.js"}}
 
-## Font size
+## Schriftgröße
 
 ```jsx
 <Box fontSize="fontSize">…
@@ -48,9 +48,9 @@
 import { typography } from '@material-ui/system';
 ```
 
-| Import name  | Prop         | CSS property  | Theme key                                                              |
-|:------------ |:------------ |:------------- |:---------------------------------------------------------------------- |
-| `fontFamily` | `fontFamily` | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `fontSize`   | `fontSize`   | `font-size`   | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `fontWeight` | `fontWeight` | `font-weight` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `textAlign`  | `textAlign`  | `text-align`  | none                                                                   |
+| Import name  | Eigenschaften | CSS property  | Theme-Schlüssel                                                        |
+|:------------ |:------------- |:------------- |:---------------------------------------------------------------------- |
+| `fontFamily` | `fontFamily`  | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| `fontSize`   | `fontSize`    | `font-size`   | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| `fontWeight` | `fontWeight`  | `font-weight` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| `textAlign`  | `textAlign`   | `text-align`  | none                                                                   |

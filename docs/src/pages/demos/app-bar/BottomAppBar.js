@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,39 +17,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
-const styles = theme => ({
-  text: {
-    paddingTop: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-  },
-  paper: {
-    paddingBottom: 50,
-  },
-  list: {
-    marginBottom: theme.spacing(2),
-  },
-  subHeader: {
-    backgroundColor: theme.palette.background.paper,
-  },
-  appBar: {
-    top: 'auto',
-    bottom: 0,
-  },
-  toolbar: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  fabButton: {
-    position: 'absolute',
-    zIndex: 1,
-    top: -30,
-    left: 0,
-    right: 0,
-    margin: '0 auto',
-  },
-});
 
 const messages = [
   {
@@ -100,6 +67,36 @@ const messages = [
   },
 ];
 
+const styles = theme => ({
+  text: {
+    padding: theme.spacing(2, 2, 0),
+  },
+  paper: {
+    paddingBottom: 50,
+  },
+  list: {
+    marginBottom: theme.spacing(2),
+  },
+  subheader: {
+    backgroundColor: theme.palette.background.paper,
+  },
+  appBar: {
+    top: 'auto',
+    bottom: 0,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  fabButton: {
+    position: 'absolute',
+    zIndex: 1,
+    top: -30,
+    left: 0,
+    right: 0,
+    margin: '0 auto',
+  },
+});
+
 function BottomAppBar(props) {
   const { classes } = props;
   return (
@@ -111,33 +108,32 @@ function BottomAppBar(props) {
         </Typography>
         <List className={classes.list}>
           {messages.map(({ id, primary, secondary, person }) => (
-            <Fragment key={id}>
-              {id === 1 && <ListSubheader className={classes.subHeader}>Today</ListSubheader>}
-              {id === 3 && <ListSubheader className={classes.subHeader}>Yesterday</ListSubheader>}
+            <React.Fragment key={id}>
+              {id === 1 && <ListSubheader className={classes.subheader}>Today</ListSubheader>}
+              {id === 3 && <ListSubheader className={classes.subheader}>Yesterday</ListSubheader>}
               <ListItem button>
                 <Avatar alt="Profile Picture" src={person} />
                 <ListItemText primary={primary} secondary={secondary} />
               </ListItem>
-            </Fragment>
+            </React.Fragment>
           ))}
         </List>
       </Paper>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton color="inherit" aria-label="Open drawer">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="Open drawer">
             <MenuIcon />
           </IconButton>
           <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
             <AddIcon />
           </Fab>
-          <div>
-            <IconButton color="inherit">
-              <SearchIcon />
-            </IconButton>
-            <IconButton color="inherit">
-              <MoreIcon />
-            </IconButton>
-          </div>
+          <div className={classes.grow} />
+          <IconButton color="inherit">
+            <SearchIcon />
+          </IconButton>
+          <IconButton edge="end" color="inherit">
+            <MoreIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </React.Fragment>

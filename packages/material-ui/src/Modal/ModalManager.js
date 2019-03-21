@@ -1,5 +1,5 @@
-import css from 'dom-helpers/style';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import ownerWindow from '../utils/ownerWindow';
+import getScrollbarSize from '../utils/getScrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import isOverflowing from './isOverflowing';
 import { ariaHidden, ariaHiddenSiblings } from './manageAriaHidden';
@@ -17,7 +17,8 @@ function findIndexOf(data, callback) {
 }
 
 function getPaddingRight(node) {
-  return parseInt(css(node, 'paddingRight') || 0, 10);
+  const win = ownerWindow(node);
+  return parseInt(win.getComputedStyle(node)['padding-right'], 10) || 0;
 }
 
 function setContainerStyle(data) {
@@ -32,7 +33,7 @@ function setContainerStyle(data) {
   };
 
   if (data.overflowing) {
-    const scrollbarSize = getScrollbarSize(true);
+    const scrollbarSize = getScrollbarSize();
 
     // Use computed style, here to get the real padding to add our scrollbar width.
     style.paddingRight = `${getPaddingRight(data.container) + scrollbarSize}px`;

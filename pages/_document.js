@@ -1,6 +1,11 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
+import { Router } from 'next/router';
+import { LANGUAGES } from 'docs/src/modules/constants';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -12,9 +17,11 @@ import Document, { Head, Main, NextScript } from 'next/document';
 let prefixer;
 let cleanCSS;
 if (process.env.NODE_ENV === 'production') {
+  /* eslint-disable global-require */
   const postcss = require('postcss');
   const autoprefixer = require('autoprefixer');
   const CleanCSS = require('clean-css');
+  /* eslint-enable global-require */
 
   prefixer = postcss([autoprefixer]);
   cleanCSS = new CleanCSS();
@@ -24,7 +31,7 @@ const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA
 
 class MyDocument extends Document {
   render() {
-    const { canonical, pageContext, url } = this.props;
+    const { canonical, pageContext, url, userLanguage } = this.props;
 
     let font = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
 
@@ -51,7 +58,23 @@ class MyDocument extends Document {
             content={pageContext ? pageContext.theme.palette.primary.main : null}
           />
           <link rel="shortcut icon" href="/static/favicon.ico" />
-          <link rel="canonical" href={canonical} />
+          {/* SEO */}
+          <link
+            rel="canonical"
+            href={`https://material-ui.com${Router._rewriteUrlForNextExport(
+              `${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonical}`,
+            )}`}
+          />
+          {LANGUAGES.map(userLanguage2 => (
+            <link
+              key={userLanguage2}
+              rel="alternate"
+              href={`https://material-ui.com/${Router._rewriteUrlForNextExport(
+                `${userLanguage2}${canonical}`,
+              )}`}
+              hrefLang={userLanguage2}
+            />
+          ))}
           <link rel="stylesheet" href={font} />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
@@ -66,7 +89,6 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          <NextScript />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
@@ -76,6 +98,7 @@ window.ga('create','${GOOGLE_ID}','auto');
               `,
             }}
           />
+          <NextScript />
         </body>
       </html>
     );
@@ -130,7 +153,8 @@ MyDocument.getInitialProps = async ctx => {
     ...page,
     pageContext,
     url: ctx.req.url,
-    canonical: `https://material-ui.com${ctx.req.url.replace(/\/$/, '')}/`,
+    canonical: pathnameToLanguage(ctx.req.url).canonical,
+    userLanguage: ctx.query.userLanguage,
     styles: (
       <style
         id="jss-server-side"

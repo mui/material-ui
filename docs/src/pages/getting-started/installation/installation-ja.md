@@ -66,7 +66,7 @@ yarn add @material-ui/icons@next
 
 私たちは２つのUniversal Module Definition (UMD) ファイルを提供します。
 
-- 開発用: https://unpkg.com/@material-ui/core/next/umd/material-ui.development.js
-- 本番用: https://unpkg.com/@material-ui/core/next/umd/material-ui.production.min.js
+- 開発用: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
+- 本番用: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
 
 [CDN example](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)に従うことで、すぐに開発を始めることができます。

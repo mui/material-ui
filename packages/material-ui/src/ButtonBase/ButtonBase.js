@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
+import withForwardedRef from '../utils/withForwardedRef';
+import { setRef } from '../utils/reactHelpers';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
 import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
@@ -55,6 +58,8 @@ export const styles = {
 class ButtonBase extends React.Component {
   state = {};
 
+  buttonRef = React.createRef();
+
   keyDown = false; // Used to help track keyboard activation keyDown
 
   focusVisibleCheckTime = 50;
@@ -92,14 +97,13 @@ class ButtonBase extends React.Component {
   });
 
   componentDidMount() {
-    this.button = ReactDOM.findDOMNode(this);
-    listenForFocusKeys(ownerWindow(this.button));
+    listenForFocusKeys(ownerWindow(this.getButtonNode()));
 
     if (this.props.action) {
       this.props.action({
         focusVisible: () => {
           this.setState({ focusVisible: true });
-          this.button.focus();
+          this.getButtonNode().focus();
         },
       });
     }
@@ -118,6 +122,10 @@ class ButtonBase extends React.Component {
 
   componentWillUnmount() {
     clearTimeout(this.focusVisibleTimeout);
+  }
+
+  getButtonNode() {
+    return ReactDOM.findDOMNode(this.buttonRef.current);
   }
 
   onRippleRef = node => {
@@ -177,13 +185,14 @@ class ButtonBase extends React.Component {
       onKeyDown(event);
     }
 
+    const button = this.getButtonNode();
     // Keyboard accessibility for non interactive elements
     if (
       event.target === event.currentTarget &&
       component &&
       component !== 'button' &&
       (event.key === ' ' || event.key === 'Enter') &&
-      !(this.button.tagName === 'A' && this.button.href)
+      !(button.tagName === 'A' && button.href)
     ) {
       event.preventDefault();
       if (onClick) {
@@ -211,12 +220,12 @@ class ButtonBase extends React.Component {
     }
 
     // Fix for https://github.com/facebook/react/issues/7769
-    if (!this.button) {
-      this.button = event.currentTarget;
+    if (!this.buttonRef.current) {
+      this.buttonRef.current = event.currentTarget;
     }
 
     event.persist();
-    detectFocusVisible(this, this.button, () => {
+    detectFocusVisible(this, this.getButtonNode(), () => {
       this.onFocusVisibleHandler(event);
     });
 
@@ -239,6 +248,7 @@ class ButtonBase extends React.Component {
       disableTouchRipple,
       focusRipple,
       focusVisibleClassName,
+      innerRef,
       onBlur,
       onFocus,
       onFocusVisible,
@@ -278,6 +288,7 @@ class ButtonBase extends React.Component {
       buttonProps.disabled = disabled;
     } else {
       buttonProps.role = 'button';
+      buttonProps['aria-disabled'] = disabled;
     }
 
     return (
@@ -293,8 +304,11 @@ class ButtonBase extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        onContextMenu={this.handleContextMenu}
-        ref={buttonRef}
+        ref={ref => {
+          setRef(this.buttonRef, ref);
+          setRef(buttonRef, ref);
+          setRef(innerRef, ref);
+        }}
         tabIndex={disabled ? '-1' : tabIndex}
         {...buttonProps}
         {...other}
@@ -323,6 +337,7 @@ ButtonBase.propTypes = {
   action: PropTypes.func,
   /**
    * Use that property to pass a ref callback to the native button component.
+   * @deprecated Use `ref` instead
    */
   buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -347,7 +362,7 @@ ButtonBase.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.elementType,
+  component: elementTypeAcceptingRef,
   /**
    * If `true`, the base button will be disabled.
    */
@@ -374,6 +389,11 @@ ButtonBase.propTypes = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
@@ -453,4 +473,4 @@ ButtonBase.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
+export default withStyles(styles, { name: 'MuiButtonBase' })(withForwardedRef(ButtonBase));

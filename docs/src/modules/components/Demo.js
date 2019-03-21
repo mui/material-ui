@@ -14,7 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoFrame from 'docs/src/modules/components/DemoFrame';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
@@ -206,14 +206,6 @@ class Demo extends React.Component {
 
   getDemoData = () => {
     const { codeVariant, demo, githubLocation } = this.props;
-    if (codeVariant === CODE_VARIANTS.HOOK && demo.rawHooks) {
-      return {
-        codeVariant: CODE_VARIANTS.HOOK,
-        githubLocation: githubLocation.replace(/\.jsx?$/, '.hooks.js'),
-        raw: demo.rawHooks,
-        js: demo.jsHooks,
-      };
-    }
     if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
       return {
         codeVariant: CODE_VARIANTS.TS,
@@ -232,7 +224,7 @@ class Demo extends React.Component {
   };
 
   render() {
-    const { classes, codeVariant, demo, demoOptions } = this.props;
+    const { classes, codeVariant, demo, demoOptions, t } = this.props;
     const { anchorEl, codeOpen, demoHovered, sourceHintSeen } = this.state;
     const showSourceHint = demoHovered && !sourceHintSeen;
     const category = demoOptions.demo;
@@ -259,14 +251,13 @@ class Demo extends React.Component {
                   key={showSourceHint}
                   open={showSourceHint ? true : undefined}
                   PopperProps={{ disablePortal: true }}
-                  title={codeOpen ? 'Hide the source' : 'Show the source'}
+                  title={codeOpen ? t('hideSource') : t('showSource')}
                   placement="top"
                 >
                   <IconButton
                     data-ga-event-category={category}
                     data-ga-event-action="expand"
                     onClick={this.handleClickCodeOpen}
-                    aria-label={codeOpen ? 'Hide the source' : 'Show the source'}
                     color={demoHovered ? 'primary' : 'default'}
                   >
                     <CodeIcon />
@@ -274,7 +265,7 @@ class Demo extends React.Component {
                 </Tooltip>
                 <Tooltip
                   classes={{ popper: classes.tooltip }}
-                  title="View the source on GitHub"
+                  title={t('viewGitHub')}
                   placement="top"
                 >
                   <IconButton
@@ -282,7 +273,6 @@ class Demo extends React.Component {
                     data-ga-event-action="github"
                     href={demoData.githubLocation}
                     target="_blank"
-                    aria-label="GitHub"
                   >
                     <Github />
                   </IconButton>
@@ -290,14 +280,13 @@ class Demo extends React.Component {
                 {demoOptions.hideEditButton ? null : (
                   <Tooltip
                     classes={{ popper: classes.tooltip }}
-                    title="Edit in CodeSandbox"
+                    title={t('codesandbox')}
                     placement="top"
                   >
                     <IconButton
                       data-ga-event-category={category}
                       data-ga-event-action="codesandbox"
                       onClick={this.handleClickCodeSandbox}
-                      aria-label="CodeSandbox"
                     >
                       <EditIcon />
                     </IconButton>
@@ -307,7 +296,7 @@ class Demo extends React.Component {
                   onClick={this.handleClickMore}
                   aria-owns={anchorEl ? 'demo-menu-more' : undefined}
                   aria-haspopup="true"
-                  aria-label="See more"
+                  aria-label={t('seeMore')}
                 >
                   <MoreVertIcon />
                 </IconButton>
@@ -331,7 +320,7 @@ class Demo extends React.Component {
                     data-ga-event-action="copy"
                     onClick={this.handleClickCopy}
                   >
-                    Copy the source
+                    {t('copySource')}
                   </MenuItem>
                   {demoOptions.hideEditButton ? null : (
                     <MenuItem
@@ -339,7 +328,7 @@ class Demo extends React.Component {
                       data-ga-event-action="stackblitz"
                       onClick={this.handleClickStackBlitz}
                     >
-                      Edit in StackBlitz (JS only)
+                      {t('stackblitz')}
                     </MenuItem>
                   )}
                 </Menu>
@@ -377,11 +366,13 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   githubLocation: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default compose(
   connect(state => ({
     codeVariant: state.options.codeVariant,
+    t: state.options.t,
   })),
   withStyles(styles),
 )(Demo);

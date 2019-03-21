@@ -1,10 +1,10 @@
-# 浆纱
+# Sizing
 
-<p class="description">使用我们的宽度和高度实用程序轻松地将元素设置为宽或高（相对于其父元素）。</p>
+<p class="description">使用width和height工具集轻松地将元素设置宽或高（相对于其父元素）。</p>
 
 ## 支持的值
 
-大小调整样式函数支持不同的属性输入类型：
+Sizing样式函数支持不同的属性输入类型：
 
 ```jsx
 <Box width={1/4}> // Numbers in [0,1] are multiplied by 100 and converted to % values.
@@ -44,11 +44,11 @@
 import { sizing } from '@material-ui/system';
 ```
 
-| 导入名称        | Prop        | CSS 属性       | 主题键  |
-|:----------- |:----------- |:------------ |:---- |
-| `width`     | `width`     | `width`      | none |
-| `maxWidth`  | `maxWidth`  | `max-width`  | none |
-| `minWidth`  | `minWidth`  | `min-width`  | none |
-| `height`    | `height`    | `height`     | none |
-| `maxHeight` | `maxHeight` | `max-height` | none |
-| `minHeight` | `minHeight` | `min-height` | none |
+| 导入名称        | Prop        | CSS 属性       | Theme key |
+|:----------- |:----------- |:------------ |:--------- |
+| `width`     | `width`     | `width`      | none      |
+| `maxWidth`  | `maxWidth`  | `max-width`  | none      |
+| `minWidth`  | `minWidth`  | `min-width`  | none      |
+| `height`    | `height`    | `height`     | none      |
+| `maxHeight` | `maxHeight` | `max-height` | none      |
+| `minHeight` | `minHeight` | `min-height` | none      |

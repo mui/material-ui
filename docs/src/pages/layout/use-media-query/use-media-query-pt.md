@@ -9,7 +9,7 @@ Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 Less than [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
+- 📦 [1 kB gzipped](/size-snapshot).
 - 💄 It's an alternative to react-responsive and react-media that aims for simplicity.
 - 🤖 It supports Server-side rendering.
 
@@ -18,7 +18,7 @@ Some of the key features:
 You should provide a media query to the first argument of the hook. The media query string can by any valid CSS media query, e.g. `'print'`.
 
 ```jsx
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const matches = useMediaQuery('(min-width:600px)');
@@ -34,8 +34,8 @@ function MyComponent() {
 You can use Material-UI's [breakpoint helpers](/layout/breakpoints/) as follows:
 
 ```jsx
-import { useTheme } from '@material-ui/styles';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -49,7 +49,7 @@ function MyComponent() {
 
 ## Server-side rendering
 
-An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery). We also encourage the usage of the `unstable_useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
+An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery). We also encourage the usage of the `useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
 
 {{"demo": "pages/layout/use-media-query/ServerSide.js"}}
 
@@ -75,7 +75,7 @@ function MyComponent() {
 
 ## API
 
-### `unstable_useMediaQuery(query, [options]) => matches`
+### `useMediaQuery(query, [options]) => matches`
 
 #### Argumentos
 
@@ -93,7 +93,7 @@ function MyComponent() {
 
 ```jsx
 import React from 'react';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('print');

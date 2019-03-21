@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import green from '@material-ui/core/colors/green';
 import Button from '@material-ui/core/Button';
@@ -9,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -39,71 +38,57 @@ const styles = theme => ({
     marginTop: -12,
     marginLeft: -12,
   },
-});
+}));
 
-class CircularIntegration extends React.Component {
-  state = {
-    loading: false,
-    success: false,
-  };
+function CircularIntegration() {
+  const classes = useStyles();
+  const [loading, setLoading] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  const timer = React.useRef(null);
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
+  const buttonClassname = clsx({
+    [classes.buttonSuccess]: success,
+  });
 
-  handleButtonClick = () => {
-    if (!this.state.loading) {
-      this.setState(
-        {
-          success: false,
-          loading: true,
-        },
-        () => {
-          this.timer = setTimeout(() => {
-            this.setState({
-              loading: false,
-              success: true,
-            });
-          }, 2000);
-        },
-      );
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+
+  function handleButtonClick() {
+    if (!loading) {
+      setSuccess(false);
+      setLoading(true);
+      timer.current = setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 2000);
     }
-  };
-
-  render() {
-    const { loading, success } = this.state;
-    const { classes } = this.props;
-    const buttonClassname = clsx({
-      [classes.buttonSuccess]: success,
-    });
-
-    return (
-      <div className={classes.root}>
-        <div className={classes.wrapper}>
-          <Fab color="primary" className={buttonClassname} onClick={this.handleButtonClick}>
-            {success ? <CheckIcon /> : <SaveIcon />}
-          </Fab>
-          {loading && <CircularProgress size={68} className={classes.fabProgress} />}
-        </div>
-        <div className={classes.wrapper}>
-          <Button
-            variant="contained"
-            color="primary"
-            className={buttonClassname}
-            disabled={loading}
-            onClick={this.handleButtonClick}
-          >
-            Accept terms
-          </Button>
-          {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
-        </div>
-      </div>
-    );
   }
+
+  return (
+    <div className={classes.root}>
+      <div className={classes.wrapper}>
+        <Fab color="primary" className={buttonClassname} onClick={handleButtonClick}>
+          {success ? <CheckIcon /> : <SaveIcon />}
+        </Fab>
+        {loading && <CircularProgress size={68} className={classes.fabProgress} />}
+      </div>
+      <div className={classes.wrapper}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={buttonClassname}
+          disabled={loading}
+          onClick={handleButtonClick}
+        >
+          Accept terms
+        </Button>
+        {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+      </div>
+    </div>
+  );
 }
 
-CircularIntegration.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CircularIntegration);
+export default CircularIntegration;

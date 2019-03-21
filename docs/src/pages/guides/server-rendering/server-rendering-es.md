@@ -1,4 +1,4 @@
-# Server Rendering
+# Renderizado en el servidor
 
 <p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
 
@@ -52,7 +52,7 @@ app.listen(port);
 
 The first thing that we need to do on every request is create a new `sheetsRegistry` and `theme` instance.
 
-When rendering, we will wrap `App`, our root component, inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider/) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
+When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/css-in-js/api/#stylesprovider) and [`ThemeProvider`](/css-in-js/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
@@ -61,44 +61,41 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 ```jsx
 import ReactDOMServer from 'react-dom/server'
 import { SheetsRegistry } from 'jss';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    accent: red,
+  },
+});
 
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
-
   // Create a sheetsManager instance.
   const sheetsManager = new Map();
-
-  // Create a theme instance.
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-      accent: red,
-      type: 'light',
-    },
-  });
-
   // Create a new class name generator.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+    <StylesProvider
+      generateClassName={generateClassName}
+      sheetsRegistry={sheetsRegistry}
+      sheetsManager={sheetsManager}
+    >
+      <ThemeProvider theme={theme}>
         <App />
-      </MuiThemeProvider>
-    </JssProvider>
+      </ThemeProvider>
+    </StylesProvider>
   )
 
-  // Pegue o CSS do nosso sheetsRegistry.
+  // Grab the CSS from our sheetsRegistry.
   const css = sheetsRegistry.toString()
 
   // Send the rendered page back to the client.
@@ -136,48 +133,35 @@ The client side is straightforward. All we need to do is remove the server-side 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import App from './App';
 
-class Main extends React.Component {
-  // Remova o CSS injetado no lado do servidor.
-  componentDidMount() {
-    const jssStyles = document.getElementById('jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
+function Main() {
+  React.useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
-  }
+  }, []);
 
-  render() {
-    return <App />
-  }
+  return <App />;
 }
 
-// Crie uma instância do tema.
+// Create a theme instance.
 const theme = createMuiTheme({
   palette: {
     primary: green,
     accent: red,
-    type: 'light',
   },
 });
 
-// Create a new class name generator.
-const generateClassName = createGenerateClassName();
-
 ReactDOM.hydrate(
-  <JssProvider generateClassName={generateClassName}>
-    <MuiThemeProvider theme={theme}>
-      <Main />
-    </MuiThemeProvider>
-  </JssProvider>,
+  <ThemeProvider theme={theme}>
+    <Main />
+  </ThemeProvider>,
   document.querySelector('#root'),
 );
 ```
@@ -186,7 +170,7 @@ ReactDOM.hydrate(
 
 We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) folder:
 
-- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
+- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
 
@@ -201,8 +185,6 @@ The CSS is only generated on the first load of the page. Then, the CSS is missin
 #### Action to Take
 
 We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to provide **a new `sheetsManager` for each request**.
-
-You can learn more about [the sheets manager concept in the documentation](/customization/css-in-js/#sheets-manager).
 
 *example of fix:*
 
@@ -227,7 +209,7 @@ There is a class name mismatch between the client and the server. It might work 
 
 #### Action to Take
 
-The class names value relies on the concept of [class name generator](/customization/css-in-js/#creategenerateclassname-options-class-name-generator). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
+The class names value relies on the concept of [class name generator](/css-in-js/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
 
 - You need to provide a new class name generator for each request. But you might share a `createGenerateClassName()` between different requests:
 
@@ -258,8 +240,8 @@ function handleRender(req, res) {
   "dependencies": {
     ...
 
--   "@material-ui/core": "^1.4.2",
-+   "@material-ui/core": "1.4.3",
+-   "@material-ui/core": "^4.0.0",
++   "@material-ui/core": "4.0.0",
     ...
   },
 ```

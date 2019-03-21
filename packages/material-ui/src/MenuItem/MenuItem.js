@@ -10,12 +10,13 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.subtitle1,
-    height: 24,
-    boxSizing: 'content-box',
+    minHeight: 48,
+    paddingTop: 4,
+    paddingBottom: 4,
+    boxSizing: 'border-box',
     width: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    '&$selected': {},
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {

@@ -4,7 +4,7 @@ components: Select, NativeSelect
 ---
 # Selects
 
-<p class="description">Select components are used for collecting user provided information from a list of options.</p>
+<p class="description">Компонент Select используются для сбора информации, предоставленной пользователем, из списка параметров.</p>
 
 ## Simple Select
 

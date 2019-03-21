@@ -1,9 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
-import ReactDOM from 'react-dom';
 import { createMount, unwrap } from '@material-ui/core/test-utils';
-import Paper from '../Paper';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
@@ -22,23 +20,27 @@ function fireBodyMouseEvent(name, properties = {}) {
 describe('<SwipeableDrawer />', () => {
   const SwipeableDrawerNaked = unwrap(SwipeableDrawer);
   let mount;
-  let findDOMNodeStub;
+
+  function mockDrawerDOMNode(wrapper) {
+    wrapper.find('SwipeableDrawer').forEach(drawer => {
+      // like .value() but prevent reassignment
+      stub(drawer.instance(), 'paperRef')
+        .set(() => {})
+        .get(() => {
+          return {
+            clientWidth: 250,
+            clientHeight: 250,
+            style: {},
+          };
+        });
+    });
+  }
 
   before(() => {
     mount = createMount();
-    // mock the drawer DOM node, since jsdom doesn't do layouting but its size is required
-    const findDOMNode = ReactDOM.findDOMNode;
-    findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake(arg => {
-      if (arg instanceof Paper) {
-        // mock the drawer's DOM node
-        return { clientWidth: 250, clientHeight: 250, style: {} };
-      }
-      return findDOMNode(arg);
-    });
   });
 
   after(() => {
-    findDOMNodeStub.restore();
     mount.cleanUp();
   });
 
@@ -121,6 +123,7 @@ describe('<SwipeableDrawer />', () => {
         </SwipeableDrawerNaked>,
       );
       instance = wrapper.instance();
+      mockDrawerDOMNode(wrapper);
     });
 
     afterEach(() => {
@@ -455,12 +458,13 @@ describe('<SwipeableDrawer />', () => {
           </SwipeableDrawerNaked>
         </div>,
       );
+      mockDrawerDOMNode(wrapper);
+
       fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 180, clientY: 0 }] });
       fireBodyMouseEvent('touchend', { changedTouches: [{ pageX: 180, clientY: 0 }] });
       assert.strictEqual(handleOpen.callCount, 1, 'should call onOpen once, not twice');
-      wrapper.unmount();
     });
   });
 

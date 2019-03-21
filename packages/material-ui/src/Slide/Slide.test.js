@@ -116,7 +116,7 @@ describe('<Slide />', () => {
       const wrapper = mount(
         <SlideNaked {...defaultProps} theme={createMuiTheme()} in={false} direction="left" />,
       );
-      const transition = wrapper.instance().transitionRef;
+      const transition = wrapper.instance().childDOMNode;
 
       const transition1 = transition.style.transform;
       wrapper.setProps({
@@ -233,7 +233,7 @@ describe('<Slide />', () => {
           <div>Foo</div>
         </SlideNaked>,
       );
-      const transition = wrapper.instance().transitionRef;
+      const transition = wrapper.instance().childDOMNode;
 
       assert.strictEqual(transition.style.visibility, 'hidden');
       assert.notStrictEqual(transition.style.transform, undefined);
@@ -260,7 +260,7 @@ describe('<Slide />', () => {
       const instance = wrapper.instance();
       instance.handleResize();
       clock.tick(166);
-      const transition = instance.transitionRef;
+      const transition = instance.childDOMNode;
 
       assert.notStrictEqual(transition.style.transform, undefined);
     });

@@ -34,8 +34,8 @@ Das Badge versteckt sich automatisch, wenn `badgeContent` null ist. Dies kann mi
 
 ## Benutzerdefinierte Badges
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the badge position.
+Wenn du die [Overrides Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du die Position der Badges anpassen könntest.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Auch wenn die Material-Design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}

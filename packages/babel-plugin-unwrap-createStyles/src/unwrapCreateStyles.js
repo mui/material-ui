@@ -3,7 +3,7 @@
  * @param {babel.types.ImportDeclaration} param0
  */
 function isImportFromStyles({ source }) {
-  return source.value === '@material-ui/core/styles';
+  return source.value === '@material-ui/core/styles' || source.value === '@material-ui/styles';
 }
 
 /**

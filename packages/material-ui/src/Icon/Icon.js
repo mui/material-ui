@@ -8,7 +8,7 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     userSelect: 'none',
-    fontSize: 24,
+    fontSize: theme.typography.pxToRem(24),
     width: '1em',
     height: '1em',
     // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
@@ -41,15 +41,15 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: {
-    fontSize: 20,
+    fontSize: theme.typography.pxToRem(20),
   },
   /* Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: {
-    fontSize: 36,
+    fontSize: theme.typography.pxToRem(36),
   },
 });
 
-function Icon(props) {
+const Icon = React.forwardRef(function Icon(props, ref) {
   const { children, classes, className, color, component: Component, fontSize, ...other } = props;
 
   return (
@@ -64,12 +64,13 @@ function Icon(props) {
         className,
       )}
       aria-hidden="true"
+      ref={ref}
       {...other}
     >
       {children}
     </Component>
   );
-}
+});
 
 Icon.propTypes = {
   /**

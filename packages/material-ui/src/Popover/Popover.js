@@ -6,9 +6,12 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
+import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import { createChainedFunction } from '../utils/helpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../Grow';
@@ -116,6 +119,7 @@ class Popover extends React.Component {
 
   setPositioningStyles = element => {
     const positioning = this.getPositioningStyle(element);
+
     if (positioning.top !== null) {
       element.style.top = positioning.top;
     }
@@ -174,7 +178,7 @@ class Popover extends React.Component {
     }
 
     warning(
-      elemRect.height < heightThreshold || !elemRect.height || !heightThreshold,
+      elemRect.height <= heightThreshold || !elemRect.height || !heightThreshold,
       [
         'Material-UI: the popover component is too tall.',
         `Some part of it can not be seen on the screen (${elemRect.height - heightThreshold}px).`,
@@ -214,8 +218,12 @@ class Popover extends React.Component {
       return anchorPosition;
     }
 
+    const resolvedAnchorEl = getAnchorEl(anchorEl);
     // If an anchor element wasn't provided, just use the parent body element of this Popover
-    const anchorElement = getAnchorEl(anchorEl) || ownerDocument(this.paperRef).body;
+    const anchorElement =
+      resolvedAnchorEl instanceof HTMLElement
+        ? resolvedAnchorEl
+        : ownerDocument(this.paperRef).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -285,6 +293,7 @@ class Popover extends React.Component {
       container: containerProp,
       elevation,
       getContentAnchorEl,
+      innerRef,
       marginThreshold,
       ModalClasses,
       onEnter,
@@ -294,8 +303,7 @@ class Popover extends React.Component {
       onExited,
       onExiting,
       open,
-      PaperProps,
-      role,
+      PaperProps = {},
       transformOrigin,
       TransitionComponent,
       transitionDuration: transitionDurationProp,
@@ -320,6 +328,7 @@ class Popover extends React.Component {
         classes={ModalClasses}
         container={container}
         open={open}
+        ref={innerRef}
         BackdropProps={{ invisible: true }}
         {...other}
       >
@@ -331,19 +340,18 @@ class Popover extends React.Component {
           onExit={onExit}
           onExited={onExited}
           onExiting={onExiting}
-          role={role}
           timeout={transitionDuration}
           {...TransitionProps}
           onEntering={createChainedFunction(this.handleEntering, TransitionProps.onEntering)}
         >
           <Paper
-            className={classes.paper}
             data-mui-test="Popover"
             elevation={elevation}
             ref={ref => {
               this.paperRef = ReactDOM.findDOMNode(ref);
             }}
             {...PaperProps}
+            className={clsx(classes.paper, PaperProps.className)}
           >
             <EventListener target="window" onResize={this.handleResize} />
             {children}
@@ -368,7 +376,22 @@ Popover.propTypes = {
    * This is the DOM element, or a function that returns the DOM element,
    * that may be used to set the position of the popover.
    */
-  anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
+    if (props.open) {
+      const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+
+      if (!(resolvedAnchorEl instanceof HTMLElement)) {
+        return new Error(
+          [
+            'Material-UI: the anchorEl property provided to the component is invalid.',
+            `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
+          ].join('\n'),
+        );
+      }
+    }
+
+    return null;
+  }),
   /**
    * This is the point on the anchor where the popover's
    * `anchorEl` will attach to. This is not used when the
@@ -431,6 +454,11 @@ Popover.propTypes = {
    */
   getContentAnchorEl: PropTypes.func,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Specifies how close to the edge of the window the popover can appear.
    */
   marginThreshold: PropTypes.number,
@@ -477,10 +505,6 @@ Popover.propTypes = {
    * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
-  /**
-   * @ignore
-   */
-  role: PropTypes.string,
   /**
    * This is the point on the popover which
    * will attach to the anchor's origin.
@@ -531,4 +555,4 @@ Popover.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { name: 'MuiPopover' })(Popover);
+export default withStyles(styles, { name: 'MuiPopover' })(withForwardedRef(Popover));

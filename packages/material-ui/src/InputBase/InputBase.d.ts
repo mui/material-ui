@@ -15,7 +15,7 @@ export interface InputBaseProps
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
-  inputComponent?: React.ReactType<InputBaseComponentProps>;
+  inputComponent?: React.ElementType<InputBaseComponentProps>;
   inputProps?: InputBaseComponentProps;
   inputRef?: React.Ref<any> | React.RefObject<any>;
   margin?: 'dense' | 'none';
@@ -63,15 +63,19 @@ export type InputBaseClassKey =
   | 'formControl'
   | 'focused'
   | 'disabled'
+  | 'adornedEnd'
+  | 'adornedStart'
   | 'error'
+  | 'marginDense'
   | 'multiline'
   | 'fullWidth'
   | 'input'
   | 'inputMarginDense'
-  | 'inputDisabled'
   | 'inputMultiline'
   | 'inputType'
-  | 'inputTypeSearch';
+  | 'inputTypeSearch'
+  | 'inputAdornedStart'
+  | 'inputAdornedEnd';
 
 declare const InputBase: React.ComponentType<InputBaseProps>;
 

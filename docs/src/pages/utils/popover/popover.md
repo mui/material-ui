@@ -24,7 +24,7 @@ When it is `anchorPosition`, the component will, instead of `anchorEl`,
 refer to the `anchorPosition` prop which you can adjust to set
 the position of the popover.
 
-{{"demo": "pages/utils/popover/AnchorPlayground.js"}}
+{{"demo": "pages/utils/popover/AnchorPlayground.js", "hideHeader": true}}
 
 ## Mouse over interaction
 

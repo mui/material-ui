@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import blue from '@material-ui/core/colors/blue';
 import Switch from '@material-ui/core/Switch';
@@ -30,7 +31,7 @@ class DynamicThemeNesting extends React.Component {
           }
           label="Blue"
         />
-        <MuiThemeProvider
+        <ThemeProvider
           theme={
             this.state.color === 'blue'
               ? {
@@ -49,7 +50,7 @@ class DynamicThemeNesting extends React.Component {
           <Button variant="contained" color="secondary">
             {'Theme nesting'}
           </Button>
-        </MuiThemeProvider>
+        </ThemeProvider>
       </React.Fragment>
     );
   }

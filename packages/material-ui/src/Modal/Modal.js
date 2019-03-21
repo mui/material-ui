@@ -5,15 +5,17 @@ import clsx from 'clsx';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
+import { setRef } from '../utils/reactHelpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
 import TrapFocus from './TrapFocus';
 import Backdrop from '../Backdrop';
 import { ariaHidden } from './manageAriaHidden';
 
-function getContainer(container, defaultContainer) {
+function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
-  return ReactDOM.findDOMNode(container) || defaultContainer;
+  return ReactDOM.findDOMNode(container);
 }
 
 function getHasTransition(props) {
@@ -50,8 +52,6 @@ export const styles = theme => ({
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
-  mounted = false;
-
   constructor(props) {
     super();
     this.state = {
@@ -60,7 +60,6 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    this.mounted = true;
     if (this.props.open) {
       this.handleOpen();
     }
@@ -70,14 +69,11 @@ class Modal extends React.Component {
     if (prevProps.open && !this.props.open) {
       this.handleClose();
     } else if (!prevProps.open && this.props.open) {
-      this.lastFocus = ownerDocument(this.mountNode).activeElement;
       this.handleOpen();
     }
   }
 
   componentWillUnmount() {
-    this.mounted = false;
-
     if (this.props.open || (getHasTransition(this.props) && !this.state.exited)) {
       this.handleClose('unmount');
     }
@@ -101,8 +97,7 @@ class Modal extends React.Component {
   }
 
   handleOpen = () => {
-    const doc = ownerDocument(this.mountNode);
-    const container = getContainer(this.props.container, doc.body);
+    const container = getContainer(this.props.container) || this.getDoc().body;
 
     this.props.manager.add(this, container);
     if (this.modalRef) {
@@ -192,10 +187,15 @@ class Modal extends React.Component {
 
   handleModalRef = ref => {
     this.modalRef = ref;
+    setRef(this.props.innerRef, ref);
   };
 
   isTopModal = () => {
     return this.props.manager.isTopModal(this);
+  };
+
+  getDoc = () => {
+    return ownerDocument(this.mountNode);
   };
 
   render() {
@@ -214,6 +214,7 @@ class Modal extends React.Component {
       disablePortal,
       disableRestoreFocus,
       hideBackdrop,
+      innerRef,
       keepMounted,
       manager,
       onBackdropClick,
@@ -275,6 +276,7 @@ class Modal extends React.Component {
             disableEnforceFocus={disableEnforceFocus}
             disableAutoFocus={disableAutoFocus}
             disableRestoreFocus={disableRestoreFocus}
+            getDoc={this.getDoc}
             isEnabled={this.isTopModal}
             open={open}
           >
@@ -356,6 +358,11 @@ Modal.propTypes = {
    */
   hideBackdrop: PropTypes.bool,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
@@ -411,4 +418,4 @@ Modal.defaultProps = {
   manager: new ModalManager(),
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);
+export default withStyles(styles, { flip: false, name: 'MuiModal' })(withForwardedRef(Modal));

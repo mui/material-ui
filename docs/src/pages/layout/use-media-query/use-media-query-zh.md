@@ -5,11 +5,11 @@ title: React中的媒体查询用于响应式设计
 
 <p class="description">这是React的CSS媒体查询钩子。 它侦听与CSS媒体查询的匹配。 它允许根据查询是否匹配来呈现组件。</p>
 
-一些关键特点：
+一些重要特点：
 
 - ⚛️它有一个惯用的React API。
 - 🚀它具有高性能，它会观察文档以检测其媒体查询何时发生更改，而不是定期轮询值。
-- 📦小于 [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js)。
+- 📦 [1 kB gzipped](/size-snapshot).
 - 💄它是反应敏感和反应媒体的替代方案，旨在简化。
 - 🤖它支持服务器端渲染。
 
@@ -18,7 +18,7 @@ title: React中的媒体查询用于响应式设计
 您应该为挂钩的第一个参数提供媒体查询。 媒体查询字符串可以由任何有效的CSS媒体查询，如 `'print'`。
 
 ```jsx
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const matches = useMediaQuery('(min-width:600px)');
@@ -34,8 +34,8 @@ function MyComponent() {
 您可以使用Material-UI的 [断点助手](/layout/breakpoints/) ，如下所示：
 
 ```jsx
-import { useTheme } from '@material-ui/styles';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -49,7 +49,7 @@ function MyComponent() {
 
 ## 服务器端呈现
 
-服务器上需要实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ，我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery)。 我们还鼓励使用从主题中获取属性的 `unstable_useMediaQueryTheme` 版本的钩子。 这样，您可以为所有React树提供一次 `ssrMatchMedia` 选项。
+服务器上需要实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ，我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery)。 We also encourage the usage of the `useMediaQueryTheme` version of the hook that fetches properties from the theme. 这样，您可以为所有React树提供一次 `ssrMatchMedia` 选项。
 
 {{"demo": "pages/layout/use-media-query/ServerSide.js"}}
 
@@ -75,7 +75,7 @@ function MyComponent() {
 
 ## API
 
-### `unstable_useMediaQuery(query, [options]) => matches`
+### `useMediaQuery(query, [options]) => matches`
 
 #### 参数
 
@@ -93,7 +93,7 @@ function MyComponent() {
 
 ```jsx
 import React from 'react';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('print');

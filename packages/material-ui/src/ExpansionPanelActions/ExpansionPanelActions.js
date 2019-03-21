@@ -19,15 +19,15 @@ export const styles = {
   },
 };
 
-function ExpansionPanelActions(props) {
+const ExpansionPanelActions = React.forwardRef(function ExpansionPanelActions(props, ref) {
   const { children, classes, className, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} {...other}>
+    <div className={clsx(classes.root, className)} ref={ref} {...other}>
       {cloneChildrenWithClassName(children, classes.action)}
     </div>
   );
-}
+});
 
 ExpansionPanelActions.propTypes = {
   /**

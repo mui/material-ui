@@ -28,7 +28,7 @@ class StepSlider extends React.Component {
     return (
       <div className={classes.root}>
         <Slider
-          classes={{ container: classes.slider }}
+          className={classes.slider}
           value={value}
           min={0}
           max={6}

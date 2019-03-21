@@ -8,11 +8,11 @@ The most recent version is recommended in production.
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Latest versions
+## Последние версии
 
 Here you can find the latest unreleased documentation and code. You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
 
 ## Versioning strategy
 

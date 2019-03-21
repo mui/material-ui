@@ -45,7 +45,7 @@ import 'typeface-roboto';
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}
 
-## Changing the semantic element
+## 改变语义元素
 
 The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
 

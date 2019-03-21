@@ -1,40 +1,58 @@
+/* eslint-disable react/prop-types */
+
 import React from 'react';
-import Menu from 'packages/material-ui/src/Menu';
-import MenuItem from 'packages/material-ui/src/MenuItem';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
-const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
+const options = [
+  'Show some love to Material-UI',
+  'Show all notification content',
+  'Hide sensitive notification content',
+];
 
-class SimpleMenu extends React.Component {
-  state = {
-    open: false,
-    selectedIndex: undefined,
-  };
+function SimpleMenu({ selectedIndex: selectedIndexProp, ...props }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(selectedIndexProp || null);
 
-  handleMenuItemClick = (event, index) => {
-    this.setState({ selectedIndex: index, open: false });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    return (
-      <div>
-        <Menu id="simple-menu" open={this.state.open} onClose={this.handleClose} {...this.props}>
-          {options.map((label, index) => (
-            <MenuItem
-              key={label}
-              selected={index === this.state.selectedIndex}
-              onClick={event => this.handleMenuItemClick(event, index)}
-            >
-              {label}
-            </MenuItem>
-          ))}
-        </Menu>
-      </div>
-    );
+  function handleClickListItem(event) {
+    setAnchorEl(event.currentTarget);
   }
+
+  function handleMenuItemClick(event, index) {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+
+  const open = Boolean(anchorEl);
+
+  return (
+    <div>
+      <Button
+        aria-haspopup="true"
+        aria-controls="lock-menu"
+        aria-label="When device is locked"
+        onClick={handleClickListItem}
+      >
+        {`selectedIndex: ${selectedIndex}, open: ${open}`}
+      </Button>
+      <Menu id="lock-menu" anchorEl={anchorEl} open={open} onClose={handleClose} {...props}>
+        {options.map((option, index) => (
+          <MenuItem
+            key={option}
+            selected={index === selectedIndex}
+            onClick={event => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
 }
 
 export default SimpleMenu;

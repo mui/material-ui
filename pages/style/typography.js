@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/style/typography', false, /\.md|\.js
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/style/typography',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/style/typography';
 

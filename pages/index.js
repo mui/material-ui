@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/lab/Container';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
@@ -39,12 +40,6 @@ const styles = theme => ({
     color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
   },
   content: {
-    // To replace with a layout component.
-    maxWidth: theme.breakpoints.values.md,
-    margin: 'auto',
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    // --
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -101,6 +96,10 @@ const styles = theme => ({
   },
 });
 
+const GettingStartedLink = React.forwardRef((props, ref) => {
+  return <Link href="/getting-started/installation" naked prefetch ref={ref} {...props} />;
+});
+
 class HomePage extends React.Component {
   componentDidMount() {
     if (window.location.hash !== '') {
@@ -118,7 +117,7 @@ class HomePage extends React.Component {
         <div className={classes.root}>
           <Head />
           <div className={classes.hero}>
-            <div className={classes.content}>
+            <Container maxWidth="md" className={classes.content}>
               <img
                 src="/static/images/material-ui-logo.svg"
                 alt="Material-UI Logo"
@@ -138,9 +137,7 @@ class HomePage extends React.Component {
                   {t('strapline')}
                 </Typography>
                 <Button
-                  component={buttonProps => (
-                    <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
-                  )}
+                  component={GettingStartedLink}
                   className={classes.button}
                   variant="outlined"
                   color="primary"
@@ -148,7 +145,7 @@ class HomePage extends React.Component {
                   {t('getStarted')}
                 </Button>
               </div>
-            </div>
+            </Container>
           </div>
           <div className={classes.social}>
             <a

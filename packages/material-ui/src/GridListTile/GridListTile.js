@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import withStyles from '../styles/withStyles';
+import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -34,89 +34,75 @@ export const styles = {
   },
 };
 
-class GridListTile extends React.Component {
-  constructor() {
-    super();
-
-    if (typeof window !== 'undefined') {
-      this.handleResize = debounce(() => {
-        this.fit();
-      }, 166); // Corresponds to 10 frames at 60 Hz.
-    }
+const fit = (imgEl, classes) => {
+  if (!imgEl || !imgEl.complete) {
+    return;
   }
 
-  componentDidMount() {
-    this.ensureImageCover();
+  if (imgEl.width / imgEl.height > imgEl.parentNode.offsetWidth / imgEl.parentNode.offsetHeight) {
+    imgEl.classList.remove(...classes.imgFullWidth.split(' '));
+    imgEl.classList.add(...classes.imgFullHeight.split(' '));
+  } else {
+    imgEl.classList.remove(...classes.imgFullHeight.split(' '));
+    imgEl.classList.add(...classes.imgFullWidth.split(' '));
   }
 
-  componentDidUpdate() {
-    this.ensureImageCover();
+  imgEl.removeEventListener('load', fit);
+};
+
+function ensureImageCover(imgEl, classes) {
+  if (!imgEl) {
+    return;
   }
 
-  componentWillUnmount() {
-    this.handleResize.clear();
-  }
-
-  fit = () => {
-    const imgElement = this.imgElement;
-
-    if (!imgElement || !imgElement.complete) {
-      return;
-    }
-
-    if (
-      imgElement.width / imgElement.height >
-      imgElement.parentNode.offsetWidth / imgElement.parentNode.offsetHeight
-    ) {
-      imgElement.classList.remove(...this.props.classes.imgFullWidth.split(' '));
-      imgElement.classList.add(...this.props.classes.imgFullHeight.split(' '));
-    } else {
-      imgElement.classList.remove(...this.props.classes.imgFullHeight.split(' '));
-      imgElement.classList.add(...this.props.classes.imgFullWidth.split(' '));
-    }
-
-    imgElement.removeEventListener('load', this.fit);
-  };
-
-  ensureImageCover() {
-    if (!this.imgElement) {
-      return;
-    }
-
-    if (this.imgElement.complete) {
-      this.fit();
-    } else {
-      this.imgElement.addEventListener('load', this.fit);
-    }
-  }
-
-  render() {
-    const { children, classes, className, cols, component: Component, rows, ...other } = this.props;
-
-    return (
-      <Component className={clsx(classes.root, className)} {...other}>
-        <EventListener target="window" onResize={this.handleResize} />
-        <div className={classes.tile}>
-          {React.Children.map(children, child => {
-            if (!React.isValidElement(child)) {
-              return null;
-            }
-
-            if (child.type === 'img') {
-              return React.cloneElement(child, {
-                ref: node => {
-                  this.imgElement = node;
-                },
-              });
-            }
-
-            return child;
-          })}
-        </div>
-      </Component>
-    );
+  if (imgEl.complete) {
+    fit(imgEl, classes);
+  } else {
+    imgEl.addEventListener('load', fit);
   }
 }
+
+const GridListTile = React.forwardRef(function GridListTile(props, ref) {
+  const { children, classes, className, cols, component: Component, rows, ...other } = props;
+
+  const imgRef = React.useRef(null);
+
+  React.useEffect(() => {
+    ensureImageCover(imgRef.current, classes);
+  });
+
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      fit(imgRef.current, classes);
+    }, 166); // Corresponds to 10 frames at 60 Hz.
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      handleResize.clear();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [classes]);
+
+  return (
+    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
+      <div className={classes.tile}>
+        {React.Children.map(children, child => {
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+
+          if (child.type === 'img' || isMuiElement(child, ['Image'])) {
+            return React.cloneElement(child, {
+              ref: imgRef,
+            });
+          }
+
+          return child;
+        })}
+      </div>
+    </Component>
+  );
+});
 
 GridListTile.propTypes = {
   /**

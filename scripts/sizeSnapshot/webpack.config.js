@@ -97,8 +97,9 @@ async function getSizeLimitBundles() {
 
 module.exports = getSizeLimitBundles;
 
-module.exports = new Promise(async resolve => {
-  const entry = (await getSizeLimitBundles()).reduce((acc, bundle) => {
+module.exports = async function webpackConfig() {
+  const entries = await getSizeLimitBundles();
+  const entry = entries.reduce((acc, bundle) => {
     acc[bundle.name] = path.join(workspaceRoot, bundle.path);
     return acc;
   }, {});
@@ -124,5 +125,5 @@ module.exports = new Promise(async resolve => {
     },
   };
 
-  resolve(config);
-});
+  return config;
+};

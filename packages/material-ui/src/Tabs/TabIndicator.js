@@ -26,16 +26,17 @@ export const styles = theme => ({
 /**
  * @ignore - internal component.
  */
-function TabIndicator(props) {
+const TabIndicator = React.forwardRef(function TabIndicator(props, ref) {
   const { classes, className, color, ...other } = props;
 
   return (
     <span
       className={clsx(classes.root, classes[`color${capitalize(color)}`], className)}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 TabIndicator.propTypes = {
   /**

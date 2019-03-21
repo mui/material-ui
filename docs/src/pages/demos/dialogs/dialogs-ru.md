@@ -1,5 +1,5 @@
 ---
-title: Dialog React component
+title: Диалог, компонент React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 # Диалоги
@@ -14,7 +14,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 Простые диалоги могут предоставить дополнительные детали или действия по элементу списка. Например, они могут отображать аватары, значки, уточняющий подтекст или ортогональные действия (например, добавление учетной записи).
 
-Touch mechanics:
+Особенности механики касаний:
 
 - Выбор опции немедленно фиксирует ее и закрывает меню
 - Касание за пределами диалога или нажатие Назад отменяет действие и закрывает диалоговое окно
@@ -83,7 +83,7 @@ Touch mechanics:
 
 ## Доступность
 
-Follow the [Modal accessibility section](/utils/modal/#accessibility).
+Смотри [раздел доступности модальных окон](/utils/modal/#accessibility).
 
 ## Прокрутка длинного контента
 

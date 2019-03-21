@@ -68,25 +68,30 @@ export const styles = theme => {
   };
 };
 
-function AppBar(props) {
-  const { children, classes, className: classNameProp, color, position, ...other } = props;
-
-  const className = clsx(
-    classes.root,
-    classes[`position${capitalize(position)}`],
-    {
-      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-      'mui-fixed': position === 'fixed', // Useful for the Dialog
-    },
-    classNameProp,
-  );
+const AppBar = React.forwardRef(function AppBar(props, ref) {
+  const { children, classes, className, color, position, ...other } = props;
 
   return (
-    <Paper square component="header" elevation={4} className={className} {...other}>
+    <Paper
+      square
+      component="header"
+      elevation={4}
+      className={clsx(
+        classes.root,
+        classes[`position${capitalize(position)}`],
+        {
+          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+          'mui-fixed': position === 'fixed', // Useful for the Dialog
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
       {children}
     </Paper>
   );
-}
+});
 
 AppBar.propTypes = {
   /**

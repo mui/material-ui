@@ -30,6 +30,12 @@ Un ejemplo sencillo sin florituras.
 
 {{"demo": "pages/demos/tables/SimpleTable.js"}}
 
+## Tabla Densa
+
+Un Ejemplo de una tabla densa sin florituras.
+
+{{"demo": "pages/demos/tables/DenseTable.js"}}
+
 ## Ordenando & Seleccionando
 
 Este ejemplo demuestra el uso del `Checkbox` y las filas cliqueables para seleccionar, con una `Toolbar` personalizado. Utiliza el componente `TableSortLabel` para ayudar a dar estilo a las cabeceras de las columnas.
@@ -72,3 +78,4 @@ Para usos más avanzados tal vez puedas aprovercharte de:
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Tablas de datos responsivas para Material-UI con filtración, ordenación, búsqueda y más.
 - [material-table](https://github.com/mbrn/material-table) DataTable basada en el componente de tabla con herramientas adicionales como búsqueda, filtración, ordenación y mucho más.
 - [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Tabla de Material-UI virtualizado.
+- [mui-tables](https://parkerself.gitbook.io/mui-table/) Customizable table for managing complex data. Features a summary row, de-duplication & merging, as well as filtering, search, etc.

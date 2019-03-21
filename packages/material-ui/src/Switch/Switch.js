@@ -100,7 +100,7 @@ export const styles = theme => ({
   },
 });
 
-function Switch(props) {
+const Switch = React.forwardRef(function Switch(props, ref) {
   const { classes, className, color, ...other } = props;
 
   return (
@@ -114,12 +114,13 @@ function Switch(props) {
           disabled: classes.disabled,
         }}
         checkedIcon={<span className={clsx(classes.icon, classes.iconChecked)} />}
+        ref={ref}
         {...other}
       />
       <span className={classes.bar} />
     </span>
   );
-}
+});
 
 Switch.propTypes = {
   /**

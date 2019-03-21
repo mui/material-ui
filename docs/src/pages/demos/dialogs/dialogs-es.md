@@ -69,7 +69,7 @@ Puede establecer un ancho máximo de diálogo utilizando el enumerable `maxWidth
 
 ## Pantalla completa responsiva
 
-Puede hacer un cuadro de diálogo responsivo a pantalla completa utilizando `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics/). Puede elegir su propio punto de quiebre por ejemplo `xs` pasando el argumento `breakpoint`, de la siguiente forma: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+Puede hacer un cuadro de diálogo responsivo a pantalla completa utilizando `withMobileDialog`. Por defecto, `withMobileDialog()(Dialog)` para pantallas completas responsivas cuyo [tamaño de pantalla](/layout/basics/) sea *menor o igual* al tamaño `sm`. Puede elegir su propio punto de quiebre por ejemplo `xs` pasando el argumento `breakpoint`, de la siguiente forma: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
 
 {{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 
@@ -83,7 +83,7 @@ Al tocar "Cancelar" en un cuadro de diálogo de confirmación, o al presionar At
 
 ## Accesibilidad
 
-Follow the [Modal accessibility section](/utils/modal/#accessibility).
+Sigue la [Sección de accesibilidad de Modal](/utils/modal/#accessibility).
 
 ## Desplazando contenido largo
 

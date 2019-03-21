@@ -1,5 +1,310 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.4
+###### *Mar 17, 2019*
+
+A big thanks to the 17 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- Improve the TypeScript definitions of @material-ui/styles @VincentLanglet.
+- Prepare the migration of more TypeScript demos (#14896) @eps1lon.
+- Complete the i18n support for the documentation (#14838) @oliviertassinari.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v4.0.0-alpha.4`
+
+#### Breaking change
+
+- [ButtonBase] Require host or ref forwarding components (#13664) @eps1lon
+- [SvgIcon] Rename nativeColor -> htmlColor (#14863) @oliviertassinari
+
+  React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
+
+  ```diff
+  -<AddIcon nativeColor={secondary.contrastText} />
+  +<AddIcon htmlColor={secondary.contrastText} />
+  ```
+
+- [Divider] Remove the deprecated inset prop (#14826) @joshwooding
+
+  ```diff
+  -<Divider inset />
+  +<Divider variant="inset" />
+  ```
+
+- [Box] Remove the unstable prefix & import the right version (#14845) @pheuter
+
+  ```diff
+  -import { unstable_Box as Box } from '@material-ui/core/Box';
+  +import Box from '@material-ui/core/Box';
+  ```
+
+#### Changes
+
+- [Grid] Adding missing 'spacing-xs-*' to TypeScript definition (#14859) @scott-martin
+- [Tabs] Fix an infinite loop (#14664) @caroe233
+- [NoSsr] Add missing defer prop to TypeScript definition (#14869) @DaleJefferson
+- [core] Remove dom-helpers dependency (#14877) @oliviertassinari
+- [TextField] Add typing for theme wide props override (#14879) @C-Rodg
+- [Autocomplete] Add a downshift variant demo (#14881) @ekoeditaa
+- [Popover][Popper] Warn when `anchorEl` is invalid (#13468) @Andarist
+- [LinearProgress] Improve customization capability (#14882) @giuliogallerini
+- [Popover] Fix PaperProps classname concat (#14902) @vitkon
+- [MenuItem] Add buttonRef (and other button props) type (#14772) @VincentLanglet
+- [TouchRipple] Remove findDOMNode usage (#14825) @eps1lon
+- [ExpansionPanelSummary] Simplify overrides (#14828) @TroySchmidt
+- [Popper] Use refs instead of findDOMNode (#14829) @eps1lon
+- [Tab] Fix alignment when using multiple children (#14844) @HaNdTriX
+- [TextField] Convert to function component (#14833) @eps1lon
+- [Table] Fix demo parse rowsPerPage value as an integer (#14848) @SimplyAhmazing
+
+### `@material-ui/styles@v4.0.0-alpha.4`
+
+- [styles] Change material-ui/styles folder structure (#14868) @VincentLanglet
+- [styles] Add WithThemeCreator typing (#14856) @VincentLanglet
+- [styles] Add types for defaultTheme option in makeStyles (#14862) @vitkon
+- [styles] Make CSSProperties public (#14802) @VincentLanglet
+
+### `@material-ui/lab@v4.0.0-alpha.4`
+
+- [Slider] Fix possible touchstart leak (#14837) @eps1lon
+
+### Docs
+
+- [docs] Prepare full TypeScript demos (#14896) @eps1lon
+- [docs] Improve documentation for new component + ref behavior (#14883) @eps1lon
+- [docs] Add perf section to ExpansionPanel (#14903) @eps1lon
+- [docs] Simplify the /examples (#14822) @oliviertassinari
+- [docs] Add ssr-next example (#14823) @oliviertassinari
+- [docs] Add missing breaking changes from #14795 (#14824) @eps1lon
+- [docs] Minor fixes to system demos (#14831) @jo shwooding
+- Complete the i18n support for the documentation] Enable the i18n search (#14838) @oliviertassinari
+- [docs] Fix babel generator extra line (#14849) @VincentLanglet
+- [docs] Remove unnecessary findDOMNode usage (#14836) @eps1lon
+
+### Core
+
+- [core] Only import from top or 2nd level (#14888) @eps1lon
+- [test] Leaner eslint config (#14901) @eps1lon
+- [core] Upgrade the dev dependencies (#14911) @oliviertassinari
+- [core] Stop using @types/jss (#14852) @VincentLanglet
+- [core] Babel plugin unwrap createStyles now handle material-ui/styles package (#14850) @VincentLanglet
+- [test] Fix unwrapCreateStyles tests for windows (#14832) @ryancogswell
+
+## 4.0.0-alpha.3
+###### *Mar 10, 2019*
+
+A big thanks to the 14 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- ⚛️ Increase the usage of `React.forwardRef()` (#14714, #14737, #14738, #14775) @eps1lon.
+- 💅 Remove the old styles modules (#14767) @oliviertassinari.
+- 📝 Migrate many demos to use the hooks API (#14805) @adeelibr.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v4.0.0-alpha.3`
+
+#### Breaking change
+
+- [useMediaQuery] Remove unstable prefix (#14593)
+
+  ```diff
+  -import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+  +import useMediaQuery from '@material-ui/core/useMediaQuery';
+  ```
+- [DialogActions] `action` CSS class is applied to root element if `disableActionSpacing={false}` instead of children (#14795)
+- [DialogContentText] Use typography variant `body1` instead of `subtitle1` (#14795)
+
+- [MenuItem] Remove fixed height (#14799) @KyruCabading
+  Remove the fixed height of the MenuItem.
+  The padding and line-height are used by the browser to compute the height.
+
+#### Changes
+
+- [Tabs] Forward refs (#14714) @eps1lon
+- [TextField] New filled variant override example (#14725) @oliviertassinari
+- [FilledInput] Simplify border overrides (#14719) @C-Rodg
+- [CssBaseline] Apply body2 styling to the body element (#14729) @joshwooding
+- [IconButton] Add a size prop (#14649) @leMaik
+- [Popover] Forward refs (#14737) @eps1lon
+- [Modal] Forward refs (#14738) @eps1lon
+- [createSpacing] Narrow return type (#14745) @eps1lon
+- [Chip] Correct Chip Typescript Definition Class Keys (#14750) @cvanem
+- [MenuList] Remove focus method and test dependencies on instance methods (#14757) @ryancogswell
+- [Dialog] Forward refs (#14775) @eps1lon
+- [IconButton] Implement a new edge prop (#14758) @jedwards1211
+- [Dialog] Add a dividers boolean prop (#14795) @oliviertassinari
+
+### `@material-ui/styles@v4.0.0-alpha.3`
+
+#### Breaking changes
+
+- [styles] Remove the old styles modules (#14767) @oliviertassinari
+  Isolation of the styling solution of the core components in a dedicated package.
+  - Remove the `MuiThemeProvider` component:
+
+    ```diff
+    -import { MuiThemeProvider } from '@material-ui/core/styles';
+    +import { ThemeProvider } from '@material-ui/styles';
+    ```
+
+  - Remove the `@material-ui/styles/install` module.
+    ```diff
+    -import { install } from '@material-ui/styles';
+    -install();
+    ```
+
+#### Changes
+
+- [styles] Improve ref forwarding (#13676) @eps1lon
+- [styles] Use hoist-non-react-statics (#14722) @oliviertassinari
+
+### `@material-ui/lab@v4.0.0-alpha.3`
+
+- [SpeedDial] Change actions background color (#14640) @hburrows
+- [SpeedDialAction] Pass onTouchEnd event onto called onClick handler (#14641) @hburrows
+
+### Docs
+
+- [docs] Fix Drawer demos accessibility (#14728) @tiagodreis
+- [docs] Add "Portals" to the styled components documentation (#14720) @C-Rodg
+- [docs] Specify PaletteIntention syntax (#14727) @ozydingo
+- [docs] Add button demos in ts (#14739) @eps1lon
+- [docs] Document the migration from v3 to v4 (#14741) @oliviertassinari
+- [docs] before() is Mocha; beforeEach() is Jest (#14743) @masaok
+- [docs] Fix IE 11 build (#14781) @oliviertassinari
+- [docs] Kill as many non hook demos as possible (#14805) @oliviertassinari
+- [docs] Prepare Google & Algolia i18n search + v3/v4 search (#14806) @oliviertassinari
+- [docs] Speed-up pull requests build (#14811) @oliviertassinari
+
+### Core
+
+- [test] Ignore the image load issue (#14723) @oliviertassinari
+- [icons] Fix builder failing on Windows (#14726) @joshwooding
+- [ci] Don't use -browser images (#14779) @eps1lon
+- [test] Increase the Codecov threshold (#14796) @oliviertassinari
+- [test] Disable the user sandbox security feature (#14804) @oliviertassinari
+- [core] Use hoist-non-react-statics (#14722) @oliviertassinari
+
+## 4.0.0-alpha.2
+###### *Mar 3, 2019*
+
+A big thanks to the 23 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- Keep working on accessibility (#14465, #14545, #14661) @eps1lon, @oliviertassinari.
+- Add the Table dense support (#14561) @leMaik.
+- Change the bundle size tracking strategy (copy React) (#14587) @eps1lon.
+- Introduce a new Container component & new full layout demos (#14499) @oliviertassinari.
+- Start removing the need for findDOMNode() (#14536) @eps1lon.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v4.0.0-alpha.2`
+
+#### Breaking changes
+
+- [Tabs] Simplify override (#14638) @oliviertassinari
+
+  We have removed the `labelContainer`, `label` and `labelWrapped` class keys.
+  We have removed 2 intermediary DOM elements.
+  You should be able to move the custom styles to the root class key.
+  ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+
+- [Table] Add dense support (#14561) @leMaik
+
+  - We have removed the deprecated numeric property.
+  ```diff
+  -<TableCell numeric>{row.calories}</TableCell>
+  +<TableCell align="right">{row.calories}</TableCell>
+  ```
+  - We have removed the fixed height property on the table row.
+  The cell height is computed by the browser using the padding and line-height.
+  - The `dense` mode was promoted to a different property:
+  ```diff
+  -<TableCell padding="dense" />
+  +<TableCell size="small" />
+  ```
+
+- Every component except `Dialog`, `MenuList`, `Modal`, `Popover` and `Tabs` forward
+  their `innerRef` (#14536).
+
+  This is implemented by using `React.forwardRef`. This affects the internal component
+  tree and display name and therefore might break shallow or snapshot tests.
+  `innerRef` will no longer return a ref to the instance
+  (or nothing if the inner component is a function component) but a ref to its root component.
+  The corresponding API docs list the root component.
+
+#### Changes
+
+- [core] Improve a11y for Collapse, ExpansionPanel and Grow (#14598) @eps1lon
+- [Transitions] Increase minimal version of react-transition-group to 2.5.3 (#14612) @wilcoschoneveld
+- [ExpansionPanelSummary] Update docs (#14606) @ifndefdeadmau5
+- [ExpansionPanel] Add TransitionComponent prop (#14617) @ptbrowne
+- [Link] Color property is defined with a wrong type (#14631) @akellan
+- [Tooltip] Improve legibility (#14651) @leMaik
+- [Tabs] Fix variant missing in Tabs.d.ts (#14659) @Deturium
+- [Autocomplete] Improve demo (#14657) @tjmcewan
+- [Dialog] Support for print (#14660) @emildatcu
+- [TableSortLabel] Increase size and show on hover (#14650) @leMaik
+- [Modal] Fix autoFocus support (#14661) @oliviertassinari
+- [InputLabel] display: block as default (#14676) @johnloven
+- [InputBase] Add missing TypeScript class keys (#14684) @dmtrKovalenko
+- [ListItem] Fix listItem focus (#14680) @xs9627
+- [ExpansionPanel] Improve a11y (#14682) @eps1lon
+
+### `@material-ui/styles@v4.0.0-alpha.2`
+
+- [styles] Fix the theme update support (#14697) @oliviertassinari
+
+### `@material-ui/lab@v4.0.0-alpha.2`
+
+- [Slider] Pass current value to onDragStart/onDragEnd callback (#14475) @rejas
+- [Slider] Fix thumb creating scroll overflow (#14689) @xaviergonz
+- [Layout] New Container component (#14499) @oliviertassinari
+- [Container] Fix two exceptions (#14715) @oliviertassinari
+
+### `@material-ui/utils@v4.0.0-alpha.2`
+
+- [utils] Drop componentPropType in favor of PropTypes.elementType (#14602) @eps1lon
+
+## Docs
+
+- [MobileStepper] Remove unused classname in example (#14597) @charlax
+- [docs] Update the Team (#14613) @oliviertassinari
+- [docs] Solve Firefox middle click issue (#14623) @paol
+- [docs] Update ScrollDialog Demo for 4k (#14622) @AndrewUsher
+- [docs] Fix broken hash link in css-in-js (#14633) @furkle
+- [docs] Improve demo source discoverability (#14635) @eps1lon
+- [docs] Improve Grid limitations description (#14637) @ryancogswell
+- [docs] Fix minor issues with demo action tooltips (#14652) @eps1lon
+- [docs] Upgrade react-docgen (#14666) @eps1lon
+- [docs] Update bundle size strategy (#14662) @eps1lon
+- [docs] Minor next adjustments (#14679) @eps1lon
+- [docs] A grammar modification suggestion (#14671) @mataxxx5
+- [docs] Link the mui-tables project in the documentation (#14701) @parkerself22
+- [docs] Generate unique hash (#14703) @oliviertassinari
+- [docs] Add simple list typescript demo (#14485) @eps1lon
+- [docs] Fix wrong source code URLs (#14716) @oliviertassinari
+
+## Core
+
+- [core] Fix webstorm autocompletion (#14599) @eps1lon
+- [ci] Use dangerJS to report bundle size changes (#14587) @eps1lon
+- [ci] Various size snapshot enhancements (#14620) @eps1lon
+- [core] Solve Babel dependency issue (#14621) @AndrewUsher
+- [core] Add eslint-plugin-react-hooks (#14629) @eps1lon
+- [test] Fix size snapshot including peer dependencies (#14636) @eps1lon
+- [ci] Speedup and cleanup (#14643) @eps1lon
+- [test] Fix how menu items are found in MenuList integration tests (#14654) @ryancogswell
+- [core] Add tslint deprecation rule (#14675) @eps1lon
+- [typescript] Add regression test for popular hoc interop (#14688) @eps1lon
+- [core] Fix .yarnrc syntax (#14704) @joshwooding
+- [core] forward innerRef for certain components (#14536) @eps1lon
+- [core] Use official prop-type cache invalidation (#14699) @eps1lon
+
 ## 4.0.0-alpha.1
 ###### *Feb 20, 2019*
 
@@ -14,7 +319,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.1`
 
-### Breaking change
+#### Breaking change
 
 - [Typography] Remove deprecated Typography variants (#14562) @joshwooding
 

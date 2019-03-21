@@ -4,7 +4,7 @@ import warning from 'warning';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
 import Demo from 'docs/src/modules/components/Demo';
@@ -38,7 +38,7 @@ const styles = theme => ({
   },
 });
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
 
 function MarkdownDocs(props) {
   const {
@@ -69,18 +69,14 @@ function MarkdownDocs(props) {
           markdowns.en = req(filename);
         }
       } else {
-        const demoName = `${reqPrefix}/${filename.replace(/.\/|.hooks/g, '')}`;
-        const isHooks = filename.indexOf('.hooks.js') !== -1;
-        const jsType = isHooks ? 'jsHooks' : 'js';
-        const rawType = isHooks ? 'rawHooks' : 'raw';
-
+        const demoName = `${reqPrefix}/${filename.replace(/.\//g, '')}`;
         const tsFilename = filename.replace(/\.js$/, '.tsx');
         const hasTSVersion = sourceFiles.indexOf(tsFilename) !== -1;
 
         demos[demoName] = {
           ...demos[demoName],
-          [jsType]: req(filename).default,
-          [rawType]: reqSource(filename),
+          js: req(filename).default,
+          raw: reqSource(filename),
           rawTS: hasTSVersion ? reqSource(tsFilename) : undefined,
         };
       }
@@ -89,6 +85,8 @@ function MarkdownDocs(props) {
   }
 
   const headers = getHeaders(markdown);
+  // eslint-disable-next-line no-underscore-dangle
+  global.__MARKED_UNIQUE__ = {};
 
   return (
     <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>

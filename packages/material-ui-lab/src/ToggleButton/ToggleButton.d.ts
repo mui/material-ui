@@ -1,7 +1,5 @@
-import * as React from 'react';
-import { PropTypes, StandardProps } from '@material-ui/core';
 import { ButtonBaseClassKey, ExtendButtonBase } from '@material-ui/core/ButtonBase';
-import { OverridableComponent, SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
+import { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
 
 declare const ToggleButton: ExtendButtonBase<{
   props: {

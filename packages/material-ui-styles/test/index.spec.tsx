@@ -99,6 +99,40 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
     // but this would pass anyway
     const alsoClasses = useUnsafeProps(undefined); // runtime: Can't read property color of undefined
   };
+
+  // default theme
+  interface CustomTheme {
+    attribute: number;
+    [key: string]: any;
+  }
+
+  const validCustomTheme = { attribute: 8, otherStuff: true };
+  const invalidCustomTheme = { otherStuff: true };
+
+  const style = (theme: CustomTheme) =>
+    createStyles({
+      root: {
+        margin: theme.attribute,
+      },
+    });
+
+  makeStyles<typeof style>(style, {
+    defaultTheme: validCustomTheme,
+  });
+
+  makeStyles(style, {
+    defaultTheme: validCustomTheme,
+  });
+
+  // $ExpectError
+  makeStyles(style, {
+    defaultTheme: invalidCustomTheme,
+  });
+
+  // $ExpectError
+  makeStyles<typeof style>(style, {
+    defaultTheme: invalidCustomTheme,
+  });
 }
 
 // styled

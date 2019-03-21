@@ -1,8 +1,8 @@
-# Example Projects
+# Beispielprojekte
 
-<p class="description">Are you looking for an example project to get started?</p>
+<p class="description">Suchen Sie ein Beispielprojekt, um anzufangen?</p>
 
-We host some example projects which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) folder:
+Wir hosten einige Beispielprojekte, die Sie im [GitHub-Repository](https://github.com/mui-org/material-ui) finden unter dem [` /examples`](https://github.com/mui-org/material-ui/tree/next/examples) Ordner:
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
@@ -10,18 +10,18 @@ We host some example projects which you can find in the [GitHub repository](http
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)
 - E mais
 
-Create React App is an awesome project for learning React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
+Create React App ist ein großartiges Projekt zum Lernen von React. Schauen Sie sich die [verfügbaren Alternativen an](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) um zu sehen, welches Projekt am besten zu Ihnen passt.
 
-The source code for this documentation site is also included in the repository. This is a slightly more complex project. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/next/docs) folder for build instructions.
+Der Quellcode für diese Dokumentationsseite ist auch im Repository enthalten. Dies ist ein etwas komplexeres Projekt. Schauen Sie sich die Build-Anweisungen im [`/docs`](https://github.com/mui-org/material-ui/tree/next/docs) Ordner an.
 
-## More advanced example projects
+## Fortgeschrittenere Beispielprojekte
 
-Looking for a more advanced example project?
+Suchen Sie nach einem fortgeschritteneren Beispielprojekt?
 
-If you want to start with a more complete and real world example, you could take a look at:
+Wenn Sie mit einem vollständigeren und realistischeren Beispiel beginnen möchten, werfen Sie einen Blick auf Folgendes:
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), which includes: 
-  - Graph using recharts
-  - React Router included with a navigation example
-  - A docker container with an Nginx server for production build
-  - Created with [Create React App](https://facebook.github.io/create-react-app/)
+- [Material Sense](https://github.com/alexanmtz/material-sense), welches beinhaltet: 
+  - Diagramme mit recharts
+  - React Router mit einem Navigationsbeispiel
+  - Ein Docker-Container mit einem Nginx-Server für den Produktionsaufbau
+  - Erstellt mit [Create React App](https://facebook.github.io/create-react-app/)

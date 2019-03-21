@@ -1,7 +1,8 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
-import Router from 'next/router';
+import url from 'url';
+import { connect } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Input from '@material-ui/core/Input';
@@ -9,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import compose from 'docs/src/modules/utils/compose';
 
 let searchTimer;
@@ -32,7 +34,7 @@ function loadDependencies() {
   );
 }
 
-function initDocsearch() {
+function initDocsearch(userLanguage) {
   if (!process.browser) {
     return;
   }
@@ -56,15 +58,14 @@ function initDocsearch() {
       apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
       indexName: 'material-ui',
       inputSelector: '#docsearch-input',
+      algoliaOptions: { facetFilters: ['version:next', `language:${userLanguage}`] },
       handleSelected: (input, event, suggestion) => {
-        const url = suggestion.url
-          .replace(/^https:\/\/material-ui\.com/, '')
-          .replace(/\/#/, '#')
-          .replace(/\/$/, '');
-        Router.push(url);
+        event.button = 0;
+        const parseUrl = url.parse(suggestion.url);
+        handleEvent(event, parseUrl.pathname + parseUrl.hash);
+        input.close();
       },
-      // Set debug to true if you want to inspect the dropdown.
-      // debug: true,
+      // debug: true, // Set debug to true if you want to inspect the dropdown.
     });
   }, 100);
 }
@@ -179,10 +180,10 @@ class AppSearch extends React.Component {
   };
 
   render() {
-    const { classes, width } = this.props;
+    const { classes, userLanguage, width } = this.props;
 
     if (isWidthUp('sm', width)) {
-      initDocsearch();
+      initDocsearch(userLanguage);
     }
 
     return (
@@ -210,10 +211,14 @@ class AppSearch extends React.Component {
 
 AppSearch.propTypes = {
   classes: PropTypes.object.isRequired,
+  userLanguage: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
 };
 
 export default compose(
   withWidth(),
+  connect(state => ({
+    userLanguage: state.options.userLanguage,
+  })),
   withStyles(styles),
 )(AppSearch);

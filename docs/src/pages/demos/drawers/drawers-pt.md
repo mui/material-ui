@@ -4,7 +4,7 @@ components: Drawer, SwipeableDrawer
 ---
 # Drawer
 
-<p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
+<p class="description">A navegação por drawers dão acesso para lugares dentro de sua aplicação. Elas são fragmentos de sua aplicação que contém conteúdo suplementar que são colocados na borda da esquerda ou da direita da tela.</p>
 
 [Navigation drawers](https://material.io/design/components/navigation-drawer.html) provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
 

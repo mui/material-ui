@@ -30,29 +30,23 @@ You need this JSS plugin to flip the styles: [jss-rtl](https://github.com/alitah
 npm install jss-rtl
 ```
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below. Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
+Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below. Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
 
-The [CSS-in-JS documentation](/customization/css-in-js/#opting-out-of-rtl-transformation) explains a bit more about how this plugin works. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
-
-Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. JSS has a [`JssProvider`](https://github.com/cssinjs/react-jss) component for this:
+Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. We have a [`StylesProvider`](/css-in-js/api/#stylesprovider) component for this:
 
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-// Gerador de nome de classe de Material-UI customizado.
-const generateClassName = createGenerateClassName();
-
 function RTL(props) {
   return (
-    <JssProvider jss={jss} generateClassName={generateClassName}>
+    <StylesProvider jss={jss}>
       {props.children}
-    </JssProvider>
+    </StylesProvider>
   );
 }
 ```

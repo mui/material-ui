@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   colorSwitchBase: {
     color: purple[300],
     '&$colorChecked': {
@@ -56,63 +55,56 @@ const styles = theme => ({
   iOSIconChecked: {
     boxShadow: theme.shadows[1],
   },
-});
+}));
 
-class CustomizedSwitches extends React.Component {
-  state = {
+function CustomizedSwitches() {
+  const classes = useStyles();
+  const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
+  });
+
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
   };
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value="checkedA"
-              classes={{
-                switchBase: classes.colorSwitchBase,
-                checked: classes.colorChecked,
-                bar: classes.colorBar,
-              }}
-            />
-          }
-          label="Custom color"
-        />
-        <FormControlLabel
-          control={
-            <Switch
-              classes={{
-                switchBase: classes.iOSSwitchBase,
-                bar: classes.iOSBar,
-                icon: classes.iOSIcon,
-                iconChecked: classes.iOSIconChecked,
-                checked: classes.iOSChecked,
-              }}
-              disableRipple
-              checked={this.state.checkedB}
-              onChange={this.handleChange('checkedB')}
-              value="checkedB"
-            />
-          }
-          label="iOS style"
-        />
-      </FormGroup>
-    );
-  }
+  return (
+    <FormGroup row>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={state.checkedA}
+            onChange={handleChange('checkedA')}
+            value="checkedA"
+            classes={{
+              switchBase: classes.colorSwitchBase,
+              checked: classes.colorChecked,
+              bar: classes.colorBar,
+            }}
+          />
+        }
+        label="Custom color"
+      />
+      <FormControlLabel
+        control={
+          <Switch
+            classes={{
+              switchBase: classes.iOSSwitchBase,
+              bar: classes.iOSBar,
+              icon: classes.iOSIcon,
+              iconChecked: classes.iOSIconChecked,
+              checked: classes.iOSChecked,
+            }}
+            disableRipple
+            checked={state.checkedB}
+            onChange={handleChange('checkedB')}
+            value="checkedB"
+          />
+        }
+        label="iOS style"
+      />
+    </FormGroup>
+  );
 }
 
-CustomizedSwitches.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedSwitches);
+export default CustomizedSwitches;

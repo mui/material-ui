@@ -1,5 +1,6 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
@@ -23,9 +24,9 @@ const theme = createMuiTheme({
 
 function OverridesCss() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Button>Overrides CSS</Button>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

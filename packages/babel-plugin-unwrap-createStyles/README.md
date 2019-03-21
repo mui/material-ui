@@ -28,6 +28,8 @@ const styles = () => ({});
 export default withStyles(styles)(Component);
 ```
 
+It works also with the `@material-ui/styles` package.
+
 ### Missing
 
 - default import from `createStyles`

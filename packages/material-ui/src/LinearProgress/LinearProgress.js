@@ -18,7 +18,6 @@ export const styles = theme => ({
   colorPrimary: {
     backgroundColor: lighten(theme.palette.primary.light, 0.6),
   },
-  // eslint-disable-next-line max-len
   /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
   colorSecondary: {
     backgroundColor: lighten(theme.palette.secondary.light, 0.4),
@@ -171,7 +170,7 @@ export const styles = theme => ({
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
  */
-function LinearProgress(props) {
+const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   const { classes, className: classNameProp, color, value, valueBuffer, variant, ...other } = props;
 
   const className = clsx(
@@ -211,7 +210,7 @@ function LinearProgress(props) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
-      inlineStyles.bar1.transform = `scaleX(${value / 100})`;
+      inlineStyles.bar1.transform = `translateX(${value - 100}%)`;
     } else {
       warning(
         false,
@@ -222,7 +221,7 @@ function LinearProgress(props) {
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      inlineStyles.bar2.transform = `scaleX(${(valueBuffer || 0) / 100})`;
+      inlineStyles.bar2.transform = `translateX(${(valueBuffer || 0) - 100}%)`;
     } else {
       warning(
         false,
@@ -233,7 +232,7 @@ function LinearProgress(props) {
   }
 
   return (
-    <div className={className} role="progressbar" {...rootProps} {...other}>
+    <div className={className} role="progressbar" {...rootProps} ref={ref} {...other}>
       {variant === 'buffer' ? <div className={dashedClass} /> : null}
       <div className={bar1ClassName} style={inlineStyles.bar1} />
       {variant === 'determinate' ? null : (
@@ -241,7 +240,7 @@ function LinearProgress(props) {
       )}
     </div>
   );
-}
+});
 
 LinearProgress.propTypes = {
   /**

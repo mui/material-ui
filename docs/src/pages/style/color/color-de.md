@@ -1,4 +1,4 @@
-# Color
+# Farbe
 
 <p class="description">Convey meaning through color. Out of the box you get access to all colors in the Material Design spec.</p>
 
@@ -16,7 +16,7 @@ A palette is a collection of colors, i.e. hues and their shades. Material-UI pro
 
 A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" is the lightest shade of red (*pink!*), while "red 900" is the darkest. In addition, most hues come with "accent" shades, prefixed with an `A`.
 
-### Examples
+### Beispiele
 
 The Material Design color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors. They’ve been designed to work harmoniously with each other.
 
@@ -43,7 +43,7 @@ const color = HUE[SHADE];
 
 {{"demo": "pages/style/color/Color.js", "hideHeader": true}}
 
-## Color tool
+## Farbwerkzeug
 
 To test a [material.io/design/color](https://material.io/design/color/) color scheme with the Material-UI documentation, simply select colors using the palette and sliders below. Alternatively, you can enter hex values in the Primary and Secondary text fields.
 

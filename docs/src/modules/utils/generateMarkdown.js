@@ -7,7 +7,7 @@ import { Router } from 'next/router';
 import { pageToTitle } from './helpers';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
@@ -42,14 +42,20 @@ function getChained(type) {
     const indexStart = type.raw.indexOf(marker);
 
     if (indexStart !== -1) {
-      const parsed = docgenParse(`
+      const parsed = docgenParse(
+        `
         import PropTypes from 'prop-types';
         const Foo = () => <div />
         Foo.propTypes = {
           bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
         }
         export default Foo
-      `);
+      `,
+        null,
+        null,
+        // helps react-docgen pickup babel.config.js
+        { filename: './' },
+      );
       return {
         type: parsed.props.bar.type,
         required: parsed.props.bar.required,
@@ -68,7 +74,13 @@ function escapeCell(value) {
     .replace(/\|/g, '\\|');
 }
 
-function generatePropDescription(description, type) {
+function isElementTypeAcceptingRefProp(type) {
+  return type.raw === 'elementTypeAcceptingRef';
+}
+
+function generatePropDescription(prop) {
+  const { description } = prop;
+  const type = prop.flowType || prop.type;
   let deprecated = '';
 
   if (type.name === 'custom') {
@@ -138,12 +150,21 @@ function generatePropDescription(description, type) {
     }
   }
 
-  return `${deprecated}${jsDocText}${signature}`;
+  let notes = '';
+  if (isElementTypeAcceptingRefProp(type)) {
+    notes += '<br>[Needs to be able to hold a ref](/guides/composition#caveat-with-refs).';
+  }
+
+  return `${deprecated}${jsDocText}${signature}${notes}`;
 }
 
 function generatePropType(type) {
   switch (type.name) {
     case 'custom': {
+      if (isElementTypeAcceptingRefProp(type)) {
+        return `element type`;
+      }
+
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {
         return generatePropType({
@@ -154,11 +175,6 @@ function generatePropType(type) {
       const chained = getChained(type);
       if (chained !== false) {
         return generatePropType(chained.type);
-      }
-
-      // this should be fixed at some point in react-docgen
-      if (type.raw === 'PropTypes.elementType') {
-        return 'element type';
       }
 
       return type.raw;
@@ -222,7 +238,7 @@ function generateProps(reactAPI) {
       throw new Error(`The "${propRaw}"" property is missing a description`);
     }
 
-    const description = generatePropDescription(prop.description, prop.flowType || prop.type);
+    const description = generatePropDescription(prop);
 
     if (description === null) {
       return textProps;

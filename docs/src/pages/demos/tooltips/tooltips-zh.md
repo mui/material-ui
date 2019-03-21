@@ -22,7 +22,7 @@ components: Tooltip
 
 如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入，这里有一个如何为主题提供工具提示的示例。
 
-⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 

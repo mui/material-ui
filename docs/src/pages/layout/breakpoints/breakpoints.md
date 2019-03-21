@@ -33,7 +33,7 @@ for controlling the layout of your application through the [Grid](/layout/grid/)
 ## CSS Media Queries
 
 CSS media queries is the idiomatic approach to make your UI responsive.
-We provide four [CSS-in-JS](/customization/css-in-js/) helpers to do so:
+We provide four styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)

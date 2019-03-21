@@ -7,15 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
-    marginLeft: -18,
-    marginRight: 10,
+    marginRight: theme.spacing(2),
   },
-};
+});
 
 function DenseAppBar(props) {
   const { classes } = props;
@@ -23,7 +22,7 @@ function DenseAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar variant="dense">
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit">

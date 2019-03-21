@@ -30,7 +30,7 @@ Radio buttons should have the most commonly used option selected by default.
 
 {{"demo": "pages/demos/selection-controls/RadioButtons.js"}}
 
-## Checkboxes
+## Checkboxen
 
 [Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
 
@@ -48,7 +48,7 @@ If you have multiple options appearing in a list, you can preserve space by usin
 
 {{"demo": "pages/demos/selection-controls/CheckboxesGroup.js"}}
 
-## Switches
+## Schalter
 
 [Switches](https://material.io/design/components/selection-controls.html#switches) toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
 

@@ -1,4 +1,3 @@
-import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,10 +23,10 @@ function LatestVersions(props) {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell padding="dense">
+            <TableCell>
               <Typography variant="body2">master branch</Typography>
             </TableCell>
-            <TableCell padding="dense">
+            <TableCell>
               <Link
                 variant="body2"
                 color="secondary"
@@ -37,7 +36,7 @@ function LatestVersions(props) {
                 Documentation
               </Link>
             </TableCell>
-            <TableCell padding="dense">
+            <TableCell>
               <Link
                 variant="body2"
                 color="secondary"
@@ -48,10 +47,10 @@ function LatestVersions(props) {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell padding="dense">
+            <TableCell>
               <Typography variant="body2">next branch</Typography>
             </TableCell>
-            <TableCell padding="dense">
+            <TableCell>
               <Link
                 variant="body2"
                 color="secondary"
@@ -61,7 +60,7 @@ function LatestVersions(props) {
                 Documentation
               </Link>
             </TableCell>
-            <TableCell padding="dense">
+            <TableCell>
               <Link
                 variant="body2"
                 color="secondary"

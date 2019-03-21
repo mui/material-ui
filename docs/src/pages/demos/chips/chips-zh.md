@@ -33,4 +33,4 @@ components: Chip
 
 ## 纸片演练
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}

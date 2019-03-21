@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 
 const inner = (
   <Box bgcolor="background.paper" m={1} border={1} style={{ width: '5rem', height: '5rem' }} />

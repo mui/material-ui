@@ -1,18 +1,21 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '@material-ui/core/test-utils';
-import InputBase from '../InputBase';
+import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import Input from './Input';
 
 describe('<Input />', () => {
-  let shallow;
+  let mount;
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'Input' });
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a <div />', () => {
-    const wrapper = shallow(<Input />);
-    assert.strictEqual(wrapper.type(), InputBase);
+    const wrapper = mount(<Input />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
   });
 });

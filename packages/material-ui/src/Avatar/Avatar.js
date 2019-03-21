@@ -35,7 +35,7 @@ export const styles = theme => ({
   },
 });
 
-function Avatar(props) {
+const Avatar = React.forwardRef(function Avatar(props, ref) {
   const {
     alt,
     children: childrenProp,
@@ -82,12 +82,13 @@ function Avatar(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     >
       {children}
     </Component>
   );
-}
+});
 
 Avatar.propTypes = {
   /**

@@ -27,7 +27,7 @@ You can use the component with zero extra dependencies.
 
 ## Scroll playground
 
-{{"demo": "pages/utils/popper/ScrollPlayground.js"}}
+{{"demo": "pages/utils/popper/ScrollPlayground.js", "hideHeader": true}}
 
 ## Positioned Popper
 
@@ -49,7 +49,7 @@ Highlight part of the text to see the popper:
 
 Para usos más avanzados tal vez puedas aprovercharte de:
 
-### PopupState helper
+### Ayudante PopupState
 
 There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 

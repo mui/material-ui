@@ -1,5 +1,6 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import WithTheme from './WithTheme';
 
 const theme = createMuiTheme({
@@ -10,9 +11,9 @@ const theme = createMuiTheme({
 
 function DarkTheme() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <WithTheme />
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

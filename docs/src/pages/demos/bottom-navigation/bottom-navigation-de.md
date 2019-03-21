@@ -1,21 +1,21 @@
 ---
-title: Bottom Navigation React component
+title: Untere Navigation React component
 components: BottomNavigation, BottomNavigationAction
 ---
 # Bottom Navigation (Untere Navigation)
 
-<p class="description">Bottom navigation bars allow movement between primary destinations in an app.</p>
+<p class="description">Die unteren Navigationsleisten ermöglichen die Bewegung zwischen primären Zielen in einer App.</p>
 
-[Bottom navigation](https://material.io/design/components/bottom-navigation.html) bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon.
+Die [unteren Navigationsleiste](https://material.io/design/components/bottom-navigation.html) zeigt drei bis fünf Ziele am unteren Bildschirmrand an. Jedes Ziel wird durch ein Symbol und eine optionale Textbezeichnung dargestellt. Wenn Sie auf ein unteres Navigationssymbol tippen, wird der Benutzer zum Navigationsziel der obersten Ebene geführt, das diesem Symbol zugeordnet ist.
 
 ## Bottom Navigation (Untere Navigation)
 
-When there are only **three** actions, display both icons and text labels at all times.
+Wenn es nur **3** Aktionen gibt, werden immer sowohl Symbole als auch Beschriftungen angezeigt.
 
 {{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
 
-## Bottom Navigation with no label
+## Untere Navigation ohne Beschriftung
 
-If there are **four** or **five** actions, display inactive views as icons only.
+Bei **4** oder **5** Aktionen werden inaktive Ansichten nur als Symbole angezeigt.
 
 {{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}

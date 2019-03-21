@@ -73,11 +73,11 @@ export const styles = theme => {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&:hover:not($disabled):not($focused):not($error):before': {
+      '&:hover:before': {
         borderBottom: `1px solid ${theme.palette.text.primary}`,
       },
       '&$disabled:before': {
-        borderBottom: `1px dotted ${bottomLineColor}`,
+        borderBottomStyle: 'dotted',
       },
     },
     /* Styles applied to the root element if the component is focused. */
@@ -123,7 +123,7 @@ export const styles = theme => {
   };
 };
 
-function FilledInput(props) {
+const FilledInput = React.forwardRef(function FilledInput(props, ref) {
   const { disableUnderline, classes, ...other } = props;
 
   return (
@@ -135,10 +135,11 @@ function FilledInput(props) {
         }),
         underline: null,
       }}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 FilledInput.propTypes = {
   /**

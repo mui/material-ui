@@ -66,7 +66,7 @@
 import { display } from '@material-ui/system';
 ```
 
-| 导入名称           | Prop           | CSS 属性    | 主题键  |
-|:-------------- |:-------------- |:--------- |:---- |
-| `displayRaw`   | `display`      | `display` | none |
-| `displayPrint` | `displayPrint` | `display` | none |
+| 导入名称           | Prop           | CSS 属性    | Theme key |
+|:-------------- |:-------------- |:--------- |:--------- |
+| `displayRaw`   | `display`      | `display` | none      |
+| `displayPrint` | `displayPrint` | `display` | none      |

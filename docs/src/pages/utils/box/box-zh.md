@@ -1,13 +1,11 @@
 ---
 title: Box React组件
 ---
-# 盒子（不稳定）
+# Box（盒子）
 
 <p class="description">Box组件充当大多数CSS实用程序需求的包装器组件。</p>
 
 所述盒组件包 [的所有样式的功能](/system/basics/#all-inclusive) 被暴露在 `@material-ui/system`。 它是使用 `@material-ui/styles`的 [`styled()`](/css-in-js/api/#styled-style-function-component) 函数创建的。
-
-> ⚠️“unstable_”API可能会在任何版本中发生变化而不尊重semver。
 
 ## 示例
 
@@ -23,7 +21,7 @@ Box组件包装您的组件。 它创建了一个新的DOM元素，默认情况�
 </Box>
 ```
 
-当更改可以隔离到新的DOM元素时，这很有用。 例如，您可以通过这种方式更改保证金。
+当更改可以隔离到新的DOM元素时，这很有用。 例如，您可以通过这种方式更改边距。
 
 但是，有时您必须定位底层DOM元素。 例如，您想要更改按钮的文本颜色。 Button组件定义自己的颜色。 CSS继承没有帮助。 要解决此问题，您有两种选择：
 
@@ -39,7 +37,7 @@ Box组件具有 `clone` 属性，以允许使用React的clone元素方法。
 
 1. 使用渲染道具
 
-Box儿童接受渲染道具功能。 你可以拉出 `className`。
+Box可以将函数作为子组件。 你可以拉出 `className`。
 
 ```jsx
 <Box color="text.primary">
@@ -47,12 +45,12 @@ Box儿童接受渲染道具功能。 你可以拉出 `className`。
 </Box>
 ```
 
-> ⚠️CSS特异性依赖于导入顺序。 如果你想在保证包装的组件的样式将被改写， 您需要导入盒最后。
+> ⚠️ The CSS specificity relies on the import order. 如果你想要保证改写被包裹组件的样式， 您需要在最后导入Box。
 
 ## API
 
 ```jsx
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | 名称                                                 | 类型                                                                                                                | 默认                                      | 描述                                                   |

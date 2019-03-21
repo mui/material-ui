@@ -31,7 +31,7 @@ describe('<NestedMenu> integration', () => {
     });
 
     it('should focus the first item as nothing has been selected', () => {
-      wrapper.setState({ firstMenuOpen: true });
+      wrapper.setProps({ firstMenuOpen: true });
 
       portalLayer = wrapper
         .find(Portal)
@@ -41,19 +41,19 @@ describe('<NestedMenu> integration', () => {
     });
 
     it('should focus the first item of second menu', () => {
-      wrapper.setState({ firstMenuOpen: false, secondMenuOpen: true });
+      wrapper.setProps({ firstMenuOpen: false, secondMenuOpen: true });
       const secondMenu = document.getElementById('second-menu');
       assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('li')[0]);
     });
 
     it('should open the first menu again', () => {
-      wrapper.setState({ firstMenuOpen: true, secondMenuOpen: false });
+      wrapper.setProps({ firstMenuOpen: true, secondMenuOpen: false });
       const firstMenu = document.getElementById('first-menu');
       assert.strictEqual(document.activeElement, firstMenu.querySelectorAll('li')[0]);
     });
 
     it('should be able to open second menu again', () => {
-      wrapper.setState({ firstMenuOpen: false, secondMenuOpen: true });
+      wrapper.setProps({ firstMenuOpen: false, secondMenuOpen: true });
       const secondMenu = document.getElementById('second-menu');
       assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('li')[0]);
     });

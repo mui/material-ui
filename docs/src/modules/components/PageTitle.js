@@ -1,22 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 
 // TODO: it really wants to be named useTitle but we're not quite there yet.
 function PageTitle(props) {
-  return (
-    <PageContext.Consumer>
-      {({ activePage }) => {
-        if (!activePage) {
-          throw new Error('Missing activePage.');
-        }
+  const { activePage } = React.useContext(PageContext);
 
-        const title = activePage.title !== false ? pageToTitle(activePage) : null;
-        return props.children(title);
-      }}
-    </PageContext.Consumer>
-  );
+  if (!activePage) {
+    throw new Error('Missing activePage.');
+  }
+
+  const title = pageToTitleI18n(activePage, props.t);
+
+  return props.children(title);
 }
 
 PageTitle.propTypes = {

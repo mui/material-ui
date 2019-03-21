@@ -1,17 +1,16 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { act } from 'react-dom/test-utils';
+import { setRef } from '../utils/reactHelpers';
 import GridListTile from './GridListTile';
 
 describe('<GridListTile />', () => {
-  let shallow;
   let mount;
   let classes;
-  const GridListTileNaked = unwrap(GridListTile);
 
   before(() => {
-    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<GridListTile />);
   });
@@ -27,28 +26,36 @@ describe('<GridListTile />', () => {
   };
 
   it('should render a li', () => {
-    const children = <img src={tileData.img} alt="foo" />;
-    const wrapper = shallow(<GridListTile>{children}</GridListTile>);
-    assert.strictEqual(wrapper.name(), 'li');
+    const wrapper = mount(
+      <GridListTile>
+        <img src={tileData.img} alt="foo" />
+      </GridListTile>,
+    );
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'li');
   });
 
-  it('should render a ul', () => {
-    const children = <img src={tileData.img} alt="foo" />;
-    const wrapper = shallow(<GridListTile component="li">{children}</GridListTile>);
-    assert.strictEqual(wrapper.name(), 'li');
+  describe('prop: component', () => {
+    it('controls the root host node', () => {
+      const wrapper = mount(
+        <GridListTile component="div">
+          <img src={tileData.img} alt="foo" />
+        </GridListTile>,
+      );
+      assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
+    });
   });
 
   describe('prop: children', () => {
     it('should render children by default', () => {
       const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = shallow(<GridListTile>{children}</GridListTile>);
+      const wrapper = mount(<GridListTile>{children}</GridListTile>);
 
       assert.strictEqual(wrapper.containsMatchingElement(children), true);
     });
 
     it('should not change non image child', () => {
       const children = <div />;
-      const wrapper = shallow(<GridListTile>{children}</GridListTile>);
+      const wrapper = mount(<GridListTile>{children}</GridListTile>);
       assert.strictEqual(wrapper.containsMatchingElement(children), true);
     });
   });
@@ -56,43 +63,41 @@ describe('<GridListTile />', () => {
   describe('prop: className', () => {
     it('should renders className', () => {
       const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = shallow(<GridListTile className="foo">{children}</GridListTile>);
+      const wrapper = mount(<GridListTile className="foo">{children}</GridListTile>);
 
       assert.strictEqual(wrapper.hasClass('foo'), true);
     });
   });
 
-  describe('mount', () => {
-    let instance;
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = mount(
-        <GridListTileNaked
-          classes={{ imgFullWidth: 'imgFullWidth foo', imgFullHeight: 'imgFullHeight' }}
-        >
-          <img alt="test" />
-          {null}
-        </GridListTileNaked>,
+  function mountMockImage(imgEl) {
+    const Image = React.forwardRef((props, ref) => {
+      return (
+        <img
+          alt="test"
+          ref={() => {
+            setRef(ref, imgEl);
+          }}
+          {...props}
+        />
       );
-      instance = wrapper.instance();
     });
+    Image.muiName = 'Image';
 
+    return mount(
+      <GridListTile>
+        <Image />
+        {null}
+      </GridListTile>,
+    );
+  }
+
+  describe('mount image', () => {
     it('should handle missing image', () => {
-      // Test that it doesn't crash.
-      instance.imgElement = null;
-      instance.ensureImageCover();
-      instance.fit();
-
-      instance.imgElement = { complete: false };
-      instance.fit();
-      assert.strictEqual(instance.imgElement instanceof HTMLElement, false);
-      wrapper.setProps({ children: <img alt="test2" /> });
-      assert.strictEqual(instance.imgElement instanceof HTMLElement, true);
+      mountMockImage(null);
     });
 
     it('should fit the height', () => {
-      instance.imgElement = {
+      const imgEl = {
         complete: true,
         width: 16,
         height: 9,
@@ -100,16 +105,17 @@ describe('<GridListTile />', () => {
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
-
-      instance.ensureImageCover();
-      assert.strictEqual(instance.imgElement.classList.remove.callCount, 1);
-      assert.strictEqual(instance.imgElement.classList.remove.args[0][0], 'imgFullWidth');
-      assert.strictEqual(instance.imgElement.classList.add.callCount, 1);
-      assert.strictEqual(instance.imgElement.classList.add.args[0][0], 'imgFullHeight');
+      act(() => {
+        mountMockImage(imgEl);
+      });
+      assert.strictEqual(imgEl.classList.remove.callCount, 1);
+      assert.strictEqual(imgEl.classList.remove.args[0][0], classes.imgFullWidth);
+      assert.strictEqual(imgEl.classList.add.callCount, 1);
+      assert.strictEqual(imgEl.classList.add.args[0][0], classes.imgFullHeight);
     });
 
     it('should fit the width', () => {
-      instance.imgElement = {
+      const imgEl = {
         complete: true,
         width: 4,
         height: 3,
@@ -117,12 +123,13 @@ describe('<GridListTile />', () => {
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
-
-      instance.ensureImageCover();
-      assert.strictEqual(instance.imgElement.classList.remove.callCount, 1);
-      assert.strictEqual(instance.imgElement.classList.remove.args[0][0], 'imgFullHeight');
-      assert.strictEqual(instance.imgElement.classList.add.callCount, 1);
-      assert.strictEqual(instance.imgElement.classList.add.args[0][0], 'imgFullWidth');
+      act(() => {
+        mountMockImage(imgEl);
+      });
+      assert.strictEqual(imgEl.classList.remove.callCount, 1);
+      assert.strictEqual(imgEl.classList.remove.args[0][0], classes.imgFullHeight);
+      assert.strictEqual(imgEl.classList.add.callCount, 1);
+      assert.strictEqual(imgEl.classList.add.args[0][0], classes.imgFullWidth);
     });
   });
 
@@ -138,9 +145,7 @@ describe('<GridListTile />', () => {
     });
 
     it('should handle the resize event', () => {
-      const wrapper = shallow(<GridListTile />);
-      const instance = wrapper.instance();
-      instance.imgElement = {
+      const imgEl = {
         complete: true,
         width: 4,
         height: 3,
@@ -148,16 +153,23 @@ describe('<GridListTile />', () => {
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
-      wrapper
-        .find('EventListener')
-        .at(0)
-        .simulate('resize');
-      assert.strictEqual(instance.imgElement.classList.remove.callCount, 0);
+      act(() => {
+        mountMockImage(imgEl);
+      });
+      assert.strictEqual(imgEl.classList.remove.callCount, 1);
+      assert.strictEqual(imgEl.classList.remove.args[0][0], classes.imgFullHeight);
+      assert.strictEqual(imgEl.classList.add.callCount, 1);
+      assert.strictEqual(imgEl.classList.add.args[0][0], classes.imgFullWidth);
+
+      window.dispatchEvent(new window.Event('resize', {}));
+      assert.strictEqual(imgEl.classList.remove.callCount, 1);
       clock.tick(166);
-      assert.strictEqual(instance.imgElement.classList.remove.callCount, 1);
-      assert.strictEqual(instance.imgElement.classList.remove.args[0][0], classes.imgFullHeight);
-      assert.strictEqual(instance.imgElement.classList.add.callCount, 1);
-      assert.strictEqual(instance.imgElement.classList.add.args[0][0], classes.imgFullWidth);
+
+      assert.strictEqual(imgEl.classList.remove.callCount, 2);
+      assert.strictEqual(imgEl.classList.remove.callCount, 2);
+      assert.strictEqual(imgEl.classList.remove.args[1][0], classes.imgFullHeight);
+      assert.strictEqual(imgEl.classList.add.callCount, 2);
+      assert.strictEqual(imgEl.classList.add.args[1][0], classes.imgFullWidth);
     });
   });
 });

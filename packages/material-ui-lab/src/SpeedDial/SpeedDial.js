@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import keycode from 'keycode';
 import warning from 'warning';
-import { withStyles } from '@material-ui/core/styles';
+import { duration, withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
-import { duration } from '@material-ui/core/styles/transitions';
 import Fab from '@material-ui/core/Fab';
-import { isMuiElement, setRef } from '@material-ui/core/utils/reactHelpers';
+import { isMuiElement, setRef, withForwardedRef } from '@material-ui/core/utils';
 import * as utils from './utils';
-import clamp from '../utils/clamp';
+import { clamp } from '../utils';
 
 const dialRadius = 32;
 const spacingActions = 16;
@@ -162,6 +161,7 @@ class SpeedDial extends React.Component {
       className: classNameProp,
       hidden,
       icon: iconProp,
+      innerRef,
       onClick,
       onClose,
       onKeyDown,
@@ -238,7 +238,11 @@ class SpeedDial extends React.Component {
     }
 
     return (
-      <div className={clsx(classes.root, actionsPlacementClass, classNameProp)} {...other}>
+      <div
+        className={clsx(classes.root, actionsPlacementClass, classNameProp)}
+        ref={innerRef}
+        {...other}
+      >
         <TransitionComponent
           in={!hidden}
           timeout={transitionDuration}
@@ -318,6 +322,11 @@ SpeedDial.propTypes = {
   icon: PropTypes.element.isRequired,
   /**
    * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * @ignore
    */
   onClick: PropTypes.func,
   /**
@@ -367,4 +376,4 @@ SpeedDial.defaultProps = {
   },
 };
 
-export default withStyles(styles, { name: 'MuiSpeedDial' })(SpeedDial);
+export default withStyles(styles, { name: 'MuiSpeedDial' })(withForwardedRef(SpeedDial));

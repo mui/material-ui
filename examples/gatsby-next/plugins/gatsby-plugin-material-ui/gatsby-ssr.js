@@ -1,12 +1,9 @@
 /* eslint-disable react/no-danger, react/prop-types */
 
 import React from 'react';
-import { install } from '@material-ui/styles';
 import { SheetsRegistry } from 'jss';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import theme from './.cache/theme';
-
-install();
 
 // Keep track of sheetsRegistry for each page
 const globalLeak = new Map();

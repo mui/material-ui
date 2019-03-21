@@ -29,19 +29,20 @@ if (process.env.BABEL_ENV === 'es') {
 
 const defaultAlias = {
   '@material-ui/core': './packages/material-ui/src',
+  '@material-ui/docs': './packages/material-ui-docs/src',
   '@material-ui/icons': './packages/material-ui-icons/src',
   '@material-ui/lab': './packages/material-ui-lab/src',
   '@material-ui/styles': './packages/material-ui-styles/src',
-  '@material-ui/utils': './packages/material-ui-utils/src',
   '@material-ui/system': './packages/material-ui-system/src',
+  '@material-ui/utils': './packages/material-ui-utils/src',
 };
 
 const productionPlugins = [
-  'transform-react-constant-elements',
-  'transform-dev-warning',
-  ['react-remove-properties', { properties: ['data-mui-test'] }],
+  'babel-plugin-transform-react-constant-elements',
+  'babel-plugin-transform-dev-warning',
+  ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
   [
-    'transform-react-remove-prop-types',
+    'babel-plugin-transform-react-remove-prop-types',
     {
       mode: 'unsafe-wrap',
     },
@@ -56,7 +57,7 @@ module.exports = {
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
   ],
-  ignore: [/@babel[\\|/]runtime/],
+  ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
   env: {
     cjs: {
       plugins: productionPlugins,
@@ -105,6 +106,7 @@ module.exports = {
       ],
     },
     'docs-production': {
+      presets: ['next/babel'],
       plugins: [
         'babel-plugin-preval',
         [
@@ -121,10 +123,10 @@ module.exports = {
             resolvePath,
           },
         ],
-        'transform-react-constant-elements',
-        'transform-dev-warning',
-        ['react-remove-properties', { properties: ['data-mui-test'] }],
-        ['transform-react-remove-prop-types', { mode: 'remove' }],
+        'babel-plugin-transform-react-constant-elements',
+        'babel-plugin-transform-dev-warning',
+        ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
+        ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
       ],
     },
     esm: {

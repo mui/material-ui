@@ -1,8 +1,8 @@
 ---
-title: Transition React component
+title: Übergang React Komponente
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
-# Transitions
+# Übergänge
 
 <p class="description">Übergänge helfen, eine Oberfläche ausdrucksvoll und einfach zu benutzen zu gestalten.</p>
 
@@ -11,7 +11,7 @@ Material-UI bietet eine Anzahl von Übergängen, die verwendet werden können, u
 Um Server Rendering besser zu unterstützen, bietet Material-UI ein `style` Property auf den Kindern einiger Übergangs-Komponenten (Fade, Grow, Zoom, Slide). Das `style` Property muss auf das DOM angewendet werden, damit die Animation wie gewünscht funktioniert.
 
 ```jsx
-// The `props` object contains a `style` property.
+// Das `props'-Objekt enthält eine` style'-Eigenschaft.
 // Dieses musst du, wie hier gezeigt, an das `div` Element übergeben.
 function MyComponent(props) {
   return (
@@ -44,24 +44,24 @@ Blende von Transparent zu Undurchsichtig ein.
 
 ## Grow
 
-Expand outwards from the center of the child element, while also fading in from transparent to opaque.
+Erweitert sich von der Mitte des untergeordneten Elements nach außen, während es von transparent nach opak einblendet.
 
-The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` property to change the entry speed.
+Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und bedingt die ` Timeout` Eigenschaft anpassen, um die Eintrittsgeschwindigkeit zu beeinflussen.
 
 {{"demo": "pages/utils/transitions/SimpleGrow.js"}}
 
 ## Slide
 
-Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
+Gleitet vom Bildschirmrand ein. Die Eigenschaft `direction` steuert, von welchem Bildschirmrand der Übergang beginnt.
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from it's off-screen position. Similarly the `unmountOnExit` property removes the component from the DOM after it has been transition off screen.
+Die `mountOnEnter` -Eigenschaft der Transition-Komponente verhindert, dass die untergeordnete Komponente gezeigt wird, bis `in` gleich `true` ist. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird. In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde.
 
 {{"demo": "pages/utils/transitions/SimpleSlide.js"}}
 
 ## Zoom
 
-Expand outwards from the center of the child element.
+Erweitern sich von der Mitte des untergeordneten Elements nach außen.
 
-This example also demonstrates how to delay the enter transition.
+In diesem Beispiel veranschaulicht, wie der Eintritts animation verzögert wird.
 
 {{"demo": "pages/utils/transitions/SimpleZoom.js"}}

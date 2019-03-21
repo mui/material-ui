@@ -20,8 +20,10 @@ please consider creating a [pull request on GitHub](https://github.com/mui-org/m
 So far we have demos for:
 
 - A dashboard
-- A sign-in page
+- A Sign In page
+- A Sign Up page
 - A blog page
 - A checkout flow
 - An album page
 - A pricing page
+- A sticky footer page

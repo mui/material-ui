@@ -1,107 +1,107 @@
 ---
-title: Dialog React component
+title: Dialog React Komponente
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
-# Dialogs
+# Dialoge
 
-<p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
+<p class="description">Dialoge informieren Benutzer über eine Aufgabe und können wichtige Informationen enthalten, Entscheidungen erfordern oder mehrere Aufgaben umfassen.</p>
 
-A [Dialog](https://material.io/design/components/dialogs.html) is a type of [modal](/utils/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+Ein [Dialog](https://material.io/design/components/dialogs.html) ist ein Typ von [modalen](/utils/modal/) Fenstern, der vor dem App-Inhalt angezeigt wird, um wichtige Informationen bereitzustellen oder um eine Entscheidung zu bitten. Dialoge deaktivieren alle App-Funktionen, wenn sie angezeigt werden, und bleiben auf dem Bildschirm, bis sie bestätigt, abgewiesen oder eine erforderliche Aktion ausgeführt wurde.
 
-Dialogs are purposefully interruptive, so they should be used sparingly.
+Dialoge sind absichtlich unterbrechend und sollten sparsam eingesetzt werden.
 
-## Simple Dialogs
+## Einfache Dialoge
 
-Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+Einfache Dialoge können zusätzliche Details oder Aktionen zu einem Listenelement bereitstellen. Sie können zum Beispiel Avatare, Symbole, Subtexte oder orthogonale Aktionen (z. B. ein Konto hinzufügen) beinhalten.
 
-Touch mechanics:
+Berührungsmechanik:
 
-- Choosing an option immediately commits the option and closes the menu
-- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
+- Durch die Auswahl einer Option wird die Option sofort übernommen und das Menü geschlossen
+- Durch Berühren außerhalb des Dialogs oder Drücken von Zurück wird die Aktion abgebrochen und der Dialog geschlossen
 
 {{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
 
-## Alerts
+## Warnungen
 
-Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
+Alarme sind dringende Unterbrechungen, die eine Bestätigung erfordern und den Benutzer über eine Situation informieren.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+Die meisten Benachrichtigungen benötigen keine Titel. Sie fassen eine Entscheidung in einem oder zwei Sätzen zusammen:
 
-- Asking a question (e.g. "Delete this conversation?")
-- Making a statement related to the action buttons
+- Eine Frage stellen (zB "Dieses Gespräch löschen?")
+- Eine Aussage zu den Aktionsschaltflächen machen
 
-Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
+Verwenden Sie Titelleisten-Alarme nur für Situationen mit hohem Risiko, z. B. den möglichen Verbindungsverlust. Benutzer sollten die Auswahlmöglichkeiten allein anhand des Titels und des Schaltflächentextes verstehen können.
 
-If a title is required:
+Falls ein Titel erforderlich ist:
 
-- Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
-- Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
+- Verwenden Sie eine klare Frage oder eine Erklärung mit einer Erläuterung im Inhaltsbereich, z. B. "USB-Speicher löschen?".
+- Vermeiden Sie Entschuldigungen, Unklarheiten oder Fragen wie "Warnung!" oder "Sind Sie sicher?"
 
 {{"demo": "pages/demos/dialogs/AlertDialog.js"}}
 
-You can also swap out the transition, the next example uses `Slide`.
+Sie können den Übergang auch austauschen. Das nächste Beispiel verwendet `Slide (Gleiten)`.
 
 {{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
 
-## Form dialogs
+## Formulardialoge
 
-Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
+Formulardialoge ermöglichen Benutzern das Ausfüllen von Formularfeldern innerhalb eines Dialogs. Wenn Ihre Seite beispielsweise potenziellen Abonnenten zur Eingabe ihrer E-Mail-Adresse auffordert, können sie das E-Mail-Feld ausfüllen und auf "Senden" klicken.
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
-## Customized dialog
+## Benutzerdefinierter Dialog
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `DialogTitle` to support a close button.
+Wenn du die [Overrides Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du den `DialogTitle` anpassen könntest.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Auch wenn die Material-Design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
 
-## Full-screen dialogs
+## Vollbild-Dialoge
 
 {{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
 
-## Optional sizes
+## Optionale Größen
 
-You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean. When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
+Sie können die maximale Breite eines Dialogs festlegen, indem Sie die `maxWidth` Eigenschaft in Kombination mit dem boolean `fullWidth` verwenden. Wenn die Eigenschaft `fullWidth` wahr ist, wird der Dialog basierend auf dem Wert `maxWidth` angepasst.
 
 {{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
 
-## Responsive full-screen
+## Responsive Vollbild
 
-You may make a dialog responsively full screen the dialog using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics/). You can choose your own breakpoint for example `xs` by passing the `breakpoint` argument: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+Sie können einen Dialog responsive machen, indem Sie `withMobileDialog` verwenden. Standardmäßig wird `withMobileDialog()(Dialog)` gesetzt, wenn die [Bildschirmgröße](/layout/basics/) *kleiner gleich* `sm` ist. Sie können Ihre eigene Bruchstelle z. B. `xs` auswählen, indem Sie das Argument `breakpoint` `withMobileDialog({breakpoint: 'xs'}) (Dialog)` sezten.
 
 {{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 
-## Confirmation dialogs
+## Bestätigungsdialoge
 
-Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+Bestätigungsdialogfelder erfordern, dass Benutzer ihre Wahl explizit bestätigen, bevor eine Option festgelegt wird. Zum Beispiel können Benutzer mehrere Klingeltöne hören, sie müssen jedoch nur eine endgültige Auswahl treffen, wenn Sie auf „OK“ tippen.
 
-Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Durch Berühren von „Abbrechen“ in einem Bestätigungsdialogfeld oder durch Drücken von Zurück wird die Aktion abgebrochen, alle Änderungen verworfen und das Dialogfeld geschlossen.
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
 
-## Accessibility
+## Barrierefreiheit
 
-Follow the [Modal accessibility section](/utils/modal/#accessibility).
+Folgen Sie dem [Modal Zugänglichkeit Abschnitt](/utils/modal/#accessibility).
 
-## Scrolling long content
+## Blättern von langen Inhalten
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+Wenn Dialoge für das Ansichtsfenster oder das Gerät des Benutzers zu lang werden, scrollen diese.
 
-- `scroll=paper` the content of the dialog scrolls within the paper element.
-- `scroll=body` the content of the dialog scrolls within the body element.
+- `scroll=paper`: Der Inhalt des Dialogs scrollt innerhalb des Papierelements.
+- `scroll=body`: Der Inhalt des Dialogs scrollt innerhalb des Body-Elements.
 
-Try the demo below to see what we mean:
+Probieren Sie die Demo aus, um zu sehen, was wir meinen:
 
 {{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
 
-## Draggable dialog
+## Ziehbarer Dialog
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+Sie können einen ziehbaren Dialog erstellen, indem Sie [react-draggable](https://github.com/mzabriskie/react-draggable) nutzen. Dazu können Sie die importierte `Draggable` Komponente als `PaperComponent` der `Dialog` Komponente übergeben. Dadurch wird der gesamte Dialog verschiebbar.
 
 {{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
 
 ## Performance
 
-Follow the [Modal performance section](/utils/modal/#performance).
+Folgen Sie den [Modal Zugänglichkeit Abschnitt](/utils/modal/#performance).

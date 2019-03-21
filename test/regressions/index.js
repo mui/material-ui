@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import vrtest from 'vrtest/client';
 import webfontloader from 'webfontloader';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import TestViewer from './TestViewer';
 
 const theme = createMuiTheme();
@@ -26,7 +27,9 @@ const regressions = requireRegression.keys().reduce((res, path) => {
 const blacklistSuite = [
   // Flaky
   'docs-demos-progress',
-  'docs-discover-more-team', // GitHub images
+
+  // Internal dependencies
+  'docs-discover-more-languages',
 
   // Needs interaction
   'docs-demos-dialogs',
@@ -38,28 +41,33 @@ const blacklistSuite = [
   'docs-getting-started-page-layout-examples',
   'docs-customization-default-theme',
 
-  // Less important
-  'docs-layouts',
+  // Image load issue
+  'docs-discover-more-team',
   'docs-getting-started-page-layout-examples-album',
   'docs-getting-started-page-layout-examples-blog',
-  'docs-getting-started-page-layout-examples-checkout',
-  'docs-getting-started-page-layout-examples-dashboard',
-  'docs-getting-started-page-layout-examples-pricing',
-  'docs-getting-started-page-layout-examples-sign-in',
+  'docs-getting-started-page-layout-examples-sign-in-side',
 
   // Useless
   'docs-', // Home
   'docs-discover-more-showcase',
   'docs-guides',
-  'docs-style-color', // non important demo
   'docs-versions',
+  'docs-layouts',
+  'docs-style-color',
 ];
 
 const blacklistFilename = [
   'docs-demos-grid-list/tileData.png', // no component
+  'docs-css-in-js-basics/StressTest.png', // strange bug no time for it
   'docs-demos-steppers/SwipeableTextMobileStepper.png', // external img
   'docs-demos-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
+
+  // Redux isolation
+  'docs-demos-chips/ChipsPlayground.png',
+  'docs-utils-popover/AnchorPlayground.png',
+  'docs-utils-popper/ScrollPlayground.png',
+  'docs-layout-grid/InteractiveGrid.png',
 ];
 
 // Also use some of the demos to avoid code duplication.
@@ -138,11 +146,11 @@ tests.forEach(test => {
 
   suite.createTest(test.name, () => {
     ReactDOM.render(
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <TestViewer>
           <TestCase />
         </TestViewer>
-      </MuiThemeProvider>,
+      </ThemeProvider>,
       rootEl,
     );
   });

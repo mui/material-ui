@@ -1,11 +1,11 @@
 ---
 components: CssBaseline
 ---
-# CSS Baseline
+# Base de CSS
 
-<p class="description">Material-UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">Material-UI provee un componente llamado CssBaseline como un punto de partida elegante, simple y consistente para empezar a desarrollar.</p>
 
-You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), a collection of HTML element and attribute style-normalizations.
+Tal vez tengas familiaridad con [normalize.css](https://github.com/necolas/normalize.css), una colección de atributos de estilos normalizados para elementos HTML.
 
 ```jsx
 import React from 'react';
@@ -15,7 +15,7 @@ function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* The rest of your application */}
+      {/* El resto de tu aplicación */}
     </React.Fragment>
   );
 }
@@ -23,20 +23,20 @@ function MyApp() {
 export default MyApp;
 ```
 
-## Approach
+## Enfoque
 
-### Page
+### Página
 
-The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+Los elementos `<html>` y `<body>` son actualizados para proveer mejores valores predeterminados en toda la página. Específicamente:
 
-- The margin in all browsers is removed.
-- The default Material Design background color is applied. It's using [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) for standard devices and a white background for print devices.
+- Se elimina el margen en todos los navegadores.
+- Se aplica el color de fondo predeterminado de Material Design. Utiliza [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) para dispositivos estándares y un fondo blanco para dispositivos de impresión.
 
-### Layout
+### Disposición
 
-- `box-sizing` is set globally on the `<html>` element to `border-box`. Every element—including `*::before` and `*::after` are declared to inherit this property, which ensures that the declared width of the element is never exceeded due to padding or border.
+- La propiedad `box-sizing` se establece globalmente en el elemento `<html>` con el valor `border-box`. Cada elemento, incluyendo `*::before` y `*::after`, es declarado para heredar ésta propiedad, la cual asegura que el ancho declarado del elemento nunca sea excedido gracias al relleno o al borde.
 
-### Typography
+### Tipografía
 
 - El antialiasing de fuentes está habilitado para una mejor visualización de la fuente Roboto.
-- No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/themes/#typography-html-font-size) page.
+- No se declara ningún tamaño de fuente de base en el elemento `<html>`, pero se asume 16px (el valor predeterminado del navegador). Puedes aprender más acerca de las implicaciones de cambiar el tamaño de fuente predeterminado de `<html>`, en la página [de documentación del tema](/customization/themes/#typography-html-font-size).

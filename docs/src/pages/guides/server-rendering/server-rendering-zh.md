@@ -52,7 +52,7 @@ app.listen(port);
 
 我们需要对每个请求做的第一件事就是创建一个新的 `sheetRegistry` 和 `theme` 实例。
 
-渲染时，我们将在 `JssProvider` 和 [`MuiThemeProvider`](/api/mui-theme-provider/) 包含 `App`，我们的根组件 以使 `sheetRegistry` 和 `主题` 可用于组件树中的所有组件。
+When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/css-in-js/api/#stylesprovider) and [`ThemeProvider`](/css-in-js/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 在服务器端渲染的关键步骤是为了使我们的组件的初始HTML **前** 我们把它发送给客户端。 为此，我们使用 [ReactDOMServer.renderToString（）](https://reactjs.org/docs/react-dom-server.html)。
 
@@ -61,41 +61,38 @@ app.listen(port);
 ```jsx
 import ReactDOMServer from 'react-dom/server'
 import { SheetsRegistry } from 'jss';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    accent: red,
+  },
+});
 
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
-
   // Create a sheetsManager instance.
   const sheetsManager = new Map();
-
-  // Create a theme instance.
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-      accent: red,
-      type: 'light',
-    },
-  });
-
   // Create a new class name generator.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+    <StylesProvider
+      generateClassName={generateClassName}
+      sheetsRegistry={sheetsRegistry}
+      sheetsManager={sheetsManager}
+    >
+      <ThemeProvider theme={theme}>
         <App />
-      </MuiThemeProvider>
-    </JssProvider>
+      </ThemeProvider>
+    </StylesProvider>
   )
 
   // Grab the CSS from our sheetsRegistry.
@@ -136,28 +133,21 @@ function renderFullPage(html, css) {
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import App from './App';
 
-class Main extends React.Component {
-  // Remove the server-side injected CSS.
-  componentDidMount() {
-    const jssStyles = document.getElementById('jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
+function Main() {
+  React.useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
-  }
+  }, []);
 
-  render() {
-    return <App />
-  }
+  return <App />;
 }
 
 // Create a theme instance.
@@ -165,19 +155,13 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
     accent: red,
-    type: 'light',
   },
 });
 
-// Create a new class name generator.
-const generateClassName = createGenerateClassName();
-
 ReactDOM.hydrate(
-  <JssProvider generateClassName={generateClassName}>
-    <MuiThemeProvider theme={theme}>
-      <Main />
-    </MuiThemeProvider>
-  </JssProvider>,
+  <ThemeProvider theme={theme}>
+    <Main />
+  </ThemeProvider>,
   document.querySelector('#root'),
 );
 ```
@@ -186,7 +170,7 @@ ReactDOM.hydrate(
 
 我们托管不同的参考实现，您可以在 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下的 [GitHub存储库](https://github.com/mui-org/material-ui) 找到它们：
 
-- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
+- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
 
@@ -202,9 +186,7 @@ CSS仅在页面的第一次加载时生成。 然后，服务器上缺少连续�
 
 我们依赖缓存（工作表管理器），每个组件类型 只注入一次CSS（如果你使用两个按钮，你只需要一次按钮的CSS）。 您需要为每个请求**提供 **个新的 `sheetsManager`。
 
-您可以了解更多关于 [的文档中的张经理概念](/customization/css-in-js/#sheets-manager)。
-
-*修复示例：*
+*example of fix:*
 
 ```diff
 -// Create a sheetsManager instance.
@@ -223,15 +205,15 @@ function handleRender(req, res) {
 
 ### 反应类名称水合不匹配
 
-客户端和服务器之间存在类名不匹配。 它可能适用于第一个请求。 另一个症状是样式在初始页面加载和客户端脚本下载之间发生变化。
+There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
 #### 要采取的行动
 
-类名值依赖于 [类名生成器](/customization/css-in-js/#creategenerateclassname-options-class-name-generator)的概念。 整个页面需要使用 **个单个生成器**进行渲染。 此生成器需要在服务器和客户端上具有相同的行为。 例如：
+The class names value relies on the concept of [class name generator](/css-in-js/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. 例如：
 
 - 您需要为每个请求提供一个新的类名生成器。 但是您可以在不同的请求之间共享 `createGenerateClassName()`：
 
-*修复示例：*
+*example of fix:*
 
 ```diff
 -  //创建一个新的类名生成器。
@@ -258,8 +240,8 @@ function handleRender(req, res) {
   "dependencies": {
     ...
 
--   "@material-ui/core": "^1.4.2",
-+   "@material-ui/core": "1.4.3",
+-   "@material-ui/core": "^4.0.0",
++   "@material-ui/core": "4.0.0",
     ...
   },
 ```

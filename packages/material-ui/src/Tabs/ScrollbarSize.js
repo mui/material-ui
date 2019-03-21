@@ -4,12 +4,12 @@ import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 
 const styles = {
-  width: 90,
-  height: 90,
+  width: 99,
+  height: 99,
   position: 'absolute',
-  top: -9000,
+  top: -9999,
   overflow: 'scroll',
-  // Support IE 11
+  // TODO Do we need this style for IE 11 support?
   msOverflowStyle: 'scrollbar',
 };
 

@@ -10,9 +10,9 @@
 
 ## Theme provider
 
-If you wish to customize the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
+If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
 
-`MuiThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `MuiThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](#muithemeprovider).
+`ThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](/css-in-js/api/#themeprovider).
 
 ## Theme configuration variables
 
@@ -47,9 +47,9 @@ You may override the default palette values by including a `palette` object as p
 
 If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'intention' objects are provided, they will replace the defaults.
 
-The intention value can either be a [color](/style/color/) object, or an object with one or more of the following keys:
+The intention value can either be a [color](/style/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
-```js
+```ts
 interface PaletteIntention {
   light?: string;
   main: string;
@@ -309,7 +309,7 @@ In addition to the palette, dark and light types, and typography, the theme norm
 
 ### Custom variables
 
-When using Material-UI's [styling solution](/customization/css-in-js/) with your own components, you can also take advantage of the theme. It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+When using Material-UI's theme with our [styling solution](/css-in-js/basics) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
@@ -371,39 +371,12 @@ The inner theme will **override** the outer theme. You can extend the outer them
 
 #### A note on performance
 
-The performance implications of nesting the `MuiThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that we cache the injected CSS with the following tuple `(styles, theme)`.
+The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that we cache the injected CSS with the following tuple `(styles, theme)`.
 
 - `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
 - `styles`: The larger the styles object is, the more work is needed.
 
 ## API
-
-### `MuiThemeProvider`
-
-This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context. It should preferably be used at **the root of your component tree**.
-
-You can see the full properties API in [this dedicated page](/api/mui-theme-provider/).
-
-#### 例
-
-```jsx
-import React from 'react';
-import { render } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Root from './Root';
-
-const theme = createMuiTheme();
-
-function App() {
-  return (
-    <MuiThemeProvider theme={theme}>
-      <Root />
-    </MuiThemeProvider>
-  );
-}
-
-render(<App />, document.querySelector('#app'));
-```
 
 ### `createMuiTheme(options) => theme`
 
@@ -433,28 +406,4 @@ const theme = createMuiTheme({
     danger: 'orange',
   },
 });
-```
-
-### `withTheme(Component) => Component`
-
-Provide the `theme` object as a property of the input component so it can be used in the render method.
-
-#### Arguments
-
-1. `Component`: The component that will be wrapped.
-
-#### Returns
-
-`Component`: The new component created.
-
-#### 例
-
-```js
-import { withTheme } from '@material-ui/core/styles';
-
-function MyComponent(props) {
-  return <div>{props.theme.direction}</div>;
-}
-
-export default withTheme(MyComponent);
 ```

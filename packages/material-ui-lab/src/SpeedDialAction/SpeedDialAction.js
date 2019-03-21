@@ -3,19 +3,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import { emphasize, withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
+import { withForwardedRef } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the `Button` component. */
   button: {
     margin: 8,
     color: theme.palette.text.secondary,
-    backgroundColor: emphasize(theme.palette.background.default, 0.12),
+    backgroundColor: theme.palette.common.white,
     '&:hover': {
-      backgroundColor: emphasize(theme.palette.background.default, 0.15),
+      backgroundColor: emphasize(theme.palette.common.white, 0.15),
     },
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,
@@ -71,6 +71,7 @@ class SpeedDialAction extends React.Component {
       delay,
       icon,
       id,
+      innerRef,
       onClick,
       onKeyDown,
       open,
@@ -88,10 +89,10 @@ class SpeedDialAction extends React.Component {
         onTouchStart: () => {
           startTime = new Date();
         },
-        onTouchEnd: () => {
+        onTouchEnd: event => {
           // only perform action if the touch is a tap, i.e. not long press
           if (new Date() - startTime < 500) {
-            onClick();
+            onClick(event);
           }
         },
       };
@@ -153,6 +154,11 @@ SpeedDialAction.propTypes = {
   id: PropTypes.string,
   /**
    * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * @ignore
    */
   onClick: PropTypes.func,
   /**
@@ -201,4 +207,6 @@ SpeedDialAction.defaultProps = {
   tooltipOpen: false,
 };
 
-export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);
+export default withStyles(styles, { name: 'MuiSpeedDialAction' })(
+  withForwardedRef(SpeedDialAction),
+);

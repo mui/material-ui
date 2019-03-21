@@ -2,25 +2,23 @@
 
 <p class="description">特定の問題で立ち往生していますか？ よくある質問でこれらのよくある問題のいくつかを最初に確認してください。</p>
 
-それでも探しているものが見つからない場合は、[gitter](https://gitter.im/mui-org/material-ui)というコミュニティに質問することができます。 使い方の質問やその他のnon-issuesではない場合は、[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) やGithub issuesの代わりに質問できます。 `material-ui`というStackOverflowタグがあります。 質問にはそのタグをつけてください。
+それでも探しているものが見つからない場合は、[gitter](https://gitter.im/mui-org/material-ui)というコミュニティに質問することができます。 使い方の質問やその他重要ではない問題は、Github issuesではなく[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui)を使ってください。 `material-ui`というStackOverflowタグがあります。 質問にはそのタグをつけてください。
 
 ## productionビルドでコンポーネントが正しくレンダリングされないのはなぜですか？
 
-これは、コードがproduction bundleに入った後にクラス名が競合するために発生する可能性があるn°1の問題です。 Material-UIが機能するためには、`clsx`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/customization/css-in-js/#creategenerateclassname-options-class-name-generator)の単一インスタンスによって生成される必要があります。
+これは、コードがproduction bundleに入った後にクラス名が競合するために発生する可能性があるn°1の問題です。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/css-in-js/advanced/#class-names)の単一インスタンスによって生成される必要があります。
 
 この問題を解決するには、ページ上のすべてのコンポーネントを初期化して、それらの間の**クラス名ジェネレータが1つだけ**存在するようにする必要があります。
 
 さまざまなシナリオで、誤って2つのクラス名ジェネレータを使用することになる事例
 
 - 誤ってMaterial-UIの2つのバージョンを**bundle**してしまっている場合、 依存関係がMaterial-UIを対の依存関係として正しく設定されていない可能性があります
-- Reactツリーの**サブセット**に`JssProvider`を使用している場合
+- Reactツリーの**サブセット**に`StylesProvider`を使用している場合
 - bundlerを使っていて、それが複数のクラス名ジェネレータインスタンスが作成されるという方法でコード分割しています。 > webpackで [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)を使用している場合は、[`最適化環境下`で`runtimeChunk`を設定してみてください](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)
 
-全体として、各Material-UIアプリケーションをコンポーネントツリーの最上部にある[`JssProvider`](/customization/css-in-js/#jssprovider)コンポーネントでWrapし、**コンポーネントツリー間で共有される単一のクラス名ジェネレータを使用することで**、この問題を簡単に解決できます。
+全体として、各Material-UIアプリケーションをコンポーネントツリーの最上部にある[`StylesProvider`](/css-in-js/api/#stylesprovider)コンポーネントでWrapし、**コンポーネントツリー間で共有される単一のクラス名ジェネレータを使用することで**、この問題を簡単に解決できます。
 
-解決の最後の手段は、使用しているbundlerによって異なりますが、全体的な解決方法は、上記の最初のスニペットを含む共通モジュールを確実に1回だけロードして実行することです。
-
-⚠️緊急ですか？ 安心してください。クラス名を**明示的**にエスケープするために[`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css)オプションを用意しています。
+⚠️ If you are in a hurry, we provide an option to make the class names **deterministic** as a quick escape hatch: [`dangerouslyUseGlobalCSS`](/css-in-js/advanced/#deterministic-class-names).
 
 ## モーダルを開くと、fixed positionされたDOMが移動するのはなぜですか？
 
@@ -53,7 +51,7 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   transitions: {
-    // Então temos `transition: none;` everywhere
+    // So we have `transition: none;` everywhere
     create: () => 'none',
   },
 });
@@ -85,7 +83,7 @@ const theme = createMuiTheme({
 
 私達は[サードパーティ製ルーティングライブラリ](/demos/buttons/#third-party-routing-library)で`ButtonBase`コンポーネントの使い方をドキュメント化しました。 私たちのインタラクティブなコンポーネントの多くはButtonBaseコンポーネントを内部的に使っています：`Button`, `MenuItem`, `<ListItem button />`, `Tab`, などなど。 それらの例を参考にしてください。
 
-## How do I combine the `withStyles()` and `withTheme` HOCs?
+## `withStyles()`と`withTheme`HOCはどうやって結合すればいいですか？
 
 さまざまなオプションがあります。
 
@@ -127,7 +125,7 @@ Material-UIをサポートする方法はたくさんあります。
 - [ドキュメント](https://github.com/mui-org/material-ui/tree/next/docs)を改善する 
 - 他の人が始めるのを手伝う
 - [ライブラリを布教する](https://twitter.com/MaterialUI) 
-- Answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or on [Spectrum](https://spectrum.chat/material-ui).
+- [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui)や[Spectrum](https://spectrum.chat/material-ui)で質問に答える
 
 商用プロジェクトでMaterial-UIを使用していて、スポンサーになることによってその継続的な開発を支援したい場合は、 あるいはサブや趣味のプロジェクトで**スポンサー**になりたい場合は、[OpenCollective](https://opencollective.com/material-ui)を使って行うことができます。
 
