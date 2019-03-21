@@ -17,18 +17,18 @@ describe('<Typography />', () => {
     mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Typography />);
-
-    describeConformance(<Typography />, {
-      classes,
-      inheritComponentName: 'p',
-      mount,
-      refInstanceof: window.HTMLParagraphElement,
-    });
   });
 
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<Typography />, () => ({
+    classes,
+    inheritComponentName: 'p',
+    mount,
+    refInstanceof: window.HTMLParagraphElement,
+  }));
 
   it('should render the text', () => {
     const wrapper = shallow(<Typography>Hello</Typography>);
