@@ -6,7 +6,6 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import JavaScriptIcon from '@material-ui/docs/svgIcons/JavaScript';
 import TypeScriptIcon from '@material-ui/docs/svgIcons/TypeScript';
-import HooksIcon from '@material-ui/docs/svgIcons/Hooks';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 const styles = {
@@ -20,15 +19,11 @@ const styles = {
 
 function DemoLanguages(props) {
   const { classes, codeOpen, codeVariant, demo, gaEventCategory, onLanguageClick } = props;
-  const hasHooksVariant = demo.rawHooks;
   const hasTSVariant = demo.rawTS;
 
   function renderedCodeVariant() {
     if (codeVariant === CODE_VARIANTS.TS && hasTSVariant) {
       return CODE_VARIANTS.TS;
-    }
-    if (codeVariant === CODE_VARIANTS.HOOK && hasHooksVariant) {
-      return CODE_VARIANTS.HOOK;
     }
     return CODE_VARIANTS.JS;
   }
@@ -59,16 +54,6 @@ function DemoLanguages(props) {
           data-ga-event-action="source-ts"
         >
           <TypeScriptIcon />
-        </ToggleButton>
-        <ToggleButton
-          className={classes.toggleButton}
-          value={CODE_VARIANTS.HOOK}
-          disabled={!hasHooksVariant}
-          aria-label="Show Hooks source"
-          data-ga-event-category={gaEventCategory}
-          data-ga-event-action="source-hooks"
-        >
-          <HooksIcon />
         </ToggleButton>
       </ToggleButtonGroup>
     </Fade>

@@ -25,13 +25,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@emotion/core": "latest",
-    "@emotion/styled": "latest",
-    "benchmark": "latest",
-    "emotion": "latest",
-    "emotion-server": "latest",
-    "nodemod": "latest",
-    "react-jss": "next",
-    "styled-system": "latest"
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
+    "benchmark": "^2.1.4",
+    "emotion": "^10.0.9",
+    "emotion-server": "^10.0.9",
+    "nodemod": "^1.5.19",
+    "react-jss": "^10.0.0-alpha.12",
+    "styled-system": "^4.0.5"
   }
 }

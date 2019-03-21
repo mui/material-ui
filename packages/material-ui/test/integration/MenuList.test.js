@@ -46,14 +46,6 @@ function assertMenuItemFocused(wrapper, tabIndexed) {
   });
 }
 
-function initializeFocus(wrapper) {
-  wrapper
-    .find('[tabIndex=0]')
-    .first()
-    .getDOMNode()
-    .focus();
-}
-
 describe('<MenuList> integration', () => {
   let mount;
 
@@ -67,10 +59,12 @@ describe('<MenuList> integration', () => {
 
   describe('keyboard controls and tabIndex manipulation', () => {
     let wrapper;
+    let menuListActionsRef;
 
     const resetWrapper = () => {
+      menuListActionsRef = React.createRef();
       wrapper = mount(
-        <MenuList>
+        <MenuList actions={menuListActionsRef}>
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
@@ -86,7 +80,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should select/focus the first item 1', () => {
-      initializeFocus(wrapper);
+      menuListActionsRef.current.focus();
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
@@ -108,7 +102,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should focus the second item 1', () => {
-      initializeFocus(wrapper);
+      menuListActionsRef.current.focus();
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       assertMenuItemTabIndexed(wrapper, 1);
       assertMenuItemFocused(wrapper, 1);
@@ -132,7 +126,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should select/focus the first item 2', () => {
-      initializeFocus(wrapper);
+      menuListActionsRef.current.focus();
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
@@ -164,10 +158,12 @@ describe('<MenuList> integration', () => {
 
   describe('keyboard controls and tabIndex manipulation - preselected item', () => {
     let wrapper;
+    let menuListActionsRef;
 
     const resetWrapper = () => {
+      menuListActionsRef = React.createRef();
       wrapper = mount(
-        <MenuList>
+        <MenuList actions={menuListActionsRef}>
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem selected>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
@@ -183,13 +179,13 @@ describe('<MenuList> integration', () => {
     });
 
     it('should select/focus the second item', () => {
-      initializeFocus(wrapper);
+      menuListActionsRef.current.focus();
       assertMenuItemTabIndexed(wrapper, 1);
       assertMenuItemFocused(wrapper, 1);
     });
 
     it('should focus the third item', () => {
-      initializeFocus(wrapper);
+      menuListActionsRef.current.focus();
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       assertMenuItemTabIndexed(wrapper, 2);
       assertMenuItemFocused(wrapper, 2);
@@ -232,10 +228,12 @@ describe('<MenuList> integration', () => {
 
   describe('MenuList with disableListWrap', () => {
     let wrapper;
+    let menuListActionsRef;
 
     const resetWrapper = () => {
+      menuListActionsRef = React.createRef();
       wrapper = mount(
-        <MenuList disableListWrap>
+        <MenuList disableListWrap actions={menuListActionsRef}>
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
@@ -247,14 +245,14 @@ describe('<MenuList> integration', () => {
     before(resetWrapper);
 
     it('should not wrap focus with ArrowUp from first', () => {
-      initializeFocus(wrapper);
+      menuListActionsRef.current.focus();
       wrapper.simulate('keyDown', { key: 'ArrowUp' });
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
 
     it('should not wrap focus with ArrowDown from last', () => {
-      initializeFocus(wrapper);
+      menuListActionsRef.current.focus();
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       wrapper.simulate('keyDown', { key: 'ArrowDown' });

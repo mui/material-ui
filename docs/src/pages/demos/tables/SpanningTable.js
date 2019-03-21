@@ -29,9 +29,9 @@ function priceRow(qty, unit) {
   return qty * unit;
 }
 
-function createRow(id, desc, qty, unit) {
+function createRow(desc, qty, unit) {
   const price = priceRow(qty, unit);
-  return { id, desc, qty, unit, price };
+  return { desc, qty, unit, price };
 }
 
 function subtotal(items) {
@@ -39,10 +39,10 @@ function subtotal(items) {
 }
 
 const rows = [
-  ['Paperclips (Box)', 100, 1.15],
-  ['Paper (Case)', 10, 45.99],
-  ['Waste Basket', 2, 17.99],
-].map((row, id) => createRow(id, ...row));
+  createRow('Paperclips (Box)', 100, 1.15),
+  createRow('Paper (Case)', 10, 45.99),
+  createRow('Waste Basket', 2, 17.99),
+];
 
 const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
@@ -63,13 +63,14 @@ function SpanningTable(props) {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.id}>
+            <TableRow key={row.desc}>
               <TableCell>{row.desc}</TableCell>
               <TableCell align="right">{row.qty}</TableCell>
               <TableCell align="right">{row.unit}</TableCell>
               <TableCell align="right">{ccyFormat(row.price)}</TableCell>
             </TableRow>
           ))}
+
           <TableRow>
             <TableCell rowSpan={3} />
             <TableCell colSpan={2}>Subtotal</TableCell>

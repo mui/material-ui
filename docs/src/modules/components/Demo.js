@@ -206,14 +206,6 @@ class Demo extends React.Component {
 
   getDemoData = () => {
     const { codeVariant, demo, githubLocation } = this.props;
-    if (codeVariant === CODE_VARIANTS.HOOK && demo.rawHooks) {
-      return {
-        codeVariant: CODE_VARIANTS.HOOK,
-        githubLocation: githubLocation.replace(/\.jsx?$/, '.hooks.js'),
-        raw: demo.rawHooks,
-        js: demo.jsHooks,
-      };
-    }
     if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
       return {
         codeVariant: CODE_VARIANTS.TS,

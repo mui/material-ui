@@ -2,13 +2,13 @@ import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',
@@ -17,9 +17,10 @@ const styles = (theme: Theme) =>
     formControl: {
       margin: theme.spacing(1),
     },
-  });
+  }),
+);
 
-export interface TextMaskCustomProps {
+interface TextMaskCustomProps {
   inputRef: (ref: HTMLInputElement | null) => void;
 }
 
@@ -43,7 +44,7 @@ TextMaskCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
 } as any;
 
-export interface NumberFormatCustomProps {
+interface NumberFormatCustomProps {
   inputRef: (instance: NumberFormat | null) => void;
   onChange: (event: { target: { value: string } }) => void;
 }
@@ -73,57 +74,48 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 } as any;
 
-export interface Props extends WithStyles<typeof styles> {}
-
 interface State {
   textmask: string;
   numberformat: string;
 }
 
-class FormattedInputs extends React.Component<Props, State> {
-  state = {
+function FormattedInputs() {
+  const classes = useStyles();
+  const [values, setValues] = React.useState({
     textmask: '(1  )    -    ',
     numberformat: '1320',
-  };
+  });
 
-  handleChange = (name: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
+  const handleChange = (name: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({
+      ...values,
       [name]: event.target.value,
-    } as Pick<State, keyof State>);
+    });
   };
 
-  render() {
-    const { classes } = this.props;
-    const { textmask, numberformat } = this.state;
-
-    return (
-      <div className={classes.container}>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
-          <Input
-            value={textmask}
-            onChange={this.handleChange('textmask')}
-            id="formatted-text-mask-input"
-            inputComponent={TextMaskCustom as any}
-          />
-        </FormControl>
-        <TextField
-          className={classes.formControl}
-          label="react-number-format"
-          value={numberformat}
-          onChange={this.handleChange('numberformat')}
-          id="formatted-numberformat-input"
-          InputProps={{
-            inputComponent: NumberFormatCustom as any,
-          }}
+  return (
+    <div className={classes.container}>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
+        <Input
+          value={values.textmask}
+          onChange={handleChange('textmask')}
+          id="formatted-text-mask-input"
+          inputComponent={TextMaskCustom as any}
         />
-      </div>
-    );
-  }
+      </FormControl>
+      <TextField
+        className={classes.formControl}
+        label="react-number-format"
+        value={values.numberformat}
+        onChange={handleChange('numberformat')}
+        id="formatted-numberformat-input"
+        InputProps={{
+          inputComponent: NumberFormatCustom as any,
+        }}
+      />
+    </div>
+  );
 }
 
-(FormattedInputs as React.ComponentClass<Props>).propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(FormattedInputs);
+export default FormattedInputs;

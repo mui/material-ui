@@ -53,7 +53,6 @@ function getLanguageConfig(demoData) {
   switch (demoData.codeVariant) {
     case CODE_VARIANTS.TS:
       return tsDemo(demoData);
-    case CODE_VARIANTS.HOOK:
     case CODE_VARIANTS.JS:
       return jsDemo(demoData);
     default:

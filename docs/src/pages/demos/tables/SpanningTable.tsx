@@ -30,13 +30,12 @@ function priceRow(qty: number, unit: number) {
   return qty * unit;
 }
 
-function createRow(id: number, desc: string, qty: number, unit: number) {
+function createRow(desc: string, qty: number, unit: number) {
   const price = priceRow(qty, unit);
-  return { id, desc, qty, unit, price };
+  return { desc, qty, unit, price };
 }
 
 interface Row {
-  id: number;
   desc: string;
   qty: number;
   unit: number;
@@ -48,10 +47,10 @@ function subtotal(items: Row[]) {
 }
 
 const rows = [
-  ['Paperclips (Box)', 100, 1.15],
-  ['Paper (Case)', 10, 45.99],
-  ['Waste Basket', 2, 17.99],
-].map((row, id) => createRow(id, row[0] as string, row[1] as number, row[2] as number));
+  createRow('Paperclips (Box)', 100, 1.15),
+  createRow('Paper (Case)', 10, 45.99),
+  createRow('Waste Basket', 2, 17.99),
+];
 
 const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
@@ -74,7 +73,7 @@ function SpanningTable(props: SpanningTableProps) {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.id}>
+            <TableRow key={row.desc}>
               <TableCell>{row.desc}</TableCell>
               <TableCell align="right">{row.qty}</TableCell>
               <TableCell align="right">{row.unit}</TableCell>
