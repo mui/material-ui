@@ -131,11 +131,7 @@ export default withStyles(styles)(HigherOrderComponent);
 You can nest selectors to target elements inside the current class or component.
 The following example is powered by the Hook API, it works the same way with the other APIs.
 
-```jsx
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import Paper from '@material-ui/core/Paper';
-
+```js
 const useStyles = makeStyles({
   root: {
     padding: 16,
@@ -148,16 +144,6 @@ const useStyles = makeStyles({
     }
   },
 });
-
-export default function NestedStylesHook() {
-  const classes = useStyles();
-  return (
-    <Paper className={classes.root}>
-      This is red since it is inside the paper.
-      <p>This is green since it is inside the paragraph <span>and this is blue since it is inside the span</span></p>
-    </Paper>
-  );
-}
 ```
 
 {{"demo": "pages/css-in-js/basics/NestedStylesHook.js"}}
