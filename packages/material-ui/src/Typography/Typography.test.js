@@ -22,7 +22,7 @@ describe('<Typography />', () => {
       classes,
       inheritComponentName: 'p',
       mount,
-      forwardRef: true,
+      refInstanceof: window.HTMLParagraphElement,
     });
   });
 

@@ -1,6 +1,5 @@
 import { assert } from 'chai';
 import React from 'react';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 function randomStringValue() {
@@ -77,36 +76,25 @@ function testPropsSpread(element, options) {
 }
 
 /**
- * Some Material-UI components can forward their refs via `innerRef`
+ * Tests that the `ref` of a component will return the correct instance
  *
- * TODO: Use `ref` once WithStylesTest is no longer required
+ * This is determined by a given constructor i.e. a React.Component or HTMLElement for
+ * components that forward their ref and attach it to a host component.
  *
  * @param {React.ReactElement} element
  * @param {Object} options
- * @param {boolean} options.forwardRef - If `true` then this component forwards `ref`
+ * @param {FunctionConstructor} options.refInstanceof - `ref` will be an instanceof this constructor.
  */
-function testRefForwarding(element, options) {
-  const { forwardRef, mount } = options;
+function testRef(element, options) {
+  const { refInstanceof, mount } = options;
 
-  describe('prop: innerRef', () => {
-    before(() => {
-      // just to swallow possible error messages from attaching refs to function components
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
-    it(`does ${!forwardRef ? 'not' : ''} forward ref`, () => {
+  describe('ref', () => {
+    it(`attaches the ref to an instance of ${refInstanceof}`, () => {
       const ref = React.createRef();
+      // TODO use `ref` once `WithStylesTest` is removed
       mount(React.cloneElement(element, { innerRef: ref }));
 
-      if (!forwardRef) {
-        assert.strictEqual(ref.current, null);
-      } else {
-        assert.ok(ref.current);
-      }
+      assert.instanceOf(ref.current, refInstanceof);
     });
   });
 }
@@ -115,7 +103,7 @@ const fullSuite = {
   class: testClassName,
   componentProp: testComponentProp,
   propsSpread: testPropsSpread,
-  refForwarding: testRefForwarding,
+  refForwarding: testRef,
 };
 
 /**
@@ -127,7 +115,7 @@ const fullSuite = {
  * @param {string} options.classes - see testClassName
  * @param {string} options.inheritComponentName - see testPropsSpread
  * @param {function} options.mount - Should be a return value from createMount
- * @param {boolean} options.forwardRef - see test testRefForwarding
+ * @param {boolean} options.refInstanceof - see test testRef
  * @param {string?} options.testComponentPropWith - see test testComponentProp
  */
 export default function describeConformance(minimalElement, options) {
