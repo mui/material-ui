@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
@@ -117,7 +118,18 @@ SvgIcon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'medium', 'small', 'large']),
+  fontSize: chainPropTypes(
+    PropTypes.oneOf(['inherit', 'medium', 'small', 'large', 'default']),
+    props => {
+      if (props.fontSize === 'default') {
+        return new Error(
+          `The prop \`fontSize="default"\` of the \`SvgIcon\` component is deprecated. Use fontSize="medium" instead.`,
+        );
+      }
+
+      return null;
+    },
+  ),
   /**
    * Applies a color attribute to the SVG element.
    */
