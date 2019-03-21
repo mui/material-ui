@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from './styled';
 import { SheetsRegistry } from 'jss';
 import { createMount } from '@material-ui/core/test-utils';
-import { createGenerateClassName } from '@material-ui/styles';
+import { createGenerateId } from '@material-ui/styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import StylesProvider from '../StylesProvider';
 
@@ -33,7 +33,7 @@ describe('styled', () => {
 
   it('should work as expected', () => {
     const sheetsRegistry = new SheetsRegistry();
-    const generateClassName = createGenerateClassName();
+    const generateClassName = createGenerateId();
 
     mount(
       <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>

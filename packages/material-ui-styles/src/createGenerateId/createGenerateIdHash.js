@@ -1,5 +1,6 @@
 import warning from 'warning';
 import hash from '@emotion/hash';
+import hyphenate from 'hyphenate-style-name';
 
 const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
 
@@ -18,15 +19,15 @@ const themeHashCache = {};
 //
 // It's inspired by
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName(options = {}) {
-  const { dangerouslyUseGlobalCSS = false, productionPrefix = 'jss', seed = '' } = options;
+export default function createGenerateIdHash(options = {}) {
+  const { dangerouslyUseGlobalCSS = false, productionPrefix = '', seed = '' } = options;
   let ruleCounter = 0;
 
   return (rule, styleSheet) => {
     const isStatic = !styleSheet.options.link;
 
     if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name && isStatic) {
-      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
+      return `${safePrefix(hyphenate(styleSheet.options.name))}-${rule.key}`;
     }
 
     let suffix;

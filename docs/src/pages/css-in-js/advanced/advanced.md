@@ -302,18 +302,18 @@ You can also combine JSS generated class names with global ones.
 
 ### Deterministic class names
 
-We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. When turned on, the class names will look like this:
+We provide an option to make the class names **deterministic** with the [`globalClassNames`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. When turned on, the class names will look like this:
 
 - development: `.AppBar-root`
 - production: `.AppBar-root`
 
-⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.**
+⚠️ **Be cautious when using `globalClassNames`.**
 Relying on it for code running in production has the following implications:
 
 - It's harder to keep track of `classes` API changes between major releases.
 - Global CSS is inherently fragile.
 
-⚠️ When using `dangerouslyUseGlobalCSS` standalone (without Material-UI), you should name your style sheets using the `options` parameter:
+⚠️ When using `globalClassNames` standalone (without Material-UI), you should name your style sheets using the `options` parameter:
 
 ```jsx
 // Hook

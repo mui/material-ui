@@ -9,7 +9,7 @@ import {
   styled as materialStyled,
   StylesProvider,
   ThemeProvider,
-  createGenerateClassName,
+  createGenerateId,
 } from '@material-ui/styles';
 import { green, red } from '@material-ui/core/colors';
 import Pricing from 'docs/src/pages/getting-started/page-layout-examples/pricing/Pricing';
@@ -53,7 +53,7 @@ function renderPricing(req, res) {
   const html = ReactDOMServer.renderToString(
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
-      generateClassName={createGenerateClassName()}
+      generateClassName={createGenerateId()}
       sheetsManager={new Map()}
     >
       <ThemeProvider theme={theme}>
@@ -70,7 +70,7 @@ function renderBox(req, res) {
   const html = ReactDOMServer.renderToString(
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
-      generateClassName={createGenerateClassName()}
+      generateClassName={createGenerateId()}
       sheetsManager={new Map()}
     >
       <ThemeProvider theme={theme}>
@@ -89,7 +89,7 @@ function renderAvatar(req, res) {
   const html = ReactDOMServer.renderToString(
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
-      generateClassName={createGenerateClassName()}
+      generateClassName={createGenerateId()}
       sheetsManager={new Map()}
     >
       {Array.from(new Array(1)).map((_, index) => (
@@ -106,7 +106,7 @@ function renderStyledFunction(req, res) {
   const html = ReactDOMServer.renderToString(
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
-      generateClassName={createGenerateClassName()}
+      generateClassName={createGenerateId()}
       sheetsManager={new Map()}
     >
       {Array.from(new Array(1000)).map((_, index) => (

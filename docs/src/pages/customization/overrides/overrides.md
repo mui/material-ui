@@ -238,6 +238,6 @@ Learn more about it in the [themes section](/customization/themes/#customizing-a
 ### Global CSS override
 
 You can also customize all instances of a component with CSS.
-We expose a `dangerouslyUseGlobalCSS` option to do so.
+We expose a `globalClassNames` option to do so.
 Learn more about it in the [styles section](/css-in-js/advanced/#deterministic-class-names) of the documentation.
 It's very similar to how you would customize Bootstrap.

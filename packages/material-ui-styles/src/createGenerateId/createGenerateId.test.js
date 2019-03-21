@@ -1,12 +1,12 @@
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import createGenerateClassName from './createGenerateClassName';
+import createGenerateId from './createGenerateId';
 
-describe('createGenerateClassName', () => {
-  const generateClassName = createGenerateClassName();
-  const generateClassNameGlobal = createGenerateClassName({ dangerouslyUseGlobalCSS: true });
+describe('createGenerateId', () => {
+  const generateClassName = createGenerateId();
+  const generateClassNameGlobal = createGenerateId({ globalClassNames: true });
 
-  describe('dangerouslyUseGlobalCSS', () => {
+  describe('globalClassNames', () => {
     it('should have a stable classname', () => {
       assert.strictEqual(
         generateClassNameGlobal(
@@ -225,7 +225,7 @@ describe('createGenerateClassName', () => {
         rules: { raw: {} },
         options: {},
       };
-      const generateClassName2 = createGenerateClassName();
+      const generateClassName2 = createGenerateId();
       assert.strictEqual(generateClassName2(rule, styleSheet), 'root-11u5x61');
     });
   });
@@ -256,7 +256,7 @@ describe('createGenerateClassName', () => {
         rules: { raw: {} },
         options: {},
       };
-      const generateClassName2 = createGenerateClassName();
+      const generateClassName2 = createGenerateId();
       assert.strictEqual(generateClassName2(rule, styleSheet), 'jss11u5x61');
     });
   });

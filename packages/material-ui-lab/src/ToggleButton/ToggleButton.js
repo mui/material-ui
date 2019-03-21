@@ -21,7 +21,7 @@ export const styles = theme => ({
       marginLeft: -1,
       borderLeft: '1px solid transparent',
     },
-    '&$selected': {
+    '&.selected': {
       color: theme.palette.action.active,
       backgroundColor: fade(theme.palette.action.active, 0.12),
       '&:hover': {
@@ -32,7 +32,7 @@ export const styles = theme => ({
         marginLeft: 0,
       },
     },
-    '&$disabled': {
+    '&.disabled': {
       color: fade(theme.palette.action.disabled, 0.12),
     },
     '&:hover': {
@@ -42,7 +42,7 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-      '&$disabled': {
+      '&.disabled': {
         backgroundColor: 'transparent',
       },
     },
@@ -102,8 +102,8 @@ class ToggleButton extends React.Component {
         className={clsx(
           classes.root,
           {
-            [classes.disabled]: disabled,
-            [classes.selected]: selected,
+            [`disabled ${classes.disabled}`]: disabled,
+            [`selected ${classes.selected}`]: selected,
           },
           className,
         )}

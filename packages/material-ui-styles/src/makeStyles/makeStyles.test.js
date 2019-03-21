@@ -5,7 +5,7 @@ import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
 import { createMount } from '@material-ui/core/test-utils';
 import { createMuiTheme } from '@material-ui/core/styles';
-import createGenerateClassName from '../createGenerateClassName';
+import createGenerateId from '../createGenerateId';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import makeStyles from './makeStyles';
 import useTheme from '../useTheme';
@@ -468,7 +468,7 @@ describe('makeStyles', () => {
         <StylesProvider
           sheetsRegistry={sheetsRegistry}
           sheetsCache={new Map()}
-          generateClassName={createGenerateClassName()}
+          generateClassName={createGenerateId()}
         >
           <StressTest />
         </StylesProvider>,

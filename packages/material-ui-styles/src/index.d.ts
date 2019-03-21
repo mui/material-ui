@@ -1,4 +1,4 @@
-export { default as createGenerateClassName } from '@material-ui/styles/createGenerateClassName';
+export { default as createGenerateId } from '@material-ui/styles/createGenerateId';
 export { default as createStyles } from '@material-ui/styles/createStyles';
 export { default as getThemeProps } from '@material-ui/styles/getThemeProps';
 export { default as jssPreset } from '@material-ui/styles/jssPreset';

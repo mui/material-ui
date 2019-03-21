@@ -391,7 +391,7 @@ the color manipulations, the transitions, the media queries, and more.
 
 Explicitly providing the class names to the component is too much effort?
 Rest assured, we provide an option to make the class names **deterministic** for quick
-prototyping: [`dangerouslyUseGlobalCSS`](/css-in-js/advanced#deterministic-class-names).
+prototyping: [`globalClassNames`](/css-in-js/advanced#deterministic-class-names).
 
 **GlobalCssButton.css**
 ```css
