@@ -20,15 +20,8 @@ const styles = (theme: Theme) =>
     },
   });
 
-<<<<<<< HEAD
-let id = 0;
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-=======
 function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
   return { name, calories, fat, carbs, protein };
->>>>>>> 0431101a3435c72ee99646db5e09ffedc7830858
 }
 
 const rows = [
@@ -58,11 +51,7 @@ function SimpleTable(props: SimpleTableProps) {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-<<<<<<< HEAD
-            <TableRow key={row.id}>
-=======
             <TableRow key={row.name}>
->>>>>>> 0431101a3435c72ee99646db5e09ffedc7830858
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
