@@ -1,7 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import TableSortLabel from './TableSortLabel';
+import ButtonBase from '../ButtonBase';
 import Sort from '@material-ui/icons/Sort';
 
 describe('<TableSortLabel />', () => {
@@ -19,10 +25,13 @@ describe('<TableSortLabel />', () => {
     mount.cleanUp();
   });
 
-  it('should render TableSortLabel', () => {
-    const wrapper = shallow(<TableSortLabel />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<TableSortLabel />, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: false,
+  }));
 
   it('should set the active class when active', () => {
     const activeFlag = true;
@@ -88,12 +97,6 @@ describe('<TableSortLabel />', () => {
       const wrapper = shallow(<TableSortLabel active hideSortIcon />);
       const iconChildren = wrapper.find(`.${classes.icon}`).first();
       assert.strictEqual(iconChildren.length, 1);
-    });
-  });
-
-  describe('mount', () => {
-    it('should mount without error', () => {
-      mount(<TableSortLabel />);
     });
   });
 });
