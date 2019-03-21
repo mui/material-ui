@@ -117,7 +117,7 @@ SvgIcon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
+  fontSize: PropTypes.oneOf(['inherit', 'medium', 'small', 'large']),
   /**
    * Applies a color attribute to the SVG element.
    */
@@ -146,7 +146,7 @@ SvgIcon.propTypes = {
 SvgIcon.defaultProps = {
   color: 'inherit',
   component: 'svg',
-  fontSize: 'default',
+  fontSize: 'medium',
   viewBox: '0 0 24 24',
 };
 

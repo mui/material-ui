@@ -98,13 +98,13 @@ Icon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
+  fontSize: PropTypes.oneOf(['inherit', 'medium', 'small', 'large']),
 };
 
 Icon.defaultProps = {
   color: 'inherit',
   component: 'span',
-  fontSize: 'default',
+  fontSize: 'medium',
 };
 
 Icon.muiName = 'Icon';
