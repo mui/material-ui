@@ -129,8 +129,7 @@ export default withStyles(styles)(HigherOrderComponent);
 ## Nesting selectors
 
 You can nest selectors to target elements inside the current class or component.
-
-### Hook API
+The following example is powered by the Hook API, it works the same way with the other APIs.
 
 ```jsx
 import React from 'react';
