@@ -120,7 +120,7 @@ describe('<Slider />', () => {
     touchEvent.changedTouches = touchList([{ identifier: 2 }]);
     document.body.dispatchEvent(touchEvent);
 
-    assert.strictEqual(handleChange.callCount, 0, 'should not have called the handleChange cb');
+    assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
     assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
     assert.strictEqual(handleDragEnd.callCount, 0, 'should not have called the handleDragEnd cb');
 
@@ -131,7 +131,7 @@ describe('<Slider />', () => {
     touchEvent.changedTouches = touchList([{ identifier: 1 }]);
     document.body.dispatchEvent(touchEvent);
 
-    assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    assert.strictEqual(handleChange.callCount, 2, 'should have called the handleChange cb');
     assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
     assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
   });

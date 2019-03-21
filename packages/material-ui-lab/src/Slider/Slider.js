@@ -354,6 +354,7 @@ class Slider extends React.Component {
 
     const value = this.calculateValueFromPercent(event);
     const newValue = valueReducer(value, this.props, event);
+    this.emitChange(event, value);
 
     document.body.addEventListener('touchend', this.handleTouchEnd);
 
