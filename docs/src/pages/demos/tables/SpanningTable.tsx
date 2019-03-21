@@ -30,24 +30,17 @@ function priceRow(qty: number, unit: number) {
   return qty * unit;
 }
 
-class Row {
+function createRow(id: number, desc: string, qty: number, unit: number) {
+  const price = priceRow(qty, unit);
+  return { id, desc, qty, unit, price };
+}
+
+interface Row {
   id: number;
   desc: string;
   qty: number;
   unit: number;
   price: number;
-  constructor(id: number, desc: string, qty: number, unit: number, price: number) {
-    this.id = id;
-    this.desc = desc;
-    this.qty = qty;
-    this.unit = unit;
-    this.price = price;
-  }
-}
-
-function createRow(id: number, desc: string, qty: number, unit: number) {
-  const price = priceRow(qty, unit);
-  return new Row(id, desc, qty, unit, price);
 }
 
 function subtotal(items: Row[]) {
@@ -55,10 +48,10 @@ function subtotal(items: Row[]) {
 }
 
 const rows = [
-  { desc: 'Paperclips (Box)', qty: 100, unit: 1.15 },
-  { desc: 'Paper (Case)', qty: 10, unit: 45.99 },
-  { desc: 'Waste Basket', qty: 2, unit: 17.99 },
-].map((row, id) => createRow(id, row.desc, row.qty, row.unit));
+  ['Paperclips (Box)', 100, 1.15],
+  ['Paper (Case)', 10, 45.99],
+  ['Waste Basket', 2, 17.99],
+].map((row, id) => createRow(id, row[0] as string, row[1] as number, row[2] as number));
 
 const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
