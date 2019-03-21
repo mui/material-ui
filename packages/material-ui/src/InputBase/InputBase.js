@@ -172,14 +172,7 @@ class InputBase extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    // Book keep the focused state.
-    if (!prevProps.disabled && this.props.disabled) {
-      const { muiFormControl } = this.props;
-      if (muiFormControl && muiFormControl.onBlur) {
-        muiFormControl.onBlur();
-      }
-    }
+  componentDidUpdate() {
     if (this.isControlled) {
       this.checkDirty(this.props);
     } // else performed in the onChange

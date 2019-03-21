@@ -75,8 +75,7 @@ describe('<InputBase />', () => {
     });
 
     it('should reset the focused state', () => {
-      const handleBlur = spy();
-      const wrapper = mount(<InputBase muiFormControl={{ onBlur: handleBlur }} />);
+      const wrapper = mount(<InputBase />);
       // We simulate a focused input that is getting disabled.
       setState(wrapper, {
         focused: true,
@@ -85,7 +84,6 @@ describe('<InputBase />', () => {
         disabled: true,
       });
       assert.strictEqual(wrapper.find('InputBase').state().focused, false);
-      assert.strictEqual(handleBlur.callCount, 1);
     });
 
     // IE 11 bug
