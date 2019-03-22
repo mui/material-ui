@@ -1,6 +1,5 @@
 import { assert } from 'chai';
 import React from 'react';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 /**
  * Glossary
@@ -54,24 +53,7 @@ function testComponentProp(element, getOptions) {
   const { testComponentPropWith } = getOptions();
 
   describe('prop: component', () => {
-    if (testComponentPropWith === false) {
-      beforeEach(() => {
-        consoleErrorMock.spy();
-      });
-
-      after(() => {
-        consoleErrorMock.reset();
-      });
-
-      // This test will fail on subsequent runs since React caches warnings
-      it('does not accept a `component` prop', () => {
-        const { testComponentPropWith: component = 'em', mount } = getOptions();
-
-        mount(React.cloneElement(element, { component }));
-
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-      });
-    } else {
+    if (testComponentPropWith !== false) {
       it('can render another root component with the `component` prop', () => {
         const { classes, mount, testComponentPropWith: component = 'em' } = getOptions();
 
