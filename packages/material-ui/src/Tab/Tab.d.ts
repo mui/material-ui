@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import { ExtendButtonBase } from '../ButtonBase';
 import { SimplifiedPropsOf } from '../OverridableComponent';
 
@@ -13,25 +13,25 @@ declare const Tab: ExtendButtonBase<{
     onClick?: React.EventHandler<any>;
     selected?: boolean;
     style?: React.CSSProperties;
-    textColor?: string | "secondary" | "primary" | "inherit";
+    textColor?: string | 'secondary' | 'primary' | 'inherit';
   };
-  defaultComponent: "div";
+  defaultComponent: 'div';
   classKey: TabClassKey;
 }>;
 
 export type TabClassKey =
-  | "root"
-  | "labelIcon"
-  | "textColorInherit"
-  | "textColorPrimary"
-  | "textColorSecondary"
-  | "selected"
-  | "disabled"
-  | "fullWidth"
-  | "wrapper"
-  | "labelContainer"
-  | "label"
-  | "labelWrapped";
+  | 'root'
+  | 'labelIcon'
+  | 'textColorInherit'
+  | 'textColorPrimary'
+  | 'textColorSecondary'
+  | 'selected'
+  | 'disabled'
+  | 'fullWidth'
+  | 'wrapper'
+  | 'labelContainer'
+  | 'label'
+  | 'labelWrapped';
 
 export type TabProps = SimplifiedPropsOf<typeof Tab>;
 
