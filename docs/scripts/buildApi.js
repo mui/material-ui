@@ -142,6 +142,7 @@ function buildDocs(options) {
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
   reactAPI.spread = spread;
+  reactAPI.props = reactAPI.props || {};
 
   // if (reactAPI.name !== 'TableCell') {
   //   return;
