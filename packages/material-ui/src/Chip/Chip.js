@@ -286,7 +286,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       onClick(event);
     } else if (onDelete && (key === 'Backspace' || key === 'Delete')) {
       onDelete(event);
-    } else if (key === 'Escape' && chipRef) {
+    } else if (key === 'Escape' && chipRef.current) {
       chipRef.current.blur();
     }
   };

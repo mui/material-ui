@@ -377,7 +377,7 @@ describe('<Chip />', () => {
       it('should call onKeyDown when a key is pressed', () => {
         const anyKeydownEvent = { key: 'p' };
         const onKeyDownSpy = spy();
-        const wrapper = mount(<Chip classes={{}} onKeyDown={onKeyDownSpy} />);
+        const wrapper = mount(<Chip onKeyDown={onKeyDownSpy} />);
         wrapper.find('div').simulate('keyDown', anyKeydownEvent);
         assert.strictEqual(onKeyDownSpy.callCount, 1);
         assert.strictEqual(onKeyDownSpy.args[0][0].keyCode, anyKeydownEvent.keyCode);
@@ -448,11 +448,11 @@ describe('<Chip />', () => {
       });
     });
 
-    describe('onDelete is defined and `backspace` is pressed', () => {
-      it('should call onDelete', () => {
+    describe('prop: onDelete', () => {
+      it('should call onDelete `backspace` is pressed', () => {
         const preventDefaultSpy = spy();
         const onDeleteSpy = spy();
-        const wrapper = mount(<Chip classes={{}} onDelete={onDeleteSpy} />);
+        const wrapper = mount(<Chip onDelete={onDeleteSpy} />);
 
         const backspaceKeyDown = {
           preventDefault: preventDefaultSpy,
@@ -469,28 +469,26 @@ describe('<Chip />', () => {
         assert.strictEqual(onDeleteSpy.callCount, 1);
         assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeyUp.keyCode);
       });
-    });
 
-    describe('onDelete is defined and `delete` is pressed', () => {
-      it('should call onDelete', () => {
+      it('should call onDelete `delete` is pressed', () => {
         const preventDefaultSpy = spy();
         const onDeleteSpy = spy();
-        const wrapper2 = mount(<ChipNaked classes={{}} onDelete={onDeleteSpy} />);
+        const wrapper = mount(<Chip onDelete={onDeleteSpy} />);
 
-        const deleteKeyDown = {
+        const backspaceKeyDown = {
           preventDefault: preventDefaultSpy,
           key: 'Delete',
         };
-        wrapper2.find('div').simulate('keyDown', deleteKeyDown);
+        wrapper.find('div').simulate('keyDown', backspaceKeyDown);
         assert.strictEqual(preventDefaultSpy.callCount, 1);
         assert.strictEqual(onDeleteSpy.callCount, 0);
 
-        const deleteKeyUp = {
+        const backspaceKeyUp = {
           key: 'Delete',
         };
-        wrapper2.find('div').simulate('keyUp', deleteKeyUp);
+        wrapper.find('div').simulate('keyUp', backspaceKeyUp);
         assert.strictEqual(onDeleteSpy.callCount, 1);
-        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, deleteKeyUp.keyCode);
+        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeyUp.keyCode);
       });
     });
 
@@ -509,7 +507,6 @@ describe('<Chip />', () => {
 
         wrapper = mount(
           <Chip
-            classes={{}}
             onClick={onClickSpy}
             onDelete={onDeleteSpy}
             onKeyDown={onKeyDownSpy}
