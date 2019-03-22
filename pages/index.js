@@ -34,6 +34,9 @@ const styles = theme => ({
   root: {
     flex: '1 0 100%',
   },
+  drawer: {
+    width: 0,
+  },
   hero: {
     paddingTop: 64 + 29,
     backgroundColor: theme.palette.background.paper,
@@ -113,7 +116,7 @@ class HomePage extends React.Component {
     const { classes, t } = this.props;
 
     return (
-      <AppFrame>
+      <AppFrame classes={{ drawer: classes.drawer }}>
         <div className={classes.root}>
           <Head />
           <div className={classes.hero}>
