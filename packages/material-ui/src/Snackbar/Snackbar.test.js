@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Snackbar from './Snackbar';
 import Slide from '../Slide';
 
@@ -18,16 +18,13 @@ describe('<Snackbar />', () => {
     mount.cleanUp();
   });
 
-  it('should render a ClickAwayListener with classes', () => {
-    const wrapper = mount(<Snackbar open message="message" />);
-    assert.strictEqual(wrapper.find('ClickAwayListener').exists(), true);
-    assert.strictEqual(
-      findOutermostIntrinsic(wrapper).hasClass(classes.root),
-      true,
-      'should have the root class',
-    );
-    assert.strictEqual(wrapper.find(Slide).exists(), true, 'should use a Slide by default');
-  });
+  describeConformance(<Snackbar open message="message" />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   describe('prop: onClose', () => {
     it('should be call when clicking away', () => {
@@ -384,7 +381,12 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: TransitionComponent', () => {
-    it('should render a Snackbar with TransitionComponent', () => {
+    it('should use a Slide by default', () => {
+      const wrapper = mount(<Snackbar open message="message" />);
+      assert.strictEqual(wrapper.find(Slide).exists(), true, 'should use a Slide by default');
+    });
+
+    it('accepts a different component that handles the transition', () => {
       const Transition = () => <div className="cloned-element-class" />;
       const wrapper = mount(<Snackbar open TransitionComponent={Transition} />);
       assert.strictEqual(wrapper.find(Transition).exists(), true);
