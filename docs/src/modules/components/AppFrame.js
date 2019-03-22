@@ -114,6 +114,7 @@ const styles = theme => ({
   },
   drawer: {
     [theme.breakpoints.up('lg')]: {
+      flexShrink: 0,
       width: 240,
     },
   },
