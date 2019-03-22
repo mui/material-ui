@@ -92,11 +92,11 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
     wrapper.instance().childrenRef = document.createElement('div');
     const children = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(wrapper.state().open, false);
+    assert.strictEqual(wrapper.instance().state.open, false);
     children.simulate('mouseOver', { type: 'mouseover' });
-    assert.strictEqual(wrapper.state().open, true);
+    assert.strictEqual(wrapper.instance().state.open, true);
     children.simulate('mouseLeave', { type: 'mouseleave' });
-    assert.strictEqual(wrapper.state().open, false);
+    assert.strictEqual(wrapper.instance().state.open, false);
   });
 
   it('should be controllable', () => {
@@ -124,16 +124,16 @@ describe('<Tooltip />', () => {
     childrenRef.tabIndex = 0;
     wrapper.instance().childrenRef = childrenRef;
     const children = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(wrapper.state().open, false);
+    assert.strictEqual(wrapper.instance().state.open, false);
     children.simulate('mouseOver', { type: 'mouseover' });
     childrenRef.focus();
     children.simulate('focus', { type: 'focus', persist });
     clock.tick(0);
-    assert.strictEqual(wrapper.state().open, true);
+    assert.strictEqual(wrapper.instance().state.open, true);
     children.simulate('mouseLeave', { type: 'mouseleave' });
-    assert.strictEqual(wrapper.state().open, false);
+    assert.strictEqual(wrapper.instance().state.open, false);
     children.simulate('blur', { type: 'blur' });
-    assert.strictEqual(wrapper.state().open, false);
+    assert.strictEqual(wrapper.instance().state.open, false);
   });
 
   describe('touch screen', () => {
@@ -147,7 +147,7 @@ describe('<Tooltip />', () => {
       children.simulate('touchEnd', { type: 'touchend', persist });
       childrenRef.focus();
       children.simulate('focus', { type: 'focus', persist });
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.instance().state.open, false);
     });
 
     it('should open on long press', () => {
@@ -160,11 +160,11 @@ describe('<Tooltip />', () => {
       childrenRef.focus();
       children.simulate('focus', { type: 'focus', persist });
       clock.tick(1e3);
-      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(wrapper.instance().state.open, true);
       children.simulate('touchEnd', { type: 'touchend', persist });
       children.simulate('blur', { type: 'blur' });
       clock.tick(1500);
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.instance().state.open, false);
     });
   });
 
@@ -203,9 +203,9 @@ describe('<Tooltip />', () => {
       childrenRef.tabIndex = 0;
       childrenRef.focus();
       assert.strictEqual(document.activeElement, childrenRef);
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.instance().state.open, false);
       clock.tick(111);
-      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(wrapper.instance().state.open, true);
     });
 
     it('should take the leaveDelay into account', () => {
@@ -215,11 +215,11 @@ describe('<Tooltip />', () => {
       childrenRef.focus();
       assert.strictEqual(document.activeElement, childrenRef);
       clock.tick(0);
-      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(wrapper.instance().state.open, true);
       childrenRef.blur();
-      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(wrapper.instance().state.open, true);
       clock.tick(111);
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.instance().state.open, false);
     });
   });
 
@@ -299,13 +299,13 @@ describe('<Tooltip />', () => {
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('mouseOver', { type: 'mouseOver' });
       clock.tick(0);
-      assert.strictEqual(tooltipNaked.state().open, true);
+      assert.strictEqual(tooltipNaked.instance().state.open, true);
       const popper = wrapper.find(Popper);
       children.simulate('mouseLeave', { type: 'mouseleave' });
-      assert.strictEqual(tooltipNaked.state().open, true);
+      assert.strictEqual(tooltipNaked.instance().state.open, true);
       popper.simulate('mouseOver', { type: 'mouseover' });
       clock.tick(111);
-      assert.strictEqual(tooltipNaked.state().open, true);
+      assert.strictEqual(tooltipNaked.instance().state.open, true);
     });
   });
 

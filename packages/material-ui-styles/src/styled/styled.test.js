@@ -14,7 +14,6 @@ describe('styled', () => {
 
   before(() => {
     mount = createMount();
-    global.disableShallowSupport = true;
     StyledButton = styled('button')({
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
       borderRadius: 3,
@@ -28,7 +27,6 @@ describe('styled', () => {
 
   after(() => {
     mount.cleanUp();
-    global.disableShallowSupport = false;
   });
 
   it('should work as expected', () => {

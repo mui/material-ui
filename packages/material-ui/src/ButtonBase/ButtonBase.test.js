@@ -264,7 +264,7 @@ describe('<ButtonBase />', () => {
       wrapper.simulate('blur', {});
 
       assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-      assert.strictEqual(instanceWrapper.state().focusVisible, false);
+      assert.strictEqual(wrapper.find('button').hasClass(classes.focusVisible), false);
     });
   });
 
@@ -334,7 +334,11 @@ describe('<ButtonBase />', () => {
     let clock;
 
     function getState() {
-      return wrapper.find('ButtonBase').state();
+      /**
+       * wrapper.find('ButtonBase').state()
+       * throws '::state() can only be called on class components'
+       */
+      return instance.state;
     }
 
     beforeEach(() => {
@@ -404,7 +408,7 @@ describe('<ButtonBase />', () => {
       wrapper.setProps({
         disabled: true,
       });
-      assert.strictEqual(instanceWrapper.state().focusVisible, false);
+      assert.strictEqual(instanceWrapper.instance().state.focusVisible, false);
     });
 
     it('should not apply disabled on a span', () => {
@@ -693,13 +697,13 @@ describe('<ButtonBase />', () => {
     });
 
     it('should not rerender the TouchRipple', () => {
-      const wrapper = mount(<ButtonBase.Original>foo</ButtonBase.Original>);
+      const wrapper = mount(<ButtonBase>foo</ButtonBase>);
       wrapper.setProps({
         children: 'bar',
       });
       assert.strictEqual(
         rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
-        2,
+        1,
       );
     });
   });

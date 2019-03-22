@@ -15,7 +15,7 @@ describe('<FormControl />', () => {
   }
 
   function getState(wrapper) {
-    return wrapper.find('FormControl').state();
+    return wrapper.find('FormControl').instance().state;
   }
 
   before(() => {

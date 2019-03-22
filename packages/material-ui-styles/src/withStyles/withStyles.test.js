@@ -17,12 +17,10 @@ describe('withStyles', () => {
 
   before(() => {
     mount = createMount();
-    global.disableShallowSupport = true;
   });
 
   after(() => {
     mount.cleanUp();
-    global.disableShallowSupport = false;
   });
 
   it('hoist statics', () => {

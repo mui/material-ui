@@ -84,7 +84,7 @@ describe('<InputBase />', () => {
       wrapper.setProps({
         disabled: true,
       });
-      assert.strictEqual(wrapper.find('InputBase').state().focused, false);
+      assert.strictEqual(wrapper.find('InputBase').instance().state.focused, false);
       assert.strictEqual(handleBlur.callCount, 1);
     });
 
