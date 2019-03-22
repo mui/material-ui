@@ -4,12 +4,13 @@ import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/s
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
-const styles = (theme: Theme) => createStyles({
-  margin: {
-    margin: theme.spacing(2),
-    marginRight: theme.spacing(3),
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    margin: {
+      margin: theme.spacing(2),
+      marginRight: theme.spacing(3),
+    },
+  });
 
 function BadgeMax(props: WithStyles<typeof styles>) {
   const { classes } = props;
