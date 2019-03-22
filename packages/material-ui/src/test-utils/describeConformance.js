@@ -1,6 +1,22 @@
 import { assert } from 'chai';
 import React from 'react';
-import findOutermostIntrinsic from './findOutermostIntrinsic';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+
+/**
+ * Glossary
+ * - root component:
+ *   - has the `root` class
+ *   - excess props are spread to this component
+ *   - has the type of `inheritComponent`
+ */
+
+function findRootComponent(wrapper, { classes, component }) {
+  /**
+   * We look for the component that is `inheritComponent` and `.rootClassName`
+   * Using find().find().first() is not equivalent since `find` searches deep
+   */
+  return wrapper.find(component).filter(`.${classes.root}`);
+}
 
 function randomStringValue() {
   return Math.random()
@@ -9,24 +25,21 @@ function randomStringValue() {
 }
 
 /**
- * Material-UI components have a `className` prop. The `className` is applied to the
- * outermost DOM node.
+ * Material-UI components have a `className` prop. The `className` is applied to
+ * the root component.
  *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
 function testClassName(element, getOptions) {
-
-  it('applies the className to the outermost DOM node', () => {
-    // declared in ConformanceOptopns
-    const { classes, mount } = getOptions();
+  it('applies the className to the root component', () => {
+    const { classes, inheritComponent, mount } = getOptions();
     const className = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { className }));
-    const domWrapper = findOutermostIntrinsic(wrapper);
+    const root = findRootComponent(wrapper, { classes, component: inheritComponent });
 
-    assert.strictEqual(domWrapper.hasClass(classes.root), true, 'does have a `root` class');
-    assert.strictEqual(domWrapper.hasClass(className), true, 'does have a custom `className`');
+    assert.strictEqual(root.hasClass(className), true, 'does have a custom `className`');
   });
 }
 
@@ -38,12 +51,35 @@ function testClassName(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testComponentProp(element, getOptions) {
-  it('can render another root component with the `component` prop', () => {
-    // type def in ConformanceOptions
-    const { testComponentPropWith: component = 'em', mount } = getOptions();
-    const wrapper = mount(React.cloneElement(element, { component }));
+  const { testComponentPropWith } = getOptions();
 
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), component);
+  describe('prop: component', () => {
+    if (testComponentPropWith === false) {
+      beforeEach(() => {
+        consoleErrorMock.spy();
+      });
+
+      after(() => {
+        consoleErrorMock.reset();
+      });
+
+      // This test will fail on subsequent runs since React caches warnings
+      it('does not accept a `component` prop', () => {
+        const { testComponentPropWith: component = 'em', mount } = getOptions();
+
+        mount(React.cloneElement(element, { component }));
+
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+      });
+    } else {
+      it('can render another root component with the `component` prop', () => {
+        const { classes, mount, testComponentPropWith: component = 'em' } = getOptions();
+
+        const wrapper = mount(React.cloneElement(element, { component }));
+
+        assert.strictEqual(findRootComponent(wrapper, { classes, component }).exists(), true);
+      });
+    }
   });
 }
 
@@ -55,21 +91,16 @@ function testComponentProp(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testPropsSpread(element, getOptions) {
-  it(`does spread props a defined component`, () => {
+  it(`does spread props to the root component`, () => {
     // type def in ConformanceOptions
-    const { inheritComponentName, mount } = getOptions();
-
+    const { classes, inheritComponent, mount } = getOptions();
     const testProp = 'data-test-props-spread';
     const value = randomStringValue();
+
     const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
-    assert.strictEqual(
-      wrapper
-        .find(inheritComponentName)
-        .first()
-        .props()[testProp],
-      value,
-      `should've spread props to ${inheritComponentName}`,
-    );
+    const root = findRootComponent(wrapper, { classes, component: inheritComponent });
+
+    assert.strictEqual(root.props()[testProp], value);
   });
 }
 
@@ -111,7 +142,7 @@ const fullSuite = {
 /**
  * @typedef {Object} ConformanceOptions
  * @property {string} classes - `classes` of the component provided by `@material-ui/styles`
- * @property {string} inheritComponentName - The element type display name that receives spread props.
+ * @property {string} inheritComponent - The element type that receives spread props.
  * @property {function} mount - Should be a return value from createMount
  * @property {boolean} refInstanceof - `ref` will be an instanceof this constructor.
  * @property {string?} testComponentPropWith - The host component that should be rendered instead.

@@ -25,7 +25,7 @@ describe('<Typography />', () => {
 
   describeConformance(<Typography />, () => ({
     classes,
-    inheritComponentName: 'p',
+    inheritComponent: 'p',
     mount,
     refInstanceof: window.HTMLParagraphElement,
   }));
