@@ -10,6 +10,7 @@ import spacing from '@material-ui/system/spacing';
 import typography from '@material-ui/system/typography';
 import css from '@material-ui/system/css';
 import { styled } from '@material-ui/styles';
+import defaultTheme from '../styles/defaultTheme';
 
 export const styleFunction = css(
   compose(
@@ -28,6 +29,6 @@ export const styleFunction = css(
 /**
  * @ignore - do not document.
  */
-const Box = styled('div')(styleFunction, { name: 'MuiBox' });
+const Box = styled('div')(styleFunction, { name: 'MuiBox', defaultTheme });
 
 export default Box;
