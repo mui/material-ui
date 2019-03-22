@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
 import StepLabel from './StepLabel';
@@ -20,12 +25,19 @@ describe('<StepLabel />', () => {
     mount.cleanUp();
   });
 
-  it('merges styles and other props into the root node', () => {
+  describeConformance(<StepLabel />, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: false,
+  }));
+
+  it('merges styles into the root node', () => {
     const wrapper = shallow(
       <StepLabel
         orientation="horizontal"
         style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
-        data-myProp="hello"
       >
         My Label
       </StepLabel>,
@@ -34,7 +46,6 @@ describe('<StepLabel />', () => {
     assert.strictEqual(props.style.paddingRight, 200);
     assert.strictEqual(props.style.color, 'purple');
     assert.strictEqual(props.style.border, '1px solid tomato');
-    assert.strictEqual(props['data-myProp'], 'hello');
   });
 
   describe('label content', () => {
@@ -163,23 +174,6 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
-    });
-  });
-
-  describe('prop: classes', () => {
-    it('should set iconContainer', () => {
-      const wrapper = shallow(
-        <StepLabel classes={{ iconContainer: 'my-custom-class' }} icon={1}>
-          Step One
-        </StepLabel>,
-      );
-      assert.include(
-        wrapper
-          .find('span')
-          .at(1)
-          .props().className,
-        'my-custom-class',
-      );
     });
   });
 
