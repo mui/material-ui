@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import StepConnector from './StepConnector';
 
 describe('<StepConnector />', () => {
@@ -17,6 +22,14 @@ describe('<StepConnector />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<StepConnector />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   describe('rendering', () => {
     it('renders a div containing a span', () => {
