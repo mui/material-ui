@@ -72,7 +72,7 @@ describe('<MenuList />', () => {
       assert.strictEqual(list.style.paddingLeft, '');
       assert.strictEqual(list.style.width, '');
       menuListActionsRef.current.adjustStyleForScrollbar(
-        { clientHeight: 10 },
+        { clientHeight: 20 },
         { direction: 'ltr' },
       );
       assert.strictEqual(list.style.paddingRight, '');
