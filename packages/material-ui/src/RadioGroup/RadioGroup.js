@@ -6,106 +6,104 @@ import warning from 'warning';
 import FormGroup from '../FormGroup';
 import { createChainedFunction, find } from '../utils/helpers';
 
-class RadioGroup extends React.Component {
-  radios = [];
-
-  constructor(props) {
-    super();
-    this.isControlled = props.value != null;
-
-    if (!this.isControlled) {
-      this.state = {
-        value: props.defaultValue,
-      };
+const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
+  const { actions, children, defaultValue, name, value: valueProp, onChange, ...other } = props;
+  const radiosRef = React.useRef([]);
+  const { current: isControlled } = React.useRef(props.value != null);
+  const [valueState, setValue] = React.useState(() => {
+    if (!isControlled) {
+      return defaultValue;
     }
-  }
+    return null;
+  });
 
-  componentDidUpdate() {
+  React.useImperativeHandle(actions, () => ({
+    focus: () => {
+      const radios = radiosRef.current;
+      if (!radios.length) {
+        return;
+      }
+
+      const focusRadios = radios.filter(n => !n.disabled);
+
+      if (!focusRadios.length) {
+        return;
+      }
+
+      const selectedRadio = find(focusRadios, n => n.checked);
+
+      if (selectedRadio) {
+        selectedRadio.focus();
+        return;
+      }
+
+      focusRadios[0].focus();
+    },
+  }));
+
+  React.useEffect(() => {
     warning(
-      this.isControlled === (this.props.value != null),
+      isControlled === (valueProp != null),
       [
         `Material-UI: A component is changing ${
-          this.isControlled ? 'a ' : 'an un'
-        }controlled RadioGroup to be ${this.isControlled ? 'un' : ''}controlled.`,
+          isControlled ? 'a ' : 'an un'
+        }controlled RadioGroup to be ${isControlled ? 'un' : ''}controlled.`,
         'Input elements should not switch from uncontrolled to controlled (or vice versa).',
         'Decide between using a controlled or uncontrolled RadioGroup ' +
           'element for the lifetime of the component.',
         'More info: https://fb.me/react-controlled-components',
       ].join('\n'),
     );
-  }
+  }, [valueProp, isControlled]);
 
-  focus = () => {
-    if (!this.radios || !this.radios.length) {
-      return;
+  const value = isControlled ? valueProp : valueState;
+
+  const handleChange = event => {
+    if (!isControlled) {
+      setValue(event.target.value);
     }
 
-    const focusRadios = this.radios.filter(n => !n.disabled);
-
-    if (!focusRadios.length) {
-      return;
-    }
-
-    const selectedRadio = find(focusRadios, n => n.checked);
-
-    if (selectedRadio) {
-      selectedRadio.focus();
-      return;
-    }
-
-    focusRadios[0].focus();
-  };
-
-  handleChange = event => {
-    if (!this.isControlled) {
-      this.setState({
-        value: event.target.value,
-      });
-    }
-
-    if (this.props.onChange) {
-      this.props.onChange(event, event.target.value);
+    if (onChange) {
+      onChange(event, event.target.value);
     }
   };
 
-  render() {
-    const { children, name, value: valueProp, onChange, ...other } = this.props;
+  radiosRef.current = [];
+  return (
+    <FormGroup role="radiogroup" ref={ref} defaultValue={defaultValue} {...other}>
+      {React.Children.map(children, child => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
 
-    const value = this.isControlled ? valueProp : this.state.value;
-    this.radios = [];
+        warning(
+          child.type !== React.Fragment,
+          [
+            "Material-UI: the RadioGroup component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
 
-    return (
-      <FormGroup role="radiogroup" {...other}>
-        {React.Children.map(children, child => {
-          if (!React.isValidElement(child)) {
-            return null;
-          }
-
-          warning(
-            child.type !== React.Fragment,
-            [
-              "Material-UI: the RadioGroup component doesn't accept a Fragment as a child.",
-              'Consider providing an array instead.',
-            ].join('\n'),
-          );
-
-          return React.cloneElement(child, {
-            name,
-            inputRef: node => {
-              if (node) {
-                this.radios.push(node);
-              }
-            },
-            checked: value === child.props.value,
-            onChange: createChainedFunction(child.props.onChange, this.handleChange),
-          });
-        })}
-      </FormGroup>
-    );
-  }
-}
+        return React.cloneElement(child, {
+          name,
+          inputRef: node => {
+            if (node) {
+              radiosRef.current.push(node);
+            }
+          },
+          checked: value === child.props.value,
+          onChange: createChainedFunction(child.props.onChange, handleChange),
+        });
+      })}
+    </FormGroup>
+  );
+});
 
 RadioGroup.propTypes = {
+  /**
+   * @ignore
+   */
+  actions: PropTypes.shape({ current: PropTypes.object }),
   /**
    * The content of the component.
    */

@@ -37,6 +37,7 @@ export const styles = theme => {
       color: theme.palette.text.primary,
       fontSize: theme.typography.pxToRem(16),
       lineHeight: '1.1875em', // Reset (19px), match the native input line-height
+      boxSizing: 'border-box', // Prevent padding issue with fullWidth.
       cursor: 'text',
       display: 'inline-flex',
       alignItems: 'center',
