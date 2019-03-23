@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,31 +10,39 @@ import Paper from '@material-ui/core/Paper';
 
 const TAX_RATE = 0.07;
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-    overflowX: 'auto',
-  },
-  table: {
-    minWidth: 700,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+      marginTop: theme.spacing(3),
+      overflowX: 'auto',
+    },
+    table: {
+      minWidth: 700,
+    },
+  });
 
-function ccyFormat(num) {
+function ccyFormat(num: number) {
   return `${num.toFixed(2)}`;
 }
 
-function priceRow(qty, unit) {
+function priceRow(qty: number, unit: number) {
   return qty * unit;
 }
 
-function createRow(desc, qty, unit) {
+function createRow(desc: string, qty: number, unit: number) {
   const price = priceRow(qty, unit);
   return { desc, qty, unit, price };
 }
 
-function subtotal(items) {
+interface Row {
+  desc: string;
+  qty: number;
+  unit: number;
+  price: number;
+}
+
+function subtotal(items: Row[]) {
   return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
 }
 
@@ -48,7 +56,9 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-function SpanningTable(props) {
+export interface SpanningTableProps extends WithStyles<typeof styles> {}
+
+function SpanningTable(props: SpanningTableProps) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
@@ -70,7 +80,6 @@ function SpanningTable(props) {
               <TableCell align="right">{ccyFormat(row.price)}</TableCell>
             </TableRow>
           ))}
-
           <TableRow>
             <TableCell rowSpan={3} />
             <TableCell colSpan={2}>Subtotal</TableCell>
@@ -93,6 +102,6 @@ function SpanningTable(props) {
 
 SpanningTable.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(SpanningTable);
