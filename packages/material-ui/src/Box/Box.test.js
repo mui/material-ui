@@ -1,19 +1,23 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import Box from './Box';
 
 describe('<Box />', () => {
-  let shallow;
+  let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders children and box content', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Box component="span" m={1}>
         {testChildren}
       </Box>,
