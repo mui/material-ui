@@ -483,7 +483,7 @@ Tooltip.defaultProps = {
   disableHoverListener: false,
   disableTouchListener: false,
   enterDelay: 0,
-  enterTouchDelay: 1000,
+  enterTouchDelay: 700,
   interactive: false,
   leaveDelay: 0,
   leaveTouchDelay: 1500,
