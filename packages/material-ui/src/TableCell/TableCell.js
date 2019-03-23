@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import makeStyles from '../styles/makeStyles';
+import useThemeProps from '../styles/useThemeProps';
 import { capitalize } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
@@ -98,11 +99,13 @@ export const styles = theme => ({
   },
 });
 
+const useStyles = makeStyles(styles, { name: 'MuiTableCell' });
+
 const TableCell = React.forwardRef(function TableCell(props, ref) {
   const {
     align,
     children,
-    classes,
+    classes: classesProp,
     className,
     component,
     padding: paddingProp,
@@ -111,8 +114,9 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
     sortDirection,
     variant,
     ...other
-  } = props;
+  } = useThemeProps(props, { name: 'MuiTableCell' });
 
+  const classes = useStyles(props);
   const table = React.useContext(TableContext);
   const tablelvl2 = React.useContext(Tablelvl2Context);
 
@@ -177,7 +181,7 @@ TableCell.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -216,4 +220,9 @@ TableCell.defaultProps = {
   align: 'inherit',
 };
 
-export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
+TableCell.useStyles = useStyles;
+TableCell.options = {
+  name: 'MuiTableCell',
+};
+
+export default TableCell;

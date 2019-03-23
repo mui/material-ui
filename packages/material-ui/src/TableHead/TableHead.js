@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import makeStyles from '../styles/makeStyles';
+import useThemeProps from '../styles/useThemeProps';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+
+const tablelvl2 = {
+  variant: 'head',
+};
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -11,12 +16,13 @@ export const styles = {
   },
 };
 
-const tablelvl2 = {
-  variant: 'head',
-};
+const useStyles = makeStyles(styles, { name: 'MuiTableHead' });
 
 const TableHead = React.forwardRef(function TableHead(props, ref) {
-  const { classes, className, component: Component, ...other } = props;
+  const { classes: classesProp, className, component: Component, ...other } = useThemeProps(props, {
+    name: 'MuiTableHead',
+  });
+  const classes = useStyles(props);
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
@@ -34,7 +40,7 @@ TableHead.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -50,4 +56,9 @@ TableHead.defaultProps = {
   component: 'thead',
 };
 
-export default withStyles(styles, { name: 'MuiTableHead' })(TableHead);
+TableHead.useStyles = useStyles;
+TableHead.options = {
+  name: 'MuiTableHead',
+};
+
+export default TableHead;

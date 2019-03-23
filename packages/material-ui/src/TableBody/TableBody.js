@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import makeStyles from '../styles/makeStyles';
+import useThemeProps from '../styles/useThemeProps';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+
+const tablelvl2 = {
+  variant: 'body',
+};
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -11,12 +16,13 @@ export const styles = {
   },
 };
 
-const tablelvl2 = {
-  variant: 'body',
-};
+const useStyles = makeStyles(styles, { name: 'MuiTableBody' });
 
 const TableBody = React.forwardRef(function TableBody(props, ref) {
-  const { classes, className, component: Component, ...other } = props;
+  const { classes: classesProp, className, component: Component, ...other } = useThemeProps(props, {
+    name: 'MuiTableBody',
+  });
+  const classes = useStyles(props);
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
@@ -34,7 +40,7 @@ TableBody.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -50,4 +56,9 @@ TableBody.defaultProps = {
   component: 'tbody',
 };
 
-export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);
+TableBody.useStyles = useStyles;
+TableBody.options = {
+  name: 'MuiTableBody',
+};
+
+export default TableBody;

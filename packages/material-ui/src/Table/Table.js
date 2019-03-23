@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import makeStyles from '../styles/makeStyles';
+import useThemeProps from '../styles/useThemeProps';
 import TableContext from './TableContext';
 
 export const styles = {
@@ -14,8 +15,18 @@ export const styles = {
   },
 };
 
+export const useStyles = makeStyles(styles, { name: 'MuiTable' });
+
 const Table = React.forwardRef(function Table(props, ref) {
-  const { classes, className, component: Component, padding, size, ...other } = props;
+  const {
+    classes: classesProp,
+    className,
+    component: Component,
+    padding,
+    size,
+    ...other
+  } = useThemeProps(props, { name: 'MuiTable' });
+  const classes = useStyles(props);
   const table = React.useMemo(() => ({ padding, size }), [padding, size]);
 
   return (
@@ -34,7 +45,7 @@ Table.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -65,4 +76,9 @@ Table.defaultProps = {
   size: 'medium',
 };
 
-export default withStyles(styles, { name: 'MuiTable' })(Table);
+Table.useStyles = useStyles;
+Table.options = {
+  name: 'MuiTable',
+};
+
+export default Table;

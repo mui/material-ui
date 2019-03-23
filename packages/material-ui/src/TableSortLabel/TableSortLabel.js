@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
-import withStyles from '../styles/withStyles';
+import makeStyles from '../styles/makeStyles';
+import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
 
@@ -59,6 +60,8 @@ export const styles = theme => ({
   },
 });
 
+const useStyles = makeStyles(styles, { name: 'MuiTableSortLabel' });
+
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
@@ -66,13 +69,14 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
   const {
     active,
     children,
-    classes,
+    classes: classesProp,
     className,
     direction,
     hideSortIcon,
     IconComponent,
     ...other
-  } = props;
+  } = useThemeProps(props, { name: 'MuiTableSortLabel' });
+  const classes = useStyles(props);
 
   return (
     <ButtonBase
@@ -105,7 +109,7 @@ TableSortLabel.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -131,4 +135,9 @@ TableSortLabel.defaultProps = {
   IconComponent: ArrowDownwardIcon,
 };
 
-export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);
+TableSortLabel.useStyles = useStyles;
+TableSortLabel.options = {
+  name: 'MuiTableSortLabel',
+};
+
+export default TableSortLabel;
