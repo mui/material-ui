@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import Typography from '../Typography';
 import ListItemText from './ListItemText';
 
@@ -17,19 +22,13 @@ describe('<ListItemText />', () => {
     mount.cleanUp();
   });
 
-  it('should render a div', () => {
-    const wrapper = mount(<ListItemText />);
-    const listItemText = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItemText.name(), 'div');
-    assert.strictEqual(listItemText.hasClass(classes.root), true);
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = mount(<ListItemText className="woofListItemText" />);
-    const listItemText = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItemText.hasClass('woofListItemText'), true);
-    assert.strictEqual(listItemText.hasClass(classes.root), true);
-  });
+  describeConformance(<ListItemText />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render with inset class', () => {
     const wrapper = mount(<ListItemText inset />);
