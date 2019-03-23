@@ -2,9 +2,9 @@ import React from 'react';
 import { assert } from 'chai';
 import {
   createMount,
+  describeConformance,
   findOutermostIntrinsic,
   getClasses,
-  testRef,
 } from '@material-ui/core/test-utils';
 import ListSubheader from '../ListSubheader';
 import List from './List';
@@ -23,31 +23,22 @@ describe('<List />', () => {
     mount.cleanUp();
   });
 
-  it('renders a ul by default', () => {
-    const wrapper = mount(<List />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'ul');
-  });
+  describeConformance(<List />, () => ({
+    classes,
+    inheritComponent: 'ul',
+    mount,
+    refInstanceof: window.HTMLUListElement,
+  }));
 
-  it('can render a div', () => {
-    const wrapper = mount(<List component="div" />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
-  });
-
-  it('should render with the user, root and padding classes', () => {
+  it('should render with padding classes', () => {
     const wrapper = mount(<List className="woofList" />);
     const root = wrapper.find('ul');
-    assert.strictEqual(root.hasClass('woofList'), true);
-    assert.strictEqual(root.hasClass(classes.root), true);
     assert.strictEqual(root.hasClass(classes.padding), true);
   });
 
   it('can disable the padding', () => {
     const wrapper = mount(<List disablePadding />);
     assert.strictEqual(wrapper.find('ul').hasClass(classes.padding), false);
-  });
-
-  it('does forward refs', () => {
-    testRef(<List />, mount);
   });
 
   describe('prop: subheader', () => {
