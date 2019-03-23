@@ -78,9 +78,9 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/layout/grid/NestedGrid.js"}}
 
-## Limitations
+## Einschränkungen
 
-### Negative margin
+### Negative Abstände
 
 There is one limitation with the negative margin we use to implement the spacing between items. A horizontal scroll will appear if a negative margin goes beyond the `<body>`. There are 3 available workarounds: 1. Not using the spacing feature and implementing it in user space `spacing={0}` (default). 2. Applying padding to the parent with at least half the spacing value applied to the child:
 

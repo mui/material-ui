@@ -14,6 +14,8 @@ Material-UI не предоставляет высокоуровневый API �
 
 В следующем примере мы демонстрируем как использовать библиотеку [downshift](https://github.com/paypal/downshift).
 
+The last demo allow to clear the input and show a number of options on focus.
+
 {{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
 
 ## react-select

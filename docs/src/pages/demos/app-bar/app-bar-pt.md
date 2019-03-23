@@ -1,10 +1,10 @@
 ---
-title: Componente React para Barra de Aplicativos
+title: Componente App Bar (Barra de Aplicativos) para React
 components: AppBar, Toolbar, Menu
 ---
 # App Bar (Barra de Aplicativos)
 
-<p class="description">O App Bar exibe informação e ações relacionadas à tela atual.</p>
+<p class="description">A App Bar exibe informações e ações relacionadas à tela atual.</p>
 
 O [App Bar superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ele é utilizado para a identidade visual, títulos de tela, navegação, e ações.
 

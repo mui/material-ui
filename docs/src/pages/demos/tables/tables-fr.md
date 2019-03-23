@@ -30,9 +30,9 @@ Un exemple simple et sans fioritures.
 
 {{"demo": "pages/demos/tables/SimpleTable.js"}}
 
-## Dense Table
+## Tableau dense
 
-A simple example of a dense table with no frills.
+Un exemple simple de tableau dense sans fioritures.
 
 {{"demo": "pages/demos/tables/DenseTable.js"}}
 

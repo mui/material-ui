@@ -1,11 +1,11 @@
 ---
-title: Paper React component
+title: Papier React-Komponente
 components: Paper
 ---
 # Paper
 
-<p class="description">In Material Design, the physical properties of paper are translated to the screen. </p>
+<p class="description">In Material Design werden die physikalischen Eigenschaften von Papier auf den Bildschirm übertragen. </p>
 
-The background of an application resembles the flat, opaque texture of a sheet of paper, and an application’s behavior mimics paper’s ability to be re-sized, shuffled, and bound together in multiple sheets.
+Der Hintergrund einer Anwendung ähnelt der flachen, undurchsichtigen Textur eines Blattes Papier, und das Verhalten einer Anwendung ahmt die Fähigkeit des Papiers nach, seine Größe zu ändern, neu zu mischen und in mehreren Blättern zusammengefasst zu werden.
 
 {{"demo": "pages/demos/paper/PaperSheet.js"}}

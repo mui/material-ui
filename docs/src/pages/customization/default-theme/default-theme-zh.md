@@ -12,7 +12,7 @@ Explore the documentation theme object:
 
 如果你想了解更多有关主题是如何组合的信息，请看看 [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js) 和 如何用`createMuiTheme` 导入主题
 
-## @material-ui/core/styles vs @material-ui/styles
+## @material-ui/core/styles 对比 @material-ui/styles
 
 Material-UI styles are powered by the [@material-ui/styles](/css-in-js/basics/) npm package. It's a styling solution for React. This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles), it has has no knowledge of the default Material-UI theme. To remove the need for injecting a theme in the React's context **systematically**, we are wrapping the style modules (`makeStyles`, `withStyles` and `styled`) with the default Material-UI theme:
 

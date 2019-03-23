@@ -187,13 +187,33 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 - [DialogActions] `action` CSS class is applied to root element instead of children if `disableActionSpacing={false}`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
 
+### Divider
+
+- [Divider] Entfernen Sie die veraltete `inset` Eigenschaft.
+  
+  ```diff
+  - <0 />
+  + <1 />
+  ```
+
+### SvgIcon
+
+- [SvgIcon] Umbenennung nativeColor -> htmlColor.
+  
+  React löst dasselbe Problem mit dem`for` HTML-Attribut. Sie haben beschlossen, die Eigenschaft `htmlFor` zu nennen. Diese Änderung folgt den gleichen Überlegungen.
+  
+  ```diff
+  -<0 />
+  +<1 />
+  ```
+
 ### Node
 
-- [Drop official node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
+- [Lassen Sie die offizielle Unterstützung für Knoten 6 fallen](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule); Sie sollten ein Upgrade auf Knoten 8 durchführen.
 
 ### UMD
 
-- This change eases the use of Material-UI with a CDN:
+- Diese Änderung erleichtert die Verwendung von Material-UI mit einem CDN:
   
   ```diff
   const {
@@ -203,7 +223,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
   +} = MaterialUI;
   ```
   
-  It's consistent with the other React projects:
+  Es stimmt mit den anderen React-Projekten überein:
   
   - material-ui => MaterialUI
   - react-dom => ReactDOM

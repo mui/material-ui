@@ -1,6 +1,6 @@
-# 样式
+# 主题
 
-<p class="description">使用您自己的样式定义Material-UI。 您可以更改颜色，排版等等。</p>
+<p class="description">使用您自己的主题定义 Material-UI。 您可以更改颜色，排版等等。</p>
 
 样式可以指定组件的颜色，表面的暗度，阴影的级别，墨水元素的适当不透明度等。
 
@@ -8,18 +8,18 @@
 
 为了提高应用程序之间的一致性，可以选择明暗样式类型。 默认情况下，组件使用浅色样式类型。
 
-## 样式提供者
+## ThemeProvider
 
-If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. 但是，这是可选的; Material-UI组件带有默认样式。
+如果你想要自定义样式，则需要使用 `MuiThemeProvider` 组件才能将样式注入到你的应用中。 但是，这是可选的; Material-UI组件带有默认样式。
 
-`ThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](/css-in-js/api/#themeprovider).
+`MuiThemeProvider` 依赖于React的Context上下文将样式传递给组件， 因此您需要确保 `MuiThemeProvider` 是您想要自定义的组件的父级元素。 您可以在[ API ](/css-in-js/api/#themeprovider)中了解有关此内容的更多信息 。
 
-## 样式配置变量
+## 主题配置变量
 
-更改样式配置变量是将Material-UI与您的需求相匹配的最有效方法。 以下片段介绍了最重要的样式变量：
+更改主题配置变量是将Material-UI与您的需求相匹配的最有效方法。 以下列出了一些重要的样式变量：
 
 - [调色板](#palette)
-- [类型（浅色/深色 样式）](#type-light-dark-theme)
+- [类型（浅色/深色主题）](#type-light-dark-theme)
 - [排版](#typography)
 - [间距](#spacing)
 - [其他变量](#other-variables)

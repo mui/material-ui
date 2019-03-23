@@ -187,6 +187,26 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 - [DialogActions] `action` CSS class is applied to root element instead of children if `disableActionSpacing={false}`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
 
+### Divider
+
+- [Divider] Remove the deprecated inset prop.
+  
+  ```diff
+  -<Divider inset />
+  +<Divider variant="inset" />
+  ```
+
+### SvgIcon
+
+- [SvgIcon] Rename nativeColor -> htmlColor.
+  
+  React solved the same problem with the `for` HTML attribute, they have decided to call the prop `htmlFor`. This change follows the same reasoning.
+  
+  ```diff
+  -<AddIcon nativeColor="#fff" />
+  +<AddIcon htmlColor="#fff" />
+  ```
+
 ### Node
 
 - [Drop official node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.

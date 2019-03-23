@@ -1,6 +1,10 @@
 # Default Theme
 
-<p class="description">Veja como o objeto de tema se parece com os valores padrão.</p>
+<p class="description">Veja como o objeto tema se parece com os valores padrão.</p>
+
+## Explore
+
+Explore the documentation theme object:
 
 ## Explore
 

@@ -97,11 +97,16 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 ## Сторонняя библиотека маршрутизации
 
-Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. Учитывая, что многие наши интерактивные компоненты используют `ButtonBase`, у вас есть возможность воспользоваться этим:
+Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Учитывая, что многие наши интерактивные компоненты используют `ButtonBase`, у вас есть возможность воспользоваться этим:
 
 ```jsx
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+
+// required for react-router-dom < 5.0.0 
+// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
+const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
 <Button component={Link} to="/open-collective">
   Link
@@ -114,7 +119,8 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-const MyLink = props => <Link to="/open-collective" {...props} />
+// use `ref` instead of `innerRef` with react-router-dom@^5.0.0
+const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
 
 <Button component={MyLink}>
   Link

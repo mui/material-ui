@@ -2,39 +2,39 @@
 title: Checkbox, Radio, Switch React component
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
-# Selection Controls
+# Auswahlsteuerelemente
 
-<p class="description">Selection controls allow the user to select options.</p>
+<p class="description">Auswahlsteuerungen ermöglichen dem Benutzer die Auswahl von Optionen.</p>
 
-[Selection controls](https://material.io/design/components/selection-controls.html) allow users to complete tasks that involve making choices such as selecting options, or switching settings on or off. Selection controls are found on screens that ask users to make decisions or declare preferences such as settings or dialogs.
+[Auswahlsteuerelemente](https://material.io/design/components/selection-controls.html) ermöglichen dem Benutzer das Ausführen von Aufgaben, bei denen eine Auswahl getroffen werden muss, z. B. Auswahl von Optionen oder Ein- und Ausschalten von Einstellungen. Auswahlbedienelemente befinden sich auf Bildschirmen, in denen Benutzer aufgefordert werden, Entscheidungen zu treffen oder Präferenzen wie Einstellungen oder Dialoge festzulegen.
 
-Three types of selection controls are covered in this section:
+In diesem Abschnitt werden drei Arten von Auswahlsteuerelementen behandelt:
 
-- **[Radio Buttons](#radio-buttons)** allow the selection of a single option from a set.
-- **[Checkboxes](#checkboxes)** allow the selection of multiple options from a set.
-- **[Switches](#switches)** allow a selection to be turned on or off.
+- **[Optionsfelder](#radio-buttons)** ermöglichen die Auswahl einer einzelnen Option aus einem Set.
+- **[Kontrollkästchen](#checkboxes)** ermöglichen die Auswahl mehrerer Optionen aus einem Satz.
+- **[Schalter](#switches)** ermöglichen, eine Auswahl an oder aus zu schalten.
 
-## Radio Buttons
+## Optionsfeld (Radio Buttons)
 
-[Radio buttons](https://material.io/design/components/selection-controls.html#radio-buttons) allow the user to select one option from a set. Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space.
+[Optionsfelder](https://material.io/design/components/selection-controls.html#radio-buttons) ermöglichen die Auswahl einer einzelnen Option aus einem Set. Verwenden Sie Optionsfelder, wenn dem Benutzer alle verfügbaren Optionen anzeigen werden müssen. Wenn verfügbare Optionen reduziert werden können, sollten Sie ein Dropdown-Menü in Betracht ziehen, da so weniger Platz benötigt wird.
 
-Radio buttons should have the most commonly used option selected by default.
+Bei Optionsschaltflächen sollte die am häufigsten verwendete Option standardmäßig ausgewählt sein.
 
-`RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
+`RadioGroup` ist ein hilfreicher Wrapper zur Gruppierung von `Optionsfelder` Komponenten, der eine einfachere API und den richtigen Zugriff der Tastatur auf die Gruppe bietet.
 
 {{"demo": "pages/demos/selection-controls/RadioButtonsGroup.js"}}
 
-### Standalone Radio Buttons
+### Alleinstehende Schaltflächen
 
-`Radio` can also be used standalone, without the wrapper.
+Ein `Optionsfeld` kann auch ohne Wrapper einzeln verwendet werden.
 
 {{"demo": "pages/demos/selection-controls/RadioButtons.js"}}
 
-## Checkboxen
+## Kontrollkästchen
 
-[Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
+[Kontrollkästchen ](https://material.io/design/components/selection-controls.html#checkboxes) ermöglichen die Auswahl einer einzelnen Option aus einem Set. Kontrollkästchen können verwendet werden, um eine Option ein- oder auszuschalten.
 
-If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches. If you have a single option, avoid using a checkbox and use an on/off switch instead.
+Wenn in einer Liste mehrere Optionen erscheinen, können Sie durch Kontrollkästchen die Abstände erhalten statt Ein- / Aus - Schalter zu verwenden. If you have a single option, avoid using a checkbox and use an on/off switch instead.
 
 {{"demo": "pages/demos/selection-controls/Checkboxes.js"}}
 

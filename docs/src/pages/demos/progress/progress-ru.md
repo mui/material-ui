@@ -61,7 +61,7 @@ components: CircularProgress, LinearProgress
 
 ## Non-standard ranges
 
-The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
+Компоненты прогресса принимают значение в диапазоне от 0 до 100. Это упрощает работу с программами для чтения с экрана ("скринридеры"), где это минимальные и максимальные значения по умолчанию. Однако иногда вы можете работать с данными, значения которых выходят за пределы этого диапазона. Вот так можно легко преобразовать значение из любого диапазона в шкалу от 0 до 100:
 
 ```jsx
 // MIN = Minimum expected value

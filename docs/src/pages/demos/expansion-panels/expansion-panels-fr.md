@@ -30,6 +30,10 @@ Plusieurs colonnes peuvent être utilisées pour structurer le contenu et un tex
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
+## Performances
+
+The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+
 ## Panneau d'extension personnalisé
 
 Si vous avez lu le [overrides page de documentation](/customization/overrides/) mais vous n'êtes pas sûr de sauter dans, ici est un exemple de la façon dont vous pouvez personnaliser la couleur de fond du `ExpansionPanelSummary` et le rembourrage de `ExpansionPanelDetails`.

@@ -48,7 +48,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 
 - Every component forward their ref. This is implemented by using `React.forwardRef()`. This affects the internal component tree and display name and therefore might break shallow or snapshot tests. `innerRef` will no longer return a ref to the instance (or nothing if the inner component is a function component) but a ref to its root component. The corresponding API docs list the root component.
 
-### Styles
+### 样式
 
 - Isolation of the styling solution of the core components in a dedicated package. Remove the `MuiThemeProvider` component:
   
@@ -138,7 +138,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
   </InputLabel>
   ```
 
-### Layout
+### 布局
 
 - [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
   
@@ -186,6 +186,26 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 
 - [DialogActions] `action` CSS class is applied to root element instead of children if `disableActionSpacing={false}`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
+
+### Divider
+
+- [Divider] Remove the deprecated inset prop.
+  
+  ```diff
+  -<Divider inset />
+  +<Divider variant="inset" />
+  ```
+
+### SvgIcon
+
+- [SvgIcon] Rename nativeColor -> htmlColor.
+  
+  React solved the same problem with the `for` HTML attribute, they have decided to call the prop `htmlFor`. This change follows the same reasoning.
+  
+  ```diff
+  -<AddIcon nativeColor="#fff" />
+  +<AddIcon htmlColor="#fff" />
+  ```
 
 ### Node
 
