@@ -1,7 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
@@ -24,36 +29,28 @@ describe('<ListItem />', () => {
     mount.cleanUp();
   });
 
-  it('should render a div', () => {
-    const wrapper = mount(<ListItem component="div" />);
-    const listItem = wrapper.getDOMNode();
-    assert.strictEqual(listItem.nodeName, 'DIV');
-  });
+  describeConformance(<ListItem />, () => ({
+    classes,
+    inheritComponent: 'li',
+    mount,
+    refInstanceof: window.HTMLLIElement,
+  }));
 
-  it('should render a li', () => {
-    const wrapper = mount(<ListItem />);
-    const listItem = wrapper.getDOMNode();
-    assert.strictEqual(listItem.nodeName, 'LI');
-  });
-
-  it('should render with the user, root and gutters classes', () => {
+  it('should render with gutters classes', () => {
     const wrapper = mount(<ListItem className="woofListItem" />);
-    const listItem = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItem.hasClass('woofListItem'), true);
-    assert.strictEqual(listItem.hasClass(classes.root), true);
+    const listItem = wrapper.find('li');
     assert.strictEqual(listItem.hasClass(classes.gutters), true);
   });
 
   it('should render with the selected class', () => {
     const wrapper = mount(<ListItem selected />);
-    const listItem = findOutermostIntrinsic(wrapper);
+    const listItem = wrapper.find('li');
     assert.strictEqual(listItem.hasClass(classes.selected), true);
   });
 
   it('should disable the gutters', () => {
     const wrapper = mount(<ListItem disableGutters />);
-    const listItem = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItem.hasClass(classes.root), true);
+    const listItem = wrapper.find('li');
     assert.strictEqual(listItem.hasClass(classes.gutters), false);
   });
 
@@ -75,18 +72,6 @@ describe('<ListItem />', () => {
     it('should render a div', () => {
       const wrapper = mount(<ListItem button />);
       assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
-    });
-  });
-
-  describe('prop: component', () => {
-    it('should change the component to a', () => {
-      const wrapper = mount(<ListItem button component="a" />);
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'A');
-    });
-
-    it('should change the component to li', () => {
-      const wrapper = mount(<ListItem button component="li" />);
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'LI');
     });
   });
 
