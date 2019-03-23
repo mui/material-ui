@@ -1,26 +1,25 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import ListItemSecondaryAction from './ListItemSecondaryAction';
 
 describe('<ListItemSecondaryAction />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'ListItemSecondaryAction' });
+    mount = createMount();
     classes = getClasses(<ListItemSecondaryAction />);
   });
 
-  it('should render a div', () => {
-    const wrapper = shallow(<ListItemSecondaryAction />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ListItemSecondaryAction className="woofListItemSecondaryAction" />);
-    assert.strictEqual(wrapper.hasClass('woofListItemSecondaryAction'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<ListItemSecondaryAction />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 });
