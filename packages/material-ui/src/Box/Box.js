@@ -9,7 +9,7 @@ import sizing from '@material-ui/system/sizing';
 import spacing from '@material-ui/system/spacing';
 import typography from '@material-ui/system/typography';
 import css from '@material-ui/system/css';
-import { styled } from '@material-ui/styles';
+import styled from '../styles/styled';
 
 export const styleFunction = css(
   compose(
