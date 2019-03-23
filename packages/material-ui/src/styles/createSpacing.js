@@ -55,7 +55,7 @@ export default function createSpacing(spacingInput = 8) {
           [
             'Material-UI: theme.spacing.unit usage has been deprecated.',
             'It will be removed in v5.',
-            'You can replace `theme.spacing.unit * 2` with `theme.spacing(2)`.',
+            'You can replace `theme.spacing.unit * y` with `theme.spacing(y)`.',
           ].join('\n'),
         );
         warnOnce = true;

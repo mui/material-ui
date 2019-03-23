@@ -20,6 +20,8 @@ The grid system is implemented with the `Grid` component:
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
 
+If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
+
 ## Spacing
 
 The responsive grid focuses on consistent spacing widths, rather than column width.

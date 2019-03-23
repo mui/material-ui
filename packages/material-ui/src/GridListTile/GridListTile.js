@@ -46,8 +46,6 @@ const fit = (imgEl, classes) => {
     imgEl.classList.remove(...classes.imgFullHeight.split(' '));
     imgEl.classList.add(...classes.imgFullWidth.split(' '));
   }
-
-  imgEl.removeEventListener('load', fit);
 };
 
 function ensureImageCover(imgEl, classes) {
@@ -58,7 +56,9 @@ function ensureImageCover(imgEl, classes) {
   if (imgEl.complete) {
     fit(imgEl, classes);
   } else {
-    imgEl.addEventListener('load', fit);
+    imgEl.addEventListener('load', () => {
+      fit(imgEl, classes);
+    });
   }
 }
 
