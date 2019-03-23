@@ -1,19 +1,18 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
-  let shallow;
   let mount;
+
   const defaultProps = {
     in: true,
     children: <div />,
   };
 
   before(() => {
-    shallow = createShallow({ dive: true });
     mount = createMount();
   });
 
@@ -22,58 +21,104 @@ describe('<Fade />', () => {
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(<Fade {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'Transition');
+    const wrapper = mount(<Fade {...defaultProps} />);
+    assert.strictEqual(wrapper.find('Transition').exists(), true);
   });
 
   describe('event callbacks', () => {
-    it('should fire event callbacks', () => {
-      const events = ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'];
+    describe('entering', () => {
+      it('should fire callbacks', done => {
+        const handleEnter = spy();
+        const handleEntering = spy();
 
-      const handlers = events.reduce((result, n) => {
-        result[n] = spy();
-        return result;
-      }, {});
+        const wrapper = mount(
+          <Fade
+            onEnter={handleEnter}
+            onEntering={handleEntering}
+            onEntered={() => {
+              assert.strictEqual(handleEnter.callCount, 1);
+              assert.strictEqual(handleEnter.args[0].length, 1);
+              assert.strictEqual(handleEntering.callCount, 1);
+              assert.strictEqual(handleEntering.args[0].length, 2);
+              done();
+            }}
+            {...defaultProps}
+          >
+            <div />
+          </Fade>,
+        );
 
-      const wrapper = shallow(<Fade {...defaultProps} {...handlers} />);
+        wrapper.setProps({
+          in: true,
+        });
+      });
+    });
 
-      events.forEach(n => {
-        const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { style: {} });
-        assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
-        assert.strictEqual(handlers[n].args[0].length, 1, 'should forward the element');
+    describe('exiting', () => {
+      it('should fire callbacks', done => {
+        const handleExit = spy();
+        const handleExiting = spy();
+
+        const wrapper = mount(
+          <Fade
+            onExit={handleExit}
+            onExiting={handleExiting}
+            onExited={() => {
+              assert.strictEqual(handleExit.callCount, 1);
+              assert.strictEqual(handleExit.args[0].length, 1);
+              assert.strictEqual(handleExiting.callCount, 1);
+              assert.strictEqual(handleExiting.args[0].length, 1);
+              done();
+            }}
+            {...defaultProps}
+          >
+            <div />
+          </Fade>,
+        );
+
+        wrapper.setProps({
+          in: false,
+        });
       });
     });
   });
 
   describe('transition lifecycle', () => {
-    let wrapper;
-    let instance;
-
-    before(() => {
-      wrapper = shallow(<Fade {...defaultProps} />);
-      instance = wrapper.instance();
-    });
-
     describe('handleEnter()', () => {
       it('should set style properties', () => {
-        const element = { style: {} };
-        instance.handleEnter(element);
-        assert.strictEqual(
-          element.style.transition,
-          'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        mount(
+          <Fade
+            {...defaultProps}
+            onEnter={node => {
+              // Needs to be match because Edge doesn't include the 0ms delay
+              assert.match(
+                node.style.transition,
+                /opacity 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+              );
+            }}
+          />,
         );
       });
     });
 
     describe('handleExit()', () => {
       it('should set style properties', () => {
-        const element = { style: {} };
-        instance.handleExit(element);
-        assert.strictEqual(
-          element.style.transition,
-          'opacity 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        const wrapper = mount(
+          <Fade
+            {...defaultProps}
+            onExit={node => {
+              // Needs to be match because Edge doesn't include the 0ms delay
+              assert.match(
+                node.style.transition,
+                /opacity 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+              );
+            }}
+          />,
         );
+
+        wrapper.setProps({
+          in: false,
+        });
       });
     });
   });
