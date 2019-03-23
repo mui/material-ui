@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/lab/Container';
 
 const styles = theme => ({
   root: {
@@ -9,17 +10,14 @@ const styles = theme => ({
     flex: '1 1 100%',
     maxWidth: '100%',
     margin: '0 auto',
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(4),
+      paddingRight: theme.spacing(1),
       maxWidth: 'calc(100% - 175px)',
     },
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: theme.spacing(5),
-      paddingRight: theme.spacing(9),
-      maxWidth: theme.breakpoints.width('lg'),
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(5),
+      maxWidth: 'calc(100% - 240px - 175px)',
     },
   },
 });
@@ -27,7 +25,11 @@ const styles = theme => ({
 function AppContent(props) {
   const { className, classes, children } = props;
 
-  return <main className={clsx(classes.root, className)}>{children}</main>;
+  return (
+    <main className={clsx(classes.root, className)}>
+      <Container>{children}</Container>
+    </main>
+  );
 }
 
 AppContent.propTypes = {

@@ -16,12 +16,14 @@ Here are some highlights ✨:
 #### Breaking changes
 
 - [TextField] Prevent fullwidth textfield expanding the screen (#14988) @FMcIntosh
+
   Change the default box sizing model of the `InputBase`. It uses the following CSS now:
   ```css
   box-sizing: border-box;
   ```
   It solves issues with the `fullWidth` prop.
 - [Modal] Ignore event.defaultPrevented (#14991) @oliviertassinari
+
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
   Only special HTML elements have these default behaviors.
