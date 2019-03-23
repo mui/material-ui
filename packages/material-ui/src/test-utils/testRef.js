@@ -16,6 +16,6 @@ function assertDOMNode(node) {
  */
 export default function testRef(element, mount, onRef = assertDOMNode) {
   const ref = React.createRef();
-  mount(<React.Fragment>{React.cloneElement(element, { innerRef: ref })}</React.Fragment>);
+  mount(<React.Fragment>{React.cloneElement(element, { ref })}</React.Fragment>);
   onRef(ref.current);
 }

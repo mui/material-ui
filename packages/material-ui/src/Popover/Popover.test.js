@@ -335,7 +335,7 @@ describe('<Popover />', () => {
 
         return new Promise(resolve => {
           const component = (
-            <Popover.Original
+            <Popover
               {...defaultProps}
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
@@ -346,7 +346,7 @@ describe('<Popover />', () => {
               }}
             >
               <div />
-            </Popover.Original>
+            </Popover>
           );
           wrapper = mount(component);
           wrapper.setProps({ open: true });
@@ -482,7 +482,7 @@ describe('<Popover />', () => {
       openPopover = anchorOrigin =>
         new Promise(resolve => {
           wrapper = mount(
-            <Popover.Original
+            <Popover
               {...defaultProps}
               anchorReference="anchorPosition"
               anchorPosition={anchorPosition}
@@ -494,7 +494,7 @@ describe('<Popover />', () => {
               }}
             >
               <div />
-            </Popover.Original>,
+            </Popover>,
           );
           wrapper.setProps({ open: true });
         });

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { chainPropTypes, getDisplayName, ponyfillGlobal } from '@material-ui/utils';
+import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import useTheme from '../useTheme';
 
 export function withThemeCreator(options = {}) {
@@ -17,22 +17,11 @@ export function withThemeCreator(options = {}) {
       );
     }
 
-    let WithTheme = React.forwardRef(function WithTheme(props, ref) {
+    const WithTheme = React.forwardRef(function WithTheme(props, ref) {
       const { innerRef, ...other } = props;
       const theme = useTheme() || defaultTheme;
       return <Component theme={theme} ref={innerRef || ref} {...other} />;
     });
-
-    if (process.env.NODE_ENV === 'test' && !ponyfillGlobal.disableShallowSupport) {
-      class WithThemeTest extends React.Component {
-        render() {
-          // eslint-disable-next-line react/prop-types
-          const { innerRef, ...other } = this.props;
-          return <Component theme={defaultTheme} ref={innerRef} {...other} />;
-        }
-      }
-      WithTheme = WithThemeTest;
-    }
 
     WithTheme.propTypes = {
       /**

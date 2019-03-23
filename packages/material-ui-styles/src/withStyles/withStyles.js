@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { chainPropTypes, getDisplayName, ponyfillGlobal } from '@material-ui/utils';
+import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import makeStyles from '../makeStyles';
 import getThemeProps from '../getThemeProps';
 import useTheme from '../useTheme';
-import mergeClasses from '../mergeClasses';
-import getStylesCreator from '../getStylesCreator';
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
@@ -46,7 +44,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     ...stylesOptions,
   });
 
-  let WithStyles = React.forwardRef(function WithStyles(props, ref) {
+  const WithStyles = React.forwardRef(function WithStyles(props, ref) {
     const { classes: classesProp, innerRef, ...other } = props;
     const classes = useStyles(props);
 
@@ -71,39 +69,6 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
     return <Component ref={innerRef || ref} classes={classes} {...more} />;
   });
-
-  if (process.env.NODE_ENV === 'test' && !ponyfillGlobal.disableShallowSupport) {
-    // Generate a fake classes object.
-    const stylesCreator = getStylesCreator(stylesOrCreator);
-    const styles = stylesCreator.create(defaultTheme, name);
-    const classes = Object.keys(styles).reduce((acc, key) => {
-      acc[key] = `${name}-${key}`;
-      return acc;
-    }, {});
-
-    class WithStylesTest extends React.Component {
-      render() {
-        // eslint-disable-next-line react/prop-types
-        const { classes: newClasses, innerRef, ...other } = this.props;
-        const more = other;
-
-        if (withTheme && !more.theme) {
-          more.theme = defaultTheme;
-        }
-
-        return (
-          <Component
-            ref={innerRef}
-            classes={mergeClasses({ baseClasses: classes, newClasses })}
-            {...more}
-          />
-        );
-      }
-    }
-    WithStylesTest.Original = WithStyles;
-    WithStyles = WithStylesTest;
-    WithStyles.classes = classes;
-  }
 
   WithStyles.propTypes = {
     /**
@@ -137,6 +102,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     // Exposed for test purposes.
     WithStyles.Naked = Component;
     WithStyles.options = options;
+    WithStyles.useStyles = useStyles;
   }
 
   return WithStyles;
