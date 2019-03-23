@@ -6,6 +6,6 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   clone?: boolean;
 }
 
-declare const Box: React.Component<BoxProps>;
+declare const Box: React.ComponentType<BoxProps>;
 
 export default Box;
