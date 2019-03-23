@@ -1,5 +1,76 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.5
+###### *Mar 23, 2019*
+
+A big thanks to the 23 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 📝 A new ROADMAP (#14923).
+- 📝 Many new TypeScript demos @vitkon, @cojennin, @Dudrie, @rahmatrhd, @jasondashwang.
+- And many more 🐛 bug fixes and 💄 improvements.
+
+### `@material-ui/core@v4.0.0-alpha.5`
+
+#### Breaking changes
+
+- [TextField] Prevent fullwidth textfield expanding the screen (#14988) @FMcIntosh
+  Change the default box sizing model of the `InputBase`. It uses the following CSS now:
+  ```css
+  box-sizing: border-box;
+  ```
+  It solves issues with the `fullWidth` prop.
+- [Modal] Ignore event.defaultPrevented (#14991) @oliviertassinari
+  The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
+  `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
+  Only special HTML elements have these default behaviors.
+  People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
+
+#### Changes
+
+- [Popover] Correct warning for tall component (#14925) @vitkon
+- [List] Memoize context value (#14934) @mkermani144
+- [Typography] Add a custom, self-hosted font demo (#14928) @johnrichter
+- [RadioGroup] Warn for uncontrolled <-> controlled switch (#14878) @manonthemat
+- [Slide] Attach ref to child instead of Transition (#14847) @eps1lon
+- [Grid] Fix zeroMinWidth proptype warning (#14967) @pmacom
+- [TextField] Reduce the specificity (#14953) @oliviertassinari
+- [MenuList] Convert to a function component (#14865) @ryancogswell
+- [Popper] Add ClickAwayListener documentation (#14986) @charlax
+- [RadioGroup] Convert to a function component (#14964) @joshwooding
+- [Tab] Enable generic props (#15003) @caroe233
+- [Tooltip] Make enterTouchDelay match the specification (#15008) @devsumanmdn
+- [Chip] Support pressing delete to delete a chip (#14978) @keeslinp
+- [Box] Improve TypeScript definitions (#15024) @pheuter
+
+### Docs
+
+- [docs] Remove flow examples as outdated (#14919) @oliviertassinari
+- [docs] Enable German (#14927) @mbrookes
+- [docs] Add react-basket to related projects (#14941) @mbrn
+- [docs] Update the ROADMAP (#14923) @oliviertassinari
+- [docs] Take advantage of the default theme (#14945) @oliviertassinari
+- [docs] Improve the styles interpolation documentation (#14940) @oliviertassinari
+- [docs] Add Avatar TypeScript demos (#14954) @cojennin
+- [docs] Add PaperSheet TypeScript demo (#14952) @vitkon
+- [docs] Remove all the .hooks.js files (#14947) @oliviertassinari
+- [docs] Add Badge TypeScript demo (#14969) @vitkon
+- [docs] Grammar fix in FAQ (#14974) @rtalvarez
+- [docs] Document how to nest style selectors (#14957) @cojennin
+- [docs] BottomNavigation TypeScript docs (#14979) @vitkon
+- [docs] Add some Card TypeScript demos (#15011) @Dudrie
+- [docs] Add Badge Typescript demo for Maximum Value (#15013) @rahmatrhd
+- [docs] Add TypeScript demos for Simple and Spanning Table (#14985) @jasondashwang
+- [docs] Add note to docs README regarding translations (#15020) @mbrookes
+- [docs] Content's max width changed for large displays (#15014) @kenzhemir
+
+### Core
+
+- [core] Refactor a subset of components from classes to functions (#14854) @mbrookes
+- [benchmark] Use deterministic version tags (#14968) @eps1lon
+- [test] Remove test-only class wrappers for higher-order components (#15017) @eps1lon
+
 ## 4.0.0-alpha.4
 ###### *Mar 17, 2019*
 
@@ -14,7 +85,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.4`
 
-#### Breaking change
+#### Breaking changess
 
 - [ButtonBase] Require host or ref forwarding components (#13664) @eps1lon
 - [SvgIcon] Rename nativeColor -> htmlColor (#14863) @oliviertassinari
@@ -106,7 +177,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.3`
 
-#### Breaking change
+#### Breaking changes
 
 - [useMediaQuery] Remove unstable prefix (#14593)
 
@@ -319,7 +390,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.1`
 
-#### Breaking change
+#### Breaking changes
 
 - [Typography] Remove deprecated Typography variants (#14562) @joshwooding
 
