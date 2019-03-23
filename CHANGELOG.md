@@ -44,6 +44,10 @@ Here are some highlights ✨:
 - [Chip] Support pressing delete to delete a chip (#14978) @keeslinp
 - [Box] Improve TypeScript definitions (#15024) @pheuter
 
+### `@material-ui/styles@v4.0.0-alpha.5`
+
+- [test] Remove test-only class wrappers for higher-order components (#15017) @eps1lon
+
 ### Docs
 
 - [docs] Remove flow examples as outdated (#14919) @oliviertassinari
