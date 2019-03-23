@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses, testRef } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
@@ -23,6 +23,10 @@ describe('<SpeedDialAction />', () => {
 
   after(() => {
     mount.cleanUp();
+  });
+
+  it('does forward refs', () => {
+    testRef(<SpeedDialAction {...defaultProps} />, mount);
   });
 
   it('should render its component tree without warnings', () => {
@@ -79,8 +83,7 @@ describe('<SpeedDialAction />', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
       const wrapper = mount(<SpeedDialAction {...defaultProps} open onClick={handleClick} />);
-      const buttonWrapper = wrapper.childAt(0);
-      buttonWrapper.simulate('click');
+      wrapper.find('button').simulate('click');
       assert.strictEqual(handleClick.callCount, 1);
     });
   });
