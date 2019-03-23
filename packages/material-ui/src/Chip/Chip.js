@@ -260,7 +260,13 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
 
     const key = event.key;
-    if (key === ' ' || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
+    if (
+      key === ' ' ||
+      key === 'Enter' ||
+      key === 'Backspace' ||
+      key === 'Delete' ||
+      key === 'Escape'
+    ) {
       event.preventDefault();
     }
   };
@@ -278,9 +284,9 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     const key = event.key;
     if (onClick && (key === ' ' || key === 'Enter')) {
       onClick(event);
-    } else if (onDelete && key === 'Backspace') {
+    } else if (onDelete && (key === 'Backspace' || key === 'Delete')) {
       onDelete(event);
-    } else if (key === 'Escape' && chipRef) {
+    } else if (key === 'Escape' && chipRef.current) {
       chipRef.current.blur();
     }
   };
