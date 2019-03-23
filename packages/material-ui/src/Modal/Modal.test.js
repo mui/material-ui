@@ -324,15 +324,15 @@ describe('<Modal />', () => {
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
 
-    it('should not be call when defaultPrevented', () => {
+    it('should be call when defaultPrevented', () => {
       topModalStub.returns(true);
-      wrapper.setProps({ disableEscapeKeyDown: true, manager: { isTopModal: topModalStub } });
-      event = { key: 'Escape', defaultPrevented: true };
+      wrapper.setProps({ manager: { isTopModal: topModalStub } });
+      event = { key: 'Escape', defaultPrevented: true, stopPropagation: () => {} };
 
       instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);
-      assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
-      assert.strictEqual(onCloseSpy.callCount, 0);
+      assert.strictEqual(onEscapeKeyDownSpy.callCount, 1);
+      assert.strictEqual(onCloseSpy.callCount, 1);
     });
   });
 
