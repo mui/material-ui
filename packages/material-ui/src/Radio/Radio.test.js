@@ -2,7 +2,12 @@ import React from 'react';
 import { assert } from 'chai';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
-import { getClasses, createShallow, createMount } from '@material-ui/core/test-utils';
+import {
+  getClasses,
+  createShallow,
+  createMount,
+  describeConformance,
+} from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Radio from './Radio';
 
@@ -20,6 +25,14 @@ describe('<Radio />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<Radio />, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: false,
+  }));
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
