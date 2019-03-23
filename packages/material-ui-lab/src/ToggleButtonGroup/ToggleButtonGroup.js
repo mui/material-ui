@@ -4,7 +4,6 @@ import warning from 'warning';
 import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
 import { withStyles } from '@material-ui/core/styles';
-import { withForwardedRef } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -15,10 +14,10 @@ export const styles = theme => ({
   },
 });
 
-class ToggleButtonGroup extends React.Component {
-  handleChange = (event, buttonValue) => {
-    const { onChange, value } = this.props;
+const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
+  const { children, className, classes, exclusive, onChange, value, ...other } = props;
 
+  const handleChange = (event, buttonValue) => {
     if (!onChange) {
       return;
     }
@@ -36,9 +35,7 @@ class ToggleButtonGroup extends React.Component {
     onChange(event, newValue);
   };
 
-  handleExclusiveChange = (event, buttonValue) => {
-    const { onChange, value } = this.props;
-
+  const handleExclusiveChange = (event, buttonValue) => {
     if (!onChange) {
       return;
     }
@@ -46,46 +43,33 @@ class ToggleButtonGroup extends React.Component {
     onChange(event, value === buttonValue ? null : buttonValue);
   };
 
-  render() {
-    const {
-      children,
-      className,
-      classes,
-      exclusive,
-      innerRef,
-      onChange,
-      value,
-      ...other
-    } = this.props;
+  return (
+    <div className={clsx(classes.root, className)} ref={ref} {...other}>
+      {React.Children.map(children, child => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
 
-    return (
-      <div className={clsx(classes.root, className)} ref={innerRef} {...other}>
-        {React.Children.map(children, child => {
-          if (!React.isValidElement(child)) {
-            return null;
-          }
+        warning(
+          child.type !== React.Fragment,
+          [
+            "Material-UI: the ToggleButtonGroup component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
 
-          warning(
-            child.type !== React.Fragment,
-            [
-              "Material-UI: the ToggleButtonGroup component doesn't accept a Fragment as a child.",
-              'Consider providing an array instead.',
-            ].join('\n'),
-          );
+        const { selected: buttonSelected, value: buttonValue } = child.props;
+        const selected =
+          buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
 
-          const { selected: buttonSelected, value: buttonValue } = child.props;
-          const selected =
-            buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
-
-          return React.cloneElement(child, {
-            selected,
-            onChange: exclusive ? this.handleExclusiveChange : this.handleChange,
-          });
-        })}
-      </div>
-    );
-  }
-}
+        return React.cloneElement(child, {
+          selected,
+          onChange: exclusive ? handleExclusiveChange : handleChange,
+        });
+      })}
+    </div>
+  );
+});
 
 ToggleButtonGroup.propTypes = {
   /**
@@ -106,11 +90,6 @@ ToggleButtonGroup.propTypes = {
    */
   exclusive: PropTypes.bool,
   /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
@@ -130,6 +109,4 @@ ToggleButtonGroup.defaultProps = {
   exclusive: false,
 };
 
-export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(
-  withForwardedRef(ToggleButtonGroup),
-);
+export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);

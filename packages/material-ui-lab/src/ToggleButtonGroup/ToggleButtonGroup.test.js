@@ -1,7 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  getClasses,
+  findOutermostIntrinsic,
+  testRef,
+} from '@material-ui/core/test-utils';
 import ToggleButtonGroup from './ToggleButtonGroup';
 import ToggleButton from '../ToggleButton';
 
@@ -21,6 +26,15 @@ describe('<ToggleButtonGroup />', () => {
   function findButton(wrapper, value) {
     return wrapper.find(`ToggleButton[value="${value}"]`).first();
   }
+
+  it('does forward refs', () => {
+    testRef(
+      <ToggleButtonGroup>
+        <ToggleButton value="hello">hello</ToggleButton>
+      </ToggleButtonGroup>,
+      mount,
+    );
+  });
 
   it('should render a <div> element', () => {
     const wrapper = mount(
