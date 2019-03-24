@@ -28,15 +28,30 @@ export const styles = theme => ({
 });
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
-  const { classes, className, component, disableGutters, role, selected, ...other } = props;
+  const {
+    classes,
+    className,
+    component,
+    disabled,
+    disableGutters,
+    role,
+    selected,
+    tabIndex: tabIndexProp,
+    ...other
+  } = props;
 
+  let tabIndex;
+  if (!disabled) {
+    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
+  }
   return (
     <ListItem
       button
       role={role}
-      tabIndex={-1}
+      tabIndex={tabIndex}
       component={component}
       selected={selected}
+      disabled={disabled}
       disableGutters={disableGutters}
       className={clsx(
         classes.root,
@@ -72,6 +87,10 @@ MenuItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
    * If `true`, the left and right padding is removed.
    */
   disableGutters: PropTypes.bool,
@@ -83,6 +102,10 @@ MenuItem.propTypes = {
    * @ignore
    */
   selected: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.number,
 };
 
 MenuItem.defaultProps = {

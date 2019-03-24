@@ -13,6 +13,19 @@ function FocusOnMountMenuItem(props) {
   return <MenuItem {...props} ref={listItemRef} tabIndex={0} />;
 }
 
+function TrackRenderCountMenuItem({ actions, ...other }) {
+  const renderCountRef = React.useRef(0);
+  React.useEffect(() => {
+    renderCountRef.current++;
+  });
+  React.useImperativeHandle(actions, () => ({
+    getRenderCount: () => {
+      return renderCountRef.current;
+    },
+  }));
+  return <MenuItem {...other} />;
+}
+
 function assertMenuItemTabIndexed(wrapper, tabIndexed) {
   const items = wrapper.find('li[role="menuitem"]');
   assert.strictEqual(items.length, 4);
@@ -56,45 +69,56 @@ describe('<MenuList> integration', () => {
   describe('keyboard controls and tabIndex manipulation', () => {
     let wrapper;
     let menuListActionsRef;
+    let item4ActionsRef;
 
     const resetWrapper = () => {
       menuListActionsRef = React.createRef();
+      item4ActionsRef = React.createRef();
       wrapper = mount(
         <MenuList actions={menuListActionsRef}>
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
-          <MenuItem>Menu Item 4</MenuItem>
+          <TrackRenderCountMenuItem actions={item4ActionsRef}>Menu Item 4</TrackRenderCountMenuItem>
         </MenuList>,
       );
+    };
+
+    const assertItem4RenderCount = expectedRenderCount => {
+      assert.strictEqual(item4ActionsRef.current.getRenderCount(), expectedRenderCount);
     };
 
     before(resetWrapper);
 
     it('should have the first item tabIndexed', () => {
       assertMenuItemTabIndexed(wrapper, 0);
+      assertItem4RenderCount(1);
     });
 
     it('should select/focus the first item 1', () => {
       menuListActionsRef.current.focus();
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
+      assertItem4RenderCount(1);
     });
 
     it('should select the last item when pressing up', () => {
       wrapper.simulate('keyDown', { key: 'ArrowUp' });
       assertMenuItemTabIndexed(wrapper, 3);
+      assertItem4RenderCount(1);
     });
 
     it('should select the first item when pressing dowm', () => {
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       assertMenuItemTabIndexed(wrapper, 0);
+      assertItem4RenderCount(1);
     });
 
     it('should still have the first item tabIndexed', () => {
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       wrapper.simulate('keyDown', { key: 'ArrowUp' });
       assertMenuItemFocused(wrapper, 0);
+      assertItem4RenderCount(1);
     });
 
     it('should focus the second item 1', () => {
@@ -102,6 +126,7 @@ describe('<MenuList> integration', () => {
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       assertMenuItemTabIndexed(wrapper, 1);
       assertMenuItemFocused(wrapper, 1);
+      assertItem4RenderCount(1);
     });
 
     it('should reset the tabIndex to the first item after blur', done => {

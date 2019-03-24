@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
+import warning from 'warning';
+import ReactDOM from 'react-dom';
+import { setRef } from '@material-ui/core/utils/reactHelpers';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -26,34 +29,42 @@ export const styles = {
     // Add iOS momentum scrolling.
     WebkitOverflowScrolling: 'touch',
   },
+  /* Styles applied to the `List` component via `MenuList`. */
+  list: {
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
+  },
 };
 
 const Menu = React.forwardRef(function Menu(props, ref) {
   const {
+    autoFocus: autoFocusProp,
     children,
     classes,
     disableAutoFocusItem,
-    MenuListProps,
+    MenuListProps = {},
     onClose,
     onEntering,
     open,
     PaperProps = {},
     PopoverClasses,
     theme,
+    variant,
     ...other
   } = props;
+
+  const autoFocus = autoFocusProp !== undefined ? autoFocusProp : !disableAutoFocusItem;
+
   const menuListActionsRef = React.useRef();
+  const firstValidItemRef = React.useRef();
+  const firstSelectedItemRef = React.useRef();
 
   const getContentAnchorEl = () => {
-    return menuListActionsRef.current.getContentAnchorEl();
+    return firstSelectedItemRef.current ? firstSelectedItemRef.current : firstValidItemRef.current;
   };
 
   const handleEntering = element => {
     if (menuListActionsRef.current) {
-      // Focus so the scroll computation of the Popover works as expected.
-      if (disableAutoFocusItem !== true) {
-        menuListActionsRef.current.focus();
-      }
       menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
     }
 
@@ -71,6 +82,62 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       }
     }
   };
+
+  const checkForSelectedItem = variant === 'selectedMenu';
+
+  let firstValidElementIndex = null;
+  let firstSelectedIndex = null;
+
+  const items = React.Children.map(children, (child, index) => {
+    if (!React.isValidElement(child)) {
+      return null;
+    }
+    warning(
+      child.type !== React.Fragment,
+      [
+        "Material-UI: the Menu component doesn't accept a Fragment as a child.",
+        'Consider providing an array instead.',
+      ].join('\n'),
+    );
+    if (firstValidElementIndex === null) {
+      firstValidElementIndex = index;
+    }
+    let newChildProps = null;
+    if (
+      checkForSelectedItem &&
+      firstSelectedIndex === null &&
+      child.props.selected &&
+      !child.props.disabled
+    ) {
+      firstSelectedIndex = index;
+      newChildProps = {};
+      if (autoFocus) {
+        newChildProps.autoFocus = true;
+      }
+      if (child.props.tabIndex === undefined) {
+        newChildProps.tabIndex = 0;
+      }
+      newChildProps.ref = instance => {
+        // StrictMode ready
+        firstSelectedItemRef.current = ReactDOM.findDOMNode(instance);
+        setRef(child.ref, instance);
+      };
+    } else if (index === firstValidElementIndex) {
+      newChildProps = {};
+      newChildProps.ref = instance => {
+        // StrictMode ready
+        firstValidItemRef.current = ReactDOM.findDOMNode(instance);
+        setRef(child.ref, instance);
+      };
+    }
+
+    if (newChildProps !== null) {
+      return React.cloneElement(child, newChildProps);
+    }
+    return child;
+  });
+
+  const menuListAutoFocus = autoFocus && firstSelectedIndex === null;
 
   return (
     <Popover
@@ -94,10 +161,15 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       <MenuList
         data-mui-test="Menu"
         onKeyDown={handleListKeyDown}
-        {...MenuListProps}
         actions={menuListActionsRef}
+        autoFocus={menuListAutoFocus}
+        {...MenuListProps}
+        classes={{
+          ...MenuListProps.classes,
+          root: classes.list,
+        }}
       >
-        {children}
+        {items}
       </MenuList>
     </Popover>
   );
@@ -109,6 +181,10 @@ Menu.propTypes = {
    */
   anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
+   * If `true` (default), the menu list (possibly a particular item depending on the menu variant) will receive focus on open.
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * Menu contents, normally `MenuItem`s.
    */
   children: PropTypes.node,
@@ -118,7 +194,8 @@ Menu.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * If `true`, the selected / first menu item will not be auto focused.
+   * Same as `autoFocus=false`.
+   * @deprecated Use `autoFocus` instead
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
@@ -180,11 +257,17 @@ Menu.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
+  /**
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
+   * and the vertical alignment relative to the anchor element.
+   */
+  variant: PropTypes.oneOf(['menu', 'selectedMenu']),
 };
 
 Menu.defaultProps = {
   disableAutoFocusItem: false,
   transitionDuration: 'auto',
+  variant: 'selectedMenu',
 };
 
 export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(Menu);
