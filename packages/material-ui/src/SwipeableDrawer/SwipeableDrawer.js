@@ -34,6 +34,7 @@ class SwipeableDrawer extends React.Component {
   state = {};
 
   isSwiping = null;
+
   swipeAreaRef = React.createRef();
 
   componentDidMount() {
