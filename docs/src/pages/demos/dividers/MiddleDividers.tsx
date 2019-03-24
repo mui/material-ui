@@ -77,4 +77,4 @@ MiddleDividers.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles, { withTheme: true })(MiddleDividers);
+export default withStyles(styles)(MiddleDividers);

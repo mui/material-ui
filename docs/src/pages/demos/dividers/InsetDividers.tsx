@@ -19,7 +19,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-type Props = WithStyles<typeof styles> & WithTheme
+type Props = WithStyles<typeof styles> & WithTheme;
 
 function InsetDividers(props: Props) {
   const { classes } = props;
@@ -55,4 +55,4 @@ InsetDividers.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles, { withTheme: true })(InsetDividers);
+export default withStyles(styles)(InsetDividers);

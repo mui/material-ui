@@ -71,4 +71,4 @@ SubheaderDividers.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles, { withTheme: true })(SubheaderDividers);
+export default withStyles(styles)(SubheaderDividers);

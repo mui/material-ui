@@ -43,4 +43,4 @@ ListDividers.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles, { withTheme: true })(ListDividers);
+export default withStyles(styles)(ListDividers);
