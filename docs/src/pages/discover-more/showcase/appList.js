@@ -670,6 +670,16 @@ const appList = [
     image: 'persona.jpg',
     index: 0,
   },
+  {
+    title: 'MQTT Explorer',
+    description: 'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view.' +
+      'The app is used in many IoT and home automation scenarios, making integrating new services dead easy.',
+    link: 'https://mqtt-explorer.com',
+    source: 'https://github.com/thomasnordquist/MQTT-Explorer',
+    image: 'mqtt-explorer.jpg',
+    stars: 114,
+    index: 38,
+  }
 ];
 
 export default appList;
