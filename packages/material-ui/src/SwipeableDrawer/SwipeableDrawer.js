@@ -34,6 +34,7 @@ class SwipeableDrawer extends React.Component {
   state = {};
 
   isSwiping = null;
+  swipeAreaRef = React.createRef();
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {
@@ -158,7 +159,7 @@ class SwipeableDrawer extends React.Component {
         : event.touches[0].clientY;
 
     if (!open) {
-      if (disableSwipeToOpen) {
+      if (disableSwipeToOpen || event.target !== this.swipeAreaRef.current) {
         return;
       }
       if (isHorizontal(this.props)) {
@@ -390,9 +391,14 @@ class SwipeableDrawer extends React.Component {
           anchor={anchor}
           {...other}
         />
-        {!disableDiscovery && !disableSwipeToOpen && variant === 'temporary' && (
+        {!disableSwipeToOpen && variant === 'temporary' && (
           <NoSsr>
-            <SwipeArea anchor={anchor} width={swipeAreaWidth} {...SwipeAreaProps} />
+            <SwipeArea
+              anchor={anchor}
+              innerRef={this.swipeAreaRef}
+              width={swipeAreaWidth}
+              {...SwipeAreaProps}
+            />
           </NoSsr>
         )}
       </React.Fragment>
