@@ -1,6 +1,7 @@
+import Ad from '_shared/Ad';
 import Example from '_shared/Example';
-import PageMeta from '_shared/PageMeta'
-import * as MomentExample from './Moment.example'
+import PageMeta from '_shared/PageMeta';
+import * as MomentExample from './Moment.example';
 
 <PageMeta title="Moment localization - material-ui-pickers" />
 
@@ -8,12 +9,14 @@ import * as MomentExample from './Moment.example'
 
 Moment localization relying on the global moment object used.
 
+<Ad />
+
 It is also possible to pass configured global moment with selected locale, default timezone, etc.
 Also pass selected locale as string to the provider to make pickers rerenders automatically on
 locale change.
 
 #### Example
-*Note*: Any picker in component tree will be rerendered automatically on locale change
+
+_Note_: Any picker in component tree will be rerendered automatically on locale change
 
 <Example source={MomentExample} />
-
