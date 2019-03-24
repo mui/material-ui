@@ -1,5 +1,3 @@
-/* eslint-disable react/no-danger */
-
 import React from 'react';
 import { SheetsRegistry } from 'jss';
 import StylesProvider from '../StylesProvider';
@@ -32,13 +30,16 @@ class ServerStyleSheets {
   }
 
   getStyleElement(props) {
-    return (
-      <style
-        id="jss-server-side"
-        key="jss-server-side"
-        dangerouslySetInnerHTML={{ __html: this.toString() }}
-        {...props}
-      />
+    return React.createElement(
+      'style',
+      Object.assign(
+        {
+          id: 'jss-server-side',
+          key: 'jss-server-side',
+          dangerouslySetInnerHTML: { __html: this.toString() },
+        },
+        props,
+      ),
     );
   }
 }

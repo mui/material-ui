@@ -249,8 +249,6 @@ export default App;
 
 ## Server-side rendering
 
-Material-UI supports concurrent server-side rendering.
-
 This example returns a string of html and inlines the critical css required right before it’s used:
 
 ```jsx

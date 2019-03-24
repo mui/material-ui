@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-class ServerStyleSheets {
-  collect(children: React.ReactNode, options?: object): any;
+declare class ServerStyleSheets {
+  constructor(options?: object);
+  collect(children: React.ReactNode, options?: object): void;
   toString(): string;
   getStyleElement(props?: object): React.ReactElement;
 }
