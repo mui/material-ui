@@ -77,6 +77,24 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
+- Scope the keyframes API. You should apply the following changes in your codebase.
+  It helps isolating the animation logic:
+
+  ```diff
+  rippleVisible: {
+    opacity: 0.3,
+-   animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
++   animation: `$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)`,
+  },
+  '@keyframes mui-ripple-enter': {
+    '0%': {
+      opacity: 0.1,
+    },
+    '100%': {
+      opacity: 0.3,
+    },
+  },
+  ```
 
 ### Theme
 

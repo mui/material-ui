@@ -40,7 +40,7 @@ class MyDocument extends Document {
     }
 
     return (
-      <html lang="en" dir="ltr">
+      <html lang={userLanguage} dir="ltr">
         <Head>
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta

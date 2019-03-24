@@ -8,7 +8,7 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 
 ## Design resources
 
-- [Figma UI Kit](https://dribbble.com/shots/6164699-Material-UI-React-components-in-Figma-Free-Download#shot-description) for Material-UI.
+- [Figma UI Kit](https://material.5ly.co/) for Material-UI.
 
 ## Material-UI Specific Projects
 

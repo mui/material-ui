@@ -326,6 +326,11 @@ const Button = styled(styles, { name: 'button' })(ButtonBase);
 const Button = withStyles(styles, { name: 'button' })(ButtonBase);
 ```
 
+## CSS prefixes
+
+JSS uses feature detection to apply the correct prefixes.
+[Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
+
 ## Content Security Policy (CSP)
 
 ### What is CSP and why is it useful?
