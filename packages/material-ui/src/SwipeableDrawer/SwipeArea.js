@@ -45,6 +45,7 @@ const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
       style={{
         [isHorizontal(props) ? 'width' : 'height']: width,
       }}
+      ref={ref}
       {...other}
     />
   );
