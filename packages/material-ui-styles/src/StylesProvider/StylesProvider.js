@@ -44,8 +44,7 @@ function StylesProvider(props) {
 
   warning(
     typeof window !== 'undefined' || context.sheetsManager,
-    'Material-UI: you need to provide a sheetsManager to the <StyleProvider> ' +
-      'when rendering on the server.',
+    'Material-UI: you need to use the ServerStyleSheets API when rendering on the server.',
   );
 
   if (generateClassNameProp) {

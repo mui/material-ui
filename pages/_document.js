@@ -1,11 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import { ServerStyleSheets } from '@material-ui/styles';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { Router } from 'next/router';
 import { LANGUAGES } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import getTheme from 'docs/src/modules/styles/getTheme';
+import themeInitialState from 'docs/src/modules/styles/themeInitialState';
+
+const theme = getTheme(themeInitialState);
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -29,9 +33,11 @@ if (process.env.NODE_ENV === 'production') {
 
 const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA-106598593-3';
 
+const sheetsCache = new Map();
+
 class MyDocument extends Document {
   render() {
-    const { canonical, pageContext, url, userLanguage } = this.props;
+    const { canonical, url, userLanguage } = this.props;
 
     let font = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
 
@@ -53,10 +59,7 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta
-            name="theme-color"
-            content={pageContext ? pageContext.theme.palette.primary.main : null}
-          />
+          <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* SEO */}
           <link
@@ -124,34 +127,28 @@ MyDocument.getInitialProps = async ctx => {
   // 3. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  let pageContext;
-  const page = ctx.renderPage(Component => {
-    const WrappedComponent = props => {
-      pageContext = props.pageContext;
-      return <Component {...props} />;
-    };
-
-    WrappedComponent.propTypes = {
-      pageContext: PropTypes.object.isRequired,
-    };
-
-    return WrappedComponent;
+  const sheets = new ServerStyleSheets({
+    sheetsCache,
   });
+  const originalRenderPage = ctx.renderPage;
 
-  let css;
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: App => props => sheets.collect(<App {...props} />),
+    });
+
+  const initialProps = await Document.getInitialProps(ctx);
+
+  let css = sheets.toString();
   // It might be undefined, e.g. after an error.
-  if (pageContext) {
-    css = pageContext.sheetsRegistry.toString();
-    if (process.env.NODE_ENV === 'production') {
-      const result1 = await prefixer.process(css, { from: undefined });
-      css = result1.css;
-      css = cleanCSS.minify(css).styles;
-    }
+  if (css && process.env.NODE_ENV === 'production') {
+    const result1 = await prefixer.process(css, { from: undefined });
+    css = result1.css;
+    css = cleanCSS.minify(css).styles;
   }
 
   return {
-    ...page,
-    pageContext,
+    ...initialProps,
     url: ctx.req.url,
     canonical: pathnameToLanguage(ctx.req.url).canonical,
     userLanguage: ctx.query.userLanguage,

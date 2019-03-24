@@ -1,11 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { StylesProvider, ThemeProvider } from '@material-ui/styles';
+import {
+  StylesProvider,
+  ThemeProvider,
+  jssPreset,
+  createGenerateClassName,
+} from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
-import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
+import getTheme from 'docs/src/modules/styles/getTheme';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { create } from 'jss';
+import rtl from 'jss-rtl';
+
+// Configure JSS
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+  insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
+});
+
+const generateClassName = createGenerateClassName();
 
 function themeSideEffect(reduxTheme) {
   setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);
@@ -139,10 +154,10 @@ class AppWrapper extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.pageContext === 'undefined') {
+    if (typeof prevState.theme === 'undefined') {
       return {
         prevProps: nextProps,
-        pageContext: nextProps.pageContext,
+        theme: getTheme(nextProps.reduxTheme),
       };
     }
 
@@ -155,7 +170,7 @@ class AppWrapper extends React.Component {
     ) {
       return {
         prevProps: nextProps,
-        pageContext: updatePageContext(nextProps.reduxTheme),
+        theme: getTheme(nextProps.reduxTheme),
       };
     }
 
@@ -164,16 +179,11 @@ class AppWrapper extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { pageContext } = this.state;
+    const { theme } = this.state;
 
     return (
-      <StylesProvider
-        generateClassName={pageContext.generateClassName}
-        jss={pageContext.jss}
-        sheetsManager={pageContext.sheetsManager}
-        sheetsRegistry={pageContext.sheetsRegistry}
-      >
-        <ThemeProvider theme={pageContext.theme}>{children}</ThemeProvider>
+      <StylesProvider generateClassName={generateClassName} jss={jss}>
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
         <SideEffects />
       </StylesProvider>
     );
@@ -183,8 +193,6 @@ class AppWrapper extends React.Component {
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   dispatch: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/no-unused-prop-types
-  pageContext: PropTypes.object,
   reduxTheme: PropTypes.object.isRequired,
 };
 
