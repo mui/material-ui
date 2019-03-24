@@ -23,8 +23,11 @@ describe('<ToggleButtonGroup />', () => {
     );
   });
 
-  function findButton(wrapper, value) {
-    return wrapper.find(`ToggleButton[value="${value}"]`).first();
+  function findToggleButton(wrapper, value) {
+    return wrapper
+      .find(ToggleButton)
+      .find(`[value="${value}"]`)
+      .first();
   }
 
   it('does forward refs', () => {
@@ -64,7 +67,7 @@ describe('<ToggleButtonGroup />', () => {
         </ToggleButtonGroup>,
       );
 
-      assert.strictEqual(findButton(wrapper, 'one').props().selected, true);
+      assert.strictEqual(findToggleButton(wrapper, 'one').props().selected, true);
     });
 
     it('should not render a selected ToggleButton when its value is not selected', () => {
@@ -75,7 +78,7 @@ describe('<ToggleButtonGroup />', () => {
         </ToggleButtonGroup>,
       );
 
-      assert.strictEqual(findButton(wrapper, 'two').props().selected, false);
+      assert.strictEqual(findToggleButton(wrapper, 'two').props().selected, false);
     });
   });
 
@@ -88,20 +91,8 @@ describe('<ToggleButtonGroup />', () => {
         </ToggleButtonGroup>,
       );
 
-      assert.strictEqual(
-        wrapper
-          .find('[value="one"]')
-          .first()
-          .props().selected,
-        true,
-      );
-      assert.strictEqual(
-        wrapper
-          .find('[value="two"]')
-          .first()
-          .props().selected,
-        false,
-      );
+      assert.strictEqual(findToggleButton(wrapper, 'one').props().selected, true);
+      assert.strictEqual(findToggleButton(wrapper, 'two').props().selected, false);
     });
   });
 
@@ -116,10 +107,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(handleChange.args[0][1], null);
@@ -134,10 +122,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(handleChange.args[0][1], 'one');
@@ -152,10 +137,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(1)
-          .simulate('click');
+        findToggleButton(wrapper, 'two').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(handleChange.args[0][1], 'two');
@@ -172,10 +154,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.ok(Array.isArray(handleChange.args[0][1]));
@@ -191,10 +170,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][1], ['one']);
@@ -209,10 +185,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][1], ['two']);
@@ -227,7 +200,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        findButton(wrapper, 'two').simulate('click');
+        findToggleButton(wrapper, 'two').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][1], ['one', 'two']);

@@ -6,6 +6,7 @@ import {
   createMount,
   findOutermostIntrinsic,
   getClasses,
+  testRef,
 } from '@material-ui/core/test-utils';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ToggleButton from './ToggleButton';
@@ -19,6 +20,10 @@ describe('<ToggleButton />', () => {
     mount = createMount();
     render = createRender();
     classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
+  });
+
+  it('does forward refs', () => {
+    testRef(<ToggleButton value="classes">Hello World</ToggleButton>, mount);
   });
 
   it('should render a <ButtonBase> element', () => {
