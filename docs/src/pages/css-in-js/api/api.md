@@ -39,7 +39,7 @@ export default function App() {
 
 This function doesn't really "do anything" at runtime, it's just the identity
 function. Its only purpose is to defeat **TypeScript**'s type widening when providing
-style rules to `withStyles` which are a function of the `Theme`.
+style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 
 #### Arguments
 
@@ -52,21 +52,20 @@ style rules to `withStyles` which are a function of the `Theme`.
 #### Examples
 
 ```jsx
-import { withStyles, createStyles } from '@material-ui/styles';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
-const styles = createStyles({
+const styles = makeStyles((theme: Theme) => createStyles({
   root: {
-    backgroundColor: 'red',
+    backgroundColor: theme.color.red,
   },
-});
+}));
 
-class MyComponent extends React.Component {
-  render () {
-    return <div className={this.props.classes.root} />;
-  }
+function MyComponent {
+  const classes = useStyles();
+  return <div className={classes.root} />;
 }
 
-export default withStyles(styles)(MyComponent);
+export default MyComponent;
 ```
 
 ## `makeStyles(styles, [options]) => hook`
@@ -149,9 +148,19 @@ export default function StyledComponents() {
 
 ## `StylesProvider`
 
-This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to React context.
+This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to the context.
 
 It should preferably be used at **the root of your component tree**.
+
+#### Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | Your component tree. |
+| <span class="prop-name">disableGeneration</span> | <span class="prop-type">bool</span> | false | You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property. |
+| <span class="prop-name">generateClassName</span> | <span class="prop-type">func</span> |   | JSS's class name generator. |
+| <span class="prop-name">injectFirst</span> | <span class="prop-type">bool</span> | false | By default, the styles are injected last in the <head> element of your page. They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components. If you want to override the Material-UI's styles, set this prop. |
+| <span class="prop-name">jss</span> | <span class="prop-type">object</span> | | JSS's instance. |
 
 #### Examples
 
@@ -171,8 +180,15 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `ThemeProvider`
 
-This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context.
+This component takes a `theme` property, and makes it available down the React tree thanks to the context.
 It should preferably be used at **the root of your component tree**.
+
+#### Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | Your component tree. |
+| <span class="prop-name required">theme *</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;&nbsp;func</span> | | A theme object. You can provide a function to extend the outer theme. |
 
 #### Examples
 
@@ -198,7 +214,7 @@ This hook returns the `theme` object so it can be used inside a function compone
 
 #### Returns
 
-`theme`: The theme object.
+`theme`: The theme object previously injected in the context.
 
 #### Examples
 
