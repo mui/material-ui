@@ -677,9 +677,9 @@ const appList = [
       'The app is used in many IoT and home automation scenarios, making integrating new services dead easy.',
     link: 'https://mqtt-explorer.com',
     source: 'https://github.com/thomasnordquist/MQTT-Explorer',
-    image: 'mqtt-explorer.jpg',
-    stars: 115,
-    index: 38,
+    image: 'mqtt-explorer.png',
+    stars: 120,
+    index: '2019-03-25',
   },
 ];
 
