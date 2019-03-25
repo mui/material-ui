@@ -55,8 +55,8 @@ module.exports = withBundleAnalyzer(
               return config;
             },
             target: process.env.IS_NOW ? 'serverless' : 'server',
-            pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-            transpileModules: process.env.IS_NOW ? [] : ['material-ui-pickers'],
+            pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+            transpileModules: ['material-ui-pickers'],
             analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
             analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
             bundleAnalyzerConfig: {
