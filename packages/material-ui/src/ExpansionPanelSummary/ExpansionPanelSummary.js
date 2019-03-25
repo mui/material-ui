@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
-import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => {
   const transition = {
@@ -65,7 +64,7 @@ export const styles = theme => {
   };
 };
 
-function ExpansionPanelSummary(props) {
+const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(props, ref) {
   const {
     children,
     classes,
@@ -74,7 +73,6 @@ function ExpansionPanelSummary(props) {
     expanded,
     expandIcon,
     IconButtonProps,
-    innerRef,
     onBlur,
     onChange,
     onClick,
@@ -125,7 +123,7 @@ function ExpansionPanelSummary(props) {
       onFocusVisible={handleFocusVisible}
       onBlur={handleBlur}
       onClick={handleChange}
-      ref={innerRef}
+      ref={ref}
       {...other}
     >
       <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
@@ -146,7 +144,7 @@ function ExpansionPanelSummary(props) {
       )}
     </ButtonBase>
   );
-}
+});
 
 ExpansionPanelSummary.propTypes = {
   /**
@@ -182,11 +180,6 @@ ExpansionPanelSummary.propTypes = {
   IconButtonProps: PropTypes.object,
   /**
    * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
-   * @ignore
    */
   onBlur: PropTypes.func,
   /**
@@ -207,6 +200,4 @@ ExpansionPanelSummary.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(
-  withForwardedRef(ExpansionPanelSummary),
-);
+export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(ExpansionPanelSummary);

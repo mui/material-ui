@@ -1,7 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  findOutermostIntrinsic,
+  getClasses,
+  testRef,
+} from '@material-ui/core/test-utils';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 import ButtonBase from '../ButtonBase';
 
@@ -20,6 +25,10 @@ describe('<ExpansionPanelSummary />', () => {
 
   after(() => {
     mount.cleanUp();
+  });
+
+  it('does forward refs', () => {
+    testRef(<ExpansionPanelSummary />, mount);
   });
 
   it('should render with the user and root classes', () => {
