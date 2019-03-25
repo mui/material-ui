@@ -9,13 +9,14 @@ function safePrefix(classNamePrefix) {
 
 const themeHashCache = {};
 
-// Returns a function which generates unique class names based on counters.
-// When new generator function is created, rule counter is reset.
-// We need to reset the rule counter for SSR for each request.
-//
-// It's inspired by
-// https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName(options = {}) {
+/**
+ * Beta feature.
+ *
+ * This is an alternative to createGenerateClassName.js.
+ * Instead of using a index counter, it hash the style sheets to generate the class name.
+ * The class name call order invariant. With this property, we can cache the style sheets on the server.
+ */
+export default function createGenerateClassNameHash(options = {}) {
   const { dangerouslyUseGlobalCSS = false, productionPrefix = 'jss', seed = '' } = options;
   let ruleCounter = 0;
 

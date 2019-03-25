@@ -36,8 +36,14 @@ describe('makeStyles', () => {
     };
   }
 
+  let generateClassName;
+
   before(() => {
     mount = createMount();
+  });
+
+  beforeEach(() => {
+    generateClassName = createGenerateClassName();
   });
 
   after(() => {
@@ -175,19 +181,23 @@ describe('makeStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider theme={createMuiTheme()}>
-          <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+          <StylesProvider
+            sheetsRegistry={sheetsRegistry}
+            sheetsCache={new Map()}
+            generateClassName={generateClassName}
+          >
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-vy1bts' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
       wrapper.update();
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-vy1bts' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
       wrapper.setProps({ theme: createMuiTheme() });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-vy1bts' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
 
       wrapper.unmount();
       assert.strictEqual(sheetsRegistry.registry.length, 0);
@@ -204,18 +214,22 @@ describe('makeStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider theme={createMuiTheme()}>
-          <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+          <StylesProvider
+            sheetsRegistry={sheetsRegistry}
+            sheetsCache={new Map()}
+            generateClassName={generateClassName}
+          >
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-tyxeaf' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-1' });
       act(() => {
         wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-lu46bw' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-2' });
     });
 
     it('should support the overrides key', () => {
@@ -270,15 +284,19 @@ describe('makeStyles', () => {
       };
 
       const Test = props => (
-        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+        <StylesProvider
+          sheetsRegistry={sheetsRegistry}
+          sheetsCache={new Map()}
+          generateClassName={generateClassName}
+        >
           <StyledComponent {...props} />
         </StylesProvider>
       );
 
       const wrapper = mount(<Test />);
       assert.strictEqual(sheetsRegistry.registry.length, 2);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1cjflis' });
-      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'Hook-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'Hook-root-2' });
       assert.deepEqual(sheetsRegistry.registry[1].rules.map.root.style, {
         margin: '8px',
         padding: '8px',
@@ -287,8 +305,8 @@ describe('makeStyles', () => {
         wrapper.setProps({ padding: 4 });
       });
       assert.strictEqual(sheetsRegistry.registry.length, 2);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1cjflis' });
-      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'Hook-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'Hook-root-2' });
       assert.deepEqual(sheetsRegistry.registry[1].rules.map.root.style, {
         margin: '8px',
         padding: '4px',
@@ -468,7 +486,7 @@ describe('makeStyles', () => {
         <StylesProvider
           sheetsRegistry={sheetsRegistry}
           sheetsCache={new Map()}
-          generateClassName={createGenerateClassName()}
+          generateClassName={generateClassName}
         >
           <StressTest />
         </StylesProvider>,
@@ -477,7 +495,7 @@ describe('makeStyles', () => {
       assert.strictEqual(
         sheetsRegistry.toString(),
         `
-.Hook-root-1 {
+.Hook-root-2 {
   color: white;
   background-color: black;
 }`,
@@ -489,7 +507,7 @@ describe('makeStyles', () => {
       assert.strictEqual(
         sheetsRegistry.toString(),
         `
-.Hook-root-2 {
+.Hook-root-4 {
   color: blue;
   background-color: black;
 }`,
@@ -500,7 +518,7 @@ describe('makeStyles', () => {
       assert.strictEqual(
         sheetsRegistry.toString(),
         `
-.Hook-root-2 {
+.Hook-root-4 {
   color: blue;
   background-color: green;
 }`,
