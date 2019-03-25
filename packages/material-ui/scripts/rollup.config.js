@@ -21,7 +21,14 @@ const commonjsOptions = {
   ignoreGlobal: true,
   include: /node_modules/,
   namedExports: {
-    '../../node_modules/prop-types/index.js': ['elementType'],
+    '../../node_modules/prop-types/index.js': [
+      'elementType',
+      'bool',
+      'func',
+      'object',
+      'oneOfType',
+      'element',
+    ],
     '../../node_modules/react-is/index.js': [
       'ForwardRef',
       'isLazy',
