@@ -10,7 +10,7 @@ const tablelvl2 = {
   variant: 'head',
 };
 
-const styles = {
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table-header-group',
@@ -58,7 +58,7 @@ TableHead.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  TableHead.defaultProps = {
+  TableHead.docsDefaultProps = {
     component: 'thead',
   };
 }

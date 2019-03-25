@@ -24,7 +24,11 @@ describe('animate', () => {
 
   it('should work', done => {
     container.scrollLeft = 200;
-    assert.strictEqual(container.scrollLeft, 200);
+    assert.strictEqual(
+      container.scrollLeft,
+      200,
+      `Fail with scrollWidth: ${container.scrollWidth}`,
+    );
     animate('scrollLeft', container, 300, {}, err => {
       assert.strictEqual(err, null);
       assert.strictEqual(container.scrollLeft, 300);

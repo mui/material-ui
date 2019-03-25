@@ -6,7 +6,7 @@ import useThemeProps from '../styles/useThemeProps';
 import TableContext from './TableContext';
 import muiComponent from '../utils/muiComponent';
 
-const styles = {
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table',
@@ -73,7 +73,7 @@ Table.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  Table.defaultProps = {
+  Table.docsDefaultProps = {
     component: 'table',
     padding: 'default',
     size: 'medium',

@@ -9,7 +9,7 @@ import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import muiComponent from '../utils/muiComponent';
 
-const styles = theme => ({
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.body2,
@@ -219,7 +219,7 @@ TableCell.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  TableCell.defaultProps = {
+  TableCell.docsDefaultProps = {
     align: 'inherit',
   };
 }

@@ -10,7 +10,7 @@ const tablelvl2 = {
   variant: 'body',
 };
 
-const styles = {
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table-row-group',
@@ -58,7 +58,7 @@ TableBody.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  TableBody.defaultProps = {
+  TableBody.docsDefaultProps = {
     component: 'tbody',
   };
 }

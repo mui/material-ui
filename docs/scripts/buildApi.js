@@ -135,6 +135,17 @@ function buildDocs(options) {
     throw err;
   }
 
+  const docsDefaultProps = component.default.docsDefaultProps;
+  if (docsDefaultProps) {
+    Object.keys(reactAPI.props).forEach(key => {
+      if (docsDefaultProps.hasOwnProperty(key)) {
+        reactAPI.props[key].defaultValue = {
+          value: String(docsDefaultProps[key]),
+        };
+      }
+    });
+  }
+
   reactAPI.name = name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;

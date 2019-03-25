@@ -10,7 +10,7 @@ const tablelvl2 = {
   variant: 'footer',
 };
 
-const styles = {
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table-footer-group',
@@ -58,7 +58,7 @@ TableFooter.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  TableFooter.defaultProps = {
+  TableFooter.docsDefaultProps = {
     component: 'tfoot',
   };
 }

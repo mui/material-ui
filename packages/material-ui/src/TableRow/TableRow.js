@@ -5,7 +5,7 @@ import makeStyles from '../styles/makeStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import muiComponent from '../utils/muiComponent';
 
-const styles = theme => ({
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',
@@ -102,7 +102,7 @@ TableRow.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  TableRow.defaultProps = {
+  TableRow.docsDefaultProps = {
     component: 'tr',
     hover: false,
     selected: false,
