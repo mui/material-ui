@@ -12,12 +12,12 @@ import Divider from '@material-ui/core/Divider';
 
 const styles = (theme: Theme) =>
   createStyles({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
+    },
+  });
 
 function InsetDividers(props: WithStyles<typeof styles>) {
   const { classes } = props;

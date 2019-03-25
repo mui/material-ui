@@ -11,18 +11,18 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = (theme: Theme) =>
   createStyles({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  dividerFullWidth: {
-    margin: `5px 0 0 ${theme.spacing(2)}px`,
-  },
-  dividerInset: {
-    margin: `5px 0 0 ${theme.spacing(9)}px`,
-  },
-});
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
+    },
+    dividerFullWidth: {
+      margin: `5px 0 0 ${theme.spacing(2)}px`,
+    },
+    dividerInset: {
+      margin: `5px 0 0 ${theme.spacing(9)}px`,
+    },
+  });
 
 function SubheaderDividers(props: WithStyles<typeof styles>) {
   const { classes } = props;
