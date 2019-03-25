@@ -1,18 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(2),
     marginRight: theme.spacing(3),
   },
-});
+}));
 
-function BadgeMax(props) {
-  const { classes } = props;
+function BadgeMax() {
+  const classes = useStyles();
 
   return (
     <React.Fragment>
@@ -29,8 +28,4 @@ function BadgeMax(props) {
   );
 }
 
-BadgeMax.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(BadgeMax);
+export default BadgeMax;
