@@ -195,7 +195,7 @@ class SwipeableDrawer extends React.Component {
   };
 
   handleBodyTouchMove = event => {
-    // the ref may be null when a parent component updates while swiping
+    // The ref may be null when a parent component updates while swiping.
     if (!this.paperRef) return;
 
     const anchor = getAnchor(this.props);
