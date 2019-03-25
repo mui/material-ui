@@ -9,7 +9,6 @@ import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-<<<<<<< HEAD:docs/src/pages/demos/dividers/SubheaderDividers.js
 const styles = theme => ({
   root: {
     width: '100%',
@@ -23,22 +22,6 @@ const styles = theme => ({
     margin: `5px 0 0 ${theme.spacing(9)}px`,
   },
 });
-=======
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    dividerFullWidth: {
-      margin: `5px 0 0 ${theme.spacing(2)}px`,
-    },
-    dividerInset: {
-      margin: `5px 0 0 ${theme.spacing(9)}px`,
-    },
-  });
->>>>>>> [docs] fix formatting:docs/src/pages/demos/dividers/SubheaderDividers.tsx
 
 function SubheaderDividers(props) {
   const { classes } = props;
