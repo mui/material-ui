@@ -142,13 +142,28 @@ const useStyles = makeStyles({
 
 ## CSS injection order
 
-The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
+By default, the styles are injected **last** in the `<head>` element of your page.
+They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components.
 
-You might, however, also want to override these styles, for example with styled-components.
-If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to handle this situation.
+### injectFirst
+
+The `StylesProvider` component has a `injectFirst` prop to inject the styles **first**:
+
+```js
+import { StylesProvider } from '@material-ui/styles';
+
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      Styled components can override Material-UI's styles. */}
+</StylesProvider>
+```
+
+### insertionPoint
+
+JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to gain more control on this situation.
 By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
-### HTML comment
+#### HTML comment
 
 The simplest approach is to add an HTML comment that determines where JSS will inject the styles:
 
@@ -176,7 +191,7 @@ function App() {
 export default App;
 ```
 
-### Other HTML element
+#### Other HTML element
 
 [Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build.
 To get around the issue, you can provide a DOM element (other than a comment) as the JSS insertion point.
@@ -207,7 +222,7 @@ function App() {
 export default App;
 ```
 
-### JS createComment
+#### JS createComment
 
 codesandbox.io prevents the access to the `<head>` element.
 To get around the issue, you can use the JavaScript `document.createComment()` API:

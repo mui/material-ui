@@ -11,6 +11,10 @@ function Test() {
   return <span options={options} />;
 }
 
+function getOptions(wrapper) {
+  return wrapper.find('span').props().options;
+}
+
 describe('StylesProvider', () => {
   let mount;
 
@@ -28,7 +32,7 @@ describe('StylesProvider', () => {
         <Test />
       </StylesProvider>,
     );
-    assert.strictEqual(wrapper.find('span').props().options.disableGeneration, true);
+    assert.strictEqual(getOptions(wrapper).disableGeneration, true);
   });
 
   it('should merge the themes', () => {
@@ -39,7 +43,16 @@ describe('StylesProvider', () => {
         </StylesProvider>
       </StylesProvider>,
     );
-    assert.strictEqual(wrapper.find('span').props().options.disableGeneration, true);
+    assert.strictEqual(getOptions(wrapper).disableGeneration, true);
+  });
+
+  it('should handle injectFirst', () => {
+    const wrapper = mount(
+      <StylesProvider injectFirst>
+        <Test />
+      </StylesProvider>,
+    );
+    assert.strictEqual(getOptions(wrapper).jss.options.insertionPoint.nodeType, 8);
   });
 
   describe('server-side', () => {

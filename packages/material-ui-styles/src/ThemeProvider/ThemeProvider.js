@@ -52,11 +52,11 @@ function ThemeProvider(props) {
 
 ThemeProvider.propTypes = {
   /**
-   * You can wrap a node.
+   * Your component tree
    */
   children: PropTypes.node.isRequired,
   /**
-   * A theme object.
+   * A theme object. You can provide a function to extend the outer theme.
    */
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };

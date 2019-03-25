@@ -29,29 +29,49 @@ const defaultOptions = {
 
 export const StylesContext = React.createContext(defaultOptions);
 
-function StylesProvider(props) {
-  const { children, ...localOptions } = props;
+let injectFirstNode;
 
-  warning(
-    typeof window !== 'undefined' || localOptions.sheetsManager,
-    [
-      'Material-UI: you need to provide a sheetsManager to the <StyleProvider> ' +
-        'when rendering on the server.',
-    ].join('\n'),
-  );
+function StylesProvider(props) {
+  const {
+    children,
+    generateClassName: generateClassNameProp,
+    injectFirst,
+    ...localOptions
+  } = props;
 
   const outerOptions = React.useContext(StylesContext);
+  const context = { ...outerOptions, ...localOptions };
 
-  return (
-    <StylesContext.Provider value={{ ...outerOptions, ...localOptions }}>
-      {children}
-    </StylesContext.Provider>
+  warning(
+    typeof window !== 'undefined' || context.sheetsManager,
+    'Material-UI: you need to provide a sheetsManager to the <StyleProvider> ' +
+      'when rendering on the server.',
   );
+
+  if (generateClassNameProp) {
+    context.generateClassName = generateClassNameProp;
+  }
+
+  warning(
+    !context.jss.options.insertionPoint || !injectFirst,
+    'Material-UI: you cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
+  );
+
+  if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
+    if (!injectFirstNode) {
+      const head = document.head;
+      injectFirstNode = document.createComment('mui-inject-first');
+      head.insertBefore(injectFirstNode, head.firstChild);
+    }
+    context.jss.options.insertionPoint = injectFirstNode;
+  }
+
+  return <StylesContext.Provider value={context}>{children}</StylesContext.Provider>;
 }
 
 StylesProvider.propTypes = {
   /**
-   * You can wrap a node.
+   * Your component tree.
    */
   children: PropTypes.node.isRequired,
   /**
@@ -68,21 +88,34 @@ StylesProvider.propTypes = {
    */
   generateClassName: PropTypes.func,
   /**
+   * By default, the styles are injected last in the <head> element of your page.
+   * They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components.
+   * If you want to override the Material-UI's styles, set this prop.
+   */
+  injectFirst: PropTypes.bool,
+  /**
    * JSS's instance.
    */
   jss: PropTypes.object,
   /**
    * @ignore
    *
-   * In beta.
+   * Cache the sheets
    */
   sheetsCache: PropTypes.object,
   /**
+   * @ignore.
+   *
    * The sheetsManager is used to deduplicate style sheet injection in the page.
    * It's deduplicating using the (theme, styles) couple.
    * On the server, you should provide a new instance for each request.
    */
   sheetsManager: PropTypes.object,
+  /**
+   * @ignore
+   *
+   * Collect the sheets.
+   */
   sheetsRegistry: PropTypes.object,
 };
 
@@ -92,6 +125,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 StylesProvider.defaultProps = {
   disableGeneration: false,
+  injectFirst: false,
 };
 
 export default StylesProvider;
