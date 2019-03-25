@@ -4,24 +4,29 @@ import clsx from 'clsx';
 import makeStyles from '../styles/makeStyles';
 import useThemeProps from '../styles/useThemeProps';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import muiComponent from '../utils/muiComponent';
 
 const tablelvl2 = {
   variant: 'head',
 };
 
-export const styles = {
+const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table-header-group',
   },
 };
 
-const useStyles = makeStyles(styles, { name: 'MuiTableHead' });
+const options = { name: 'MuiTableHead' };
+const useStyles = makeStyles(styles, options);
 
 const TableHead = React.forwardRef(function TableHead(props, ref) {
-  const { classes: classesProp, className, component: Component, ...other } = useThemeProps(props, {
-    name: 'MuiTableHead',
-  });
+  const {
+    classes: classesProp,
+    className,
+    component: Component = 'thead',
+    ...other
+  } = useThemeProps(props, options);
   const classes = useStyles(props);
 
   return (
@@ -52,13 +57,10 @@ TableHead.propTypes = {
   component: PropTypes.elementType,
 };
 
-TableHead.defaultProps = {
-  component: 'thead',
-};
+if (process.env.NODE_ENV !== 'production') {
+  TableHead.defaultProps = {
+    component: 'thead',
+  };
+}
 
-TableHead.useStyles = useStyles;
-TableHead.options = {
-  name: 'MuiTableHead',
-};
-
-export default TableHead;
+export default muiComponent(useStyles, TableHead);

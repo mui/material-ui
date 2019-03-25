@@ -4,24 +4,29 @@ import clsx from 'clsx';
 import makeStyles from '../styles/makeStyles';
 import useThemeProps from '../styles/useThemeProps';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import muiComponent from '../utils/muiComponent';
 
 const tablelvl2 = {
   variant: 'body',
 };
 
-export const styles = {
+const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table-row-group',
   },
 };
 
-const useStyles = makeStyles(styles, { name: 'MuiTableBody' });
+const options = { name: 'MuiTableBody' };
+const useStyles = makeStyles(styles, options);
 
 const TableBody = React.forwardRef(function TableBody(props, ref) {
-  const { classes: classesProp, className, component: Component, ...other } = useThemeProps(props, {
-    name: 'MuiTableBody',
-  });
+  const {
+    classes: classesProp,
+    className,
+    component: Component = 'tbody',
+    ...other
+  } = useThemeProps(props, options);
   const classes = useStyles(props);
 
   return (
@@ -52,13 +57,10 @@ TableBody.propTypes = {
   component: PropTypes.elementType,
 };
 
-TableBody.defaultProps = {
-  component: 'tbody',
-};
+if (process.env.NODE_ENV !== 'production') {
+  TableBody.defaultProps = {
+    component: 'tbody',
+  };
+}
 
-TableBody.useStyles = useStyles;
-TableBody.options = {
-  name: 'MuiTableBody',
-};
-
-export default TableBody;
+export default muiComponent(useStyles, TableBody);

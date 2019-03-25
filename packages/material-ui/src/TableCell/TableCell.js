@@ -7,8 +7,9 @@ import { capitalize } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import muiComponent from '../utils/muiComponent';
 
-export const styles = theme => ({
+const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.body2,
@@ -99,11 +100,12 @@ export const styles = theme => ({
   },
 });
 
-const useStyles = makeStyles(styles, { name: 'MuiTableCell' });
+const options = { name: 'MuiTableCell' };
+const useStyles = makeStyles(styles, options);
 
 const TableCell = React.forwardRef(function TableCell(props, ref) {
   const {
-    align,
+    align = 'inherit',
     children,
     classes: classesProp,
     className,
@@ -114,7 +116,7 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
     sortDirection,
     variant,
     ...other
-  } = useThemeProps(props, { name: 'MuiTableCell' });
+  } = useThemeProps(props, options);
 
   const classes = useStyles(props);
   const table = React.useContext(TableContext);
@@ -216,13 +218,10 @@ TableCell.propTypes = {
   variant: PropTypes.oneOf(['head', 'body', 'footer']),
 };
 
-TableCell.defaultProps = {
-  align: 'inherit',
-};
+if (process.env.NODE_ENV !== 'production') {
+  TableCell.defaultProps = {
+    align: 'inherit',
+  };
+}
 
-TableCell.useStyles = useStyles;
-TableCell.options = {
-  name: 'MuiTableCell',
-};
-
-export default TableCell;
+export default muiComponent(useStyles, TableCell);

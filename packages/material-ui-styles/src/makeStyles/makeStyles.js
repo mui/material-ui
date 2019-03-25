@@ -207,7 +207,8 @@ function makeStyles(stylesOrCreator, options = {}) {
   };
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string';
 
-  return (props = {}) => {
+  const useStyles = (props = {}) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const theme = (listenToTheme ? useTheme() : null) || defaultTheme;
     const stylesOptions = {
       ...React.useContext(StylesContext),
@@ -244,6 +245,15 @@ function makeStyles(stylesOrCreator, options = {}) {
 
     return getClasses(instance.current, props.classes, Component);
   };
+
+  useStyles.options = options;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // For the markdown generation
+    useStyles.stylesOrCreator = stylesOrCreator;
+  }
+
+  return useStyles;
 }
 
 export default makeStyles;

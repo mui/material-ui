@@ -4,8 +4,9 @@ import clsx from 'clsx';
 import makeStyles from '../styles/makeStyles';
 import useThemeProps from '../styles/useThemeProps';
 import TableContext from './TableContext';
+import muiComponent from '../utils/muiComponent';
 
-export const styles = {
+const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table',
@@ -15,17 +16,18 @@ export const styles = {
   },
 };
 
-export const useStyles = makeStyles(styles, { name: 'MuiTable' });
+const options = { name: 'MuiTable' };
+const useStyles = makeStyles(styles, options);
 
 const Table = React.forwardRef(function Table(props, ref) {
   const {
     classes: classesProp,
     className,
-    component: Component,
-    padding,
-    size,
+    component: Component = 'table',
+    padding = 'default',
+    size = 'medium',
     ...other
-  } = useThemeProps(props, { name: 'MuiTable' });
+  } = useThemeProps(props, options);
   const classes = useStyles(props);
   const table = React.useMemo(() => ({ padding, size }), [padding, size]);
 
@@ -70,15 +72,12 @@ Table.propTypes = {
   size: PropTypes.oneOf(['small', 'medium']),
 };
 
-Table.defaultProps = {
-  component: 'table',
-  padding: 'default',
-  size: 'medium',
-};
+if (process.env.NODE_ENV !== 'production') {
+  Table.defaultProps = {
+    component: 'table',
+    padding: 'default',
+    size: 'medium',
+  };
+}
 
-Table.useStyles = useStyles;
-Table.options = {
-  name: 'MuiTable',
-};
-
-export default Table;
+export default muiComponent(useStyles, Table);

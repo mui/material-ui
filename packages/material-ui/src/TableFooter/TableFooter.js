@@ -4,24 +4,29 @@ import clsx from 'clsx';
 import makeStyles from '../styles/makeStyles';
 import useThemeProps from '../styles/useThemeProps';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import muiComponent from '../utils/muiComponent';
 
 const tablelvl2 = {
   variant: 'footer',
 };
 
-export const styles = {
+const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table-footer-group',
   },
 };
 
-const useStyles = makeStyles(styles, { name: 'MuiTableFooter' });
+const options = { name: 'MuiTableFooter' };
+const useStyles = makeStyles(styles, options);
 
 const TableFooter = React.forwardRef(function TableFooter(props, ref) {
-  const { classes: classesProp, className, component: Component, ...other } = useThemeProps(props, {
-    name: 'MuiTableFooter',
-  });
+  const {
+    classes: classesProp,
+    className,
+    component: Component = 'tfoot',
+    ...other
+  } = useThemeProps(props, options);
   const classes = useStyles(props);
 
   return (
@@ -52,13 +57,10 @@ TableFooter.propTypes = {
   component: PropTypes.elementType,
 };
 
-TableFooter.defaultProps = {
-  component: 'tfoot',
-};
+if (process.env.NODE_ENV !== 'production') {
+  TableFooter.defaultProps = {
+    component: 'tfoot',
+  };
+}
 
-TableFooter.useStyles = useStyles;
-TableFooter.options = {
-  name: 'MuiTableFooter',
-};
-
-export default TableFooter;
+export default muiComponent(useStyles, TableFooter);

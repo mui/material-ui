@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import makeStyles from '../styles/makeStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import muiComponent from '../utils/muiComponent';
 
-export const styles = theme => ({
+const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',
@@ -45,9 +46,9 @@ const TableRow = React.forwardRef(function TableRow(props, ref) {
   const {
     classes: classesProp,
     className,
-    component: Component,
-    hover,
-    selected,
+    component: Component = 'tr',
+    hover = false,
+    selected = false,
     ...other
   } = props;
   const tablelvl2 = React.useContext(Tablelvl2Context);
@@ -100,15 +101,12 @@ TableRow.propTypes = {
   selected: PropTypes.bool,
 };
 
-TableRow.defaultProps = {
-  component: 'tr',
-  hover: false,
-  selected: false,
-};
+if (process.env.NODE_ENV !== 'production') {
+  TableRow.defaultProps = {
+    component: 'tr',
+    hover: false,
+    selected: false,
+  };
+}
 
-TableRow.useStyles = useStyles;
-TableRow.options = {
-  name: 'MuiTableRow',
-};
-
-export default TableRow;
+export default muiComponent(useStyles, TableRow);

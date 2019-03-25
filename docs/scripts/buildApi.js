@@ -73,6 +73,9 @@ function getInheritance(src) {
   };
 }
 
+const stylesRegexp = /const styles.*[\r\n](.*[\r\n])*};[\r\n][\r\n]/;
+const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
+
 function buildDocs(options) {
   const { component: componentObject, pagesMarkdown } = options;
   const src = readFileSync(componentObject.filename, 'utf8');
@@ -92,11 +95,11 @@ function buildDocs(options) {
     descriptions: {},
   };
 
-  if (component.styles && component.default.options) {
+  if ((component.styles && component.default.options) || component.default.stylesOrCreator) {
     // Collect the customization points of the `classes` property.
-    styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
-      className => !className.match(/^(@media|@keyframes)/),
-    );
+    styles.classes = Object.keys(
+      getStylesCreator(component.styles || component.default.stylesOrCreator).create(theme),
+    ).filter(className => !className.match(/^(@media|@keyframes)/));
     styles.name = component.default.options.name;
 
     let styleSrc = src;
@@ -111,12 +114,7 @@ function buildDocs(options) {
       );
     }
 
-    /**
-     * Collect classes comments from the source
-     */
-    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*};[\r\n][\r\n]/;
-    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
-    // Extract the styles section from the source
+    // Extract the styles section from the source.
     const stylesSrc = stylesRegexp.exec(styleSrc);
 
     if (stylesSrc) {
