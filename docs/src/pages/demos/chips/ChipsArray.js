@@ -40,7 +40,7 @@ function ChipsArray() {
   return (
     <Paper className={classes.root}>
       {chipData.map(data => {
-        let icon = null;
+        let icon;
 
         if (data.label === 'React') {
           icon = <TagFacesIcon />;
