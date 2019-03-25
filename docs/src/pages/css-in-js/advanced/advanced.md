@@ -266,10 +266,10 @@ const useStyles = makeStyles({
 });
 ```
 
-It will generate a `AppBar-root-5pbwdt` class name. However, the following CSS won't work:
+It will generate a `AppBar-root-123` class name. However, the following CSS won't work:
 
 ```css
-.AppBar-root-5pbwdt {
+.AppBar-root-123 {
   opacity: 0.6;
 }
 ```
@@ -279,21 +279,21 @@ Thanks to the non-deterministic nature of our class names, we
 can implement optimizations for development and production.
 They are easy to debug in development and as short as possible in production:
 
-- In **development**, the class name will be: `.AppBar-root-5pbwdt`, following this logic:
+- In **development**, the class name will be: `.AppBar-root-123`, following this logic:
 
 ```js
 const sheetName = 'AppBar';
 const ruleName = 'root';
-const identifier = 5pbwdt;
+const identifier = 123;
 
 const className = `${sheetName}-${ruleName}-${identifier}`;
 ```
 
-- In **production**, the class name will be: `.jss5pbwdt`, following this logic:
+- In **production**, the class name will be: `.jss123`, following this logic:
 
 ```js
 const productionPrefix = 'jss';
-const identifier = 5pbwdt;
+const identifier = 123;
 
 const className = `${productionPrefix}-${identifier}`;
 ```

@@ -5,6 +5,7 @@ import { SheetsRegistry } from 'jss';
 import { createMount } from '@material-ui/core/test-utils';
 import StylesProvider, { StylesContext } from './StylesProvider';
 import makeStyles from '../makeStyles';
+import createGenerateClassName from '../createGenerateClassName';
 
 function Test() {
   const options = React.useContext(StylesContext);
@@ -17,9 +18,14 @@ function getOptions(wrapper) {
 
 describe('StylesProvider', () => {
   let mount;
+  let generateClassName;
 
   before(() => {
     mount = createMount();
+  });
+
+  beforeEach(() => {
+    generateClassName = createGenerateClassName();
   });
 
   after(() => {
@@ -71,9 +77,8 @@ describe('StylesProvider', () => {
       assert.notStrictEqual(markup.match('Hello World'), null);
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.strictEqual(sheetsRegistry.toString().length > 10, true);
-      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'Hook-root-vy1bts');
       assert.deepEqual(sheetsRegistry.registry[0].classes, {
-        root: 'Hook-root-vy1bts',
+        root: 'Hook-root-1',
       });
     }
 
@@ -81,7 +86,11 @@ describe('StylesProvider', () => {
       const sheetsRegistry = new SheetsRegistry();
 
       const markup = ReactDOMServer.renderToString(
-        <StylesProvider sheetsManager={new Map()} sheetsRegistry={sheetsRegistry}>
+        <StylesProvider
+          sheetsManager={new Map()}
+          sheetsRegistry={sheetsRegistry}
+          generateClassName={generateClassName}
+        >
           <Button>Hello World</Button>
         </StylesProvider>,
       );
@@ -98,6 +107,7 @@ describe('StylesProvider', () => {
           sheetsManager={new Map()}
           sheetsCache={sheetsCache}
           sheetsRegistry={sheetsRegistry1}
+          generateClassName={generateClassName}
         >
           <Button>Hello World</Button>
         </StylesProvider>,
@@ -110,6 +120,7 @@ describe('StylesProvider', () => {
           sheetsManager={new Map()}
           sheetsCache={sheetsCache}
           sheetsRegistry={sheetsRegistry2}
+          generateClassName={generateClassName}
         >
           <Button>Hello World</Button>
         </StylesProvider>,

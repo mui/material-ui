@@ -9,14 +9,20 @@ import { isMuiElement } from '@material-ui/core/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 // import consoleErrorMock from 'test/utils/consoleErrorMock';
 import StylesProvider from '../StylesProvider';
+import createGenerateClassName from '../createGenerateClassName';
 import ThemeProvider from '../ThemeProvider';
 import withStyles from './withStyles';
 
 describe('withStyles', () => {
   let mount;
+  let generateClassName;
 
   before(() => {
     mount = createMount();
+  });
+
+  beforeEach(() => {
+    generateClassName = createGenerateClassName();
   });
 
   after(() => {
@@ -132,19 +138,19 @@ describe('withStyles', () => {
       const StyledComponent = withStyles(styles)(Empty);
       const wrapper = mount(
         <ThemeProvider theme={createMuiTheme()}>
-          <StylesProvider sheetsRegistry={sheetsRegistry}>
+          <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-vy1bts' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-1' });
       wrapper.update();
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-vy1bts' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-1' });
       wrapper.setProps({ theme: createMuiTheme() });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-vy1bts' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-1' });
 
       wrapper.unmount();
       assert.strictEqual(sheetsRegistry.registry.length, 0);
@@ -178,18 +184,18 @@ describe('withStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider theme={createMuiTheme()}>
-          <StylesProvider sheetsRegistry={sheetsRegistry}>
+          <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-tyxeaf' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-1' });
       act(() => {
         wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-lu46bw' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-2' });
     });
 
     it('should support the overrides key', () => {
@@ -208,7 +214,7 @@ describe('withStyles', () => {
             },
           })}
         >
-          <StylesProvider sheetsRegistry={sheetsRegistry}>
+          <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
@@ -249,7 +255,7 @@ describe('withStyles', () => {
       const StyledComponent3 = withStyles({ root: { padding: 1 } })(AppFrame);
 
       mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry}>
+        <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
           <StyledComponent1 />
           <StyledComponent2 />
           <StyledComponent3 />

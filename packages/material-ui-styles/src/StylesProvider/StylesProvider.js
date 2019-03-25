@@ -22,7 +22,7 @@ const defaultOptions = {
   disableGeneration: false,
   generateClassName,
   jss,
-  sheetsCache: typeof window === 'undefined' ? new Map() : null,
+  sheetsCache: null,
   sheetsManager,
   sheetsRegistry: null,
 };
@@ -100,7 +100,9 @@ StylesProvider.propTypes = {
   /**
    * @ignore
    *
-   * Cache the sheets
+   * Beta feature.
+   *
+   * Cache for the sheets.
    */
   sheetsCache: PropTypes.object,
   /**
