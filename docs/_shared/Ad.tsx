@@ -22,7 +22,7 @@ const Ad: React.FunctionComponent = () => {
     const codefundScriptPosition = document.querySelector('#codefund-script-position');
 
     if (codefundScriptPosition) {
-      loadScript('https://codefund.io/properties/137/funder.js', codefundScriptPosition);
+      loadScript('https://codefund.io/properties/197/funder.js', codefundScriptPosition);
     }
   }, []);
 
