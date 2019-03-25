@@ -20,55 +20,51 @@ const styles = {
  * The Fade transition is used by the [Modal](/utils/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Fade extends React.Component {
-  handleEnter = node => {
-    const { theme } = this.props;
+function Fade(props) {
+  const { children, in: inProp, onEnter, onExit, style, theme, ...other } = props;
+
+  const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
 
-    const transitionProps = getTransitionProps(this.props, {
+    const transitionProps = getTransitionProps(props, {
       mode: 'enter',
     });
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
-    if (this.props.onEnter) {
-      this.props.onEnter(node);
+    if (onEnter) {
+      onEnter(node);
     }
   };
 
-  handleExit = node => {
-    const { theme } = this.props;
-    const transitionProps = getTransitionProps(this.props, {
+  const handleExit = node => {
+    const transitionProps = getTransitionProps(props, {
       mode: 'exit',
     });
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
-    if (this.props.onExit) {
-      this.props.onExit(node);
+    if (onExit) {
+      onExit(node);
     }
   };
 
-  render() {
-    const { children, in: inProp, onEnter, onExit, style, theme, ...other } = this.props;
-
-    return (
-      <Transition appear in={inProp} onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        {(state, childProps) => {
-          return React.cloneElement(children, {
-            style: {
-              opacity: 0,
-              visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-              ...styles[state],
-              ...style,
-              ...children.props.style,
-            },
-            ...childProps,
-          });
-        }}
-      </Transition>
-    );
-  }
+  return (
+    <Transition appear in={inProp} onEnter={handleEnter} onExit={handleExit} {...other}>
+      {(state, childProps) => {
+        return React.cloneElement(children, {
+          style: {
+            opacity: 0,
+            visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
+            ...styles[state],
+            ...style,
+            ...children.props.style,
+          },
+          ...childProps,
+        });
+      }}
+    </Transition>
+  );
 }
 
 Fade.propTypes = {
