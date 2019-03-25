@@ -68,14 +68,14 @@ function sortFactory(key) {
 }
 
 const sortFunctions = {
-  index: sortFactory('index'),
+  dateAdded: sortFactory('dateAdded'),
   similarWebVisits: sortFactory('similarWebVisits'),
   stars: sortFactory('stars'),
 };
 
 function Showcase(props) {
   const { classes, t } = props;
-  const [sortFunctionName, setSortFunctionName] = React.useState('index');
+  const [sortFunctionName, setSortFunctionName] = React.useState('dateAdded');
   const sortFunction = sortFunctions[sortFunctionName];
 
   function handleChangeSort(event) {
@@ -87,7 +87,7 @@ function Showcase(props) {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
         <Select value={sortFunctionName} onChange={handleChangeSort} inputProps={{ id: 'sort' }}>
-          <MenuItem value="index">{t('newest')}</MenuItem>
+          <MenuItem value="dateAdded">{t('newest')}</MenuItem>
           <MenuItem value="similarWebVisits">{t('traffic')}</MenuItem>
           <MenuItem value="stars">{t('stars')}</MenuItem>
         </Select>
@@ -101,7 +101,7 @@ function Showcase(props) {
                 <IconButton
                   href={app.source}
                   target="_blank"
-                  aria-label={`${app.title} source code`}
+                  aria-label={`${app.title} ${t('sourceCode')}`}
                 >
                   <GithubIcon />
                 </IconButton>
@@ -127,7 +127,7 @@ function Showcase(props) {
                 href={app.link}
                 gutterBottom
               >
-                Visit the website
+                {t('visit')}
               </Link>
             )}
             <Typography className={classes.description}>{app.description}</Typography>
