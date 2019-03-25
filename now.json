@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "build": {
+    "env": {
+      "IS_NOW": "true"
+    }
+  },
+  "builds": [{ "src": "docs/next.config.js", "use": "@now/next" }],
+  "routes": [{ "src": "/(.*)", "dest": "docs/$1" }]
+}
