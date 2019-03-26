@@ -4,6 +4,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import {
   createMount,
+  describeConformance,
   findOutermostIntrinsic,
   getClasses,
   unwrap,
@@ -33,11 +34,13 @@ describe('<InputBase />', () => {
     mount.cleanUp();
   });
 
-  it('should render a <div />', () => {
-    const wrapper = mount(<InputBase />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-  });
+  describeConformance(<InputBase />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render an <input /> inside the div', () => {
     const wrapper = mount(<InputBase />);
