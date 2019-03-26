@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Breadcrumbs from './Breadcrumbs';
 import BreadcrumbSeparator from './BreadcrumbSeparator';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
@@ -23,33 +23,13 @@ describe('<Breadcrumbs />', () => {
     mount.cleanUp();
   });
 
-  it('should render a <nav> element', () => {
-    const wrapper = mount(
-      <Breadcrumbs>
-        <span>Hello World</span>
-      </Breadcrumbs>,
-    );
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'nav');
-  });
-
-  it('should render the root class', () => {
-    const wrapper = mount(
-      <Breadcrumbs className="test-class-name">
-        <span>Hello World</span>
-      </Breadcrumbs>,
-    );
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-  });
-
-  it('should render the custom className and the root class', () => {
-    const wrapper = mount(
-      <Breadcrumbs className="test-class-name">
-        <span>Hello World</span>
-      </Breadcrumbs>,
-    );
-    assert.strictEqual(findOutermostIntrinsic(wrapper).is('.test-class-name'), true);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-  });
+  describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
+    classes,
+    inheritComponent: 'nav',
+    mount,
+    refInstanceof: window.HTMLElement,
+    testComponentPropWith: 'div',
+  }));
 
   it('should render seperators', () => {
     const wrapper = mount(
