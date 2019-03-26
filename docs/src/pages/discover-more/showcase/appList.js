@@ -8,7 +8,7 @@
  *   link: string;
  *   source?: string;
  *   similarWebVisits?: number;
- *   index: number; // Order added
+ *   dateAdded: string; // ISO 8601 format: YYYY-MM-DD
  * }
  */
 const appList = [
@@ -20,7 +20,7 @@ const appList = [
     image: 'bethesda.jpg',
     link: 'https://bethesda.net/',
     similarWebVisits: 18600,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Better Business Bureau',
@@ -30,7 +30,7 @@ const appList = [
     image: 'bbb.jpg',
     link: 'https://www.bbb.org/',
     similarWebVisits: 11000,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'OpenClassrooms',
@@ -40,7 +40,7 @@ const appList = [
     image: 'openclassrooms.jpg',
     link: 'https://openclassrooms.com/en/',
     similarWebVisits: 10190,
-    index: 34,
+    dateAdded: '2000-01-34',
   },
   {
     title: 'Leroy Merlin',
@@ -52,7 +52,7 @@ const appList = [
     image: 'leroymerlin.jpg',
     link: 'https://www.leroymerlin.it/',
     similarWebVisits: 4400,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Codementor',
@@ -63,7 +63,7 @@ const appList = [
     image: 'codementor.jpg',
     link: 'https://www.codementor.io/',
     similarWebVisits: 2980,
-    index: 34,
+    dateAdded: '2000-01-34',
   },
   {
     title: 'BARKS',
@@ -71,7 +71,7 @@ const appList = [
     image: 'barks.jpg',
     link: 'https://www.barks.jp/',
     similarWebVisits: 2700,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'GovX',
@@ -81,7 +81,7 @@ const appList = [
     image: 'govx.jpg',
     link: 'https://www.govx.com/',
     similarWebVisits: 1200,
-    index: 31,
+    dateAdded: '2000-01-31',
   },
   {
     title: 'SFR Presse',
@@ -91,7 +91,7 @@ const appList = [
     image: 'sfrpresse.jpg',
     link: 'https://sfrpresse.sfr.fr/',
     similarWebVisits: 710,
-    index: 25,
+    dateAdded: '2000-01-25',
   },
   {
     title: 'AospExtended Download center',
@@ -101,14 +101,14 @@ const appList = [
     image: 'aexdownloadcenter.jpg',
     link: 'https://downloads.aospextended.com/',
     similarWebVisits: 730,
-    index: 28,
+    dateAdded: '2000-01-28',
   },
   {
     title: 'Onepixel',
     description: 'Beautiful Stock Photos for $1.',
     image: 'onepixel.jpg',
     link: 'https://www.onepixel.com/',
-    index: 26,
+    dateAdded: '2000-01-26',
   },
   {
     title: 'Sweek',
@@ -119,7 +119,7 @@ const appList = [
     image: 'sweek.jpg',
     link: 'https://sweek.com/',
     similarWebVisits: 383,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Hijup',
@@ -127,7 +127,7 @@ const appList = [
     image: 'hijup.jpg',
     link: 'https://www.hijup.com/',
     similarWebVisits: 328,
-    index: 18,
+    dateAdded: '2000-01-18',
   },
   {
     title: 'iFit',
@@ -137,7 +137,7 @@ const appList = [
     image: 'ifit.jpg',
     link: 'https://www.ifit.com/',
     similarWebVisits: 304,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'NEO Tracker',
@@ -145,7 +145,7 @@ const appList = [
     image: 'neotracker.jpg',
     link: 'https://neotracker.io/',
     similarWebVisits: 350,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'EQ3',
@@ -153,7 +153,7 @@ const appList = [
     image: 'eq3.jpg',
     link: 'https://www.eq3.com/ca/en/',
     similarWebVisits: 256,
-    index: 34,
+    dateAdded: '2000-01-34',
   },
   {
     title: 'Housecall Pro',
@@ -164,7 +164,7 @@ const appList = [
     image: 'housecall.jpg',
     link: 'https://pro.housecall.io/pro/log_in',
     similarWebVisits: 214,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'BitCambio',
@@ -174,7 +174,7 @@ const appList = [
     image: 'bitcambio.jpg',
     link: 'https://bitcambio.com.br/',
     similarWebVisits: 148,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'VMware CloudHealth',
@@ -185,7 +185,7 @@ const appList = [
     image: 'cloudhealth.jpg',
     link: 'https://www.cloudhealthtech.com/',
     similarWebVisits: 132,
-    index: 37,
+    dateAdded: '2000-01-37',
   },
   {
     title: 'CityAds',
@@ -195,7 +195,7 @@ const appList = [
     image: 'cityads.jpg',
     link: 'https://cityads.com/main',
     similarWebVisits: 132,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'EOS Toolkit',
@@ -207,7 +207,7 @@ const appList = [
     source: 'https://github.com/generEOS/eostoolkit',
     stars: 43,
     similarWebVisits: 123,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'The Media Ant',
@@ -217,7 +217,7 @@ const appList = [
     image: 'themediaant.jpg',
     link: 'https://www.themediaant.com/',
     similarWebVisits: 112,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Forex Bank',
@@ -227,7 +227,7 @@ const appList = [
     image: 'forex.jpg',
     link: 'https://www.forex.no/',
     similarWebVisits: 95,
-    index: 34,
+    dateAdded: '2000-01-34',
   },
   {
     title: 'Numerai',
@@ -235,7 +235,7 @@ const appList = [
     image: 'numerai.jpg',
     link: 'https://numer.ai/homepage',
     similarWebVisits: 65,
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'LocalMonero',
@@ -244,7 +244,7 @@ const appList = [
       'to trade their local currency for Monero, anywhere.',
     image: 'localmonero.jpg',
     link: 'https://localmonero.co/?rc=ogps',
-    index: 4,
+    dateAdded: '2000-01-04',
   },
   {
     title: 'LessWrong',
@@ -252,14 +252,14 @@ const appList = [
     image: 'lesswrong.jpg',
     link: 'https://www.lesswrong.com/',
     similarWebVisits: 774,
-    index: 38,
+    dateAdded: '2000-01-38',
   },
   {
     title: 'Fizix',
     description: 'Coaching sportif à domicile. 🇫🇷',
     image: 'fizix.jpg',
     link: 'https://www.fizix.io/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Venuemob',
@@ -267,7 +267,7 @@ const appList = [
       'A platform for individuals and businesses to find and book the perfect venue for any event.',
     image: 'venuemob.jpg',
     link: 'https://venuemob.com.au/',
-    index: 2,
+    dateAdded: '2000-01-02',
   },
   {
     title: 'ODIGEO Connect',
@@ -276,7 +276,7 @@ const appList = [
       'and distribute it to millions of travellers.',
     image: 'odigeo.jpg',
     link: 'https://www.odigeoconnect.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'comet',
@@ -285,7 +285,7 @@ const appList = [
       'It’s fast, simple, and free for open source projects.',
     image: 'comet.jpg',
     link: 'https://www.comet.ml/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Pointer',
@@ -294,7 +294,7 @@ const appList = [
       'A Pointer faz parte da Portobello e atua no Nordeste do Brasil. 🇧🇷',
     image: 'pointer.jpg',
     link: 'https://www.pointer.com.br/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Oneplanetcrowd',
@@ -302,7 +302,7 @@ const appList = [
       'Oneplanetcrowd is Europe’s leading sustainable crowdfunding platform for People & Planet.',
     image: 'oneplanetcrowd.jpg',
     link: 'https://www.oneplanetcrowd.com/en',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'CollegeAI',
@@ -313,7 +313,7 @@ const appList = [
       'planner, and college chance calculator.',
     image: 'collegeai.jpg',
     link: 'https://collegeai.com',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'react-admin',
@@ -324,7 +324,7 @@ const appList = [
     image: 'posters-galore.jpg',
     link: 'https://marmelab.com/react-admin-demo/',
     source: 'https://github.com/marmelab/react-admin',
-    index: 21,
+    dateAdded: '2000-01-21',
     stars: 6786,
   },
   {
@@ -336,14 +336,14 @@ const appList = [
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
     stars: 1042,
-    index: 5,
+    dateAdded: '2000-01-05',
   },
   {
     title: 'Commit Swimming',
     description: 'The #1 workout journal for coaches and swimmers.',
     image: 'commitswimming.jpg',
     link: 'https://www.commitswimming.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'EventHi',
@@ -352,7 +352,7 @@ const appList = [
       'community. Use our easy ticketing system, sponsor, and sell merchandise.',
     image: 'eventhi.jpg',
     link: 'https://eventhi.io/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
@@ -362,14 +362,14 @@ const appList = [
       'news related to cryptocurrencies, and more. (demo:demo)',
     image: 'cryptoverview.jpg',
     link: 'https://cryptoverview.com/',
-    index: 9,
+    dateAdded: '2000-01-09',
   },
   {
     title: 'TuDiscovery',
     description: 'Discovery Channel Latin America. 🇪🇸',
     image: 'tudiscovery.jpg',
     link: 'https://www.tudiscovery.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Iceberg Finder',
@@ -378,21 +378,21 @@ const appList = [
       'IcebergFinder.com is your premier place for finding bergs in Newfoundland and Labrador.',
     image: 'icebergfinder.jpg',
     link: 'https://icebergfinder.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Rare Bits',
     description: 'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
     image: 'rarebits.jpg',
     link: 'https://rarebits.io/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Roast',
     description: 'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
     image: 'roast.jpg',
     link: 'https://www.roast.io/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Melbourne Mint',
@@ -401,14 +401,14 @@ const appList = [
       'for over 100 years.',
     image: 'melbournemint.jpg',
     link: 'https://melbournemint.com.au/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Pilcro',
     description: 'A free brand management software for the Google Suite.',
     image: 'pilcro.jpg',
     link: 'https://www.pilcro.com/',
-    index: 17,
+    dateAdded: '2000-01-17',
   },
   {
     title: 'Rung - Exceptionality Management',
@@ -416,7 +416,7 @@ const appList = [
       'Rung alerts you about the exceptionalities of your personal and professional life.',
     image: 'rung.jpg',
     link: 'https://app.rung.com.br/',
-    index: 12,
+    dateAdded: '2000-01-12',
   },
   {
     title: 'MetaFact',
@@ -425,14 +425,14 @@ const appList = [
       'It’s a platform to ask questions, learn the facts and share the truth.',
     image: 'metafact.jpg',
     link: 'https://metafact.io/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Arkopharma',
     description: 'Arkopharma Laboritories customer loyalty site. 🇫🇷',
     image: 'arkoclub.jpg',
     link: 'https://www.arkoclub.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Modole Language Exchange',
@@ -441,7 +441,7 @@ const appList = [
       'and have it corrected by native speakers.',
     image: 'modole.jpg',
     link: 'https://en.modole.io/',
-    index: 6,
+    dateAdded: '2000-01-06',
   },
   {
     title: 'Manty Vision',
@@ -449,14 +449,14 @@ const appList = [
       'An Open Data tool showing financial and demographic data for all the towns in France.',
     image: 'manty.jpg',
     link: 'https://app.manty.eu/',
-    index: 1,
+    dateAdded: '2000-01-01',
   },
   {
     title: 'Johnny Metrics',
     description: 'Upload your trades, and analyze your crypto portfolio.',
     link: 'https://app.johnnymetrics.com/demo',
     image: 'johnnymetrics.jpg',
-    index: 14,
+    dateAdded: '2000-01-14',
   },
   {
     title: 'AudioNodes',
@@ -465,14 +465,14 @@ const appList = [
       'parameter automation, MIDI editing, synthesis, cloud production, and more.',
     image: 'audionodes.jpg',
     link: 'https://audionodes.com/',
-    index: 7,
+    dateAdded: '2000-01-07',
   },
   {
     title: 'SlidesUp',
     description: 'SlidesUp is a platform to help conference organizers plan their events.',
     image: 'slidesup.jpg',
     link: 'https://slidesup.com/',
-    index: 3,
+    dateAdded: '2000-01-03',
   },
   {
     title: 'Trafikito',
@@ -482,7 +482,7 @@ const appList = [
       'something is going wrong.',
     image: 'trafikito-monitoring.jpg',
     link: 'https://trafikito.com/',
-    index: 20,
+    dateAdded: '2000-01-20',
   },
   {
     title: 'Hokan',
@@ -490,14 +490,14 @@ const appList = [
       'Customer management and contract management we service for the insurance industry. 🇯🇵',
     image: 'hkn.jpg',
     link: 'https://hkn.jp/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'One Shot Move',
     description: 'An LA based moving company.',
     image: 'oneshotmove.jpg',
     link: 'https://www.oneshotmove.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Fluxguard',
@@ -506,7 +506,7 @@ const appList = [
       'regression testing, synthetic transaction monitoring, and more.',
     image: 'fluxguard.jpg',
     link: 'https://fluxguard.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Magic Mondayz',
@@ -515,7 +515,7 @@ const appList = [
       'the human way.',
     image: 'magicmondayz.jpg',
     link: 'https://magicmondayz.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Typekev',
@@ -525,7 +525,7 @@ const appList = [
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
     stars: 8,
-    index: 23,
+    dateAdded: '2000-01-23',
   },
   {
     title: 'Flink',
@@ -536,7 +536,7 @@ const appList = [
       'And the simplest.',
     image: 'flink.jpg',
     link: 'https://goflink.ch/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'DropDesk',
@@ -545,7 +545,7 @@ const appList = [
       'coworking spaces. Meet, work and gain a sense of community.',
     image: 'dropdesk.jpg',
     link: 'https://drop-desk.com/',
-    index: 30,
+    dateAdded: '2000-01-30',
   },
   {
     title: 'Tentu',
@@ -554,7 +554,7 @@ const appList = [
       'of interest. 🇪🇸',
     link: 'https://tentu.eus/',
     image: 'tentu.jpg',
-    index: 22,
+    dateAdded: '2000-01-22',
   },
   {
     title: 'Swimmy',
@@ -563,7 +563,7 @@ const appList = [
     link: 'https://swimmy.io/',
     source: 'https://github.com/swimmy/swimmy.io',
     stars: 4,
-    index: 27,
+    dateAdded: '2000-01-27',
   },
   {
     title: 'Planalyze',
@@ -572,14 +572,14 @@ const appList = [
       "& ahead of each day's workload.",
     image: 'planalyze.jpg',
     link: 'https://www.planalyze.io/',
-    index: 10,
+    dateAdded: '2000-01-10',
   },
   {
     title: 'PhotoUtils',
     description: 'Online photo editor. 6 simple and free image editing tools.',
     image: 'photoutils.jpg',
     link: 'https://photoutils.com/',
-    index: 32,
+    dateAdded: '2000-01-32',
   },
   {
     title: 'Local Insights',
@@ -588,14 +588,14 @@ const appList = [
       'permits, and tax documents.',
     image: 'localinsights.jpg',
     link: 'https://localinsights.io/',
-    index: 16,
+    dateAdded: '2000-01-16',
   },
   {
     title: 'Code Typing Tutor',
     description: 'Keyboard simulator that helps to write code quickly and without errors.',
     image: 'code-typing-tutor.png',
     link: 'https://code-typing-tutor.com/',
-    index: 29,
+    dateAdded: '2000-01-29',
   },
   {
     title: 'npm registry browser',
@@ -606,7 +606,7 @@ const appList = [
     link: 'https://topheman.github.io/npm-registry-browser/',
     source: 'https://github.com/topheman/npm-registry-browser',
     stars: 78,
-    index: 15,
+    dateAdded: '2000-01-15',
   },
   {
     title: 'Snippets Chrome Extension',
@@ -617,7 +617,7 @@ const appList = [
     link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
     stars: 38,
-    index: 19,
+    dateAdded: '2000-01-19',
   },
   {
     title: 'Material Blog',
@@ -628,7 +628,7 @@ const appList = [
     link: 'https://jdupont.github.io/',
     source: 'https://github.com/jdupont/jdupont.github.io',
     stars: 14,
-    index: 11,
+    dateAdded: '2000-01-11',
   },
   {
     title: 'Tree',
@@ -639,7 +639,7 @@ const appList = [
     image: 'tree.jpg',
     source: 'https://github.com/ValleyZw/tree',
     stars: 9,
-    index: 35,
+    dateAdded: '2000-01-35',
   },
   {
     title: 'Componofy: Spotify Playlist Combination',
@@ -650,7 +650,7 @@ const appList = [
     link: 'https://componofy.herokuapp.com/',
     source: 'https://github.com/DalerAsrorov/componofy',
     stars: 6,
-    index: 8,
+    dateAdded: '2000-01-08',
   },
   {
     title: 'Insights',
@@ -661,14 +661,26 @@ const appList = [
       'Material-UI is used both on the website (with server-side rendering) and ' +
       'within the interactive app itself.',
     link: 'https://justaskusers.com/',
-    index: 24,
+    dateAdded: '2000-01-24',
   },
   {
     title: 'Persona',
     description: 'Zero knowledge digital identity management system built on blockchain.',
     link: 'https://persona.im/',
     image: 'persona.jpg',
-    index: 0,
+    dateAdded: '2019-01-27',
+  },
+  {
+    title: 'MQTT Explorer',
+    description:
+      'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
+      'The protocol is used in many IoT and home automation scenarios, ' +
+      'making integrating new services dead easy.',
+    link: 'https://mqtt-explorer.com/',
+    source: 'https://github.com/thomasnordquist/MQTT-Explorer',
+    image: 'mqtt-explorer.png',
+    stars: 121,
+    dateAdded: '2019-03-25',
   },
 ];
 
