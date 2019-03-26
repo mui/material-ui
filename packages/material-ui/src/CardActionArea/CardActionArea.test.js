@@ -1,22 +1,26 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import ButtonBase from '../ButtonBase';
 import CardActionArea from './CardActionArea';
 
 describe('<CardActionArea />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<CardActionArea />);
   });
 
-  it('should render a ButtonBase with custom class', () => {
-    const wrapper = shallow(<CardActionArea className="cardActionArea" />);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('cardActionArea'), true);
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<CardActionArea />, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: false,
+  }));
 });
