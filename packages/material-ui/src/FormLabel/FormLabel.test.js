@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import FormLabel from './FormLabel';
 import FormControlContext from '../FormControl/FormControlContext';
 
@@ -14,12 +19,17 @@ describe('<FormLabel />', () => {
     classes = getClasses(<FormLabel />);
   });
 
-  it('should render a <label />', () => {
-    const wrapper = findOutermostIntrinsic(mount(<FormLabel className="woofFormLabel" />));
-    assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woofFormLabel'), true);
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<FormLabel />, () => ({
+    classes,
+    inheritComponent: 'label',
+    mount,
+    refInstanceof: window.HTMLLabelElement,
+    testComponentPropWith: 'div',
+  }));
 
   describe('prop: required', () => {
     it('should show an asterisk if required is set', () => {
