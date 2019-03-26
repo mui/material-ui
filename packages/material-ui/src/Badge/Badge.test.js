@@ -1,16 +1,40 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Badge from './Badge';
 
 describe('<Badge />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Badge badgeContent={1}>Hello World</Badge>);
   });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(
+    <Badge>
+      <div />
+    </Badge>,
+    () => ({
+      classes,
+      inheritComponent: 'span',
+      mount,
+      refInstanceof: window.HTMLSpanElement,
+      testComponentPropWith: 'div',
+    }),
+  );
 
   const testChildren = <div className="unique">Hello World</div>;
 
