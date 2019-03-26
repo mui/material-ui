@@ -3,9 +3,9 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import {
   createMount,
+  describeConformance,
   findOutermostIntrinsic,
   getClasses,
-  testRef,
 } from '@material-ui/core/test-utils';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 import ButtonBase from '../ButtonBase';
@@ -27,17 +27,13 @@ describe('<ExpansionPanelSummary />', () => {
     mount.cleanUp();
   });
 
-  it('does forward refs', () => {
-    testRef(<ExpansionPanelSummary />, mount);
-  });
-
-  it('should render with the user and root classes', () => {
-    const root = findOutermostIntrinsic(
-      mount(<ExpansionPanelSummary className="woofExpansionPanelSummary" />),
-    );
-    assert.strictEqual(root.hasClass(classes.root), true);
-    assert.strictEqual(root.hasClass('woofExpansionPanelSummary'), true);
-  });
+  describeConformance(<ExpansionPanelSummary />, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render with the content', () => {
     const wrapper = mount(<ExpansionPanelSummary>The Summary</ExpansionPanelSummary>);
