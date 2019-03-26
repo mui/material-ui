@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  getClasses,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';
@@ -22,6 +27,14 @@ describe('<ExpansionPanel />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(<ExpansionPanel>{minimalChildren}</ExpansionPanel>, () => ({
+    classes,
+    inheritComponent: Paper,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
+
   it('should render and not be controlled', () => {
     const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
     const root = wrapper.find(`.${classes.root}`).first();
@@ -35,15 +48,6 @@ describe('<ExpansionPanel />', () => {
   it('should handle defaultExpanded prop', () => {
     const wrapper = mount(<ExpansionPanel defaultExpanded>{minimalChildren}</ExpansionPanel>);
     assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.expanded), true);
-  });
-
-  it('should render the custom className and the root class', () => {
-    const wrapper = mount(
-      <ExpansionPanel className="test-class-name">{minimalChildren}</ExpansionPanel>,
-    );
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.hasClass('test-class-name'), true);
-    assert.strictEqual(root.hasClass(classes.root), true);
   });
 
   it('should render the summary and collapse elements', () => {
