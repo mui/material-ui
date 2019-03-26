@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Slide from '../Slide';
 import createMuiTheme from '../styles/createMuiTheme';
 import Paper from '../Paper';
@@ -23,6 +28,19 @@ describe('<Drawer />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(
+    <Drawer open>
+      <div />
+    </Drawer>,
+    () => ({
+      classes,
+      inheritComponent: Modal,
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: false,
+    }),
+  );
 
   describe('prop: variant=temporary', () => {
     it('should render a Modal', () => {
