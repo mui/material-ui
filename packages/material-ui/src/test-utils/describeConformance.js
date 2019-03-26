@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import React from 'react';
+import testRef from './testRef';
 
 /**
  * Glossary
@@ -95,17 +96,13 @@ function testPropsSpread(element, getOptions) {
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testRef(element, getOptions) {
+function describeRef(element, getOptions) {
   describe('ref', () => {
     it(`attaches the ref`, () => {
       // type def in ConformanceOptions
       const { mount, refInstanceof } = getOptions();
 
-      const ref = React.createRef();
-      // TODO use `ref` once `WithStylesTest` is removed
-      mount(React.cloneElement(element, { innerRef: ref }));
-
-      assert.instanceOf(ref.current, refInstanceof);
+      testRef(element, mount, current => assert.instanceOf(current, refInstanceof));
     });
   });
 }
@@ -114,7 +111,7 @@ const fullSuite = {
   class: testClassName,
   componentProp: testComponentProp,
   propsSpread: testPropsSpread,
-  refForwarding: testRef,
+  refForwarding: describeRef,
 };
 
 /**
