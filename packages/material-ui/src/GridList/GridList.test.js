@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import GridList from './GridList';
 
 const tilesData = [
@@ -17,29 +22,32 @@ const tilesData = [
 ];
 
 describe('<GridList />', () => {
+  let classes;
+  let mount;
   let shallow;
 
   before(() => {
+    classes = getClasses(<GridList />);
+    mount = createMount();
     shallow = createShallow({ dive: true });
   });
 
-  it('should render a ul', () => {
-    const wrapper = shallow(
-      <GridList>
-        <br />
-      </GridList>,
-    );
-    assert.strictEqual(wrapper.name(), 'ul');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should accept a component property', () => {
-    const wrapper = shallow(
-      <GridList component="li">
-        <br />
-      </GridList>,
-    );
-    assert.strictEqual(wrapper.name(), 'li');
-  });
+  describeConformance(
+    <GridList>
+      <div />
+    </GridList>,
+    () => ({
+      classes,
+      inheritComponent: 'ul',
+      mount,
+      refInstanceof: window.HTMLUListElement,
+      testComponentPropWith: 'li',
+    }),
+  );
 
   it('should render children and change cellHeight', () => {
     const cellHeight = 250;
