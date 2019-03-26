@@ -139,8 +139,9 @@ function buildDocs(options) {
   if (docsDefaultProps) {
     Object.keys(reactAPI.props).forEach(key => {
       if (docsDefaultProps.hasOwnProperty(key)) {
+        const defaultValue = docsDefaultProps[key];
         reactAPI.props[key].defaultValue = {
-          value: String(docsDefaultProps[key]),
+          value: typeof defaultValue === 'string' ? `'${defaultValue}'` : `${defaultValue}`,
         };
       }
     });
