@@ -1,39 +1,42 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Icon from './Icon';
 
 describe('<Icon />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Icon />);
   });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(<Icon>account_circle</Icon>, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: 'div',
+  }));
 
   it('renders children by default', () => {
     const wrapper = shallow(<Icon>account_circle</Icon>);
     assert.strictEqual(wrapper.contains('account_circle'), true);
   });
 
-  it('should render an span with root class', () => {
-    const wrapper = shallow(<Icon>account_circle</Icon>);
-    assert.strictEqual(wrapper.name(), 'span');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should spread props on span', () => {
-    const wrapper = shallow(<Icon data-test="hello">account_circle</Icon>);
-    assert.strictEqual(wrapper.props()['data-test'], 'hello');
-  });
-
   describe('optional classes', () => {
-    it('should render with the user class', () => {
-      const wrapper = shallow(<Icon className="meow">account_circle</Icon>);
-      assert.strictEqual(wrapper.hasClass('meow'), true);
-    });
-
     it('should render with the secondary color', () => {
       const wrapper = shallow(<Icon color="secondary">account_circle</Icon>);
       assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
