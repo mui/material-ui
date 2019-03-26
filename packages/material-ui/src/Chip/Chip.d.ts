@@ -1,18 +1,21 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { PropTypes } from '..';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface ChipProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ChipClassKey> {
-  avatar?: React.ReactElement;
-  clickable?: boolean;
-  color?: PropTypes.Color;
-  component?: React.ElementType<ChipProps>;
-  deleteIcon?: React.ReactElement;
-  icon?: React.ReactElement;
-  label?: React.ReactNode;
-  onDelete?: React.EventHandler<any>;
-  variant?: 'default' | 'outlined';
-}
+declare const Chip: OverridableComponent<{
+  props: {
+    avatar?: React.ReactElement;
+    clickable?: boolean;
+    color?: PropTypes.Color;
+    deleteIcon?: React.ReactElement;
+    icon?: React.ReactElement;
+    label?: React.ReactNode;
+    onDelete?: React.EventHandler<any>;
+    variant?: 'default' | 'outlined';
+  };
+  defaultComponent: 'div';
+  classKey: ChipClassKey;
+}>;
 
 export type ChipClassKey =
   | 'root'
@@ -41,6 +44,6 @@ export type ChipClassKey =
   | 'deleteIconOutlinedColorPrimary'
   | 'deleteIconOutlinedColorSecondary';
 
-declare const Chip: React.ComponentType<ChipProps>;
+export type ChipProps = SimplifiedPropsOf<typeof Chip>;
 
 export default Chip;
