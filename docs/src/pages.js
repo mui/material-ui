@@ -63,6 +63,9 @@ const pages = [
         pathname: '/layout/grid',
       },
       {
+        pathname: '/layout/layout',
+      },
+      {
         pathname: '/layout/breakpoints',
       },
       {

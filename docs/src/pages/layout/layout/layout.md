@@ -5,7 +5,7 @@ components: Container
 
 # Layout
 
-<p class="description">Components and options for laying out your project, including wrapping containers, a powerful grid system, a flexible media object, and responsive utility classes.</p>
+<p class="description">Components and options for laying out your project.</p>
 
 ## CssBasline
 
@@ -31,7 +31,7 @@ A fluid container width is bounded by that `maxWidth` property value.
 <Container maxWidth="sm">
 ```
 
-{{"demo": "pages/lab/layout/SimpleContainer.js", "iframe": true}}
+{{"demo": "pages/layout/layout/SimpleContainer.js", "iframe": true}}
 
 ### Fixed
 
@@ -42,4 +42,4 @@ The max-width matches the min-width of the current breakpoint.
 <Container fixed>
 ```
 
-{{"demo": "pages/lab/layout/FixedContainer.js", "iframe": true}}
+{{"demo": "pages/layout/layout/FixedContainer.js", "iframe": true}}
