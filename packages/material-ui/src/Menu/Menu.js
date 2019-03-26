@@ -42,31 +42,31 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     theme,
     ...other
   } = props;
-  const menuListActions = React.useRef();
+  const menuListActionsRef = React.useRef({
+    focus: () => {},
+  });
 
   const focus = () => {
-    return menuListActions.current && menuListActions.current.focus();
+    menuListActionsRef.current.focus();
   };
 
   React.useEffect(() => {
     if (open && !disableAutoFocusItem) {
       focus();
     }
-    // Needs to be called only on mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [open, disableAutoFocusItem]);
 
   const getContentAnchorEl = () => {
-    return menuListActions.current.getContentAnchorEl();
+    return menuListActionsRef.current.getContentAnchorEl();
   };
 
   const handleEntering = element => {
-    if (menuListActions.current) {
+    if (menuListActionsRef.current) {
       // Focus so the scroll computation of the Popover works as expected.
       if (disableAutoFocusItem !== true) {
-        menuListActions.current.focus();
+        menuListActionsRef.current.focus();
       }
-      menuListActions.current.adjustStyleForScrollbar(element, theme);
+      menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
     }
 
     if (onEntering) {
@@ -107,7 +107,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
         data-mui-test="Menu"
         onKeyDown={handleListKeyDown}
         {...MenuListProps}
-        actions={menuListActions}
+        actions={menuListActionsRef}
       >
         {children}
       </MenuList>
