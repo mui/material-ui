@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
@@ -20,20 +20,24 @@ describe('<Chip />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(<Chip />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'span',
+  }));
+
   describe('text only', () => {
     it('should render a div containing a label', () => {
-      const wrapper = mount(
-        <Chip className="my-Chip" data-my-prop="woofChip" label="My text Chip" />,
-      );
-      const chip = wrapper.find('.my-Chip').hostNodes();
+      const wrapper = mount(<Chip label="My text Chip" />);
+      const chip = wrapper.find(`.${classes.root}`).hostNodes();
       const label = chip.find(`.${classes.label}`).hostNodes();
 
       assert.strictEqual(chip.type(), 'div');
       assert.strictEqual(label.type(), 'span');
       assert.strictEqual(label.text(), 'My text Chip');
       assert.strictEqual(chip.hasClass(classes.root), true);
-      assert.strictEqual(chip.hasClass('my-Chip'), true);
-      assert.strictEqual(chip.props()['data-my-prop'], 'woofChip');
       assert.strictEqual(chip.props().tabIndex, undefined);
 
       assert.strictEqual(chip.hasClass(classes.root), true);
@@ -71,10 +75,8 @@ describe('<Chip />', () => {
 
     before(() => {
       handleClick = () => {};
-      wrapper = mount(
-        <Chip className="my-Chip" data-my-prop="woofChip" label="My Chip" onClick={handleClick} />,
-      );
-      chip = wrapper.find('.my-Chip').hostNodes();
+      wrapper = mount(<Chip label="My Chip" onClick={handleClick} />);
+      chip = wrapper.find(`.${classes.root}`).hostNodes();
     });
 
     it('should render a div containing a label', () => {
@@ -84,13 +86,6 @@ describe('<Chip />', () => {
       assert.strictEqual(label.exists(), true);
       assert.strictEqual(label.type(), 'span');
       assert.strictEqual(label.text(), 'My Chip');
-    });
-
-    it('should merge user classes & spread custom props to the root node', () => {
-      assert.strictEqual(chip.hasClass(classes.root), true);
-      assert.strictEqual(chip.hasClass('my-Chip'), true);
-      assert.strictEqual(chip.props()['data-my-prop'], 'woofChip');
-      assert.strictEqual(chip.props().onClick, handleClick);
     });
 
     it('should have a tabIndex prop', () => {
