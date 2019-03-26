@@ -38,6 +38,7 @@ const styles = theme => ({
   },
   description: {
     marginBottom: theme.spacing(6),
+    maxWidth: 600,
   },
   cardMedia: {
     paddingTop: '75%', // 4:3
