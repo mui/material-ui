@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { spy } from 'sinon';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
+  describeConformance,
   getClasses,
   findOutermostIntrinsic,
 } from '@material-ui/core/test-utils';
@@ -29,10 +28,13 @@ describe('<IconButton />', () => {
     mount.cleanUp();
   });
 
-  it('should render a ButtonBase', () => {
-    const wrapper = shallow(<IconButton>book</IconButton>);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-  });
+  describeConformance(<IconButton>book</IconButton>, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render an inner label span (bloody safari)', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
@@ -67,22 +69,6 @@ describe('<IconButton />', () => {
   it('should pass disableRipple to ButtonBase', () => {
     const wrapper = shallow(<IconButton disableRipple>book</IconButton>);
     assert.strictEqual(wrapper.props().disableRipple, true);
-  });
-
-  it('should spread props on ButtonBase', () => {
-    const wrapper = shallow(
-      <IconButton data-test="hello" disableRipple>
-        book
-      </IconButton>,
-    );
-    assert.strictEqual(wrapper.props()['data-test'], 'hello');
-    assert.strictEqual(wrapper.props().disableRipple, true);
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<IconButton className="woofIconButton">book</IconButton>);
-    assert.strictEqual(wrapper.hasClass('woofIconButton'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should pass centerRipple={true} to ButtonBase', () => {
@@ -123,22 +109,6 @@ describe('<IconButton />', () => {
       const wrapper = shallow(<IconButton disabled>book</IconButton>);
       assert.strictEqual(wrapper.props().disabled, true);
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
-    });
-  });
-
-  describe('prop: ref', () => {
-    it('should give a reference on the native button', () => {
-      function IconButtonRef(props) {
-        return <IconButton ref={props.rootRef} />;
-      }
-      IconButtonRef.propTypes = {
-        rootRef: PropTypes.func.isRequired,
-      };
-
-      const ref = spy();
-      mount(<IconButtonRef rootRef={ref} />);
-      assert.strictEqual(ref.callCount, 1);
-      assert.strictEqual(ReactDOM.findDOMNode(ref.args[0][0]).type, 'button');
     });
   });
 
