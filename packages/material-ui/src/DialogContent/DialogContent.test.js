@@ -1,36 +1,35 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import DialogContent from './DialogContent';
 
 describe('<DialogContent />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<DialogContent />);
   });
 
-  it('should render a div', () => {
-    const wrapper = shallow(<DialogContent />);
-    assert.strictEqual(wrapper.name(), 'div');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<DialogContent data-my-prop="woofDialogContent" />);
-    assert.strictEqual(
-      wrapper.props()['data-my-prop'],
-      'woofDialogContent',
-      'custom prop should be woofDialogContent',
-    );
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<DialogContent className="woofDialogContent" />);
-    assert.strictEqual(wrapper.hasClass('woofDialogContent'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<DialogContent />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render children', () => {
     const children = <p />;
