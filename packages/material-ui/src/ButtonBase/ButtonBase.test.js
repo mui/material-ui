@@ -4,7 +4,13 @@ import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import rerender from 'test/utils/rerender';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+  unwrap,
+} from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 
@@ -25,14 +31,15 @@ describe('<ButtonBase />', () => {
     mount.cleanUp();
   });
 
-  describe('root node', () => {
-    it('should render a button with type="button" by default', () => {
-      const wrapper = mount(<ButtonBase>Hello</ButtonBase>);
-      const button = wrapper.find('button');
-      assert.strictEqual(button.exists(), true);
-      assert.strictEqual(button.text(), 'Hello');
-    });
+  describeConformance(<ButtonBase />, () => ({
+    classes,
+    inheritComponent: 'button',
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: 'a',
+  }));
 
+  describe('root node', () => {
     it('should change the button type', () => {
       const wrapper = mount(<ButtonBase type="submit">Hello</ButtonBase>);
       const button = wrapper.find('button');
@@ -44,18 +51,6 @@ describe('<ButtonBase />', () => {
       const wrapper = mount(<ButtonBase component="span" role="checkbox" aria-checked={false} />);
       const checkbox = wrapper.find('span[role="checkbox"]');
       assert.strictEqual(checkbox.props().tabIndex, '0');
-    });
-
-    it('should spread props on button', () => {
-      const wrapper = shallow(<ButtonBase data-test="hello">Hello</ButtonBase>);
-      assert.strictEqual(wrapper.props()['data-test'], 'hello');
-    });
-
-    it('should render the custom className and the root class', () => {
-      const wrapper = mount(<ButtonBase className="test-class-name" />);
-      const button = wrapper.find('button');
-      assert.strictEqual(button.hasClass('test-class-name'), true);
-      assert.strictEqual(button.hasClass(classes.root), true);
     });
 
     it('should not apply role="button" if type="button"', () => {
