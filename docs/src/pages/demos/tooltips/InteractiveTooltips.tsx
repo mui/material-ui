@@ -4,11 +4,12 @@ import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/s
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = (theme: Theme) => createStyles({
-  button: {
-    margin: theme.spacing(1),
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    button: {
+      margin: theme.spacing(1),
+    },
+  });
 
 function InteractiveTooltips(props: WithStyles<typeof styles>) {
   const { classes } = props;

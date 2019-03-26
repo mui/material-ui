@@ -51,59 +51,61 @@ function arrowGenerator(color: string) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  button: {
-    margin: theme.spacing(1),
-  },
-  lightTooltip: {
-    backgroundColor: theme.palette.common.white,
-    color: 'rgba(0, 0, 0, 0.87)',
-    boxShadow: theme.shadows[1],
-    fontSize: 11,
-  },
-  arrowPopper: arrowGenerator(theme.palette.grey[700]),
-  arrow: {
-    position: 'absolute',
-    fontSize: 6,
-    width: '3em',
-    height: '3em',
-    '&::before': {
-      content: '""',
-      margin: 'auto',
-      display: 'block',
-      width: 0,
-      height: 0,
-      borderStyle: 'solid',
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    button: {
+      margin: theme.spacing(1),
     },
-  },
-  bootstrapPopper: arrowGenerator(theme.palette.common.black),
-  bootstrapTooltip: {
-    backgroundColor: theme.palette.common.black,
-  },
-  bootstrapPlacementLeft: {
-    margin: '0 8px',
-  },
-  bootstrapPlacementRight: {
-    margin: '0 8px',
-  },
-  bootstrapPlacementTop: {
-    margin: '8px 0',
-  },
-  bootstrapPlacementBottom: {
-    margin: '8px 0',
-  },
-  htmlPopper: arrowGenerator('#dadde9'),
-  htmlTooltip: {
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
-    border: '1px solid #dadde9',
-    '& b': {
-      fontWeight: theme.typography.fontWeightMedium,
+    lightTooltip: {
+      backgroundColor: theme.palette.common.white,
+      color: 'rgba(0, 0, 0, 0.87)',
+      boxShadow: theme.shadows[1],
+      fontSize: 11,
     },
-  },
-}));
+    arrowPopper: arrowGenerator(theme.palette.grey[700]),
+    arrow: {
+      position: 'absolute',
+      fontSize: 6,
+      width: '3em',
+      height: '3em',
+      '&::before': {
+        content: '""',
+        margin: 'auto',
+        display: 'block',
+        width: 0,
+        height: 0,
+        borderStyle: 'solid',
+      },
+    },
+    bootstrapPopper: arrowGenerator(theme.palette.common.black),
+    bootstrapTooltip: {
+      backgroundColor: theme.palette.common.black,
+    },
+    bootstrapPlacementLeft: {
+      margin: '0 8px',
+    },
+    bootstrapPlacementRight: {
+      margin: '0 8px',
+    },
+    bootstrapPlacementTop: {
+      margin: '8px 0',
+    },
+    bootstrapPlacementBottom: {
+      margin: '8px 0',
+    },
+    htmlPopper: arrowGenerator('#dadde9'),
+    htmlTooltip: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 220,
+      fontSize: theme.typography.pxToRem(12),
+      border: '1px solid #dadde9',
+      '& b': {
+        fontWeight: theme.typography.fontWeightMedium,
+      },
+    },
+  }),
+);
 
 function CustomizedTooltips() {
   const classes = useStyles();

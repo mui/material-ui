@@ -4,17 +4,18 @@ import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/s
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = (theme: Theme) => createStyles({
-  button: {
-    margin: theme.spacing(1),
-  },
-  customWidth: {
-    maxWidth: 500,
-  },
-  noMaxWidth: {
-    maxWidth: 'none',
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    button: {
+      margin: theme.spacing(1),
+    },
+    customWidth: {
+      maxWidth: 500,
+    },
+    noMaxWidth: {
+      maxWidth: 'none',
+    },
+  });
 
 const longText = `
 Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus.
