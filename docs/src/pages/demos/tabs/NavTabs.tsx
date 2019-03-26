@@ -29,7 +29,13 @@ interface LinkTabProps {
 }
 
 function LinkTab(props: LinkTabProps) {
-  return <Tab component="a" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => event.preventDefault()} {...props} />;
+  return (
+    <Tab
+      component="a"
+      onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => event.preventDefault()}
+      {...props}
+    />
+  );
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
