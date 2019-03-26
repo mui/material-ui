@@ -1,24 +1,31 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import FormGroup from './FormGroup';
 
 describe('<FormGroup />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<FormGroup />);
   });
 
-  it('should render a div with the root and user classes', () => {
-    const wrapper = shallow(<FormGroup className="woofFormGroup" />);
-
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woofFormGroup'), true);
-  });
+  describeConformance(<FormGroup />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render a div with a div child', () => {
     const wrapper = shallow(
