@@ -1,6 +1,7 @@
 import React from 'react';
 import { SheetsRegistry } from 'jss';
 import StylesProvider from '../StylesProvider';
+import createGenerateClassName from '../createGenerateClassName';
 
 class ServerStyleSheets {
   constructor(options = {}) {
@@ -12,10 +13,13 @@ class ServerStyleSheets {
     const sheetsManager = new Map();
     // This is needed in order to inject the critical CSS.
     this.sheetsRegistry = new SheetsRegistry();
+    // A new class name generator
+    const generateClassName = createGenerateClassName();
 
     return (
       <StylesProvider
         sheetsManager={sheetsManager}
+        serverGenerateClassName={generateClassName}
         sheetsRegistry={this.sheetsRegistry}
         sheetsCache={this.options.sheetsCache}
         {...options}
@@ -26,7 +30,7 @@ class ServerStyleSheets {
   }
 
   toString() {
-    return this.sheetsRegistry.toString();
+    return this.sheetsRegistry ? this.sheetsRegistry.toString() : '';
   }
 
   getStyleElement(props) {

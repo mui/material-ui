@@ -71,7 +71,7 @@ function attach({ state, theme, stylesOptions, stylesCreator, name }, props) {
     theme,
     flip: typeof stylesOptions.flip === 'boolean' ? stylesOptions.flip : theme.direction === 'rtl',
   };
-  options.generateId = options.generateClassName;
+  options.generateId = options.serverGenerateClassName || options.generateClassName;
 
   const sheetsRegistry = stylesOptions.sheetsRegistry;
 

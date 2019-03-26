@@ -32,12 +32,7 @@ export const StylesContext = React.createContext(defaultOptions);
 let injectFirstNode;
 
 function StylesProvider(props) {
-  const {
-    children,
-    generateClassName: generateClassNameProp,
-    injectFirst,
-    ...localOptions
-  } = props;
+  const { children, injectFirst, ...localOptions } = props;
 
   const outerOptions = React.useContext(StylesContext);
   const context = { ...outerOptions, ...localOptions };
@@ -46,10 +41,6 @@ function StylesProvider(props) {
     typeof window !== 'undefined' || context.sheetsManager,
     'Material-UI: you need to use the ServerStyleSheets API when rendering on the server.',
   );
-
-  if (generateClassNameProp) {
-    context.generateClassName = generateClassNameProp;
-  }
 
   warning(
     !context.jss.options.insertionPoint || !injectFirst,

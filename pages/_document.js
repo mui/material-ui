@@ -33,8 +33,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA-106598593-3';
 
-const sheetsCache = new Map();
-
 class MyDocument extends Document {
   render() {
     const { canonical, url, userLanguage } = this.props;
@@ -127,9 +125,7 @@ MyDocument.getInitialProps = async ctx => {
   // 3. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets({
-    sheetsCache,
-  });
+  const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
   ctx.renderPage = () =>
