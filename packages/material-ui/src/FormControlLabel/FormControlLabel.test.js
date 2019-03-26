@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Checkbox from '../Checkbox';
 import FormControlLabel from './FormControlLabel';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -18,6 +23,14 @@ describe('<FormControlLabel />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({
+    classes,
+    inheritComponent: 'label',
+    mount,
+    refInstanceof: window.HTMLLabelElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render the label text inside an additional element', () => {
     const wrapper = findOutermostIntrinsic(
@@ -74,11 +87,6 @@ describe('<FormControlLabel />', () => {
         true,
       );
     });
-  });
-
-  it('should mount without issue', () => {
-    const wrapper = mount(<FormControlLabel label="Pizza" control={<Checkbox />} />);
-    assert.strictEqual(wrapper.type(), FormControlLabel);
   });
 
   describe('with muiFormControl context', () => {
