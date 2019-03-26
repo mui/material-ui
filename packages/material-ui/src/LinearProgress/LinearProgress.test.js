@@ -1,29 +1,36 @@
 import React from 'react';
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import LinearProgress from './LinearProgress';
 
 describe('<LinearProgress />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<LinearProgress />);
   });
 
-  it('should render a div with the root class', () => {
-    const wrapper = shallow(<LinearProgress />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<LinearProgress className="woofLinearProgress" />);
-    assert.strictEqual(wrapper.hasClass('woofLinearProgress'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<LinearProgress />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render indeterminate variant by default', () => {
     const wrapper = shallow(<LinearProgress />);
