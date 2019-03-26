@@ -19,6 +19,10 @@ describe('<ListSubheader />', () => {
     classes = getClasses(<ListSubheader />);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   describeConformance(<ListSubheader />, () => ({
     classes,
     inheritComponent: 'li',

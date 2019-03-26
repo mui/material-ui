@@ -39,6 +39,10 @@ describe('<MobileStepper />', () => {
     classes = getClasses(<MobileStepper {...defaultProps} />);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   describeConformance(<MobileStepper {...defaultProps} />, () => ({
     classes,
     inheritComponent: Paper,

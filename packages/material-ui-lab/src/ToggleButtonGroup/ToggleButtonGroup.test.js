@@ -23,6 +23,10 @@ describe('<ToggleButtonGroup />', () => {
     );
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   function findToggleButton(wrapper, value) {
     return wrapper
       .find(ToggleButton)

@@ -20,6 +20,10 @@ describe('<Link />', () => {
     classes = getClasses(<Link href="/">Home</Link>);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   describeConformance(<Link href="/">Home</Link>, () => ({
     classes,
     inheritComponent: Typography,

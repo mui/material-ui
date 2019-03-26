@@ -27,6 +27,10 @@ describe('<TableCell />', () => {
     classes = getClasses(<TableCell />);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   describeConformance(<TableCell />, () => ({
     classes,
     inheritComponent: 'td',

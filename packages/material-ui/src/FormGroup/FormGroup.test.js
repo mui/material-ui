@@ -19,6 +19,10 @@ describe('<FormGroup />', () => {
     classes = getClasses(<FormGroup />);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   describeConformance(<FormGroup />, () => ({
     classes,
     inheritComponent: 'div',
