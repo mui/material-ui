@@ -7,6 +7,7 @@ declare const Tab: ExtendButtonBase<{
     disabled?: boolean;
     fullWidth?: boolean;
     icon?: string | React.ReactElement;
+    indicator?: React.ReactNode;
     value?: any;
     label?: React.ReactNode;
     onChange?: (event: React.ChangeEvent<{ checked: boolean }>, value: any) => void;
@@ -14,6 +15,7 @@ declare const Tab: ExtendButtonBase<{
     selected?: boolean;
     style?: React.CSSProperties;
     textColor?: string | 'secondary' | 'primary' | 'inherit';
+    wrapped?: boolean;
   };
   defaultComponent: 'div';
   classKey: TabClassKey;
