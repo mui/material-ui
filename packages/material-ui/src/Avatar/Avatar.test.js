@@ -1,17 +1,36 @@
 import React from 'react';
 import { assert } from 'chai';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Avatar from './Avatar';
 
 describe('<Avatar />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Avatar />);
   });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(<Avatar />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'span',
+  }));
 
   describe('image avatar', () => {
     it('should render a div containing an img', () => {
