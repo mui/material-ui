@@ -119,6 +119,7 @@ const fullSuite = {
  * @property {string} classes - `classes` of the component provided by `@material-ui/styles`
  * @property {string} inheritComponent - The element type that receives spread props.
  * @property {function} mount - Should be a return value from createMount
+ * @property {string[]?} only - If specified only run the tests listed
  * @property {boolean} refInstanceof - `ref` will be an instanceof this constructor.
  * @property {string?} testComponentPropWith - The host component that should be rendered instead.
  */
@@ -132,10 +133,13 @@ const fullSuite = {
  *
  */
 export default function describeConformance(minimalElement, getOptions) {
+  const { only = Object.keys(fullSuite) } = getOptions();
   describe('Material-UI component API', () => {
-    Object.keys(fullSuite).forEach(testKey => {
-      const test = fullSuite[testKey];
-      test(minimalElement, getOptions);
-    });
+    Object.keys(fullSuite)
+      .filter(testKey => only.indexOf(testKey) !== -1)
+      .forEach(testKey => {
+        const test = fullSuite[testKey];
+        test(minimalElement, getOptions);
+      });
   });
 }
