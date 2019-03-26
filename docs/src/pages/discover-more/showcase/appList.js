@@ -682,6 +682,14 @@ const appList = [
     stars: 121,
     dateAdded: '2019-03-25',
   },
+  {
+    title: 'Learnseeker',
+    description:
+      'A data driven 1-1 tuition matching platform. ' +
+      'Incubated at the National University of Singapore.',
+    link: 'https://learnseeker.sg/',
+    image: 'learnseeker.png',
+  },
 ];
 
 export default appList;
