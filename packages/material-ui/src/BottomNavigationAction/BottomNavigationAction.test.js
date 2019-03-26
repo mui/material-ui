@@ -1,7 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 import BottomNavigationAction from './BottomNavigationAction';
@@ -16,21 +21,17 @@ describe('<BottomNavigationAction />', () => {
     classes = getClasses(<BottomNavigationAction />);
   });
 
-  it('should render a ButtonBase', () => {
-    const wrapper = mount(<BottomNavigationAction icon={icon} />);
-    const root = wrapper.find(`.${classes.root}`).first();
-    assert.strictEqual(root.exists(), true);
-    assert.strictEqual(root.type(), ButtonBase);
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the user and root classes', () => {
-    const wrapper = mount(
-      <BottomNavigationAction className="woofBottomNavigationAction" icon={icon} />,
-    );
-    const root = wrapper.find(`.${classes.root}.woofBottomNavigationAction`).first();
-    assert.strictEqual(root.exists(), true);
-    assert.strictEqual(root.hasClass('woofBottomNavigationAction'), true);
-  });
+  describeConformance(<BottomNavigationAction />, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render with the selected and root classes', () => {
     const wrapper = mount(<BottomNavigationAction icon={icon} selected />);
