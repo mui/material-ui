@@ -247,7 +247,49 @@ function App() {
 export default App;
 ```
 
-## Server Side Rendering
+## Server-side rendering
+
+This example returns a string of html and inlines the critical css required right before it’s used:
+
+```jsx
+import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheets } from '@material-ui/styles';
+
+function render() {
+  const sheets = new ServerStyleSheets();
+
+  const html = ReactDOMServer.renderToString(sheets.collect(<App />));
+  const css = sheets.toString();
+
+  return `
+<!doctype html>
+<html>
+  <head>
+    <style id="jss-server-side">${css}</style>
+  </head>
+  <body>
+    <div id="root">${html}</div>
+  </body>
+</html>
+  `;
+}
+```
+
+You can [follow our server side guide](/guides/server-rendering/) for a more detailed example or read the [`ServerStyleSheets`](/css-in-js/api/#serverstylesheets) API documentation.
+
+### Gatsby
+
+We have [an official plugin that](https://github.com/hupe1980/gatsby-plugin-material-ui) enables server-side rendering for @material-ui/styles.
+Refer to the plugin's page for setup and usage instructions.
+
+Refer to [our example](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next/pages/_document.js) for an up-to-date usage example.
+
+### Next.js
+
+You need to have a custom `pages/_document.js`.
+Then [copy the logic](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+
+Refer to [our example](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) for an up-to-date usage example.
 
 ## Class names
 
@@ -382,13 +424,13 @@ header('Content-Security-Policy')
   .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
-If you are using Server Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
+If you are using Server-Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
 
 ```jsx
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheetsRegistry.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheets.toString() } }
 />
 ```
 
