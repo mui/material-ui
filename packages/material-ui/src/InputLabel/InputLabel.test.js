@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import FormControlContext from '../FormControl/FormControlContext';
 import InputLabel from './InputLabel';
+import FormLabel from '../FormLabel';
 
 describe('<InputLabel />', () => {
   let mount;
@@ -18,15 +24,21 @@ describe('<InputLabel />', () => {
     mount.cleanUp();
   });
 
-  it('should render a FormLabel', () => {
+  describeConformance(<InputLabel>Foo</InputLabel>, () => ({
+    classes,
+    inheritComponent: FormLabel,
+    mount,
+    refInstanceof: window.HTMLLabelElement,
+    testComponentPropWith: false,
+  }));
+
+  it('should render a label with text', () => {
     const wrapper = mount(<InputLabel>Foo</InputLabel>);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'label');
-    assert.strictEqual(wrapper.text(), 'Foo');
+    assert.strictEqual(wrapper.find('label').text(), 'Foo');
   });
 
-  it('should have the root and animated classes by default', () => {
+  it('should have the animated class by default', () => {
     const wrapper = mount(<InputLabel>Foo</InputLabel>);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
     assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.animated), true);
   });
 
