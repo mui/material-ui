@@ -1,7 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import BottomNavigationAction from '../BottomNavigationAction';
 import Icon from '../Icon';
 import BottomNavigation from './BottomNavigation';
@@ -26,6 +31,19 @@ describe('<BottomNavigation />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(
+    <BottomNavigation>
+      <BottomNavigationAction label="One" />
+    </BottomNavigation>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: 'span',
+    }),
+  );
+
   it('renders with a null child', () => {
     const wrapper = shallow(
       <BottomNavigation showLabels value={0}>
@@ -35,26 +53,6 @@ describe('<BottomNavigation />', () => {
       </BottomNavigation>,
     );
     assert.strictEqual(wrapper.find(BottomNavigationAction).length, 2);
-  });
-
-  it('should render with the root class', () => {
-    const wrapper = shallow(
-      <BottomNavigation showLabels value={0}>
-        <BottomNavigationAction icon={icon} />
-      </BottomNavigation>,
-    );
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(
-      <BottomNavigation showLabels value={0} className="woofBottomNavigation">
-        <BottomNavigationAction icon={icon} />
-      </BottomNavigation>,
-    );
-    assert.strictEqual(wrapper.hasClass('woofBottomNavigation'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should pass selected prop to children', () => {
