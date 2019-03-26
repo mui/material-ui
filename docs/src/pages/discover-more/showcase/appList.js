@@ -705,6 +705,14 @@ const appList = [
     link: 'https://persona.im/',
     image: 'persona.jpg',
   },
+  {
+    title: 'Learnseeker',
+    description:
+      'A data driven 1-1 tuition matching platform. ' +
+      'Incubated at the National University of Singapore.',
+    link: 'https://learnseeker.sg/',
+    image: 'learnseeker.png',
+  },
 ];
 
 export default appList;
