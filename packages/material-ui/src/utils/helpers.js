@@ -32,11 +32,6 @@ export function findIndex(arr, pred) {
   return -1;
 }
 
-export function find(arr, pred) {
-  const index = findIndex(arr, pred);
-  return index > -1 ? arr[index] : undefined;
-}
-
 /**
  * Safe chained function
  *

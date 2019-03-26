@@ -117,49 +117,35 @@ describe('<RadioGroup />', () => {
 
     it('should focus the selected radio', () => {
       const actionsRef = React.createRef();
-      const zeroRadioOnFocus = spy();
-      const oneRadioOnFocus = spy();
       const twoRadioOnFocus = spy();
-      const threeRadioOnFocus = spy();
 
       mount(
         <RadioGroup actions={actionsRef} value="two">
-          <Radio value="zero" disabled onFocus={zeroRadioOnFocus} />
-          <Radio value="one" onFocus={oneRadioOnFocus} />
+          <Radio value="zero" disabled />
+          <Radio value="one" />
           <Radio value="two" onFocus={twoRadioOnFocus} />
-          <Radio value="three" onFocus={threeRadioOnFocus} />
+          <Radio value="three" />
         </RadioGroup>,
       );
 
       actionsRef.current.focus();
-
-      assert.strictEqual(zeroRadioOnFocus.callCount, 0);
-      assert.strictEqual(oneRadioOnFocus.callCount, 0);
       assert.strictEqual(twoRadioOnFocus.callCount, 1);
-      assert.strictEqual(threeRadioOnFocus.callCount, 0);
     });
 
     it('should focus the non-disabled radio rather than the disabled selected radio', () => {
       const actionsRef = React.createRef();
-      const zeroRadioOnFocus = spy();
-      const oneRadioOnFocus = spy();
-      const twoRadioOnFocus = spy();
       const threeRadioOnFocus = spy();
 
       mount(
         <RadioGroup actions={actionsRef} value="two">
-          <Radio value="zero" disabled onFocus={zeroRadioOnFocus} />
-          <Radio value="one" disabled onFocus={oneRadioOnFocus} />
-          <Radio value="two" disabled onFocus={twoRadioOnFocus} />
+          <Radio value="zero" disabled />
+          <Radio value="one" disabled />
+          <Radio value="two" disabled />
           <Radio value="three" onFocus={threeRadioOnFocus} />
         </RadioGroup>,
       );
 
       actionsRef.current.focus();
-
-      assert.strictEqual(zeroRadioOnFocus.callCount, 0);
-      assert.strictEqual(oneRadioOnFocus.callCount, 0);
-      assert.strictEqual(twoRadioOnFocus.callCount, 0);
       assert.strictEqual(threeRadioOnFocus.callCount, 1);
     });
 

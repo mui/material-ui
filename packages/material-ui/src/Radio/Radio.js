@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
-import { capitalize } from '../utils/helpers';
+import { capitalize, createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -36,8 +36,31 @@ export const styles = theme => ({
   },
 });
 
+export const RadioGroupContext = React.createContext(null);
+
 const Radio = React.forwardRef(function Radio(props, ref) {
-  const { classes, color, ...other } = props;
+  const {
+    checked: checkedProp,
+    classes,
+    color,
+    name: nameProp,
+    onChange: onChangeProp,
+    ...other
+  } = props;
+  const radioGroup = React.useContext(RadioGroupContext);
+
+  let checked = checkedProp;
+  const onChange = createChainedFunction(onChangeProp, radioGroup && radioGroup.onChange);
+  let name = nameProp;
+
+  if (radioGroup) {
+    if (typeof checked === 'undefined') {
+      checked = radioGroup.value === props.value;
+    }
+    if (typeof name === 'undefined') {
+      name = radioGroup.name;
+    }
+  }
 
   return (
     <SwitchBase
@@ -49,6 +72,9 @@ const Radio = React.forwardRef(function Radio(props, ref) {
         checked: classes.checked,
         disabled: classes.disabled,
       }}
+      name={name}
+      checked={checked}
+      onChange={onChange}
       ref={ref}
       {...other}
     />
@@ -97,6 +123,10 @@ Radio.propTypes = {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * Name attribute of the `input` element.
+   */
+  name: PropTypes.string,
   /**
    * Callback fired when the state is changed.
    *
