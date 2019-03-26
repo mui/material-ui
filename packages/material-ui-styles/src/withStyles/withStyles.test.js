@@ -2,7 +2,6 @@ import { assert } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
-import { act } from 'react-dom/test-utils';
 import { Input } from '@material-ui/core';
 import { createMount } from '@material-ui/core/test-utils';
 import { isMuiElement } from '@material-ui/core/utils';
@@ -191,9 +190,7 @@ describe('withStyles', () => {
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-1' });
-      act(() => {
-        wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
-      });
+      wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-2' });
     });

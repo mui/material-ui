@@ -53,16 +53,24 @@ describe('makeStyles', () => {
   it('should accept a classes property', () => {
     const styles = { root: {} };
     const mountWithProps = createGetClasses(styles);
-    const { classes: baseClasses } = mountWithProps();
-    const { classes: extendedClasses } = mountWithProps({ classes: { root: 'h1' } });
+    const output = mountWithProps();
+    const baseClasses = output.classes;
+    output.wrapper.setProps({
+      classes: { root: 'h1' },
+    });
+    const extendedClasses = output.classes;
     assert.strictEqual(extendedClasses.root, `${baseClasses.root} h1`);
   });
 
   it('should ignore undefined property', () => {
     const styles = { root: {} };
     const mountWithProps = createGetClasses(styles);
-    const { classes: baseClasses } = mountWithProps();
-    const { classes: extendedClasses } = mountWithProps({ classes: { root: undefined } });
+    const output = mountWithProps();
+    const baseClasses = output.classes;
+    output.wrapper.setProps({
+      classes: { root: undefined },
+    });
+    const extendedClasses = output.classes;
     assert.strictEqual(extendedClasses.root, baseClasses.root);
   });
 
@@ -78,8 +86,10 @@ describe('makeStyles', () => {
     });
 
     it('should warn if providing a unknown key', () => {
-      const { classes: baseClasses } = mountWithProps();
-      const { classes: extendedClasses } = mountWithProps({ classes: { bar: 'foo' } });
+      const output = mountWithProps();
+      const baseClasses = output.classes;
+      output.wrapper.setProps({ classes: { bar: 'foo' } });
+      const extendedClasses = output.classes;
       assert.deepEqual(extendedClasses, { root: baseClasses.root, bar: 'undefined foo' });
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
@@ -89,7 +99,8 @@ describe('makeStyles', () => {
     });
 
     it('should warn if providing a string', () => {
-      mountWithProps({ classes: 'foo' });
+      const output = mountWithProps();
+      output.wrapper.setProps({ classes: 'foo' });
       assert.strictEqual(consoleErrorMock.callCount() >= 1, true);
       const args = consoleErrorMock.args();
       assert.include(
@@ -99,8 +110,10 @@ describe('makeStyles', () => {
     });
 
     it('should warn if providing a non string', () => {
-      const { classes: baseClasses } = mountWithProps();
-      const { classes: extendedClasses } = mountWithProps({ classes: { root: {} } });
+      const output = mountWithProps();
+      const baseClasses = output.classes;
+      output.wrapper.setProps({ classes: { root: {} } });
+      const extendedClasses = output.classes;
       assert.deepEqual(extendedClasses, { root: `${baseClasses.root} [object Object]` });
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
@@ -148,8 +161,9 @@ describe('makeStyles', () => {
     });
 
     it('should invalidate the cache', () => {
-      const { classes } = mountWithProps();
-      const output = mountWithProps({ classes: { root: 'foo' } });
+      const output = mountWithProps();
+      const classes = output.classes;
+      output.wrapper.setProps({ classes: { root: 'foo' } });
       const classes1 = output.classes;
       assert.deepEqual(classes1, {
         root: `${classes.root} foo`,
@@ -225,9 +239,7 @@ describe('makeStyles', () => {
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-1' });
-      act(() => {
-        wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
-      });
+      wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-2' });
     });
@@ -301,9 +313,7 @@ describe('makeStyles', () => {
         margin: '8px',
         padding: '8px',
       });
-      act(() => {
-        wrapper.setProps({ padding: 4 });
-      });
+      wrapper.setProps({ padding: 4 });
       assert.strictEqual(sheetsRegistry.registry.length, 2);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
       assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'Hook-root-2' });
@@ -369,9 +379,7 @@ describe('makeStyles', () => {
       });
 
       hmr = true;
-      act(() => {
-        wrapper.setProps({});
-      });
+      wrapper.setProps({});
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
         root: { padding: 4 },

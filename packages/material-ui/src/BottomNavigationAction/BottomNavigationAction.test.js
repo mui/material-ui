@@ -33,18 +33,14 @@ describe('<BottomNavigationAction />', () => {
     testComponentPropWith: false,
   }));
 
-  // eslint-disable-next-line mocha/no-exclusive-tests
-  it.only('should render a ButtonBase', () => {
+  it('should render a ButtonBase', () => {
     const wrapper = mount(<BottomNavigationAction icon={icon} />);
     const root = wrapper.find(`.${classes.root}`).first();
     assert.strictEqual(root.exists(), true);
     assert.strictEqual(root.type(), ButtonBase);
-    // remove this and the next test stops working
-    wrapper.unmount();
   });
 
-  // eslint-disable-next-line mocha/no-exclusive-tests
-  it.only('should render with the user and root classes', () => {
+  it('should render with the user and root classes', () => {
     const wrapper = mount(
       <BottomNavigationAction className="woofBottomNavigationAction" icon={icon} />,
     );
