@@ -105,11 +105,7 @@ function testRef(element, getOptions) {
       // TODO use `ref` once `WithStylesTest` is removed
       mount(React.cloneElement(element, { innerRef: ref }));
 
-      assert.instanceOf(
-        ref.current,
-        refInstanceof,
-        `should've attached the ref to to an instance of ${refInstanceof}`,
-      );
+      assert.instanceOf(ref.current, refInstanceof);
     });
   });
 }
