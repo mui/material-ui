@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import {
   createShallow,
   createMount,
+  describeConformance,
   getClasses,
   findOutermostIntrinsic,
 } from '@material-ui/core/test-utils';
@@ -27,25 +28,13 @@ describe('<Tab />', () => {
     mount.cleanUp();
   });
 
-  it('should render with the root class', () => {
-    const wrapper = mount(<Tab textColor="inherit" />);
-    const root = wrapper.find(`.${classes.root}`).first();
-    assert.strictEqual(root.exists(), true);
-    assert.strictEqual(root.type(), ButtonBase);
-  });
-
-  describe('prop: className', () => {
-    it('should render with the user and root classes', () => {
-      const wrapper = mount(<Tab textColor="inherit" className="woofTab" />);
-      assert.strictEqual(
-        wrapper
-          .find(`.${classes.root}`)
-          .first()
-          .hasClass('woofTab'),
-        true,
-      );
-    });
-  });
+  describeConformance(<Tab textColor="inherit" />, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: false,
+  }));
 
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {

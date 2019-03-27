@@ -1,17 +1,24 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import StepButton from './StepButton';
 import StepLabel from '../StepLabel';
 import ButtonBase from '../ButtonBase';
 
 describe('<StepButton />', () => {
+  let classes;
   let shallow;
   let mount;
   const defaultProps = { orientation: 'horizontal' };
 
   before(() => {
+    classes = getClasses(<StepButton />);
     shallow = createShallow({ dive: true });
     mount = createMount();
   });
@@ -20,27 +27,17 @@ describe('<StepButton />', () => {
     mount.cleanUp();
   });
 
-  it('merges user className into the root node', () => {
+  describeConformance(<StepButton {...defaultProps} />, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: false,
+  }));
+
+  it('passes active, completed, disabled to StepLabel', () => {
     const wrapper = shallow(
-      <StepButton className="foo" {...defaultProps}>
-        Hello
-      </StepButton>,
-    );
-
-    assert.include(wrapper.props().className, 'foo');
-  });
-
-  it('should render an ButtonBase with a StepLabel', () => {
-    const wrapper = shallow(<StepButton {...defaultProps}>Step One</StepButton>);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-    const stepLabel = wrapper.find(StepLabel);
-    assert.strictEqual(stepLabel.length, 1);
-    assert.strictEqual(stepLabel.props().children, 'Step One');
-  });
-
-  it('should pass props to StepLabel', () => {
-    const wrapper = shallow(
-      <StepButton active completed disabled label="Step One" {...defaultProps}>
+      <StepButton active completed disabled {...defaultProps}>
         Step One
       </StepButton>,
     );
@@ -48,6 +45,7 @@ describe('<StepButton />', () => {
     assert.strictEqual(stepLabel.props().active, true);
     assert.strictEqual(stepLabel.props().completed, true);
     assert.strictEqual(stepLabel.props().disabled, true);
+    assert.strictEqual(stepLabel.props().children, 'Step One');
   });
 
   it('should pass props to a provided StepLabel', () => {
@@ -62,7 +60,7 @@ describe('<StepButton />', () => {
     assert.strictEqual(stepLabel.props().disabled, true);
   });
 
-  it("should pass disabled prop to a StepLabel's Button", () => {
+  it('should pass disabled prop to the ButtonBase', () => {
     const wrapper = shallow(
       <StepButton disabled {...defaultProps}>
         Step One

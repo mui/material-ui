@@ -22,6 +22,10 @@ describe('<ToggleButton />', () => {
     classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   it('does forward refs', () => {
     testRef(<ToggleButton value="classes">Hello World</ToggleButton>, mount);
   });

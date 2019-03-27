@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import TableBody from './TableBody';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
@@ -10,12 +10,11 @@ describe('<TableBody />', () => {
 
   function mountInTable(node) {
     const wrapper = mount(<table>{node}</table>);
-    return wrapper.childAt(0);
+    return wrapper.find('table').childAt(0);
   }
 
   before(() => {
     mount = createMount();
-
     classes = getClasses(<TableBody />);
   });
 
@@ -23,21 +22,14 @@ describe('<TableBody />', () => {
     mount.cleanUp();
   });
 
-  it('should render a tbody', () => {
-    const wrapper = mountInTable(<TableBody />);
-    assert.strictEqual(wrapper.getDOMNode().nodeName, 'TBODY');
-  });
-
-  it('should render a div', () => {
-    const wrapper = mount(<TableBody component="div">foo</TableBody>);
-    assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
-  });
-
-  it('should render with the user and root class', () => {
-    const wrapper = mountInTable(<TableBody className="woofTableBody" />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofTableBody'), true);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-  });
+  describeConformance(<TableBody />, () => ({
+    classes,
+    inheritComponent: 'tbody',
+    mount: mountInTable,
+    refInstanceof: window.HTMLTableSectionElement,
+    // can't test with custom `component` with `mountInTable`
+    testComponentPropWith: 'tbody',
+  }));
 
   it('should render children', () => {
     const children = <tr className="test" />;
@@ -47,6 +39,7 @@ describe('<TableBody />', () => {
 
   it('should define table.body in the child context', () => {
     let context;
+    // TODO test integration with TableCell
     mountInTable(
       <TableBody>
         <Tablelvl2Context.Consumer>

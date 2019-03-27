@@ -1,38 +1,48 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Toolbar from './Toolbar';
 
 describe('<Toolbar />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Toolbar>foo</Toolbar>);
   });
 
-  it('should render a div', () => {
-    const wrapper = shallow(<Toolbar>foo</Toolbar>);
-    assert.strictEqual(wrapper.name(), 'div');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the user, root and gutters classes', () => {
-    const wrapper = shallow(<Toolbar className="woofToolbar">foo</Toolbar>);
-    assert.strictEqual(wrapper.hasClass('woofToolbar'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.gutters), true);
+  describeConformance(<Toolbar />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+  }));
+
+  it('should render with gutters class', () => {
+    const wrapper = mount(<Toolbar className="woofToolbar">foo</Toolbar>);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.gutters), true);
   });
 
-  it('should disable the gutters', () => {
+  it('can disable the gutters', () => {
     const wrapper = shallow(<Toolbar disableGutters>foo</Toolbar>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.gutters), false);
   });
 
-  it('should condense itself', () => {
+  it('can condense itself', () => {
     const wrapper = shallow(<Toolbar variant="dense">foo</Toolbar>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.dense), true);
   });
 });

@@ -1,13 +1,20 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import ListItemIcon from './ListItemIcon';
 
 describe('<ListItemIcon />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(
       <ListItemIcon>
@@ -15,6 +22,23 @@ describe('<ListItemIcon />', () => {
       </ListItemIcon>,
     );
   });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(
+    <ListItemIcon>
+      <div />
+    </ListItemIcon>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: false,
+    }),
+  );
 
   it('should render a span inside a div', () => {
     const wrapper = shallow(
@@ -24,17 +48,5 @@ describe('<ListItemIcon />', () => {
     );
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.children().name(), 'span');
-  });
-
-  it('should render a div with the user and root classes, but not the children classes', () => {
-    const wrapper = shallow(
-      <ListItemIcon className="foo">
-        <span className="bar" />
-      </ListItemIcon>,
-    );
-    assert.strictEqual(wrapper.hasClass('foo'), true);
-    assert.strictEqual(wrapper.hasClass('bar'), false);
-    assert.strictEqual(wrapper.children().hasClass('bar'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Fade from '../Fade';
 import Modal from '../Modal';
@@ -33,10 +33,18 @@ describe('<Dialog />', () => {
     mount.cleanUp();
   });
 
-  it('should render a Modal', () => {
-    const wrapper = mount(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.find(Modal).exists(), true);
-  });
+  describeConformance(
+    <Dialog {...defaultProps} open>
+      foo
+    </Dialog>,
+    () => ({
+      classes,
+      inheritComponent: Modal,
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: false,
+    }),
+  );
 
   it('should render a Modal with TransitionComponent', () => {
     const Transition = () => <div tabIndex={-1} />;
@@ -81,16 +89,6 @@ describe('<Dialog />', () => {
     );
     const modal = wrapper.find(Modal);
     assert.strictEqual(modal.props()['data-my-prop'], 'woofDialog');
-  });
-
-  it('should render with the user classes on the root node', () => {
-    const wrapper = mount(
-      <Dialog {...defaultProps} className="woofDialog">
-        foo
-      </Dialog>,
-    );
-    const modal = wrapper.find(Modal);
-    assert.strictEqual(modal.hasClass('woofDialog'), true);
   });
 
   it('should fade down and make the transition appear on first mount', () => {

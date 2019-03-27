@@ -1,26 +1,35 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Divider from './Divider';
 
 describe('<Divider />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Divider />);
   });
 
-  it('should render a hr', () => {
-    const wrapper = shallow(<Divider />);
-    assert.strictEqual(wrapper.name(), 'hr');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the root and default class', () => {
-    const wrapper = shallow(<Divider />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<Divider />, () => ({
+    classes,
+    inheritComponent: 'hr',
+    mount,
+    refInstanceof: window.HTMLHRElement,
+    testComponentPropWith: 'div',
+  }));
 
   it('should set the absolute class', () => {
     const wrapper = shallow(<Divider absolute />);

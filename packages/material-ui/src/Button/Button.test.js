@@ -1,26 +1,40 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createRender, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  createRender,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
 describe('<Button />', () => {
+  let mount;
   let shallow;
   let render;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     render = createRender();
     classes = getClasses(<Button>Hello World</Button>);
   });
 
-  it('should render a <ButtonBase> element', () => {
-    const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-    assert.strictEqual(wrapper.props().type, 'button');
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<Button>Conformance?</Button>, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: false,
+  }));
 
   it('should render with the root & text classes but no others', () => {
     const wrapper = shallow(<Button>Hello World</Button>);
@@ -36,12 +50,6 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
     assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
     assert.strictEqual(wrapper.hasClass(classes.sizeLarge), false);
-  });
-
-  it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<Button className="test-class-name">Hello World</Button>);
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render a text primary button', () => {

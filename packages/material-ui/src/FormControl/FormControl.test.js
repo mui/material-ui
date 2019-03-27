@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
@@ -27,15 +32,15 @@ describe('<FormControl />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(<FormControl />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'fieldset',
+  }));
+
   describe('initial state', () => {
-    it('should render a div with the root and user classes', () => {
-      const wrapper = mount(<FormControl className="woofFormControl" />);
-
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofFormControl'), true);
-    });
-
     it('should have no margin', () => {
       const wrapper = mount(<FormControl />);
 

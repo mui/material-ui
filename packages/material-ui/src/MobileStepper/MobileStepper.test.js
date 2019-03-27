@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import Paper from '../Paper';
@@ -9,6 +14,7 @@ import LinearProgress from '../LinearProgress';
 import MobileStepper from './MobileStepper';
 
 describe('<MobileStepper />', () => {
+  let mount;
   let shallow;
   let classes;
   const defaultProps = {
@@ -28,25 +34,26 @@ describe('<MobileStepper />', () => {
   };
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<MobileStepper {...defaultProps} />);
   });
 
-  it('should render a Paper component', () => {
-    const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    assert.strictEqual(wrapper.type(), Paper);
-    assert.strictEqual(wrapper.props().elevation, 0);
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the root class', () => {
-    const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<MobileStepper {...defaultProps} />, () => ({
+    classes,
+    inheritComponent: Paper,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
-  it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<MobileStepper className="test-class-name" {...defaultProps} />);
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  it('should render a Paper with 0 elevation', () => {
+    const wrapper = mount(<MobileStepper {...defaultProps} />);
+    assert.strictEqual(wrapper.find(Paper).props().elevation, 0);
   });
 
   it('should render with the bottom class if position prop is set to bottom', () => {

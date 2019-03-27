@@ -1,37 +1,44 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Typography from './Typography';
 
 describe('<Typography />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Typography />);
   });
 
-  it('should render the text', () => {
-    const wrapper = shallow(<Typography>Hello</Typography>);
-    assert.strictEqual(wrapper.childAt(0).equals('Hello'), true);
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should spread props', () => {
-    const wrapper = shallow(<Typography data-test="hello">Hello</Typography>);
-    assert.strictEqual(wrapper.props()['data-test'], 'hello');
+  describeConformance(<Typography />, () => ({
+    classes,
+    inheritComponent: 'p',
+    mount,
+    refInstanceof: window.HTMLParagraphElement,
+  }));
+
+  it('should render the text', () => {
+    const wrapper = shallow(<Typography>Hello</Typography>);
+    assert.strictEqual(wrapper.text(), 'Hello');
   });
 
   it('should render body2 root by default', () => {
     const wrapper = shallow(<Typography>Hello</Typography>);
     assert.strictEqual(wrapper.hasClass(classes.body2), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should merge user classes', () => {
-    const wrapper = shallow(<Typography className="woofTypography">Hello</Typography>);
-    assert.strictEqual(wrapper.hasClass(classes.body2), true);
-    assert.strictEqual(wrapper.hasClass('woofTypography'), true);
   });
 
   it('should center text', () => {

@@ -1,27 +1,34 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import ListSubheader from './ListSubheader';
 
 describe('<ListSubheader />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<ListSubheader />);
   });
 
-  it('should render a li', () => {
-    const wrapper = shallow(<ListSubheader />);
-    assert.strictEqual(wrapper.name(), 'li');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ListSubheader className="woofListSubheader" />);
-    assert.strictEqual(wrapper.hasClass('woofListSubheader'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<ListSubheader />, () => ({
+    classes,
+    inheritComponent: 'li',
+    mount,
+    refInstanceof: window.HTMLLIElement,
+  }));
 
   it('should display primary color', () => {
     const wrapper = shallow(<ListSubheader color="primary" />);

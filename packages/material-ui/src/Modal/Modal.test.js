@@ -3,7 +3,12 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  findOutermostIntrinsic,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Fade from '../Fade';
 import Portal from '../Portal';
 import Backdrop from '../Backdrop';
@@ -31,6 +36,19 @@ describe('<Modal />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(
+    <Modal open>
+      <div />
+    </Modal>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: false,
+    }),
+  );
 
   describe('prop: open', () => {
     it('should not render the children by default', () => {

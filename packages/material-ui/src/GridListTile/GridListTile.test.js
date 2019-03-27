@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import { act } from 'react-dom/test-utils';
 import { setRef } from '../utils/reactHelpers';
 import GridListTile from './GridListTile';
@@ -19,31 +19,19 @@ describe('<GridListTile />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(<GridListTile />, () => ({
+    classes,
+    inheritComponent: 'li',
+    mount,
+    refInstanceof: window.HTMLLIElement,
+    testComponentPropWith: 'div',
+  }));
+
   const tileData = {
     img: 'images/grid-list/00-52-29-429_640.jpg',
     title: 'Breakfast',
     author: 'jill111',
   };
-
-  it('should render a li', () => {
-    const wrapper = mount(
-      <GridListTile>
-        <img src={tileData.img} alt="foo" />
-      </GridListTile>,
-    );
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'li');
-  });
-
-  describe('prop: component', () => {
-    it('controls the root host node', () => {
-      const wrapper = mount(
-        <GridListTile component="div">
-          <img src={tileData.img} alt="foo" />
-        </GridListTile>,
-      );
-      assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
-    });
-  });
 
   describe('prop: children', () => {
     it('should render children by default', () => {
@@ -57,15 +45,6 @@ describe('<GridListTile />', () => {
       const children = <div />;
       const wrapper = mount(<GridListTile>{children}</GridListTile>);
       assert.strictEqual(wrapper.containsMatchingElement(children), true);
-    });
-  });
-
-  describe('prop: className', () => {
-    it('should renders className', () => {
-      const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = mount(<GridListTile className="foo">{children}</GridListTile>);
-
-      assert.strictEqual(wrapper.hasClass('foo'), true);
     });
   });
 

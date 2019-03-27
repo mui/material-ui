@@ -1,21 +1,31 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
-import Input from '../Input';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import FormControl from '../FormControl';
+import Input from '../Input';
 import OutlinedInput from '../OutlinedInput';
 import TextField from './TextField';
 
 describe('<TextField />', () => {
+  let classes;
   let mount;
 
   before(() => {
+    classes = getClasses(<TextField />);
     mount = createMount();
   });
 
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<TextField />, () => ({
+    classes,
+    inheritComponent: FormControl,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   describe('mount', () => {
     let wrapper;
@@ -25,18 +35,6 @@ describe('<TextField />', () => {
     });
 
     describe('structure', () => {
-      it('should be a FormControl', () => {
-        wrapper.setProps({ className: 'foo' });
-        const formControl = wrapper.find(FormControl);
-        assert.strictEqual(formControl.exists(), true);
-        assert.strictEqual(formControl.hasClass('foo'), true);
-      });
-
-      it('should pass margin to the FormControl', () => {
-        wrapper.setProps({ margin: 'normal' });
-        assert.strictEqual(wrapper.find(FormControl).props().margin, 'normal');
-      });
-
       it('should have an input as the only child', () => {
         assert.strictEqual(wrapper.find(Input).length, 1);
       });

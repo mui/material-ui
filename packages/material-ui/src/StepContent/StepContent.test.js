@@ -1,10 +1,16 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Collapse from '../Collapse';
 import StepContent from './StepContent';
 
 describe('<StepContent />', () => {
+  let classes;
   let shallow;
   let mount;
   const defaultProps = {
@@ -12,6 +18,7 @@ describe('<StepContent />', () => {
   };
 
   before(() => {
+    classes = getClasses(<StepContent />);
     shallow = createShallow({ dive: true });
     mount = createMount();
   });
@@ -20,16 +27,18 @@ describe('<StepContent />', () => {
     mount.cleanUp();
   });
 
-  it('renders a div', () => {
-    const wrapper = shallow(<StepContent {...defaultProps}>Here is the content</StepContent>);
-    assert.strictEqual(wrapper.type(), 'div');
-  });
+  describeConformance(<StepContent {...defaultProps} />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   it('merges styles and other props into the root node', () => {
     const wrapper = shallow(
       <StepContent
         style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
-        data-role="Tabpanel"
         {...defaultProps}
       >
         Lorem ipsum
@@ -39,7 +48,6 @@ describe('<StepContent />', () => {
     assert.strictEqual(props.style.paddingRight, 200);
     assert.strictEqual(props.style.color, 'purple');
     assert.strictEqual(props.style.border, '1px solid tomato');
-    assert.strictEqual(props['data-role'], 'Tabpanel');
   });
 
   it('renders children inside an Collapse component', () => {

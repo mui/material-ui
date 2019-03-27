@@ -6,7 +6,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import {
   createMount,
   createRender,
-  findOutermostIntrinsic,
+  describeConformance,
   getClasses,
 } from '@material-ui/core/test-utils';
 import Tab from '../Tab';
@@ -61,17 +61,12 @@ describe('<Tabs />', () => {
     mount.cleanUp();
   });
 
-  it('should render with the root class', () => {
-    const wrapper = mount(
-      <Tabs width="md" onChange={noop} value={0}>
-        <Tab />
-        <Tab />
-      </Tabs>,
-    );
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.type(), 'div');
-    assert.strictEqual(root.hasClass(classes.root), true);
-  });
+  describeConformance(<Tabs onChange={noop} value={0} />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+  }));
 
   describe('warnings', () => {
     before(() => {
@@ -115,20 +110,6 @@ describe('<Tabs />', () => {
         'Should be a function.',
       );
       tabsActions.updateIndicator();
-    });
-  });
-
-  describe('prop: className', () => {
-    it('should render with the user and root classes', () => {
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} className="woofTabs">
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-      const root = findOutermostIntrinsic(wrapper);
-      assert.strictEqual(root.hasClass('woofTabs'), true);
-      assert.strictEqual(root.hasClass(classes.root), true);
     });
   });
 

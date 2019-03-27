@@ -1,13 +1,20 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Step from './Step';
 
 describe('<Step />', () => {
+  let classes;
   let shallow;
   let mount;
 
   before(() => {
+    classes = getClasses(<Step />);
     shallow = createShallow({ dive: true });
     mount = createMount();
   });
@@ -15,6 +22,14 @@ describe('<Step />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<Step />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   it('merges styles and other props into the root node', () => {
     const wrapper = shallow(
