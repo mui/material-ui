@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps } from '..';
 
 export interface ContainerProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ContainerClassKey> {

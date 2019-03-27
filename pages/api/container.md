@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/Container/Container.js
+filename: /packages/material-ui/src/Container/Container.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/Container/Container.js
 <p class="description">The API documentation of the Container React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Container from '@material-ui/lab/Container';
+import Container from '@material-ui/core/Container';
 ```
 
 
@@ -40,7 +40,7 @@ This property accepts the following keys:
 - `maxWidthXl`
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/Container/Container.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Container/Container.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
@@ -48,5 +48,5 @@ you need to use the following style sheet name: `MuiContainer`.
 
 ## Demos
 
-- [Layout](/lab/layout/)
+- [Layout](/layout/layout/)
 
