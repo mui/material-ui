@@ -6,7 +6,8 @@ export interface CardMediaProps
   alt?: string;
   component?: React.ElementType<CardMediaProps>;
   image?: string;
-  src?: string;
+  src?: string;    
+  height?: string;
 }
 
 export type CardMediaClassKey = 'root' | 'media';
