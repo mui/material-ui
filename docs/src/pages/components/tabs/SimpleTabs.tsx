@@ -6,19 +6,21 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-interface TabContainerProps {
+interface TabPanelProps {
   children?: React.ReactNode;
 }
 
-function TabContainer(props: TabContainerProps) {
+function TabPanel(props: TabPanelProps) {
+  const { children, ...other } = props;
+
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
+    <Typography component="div" role="tabpanel" style={{ padding: 8 * 3 }} {...other}>
+      {children}
     </Typography>
   );
 }
 
-TabContainer.propTypes = {
+TabPanel.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
@@ -41,16 +43,22 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" aria-label="Simple tabs example">
         <Tabs value={value} onChange={handleChange}>
-          <Tab label="Item One" />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
+          <Tab label="Item One" id="simple-tab-1" aria-controls="simple-tabpanel-1" />
+          <Tab label="Item Two" id="simple-tab-2" aria-controls="simple-tabpanel-2" />
+          <Tab label="Item Three" id="simple-tab-3" aria-controls="simple-tabpanel-3" />
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer>Item One</TabContainer>}
-      {value === 1 && <TabContainer>Item Two</TabContainer>}
-      {value === 2 && <TabContainer>Item Three</TabContainer>}
+      <TabPanel hidden={value !== 0} id="simple-tabpanel-1" aria-labelledby="simple-tab-1">
+        Item One
+      </TabPanel>
+      <TabPanel hidden={value !== 1} id="simple-tabpanel-2" aria-labelledby="simple-tab-2">
+        Item Two
+      </TabPanel>
+      <TabPanel hidden={value !== 2} id="simple-tabpanel-3" aria-labelledby="simple-tab-3">
+        Item Three
+      </TabPanel>
     </div>
   );
 }
