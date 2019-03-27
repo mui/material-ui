@@ -1,1 +1,1 @@
-export { default, RadioGroupContext } from './Radio';
+export { default } from './Radio';

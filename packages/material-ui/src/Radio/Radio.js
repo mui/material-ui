@@ -6,6 +6,7 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import { capitalize, createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
+import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -35,8 +36,6 @@ export const styles = theme => ({
     },
   },
 });
-
-export const RadioGroupContext = React.createContext(null);
 
 const Radio = React.forwardRef(function Radio(props, ref) {
   const {

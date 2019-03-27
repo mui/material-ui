@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import FormGroup from '../FormGroup';
 import { setRef } from '../utils/reactHelpers';
-import { RadioGroupContext } from '../Radio';
+import RadioGroupContext from './RadioGroupContext';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const { actions, children, name, value: valueProp, onChange, ...other } = props;
