@@ -159,7 +159,7 @@ describe('<Menu />', () => {
         <div />
       </Menu>,
     );
-    const popover = wrapper.find('Popover');
+    const popover = wrapper.find(Popover);
     assert.strictEqual(popover.props().open, true);
     const menuEl = document.querySelector('[data-mui-test="Menu"]');
     assert.strictEqual(document.activeElement, menuEl && menuEl.firstChild);
@@ -167,12 +167,12 @@ describe('<Menu />', () => {
 
   it('should call props.onEntering with element if exists', () => {
     const onEnteringSpy = spy();
-    const wrapper = mount(<Menu {...defaultProps} classes={classes} onEntering={onEnteringSpy} />);
-    const instance = wrapper.find('Menu').instance();
+    const wrapper = mount(<Menu {...defaultProps} onEntering={onEnteringSpy} />);
+    const popover = wrapper.find(Popover);
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    instance.handleEntering(elementForHandleEnter);
+    popover.props().onEntering(elementForHandleEnter);
     assert.strictEqual(onEnteringSpy.callCount, 1);
     assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
   });
@@ -180,20 +180,28 @@ describe('<Menu />', () => {
   it('should call props.onEntering, disableAutoFocusItem', () => {
     const onEnteringSpy = spy();
     const wrapper = mount(
-      <Menu disableAutoFocusItem {...defaultProps} classes={classes} onEntering={onEnteringSpy} />,
+      <Menu disableAutoFocusItem {...defaultProps} onEntering={onEnteringSpy} />,
     );
-    const instance = wrapper.find('Menu').instance();
+    const popover = wrapper.find(Popover);
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    instance.handleEntering(elementForHandleEnter);
+    popover.props().onEntering(elementForHandleEnter);
     assert.strictEqual(onEnteringSpy.callCount, 1);
     assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
   });
 
-  it('call handleListKeyDown without onClose prop', () => {
-    const wrapper = mount(<Menu {...defaultProps} />);
-    const instance = wrapper.find('Menu').instance();
-    instance.handleListKeyDown({ key: 'Tab', preventDefault: () => {} });
+  it('should call onClose on tab', () => {
+    const onCloseSpy = spy();
+    const wrapper = mount(
+      <Menu {...defaultProps} open onClose={onCloseSpy}>
+        <span>hello</span>
+      </Menu>,
+    );
+    wrapper.find('span').simulate('keyDown', {
+      key: 'Tab',
+    });
+    assert.strictEqual(onCloseSpy.callCount, 1);
+    assert.strictEqual(onCloseSpy.args[0][1], 'tabKeyDown');
   });
 });

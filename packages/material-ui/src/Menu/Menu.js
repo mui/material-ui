@@ -42,19 +42,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     theme,
     ...other
   } = props;
-  const menuListActionsRef = React.useRef({
-    focus: () => {},
-  });
-
-  const focus = () => {
-    menuListActionsRef.current.focus();
-  };
-
-  React.useEffect(() => {
-    if (open && !disableAutoFocusItem) {
-      focus();
-    }
-  }, [open, disableAutoFocusItem]);
+  const menuListActionsRef = React.useRef();
 
   const getContentAnchorEl = () => {
     return menuListActionsRef.current.getContentAnchorEl();
