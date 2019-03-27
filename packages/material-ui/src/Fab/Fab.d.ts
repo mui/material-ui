@@ -10,7 +10,7 @@ declare const Fab: ExtendButtonBase<{
     disableRipple?: boolean;
     href?: string;
     size?: 'small' | 'medium' | 'large';
-    type?: string;
+    type?: 'submit' | 'reset' | 'button';
     variant?: 'round' | 'extended';
   };
   defaultComponent: 'button';
