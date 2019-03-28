@@ -32,9 +32,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-export interface Props extends WithStyles<typeof styles> {}
-
-class MuiVirtualizedTable extends React.PureComponent<Props> {
+class MuiVirtualizedTable extends React.PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     columns: PropTypes.arrayOf(
@@ -61,7 +59,7 @@ class MuiVirtualizedTable extends React.PureComponent<Props> {
       classes,
       rowClassName,
       onRowClick,
-    }: { rowClassName: string; onRowClick: (event: Event) => void } = this.props;
+    } = this.props;
 
     return clsx(classes.tableRow, classes.flexContainer, rowClassName, {
       [classes.tableRowHover]: index !== -1 && onRowClick != null,
