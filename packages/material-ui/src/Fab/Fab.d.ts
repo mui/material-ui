@@ -10,7 +10,7 @@ export interface FabProps extends StandardProps<ButtonBaseProps, FabClassKey, 'c
   disableRipple?: boolean;
   href?: string;
   size?: 'small' | 'medium' | 'large';
-  type?: string;
+  type?: 'submit' | 'reset' | 'button';
   variant?: 'round' | 'extended';
 }
 
