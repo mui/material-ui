@@ -5,6 +5,8 @@
 
 Big thanks to the 11 contributors who made this release possible!
 
+This release fixes an important regression with TypeScript: https://github.com/mui-org/material-ui/issues/15076.
+
 ### `@material-ui/core@v3.9.3`
 
 - [Select] Open select when focused with enter (#14452) @oknechirik
