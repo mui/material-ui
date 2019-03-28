@@ -26,10 +26,8 @@ function processQueue(
   queue: SnackbarMessage[],
   setState: (value: React.SetStateAction<State>) => void,
 ) {
-  console.log('queue', queue);
   if (queue.length > 0) {
     const messageInfo = queue[0];
-    console.log('messageInfo', messageInfo);
     setState({
       open: true,
       queue: queue.slice(1),
@@ -61,7 +59,6 @@ function handleClick(
         messageInfo: state.messageInfo,
       });
     } else {
-      console.log('processQueue');
       processQueue(newQueue, setState);
     }
   };

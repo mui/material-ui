@@ -12,10 +12,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function processQueue(queue, setState) {
-  console.log('queue', queue);
   if (queue.length > 0) {
     const messageInfo = queue[0];
-    console.log('messageInfo', messageInfo);
     setState({
       open: true,
       queue: queue.slice(1),
@@ -43,7 +41,6 @@ function handleClick(message, state, setState) {
         messageInfo: state.messageInfo,
       });
     } else {
-      console.log('processQueue');
       processQueue(newQueue, setState);
     }
   };
