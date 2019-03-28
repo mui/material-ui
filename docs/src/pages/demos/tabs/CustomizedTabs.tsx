@@ -1,9 +1,8 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/styles';
+import { makeStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import { Theme } from '@material-ui/core/styles';
 
 interface StyledTabsProps {
   value: number;
@@ -27,15 +26,17 @@ interface StyledTabProps {
   label: string;
 }
 
-const StyledTab = withStyles((theme: Theme) => ({
-  root: {
-    textTransform: 'initial',
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightRegular,
-    fontSize: theme.typography.pxToRem(15),
-    marginRight: theme.spacing(1),
-  },
-}))((props: StyledTabProps) => <Tab disableRipple {...props} />);
+const StyledTab = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      textTransform: 'initial',
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightRegular,
+      fontSize: theme.typography.pxToRem(15),
+      marginRight: theme.spacing(1),
+    },
+  }),
+)((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
