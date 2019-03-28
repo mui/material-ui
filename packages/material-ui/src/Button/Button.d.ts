@@ -12,7 +12,7 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
   href?: string;
   mini?: boolean;
   size?: 'small' | 'medium' | 'large';
-  type?: string;
+  type?: 'submit' | 'reset' | 'button';
   variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
 }
 
