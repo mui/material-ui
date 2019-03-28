@@ -1,19 +1,29 @@
 import React from 'react';
-
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { makeStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const useStyles = makeStyles(theme => ({
+interface SnackbarMessage {
+  message?: string;
+  key?: number;
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
   close: {
     padding: theme.spacing(0.5),
   },
 }));
 
-class ConsecutiveSnackbars extends React.Component {
-  queue = [];
+interface State {
+  open: boolean;
+  messageInfo?: SnackbarMessage;
+}
+
+class ConsecutiveSnackbars extends React.Component<void, State> {
+  queue: SnackbarMessage[] = [];
 
   constructor() {
     super();
@@ -24,7 +34,7 @@ class ConsecutiveSnackbars extends React.Component {
     };
   }
 
-  handleClick = message => () => {
+  handleClick = (message: string) => () => {
     this.queue.push({
       message,
       key: new Date().getTime(),
@@ -48,7 +58,7 @@ class ConsecutiveSnackbars extends React.Component {
     }
   };
 
-  handleClose = (event, reason) => {
+  handleClose = (event: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
