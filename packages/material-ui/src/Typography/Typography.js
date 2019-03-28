@@ -147,7 +147,7 @@ const Typography = React.forwardRef(function Typography(props, ref) {
         classes.root,
         {
           [classes[variant]]: variant !== 'inherit',
-          [classes[`color${capitalize(color)}`]]: color !== 'default',
+          [classes[`color${capitalize(color)}`]]: color !== 'initial',
           [classes.noWrap]: noWrap,
           [classes.gutterBottom]: gutterBottom,
           [classes.paragraph]: paragraph,
@@ -184,13 +184,13 @@ Typography.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf([
-    'default',
-    'error',
+    'initial',
     'inherit',
     'primary',
     'secondary',
     'textPrimary',
     'textSecondary',
+    'error',
   ]),
   /**
    * The component used for the root node.
@@ -249,12 +249,12 @@ Typography.propTypes = {
 
 Typography.defaultProps = {
   align: 'inherit',
-  color: 'default',
+  color: 'initial',
   display: 'initial',
   gutterBottom: false,
   noWrap: false,
   paragraph: false,
-  variant: 'body2',
+  variant: 'body1',
   variantMapping: defaultVariantMapping,
 };
 
