@@ -199,10 +199,27 @@ Popper.propTypes = {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
-      if (!(resolvedAnchorEl instanceof HTMLElement)) {
+      if (resolvedAnchorEl instanceof HTMLElement) {
+        const box = resolvedAnchorEl.getBoundingClientRect();
+
+        if (
+          process.env.NODE_ENV !== 'test' &&
+          box.top === 0 &&
+          box.left === 0 &&
+          box.right === 0 &&
+          box.bottom === 0
+        ) {
+          return new Error(
+            [
+              'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+              'The node element should be visible.',
+            ].join('\n'),
+          );
+        }
+      } else {
         return new Error(
           [
-            'Material-UI: the anchorEl property provided to the component is invalid.',
+            'Material-UI: the `anchorEl` prop provided to the component is invalid.',
             `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );

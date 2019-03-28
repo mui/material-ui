@@ -1,7 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
+import PropTypes from 'prop-types';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Popper from './Popper';
 
@@ -168,5 +170,28 @@ describe('<Popper />', () => {
         .onExited();
       assert.strictEqual(wrapper.state().exited, true);
     });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn if anchorEl is not valid', () => {
+      mount(<Popper {...defaultProps} open anchorEl={null} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(consoleErrorMock.args()[0][0], 'It should be a HTMLElement instance');
+    });
+
+    // it('should warn if anchorEl is not visible', () => {
+    //   mount(<Popper {...defaultProps} open anchorEl={document.createElement('div')} />);
+    //   assert.strictEqual(consoleErrorMock.callCount(), 1);
+    //   assert.include(consoleErrorMock.args()[0][0], 'The node element should be visible');
+    // });
   });
 });
