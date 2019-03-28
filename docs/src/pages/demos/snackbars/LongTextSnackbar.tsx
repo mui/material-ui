@@ -17,7 +17,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-type Props = WithStyles<typeof styles>;
+export type Props = WithStyles<typeof styles>;
 
 function LongTextSnackbar(props: Props) {
   const { classes } = props;

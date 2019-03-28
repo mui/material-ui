@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar, { SnackbarOrigin } from '@material-ui/core/Snackbar';
 
-interface State extends SnackbarOrigin {
+export interface State extends SnackbarOrigin {
   open: boolean;
 }
 

@@ -47,7 +47,7 @@ const useStyles1 = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {
+export interface Props {
   className?: string;
   message?: string;
   onClose?: () => void;

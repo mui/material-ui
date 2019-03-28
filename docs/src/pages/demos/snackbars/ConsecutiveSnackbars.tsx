@@ -1,21 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import React, { SyntheticEvent } from 'react';
+import PropTypes, { number } from 'prop-types';
+import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { string } from 'parsimmon';
 
-const styles = theme => ({
-  close: {
-    padding: theme.spacing(0.5),
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    close: {
+      padding: theme.spacing(0.5),
+    },
+  });
 
-class ConsecutiveSnackbars extends React.Component {
-  queue = [];
+export interface SnackbarMessage {
+  message: string;
+  key: number;
+}
 
-  constructor(props) {
+export type Props = WithStyles<typeof styles>;
+
+export interface State {
+  open: boolean;
+  messageInfo?: SnackbarMessage;
+}
+
+class ConsecutiveSnackbars extends React.Component<Props, State> {
+  queue: SnackbarMessage[] = [];
+
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -23,7 +37,7 @@ class ConsecutiveSnackbars extends React.Component {
     };
   }
 
-  handleClick = message => () => {
+  handleClick = (message: string) => () => {
     this.queue.push({
       message,
       key: new Date().getTime(),
@@ -47,7 +61,7 @@ class ConsecutiveSnackbars extends React.Component {
     }
   };
 
-  handleClose = (event, reason) => {
+  handleClose = (event: SyntheticEvent | MouseEvent, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -60,7 +74,7 @@ class ConsecutiveSnackbars extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { messageInfo = {} } = this.state;
+    const { messageInfo = {} as SnackbarMessage } = this.state;
 
     return (
       <div>
@@ -100,8 +114,8 @@ class ConsecutiveSnackbars extends React.Component {
   }
 }
 
-ConsecutiveSnackbars.propTypes = {
+(ConsecutiveSnackbars as React.ComponentClass<Props>).propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(ConsecutiveSnackbars);

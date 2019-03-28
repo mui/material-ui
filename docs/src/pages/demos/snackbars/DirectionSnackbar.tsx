@@ -20,7 +20,7 @@ function TransitionDown(props: TransitionProps) {
   return <Slide {...props} direction="down" />;
 }
 
-interface State {
+export interface State {
   open: boolean;
   Transition?: React.ComponentType<TransitionProps>;
 }
