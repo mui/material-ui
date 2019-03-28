@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
@@ -32,7 +32,9 @@ const styles = (theme: Theme) =>
     },
   });
 
-class MuiVirtualizedTable extends React.PureComponent {
+export interface Props extends WithStyles<typeof styles> {}
+
+class MuiVirtualizedTable extends React.PureComponent<Props> {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     columns: PropTypes.arrayOf(
@@ -55,7 +57,11 @@ class MuiVirtualizedTable extends React.PureComponent {
   };
 
   getRowClassName = ({ index }: { index: number }) => {
-    const { classes, rowClassName, onRowClick } = this.props;
+    const {
+      classes,
+      rowClassName,
+      onRowClick,
+    }: { rowClassName: string; onRowClick: (event: Event) => void } = this.props;
 
     return clsx(classes.tableRow, classes.flexContainer, rowClassName, {
       [classes.tableRowHover]: index !== -1 && onRowClick != null,
@@ -170,7 +176,14 @@ interface DataRow {
   protein: number;
 }
 
-function createData(id: number, dessert: string, calories: number, fat: number, carbs: number, protein: number) {
+function createData(
+  id: number,
+  dessert: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+): DataRow {
   return { id, dessert, calories, fat, carbs, protein };
 }
 
