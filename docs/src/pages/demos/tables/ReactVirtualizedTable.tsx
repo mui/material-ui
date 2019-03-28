@@ -3,36 +3,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import { AutoSizer, Column, SortDirection, Table } from 'react-virtualized';
 
-const styles = theme => ({
-  flexContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    boxSizing: 'border-box',
-  },
-  tableRow: {
-    cursor: 'pointer',
-  },
-  tableRowHover: {
-    '&:hover': {
-      backgroundColor: theme.palette.grey[200],
+const styles = (theme: Theme) =>
+  createStyles({
+    flexContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      boxSizing: 'border-box',
     },
-  },
-  tableCell: {
-    flex: 1,
-  },
-  noClick: {
-    cursor: 'initial',
-  },
-});
+    tableRow: {
+      cursor: 'pointer',
+    },
+    tableRowHover: {
+      '&:hover': {
+        backgroundColor: theme.palette.grey[200],
+      },
+    },
+    tableCell: {
+      flex: 1,
+    },
+    noClick: {
+      cursor: 'initial',
+    },
+  });
 
 class MuiVirtualizedTable extends React.PureComponent {
-  getRowClassName = ({ index }) => {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    columns: PropTypes.arrayOf(
+      PropTypes.shape({
+        cellContentRenderer: PropTypes.func,
+        dataKey: PropTypes.string.isRequired,
+        width: PropTypes.number.isRequired,
+      }),
+    ).isRequired,
+    headerHeight: PropTypes.number,
+    onRowClick: PropTypes.func,
+    rowClassName: PropTypes.string,
+    rowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+    sort: PropTypes.func,
+  };
+
+  static defaultProps = {
+    headerHeight: 48,
+    rowHeight: 48,
+  };
+
+  getRowClassName = ({ index }: { index: number }) => {
     const { classes, rowClassName, onRowClick } = this.props;
 
     return clsx(classes.tableRow, classes.flexContainer, rowClassName, {
@@ -127,32 +149,11 @@ class MuiVirtualizedTable extends React.PureComponent {
   }
 }
 
-MuiVirtualizedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      cellContentRenderer: PropTypes.func,
-      dataKey: PropTypes.string.isRequired,
-      width: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
-  headerHeight: PropTypes.number,
-  onRowClick: PropTypes.func,
-  rowClassName: PropTypes.string,
-  rowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  sort: PropTypes.func,
-};
-
-MuiVirtualizedTable.defaultProps = {
-  headerHeight: 48,
-  rowHeight: 48,
-};
-
 const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 // ---
 
-const data = [
+const data: Array<[string, number, number, number, number]> = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
   ['Eclair', 262, 16.0, 24, 6.0],
@@ -160,11 +161,20 @@ const data = [
   ['Gingerbread', 356, 16.0, 49, 3.9],
 ];
 
-function createData(id, dessert, calories, fat, carbs, protein) {
+interface DataRow {
+  id: number;
+  dessert: string;
+  calories: number;
+  fat: number;
+  carbs: number;
+  protein: number;
+}
+
+function createData(id: number, dessert: string, calories: number, fat: number, carbs: number, protein: number) {
   return { id, dessert, calories, fat, carbs, protein };
 }
 
-const rows = [];
+const rows: DataRow[] = [];
 
 for (let i = 0; i < 200; i += 1) {
   const randomSelection = data[Math.floor(Math.random() * data.length)];
@@ -176,8 +186,8 @@ function ReactVirtualizedTable() {
     <Paper style={{ height: 400, width: '100%' }}>
       <VirtualizedTable
         rowCount={rows.length}
-        rowGetter={({ index }) => rows[index]}
-        onRowClick={event => console.log(event)}
+        rowGetter={({ index }: { index: number }) => rows[index]}
+        onRowClick={(event: Event) => console.log(event)}
         columns={[
           {
             width: 200,
