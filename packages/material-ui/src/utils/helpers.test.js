@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { capitalize, contains, find } from './helpers';
+import { capitalize, contains } from './helpers';
 
 describe('utils/helpers.js', () => {
   describe('capitalize', () => {
@@ -11,16 +11,6 @@ describe('utils/helpers.js', () => {
       assert.throw(() => {
         capitalize();
       }, /expects a string argument/);
-    });
-  });
-
-  describe('find(arr, pred)', () => {
-    it('should search for an item in an array containing the predicate', () => {
-      const array = ['woofHelpers', 'meow', { foo: 'bar' }, { woofHelpers: 'meow' }];
-      assert.strictEqual(find(array, 'lol'), undefined);
-      assert.strictEqual(find(array, 'woofHelpers'), array[0]);
-      assert.strictEqual(find(array, { foo: 'bar' }), array[2]);
-      assert.strictEqual(find(array, n => n && n.woofHelpers === 'meow'), array[3]);
     });
   });
 
