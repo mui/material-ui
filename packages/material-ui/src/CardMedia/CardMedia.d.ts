@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface CardMediaProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardMediaClassKey> {
+  extends StandardProps<React.AllHTMLAttributes<HTMLDivElement>, CardMediaClassKey> {
   component?: React.ElementType<CardMediaProps>;
   image?: string;
   src?: string;
