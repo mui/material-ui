@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
-import withForwardedRef from '../utils/withForwardedRef';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
 
@@ -29,92 +28,80 @@ export const styles = {
   },
 };
 
-class Menu extends React.Component {
-  menuListActionsRef = React.createRef();
+const Menu = React.forwardRef(function Menu(props, ref) {
+  const {
+    children,
+    classes,
+    disableAutoFocusItem,
+    MenuListProps,
+    onClose,
+    onEntering,
+    open,
+    PaperProps = {},
+    PopoverClasses,
+    theme,
+    ...other
+  } = props;
+  const menuListActionsRef = React.useRef();
 
-  componentDidMount() {
-    if (this.props.open && this.props.disableAutoFocusItem !== true) {
-      this.focus();
-    }
-  }
-
-  getContentAnchorEl = () => {
-    return this.menuListActionsRef.current.getContentAnchorEl();
+  const getContentAnchorEl = () => {
+    return menuListActionsRef.current.getContentAnchorEl();
   };
 
-  focus = () => {
-    return this.menuListActionsRef.current && this.menuListActionsRef.current.focus();
-  };
-
-  handleEntering = element => {
-    const { disableAutoFocusItem, theme } = this.props;
-
-    if (this.menuListActionsRef.current) {
+  const handleEntering = element => {
+    if (menuListActionsRef.current) {
       // Focus so the scroll computation of the Popover works as expected.
       if (disableAutoFocusItem !== true) {
-        this.menuListActionsRef.current.focus();
+        menuListActionsRef.current.focus();
       }
-      this.menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
+      menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
     }
 
-    if (this.props.onEntering) {
-      this.props.onEntering(element);
+    if (onEntering) {
+      onEntering(element);
     }
   };
 
-  handleListKeyDown = event => {
+  const handleListKeyDown = event => {
     if (event.key === 'Tab') {
       event.preventDefault();
 
-      if (this.props.onClose) {
-        this.props.onClose(event, 'tabKeyDown');
+      if (onClose) {
+        onClose(event, 'tabKeyDown');
       }
     }
   };
 
-  render() {
-    const {
-      children,
-      classes,
-      disableAutoFocusItem,
-      innerRef,
-      MenuListProps,
-      onEntering,
-      PaperProps = {},
-      PopoverClasses,
-      theme,
-      ...other
-    } = this.props;
-
-    return (
-      <Popover
-        getContentAnchorEl={this.getContentAnchorEl}
-        classes={PopoverClasses}
-        onEntering={this.handleEntering}
-        anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
-        transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
-        PaperProps={{
-          ...PaperProps,
-          classes: {
-            ...PaperProps.classes,
-            root: classes.paper,
-          },
-        }}
-        ref={innerRef}
-        {...other}
+  return (
+    <Popover
+      getContentAnchorEl={getContentAnchorEl}
+      classes={PopoverClasses}
+      onClose={onClose}
+      onEntering={handleEntering}
+      anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
+      transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
+      PaperProps={{
+        ...PaperProps,
+        classes: {
+          ...PaperProps.classes,
+          root: classes.paper,
+        },
+      }}
+      open={open}
+      ref={ref}
+      {...other}
+    >
+      <MenuList
+        data-mui-test="Menu"
+        onKeyDown={handleListKeyDown}
+        {...MenuListProps}
+        actions={menuListActionsRef}
       >
-        <MenuList
-          data-mui-test="Menu"
-          onKeyDown={this.handleListKeyDown}
-          {...MenuListProps}
-          actions={this.menuListActionsRef}
-        >
-          {children}
-        </MenuList>
-      </Popover>
-    );
-  }
-}
+        {children}
+      </MenuList>
+    </Popover>
+  );
+});
 
 Menu.propTypes = {
   /**
@@ -134,11 +121,6 @@ Menu.propTypes = {
    * If `true`, the selected / first menu item will not be auto focused.
    */
   disableAutoFocusItem: PropTypes.bool,
-  /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the [`MenuList`](/api/menu-list/) element.
    */
@@ -205,4 +187,4 @@ Menu.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(withForwardedRef(Menu));
+export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(Menu);

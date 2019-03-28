@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses, testRef } from '@material-ui/core/test-utils';
 import Popover from '../Popover';
 import Menu from './Menu';
 import MenuList from '../MenuList';
@@ -9,23 +9,25 @@ import MenuList from '../MenuList';
 const MENU_LIST_HEIGHT = 100;
 
 describe('<Menu />', () => {
-  let shallow;
   let classes;
   let mount;
   let defaultProps;
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    classes = getClasses(<Menu {...defaultProps} />);
-    mount = createMount();
     defaultProps = {
       open: false,
       anchorEl: document.createElement('div'),
     };
+    classes = getClasses(<Menu {...defaultProps} />);
+    mount = createMount();
   });
 
   after(() => {
     mount.cleanUp();
+  });
+
+  it('does forward refs', () => {
+    testRef(<Menu {...defaultProps} open />, mount);
   });
 
   it('should render a Popover', () => {
@@ -33,20 +35,58 @@ describe('<Menu />', () => {
     assert.strictEqual(wrapper.find(Popover).exists(), true);
   });
 
-  it('should fire Popover transition event callbacks', () => {
-    const events = ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'];
+  describe('event callbacks', () => {
+    describe('entering', () => {
+      it('should fire callbacks', done => {
+        const handleEnter = spy();
+        const handleEntering = spy();
 
-    const handlers = events.reduce((result, n) => {
-      result[n] = spy();
-      return result;
-    }, {});
+        const wrapper = mount(
+          <Menu
+            onEnter={handleEnter}
+            onEntering={handleEntering}
+            onEntered={() => {
+              assert.strictEqual(handleEnter.callCount, 1);
+              assert.strictEqual(handleEnter.args[0].length, 1);
+              assert.strictEqual(handleEntering.callCount, 1);
+              assert.strictEqual(handleEntering.args[0].length, 1);
+              done();
+            }}
+            {...defaultProps}
+          />,
+        );
 
-    const wrapper = shallow(<Menu {...defaultProps} {...handlers} />);
+        wrapper.setProps({
+          open: true,
+        });
+      });
+    });
 
-    events.forEach(n => {
-      const event = n.charAt(2).toLowerCase() + n.slice(3);
-      wrapper.simulate(event, { style: {} });
-      assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
+    describe('exiting', () => {
+      it('should fire callbacks', done => {
+        const handleExit = spy();
+        const handleExiting = spy();
+
+        const wrapper = mount(
+          <Menu
+            onExit={handleExit}
+            onExiting={handleExiting}
+            onExited={() => {
+              assert.strictEqual(handleExit.callCount, 1);
+              assert.strictEqual(handleExit.args[0].length, 1);
+              assert.strictEqual(handleExiting.callCount, 1);
+              assert.strictEqual(handleExiting.args[0].length, 1);
+              done();
+            }}
+            {...defaultProps}
+            open
+          />,
+        );
+
+        wrapper.setProps({
+          open: false,
+        });
+      });
     });
   });
 
@@ -63,27 +103,25 @@ describe('<Menu />', () => {
   });
 
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
-    const wrapper = mount(<Menu {...defaultProps} />);
-    assert.strictEqual(
-      wrapper.find(Popover).props().getContentAnchorEl,
-      wrapper.find('Menu').instance().getContentAnchorEl,
-    );
+    const menuRef = React.createRef();
+    const wrapper = mount(<Menu ref={menuRef} {...defaultProps} />);
+    assert.strictEqual(wrapper.find(Popover).props().getContentAnchorEl != null, true);
   });
 
   it('should pass onClose prop to Popover', () => {
     const fn = () => {};
-    const wrapper = shallow(<Menu {...defaultProps} onClose={fn} />);
+    const wrapper = mount(<Menu {...defaultProps} onClose={fn} />);
     assert.strictEqual(wrapper.props().onClose, fn);
   });
 
   it('should pass anchorEl prop to Popover', () => {
     const el = document.createElement('div');
-    const wrapper = shallow(<Menu {...defaultProps} anchorEl={el} />);
+    const wrapper = mount(<Menu {...defaultProps} anchorEl={el} />);
     assert.strictEqual(wrapper.props().anchorEl, el);
   });
 
   it('should pass through the `open` prop to Popover', () => {
-    const wrapper = shallow(<Menu {...defaultProps} />);
+    const wrapper = mount(<Menu {...defaultProps} />);
     assert.strictEqual(wrapper.props().open, false);
     wrapper.setProps({ open: true });
     assert.strictEqual(wrapper.props().open, true);
@@ -121,7 +159,7 @@ describe('<Menu />', () => {
         <div />
       </Menu>,
     );
-    const popover = wrapper.find('Popover');
+    const popover = wrapper.find(Popover);
     assert.strictEqual(popover.props().open, true);
     const menuEl = document.querySelector('[data-mui-test="Menu"]');
     assert.strictEqual(document.activeElement, menuEl && menuEl.firstChild);
@@ -129,12 +167,12 @@ describe('<Menu />', () => {
 
   it('should call props.onEntering with element if exists', () => {
     const onEnteringSpy = spy();
-    const wrapper = mount(<Menu {...defaultProps} classes={classes} onEntering={onEnteringSpy} />);
-    const instance = wrapper.find('Menu').instance();
+    const wrapper = mount(<Menu {...defaultProps} onEntering={onEnteringSpy} />);
+    const popover = wrapper.find(Popover);
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    instance.handleEntering(elementForHandleEnter);
+    popover.props().onEntering(elementForHandleEnter);
     assert.strictEqual(onEnteringSpy.callCount, 1);
     assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
   });
@@ -142,20 +180,28 @@ describe('<Menu />', () => {
   it('should call props.onEntering, disableAutoFocusItem', () => {
     const onEnteringSpy = spy();
     const wrapper = mount(
-      <Menu disableAutoFocusItem {...defaultProps} classes={classes} onEntering={onEnteringSpy} />,
+      <Menu disableAutoFocusItem {...defaultProps} onEntering={onEnteringSpy} />,
     );
-    const instance = wrapper.find('Menu').instance();
+    const popover = wrapper.find(Popover);
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    instance.handleEntering(elementForHandleEnter);
+    popover.props().onEntering(elementForHandleEnter);
     assert.strictEqual(onEnteringSpy.callCount, 1);
     assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
   });
 
-  it('call handleListKeyDown without onClose prop', () => {
-    const wrapper = mount(<Menu {...defaultProps} />);
-    const instance = wrapper.find('Menu').instance();
-    instance.handleListKeyDown({ key: 'Tab', preventDefault: () => {} });
+  it('should call onClose on tab', () => {
+    const onCloseSpy = spy();
+    const wrapper = mount(
+      <Menu {...defaultProps} open onClose={onCloseSpy}>
+        <span>hello</span>
+      </Menu>,
+    );
+    wrapper.find('span').simulate('keyDown', {
+      key: 'Tab',
+    });
+    assert.strictEqual(onCloseSpy.callCount, 1);
+    assert.strictEqual(onCloseSpy.args[0][1], 'tabKeyDown');
   });
 });

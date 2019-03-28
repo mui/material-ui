@@ -31,7 +31,7 @@ describe('<Fade />', () => {
         const handleEnter = spy();
         const handleEntering = spy();
 
-        const wrapper = mount(
+        mount(
           <Fade
             onEnter={handleEnter}
             onEntering={handleEntering}
@@ -47,10 +47,6 @@ describe('<Fade />', () => {
             <div />
           </Fade>,
         );
-
-        wrapper.setProps({
-          in: true,
-        });
       });
     });
 
