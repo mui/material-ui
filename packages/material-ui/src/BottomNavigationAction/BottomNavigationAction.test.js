@@ -33,6 +33,22 @@ describe('<BottomNavigationAction />', () => {
     testComponentPropWith: false,
   }));
 
+  it('should render a ButtonBase', () => {
+    const wrapper = mount(<BottomNavigationAction icon={icon} />);
+    const root = wrapper.find(`.${classes.root}`).first();
+    assert.strictEqual(root.exists(), true);
+    assert.strictEqual(root.type(), ButtonBase);
+  });
+
+  it('should render with the user and root classes', () => {
+    const wrapper = mount(
+      <BottomNavigationAction className="woofBottomNavigationAction" icon={icon} />,
+    );
+    const root = wrapper.find(`.${classes.root}.woofBottomNavigationAction`).first();
+    assert.strictEqual(root.exists(), true);
+    assert.strictEqual(root.hasClass('woofBottomNavigationAction'), true);
+  });
+
   it('should render with the selected and root classes', () => {
     const wrapper = mount(<BottomNavigationAction icon={icon} selected />);
     const root = wrapper.find(`.${classes.root}`).first();

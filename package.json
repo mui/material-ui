@@ -113,7 +113,7 @@
     "dtslint": "^0.4.0",
     "emotion-theming": "^10.0.5",
     "enzyme": "^3.5.0",
-    "enzyme-adapter-react-16": "~1.10.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-prettier": "^4.0.0",

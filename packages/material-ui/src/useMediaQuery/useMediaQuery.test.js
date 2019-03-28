@@ -40,7 +40,6 @@ describe('useMediaQuery', () => {
   });
 
   beforeEach(() => {
-    ReactDOM.unmountComponentAtNode(mount.attachTo);
     testReset();
     values = spy();
     window.matchMedia = createMatchMedia(1200, listeners);
@@ -51,7 +50,7 @@ describe('useMediaQuery', () => {
   });
 
   describe('option: defaultMatches', () => {
-    it('should be false by default', done => {
+    it('should be false by default', () => {
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)');
         values(matches);
@@ -61,14 +60,9 @@ describe('useMediaQuery', () => {
       const wrapper = mount(<Test />);
       assert.strictEqual(wrapper.text(), 'false');
       assert.strictEqual(values.callCount, 1);
-      setTimeout(() => {
-        assert.strictEqual(wrapper.text(), 'false');
-        assert.strictEqual(values.callCount, 1);
-        done();
-      });
     });
 
-    it('should take the option into account', done => {
+    it('should take the option into account', () => {
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
@@ -78,18 +72,13 @@ describe('useMediaQuery', () => {
       };
 
       const wrapper = mount(<Test />);
-      assert.strictEqual(wrapper.text(), 'true');
-      assert.strictEqual(values.callCount, 1);
-      setTimeout(() => {
-        assert.strictEqual(wrapper.text(), 'false');
-        assert.strictEqual(values.callCount, 2);
-        done();
-      });
+      assert.strictEqual(wrapper.text(), 'false');
+      assert.strictEqual(values.callCount, 2);
     });
   });
 
   describe('option: noSsr', () => {
-    it('should render once if the default value match the expectation', done => {
+    it('should render once if the default value match the expectation', () => {
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: false,
@@ -101,14 +90,9 @@ describe('useMediaQuery', () => {
       const wrapper = mount(<Test />);
       assert.strictEqual(wrapper.text(), 'false');
       assert.strictEqual(values.callCount, 1);
-      setTimeout(() => {
-        assert.strictEqual(wrapper.text(), 'false');
-        assert.strictEqual(values.callCount, 1);
-        done();
-      });
     });
 
-    it('should render twice if the default value does not match the expectation', done => {
+    it('should render twice if the default value does not match the expectation', () => {
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
@@ -118,16 +102,11 @@ describe('useMediaQuery', () => {
       };
 
       const wrapper = mount(<Test />);
-      assert.strictEqual(wrapper.text(), 'true');
-      assert.strictEqual(values.callCount, 1);
-      setTimeout(() => {
-        assert.strictEqual(wrapper.text(), 'false');
-        assert.strictEqual(values.callCount, 2);
-        done();
-      });
+      assert.strictEqual(wrapper.text(), 'false');
+      assert.strictEqual(values.callCount, 2);
     });
 
-    it('should render once if the default value does not match the expectation', done => {
+    it('should render once if the default value does not match the expectation', () => {
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
@@ -140,11 +119,6 @@ describe('useMediaQuery', () => {
       const wrapper = mount(<Test />);
       assert.strictEqual(wrapper.text(), 'false');
       assert.strictEqual(values.callCount, 1);
-      setTimeout(() => {
-        assert.strictEqual(wrapper.text(), 'false');
-        assert.strictEqual(values.callCount, 1);
-        done();
-      });
     });
   });
 
@@ -158,12 +132,9 @@ describe('useMediaQuery', () => {
     };
 
     let wrapper = mount(<Test />);
-    assert.strictEqual(wrapper.text(), 'true');
-    assert.strictEqual(values.callCount, 1);
+    assert.strictEqual(wrapper.text(), 'false');
+    assert.strictEqual(values.callCount, 2);
     setTimeout(() => {
-      assert.strictEqual(wrapper.text(), 'false');
-      assert.strictEqual(values.callCount, 2);
-
       ReactDOM.unmountComponentAtNode(mount.attachTo);
       wrapper = mount(<Test />);
       assert.strictEqual(wrapper.text(), 'false');
@@ -177,7 +148,7 @@ describe('useMediaQuery', () => {
     });
   });
 
-  it('should be able to change the query dynamically', done => {
+  it('should be able to change the query dynamically', () => {
     const Test = props => {
       const matches = useMediaQuery(props.query, {
         defaultMatches: true,
@@ -190,24 +161,14 @@ describe('useMediaQuery', () => {
     };
 
     const wrapper = mount(<Test query="(min-width:2000px)" />);
+    assert.strictEqual(wrapper.text(), 'false');
+    assert.strictEqual(values.callCount, 2);
+    wrapper.setProps({ query: '(min-width:100px)' });
     assert.strictEqual(wrapper.text(), 'true');
-    assert.strictEqual(values.callCount, 1);
-
-    setTimeout(() => {
-      assert.strictEqual(wrapper.text(), 'false');
-      assert.strictEqual(values.callCount, 2);
-
-      wrapper.setProps({ query: '(min-width:100px)' });
-      assert.strictEqual(values.callCount, 3);
-      setTimeout(() => {
-        assert.strictEqual(wrapper.text(), 'true');
-        assert.strictEqual(values.callCount, 4);
-        done();
-      });
-    });
+    assert.strictEqual(values.callCount, 4);
   });
 
-  it('should observe the media query', done => {
+  it('should observe the media query', () => {
     const Test = props => {
       const matches = useMediaQuery(props.query);
       values(matches);
@@ -218,21 +179,14 @@ describe('useMediaQuery', () => {
     };
 
     const wrapper = mount(<Test query="(min-width:2000px)" />);
-    assert.strictEqual(wrapper.text(), 'false');
     assert.strictEqual(values.callCount, 1);
+    assert.strictEqual(wrapper.text(), 'false');
 
-    setTimeout(() => {
-      assert.strictEqual(values.callCount, 1);
-      assert.strictEqual(wrapper.text(), 'false');
-
-      window.matchMedia = createMatchMedia(30000, listeners);
-      listeners[0]({
-        matches: true,
-      });
-      assert.strictEqual(wrapper.text(), 'true');
-      assert.strictEqual(values.callCount, 2);
-
-      done();
+    window.matchMedia = createMatchMedia(30000, listeners);
+    listeners[0]({
+      matches: true,
     });
+    assert.strictEqual(wrapper.text(), 'true');
+    assert.strictEqual(values.callCount, 2);
   });
 });

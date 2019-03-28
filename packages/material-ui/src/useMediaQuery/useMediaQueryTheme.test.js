@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/styles';
-import { createMount } from '@material-ui/core/test-utils';
+import { createRender } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -9,7 +8,7 @@ import { testReset } from './useMediaQuery';
 import useMediaQueryTheme from './useMediaQueryTheme';
 
 describe('useMediaQueryTheme', () => {
-  let mount;
+  let render;
   let values;
 
   // Only run the test on node.
@@ -19,7 +18,7 @@ describe('useMediaQueryTheme', () => {
   }
 
   before(() => {
-    mount = createMount();
+    render = createRender();
     if (!window.matchMedia) {
       window.matchMedia = query => ({
         matches: mediaQuery.match(query, {
@@ -32,16 +31,11 @@ describe('useMediaQueryTheme', () => {
   });
 
   beforeEach(() => {
-    ReactDOM.unmountComponentAtNode(mount.attachTo);
     testReset();
     values = spy();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
-  it('should use the ssr match media ponyfill', done => {
+  it('should use the ssr match media ponyfill', () => {
     function MyComponent() {
       const matches = useMediaQueryTheme('(min-width:2000px)');
       values(matches);
@@ -62,13 +56,8 @@ describe('useMediaQueryTheme', () => {
       );
     };
 
-    const wrapper = mount(<Test />);
+    const wrapper = render(<Test />);
     assert.strictEqual(wrapper.text(), 'true');
     assert.strictEqual(values.callCount, 1);
-    setTimeout(() => {
-      assert.strictEqual(wrapper.text(), 'false');
-      assert.strictEqual(values.callCount, 2);
-      done();
-    });
   });
 });

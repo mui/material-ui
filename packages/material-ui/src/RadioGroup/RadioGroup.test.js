@@ -6,7 +6,6 @@ import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { act } from 'react-dom/test-utils';
 
 describe('<RadioGroup />', () => {
   let mount;
@@ -214,10 +213,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
-        wrapper.setProps({ value: undefined });
-      });
-
+      wrapper.setProps({ value: undefined });
       assert.include(
         consoleErrorMock.args()[0][0],
         'A component is changing a controlled RadioGroup to be uncontrolled.',
@@ -231,10 +227,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
-        wrapper.setProps({ value: 'foo' });
-      });
-
+      wrapper.setProps({ value: 'foo' });
       assert.include(
         consoleErrorMock.args()[0][0],
         'A component is changing an uncontrolled RadioGroup to be controlled.',
