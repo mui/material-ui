@@ -227,6 +227,13 @@ class Popover extends React.Component {
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
+    if (anchorElement.offsetParent === null) {
+      warning(
+        anchorElement.offsetParent,
+        'Material-UI: seems that provided `anchorEl` is not visible or was unmounted.',
+      );
+    }
+
     return {
       top: anchorRect.top + this.handleGetOffsetTop(anchorRect, anchorVertical),
       left: anchorRect.left + this.handleGetOffsetLeft(anchorRect, anchorOrigin.horizontal),
