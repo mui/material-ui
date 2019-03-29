@@ -57,6 +57,17 @@ function ButtonSizes() {
         </Button>
       </div>
       <div>
+        <Button variant="unelevated" size="small" color="primary" className={classes.margin}>
+          Small
+        </Button>
+        <Button variant="unelevated" size="medium" color="primary" className={classes.margin}>
+          Medium
+        </Button>
+        <Button variant="unelevated" size="large" color="primary" className={classes.margin}>
+          Large
+        </Button>
+      </div>
+      <div>
         <Fab size="small" color="secondary" aria-label="Add" className={classes.margin}>
           <AddIcon />
         </Fab>

@@ -12,7 +12,7 @@ declare const Button: ExtendButtonBase<{
     href?: string;
     size?: 'small' | 'medium' | 'large';
     type?: 'submit' | 'reset' | 'button';
-    variant?: 'text' | 'outlined' | 'contained';
+    variant?: 'text' | 'outlined' | 'contained' | 'unelevated';
   };
   defaultComponent: 'button';
   classKey: ButtonClassKey;
@@ -32,6 +32,9 @@ export type ButtonClassKey =
   | 'contained'
   | 'containedPrimary'
   | 'containedSecondary'
+  | 'unelevated'
+  | 'unelevatedPrimary'
+  | 'unelevatedSecondary'
   | 'focusVisible'
   | 'disabled'
   | 'colorInherit'

@@ -159,6 +159,49 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `variant="unelevated"`. */
+  unelevated: {
+    color: theme.palette.getContrastText(theme.palette.grey[300]),
+    backgroundColor: theme.palette.grey[300],
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+      backgroundColor: theme.palette.action.disabledBackground,
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.grey.A100,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.grey[300],
+      },
+      '&$disabled': {
+        backgroundColor: theme.palette.action.disabledBackground,
+      },
+    },
+  },
+  /* Styles applied to the root element if `variant="unelevated"` and `color="primary"`. */
+  unelevatedPrimary: {
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+  },
+  /* Styles applied to the root element if `variant="unelevated"` and `color="secondary"`. */
+  unelevatedSecondary: {
+    color: theme.palette.secondary.contrastText,
+    backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.secondary.main,
+      },
+    },
+  },
   /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
   /* Styles applied to the root element if `disabled={true}`. */
@@ -200,6 +243,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     ...other
   } = props;
 
+  const unelevated = variant === 'unelevated';
   const contained = variant === 'contained';
   const text = variant === 'text';
   const className = clsx(
@@ -211,6 +255,9 @@ const Button = React.forwardRef(function Button(props, ref) {
       [classes.contained]: contained,
       [classes.containedPrimary]: contained && color === 'primary',
       [classes.containedSecondary]: contained && color === 'secondary',
+      [classes.unelevated]: unelevated,
+      [classes.unelevatedPrimary]: unelevated && color === 'primary',
+      [classes.unelevatedSecondary]: unelevated && color === 'secondary',
       [classes.outlined]: variant === 'outlined',
       [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
       [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
@@ -297,7 +344,7 @@ Button.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  variant: PropTypes.oneOf(['text', 'outlined', 'contained', 'unelevated']),
 };
 
 Button.defaultProps = {
