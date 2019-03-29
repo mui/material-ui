@@ -1,5 +1,4 @@
 import React from 'react';
-
 import clsx from 'clsx';
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
