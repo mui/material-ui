@@ -179,9 +179,7 @@ function MultipleSelect() {
           native
           value={personName}
           onChange={handleChangeMultiple}
-          inputProps={{
-            id: 'select-multiple-native',
-          }}
+          id="select-multiple-native"
         >
           {names.map(name => (
             <option key={name} value={name}>

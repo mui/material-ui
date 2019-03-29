@@ -76,7 +76,12 @@ function testComponentProp(element, getOptions) {
 function testPropsSpread(element, getOptions) {
   it(`does spread props to the root component`, () => {
     // type def in ConformanceOptions
-    const { classes, inheritComponent, mount } = getOptions();
+    const { classes, inheritComponent, mount, propsSpread = true } = getOptions();
+
+    if (!propsSpread) {
+      return;
+    }
+
     const testProp = 'data-test-props-spread';
     const value = randomStringValue();
 

@@ -47,10 +47,8 @@ function ControlledOpenSelect() {
           onOpen={handleOpen}
           value={age}
           onChange={handleChange}
-          inputProps={{
-            name: 'age',
-            id: 'demo-controlled-open-select',
-          }}
+          name="age"
+          id="demo-controlled-open-select"
         >
           <MenuItem value="">
             <em>None</em>

@@ -193,9 +193,7 @@ class ColorTool extends React.Component {
             id={intent}
             value={intentInput}
             onChange={this.handleChangeColor(intent)}
-            inputProps={{
-              'aria-label': `${capitalize(intent)} color`,
-            }}
+            aria-label={`${capitalize(intent)} color`}
             fullWidth
           />
           <div className={classes.sliderContainer}>

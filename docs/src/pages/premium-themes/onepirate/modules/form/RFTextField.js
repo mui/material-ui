@@ -17,9 +17,7 @@ function RFTextField(props) {
       {...input}
       {...other}
       InputProps={{
-        inputProps: {
-          autoComplete,
-        },
+        autoComplete,
         ...InputProps,
       }}
       helperText={touched ? error || submitError : ''}

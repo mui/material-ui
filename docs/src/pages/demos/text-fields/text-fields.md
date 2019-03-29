@@ -40,9 +40,9 @@ The `TextField` wrapper component is a complete form control including a label, 
 and [`FormHelperText`](/api/form-helper-text/)
 ) that you can leverage directly to significantly customize your form inputs.
 
-You might also have noticed that some native HTML input properties are missing from the `TextField` component.
+You might also have noticed that some properties are missing from the `TextField` component.
 This is on purpose.
-The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use the `FormHelperTextProps`, `InputLabel` and `SelectProps` properties if you want to avoid some boilerplate.
 
 {{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
 

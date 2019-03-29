@@ -41,11 +41,11 @@ const styles = {
  * If you wish to alter the properties applied to the native input, you can do so as follows:
  *
  * ```jsx
- * const inputProps = {
+ * const InputProps = {
  *   step: 300,
  * };
  *
- * return <TextField id="time" type="time" inputProps={inputProps} />;
+ * return <TextField id="time" type="time" InputProps={InputProps} />;
  * ```
  *
  * For advanced cases, please look at the source of TextField by clicking on the

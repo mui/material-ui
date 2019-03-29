@@ -51,10 +51,8 @@ function NativeSelects() {
           native
           value={state.age}
           onChange={handleChange('age')}
-          inputProps={{
-            name: 'age',
-            id: 'age-native-simple',
-          }}
+          name="age"
+          id="age-native-simple"
         >
           <option value="" />
           <option value={10}>Ten</option>
@@ -176,9 +174,7 @@ function NativeSelects() {
           value={state.age}
           onChange={handleChange('age')}
           name="age"
-          inputProps={{
-            id: 'age-native-required',
-          }}
+          id="age-native-required"
         >
           <option value="" />
           <option value={10}>Ten</option>

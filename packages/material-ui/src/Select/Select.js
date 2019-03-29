@@ -48,24 +48,24 @@ const Select = React.forwardRef(function Select(props, ref) {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent,
+    children,
+    IconComponent,
+    variant: fcs.variant,
+    type: 'hidden', // We render a select. We can ignore the type provided by the `Input`.
+    multiple,
+    ...(native
+      ? {}
+      : {
+          autoWidth,
+          displayEmpty,
+          MenuProps,
+          onClose,
+          onOpen,
+          open,
+          renderValue,
+          SelectDisplayProps,
+        }),
     inputProps: {
-      children,
-      IconComponent,
-      variant: fcs.variant,
-      type: undefined, // We render a select. We can ignore the type provided by the `Input`.
-      multiple,
-      ...(native
-        ? {}
-        : {
-            autoWidth,
-            displayEmpty,
-            MenuProps,
-            onClose,
-            onOpen,
-            open,
-            renderValue,
-            SelectDisplayProps,
-          }),
       ...inputProps,
       classes: inputProps
         ? mergeClasses({

@@ -103,9 +103,7 @@ function InputAdornments() {
           onChange={handleChange('weight')}
           endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
           aria-describedby="weight-helper-text"
-          inputProps={{
-            'aria-label': 'Weight',
-          }}
+          aria-label="Weight"
         />
         <FormHelperText id="weight-helper-text">Weight</FormHelperText>
       </FormControl>

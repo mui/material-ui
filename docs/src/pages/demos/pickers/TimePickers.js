@@ -29,7 +29,7 @@ function TimePickers(props) {
         InputLabelProps={{
           shrink: true,
         }}
-        inputProps={{
+        InputProps={{
           step: 300, // 5 min
         }}
       />

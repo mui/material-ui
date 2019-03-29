@@ -13,15 +13,12 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
     disabled,
     IconComponent,
     inputRef,
-    name,
-    onChange,
-    value,
     variant,
     ...other
   } = props;
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <select
         className={clsx(
           classes.select,
@@ -32,17 +29,14 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
           },
           className,
         )}
-        name={name}
         disabled={disabled}
-        onChange={onChange}
-        value={value}
         ref={inputRef || ref}
         {...other}
       >
         {children}
       </select>
       <IconComponent className={classes.icon} />
-    </div>
+    </React.Fragment>
   );
 });
 

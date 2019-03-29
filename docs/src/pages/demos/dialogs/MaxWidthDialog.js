@@ -79,10 +79,8 @@ class MaxWidthDialog extends React.Component {
                 <Select
                   value={this.state.maxWidth}
                   onChange={this.handleMaxWidthChange}
-                  inputProps={{
-                    name: 'max-width',
-                    id: 'max-width',
-                  }}
+                  name="max-width"
+                  id="max-width"
                 >
                   <MenuItem value={false}>false</MenuItem>
                   <MenuItem value="xs">xs</MenuItem>

@@ -47,14 +47,7 @@ function SimpleSelect() {
     <form className={classes.root} autoComplete="off">
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="age-simple">Age</InputLabel>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          inputProps={{
-            name: 'age',
-            id: 'age-simple',
-          }}
-        >
+        <Select value={values.age} onChange={handleChange} name="age" id="age-simple">
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
@@ -207,9 +200,7 @@ function SimpleSelect() {
           value={values.age}
           onChange={handleChange}
           name="age"
-          inputProps={{
-            id: 'age-required',
-          }}
+          id="age-required"
           className={classes.selectEmpty}
         >
           <MenuItem value="">

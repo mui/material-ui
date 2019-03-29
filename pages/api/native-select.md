@@ -37,13 +37,12 @@ This property accepts the following keys:
 
 | Name | Description |
 |:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the `Input` component `root` class.
-| <span class="prop-name">select</span> | Styles applied to the `Input` component `select` class.
-| <span class="prop-name">filled</span> | Styles applied to the `Input` component if `variant="filled"`.
-| <span class="prop-name">outlined</span> | Styles applied to the `Input` component if `variant="outlined"`.
-| <span class="prop-name">selectMenu</span> | Styles applied to the `Input` component `selectMenu` class.
-| <span class="prop-name">disabled</span> | Styles applied to the `Input` component `disabled` class.
-| <span class="prop-name">icon</span> | Styles applied to the `Input` component `icon` class.
+| <span class="prop-name">select</span> | Styles applied to the select component `select` class.
+| <span class="prop-name">filled</span> | Styles applied to the select component if `variant="filled"`.
+| <span class="prop-name">outlined</span> | Styles applied to the select component if `variant="outlined"`.
+| <span class="prop-name">selectMenu</span> | Styles applied to the select component `selectMenu` class.
+| <span class="prop-name">disabled</span> | Styles applied to the select component `disabled` class.
+| <span class="prop-name">icon</span> | Styles applied to the select component `icon` class.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/NativeSelect/NativeSelect.js)

@@ -38,6 +38,7 @@ describe('<InputBase />', () => {
     classes,
     inheritComponent: 'div',
     mount,
+    propsSpread: false,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: false,
   }));

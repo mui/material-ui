@@ -20,36 +20,10 @@ function Inputs(props: Props) {
   const { classes } = props;
   return (
     <div className={classes.container}>
-      <Input
-        defaultValue="Hello world"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-      />
-      <Input
-        placeholder="Placeholder"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-      />
-      <Input
-        value="Disabled"
-        className={classes.input}
-        disabled
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-      />
-      <Input
-        defaultValue="Error"
-        className={classes.input}
-        error
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-      />
+      <Input defaultValue="Hello world" className={classes.input} aria-label="Description" />
+      <Input placeholder="Placeholder" className={classes.input} aria-label="Description" />
+      <Input value="Disabled" className={classes.input} disabled aria-label="Description" />
+      <Input defaultValue="Error" className={classes.input} error aria-label="Description" />
     </div>
   );
 }
