@@ -1,19 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
   input: {
     display: 'none',
   },
-});
+}));
 
-function OutlinedButtons(props) {
-  const { classes } = props;
+function OutlinedButtons() {
+  const classes = useStyles();
+
   return (
     <div>
       <Button variant="outlined" className={classes.button}>
@@ -50,8 +50,4 @@ function OutlinedButtons(props) {
   );
 }
 
-OutlinedButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(OutlinedButtons);
+export default OutlinedButtons;
