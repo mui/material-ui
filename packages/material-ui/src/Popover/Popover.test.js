@@ -459,15 +459,18 @@ describe('<Popover />', () => {
       consoleErrorMock.reset();
     });
 
-    it('should not pass container to Modal if container or anchorEl props are not provided', () => {
+    it('should warn if anchorEl is not valid', () => {
       const otherWrapper = mount(<Popover open />);
       assert.strictEqual(otherWrapper.find(Modal).props().container, undefined);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'the anchorEl property provided to the component is invalid',
-      );
+      assert.include(consoleErrorMock.args()[0][0], 'It should be a HTMLElement instance');
     });
+
+    // it('should warn if anchorEl is not visible', () => {
+    //   mount(<Popover open anchorEl={document.createElement('div')} />);
+    //   assert.strictEqual(consoleErrorMock.callCount(), 1);
+    //   assert.include(consoleErrorMock.args()[0][0], 'The node element should be visible');
+    // });
   });
 
   describe('prop anchorReference="anchorPosition"', () => {
