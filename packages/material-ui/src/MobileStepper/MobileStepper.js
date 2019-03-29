@@ -78,6 +78,11 @@ const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
   return (
     <Paper square elevation={0} className={className} ref={ref} {...other}>
       {backButton}
+      {variant === 'text' && (
+        <div>
+          {activeStep + 1} / {steps}
+        </div>
+      )}
       {variant === 'dots' && (
         <div className={classes.dots}>
           {[...new Array(steps)].map((_, index) => {

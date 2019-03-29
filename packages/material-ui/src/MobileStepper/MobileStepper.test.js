@@ -149,9 +149,16 @@ describe('<MobileStepper />', () => {
     assert.strictEqual(nextButton.props().disabled, true);
   });
 
-  it('should render just two buttons when supplied with variant text', () => {
-    const wrapper = shallow(<MobileStepper variant="text" {...defaultProps} />);
-    assert.lengthOf(wrapper.children(), 2);
+  it('should render two buttons and text displaying progress when supplied with variant text', () => {
+    const props = {
+      steps: defaultProps.steps,
+      activeStep: 0,
+      nextButton: defaultProps.nextButton,
+      backButton: defaultProps.backButton,
+    };
+    const wrapper = shallow(<MobileStepper variant="text" {...props} />);
+    assert.lengthOf(wrapper.children(), 3);
+    assert.strictEqual(wrapper.childAt(1).text(), `${props.activeStep + 1} / ${props.steps}`);
   });
 
   it('should render dots when supplied with variant dots', () => {
