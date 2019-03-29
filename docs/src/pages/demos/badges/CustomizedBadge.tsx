@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -15,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
         theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
       }`,
     },
-  })
+  }),
 );
 
 function CustomizedBadge() {
