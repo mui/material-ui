@@ -77,6 +77,7 @@ export const styles = theme => ({
   fullWidth: {
     flexShrink: 1,
     flexGrow: 1,
+    flexBasis: 0,
     maxWidth: 'none',
   },
   /* Styles applied to the root element if `wrapped={true}`. */
