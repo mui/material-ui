@@ -1,5 +1,4 @@
 import style from './style';
-import compose from './compose';
 
 function transform(value) {
   return value <= 1 ? `${value * 100}%` : value;
@@ -46,14 +45,3 @@ export const sizeHeight = style({
   cssProperty: 'height',
   transform,
 });
-
-const sizing = compose(
-  width,
-  maxWidth,
-  minWidth,
-  height,
-  maxHeight,
-  minHeight,
-);
-
-export default sizing;

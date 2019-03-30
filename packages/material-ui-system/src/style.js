@@ -10,15 +10,9 @@ function getPath(obj, path) {
 }
 
 function style(options) {
-  const { prop, cssProperty = options.prop, themeKey, transform } = options;
+  const { prop, cssProperty, themeKey, transform } = options;
 
-  const fn = props => {
-    if (props[prop] == null) {
-      return null;
-    }
-
-    const propValue = props[prop];
-    const theme = props.theme;
+  const fn = (propValue, theme) => {
     const themeMapping = getPath(theme, themeKey) || {};
     const styleFromPropValue = propValueFinal => {
       let value;
@@ -53,8 +47,6 @@ function style(options) {
           [prop]: responsivePropType,
         }
       : {};
-
-  fn.filterProps = [prop];
 
   return fn;
 }

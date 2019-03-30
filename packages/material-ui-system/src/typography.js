@@ -1,5 +1,4 @@
 import style from './style';
-import compose from './compose';
 
 export const fontFamily = style({
   prop: 'fontFamily',
@@ -19,12 +18,3 @@ export const fontWeight = style({
 export const textAlign = style({
   prop: 'textAlign',
 });
-
-const typography = compose(
-  fontFamily,
-  fontSize,
-  fontWeight,
-  textAlign,
-);
-
-export default typography;
