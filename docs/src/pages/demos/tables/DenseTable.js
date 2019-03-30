@@ -48,9 +48,9 @@ function DenseTable(props) {
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
               <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat (g)</TableCell>
-              <TableCell align="right">Carbs (g)</TableCell>
-              <TableCell align="right">Protein (g)</TableCell>
+              <TableCell align="right">Fat (g)</TableCell>
+              <TableCell align="right">Carbs (g)</TableCell>
+              <TableCell align="right">Protein (g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

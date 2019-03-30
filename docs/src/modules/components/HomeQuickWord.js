@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -51,7 +50,7 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     textAlign: 'center',
-    minHeight: 56,
+    minHeight: 60,
     paddingBottom: theme.spacing(2),
   },
 });
@@ -71,7 +70,6 @@ function HomeQuickWord(props) {
           data-ga-event-category="sponsors"
           data-ga-event-action="quick-word"
           data-ga-event-label={backer.alt}
-          className={clsx(classes.root, 'mui-fixed')}
           href={backer.href}
           target="_blank"
           rel="noopener"

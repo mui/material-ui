@@ -40,7 +40,7 @@ Porém, criar elementos React tem um preço também. Considere o caso a seguir:
       <TableRow>
         <TableCell>Dessert (100g serving)</TableCell>
         <TableCell align="right">Calories</TableCell>
-        <TableCell align="right">Fat (g)</TableCell>
+        <TableCell align="right">Fat (g)</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -58,7 +58,7 @@ Porém, criar elementos React tem um preço também. Considere o caso a seguir:
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+We create a lot of React elements that will never be mounted. It's wasteful
 
 ```jsx
 <Modal open={false}>
