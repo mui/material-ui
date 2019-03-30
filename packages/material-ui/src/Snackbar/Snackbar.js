@@ -7,19 +7,18 @@ import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
 import { capitalize, createChainedFunction } from '../utils/helpers';
 import withForwardedRef from '../utils/withForwardedRef';
-import Slide from '../Slide';
+import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 
 export const styles = theme => {
-  const gutter = 24;
-  const top = { top: 0 };
-  const bottom = { bottom: 0 };
+  const top1 = { top: 8 };
+  const bottom1 = { bottom: 8 };
   const right = { justifyContent: 'flex-end' };
   const left = { justifyContent: 'flex-start' };
-  const topSpace = { top: gutter };
-  const bottomSpace = { bottom: gutter };
-  const rightSpace = { right: gutter };
-  const leftSpace = { left: gutter };
+  const top3 = { top: 24 };
+  const bottom3 = { bottom: 24 };
+  const right3 = { right: 24 };
+  const left3 = { left: 24 };
   const center = {
     left: '50%',
     right: 'auto',
@@ -32,63 +31,65 @@ export const styles = theme => {
       zIndex: theme.zIndex.snackbar,
       position: 'fixed',
       display: 'flex',
-      left: 0,
-      right: 0,
+      left: 8,
+      right: 8,
       justifyContent: 'center',
       alignItems: 'center',
     },
     /* Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
     anchorOriginTopCenter: {
-      ...top,
-      [theme.breakpoints.up('md')]: {
+      ...top1,
+      [theme.breakpoints.up('sm')]: {
+        ...top3,
         ...center,
       },
     },
     /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`. */
     anchorOriginBottomCenter: {
-      ...bottom,
-      [theme.breakpoints.up('md')]: {
+      ...bottom1,
+      [theme.breakpoints.up('sm')]: {
+        ...bottom3,
         ...center,
       },
     },
     /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`. */
     anchorOriginTopRight: {
-      ...top,
+      ...top1,
       ...right,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         left: 'auto',
-        ...topSpace,
-        ...rightSpace,
+        ...top3,
+        ...right3,
       },
     },
     /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`. */
     anchorOriginBottomRight: {
-      ...bottom,
+      ...bottom1,
       ...right,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         left: 'auto',
-        ...bottomSpace,
-        ...rightSpace,
+        ...bottom3,
+        ...right3,
       },
     },
     /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`. */
     anchorOriginTopLeft: {
-      ...top,
+      ...top1,
       ...left,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         right: 'auto',
-        ...topSpace,
-        ...leftSpace,
+        ...top3,
+        ...left3,
       },
     },
     /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`. */
     anchorOriginBottomLeft: {
-      ...bottom,
+      ...bottom1,
       ...left,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         right: 'auto',
-        ...bottomSpace,
-        ...leftSpace,
+        ...bottom3,
+        ...left3,
       },
     },
   };
@@ -408,7 +409,7 @@ Snackbar.defaultProps = {
     horizontal: 'center',
   },
   disableWindowBlurListener: false,
-  TransitionComponent: Slide,
+  TransitionComponent: Grow,
   transitionDuration: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,

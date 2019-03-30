@@ -1,7 +1,7 @@
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -17,12 +17,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: 'hidden',
   },
   appFrame: {
-    width: 360,
-    height: 360,
-    backgroundColor: theme.palette.background.paper,
+    height: 356,
   },
   menuButton: {
-    marginRight: 20,
+    marginRight: theme.spacing(2),
   },
   button: {
     marginBottom: theme.spacing(1),
@@ -32,25 +30,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
-  fabMoveUp: {
-    transform: 'translate3d(0, -46px, 0)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.enteringScreen,
-      easing: theme.transitions.easing.easeOut,
-    }),
-  },
-  fabMoveDown: {
-    transform: 'translate3d(0, 0, 0)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.leavingScreen,
-      easing: theme.transitions.easing.sharp,
-    }),
-  },
   snackbar: {
-    position: 'absolute',
-  },
-  snackbarContent: {
-    width: 360,
+    [theme.breakpoints.down('xs')]: {
+      bottom: 90,
+    },
   },
 }));
 
@@ -66,10 +49,9 @@ function FabIntegrationSnackbar() {
     setOpen(false);
   }
 
-  const fabClassName = clsx(classes.fab, open ? classes.fabMoveUp : classes.fabMoveDown);
-
   return (
     <div className={classes.root}>
+      <CssBaseline />
       <Button className={classes.button} onClick={handleClick}>
         Open snackbar
       </Button>
@@ -89,7 +71,7 @@ function FabIntegrationSnackbar() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Fab color="secondary" className={fabClassName}>
+        <Fab color="secondary" className={classes.fab}>
           <AddIcon />
         </Fab>
         <Snackbar
@@ -98,7 +80,6 @@ function FabIntegrationSnackbar() {
           onClose={handleClose}
           ContentProps={{
             'aria-describedby': 'snackbar-fab-message-id',
-            className: classes.snackbarContent,
           }}
           message={<span id="snackbar-fab-message-id">Archived</span>}
           action={

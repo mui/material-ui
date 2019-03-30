@@ -71,7 +71,6 @@ function MySnackbarContentWrapper(props: Props) {
       }
       action={[
         <IconButton
-          edge="end"
           key="close"
           aria-label="Close"
           color="inherit"

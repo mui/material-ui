@@ -52,11 +52,11 @@ Per [Google's guidelines](https://material.io/design/components/snackbars.html#s
 
 {{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
 
-### Don't block the floating action button
+### Snackbars and floating action buttons (FABs)
 
-Move the floating action button vertically to accommodate the snackbar height.
+Snackbars should appear above FABs (on mobile).
 
-{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
+{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js", "iframe": true}}
 
 ### Control Direction
 
@@ -68,7 +68,7 @@ Change the direction of the transition. Slide is the default transition.
 
 Use a different transition.
 
-{{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
+{{"demo": "pages/demos/snackbars/TransitionsSnackbar.js"}}
 
 ## Complementary projects
 
