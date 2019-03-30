@@ -166,9 +166,11 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       return <div className={className}>Greeted?: {defaulted.startsWith('Hello')}</div>;
     }
   }
-  const StyledMyComponent = styled<typeof MyComponent>(MyComponent)((theme: MyTheme) => ({
-    fontFamily: theme.fontFamily,
-  }));
+  const StyledMyComponent = styled<typeof MyComponent>(MyComponent)(
+    ({ theme }: { theme: MyTheme }) => ({
+      fontFamily: theme.fontFamily,
+    }),
+  );
   const renderedMyComponent = (
     <>
       <MyComponent className="test" />

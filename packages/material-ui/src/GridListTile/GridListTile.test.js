@@ -2,7 +2,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
-import { act } from 'react-dom/test-utils';
 import { setRef } from '../utils/reactHelpers';
 import GridListTile from './GridListTile';
 
@@ -84,9 +83,7 @@ describe('<GridListTile />', () => {
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
-      act(() => {
-        mountMockImage(imgEl);
-      });
+      mountMockImage(imgEl);
       assert.strictEqual(imgEl.classList.remove.callCount, 1);
       assert.strictEqual(imgEl.classList.remove.args[0][0], classes.imgFullWidth);
       assert.strictEqual(imgEl.classList.add.callCount, 1);
@@ -102,9 +99,7 @@ describe('<GridListTile />', () => {
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
-      act(() => {
-        mountMockImage(imgEl);
-      });
+      mountMockImage(imgEl);
       assert.strictEqual(imgEl.classList.remove.callCount, 1);
       assert.strictEqual(imgEl.classList.remove.args[0][0], classes.imgFullHeight);
       assert.strictEqual(imgEl.classList.add.callCount, 1);
@@ -132,9 +127,7 @@ describe('<GridListTile />', () => {
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
-      act(() => {
-        mountMockImage(imgEl);
-      });
+      mountMockImage(imgEl);
       assert.strictEqual(imgEl.classList.remove.callCount, 1);
       assert.strictEqual(imgEl.classList.remove.args[0][0], classes.imgFullHeight);
       assert.strictEqual(imgEl.classList.add.callCount, 1);

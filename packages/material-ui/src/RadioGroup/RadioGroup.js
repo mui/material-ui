@@ -4,40 +4,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import FormGroup from '../FormGroup';
-import { createChainedFunction, find } from '../utils/helpers';
+import { setRef } from '../utils/reactHelpers';
+import RadioGroupContext from './RadioGroupContext';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
-  const { actions, children, defaultValue, name, value: valueProp, onChange, ...other } = props;
-  const radiosRef = React.useRef([]);
+  const { actions, children, name, value: valueProp, onChange, ...other } = props;
+  const rootRef = React.useRef();
   const { current: isControlled } = React.useRef(props.value != null);
   const [valueState, setValue] = React.useState(() => {
     if (!isControlled) {
-      return defaultValue;
+      return props.defaultValue;
     }
     return null;
   });
 
   React.useImperativeHandle(actions, () => ({
     focus: () => {
-      const radios = radiosRef.current;
-      if (!radios.length) {
-        return;
+      let input = rootRef.current.querySelector('input:not(:disabled):checked');
+
+      if (!input) {
+        input = rootRef.current.querySelector('input:not(:disabled)');
       }
 
-      const focusRadios = radios.filter(n => !n.disabled);
-
-      if (!focusRadios.length) {
-        return;
+      if (input) {
+        input.focus();
       }
-
-      const selectedRadio = find(focusRadios, n => n.checked);
-
-      if (selectedRadio) {
-        selectedRadio.focus();
-        return;
-      }
-
-      focusRadios[0].focus();
     },
   }));
 
@@ -67,34 +58,18 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
       onChange(event, event.target.value);
     }
   };
+  const context = { name, onChange: handleChange, value };
 
-  radiosRef.current = [];
   return (
-    <FormGroup role="radiogroup" ref={ref} defaultValue={defaultValue} {...other}>
-      {React.Children.map(children, child => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        warning(
-          child.type !== React.Fragment,
-          [
-            "Material-UI: the RadioGroup component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
-
-        return React.cloneElement(child, {
-          name,
-          inputRef: node => {
-            if (node) {
-              radiosRef.current.push(node);
-            }
-          },
-          checked: value === child.props.value,
-          onChange: createChainedFunction(child.props.onChange, handleChange),
-        });
-      })}
+    <FormGroup
+      role="radiogroup"
+      ref={nodeRef => {
+        setRef(ref, nodeRef);
+        setRef(rootRef, nodeRef);
+      }}
+      {...other}
+    >
+      <RadioGroupContext.Provider value={context}>{children}</RadioGroupContext.Provider>
     </FormGroup>
   );
 });

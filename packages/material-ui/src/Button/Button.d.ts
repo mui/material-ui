@@ -11,7 +11,7 @@ declare const Button: ExtendButtonBase<{
     fullWidth?: boolean;
     href?: string;
     size?: 'small' | 'medium' | 'large';
-    type?: string;
+    type?: 'submit' | 'reset' | 'button';
     variant?: 'text' | 'outlined' | 'contained';
   };
   defaultComponent: 'button';

@@ -9,8 +9,8 @@ import * as React from 'react';
 /**
  * @internal
  */
-export type ComponentCreator<C extends React.ElementType> = <Theme>(
-  styles: CSSProperties | ((theme: Theme) => CSSProperties),
+export type ComponentCreator<C extends React.ElementType> = <Theme, Props extends {} = any>(
+  styles: CSSProperties | (({ theme, ...props }: { theme: Theme } & Props) => CSSProperties),
   options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
   Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, 'classes' | 'className'> &

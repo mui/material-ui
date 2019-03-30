@@ -11,10 +11,16 @@ export default function createMount(options1 = {}) {
   window.document.body.insertBefore(attachTo, window.document.body.firstChild);
 
   const mountWithContext = function mountWithContext(node, options2 = {}) {
+    const { disableUnnmount = false, ...other2 } = options2;
+
+    if (!disableUnnmount) {
+      ReactDOM.unmountComponentAtNode(attachTo);
+    }
+
     return mount(node, {
       attachTo,
       ...other1,
-      ...options2,
+      ...other2,
     });
   };
 
