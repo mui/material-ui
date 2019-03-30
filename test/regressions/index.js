@@ -63,6 +63,9 @@ const blacklistFilename = [
   'docs-demos-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
 
+  // flaky
+  'docs-demos-grid-list/ImageGridList.png',
+
   // Redux isolation
   'docs-demos-chips/ChipsPlayground.png',
   'docs-utils-popover/AnchorPlayground.png',
