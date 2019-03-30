@@ -13,7 +13,7 @@ function LinearBuffer() {
   const [completed, setCompleted] = React.useState(0);
   const [buffer, setBuffer] = React.useState(10);
 
-  const progress = React.useRef(() => undefined);
+  const progress = React.useRef(() => {});
   React.useEffect(() => {
     progress.current = () => {
       if (completed > 100) {
