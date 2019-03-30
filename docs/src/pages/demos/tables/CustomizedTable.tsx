@@ -17,7 +17,7 @@ const CustomTableCell = withStyles((theme: Theme) =>
     body: {
       fontSize: 14,
     },
-  })
+  }),
 )(TableCell);
 
 const styles = (theme: Theme) =>
