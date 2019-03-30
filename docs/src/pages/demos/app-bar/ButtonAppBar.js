@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ButtonAppBar(props) {
+function ButtonAppBar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>

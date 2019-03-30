@@ -61,9 +61,11 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
     },
-  }));
+  }),
+);
 
 function SearchAppBar() {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">

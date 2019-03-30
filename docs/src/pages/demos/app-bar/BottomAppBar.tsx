@@ -95,7 +95,8 @@ const useStyles = makeStyles((theme: Theme) =>
       right: 0,
       margin: '0 auto',
     },
-  }));
+  }),
+);
 
 function BottomAppBar() {
   const classes = useStyles();

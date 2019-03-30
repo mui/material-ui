@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
-  }));
+  }),
+);
 
 function ButtonAppBar() {
   const classes = useStyles();

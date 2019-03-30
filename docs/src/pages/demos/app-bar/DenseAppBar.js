@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function DenseAppBar(props) {
+function DenseAppBar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
