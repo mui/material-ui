@@ -25,6 +25,13 @@ function DelayingAppearance() {
   const [query, setQuery] = React.useState('idle');
   let timer;
 
+  React.useEffect(
+    () => () => {
+      clearTimeout(timer);
+    },
+    [],
+  );
+
   function handleClickLoading() {
     setLoading(prevLoading => !prevLoading);
   }

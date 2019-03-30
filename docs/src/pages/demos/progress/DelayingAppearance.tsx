@@ -27,6 +27,13 @@ function DelayingAppearance() {
   const [query, setQuery] = React.useState<QueryStatus>('idle');
   let timer: number | undefined;
 
+  React.useEffect(
+    () => () => {
+      clearTimeout(timer);
+    },
+    [],
+  );
+
   function handleClickLoading() {
     setLoading(prevLoading => !prevLoading);
   }
