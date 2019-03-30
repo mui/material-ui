@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import {
   recomposeColor,
-  convertHexToRGB,
+  hexToRgb,
   rgbToHex,
   hslToRgb,
   darken,
@@ -65,13 +65,13 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  describe('convertHexToRGB', () => {
+  describe('hexToRgb', () => {
     it('converts a short hex color to an rgb color` ', () => {
-      assert.strictEqual(convertHexToRGB('#9f3'), 'rgb(153, 255, 51)');
+      assert.strictEqual(hexToRgb('#9f3'), 'rgb(153, 255, 51)');
     });
 
     it('converts a long hex color to an rgb color` ', () => {
-      assert.strictEqual(convertHexToRGB('#A94FD3'), 'rgb(169, 79, 211)');
+      assert.strictEqual(hexToRgb('#a94fd3'), 'rgb(169, 79, 211)');
     });
   });
 
@@ -80,7 +80,7 @@ describe('utils/colorManipulator', () => {
       assert.strictEqual(rgbToHex('rgb(169, 79, 211)'), '#a94fd3');
     });
 
-    it('passes a hex value through` ', () => {
+    it('idempotent', () => {
       assert.strictEqual(rgbToHex('#A94FD3'), '#A94FD3');
     });
   });
@@ -90,8 +90,12 @@ describe('utils/colorManipulator', () => {
       assert.strictEqual(hslToRgb('hsl(281, 60%, 57%)'), 'rgb(169, 80, 211)');
     });
 
+    it('converts an hsla color to an rgba color` ', () => {
+      assert.strictEqual(hslToRgb('hsla(281, 60%, 57%, 0.5)'), 'rgba(169, 80, 211, 0.5)');
+    });
+
     it('allow to convert values only', () => {
-      assert.deepEqual(hslToRgb([281, 60, 57]), [169, 80, 211]);
+      assert.deepEqual(hslToRgb(decomposeColor('hsl(281, 60%, 57%)')), 'rgb(169, 80, 211)');
     });
   });
 
@@ -118,6 +122,12 @@ describe('utils/colorManipulator', () => {
       const { type, values } = decomposeColor('hsla(100, 50%, 25%, 0.5)');
       assert.strictEqual(type, 'hsla');
       assert.deepEqual(values, [100, 50, 25, 0.5]);
+    });
+
+    it('idempotent', () => {
+      const output1 = decomposeColor('hsla(100, 50%, 25%, 0.5)');
+      const output2 = decomposeColor(output1);
+      assert.strictEqual(output1, output2);
     });
   });
 
