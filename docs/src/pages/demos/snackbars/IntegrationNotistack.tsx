@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { SnackbarProvider, withSnackbar } from 'notistack';
+import { SnackbarProvider, VariantType, withSnackbar, withSnackbarProps } from 'notistack';
 
-class App extends React.Component {
+class App extends React.Component<withSnackbarProps> {
   static propTypes = {
     enqueueSnackbar: PropTypes.func.isRequired,
   };
@@ -12,7 +12,7 @@ class App extends React.Component {
     this.props.enqueueSnackbar('I love snacks.');
   };
 
-  handleClickVariant = variant => () => {
+  handleClickVariant = (variant: VariantType) => () => {
     // variant could be success, error, warning, info, or default
     this.props.enqueueSnackbar('This is a warning message!', { variant });
   };

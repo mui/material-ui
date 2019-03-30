@@ -1,17 +1,20 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar, { SnackbarOrigin } from '@material-ui/core/Snackbar';
+
+export interface State extends SnackbarOrigin {
+  open: boolean;
+}
 
 function PositionedSnackbar() {
-  const [state, setState] = React.useState({
+  const [state, setState] = React.useState<State>({
     open: false,
     vertical: 'top',
     horizontal: 'center',
   });
-
   const { vertical, horizontal, open } = state;
 
-  const handleClick = newState => () => {
+  const handleClick = (newState: SnackbarOrigin) => () => {
     setState({ open: true, ...newState });
   };
 

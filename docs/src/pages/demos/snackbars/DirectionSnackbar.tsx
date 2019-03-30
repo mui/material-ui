@@ -2,24 +2,30 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
+import { TransitionProps } from '@material-ui/core/transitions/transition';
 
-function TransitionLeft(props) {
+function TransitionLeft(props: TransitionProps) {
   return <Slide {...props} direction="left" />;
 }
 
-function TransitionUp(props) {
+function TransitionUp(props: TransitionProps) {
   return <Slide {...props} direction="up" />;
 }
 
-function TransitionRight(props) {
+function TransitionRight(props: TransitionProps) {
   return <Slide {...props} direction="right" />;
 }
 
-function TransitionDown(props) {
+function TransitionDown(props: TransitionProps) {
   return <Slide {...props} direction="down" />;
 }
 
-class DirectionSnackbar extends React.Component {
+export interface State {
+  open: boolean;
+  Transition?: React.ComponentType<TransitionProps>;
+}
+
+class DirectionSnackbar extends React.Component<void, State> {
   constructor() {
     super();
 
@@ -28,7 +34,7 @@ class DirectionSnackbar extends React.Component {
     };
   }
 
-  handleClick = Transition => () => {
+  handleClick = (Transition: React.ComponentType<TransitionProps>) => () => {
     this.setState({ open: true, Transition });
   };
 
