@@ -118,6 +118,7 @@ function CustomPaginationActionsTable() {
       createData('Oreo', 437, 18.0),
     ].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
   );
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -145,6 +146,7 @@ function CustomPaginationActionsTable() {
                 <TableCell align="right">{row.fat}</TableCell>
               </TableRow>
             ))}
+
             {emptyRows > 0 && (
               <TableRow style={{ height: 48 * emptyRows }}>
                 <TableCell colSpan={6} />
