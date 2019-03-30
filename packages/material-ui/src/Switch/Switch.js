@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import { fade } from '../styles/colorManipulator';
 import { capitalize } from '../utils/helpers';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -26,7 +27,7 @@ export const styles = theme => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: 1, // Render the ripple behind.
+    zIndex: 1, // Render above the focus ripple.
     color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
@@ -48,6 +49,9 @@ export const styles = theme => ({
   colorPrimary: {
     '&$checked': {
       color: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+      },
     },
     '&$disabled': {
       color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
@@ -64,6 +68,9 @@ export const styles = theme => ({
   colorSecondary: {
     '&$checked': {
       color: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      },
     },
     '&$disabled': {
       color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
