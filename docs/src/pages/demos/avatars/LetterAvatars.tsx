@@ -5,21 +5,23 @@ import deepOrange from '@material-ui/core/colors/deepOrange';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles(createStyles({
-  avatar: {
-    margin: 10,
-  },
-  orangeAvatar: {
-    margin: 10,
-    color: '#fff',
-    backgroundColor: deepOrange[500],
-  },
-  purpleAvatar: {
-    margin: 10,
-    color: '#fff',
-    backgroundColor: deepPurple[500],
-  },
-}));
+const useStyles = makeStyles(
+  createStyles({
+    avatar: {
+      margin: 10,
+    },
+    orangeAvatar: {
+      margin: 10,
+      color: '#fff',
+      backgroundColor: deepOrange[500],
+    },
+    purpleAvatar: {
+      margin: 10,
+      color: '#fff',
+      backgroundColor: deepPurple[500],
+    },
+  }),
+);
 
 function LetterAvatars() {
   const classes = useStyles();
