@@ -32,5 +32,4 @@ function DenseAppBar() {
     </div>
   );
 }
-
 export default DenseAppBar;
