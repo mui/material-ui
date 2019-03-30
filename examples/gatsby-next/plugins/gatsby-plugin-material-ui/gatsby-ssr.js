@@ -1,22 +1,15 @@
-/* eslint-disable react/no-danger, react/prop-types */
-
 import React from 'react';
-import { SheetsRegistry } from 'jss';
-import { StylesProvider, ThemeProvider } from '@material-ui/styles';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import theme from './.cache/theme';
 
-// Keep track of sheetsRegistry for each page
+// Keep track of sheets for each page
 const globalLeak = new Map();
 
 export const wrapRootElement = ({ element, pathname }) => {
-  const sheetsRegistry = new SheetsRegistry();
-  globalLeak.set(pathname, sheetsRegistry);
+  const sheets = new ServerStyleSheets();
+  globalLeak.set(pathname, sheets);
 
-  return (
-    <StylesProvider sheetsRegistry={sheetsRegistry} sheetsManager={new Map()}>
-      <ThemeProvider theme={theme}>{element}</ThemeProvider>
-    </StylesProvider>
-  );
+  return sheets.collect(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 };
 
 export const onRenderBody = ({ setHeadComponents, pathname }) => {
@@ -25,13 +18,7 @@ export const onRenderBody = ({ setHeadComponents, pathname }) => {
     return;
   }
 
-  const sheetsRegistry = globalLeak.get(pathname);
-  setHeadComponents([
-    <style
-      id="jss-server-side"
-      key="jss-server-side"
-      dangerouslySetInnerHTML={{ __html: sheetsRegistry.toString() }}
-    />,
-  ]);
+  const sheets = globalLeak.get(pathname);
+  setHeadComponents([sheets.getStyleElement()]);
   globalLeak.delete(pathname);
 };

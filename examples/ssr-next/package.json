@@ -12,7 +12,6 @@
     "@material-ui/styles": "next",
     "babel-loader": "next",
     "express": "latest",
-    "jss": "next",
     "nodemon": "latest",
     "prop-types": "latest",
     "react": "latest",
