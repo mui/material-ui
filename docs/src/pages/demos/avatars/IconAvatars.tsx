@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
 import green from '@material-ui/core/colors/green';
-import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Grid from '@material-ui/core/Grid';
 
-const styles = createStyles({
+const useStyles = makeStyles(createStyles({
   avatar: {
     margin: 10,
   },
@@ -23,12 +22,11 @@ const styles = createStyles({
     color: '#fff',
     backgroundColor: green[500],
   },
-});
+}));
 
-export interface Props extends WithStyles<typeof styles> {}
+function IconAvatars() {
+  const classes = useStyles();
 
-function IconAvatars(props: Props) {
-  const { classes } = props;
   return (
     <Grid container justify="center" alignItems="center">
       <Avatar className={classes.avatar}>
@@ -44,8 +42,4 @@ function IconAvatars(props: Props) {
   );
 }
 
-IconAvatars.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(IconAvatars);
+export default IconAvatars;
