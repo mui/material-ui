@@ -200,7 +200,7 @@ class AppFrame extends React.Component {
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
-                <Typography className={classes.banner} noWrap>
+                <Typography className={classes.banner} variant="body2" noWrap>
                   <Interpolate
                     replacement={{
                       versionNumber: (

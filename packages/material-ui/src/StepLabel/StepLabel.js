@@ -122,6 +122,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
       ) : null}
       <span className={classes.labelContainer}>
         <Typography
+          variant="body2"
           component="span"
           className={clsx(classes.label, {
             [classes.alternativeLabel]: alternativeLabel,

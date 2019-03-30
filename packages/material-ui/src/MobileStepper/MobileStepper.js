@@ -64,7 +64,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
     activeStep,
     backButton,
     classes,
-    className: classNameProp,
+    className,
     LinearProgressProps,
     nextButton,
     position,
@@ -73,20 +73,31 @@ const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
     ...other
   } = props;
 
-  const className = clsx(classes.root, classes[`position${capitalize(position)}`], classNameProp);
-
   return (
-    <Paper square elevation={0} className={className} ref={ref} {...other}>
+    <Paper
+      square
+      elevation={0}
+      className={clsx(classes.root, classes[`position${capitalize(position)}`], className)}
+      ref={ref}
+      {...other}
+    >
       {backButton}
+      {variant === 'text' && (
+        <React.Fragment>
+          {activeStep + 1} / {steps}
+        </React.Fragment>
+      )}
       {variant === 'dots' && (
         <div className={classes.dots}>
-          {[...new Array(steps)].map((_, index) => {
-            const dotClassName = clsx(classes.dot, {
-              [classes.dotActive]: index === activeStep,
-            });
-            // eslint-disable-next-line react/no-array-index-key
-            return <div key={index} className={dotClassName} />;
-          })}
+          {[...new Array(steps)].map((_, index) => (
+            <div
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              className={clsx(classes.dot, {
+                [classes.dotActive]: index === activeStep,
+              })}
+            />
+          ))}
         </div>
       )}
       {variant === 'progress' && (

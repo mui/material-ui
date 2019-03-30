@@ -15,10 +15,13 @@ const styles = theme => ({
 class ConsecutiveSnackbars extends React.Component {
   queue = [];
 
-  state = {
-    open: false,
-    messageInfo: {},
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false,
+    };
+  }
 
   handleClick = message => () => {
     this.queue.push({
@@ -57,7 +60,7 @@ class ConsecutiveSnackbars extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { messageInfo } = this.state;
+    const { messageInfo = {} } = this.state;
 
     return (
       <div>

@@ -175,7 +175,7 @@ export function getLuminance(color) {
 }
 
 /**
- * Darken or lighten a colour, depending on its luminance.
+ * Darken or lighten a color, depending on its luminance.
  * Light colors are darkened, dark colors are lightened.
  *
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()

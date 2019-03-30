@@ -44,11 +44,17 @@ function ComplexGrid(props) {
                 <Typography gutterBottom variant="subtitle1">
                   Standard license
                 </Typography>
-                <Typography gutterBottom>Full resolution 1920x1080 • JPEG</Typography>
-                <Typography color="textSecondary">ID: 1030114</Typography>
+                <Typography variant="body2" gutterBottom>
+                  Full resolution 1920x1080 • JPEG
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  ID: 1030114
+                </Typography>
               </Grid>
               <Grid item>
-                <Typography style={{ cursor: 'pointer' }}>Remove</Typography>
+                <Typography variant="body2" style={{ cursor: 'pointer' }}>
+                  Remove
+                </Typography>
               </Grid>
             </Grid>
             <Grid item>

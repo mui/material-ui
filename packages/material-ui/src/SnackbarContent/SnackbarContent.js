@@ -51,6 +51,7 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
   return (
     <Paper
       component={Typography}
+      variant="body2"
       variantMapping={{
         body1: 'div',
         body2: 'div',

@@ -4,12 +4,16 @@ import Button from '@material-ui/core/Button';
 import { SnackbarProvider, withSnackbar } from 'notistack';
 
 class App extends React.Component {
+  static propTypes = {
+    enqueueSnackbar: PropTypes.func.isRequired,
+  };
+
   handleClick = () => {
     this.props.enqueueSnackbar('I love snacks.');
   };
 
   handleClickVariant = variant => () => {
-    // variant could be success, error, warning or info
+    // variant could be success, error, warning, info, or default
     this.props.enqueueSnackbar('This is a warning message!', { variant });
   };
 
@@ -22,10 +26,6 @@ class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  enqueueSnackbar: PropTypes.func.isRequired,
-};
 
 const MyApp = withSnackbar(App);
 
