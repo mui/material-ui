@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Portal from '@material-ui/core/Portal';
 import Button from '@material-ui/core/Button';
@@ -7,45 +7,33 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   alert: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(1, 0),
+    padding: theme.spacing.unit,
+    margin: `${theme.spacing.unit}px 0`,
     border: '1px solid',
     borderColor: theme.palette.text.primary,
   },
 });
 
-class SimplePortal extends React.Component {
-  state = {
-    show: false,
-  };
+function SimplePortal(props) {
+  const [show, setShow] = useState(false);
+  const container = useRef(null);
+  const { classes } = props;
 
-  handleClick = () => {
-    this.setState(state => ({ show: !state.show }));
-  };
+  return (
+    <div>
+      <Button onClick={() => setShow(!show)}>{show ? 'Unmount children' : 'Mount children'}</Button>
 
-  render() {
-    const { classes } = this.props;
-    const { show } = this.state;
-    return (
-      <div>
-        <Button onClick={this.handleClick}>{show ? 'Unmount children' : 'Mount children'}</Button>
-        <div className={classes.alert}>
-          <Typography>It looks like I will render here.</Typography>
-          {show ? (
-            <Portal container={this.container}>
-              <Typography>But I actually render here!</Typography>
-            </Portal>
-          ) : null}
-        </div>
-        <div
-          className={classes.alert}
-          ref={ref => {
-            this.container = ref;
-          }}
-        />
+      <div className={classes.alert}>
+        <Typography>It looks like I will render here.</Typography>
+        {show ? (
+          <Portal container={container.current}>
+            <Typography>But I actually render here!</Typography>
+          </Portal>
+        ) : null}
       </div>
-    );
-  }
+      <div className={classes.alert} ref={container} />
+    </div>
+  );
 }
 
 SimplePortal.propTypes = {
