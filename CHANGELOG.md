@@ -1,5 +1,90 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.6
+###### *Mar 30, 2019*
+
+A big thanks to the 20 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🔥 Many new TypeScript & hook demos @eluchsinger, @sperry94, @Dudrie.
+- 🎀 5 more core components migrated from Classes to Hooks @joshwooding.
+- ⚛️ A simpler server-side rendering API (#15030).
+- 💅 Better typography defaults (#15100) @oliviertassinari
+- And many more 🐛 bug fixes and 💄 improvements.
+
+### `@material-ui/core@v4.0.0-alpha.6`
+
+#### Breaking changes
+
+- [Typography] Better defaults (#15100) @oliviertassinari
+
+  - Change the default variant from `body2` to `body1`.
+    A font size of 16px is a better default than 14px.
+    Bootstrap, material.io or even our documentation use 16px as a default font size.
+    14px like Ant Design is understandable as Chinese users have a different alphabet.
+    We document 12px as the default font size for Japanese.
+  - Remove the default color from the typography variants.
+    The color should inherit most of the time. It's the default behavior of the web.
+  - Rename `color="default"` to `color="initial"` following the logic of #13028.
+    The usage of *default* should be avoided, it lakes semantic.
+
+- [Container] Move to the core (#15062) @oliviertassinari
+
+#### Changes
+
+- [Box] Use the default theme (#15019) @apanizo
+- [SwipeableDrawer] Ignore open swipe if it didn't start on the swipe area (#15045) @leMaik
+- [Divider] Enable component generic props (#15040) @StevenGodin
+- [ListItem] Add type test for button prop (#15049) @eps1lon
+- [Button] Fix typing for type-attribute (#15077) @karlbohlmark
+- [RadioGroup] Remove cloneElement, use the context (#15069) @oliviertassinari
+- [Popover] Add warning to Popover if anchorRef is not visible (#15090) @alexmironof
+- [MobileStepper] Support variant "text" (#15108) @AcidRaZor
+- [Tabs] Update so that tabs keep equal widths (#15114) @sosaucily
+
+### `@material-ui/styles@v4.0.0-alpha.6`
+
+- [styles] Fix IE 11 issue (#15034) @oliviertassinari
+- [styles] Use the hook directly in styled() (#15029) @oliviertassinari
+- [styles] Add a new injectFirst prop (#15028) @oliviertassinari
+- [styles] Go back to index counter (#15044) @oliviertassinari
+- [styles] Server-side rendering API (#15030) @oliviertassinari
+- [styled] Correct doc and typings for styled with theme (#15004) @sveyret
+
+### `@material-ui/lab@v4.0.0-alpha.6`
+
+- [Slider] Fix onChange not being fired on single touch (#14998) @ahockersten
+
+### Docs
+
+- [docs] Add keyframes in the v3 -> v4 upgrade guide (#15039) @oliviertassinari
+- [docs] Migrate one demo to the hooks (#15031) @oliviertassinari
+- [docs] Add TypeScript demos for Dividers (#15037) @eluchsinger
+- [docs] Add Chip TypeScript demo for Chip array (#15050) @sperry94
+- [docs] Add MQTT Explorer to showcases (#15033) @thomasnordquist
+- [docs] Fix CustomizedTabs demo (#15065) @HaNdTriX
+- [docs] Add a new site to showcase (learnseeker) (#15064) @ravishwetha
+- [docs] Add Tabs TypeScript demo (#15053) @sperry94
+- [docs] Migrate docs' badge page to hooks (#15109) @apanizo
+- [docs] Migrate docs' buttons page to hooks (#15110) @apanizo
+- [docs] Add Pickers TypeScript demos (#15103) @sperry94
+- [docs] Migrate Avatar demo page to the hooks (#15116) @rick-mo
+- [docs] Add Snackbars TypeScript Demos (#15087) @sperry94
+- [docs] Add Tooltip TypeScript demos (#15061) @Dudrie
+
+### Core
+
+- [ToggleButtonGroup] Convert to function component (#15025) @joshwooding
+- [ToggleButton] Convert to function component (#14965) @joshwooding
+- [Fade] Convert to function component (#15027) @joshwooding
+- [performance] Add live pages (#15046) @oliviertassinari
+- [ExpansionPanelSummary] Convert to function component (#15043) @joshwooding
+- [test] Add conformance suite (#14958) @eps1lon
+- [Menu] Convert to function component (#15068) @joshwooding
+- [test] Update enzyme (#14987) @eps1lon
+- [core] Batch of fixes (#15115) @oliviertassinari
+
 ## 4.0.0-alpha.5
 ###### *Mar 23, 2019*
 
