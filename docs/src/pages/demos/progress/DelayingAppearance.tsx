@@ -31,7 +31,7 @@ function DelayingAppearance() {
     () => () => {
       clearTimeout(timer);
     },
-    [],
+    [timer],
   );
 
   function handleClickLoading() {
