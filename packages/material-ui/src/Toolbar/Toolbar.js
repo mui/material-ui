@@ -11,7 +11,14 @@ export const styles = theme => ({
     alignItems: 'center',
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
-  gutters: theme.mixins.gutters(),
+  gutters: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
+    },
+  },
   /* Styles applied to the root element if `variant="regular"`. */
   regular: theme.mixins.toolbar,
   /* Styles applied to the root element if `variant="dense"`. */
