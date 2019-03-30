@@ -23,13 +23,13 @@ function DelayingAppearance() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
-  let timer;
+  let timer = null;
 
-  React.useEffect(
+  React.useState(
     () => () => {
       clearTimeout(timer);
     },
-    [timer],
+    [],
   );
 
   function handleClickLoading() {
@@ -46,7 +46,6 @@ function DelayingAppearance() {
 
     setQuery('progress');
     timer = setTimeout(() => {
-      clearTimeout(timer);
       setQuery('success');
     }, 2000);
   }
