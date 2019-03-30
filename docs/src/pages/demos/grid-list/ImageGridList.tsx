@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+// tslint:disable-next-line: no-relative-import-in-test
 import tileData from './tileData';
 
 const styles = (theme: Theme) =>

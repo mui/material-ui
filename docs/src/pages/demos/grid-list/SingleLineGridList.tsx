@@ -6,6 +6,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+// tslint:disable-next-line: no-relative-import-in-test
 import tileData from './tileData';
 
 const styles = (theme: Theme) =>
