@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
+  describeConformance,
   findOutermostIntrinsic,
   getClasses,
 } from '@material-ui/core/test-utils';
@@ -18,7 +19,10 @@ describe('<Popover />', () => {
   let shallow;
   let mount;
   let classes;
-  let defaultProps;
+  const defaultProps = {
+    open: false,
+    anchorEl: () => document.createElement('div'),
+  };
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -28,15 +32,17 @@ describe('<Popover />', () => {
         <div />
       </Popover>,
     );
-    defaultProps = {
-      open: false,
-      anchorEl: document.createElement('div'),
-    };
   });
 
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<Popover {...defaultProps} open />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLDivElement,
+  }));
 
   describe('root node', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
