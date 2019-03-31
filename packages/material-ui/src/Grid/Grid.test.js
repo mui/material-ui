@@ -1,16 +1,29 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Grid from './Grid';
 
 describe('<Grid />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Grid />);
   });
+
+  describeConformance(<Grid />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLDivElement,
+  }));
 
   it('should render', () => {
     const wrapper = shallow(<Grid className="woofGrid" />);
