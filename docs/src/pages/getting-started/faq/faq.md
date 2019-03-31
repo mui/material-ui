@@ -22,8 +22,6 @@ You could end up accidentally using two class name generators in a variety of sc
 
 Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/css-in-js/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared between them**.
 
-⚠️ If you are in a hurry, we provide an option to make the class names **deterministic** as a quick escape hatch: [`dangerouslyUseGlobalCSS`](/css-in-js/advanced/#deterministic-class-names).
-
 ## Why do the fixed positioned elements move when a modal is opened?
 
 We block the scroll as soon as a modal is opened.

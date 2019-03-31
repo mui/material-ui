@@ -24,6 +24,8 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
   return { ...outerTheme, ...localTheme };
 }
 
+export const nested = Symbol('nested');
+
 /**
  * This component takes a `theme` property.
  * It makes the `theme` available down the React tree thanks to React context.
@@ -46,10 +48,16 @@ function ThemeProvider(props) {
     ].join('\n'),
   );
 
-  const theme = React.useMemo(
-    () => (outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme)),
-    [localTheme, outerTheme],
-  );
+  const theme = React.useMemo(() => {
+    const output = outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
+
+    if (outerTheme !== null && output) {
+      output[nested] = true;
+    }
+
+    return output;
+  }, [localTheme, outerTheme]);
+
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 }
 

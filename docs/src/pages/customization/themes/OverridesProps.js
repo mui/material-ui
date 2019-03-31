@@ -7,18 +7,18 @@ const theme = createMuiTheme({
   props: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      // The properties to apply
+      // The default props to change
       disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
 
-function OverridesProperties() {
+function OverridesProps() {
   return (
     <ThemeProvider theme={theme}>
-      <Button>Overrides properties</Button>
+      <Button>Change default props</Button>
     </ThemeProvider>
   );
 }
 
-export default OverridesProperties;
+export default OverridesProps;
