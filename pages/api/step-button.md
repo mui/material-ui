@@ -23,6 +23,8 @@ import StepButton from '@material-ui/core/StepButton';
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon displayed by the step label. |
 | <span class="prop-name">optional</span> | <span class="prop-type">node</span> |  | The optional node to display. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS

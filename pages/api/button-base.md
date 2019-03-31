@@ -35,6 +35,8 @@ It contains a load of style reset and some focus/ripple logic.
 | <span class="prop-name">TouchRippleProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `TouchRipple` element. |
 | <span class="prop-name">type</span> | <span class="prop-type">enum:&nbsp;'submit'&nbsp;&#124;<br>&nbsp;'reset'&nbsp;&#124;<br>&nbsp;'button'<br></span> | <span class="prop-default">'button'</span> | Used to control the button's purpose. This property passes the value to the `type` attribute of the native button component. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

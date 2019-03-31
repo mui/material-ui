@@ -22,6 +22,8 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">message</span> | <span class="prop-type">node</span> |  | The message to display. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
 ## CSS

@@ -26,6 +26,8 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 | <span class="prop-name">maxItems</span> | <span class="prop-type">number</span> | <span class="prop-default">8</span> | Specifies the maximum number of breadcrumbs to display. When there are more than the maximum number, only the first and last will be shown, with an ellipsis in between. |
 | <span class="prop-name">separator</span> | <span class="prop-type">node</span> | <span class="prop-default">'/'</span> | Custom separator node. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## Demos

@@ -27,6 +27,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the collapse effect. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `Transition` element. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
 ## CSS

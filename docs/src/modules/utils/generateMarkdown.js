@@ -273,6 +273,10 @@ function generateProps(reactAPI) {
     return textProps;
   }, text);
 
+  text = `${text}\nThe \`ref\` is ${
+    reactAPI.forwardsRefTo == null ? '**not** ' : ''
+  }forwarded to the root element.\n`;
+
   if (reactAPI.spread) {
     text = `${text}
 Any other properties supplied will be spread to the root element (${

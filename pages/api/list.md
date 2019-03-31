@@ -25,6 +25,8 @@ import List from '@material-ui/core/List';
 | <span class="prop-name">disablePadding</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, vertical padding will be removed from the list. |
 | <span class="prop-name">subheader</span> | <span class="prop-type">node</span> |  | The content of the subheader, normally `ListSubheader`. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

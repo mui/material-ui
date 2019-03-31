@@ -34,6 +34,8 @@ import Tabs from '@material-ui/core/Tabs';
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'scrollable'&nbsp;&#124;<br>&nbsp;'fullWidth'<br></span> | <span class="prop-default">'standard'</span> | Determines additional display behavior of the tabs:  - `scrollable` will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -`fullWidth` will make the tabs grow to use all the available space,  which should be used for small views, like on mobile.  - `standard` will render the default state. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS
