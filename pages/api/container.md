@@ -48,5 +48,5 @@ you need to use the following style sheet name: `MuiContainer`.
 
 ## Demos
 
-- [Layout](/layout/layout/)
+- [Container](/layout/container/)
 
