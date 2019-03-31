@@ -121,6 +121,7 @@ const fullSuite = {
  * @property {function} mount - Should be a return value from createMount
  * @property {string[]?} only - If specified only run the tests listed
  * @property {boolean} refInstanceof - `ref` will be an instanceof this constructor.
+ * @property {string[]?} skip - Skip the specified tests
  * @property {string?} testComponentPropWith - The host component that should be rendered instead.
  */
 
@@ -133,10 +134,10 @@ const fullSuite = {
  *
  */
 export default function describeConformance(minimalElement, getOptions) {
-  const { only = Object.keys(fullSuite) } = getOptions();
+  const { only = Object.keys(fullSuite), skip = [] } = getOptions();
   describe('Material-UI component API', () => {
     Object.keys(fullSuite)
-      .filter(testKey => only.indexOf(testKey) !== -1)
+      .filter(testKey => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
       .forEach(testKey => {
         const test = fullSuite[testKey];
         test(minimalElement, getOptions);
