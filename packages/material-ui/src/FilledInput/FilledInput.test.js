@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import FilledInput from './FilledInput';
 
 describe('<FilledInput />', () => {
@@ -15,6 +20,12 @@ describe('<FilledInput />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<FilledInput />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLDivElement,
+  }));
 
   it('should render a <div />', () => {
     const wrapper = mount(<FilledInput />);
