@@ -1,10 +1,10 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const useStyles = makeStyles(theme => ({
+const StyledBadge = withStyles(theme => ({
   badge: {
     top: '50%',
     right: -3,
@@ -13,16 +13,14 @@ const useStyles = makeStyles(theme => ({
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
     }`,
   },
-}));
+}))(Badge);
 
 function CustomizedBadge() {
-  const classes = useStyles();
-
   return (
     <IconButton aria-label="Cart">
-      <Badge badgeContent={4} color="primary" classes={{ badge: classes.badge }}>
+      <StyledBadge badgeContent={4} color="primary">
         <ShoppingCartIcon />
-      </Badge>
+      </StyledBadge>
     </IconButton>
   );
 }

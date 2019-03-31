@@ -1,23 +1,12 @@
 import React from 'react';
-import clsx from 'clsx';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme, withStyles, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const useStyles = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  cssRoot: {
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: purple[500],
-    '&:hover': {
-      backgroundColor: purple[700],
-    },
-  },
-  bootstrapRoot: {
+const BootstrapButton = withStyles({
+  root: {
     boxShadow: 'none',
     textTransform: 'none',
     fontSize: 16,
@@ -51,6 +40,22 @@ const useStyles = makeStyles(theme => ({
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
     },
   },
+})(Button);
+
+const ColorButton = withStyles(theme => ({
+  root: {
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    '&:hover': {
+      backgroundColor: purple[700],
+    },
+  },
+}))(Button);
+
+const useStyles = makeStyles(theme => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
 }));
 
 const theme = createMuiTheme({
@@ -64,22 +69,17 @@ function CustomizedButtons() {
 
   return (
     <div>
-      <Button variant="contained" color="primary" className={clsx(classes.margin, classes.cssRoot)}>
+      <ColorButton variant="contained" color="primary" className={classes.margin}>
         Custom CSS
-      </Button>
+      </ColorButton>
       <ThemeProvider theme={theme}>
         <Button variant="contained" color="primary" className={classes.margin}>
-          ThemeProvider
+          Theme Provider
         </Button>
       </ThemeProvider>
-      <Button
-        variant="contained"
-        color="primary"
-        disableRipple
-        className={clsx(classes.margin, classes.bootstrapRoot)}
-      >
+      <BootstrapButton variant="contained" color="primary" disableRipple className={classes.margin}>
         Bootstrap
-      </Button>
+      </BootstrapButton>
     </div>
   );
 }

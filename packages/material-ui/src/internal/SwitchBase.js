@@ -236,6 +236,6 @@ SwitchBase.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateSwitchBase' })(
+export default withStyles(styles, { name: 'PrivateSwitchBase' })(
   withFormControlContext(SwitchBase),
 );

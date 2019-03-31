@@ -51,9 +51,6 @@ const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
   },
-  bootstrapFormLabel: {
-    fontSize: 18,
-  },
 }));
 
 function CustomizedSelects() {
@@ -65,15 +62,11 @@ function CustomizedSelects() {
   return (
     <form className={classes.root} autoComplete="off">
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
-          Age
-        </InputLabel>
+        <InputLabel htmlFor="age-customized-select">Age</InputLabel>
         <BootstrapInput />
       </FormControl>
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
-          Age
-        </InputLabel>
+        <InputLabel htmlFor="age-customized-select">Age</InputLabel>
         <Select
           value={age}
           onChange={handleChange}
@@ -88,9 +81,7 @@ function CustomizedSelects() {
         </Select>
       </FormControl>
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="age-customized-native-simple" className={classes.bootstrapFormLabel}>
-          Age
-        </InputLabel>
+        <InputLabel htmlFor="age-customized-native-simple">Age</InputLabel>
         <NativeSelect
           value={age}
           onChange={handleChange}
