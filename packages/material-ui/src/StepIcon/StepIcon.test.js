@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { createShallow, createMount, describeConformance } from '@material-ui/core/test-utils';
 import StepIcon from './StepIcon';
 import SvgIcon from '../SvgIcon';
 
@@ -18,6 +18,12 @@ describe('<StepIcon />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<StepIcon icon={1} />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.SVGSVGElement,
+  }));
 
   it('renders <CheckCircle> when completed', () => {
     const wrapper = mount(<StepIcon icon={1} completed />);
