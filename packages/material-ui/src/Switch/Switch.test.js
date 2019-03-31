@@ -1,18 +1,35 @@
 import React from 'react';
 import { assert } from 'chai';
 import clsx from 'clsx';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
 
 describe('<Switch />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ untilSelector: 'span' });
     classes = getClasses(<Switch />);
   });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(<Switch />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLSpanElement,
+  }));
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
