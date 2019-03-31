@@ -2,16 +2,18 @@ import React from 'react';
 import Portal from '@material-ui/core/Portal';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  alert: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(1, 0),
-    border: '1px solid',
-    borderColor: theme.palette.text.primary,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    alert: {
+      padding: theme.spacing(1),
+      margin: theme.spacing(1, 0),
+      border: '1px solid',
+      borderColor: theme.palette.text.primary,
+    },
+  }),
+);
 
 function SimplePortal() {
   const [show, setShow] = React.useState(false);
