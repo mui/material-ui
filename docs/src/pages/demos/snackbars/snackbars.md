@@ -48,7 +48,7 @@ Some snackbars with varying message length.
 
 ### Consecutive Snackbars
 
-Per [Google's guidelines](https://material.io/design/components/snackbars.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
+When multiple snackbar updates are necessary, they should appear one at a time.
 
 {{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
 
