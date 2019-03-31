@@ -1,7 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, findOutermostIntrinsic, testRef } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
@@ -22,9 +26,11 @@ describe('<RadioGroup />', () => {
     return wrapper.find(`input[value="${value}"]`).first();
   }
 
-  it('does forward refs', () => {
-    testRef(<RadioGroup />, mount);
-  });
+  describeConformance(<RadioGroup value="" />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLDivElement,
+  }));
 
   it('should render a FormGroup with the radiogroup role', () => {
     const wrapper = mount(<RadioGroup value="" />);
