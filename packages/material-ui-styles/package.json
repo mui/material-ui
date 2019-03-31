@@ -2,7 +2,7 @@
   "name": "@material-ui/styles",
   "private": false,
   "author": "Material-UI Team",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-alpha.6",
   "description": "Material-UI Styles - The styling solution of Material-UI.",
   "main": "./src/index.js",
   "keywords": [

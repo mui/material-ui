@@ -35,22 +35,22 @@ describe('<Switch />', () => {
       assert.strictEqual(wrapper.hasClass('foo'), true);
     });
 
-    it('should render SwitchBase with a custom span icon with the icon class', () => {
+    it('should render SwitchBase with a custom span icon with the thumb class', () => {
       const switchBase = wrapper.childAt(0);
       assert.strictEqual(switchBase.type(), SwitchBase);
       assert.strictEqual(switchBase.props().icon.type, 'span');
-      assert.strictEqual(switchBase.props().icon.props.className, classes.icon);
+      assert.strictEqual(switchBase.props().icon.props.className, classes.thumb);
       assert.strictEqual(switchBase.props().checkedIcon.type, 'span');
       assert.strictEqual(
         switchBase.props().checkedIcon.props.className,
-        clsx(classes.icon, classes.iconChecked),
+        clsx(classes.thumb, classes.thumbChecked),
       );
     });
 
-    it('should render the bar as the 2nd child', () => {
-      const bar = wrapper.childAt(1);
-      assert.strictEqual(bar.name(), 'span');
-      assert.strictEqual(bar.hasClass(classes.bar), true);
+    it('should render the track as the 2nd child', () => {
+      const track = wrapper.childAt(1);
+      assert.strictEqual(track.name(), 'span');
+      assert.strictEqual(track.hasClass(classes.track), true);
     });
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -9,18 +9,19 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-const useStyles = makeStyles({
+const GreenCheckbox = withStyles({
   root: {
-    color: green[600],
+    '&:not($checked)': {
+      color: green[400],
+    },
     '&$checked': {
-      color: green[500],
+      color: green[600],
     },
   },
   checked: {},
-});
+})(props => <Checkbox color="default" {...props} />);
 
 function CheckboxLabels() {
-  const classes = useStyles();
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -67,14 +68,10 @@ function CheckboxLabels() {
       />
       <FormControlLabel
         control={
-          <Checkbox
+          <GreenCheckbox
             checked={state.checkedG}
             onChange={handleChange('checkedG')}
             value="checkedG"
-            classes={{
-              root: classes.root,
-              checked: classes.checked,
-            }}
           />
         }
         label="Custom color"

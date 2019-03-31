@@ -32,7 +32,7 @@ import Switch from '@material-ui/core/Switch';
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |   | The input component property `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool<br></span> |   | The value of the component. |
 
-Any other properties supplied will be spread to the root element (native element).
+Any other properties supplied will be spread to the root element ([IconButton](/api/icon-button/)).
 
 ## CSS
 
@@ -43,14 +43,14 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">icon</span> | Styles used to create the `icon` passed to the internal `SwitchBase` component `icon` prop.
-| <span class="prop-name">iconChecked</span> | Styles applied the icon element component if `checked={true}`.
 | <span class="prop-name">switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
-| <span class="prop-name">checked</span> | Styles applied to the internal `SwitchBase` component's `checked` class.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <span class="prop-name">checked</span> | Styles applied to the internal `SwitchBase` component's `checked` class.
 | <span class="prop-name">disabled</span> | Styles applied to the internal SwitchBase component's disabled class.
-| <span class="prop-name">bar</span> | Styles applied to the bar element.
+| <span class="prop-name">input</span> | Styles applied to the internal SwitchBase component's input element.
+| <span class="prop-name">thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
+| <span class="prop-name">track</span> | Styles applied to the track element.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Switch/Switch.js)
@@ -58,6 +58,11 @@ for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiSwitch`.
+
+## Inheritance
+
+The properties of the [IconButton](/api/icon-button/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

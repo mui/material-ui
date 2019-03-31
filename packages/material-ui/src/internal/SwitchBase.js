@@ -10,13 +10,7 @@ import IconButton from '../IconButton';
 
 export const styles = {
   root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    transition: 'none',
-    '&:hover': {
-      // Disable the hover effect for the IconButton.
-      backgroundColor: 'transparent',
-    },
+    padding: 9,
   },
   checked: {},
   disabled: {},
