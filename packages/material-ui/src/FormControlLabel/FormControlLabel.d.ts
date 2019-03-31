@@ -12,7 +12,6 @@ export interface FormControlLabelProps
   disabled?: boolean;
   inputRef?: React.Ref<any>;
   label: React.ReactNode;
-  offLabel: React.ReactNode;
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
