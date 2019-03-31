@@ -160,9 +160,7 @@ const data = [
   ['Gingerbread', 356, 16.0, 49, 3.9],
 ];
 
-let id = 0;
-function createData(dessert, calories, fat, carbs, protein) {
-  id += 1;
+function createData(id, dessert, calories, fat, carbs, protein) {
   return { id, dessert, calories, fat, carbs, protein };
 }
 
@@ -170,7 +168,7 @@ const rows = [];
 
 for (let i = 0; i < 200; i += 1) {
   const randomSelection = data[Math.floor(Math.random() * data.length)];
-  rows.push(createData(...randomSelection));
+  rows.push(createData(i, ...randomSelection));
 }
 
 function ReactVirtualizedTable() {

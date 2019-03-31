@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,32 +14,41 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 
-const useStyles1 = makeStyles(theme => ({
-  root: {
-    flexShrink: 0,
-    color: theme.palette.text.secondary,
-    marginLeft: theme.spacing(2.5),
-  },
-}));
+const useStyles1 = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexShrink: 0,
+      color: theme.palette.text.secondary,
+      marginLeft: theme.spacing(2.5),
+    },
+  }),
+);
 
-function TablePaginationActions(props) {
+interface TablePaginationActionsProps {
+  count: number;
+  page: number;
+  rowsPerPage: number;
+  onChangePage: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, newPage: number) => void;
+}
+
+function TablePaginationActions(props: TablePaginationActionsProps) {
   const classes = useStyles1();
   const theme = useTheme();
   const { count, page, rowsPerPage, onChangePage } = props;
 
-  function handleFirstPageButtonClick(event) {
+  function handleFirstPageButtonClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     onChangePage(event, 0);
   }
 
-  function handleBackButtonClick(event) {
+  function handleBackButtonClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     onChangePage(event, page - 1);
   }
 
-  function handleNextButtonClick(event) {
+  function handleNextButtonClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     onChangePage(event, page + 1);
   }
 
-  function handleLastPageButtonClick(event) {
+  function handleLastPageButtonClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   }
 
@@ -81,23 +90,25 @@ TablePaginationActions.propTypes = {
 };
 
 let counter = 0;
-function createData(name, calories, fat) {
+function createData(name: string, calories: number, fat: number) {
   counter += 1;
   return { id: counter, name, calories, fat };
 }
 
-const useStyles2 = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-  },
-  table: {
-    minWidth: 500,
-  },
-  tableWrapper: {
-    overflowX: 'auto',
-  },
-}));
+const useStyles2 = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+      marginTop: theme.spacing(3),
+    },
+    table: {
+      minWidth: 500,
+    },
+    tableWrapper: {
+      overflowX: 'auto',
+    },
+  }),
+);
 
 function CustomPaginationActionsTable() {
   const classes = useStyles2();
@@ -118,17 +129,21 @@ function CustomPaginationActionsTable() {
       createData('Oreo', 437, 18.0),
     ].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
   );
-
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
-  function handleChangePage(event, newPage) {
+  function handleChangePage(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    newPage: number,
+  ) {
     setPage(newPage);
   }
 
-  function handleChangeRowsPerPage(event) {
+  function handleChangeRowsPerPage(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
     setRowsPerPage(parseInt(event.target.value, 10));
   }
 
@@ -146,7 +161,6 @@ function CustomPaginationActionsTable() {
                 <TableCell align="right">{row.fat}</TableCell>
               </TableRow>
             ))}
-
             {emptyRows > 0 && (
               <TableRow style={{ height: 48 * emptyRows }}>
                 <TableCell colSpan={6} />
