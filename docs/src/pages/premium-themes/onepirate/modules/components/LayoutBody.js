@@ -114,7 +114,7 @@ LayoutBody.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.elementType,
   fullHeight: PropTypes.bool,
   fullWidth: PropTypes.bool,
   margin: PropTypes.bool,

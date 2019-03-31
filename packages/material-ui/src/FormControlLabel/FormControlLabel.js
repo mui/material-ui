@@ -16,7 +16,7 @@ export const styles = theme => ({
     verticalAlign: 'middle',
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
-    marginLeft: -14,
+    marginLeft: -11,
     marginRight: 16, // used for row presentation of radio/checkbox
     '&$disabled': {
       cursor: 'default',
@@ -26,7 +26,7 @@ export const styles = theme => ({
   labelPlacementStart: {
     flexDirection: 'row-reverse',
     marginLeft: 16, // used for row presentation of radio/checkbox
-    marginRight: -14,
+    marginRight: -11,
   },
   /* Styles applied to the root element if `labelPlacement="top"`. */
   labelPlacementTop: {

@@ -1,17 +1,24 @@
+// @inheritedComponent IconButton
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { fade } from '../styles/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
-import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    color: theme.palette.text.secondary,
+    '&:not($checked)': {
+      color: theme.palette.text.secondary,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      },
+    },
   },
   /* Styles applied to the root element if `checked={true}`. */
   checked: {},
@@ -19,24 +26,6 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the root element if `indeterminate={true}`. */
   indeterminate: {},
-  /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
-    '&$checked': {
-      color: theme.palette.primary.main,
-    },
-    '&$disabled': {
-      color: theme.palette.action.disabled,
-    },
-  },
-  /* Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: {
-    '&$checked': {
-      color: theme.palette.secondary.main,
-    },
-    '&$disabled': {
-      color: theme.palette.action.disabled,
-    },
-  },
 });
 
 const Checkbox = React.forwardRef(function Checkbox(props, ref) {
@@ -44,7 +33,6 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     checkedIcon,
     classes,
     className,
-    color,
     icon,
     indeterminate,
     indeterminateIcon,
@@ -57,13 +45,13 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
       type="checkbox"
       checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
       className={clsx(
+        classes.root,
         {
           [classes.indeterminate]: indeterminate,
         },
         className,
       )}
       classes={{
-        root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
         disabled: classes.disabled,
       }}

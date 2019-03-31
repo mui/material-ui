@@ -11,11 +11,7 @@ export interface CheckboxProps
   indeterminateIcon?: React.ReactNode;
 }
 
-export type CheckboxClassKey =
-  | SwitchBaseClassKey
-  | 'indeterminate'
-  | 'colorPrimary'
-  | 'colorSecondary';
+export type CheckboxClassKey = SwitchBaseClassKey | 'indeterminate';
 
 declare const Checkbox: React.ComponentType<CheckboxProps>;
 

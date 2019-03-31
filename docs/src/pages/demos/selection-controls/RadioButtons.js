@@ -1,22 +1,23 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import Radio from '@material-ui/core/Radio';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
-const useStyles = makeStyles({
+const GreenRadio = withStyles({
   root: {
-    color: green[600],
+    '&:not($checked)': {
+      color: green[400],
+    },
     '&$checked': {
-      color: green[500],
+      color: green[600],
     },
   },
   checked: {},
-});
+})(props => <Radio color="default" {...props} />);
 
 function RadioButtons() {
-  const classes = useStyles();
   const [selectedValue, setSelectedValue] = React.useState('a');
 
   function handleChange(event) {
@@ -39,16 +40,12 @@ function RadioButtons() {
         name="radio-button-demo"
         aria-label="B"
       />
-      <Radio
+      <GreenRadio
         checked={selectedValue === 'c'}
         onChange={handleChange}
         value="c"
         name="radio-button-demo"
         aria-label="C"
-        classes={{
-          root: classes.root,
-          checked: classes.checked,
-        }}
       />
       <Radio
         checked={selectedValue === 'd'}
