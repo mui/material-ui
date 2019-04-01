@@ -1,17 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
 import NoSsr from '@material-ui/core/NoSsr';
 import ListItem from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
-import { Route, MemoryRouter } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
+import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import ListItemText from '@material-ui/core/ListItemText';
-import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { Route, MemoryRouter } from 'react-router';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface RouterBreadcrumbsState {
   readonly open: boolean;
@@ -46,6 +47,11 @@ function ListItemLink(props: ListItemLinkProps) {
   );
 }
 
+ListItemLink.propTypes = {
+  open: PropTypes.bool,
+  to: PropTypes.string.isRequired,
+};
+
 const styles = (theme: Theme) =>
   createStyles({
     root: {
@@ -70,6 +76,7 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
   handleClick = () => {
     this.setState(state => ({ open: !state.open }));
   };
+  static propTypes: any;
 
   render() {
     const { classes } = this.props;
@@ -131,5 +138,9 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
     );
   }
 }
+
+RouterBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(RouterBreadcrumbs);

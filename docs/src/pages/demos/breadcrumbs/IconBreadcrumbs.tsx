@@ -1,12 +1,13 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import PropTypes from 'prop-types';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import HomeIcon from '@material-ui/icons/Home';
-import GrainIcon from '@material-ui/icons/Grain';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+import HomeIcon from '@material-ui/icons/Home';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import GrainIcon from '@material-ui/icons/Grain';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,5 +57,9 @@ function IconBreadcrumbs() {
     </Paper>
   );
 }
+
+IconBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default IconBreadcrumbs;

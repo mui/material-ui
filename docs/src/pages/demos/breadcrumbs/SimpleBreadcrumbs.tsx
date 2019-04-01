@@ -1,9 +1,10 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import PropTypes from 'prop-types';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -59,5 +60,9 @@ function SimpleBreadcrumbs() {
     </div>
   );
 }
+
+SimpleBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default SimpleBreadcrumbs;

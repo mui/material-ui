@@ -1,9 +1,10 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import PropTypes from 'prop-types';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -45,5 +46,9 @@ function CollapsedBreadcrumbs() {
     </Paper>
   );
 }
+
+CollapsedBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default CollapsedBreadcrumbs;

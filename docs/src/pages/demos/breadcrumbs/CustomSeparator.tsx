@@ -1,10 +1,11 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import PropTypes from 'prop-types';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -66,5 +67,9 @@ function CustomSeparator() {
     </div>
   );
 }
+
+CustomSeparator.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default CustomSeparator;

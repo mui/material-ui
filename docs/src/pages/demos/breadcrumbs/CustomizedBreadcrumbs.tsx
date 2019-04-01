@@ -1,12 +1,13 @@
 import React from 'react';
-import Chip from '@material-ui/core/Chip';
+import PropTypes from 'prop-types';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -72,5 +73,9 @@ function CustomizedBreadcrumbs() {
     </Paper>
   );
 }
+
+CustomizedBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default CustomizedBreadcrumbs;
