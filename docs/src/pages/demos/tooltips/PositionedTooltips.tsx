@@ -1,18 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = createStyles({
-  root: {
-    width: 500,
-  },
-});
+const useStyles = makeStyles(
+  createStyles({
+    root: {
+      width: 500,
+    },
+  }),
+);
 
-function PositionedTooltips(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+function PositionedTooltips() {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Grid container justify="center">
@@ -77,8 +78,4 @@ function PositionedTooltips(props: WithStyles<typeof styles>) {
   );
 }
 
-PositionedTooltips.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(PositionedTooltips);
+export default PositionedTooltips;
