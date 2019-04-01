@@ -197,7 +197,7 @@ TextField.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default value of the `Input` element.
+   * The default value of the [`Input`](/api/input/) element.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
@@ -230,7 +230,7 @@ TextField.propTypes = {
    */
   InputLabelProps: PropTypes.object,
   /**
-   * Properties applied to the `Input` element.
+   * Properties applied to the [`Input`](/api/input/) element.
    */
   InputProps: PropTypes.object,
   /**
@@ -289,7 +289,7 @@ TextField.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Render a `Select` element while passing the `Input` element to `Select` as `input` parameter.
+   * Render a [`Select`](/api/select/) element while passing the [`Input`](/api/input/) element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    */
   select: PropTypes.bool,
@@ -298,11 +298,11 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   /**
-   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
+   * Type attribute of the [`Input`](/api/input/) element. It should be a valid HTML5 input type.
    */
   type: PropTypes.string,
   /**
-   * The value of the `Input` element, required for a controlled component.
+   * The value of the [`Input`](/api/input/) element, required for a controlled component.
    */
   value: PropTypes.oneOfType([
     PropTypes.string,

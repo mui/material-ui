@@ -75,7 +75,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">autoComplete</span> | <span class="prop-type">string</span> |   | This property helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it here: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill |
 | <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |   | If `true`, the input will be focused during the first mount. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">defaultValue</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |   | The default value of the `Input` element. |
+| <span class="prop-name">defaultValue</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |   | The default value of the [`Input`](/api/input/) element. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |   | If `true`, the input will be disabled. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> |   | If `true`, the label will be displayed in an error state. |
 | <span class="prop-name">FormHelperTextProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`FormHelperText`](/api/form-helper-text/) element. |
@@ -83,7 +83,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">helperText</span> | <span class="prop-type">node</span> |   | The helper text content. |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |   | The id of the `input` element. Use this property to make `label` and `helperText` accessible for screen readers. |
 | <span class="prop-name">InputLabelProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`InputLabel`](/api/input-label/) element. |
-| <span class="prop-name">InputProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `Input` element. |
+| <span class="prop-name">InputProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Input`](/api/input/) element. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |   | Attributes applied to the native `input` element. |
 | <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |   | Use this property to pass a ref callback to the native input component. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |   | The label content. |
@@ -95,8 +95,9 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label is displayed as required and the input will be required. |
 | <span class="prop-name">rows</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |   | Number of rows to display when multiline option is set to true. |
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |   | Maximum number of rows to display when multiline option is set to true. |
-| <span class="prop-name">select</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Render a `Select` element while passing the `Input` element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children. |
+| <span class="prop-name">select</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Render a [`Select`](/api/select/) element while passing the [`Input`](/api/input/) element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children. |
 | <span class="prop-name">SelectProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Select`](/api/select/) element. |
+<<<<<<< HEAD
 <<<<<<< HEAD
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |   | Type attribute of the [`Input`](/api/input/) element. It should be a valid HTML5 input type. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br></span> |   | The value of the [`Input`](/api/input/) element, required for a controlled component. |
@@ -104,6 +105,10 @@ For advanced cases, please look at the source of TextField by clicking on the
 =======
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |   | Type attribute of the `Input` element. It should be a valid HTML5 input type. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br></span> |   | The value of the `Input` element, required for a controlled component. |
+>>>>>>> Add links to Input and Select
+=======
+| <span class="prop-name">type</span> | <span class="prop-type">string</span> |   | Type attribute of the [`Input`](/api/input/) element. It should be a valid HTML5 input type. |
+| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br></span> |   | The value of the [`Input`](/api/input/) element, required for a controlled component. |
 >>>>>>> Add links to Input and Select
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br></span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
