@@ -6,9 +6,9 @@ import GrainIcon from '@material-ui/icons/Grain';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     padding: theme.spacing(1, 2),
   },
@@ -22,14 +22,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function handleClick(event) {
+function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
   alert('You clicked a breadcrumb.');
 }
 
 function IconBreadcrumbs() {
   const classes = useStyles();
-
+  
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">

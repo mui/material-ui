@@ -11,9 +11,15 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import ListItemText from '@material-ui/core/ListItemText';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const breadcrumbNameMap = {
+interface RouterBreadcrumbsState {
+  readonly open: boolean;
+}
+
+interface RouterBreadcrumbsProp extends WithStyles<typeof styles> { }
+
+const breadcrumbNameMap: {[key: string]: string} = {
   '/inbox': 'Inbox',
   '/inbox/important': 'Important',
   '/trash': 'Trash',
@@ -35,7 +41,7 @@ function ListItemLink(props) {
   );
 }
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -50,7 +56,7 @@ const styles = theme => ({
   },
 });
 
-class RouterBreadcrumbs extends React.Component {
+class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBreadcrumbsState> {
   state = {
     open: true,
   };

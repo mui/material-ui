@@ -6,9 +6,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     padding: theme.spacing(1),
   },
@@ -31,12 +31,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function handleClick(event) {
+function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
   alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function StyledBreadcrumb(props) {
+function StyledBreadcrumb(props: any) {
   const classes = useStyles();
   const { ...rest } = props;
   return <Chip className={classes.chip} {...rest} />;

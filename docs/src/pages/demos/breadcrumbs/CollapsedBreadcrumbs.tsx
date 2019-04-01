@@ -3,9 +3,9 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     justifyContent: 'center',
     flexWrap: 'wrap',
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function handleClick(event) {
+function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
   alert('You clicked a breadcrumb.');
 }
