@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { stub } from 'sinon';
-import { createMount, testRef } from '@material-ui/core/test-utils';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import MenuList from './MenuList';
 import getScrollbarSize from '../utils/getScrollbarSize';
 
@@ -26,9 +26,11 @@ describe('<MenuList />', () => {
     mount.cleanUp();
   });
 
-  it('does forward refs', () => {
-    testRef(<MenuList />, mount);
-  });
+  describeConformance(<MenuList />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLUListElement,
+  }));
 
   describe('list node', () => {
     let wrapper;

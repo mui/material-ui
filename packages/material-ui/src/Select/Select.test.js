@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses, createMount, describeConformance } from '@material-ui/core/test-utils';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
 import Select from './Select';
@@ -30,6 +30,12 @@ describe('<Select />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<Select {...defaultProps} />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLDivElement,
+  }));
 
   it('should render a correct top element', () => {
     const wrapper = mount(<Select {...defaultProps} />);

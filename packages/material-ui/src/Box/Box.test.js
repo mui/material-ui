@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Box from './Box';
 
 describe('<Box />', () => {
@@ -13,6 +13,12 @@ describe('<Box />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<Box />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLDivElement,
+  }));
 
   const testChildren = <div className="unique">Hello World</div>;
 

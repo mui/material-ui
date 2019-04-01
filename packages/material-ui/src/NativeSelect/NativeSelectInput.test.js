@@ -1,8 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
-import MenuItem from '../MenuItem';
+import { createShallow, createMount, describeConformance } from '@material-ui/core/test-utils';
 import NativeSelectInput from './NativeSelectInput';
 
 describe('<NativeSelectInput />', () => {
@@ -13,15 +12,15 @@ describe('<NativeSelectInput />', () => {
     value: 10,
     IconComponent: 'div',
     children: [
-      <MenuItem key={1} value={10}>
+      <option key={1} value={10}>
         Ten
-      </MenuItem>,
-      <MenuItem key={2} value={20}>
+      </option>,
+      <option key={2} value={20}>
         Twenty
-      </MenuItem>,
-      <MenuItem key={3} value={30}>
+      </option>,
+      <option key={3} value={30}>
         Thirty
-      </MenuItem>,
+      </option>,
     ],
   };
 
@@ -33,6 +32,12 @@ describe('<NativeSelectInput />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<NativeSelectInput {...defaultProps} onChange={() => {}} />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLSelectElement,
+  }));
 
   it('should render a native select', () => {
     const wrapper = shallow(
