@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
