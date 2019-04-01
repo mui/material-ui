@@ -1,8 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import Grow from './Grow';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 describe('<Grow />', () => {
   let mount;
@@ -150,7 +151,6 @@ describe('<Grow />', () => {
   });
 
   describe('addEndListener()', () => {
-    let instance;
     let clock;
 
     before(() => {
@@ -162,35 +162,54 @@ describe('<Grow />', () => {
     });
 
     it('should return autoTransitionDuration when timeout is auto', () => {
-      const wrapper = mount(<Grow {...defaultProps} timeout="auto" />);
-      assert.strictEqual(wrapper.defaultProps().timeout, null);
-      instance = wrapper.instance();
       const next = spy();
 
+      const theme = createMuiTheme({
+        transitions: {
+          getAutoHeightDuration: n => n,
+        },
+      });
+
+      const wrapper = mount(
+        <Grow timeout="auto" onEntered={next} theme={theme}>
+          <div />
+        </Grow>,
+      );
+
+      stub(wrapper.find('div').instance(), 'clientHeight').get(() => 10);
+
+      wrapper.setProps({
+        in: true,
+      });
+
       const autoTransitionDuration = 10;
-      instance.autoTransitionDuration = autoTransitionDuration;
-      instance.addEndListener(null, next);
+      assert.strictEqual(next.callCount, 0);
+      clock.tick(0);
       assert.strictEqual(next.callCount, 0);
       clock.tick(autoTransitionDuration);
       assert.strictEqual(next.callCount, 1);
 
-      instance.autoTransitionDuration = undefined;
-      instance.addEndListener(null, next);
-      assert.strictEqual(next.callCount, 1);
+      const next2 = spy();
+      mount(
+        <Grow in timeout="auto" onEntered={next2}>
+          <div />
+        </Grow>,
+      );
+
+      assert.strictEqual(next2.callCount, 0);
       clock.tick(0);
-      assert.strictEqual(next.callCount, 2);
+      assert.strictEqual(next2.callCount, 1);
     });
 
     it('should return defaultProps.timeout when timeout is number', () => {
       const timeout = 10;
-      const wrapper = mount(<Grow {...defaultProps} timeout={timeout} />);
-      assert.strictEqual(wrapper.defaultProps().timeout, timeout);
-      instance = wrapper.instance();
       const next = spy();
-      instance.addEndListener(null, next);
+      mount(<Grow {...defaultProps} timeout={timeout} onEntered={next} />);
+      assert.strictEqual(next.callCount, 0);
+      clock.tick(0);
       assert.strictEqual(next.callCount, 0);
       clock.tick(timeout);
-      assert.strictEqual(next.callCount, 0);
+      assert.strictEqual(next.callCount, 1);
     });
   });
 });
