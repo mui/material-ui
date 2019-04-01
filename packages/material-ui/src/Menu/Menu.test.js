@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createMount, getClasses, testRef } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Popover from '../Popover';
 import Menu from './Menu';
 import MenuList from '../MenuList';
@@ -11,13 +11,12 @@ const MENU_LIST_HEIGHT = 100;
 describe('<Menu />', () => {
   let classes;
   let mount;
-  let defaultProps;
+  const defaultProps = {
+    open: false,
+    anchorEl: () => document.createElement('div'),
+  };
 
   before(() => {
-    defaultProps = {
-      open: false,
-      anchorEl: document.createElement('div'),
-    };
     classes = getClasses(<Menu {...defaultProps} />);
     mount = createMount();
   });
@@ -26,9 +25,11 @@ describe('<Menu />', () => {
     mount.cleanUp();
   });
 
-  it('does forward refs', () => {
-    testRef(<Menu {...defaultProps} open />, mount);
-  });
+  describeConformance(<Menu {...defaultProps} open />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLDivElement,
+  }));
 
   it('should render a Popover', () => {
     const wrapper = mount(<Menu {...defaultProps} />);

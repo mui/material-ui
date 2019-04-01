@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
+  describeConformance,
   findOutermostIntrinsic,
   getClasses,
 } from '@material-ui/core/test-utils';
@@ -22,6 +23,17 @@ describe('<TablePagination />', () => {
   let shallow;
   let mount;
 
+  function mountInTable(node) {
+    const wrapper = mount(
+      <table>
+        <tbody>
+          <tr>{node}</tr>
+        </tbody>
+      </table>,
+    );
+    return wrapper.find('tr').childAt(0);
+  }
+
   before(() => {
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
@@ -33,6 +45,15 @@ describe('<TablePagination />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(
+    <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
+    () => ({
+      mount: mountInTable,
+      only: ['refForwarding'],
+      refInstanceof: window.HTMLTableCellElement,
+    }),
+  );
 
   it('should render a TableCell', () => {
     const wrapper = mount(
