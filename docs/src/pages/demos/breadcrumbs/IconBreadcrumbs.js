@@ -24,8 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 function handleClick(event) {
   event.preventDefault();
-  // eslint-disable-next-line no-alert
-  alert('You clicked a breadcrumb.');
+  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
 function IconBreadcrumbs() {

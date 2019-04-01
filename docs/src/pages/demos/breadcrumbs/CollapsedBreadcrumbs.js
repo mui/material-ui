@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
@@ -18,8 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 function handleClick(event) {
   event.preventDefault();
-  // eslint-disable-next-line no-alert
-  alert('You clicked a breadcrumb.');
+  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
 function CollapsedBreadcrumbs() {
