@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -22,6 +23,11 @@ function Row(props: ListChildComponentProps) {
     </ListItem>
   );
 }
+
+Row.propTypes = {
+  index: PropTypes.number,
+  style: PropTypes.object,
+} as any;
 
 function VirtualizedList() {
   const classes = useStyles();
