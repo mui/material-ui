@@ -24,7 +24,7 @@ import StepIcon from '@material-ui/core/StepIcon';
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
 | <span class="prop-name required">icon&nbsp;*</span> | <span class="prop-type">node</span> |  | The icon displayed by the step label. |
 
-The `ref` is **not** forwarded to the root element.
+The `ref` is forwarded to the root element.
 
 Any other properties supplied will be spread to the root element (native element).
 
