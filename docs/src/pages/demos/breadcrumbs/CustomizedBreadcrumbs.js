@@ -1,14 +1,15 @@
 import React from 'react';
-import Chip from '@material-ui/core/Chip';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   root: {
     padding: theme.spacing(1),
   },
@@ -29,21 +30,26 @@ const useStyles = makeStyles(theme => ({
     background: 'none',
     marginRight: -theme.spacing(1.5),
   },
-}));
+});
 
 function handleClick(event) {
   event.preventDefault();
   alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function StyledBreadcrumb(props) {
-  const classes = useStyles();
-  const { ...rest } = props;
+function CustomBreadcrumb(props) {
+  const { classes, ...rest } = props;
   return <Chip className={classes.chip} {...rest} />;
 }
 
-function CustomizedBreadcrumbs() {
-  const classes = useStyles();
+CustomBreadcrumb.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+const StyledBreadcrumb = withStyles(styles)(CustomBreadcrumb);
+
+function CustomizedBreadcrumbs(props) {
+  const { classes } = props;
 
   return (
     <Paper elevation={0} className={classes.root}>
@@ -71,4 +77,8 @@ function CustomizedBreadcrumbs() {
   );
 }
 
-export default CustomizedBreadcrumbs;
+CustomizedBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(CustomizedBreadcrumbs);

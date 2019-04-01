@@ -85,7 +85,10 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
 
                 return (
                   <Breadcrumbs aria-label="Breadcrumb">
-                    <Link component={({ innerRef, ...props }) => <RouterLink {...props} to={'/'}/>} color="inherit">
+                    <Link
+                      component={({ innerRef, ...props }) => <RouterLink {...props} to={'/'} />}
+                      color="inherit"
+                    >
                       Home
                     </Link>
                     {pathnames.map((value, index) => {
@@ -97,7 +100,11 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
                           {breadcrumbNameMap[to]}
                         </Typography>
                       ) : (
-                        <Link component={({ innerRef, ...props }) => <RouterLink {...props} to={to}/>} color="inherit"  key={to}>
+                        <Link
+                          component={({ innerRef, ...props }) => <RouterLink {...props} to={to} />}
+                          color="inherit"
+                          key={to}
+                        >
                           {breadcrumbNameMap[to]}
                         </Link>
                       );
