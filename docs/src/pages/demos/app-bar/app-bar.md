@@ -41,4 +41,4 @@ A side searchbar.
 
 ## Bottom App Bar
 
-{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 600}}
+{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}

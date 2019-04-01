@@ -12,19 +12,13 @@ import AddIcon from '@material-ui/icons/Add';
 import Snackbar from '@material-ui/core/Snackbar';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  appFrame: {
-    height: 356,
-    background: theme.palette.background.paper,
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.background.paper,
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-  },
-  button: {
-    marginBottom: theme.spacing(1),
   },
   fab: {
     position: 'absolute',
@@ -40,22 +34,10 @@ const useStyles = makeStyles(theme => ({
 
 function FabIntegrationSnackbar() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  function handleClick() {
-    setOpen(true);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <CssBaseline />
-      <Button className={classes.button} onClick={handleClick}>
-        Open snackbar
-      </Button>
       <div className={classes.appFrame}>
         <AppBar position="static" color="primary">
           <Toolbar>
@@ -68,7 +50,7 @@ function FabIntegrationSnackbar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">
-              Out of my way!
+              App Bar
             </Typography>
           </Toolbar>
         </AppBar>
@@ -76,22 +58,21 @@ function FabIntegrationSnackbar() {
           <AddIcon />
         </Fab>
         <Snackbar
-          open={open}
+          open
           autoHideDuration={4000}
-          onClose={handleClose}
           ContentProps={{
             'aria-describedby': 'snackbar-fab-message-id',
           }}
           message={<span id="snackbar-fab-message-id">Archived</span>}
           action={
-            <Button color="inherit" size="small" onClick={handleClose}>
+            <Button color="inherit" size="small">
               Undo
             </Button>
           }
           className={classes.snackbar}
         />
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
