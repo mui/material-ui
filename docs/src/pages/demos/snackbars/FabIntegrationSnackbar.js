@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   appFrame: {
     height: 356,
+    background: theme.palette.background.paper,
   },
   menuButton: {
     marginRight: theme.spacing(2),

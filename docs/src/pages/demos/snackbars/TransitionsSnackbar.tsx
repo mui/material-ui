@@ -3,10 +3,15 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
+import Grow from '@material-ui/core/Grow';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
 
-function TransitionSlide(props: TransitionProps) {
+function SlideTransition(props: TransitionProps) {
   return <Slide {...props} direction="up" />;
+}
+
+function GrowTransition(props: TransitionProps) {
+  return <Grow {...props} />;
 }
 
 function TransitionsSnackbar() {
@@ -32,7 +37,8 @@ function TransitionsSnackbar() {
   return (
     <div>
       <Button onClick={handleClick(Fade)}>Fade Transition</Button>
-      <Button onClick={handleClick(TransitionSlide)}>Slide Transition</Button>
+      <Button onClick={handleClick(SlideTransition)}>Slide Transition</Button>
+      <Button onClick={handleClick(GrowTransition)}>Grow Transition</Button>
       <Snackbar
         open={state.open}
         onClose={handleClose}
