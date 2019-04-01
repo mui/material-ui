@@ -17,9 +17,9 @@ interface RouterBreadcrumbsState {
   readonly open: boolean;
 }
 
-interface RouterBreadcrumbsProp extends WithStyles<typeof styles> { }
+interface RouterBreadcrumbsProp extends WithStyles<typeof styles> {}
 
-const breadcrumbNameMap: {[key: string]: string} = {
+const breadcrumbNameMap: { [key: string]: string } = {
   '/inbox': 'Inbox',
   '/inbox/important': 'Important',
   '/trash': 'Trash',
@@ -41,20 +41,21 @@ function ListItemLink(props) {
   );
 }
 
-const styles = (theme: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 360,
-  },
-  lists: {
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(1),
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: 360,
+    },
+    lists: {
+      backgroundColor: theme.palette.background.paper,
+      marginTop: theme.spacing(1),
+    },
+    nested: {
+      paddingLeft: theme.spacing(4),
+    },
+  });
 
 class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBreadcrumbsState> {
   state = {

@@ -8,28 +8,30 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    padding: theme.spacing(1),
-  },
-  chip: {
-    backgroundColor: theme.palette.grey[100],
-    height: 24,
-    color: theme.palette.grey[800],
-    fontWeight: theme.typography.fontWeightRegular,
-    '&:hover, &:focus': {
-      backgroundColor: theme.palette.grey[300],
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      padding: theme.spacing(1),
     },
-    '&:active': {
-      boxShadow: theme.shadows[1],
-      backgroundColor: emphasize(theme.palette.grey[300], 0.12),
+    chip: {
+      backgroundColor: theme.palette.grey[100],
+      height: 24,
+      color: theme.palette.grey[800],
+      fontWeight: theme.typography.fontWeightRegular,
+      '&:hover, &:focus': {
+        backgroundColor: theme.palette.grey[300],
+      },
+      '&:active': {
+        boxShadow: theme.shadows[1],
+        backgroundColor: emphasize(theme.palette.grey[300], 0.12),
+      },
     },
-  },
-  avatar: {
-    background: 'none',
-    marginRight: -theme.spacing(1.5),
-  },
-}));
+    avatar: {
+      background: 'none',
+      marginRight: -theme.spacing(1.5),
+    },
+  }),
+);
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();

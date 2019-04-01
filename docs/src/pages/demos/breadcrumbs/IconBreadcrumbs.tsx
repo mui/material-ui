@@ -8,19 +8,21 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    padding: theme.spacing(1, 2),
-  },
-  link: {
-    display: 'flex',
-  },
-  icon: {
-    marginRight: theme.spacing(0.5),
-    width: 20,
-    height: 20,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      padding: theme.spacing(1, 2),
+    },
+    link: {
+      display: 'flex',
+    },
+    icon: {
+      marginRight: theme.spacing(0.5),
+      width: 20,
+      height: 20,
+    },
+  }),
+);
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
@@ -29,7 +31,7 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 
 function IconBreadcrumbs() {
   const classes = useStyles();
-  
+
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">

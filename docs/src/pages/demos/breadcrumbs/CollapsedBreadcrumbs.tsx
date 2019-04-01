@@ -5,15 +5,17 @@ import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  paper: {
-    padding: theme.spacing(1, 2),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+    },
+    paper: {
+      padding: theme.spacing(1, 2),
+    },
+  }),
+);
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
