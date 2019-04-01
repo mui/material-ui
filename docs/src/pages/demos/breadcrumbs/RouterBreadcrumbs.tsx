@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '@material-ui/core/List';
-import Link from '@material-ui/core/Link';
+import Link, { LinkProps } from '@material-ui/core/Link';
 import NoSsr from '@material-ui/core/NoSsr';
 import ListItem from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
@@ -17,6 +17,11 @@ interface RouterBreadcrumbsState {
   readonly open: boolean;
 }
 
+interface ListItemLinkProps extends LinkProps {
+  to: string;
+  open?: boolean;
+}
+
 interface RouterBreadcrumbsProp extends WithStyles<typeof styles> {}
 
 const breadcrumbNameMap: { [key: string]: string } = {
@@ -27,7 +32,7 @@ const breadcrumbNameMap: { [key: string]: string } = {
   '/drafts': 'Drafts',
 };
 
-function ListItemLink(props) {
+function ListItemLink(props: ListItemLinkProps) {
   const { to, open, ...other } = props;
   const primary = breadcrumbNameMap[to];
 
@@ -80,7 +85,7 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
 
                 return (
                   <Breadcrumbs aria-label="Breadcrumb">
-                    <Link component={RouterLink} color="inherit" to="/">
+                    <Link component={({ innerRef, ...props }) => <RouterLink {...props} to={'/'}/>} color="inherit">
                       Home
                     </Link>
                     {pathnames.map((value, index) => {
@@ -92,7 +97,7 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
                           {breadcrumbNameMap[to]}
                         </Typography>
                       ) : (
-                        <Link component={RouterLink} color="inherit" to={to} key={to}>
+                        <Link component={({ innerRef, ...props }) => <RouterLink {...props} to={to}/>} color="inherit"  key={to}>
                           {breadcrumbNameMap[to]}
                         </Link>
                       );
@@ -105,7 +110,7 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
               <List component="nav">
                 <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
+                  <List component={'div' as 'ul'} disablePadding>
                     <ListItemLink to="/inbox/important" className={classes.nested} />
                   </List>
                 </Collapse>
