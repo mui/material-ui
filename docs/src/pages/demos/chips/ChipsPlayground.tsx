@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import MarkdownElement from '../../../modules/components/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
@@ -14,19 +14,30 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-  chipWrapper: {
-    marginBottom: theme.spacing(5),
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    control: {
+      padding: theme.spacing(2),
+    },
+    chipWrapper: {
+      marginBottom: theme.spacing(5),
+    },
+  });
 
-class ChipsPlayground extends React.Component {
+export type Props = WithStyles<typeof styles>;
+
+export interface State {
+  color: string;
+  onDelete: string;
+  avatar: string;
+  icon: string;
+  variant: string;
+}
+
+class ChipsPlayground extends React.Component<Props, State> {
   state = {
     color: 'default',
     onDelete: 'none',
@@ -35,7 +46,7 @@ class ChipsPlayground extends React.Component {
     variant: 'default',
   };
 
-  handleChange = key => (event, value) => {
+  handleChange = (key: keyof State) => (event: React.ChangeEvent<{}>, value: string) => {
     this.setState({
       [key]: value,
     });
@@ -98,7 +109,6 @@ class ChipsPlayground extends React.Component {
             <FaceIcon />
           </Avatar>
         );
-
         break;
     }
 
@@ -223,8 +233,8 @@ class ChipsPlayground extends React.Component {
   }
 }
 
-ChipsPlayground.propTypes = {
+(ChipsPlayground as React.ComponentClass<Props>).propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(ChipsPlayground);
