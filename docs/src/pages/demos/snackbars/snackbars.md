@@ -58,17 +58,17 @@ Snackbars should appear above FABs (on mobile).
 
 {{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
 
-### Control Direction
-
-Change the direction of the transition. Slide is the default transition.
-
-{{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
-
 ### Change Transition
 
 Use a different transition.
 
 {{"demo": "pages/demos/snackbars/TransitionsSnackbar.js"}}
+
+### Control Direction
+
+You can change the direction of the transition of the [Slide](/utils/transitions/#slide)
+
+{{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
 
 ## Complementary projects
 
@@ -79,6 +79,8 @@ For more advanced use cases you might be able to take advantage of:
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars)
 ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another.
+In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack).
+notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them).
+It also enables you to stack them on top of one another (but discouraged by the specification).
 
 {{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}

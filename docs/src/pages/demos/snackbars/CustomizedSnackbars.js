@@ -109,7 +109,7 @@ function CustomizedSnackbars() {
 
   return (
     <div>
-      <Button className={classes.margin} onClick={handleClick}>
+      <Button variant="outlined" className={classes.margin} onClick={handleClick}>
         Open success snackbar
       </Button>
       <Snackbar

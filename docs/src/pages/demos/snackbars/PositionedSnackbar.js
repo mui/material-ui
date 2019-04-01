@@ -33,6 +33,7 @@ function PositionedSnackbar() {
       <Button onClick={handleClick({ vertical: 'top', horizontal: 'left' })}>Top-Left</Button>
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
+        key={`${vertical},${horizontal}`}
         open={open}
         onClose={handleClose}
         ContentProps={{
