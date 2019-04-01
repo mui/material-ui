@@ -15,7 +15,7 @@ const styles = createStyles({
 export type Props = WithStyles<typeof styles>;
 
 export interface State {
-  selectedDate: any;
+  selectedDate: Date;
 }
 
 class MaterialUIPickers extends React.Component<Props, State> {
@@ -24,7 +24,7 @@ class MaterialUIPickers extends React.Component<Props, State> {
     selectedDate: new Date('2014-08-18T21:11:54'),
   };
 
-  handleDateChange = (date: any) => {
+  handleDateChange = (date: Date) => {
     this.setState({ selectedDate: date });
   };
 
