@@ -17,7 +17,7 @@ export const styles = {
     width: '100%',
     height: '100%', 
     // ⚠️ object-fit is not supported by IE 11.
-   objectFit: 'cover'
+    objectFit: 'cover'
   },
 };
 
