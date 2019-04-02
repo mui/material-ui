@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
