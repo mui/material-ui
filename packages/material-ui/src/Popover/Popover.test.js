@@ -39,9 +39,11 @@ describe('<Popover />', () => {
   });
 
   describeConformance(<Popover {...defaultProps} open />, () => ({
+    classes,
+    inheritComponent: Modal,
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
   }));
 
   describe('root node', () => {
