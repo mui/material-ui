@@ -2,10 +2,18 @@ import React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  getClasses,
+  unwrap,
+} from '@material-ui/core/test-utils';
+import { Transition } from 'react-transition-group';
 import Collapse from './Collapse';
 
 describe('<Collapse />', () => {
+  let mount;
   let shallow;
   let classes;
   const props = {
@@ -14,14 +22,22 @@ describe('<Collapse />', () => {
   };
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Collapse {...props} />);
   });
 
-  it('should render a Transition', () => {
-    const wrapper = shallow(<Collapse {...props} />);
-    assert.strictEqual(wrapper.name(), 'Transition');
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<Collapse {...props} />, () => ({
+    classes,
+    inheritComponent: Transition,
+    mount,
+    skip: ['refForwarding'],
+    testComponentPropWith: false,
+  }));
 
   it('should render a container around the wrapper', () => {
     const wrapper = shallow(<Collapse {...props} classes={{ container: 'woofCollapse1' }} />);
@@ -364,17 +380,11 @@ describe('<Collapse />', () => {
   });
 
   describe('mount', () => {
-    let mount;
     let mountInstance;
 
     before(() => {
-      mount = createMount();
       const CollapseNaked = unwrap(Collapse);
       mountInstance = mount(<CollapseNaked classes={{}} theme={{}} />).instance();
-    });
-
-    after(() => {
-      mount.cleanUp();
     });
 
     it('instance should have a wrapper property', () => {
