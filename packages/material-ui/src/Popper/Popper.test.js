@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { createShallow, createMount, describeConformance } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Popper from './Popper';
@@ -10,31 +10,28 @@ import Popper from './Popper';
 describe('<Popper />', () => {
   let shallow;
   let mount;
-  let anchorEl;
-  let defaultProps;
+  const defaultProps = {
+    anchorEl: () => window.document.createElement('div'),
+    children: <span>Hello World</span>,
+    open: true,
+  };
 
   before(() => {
-    anchorEl = window.document.createElement('div');
-    window.document.body.appendChild(anchorEl);
     shallow = createShallow();
     mount = createMount();
-    defaultProps = {
-      anchorEl,
-      children: <span>Hello World</span>,
-      open: true,
-    };
   });
 
   after(() => {
     mount.cleanUp();
-    window.document.body.removeChild(anchorEl);
   });
 
-  it('should render the correct structure', () => {
-    const wrapper = shallow(<Popper {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'Portal');
-    assert.strictEqual(wrapper.childAt(0).name(), 'div');
-  });
+  describeConformance(<Popper {...defaultProps} />, () => ({
+    classes: {},
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: React.Component,
+    testComponentPropWith: false,
+  }));
 
   describe('prop: placement', () => {
     before(() => {
