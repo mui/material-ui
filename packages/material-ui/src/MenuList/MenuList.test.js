@@ -4,6 +4,7 @@ import { stub } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import MenuList from './MenuList';
 import getScrollbarSize from '../utils/getScrollbarSize';
+import List from '../List';
 
 function setStyleWidthForJsdomOrBrowser(style, width) {
   style.width = '';
@@ -27,23 +28,12 @@ describe('<MenuList />', () => {
   });
 
   describeConformance(<MenuList />, () => ({
+    classes: {},
+    inheritComponent: List,
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.HTMLUListElement,
+    testComponentPropWith: false,
   }));
-
-  describe('list node', () => {
-    let wrapper;
-
-    before(() => {
-      wrapper = mount(<MenuList className="test-class" data-test="hi" />);
-    });
-
-    it('should render a List', () => {
-      assert.strictEqual(wrapper.props()['data-test'], 'hi');
-      assert.strictEqual(wrapper.hasClass('test-class'), true);
-    });
-  });
 
   describe('prop: children', () => {
     it('should support invalid children', () => {
