@@ -85,7 +85,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
           })}
           data-mui-test="FormLabelAsterisk"
         >
-          {'\u2009*'}
+          &thinsp;{'*'}
         </span>
       )}
     </Component>

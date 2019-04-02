@@ -6565,10 +6565,10 @@ where we always use `value`/`onChange` for controlled components.
 - [core] Reduce the bundle size (#7306) @oliviertassinari
 Change the colors location as you most likely only need 20% of them in your bundle
 ```diff
--import { blue, fullWhite } from 'material-ui/styles/colors'
-+import blue from 'material-ui/colors/blue'
-+import common from 'material-ui/colors/common'
-+const { fullWhite } = common
+-import { blue, fullWhite } from 'material-ui/styles/colors'
++import blue from 'material-ui/colors/blue'
++import common from 'material-ui/colors/common'
++const { fullWhite } = common
 ```
 
 #### Component Fixes / Enhancements

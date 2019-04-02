@@ -226,9 +226,9 @@ It should preferably be used at **the root of your component tree**.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | Your component tree. |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> | | Your component tree. |
 | <span class="prop-name">disableGeneration</span> | <span class="prop-type">bool</span> | false | You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property. |
-| <span class="prop-name">generateClassName</span> | <span class="prop-type">func</span> |   | JSS's class name generator. |
+| <span class="prop-name">generateClassName</span> | <span class="prop-type">func</span> | | JSS's class name generator. |
 | <span class="prop-name">injectFirst</span> | <span class="prop-type">bool</span> | false | By default, the styles are injected last in the <head> element of your page. They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components. If you want to override the Material-UI's styles, set this prop. |
 | <span class="prop-name">jss</span> | <span class="prop-type">object</span> | | JSS's instance. |
 
@@ -257,8 +257,8 @@ It should preferably be used at **the root of your component tree**.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | Your component tree. |
-| <span class="prop-name required">theme *</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;&nbsp;func</span> | | A theme object. You can provide a function to extend the outer theme. |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> | | Your component tree. |
+| <span class="prop-name required">theme&nbsp;*</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;&nbsp;func</span> | | A theme object. You can provide a function to extend the outer theme. |
 
 #### Examples
 

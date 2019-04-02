@@ -18,12 +18,12 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp</span> |   | This property isn't supported. Use the `component` property if you need to change the children structure. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |   | The icon element. |
-| <span class="prop-name">label</span> | <span class="prop-type">node</span> |   | The label element. |
-| <span class="prop-name">showLabel</span> | <span class="prop-type">bool</span> |   | If `true`, the `BottomNavigationAction` will show its label. By default, only the selected `BottomNavigationAction` inside `BottomNavigation` will show its label. |
-| <span class="prop-name">value</span> | <span class="prop-type">any</span> |   | You can provide your own value. Otherwise, we fallback to the child position index. |
+| <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp</span> |  | This property isn't supported. Use the `component` property if you need to change the children structure. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon element. |
+| <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label element. |
+| <span class="prop-name">showLabel</span> | <span class="prop-type">bool</span> |  | If `true`, the `BottomNavigationAction` will show its label. By default, only the selected `BottomNavigationAction` inside `BottomNavigation` will show its label. |
+| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
