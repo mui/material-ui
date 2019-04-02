@@ -31,6 +31,15 @@ describe('<Switch />', () => {
     refInstanceof: window.HTMLSpanElement,
   }));
 
+  /* TODO Switch violates root component
+  describeConformance(<Switch />, () => ({
+    classes,
+    inheritComponent: IconButton,
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: false,
+  })); */
+
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
       assert.strictEqual(typeof classes.root, 'string');
@@ -44,12 +53,6 @@ describe('<Switch />', () => {
 
     beforeEach(() => {
       wrapper = shallow(<Switch className="foo" />);
-    });
-
-    it('should render a span with the root and user classes', () => {
-      assert.strictEqual(wrapper.name(), 'span');
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('foo'), true);
     });
 
     it('should render SwitchBase with a custom span icon with the thumb class', () => {
