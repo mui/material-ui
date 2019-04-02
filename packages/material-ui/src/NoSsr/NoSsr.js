@@ -11,17 +11,15 @@ import { exactProp } from '@material-ui/utils';
  * - Reduce the rendering time on the server.
  * - Under too heavy server load, you can turn on service degradation.
  */
-class NoSsr extends React.Component {
-  mounted = false;
+function NoSsr(props) {
+  const { children, defer, fallback } = props;
+  const mountedRef = React.useRef(false);
+  const [mountedState, setMountedState] = React.useState(false);
 
-  state = {
-    mounted: false,
-  };
+  React.useEffect(() => {
+    mountedRef.current = true;
 
-  componentDidMount() {
-    this.mounted = true;
-
-    if (this.props.defer) {
+    if (defer) {
       // Wondering why we use two RAFs? Check this video out:
       // https://www.youtube.com/watch?v=cCOL7MC4Pl0
       //
@@ -34,25 +32,21 @@ class NoSsr extends React.Component {
         requestAnimationFrame(() => {
           // The UI is up-to-date at this point.
           // We can continue rendering the children.
-          if (this.mounted) {
-            this.setState({ mounted: true });
+          if (mountedRef.current) {
+            setMountedState(true);
           }
         });
       });
     } else {
-      this.setState({ mounted: true });
+      setMountedState(true);
     }
-  }
 
-  componentWillUnmount() {
-    this.mounted = false;
-  }
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [defer]);
 
-  render() {
-    const { children, fallback } = this.props;
-
-    return this.state.mounted ? children : fallback;
-  }
+  return mountedState ? children : fallback;
 }
 
 NoSsr.propTypes = {
