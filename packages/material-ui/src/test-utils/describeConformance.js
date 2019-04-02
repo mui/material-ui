@@ -1,10 +1,12 @@
 import { assert } from 'chai';
 import React from 'react';
+import findOutermostIntrinsic from './findOutermostIntrinsic';
 import testRef from './testRef';
 
 /**
  * Glossary
  * - root component:
+ *   - renders the outermost host component
  *   - has the `root` class
  *   - excess props are spread to this component
  *   - has the type of `inheritComponent`
@@ -107,11 +109,30 @@ function describeRef(element, getOptions) {
   });
 }
 
+/**
+ * Tests that the root component renders the outermost host
+ *
+ * @param {React.ReactElement} element
+ * @param {() => ConformanceOptions} getOptions
+ */
+function testOutermostHost(element, getOptions) {
+  it("it's root component renders the outermost host component", () => {
+    const { classes, inheritComponent, mount } = getOptions();
+    const wrapper = mount(element);
+
+    const rootComponent = findRootComponent(wrapper, { classes, component: inheritComponent });
+    const outermostIntrinsic = findOutermostIntrinsic(wrapper);
+
+    assert.strictEqual(rootComponent.contains(outermostIntrinsic.getElement()), true);
+  });
+}
+
 const fullSuite = {
-  class: testClassName,
   componentProp: testComponentProp,
+  mergeClassName: testClassName,
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
+  rendersOutermostHost: testOutermostHost,
 };
 
 /**
