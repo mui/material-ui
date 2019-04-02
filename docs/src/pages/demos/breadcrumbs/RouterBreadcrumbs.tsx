@@ -85,7 +85,6 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
   handleClick = () => {
     this.setState(state => ({ open: !state.open }));
   };
-  static propTypes: any;
 
   render() {
     const { classes } = this.props;
@@ -141,7 +140,10 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
   }
 }
 
-RouterBreadcrumbs.propTypes = {
+(RouterBreadcrumbs as React.ComponentClass<
+  RouterBreadcrumbsProp,
+  RouterBreadcrumbsState
+>).propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
