@@ -6,14 +6,14 @@ import {
 } from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
-import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import TimePicker from './TimePicker';
 import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 
 export type KeyboardTimePickerProps = BaseTimePickerProps &
   DateValidationProps &
   BaseKeyboardPickerProps &
-  ExtendWrapper2<KeyboardDateInputProps>;
+  ExtendWrapper<KeyboardDateInputProps>;
 
 export function KeyboardTimePicker(props: KeyboardTimePickerProps) {
   const {

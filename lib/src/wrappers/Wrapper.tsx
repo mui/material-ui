@@ -25,7 +25,7 @@ export type ModalRoot = { variant?: 'dialog' } & OmitInnerWrapperProps<ModalWrap
 export type InlineRoot = { variant?: 'inline' } & OmitInnerWrapperProps<InlineWrapperProps>;
 
 // prettier-ignore
-export type ExtendWrapper2<TInput extends PureDateInputProps | KeyboardDateInputProps> =
+export type ExtendWrapper<TInput extends PureDateInputProps | KeyboardDateInputProps> =
   Omit<TInput, 'inputValue' | 'format' | 'validationError' | 'format' | 'forwardedRef'> & (
     ModalRoot | InlineRoot
   )

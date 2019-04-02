@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { DateValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { toShowDateTimePickerTabs } from '../_helpers/utils';
-import { BasePickerProps } from '../_shared/BasePicker';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import { BasePickerProps } from '../typings/BasePicker';
+import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import DateTimePickerRoot, { BaseDateTimePickerProps } from './DateTimePickerRoot';
 
 export type DateTimePickerProps = BasePickerProps &
   DateValidationProps &
   BaseDateTimePickerProps &
-  ExtendWrapper2<PureDateInputProps>;
+  ExtendWrapper<PureDateInputProps>;
 
 export const DatePicker: React.FC<DateTimePickerProps> = props => {
   const {

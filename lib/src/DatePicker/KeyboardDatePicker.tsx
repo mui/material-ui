@@ -7,14 +7,14 @@ import {
 } from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
-import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import { DatePicker } from './DatePicker';
 import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
 
 export type KeyboardDatePickerProps = BaseDatePickerProps &
   DateValidationProps &
   BaseKeyboardPickerProps &
-  ExtendWrapper2<KeyboardDateInputProps>;
+  ExtendWrapper<KeyboardDateInputProps>;
 
 export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
   const {

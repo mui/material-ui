@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
-import { BasePickerProps } from '../_shared/BasePicker';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import { BasePickerProps } from '../typings/BasePicker';
+import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 
 export type TimePickerProps = BasePickerProps &
   BaseTimePickerProps &
-  ExtendWrapper2<PureDateInputProps>;
+  ExtendWrapper<PureDateInputProps>;
 
 export const DatePicker: React.FC<TimePickerProps> = props => {
   const {

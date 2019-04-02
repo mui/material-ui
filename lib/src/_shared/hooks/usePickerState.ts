@@ -1,8 +1,8 @@
 import { IUtils } from '@date-io/core/IUtils';
 import { useCallback, useDebugValue, useEffect, useRef, useState } from 'react';
 import { MaterialUiPickersDate } from '../..';
-import { getDisplayDate2 } from '../../_helpers/text-field-helper';
-import { BasePickerProps } from '../BasePicker';
+import { getDisplayDate } from '../../_helpers/text-field-helper';
+import { BasePickerProps } from '../../typings/BasePicker';
 import { useUtils } from './useUtils';
 
 export interface HookOptions {
@@ -46,7 +46,7 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
   const inputProps = {
     validationError,
     onClick: () => setIsOpen(true),
-    inputValue: getDisplayDate2(date, format, utils, props.value === null, props),
+    inputValue: getDisplayDate(date, format, utils, props.value === null, props),
   };
 
   const acceptDate = useCallback(

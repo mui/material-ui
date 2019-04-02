@@ -1,10 +1,10 @@
 import { IUtils } from '@date-io/core/IUtils';
 import { Omit } from '@material-ui/core';
 import { useEffect, useState } from 'react';
-import { getDisplayDate2 } from '../../_helpers/text-field-helper';
+import { getDisplayDate } from '../../_helpers/text-field-helper';
 import { DateType } from '../../constants/prop-types';
+import { BasePickerProps } from '../../typings/BasePicker';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { BasePickerProps } from '../BasePicker';
 import { HookOptions, usePickerState } from './usePickerState';
 import { useUtils } from './useUtils';
 
@@ -27,7 +27,7 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
   const format = props.format || options.getDefaultFormat();
 
   const [innerInputValue, setInnerInputValue] = useState(
-    getDisplayDate2(props.value, format, utils, props.value === null, props)
+    getDisplayDate(props.value, format, utils, props.value === null, props)
   );
 
   const dateValue = props.inputValue
@@ -36,7 +36,7 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
 
   useEffect(() => {
     if (props.value === null || utils.isValid(props.value)) {
-      setInnerInputValue(getDisplayDate2(props.value, format, utils, props.value === null, props));
+      setInnerInputValue(getDisplayDate(props.value, format, utils, props.value === null, props));
     }
   }, [props.value]);
 

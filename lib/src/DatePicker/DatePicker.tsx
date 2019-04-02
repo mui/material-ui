@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { getFormatByViews } from '../_helpers/date-utils';
 import { DateValidationProps, getError } from '../_helpers/text-field-helper';
-import { BasePickerProps } from '../_shared/BasePicker';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import { BasePickerProps } from '../typings/BasePicker';
+import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
 
 export type DatePickerProps = BasePickerProps &
   DateValidationProps &
   BaseDatePickerProps &
-  ExtendWrapper2<PureDateInputProps>;
+  ExtendWrapper<PureDateInputProps>;
 
 export const DatePicker: React.FC<DatePickerProps> = props => {
   const {
