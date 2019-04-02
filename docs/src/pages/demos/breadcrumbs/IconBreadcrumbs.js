@@ -25,12 +25,11 @@ const styles = theme => ({
 
 function handleClick(event) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.');
+  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
 function IconBreadcrumbs(props) {
   const { classes } = props;
-
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">

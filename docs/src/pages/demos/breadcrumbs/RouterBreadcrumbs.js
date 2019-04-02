@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -79,10 +81,7 @@ class RouterBreadcrumbs extends React.Component {
 
                 return (
                   <Breadcrumbs aria-label="Breadcrumb">
-                    <Link
-                      component={({ innerRef, ...props }) => <RouterLink {...props} to={'/'} />}
-                      color="inherit"
-                    >
+                    <Link component={RouterLink} color="inherit" to="/">
                       Home
                     </Link>
                     {pathnames.map((value, index) => {
@@ -94,11 +93,7 @@ class RouterBreadcrumbs extends React.Component {
                           {breadcrumbNameMap[to]}
                         </Typography>
                       ) : (
-                        <Link
-                          component={({ innerRef, ...props }) => <RouterLink {...props} to={to} />}
-                          color="inherit"
-                          key={to}
-                        >
+                        <Link component={RouterLink} color="inherit" to={to} key={to}>
                           {breadcrumbNameMap[to]}
                         </Link>
                       );
@@ -111,7 +106,7 @@ class RouterBreadcrumbs extends React.Component {
               <List component="nav">
                 <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                  <List component={'div'} disablePadding>
+                  <List component="div" disablePadding>
                     <ListItemLink to="/inbox/important" className={classes.nested} />
                   </List>
                 </Collapse>

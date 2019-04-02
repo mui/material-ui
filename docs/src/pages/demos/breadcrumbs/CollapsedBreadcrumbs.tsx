@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
@@ -21,7 +23,7 @@ const styles = (theme: Theme) =>
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.');
+  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
 function CollapsedBreadcrumbs(props: CollapsedBreadcrumbsProps) {
