@@ -1,7 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
-import MuiExpansionPanelSummary, { ExpansionPanelSummaryProps } from '@material-ui/core/ExpansionPanelSummary';
+import MuiExpansionPanelSummary, {
+  ExpansionPanelSummaryProps,
+} from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 
