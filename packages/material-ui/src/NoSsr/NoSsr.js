@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
@@ -46,10 +45,13 @@ function NoSsr(props) {
     };
   }, [defer]);
 
-  return mountedState ? children : fallback;
+  return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
 }
 
 NoSsr.propTypes = {
+  /**
+   * You can wrap a node.
+   */
   children: PropTypes.node.isRequired,
   /**
    * If `true`, the component will not only prevent server-side rendering.
@@ -61,10 +63,6 @@ NoSsr.propTypes = {
    */
   fallback: PropTypes.node,
 };
-
-if (process.env.NODE_ENV !== 'production') {
-  NoSsr.propTypes = exactProp(NoSsr.propTypes);
-}
 
 NoSsr.defaultProps = {
   defer: false,
