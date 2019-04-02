@@ -32,15 +32,13 @@ describe('<Select />', () => {
   });
 
   describeConformance(<Select {...defaultProps} />, () => ({
+    classes,
+    inheritComponent: Input,
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.HTMLDivElement,
+    skip: ['rootClass'],
+    testComponentPropWith: false,
   }));
-
-  it('should render a correct top element', () => {
-    const wrapper = mount(<Select {...defaultProps} />);
-    assert.strictEqual(wrapper.find(Input).exists(), true);
-  });
 
   it('should provide the classes to the input component', () => {
     const wrapper = mount(<Select {...defaultProps} />);
