@@ -233,6 +233,7 @@ class Demo extends React.Component {
     const demoData = this.getDemoData();
     const DemoComponent = demoData.Component;
     const Sandbox = demoOptions.iframe ? DemoFrame : React.Fragment;
+    const gaCategory = demoOptions.demo;
 
     return (
       <div className={classes.root}>
@@ -243,7 +244,7 @@ class Demo extends React.Component {
                 demo={demo}
                 codeOpen={codeOpen}
                 codeVariant={codeVariant}
-                gaEventCategory={demoOptions.demo}
+                gaEventCategory={gaCategory}
                 onLanguageClick={this.handleCodeLanguageClick}
               />
               <div>
@@ -256,7 +257,7 @@ class Demo extends React.Component {
                   placement="top"
                 >
                   <IconButton
-                    data-ga-event-category={demoOptions.demo}
+                    data-ga-event-category={gaCategory}
                     data-ga-event-action="expand"
                     onClick={this.handleClickCodeOpen}
                     color={demoHovered ? 'primary' : 'default'}
@@ -270,7 +271,7 @@ class Demo extends React.Component {
                   placement="top"
                 >
                   <IconButton
-                    data-ga-event-category={demoOptions.demo}
+                    data-ga-event-category={gaCategory}
                     data-ga-event-action="github"
                     href={demoData.githubLocation}
                     target="_blank"
@@ -285,7 +286,7 @@ class Demo extends React.Component {
                     placement="top"
                   >
                     <IconButton
-                      data-ga-event-category={demoOptions.demo}
+                      data-ga-event-category={gaCategory}
                       data-ga-event-action="codesandbox"
                       onClick={this.handleClickCodeSandbox}
                     >
@@ -317,7 +318,7 @@ class Demo extends React.Component {
                   }}
                 >
                   <MenuItem
-                    data-ga-event-category={demoOptions.demo}
+                    data-ga-event-category={gaCategory}
                     data-ga-event-action="copy"
                     onClick={this.handleClickCopy}
                   >
@@ -325,7 +326,7 @@ class Demo extends React.Component {
                   </MenuItem>
                   {demoOptions.hideEditButton ? null : (
                     <MenuItem
-                      data-ga-event-category={demoOptions.demo}
+                      data-ga-event-category={gaCategory}
                       data-ga-event-action="stackblitz"
                       onClick={this.handleClickStackBlitz}
                     >
