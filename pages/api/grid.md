@@ -46,6 +46,7 @@ This property accepts the following keys:
 
 | Name | Description |
 |:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element
 | <span class="prop-name">container</span> | Styles applied to the root element if `container={true}`.
 | <span class="prop-name">item</span> | Styles applied to the root element if `item={true}`.
 | <span class="prop-name">zeroMinWidth</span> | Styles applied to the root element if `zeroMinWidth={true}`.
