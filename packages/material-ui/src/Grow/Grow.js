@@ -104,7 +104,7 @@ function Grow(props) {
     return () => {
       clearTimeout(timer.current);
     };
-  });
+  }, []);
 
   return (
     <Transition

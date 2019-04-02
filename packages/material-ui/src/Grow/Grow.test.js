@@ -161,55 +161,97 @@ describe('<Grow />', () => {
       clock.restore();
     });
 
-    it('should return autoTransitionDuration when timeout is auto', () => {
-      const next = spy();
+    describe('prop: timeout', () => {
+      describe('onEnter', () => {
+        it('should delay based on height when timeout is auto', () => {
+          const next = spy();
 
-      const theme = createMuiTheme({
-        transitions: {
-          getAutoHeightDuration: n => n,
-        },
+          const theme = createMuiTheme({
+            transitions: {
+              getAutoHeightDuration: n => n,
+            },
+          });
+
+          const wrapper = mount(
+            <Grow timeout="auto" onEntered={next} theme={theme}>
+              <div />
+            </Grow>,
+          );
+
+          stub(wrapper.find('div').instance(), 'clientHeight').get(() => 10);
+
+          wrapper.setProps({
+            in: true,
+          });
+
+          const autoTransitionDuration = 10;
+          assert.strictEqual(next.callCount, 0);
+          clock.tick(0);
+          assert.strictEqual(next.callCount, 0);
+          clock.tick(autoTransitionDuration);
+          assert.strictEqual(next.callCount, 1);
+
+          const next2 = spy();
+          mount(
+            <Grow in timeout="auto" onEntered={next2}>
+              <div />
+            </Grow>,
+          );
+
+          assert.strictEqual(next2.callCount, 0);
+          clock.tick(0);
+          assert.strictEqual(next2.callCount, 1);
+        });
+
+        it('should use timeout as delay when timeout is number', () => {
+          const timeout = 10;
+          const next = spy();
+          mount(<Grow {...defaultProps} timeout={timeout} onEntered={next} />);
+          assert.strictEqual(next.callCount, 0);
+          clock.tick(0);
+          assert.strictEqual(next.callCount, 0);
+          clock.tick(timeout);
+          assert.strictEqual(next.callCount, 1);
+        });
       });
 
-      const wrapper = mount(
-        <Grow timeout="auto" onEntered={next} theme={theme}>
-          <div />
-        </Grow>,
-      );
+      describe('onExit', () => {
+        it('should delay based on height when timeout is auto', () => {
+          const next = spy();
+          const wrapper = mount(
+            <Grow in timeout="auto" onExited={next}>
+              <div />
+            </Grow>,
+          );
 
-      stub(wrapper.find('div').instance(), 'clientHeight').get(() => 10);
+          clock.tick(0);
 
-      wrapper.setProps({
-        in: true,
+          wrapper.setProps({
+            in: false,
+          });
+
+          assert.strictEqual(next.callCount, 0);
+          clock.tick(0);
+          assert.strictEqual(next.callCount, 1);
+        });
+
+        it('should use timeout as delay when timeout is number', () => {
+          const timeout = 20;
+          const next = spy();
+          const wrapper = mount(<Grow {...defaultProps} timeout={timeout} onExited={next} />);
+
+          clock.tick(timeout);
+          wrapper.setProps({
+            in: false,
+          });
+
+          assert.strictEqual(next.callCount, 0);
+          clock.tick(0);
+          assert.strictEqual(next.callCount, 0);
+          clock.tick(timeout);
+          assert.strictEqual(next.callCount, 1);
+        });
       });
-
-      const autoTransitionDuration = 10;
-      assert.strictEqual(next.callCount, 0);
-      clock.tick(0);
-      assert.strictEqual(next.callCount, 0);
-      clock.tick(autoTransitionDuration);
-      assert.strictEqual(next.callCount, 1);
-
-      const next2 = spy();
-      mount(
-        <Grow in timeout="auto" onEntered={next2}>
-          <div />
-        </Grow>,
-      );
-
-      assert.strictEqual(next2.callCount, 0);
-      clock.tick(0);
-      assert.strictEqual(next2.callCount, 1);
-    });
-
-    it('should return defaultProps.timeout when timeout is number', () => {
-      const timeout = 10;
-      const next = spy();
-      mount(<Grow {...defaultProps} timeout={timeout} onEntered={next} />);
-      assert.strictEqual(next.callCount, 0);
-      clock.tick(0);
-      assert.strictEqual(next.callCount, 0);
-      clock.tick(timeout);
-      assert.strictEqual(next.callCount, 1);
     });
   });
 });
