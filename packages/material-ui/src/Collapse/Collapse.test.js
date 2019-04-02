@@ -34,7 +34,7 @@ describe('<Collapse />', () => {
     inheritComponent: 'Transition',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    testComponentPropWith: 'span',
   }));
 
   it('should render a container around the wrapper', () => {
