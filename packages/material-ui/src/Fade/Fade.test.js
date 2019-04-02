@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
+import { Transition } from 'react-transition-group';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
@@ -20,10 +21,13 @@ describe('<Fade />', () => {
     mount.cleanUp();
   });
 
-  it('should render a Transition', () => {
-    const wrapper = mount(<Fade {...defaultProps} />);
-    assert.strictEqual(wrapper.find('Transition').exists(), true);
-  });
+  describeConformance(<Fade {...defaultProps} />, () => ({
+    classes: {},
+    inheritComponent: Transition,
+    mount,
+    skip: ['refForwarding'],
+    testComponentPropWith: false,
+  }));
 
   describe('event callbacks', () => {
     describe('entering', () => {
