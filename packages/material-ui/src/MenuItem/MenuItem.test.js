@@ -34,6 +34,13 @@ describe('<MenuItem />', () => {
     testComponentPropWith: 'a',
   }));
 
+  describe('prop: ListItemClasses', () => {
+    it('should be able to change the ListItem style', () => {
+      const wrapper = shallow(<MenuItem ListItemClasses={{ root: 'bar' }} />);
+      assert.strictEqual(wrapper.find(ListItem).props().classes.root, 'bar');
+    });
+  });
+
   it('should render a button ListItem with with ripple', () => {
     const wrapper = shallow(<MenuItem />);
     assert.strictEqual(wrapper.type(), ListItem);
