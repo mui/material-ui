@@ -13,10 +13,6 @@ const styles = {
   card: {
     maxWidth: 345,
   },
-  media: {
-    // ⚠️ object-fit is not supported by IE 11.
-    objectFit: 'cover',
-  },
 };
 
 function ImgMediaCard(props) {
@@ -27,7 +23,6 @@ function ImgMediaCard(props) {
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
-          className={classes.media}
           height="140"
           image="/static/images/cards/contemplative-reptile.jpg"
           title="Contemplative Reptile"
