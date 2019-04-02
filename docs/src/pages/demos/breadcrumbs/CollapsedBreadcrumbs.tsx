@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-const useStyles = makeStyles((theme: Theme) =>
+interface CollapsedBreadcrumbsProps extends WithStyles<typeof styles> {}
+
+const styles = (theme: Theme) =>
   createStyles({
     root: {
       justifyContent: 'center',
@@ -15,16 +17,15 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       padding: theme.spacing(1, 2),
     },
-  }),
-);
+  });
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
   alert('You clicked a breadcrumb.');
 }
 
-function CollapsedBreadcrumbs() {
-  const classes = useStyles();
+function CollapsedBreadcrumbs(props: CollapsedBreadcrumbsProps) {
+  const { classes } = props;
 
   return (
     <Paper elevation={0} className={classes.paper}>
@@ -49,6 +50,6 @@ function CollapsedBreadcrumbs() {
 
 CollapsedBreadcrumbs.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
-export default CollapsedBreadcrumbs;
+export default withStyles(styles)(CollapsedBreadcrumbs);

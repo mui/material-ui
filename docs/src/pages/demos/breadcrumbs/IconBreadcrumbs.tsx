@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -9,7 +9,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import GrainIcon from '@material-ui/icons/Grain';
 
-const useStyles = makeStyles((theme: Theme) =>
+interface IconBreadcrumbsProps extends WithStyles<typeof styles> {}
+
+const styles = (theme: Theme) =>
   createStyles({
     root: {
       padding: theme.spacing(1, 2),
@@ -22,16 +24,15 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 20,
       height: 20,
     },
-  }),
-);
+  });
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
   alert('You clicked a breadcrumb.');
 }
 
-function IconBreadcrumbs() {
-  const classes = useStyles();
+function IconBreadcrumbs(props: IconBreadcrumbsProps) {
+  const { classes } = props;
 
   return (
     <Paper elevation={0} className={classes.root}>
@@ -60,6 +61,6 @@ function IconBreadcrumbs() {
 
 IconBreadcrumbs.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
-export default IconBreadcrumbs;
+export default withStyles(styles)(IconBreadcrumbs);

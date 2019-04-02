@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-const useStyles = makeStyles((theme: Theme) =>
+interface CustomSeparatorProps extends WithStyles<typeof styles> {}
+
+const styles = (theme: Theme) =>
   createStyles({
     root: {
       justifyContent: 'center',
@@ -16,16 +18,15 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       padding: theme.spacing(1, 2),
     },
-  }),
-);
+  });
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
   alert('You clicked a breadcrumb.');
 }
 
-function CustomSeparator() {
-  const classes = useStyles();
+function CustomSeparator(props: CustomSeparatorProps) {
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
@@ -70,6 +71,6 @@ function CustomSeparator() {
 
 CustomSeparator.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
-export default CustomSeparator;
+export default withStyles(styles)(CustomSeparator);

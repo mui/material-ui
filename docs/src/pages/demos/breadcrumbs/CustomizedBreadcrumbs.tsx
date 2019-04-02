@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -9,7 +9,11 @@ import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const useStyles = makeStyles((theme: Theme) =>
+interface CustomBreadcrumbProps extends WithStyles<typeof styles> {}
+
+interface CustomizedBreadcrumbsProps extends WithStyles<typeof styles> {}
+
+const styles = (theme: Theme) =>
   createStyles({
     root: {
       padding: theme.spacing(1),
@@ -31,22 +35,26 @@ const useStyles = makeStyles((theme: Theme) =>
       background: 'none',
       marginRight: -theme.spacing(1.5),
     },
-  }),
-);
+  });
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
   alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function StyledBreadcrumb(props: any) {
-  const classes = useStyles();
-  const { ...rest } = props;
+function CustomBreadcrumb(props: CustomBreadcrumbProps) {
+  const { classes, ...rest } = props;
   return <Chip className={classes.chip} {...rest} />;
 }
 
-function CustomizedBreadcrumbs() {
-  const classes = useStyles();
+CustomBreadcrumb.propTypes = {
+  classes: PropTypes.object.isRequired,
+} as any;
+
+const StyledBreadcrumb = withStyles(styles)(CustomBreadcrumb);
+
+function CustomizedBreadcrumbs(props: CustomizedBreadcrumbsProps) {
+  const { classes } = props;
 
   return (
     <Paper elevation={0} className={classes.root}>
@@ -76,6 +84,6 @@ function CustomizedBreadcrumbs() {
 
 CustomizedBreadcrumbs.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
-export default CustomizedBreadcrumbs;
+export default withStyles(styles)(CustomizedBreadcrumbs);
