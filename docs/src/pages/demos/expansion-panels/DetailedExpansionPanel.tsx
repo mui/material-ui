@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -12,7 +12,9 @@ import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
-const styles = theme => ({
+interface DetailedExpansionPanelProps extends WithStyles<typeof styles> {}
+
+const styles = (theme: Theme) => createStyles({
   root: {
     width: '100%',
   },
@@ -47,7 +49,7 @@ const styles = theme => ({
   },
 });
 
-function DetailedExpansionPanel(props) {
+function DetailedExpansionPanel(props: DetailedExpansionPanelProps) {
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -93,6 +95,6 @@ function DetailedExpansionPanel(props) {
 
 DetailedExpansionPanel.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(DetailedExpansionPanel);
