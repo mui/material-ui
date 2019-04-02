@@ -1,5 +1,3 @@
-/* eslint-disable no-nested-ternary */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -14,7 +12,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Route, MemoryRouter } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
 interface RouterBreadcrumbsState {
   readonly open: boolean;
@@ -70,6 +68,13 @@ const styles = (theme: Theme) =>
     },
   });
 
+interface LinkRouterProps extends LinkProps {
+  to: string;
+  replace?: boolean;
+}
+
+const LinkRouter = (props: LinkRouterProps) => <Link {...props} component={RouterLink as any} />;
+
 class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBreadcrumbsState> {
   state = {
     open: true,
@@ -94,12 +99,9 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
 
                 return (
                   <Breadcrumbs aria-label="Breadcrumb">
-                    <Link
-                      component={({ innerRef, ...props }) => <RouterLink {...props} to={'/'} />}
-                      color="inherit"
-                    >
+                    <LinkRouter color="inherit" to="/">
                       Home
-                    </Link>
+                    </LinkRouter>
                     {pathnames.map((value, index) => {
                       const last = index === pathnames.length - 1;
                       const to = `/${pathnames.slice(0, index + 1).join('/')}`;
@@ -109,13 +111,9 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
                           {breadcrumbNameMap[to]}
                         </Typography>
                       ) : (
-                        <Link
-                          component={({ innerRef, ...props }) => <RouterLink {...props} to={to} />}
-                          color="inherit"
-                          key={to}
-                        >
+                        <LinkRouter color="inherit" to={to} key={to}>
                           {breadcrumbNameMap[to]}
-                        </Link>
+                        </LinkRouter>
                       );
                     })}
                   </Breadcrumbs>
@@ -143,6 +141,6 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
 
 RouterBreadcrumbs.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(RouterBreadcrumbs);
