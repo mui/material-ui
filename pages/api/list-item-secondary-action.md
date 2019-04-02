@@ -18,8 +18,8 @@ Must be used as the last child of ListItem to function properly.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component, normally an `IconButton` or selection control. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component, normally an `IconButton` or selection control. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 Any other properties supplied will be spread to the root element (native element).
 

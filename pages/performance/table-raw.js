@@ -14,9 +14,9 @@ function TableRaw() {
           <tr>
             <th>Dessert (100g serving)</th>
             <th>Calories</th>
-            <th>Fat (g)</th>
-            <th>Carbs (g)</th>
-            <th>Protein (g)</th>
+            <th>Fat&nbsp;(g)</th>
+            <th>Carbs&nbsp;(g)</th>
+            <th>Protein&nbsp;(g)</th>
           </tr>
         </thead>
         <tbody>

@@ -18,14 +18,14 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'label'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |   | If `true`, the label should be displayed in a disabled state. |
-| <span class="prop-name">error</span> | <span class="prop-type">bool</span> |   | If `true`, the label should be displayed in an error state. |
-| <span class="prop-name">filled</span> | <span class="prop-type">bool</span> |   | If `true`, the label should use filled classes key. |
-| <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |   | If `true`, the input of this label is focused (used by `FormGroup` components). |
-| <span class="prop-name">required</span> | <span class="prop-type">bool</span> |   | If `true`, the label will indicate that the input is required. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the label should be displayed in a disabled state. |
+| <span class="prop-name">error</span> | <span class="prop-type">bool</span> |  | If `true`, the label should be displayed in an error state. |
+| <span class="prop-name">filled</span> | <span class="prop-type">bool</span> |  | If `true`, the label should use filled classes key. |
+| <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |  | If `true`, the input of this label is focused (used by `FormGroup` components). |
+| <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the label will indicate that the input is required. |
 
 Any other properties supplied will be spread to the root element (native element).
 

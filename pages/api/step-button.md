@@ -18,10 +18,10 @@ import StepButton from '@material-ui/core/StepButton';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |   | The icon displayed by the step label. |
-| <span class="prop-name">optional</span> | <span class="prop-type">node</span> |   | The optional node to display. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon displayed by the step label. |
+| <span class="prop-name">optional</span> | <span class="prop-type">node</span> |  | The optional node to display. |
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
