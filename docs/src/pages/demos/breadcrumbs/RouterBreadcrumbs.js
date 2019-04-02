@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-nested-ternary */
 
 import React from 'react';
@@ -81,7 +82,10 @@ class RouterBreadcrumbs extends React.Component {
 
                 return (
                   <Breadcrumbs aria-label="Breadcrumb">
-                    <Link component={RouterLink} color="inherit" to="/">
+                    <Link
+                      component={({ innerRef, ...props }) => <RouterLink {...props} to={'/'} />}
+                      color="inherit"
+                    >
                       Home
                     </Link>
                     {pathnames.map((value, index) => {
@@ -93,7 +97,11 @@ class RouterBreadcrumbs extends React.Component {
                           {breadcrumbNameMap[to]}
                         </Typography>
                       ) : (
-                        <Link component={RouterLink} color="inherit" to={to} key={to}>
+                        <Link
+                          component={({ innerRef, ...props }) => <RouterLink {...props} to={to} />}
+                          color="inherit"
+                          key={to}
+                        >
                           {breadcrumbNameMap[to]}
                         </Link>
                       );
