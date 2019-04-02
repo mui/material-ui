@@ -60,13 +60,13 @@ Snackbars should appear above FABs (on mobile).
 
 ### Change Transition
 
-Use a different transition.
+[Grow](/utils/transitions/#grow) is the default transition but you can use a different one.
 
 {{"demo": "pages/demos/snackbars/TransitionsSnackbar.js"}}
 
-### Control Direction
+### Control Slide direction
 
-You can change the direction of the transition of the [Slide](/utils/transitions/#slide)
+You can change the direction of the [Slide](/utils/transitions/#slide) transition.
 
 {{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
 
