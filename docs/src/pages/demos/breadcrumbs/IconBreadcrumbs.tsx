@@ -33,7 +33,6 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 
 function IconBreadcrumbs(props: IconBreadcrumbsProps) {
   const { classes } = props;
-
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">
