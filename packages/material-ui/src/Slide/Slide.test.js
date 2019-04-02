@@ -10,7 +10,6 @@ import {
 import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
-import { Transition } from 'react-transition-group';
 
 describe('<Slide />', () => {
   let shallow;
@@ -37,7 +36,7 @@ describe('<Slide />', () => {
     </Slide>,
     () => ({
       classes: {},
-      inheritComponent: Transition,
+      inheritComponent: 'Transition',
       mount,
       refInstanceof: React.Component,
       testComponentPropWith: false,

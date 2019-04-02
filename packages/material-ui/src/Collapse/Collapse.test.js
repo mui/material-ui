@@ -9,7 +9,6 @@ import {
   getClasses,
   unwrap,
 } from '@material-ui/core/test-utils';
-import { Transition } from 'react-transition-group';
 import Collapse from './Collapse';
 
 describe('<Collapse />', () => {
@@ -33,7 +32,7 @@ describe('<Collapse />', () => {
 
   describeConformance(<Collapse {...props} />, () => ({
     classes,
-    inheritComponent: Transition,
+    inheritComponent: 'Transition',
     mount,
     skip: ['refForwarding'],
     testComponentPropWith: false,

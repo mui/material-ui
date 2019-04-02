@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Zoom from './Zoom';
-import { Transition } from 'react-transition-group';
 
 describe('<Zoom />', () => {
   let mount;
@@ -26,7 +25,7 @@ describe('<Zoom />', () => {
     </Zoom>,
     () => ({
       classes: {},
-      inheritComponent: Transition,
+      inheritComponent: 'Transition',
       mount,
       skip: ['refForwarding'],
       testComponentPropWith: false,
