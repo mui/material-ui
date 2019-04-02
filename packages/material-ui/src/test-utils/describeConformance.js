@@ -12,12 +12,20 @@ import testRef from './testRef';
  *   - has the type of `inheritComponent`
  */
 
-function findRootComponent(wrapper, { classes, component }) {
-  /**
-   * We look for the component that is `inheritComponent` and `.rootClassName`
-   * Using find().find().first() is not equivalent since `find` searches deep
-   */
-  return wrapper.find(component).filter(`.${classes.root}`);
+/**
+ * Returns the component with the same constructor as `component` that renders
+ * the outermost host
+ *
+ * @param {import('enzyme').ReactWrapper} wrapper
+ * @param {object} options
+ * @param {import('react').ElementType} component
+ */
+function findRootComponent(wrapper, { component }) {
+  const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
+
+  return wrapper.find(component).filterWhere(componentWrapper => {
+    return componentWrapper.contains(outermostHostElement);
+  });
 }
 
 function randomStringValue() {
@@ -110,20 +118,22 @@ function describeRef(element, getOptions) {
 }
 
 /**
- * Tests that the root component renders the outermost host
+ * Tests that the root component has the root class
  *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testOutermostHost(element, getOptions) {
-  it("it's root component renders the outermost host component", () => {
+function testRootClass(element, getOptions) {
+  it("applies to root class to the root component if it has this class", () => {
     const { classes, inheritComponent, mount } = getOptions();
+    if (classes.root == null) {
+      return
+    }
+
     const wrapper = mount(element);
+    const rootComponent = findRootComponent(wrapper, { component: inheritComponent });
 
-    const rootComponent = findRootComponent(wrapper, { classes, component: inheritComponent });
-    const outermostIntrinsic = findOutermostIntrinsic(wrapper);
-
-    assert.strictEqual(rootComponent.contains(outermostIntrinsic.getElement()), true);
+    assert.strictEqual(rootComponent.hasClass(classes.root), true);
   });
 }
 
@@ -132,7 +142,7 @@ const fullSuite = {
   mergeClassName: testClassName,
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
-  rendersOutermostHost: testOutermostHost,
+  rootClass: testRootClass,
 };
 
 /**
