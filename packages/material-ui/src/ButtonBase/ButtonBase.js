@@ -458,9 +458,8 @@ ButtonBase.propTypes = {
   /**
    * Used to control the button's purpose.
    * This property passes the value to the `type` attribute of the native button component.
-   * Valid property values include `button`, `submit`, and `reset`.
    */
-  type: PropTypes.string,
+  type: PropTypes.oneOf(['submit', 'reset', 'button']),
 };
 
 ButtonBase.defaultProps = {

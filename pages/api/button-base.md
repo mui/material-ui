@@ -33,7 +33,7 @@ It contains a load of style reset and some focus/ripple logic.
 | <span class="prop-name">focusVisibleClassName</span> | <span class="prop-type">string</span> |  | This property can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed. |
 | <span class="prop-name">onFocusVisible</span> | <span class="prop-type">func</span> |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
 | <span class="prop-name">TouchRippleProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `TouchRipple` element. |
-| <span class="prop-name">type</span> | <span class="prop-type">string</span> | <span class="prop-default">'button'</span> | Used to control the button's purpose. This property passes the value to the `type` attribute of the native button component. Valid property values include `button`, `submit`, and `reset`. |
+| <span class="prop-name">type</span> | <span class="prop-type">enum:&nbsp;'submit'&nbsp;&#124;<br>&nbsp;'reset'&nbsp;&#124;<br>&nbsp;'button'<br></span> | <span class="prop-default">'button'</span> | Used to control the button's purpose. This property passes the value to the `type` attribute of the native button component. |
 
 Any other properties supplied will be spread to the root element (native element).
 
