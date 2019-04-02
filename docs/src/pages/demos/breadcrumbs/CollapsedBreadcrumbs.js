@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -20,7 +18,7 @@ const styles = theme => ({
 
 function handleClick(event) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
+  alert('You clicked a breadcrumb.');
 }
 
 function CollapsedBreadcrumbs(props) {

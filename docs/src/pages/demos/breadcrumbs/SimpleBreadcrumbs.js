@@ -18,7 +18,7 @@ const styles = theme => ({
 
 function handleClick(event) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
+  alert('You clicked a breadcrumb.');
 }
 
 function SimpleBreadcrumbs(props) {
