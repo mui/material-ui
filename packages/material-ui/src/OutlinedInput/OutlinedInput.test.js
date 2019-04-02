@@ -1,17 +1,16 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createMount,
-  describeConformance,
-  findOutermostIntrinsic,
-} from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import OutlinedInput from './OutlinedInput';
 import NotchedOutline from './NotchedOutline';
+import InputBase from '../InputBase';
 
 describe('<OutlinedInput />', () => {
+  let classes;
   let mount;
 
   before(() => {
+    classes = getClasses(<OutlinedInput />);
     mount = createMount();
   });
 
@@ -20,17 +19,14 @@ describe('<OutlinedInput />', () => {
   });
 
   describeConformance(<OutlinedInput labelWidth={0} />, () => ({
+    classes,
+    inheritComponent: InputBase,
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
   }));
 
-  it('should render a <div />', () => {
-    const wrapper = mount(<OutlinedInput labelWidth={0} />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
-  });
-
-  it('should mount', () => {
+  it('should render a NotchedOutline', () => {
     const wrapper = mount(<OutlinedInput labelWidth={0} />);
     assert.strictEqual(wrapper.find(NotchedOutline).length, 1);
   });

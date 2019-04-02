@@ -124,16 +124,19 @@ function describeRef(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testRootClass(element, getOptions) {
-  it("applies to root class to the root component if it has this class", () => {
-    const { classes, inheritComponent, mount } = getOptions();
+  it('applies to root class to the root component if it has this class', () => {
+    const { classes, mount } = getOptions();
     if (classes.root == null) {
-      return
+      return;
     }
 
     const wrapper = mount(element);
-    const rootComponent = findRootComponent(wrapper, { component: inheritComponent });
 
-    assert.strictEqual(rootComponent.hasClass(classes.root), true);
+    // we established that the root component the outermost previously. We immediately
+    // jump to the host component because some components pass the `root` class
+    // to the `classes` prop of the root component.
+    // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 }
 
