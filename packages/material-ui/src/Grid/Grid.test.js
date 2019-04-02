@@ -20,9 +20,11 @@ describe('<Grid />', () => {
   });
 
   describeConformance(<Grid />, () => ({
+    classes,
+    inheritComponent: 'div',
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'span',
   }));
 
   it('should render', () => {
