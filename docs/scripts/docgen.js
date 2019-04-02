@@ -8,8 +8,8 @@ const doc = {};
 const srcPath = path.resolve(__dirname, '..', '..', 'lib', 'src');
 const files = [
   'DatePicker/DatePicker.tsx',
-  'TimePicker/TimePickerModal.tsx',
-  'DateTimePicker/DateTimePickerModal.tsx',
+  'TimePicker/TimePicker.tsx',
+  'DateTimePicker/DateTimePicker.tsx',
 ];
 
 files.forEach(filePart => {
