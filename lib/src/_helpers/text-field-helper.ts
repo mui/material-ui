@@ -95,6 +95,18 @@ export const getError = (
   return '';
 };
 
+export function pick12hOr24hFormat(
+  format: string | undefined,
+  ampm: boolean | undefined = true,
+  formats: { '12h': string; '24h': string }
+) {
+  if (format) {
+    return format;
+  }
+
+  return ampm ? formats['12h'] : formats['24h'];
+}
+
 export function makeMaskFromFormat(format: string, numberMaskChar: string) {
   return format.replace(/[a-z]/gi, numberMaskChar);
 }

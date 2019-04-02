@@ -1,5 +1,5 @@
 import { IUtils } from '@date-io/core/IUtils';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useDebugValue, useEffect, useRef, useState } from 'react';
 import { MaterialUiPickersDate } from '../..';
 import { getDisplayDate2 } from '../../_helpers/text-field-helper';
 import { BasePickerProps } from '../BasePicker';
@@ -90,5 +90,8 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
     ),
   };
 
-  return { pickerProps, inputProps, wrapperProps };
+  const pickerState = { pickerProps, inputProps, wrapperProps };
+
+  useDebugValue(pickerState);
+  return pickerState;
 }

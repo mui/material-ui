@@ -25,6 +25,7 @@ function parseInputString(value: string, utils: IUtils<any>, format: string) {
 export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: HookOptions) {
   const utils = useUtils();
   const format = props.format || options.getDefaultFormat();
+
   const [innerInputValue, setInnerInputValue] = useState(
     getDisplayDate2(props.value, format, utils, props.value === null, props)
   );

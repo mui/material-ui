@@ -1,19 +1,22 @@
 import * as React from 'react';
 import { DateValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { toShowDateTimePickerTabs } from '../_helpers/utils';
-import { BasePickerProps } from '../_shared/BasePicker';
-import { usePickerState } from '../_shared/hooks/usePickerState';
+import {
+  BaseKeyboardPickerProps,
+  useKeyboardPickerState,
+} from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
+import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import DateTimePicker from './DateTimePicker';
 import DateTimePickerRoot, { BaseDateTimePickerProps } from './DateTimePickerRoot';
 
-export type DateTimePickerProps = BasePickerProps &
+export type KeyboardDateTimePickerProps = BaseDateTimePickerProps &
   DateValidationProps &
-  BaseDateTimePickerProps &
-  ExtendWrapper2<PureDateInputProps>;
+  BaseKeyboardPickerProps &
+  ExtendWrapper2<KeyboardDateInputProps>;
 
-export const DatePicker: React.FC<DateTimePickerProps> = props => {
+export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
   const {
     allowKeyboardControl,
     ampm,
@@ -51,8 +54,8 @@ export const DatePicker: React.FC<DateTimePickerProps> = props => {
 
   const utils = useUtils();
   const toShowTabs = toShowDateTimePickerTabs(showTabs);
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
-    getValidationError: () => getError(value, utils, props),
+  const { pickerProps, inputProps, wrapperProps } = useKeyboardPickerState(props, {
+    getValidationError: () => getError(value, utils, props as any),
     getDefaultFormat: () =>
       pick12hOr24hFormat(format, ampm, {
         '12h': utils.dateTime12hFormat,
@@ -63,15 +66,15 @@ export const DatePicker: React.FC<DateTimePickerProps> = props => {
   return (
     <Wrapper
       variant={variant}
-      InputComponent={PureDateInput}
+      InputComponent={KeyboardDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}
       {...other}
     >
       <DateTimePickerRoot
         {...pickerProps}
-        allowKeyboardControl={allowKeyboardControl}
         ampm={ampm}
+        allowKeyboardControl={allowKeyboardControl}
         minutesStep={minutesStep}
         animateYearScrolling={animateYearScrolling}
         autoSubmit={autoSubmit}
@@ -92,13 +95,10 @@ export const DatePicker: React.FC<DateTimePickerProps> = props => {
       />
     </Wrapper>
   );
-};
+}
 
-DatePicker.defaultProps = {
-  ampm: true,
-  showTabs: true,
-};
+KeyboardDateTimePicker.defaultProps = DateTimePicker.defaultProps;
 
-export default React.forwardRef((props: DateTimePickerProps, ref) => (
-  <DatePicker {...props} forwardedRef={ref} />
+export default React.forwardRef((props: KeyboardDateTimePickerProps, ref) => (
+  <KeyboardDateTimePicker {...props} forwardedRef={ref} />
 ));

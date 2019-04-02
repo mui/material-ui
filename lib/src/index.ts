@@ -1,5 +1,5 @@
 import { DatePickerProps, KeyboardDatePickerProps } from './DatePicker';
-import { DateTimePickerInlineProps, DateTimePickerProps } from './DateTimePicker';
+import { DateTimePickerProps, KeyboardDateTimePicker } from './DateTimePicker';
 import { KeyboardTimePickerProps, TimePickerProps } from './TimePicker';
 import { MaterialUiPickersDate } from './typings/date';
 
@@ -13,7 +13,7 @@ export type KeyboardDatePickerProps = KeyboardDatePickerProps;
 
 export type DateTimePickerProps = DateTimePickerProps;
 
-export type DateTimePickerInlineProps = DateTimePickerInlineProps;
+export type KeyboardDateTimePicker = KeyboardDateTimePicker;
 
 export type MaterialUiPickersDate = MaterialUiPickersDate;
 
@@ -25,7 +25,9 @@ export { default as TimePicker } from './TimePicker';
 
 export { default as KeyboardTimePicker } from './TimePicker/KeyboardTimePicker';
 
-export { default as DateTimePicker, InlineDateTimePicker } from './DateTimePicker';
+export { default as DateTimePicker } from './DateTimePicker';
+
+export { default as KeyboardDateTimePicker } from './DateTimePicker/KeyboardDateTimePicker';
 
 export { default as BasePicker } from './_shared/BasePicker';
 

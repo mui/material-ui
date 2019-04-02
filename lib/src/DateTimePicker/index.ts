@@ -1,10 +1,10 @@
-import { DateTimePickerInlineProps } from './DateTimePickerInline';
-import { DateTimePickerModalProps } from './DateTimePickerModal';
+import { DateTimePickerProps } from './DateTimePicker';
+import { KeyboardDateTimePickerProps } from './KeyboardDateTimePicker';
 
-export type DateTimePickerProps = DateTimePickerModalProps;
+export type DateTimePickerProps = DateTimePickerProps;
 
-export type DateTimePickerInlineProps = DateTimePickerInlineProps;
+export type KeyboardDateTimePickerProps = KeyboardDateTimePickerProps;
 
-export { default } from './DateTimePickerModal';
+export { KeyboardDateTimePicker } from './KeyboardDateTimePicker';
 
-export { default as InlineDateTimePicker } from './DateTimePickerInline';
+export { default } from './DateTimePicker';

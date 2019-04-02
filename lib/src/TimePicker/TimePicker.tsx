@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getError } from '../_helpers/text-field-helper';
+import { getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { BasePickerProps } from '../_shared/BasePicker';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
@@ -29,11 +29,14 @@ export const DatePicker: React.FC<TimePickerProps> = props => {
     variant,
     ...other
   } = props;
-
   const utils = useUtils();
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
-    getDefaultFormat: () => (ampm ? utils.time12hFormat : utils.time24hFormat),
     getValidationError: () => getError(value, utils, props),
+    getDefaultFormat: () =>
+      pick12hOr24hFormat(format, ampm, {
+        '12h': utils.time12hFormat,
+        '24h': utils.time24hFormat,
+      }),
   });
 
   return (
@@ -50,7 +53,7 @@ export const DatePicker: React.FC<TimePickerProps> = props => {
 };
 
 DatePicker.defaultProps = {
-  ampm: false,
+  ampm: true,
 };
 
 export default React.forwardRef((props: TimePickerProps, ref) => (

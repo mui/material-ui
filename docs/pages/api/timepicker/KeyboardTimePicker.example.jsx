@@ -9,6 +9,7 @@ function KeyboardTimePickerExample() {
       <KeyboardTimePicker
         label="Masked timepicker"
         placeholder="08:00 AM"
+        mask="__:__ _M"
         value={selectedDate}
         onChange={handleDateChange}
       />

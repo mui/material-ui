@@ -22,12 +22,12 @@ export const PureDateInput: React.FC<PureDateInputProps> = ({
 }) => {
   return (
     <TextField
-      {...other}
       variant={inputVariant as any}
-      value={inputValue}
       error={Boolean(validationError)}
       helperText={validationError}
       InputProps={PureDateInputProps}
+      {...other}
+      value={inputValue}
     />
   );
 };

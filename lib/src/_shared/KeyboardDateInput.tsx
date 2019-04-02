@@ -22,13 +22,15 @@ export interface KeyboardDateInputProps
   mask?: string;
   /** Char string that will be replaced with number (for "_" mask will be "__/__/____") */
   maskChar?: string;
+  /** Refuse values regexp */
+  refuse?: RegExp;
   /** Props to pass to keyboard input adornment */
   InputAdornmentProps?: Partial<InputAdornmentProps>;
   /** Props to pass to keyboard adornment button */
   KeyboardButtonProps?: Partial<IconButtonProps>;
 }
 
-const refuse = /[^\d]+/gi;
+const refuse = /[^\dap]+/gi;
 const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   inputValue,
   inputVariant,
@@ -76,5 +78,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
     </Rifm>
   );
 };
+
+KeyboardDateInput.defaultProps = {};
 
 export default KeyboardDateInput;

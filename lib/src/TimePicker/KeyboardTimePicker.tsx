@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DateValidationProps, getError } from '../_helpers/text-field-helper';
+import { DateValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import {
   BaseKeyboardPickerProps,
   useKeyboardPickerState,
@@ -38,8 +38,12 @@ export function KeyboardTimePicker(props: KeyboardTimePickerProps) {
 
   const utils = useUtils();
   const { pickerProps, inputProps, wrapperProps } = useKeyboardPickerState(props, {
-    getDefaultFormat: () => (ampm ? utils.time12hFormat : utils.time24hFormat),
     getValidationError: () => getError(value, utils, props as any),
+    getDefaultFormat: () =>
+      pick12hOr24hFormat(format, ampm, {
+        '12h': utils.time12hFormat,
+        '24h': utils.time24hFormat,
+      }),
   });
 
   return (

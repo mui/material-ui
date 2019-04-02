@@ -17,11 +17,11 @@ function InlineTimePickerDemo() {
 
       <div className="picker">
         <KeyboardTimePicker
+          ampm={false}
           variant="inline"
           label="With keyboard"
           value={selectedDate}
           onChange={handleDateChange}
-          mask={[/\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
         />
       </div>
     </Fragment>
