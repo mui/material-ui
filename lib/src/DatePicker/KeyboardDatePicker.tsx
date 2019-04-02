@@ -8,6 +8,7 @@ import {
 import { useUtils } from '../_shared/hooks/useUtils';
 import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import { DatePicker } from './DatePicker';
 import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
 
 export type KeyboardDatePickerProps = BaseDatePickerProps &
@@ -81,7 +82,7 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
   );
 }
 
-KeyboardDatePicker.defaultProps = DatePickerRoot.defaultProps;
+KeyboardDatePicker.defaultProps = DatePicker.defaultProps;
 
 export default React.forwardRef((props: KeyboardDatePickerProps, ref) => (
   <KeyboardDatePicker {...props} forwardedRef={ref} />

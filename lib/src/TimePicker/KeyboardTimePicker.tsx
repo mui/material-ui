@@ -7,6 +7,7 @@ import {
 import { useUtils } from '../_shared/hooks/useUtils';
 import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import TimePicker from './TimePicker';
 import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 
 export type KeyboardTimePickerProps = BaseTimePickerProps &
@@ -54,7 +55,7 @@ export function KeyboardTimePicker(props: KeyboardTimePickerProps) {
   );
 }
 
-KeyboardTimePicker.defaultProps = TimePickerRoot.defaultProps;
+KeyboardTimePicker.defaultProps = TimePicker.defaultProps;
 
 export default React.forwardRef((props: KeyboardTimePickerProps, ref) => (
   <KeyboardTimePicker {...props} forwardedRef={ref} />
