@@ -15,13 +15,17 @@ import { styles as DTTabsStyles } from '../DateTimePicker/components/DateTimePic
 import { styles as ClockStyles } from '../TimePicker/components/Clock';
 import { styles as ClockNumberStyles } from '../TimePicker/components/ClockNumber';
 import { styles as ClockPointerStyles } from '../TimePicker/components/ClockPointer';
-import { styles as TimePickerStyles } from '../TimePicker/TimePicker';
+import { styles as TimePickerStyles } from '../TimePicker/TimePickerRoot';
 
 type Classes<T> = Partial<
   StyleRules<
     T extends string
       ? T
-      : T extends StyleRulesCallback<infer K> ? K : T extends StyleRules<infer D> ? D : never
+      : T extends StyleRulesCallback<infer K>
+      ? K
+      : T extends StyleRules<infer D>
+      ? D
+      : never
   >
 >;
 

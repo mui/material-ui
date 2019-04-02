@@ -1,276 +1,58 @@
-import withStyles from '@material-ui/core/styles/withStyles';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import { getError } from '../_helpers/text-field-helper';
+import { BasePickerProps } from '../_shared/BasePicker';
+import { usePickerState } from '../_shared/hooks/usePickerState';
+import { useUtils } from '../_shared/hooks/useUtils';
+import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
+import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
+import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 
-import { WithStyles } from '@material-ui/core';
-import createStyles from '@material-ui/core/styles/createStyles';
-import { convertToMeridiem } from '../_helpers/time-utils';
-import PickerToolbar from '../_shared/PickerToolbar';
-import ToolbarButton from '../_shared/ToolbarButton';
-import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
-import ClockType from '../constants/ClockType';
-import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
-import { MaterialUiPickersDate } from '../typings/date';
-import TimePickerView from './components/TimePickerView';
+export type TimePickerProps = BasePickerProps &
+  BaseTimePickerProps &
+  ExtendWrapper2<PureDateInputProps>;
 
-export interface BaseTimePickerProps {
-  /** 12h/24h view for hour selection clock */
-  ampm?: boolean;
-  /** Show the seconds view */
-  seconds?: boolean;
-  /** Step over minutes */
-  minutesStep?: number;
-}
+export const DatePicker: React.FC<TimePickerProps> = props => {
+  const {
+    ampm,
+    seconds,
+    minutesStep,
+    autoOk,
+    format,
+    forwardedRef,
+    initialFocusedDate,
+    labelFunc,
+    maxDate,
+    minDate,
+    onAccept,
+    onChange,
+    value,
+    variant,
+    ...other
+  } = props;
 
-export interface TimePickerProps
-  extends BaseTimePickerProps,
-    WithUtilsProps,
-    WithStyles<typeof styles, true> {
-  date: MaterialUiPickersDate;
-  onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
-}
-
-interface TimePickerState {
-  openView: ClockType;
-  meridiemMode: MeridiemMode;
-}
-
-export class TimePicker extends React.Component<TimePickerProps> {
-  public static propTypes: any = {
-    date: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired,
-    utils: PropTypes.object.isRequired,
-    ampm: PropTypes.bool,
-    seconds: PropTypes.bool,
-    minutesStep: PropTypes.number,
-    innerRef: PropTypes.any,
-  };
-
-  public static defaultProps = {
-    children: null,
-    ampm: true,
-    seconds: false,
-    minutesStep: 1,
-  };
-
-  public state: TimePickerState = {
-    openView: ClockType.HOURS,
-    meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
-  };
-
-  public setMeridiemMode = (mode: MeridiemMode) => () => {
-    this.setState({ meridiemMode: mode }, () =>
-      this.handleChange({
-        time: this.props.date,
-        isFinish: false,
-        openMinutes: false,
-        openSeconds: false,
-      })
-    );
-  };
-
-  public handleChange = ({
-    time,
-    isFinish,
-    openMinutes,
-    openSeconds,
-  }: {
-    time: MaterialUiPickersDate;
-    isFinish?: boolean;
-    openMinutes: boolean;
-    openSeconds: boolean;
-  }) => {
-    const withMeridiem = convertToMeridiem(
-      time,
-      this.state.meridiemMode,
-      Boolean(this.props.ampm),
-      this.props.utils
-    );
-
-    if (isFinish) {
-      if (!openMinutes && !openSeconds) {
-        this.props.onChange(withMeridiem, isFinish);
-        return;
-      }
-
-      if (openMinutes) {
-        this.openMinutesView();
-      }
-
-      if (openSeconds) {
-        this.openSecondsView();
-      }
-    }
-
-    this.props.onChange(withMeridiem, false);
-  };
-
-  public handleHourChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
-    this.handleChange({
-      time,
-      isFinish,
-      openMinutes: true,
-      openSeconds: false,
-    });
-  };
-
-  public handleMinutesChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
-    this.handleChange({
-      time,
-      isFinish,
-      openMinutes: false,
-      openSeconds: Boolean(this.props.seconds),
-    });
-  };
-
-  public handleSecondsChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
-    this.handleChange({
-      time,
-      isFinish,
-      openMinutes: false,
-      openSeconds: false,
-    });
-  };
-
-  public openSecondsView = () => {
-    this.setState({ openView: ClockType.SECONDS });
-  };
-
-  public openMinutesView = () => {
-    this.setState({ openView: ClockType.MINUTES });
-  };
-
-  public openHourView = () => {
-    this.setState({ openView: ClockType.HOURS });
-  };
-
-  public render() {
-    const { classes, theme, date, utils, ampm, seconds, minutesStep } = this.props;
-
-    const { meridiemMode, openView } = this.state;
-
-    const rtl = theme.direction === 'rtl';
-    const hourMinuteClassName = rtl ? classes.hourMinuteLabelReverse : classes.hourMinuteLabel;
-
-    return (
-      <React.Fragment>
-        <PickerToolbar
-          className={clsx(classes.toolbar, {
-            [classes.toolbarLeftPadding]: ampm,
-          })}
-        >
-          <div className={hourMinuteClassName}>
-            <ToolbarButton
-              variant="h2"
-              onClick={this.openHourView}
-              selected={openView === ClockType.HOURS}
-              label={utils.getHourText(date, Boolean(ampm))}
-            />
-
-            <ToolbarButton variant="h2" label=":" selected={false} className={classes.separator} />
-
-            <ToolbarButton
-              variant="h2"
-              onClick={this.openMinutesView}
-              selected={openView === ClockType.MINUTES}
-              label={utils.getMinuteText(date)}
-            />
-
-            {seconds && (
-              <React.Fragment>
-                <ToolbarButton
-                  variant="h2"
-                  label=":"
-                  selected={false}
-                  className={classes.separator}
-                />
-
-                <ToolbarButton
-                  variant="h2"
-                  onClick={this.openSecondsView}
-                  selected={openView === ClockType.SECONDS}
-                  label={utils.getSecondText(date)}
-                />
-              </React.Fragment>
-            )}
-          </div>
-
-          {ampm && (
-            <div className={seconds ? classes.ampmSelectionWithSeconds : classes.ampmSelection}>
-              <ToolbarButton
-                className={classes.ampmLabel}
-                selected={meridiemMode === 'am'}
-                variant="subtitle1"
-                label={utils.getMeridiemText('am')}
-                onClick={this.setMeridiemMode('am')}
-              />
-
-              <ToolbarButton
-                className={classes.ampmLabel}
-                selected={meridiemMode === 'pm'}
-                variant="subtitle1"
-                label={utils.getMeridiemText('pm')}
-                onClick={this.setMeridiemMode('pm')}
-              />
-            </div>
-          )}
-        </PickerToolbar>
-
-        {this.props.children}
-
-        <TimePickerView
-          date={date}
-          type={this.state.openView}
-          ampm={ampm}
-          minutesStep={minutesStep}
-          onHourChange={this.handleHourChange}
-          onMinutesChange={this.handleMinutesChange}
-          onSecondsChange={this.handleSecondsChange}
-        />
-      </React.Fragment>
-    );
-  }
-}
-
-export const styles = () =>
-  createStyles({
-    toolbar: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    toolbarLeftPadding: {
-      paddingLeft: 50,
-    },
-    separator: {
-      margin: '0 4px 0 2px',
-      cursor: 'default',
-    },
-    ampmSelection: {
-      marginLeft: 20,
-      marginRight: -20,
-    },
-    ampmSelectionWithSeconds: {
-      marginLeft: 15,
-      marginRight: 10,
-    },
-    ampmLabel: {
-      fontSize: 18,
-    },
-    hourMinuteLabel: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-end',
-    },
-    hourMinuteLabelReverse: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-end',
-      flexDirection: 'row-reverse',
-    },
+  const utils = useUtils();
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
+    getDefaultFormat: () => (ampm ? utils.time12hFormat : utils.time24hFormat),
+    getValidationError: () => getError(value, utils, props),
   });
 
-export default withStyles(styles, {
-  withTheme: true,
-  name: 'MuiPickersTimePicker',
-})(withUtils()(TimePicker));
+  return (
+    <Wrapper
+      variant={variant}
+      InputComponent={PureDateInput}
+      DateInputProps={inputProps}
+      {...wrapperProps}
+      {...other}
+    >
+      <TimePickerRoot {...pickerProps} ampm={ampm} seconds={seconds} minutesStep={minutesStep} />
+    </Wrapper>
+  );
+};
+
+DatePicker.defaultProps = {
+  ampm: false,
+};
+
+export default React.forwardRef((props: TimePickerProps, ref) => (
+  <DatePicker {...props} forwardedRef={ref} />
+));

@@ -4,7 +4,6 @@ import { DatePickerProps } from '..';
 import { BasePickerProps } from '../_shared/BasePicker';
 import { DateTextFieldProps } from '../_shared/DateTextField';
 import { DateType } from '../constants/prop-types';
-import { BaseDatePickerProps } from '../DatePicker/DatePickerRoot';
 import { MaterialUiPickersDate } from '../typings/date';
 
 export const getDisplayDate = ({

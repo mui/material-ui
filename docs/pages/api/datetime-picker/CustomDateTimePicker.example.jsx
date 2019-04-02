@@ -61,7 +61,6 @@ class CustomDateTimePicker extends PureComponent {
               moment: 'YYYY/MM/DD hh:mm A',
               dateFns: 'yyyy/MM/dd hh:mm a',
             })}
-            disableOpenOnEnter
             mask={[
               /\d/,
               /\d/,

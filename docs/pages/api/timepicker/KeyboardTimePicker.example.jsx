@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
-import { TimePicker } from 'material-ui-pickers';
+import { KeyboardTimePicker } from 'material-ui-pickers';
 
-function KeyboardTimePicker() {
+function KeyboardTimePickerExample() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <div className="picker">
-      <TimePicker
-        keyboard
+      <KeyboardTimePicker
         label="Masked timepicker"
-        mask={[/\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
         placeholder="08:00 AM"
         value={selectedDate}
         onChange={handleDateChange}
-        disableOpenOnEnter
       />
     </div>
   );
 }
 
-export default KeyboardTimePicker;
+export default KeyboardTimePickerExample;
