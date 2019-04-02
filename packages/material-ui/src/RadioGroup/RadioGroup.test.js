@@ -27,14 +27,15 @@ describe('<RadioGroup />', () => {
   }
 
   describeConformance(<RadioGroup value="" />, () => ({
+    classes: {},
+    inheritComponent: FormGroup,
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
   }));
 
-  it('should render a FormGroup with the radiogroup role', () => {
+  it('the root component has the radiogroup role', () => {
     const wrapper = mount(<RadioGroup value="" />);
-    assert.strictEqual(wrapper.childAt(0).type(), FormGroup);
     assert.strictEqual(findOutermostIntrinsic(wrapper).props().role, 'radiogroup');
   });
 
