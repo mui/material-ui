@@ -43,13 +43,16 @@ function randomStringValue() {
  */
 function testClassName(element, getOptions) {
   it('applies the className to the root component', () => {
-    const { classes, inheritComponent, mount } = getOptions();
+    const { mount } = getOptions();
     const className = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { className }));
-    const root = findRootComponent(wrapper, { classes, component: inheritComponent });
 
-    assert.strictEqual(root.hasClass(className), true, 'does have a custom `className`');
+    assert.strictEqual(
+      findOutermostIntrinsic(wrapper).hasClass(className),
+      true,
+      'does have a custom `className`',
+    );
   });
 }
 
