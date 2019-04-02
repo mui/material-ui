@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/customization/default-theme', false,
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/customization/default-theme',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/customization/default-theme';
 

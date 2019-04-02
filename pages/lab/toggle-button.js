@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/lab/toggle-button', false, /\.(md|js
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/lab/toggle-button',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/lab/toggle-button';
 

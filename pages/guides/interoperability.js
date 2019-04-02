@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/guides/interoperability', false, /\.
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/guides/interoperability',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/guides/interoperability';
 

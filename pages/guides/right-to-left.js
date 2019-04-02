@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/guides/right-to-left', false, /\.(md
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/guides/right-to-left',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/guides/right-to-left';
 

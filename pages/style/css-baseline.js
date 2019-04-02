@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/style/css-baseline', false, /\.(md|j
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/style/css-baseline',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/style/css-baseline';
 

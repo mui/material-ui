@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/utils/transitions', false, /\.(md|js
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/utils/transitions',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/utils/transitions';
 

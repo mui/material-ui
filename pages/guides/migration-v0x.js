@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/guides/migration-v0x', false, /\.(md
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/guides/migration-v0x',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/guides/migration-v0x';
 

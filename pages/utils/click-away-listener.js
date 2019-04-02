@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/utils/click-away-listener', false, /
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/utils/click-away-listener',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/utils/click-away-listener';
 

@@ -11,7 +11,7 @@ const req = require.context(
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/getting-started/supported-components',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/getting-started/supported-components';
 

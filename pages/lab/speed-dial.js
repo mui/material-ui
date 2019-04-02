@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/lab/speed-dial', false, /\.(md|js|ts
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/lab/speed-dial',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/lab/speed-dial';
 

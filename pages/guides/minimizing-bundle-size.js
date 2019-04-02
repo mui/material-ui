@@ -11,7 +11,7 @@ const req = require.context(
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/guides/minimizing-bundle-size',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/guides/minimizing-bundle-size';
 

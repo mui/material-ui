@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/css-in-js/basics', false, /\.(md|js|
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/css-in-js/basics',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/css-in-js/basics';
 

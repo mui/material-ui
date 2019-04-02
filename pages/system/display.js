@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/system/display', false, /\.(md|js|ts
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/system/display',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/system/display';
 

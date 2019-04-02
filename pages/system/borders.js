@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/system/borders', false, /\.(md|js|ts
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/system/borders',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/system/borders';
 

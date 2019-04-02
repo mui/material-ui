@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/guides/typescript', false, /\.(md|js
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/guides/typescript',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/guides/typescript';
 

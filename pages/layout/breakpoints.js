@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/layout/breakpoints', false, /\.(md|j
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/layout/breakpoints',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/layout/breakpoints';
 
