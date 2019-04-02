@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
@@ -109,7 +111,7 @@ function MarkdownDocs(props) {
                 sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
               />
             </div>
-            {contents.map(content => {
+            {contents.map((content, index) => {
               if (demos && demoRegexp.test(content)) {
                 let demoOptions;
                 try {
@@ -155,7 +157,7 @@ function MarkdownDocs(props) {
               }
 
               return (
-                <MarkdownElement className={classes.markdownElement} key={content} text={content} />
+                <MarkdownElement className={classes.markdownElement} key={index} text={content} />
               );
             })}
           </AppContent>

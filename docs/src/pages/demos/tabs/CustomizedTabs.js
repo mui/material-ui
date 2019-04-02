@@ -19,7 +19,7 @@ const StyledTabs = withStyles({
 
 const StyledTab = withStyles(theme => ({
   root: {
-    textTransform: 'initial',
+    textTransform: 'none',
     color: '#fff',
     fontWeight: theme.typography.fontWeightRegular,
     fontSize: theme.typography.pxToRem(15),
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#1890ff',
   },
   tabRoot: {
-    textTransform: 'initial',
+    textTransform: 'none',
     minWidth: 72,
     fontWeight: theme.typography.fontWeightRegular,
     marginRight: theme.spacing(4),
