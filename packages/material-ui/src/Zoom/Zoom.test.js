@@ -1,8 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Zoom from './Zoom';
+import { Transition } from 'react-transition-group';
 
 describe('<Zoom />', () => {
   let mount;
@@ -19,10 +20,18 @@ describe('<Zoom />', () => {
     mount.cleanUp();
   });
 
-  it('should render a Transition', () => {
-    const wrapper = mount(<Zoom {...defaultProps} />);
-    assert.strictEqual(wrapper.find('Transition').exists(), true);
-  });
+  describeConformance(
+    <Zoom in>
+      <div />
+    </Zoom>,
+    () => ({
+      classes: {},
+      inheritComponent: Transition,
+      mount,
+      skip: ['refForwarding'],
+      testComponentPropWith: false,
+    }),
+  );
 
   describe('event callbacks', () => {
     describe('entering', () => {
