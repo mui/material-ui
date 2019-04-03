@@ -31,3 +31,5 @@ export const PureDateInput: React.FC<PureDateInputProps> = ({
     />
   );
 };
+
+PureDateInput.displayName = 'PureDateInput';

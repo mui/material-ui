@@ -6,10 +6,6 @@ import ModalDialog from '../_shared/ModalDialog';
 import { WrapperProps } from './Wrapper';
 
 export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
-  /** On open callback */
-  onOpen?: () => void;
-  /** On close callback */
-  onClose?: () => void;
   /** "OK" label message */
   okLabel?: React.ReactNode;
   /** "Cancel" label message */
@@ -99,9 +95,7 @@ ModalWrapper.propTypes = {
   clearable: PropTypes.bool,
   todayLabel: PropTypes.node,
   showTodayButton: PropTypes.bool,
-  onOpen: PropTypes.func,
   DialogProps: PropTypes.object,
-  onClose: PropTypes.func,
 } as any;
 
 ModalWrapper.defaultProps = {
