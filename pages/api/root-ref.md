@@ -48,6 +48,6 @@ class MyComponent extends React.Component {
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The wrapped element. |
 | <span class="prop-name required">rootRef&nbsp;*</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | Provide a way to access the DOM node of the wrapped element. You can provide a callback ref or a `React.createRef()` ref. |
 
-The `ref` is **not** forwarded to the root element.
+The component cannot hold a ref.
 
 

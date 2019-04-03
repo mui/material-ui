@@ -47,13 +47,23 @@ function findConformanceDescriptor(program) {
   return descriptor;
 }
 
-// extracts the property of window.*
+/**
+ *
+ * @param {import('@babel/core').Node} valueNode
+ */
 function getRefInstance(valueNode) {
   if (!babel.types.isMemberExpression(valueNode)) {
-    throw new Error('Expected window.*Element in refInstanceOf');
+    throw new Error('Expected a member expression in refInstanceof');
   }
 
-  return valueNode.property.name;
+  switch (valueNode.object.name) {
+    case 'window':
+      return valueNode.property.name;
+    case 'React':
+      return `React.${valueNode.property.name}`;
+    default:
+      throw new Error(`Unrecognized member expression starting with '${valueNode.object.name}'`);
+  }
 }
 
 /**
