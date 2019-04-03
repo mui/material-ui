@@ -7,7 +7,7 @@ import warning from 'warning';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import { createChainedFunction } from '../utils/helpers';
@@ -348,6 +348,7 @@ class Popover extends React.Component {
             data-mui-test="Popover"
             elevation={elevation}
             ref={ref => {
+              // #StrictMode ready
               this.paperRef = ReactDOM.findDOMNode(ref);
             }}
             {...PaperProps}
@@ -521,7 +522,9 @@ Popover.propTypes = {
   /**
    * Properties applied to the [`Paper`](/api/paper/) element.
    */
-  PaperProps: PropTypes.object,
+  PaperProps: PropTypes.shape({
+    component: elementTypeAcceptingRef,
+  }),
   /**
    * This is the point on the popover which
    * will attach to the anchor's origin.
