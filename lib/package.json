@@ -32,13 +32,12 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "@material-ui/core": "^3.2.0",
+    "@material-ui/core": "^4.0.0-alpha.6",
     "prop-types": "^15.6.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@material-ui/core": "^4.0.0-alpha.6",
     "@types/react-text-mask": "^5.4.3",
     "clsx": "^1.0.2",
     "react-event-listener": "^0.6.6",
@@ -74,7 +73,7 @@
     "@date-io/date-fns": "^1.1.0",
     "@date-io/luxon": "^1.1.0",
     "@date-io/moment": "^1.1.0",
-    "@material-ui/core": "^3.9.3",
+    "@material-ui/core": "^4.0.0-alpha.6",
     "@material-ui/icons": "^3.0.2",
     "@types/enzyme": "^3.1.17",
     "@types/enzyme-adapter-react-16": "^1.0.3",
