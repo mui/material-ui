@@ -3,7 +3,6 @@ import { Grid, Typography } from '@material-ui/core';
 import { DatePicker, KeyboardDatePicker } from 'material-ui-pickers';
 import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
 import { MuiPickersContext } from 'material-ui-pickers';
-import Ad from '_shared/Ad';
 import LeftArrowIcon from '@material-ui/icons/KeyboardArrowLeft';
 import RightArrowIcon from '@material-ui/icons/KeyboardArrowRight';
 
@@ -29,8 +28,6 @@ function Regression() {
       <Typography align="center" variant="h5" gutterBottom>
         This page is using for the automate regression of material-ui-pickers.
       </Typography>
-
-      <Ad />
 
       <Typography align="center" variant="h4" component="span" gutterBottom>
         DatePicker
