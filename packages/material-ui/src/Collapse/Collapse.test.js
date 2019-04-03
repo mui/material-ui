@@ -7,7 +7,6 @@ import {
   createMount,
   describeConformance,
   getClasses,
-  unwrap,
 } from '@material-ui/core/test-utils';
 import Collapse from './Collapse';
 
@@ -34,13 +33,18 @@ describe('<Collapse />', () => {
     classes,
     inheritComponent: 'Transition',
     mount,
-    skip: ['refForwarding'],
-    testComponentPropWith: false,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'span',
   }));
 
   it('should render a container around the wrapper', () => {
     const wrapper = shallow(<Collapse {...props} classes={{ container: 'woofCollapse1' }} />);
-    const child = new ReactWrapper(wrapper.props().children('entered'));
+    const child = new ReactWrapper(
+      wrapper
+        .dive()
+        .props()
+        .children('entered'),
+    );
     assert.strictEqual(child.name(), 'div');
     assert.strictEqual(child.hasClass(classes.container), true);
     assert.strictEqual(child.hasClass('woofCollapse1'), true);
@@ -49,7 +53,12 @@ describe('<Collapse />', () => {
   it('should render a wrapper around the children', () => {
     const children = <h1>Hello</h1>;
     const wrapper = shallow(<Collapse {...props}>{children}</Collapse>);
-    const child = new ReactWrapper(wrapper.props().children('entered'));
+    const child = new ReactWrapper(
+      wrapper
+        .dive()
+        .props()
+        .children('entered'),
+    );
     assert.strictEqual(child.childAt(0).name(), 'div');
     assert.strictEqual(
       child
@@ -97,7 +106,7 @@ describe('<Collapse />', () => {
           }}
         />,
       );
-      instance = wrapper.instance();
+      instance = wrapper.dive().instance();
       element = { getBoundingClientRect: () => ({}), style: {} };
     });
 
@@ -118,7 +127,7 @@ describe('<Collapse />', () => {
 
     before(() => {
       wrapper = shallow(<Collapse {...props} />);
-      instance = wrapper.instance();
+      instance = wrapper.dive().instance();
     });
 
     describe('handleEnter()', () => {
@@ -151,7 +160,7 @@ describe('<Collapse />', () => {
       it('should call handleEntering', () => {
         const onEnteringStub = spy();
         wrapper.setProps({ onEntering: onEnteringStub });
-        instance = wrapper.instance();
+        instance = wrapper.dive().instance();
         instance.handleEntering(element);
 
         assert.strictEqual(onEnteringStub.callCount, 1);
@@ -168,7 +177,7 @@ describe('<Collapse />', () => {
           restore = theme.transitions.getAutoHeightDuration;
           theme.transitions.getAutoHeightDuration = stub().returns('woofCollapseStub');
           wrapper.setProps({ timeout: 'auto' });
-          instance = wrapper.instance();
+          instance = wrapper.dive().instance();
         });
 
         after(() => {
@@ -197,7 +206,7 @@ describe('<Collapse />', () => {
         it('number should set timeout to ms', () => {
           timeoutMock = 3;
           wrapper.setProps({ timeout: timeoutMock });
-          instance = wrapper.instance();
+          instance = wrapper.dive().instance();
           instance.handleEntering(element);
 
           assert.strictEqual(element.style.transitionDuration, `${timeoutMock}ms`);
@@ -206,7 +215,7 @@ describe('<Collapse />', () => {
         it('nothing should not set timeout', () => {
           const elementBackup = element;
           wrapper.setProps({ timeout: undefined });
-          instance = wrapper.instance();
+          instance = wrapper.dive().instance();
           instance.handleEntering(element);
 
           assert.strictEqual(
@@ -227,7 +236,7 @@ describe('<Collapse />', () => {
         handleEnteredWrapper = shallow(<Collapse {...props} />);
         onEnteredSpy = spy();
         handleEnteredWrapper.setProps({ onEntered: onEnteredSpy });
-        handleEnteredInstance = handleEnteredWrapper.instance();
+        handleEnteredInstance = handleEnteredWrapper.dive().instance();
         element = { style: { height: 666, transitionDuration: '500ms' } };
         handleEnteredInstance.handleEntered(element);
       });
@@ -265,7 +274,7 @@ describe('<Collapse />', () => {
       it('should call onExiting', () => {
         const onExitingStub = spy();
         wrapper.setProps({ onExiting: onExitingStub });
-        instance = wrapper.instance();
+        instance = wrapper.dive().instance();
         instance.handleExiting(element);
 
         assert.strictEqual(onExitingStub.callCount, 1);
@@ -282,7 +291,7 @@ describe('<Collapse />', () => {
           restore = theme.transitions.getAutoHeightDuration;
           theme.transitions.getAutoHeightDuration = stub().returns('woofCollapseStub2');
           wrapper.setProps({ timeout: 'auto' });
-          instance = wrapper.instance();
+          instance = wrapper.dive().instance();
         });
 
         after(() => {
@@ -311,7 +320,7 @@ describe('<Collapse />', () => {
         it('number should set timeout to ms', () => {
           timeoutMock = 3;
           wrapper.setProps({ timeout: timeoutMock });
-          instance = wrapper.instance();
+          instance = wrapper.dive().instance();
           instance.handleExiting(element);
 
           assert.strictEqual(element.style.transitionDuration, `${timeoutMock}ms`);
@@ -320,7 +329,7 @@ describe('<Collapse />', () => {
         it('nothing should not set timeout', () => {
           const elementBackup = element;
           wrapper.setProps({ timeout: undefined });
-          instance = wrapper.instance();
+          instance = wrapper.dive().instance();
           instance.handleExiting(element);
 
           assert.strictEqual(
@@ -346,8 +355,8 @@ describe('<Collapse />', () => {
 
     it('should return autoTransitionDuration when timeout is auto', () => {
       const wrapper = shallow(<Collapse {...props} timeout="auto" />);
-      assert.strictEqual(wrapper.props().timeout, null);
-      instance = wrapper.instance();
+      assert.strictEqual(wrapper.dive().props().timeout, null);
+      instance = wrapper.dive().instance();
       const next = spy();
 
       const autoTransitionDuration = 10;
@@ -368,7 +377,7 @@ describe('<Collapse />', () => {
       const timeout = 10;
       const wrapper = shallow(<Collapse {...props} timeout={timeout} />);
       assert.strictEqual(wrapper.props().timeout, timeout);
-      instance = wrapper.instance();
+      instance = wrapper.dive().instance();
 
       const next = spy();
       instance.addEndListener(null, next);
@@ -382,8 +391,9 @@ describe('<Collapse />', () => {
     let mountInstance;
 
     before(() => {
-      const CollapseNaked = unwrap(Collapse);
-      mountInstance = mount(<CollapseNaked classes={{}} theme={{}} />).instance();
+      mountInstance = mount(<Collapse />)
+        .find('Collapse')
+        .instance();
     });
 
     it('instance should have a wrapper property', () => {
@@ -396,13 +406,18 @@ describe('<Collapse />', () => {
 
     it('should work when closed', () => {
       const wrapper = shallow(<Collapse {...props} collapsedHeight={collapsedHeight} />);
-      const child = new ReactWrapper(wrapper.props().children('entered'));
+      const child = new ReactWrapper(
+        wrapper
+          .dive()
+          .props()
+          .children('entered'),
+      );
       assert.strictEqual(child.props().style.minHeight, collapsedHeight);
     });
 
     it('should be taken into account in handleExiting', () => {
       const wrapper = shallow(<Collapse {...props} collapsedHeight={collapsedHeight} />);
-      const instance = wrapper.instance();
+      const instance = wrapper.dive().instance();
       const element = { style: { height: 666, transitionDuration: undefined } };
       instance.handleExiting(element);
       assert.strictEqual(element.style.height, collapsedHeight, 'should have 0px height');

@@ -29,7 +29,7 @@ describe('<Popper />', () => {
     classes: {},
     inheritComponent: 'div',
     mount,
-    refInstanceof: React.Component,
+    refInstanceof: window.HTMLDivElement,
     testComponentPropWith: false,
   }));
 
@@ -51,7 +51,7 @@ describe('<Popper />', () => {
             return null;
           }}
         </Popper>,
-      );
+      ).dive();
       assert.strictEqual(renderSpy.callCount, 1);
       assert.strictEqual(renderSpy.args[0][0], 'top');
     });
@@ -87,7 +87,7 @@ describe('<Popper />', () => {
               return null;
             }}
           </Popper>,
-        );
+        ).dive();
         assert.strictEqual(renderSpy.callCount, 1);
         assert.strictEqual(renderSpy.args[0][0], test.out);
       });
@@ -108,7 +108,7 @@ describe('<Popper />', () => {
 
     it('should position the popper when opening', () => {
       const wrapper = mount(<Popper {...defaultProps} open={false} />);
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Popper').instance();
       assert.strictEqual(instance.popper == null, true);
       wrapper.setProps({ open: true });
       assert.strictEqual(instance.popper !== null, true);
@@ -116,7 +116,7 @@ describe('<Popper />', () => {
 
     it('should not position the popper when closing', () => {
       const wrapper = mount(<Popper {...defaultProps} open />);
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Popper').instance();
       assert.strictEqual(instance.popper !== null, true);
       wrapper.setProps({ open: false });
       assert.strictEqual(instance.popper, null);
@@ -134,7 +134,7 @@ describe('<Popper />', () => {
           )}
         </Popper>,
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Popper').instance();
       assert.strictEqual(wrapper.find('span').length, 1);
       assert.strictEqual(wrapper.find('span').text(), 'Hello World');
       assert.strictEqual(instance.popper !== null, true);
@@ -165,7 +165,7 @@ describe('<Popper />', () => {
         .find(Grow)
         .props()
         .onExited();
-      assert.strictEqual(wrapper.state().exited, true);
+      assert.strictEqual(wrapper.find('Popper').instance().state.exited, true);
     });
   });
 

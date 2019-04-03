@@ -9,6 +9,7 @@ import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { getTransitionProps } from '../transitions/utils';
 import NoSsr from '../NoSsr';
+import withForwardedRef from '../utils/withForwardedRef';
 import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to
@@ -354,6 +355,7 @@ class SwipeableDrawer extends React.Component {
       disableDiscovery,
       disableSwipeToOpen,
       hysteresis,
+      innerRef,
       minFlingVelocity,
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
@@ -387,6 +389,7 @@ class SwipeableDrawer extends React.Component {
             ref: this.handlePaperRef,
           }}
           anchor={anchor}
+          ref={innerRef}
           {...other}
         />
         {!disableSwipeToOpen && variant === 'temporary' && (
@@ -433,6 +436,11 @@ SwipeableDrawer.propTypes = {
    * Specified as percent (0-1) of the width of the drawer
    */
   hysteresis: PropTypes.number,
+  /**
+   * @ignore
+   * from `withForwardedRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Defines, from which (average) velocity on, the swipe is
    * defined as complete although hysteresis isn't reached.
@@ -503,4 +511,4 @@ SwipeableDrawer.defaultProps = {
   variant: 'temporary', // Mobile first.
 };
 
-export default withTheme(SwipeableDrawer);
+export default withTheme(withForwardedRef(SwipeableDrawer));
