@@ -13,7 +13,7 @@ describe('e2e -- DatePicker keyboard input', () => {
         label="Masked input"
         placeholder="10/10/2018"
         format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
-        value={'2018-01-01T00:00:00.000Z'}
+        value={new Date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         InputAdornmentProps={{
           disableTypography: true,

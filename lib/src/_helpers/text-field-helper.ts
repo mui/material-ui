@@ -47,7 +47,7 @@ export const getError = (
   }: DatePickerProps
 ): React.ReactNode => {
   // if null - do not show error
-  if (utils.isNull(value)) {
+  if (value === null) {
     return '';
   }
 
