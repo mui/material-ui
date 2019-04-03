@@ -32,12 +32,9 @@ function clamp(value, min = 0, max = 1) {
  * @returns {string} A CSS rgb color string
  */
 export function hexToRgb(color) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color) {
-      throw new Error(
-        `Material-UI: hexToRgb(color) is called with an invalid argument. (${color})`,
-      );
-    }
+  if (!color) {
+    warning(false, `Material-UI: missing color argument in hexToRgb(${color}).`);
+    return color;
   }
 
   color = color.substr(1);
@@ -64,12 +61,9 @@ function intToHex(int) {
  * @returns {string} A CSS rgb color string, i.e. #nnnnnn
  */
 export function rgbToHex(color) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color) {
-      throw new Error(
-        `Material-UI: rgbToHex(color) is called with an invalid argument. (${color})`,
-      );
-    }
+  if (!color) {
+    warning(false, `Material-UI: missing color argument in rgbToHex(${color}).`);
+    return color;
   }
 
   // Idempotent
@@ -88,12 +82,9 @@ export function rgbToHex(color) {
  * @returns {string} rgb color values
  */
 export function hslToRgb(color) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color) {
-      throw new Error(
-        `Material-UI: hslToRgb(color) is called with an invalid argument. (${color})`,
-      );
-    }
+  if (!color) {
+    warning(false, `Material-UI: missing color argument in hslToRgb(${color}).`);
+    return color;
   }
 
   color = decomposeColor(color);
@@ -124,14 +115,6 @@ export function hslToRgb(color) {
  * @returns {object} - A MUI color object: {type: string, values: number[]}
  */
 export function decomposeColor(color) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color) {
-      throw new Error(
-        `Material-UI: decomposeColor(color) is called with an invalid argument. (${color})`,
-      );
-    }
-  }
-
   // Idempotent
   if (color.type) {
     return color;
@@ -143,19 +126,18 @@ export function decomposeColor(color) {
 
   const marker = color.indexOf('(');
   const type = color.substring(0, marker);
+
+  if (['rgb', 'rgba', 'hsl', 'hsla'].indexOf(type) === -1) {
+    throw new Error(
+      [
+        `Material-UI: unsupported \`${color}\` color.`,
+        'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().',
+      ].join('\n'),
+    );
+  }
+
   let values = color.substring(marker + 1, color.length - 1).split(',');
   values = values.map(value => parseFloat(value));
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (['rgb', 'rgba', 'hsl', 'hsla'].indexOf(type) === -1) {
-      throw new Error(
-        [
-          `Material-UI: unsupported \`${color}\` color.`,
-          'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().',
-        ].join('\n'),
-      );
-    }
-  }
 
   return { type, values };
 }
@@ -169,14 +151,6 @@ export function decomposeColor(color) {
  * @returns {string} A CSS color string
  */
 export function recomposeColor(color) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color) {
-      throw new Error(
-        `Material-UI: recomposeColor(color) is called with an invalid argument. (${color})`,
-      );
-    }
-  }
-
   const { type } = color;
   let { values } = color;
 
@@ -201,12 +175,9 @@ export function recomposeColor(color) {
  * @returns {number} A contrast ratio value in the range 0 - 21.
  */
 export function getContrastRatio(foreground, background) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!foreground || !background) {
-      throw new Error(
-        `Material-UI: getContrastRatio(foreground, background) is called with an invalid argument. (${foreground}, ${background})`,
-      );
-    }
+  if (!foreground || !background) {
+    warning(false, `Material-UI: missing color argument in getContrastRatio(${foreground}, ${background}).`);
+    return null;
   }
 
   const lumA = getLuminance(foreground);
@@ -224,14 +195,6 @@ export function getContrastRatio(foreground, background) {
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
 export function getLuminance(color) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color) {
-      throw new Error(
-        `Material-UI: getLuminance(color) is called with an invalid argument. (${color})`,
-      );
-    }
-  }
-
   color = decomposeColor(color);
 
   let rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
@@ -253,12 +216,9 @@ export function getLuminance(color) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function emphasize(color, coefficient = 0.15) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color || coefficient == null) {
-      throw new Error(
-        `Material-UI: emphasize(color, coefficient) is called with an invalid argument. (${color}, ${coefficient})`,
-      );
-    }
+  if (!color) {
+    warning(false, `Material-UI: missing color argument in emphasize(${color}, ${coefficient}).`);
+    return color;
   }
 
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
@@ -273,12 +233,9 @@ export function emphasize(color, coefficient = 0.15) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function fade(color, value) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color || !value) {
-      throw new Error(
-        `Material-UI: fade(color, value) is called with an invalid argument. (${color}, ${value})`,
-      );
-    }
+  if (!color) {
+    warning(false, `Material-UI: missing color argument in fade(${color}, ${value}).`);
+    return color;
   }
 
   color = decomposeColor(color);
@@ -300,12 +257,9 @@ export function fade(color, value) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color, coefficient) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color || coefficient == null) {
-      throw new Error(
-        `Material-UI: darken(color, coefficient) is called with an invalid argument. (${color}, ${coefficient})`,
-      );
-    }
+  if (!color) {
+    warning(false, `Material-UI: missing color argument in darken(${color}, ${coefficient}).`);
+    return color;
   }
 
   color = decomposeColor(color);
@@ -329,12 +283,9 @@ export function darken(color, coefficient) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function lighten(color, coefficient) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!color || coefficient == null) {
-      throw new Error(
-        `Material-UI: lighten(color, coefficient) is called with an invalid argument. (${color}, ${coefficient})`,
-      );
-    }
+  if (!color) {
+    warning(false, `Material-UI: missing color argument in lighten(${color}, ${coefficient}).`);
+    return color;
   }
 
   color = decomposeColor(color);
