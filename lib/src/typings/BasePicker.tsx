@@ -28,6 +28,8 @@ export interface BasePickerProps {
   onOpen?: () => void;
   /** On close callback */
   onClose?: () => void;
+  /** Controlled picker open state */
+  open?: boolean;
   minDate?: DateType;
   maxDate?: DateType;
   mergePreviousDateOnChange?: boolean;

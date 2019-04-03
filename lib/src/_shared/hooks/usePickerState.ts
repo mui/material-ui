@@ -26,9 +26,36 @@ function useDateValues(props: BasePickerProps, options: HookOptions) {
   return { acceptedDateRef, date, format };
 }
 
+function makeControlledOpenProps(props: BasePickerProps) {
+  return {
+    isOpen: props.open!,
+    setIsOpen: (newIsOpen: boolean) => {
+      return newIsOpen ? props.onOpen && props.onOpen() : props.onClose && props.onClose();
+    },
+  };
+}
+
+function useOpenState(props: BasePickerProps) {
+  if (props.open !== undefined && props.open !== null) {
+    return makeControlledOpenProps(props);
+  }
+
+  const [isOpen, setIsOpenState] = useState(false);
+  // prettier-ignore
+  const setIsOpen = useCallback((newIsOpen: boolean) => {
+    setIsOpenState(newIsOpen);
+
+    return newIsOpen
+      ? props.onOpen && props.onOpen()
+      : props.onClose && props.onClose()
+  }, [props.onOpen, props.onClose, setIsOpenState]);
+
+  return { isOpen, setIsOpen };
+}
+
 export function usePickerState(props: BasePickerProps, options: HookOptions) {
   const utils = useUtils();
-  const [isOpen, setIsOpenState] = useState(false);
+  const { isOpen, setIsOpen } = useOpenState(props);
   const { acceptedDateRef, date, format } = useDateValues(props, options);
 
   useEffect(() => {
@@ -37,20 +64,6 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
       acceptedDateRef.current = props.value;
     }
   }, [props.value]);
-
-  const setIsOpen = useCallback(
-    (newIsOpen: boolean) => {
-      setIsOpenState(newIsOpen);
-      if (newIsOpen && props.onOpen) {
-        props.onOpen();
-      }
-
-      if (!newIsOpen && props.onClose) {
-        props.onClose();
-      }
-    },
-    [props.onOpen, props.onClose, setIsOpenState]
-  );
 
   const validationError = options.getValidationError();
   if (validationError && props.onError) {

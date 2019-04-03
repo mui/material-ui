@@ -78,3 +78,31 @@ describe('e2e - DateTimePicker', () => {
     expect(onChangeMock).toHaveBeenCalled();
   });
 });
+
+describe('e2e -- Controlling open state', () => {
+  let component: ReactWrapper<DateTimePickerProps>;
+  const onCloseMock = jest.fn();
+
+  beforeEach(() => {
+    component = mount(
+      <DateTimePicker
+        open
+        onClose={onCloseMock}
+        onChange={jest.fn()}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      />
+    );
+  });
+
+  it('Should be opened', () => {
+    expect(component.find('WithStyles(Dialog)').prop('open')).toBeTruthy();
+  });
+
+  it('Should close', () => {
+    component
+      .find('DialogActions button')
+      .at(0)
+      .simulate('click');
+    expect(onCloseMock).toHaveBeenCalled();
+  });
+});
