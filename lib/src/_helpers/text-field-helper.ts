@@ -46,6 +46,8 @@ export const getError = (
     invalidDateMessage,
   }: DatePickerProps
 ): React.ReactNode => {
+  const parsedValue = utils.date(value);
+
   // if null - do not show error
   if (value === null) {
     return '';
@@ -56,15 +58,15 @@ export const getError = (
   }
 
   if (
-    (maxDate && utils.isAfter(value, utils.endOfDay(utils.date(maxDate)))) ||
-    (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
+    (maxDate && utils.isAfter(parsedValue, utils.endOfDay(utils.date(maxDate)))) ||
+    (disableFuture && utils.isAfter(parsedValue, utils.endOfDay(utils.date())))
   ) {
     return maxDateMessage;
   }
 
   if (
-    (minDate && utils.isBefore(value, utils.startOfDay(utils.date(minDate)))) ||
-    (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
+    (minDate && utils.isBefore(parsedValue, utils.startOfDay(utils.date(minDate)))) ||
+    (disablePast && utils.isBefore(parsedValue, utils.startOfDay(utils.date())))
   ) {
     return minDateMessage;
   }

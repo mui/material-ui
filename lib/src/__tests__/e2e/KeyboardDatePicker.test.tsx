@@ -65,7 +65,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
     );
   });
 
-  it('Should render error message if date is after maxDate', () => {
+  it('Should render error message if date is before minDate', () => {
     const component = mount(
       <KeyboardDatePicker
         onChange={jest.fn()}
