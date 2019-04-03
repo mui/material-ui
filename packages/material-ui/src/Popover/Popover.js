@@ -378,6 +378,11 @@ Popover.propTypes = {
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
     if (props.open) {
+      const anchorReference = props.anchorReference || Popover.defaultProps.anchorReference;
+      if (anchorReference !== 'anchorEl') {
+        return null;
+      }
+
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
       if (resolvedAnchorEl instanceof HTMLElement) {
@@ -398,11 +403,6 @@ Popover.propTypes = {
           );
         }
       } else {
-        const anchorReference = props.anchorReference || "anchorEl";
-        if (anchorReference !== "anchorEl" && (props.anchorEl === undefined || props.anchorEl === null)) {
-          return null;
-        }
- 
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
