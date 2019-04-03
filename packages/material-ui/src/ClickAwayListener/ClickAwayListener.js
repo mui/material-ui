@@ -89,7 +89,7 @@ function ClickAwayListener(props) {
 
 ClickAwayListener.propTypes = {
   /**
-   * The wrapped node.
+   * @deprecated
    */
   children: PropTypes.node,
   /**

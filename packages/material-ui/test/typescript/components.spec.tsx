@@ -15,6 +15,7 @@ import {
   Checkbox,
   Chip,
   CircularProgress,
+  ClickAwayListener,
   Collapse,
   Dialog,
   DialogTitle,
@@ -1044,6 +1045,12 @@ const TooltipComponentTest = () => (
       <Button>top-start</Button>
     </Tooltip>
   </div>
+);
+
+const ClickAwayListenerComponentTest = () => (
+  <ClickAwayListener onClickAway={() => {}}>
+    <div />
+  </ClickAwayListener>
 );
 
 const TransitionTest = () => (

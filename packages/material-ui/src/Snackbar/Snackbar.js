@@ -6,7 +6,6 @@ import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
 import { capitalize, createChainedFunction } from '../utils/helpers';
-import { setRef } from '../utils/reactHelpers';
 import withForwardedRef from '../utils/withForwardedRef';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
@@ -97,8 +96,6 @@ export const styles = theme => {
 };
 
 class Snackbar extends React.Component {
-  rootRef = React.createRef();
-
   state = {};
 
   componentDidMount() {
@@ -200,11 +197,6 @@ class Snackbar extends React.Component {
     this.setState({ exited: true });
   };
 
-  handleRef = ref => {
-    setRef(this.props.innerRef, ref);
-    setRef(this.rootRef, ref);
-  };
-
   render() {
     const {
       action,
@@ -241,11 +233,7 @@ class Snackbar extends React.Component {
     }
 
     return (
-      <ClickAwayListener
-        getTargetEl={() => this.rootRef.current}
-        onClickAway={this.handleClickAway}
-        {...ClickAwayListenerProps}
-      >
+      <ClickAwayListener onClickAway={this.handleClickAway} {...ClickAwayListenerProps}>
         <div
           className={clsx(
             classes.root,
@@ -254,7 +242,7 @@ class Snackbar extends React.Component {
           )}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
-          ref={this.handleRef}
+          ref={innerRef}
           {...other}
         >
           <EventListener
