@@ -377,7 +377,10 @@ Popover.propTypes = {
    * that may be used to set the position of the popover.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
-    if (props.open) {
+    if (props.anchorEl === undefined || props.anchorEl === null) {
+      return null;
+    }
+    else if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
       if (resolvedAnchorEl instanceof HTMLElement) {
