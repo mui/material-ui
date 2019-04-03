@@ -188,15 +188,6 @@ describe('<SwitchBase />', () => {
       );
     });
 
-    it('should recognize a controlled input', () => {
-      assert.strictEqual(
-        wrapper.find('SwitchBase').instance().isControlled,
-        true,
-        'should set instance.isControlled to true',
-      );
-      assertIsNotChecked(wrapper);
-    });
-
     it('should check the checkbox', () => {
       wrapper.setProps({ checked: true });
       assertIsChecked(wrapper);
@@ -236,11 +227,6 @@ describe('<SwitchBase />', () => {
       );
     });
 
-    it('should recognize an uncontrolled input', () => {
-      assert.strictEqual(wrapper.find('SwitchBase').instance().isControlled, false);
-      assertIsNotChecked(wrapper);
-    });
-
     it('should check the checkbox', () => {
       wrapper
         .find('input')
@@ -272,10 +258,12 @@ describe('<SwitchBase />', () => {
   });
 
   describe('handleInputChange()', () => {
+    const eventMock = 'something-to-match';
     const event = {
       target: {
         checked: false,
       },
+      eventMock,
     };
 
     it('should call onChange exactly once with event', () => {
@@ -283,11 +271,12 @@ describe('<SwitchBase />', () => {
       const wrapper = mount(
         <SwitchBaseNaked {...defaultProps} classes={{}} onChange={handleChange} />,
       );
-      const instance = wrapper.find('SwitchBase').instance();
-      instance.handleInputChange(event);
+
+      const input = wrapper.find('input');
+      input.simulate('change', event);
 
       assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.calledWith(event), true);
+      assert.strictEqual(handleChange.calledWithMatch(event), true);
 
       handleChange.resetHistory();
     });
@@ -304,12 +293,12 @@ describe('<SwitchBase />', () => {
             onChange={handleChange}
           />,
         );
-        const instance = wrapper.find('SwitchBase').instance();
-        instance.handleInputChange(event);
+        const input = wrapper.find('input');
+        input.simulate('change', event);
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(
-          handleChange.calledWith(event, !checked),
+          handleChange.calledWithMatch(event, !checked),
           true,
           'call onChange with event and !props.checked',
         );
@@ -325,10 +314,10 @@ describe('<SwitchBase />', () => {
         handleChange = spy();
         wrapper = mount(<SwitchBaseNaked {...defaultProps} classes={{}} onChange={handleChange} />);
         checkedMock = true;
-        const instance = wrapper.find('SwitchBase').instance();
-        instance.handleInputChange({ target: { checked: checkedMock } });
+        const input = wrapper.find('input');
+        input.simulate('change', { target: { checked: checkedMock }, eventMock });
         handleChange.resetHistory();
-        instance.handleInputChange(event);
+        input.simulate('change', event);
       });
 
       it('should call onChange exactly once', () => {
@@ -336,7 +325,7 @@ describe('<SwitchBase />', () => {
       });
 
       it('should call onChange with right params', () => {
-        assert.strictEqual(handleChange.calledWith(event, !checkedMock), true);
+        assert.strictEqual(handleChange.calledWithMatch(event, !checkedMock), true);
       });
 
       it('should change state.checked !checkedMock', () => {
