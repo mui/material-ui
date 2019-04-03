@@ -43,7 +43,7 @@ class SelectInput extends React.Component {
     }
   }
 
-  update = ({ event, open }) => {    
+  update = ({ event, open }) => {
     if (open) {
       if (this.props.onOpen) {
         this.props.onOpen(event);
@@ -51,8 +51,7 @@ class SelectInput extends React.Component {
     } else if (this.props.onClose) {
       this.props.onClose(event);
     }
-    
-    
+
     if (this.isOpenControlled) {
       return;
     }
