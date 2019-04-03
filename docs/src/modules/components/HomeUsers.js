@@ -10,27 +10,22 @@ const users = [
   {
     logo: 'nasa.png',
     caption: 'NASA',
-    link: 'https://www.nasa.gov/',
   },
   {
     logo: 'walmart-labs.png',
     caption: 'Walmart Labs',
-    link: 'https://www.walmartlabs.com/',
   },
   {
     logo: 'capgemini.png',
     caption: 'Capgemini',
-    link: 'https://www.capgemini.com/',
   },
   {
     logo: 'uniqlo.png',
     caption: 'Uniqlo',
-    link: 'https://www.uniqlo.com',
   },
   {
     logo: 'bethesda.png',
     caption: 'Bethesda',
-    link: 'https://bethesda.net',
   },
 ];
 
@@ -72,18 +67,11 @@ function HomeUsers(props) {
           </Typography>
           <Grid container justify="center" className={classes.grid}>
             {users.map(user => (
-              <a
-                href={user.link}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                key={user.logo}
-              >
-                <img
-                  src={`/static/images/users/${user.logo}`}
-                  alt={user.caption}
-                  className={classes.img}
-                />
-              </a>
+              <img
+                src={`/static/images/users/${user.logo}`}
+                alt={user.caption}
+                className={classes.img}
+              />
             ))}
           </Grid>
           <Typography variant="body1" align="center" gutterBottom>
