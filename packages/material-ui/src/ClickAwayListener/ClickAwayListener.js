@@ -1,7 +1,6 @@
 // @inheritedComponent EventListener
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
@@ -16,9 +15,6 @@ class ClickAwayListener extends React.Component {
   moved = false;
 
   componentDidMount() {
-    // Finds the first child when a component returns a fragment.
-    // https://github.com/facebook/react/blob/036ae3c6e2f056adffc31dfb78d1b6f0c63272f0/packages/react-dom/src/__tests__/ReactDOMFiber-test.js#L105
-    this.node = ReactDOM.findDOMNode(this);
     this.mounted = true;
   }
 
@@ -43,17 +39,18 @@ class ClickAwayListener extends React.Component {
       return;
     }
 
+    const node = this.props.getTargetEl();
     // The child might render null.
-    if (!this.node) {
+    if (!node) {
       return;
     }
 
-    const doc = ownerDocument(this.node);
+    const doc = ownerDocument(node);
 
     if (
       doc.documentElement &&
       doc.documentElement.contains(event.target) &&
-      !this.node.contains(event.target)
+      !node.contains(event.target)
     ) {
       this.props.onClickAway(event);
     }
@@ -64,7 +61,7 @@ class ClickAwayListener extends React.Component {
   };
 
   render() {
-    const { children, mouseEvent, touchEvent, onClickAway, ...other } = this.props;
+    const { children, getTargetEl, mouseEvent, touchEvent, onClickAway, ...other } = this.props;
     const listenerProps = {};
     if (mouseEvent !== false) {
       listenerProps[mouseEvent] = this.handleClickAway;
@@ -85,9 +82,13 @@ class ClickAwayListener extends React.Component {
 
 ClickAwayListener.propTypes = {
   /**
-   * The wrapped element.
+   * @deprecated
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node,
+  /**
+   * Must return a HTMLElement
+   */
+  getTargetEl: PropTypes.func.isRequired,
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    */

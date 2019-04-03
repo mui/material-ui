@@ -15,6 +15,8 @@ function TriggersTooltips() {
     setOpen(true);
   }
 
+  const tooltipRef = React.useRef();
+
   return (
     <div>
       <Grid container justify="center">
@@ -34,7 +36,10 @@ function TriggersTooltips() {
           </Tooltip>
         </Grid>
         <Grid item>
-          <ClickAwayListener onClickAway={handleTooltipClose}>
+          <ClickAwayListener
+            getTargetEl={() => tooltipRef.current}
+            onClickAway={handleTooltipClose}
+          >
             <div>
               <Tooltip
                 PopperProps={{
@@ -45,6 +50,7 @@ function TriggersTooltips() {
                 disableFocusListener
                 disableHoverListener
                 disableTouchListener
+                ref={tooltipRef}
                 title="Add"
               >
                 <Button onClick={handleTooltipOpen}>Click</Button>

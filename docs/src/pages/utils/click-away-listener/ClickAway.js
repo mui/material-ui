@@ -28,6 +28,8 @@ const styles = theme => ({
 });
 
 class ClickAway extends React.Component {
+  buttonWrapperRef = React.createRef();
+
   state = {
     open: false,
   };
@@ -51,8 +53,11 @@ class ClickAway extends React.Component {
 
     return (
       <div className={classes.root}>
-        <ClickAwayListener onClickAway={this.handleClickAway}>
-          <div>
+        <ClickAwayListener
+          getTargetEl={() => this.buttonWrapperRef.current}
+          onClickAway={this.handleClickAway}
+        >
+          <div ref={this.buttonWrapperRef}>
             <Button onClick={this.handleClick}>Open menu</Button>
             {open ? (
               <Paper className={classes.paper}>
