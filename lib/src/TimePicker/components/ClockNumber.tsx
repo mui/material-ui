@@ -83,7 +83,7 @@ export class ClockNumber extends React.Component<ClockNumberProps> {
 }
 
 export const styles = (theme: Theme) => {
-  const size = theme.spacing(4);
+  const size = theme.spacing.unit * 4;
 
   return createStyles({
     clockNumber: {

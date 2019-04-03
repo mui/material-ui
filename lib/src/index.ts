@@ -29,6 +29,8 @@ export { default as DateTimePicker } from './DateTimePicker';
 
 export { default as KeyboardDateTimePicker } from './DateTimePicker/KeyboardDateTimePicker';
 
+export { default as BasePicker } from './typings/BasePicker';
+
 export { default as Calendar } from './DatePicker/components/Calendar';
 
 export { default as Day } from './DatePicker/components/Day';

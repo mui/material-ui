@@ -109,8 +109,8 @@ export const styles = (theme: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(1),
+      marginTop: theme.spacing.unit / 2,
+      marginBottom: theme.spacing.unit,
     },
     transitionContainer: {
       width: '100%',

@@ -38,7 +38,7 @@ export class Month extends React.PureComponent<MonthProps> {
         tabIndex={disabled ? -1 : 0}
         onClick={this.handleClick}
         onKeyPress={this.handleClick}
-        color={selected ? 'primary' : undefined}
+        color={selected ? 'primary' : 'default'}
         variant={selected ? 'h5' : 'subtitle1'}
         children={children}
         {...other}

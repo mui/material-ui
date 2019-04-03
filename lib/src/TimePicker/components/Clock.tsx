@@ -135,7 +135,7 @@ export const styles = (theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'flex-end',
-      margin: `${theme.spacing(4)}px 0 ${theme.spacing(1)}px`,
+      margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit}px`,
     },
     clock: {
       backgroundColor: 'rgba(0,0,0,.07)',
