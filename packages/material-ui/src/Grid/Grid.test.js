@@ -19,6 +19,10 @@ describe('<Grid />', () => {
     classes = getClasses(<Grid />);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   describeConformance(<Grid />, () => ({
     classes,
     inheritComponent: 'div',
@@ -26,12 +30,6 @@ describe('<Grid />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
   }));
-
-  it('should render', () => {
-    const wrapper = shallow(<Grid className="woofGrid" />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass('woofGrid'), true);
-  });
 
   describe('prop: container', () => {
     it('should apply the container class', () => {
@@ -44,13 +42,6 @@ describe('<Grid />', () => {
     it('should apply the item class', () => {
       const wrapper = shallow(<Grid item />);
       assert.strictEqual(wrapper.hasClass(classes.item), true);
-    });
-  });
-
-  describe('prop: component', () => {
-    it('should change the component', () => {
-      const wrapper = shallow(<Grid component="span" />);
-      assert.strictEqual(wrapper.name(), 'span');
     });
   });
 

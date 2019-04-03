@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses, createMount, describeConformance } from '@material-ui/core/test-utils';
 import Input from '../Input';
 import NativeSelect from './NativeSelect';
 
@@ -28,10 +28,14 @@ describe('<NativeSelect />', () => {
     mount.cleanUp();
   });
 
-  it('should render a correct top element', () => {
-    const wrapper = mount(<NativeSelect {...props} />);
-    assert.strictEqual(wrapper.find(Input).exists(), true);
-  });
+  describeConformance(<NativeSelect {...props} />, () => ({
+    classes,
+    inheritComponent: Input,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['rootClass'],
+    testComponentPropWith: false,
+  }));
 
   it('should provide the classes to the input component', () => {
     const wrapper = mount(<NativeSelect {...props} />);

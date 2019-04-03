@@ -7,6 +7,7 @@ import {
   getClasses,
 } from '@material-ui/core/test-utils';
 import Backdrop from './Backdrop';
+import Fade from '../Fade';
 
 describe('<Backdrop />', () => {
   let mount;
@@ -24,9 +25,11 @@ describe('<Backdrop />', () => {
   });
 
   describeConformance(<Backdrop open />, () => ({
+    classes,
+    inheritComponent: Fade,
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
   }));
 
   it('should render a backdrop div', () => {

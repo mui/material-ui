@@ -1,21 +1,31 @@
 import { assert } from 'chai';
 import React from 'react';
+import findOutermostIntrinsic from './findOutermostIntrinsic';
 import testRef from './testRef';
 
 /**
  * Glossary
  * - root component:
- *   - has the `root` class
+ *   - renders the outermost host component
+ *   - has the `root` class if the component has one
  *   - excess props are spread to this component
  *   - has the type of `inheritComponent`
  */
 
-function findRootComponent(wrapper, { classes, component }) {
-  /**
-   * We look for the component that is `inheritComponent` and `.rootClassName`
-   * Using find().find().first() is not equivalent since `find` searches deep
-   */
-  return wrapper.find(component).filter(`.${classes.root}`);
+/**
+ * Returns the component with the same constructor as `component` that renders
+ * the outermost host
+ *
+ * @param {import('enzyme').ReactWrapper} wrapper
+ * @param {object} options
+ * @param {import('react').ElementType} component
+ */
+function findRootComponent(wrapper, { component }) {
+  const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
+
+  return wrapper.find(component).filterWhere(componentWrapper => {
+    return componentWrapper.contains(outermostHostElement);
+  });
 }
 
 function randomStringValue() {
@@ -33,13 +43,16 @@ function randomStringValue() {
  */
 function testClassName(element, getOptions) {
   it('applies the className to the root component', () => {
-    const { classes, inheritComponent, mount } = getOptions();
+    const { mount } = getOptions();
     const className = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { className }));
-    const root = findRootComponent(wrapper, { classes, component: inheritComponent });
 
-    assert.strictEqual(root.hasClass(className), true, 'does have a custom `className`');
+    assert.strictEqual(
+      findOutermostIntrinsic(wrapper).hasClass(className),
+      true,
+      'does have a custom `className`',
+    );
   });
 }
 
@@ -107,11 +120,35 @@ function describeRef(element, getOptions) {
   });
 }
 
+/**
+ * Tests that the root component has the root class
+ *
+ * @param {React.ReactElement} element
+ * @param {() => ConformanceOptions} getOptions
+ */
+function testRootClass(element, getOptions) {
+  it('applies to root class to the root component if it has this class', () => {
+    const { classes, mount } = getOptions();
+    if (classes.root == null) {
+      return;
+    }
+
+    const wrapper = mount(element);
+
+    // we established that the root component renders the outermost host previously. We immediately
+    // jump to the host component because some components pass the `root` class
+    // to the `classes` prop of the root component.
+    // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
+  });
+}
+
 const fullSuite = {
-  class: testClassName,
   componentProp: testComponentProp,
+  mergeClassName: testClassName,
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
+  rootClass: testRootClass,
 };
 
 /**

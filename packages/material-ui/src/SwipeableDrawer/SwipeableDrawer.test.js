@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
-import { createMount, unwrap } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, unwrap } from '@material-ui/core/test-utils';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
@@ -57,6 +57,14 @@ describe('<SwipeableDrawer />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
+    classes: {},
+    inheritComponent: Drawer,
+    mount,
+    refInstanceof: React.Component,
+    testComponentPropWith: false,
+  }));
 
   it('should render a Drawer and a SwipeArea', () => {
     const wrapper = mount(

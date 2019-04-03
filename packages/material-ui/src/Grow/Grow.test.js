@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Grow from './Grow';
 import { createMuiTheme } from '@material-ui/core/styles';
 
@@ -20,10 +20,18 @@ describe('<Grow />', () => {
     mount.cleanUp();
   });
 
-  it('should render a Transition', () => {
-    const wrapper = mount(<Grow {...defaultProps} />);
-    assert.strictEqual(wrapper.find('Transition').exists(), true);
-  });
+  describeConformance(
+    <Grow in>
+      <div />
+    </Grow>,
+    () => ({
+      classes: {},
+      inheritComponent: 'Transition',
+      mount,
+      skip: ['refForwarding'],
+      testComponentPropWith: false,
+    }),
+  );
 
   describe('event callbacks', () => {
     describe('entering', () => {

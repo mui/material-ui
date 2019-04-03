@@ -26,15 +26,12 @@ describe('<Menu />', () => {
   });
 
   describeConformance(<Menu {...defaultProps} open />, () => ({
+    classes,
+    inheritComponent: Popover,
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
   }));
-
-  it('should render a Popover', () => {
-    const wrapper = mount(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.find(Popover).exists(), true);
-  });
 
   describe('event callbacks', () => {
     describe('entering', () => {
@@ -143,14 +140,6 @@ describe('<Menu />', () => {
           .exists(),
         true,
       );
-    });
-
-    it('should spread other props on the Popover', () => {
-      assert.strictEqual(wrapper.find(Popover).props()['data-test'], 'hi');
-    });
-
-    it('should have the user classes', () => {
-      assert.strictEqual(wrapper.find(Popover).hasClass('test-class'), true);
     });
   });
 
