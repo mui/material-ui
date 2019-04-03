@@ -7,7 +7,7 @@ import { useUtils } from './useUtils';
 
 export interface HookOptions {
   getDefaultFormat: () => string;
-  getValidationError: (date: MaterialUiPickersDate) => React.ReactNode;
+  getValidationError: () => React.ReactNode;
 }
 
 const valueToDate = (utils: IUtils<any>, { value, initialFocusedDate }: BasePickerProps) => {
@@ -52,7 +52,7 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
     [props.onOpen, props.onClose, setIsOpenState]
   );
 
-  const validationError = options.getValidationError(date);
+  const validationError = options.getValidationError();
   if (validationError && props.onError) {
     props.onError(validationError, props.value);
   }
