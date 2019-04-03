@@ -32,11 +32,6 @@ function clamp(value, min = 0, max = 1) {
  * @returns {string} A CSS rgb color string
  */
 export function hexToRgb(color) {
-  if (!color) {
-    warning(false, `Material-UI: missing color argument in hexToRgb(${color}).`);
-    return color;
-  }
-
   color = color.substr(1);
 
   const re = new RegExp(`.{1,${color.length / 3}}`, 'g');
@@ -61,11 +56,6 @@ function intToHex(int) {
  * @returns {string} A CSS rgb color string, i.e. #nnnnnn
  */
 export function rgbToHex(color) {
-  if (!color) {
-    warning(false, `Material-UI: missing color argument in rgbToHex(${color}).`);
-    return color;
-  }
-
   // Idempotent
   if (color.indexOf('#') === 0) {
     return color;
@@ -82,11 +72,6 @@ export function rgbToHex(color) {
  * @returns {string} rgb color values
  */
 export function hslToRgb(color) {
-  if (!color) {
-    warning(false, `Material-UI: missing color argument in hslToRgb(${color}).`);
-    return color;
-  }
-
   color = decomposeColor(color);
   const { values } = color;
   const h = values[0];
@@ -175,11 +160,6 @@ export function recomposeColor(color) {
  * @returns {number} A contrast ratio value in the range 0 - 21.
  */
 export function getContrastRatio(foreground, background) {
-  if (!foreground || !background) {
-    warning(false, `Material-UI: missing color argument in getContrastRatio(${foreground}, ${background}).`);
-    return null;
-  }
-
   const lumA = getLuminance(foreground);
   const lumB = getLuminance(background);
   return (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
@@ -216,11 +196,6 @@ export function getLuminance(color) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function emphasize(color, coefficient = 0.15) {
-  if (!color) {
-    warning(false, `Material-UI: missing color argument in emphasize(${color}, ${coefficient}).`);
-    return color;
-  }
-
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }
 
@@ -233,11 +208,6 @@ export function emphasize(color, coefficient = 0.15) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function fade(color, value) {
-  if (!color) {
-    warning(false, `Material-UI: missing color argument in fade(${color}, ${value}).`);
-    return color;
-  }
-
   color = decomposeColor(color);
   value = clamp(value);
 
@@ -257,11 +227,6 @@ export function fade(color, value) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color, coefficient) {
-  if (!color) {
-    warning(false, `Material-UI: missing color argument in darken(${color}, ${coefficient}).`);
-    return color;
-  }
-
   color = decomposeColor(color);
   coefficient = clamp(coefficient);
 
@@ -283,11 +248,6 @@ export function darken(color, coefficient) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function lighten(color, coefficient) {
-  if (!color) {
-    warning(false, `Material-UI: missing color argument in lighten(${color}, ${coefficient}).`);
-    return color;
-  }
-
   color = decomposeColor(color);
   coefficient = clamp(coefficient);
 
