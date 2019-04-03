@@ -22,8 +22,12 @@ export interface BasePickerProps {
   emptyLabel?: string;
   /** Callback fired when date isAccepted */
   onAccept?: (date: MaterialUiPickersDate) => void;
-  /* Callback fired when new error should be displayed **/
+  /** Callback fired when new error should be displayed */
   onError?: (error: React.ReactNode, value: MaterialUiPickersDate) => void;
+  /** On open callback */
+  onOpen?: () => void;
+  /** On close callback */
+  onClose?: () => void;
   minDate?: DateType;
   maxDate?: DateType;
   mergePreviousDateOnChange?: boolean;

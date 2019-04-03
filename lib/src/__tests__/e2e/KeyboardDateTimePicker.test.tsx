@@ -17,6 +17,7 @@ describe('e2e - KeyboardDateTimePicker (inline)', () => {
     jest.clearAllMocks();
     component = mount(
       <KeyboardDateTimePicker
+        autoOk
         // @ts-ignore
         variant="inline"
         onChange={onChangeMock}
@@ -36,13 +37,11 @@ describe('e2e - KeyboardDateTimePicker (inline)', () => {
   it('Should open modal with picker on click', () => {
     component.find('button#keyboard-button').simulate('click');
     expect(component.find('WithStyles(Popover)').props().open).toBeTruthy();
-    // TODO Support onOpen
-    // expect(onOpenMock).toHaveBeenCalled();
+    expect(onOpenMock).toHaveBeenCalled();
   });
 
   it('Should apply keyboard input', () => {
     component.find('input').simulate('change', { target: { value: '02/01/2018 10:00' } });
-
     expect(onChangeMock).toHaveBeenCalled();
   });
 });

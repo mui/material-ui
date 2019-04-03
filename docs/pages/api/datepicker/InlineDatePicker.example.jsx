@@ -23,6 +23,7 @@ function InlineDatePickerDemo(props) {
       />
 
       <KeyboardDatePicker
+        autoOk
         variant="inline"
         inputVariant="outlined"
         label="With keyboard"

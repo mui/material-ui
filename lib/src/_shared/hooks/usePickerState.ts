@@ -28,7 +28,7 @@ function useDateValues(props: BasePickerProps, options: HookOptions) {
 
 export function usePickerState(props: BasePickerProps, options: HookOptions) {
   const utils = useUtils();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpenState] = useState(false);
   const { acceptedDateRef, date, format } = useDateValues(props, options);
 
   useEffect(() => {
@@ -37,6 +37,20 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
       acceptedDateRef.current = props.value;
     }
   }, [props.value]);
+
+  const setIsOpen = useCallback(
+    (newIsOpen: boolean) => {
+      setIsOpenState(newIsOpen);
+      if (newIsOpen && props.onOpen) {
+        props.onOpen();
+      }
+
+      if (!newIsOpen && props.onClose) {
+        props.onClose();
+      }
+    },
+    [props.onOpen, props.onClose, setIsOpenState]
+  );
 
   const validationError = options.getValidationError(date);
   if (validationError && props.onError) {
@@ -49,21 +63,18 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
     inputValue: getDisplayDate(date, format, utils, props.value === null, props),
   };
 
-  const acceptDate = useCallback(
-    (acceptedDate: MaterialUiPickersDate) => {
-      acceptedDateRef.current = acceptedDate;
+  // prettier-ignore
+  const acceptDate = useCallback((acceptedDate: MaterialUiPickersDate) => {
+    acceptedDateRef.current = acceptedDate;
 
-      setIsOpen(false);
-      props.onChange(acceptedDate);
+    setIsOpen(false);
+    props.onChange(acceptedDate);
 
-      if (props.onAccept) {
-        props.onAccept(acceptedDate);
-      }
-    },
-    [utils, props.onChange]
-  );
+    if (props.onAccept) {
+      props.onAccept(acceptedDate);
+    }
+  }, [utils, props.onChange]);
 
-  // TODO change on useReducer
   const wrapperProps = {
     format,
     open: isOpen,

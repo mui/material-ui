@@ -74,8 +74,7 @@ describe('e2e - DateTimePicker', () => {
       } as any);
     });
 
-    // TODO support onClose, onOpen props
-    // expect(onCloseMock).toHaveBeenCalled();
+    expect(onCloseMock).toHaveBeenCalled();
     expect(onChangeMock).toHaveBeenCalled();
   });
 });
