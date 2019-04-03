@@ -61,8 +61,8 @@ describe('<ClickAwayListener />', () => {
       const handleClickAway = spy();
       const ref = React.createRef();
       wrapper = mount(
-        <ClickAwayListener getTargetEl={() => ref.current} onClickAway={handleClickAway}>
-          <span>Hello</span>
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <span ref={ref}>Hello</span>
         </ClickAwayListener>,
       );
 
@@ -76,22 +76,20 @@ describe('<ClickAwayListener />', () => {
     });
 
     it('should not be call when defaultPrevented', () => {
-      const ref = React.createRef();
       const handleClickAway = spy();
       wrapper = mount(
-        <ClickAwayListener getTargetEl={() => ref.current} onClickAway={handleClickAway}>
-          <ClickAwayListener
-            getTargetEl={() => ref.current}
-            onClickAway={event => event.preventDefault()}
-          >
-            <span ref={ref}>Hello</span>
-          </ClickAwayListener>
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <span>Hello</span>
         </ClickAwayListener>,
       );
+      const preventDefault = event => event.preventDefault();
+      window.document.body.addEventListener('mouseup', preventDefault);
 
       const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
       window.document.body.dispatchEvent(event);
       assert.strictEqual(handleClickAway.callCount, 0);
+
+      window.document.body.removeEventListener('mouseup', preventDefault);
     });
   });
 
@@ -191,23 +189,8 @@ describe('<ClickAwayListener />', () => {
     });
   });
 
-  describe('IE 11 issue', () => {
-    it('should not call the hook if the event is triggered after being unmounted', () => {
-      const handleClickAway = spy();
-      const ref = React.createRef();
-      wrapper = mount(
-        <ClickAwayListener getTargetEl={() => ref.current} onClickAway={handleClickAway}>
-          <span ref={ref}>Hello</span>
-        </ClickAwayListener>,
-      );
-      wrapper.instance().mounted = false;
-      fireBodyMouseEvent('mouseup');
-      assert.strictEqual(handleClickAway.callCount, 0);
-    });
-  });
-
   it('should handle null child', () => {
-    const Child = () => null;
+    const Child = React.forwardRef(() => null);
     const handleClickAway = spy();
     wrapper = mount(
       <ClickAwayListener getTargetEl={() => null} onClickAway={handleClickAway}>
