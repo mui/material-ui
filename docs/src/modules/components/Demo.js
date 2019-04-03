@@ -50,6 +50,7 @@ const styles = theme => ({
     },
   },
   demo: {
+    margin: 'auto',
     borderRadius: theme.shape.borderRadius,
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
@@ -349,6 +350,9 @@ class Demo extends React.Component {
           })}
           onMouseEnter={this.handleDemoHover}
           onMouseLeave={this.handleDemoHover}
+          style={{
+            maxWidth: demoOptions.maxWidth,
+          }}
         >
           <Frame>
             <DemoComponent />
