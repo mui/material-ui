@@ -17,6 +17,7 @@ export interface KeyboardDateInputProps
   inputValue: string;
   format: string;
   onChange: (value: string) => void;
+  onClick: () => void;
   validationError?: React.ReactNode;
   /** Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__) */
   mask?: string;

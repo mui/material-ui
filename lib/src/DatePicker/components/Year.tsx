@@ -48,7 +48,7 @@ export class Year extends React.PureComponent<YearProps> {
         tabIndex={disabled ? -1 : 0}
         onClick={this.handleClick}
         onKeyPress={this.handleClick}
-        color={selected ? 'primary' : 'default'}
+        color={selected ? 'primary' : undefined}
         variant={selected ? 'h5' : 'subtitle1'}
         children={children}
         {...other}
@@ -60,7 +60,7 @@ export class Year extends React.PureComponent<YearProps> {
 export const styles = (theme: Theme) =>
   createStyles({
     root: {
-      height: theme.spacing.unit * 5,
+      height: theme.spacing(5),
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
