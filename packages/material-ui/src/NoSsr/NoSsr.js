@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { exactProp } from '@material-ui/utils';
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
@@ -63,6 +64,11 @@ NoSsr.propTypes = {
    */
   fallback: PropTypes.node,
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line
+  NoSsr['propTypes' + ''] = exactProp(NoSsr.propTypes);
+}
 
 NoSsr.defaultProps = {
   defer: false,
