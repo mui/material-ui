@@ -77,7 +77,7 @@
     "@emotion/styled": "^10.0.0",
     "@trendmicro/react-interpolate": "0.5.5",
     "@types/enzyme": "^3.1.4",
-    "@types/react": "^16.7.10",
+    "@types/react": "^16.8.10",
     "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-select": "^2.0.14",
