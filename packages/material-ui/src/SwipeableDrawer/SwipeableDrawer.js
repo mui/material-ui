@@ -4,6 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
@@ -452,7 +453,11 @@ SwipeableDrawer.propTypes = {
   /**
    * @ignore
    */
-  ModalProps: PropTypes.object,
+  ModalProps: PropTypes.shape({
+    BackdropProps: PropTypes.shape({
+      component: elementTypeAcceptingRef,
+    }),
+  }),
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -472,7 +477,9 @@ SwipeableDrawer.propTypes = {
   /**
    * @ignore
    */
-  PaperProps: PropTypes.object,
+  PaperProps: PropTypes.shape({
+    component: elementTypeAcceptingRef,
+  }),
   /**
    * Properties applied to the swipe area element.
    */

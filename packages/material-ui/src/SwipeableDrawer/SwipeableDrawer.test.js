@@ -2,6 +2,8 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import { createMount, describeConformance, unwrap } from '@material-ui/core/test-utils';
+import PropTypes from 'prop-types';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
@@ -524,6 +526,51 @@ describe('<SwipeableDrawer />', () => {
         />,
       );
       fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('warns if a component for the Paper is used that cant hold a ref', () => {
+      mount(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          PaperProps={{ component: () => <div />, elevation: 4 }}
+        />,
+      );
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `SwipeableDrawer`. Expected an element type that can hold a ref.',
+      );
+    });
+
+    it('warns if a component for the Backdrop is used that cant hold a ref', () => {
+      mount(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          ModalProps={{ BackdropProps: { component: () => <div />, 'data-backdrop': true } }}
+        />,
+      );
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `SwipeableDrawer`. Expected an element type that can hold a ref.',
+      );
     });
   });
 });
