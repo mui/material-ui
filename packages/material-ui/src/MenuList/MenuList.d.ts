@@ -5,6 +5,8 @@ import { ListProps, ListClassKey } from '../List';
 export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey, 'onKeyDown'> {
   disableListWrap?: boolean;
   onKeyDown?: React.ReactEventHandler<React.KeyboardEvent<any>>;
+  // TS FIXME: infer ref from ListProps
+  ref?: React.Ref<HTMLElement>;
 }
 
 export type MenuListClassKey = ListClassKey;

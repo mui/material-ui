@@ -15,7 +15,7 @@ function TriggersTooltips() {
     setOpen(true);
   }
 
-  const tooltipRef = React.useRef();
+  const tooltipRef = React.useRef(null);
 
   return (
     <div>
@@ -40,7 +40,7 @@ function TriggersTooltips() {
             getTargetEl={() => tooltipRef.current}
             onClickAway={handleTooltipClose}
           >
-            <div>
+            <div ref={tooltipRef}>
               <Tooltip
                 PopperProps={{
                   disablePortal: true,
@@ -50,7 +50,6 @@ function TriggersTooltips() {
                 disableFocusListener
                 disableHoverListener
                 disableTouchListener
-                ref={tooltipRef}
                 title="Add"
               >
                 <Button onClick={handleTooltipOpen}>Click</Button>

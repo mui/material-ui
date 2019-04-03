@@ -36,6 +36,8 @@ function MenuListComposition() {
     setOpen(false);
   }
 
+  const menuListRef = React.useRef<HTMLElement>(null);
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -61,8 +63,11 @@ function MenuListComposition() {
               style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
             >
               <Paper id="menu-list-grow">
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList>
+                <ClickAwayListener
+                  getTargetEl={() => menuListRef.current}
+                  onClickAway={handleClose}
+                >
+                  <MenuList ref={menuListRef}>
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>

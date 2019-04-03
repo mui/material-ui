@@ -34,7 +34,7 @@ function MenuListComposition() {
     setOpen(false);
   }
 
-  const menuListRef = React.useRef();
+  const menuListRef = React.useRef(null);
 
   return (
     <div className={classes.root}>

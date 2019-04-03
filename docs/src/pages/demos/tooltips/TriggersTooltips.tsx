@@ -15,6 +15,8 @@ function TriggersTooltips() {
     setOpen(true);
   }
 
+  const tooltipRef = React.useRef<HTMLDivElement>(null);
+
   return (
     <div>
       <Grid container justify="center">
@@ -34,8 +36,11 @@ function TriggersTooltips() {
           </Tooltip>
         </Grid>
         <Grid item>
-          <ClickAwayListener onClickAway={handleTooltipClose}>
-            <div>
+          <ClickAwayListener
+            getTargetEl={() => tooltipRef.current}
+            onClickAway={handleTooltipClose}
+          >
+            <div ref={tooltipRef}>
               <Tooltip
                 PopperProps={{
                   disablePortal: true,
