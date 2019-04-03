@@ -157,7 +157,7 @@ class SwitchBase extends React.Component {
 // so that the API documentation is updated.
 SwitchBase.propTypes = {
   /**
-   * If `true`, the input will be focused during the first mount.
+   * If `true`, the `input` element will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -203,7 +203,7 @@ SwitchBase.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * Use that property to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -236,7 +236,7 @@ SwitchBase.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the input will be required.
+   * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
   /**

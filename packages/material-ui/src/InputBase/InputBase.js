@@ -445,7 +445,7 @@ InputBase.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the input will be focused during the first mount.
+   * If `true`, the `input` element will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -458,7 +458,7 @@ InputBase.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default input value, useful when not controlling the component.
+   * The default `input` element value, useful when not controlling the component.
    */
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
@@ -470,7 +470,7 @@ InputBase.propTypes = {
     ),
   ]),
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the `input` element will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -496,7 +496,7 @@ InputBase.propTypes = {
    */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * The component used for the native input.
+   * The component used for the `input` element.
    * Either a string to use a DOM element or a component.
    */
   inputComponent: PropTypes.elementType,
@@ -505,7 +505,7 @@ InputBase.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * Use that property to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -574,7 +574,7 @@ InputBase.propTypes = {
    */
   renderPrefix: PropTypes.func,
   /**
-   * If `true`, the input will be required.
+   * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
   /**
@@ -590,11 +590,11 @@ InputBase.propTypes = {
    */
   startAdornment: PropTypes.node,
   /**
-   * Type of the input element. It should be a valid HTML5 input type.
+   * Type of the `input` element. It should be a valid HTML5 input type.
    */
   type: PropTypes.string,
   /**
-   * The input value, required for a controlled component.
+   * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.oneOfType([
     PropTypes.string,

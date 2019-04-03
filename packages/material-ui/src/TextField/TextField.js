@@ -41,7 +41,7 @@ const styles = {
  * - [Input](/api/input/)
  * - [FormHelperText](/api/form-helper-text/)
  *
- * If you wish to alter the properties applied to the native input, you can do so as follows:
+ * If you wish to alter the properties applied to the `input` element, you can do so as follows:
  *
  * ```jsx
  * const inputProps = {
@@ -184,7 +184,7 @@ TextField.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the input will be focused during the first mount.
+   * If `true`, the `input` element will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -201,11 +201,11 @@ TextField.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default value of the native `input` element.
+   * The default value of the `input` element.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the `input` element will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -225,7 +225,7 @@ TextField.propTypes = {
    */
   helperText: PropTypes.node,
   /**
-   * The id of the native `input` element.
+   * The id of the `input` element.
    * Use this property to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
@@ -241,11 +241,11 @@ TextField.propTypes = {
    */
   InputProps: PropTypes.object,
   /**
-   * Attributes applied to the native `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use this property to pass a ref callback to the native input component.
+   * Use this property to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -261,7 +261,7 @@ TextField.propTypes = {
    */
   multiline: PropTypes.bool,
   /**
-   * Name attribute of the native `input` element.
+   * Name attribute of the `input` element.
    */
   name: PropTypes.string,
   /**
@@ -284,7 +284,7 @@ TextField.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the label is displayed as required and the input will be required.
+   * If `true`, the label is displayed as required and the `input` element` will be required.
    */
   required: PropTypes.bool,
   /**
@@ -305,11 +305,11 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   /**
-   * Type attribute of the native `input` element. It should be a valid HTML5 input type.
+   * Type attribute of the `input` element. It should be a valid HTML5 input type.
    */
   type: PropTypes.string,
   /**
-   * The value of the native `input` element, required for a controlled component.
+   * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.oneOfType([
     PropTypes.string,
