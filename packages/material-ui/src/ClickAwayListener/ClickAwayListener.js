@@ -86,7 +86,8 @@ ClickAwayListener.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Must return a HTMLElement
+   * A function that must return the `Element` (once it is mounted) that should not be considered
+   * in click-away.
    */
   getTargetEl: PropTypes.func.isRequired,
   /**
