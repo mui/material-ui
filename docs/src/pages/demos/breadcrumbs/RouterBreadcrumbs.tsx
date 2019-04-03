@@ -2,9 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import Link from '@material-ui/core/Link';
+import Link, { LinkProps } from '@material-ui/core/Link';
 import NoSsr from '@material-ui/core/NoSsr';
 import ListItem from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
@@ -14,9 +14,20 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Route, MemoryRouter } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
-const breadcrumbNameMap = {
+interface RouterBreadcrumbsState {
+  readonly open: boolean;
+}
+
+interface ListItemLinkProps extends LinkProps {
+  to: string;
+  open?: boolean;
+}
+
+interface RouterBreadcrumbsProp extends WithStyles<typeof styles> {}
+
+const breadcrumbNameMap: { [key: string]: string } = {
   '/inbox': 'Inbox',
   '/inbox/important': 'Important',
   '/trash': 'Trash',
@@ -24,7 +35,7 @@ const breadcrumbNameMap = {
   '/drafts': 'Drafts',
 };
 
-function ListItemLink(props) {
+function ListItemLink(props: ListItemLinkProps) {
   const { to, open, ...other } = props;
   const primary = breadcrumbNameMap[to];
 
@@ -43,24 +54,30 @@ ListItemLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 360,
-  },
-  lists: {
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(1),
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: 360,
+    },
+    lists: {
+      backgroundColor: theme.palette.background.paper,
+      marginTop: theme.spacing(1),
+    },
+    nested: {
+      paddingLeft: theme.spacing(4),
+    },
+  });
 
-const LinkRouter = props => <Link {...props} component={RouterLink} />;
+interface LinkRouterProps extends LinkProps {
+  to: string;
+  replace?: boolean;
+}
 
-class RouterBreadcrumbs extends React.Component {
+const LinkRouter = (props: LinkRouterProps) => <Link {...props} component={RouterLink as any} />;
+
+class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBreadcrumbsState> {
   state = {
     open: true,
   };
@@ -108,7 +125,7 @@ class RouterBreadcrumbs extends React.Component {
               <List component="nav">
                 <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                  <List component={'div'} disablePadding>
+                  <List component={'div' as 'ul'} disablePadding>
                     <ListItemLink to="/inbox/important" className={classes.nested} />
                   </List>
                 </Collapse>
@@ -123,8 +140,11 @@ class RouterBreadcrumbs extends React.Component {
   }
 }
 
-RouterBreadcrumbs.propTypes = {
+(RouterBreadcrumbs as React.ComponentClass<
+  RouterBreadcrumbsProp,
+  RouterBreadcrumbsState
+>).propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(RouterBreadcrumbs);
