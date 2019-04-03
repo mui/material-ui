@@ -1,6 +1,7 @@
 // @inheritedComponent EventListener
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
@@ -13,7 +14,7 @@ function useMountedRef() {
     return () => {
       mountedRef.current = false;
     };
-  });
+  }, []);
 
   return mountedRef;
 }
@@ -89,14 +90,9 @@ function ClickAwayListener(props) {
 
 ClickAwayListener.propTypes = {
   /**
-   * @deprecated
+   * The wrapped element.
    */
-  children: PropTypes.node,
-  /**
-   * A function that must return the `Element` (once it is mounted) that should not be considered
-   * in click-away.
-   */
-  getTargetEl: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    */
