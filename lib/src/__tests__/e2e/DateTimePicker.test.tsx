@@ -1,6 +1,6 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import DateTimePicker, { DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
+import DateTimePicker, { DateTimePickerProps } from '../../DateTimePicker/DateTimePickerRoot';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - DateTimePicker', () => {

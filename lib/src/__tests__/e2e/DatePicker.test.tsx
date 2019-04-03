@@ -1,10 +1,10 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import DatePicker, { DatePickerProps } from '../../DatePicker/DatePicker';
+import DatePicker, { BaseDatePickerProps } from '../../DatePicker/DatePickerRoot';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - DatePicker', () => {
-  let component: ReactWrapper<DatePickerProps>;
+  let component: ReactWrapper<BaseDatePickerProps>;
   const onChangeMock = jest.fn();
 
   beforeEach(() => {
@@ -54,7 +54,7 @@ describe('e2e -- DatePicker views year', () => {
   const onChangeMock = jest.fn();
   const onYearChangeMock = jest.fn();
 
-  let component: ReactWrapper<DatePickerProps>;
+  let component: ReactWrapper<BaseDatePickerProps>;
 
   beforeEach(() => {
     component = mount(
@@ -84,7 +84,7 @@ describe('e2e -- DatePicker views year and month', () => {
   const onChangeMock = jest.fn();
   const onMonthChangeMock = jest.fn();
 
-  let component: ReactWrapper<DatePickerProps>;
+  let component: ReactWrapper<BaseDatePickerProps>;
 
   beforeEach(() => {
     component = mount(
@@ -128,7 +128,7 @@ describe('e2e -- DatePicker views year and month', () => {
 
 describe('e2e -- DatePicker views year and month open from year', () => {
   const onChangeMock = jest.fn();
-  let component: ReactWrapper<DatePickerProps>;
+  let component: ReactWrapper<BaseDatePickerProps>;
 
   beforeEach(() => {
     component = mount(

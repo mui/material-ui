@@ -4,7 +4,6 @@ import {
   DateTimePickerTabs,
   DateTimePickerTabsProps,
 } from '../../DateTimePicker/components/DateTimePickerTabs';
-import { DateTimePicker } from '../../DateTimePicker/DateTimePicker';
 import { shallow } from '../test-utils';
 
 describe('DateTimePickerTabs', () => {
