@@ -327,11 +327,11 @@ class SwipeableDrawer extends React.Component {
   };
 
   handleBackdropRef = ref => {
-    this.backdropRef = ref ? ReactDOM.findDOMNode(ref) : null;
+    this.backdropRef = ReactDOM.findDOMNode(ref);
   };
 
   handlePaperRef = ref => {
-    this.paperRef = ref ? ReactDOM.findDOMNode(ref) : null;
+    this.paperRef = ReactDOM.findDOMNode(ref);
   };
 
   listenTouchStart() {
