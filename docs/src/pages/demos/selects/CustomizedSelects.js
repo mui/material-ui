@@ -10,7 +10,7 @@ import InputBase from '@material-ui/core/InputBase';
 const BootstrapInput = withStyles(theme => ({
   root: {
     'label + &': {
-      marginTop: theme.spacing.unit * 3,
+      marginTop: theme.spacing(3),
     },
   },
   input: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   bootstrapFormLabel: {
     fontSize: 18,
@@ -57,11 +57,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function CustomizedSelects() {
+  const classes = useStyles();
   const [age, setAge] = React.useState('');
   const handleChange = event => {
     setAge(event.target.value);
   };
-  const classes = useStyles();
   return (
     <form className={classes.root} autoComplete="off">
       <FormControl className={classes.margin}>
