@@ -212,7 +212,8 @@ class Demo extends React.Component {
         codeVariant: CODE_VARIANTS.TS,
         githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
         raw: demo.rawTS,
-        js: demo.js,
+        Component: demo.tsx,
+        sourceLanguage: 'tsx',
       };
     }
 
@@ -220,7 +221,8 @@ class Demo extends React.Component {
       codeVariant: CODE_VARIANTS.JS,
       githubLocation,
       raw: demo.raw,
-      js: demo.js,
+      Component: demo.js,
+      sourceLanguage: 'jsx',
     };
   };
 
@@ -228,11 +230,11 @@ class Demo extends React.Component {
     const { classes, codeVariant, demo, demoOptions, t } = this.props;
     const { anchorEl, codeOpen, demoHovered, sourceHintSeen } = this.state;
     const showSourceHint = demoHovered && !sourceHintSeen;
-    const category = demoOptions.demo;
+
     const demoData = this.getDemoData();
-    const DemoComponent = demoData.js;
-    const sourceLanguage = demoData.codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'jsx';
-    const Frame = demoOptions.iframe ? DemoFrame : React.Fragment;
+    const DemoComponent = demoData.Component;
+    const Sandbox = demoOptions.iframe ? DemoFrame : React.Fragment;
+    const gaCategory = demoOptions.demo;
 
     return (
       <div className={classes.root}>
@@ -243,7 +245,7 @@ class Demo extends React.Component {
                 demo={demo}
                 codeOpen={codeOpen}
                 codeVariant={codeVariant}
-                gaEventCategory={category}
+                gaEventCategory={gaCategory}
                 onLanguageClick={this.handleCodeLanguageClick}
               />
               <div>
@@ -256,7 +258,7 @@ class Demo extends React.Component {
                   placement="top"
                 >
                   <IconButton
-                    data-ga-event-category={category}
+                    data-ga-event-category={gaCategory}
                     data-ga-event-action="expand"
                     onClick={this.handleClickCodeOpen}
                     color={demoHovered ? 'primary' : 'default'}
@@ -270,7 +272,7 @@ class Demo extends React.Component {
                   placement="top"
                 >
                   <IconButton
-                    data-ga-event-category={category}
+                    data-ga-event-category={gaCategory}
                     data-ga-event-action="github"
                     href={demoData.githubLocation}
                     target="_blank"
@@ -285,7 +287,7 @@ class Demo extends React.Component {
                     placement="top"
                   >
                     <IconButton
-                      data-ga-event-category={category}
+                      data-ga-event-category={gaCategory}
                       data-ga-event-action="codesandbox"
                       onClick={this.handleClickCodeSandbox}
                     >
@@ -317,7 +319,7 @@ class Demo extends React.Component {
                   }}
                 >
                   <MenuItem
-                    data-ga-event-category={category}
+                    data-ga-event-category={gaCategory}
                     data-ga-event-action="copy"
                     onClick={this.handleClickCopy}
                   >
@@ -325,7 +327,7 @@ class Demo extends React.Component {
                   </MenuItem>
                   {demoOptions.hideEditButton ? null : (
                     <MenuItem
-                      data-ga-event-category={category}
+                      data-ga-event-category={gaCategory}
                       data-ga-event-action="stackblitz"
                       onClick={this.handleClickStackBlitz}
                     >
@@ -339,7 +341,7 @@ class Demo extends React.Component {
               <MarkdownElement
                 dir="ltr"
                 className={classes.code}
-                text={`\`\`\`${sourceLanguage}\n${demoData.raw}\n\`\`\``}
+                text={`\`\`\`${demoData.sourceLanguage}\n${demoData.raw}\n\`\`\``}
               />
             </Collapse>
           </div>
@@ -354,9 +356,9 @@ class Demo extends React.Component {
             maxWidth: demoOptions.maxWidth,
           }}
         >
-          <Frame>
+          <Sandbox>
             <DemoComponent />
-          </Frame>
+          </Sandbox>
         </div>
       </div>
     );
