@@ -21,6 +21,6 @@ describe('<CardActionArea />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 });

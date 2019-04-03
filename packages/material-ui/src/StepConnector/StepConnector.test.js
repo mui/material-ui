@@ -28,7 +28,7 @@ describe('<StepConnector />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('rendering', () => {

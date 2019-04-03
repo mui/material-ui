@@ -28,7 +28,7 @@ describe('<ExpansionPanelDetails />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a children element', () => {

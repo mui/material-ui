@@ -29,7 +29,7 @@ describe('<AppBar />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render with the root class and primary', () => {

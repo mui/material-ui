@@ -28,7 +28,7 @@ describe('<Step />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('merges styles and other props into the root node', () => {

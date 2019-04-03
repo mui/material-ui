@@ -30,7 +30,7 @@ describe('<TableSortLabel />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should set the active class when active', () => {
