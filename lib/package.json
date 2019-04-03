@@ -44,6 +44,7 @@
     "react-text-mask": "^5.4.3",
     "react-transition-group": "^2.5.3",
     "rifm": "^0.7.0",
+    "ts-jest": "^24.0.1",
     "tslib": "^1.9.3"
   },
   "size-limit": [
@@ -101,6 +102,7 @@
     "luxon": "^1.11.1",
     "moment": "^2.24.0",
     "prop-types": "^15.6.2",
+    "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.3.2",
