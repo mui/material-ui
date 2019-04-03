@@ -73,12 +73,12 @@ export const getError = (
 };
 
 export function pick12hOr24hFormat(
-  format: string | undefined,
+  userFormat: string | undefined,
   ampm: boolean | undefined = true,
   formats: { '12h': string; '24h': string }
 ) {
-  if (format) {
-    return format;
+  if (userFormat) {
+    return userFormat;
   }
 
   return ampm ? formats['12h'] : formats['24h'];
