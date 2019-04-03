@@ -82,7 +82,7 @@ class ClickAwayListener extends React.Component {
 
 ClickAwayListener.propTypes = {
   /**
-   * @deprecated
+   * The wrapped node.
    */
   children: PropTypes.node,
   /**
