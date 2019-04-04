@@ -42,9 +42,11 @@ describe('<NoSsr />', () => {
   describe('prop: fallback', () => {
     it('should render the fallback', () => {
       const wrapper = render(
-        <NoSsr fallback={<p>fallback</p>}>
+        <div>
+        <NoSsr fallback="fallback">
           <span>Hello</span>
-        </NoSsr>,
+        </NoSsr>
+        </div>,
       );
       assert.strictEqual(wrapper.text(), 'fallback');
     });
