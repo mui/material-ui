@@ -670,6 +670,15 @@ const appList = [
     image: 'persona.jpg',
     index: 0,
   },
+  {
+    title: 'Civilshare',
+    description: "Civilshare is a communication tool based for people in the civil construction " + 
+    "industry to be able to share ideas, information and resources. Civilshare enables civil " + 
+    "contractors throughout New Zealand to buy, sell, share and trade equipment, materials and labour.",
+    link: 'https://app.civilshare.co.nz/trade',
+    image: 'civilshare.png',
+    dateAdded: '2019-04-05',
+  },
 ];
 
 export default appList;
