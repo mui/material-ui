@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
 
+const baseEffect =
+  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
+    ? React.useLayoutEffect
+    : React.useEffect;
+
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
  *
@@ -13,37 +18,18 @@ import { exactProp } from '@material-ui/utils';
  */
 function NoSsr(props) {
   const { children, defer, fallback } = props;
-  const mountedRef = React.useRef(false);
   const [mountedState, setMountedState] = React.useState(false);
 
-  React.useEffect(() => {
-    mountedRef.current = true;
-
-    if (defer) {
-      // Wondering why we use two RAFs? Check this video out:
-      // https://www.youtube.com/watch?v=cCOL7MC4Pl0
-      //
-      // The componentDidMount() method is called after the DOM nodes are inserted.
-      // The UI might not have rendering the changes. We request a frame.
-      requestAnimationFrame(() => {
-        // The browser should be about to render the DOM nodes
-        // that React committed at this point.
-        // We don't want to interrupt. Let's wait the next frame.
-        requestAnimationFrame(() => {
-          // The UI is up-to-date at this point.
-          // We can continue rendering the children.
-          if (mountedRef.current) {
-            setMountedState(true);
-          }
-        });
-      });
-    } else {
+  baseEffect(() => {
+    if (!defer) {
       setMountedState(true);
     }
+  }, [defer]);
 
-    return () => {
-      mountedRef.current = false;
-    };
+  React.useEffect(() => {
+    if (defer) {
+      setMountedState(true);
+    }
   }, [defer]);
 
   return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;

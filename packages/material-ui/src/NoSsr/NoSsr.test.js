@@ -51,19 +51,13 @@ describe('<NoSsr />', () => {
   });
 
   describe('prop: defer', () => {
-    it('should defer the rendering', done => {
+    it('should defer the rendering', () => {
       const wrapper = mount(
         <NoSsr defer>
           <span>Hello</span>
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.find('span').length, 0);
-      setTimeout(() => {
-        wrapper.update();
-        assert.strictEqual(wrapper.find('span').length, 1);
-        assert.strictEqual(wrapper.text(), 'Hello');
-        done();
-      }, 300);
+      assert.strictEqual(wrapper.find('span').length, 1);
     });
   });
 });
