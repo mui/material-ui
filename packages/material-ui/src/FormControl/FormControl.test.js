@@ -15,12 +15,12 @@ describe('<FormControl />', () => {
   let mount;
   let classes;
 
-  function setState(wrapper, state) {
-    return wrapper.find('FormControl').setState(state);
-  }
-
-  function getState(wrapper) {
-    return wrapper.find('FormControl').instance().state;
+  function TestComponent(props) {
+    const context = React.useContext(FormControlContext);
+    if (props.fn) {
+      props.fn(context);
+    }
+    return null;
   }
 
   before(() => {
@@ -64,13 +64,19 @@ describe('<FormControl />', () => {
     });
 
     it('should not be filled initially', () => {
-      const wrapper = mount(<FormControl />);
-      assert.strictEqual(getState(wrapper).filled, false);
+      mount(
+        <FormControl>
+          <TestComponent fn={context => assert.strictEqual(context.filled, false)} />
+        </FormControl>,
+      );
     });
 
     it('should not be focused initially', () => {
-      const wrapper = mount(<FormControl />);
-      assert.strictEqual(getState(wrapper).focused, false);
+      mount(
+        <FormControl>
+          <TestComponent fn={context => assert.strictEqual(context.focused, false)} />
+        </FormControl>,
+      );
     });
   });
 
@@ -83,68 +89,76 @@ describe('<FormControl />', () => {
 
   describe('prop: disabled', () => {
     it('will be unfocused if it gets disabled', () => {
-      const wrapper = mount(<FormControl />);
-      setState(wrapper, { focused: true });
+      const inputRef = React.createRef();
+      const wrapper = mount(
+        <FormControl>
+          <Input ref={inputRef} />
+        </FormControl>,
+      );
+
+      inputRef.current.focus();
       wrapper.setProps({ disabled: true });
-      assert.strictEqual(getState(wrapper).focused, false);
+      wrapper.setProps({
+        children: <TestComponent fn={context => assert.strictEqual(context.focused, false)} />,
+      });
     });
   });
 
   describe('input', () => {
     it('should be filled with a value', () => {
-      const wrapper = mount(
+      mount(
         <FormControl>
           <Input value="bar" />
+          <TestComponent fn={context => assert.strictEqual(context.filled, true)} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).filled, true);
     });
 
     it('should be filled with a defaultValue', () => {
-      const wrapper = mount(
+      mount(
         <FormControl>
           <Input defaultValue="bar" />
+          <TestComponent fn={context => assert.strictEqual(context.filled, true)} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).filled, true);
     });
 
     it('should be adorned with an endAdornment', () => {
-      const wrapper = mount(
+      mount(
         <FormControl>
           <Input endAdornment={<div />} />
+          <TestComponent fn={context => assert.strictEqual(context.adornedStart, false)} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).adornedStart, false);
     });
 
     it('should be adorned with a startAdornment', () => {
-      const wrapper = mount(
+      mount(
         <FormControl>
           <Input startAdornment={<div />} />
+          <TestComponent fn={context => assert.strictEqual(context.adornedStart, true)} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).adornedStart, true);
     });
   });
 
   describe('select', () => {
     it('should not be adorned without a startAdornment', () => {
-      const wrapper = mount(
+      mount(
         <FormControl>
           <Select value="" />
+          <TestComponent fn={context => assert.strictEqual(context.adornedStart, false)} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).adornedStart, false);
     });
 
     it('should be adorned with a startAdornment', () => {
-      const wrapper = mount(
+      mount(
         <FormControl>
           <Select value="" input={<Input startAdornment={<div />} />} />
+          <TestComponent fn={context => assert.strictEqual(context.adornedStart, true)} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).adornedStart, true);
     });
   });
 
@@ -162,26 +176,6 @@ describe('<FormControl />', () => {
           </FormControlContext.Consumer>
         </FormControl>,
       );
-    });
-
-    describe('from state', () => {
-      it('should have the filled state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.filled, false);
-        setState(wrapper, { filled: true });
-        assert.strictEqual(muiFormControlContext.filled, true);
-      });
-
-      it('should have the focused state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.focused, false);
-        setState(wrapper, { focused: true });
-        assert.strictEqual(muiFormControlContext.focused, true);
-      });
-
-      it('should have the adornedStart state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.adornedStart, false);
-        setState(wrapper, { adornedStart: true });
-        assert.strictEqual(muiFormControlContext.adornedStart, true);
-      });
     });
 
     describe('from props', () => {
@@ -228,23 +222,23 @@ describe('<FormControl />', () => {
 
       describe('handleFocus', () => {
         it('should set the focused state', () => {
-          assert.strictEqual(getState(wrapper).focused, false);
+          assert.strictEqual(muiFormControlContext.focused, false);
           muiFormControlContext.onFocus();
-          assert.strictEqual(getState(wrapper).focused, true);
+          assert.strictEqual(muiFormControlContext.focused, true);
           muiFormControlContext.onFocus();
-          assert.strictEqual(getState(wrapper).focused, true);
+          assert.strictEqual(muiFormControlContext.focused, true);
         });
       });
 
       describe('handleBlur', () => {
         it('should clear the focused state', () => {
-          assert.strictEqual(getState(wrapper).focused, false);
+          assert.strictEqual(muiFormControlContext.focused, false);
           muiFormControlContext.onFocus();
-          assert.strictEqual(getState(wrapper).focused, true);
+          assert.strictEqual(muiFormControlContext.focused, true);
           muiFormControlContext.onBlur();
-          assert.strictEqual(getState(wrapper).focused, false);
+          assert.strictEqual(muiFormControlContext.focused, false);
           muiFormControlContext.onBlur();
-          assert.strictEqual(getState(wrapper).focused, false);
+          assert.strictEqual(muiFormControlContext.focused, false);
         });
       });
     });
