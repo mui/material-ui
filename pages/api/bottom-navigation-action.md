@@ -25,6 +25,8 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 | <span class="prop-name">showLabel</span> | <span class="prop-type">bool</span> |  | If `true`, the `BottomNavigationAction` will show its label. By default, only the selected `BottomNavigationAction` inside `BottomNavigation` will show its label. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS

@@ -38,6 +38,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `Transition` element. |
 
+The component cannot hold a ref.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

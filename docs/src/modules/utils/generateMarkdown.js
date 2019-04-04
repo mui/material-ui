@@ -273,6 +273,14 @@ function generateProps(reactAPI) {
     return textProps;
   }, text);
 
+  let refHint = 'The `ref` is forwarded to the root element.';
+  if (reactAPI.forwardsRefTo == null) {
+    refHint = 'The component cannot hold a ref.';
+  } else if (reactAPI.forwardsRefTo === 'React.Component') {
+    refHint = 'The `ref` is attached to a component class.';
+  }
+  text = `${text}\n${refHint}\n`;
+
   if (reactAPI.spread) {
     text = `${text}
 Any other properties supplied will be spread to the root element (${

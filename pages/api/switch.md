@@ -32,6 +32,8 @@ import Switch from '@material-ui/core/Switch';
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | The input component property `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool<br></span> |  | The value of the component. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([IconButton](/api/icon-button/)).
 
 ## CSS

@@ -24,6 +24,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, disables gutter padding. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'regular'&nbsp;&#124;<br>&nbsp;'dense'<br></span> | <span class="prop-default">'regular'</span> | The variant to use. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

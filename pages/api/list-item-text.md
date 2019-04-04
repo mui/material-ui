@@ -27,6 +27,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 | <span class="prop-name">secondary</span> | <span class="prop-type">node</span> |  | The secondary content element. |
 | <span class="prop-name">secondaryTypographyProps</span> | <span class="prop-type">object</span> |  | These props will be forwarded to the secondary typography component (as long as disableTypography is not `true`). |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

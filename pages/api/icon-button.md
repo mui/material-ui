@@ -26,6 +26,8 @@ regarding the available icon options.
 | <span class="prop-name">edge</span> | <span class="prop-type">enum:&nbsp;'start'&nbsp;&#124;<br>&nbsp;'end'&nbsp;&#124;<br>&nbsp;false<br></span> |  | If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape). |
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'<br></span> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS

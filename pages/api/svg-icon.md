@@ -28,6 +28,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 | <span class="prop-name">titleAccess</span> | <span class="prop-type">string</span> |  | Provides a human-readable title for the element that contains it. https://www.w3.org/TR/SVG-access/#Equivalent |
 | <span class="prop-name">viewBox</span> | <span class="prop-type">string</span> | <span class="prop-default">'0 0 24 24'</span> | Allows you to redefine what the coordinates without units mean inside an SVG element. For example, if the SVG element is 500 (width) by 200 (height), and you pass viewBox="0 0 50 20", this means that the coordinates inside the SVG will go from the top left corner (0,0) to bottom right (50,20) and each unit will be worth 10px. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

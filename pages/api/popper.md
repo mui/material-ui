@@ -29,6 +29,8 @@ Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/p
 | <span class="prop-name">popperOptions</span> | <span class="prop-type">object</span> |  | Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance. |
 | <span class="prop-name">transition</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Help supporting a react-transition-group/Transition component. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## Demos

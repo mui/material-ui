@@ -37,6 +37,8 @@ import Select from '@material-ui/core/Select';
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string, number, bool, object, arrayOf<br></span> |  | The input value. This property is required when the `native` property is `false` (default). |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br></span> |  | The variant to use. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([Input](/api/input/)).
 
 ## CSS

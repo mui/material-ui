@@ -27,6 +27,8 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 | <span class="prop-name">tooltipPlacement</span> | <span class="prop-type">enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br></span> | <span class="prop-default">'left'</span> | Placement of the tooltip. |
 | <span class="prop-name required">tooltipTitle&nbsp;*</span> | <span class="prop-type">node</span> |  | Label to display in the tooltip. |
 
+The component cannot hold a ref.
+
 Any other properties supplied will be spread to the root element ([Tooltip](/api/tooltip/)).
 
 ## CSS

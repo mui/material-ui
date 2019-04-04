@@ -45,6 +45,8 @@ import FilledInput from '@material-ui/core/FilledInput';
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types). |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string, number, bool, object, arrayOf<br></span> |  | The value of the `input` element, required for a controlled component. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([InputBase](/api/input-base/)).
 
 ## CSS

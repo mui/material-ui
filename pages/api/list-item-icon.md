@@ -21,6 +21,8 @@ A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

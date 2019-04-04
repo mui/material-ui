@@ -34,6 +34,8 @@ import Menu from '@material-ui/core/Menu';
 | <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object</span> |  | `classes` property applied to the [`Popover`](/api/popover/) element. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br></span> | <span class="prop-default">'auto'</span> | The length of the transition in `ms`, or 'auto' |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([Popover](/api/popover/)).
 
 ## CSS

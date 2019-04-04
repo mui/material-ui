@@ -7,6 +7,7 @@ import { parse as docgenParse } from 'react-docgen';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
+import parseTest from '../src/modules/utils/parseTest';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 
@@ -73,7 +74,7 @@ function getInheritance(src) {
   };
 }
 
-function buildDocs(options) {
+async function buildDocs(options) {
   const { component: componentObject, pagesMarkdown } = options;
   const src = readFileSync(componentObject.filename, 'utf8');
 
@@ -143,6 +144,10 @@ function buildDocs(options) {
   reactAPI.src = src;
   reactAPI.spread = spread;
 
+  const testInfo = await parseTest(componentObject.filename);
+  // no Object.assign to visually check for collisions
+  reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
+
   // if (reactAPI.name !== 'TableCell') {
   //   return;
   // }
@@ -199,7 +204,11 @@ function run() {
   const components = findComponents(path.resolve(rootDirectory, args[2]));
 
   components.forEach(component => {
-    buildDocs({ component, pagesMarkdown });
+    buildDocs({ component, pagesMarkdown }).catch(error => {
+      console.warn(`error building docs for ${component.filename}`);
+      console.error(error);
+      process.exit(1);
+    });
   });
 }
 

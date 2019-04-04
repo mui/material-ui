@@ -32,6 +32,8 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `Transition` element. |
 
+The component cannot hold a ref.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

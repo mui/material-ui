@@ -28,6 +28,8 @@ import TableCell from '@material-ui/core/TableCell';
 | <span class="prop-name">sortDirection</span> | <span class="prop-type">enum:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'&nbsp;&#124;<br>&nbsp;false<br></span> |  | Set aria-sort direction. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'head'&nbsp;&#124;<br>&nbsp;'body'&nbsp;&#124;<br>&nbsp;'footer'<br></span> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

@@ -24,6 +24,8 @@ import Container from '@material-ui/core/Container';
 | <span class="prop-name">fixed</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Set the max-width to match the min-width of the current breakpoint. This is useful if you'd prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport. It's fluid by default. |
 | <span class="prop-name">maxWidth</span> | <span class="prop-type">enum:&nbsp;'xs', 'sm', 'md', 'lg', 'xl', false<br></span> | <span class="prop-default">'lg'</span> | Determine the max-width of the container. The container width grows with the size of the screen. Set to `false` to disable `maxWidth`. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

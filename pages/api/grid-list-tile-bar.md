@@ -25,6 +25,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 | <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed on tile. |
 | <span class="prop-name">titlePosition</span> | <span class="prop-type">enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br></span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

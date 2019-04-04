@@ -26,6 +26,8 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> |  | If `true`, the button will be rendered in an active state. |
 | <span class="prop-name required">value&nbsp;*</span> | <span class="prop-type">any</span> |  | The value to associate with the button when selected in a ToggleButtonGroup. |
 
+The component cannot hold a ref.
+
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS
