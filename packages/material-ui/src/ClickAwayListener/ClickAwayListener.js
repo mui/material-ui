@@ -29,9 +29,11 @@ function ClickAwayListener(props) {
   const movedRef = React.useRef(false);
 
   const nodeRef = React.useRef();
-  const handleRef = useForkRef(children.ref, ref => {
+  // can be removed once we drop support for non ref forwarding class components
+  const handleOwnRef = React.useCallback(ref => {
     nodeRef.current = ReactDOM.findDOMNode(ref);
-  });
+  }, []);
+  const handleRef = useForkRef(children.ref, handleOwnRef);
 
   function handleClickAway(event) {
     // Ignore events that have been `event.preventDefault()` marked.
