@@ -10,7 +10,7 @@ export interface ToggleButtonProps
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
   selected?: boolean;
-  type?: string;
+  type?: 'reset' | 'button' | 'submit' | undefined;
   value?: any;
 }
 
