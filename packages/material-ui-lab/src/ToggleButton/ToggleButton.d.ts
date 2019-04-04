@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { PropTypes, StandardProps } from '@material-ui/core';
 import { ButtonBaseClassKey, ButtonBaseProps } from '@material-ui/core/ButtonBase';
+import { ButtonProps } from '@material-ui/core/Button';
 
 export interface ToggleButtonProps
   extends StandardProps<ButtonBaseProps, ToggleButtonClassKey, 'component'> {
@@ -10,7 +11,7 @@ export interface ToggleButtonProps
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
   selected?: boolean;
-  type?: string;
+  type?: ButtonProps['type'];
   value?: any;
 }
 
