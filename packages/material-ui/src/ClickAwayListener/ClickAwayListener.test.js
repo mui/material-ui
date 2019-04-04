@@ -31,23 +31,17 @@ describe('<ClickAwayListener />', () => {
   });
 
   it('should render the children', () => {
-    const ref = React.createRef();
-    const children = <span ref={ref}>Hello</span>;
-    wrapper = mount(
-      <ClickAwayListener getTargetEl={() => ref.current} onClickAway={() => {}}>
-        {children}
-      </ClickAwayListener>,
-    );
+    const children = <span>Hello</span>;
+    wrapper = mount(<ClickAwayListener onClickAway={() => {}}>{children}</ClickAwayListener>);
     assert.strictEqual(wrapper.contains(children), true);
   });
 
   describe('prop: onClickAway', () => {
     it('should be call when clicking away', () => {
       const handleClickAway = spy();
-      const ref = React.createRef();
       wrapper = mount(
-        <ClickAwayListener getTargetEl={() => ref.current} onClickAway={handleClickAway}>
-          <span ref={ref}>Hello</span>
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <span>Hello</span>
         </ClickAwayListener>,
       );
 
@@ -62,7 +56,7 @@ describe('<ClickAwayListener />', () => {
       const ref = React.createRef();
       wrapper = mount(
         <ClickAwayListener onClickAway={handleClickAway}>
-          <span ref={ref}>Hello</span>
+          <span>Hello</span>
         </ClickAwayListener>,
       );
 
@@ -96,14 +90,9 @@ describe('<ClickAwayListener />', () => {
   describe('prop: mouseEvent', () => {
     it('should not call `props.onClickAway` when `props.mouseEvent` is `false`', () => {
       const handleClickAway = spy();
-      const ref = React.createRef();
       wrapper = mount(
-        <ClickAwayListener
-          getTargetEl={() => ref.current}
-          onClickAway={handleClickAway}
-          mouseEvent={false}
-        >
-          <span ref={ref}>Hello</span>
+        <ClickAwayListener onClickAway={handleClickAway} mouseEvent={false}>
+          <span>Hello</span>
         </ClickAwayListener>,
       );
       fireBodyMouseEvent('mouseup');
@@ -112,14 +101,9 @@ describe('<ClickAwayListener />', () => {
 
     it('should call `props.onClickAway` when the appropriate mouse event is triggered', () => {
       const handleClickAway = spy();
-      const ref = React.createRef();
       wrapper = mount(
-        <ClickAwayListener
-          getTargetEl={() => ref.current}
-          onClickAway={handleClickAway}
-          mouseEvent="onMouseDown"
-        >
-          <span ref={ref}>Hello</span>
+        <ClickAwayListener onClickAway={handleClickAway} mouseEvent="onMouseDown">
+          <span>Hello</span>
         </ClickAwayListener>,
       );
       fireBodyMouseEvent('mouseup');
@@ -133,14 +117,9 @@ describe('<ClickAwayListener />', () => {
   describe('prop: touchEvent', () => {
     it('should not call `props.onClickAway` when `props.touchEvent` is `false`', () => {
       const handleClickAway = spy();
-      const ref = React.createRef();
       wrapper = mount(
-        <ClickAwayListener
-          getTargetEl={() => ref.current}
-          onClickAway={handleClickAway}
-          touchEvent={false}
-        >
-          <span ref={ref}>Hello</span>
+        <ClickAwayListener onClickAway={handleClickAway} touchEvent={false}>
+          <span>Hello</span>
         </ClickAwayListener>,
       );
       fireBodyMouseEvent('touchend');
@@ -149,14 +128,9 @@ describe('<ClickAwayListener />', () => {
 
     it('should call `props.onClickAway` when the appropriate touch event is triggered', () => {
       const handleClickAway = spy();
-      const ref = React.createRef();
       wrapper = mount(
-        <ClickAwayListener
-          getTargetEl={() => ref.current}
-          onClickAway={handleClickAway}
-          touchEvent="onTouchStart"
-        >
-          <span ref={ref}>Hello</span>
+        <ClickAwayListener onClickAway={handleClickAway} touchEvent="onTouchStart">
+          <span>Hello</span>
         </ClickAwayListener>,
       );
       fireBodyMouseEvent('touchend');
@@ -168,14 +142,9 @@ describe('<ClickAwayListener />', () => {
 
     it('should ignore `touchend` when preceded by `touchmove` event', () => {
       const handleClickAway = spy();
-      const ref = React.createRef();
       wrapper = mount(
-        <ClickAwayListener
-          getTargetEl={() => ref.current}
-          onClickAway={handleClickAway}
-          touchEvent="onTouchEnd"
-        >
-          <span ref={ref}>Hello</span>
+        <ClickAwayListener onClickAway={handleClickAway} touchEvent="onTouchEnd">
+          <span>Hello</span>
         </ClickAwayListener>,
       );
       fireBodyMouseEvent('touchstart');
