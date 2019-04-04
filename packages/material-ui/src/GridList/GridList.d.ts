@@ -5,7 +5,7 @@ export interface GridListProps
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, GridListClassKey> {
   cellHeight?: number | 'auto';
   cols?: number;
-  component?: React.ElementType<GridListProps>;
+  component?: React.ElementType<React.HTMLAttributes<HTMLUListElement>>;
   spacing?: number;
 }
 
