@@ -46,7 +46,10 @@ function ThemeProvider(props) {
     ].join('\n'),
   );
 
-  const theme = outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
+  const theme = React.useMemo(
+    () => (outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme)),
+    [localTheme, outerTheme],
+  );
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 }
 
