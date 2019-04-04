@@ -345,6 +345,9 @@ const pages = [
       {
         pathname: '/blog/2019-developer-survey-results',
       },
+      {
+        pathname: '/blog/march-2019-update',
+      },
     ],
   },
   {
