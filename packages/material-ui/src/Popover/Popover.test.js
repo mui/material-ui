@@ -474,6 +474,15 @@ describe('<Popover />', () => {
       assert.include(consoleErrorMock.args()[0][0], 'It should be a HTMLElement instance');
     });
 
+    it('warns if a component for the Paper is used that cant hold a ref', () => {
+      mount(<Popover {...defaultProps} PaperProps={{ component: () => <div />, elevation: 4 }} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `Popover`. Expected an element type that can hold a ref.',
+      );
+    });
+
     // it('should warn if anchorEl is not visible', () => {
     //   mount(<Popover open anchorEl={document.createElement('div')} />);
     //   assert.strictEqual(consoleErrorMock.callCount(), 1);
