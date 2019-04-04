@@ -8,49 +8,47 @@ import IconButton from '../IconButton';
 /**
  * @ignore - internal component.
  */
-class TablePaginationActions extends React.Component {
-  handleBackButtonClick = event => {
-    this.props.onChangePage(event, this.props.page - 1);
+const TablePaginationActions = React.forwardRef(function TablePaginationActions(props, ref) {
+  const {
+    backIconButtonProps,
+    count,
+    nextIconButtonProps,
+    onChangePage,
+    page,
+    rowsPerPage,
+    theme,
+    ...other
+  } = props;
+
+  const handleBackButtonClick = event => {
+    onChangePage(event, page - 1);
   };
 
-  handleNextButtonClick = event => {
-    this.props.onChangePage(event, this.props.page + 1);
+  const handleNextButtonClick = event => {
+    onChangePage(event, page + 1);
   };
 
-  render() {
-    const {
-      backIconButtonProps,
-      count,
-      nextIconButtonProps,
-      onChangePage,
-      page,
-      rowsPerPage,
-      theme,
-      ...other
-    } = this.props;
-
-    return (
-      <div {...other}>
-        <IconButton
-          onClick={this.handleBackButtonClick}
-          disabled={page === 0}
-          color="inherit"
-          {...backIconButtonProps}
-        >
-          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-        </IconButton>
-        <IconButton
-          onClick={this.handleNextButtonClick}
-          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-          color="inherit"
-          {...nextIconButtonProps}
-        >
-          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-        </IconButton>
-      </div>
-    );
-  }
-}
+  return (
+    <div ref={ref} {...other}>
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        color="inherit"
+        {...backIconButtonProps}
+      >
+        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      </IconButton>
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        color="inherit"
+        {...nextIconButtonProps}
+      >
+        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+      </IconButton>
+    </div>
+  );
+});
 
 TablePaginationActions.propTypes = {
   /**
