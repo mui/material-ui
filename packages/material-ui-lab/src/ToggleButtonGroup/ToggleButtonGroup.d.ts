@@ -6,7 +6,8 @@ export interface ToggleButtonGroupProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
     ToggleButtonGroupClassKey,
-    'onChange'
+    'onChange',
+    false
   > {
   selected?: boolean;
   exclusive?: boolean;
