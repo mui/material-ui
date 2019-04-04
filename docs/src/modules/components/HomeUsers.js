@@ -63,7 +63,7 @@ function HomeUsers(props) {
             {"Who's using Material-UI?"}
           </Typography>
           <Typography variant="body1" align="center" gutterBottom>
-            Material-UI was open sourced in 2014 and is used by teams of all sizes.
+            Join these and many other great organisations!
           </Typography>
           <Grid container justify="center" className={classes.grid}>
             {users.map(user => (
@@ -78,7 +78,12 @@ function HomeUsers(props) {
             Are you using Material-UI?
           </Typography>
           <Grid container justify="center">
-            <Button variant="outlined">Add your company</Button>
+            <Button
+              variant="outlined"
+              href="https://spectrum.chat/material-ui/general/whos-using-material-ui~00e6687a-9b2d-454f-97a6-950d9fde71cf"
+            >
+              Let us know!
+            </Button>
           </Grid>
         </div>
       </NoSsr>
