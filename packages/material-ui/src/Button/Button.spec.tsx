@@ -1,6 +1,7 @@
 import React from 'react';
 import Button, { ButtonProps } from '@material-ui/core/Button';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
+import { type } from 'os';
 
 const log = console.log;
 
@@ -81,13 +82,8 @@ const ButtonTest = () => (
 );
 
 const ReactRouterLinkTest = () => {
-  interface ButtonLinkProps extends ButtonProps {
-    to: string;
-    replace?: boolean;
-  }
-
-  const ButtonLink = (props: ButtonLinkProps) => (
-    <Button {...props} component={ReactRouterLink as any} />
+  const ButtonLink = (props: ButtonProps<typeof ReactRouterLink>) => (
+    <Button {...props} component={ReactRouterLink} />
   );
 
   const reactRouterButtonLink1 = (
@@ -96,10 +92,12 @@ const ReactRouterLinkTest = () => {
     </ButtonLink>
   );
 
-  const MyLink = (props: any) => <ReactRouterLink to="/" {...props} />;
+  const MyLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
+    return <ReactRouterLink innerRef={ref as any} {...props} />;
+  });
 
   const reactRouterButtonLink2 = (
-    <Button color="primary" component={MyLink}>
+    <Button color="primary" component={MyLink} to="/router-future">
       Go Home
     </Button>
   );

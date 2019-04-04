@@ -1,9 +1,9 @@
 import { PropTypes } from '..';
-import { ExtendButtonBase } from '../ButtonBase';
-import { SimplifiedPropsOf } from '../OverridableComponent';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverridableComponent, OverrideProps, SimplifiedPropsOf } from '../OverridableComponent';
 
-declare const Button: ExtendButtonBase<{
-  props: {
+export type ButtonTypeMape<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
+  props: P & {
     color?: PropTypes.Color;
     disabled?: boolean;
     disableFocusRipple?: boolean;
@@ -13,11 +13,16 @@ declare const Button: ExtendButtonBase<{
     size?: 'small' | 'medium' | 'large';
     variant?: 'text' | 'outlined' | 'contained';
   };
-  defaultComponent: 'button';
+  defaultComponent: D;
   classKey: ButtonClassKey;
 }>;
 
-export type ButtonProps = SimplifiedPropsOf<typeof Button>;
+declare const Button: ExtendButtonBase<ButtonTypeMape<{}, 'button'>>;
+
+export type ButtonProps<D extends React.ElementType = 'button', P = {}> = OverrideProps<
+  ButtonTypeMape<P, D>,
+  D
+>;
 
 export type ButtonClassKey =
   | 'root'
