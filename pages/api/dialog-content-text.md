@@ -21,7 +21,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
 Any other properties supplied will be spread to the root element ([Typography](/api/typography/)).
 
