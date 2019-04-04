@@ -13,6 +13,7 @@ export type StandardProps<C, ClassKey extends string, Removals extends keyof C =
 > &
   StyledComponentProps<ClassKey> & {
     className?: string;
+    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     style?: React.CSSProperties;
   };
 
