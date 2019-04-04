@@ -20,14 +20,12 @@ export const styles = theme => {
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
-      padding: '6px 24px',
-      [theme.breakpoints.up('md')]: {
+      padding: '6px 16px',
+      borderRadius: theme.shape.borderRadius,
+      flexGrow: 1,
+      [theme.breakpoints.up('sm')]: {
+        flexGrow: 'initial',
         minWidth: 288,
-        maxWidth: 568,
-        borderRadius: theme.shape.borderRadius,
-      },
-      [theme.breakpoints.down('sm')]: {
-        flexGrow: 1,
       },
     },
     /* Styles applied to the message wrapper element. */
@@ -39,7 +37,7 @@ export const styles = theme => {
       display: 'flex',
       alignItems: 'center',
       marginLeft: 'auto',
-      paddingLeft: 24,
+      paddingLeft: 16,
       marginRight: -8,
     },
   };

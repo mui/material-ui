@@ -9,7 +9,7 @@ describe('<TableHead />', () => {
   let classes;
   function mountInTable(node) {
     const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table');
+    return wrapper.find('table').childAt(0);
   }
 
   before(() => {

@@ -58,7 +58,7 @@ export const styles = theme => ({
   },
 });
 
-function Container(props) {
+const Container = React.forwardRef(function Container(props, ref) {
   const { children, classes, className, component: Component, fixed, maxWidth, ...other } = props;
 
   return (
@@ -71,12 +71,13 @@ function Container(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     >
       {children}
     </Component>
   );
-}
+});
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,

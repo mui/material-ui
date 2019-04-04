@@ -1,7 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import FilledInput from './FilledInput';
+import InputBase from '../InputBase';
 
 describe('<FilledInput />', () => {
   let classes;
@@ -16,18 +22,23 @@ describe('<FilledInput />', () => {
     mount.cleanUp();
   });
 
-  it('should render a <div />', () => {
+  describeConformance(<FilledInput open />, () => ({
+    classes,
+    inheritComponent: InputBase,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
+
+  it('should have the underline class', () => {
     const wrapper = mount(<FilledInput />);
     const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.type(), 'div');
-    assert.strictEqual(root.hasClass(classes.root), true);
     assert.strictEqual(root.hasClass(classes.underline), true);
   });
 
-  it('should disable the underline', () => {
+  it('can disable the underline', () => {
     const wrapper = mount(<FilledInput disableUnderline />);
     const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.hasClass(classes.root), true);
     assert.strictEqual(root.hasClass(classes.underline), false);
   });
 });

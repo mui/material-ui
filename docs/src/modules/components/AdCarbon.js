@@ -20,6 +20,7 @@ const styles = theme => ({
         verticalAlign: 'middle',
       },
       '& a': {
+        color: theme.palette.text.primary,
         textDecoration: 'none',
       },
       '& .carbon-text': {
@@ -35,7 +36,7 @@ const styles = theme => ({
   },
 });
 
-class Carbon extends React.Component {
+class AdCarbon extends React.Component {
   componentDidMount() {
     const scriptSlot = document.querySelector('#carbon-ad');
 
@@ -56,4 +57,4 @@ class Carbon extends React.Component {
   }
 }
 
-export default withStyles(styles)(Carbon);
+export default withStyles(styles)(AdCarbon);

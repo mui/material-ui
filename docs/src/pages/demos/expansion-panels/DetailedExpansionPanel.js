@@ -67,7 +67,7 @@ function DetailedExpansionPanel(props) {
         <ExpansionPanelDetails className={classes.details}>
           <div className={classes.column} />
           <div className={classes.column}>
-            <Chip label="Barbados" className={classes.chip} onDelete={() => {}} />
+            <Chip label="Barbados" onDelete={() => {}} />
           </div>
           <div className={clsx(classes.column, classes.helper)}>
             <Typography variant="caption">

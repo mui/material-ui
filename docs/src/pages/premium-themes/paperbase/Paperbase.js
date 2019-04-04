@@ -38,7 +38,7 @@ theme = {
     },
     MuiButton: {
       label: {
-        textTransform: 'initial',
+        textTransform: 'none',
       },
       contained: {
         boxShadow: 'none',
@@ -60,7 +60,7 @@ theme = {
     },
     MuiTab: {
       root: {
-        textTransform: 'initial',
+        textTransform: 'none',
         margin: '0 16px',
         minWidth: 0,
         padding: 0,

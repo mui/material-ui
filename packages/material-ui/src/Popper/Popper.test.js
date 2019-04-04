@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { createShallow, createMount, describeConformance } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Popper from './Popper';
@@ -10,31 +10,28 @@ import Popper from './Popper';
 describe('<Popper />', () => {
   let shallow;
   let mount;
-  let anchorEl;
-  let defaultProps;
+  const defaultProps = {
+    anchorEl: () => window.document.createElement('div'),
+    children: <span>Hello World</span>,
+    open: true,
+  };
 
   before(() => {
-    anchorEl = window.document.createElement('div');
-    window.document.body.appendChild(anchorEl);
     shallow = createShallow();
     mount = createMount();
-    defaultProps = {
-      anchorEl,
-      children: <span>Hello World</span>,
-      open: true,
-    };
   });
 
   after(() => {
     mount.cleanUp();
-    window.document.body.removeChild(anchorEl);
   });
 
-  it('should render the correct structure', () => {
-    const wrapper = shallow(<Popper {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'Portal');
-    assert.strictEqual(wrapper.childAt(0).name(), 'div');
-  });
+  describeConformance(<Popper {...defaultProps} />, () => ({
+    classes: {},
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   describe('prop: placement', () => {
     before(() => {
@@ -54,7 +51,7 @@ describe('<Popper />', () => {
             return null;
           }}
         </Popper>,
-      );
+      ).dive();
       assert.strictEqual(renderSpy.callCount, 1);
       assert.strictEqual(renderSpy.args[0][0], 'top');
     });
@@ -90,7 +87,7 @@ describe('<Popper />', () => {
               return null;
             }}
           </Popper>,
-        );
+        ).dive();
         assert.strictEqual(renderSpy.callCount, 1);
         assert.strictEqual(renderSpy.args[0][0], test.out);
       });
@@ -111,7 +108,7 @@ describe('<Popper />', () => {
 
     it('should position the popper when opening', () => {
       const wrapper = mount(<Popper {...defaultProps} open={false} />);
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Popper').instance();
       assert.strictEqual(instance.popper == null, true);
       wrapper.setProps({ open: true });
       assert.strictEqual(instance.popper !== null, true);
@@ -119,7 +116,7 @@ describe('<Popper />', () => {
 
     it('should not position the popper when closing', () => {
       const wrapper = mount(<Popper {...defaultProps} open />);
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Popper').instance();
       assert.strictEqual(instance.popper !== null, true);
       wrapper.setProps({ open: false });
       assert.strictEqual(instance.popper, null);
@@ -137,7 +134,7 @@ describe('<Popper />', () => {
           )}
         </Popper>,
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Popper').instance();
       assert.strictEqual(wrapper.find('span').length, 1);
       assert.strictEqual(wrapper.find('span').text(), 'Hello World');
       assert.strictEqual(instance.popper !== null, true);
@@ -168,7 +165,7 @@ describe('<Popper />', () => {
         .find(Grow)
         .props()
         .onExited();
-      assert.strictEqual(wrapper.state().exited, true);
+      assert.strictEqual(wrapper.find('Popper').instance().state.exited, true);
     });
   });
 

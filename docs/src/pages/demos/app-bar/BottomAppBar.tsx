@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -67,7 +66,7 @@ const messages = [
   },
 ];
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     text: {
       padding: theme.spacing(2, 2, 0),
@@ -96,12 +95,11 @@ const styles = (theme: Theme) =>
       right: 0,
       margin: '0 auto',
     },
-  });
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
-
-function BottomAppBar(props: Props) {
-  const { classes } = props;
+function BottomAppBar() {
+  const classes = useStyles();
   return (
     <React.Fragment>
       <CssBaseline />
@@ -143,8 +141,4 @@ function BottomAppBar(props: Props) {
   );
 }
 
-BottomAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(BottomAppBar);
+export default BottomAppBar;

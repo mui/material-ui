@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
+import { setRef, withForwardedRef } from '../utils';
 
 function flipPlacement(placement) {
   const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
@@ -33,7 +34,7 @@ function getAnchorEl(anchorEl) {
  * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
  */
 class Popper extends React.Component {
-  tooltip = React.createRef();
+  tooltipRef = React.createRef();
 
   constructor(props) {
     super();
@@ -84,7 +85,7 @@ class Popper extends React.Component {
 
   handleOpen = () => {
     const { anchorEl, modifiers, open, placement, popperOptions = {}, disablePortal } = this.props;
-    const popperNode = this.tooltip.current;
+    const popperNode = this.tooltipRef.current;
 
     if (!popperNode || !anchorEl || !open) {
       return;
@@ -139,12 +140,18 @@ class Popper extends React.Component {
     this.popper = null;
   };
 
+  handleRef = ref => {
+    setRef(this.props.innerRef, ref);
+    setRef(this.tooltipRef, ref);
+  };
+
   render() {
     const {
       anchorEl,
       children,
       container,
       disablePortal,
+      innerRef,
       keepMounted,
       modifiers,
       open,
@@ -173,7 +180,7 @@ class Popper extends React.Component {
     return (
       <Portal onRendered={this.handleOpen} disablePortal={disablePortal} container={container}>
         <div
-          ref={this.tooltip}
+          ref={this.handleRef}
           role="tooltip"
           style={{
             // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
@@ -245,6 +252,11 @@ Popper.propTypes = {
    */
   disablePortal: PropTypes.bool,
   /**
+   * @ignore
+   * from `withForwardedRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Popper.
@@ -297,4 +309,4 @@ Popper.defaultProps = {
   transition: false,
 };
 
-export default Popper;
+export default withForwardedRef(Popper);

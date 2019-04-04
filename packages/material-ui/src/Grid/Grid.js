@@ -93,6 +93,8 @@ function generateGutter(theme, breakpoint) {
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
 export const styles = theme => ({
+  /* Styles applied to the root element */
+  root: {},
   /* Styles applied to the root element if `container={true}`. */
   container: {
     boxSizing: 'border-box',
@@ -216,6 +218,7 @@ const Grid = React.forwardRef((props, ref) => {
   } = props;
 
   const className = clsx(
+    classes.root,
     {
       [classes.container]: container,
       [classes.item]: item,

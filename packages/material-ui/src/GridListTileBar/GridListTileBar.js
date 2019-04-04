@@ -30,8 +30,8 @@ export const styles = theme => ({
   /* Styles applied to the title and subtitle container element. */
   titleWrap: {
     flexGrow: 1,
-    marginLeft: theme.mixins.gutters().paddingLeft,
-    marginRight: theme.mixins.gutters().paddingRight,
+    marginLeft: 16,
+    marginRight: 16,
     color: theme.palette.common.white,
     overflow: 'hidden',
   },

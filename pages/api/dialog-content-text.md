@@ -18,8 +18,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 Any other properties supplied will be spread to the root element ([Typography](/api/typography/)).
 

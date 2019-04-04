@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
@@ -15,12 +14,11 @@ const styles = (theme: Theme) =>
     menuButton: {
       marginRight: theme.spacing(2),
     },
-  });
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
-
-function DenseAppBar(props: Props) {
-  const { classes } = props;
+function DenseAppBar() {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -36,9 +34,4 @@ function DenseAppBar(props: Props) {
     </div>
   );
 }
-
-DenseAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(DenseAppBar);
+export default DenseAppBar;

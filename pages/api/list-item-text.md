@@ -18,14 +18,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | Alias for the `primary` property. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Alias for the `primary` property. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">disableTypography</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the children won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `children` (or `primary`) text, and optional `secondary` text with the Typography component. |
 | <span class="prop-name">inset</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
-| <span class="prop-name">primary</span> | <span class="prop-type">node</span> |   | The main content element. |
-| <span class="prop-name">primaryTypographyProps</span> | <span class="prop-type">object</span> |   | These props will be forwarded to the primary typography component (as long as disableTypography is not `true`). |
-| <span class="prop-name">secondary</span> | <span class="prop-type">node</span> |   | The secondary content element. |
-| <span class="prop-name">secondaryTypographyProps</span> | <span class="prop-type">object</span> |   | These props will be forwarded to the secondary typography component (as long as disableTypography is not `true`). |
+| <span class="prop-name">primary</span> | <span class="prop-type">node</span> |  | The main content element. |
+| <span class="prop-name">primaryTypographyProps</span> | <span class="prop-type">object</span> |  | These props will be forwarded to the primary typography component (as long as disableTypography is not `true`). |
+| <span class="prop-name">secondary</span> | <span class="prop-type">node</span> |  | The secondary content element. |
+| <span class="prop-name">secondaryTypographyProps</span> | <span class="prop-type">object</span> |  | These props will be forwarded to the secondary typography component (as long as disableTypography is not `true`). |
 
 Any other properties supplied will be spread to the root element (native element).
 

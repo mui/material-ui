@@ -33,12 +33,15 @@ const styles = {
  *
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
+ *
  * - [FormControl](/api/form-control/)
  * - [InputLabel](/api/input-label/)
+ * - [FilledInput](/api/filled-input/)
+ * - [OutlinedInput](/api/outlined-input/)
  * - [Input](/api/input/)
  * - [FormHelperText](/api/form-helper-text/)
  *
- * If you wish to alter the properties applied to the native input, you can do so as follows:
+ * If you wish to alter the properties applied to the `input` element, you can do so as follows:
  *
  * ```jsx
  * const inputProps = {
@@ -50,6 +53,7 @@ const styles = {
  *
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
+ *
  * - using the upper case props for passing values directly to the components
  * - using the underlying components directly as shown in the demos
  */
@@ -175,12 +179,11 @@ TextField.propTypes = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it here:
-   * https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the input will be focused during the first mount.
+   * If `true`, the `input` element will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -197,11 +200,11 @@ TextField.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default value of the `Input` element.
+   * The default value of the `input` element.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the `input` element will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -230,15 +233,18 @@ TextField.propTypes = {
    */
   InputLabelProps: PropTypes.object,
   /**
-   * Properties applied to the `Input` element.
+   * Properties applied to the Input element.
+   * It will be a [`FilledInput`](/api/filled-input/),
+   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * component depending on the `variant` prop value.
    */
   InputProps: PropTypes.object,
   /**
-   * Attributes applied to the native `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use this property to pass a ref callback to the native input component.
+   * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -277,7 +283,7 @@ TextField.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the label is displayed as required and the input will be required.
+   * If `true`, the label is displayed as required and the `input` element` will be required.
    */
   required: PropTypes.bool,
   /**
@@ -289,7 +295,7 @@ TextField.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Render a `Select` element while passing the `Input` element to `Select` as `input` parameter.
+   * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    */
   select: PropTypes.bool,
@@ -298,11 +304,11 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   /**
-   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
   type: PropTypes.string,
   /**
-   * The value of the `Input` element, required for a controlled component.
+   * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.oneOfType([
     PropTypes.string,
