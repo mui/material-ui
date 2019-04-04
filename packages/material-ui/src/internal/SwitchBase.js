@@ -55,12 +55,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     ...other
   } = props;
   const { current: isControlled } = React.useRef(checkedProp != null);
-  const [checkedState, setCheckedState] = React.useState(() => {
-    if (!isControlled) {
-      return defaultChecked !== undefined ? defaultChecked : false;
-    }
-    return null;
-  });
+  const [checkedState, setCheckedState] = React.useState(Boolean(defaultChecked));
 
   const handleFocus = event => {
     if (onFocus) {
