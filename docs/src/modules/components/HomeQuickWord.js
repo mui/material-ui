@@ -20,7 +20,7 @@ const backers = [
     title: 'Tidelift — Get Professionally Supported Material-UI',
   },
   {
-    href: 'https://bitsrc.io',
+    href: 'https://bit.dev',
     alt: 'bitsrc',
     title: 'Bitsrc — The fastest way to share code',
   },

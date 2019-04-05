@@ -153,7 +153,7 @@
     "material-ui-pickers": "^2.0.2",
     "material-ui-popup-state": "^1.0.1",
     "mocha": "^5.0.0",
-    "next": "canary",
+    "next": "^8.0.5-canary.15",
     "next-plugin-transpile-modules": "^2.0.0",
     "notistack": "^0.5.0",
     "nyc": "^13.0.0",

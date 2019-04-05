@@ -164,7 +164,7 @@ const styles = theme => ({
         fontSize: 'inherit',
         lineHeight: 'inherit',
         // Remove scroll on small screens.
-        wordBreak: 'break-word',
+        wordBreak: 'break-all',
       },
       '& .anchor-link-style': {
         opacity: 0,
