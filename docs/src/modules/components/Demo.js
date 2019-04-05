@@ -276,6 +276,7 @@ class Demo extends React.Component {
                     data-ga-event-action="github"
                     href={demoData.githubLocation}
                     target="_blank"
+                    rel="noopener nofollow"
                   >
                     <Github />
                   </IconButton>
