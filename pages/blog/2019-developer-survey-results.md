@@ -1,11 +1,12 @@
 ---
 description: 2019 Material-UI Developer Survey results
 ---
+
 # 2019 Material-UI Developer Survey results
 
 **Olivier Tassinari, Matt Brookes**
 
-_March 16, 2019_
+*March 16, 2019*
 
 While we are currently working on the upcoming release of Material-UI v4, we need to prioritize our
 roadmap for the coming year. To refine our focus, we launched a developer survey last month,
@@ -254,8 +255,8 @@ Multiple options were allowed.
 - Blog: 8%
 
 Dashboards are at the top of the heap, and we've long known that many of you are building internal
-systems that can't feature in [the showcase](/discover-more/showcase/). Let us know by opening a PR 
-if you're bucking that tend, and have something sparkly to share! And if you're in the 40% building UI 
+systems that can't feature in [the showcase](/discover-more/showcase/). Let us know by opening a PR
+if you're bucking that trend, and have something sparkly to share! And if you're in the 40% building UI
 components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
 section.
 
