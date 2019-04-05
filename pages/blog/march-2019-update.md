@@ -20,7 +20,7 @@ If you are wondering which you should use, we would encourage the use of `makeSt
   -import { unstable_Box as Box } from '@material-ui/core/Box';
   +import Box from '@material-ui/core/Box';
   ```
-- We have commited to [a new Roadmap](https://next.material-ui.com/discover-more/roadmap/) (prioritized) for the next 6 months.
+- We have committed to [a new Roadmap](https://next.material-ui.com/discover-more/roadmap/) (prioritized) for the next 6 months.
 - We have migrated 50% of the codebase from the Classes API to the Hooks API. Once we are done with this task we can remove the internal usage of higher-order components.
 - We have introduced [a simplified server-side rendering API](https://next.material-ui.com/css-in-js/advanced/#server-side-rendering), inspired by styled-components.
 
@@ -38,7 +38,4 @@ Don't worry, it's almost over! We will focus on providing more components once w
 
 <hr />
 
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](https://github.com/mui-org/material-ui/blob/master/BACKERS.md). If you’d like to join them, please consider:
-
-- [Become a backer or sponsor on OpenCollective.](https://opencollective.com/material-ui)
-- [Become a backer or sponsor on my Patreon.](https://www.patreon.com/oliviertassinari)
+Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](https://material-ui.com/discover-more/backers/). Please join them ✨.
