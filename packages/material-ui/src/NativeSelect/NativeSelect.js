@@ -64,7 +64,6 @@ export const styles = theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    minHeight: '1.1875em', // Reset (19px), match the native input line-height
   },
   /* Styles applied to the `Input` component `disabled` class. */
   disabled: {},
