@@ -14,7 +14,7 @@ Here are the most significant changes in March:
 Be aware [of the difference](https://next.material-ui.com/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles) between `@material-ui/core/styles` and `@material-ui/styles`.
 - The community has helped us to add many TypeScript demo variants. In order to minimize the overhead of handling two variants per demo (JavaScript & TypeScript), the JavaScript variant is generated from the TypeScript variant. If you are using TypeScript, you can ignore the `.propTypes =` assignations.
 - We have migrated a few demos from the `withStyles()` API to the `makeStyles()` API.
-People are wondering what they should use. We are encouraging the usage of `makeStyles()` where possible. `withStyles()` is interesting for overriding our components or for handling legacy class logics.
+If you are wondering which you should use, we would encourage the use of `makeStyles()` where possible. `withStyles()` is interesting for overriding component styles or for handling legacy class logics.
 - We have made the [Box API](https://next.material-ui.com/system/basics/) stable 🥳.
   ```diff
   -import { unstable_Box as Box } from '@material-ui/core/Box';
