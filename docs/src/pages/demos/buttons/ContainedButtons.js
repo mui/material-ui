@@ -6,7 +6,6 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
-
   input: {
     display: 'none',
   },
@@ -39,7 +38,6 @@ function ContainedButtons() {
         multiple
         type="file"
       />
-
       <label htmlFor="contained-button-file">
         <Button variant="contained" component="span" className={classes.button}>
           Upload

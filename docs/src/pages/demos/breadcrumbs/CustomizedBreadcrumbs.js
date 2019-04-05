@@ -13,7 +13,6 @@ const styles = theme => ({
   root: {
     padding: theme.spacing(1),
   },
-
   chip: {
     backgroundColor: theme.palette.grey[100],
     height: 24,
@@ -22,13 +21,11 @@ const styles = theme => ({
     '&:hover, &:focus': {
       backgroundColor: theme.palette.grey[300],
     },
-
     '&:active': {
       boxShadow: theme.shadows[1],
       backgroundColor: emphasize(theme.palette.grey[300], 0.12),
     },
   },
-
   avatar: {
     background: 'none',
     marginRight: -theme.spacing(1.5),
@@ -68,7 +65,6 @@ function CustomizedBreadcrumbs(props) {
           }
           onClick={handleClick}
         />
-
         <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
         <StyledBreadcrumb
           label="Accessories"

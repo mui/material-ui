@@ -9,17 +9,14 @@ const currencies = [
     value: 'USD',
     label: '$',
   },
-
   {
     value: 'EUR',
     label: '€',
   },
-
   {
     value: 'BTC',
     label: '฿',
   },
-
   {
     value: 'JPY',
     label: '¥',
@@ -31,16 +28,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
-
   dense: {
     marginTop: theme.spacing(2),
   },
-
   menu: {
     width: 200,
   },
@@ -70,7 +64,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-uncontrolled"
         label="Uncontrolled"
@@ -79,7 +72,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         required
         id="outlined-required"
@@ -89,7 +81,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         error
         id="outlined-error"
@@ -99,7 +90,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         disabled
         id="outlined-disabled"
@@ -109,7 +99,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-email-input"
         label="Email"
@@ -120,7 +109,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-password-input"
         label="Password"
@@ -130,7 +118,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-read-only-input"
         label="Read Only"
@@ -142,7 +129,6 @@ function OutlinedTextFields() {
         }}
         variant="outlined"
       />
-
       <TextField
         id="outlined-dense"
         label="Dense"
@@ -150,7 +136,6 @@ function OutlinedTextFields() {
         margin="dense"
         variant="outlined"
       />
-
       <TextField
         id="outlined-multiline-flexible"
         label="Multiline"
@@ -163,7 +148,6 @@ function OutlinedTextFields() {
         helperText="hello"
         variant="outlined"
       />
-
       <TextField
         id="outlined-multiline-static"
         label="Multiline"
@@ -174,7 +158,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-helperText"
         label="Helper text"
@@ -184,7 +167,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-with-placeholder"
         label="With placeholder"
@@ -193,7 +175,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-textarea"
         label="Multiline Placeholder"
@@ -203,7 +184,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-number"
         label="Number"
@@ -217,7 +197,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-search"
         label="Search field"
@@ -226,7 +205,6 @@ function OutlinedTextFields() {
         margin="normal"
         variant="outlined"
       />
-
       <TextField
         id="outlined-select-currency"
         select
@@ -285,7 +263,6 @@ function OutlinedTextFields() {
           shrink: true,
         }}
       />
-
       <TextField
         id="outlined-bare"
         className={classes.textField}

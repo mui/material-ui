@@ -9,17 +9,14 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 200,
   },
-
   dense: {
     marginTop: 19,
   },
-
   menu: {
     width: 200,
   },
@@ -30,17 +27,14 @@ const currencies = [
     value: 'USD',
     label: '$',
   },
-
   {
     value: 'EUR',
     label: '€',
   },
-
   {
     value: 'BTC',
     label: '฿',
   },
-
   {
     value: 'JPY',
     label: '¥',
@@ -70,7 +64,6 @@ function TextFields() {
         onChange={handleChange('name')}
         margin="normal"
       />
-
       <TextField
         id="standard-uncontrolled"
         label="Uncontrolled"
@@ -78,7 +71,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         required
         id="standard-required"
@@ -87,7 +79,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         error
         id="standard-error"
@@ -96,7 +87,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         disabled
         id="standard-disabled"
@@ -105,7 +95,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         id="standard-password-input"
         label="Password"
@@ -114,7 +103,6 @@ function TextFields() {
         autoComplete="current-password"
         margin="normal"
       />
-
       <TextField
         id="standard-read-only-input"
         label="Read Only"
@@ -125,14 +113,12 @@ function TextFields() {
           readOnly: true,
         }}
       />
-
       <TextField
         id="standard-dense"
         label="Dense"
         className={clsx(classes.textField, classes.dense)}
         margin="dense"
       />
-
       <TextField
         id="standard-multiline-flexible"
         label="Multiline"
@@ -143,7 +129,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         id="standard-multiline-static"
         label="Multiline"
@@ -153,7 +138,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         id="standard-helperText"
         label="Helper text"
@@ -162,7 +146,6 @@ function TextFields() {
         helperText="Some important text"
         margin="normal"
       />
-
       <TextField
         id="standard-with-placeholder"
         label="With placeholder"
@@ -170,7 +153,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         id="standard-textarea"
         label="With placeholder multiline"
@@ -179,7 +161,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         id="standard-number"
         label="Number"
@@ -192,7 +173,6 @@ function TextFields() {
         }}
         margin="normal"
       />
-
       <TextField
         id="standard-search"
         label="Search field"
@@ -200,7 +180,6 @@ function TextFields() {
         className={classes.textField}
         margin="normal"
       />
-
       <TextField
         id="standard-select-currency"
         select
@@ -256,7 +235,6 @@ function TextFields() {
           shrink: true,
         }}
       />
-
       <TextField
         id="standard-bare"
         className={classes.textField}

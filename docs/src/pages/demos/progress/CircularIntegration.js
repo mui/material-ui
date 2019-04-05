@@ -13,19 +13,16 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
   },
-
   wrapper: {
     margin: theme.spacing(1),
     position: 'relative',
   },
-
   buttonSuccess: {
     backgroundColor: green[500],
     '&:hover': {
       backgroundColor: green[700],
     },
   },
-
   fabProgress: {
     color: green[500],
     position: 'absolute',
@@ -33,7 +30,6 @@ const useStyles = makeStyles(theme => ({
     left: -6,
     zIndex: 1,
   },
-
   buttonProgress: {
     color: green[500],
     position: 'absolute',

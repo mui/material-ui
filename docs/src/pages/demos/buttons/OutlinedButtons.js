@@ -6,7 +6,6 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
-
   input: {
     display: 'none',
   },
@@ -39,7 +38,6 @@ function OutlinedButtons() {
         multiple
         type="file"
       />
-
       <label htmlFor="outlined-button-file">
         <Button variant="outlined" component="span" className={classes.button}>
           Upload

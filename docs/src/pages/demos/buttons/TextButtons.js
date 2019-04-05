@@ -6,7 +6,6 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
-
   input: {
     display: 'none',
   },
@@ -37,7 +36,6 @@ function TextButtons() {
         multiple
         type="file"
       />
-
       <label htmlFor="text-button-file">
         <Button component="span" className={classes.button}>
           Upload

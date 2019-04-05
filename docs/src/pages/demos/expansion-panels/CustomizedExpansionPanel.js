@@ -12,12 +12,10 @@ const ExpansionPanel = withStyles({
     '&:not(:last-child)': {
       borderBottom: 0,
     },
-
     '&:before': {
       display: 'none',
     },
   },
-
   expanded: {
     margin: 'auto',
   },
@@ -33,13 +31,11 @@ const ExpansionPanelSummary = withStyles({
       minHeight: 56,
     },
   },
-
   content: {
     '&$expanded': {
       margin: '12px 0',
     },
   },
-
   expanded: {},
 })(props => <MuiExpansionPanelSummary {...props} />);
 

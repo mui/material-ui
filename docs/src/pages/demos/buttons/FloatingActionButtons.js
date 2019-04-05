@@ -10,7 +10,6 @@ const useStyles = makeStyles(theme => ({
   fab: {
     margin: theme.spacing(1),
   },
-
   extendedIcon: {
     marginRight: theme.spacing(1),
   },

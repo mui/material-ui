@@ -9,17 +9,14 @@ const currencies = [
     value: 'USD',
     label: '$',
   },
-
   {
     value: 'EUR',
     label: '€',
   },
-
   {
     value: 'BTC',
     label: '฿',
   },
-
   {
     value: 'JPY',
     label: '¥',
@@ -31,16 +28,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
-
   dense: {
     marginTop: 16,
   },
-
   menu: {
     width: 200,
   },
@@ -70,7 +64,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-uncontrolled"
         label="Uncontrolled"
@@ -79,7 +72,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         required
         id="filled-required"
@@ -89,7 +81,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         error
         id="filled-error"
@@ -99,7 +90,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         disabled
         id="filled-disabled"
@@ -109,7 +99,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-email-input"
         label="Email"
@@ -120,7 +109,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-password-input"
         label="Password"
@@ -130,7 +118,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-read-only-input"
         label="Read Only"
@@ -142,7 +129,6 @@ function FilledTextFields() {
         }}
         variant="filled"
       />
-
       <TextField
         id="filled-dense"
         label="Dense"
@@ -150,7 +136,6 @@ function FilledTextFields() {
         margin="dense"
         variant="filled"
       />
-
       <TextField
         id="filled-multiline-flexible"
         label="Multiline"
@@ -163,7 +148,6 @@ function FilledTextFields() {
         helperText="hello"
         variant="filled"
       />
-
       <TextField
         id="filled-multiline-static"
         label="Multiline"
@@ -174,7 +158,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-helperText"
         label="Helper text"
@@ -184,7 +167,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-with-placeholder"
         label="With placeholder"
@@ -193,7 +175,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-textarea"
         label="Multiline Placeholder"
@@ -203,7 +184,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-number"
         label="Number"
@@ -217,7 +197,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-search"
         label="Search field"
@@ -226,7 +205,6 @@ function FilledTextFields() {
         margin="normal"
         variant="filled"
       />
-
       <TextField
         id="filled-select-currency"
         select
@@ -285,7 +263,6 @@ function FilledTextFields() {
           shrink: true,
         }}
       />
-
       <TextField
         id="filled-bare"
         className={classes.textField}

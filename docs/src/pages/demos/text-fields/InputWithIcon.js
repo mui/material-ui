@@ -43,7 +43,6 @@ function InputWithIcon(props) {
           ),
         }}
       />
-
       <div className={classes.margin}>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item>

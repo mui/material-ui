@@ -17,37 +17,31 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   margin: {
     margin: theme.spacing(1),
   },
-
   cssLabel: {
     '&$cssFocused': {
       color: purple[500],
     },
   },
-
   cssFocused: {},
   cssUnderline: {
     '&:after': {
       borderBottomColor: purple[500],
     },
   },
-
   cssOutlinedInput: {
     '&$cssFocused $notchedOutline': {
       borderColor: purple[500],
     },
   },
-
   notchedOutline: {},
   bootstrapRoot: {
     'label + &': {
       marginTop: theme.spacing(3),
     },
   },
-
   bootstrapInput: {
     borderRadius: 4,
     position: 'relative',
@@ -75,11 +69,9 @@ const styles = theme => ({
       borderColor: theme.palette.primary.main,
     },
   },
-
   bootstrapFormLabel: {
     fontSize: 18,
   },
-
   redditRoot: {
     border: '1px solid #e2e2e1',
     overflow: 'hidden',
@@ -89,7 +81,6 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: '#fff',
     },
-
     '&.focused': {
       backgroundColor: '#fff',
       boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
@@ -145,14 +136,12 @@ function CustomizedInputs(props) {
         variant="outlined"
         id="custom-css-outlined-input"
       />
-
       <ThemeProvider theme={theme}>
         <TextField
           className={classes.margin}
           label="ThemeProvider"
           id="mui-theme-provider-standard-input"
         />
-
         <TextField
           className={classes.margin}
           label="ThemeProvider"

@@ -49,12 +49,10 @@ const styles = theme => ({
     flexDirection: 'column',
     width: 360,
   },
-
   lists: {
     backgroundColor: theme.palette.background.paper,
     marginTop: theme.spacing(1),
   },
-
   nested: {
     paddingLeft: theme.spacing(4),
   },

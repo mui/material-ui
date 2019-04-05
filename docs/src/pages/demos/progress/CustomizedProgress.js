@@ -10,41 +10,33 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-
   progress: {
     margin: theme.spacing(2),
     color: '#00695c',
   },
-
   linearColorPrimary: {
     backgroundColor: '#b2dfdb',
   },
-
   linearBarColorPrimary: {
     backgroundColor: '#00695c',
   },
-
   linearProgressDeterminate: {
     margin: `${theme.spacing(1)}px auto 0`,
     height: 10,
     backgroundColor: lighten('#ff6c5c', 0.5),
   },
-
   linearProgressDeterminateBar: {
     borderRadius: 20,
     backgroundColor: '#ff6c5c',
   },
-
   // Reproduce the Facebook spinners.
   facebook: {
     margin: theme.spacing(2),
     position: 'relative',
   },
-
   facebook1: {
     color: '#eef3fd',
   },
-
   facebook2: {
     color: '#6798e5',
     animationDuration: '550ms',
@@ -65,7 +57,6 @@ function CustomizedProgress(props) {
           barColorPrimary: classes.linearBarColorPrimary,
         }}
       />
-
       <LinearProgress
         variant="determinate"
         color="secondary"
@@ -75,7 +66,6 @@ function CustomizedProgress(props) {
           bar: classes.linearProgressDeterminateBar,
         }}
       />
-
       <div className={classes.facebook}>
         <CircularProgress
           variant="determinate"
@@ -84,7 +74,6 @@ function CustomizedProgress(props) {
           size={24}
           thickness={4}
         />
-
         <CircularProgress
           variant="indeterminate"
           disableShrink

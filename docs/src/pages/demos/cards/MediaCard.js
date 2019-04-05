@@ -13,7 +13,6 @@ const styles = {
   card: {
     maxWidth: 345,
   },
-
   media: {
     height: 140,
   },
@@ -29,7 +28,6 @@ function MediaCard(props) {
           image="/static/images/cards/contemplative-reptile.jpg"
           title="Contemplative Reptile"
         />
-
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Lizard

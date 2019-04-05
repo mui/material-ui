@@ -13,11 +13,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-
   menuButton: {
     marginRight: theme.spacing(2),
   },
-
   title: {
     flexGrow: 1,
     display: 'none',
@@ -25,7 +23,6 @@ const useStyles = makeStyles(theme => ({
       display: 'block',
     },
   },
-
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -33,7 +30,6 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -41,7 +37,6 @@ const useStyles = makeStyles(theme => ({
       width: 'auto',
     },
   },
-
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
@@ -51,11 +46,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   inputRoot: {
     color: 'inherit',
   },
-
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),

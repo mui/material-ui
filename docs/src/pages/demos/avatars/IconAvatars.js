@@ -12,13 +12,11 @@ const useStyles = makeStyles({
   avatar: {
     margin: 10,
   },
-
   pinkAvatar: {
     margin: 10,
     color: '#fff',
     backgroundColor: pink[500],
   },
-
   greenAvatar: {
     margin: 10,
     color: '#fff',

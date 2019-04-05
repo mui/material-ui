@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     padding: theme.spacing(0.5),
   },
-
   chip: {
     margin: theme.spacing(0.5),
   },

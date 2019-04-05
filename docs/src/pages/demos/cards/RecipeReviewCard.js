@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 400,
   },
-
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -28,7 +27,6 @@ const useStyles = makeStyles(theme => ({
   actions: {
     display: 'flex',
   },
-
   expand: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
@@ -36,11 +34,9 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-
   avatar: {
     backgroundColor: red[500],
   },
@@ -70,13 +66,11 @@ function RecipeReviewCard() {
         title="Shrimp and Chorizo Paella"
         subheader="September 14, 2016"
       />
-
       <CardMedia
         className={classes.media}
         image="/static/images/cards/paella.jpg"
         title="Paella dish"
       />
-
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook together with your

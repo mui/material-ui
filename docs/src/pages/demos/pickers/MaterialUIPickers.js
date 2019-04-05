@@ -35,7 +35,6 @@ class MaterialUIPickers extends React.Component {
             value={selectedDate}
             onChange={this.handleDateChange}
           />
-
           <TimePicker
             margin="normal"
             label="Time picker"

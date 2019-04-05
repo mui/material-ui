@@ -7,11 +7,9 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
-
   customWidth: {
     maxWidth: 500,
   },
-
   noMaxWidth: {
     maxWidth: 'none',
   },

@@ -20,18 +20,15 @@ const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
   },
-
   menuButton: {
     marginRight: theme.spacing(2),
   },
-
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
-
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -39,7 +36,6 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
@@ -48,7 +44,6 @@ const useStyles = makeStyles(theme => ({
       width: 'auto',
     },
   },
-
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
@@ -58,11 +53,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   inputRoot: {
     color: 'inherit',
   },
-
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
@@ -71,14 +64,12 @@ const useStyles = makeStyles(theme => ({
       width: 200,
     },
   },
-
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
   },
-
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {

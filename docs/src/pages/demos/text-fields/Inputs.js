@@ -8,7 +8,6 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   input: {
     margin: theme.spacing(1),
   },
@@ -25,7 +24,6 @@ function Inputs(props) {
           'aria-label': 'Description',
         }}
       />
-
       <Input
         placeholder="Placeholder"
         className={classes.input}
@@ -33,7 +31,6 @@ function Inputs(props) {
           'aria-label': 'Description',
         }}
       />
-
       <Input
         value="Disabled"
         className={classes.input}
@@ -42,7 +39,6 @@ function Inputs(props) {
           'aria-label': 'Description',
         }}
       />
-
       <Input
         defaultValue="Error"
         className={classes.input}

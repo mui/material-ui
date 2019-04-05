@@ -32,15 +32,12 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
-
   tabsRoot: {
     borderBottom: '1px solid #e8e8e8',
   },
-
   tabsIndicator: {
     backgroundColor: '#1890ff',
   },
-
   tabRoot: {
     textTransform: 'none',
     minWidth: 72,
@@ -62,22 +59,18 @@ const useStyles = makeStyles(theme => ({
       color: '#40a9ff',
       opacity: 1,
     },
-
     '&$tabSelected': {
       color: '#1890ff',
       fontWeight: theme.typography.fontWeightMedium,
     },
-
     '&:focus': {
       color: '#40a9ff',
     },
   },
-
   tabSelected: {},
   typography: {
     padding: theme.spacing(3),
   },
-
   demo2: {
     backgroundColor: '#2e1534',
   },
@@ -103,13 +96,11 @@ function CustomizedTabs() {
           classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
           label="Tab 1"
         />
-
         <Tab
           disableRipple
           classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
           label="Tab 2"
         />
-
         <Tab
           disableRipple
           classes={{ root: classes.tabRoot, selected: classes.tabSelected }}

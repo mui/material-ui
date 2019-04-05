@@ -15,11 +15,9 @@ const styles = theme => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-
   dividerFullWidth: {
     margin: `5px 0 0 ${theme.spacing(2)}px`,
   },
-
   dividerInset: {
     margin: `5px 0 0 ${theme.spacing(9)}px`,
   },

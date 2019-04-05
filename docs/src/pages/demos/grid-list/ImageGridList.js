@@ -13,7 +13,6 @@ const styles = theme => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
-
   gridList: {
     width: 500,
     height: 450,

@@ -9,13 +9,11 @@ const images = [
     title: 'Breakfast',
     width: '40%',
   },
-
   {
     url: '/static/images/grid-list/burgers.jpg',
     title: 'Burgers',
     width: '30%',
   },
-
   {
     url: '/static/images/grid-list/camera.jpg',
     title: 'Camera',
@@ -30,7 +28,6 @@ const useStyles = makeStyles(theme => ({
     minWidth: 300,
     width: '100%',
   },
-
   image: {
     position: 'relative',
     height: 200,
@@ -38,23 +35,19 @@ const useStyles = makeStyles(theme => ({
       width: '100% !important', // Overrides inline-style
       height: 100,
     },
-
     '&:hover, &$focusVisible': {
       zIndex: 1,
       '& $imageBackdrop': {
         opacity: 0.15,
       },
-
       '& $imageMarked': {
         opacity: 0,
       },
-
       '& $imageTitle': {
         border: '4px solid currentColor',
       },
     },
   },
-
   focusVisible: {},
   imageButton: {
     position: 'absolute',
@@ -67,7 +60,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     color: theme.palette.common.white,
   },
-
   imageSrc: {
     position: 'absolute',
     left: 0,
@@ -77,7 +69,6 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center 40%',
   },
-
   imageBackdrop: {
     position: 'absolute',
     left: 0,
@@ -88,12 +79,10 @@ const useStyles = makeStyles(theme => ({
     opacity: 0.4,
     transition: theme.transitions.create('opacity'),
   },
-
   imageTitle: {
     position: 'relative',
     padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
   },
-
   imageMarked: {
     height: 3,
     width: 18,
@@ -126,7 +115,6 @@ function ButtonBases() {
               backgroundImage: `url(${image.url})`,
             }}
           />
-
           <span className={classes.imageBackdrop} />
           <span className={classes.imageButton}>
             <Typography

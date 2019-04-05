@@ -17,7 +17,6 @@ function arrowGenerator(color) {
         borderColor: `transparent transparent ${color} transparent`,
       },
     },
-
     '&[x-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
@@ -29,7 +28,6 @@ function arrowGenerator(color) {
         borderColor: `${color} transparent transparent transparent`,
       },
     },
-
     '&[x-placement*="right"] $arrow': {
       left: 0,
       marginLeft: '-0.95em',
@@ -40,7 +38,6 @@ function arrowGenerator(color) {
         borderColor: `transparent ${color} transparent transparent`,
       },
     },
-
     '&[x-placement*="left"] $arrow': {
       right: 0,
       marginRight: '-0.95em',
@@ -58,14 +55,12 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
-
   lightTooltip: {
     backgroundColor: theme.palette.common.white,
     color: 'rgba(0, 0, 0, 0.87)',
     boxShadow: theme.shadows[1],
     fontSize: 11,
   },
-
   arrowPopper: arrowGenerator(theme.palette.grey[700]),
   arrow: {
     position: 'absolute',
@@ -81,28 +76,22 @@ const useStyles = makeStyles(theme => ({
       borderStyle: 'solid',
     },
   },
-
   bootstrapPopper: arrowGenerator(theme.palette.common.black),
   bootstrapTooltip: {
     backgroundColor: theme.palette.common.black,
   },
-
   bootstrapPlacementLeft: {
     margin: '0 8px',
   },
-
   bootstrapPlacementRight: {
     margin: '0 8px',
   },
-
   bootstrapPlacementTop: {
     margin: '8px 0',
   },
-
   bootstrapPlacementBottom: {
     margin: '8px 0',
   },
-
   htmlPopper: arrowGenerator('#dadde9'),
   htmlTooltip: {
     backgroundColor: '#f5f5f9',

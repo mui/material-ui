@@ -17,17 +17,14 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.background.paper,
     },
   },
-
   menuButton: {
     marginRight: theme.spacing(2),
   },
-
   fab: {
     position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
-
   snackbar: {
     [theme.breakpoints.down('xs')]: {
       bottom: 90,

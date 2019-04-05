@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(2),
   },
-
   padding: {
     padding: theme.spacing(0, 2),
   },
@@ -46,7 +45,6 @@ function SimpleBadge() {
               </Badge>
             }
           />
-
           <Tab label="Item Two" />
           <Tab label="Item Three" />
         </Tabs>

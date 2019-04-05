@@ -13,12 +13,10 @@ const ranges = [
     value: '0-20',
     label: '0 to 20',
   },
-
   {
     value: '21-50',
     label: '21 to 50',
   },
-
   {
     value: '51-100',
     label: '51 to 100',
@@ -30,11 +28,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   margin: {
     margin: theme.spacing(1),
   },
-
   textField: {
     flexBasis: 200,
   },
@@ -69,7 +65,6 @@ function FilledInputAdornments() {
           startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
         }}
       />
-
       <TextField
         select
         className={clsx(classes.margin, classes.textField)}
@@ -98,7 +93,6 @@ function FilledInputAdornments() {
           startAdornment: <InputAdornment position="start">$</InputAdornment>,
         }}
       />
-
       <TextField
         id="filled-adornment-weight"
         className={clsx(classes.margin, classes.textField)}
@@ -111,7 +105,6 @@ function FilledInputAdornments() {
           endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
         }}
       />
-
       <TextField
         id="filled-adornment-password"
         className={clsx(classes.margin, classes.textField)}

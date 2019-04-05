@@ -36,13 +36,11 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     minHeight: 200,
   },
-
   fab: {
     position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
-
   fabGreen: {
     color: theme.palette.common.white,
     backgroundColor: green[500],
@@ -76,13 +74,11 @@ function FloatingActionButtonZoom() {
       className: classes.fab,
       icon: <AddIcon />,
     },
-
     {
       color: 'secondary',
       className: classes.fab,
       icon: <EditIcon />,
     },
-
     {
       color: 'inherit',
       className: clsx(classes.fab, classes.fabGreen),

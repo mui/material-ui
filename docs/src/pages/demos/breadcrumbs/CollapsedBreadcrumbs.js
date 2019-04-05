@@ -13,7 +13,6 @@ const styles = theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
-
   paper: {
     padding: theme.spacing(1, 2),
   },

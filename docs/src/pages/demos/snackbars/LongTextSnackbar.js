@@ -14,7 +14,6 @@ const styles = theme => ({
   root: {
     maxWidth: 600,
   },
-
   snackbar: {
     margin: theme.spacing(1),
   },
@@ -33,13 +32,11 @@ function LongTextSnackbar(props) {
           I love cheesecake. I love chocolate.'
         }
       />
-
       <SnackbarContent
         className={classes.snackbar}
         message="I love candy. I love cookies. I love cupcakes."
         action={action}
       />
-
       <SnackbarContent
         className={classes.snackbar}
         message={

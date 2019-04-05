@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
-
   primary: {},
   icon: {},
 }));

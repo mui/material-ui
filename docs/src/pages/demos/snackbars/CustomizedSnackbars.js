@@ -25,28 +25,22 @@ const useStyles1 = makeStyles(theme => ({
   success: {
     backgroundColor: green[600],
   },
-
   error: {
     backgroundColor: theme.palette.error.dark,
   },
-
   info: {
     backgroundColor: theme.palette.primary.dark,
   },
-
   warning: {
     backgroundColor: amber[700],
   },
-
   icon: {
     fontSize: 20,
   },
-
   iconVariant: {
     opacity: 0.9,
     marginRight: theme.spacing(1),
   },
-
   message: {
     display: 'flex',
     alignItems: 'center',
@@ -138,19 +132,16 @@ function CustomizedSnackbars() {
         className={classes.margin}
         message="This is an error message!"
       />
-
       <MySnackbarContentWrapper
         variant="warning"
         className={classes.margin}
         message="This is a warning message!"
       />
-
       <MySnackbarContentWrapper
         variant="info"
         className={classes.margin}
         message="This is an information message!"
       />
-
       <MySnackbarContentWrapper
         variant="success"
         className={classes.margin}

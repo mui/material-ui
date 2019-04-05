@@ -12,7 +12,6 @@ const styles = theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
-
   chip: {
     margin: theme.spacing(1),
   },
@@ -38,7 +37,6 @@ function OutlinedChips(props) {
         className={classes.chip}
         variant="outlined"
       />
-
       <Chip
         avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
         label="Deletable Chip"
@@ -46,7 +44,6 @@ function OutlinedChips(props) {
         className={classes.chip}
         variant="outlined"
       />
-
       <Chip
         avatar={
           <Avatar>
@@ -59,7 +56,6 @@ function OutlinedChips(props) {
         className={classes.chip}
         variant="outlined"
       />
-
       <Chip
         icon={<FaceIcon />}
         label="Clickable Deletable Chip"
@@ -68,7 +64,6 @@ function OutlinedChips(props) {
         className={classes.chip}
         variant="outlined"
       />
-
       <Chip
         label="Custom delete icon Chip"
         onClick={handleClick}
@@ -77,7 +72,6 @@ function OutlinedChips(props) {
         deleteIcon={<DoneIcon />}
         variant="outlined"
       />
-
       <Chip
         label="Clickable Link Chip"
         className={classes.chip}
@@ -86,7 +80,6 @@ function OutlinedChips(props) {
         clickable
         variant="outlined"
       />
-
       <Chip
         avatar={<Avatar>MB</Avatar>}
         label="Primary Clickable Chip"
@@ -97,7 +90,6 @@ function OutlinedChips(props) {
         deleteIcon={<DoneIcon />}
         variant="outlined"
       />
-
       <Chip
         icon={<FaceIcon />}
         label="Primary Clickable Chip"
@@ -108,7 +100,6 @@ function OutlinedChips(props) {
         deleteIcon={<DoneIcon />}
         variant="outlined"
       />
-
       <Chip
         label="Deletable Primary Chip"
         onDelete={handleDelete}
@@ -116,7 +107,6 @@ function OutlinedChips(props) {
         color="primary"
         variant="outlined"
       />
-
       <Chip
         avatar={
           <Avatar>
@@ -129,7 +119,6 @@ function OutlinedChips(props) {
         color="secondary"
         variant="outlined"
       />
-
       <Chip
         icon={<FaceIcon />}
         label="Deletable Secondary Chip"

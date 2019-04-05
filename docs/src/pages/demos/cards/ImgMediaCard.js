@@ -27,7 +27,6 @@ function ImgMediaCard(props) {
           image="/static/images/cards/contemplative-reptile.jpg"
           title="Contemplative Reptile"
         />
-
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Lizard

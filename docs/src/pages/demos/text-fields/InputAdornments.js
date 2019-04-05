@@ -17,12 +17,10 @@ const ranges = [
     value: '0-20',
     label: '0 to 20',
   },
-
   {
     value: '21-50',
     label: '21 to 50',
   },
-
   {
     value: '51-100',
     label: '51 to 100',
@@ -34,15 +32,12 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   margin: {
     margin: theme.spacing(1),
   },
-
   withoutLabel: {
     marginTop: theme.spacing(3),
   },
-
   textField: {
     flexBasis: 200,
   },
@@ -76,7 +71,6 @@ function InputAdornments() {
           startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
         }}
       />
-
       <TextField
         select
         label="With Select"
@@ -113,7 +107,6 @@ function InputAdornments() {
             'aria-label': 'Weight',
           }}
         />
-
         <FormHelperText id="weight-helper-text">Weight</FormHelperText>
       </FormControl>
       <FormControl className={clsx(classes.margin, classes.textField)}>

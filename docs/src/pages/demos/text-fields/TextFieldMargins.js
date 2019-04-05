@@ -8,7 +8,6 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -28,7 +27,6 @@ const TextFieldMargins = props => {
         className={classes.textField}
         helperText="Some important text"
       />
-
       <TextField
         label="Dense"
         id="margin-dense"
@@ -37,7 +35,6 @@ const TextFieldMargins = props => {
         helperText="Some important text"
         margin="dense"
       />
-
       <TextField
         label="Normal"
         id="margin-normal"
