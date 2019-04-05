@@ -85,3 +85,11 @@ Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all 
 ## Inset List
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
+
+## Virtualized List
+
+In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component.
+It renders 200 rows and can easily handle more.
+Virtualization helps with performance issues.
+
+{{"demo": "pages/demos/lists/VirtualizedList.js"}}

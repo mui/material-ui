@@ -4,11 +4,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { getTransitionProps } from '../transitions/utils';
 import NoSsr from '../NoSsr';
+import withForwardedRef from '../utils/withForwardedRef';
 import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to
@@ -326,11 +328,13 @@ class SwipeableDrawer extends React.Component {
   };
 
   handleBackdropRef = ref => {
-    this.backdropRef = ref ? ReactDOM.findDOMNode(ref) : null;
+    // #StrictMode ready
+    this.backdropRef = ReactDOM.findDOMNode(ref);
   };
 
   handlePaperRef = ref => {
-    this.paperRef = ref ? ReactDOM.findDOMNode(ref) : null;
+    // #StrictMode ready
+    this.paperRef = ReactDOM.findDOMNode(ref);
   };
 
   listenTouchStart() {
@@ -354,6 +358,7 @@ class SwipeableDrawer extends React.Component {
       disableDiscovery,
       disableSwipeToOpen,
       hysteresis,
+      innerRef,
       minFlingVelocity,
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
@@ -387,6 +392,7 @@ class SwipeableDrawer extends React.Component {
             ref: this.handlePaperRef,
           }}
           anchor={anchor}
+          ref={innerRef}
           {...other}
         />
         {!disableSwipeToOpen && variant === 'temporary' && (
@@ -434,6 +440,11 @@ SwipeableDrawer.propTypes = {
    */
   hysteresis: PropTypes.number,
   /**
+   * @ignore
+   * from `withForwardedRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Defines, from which (average) velocity on, the swipe is
    * defined as complete although hysteresis isn't reached.
    * Good threshold is between 250 - 1000 px/s
@@ -442,7 +453,11 @@ SwipeableDrawer.propTypes = {
   /**
    * @ignore
    */
-  ModalProps: PropTypes.object,
+  ModalProps: PropTypes.shape({
+    BackdropProps: PropTypes.shape({
+      component: elementTypeAcceptingRef,
+    }),
+  }),
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -462,7 +477,9 @@ SwipeableDrawer.propTypes = {
   /**
    * @ignore
    */
-  PaperProps: PropTypes.object,
+  PaperProps: PropTypes.shape({
+    component: elementTypeAcceptingRef,
+  }),
   /**
    * Properties applied to the swipe area element.
    */
@@ -503,4 +520,4 @@ SwipeableDrawer.defaultProps = {
   variant: 'temporary', // Mobile first.
 };
 
-export default withTheme(SwipeableDrawer);
+export default withTheme(withForwardedRef(SwipeableDrawer));

@@ -63,7 +63,7 @@ const pages = [
         pathname: '/layout/grid',
       },
       {
-        pathname: '/layout/layout',
+        pathname: '/layout/container',
       },
       {
         pathname: '/layout/breakpoints',
@@ -248,9 +248,6 @@ const pages = [
       },
       {
         pathname: '/lab/toggle-button',
-      },
-      {
-        pathname: '/lab/layout',
       },
       {
         ...findPages[2].children[1],

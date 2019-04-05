@@ -87,6 +87,7 @@ module.exports = {
       ],
     },
     'docs-development': {
+      presets: ['@zeit/next-typescript/babel'],
       plugins: [
         'babel-plugin-preval',
         [
@@ -106,7 +107,7 @@ module.exports = {
       ],
     },
     'docs-production': {
-      presets: ['next/babel'],
+      presets: ['next/babel', '@zeit/next-typescript/babel'],
       plugins: [
         'babel-plugin-preval',
         [

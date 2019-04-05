@@ -1,7 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, createShallow, getClasses, testRef } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Backdrop from './Backdrop';
+import Fade from '../Fade';
 
 describe('<Backdrop />', () => {
   let mount;
@@ -18,13 +24,17 @@ describe('<Backdrop />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(<Backdrop open />, () => ({
+    classes,
+    inheritComponent: Fade,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
+
   it('should render a backdrop div', () => {
     const wrapper = shallow(<Backdrop open className="woofBackdrop" />);
     assert.strictEqual(wrapper.childAt(0).hasClass('woofBackdrop'), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
-  });
-
-  it('does forward refs', () => {
-    testRef(<Backdrop open />, mount);
   });
 });

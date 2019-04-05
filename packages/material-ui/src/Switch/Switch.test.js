@@ -1,18 +1,44 @@
 import React from 'react';
 import { assert } from 'chai';
 import clsx from 'clsx';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
 
 describe('<Switch />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ untilSelector: 'span' });
     classes = getClasses(<Switch />);
   });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(<Switch />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLSpanElement,
+  }));
+
+  /* TODO Switch violates root component
+  describeConformance(<Switch />, () => ({
+    classes,
+    inheritComponent: IconButton,
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: false,
+  })); */
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
@@ -27,12 +53,6 @@ describe('<Switch />', () => {
 
     beforeEach(() => {
       wrapper = shallow(<Switch className="foo" />);
-    });
-
-    it('should render a span with the root and user classes', () => {
-      assert.strictEqual(wrapper.name(), 'span');
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('foo'), true);
     });
 
     it('should render SwitchBase with a custom span icon with the thumb class', () => {

@@ -244,7 +244,7 @@ function generateProps(reactAPI) {
       return textProps;
     }
 
-    let defaultValue = '\u00a0';
+    let defaultValue = '';
 
     if (prop.defaultValue) {
       defaultValue = `<span class="prop-default">${escapeCell(
@@ -255,7 +255,7 @@ function generateProps(reactAPI) {
     const chainedPropType = getChained(prop.type);
 
     if (prop.required || (chainedPropType !== false && chainedPropType.required)) {
-      propRaw = `<span class="prop-name required">${propRaw}\u00a0*</span>`;
+      propRaw = `<span class="prop-name required">${propRaw}&nbsp;*</span>`;
     } else {
       propRaw = `<span class="prop-name">${propRaw}</span>`;
     }
@@ -272,6 +272,14 @@ function generateProps(reactAPI) {
 
     return textProps;
   }, text);
+
+  let refHint = 'The `ref` is forwarded to the root element.';
+  if (reactAPI.forwardsRefTo == null) {
+    refHint = 'The component cannot hold a ref.';
+  } else if (reactAPI.forwardsRefTo === 'React.Component') {
+    refHint = 'The `ref` is attached to a component class.';
+  }
+  text = `${text}\n${refHint}\n`;
 
   if (reactAPI.spread) {
     text = `${text}

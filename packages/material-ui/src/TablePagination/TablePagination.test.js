@@ -1,12 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import {
-  createShallow,
-  createMount,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Select from '../Select';
 import IconButton from '../IconButton';
@@ -19,14 +14,23 @@ import TablePagination from './TablePagination';
 describe('<TablePagination />', () => {
   const noop = () => {};
   let classes;
-  let shallow;
   let mount;
+
+  function mountInTable(node) {
+    const wrapper = mount(
+      <table>
+        <tbody>
+          <tr>{node}</tr>
+        </tbody>
+      </table>,
+    );
+    return wrapper.find('tr').childAt(0);
+  }
 
   before(() => {
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
     );
-    shallow = createShallow({ dive: true });
     mount = createMount();
   });
 
@@ -34,79 +38,17 @@ describe('<TablePagination />', () => {
     mount.cleanUp();
   });
 
-  it('should render a TableCell', () => {
-    const wrapper = mount(
-      <table>
-        <tbody>
-          <tr>
-            <TablePagination
-              count={1}
-              page={0}
-              onChangePage={noop}
-              onChangeRowsPerPage={noop}
-              rowsPerPage={5}
-            />
-          </tr>
-        </tbody>
-      </table>,
-    );
-    assert.strictEqual(wrapper.find(TableCell).hasClass(classes.root), true);
-  });
-
-  it('should spread custom props on the root node', () => {
-    const wrapper = shallow(
-      <TablePagination
-        count={1}
-        page={0}
-        onChangePage={noop}
-        onChangeRowsPerPage={noop}
-        rowsPerPage={5}
-        data-my-prop="woofTablePagination"
-      />,
-    );
-    assert.strictEqual(
-      wrapper.props()['data-my-prop'],
-      'woofTablePagination',
-      'custom prop should be woofTablePagination',
-    );
-  });
-
-  describe('prop: component', () => {
-    it('should render a TableCell by default', () => {
-      const wrapper = mount(
-        <table>
-          <tbody>
-            <tr>
-              <TablePagination
-                count={1}
-                page={0}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
-                rowsPerPage={5}
-              />
-            </tr>
-          </tbody>
-        </table>,
-      );
-      assert.strictEqual(wrapper.find(TableCell).hasClass(classes.root), true);
-      assert.notStrictEqual(wrapper.find('td').props().colSpan, undefined);
-    });
-
-    it('should be able to use outside of the table', () => {
-      const wrapper = mount(
-        <TablePagination
-          component="div"
-          count={1}
-          page={0}
-          onChangePage={noop}
-          onChangeRowsPerPage={noop}
-          rowsPerPage={5}
-        />,
-      );
-      assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
-      assert.strictEqual(wrapper.props().colSpan, undefined);
-    });
-  });
+  describeConformance(
+    <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
+    () => ({
+      classes,
+      inheritComponent: TableCell,
+      mount: mountInTable,
+      refInstanceof: window.HTMLTableCellElement,
+      // can only use `td` in a tr so we just fake a different component
+      testComponentPropWith: props => <td {...props} />,
+    }),
+  );
 
   describe('mount', () => {
     it('should use the labelDisplayedRows callback', () => {

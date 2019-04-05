@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -44,7 +43,7 @@ const BootstrapInput = withStyles(theme => ({
   },
 }))(InputBase);
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -55,61 +54,56 @@ const styles = theme => ({
   bootstrapFormLabel: {
     fontSize: 18,
   },
-});
+}));
 
-class CustomizedSelects extends React.Component {
-  state = {
-    age: '',
+function CustomizedSelects() {
+  const classes = useStyles();
+  const [age, setAge] = React.useState('');
+  const handleChange = event => {
+    setAge(event.target.value);
   };
-
-  handleChange = event => {
-    this.setState({ age: event.target.value });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <form className={classes.root} autoComplete="off">
-        <FormControl className={classes.margin}>
-          <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
-            Age
-          </InputLabel>
-          <Select
-            value={this.state.age}
-            onChange={this.handleChange}
-            input={<BootstrapInput name="age" id="age-customized-select" />}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl className={classes.margin}>
-          <InputLabel htmlFor="age-customized-native-simple" className={classes.bootstrapFormLabel}>
-            Age
-          </InputLabel>
-          <NativeSelect
-            value={this.state.age}
-            onChange={this.handleChange}
-            input={<BootstrapInput name="age" id="age-customized-native-simple" />}
-          >
-            <option value="" />
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
-          </NativeSelect>
-        </FormControl>
-      </form>
-    );
-  }
+  return (
+    <form className={classes.root} autoComplete="off">
+      <FormControl className={classes.margin}>
+        <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
+          Age
+        </InputLabel>
+        <BootstrapInput />
+      </FormControl>
+      <FormControl className={classes.margin}>
+        <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
+          Age
+        </InputLabel>
+        <Select
+          value={age}
+          onChange={handleChange}
+          input={<BootstrapInput name="age" id="age-customized-select" />}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl className={classes.margin}>
+        <InputLabel htmlFor="age-customized-native-simple" className={classes.bootstrapFormLabel}>
+          Age
+        </InputLabel>
+        <NativeSelect
+          value={age}
+          onChange={handleChange}
+          input={<BootstrapInput name="age" id="age-customized-native-simple" />}
+        >
+          <option value="" />
+          <option value={10}>Ten</option>
+          <option value={20}>Twenty</option>
+          <option value={30}>Thirty</option>
+        </NativeSelect>
+      </FormControl>
+    </form>
+  );
 }
 
-CustomizedSelects.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedSelects);
+export default CustomizedSelects;

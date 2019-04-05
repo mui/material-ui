@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, Theme, WithStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     fab: {
       margin: theme.spacing(2),
@@ -17,10 +16,11 @@ const styles = (theme: Theme) =>
       bottom: theme.spacing(2),
       right: theme.spacing(3),
     },
-  });
+  }),
+);
 
-function SimpleTooltips(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+function SimpleTooltips() {
+  const classes = useStyles();
   return (
     <div>
       <Tooltip title="Delete">
@@ -42,8 +42,4 @@ function SimpleTooltips(props: WithStyles<typeof styles>) {
   );
 }
 
-SimpleTooltips.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(SimpleTooltips);
+export default SimpleTooltips;

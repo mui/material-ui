@@ -1,12 +1,14 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Input from './Input';
+import InputBase from '../InputBase';
 
 describe('<Input />', () => {
+  let classes;
   let mount;
 
   before(() => {
+    classes = getClasses(<Input />);
     mount = createMount();
   });
 
@@ -14,8 +16,11 @@ describe('<Input />', () => {
     mount.cleanUp();
   });
 
-  it('should render a <div />', () => {
-    const wrapper = mount(<Input />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
-  });
+  describeConformance(<Input />, () => ({
+    classes,
+    inheritComponent: InputBase,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 });

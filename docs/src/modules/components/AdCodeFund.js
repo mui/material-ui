@@ -20,6 +20,7 @@ const styles = theme => ({
         verticalAlign: 'middle',
       },
       '& a': {
+        color: theme.palette.text.primary,
         textDecoration: 'none',
       },
       '& .cf-text.cf-text': {
@@ -38,7 +39,7 @@ const styles = theme => ({
   },
 });
 
-class CodeFund extends React.Component {
+class AdCodeFund extends React.Component {
   componentDidMount() {
     const scriptSlot = document.querySelector('#code-fund-script-slot');
 
@@ -60,4 +61,4 @@ class CodeFund extends React.Component {
   }
 }
 
-export default withStyles(styles)(CodeFund);
+export default withStyles(styles)(AdCodeFund);

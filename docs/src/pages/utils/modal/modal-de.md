@@ -40,7 +40,7 @@ Das Erstellen von React-Elementen ist jedoch ebenfalls mit Kosten verbunden. Bet
       <TableRow>
         <TableCell>Dessert (100g serving)</TableCell>
         <TableCell align="right">Calories</TableCell>
-        <TableCell align="right">Fat (g)</TableCell>
+        <TableCell align="right">Fat&nbsp;(g)</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>

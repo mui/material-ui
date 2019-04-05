@@ -1,24 +1,31 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, createShallow, describeConformance, getClasses } from '../test-utils';
 import DialogContentText from './DialogContentText';
+import Typography from '../Typography';
 
 describe('<DialogContentText />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<DialogContentText />);
   });
 
-  describe('prop: className', () => {
-    it('should render with the user and root classes', () => {
-      const wrapper = shallow(<DialogContentText className="woofDialogContentText" />);
-      assert.strictEqual(wrapper.props().className, 'woofDialogContentText');
-      assert.strictEqual(wrapper.props().classes.root, classes.root);
-    });
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<DialogContentText>foo</DialogContentText>, () => ({
+    classes,
+    inheritComponent: Typography,
+    mount,
+    refInstanceof: window.HTMLParagraphElement,
+    skip: ['componentProp'],
+  }));
 
   describe('prop: children', () => {
     it('should render children', () => {

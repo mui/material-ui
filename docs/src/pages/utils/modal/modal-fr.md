@@ -40,7 +40,7 @@ Cependant, créer des éléments React a aussi un coût. Considérons le cas sui
       <TableRow>
         <TableCell>Dessert (100g serving)</TableCell>
         <TableCell align="right">Calories</TableCell>
-        <TableCell align="right">Fat (g)</TableCell>
+        <TableCell align="right">Fat&nbsp;(g)</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>

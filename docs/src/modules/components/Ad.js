@@ -5,8 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
-import CodeFund from 'docs/src/modules/components/CodeFund';
-import Carbon from 'docs/src/modules/components/Carbon';
+import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
+import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
@@ -35,13 +35,13 @@ const styles = theme => ({
 function getAdblock(classes, t) {
   return (
     <Paper component="span" elevation={0} className={classes.paper}>
-      <Typography display="block" component="span" gutterBottom>
+      <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
-      <Typography display="block" component="span" gutterBottom>
+      <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('adblock')}
       </Typography>
-      <Typography display="block" component="span">
+      <Typography variant="body2" display="block" component="span">
         {t('thanks')}{' '}
         <span role="img" aria-label="Love">
           ❤️
@@ -101,7 +101,7 @@ class Ad extends React.Component {
 
     return (
       <span className={classes.root}>
-        {this.random >= 0.9 ? <CodeFund /> : <Carbon />}
+        {this.random >= 0.9 ? <AdCodeFund /> : <AdCarbon />}
         {adblock === true ? getAdblock(classes, t) : null}
         {adblock === false ? (
           <Tooltip id="ad-info" title={t('adTitle')} placement="left">
