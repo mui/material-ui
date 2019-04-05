@@ -72,9 +72,9 @@ function ClickAwayListener(props) {
     [mountedRef, onClickAway],
   );
 
-  function handleTouchMove() {
+  const handleTouchMove = React.useCallback(() => {
     movedRef.current = true;
-  }
+  }, []);
 
   const listenerProps = {};
   if (mouseEvent !== false) {
