@@ -1,15 +1,15 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createMount, createRender } from '@material-ui/core/test-utils';
 import NoSsr from './NoSsr';
 
 describe('<NoSsr />', () => {
   let mount;
-  let shallow;
+  let render;
 
   before(() => {
     mount = createMount();
-    shallow = createShallow({ disableLifecycleMethods: true });
+    render = createRender();
   });
 
   after(() => {
@@ -18,12 +18,12 @@ describe('<NoSsr />', () => {
 
   describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {
-      const wrapper = shallow(
+      const wrapper = render(
         <NoSsr>
           <span>Hello</span>
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.name(), null);
+      assert.strictEqual(wrapper.text(), '');
     });
   });
 
@@ -41,29 +41,25 @@ describe('<NoSsr />', () => {
 
   describe('prop: fallback', () => {
     it('should render the fallback', () => {
-      const wrapper = shallow(
-        <NoSsr fallback="fallback">
-          <span>Hello</span>
-        </NoSsr>,
+      const wrapper = render(
+        <div>
+          <NoSsr fallback="fallback">
+            <span>Hello</span>
+          </NoSsr>
+        </div>,
       );
       assert.strictEqual(wrapper.text(), 'fallback');
     });
   });
 
   describe('prop: defer', () => {
-    it('should defer the rendering', done => {
+    it('should defer the rendering', () => {
       const wrapper = mount(
         <NoSsr defer>
           <span>Hello</span>
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.find('span').length, 0);
-      setTimeout(() => {
-        wrapper.update();
-        assert.strictEqual(wrapper.find('span').length, 1);
-        assert.strictEqual(wrapper.text(), 'Hello');
-        done();
-      }, 300);
+      assert.strictEqual(wrapper.find('span').length, 1);
     });
   });
 });

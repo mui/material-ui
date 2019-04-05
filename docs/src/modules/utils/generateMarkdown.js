@@ -235,7 +235,7 @@ function generateProps(reactAPI) {
     const prop = getProp(reactAPI.props, propRaw);
 
     if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propRaw}"" property is missing a description`);
+      throw new Error(`The "${propRaw}" property is missing a description`);
     }
 
     const description = generatePropDescription(prop);
