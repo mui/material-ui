@@ -1,0 +1,70 @@
+import React from 'react';
+import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { Title } from '..';
+
+const useStyles = makeStyles(theme => ({
+    seeMore: {
+        marginTop: theme.spacing(3)
+    }
+}));
+
+export const Orders = () => {
+    const classes = useStyles();
+    return (
+        <React.Fragment>
+            <Title>Recent Orders</Title>
+            <Table size="small">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Date</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Ship To</TableCell>
+                        <TableCell>Payment Method</TableCell>
+                        <TableCell align="right">Sale Amount</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows.map(row => (
+                        <TableRow key={row.id}>
+                            <TableCell>{row.date}</TableCell>
+                            <TableCell>{row.name}</TableCell>
+                            <TableCell>{row.shipTo}</TableCell>
+                            <TableCell>{row.paymentMethod}</TableCell>
+                            <TableCell align="right">{row.amount}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>{' '}
+            <Link color="primary" className={classes.seeMore} href="javascript:;">
+                See more orders
+            </Link>
+        </React.Fragment>
+    );
+};
+
+// ----- Generate Order Data -----
+let id = 0;
+function createData(
+    date: string,
+    name: string,
+    shipTo: string,
+    paymentMethod: string,
+    amount: number
+) {
+    id += 1;
+    return { id, date, name, shipTo, paymentMethod, amount };
+}
+
+const rows = [
+    createData('15 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA', 312.44),
+    createData('16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA', 866.99),
+    createData('16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'Mastercard', 100.81),
+    createData('16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AmEx', 654.39),
+    createData('16 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA', 212.79)
+];

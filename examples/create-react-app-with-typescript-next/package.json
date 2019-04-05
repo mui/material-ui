@@ -1,0 +1,38 @@
+{
+  "name": "create-react-app-with-typescript-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@material-ui/core": "next",
+    "@material-ui/icons": "next",
+    "classnames": "^2.2.6",
+    "react": "latest",
+    "react-dom": "latest",
+    "recharts": "^1.5.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "24.0.11",
+    "@types/node": "11.13.0",
+    "@types/react": "16.8.12",
+    "@types/react-dom": "16.8.3",
+    "@types/recharts": "^1.1.16",
+    "react-scripts": "2.1.8",
+    "typescript": "3.4.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
