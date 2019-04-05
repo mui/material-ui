@@ -14,23 +14,23 @@ import Snackbar from '@material-ui/core/Snackbar';
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.background.paper,
-    },
-  },
+      backgroundColor: theme.palette.background.paper } },
+
+
   menuButton: {
-    marginRight: theme.spacing(2),
-  },
+    marginRight: theme.spacing(2) },
+
   fab: {
     position: 'absolute',
     bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
+    right: theme.spacing(2) },
+
   snackbar: {
     [theme.breakpoints.down('xs')]: {
-      bottom: 90,
-    },
-  },
-}));
+      bottom: 90 } } }));
+
+
+
 
 function FabIntegrationSnackbar() {
   const classes = useStyles();
@@ -42,11 +42,11 @@ function FabIntegrationSnackbar() {
         <AppBar position="static" color="primary">
           <Toolbar>
             <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="Menu">
+
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">
@@ -58,22 +58,22 @@ function FabIntegrationSnackbar() {
           <AddIcon />
         </Fab>
         <Snackbar
-          open
-          autoHideDuration={4000}
-          ContentProps={{
-            'aria-describedby': 'snackbar-fab-message-id',
-          }}
-          message={<span id="snackbar-fab-message-id">Archived</span>}
-          action={
-            <Button color="inherit" size="small">
+        open
+        autoHideDuration={4000}
+        ContentProps={{
+          'aria-describedby': 'snackbar-fab-message-id' }}
+
+        message={<span id="snackbar-fab-message-id">Archived</span>}
+        action={
+        <Button color="inherit" size="small">
               Undo
-            </Button>
-          }
-          className={classes.snackbar}
-        />
+            </Button>}
+
+        className={classes.snackbar} />
+
       </div>
-    </React.Fragment>
-  );
+    </React.Fragment>);
+
 }
 
 export default FabIntegrationSnackbar;

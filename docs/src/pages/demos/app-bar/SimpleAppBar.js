@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
-  },
-});
+    flexGrow: 1 } });
+
+
 
 function SimpleAppBar() {
   const classes = useStyles();
@@ -22,8 +22,8 @@ function SimpleAppBar() {
           </Typography>
         </Toolbar>
       </AppBar>
-    </div>
-  );
+    </div>);
+
 }
 
 export default SimpleAppBar;

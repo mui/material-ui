@@ -10,9 +10,9 @@ import PersonPinIcon from '@material-ui/icons/PersonPin';
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    maxWidth: 500,
-  },
-});
+    maxWidth: 500 } });
+
+
 
 function IconTabs() {
   const classes = useStyles();
@@ -25,18 +25,18 @@ function IconTabs() {
   return (
     <Paper square className={classes.root}>
       <Tabs
-        value={value}
-        onChange={handleChange}
-        variant="fullWidth"
-        indicatorColor="primary"
-        textColor="primary"
-      >
+      value={value}
+      onChange={handleChange}
+      variant="fullWidth"
+      indicatorColor="primary"
+      textColor="primary">
+
         <Tab icon={<PhoneIcon />} />
         <Tab icon={<FavoriteIcon />} />
         <Tab icon={<PersonPinIcon />} />
       </Tabs>
-    </Paper>
-  );
+    </Paper>);
+
 }
 
 export default IconTabs;

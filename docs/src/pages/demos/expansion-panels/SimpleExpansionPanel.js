@@ -7,15 +7,18 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const styles = theme => ({
+const styles = (theme) => (
+{
   root: {
-    width: '100%',
-  },
+    width: '100%' },
+
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-});
+    fontWeight: theme.typography.fontWeightRegular } });
+
+
+
+
 
 function SimpleExpansionPanel(props) {
   const { classes } = props;
@@ -23,10 +26,10 @@ function SimpleExpansionPanel(props) {
     <div className={classes.root}>
       <ExpansionPanel>
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header">
+
           <Typography className={classes.heading}>Expansion Panel 1</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -38,10 +41,10 @@ function SimpleExpansionPanel(props) {
       </ExpansionPanel>
       <ExpansionPanel>
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel2a-content"
+        id="panel2a-header">
+
           <Typography className={classes.heading}>Expansion Panel 2</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -53,19 +56,19 @@ function SimpleExpansionPanel(props) {
       </ExpansionPanel>
       <ExpansionPanel disabled>
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel3a-content"
+        id="panel3a-header">
+
           <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
         </ExpansionPanelSummary>
       </ExpansionPanel>
-    </div>
-  );
+    </div>);
+
 }
 
 SimpleExpansionPanel.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(SimpleExpansionPanel);

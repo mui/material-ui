@@ -4,9 +4,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
-  },
-});
+    flexGrow: 1 } });
+
+
 
 function LinearDeterminate() {
   const classes = useStyles();
@@ -34,8 +34,8 @@ function LinearDeterminate() {
       <LinearProgress variant="determinate" value={completed} />
       <br />
       <LinearProgress color="secondary" variant="determinate" value={completed} />
-    </div>
-  );
+    </div>);
+
 }
 
 export default LinearDeterminate;

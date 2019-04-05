@@ -6,24 +6,28 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
+
+
+
+
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
       {props.children}
-    </Typography>
-  );
+    </Typography>);
+
 }
 
 TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+  children: PropTypes.node.isRequired };
+
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+    backgroundColor: theme.palette.background.paper } }));
+
+
 
 function SimpleTabs() {
   const classes = useStyles();
@@ -45,8 +49,8 @@ function SimpleTabs() {
       {value === 0 && <TabContainer>Item One</TabContainer>}
       {value === 1 && <TabContainer>Item Two</TabContainer>}
       {value === 2 && <TabContainer>Item Three</TabContainer>}
-    </div>
-  );
+    </div>);
+
 }
 
 export default SimpleTabs;

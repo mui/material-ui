@@ -4,9 +4,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
-  },
-});
+    flexGrow: 1 } });
+
+
 
 function LinearBuffer() {
   const classes = useStyles();
@@ -44,8 +44,8 @@ function LinearBuffer() {
       <LinearProgress variant="buffer" value={completed} valueBuffer={buffer} />
       <br />
       <LinearProgress color="secondary" variant="buffer" value={completed} valueBuffer={buffer} />
-    </div>
-  );
+    </div>);
+
 }
 
 export default LinearBuffer;

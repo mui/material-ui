@@ -2,14 +2,16 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => (
+{
   button: {
-    margin: theme.spacing(1),
-  },
+    margin: theme.spacing(1) },
+
   input: {
-    display: 'none',
-  },
-}));
+    display: 'none' } }));
+
+
+
 
 function OutlinedButtons() {
   const classes = useStyles();
@@ -32,12 +34,12 @@ function OutlinedButtons() {
         Link
       </Button>
       <input
-        accept="image/*"
-        className={classes.input}
-        id="outlined-button-file"
-        multiple
-        type="file"
-      />
+      accept="image/*"
+      className={classes.input}
+      id="outlined-button-file"
+      multiple
+      type="file" />
+
       <label htmlFor="outlined-button-file">
         <Button variant="outlined" component="span" className={classes.button}>
           Upload
@@ -46,8 +48,8 @@ function OutlinedButtons() {
       <Button variant="outlined" color="inherit" className={classes.button}>
         Inherit
       </Button>
-    </div>
-  );
+    </div>);
+
 }
 
 export default OutlinedButtons;

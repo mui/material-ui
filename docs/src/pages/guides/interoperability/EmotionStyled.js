@@ -20,8 +20,8 @@ function EmotionStyled() {
         <Button>Material-UI</Button>
         <StyledButton>Emotion</StyledButton>
       </div>
-    </NoSsr>
-  );
+    </NoSsr>);
+
 }
 
 export default EmotionStyled;

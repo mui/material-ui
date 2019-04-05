@@ -6,16 +6,18 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => (
+{
   fab: {
-    margin: theme.spacing(2),
-  },
+    margin: theme.spacing(2) },
+
   absolute: {
     position: 'absolute',
     bottom: theme.spacing(2),
-    right: theme.spacing(3),
-  },
-}));
+    right: theme.spacing(3) } }));
+
+
+
 
 function SimpleTooltips() {
   const classes = useStyles();
@@ -36,8 +38,8 @@ function SimpleTooltips() {
           <AddIcon />
         </Fab>
       </Tooltip>
-    </div>
-  );
+    </div>);
+
 }
 
 export default SimpleTooltips;

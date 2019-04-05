@@ -4,14 +4,16 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => (
+{
   alert: {
     padding: theme.spacing(1),
     margin: theme.spacing(1, 0),
     border: '1px solid',
-    borderColor: theme.palette.text.primary,
-  },
-}));
+    borderColor: theme.palette.text.primary } }));
+
+
+
 
 function SimplePortal() {
   const [show, setShow] = React.useState(false);
@@ -27,15 +29,15 @@ function SimplePortal() {
       <Button onClick={handleClick}>{show ? 'Unmount children' : 'Mount children'}</Button>
       <div className={classes.alert}>
         <Typography>It looks like I will render here.</Typography>
-        {show ? (
-          <Portal container={container.current}>
+        {show ?
+        <Portal container={container.current}>
             <Typography>But I actually render here!</Typography>
-          </Portal>
-        ) : null}
+          </Portal> :
+        null}
       </div>
       <div className={classes.alert} ref={container} />
-    </div>
-  );
+    </div>);
+
 }
 
 export default SimplePortal;

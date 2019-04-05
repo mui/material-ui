@@ -8,15 +8,21 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pic
 
 const styles = {
   grid: {
-    width: '60%',
-  },
-};
+    width: '60%' } };
+
+
+
+
+
+
+
+
 
 class MaterialUIPickers extends React.Component {
   state = {
     // The first commit of Material-UI
-    selectedDate: new Date('2014-08-18T21:11:54'),
-  };
+    selectedDate: new Date('2014-08-18T21:11:54') };
+
 
   handleDateChange = date => {
     this.setState({ selectedDate: date });
@@ -30,25 +36,25 @@ class MaterialUIPickers extends React.Component {
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid} justify="space-around">
           <DatePicker
-            margin="normal"
-            label="Date picker"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-          />
+          margin="normal"
+          label="Date picker"
+          value={selectedDate}
+          onChange={this.handleDateChange} />
+
           <TimePicker
-            margin="normal"
-            label="Time picker"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-          />
+          margin="normal"
+          label="Time picker"
+          value={selectedDate}
+          onChange={this.handleDateChange} />
+
         </Grid>
-      </MuiPickersUtilsProvider>
-    );
-  }
-}
+      </MuiPickersUtilsProvider>);
+
+  }}
+
 
 MaterialUIPickers.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(MaterialUIPickers);

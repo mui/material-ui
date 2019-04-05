@@ -5,21 +5,21 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
-];
+'None',
+'Atria',
+'Callisto',
+'Dione',
+'Ganymede',
+'Hangouts Call',
+'Luna',
+'Oberon',
+'Phobos',
+'Pyxis',
+'Sedna',
+'Titania',
+'Triton',
+'Umbriel'];
+
 
 const ITEM_HEIGHT = 48;
 
@@ -38,33 +38,33 @@ function LongMenu() {
   return (
     <div>
       <IconButton
-        aria-label="More"
-        aria-owns={open ? 'long-menu' : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
+      aria-label="More"
+      aria-owns={open ? 'long-menu' : undefined}
+      aria-haspopup="true"
+      onClick={handleClick}>
+
         <MoreVertIcon />
       </IconButton>
       <Menu
-        id="long-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
-            width: 200,
-          },
-        }}
-      >
-        {options.map(option => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+      id="long-menu"
+      anchorEl={anchorEl}
+      open={open}
+      onClose={handleClose}
+      PaperProps={{
+        style: {
+          maxHeight: ITEM_HEIGHT * 4.5,
+          width: 200 } }}>
+
+
+
+        {options.map((option) =>
+        <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
             {option}
-          </MenuItem>
-        ))}
+          </MenuItem>)}
+
       </Menu>
-    </div>
-  );
+    </div>);
+
 }
 
 export default LongMenu;

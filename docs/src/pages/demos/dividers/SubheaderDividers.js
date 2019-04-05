@@ -13,15 +13,17 @@ const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
+    backgroundColor: theme.palette.background.paper },
+
   dividerFullWidth: {
-    margin: `5px 0 0 ${theme.spacing(2)}px`,
-  },
+    margin: `5px 0 0 ${theme.spacing(2)}px` },
+
   dividerInset: {
-    margin: `5px 0 0 ${theme.spacing(9)}px`,
-  },
-});
+    margin: `5px 0 0 ${theme.spacing(9)}px` } });
+
+
+
+
 
 function SubheaderDividers(props) {
   const { classes } = props;
@@ -33,11 +35,11 @@ function SubheaderDividers(props) {
       <Divider component="li" />
       <li>
         <Typography
-          className={classes.dividerFullWidth}
-          color="textSecondary"
-          display="block"
-          variant="caption"
-        >
+        className={classes.dividerFullWidth}
+        color="textSecondary"
+        display="block"
+        variant="caption">
+
           Divider
         </Typography>
       </li>
@@ -47,11 +49,11 @@ function SubheaderDividers(props) {
       <Divider component="li" variant="inset" />
       <li>
         <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-          variant="caption"
-        >
+        className={classes.dividerInset}
+        color="textSecondary"
+        display="block"
+        variant="caption">
+
           Leisure
         </Typography>
       </li>
@@ -61,12 +63,12 @@ function SubheaderDividers(props) {
         </Avatar>
         <ListItemText primary="Vacation" secondary="July 20, 2014" />
       </ListItem>
-    </List>
-  );
+    </List>);
+
 }
 
 SubheaderDividers.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(SubheaderDividers);

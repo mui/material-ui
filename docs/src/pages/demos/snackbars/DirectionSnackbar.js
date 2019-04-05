@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 
+
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;
 }
@@ -19,10 +20,15 @@ function TransitionDown(props) {
   return <Slide {...props} direction="down" />;
 }
 
+
+
+
+
+
 class DirectionSnackbar extends React.Component {
   state = {
-    open: false,
-  };
+    open: false };
+
 
   handleClick = Transition => () => {
     this.setState({ open: true, Transition });
@@ -40,17 +46,17 @@ class DirectionSnackbar extends React.Component {
         <Button onClick={this.handleClick(TransitionRight)}>Left</Button>
         <Button onClick={this.handleClick(TransitionDown)}>Down</Button>
         <Snackbar
-          open={this.state.open}
-          onClose={this.handleClose}
-          TransitionComponent={this.state.Transition}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">I love snacks</span>}
-        />
-      </div>
-    );
-  }
-}
+        open={this.state.open}
+        onClose={this.handleClose}
+        TransitionComponent={this.state.Transition}
+        ContentProps={{
+          'aria-describedby': 'message-id' }}
+
+        message={<span id="message-id">I love snacks</span>} />
+
+      </div>);
+
+  }}
+
 
 export default DirectionSnackbar;

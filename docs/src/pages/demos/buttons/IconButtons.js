@@ -6,14 +6,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => (
+{
   button: {
-    margin: theme.spacing(1),
-  },
+    margin: theme.spacing(1) },
+
   input: {
-    display: 'none',
-  },
-}));
+    display: 'none' } }));
+
+
+
 
 function IconButtons() {
   const classes = useStyles();
@@ -38,8 +40,8 @@ function IconButtons() {
           <PhotoCamera />
         </IconButton>
       </label>
-    </div>
-  );
+    </div>);
+
 }
 
 export default IconButtons;

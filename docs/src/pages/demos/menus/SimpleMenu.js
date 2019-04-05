@@ -17,10 +17,10 @@ function SimpleMenu() {
   return (
     <div>
       <Button
-        aria-owns={anchorEl ? 'simple-menu' : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
+      aria-owns={anchorEl ? 'simple-menu' : undefined}
+      aria-haspopup="true"
+      onClick={handleClick}>
+
         Open Menu
       </Button>
       <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
@@ -28,8 +28,8 @@ function SimpleMenu() {
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
-    </div>
-  );
+    </div>);
+
 }
 
 export default SimpleMenu;

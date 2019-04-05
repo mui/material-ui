@@ -7,25 +7,28 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const styles = (theme) => (
+{
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
+    backgroundColor: theme.palette.background.paper },
+
   chip: {
-    marginRight: theme.spacing(1),
-  },
+    marginRight: theme.spacing(1) },
+
   section1: {
-    margin: theme.spacing(3, 2),
-  },
+    margin: theme.spacing(3, 2) },
+
   section2: {
-    margin: theme.spacing(2),
-  },
+    margin: theme.spacing(2) },
+
   section3: {
-    margin: theme.spacing(3, 1, 1),
-  },
-});
+    margin: theme.spacing(3, 1, 1) } });
+
+
+
+
 
 function MiddleDividers(props) {
   const { classes } = props;
@@ -64,12 +67,12 @@ function MiddleDividers(props) {
       <div className={classes.section3}>
         <Button color="primary">Add to cart</Button>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 MiddleDividers.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(MiddleDividers);

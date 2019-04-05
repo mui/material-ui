@@ -22,18 +22,18 @@ function FadeMenu() {
         Open with fade transition
       </Button>
       <Menu
-        id="fade-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Fade}
-      >
+      id="fade-menu"
+      anchorEl={anchorEl}
+      open={open}
+      onClose={handleClose}
+      TransitionComponent={Fade}>
+
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
-    </div>
-  );
+    </div>);
+
 }
 
 export default FadeMenu;

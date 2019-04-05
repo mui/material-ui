@@ -1,7 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
-import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import MuiExpansionPanelSummary from
+
+'@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 
@@ -10,16 +12,16 @@ const ExpansionPanel = withStyles({
     border: '1px solid rgba(0,0,0,.125)',
     boxShadow: 'none',
     '&:not(:last-child)': {
-      borderBottom: 0,
-    },
+      borderBottom: 0 },
+
     '&:before': {
-      display: 'none',
-    },
-  },
+      display: 'none' } },
+
+
   expanded: {
-    margin: 'auto',
-  },
-})(MuiExpansionPanel);
+    margin: 'auto' } })(
+
+MuiExpansionPanel);
 
 const ExpansionPanelSummary = withStyles({
   root: {
@@ -28,34 +30,38 @@ const ExpansionPanelSummary = withStyles({
     marginBottom: -1,
     minHeight: 56,
     '&$expanded': {
-      minHeight: 56,
-    },
-  },
+      minHeight: 56 } },
+
+
   content: {
     '&$expanded': {
-      margin: '12px 0',
-    },
-  },
-  expanded: {},
-})(props => <MuiExpansionPanelSummary {...props} />);
+      margin: '12px 0' } },
+
+
+  expanded: {} })(
+props => <MuiExpansionPanelSummary {...props} />);
 
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
 
 const ExpansionPanelDetails = withStyles(theme => ({
   root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiExpansionPanelDetails);
+    padding: theme.spacing(2) } }))(
+
+MuiExpansionPanelDetails);
+
+
+
+
 
 class CustomizedExpansionPanel extends React.Component {
   state = {
-    expanded: 'panel1',
-  };
+    expanded: 'panel1' };
+
 
   handleChange = panel => (event, expanded) => {
     this.setState({
-      expanded: expanded ? panel : false,
-    });
+      expanded: expanded ? panel : false });
+
   };
 
   render() {
@@ -63,10 +69,10 @@ class CustomizedExpansionPanel extends React.Component {
     return (
       <div>
         <ExpansionPanel
-          square
-          expanded={expanded === 'panel1'}
-          onChange={this.handleChange('panel1')}
-        >
+        square
+        expanded={expanded === 'panel1'}
+        onChange={this.handleChange('panel1')}>
+
           <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Collapsible Group Item #1</Typography>
           </ExpansionPanelSummary>
@@ -79,10 +85,10 @@ class CustomizedExpansionPanel extends React.Component {
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
-          square
-          expanded={expanded === 'panel2'}
-          onChange={this.handleChange('panel2')}
-        >
+        square
+        expanded={expanded === 'panel2'}
+        onChange={this.handleChange('panel2')}>
+
           <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header">
             <Typography>Collapsible Group Item #2</Typography>
           </ExpansionPanelSummary>
@@ -95,10 +101,10 @@ class CustomizedExpansionPanel extends React.Component {
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
-          square
-          expanded={expanded === 'panel3'}
-          onChange={this.handleChange('panel3')}
-        >
+        square
+        expanded={expanded === 'panel3'}
+        onChange={this.handleChange('panel3')}>
+
           <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header">
             <Typography>Collapsible Group Item #3</Typography>
           </ExpansionPanelSummary>
@@ -110,9 +116,9 @@ class CustomizedExpansionPanel extends React.Component {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-      </div>
-    );
-  }
-}
+      </div>);
+
+  }}
+
 
 export default CustomizedExpansionPanel;

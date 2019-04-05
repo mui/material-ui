@@ -3,17 +3,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => (
+{
   button: {
-    margin: theme.spacing(1),
-  },
+    margin: theme.spacing(1) },
+
   customWidth: {
-    maxWidth: 500,
-  },
+    maxWidth: 500 },
+
   noMaxWidth: {
-    maxWidth: 'none',
-  },
-}));
+    maxWidth: 'none' } }));
+
+
+
 
 const longText = `
 Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus.
@@ -34,8 +36,8 @@ function VariableWidth() {
       <Tooltip title={longText} classes={{ tooltip: classes.noMaxWidth }}>
         <Button className={classes.button}>No wrapping</Button>
       </Tooltip>
-    </div>
-  );
+    </div>);
+
 }
 
 export default VariableWidth;

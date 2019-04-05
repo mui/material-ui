@@ -2,12 +2,15 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 
+
+
+
+
 function PositionedSnackbar() {
   const [state, setState] = React.useState({
     open: false,
     vertical: 'top',
-    horizontal: 'center',
-  });
+    horizontal: 'center' });
 
   const { vertical, horizontal, open } = state;
 
@@ -32,17 +35,17 @@ function PositionedSnackbar() {
       <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}>Bottom-Left</Button>
       <Button onClick={handleClick({ vertical: 'top', horizontal: 'left' })}>Top-Left</Button>
       <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        key={`${vertical},${horizontal}`}
-        open={open}
-        onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id">I love snacks</span>}
-      />
-    </div>
-  );
+      anchorOrigin={{ vertical, horizontal }}
+      key={`${vertical},${horizontal}`}
+      open={open}
+      onClose={handleClose}
+      ContentProps={{
+        'aria-describedby': 'message-id' }}
+
+      message={<span id="message-id">I love snacks</span>} />
+
+    </div>);
+
 }
 
 export default PositionedSnackbar;

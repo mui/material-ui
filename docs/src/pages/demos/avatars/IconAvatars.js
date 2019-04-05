@@ -8,21 +8,23 @@ import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(
+{
   avatar: {
-    margin: 10,
-  },
+    margin: 10 },
+
   pinkAvatar: {
     margin: 10,
     color: '#fff',
-    backgroundColor: pink[500],
-  },
+    backgroundColor: pink[500] },
+
   greenAvatar: {
     margin: 10,
     color: '#fff',
-    backgroundColor: green[500],
-  },
-});
+    backgroundColor: green[500] } });
+
+
+
 
 function IconAvatars() {
   const classes = useStyles();
@@ -38,8 +40,8 @@ function IconAvatars() {
       <Avatar className={classes.greenAvatar}>
         <AssignmentIcon />
       </Avatar>
-    </Grid>
-  );
+    </Grid>);
+
 }
 
 export default IconAvatars;

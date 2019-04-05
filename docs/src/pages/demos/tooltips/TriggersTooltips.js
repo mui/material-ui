@@ -37,24 +37,24 @@ function TriggersTooltips() {
           <ClickAwayListener onClickAway={handleTooltipClose}>
             <div>
               <Tooltip
-                PopperProps={{
-                  disablePortal: true,
-                }}
-                onClose={handleTooltipClose}
-                open={open}
-                disableFocusListener
-                disableHoverListener
-                disableTouchListener
-                title="Add"
-              >
+              PopperProps={{
+                disablePortal: true }}
+
+              onClose={handleTooltipClose}
+              open={open}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener
+              title="Add">
+
                 <Button onClick={handleTooltipOpen}>Click</Button>
               </Tooltip>
             </div>
           </ClickAwayListener>
         </Grid>
       </Grid>
-    </div>
-  );
+    </div>);
+
 }
 
 export default TriggersTooltips;

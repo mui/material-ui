@@ -8,15 +8,18 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-const styles = theme => ({
+
+
+const styles = (theme) => (
+{
   root: {
     justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
+    flexWrap: 'wrap' },
+
   paper: {
-    padding: theme.spacing(1, 2),
-  },
-});
+    padding: theme.spacing(1, 2) } });
+
+
 
 function handleClick(event) {
   event.preventDefault();
@@ -43,12 +46,12 @@ function CollapsedBreadcrumbs(props) {
         </Link>
         <Typography color="textPrimary">Belts</Typography>
       </Breadcrumbs>
-    </Paper>
-  );
+    </Paper>);
+
 }
 
 CollapsedBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(CollapsedBreadcrumbs);

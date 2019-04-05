@@ -16,8 +16,8 @@ function TransitionsTooltips() {
       <Tooltip TransitionComponent={Zoom} title="Add">
         <Button>Zoom</Button>
       </Tooltip>
-    </div>
-  );
+    </div>);
+
 }
 
 export default TransitionsTooltips;

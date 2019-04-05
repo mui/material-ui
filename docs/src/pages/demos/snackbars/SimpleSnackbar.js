@@ -7,9 +7,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles(theme => ({
   close: {
-    padding: theme.spacing(0.5),
-  },
-}));
+    padding: theme.spacing(0.5) } }));
+
+
 
 function SimpleSnackbar() {
   const classes = useStyles();
@@ -31,34 +31,34 @@ function SimpleSnackbar() {
     <div>
       <Button onClick={handleClick}>Open simple snackbar</Button>
       <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id">Note archived</span>}
-        action={[
-          <Button key="undo" color="secondary" size="small" onClick={handleClose}>
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'left' }}
+
+      open={open}
+      autoHideDuration={6000}
+      onClose={handleClose}
+      ContentProps={{
+        'aria-describedby': 'message-id' }}
+
+      message={<span id="message-id">Note archived</span>}
+      action={[
+      <Button key="undo" color="secondary" size="small" onClick={handleClose}>
             UNDO
           </Button>,
-          <IconButton
-            key="close"
-            aria-label="Close"
-            color="inherit"
-            className={classes.close}
-            onClick={handleClose}
-          >
+      <IconButton
+      key="close"
+      aria-label="Close"
+      color="inherit"
+      className={classes.close}
+      onClick={handleClose}>
+
             <CloseIcon />
-          </IconButton>,
-        ]}
-      />
-    </div>
-  );
+          </IconButton>]} />
+
+
+    </div>);
+
 }
 
 export default SimpleSnackbar;

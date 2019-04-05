@@ -9,18 +9,20 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => (
+{
   menuItem: {
     '&:focus': {
       backgroundColor: theme.palette.primary.main,
       '& $primary, & $icon': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
+        color: theme.palette.common.white } } },
+
+
+
   primary: {},
-  icon: {},
-}));
+  icon: {} }));
+
+
 
 function ListItemComposition() {
   const classes = useStyles();
@@ -47,8 +49,8 @@ function ListItemComposition() {
           <ListItemText classes={{ primary: classes.primary }} inset primary="Inbox" />
         </MenuItem>
       </MenuList>
-    </Paper>
-  );
+    </Paper>);
+
 }
 
 export default ListItemComposition;

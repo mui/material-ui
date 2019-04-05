@@ -10,16 +10,17 @@ import Paper from '@material-ui/core/Paper';
 
 const TAX_RATE = 0.07;
 
-const styles = theme => ({
+const styles = (theme) => (
+{
   root: {
     width: '100%',
     marginTop: theme.spacing(3),
-    overflowX: 'auto',
-  },
+    overflowX: 'auto' },
+
   table: {
-    minWidth: 700,
-  },
-});
+    minWidth: 700 } });
+
+
 
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;
@@ -34,19 +35,28 @@ function createRow(desc, qty, unit) {
   return { desc, qty, unit, price };
 }
 
+
+
+
+
+
+
+
 function subtotal(items) {
   return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
 }
 
 const rows = [
-  createRow('Paperclips (Box)', 100, 1.15),
-  createRow('Paper (Case)', 10, 45.99),
-  createRow('Waste Basket', 2, 17.99),
-];
+createRow('Paperclips (Box)', 100, 1.15),
+createRow('Paper (Case)', 10, 45.99),
+createRow('Waste Basket', 2, 17.99)];
+
 
 const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
+
+
 
 function SpanningTable(props) {
   const { classes } = props;
@@ -62,14 +72,13 @@ function SpanningTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.desc}>
+          {rows.map((row) =>
+          <TableRow key={row.desc}>
               <TableCell>{row.desc}</TableCell>
               <TableCell align="right">{row.qty}</TableCell>
               <TableCell align="right">{row.unit}</TableCell>
               <TableCell align="right">{ccyFormat(row.price)}</TableCell>
-            </TableRow>
-          ))}
+            </TableRow>)}
 
           <TableRow>
             <TableCell rowSpan={3} />
@@ -87,12 +96,12 @@ function SpanningTable(props) {
           </TableRow>
         </TableBody>
       </Table>
-    </Paper>
-  );
+    </Paper>);
+
 }
 
 SpanningTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(SpanningTable);

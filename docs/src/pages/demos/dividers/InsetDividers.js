@@ -10,13 +10,16 @@ import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import Divider from '@material-ui/core/Divider';
 
-const styles = theme => ({
+const styles = (theme) => (
+{
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
+    backgroundColor: theme.palette.background.paper } });
+
+
+
+
 
 function InsetDividers(props) {
   const { classes } = props;
@@ -44,12 +47,12 @@ function InsetDividers(props) {
         </Avatar>
         <ListItemText primary="Vacation" secondary="July 20, 2014" />
       </ListItem>
-    </List>
-  );
+    </List>);
+
 }
 
 InsetDividers.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(InsetDividers);

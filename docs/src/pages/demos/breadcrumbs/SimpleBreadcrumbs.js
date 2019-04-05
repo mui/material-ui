@@ -6,15 +6,18 @@ import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
-const styles = theme => ({
+
+
+const styles = (theme) => (
+{
   root: {
     justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
+    flexWrap: 'wrap' },
+
   paper: {
-    padding: theme.spacing(1, 2),
-  },
-});
+    padding: theme.spacing(1, 2) } });
+
+
 
 function handleClick(event) {
   event.preventDefault();
@@ -46,21 +49,21 @@ function SimpleBreadcrumbs(props) {
             Core
           </Link>
           <Link
-            color="textPrimary"
-            href="/demos/breadcrumbs/"
-            onClick={handleClick}
-            aria-current="page"
-          >
+          color="textPrimary"
+          href="/demos/breadcrumbs/"
+          onClick={handleClick}
+          aria-current="page">
+
             Breadcrumb
           </Link>
         </Breadcrumbs>
       </Paper>
-    </div>
-  );
+    </div>);
+
 }
 
 SimpleBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(SimpleBreadcrumbs);

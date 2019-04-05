@@ -16,31 +16,33 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => (
+{
   card: {
-    maxWidth: 400,
-  },
+    maxWidth: 400 },
+
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   actions: {
-    display: 'flex',
-  },
+    display: 'flex' },
+
   expand: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
+      duration: theme.transitions.duration.shortest }) },
+
+
   expandOpen: {
-    transform: 'rotate(180deg)',
-  },
+    transform: 'rotate(180deg)' },
+
   avatar: {
-    backgroundColor: red[500],
-  },
-}));
+    backgroundColor: red[500] } }));
+
+
+
 
 function RecipeReviewCard() {
   const classes = useStyles();
@@ -53,24 +55,24 @@ function RecipeReviewCard() {
   return (
     <Card className={classes.card}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="Recipe" className={classes.avatar}>
+      avatar={
+      <Avatar aria-label="Recipe" className={classes.avatar}>
             R
-          </Avatar>
-        }
-        action={
-          <IconButton>
+          </Avatar>}
+
+      action={
+      <IconButton>
             <MoreVertIcon />
-          </IconButton>
-        }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      />
+          </IconButton>}
+
+      title="Shrimp and Chorizo Paella"
+      subheader="September 14, 2016" />
+
       <CardMedia
-        className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
-      />
+      className={classes.media}
+      image="/static/images/cards/paella.jpg"
+      title="Paella dish" />
+
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook together with your
@@ -85,13 +87,13 @@ function RecipeReviewCard() {
           <ShareIcon />
         </IconButton>
         <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="Show more"
-        >
+        className={clsx(classes.expand, {
+          [classes.expandOpen]: expanded })}
+
+        onClick={handleExpandClick}
+        aria-expanded={expanded}
+        aria-label="Show more">
+
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
@@ -122,8 +124,8 @@ function RecipeReviewCard() {
           </Typography>
         </CardContent>
       </Collapse>
-    </Card>
-  );
+    </Card>);
+
 }
 
 export default RecipeReviewCard;

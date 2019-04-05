@@ -11,34 +11,34 @@ import SaveIcon from '@material-ui/icons/Save';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    alignItems: 'center',
-  },
+    alignItems: 'center' },
+
   wrapper: {
     margin: theme.spacing(1),
-    position: 'relative',
-  },
+    position: 'relative' },
+
   buttonSuccess: {
     backgroundColor: green[500],
     '&:hover': {
-      backgroundColor: green[700],
-    },
-  },
+      backgroundColor: green[700] } },
+
+
   fabProgress: {
     color: green[500],
     position: 'absolute',
     top: -6,
     left: -6,
-    zIndex: 1,
-  },
+    zIndex: 1 },
+
   buttonProgress: {
     color: green[500],
     position: 'absolute',
     top: '50%',
     left: '50%',
     marginTop: -12,
-    marginLeft: -12,
-  },
-}));
+    marginLeft: -12 } }));
+
+
 
 function CircularIntegration() {
   const classes = useStyles();
@@ -47,8 +47,8 @@ function CircularIntegration() {
   const timer = React.useRef(undefined);
 
   const buttonClassname = clsx({
-    [classes.buttonSuccess]: success,
-  });
+    [classes.buttonSuccess]: success });
+
 
   React.useEffect(() => {
     return () => {
@@ -77,18 +77,18 @@ function CircularIntegration() {
       </div>
       <div className={classes.wrapper}>
         <Button
-          variant="contained"
-          color="primary"
-          className={buttonClassname}
-          disabled={loading}
-          onClick={handleButtonClick}
-        >
+        variant="contained"
+        color="primary"
+        className={buttonClassname}
+        disabled={loading}
+        onClick={handleButtonClick}>
+
           Accept terms
         </Button>
         {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default CircularIntegration;

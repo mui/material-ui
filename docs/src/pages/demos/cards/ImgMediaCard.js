@@ -11,9 +11,11 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    maxWidth: 345,
-  },
-};
+    maxWidth: 345 } };
+
+
+
+
 
 function ImgMediaCard(props) {
   const { classes } = props;
@@ -21,12 +23,12 @@ function ImgMediaCard(props) {
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
+        component="img"
+        alt="Contemplative Reptile"
+        height="140"
+        image="/static/images/cards/contemplative-reptile.jpg"
+        title="Contemplative Reptile" />
+
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Lizard
@@ -45,12 +47,12 @@ function ImgMediaCard(props) {
           Learn More
         </Button>
       </CardActions>
-    </Card>
-  );
+    </Card>);
+
 }
 
 ImgMediaCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(ImgMediaCard);

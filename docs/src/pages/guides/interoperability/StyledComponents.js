@@ -20,8 +20,8 @@ function StyledComponents() {
         <Button>Material-UI</Button>
         <StyledButton>Styled Components</StyledButton>
       </div>
-    </NoSsr>
-  );
+    </NoSsr>);
+
 }
 
 export default StyledComponents;

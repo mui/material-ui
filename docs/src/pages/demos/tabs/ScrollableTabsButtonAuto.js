@@ -6,25 +6,29 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
+
+
+
+
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
       {props.children}
-    </Typography>
-  );
+    </Typography>);
+
 }
 
 TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+  children: PropTypes.node.isRequired };
+
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+    backgroundColor: theme.palette.background.paper } }));
+
+
 
 function ScrollableTabsButtonAuto() {
   const classes = useStyles();
@@ -38,13 +42,13 @@ function ScrollableTabsButtonAuto() {
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-        >
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        variant="scrollable"
+        scrollButtons="auto">
+
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
@@ -61,8 +65,8 @@ function ScrollableTabsButtonAuto() {
       {value === 4 && <TabContainer>Item Five</TabContainer>}
       {value === 5 && <TabContainer>Item Six</TabContainer>}
       {value === 6 && <TabContainer>Item Seven</TabContainer>}
-    </div>
-  );
+    </div>);
+
 }
 
 export default ScrollableTabsButtonAuto;

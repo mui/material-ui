@@ -16,34 +16,35 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => (
+{
   grow: {
-    flexGrow: 1,
-  },
+    flexGrow: 1 },
+
   menuButton: {
-    marginRight: theme.spacing(2),
-  },
+    marginRight: theme.spacing(2) },
+
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
+      display: 'block' } },
+
+
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
+      backgroundColor: fade(theme.palette.common.white, 0.25) },
+
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
+      width: 'auto' } },
+
+
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
@@ -51,32 +52,33 @@ const useStyles = makeStyles(theme => ({
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center' },
+
   inputRoot: {
-    color: 'inherit',
-  },
+    color: 'inherit' },
+
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: 200,
-    },
-  },
+      width: 200 } },
+
+
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
+      display: 'flex' } },
+
+
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-}));
+      display: 'none' } } }));
+
+
+
+
 
 function PrimarySearchAppBar() {
   const classes = useStyles();
@@ -103,27 +105,27 @@ function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   }
 
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
+  const renderMenu =
+  <Menu
+  anchorEl={anchorEl}
+  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  open={isMenuOpen}
+  onClose={handleMenuClose}>
+
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+    </Menu>;
 
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
+
+  const renderMobileMenu =
+  <Menu
+  anchorEl={mobileMoreAnchorEl}
+  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  open={isMobileMenuOpen}
+  onClose={handleMobileMenuClose}>
+
       <MenuItem>
         <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
@@ -146,19 +148,19 @@ function PrimarySearchAppBar() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
-    </Menu>
-  );
+    </Menu>;
+
 
   return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Open drawer"
-          >
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="Open drawer">
+
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -169,12 +171,12 @@ function PrimarySearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput }} />
+
+
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -189,12 +191,12 @@ function PrimarySearchAppBar() {
               </Badge>
             </IconButton>
             <IconButton
-              edge="end"
-              aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
+            edge="end"
+            aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="inherit">
+
               <AccountCircle />
             </IconButton>
           </div>
@@ -207,8 +209,8 @@ function PrimarySearchAppBar() {
       </AppBar>
       {renderMenu}
       {renderMobileMenu}
-    </div>
-  );
+    </div>);
+
 }
 
 export default PrimarySearchAppBar;

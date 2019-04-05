@@ -9,17 +9,20 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 
-const styles = theme => ({
+const styles = (theme) => (
+{
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
+    backgroundColor: theme.palette.background.paper } });
+
+
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
+
+
 
 function SimpleList(props) {
   const { classes } = props;
@@ -48,12 +51,12 @@ function SimpleList(props) {
           <ListItemText primary="Spam" />
         </ListItemLink>
       </List>
-    </div>
-  );
+    </div>);
+
 }
 
 SimpleList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired };
+
 
 export default withStyles(styles)(SimpleList);

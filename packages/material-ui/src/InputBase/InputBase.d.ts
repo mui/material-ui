@@ -72,7 +72,6 @@ export type InputBaseClassKey =
   | 'input'
   | 'inputMarginDense'
   | 'inputMultiline'
-  | 'inputType'
   | 'inputTypeSearch'
   | 'inputAdornedStart'
   | 'inputAdornedEnd';
