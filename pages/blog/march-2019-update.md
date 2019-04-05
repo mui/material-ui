@@ -28,7 +28,7 @@ People are wondering what they should use. We are encouraging the usage of `make
 
 *(We'll do our best, no guarantee!)*
 
-- We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui-org/material-ui/issues/13663). You can already find [the upgrade path](https://next.material-ui.com/guides/migration-v3/) from v3 to v4 in the documentation. We will release or first beta version (no more breaking changes in beta).
+- We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui-org/material-ui/issues/13663). You can already find [the upgrade path](https://next.material-ui.com/guides/migration-v3/) from v3 to v4 in the documentation. Next, we will release the first beta version (no more breaking changes).
 We have heard your feedback. You find that we introduce too many breaking changes.
 Don't worry. It's almost over! We can focus on providing more components once we have released v4 stable.
 - We will continue and hopefully complete the tasks we undertook:
