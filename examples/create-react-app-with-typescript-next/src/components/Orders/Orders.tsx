@@ -62,9 +62,9 @@ function createData(
 }
 
 const rows = [
-    createData('15 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA', 312.44),
-    createData('16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA', 866.99),
-    createData('16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'Mastercard', 100.81),
-    createData('16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AmEx', 654.39),
-    createData('16 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA', 212.79)
+    createData('16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
+    createData('16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
+    createData('16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
+    createData('16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
+    createData('15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79)
 ];
