@@ -1,5 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
+import { spy } from 'sinon';
 import {
   createMount,
   describeConformance,
@@ -64,19 +65,23 @@ describe('<FormControl />', () => {
     });
 
     it('should not be filled initially', () => {
+      const testFunction = spy();
       mount(
         <FormControl>
-          <TestComponent fn={context => assert.strictEqual(context.filled, false)} />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
+      assert.strictEqual(testFunction.calledWithMatch({ filled: false }), true);
     });
 
     it('should not be focused initially', () => {
+      const testFunction = spy();
       mount(
         <FormControl>
-          <TestComponent fn={context => assert.strictEqual(context.focused, false)} />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
+      assert.strictEqual(testFunction.calledWithMatch({ focused: false }), true);
     });
   });
 
@@ -89,76 +94,89 @@ describe('<FormControl />', () => {
 
   describe('prop: disabled', () => {
     it('will be unfocused if it gets disabled', () => {
-      const inputRef = React.createRef();
+      const testFunction = spy();
       const wrapper = mount(
         <FormControl>
-          <Input ref={inputRef} />
+          <Input />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
-
-      inputRef.current.focus();
+      assert.strictEqual(testFunction.calledWithMatch({ focused: false }), true);
+      wrapper.find('input').simulate('focus');
+      assert.strictEqual(testFunction.calledWithMatch({ focused: true }), true);
+      testFunction.resetHistory();
       wrapper.setProps({ disabled: true });
-      wrapper.setProps({
-        children: <TestComponent fn={context => assert.strictEqual(context.focused, false)} />,
-      });
+      assert.strictEqual(testFunction.calledWithMatch({ focused: false }), true);
     });
   });
 
   describe('input', () => {
     it('should be filled with a value', () => {
+      const testFunction = spy();
       mount(
         <FormControl>
           <Input value="bar" />
-          <TestComponent fn={context => assert.strictEqual(context.filled, true)} />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
+      assert.strictEqual(testFunction.calledWithMatch({ filled: true }), true);
     });
 
     it('should be filled with a defaultValue', () => {
+      const testFunction = spy();
       mount(
         <FormControl>
           <Input defaultValue="bar" />
-          <TestComponent fn={context => assert.strictEqual(context.filled, true)} />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
+      assert.strictEqual(testFunction.calledWithMatch({ filled: true }), true);
     });
 
-    it('should be adorned with an endAdornment', () => {
+    it('should not be adornedStart with an endAdornment', () => {
+      const testFunction = spy();
       mount(
         <FormControl>
           <Input endAdornment={<div />} />
-          <TestComponent fn={context => assert.strictEqual(context.adornedStart, false)} />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
+      assert.strictEqual(testFunction.calledWithMatch({ adornedStart: false }), true);
     });
 
-    it('should be adorned with a startAdornment', () => {
+    it('should be adornedStar with a startAdornment', () => {
+      const testFunction = spy();
       mount(
         <FormControl>
           <Input startAdornment={<div />} />
-          <TestComponent fn={context => assert.strictEqual(context.adornedStart, true)} />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
+      assert.strictEqual(testFunction.calledWithMatch({ adornedStart: true }), true);
     });
   });
 
   describe('select', () => {
     it('should not be adorned without a startAdornment', () => {
+      const testFunction = spy();
       mount(
         <FormControl>
           <Select value="" />
-          <TestComponent fn={context => assert.strictEqual(context.adornedStart, false)} />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
+      assert.strictEqual(testFunction.calledWithMatch({ adornedStart: false }), true);
     });
 
     it('should be adorned with a startAdornment', () => {
+      const testFunction = spy();
       mount(
         <FormControl>
           <Select value="" input={<Input startAdornment={<div />} />} />
-          <TestComponent fn={context => assert.strictEqual(context.adornedStart, true)} />
+          <TestComponent fn={testFunction} />
         </FormControl>,
       );
+      assert.strictEqual(testFunction.calledWithMatch({ adornedStart: true }), true);
     });
   });
 
