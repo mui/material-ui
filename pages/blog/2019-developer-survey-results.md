@@ -256,7 +256,7 @@ Multiple options were allowed.
 
 Dashboards are at the top of the heap, and we've long known that many of you are building internal
 systems that can't feature in [the showcase](/discover-more/showcase/). Let us know by opening a PR
-if you're bucking that tend, and have something sparkly to share! And if you're in the 40% building UI
+if you're bucking that trend, and have something sparkly to share! And if you're in the 40% building UI
 components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
 section.
 
