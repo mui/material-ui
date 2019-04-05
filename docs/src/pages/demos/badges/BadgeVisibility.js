@@ -7,25 +7,26 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '100%' },
+    width: '100%',
+  },
 
   margin: {
-    margin: theme.spacing(1) },
+    margin: theme.spacing(1),
+  },
 
   divider: {
-    width: '100%' },
+    width: '100%',
+  },
 
   row: {
-    marginTop: theme.spacing(2) } }));
-
-
-
+    marginTop: theme.spacing(2),
+  },
+}));
 
 function BadgeVisibility() {
   const classes = useStyles();
@@ -47,9 +48,9 @@ function BadgeVisibility() {
       </div>
       <FormGroup row>
         <FormControlLabel
-        control={<Switch color="primary" checked={!invisible} onChange={handleBadgeVisibility} />}
-        label="Show Badge" />
-
+          control={<Switch color="primary" checked={!invisible} onChange={handleBadgeVisibility} />}
+          label="Show Badge"
+        />
       </FormGroup>
       <Divider className={classes.divider} />
       <div className={classes.row}>
@@ -60,8 +61,8 @@ function BadgeVisibility() {
           <MailIcon />
         </Badge>
       </div>
-    </div>);
-
+    </div>
+  );
 }
 
 export default BadgeVisibility;

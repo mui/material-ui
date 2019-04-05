@@ -12,19 +12,19 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1 },
+    flexGrow: 1,
+  },
 
   menuButton: {
-    marginRight: theme.spacing(2) },
+    marginRight: theme.spacing(2),
+  },
 
   title: {
-    flexGrow: 1 } }));
-
-
-
+    flexGrow: 1,
+  },
+}));
 
 function MenuAppBar() {
   const classes = useStyles();
@@ -48,9 +48,9 @@ function MenuAppBar() {
     <div className={classes.root}>
       <FormGroup>
         <FormControlLabel
-        control={<Switch checked={auth} onChange={handleChange} aria-label="LoginSwitch" />}
-        label={auth ? 'Logout' : 'Login'} />
-
+          control={<Switch checked={auth} onChange={handleChange} aria-label="LoginSwitch" />}
+          label={auth ? 'Logout' : 'Login'}
+        />
       </FormGroup>
       <AppBar position="static">
         <Toolbar>
@@ -60,39 +60,39 @@ function MenuAppBar() {
           <Typography variant="h6" color="inherit" className={classes.title}>
             Photos
           </Typography>
-          {auth &&
-          <div>
+          {auth && (
+            <div>
               <IconButton
-            aria-owns={open ? 'menu-appbar' : undefined}
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit">
-
+                aria-owns={open ? 'menu-appbar' : undefined}
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
                 <AccountCircle />
               </IconButton>
               <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right' }}
-
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right' }}
-
-            open={open}
-            onClose={handleClose}>
-
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
-            </div>}
-
+            </div>
+          )}
         </Toolbar>
       </AppBar>
-    </div>);
-
+    </div>
+  );
 }
 
 export default MenuAppBar;

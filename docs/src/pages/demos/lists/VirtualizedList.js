@@ -5,16 +5,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FixedSizeList } from 'react-window';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     height: 400,
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper } }));
-
-
-
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 function Row(props) {
   const { index, style } = props;
@@ -22,14 +20,14 @@ function Row(props) {
   return (
     <ListItem button style={style} key={index}>
       <ListItemText primary={`Item ${index + 1}`} />
-    </ListItem>);
-
+    </ListItem>
+  );
 }
 
 Row.propTypes = {
   index: PropTypes.number,
-  style: PropTypes.object };
-
+  style: PropTypes.object,
+};
 
 function VirtualizedList() {
   const classes = useStyles();
@@ -39,8 +37,8 @@ function VirtualizedList() {
       <FixedSizeList height={400} width={360} itemSize={46} itemCount={200}>
         {Row}
       </FixedSizeList>
-    </div>);
-
+    </div>
+  );
 }
 
 export default VirtualizedList;

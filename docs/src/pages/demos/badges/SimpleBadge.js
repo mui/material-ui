@@ -9,16 +9,15 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing(2) },
+    margin: theme.spacing(2),
+  },
 
   padding: {
-    padding: theme.spacing(0, 2) } }));
-
-
-
+    padding: theme.spacing(0, 2),
+  },
+}));
 
 function SimpleBadge() {
   const classes = useStyles();
@@ -41,11 +40,12 @@ function SimpleBadge() {
       <AppBar position="static" className={classes.margin}>
         <Tabs value={0}>
           <Tab
-          label={
-          <Badge className={classes.padding} color="secondary" badgeContent={4}>
+            label={
+              <Badge className={classes.padding} color="secondary" badgeContent={4}>
                 Item One
-              </Badge>} />
-
+              </Badge>
+            }
+          />
 
           <Tab label="Item Two" />
           <Tab label="Item Three" />
@@ -57,8 +57,8 @@ function SimpleBadge() {
       <Badge color="primary" badgeContent={4} className={classes.margin}>
         <Button variant="contained">Button</Button>
       </Badge>
-    </div>);
-
+    </div>
+  );
 }
 
 export default SimpleBadge;

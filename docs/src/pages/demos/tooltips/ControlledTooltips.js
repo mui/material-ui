@@ -16,8 +16,8 @@ function ControlledTooltips() {
   return (
     <Tooltip onClose={handleTooltipClose} onOpen={handleTooltipOpen} open={open} title="Add">
       <Button>Controlled</Button>
-    </Tooltip>);
-
+    </Tooltip>
+  );
 }
 
 export default ControlledTooltips;

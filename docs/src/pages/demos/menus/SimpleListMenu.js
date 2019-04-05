@@ -6,22 +6,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper } }));
-
-
-
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 const options = [
-'Show some love to Material-UI',
-'Show all notification content',
-'Hide sensitive notification content',
-'Hide all notification content'];
-
+  'Show some love to Material-UI',
+  'Show all notification content',
+  'Hide sensitive notification content',
+  'Hide all notification content',
+];
 
 function SimpleListMenu() {
   const classes = useStyles();
@@ -45,29 +43,29 @@ function SimpleListMenu() {
     <div className={classes.root}>
       <List component="nav">
         <ListItem
-        button
-        aria-haspopup="true"
-        aria-controls="lock-menu"
-        aria-label="When device is locked"
-        onClick={handleClickListItem}>
-
+          button
+          aria-haspopup="true"
+          aria-controls="lock-menu"
+          aria-label="When device is locked"
+          onClick={handleClickListItem}
+        >
           <ListItemText primary="When device is locked" secondary={options[selectedIndex]} />
         </ListItem>
       </List>
       <Menu id="lock-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        {options.map((option, index) =>
-        <MenuItem
-        key={option}
-        disabled={index === 0}
-        selected={index === selectedIndex}
-        onClick={event => handleMenuItemClick(event, index)}>
-
+        {options.map((option, index) => (
+          <MenuItem
+            key={option}
+            disabled={index === 0}
+            selected={index === selectedIndex}
+            onClick={event => handleMenuItemClick(event, index)}
+          >
             {option}
-          </MenuItem>)}
-
+          </MenuItem>
+        ))}
       </Menu>
-    </div>);
-
+    </div>
+  );
 }
 
 export default SimpleListMenu;

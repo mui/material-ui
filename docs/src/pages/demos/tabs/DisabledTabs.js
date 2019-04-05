@@ -17,8 +17,8 @@ function DisabledTabs() {
         <Tab label="Disabled" disabled />
         <Tab label="Active" />
       </Tabs>
-    </Paper>);
-
+    </Paper>
+  );
 }
 
 export default DisabledTabs;

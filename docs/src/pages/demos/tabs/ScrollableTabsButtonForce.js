@@ -13,29 +13,25 @@ import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
 
-
-
-
-
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
       {props.children}
-    </Typography>);
-
+    </Typography>
+  );
 }
 
 TabContainer.propTypes = {
-  children: PropTypes.node.isRequired };
-
+  children: PropTypes.node.isRequired,
+};
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
-    backgroundColor: theme.palette.background.paper } }));
-
-
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 function ScrollableTabsButtonForce() {
   const classes = useStyles();
@@ -49,13 +45,13 @@ function ScrollableTabsButtonForce() {
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
-        value={value}
-        onChange={handleChange}
-        variant="scrollable"
-        scrollButtons="on"
-        indicatorColor="primary"
-        textColor="primary">
-
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="on"
+          indicatorColor="primary"
+          textColor="primary"
+        >
           <Tab label="Item One" icon={<PhoneIcon />} />
           <Tab label="Item Two" icon={<FavoriteIcon />} />
           <Tab label="Item Three" icon={<PersonPinIcon />} />
@@ -72,8 +68,8 @@ function ScrollableTabsButtonForce() {
       {value === 4 && <TabContainer>Item Five</TabContainer>}
       {value === 5 && <TabContainer>Item Six</TabContainer>}
       {value === 6 && <TabContainer>Item Seven</TabContainer>}
-    </div>);
-
+    </div>
+  );
 }
 
 export default ScrollableTabsButtonForce;

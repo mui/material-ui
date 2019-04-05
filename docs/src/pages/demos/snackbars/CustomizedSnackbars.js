@@ -18,41 +18,40 @@ const variantIcon = {
   success: CheckCircleIcon,
   warning: WarningIcon,
   error: ErrorIcon,
-  info: InfoIcon };
-
+  info: InfoIcon,
+};
 
 const useStyles1 = makeStyles(theme => ({
   success: {
-    backgroundColor: green[600] },
+    backgroundColor: green[600],
+  },
 
   error: {
-    backgroundColor: theme.palette.error.dark },
+    backgroundColor: theme.palette.error.dark,
+  },
 
   info: {
-    backgroundColor: theme.palette.primary.dark },
+    backgroundColor: theme.palette.primary.dark,
+  },
 
   warning: {
-    backgroundColor: amber[700] },
+    backgroundColor: amber[700],
+  },
 
   icon: {
-    fontSize: 20 },
+    fontSize: 20,
+  },
 
   iconVariant: {
     opacity: 0.9,
-    marginRight: theme.spacing(1) },
+    marginRight: theme.spacing(1),
+  },
 
   message: {
     display: 'flex',
-    alignItems: 'center' } }));
-
-
-
-
-
-
-
-
-
+    alignItems: 'center',
+  },
+}));
 
 function MySnackbarContentWrapper(props) {
   const classes = useStyles1();
@@ -61,42 +60,42 @@ function MySnackbarContentWrapper(props) {
 
   return (
     <SnackbarContent
-    className={clsx(classes[variant], className)}
-    aria-describedby="client-snackbar"
-    message={
-    <span id="client-snackbar" className={classes.message}>
+      className={clsx(classes[variant], className)}
+      aria-describedby="client-snackbar"
+      message={
+        <span id="client-snackbar" className={classes.message}>
           <Icon className={clsx(classes.icon, classes.iconVariant)} />
           {message}
-        </span>}
-
-    action={[
-    <IconButton
-    key="close"
-    aria-label="Close"
-    color="inherit"
-    className={classes.close}
-    onClick={onClose}>
-
+        </span>
+      }
+      action={[
+        <IconButton
+          key="close"
+          aria-label="Close"
+          color="inherit"
+          className={classes.close}
+          onClick={onClose}
+        >
           <CloseIcon className={classes.icon} />
-        </IconButton>]}
-
-    {...other} />);
-
-
+        </IconButton>,
+      ]}
+      {...other}
+    />
+  );
 }
 
 MySnackbarContentWrapper.propTypes = {
   className: PropTypes.string,
   message: PropTypes.node,
   onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired };
-
+  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
+};
 
 const useStyles2 = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing(1) } }));
-
-
+    margin: theme.spacing(1),
+  },
+}));
 
 function CustomizedSnackbars() {
   const classes = useStyles2();
@@ -120,42 +119,45 @@ function CustomizedSnackbars() {
         Open success snackbar
       </Button>
       <Snackbar
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'left' }}
-
-      open={open}
-      autoHideDuration={6000}
-      onClose={handleClose}>
-
-        <MySnackbarContentWrapper
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={6000}
         onClose={handleClose}
-        variant="success"
-        message="This is a success message!" />
-
+      >
+        <MySnackbarContentWrapper
+          onClose={handleClose}
+          variant="success"
+          message="This is a success message!"
+        />
       </Snackbar>
       <MySnackbarContentWrapper
-      variant="error"
-      className={classes.margin}
-      message="This is an error message!" />
+        variant="error"
+        className={classes.margin}
+        message="This is an error message!"
+      />
 
       <MySnackbarContentWrapper
-      variant="warning"
-      className={classes.margin}
-      message="This is a warning message!" />
+        variant="warning"
+        className={classes.margin}
+        message="This is a warning message!"
+      />
 
       <MySnackbarContentWrapper
-      variant="info"
-      className={classes.margin}
-      message="This is an information message!" />
+        variant="info"
+        className={classes.margin}
+        message="This is an information message!"
+      />
 
       <MySnackbarContentWrapper
-      variant="success"
-      className={classes.margin}
-      message="This is a success message!" />
-
-    </div>);
-
+        variant="success"
+        className={classes.margin}
+        message="This is a success message!"
+      />
+    </div>
+  );
 }
 
 export default CustomizedSnackbars;

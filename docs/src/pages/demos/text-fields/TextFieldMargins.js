@@ -3,20 +3,18 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const styles = (theme) => (
-{
+const styles = theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap' },
+    flexWrap: 'wrap',
+  },
 
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200 } });
-
-
-
-
+    width: 200,
+  },
+});
 
 const TextFieldMargins = props => {
   const { classes } = props;
@@ -24,34 +22,36 @@ const TextFieldMargins = props => {
   return (
     <div className={classes.container}>
       <TextField
-      label="None"
-      id="margin-none"
-      defaultValue="Default Value"
-      className={classes.textField}
-      helperText="Some important text" />
+        label="None"
+        id="margin-none"
+        defaultValue="Default Value"
+        className={classes.textField}
+        helperText="Some important text"
+      />
 
       <TextField
-      label="Dense"
-      id="margin-dense"
-      defaultValue="Default Value"
-      className={classes.textField}
-      helperText="Some important text"
-      margin="dense" />
+        label="Dense"
+        id="margin-dense"
+        defaultValue="Default Value"
+        className={classes.textField}
+        helperText="Some important text"
+        margin="dense"
+      />
 
       <TextField
-      label="Normal"
-      id="margin-normal"
-      defaultValue="Default Value"
-      className={classes.textField}
-      helperText="Some important text"
-      margin="normal" />
-
-    </div>);
-
+        label="Normal"
+        id="margin-normal"
+        defaultValue="Default Value"
+        className={classes.textField}
+        helperText="Some important text"
+        margin="normal"
+      />
+    </div>
+  );
 };
 
 TextFieldMargins.propTypes = {
-  classes: PropTypes.object.isRequired };
-
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(TextFieldMargins);

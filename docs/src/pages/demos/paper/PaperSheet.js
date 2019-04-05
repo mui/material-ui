@@ -4,12 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const styles = (theme) => (
-{
+const styles = theme => ({
   root: {
-    padding: theme.spacing(3, 2) } });
-
-
+    padding: theme.spacing(3, 2),
+  },
+});
 
 function PaperSheet(props) {
   const { classes } = props;
@@ -24,12 +23,12 @@ function PaperSheet(props) {
           Paper can be used to build surface or other elements for your application.
         </Typography>
       </Paper>
-    </div>);
-
+    </div>
+  );
 }
 
 PaperSheet.propTypes = {
-  classes: PropTypes.object.isRequired };
-
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(PaperSheet);

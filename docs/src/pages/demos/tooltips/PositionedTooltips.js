@@ -4,13 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles(
-{
+const useStyles = makeStyles({
   root: {
-    width: 500 } });
-
-
-
+    width: 500,
+  },
+});
 
 function PositionedTooltips() {
   const classes = useStyles();
@@ -74,8 +72,8 @@ function PositionedTooltips() {
           </Tooltip>
         </Grid>
       </Grid>
-    </div>);
-
+    </div>
+  );
 }
 
 export default PositionedTooltips;

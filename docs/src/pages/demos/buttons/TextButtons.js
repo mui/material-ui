@@ -2,16 +2,15 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   button: {
-    margin: theme.spacing(1) },
+    margin: theme.spacing(1),
+  },
 
   input: {
-    display: 'none' } }));
-
-
-
+    display: 'none',
+  },
+}));
 
 function TextButtons() {
   const classes = useStyles();
@@ -32,19 +31,20 @@ function TextButtons() {
         Link
       </Button>
       <input
-      accept="image/*"
-      className={classes.input}
-      id="text-button-file"
-      multiple
-      type="file" />
+        accept="image/*"
+        className={classes.input}
+        id="text-button-file"
+        multiple
+        type="file"
+      />
 
       <label htmlFor="text-button-file">
         <Button component="span" className={classes.button}>
           Upload
         </Button>
       </label>
-    </div>);
-
+    </div>
+  );
 }
 
 export default TextButtons;

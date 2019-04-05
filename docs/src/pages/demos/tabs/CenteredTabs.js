@@ -6,9 +6,9 @@ import Tab from '@material-ui/core/Tab';
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1 } });
-
-
+    flexGrow: 1,
+  },
+});
 
 function CenteredTabs() {
   const classes = useStyles();
@@ -21,18 +21,18 @@ function CenteredTabs() {
   return (
     <Paper className={classes.root}>
       <Tabs
-      value={value}
-      onChange={handleChange}
-      indicatorColor="primary"
-      textColor="primary"
-      centered>
-
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
         <Tab label="Item One" />
         <Tab label="Item Two" />
         <Tab label="Item Three" />
       </Tabs>
-    </Paper>);
-
+    </Paper>
+  );
 }
 
 export default CenteredTabs;

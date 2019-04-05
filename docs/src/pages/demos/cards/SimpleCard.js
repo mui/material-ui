@@ -9,22 +9,23 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    minWidth: 275 },
+    minWidth: 275,
+  },
 
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
-    transform: 'scale(0.8)' },
+    transform: 'scale(0.8)',
+  },
 
   title: {
-    fontSize: 14 },
+    fontSize: 14,
+  },
 
   pos: {
-    marginBottom: 12 } };
-
-
-
-
+    marginBottom: 12,
+  },
+};
 
 function SimpleCard(props) {
   const { classes } = props;
@@ -55,12 +56,12 @@ function SimpleCard(props) {
       <CardActions>
         <Button size="small">Learn More</Button>
       </CardActions>
-    </Card>);
-
+    </Card>
+  );
 }
 
 SimpleCard.propTypes = {
-  classes: PropTypes.object.isRequired };
-
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(SimpleCard);

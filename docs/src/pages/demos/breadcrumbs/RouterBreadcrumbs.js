@@ -16,24 +16,13 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 
-
-
-
-
-
-
-
-
-
-
-
 const breadcrumbNameMap = {
   '/inbox': 'Inbox',
   '/inbox/important': 'Important',
   '/trash': 'Trash',
   '/spam': 'Spam',
-  '/drafts': 'Drafts' };
-
+  '/drafts': 'Drafts',
+};
 
 function ListItemLink(props) {
   const { to, open, ...other } = props;
@@ -45,42 +34,38 @@ function ListItemLink(props) {
         <ListItemText primary={primary} />
         {open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
       </ListItem>
-    </li>);
-
+    </li>
+  );
 }
 
 ListItemLink.propTypes = {
   open: PropTypes.bool,
-  to: PropTypes.string.isRequired };
+  to: PropTypes.string.isRequired,
+};
 
-
-const styles = (theme) => (
-{
+const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    width: 360 },
+    width: 360,
+  },
 
   lists: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(1) },
+    marginTop: theme.spacing(1),
+  },
 
   nested: {
-    paddingLeft: theme.spacing(4) } });
-
-
-
-
-
-
-
+    paddingLeft: theme.spacing(4),
+  },
+});
 
 const LinkRouter = props => <Link {...props} component={RouterLink} />;
 
 class RouterBreadcrumbs extends React.Component {
   state = {
-    open: true };
-
+    open: true,
+  };
 
   handleClick = () => {
     this.setState(state => ({ open: !state.open }));
@@ -107,18 +92,18 @@ class RouterBreadcrumbs extends React.Component {
                       const last = index === pathnames.length - 1;
                       const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
-                      return last ?
-                      <Typography color="textPrimary" key={to}>
+                      return last ? (
+                        <Typography color="textPrimary" key={to}>
                           {breadcrumbNameMap[to]}
-                        </Typography> :
-
-                      <LinkRouter color="inherit" to={to} key={to}>
+                        </Typography>
+                      ) : (
+                        <LinkRouter color="inherit" to={to} key={to}>
                           {breadcrumbNameMap[to]}
-                        </LinkRouter>;
-
+                        </LinkRouter>
+                      );
                     })}
-                  </Breadcrumbs>);
-
+                  </Breadcrumbs>
+                );
               }}
             </Route>
             <div className={classes.lists}>
@@ -135,16 +120,13 @@ class RouterBreadcrumbs extends React.Component {
             </div>
           </div>
         </MemoryRouter>
-      </NoSsr>);
+      </NoSsr>
+    );
+  }
+}
 
-  }}
-
-
-RouterBreadcrumbs.
-
-
-propTypes = {
-  classes: PropTypes.object.isRequired };
-
+RouterBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(RouterBreadcrumbs);

@@ -6,17 +6,17 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-const styles = (theme) => (
-{
+const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    flexWrap: 'wrap' },
+    flexWrap: 'wrap',
+  },
 
   chip: {
-    margin: theme.spacing(1) } });
-
-
+    margin: theme.spacing(1),
+  },
+});
 
 function handleDelete() {
   alert('You clicked the delete icon.'); // eslint-disable-line no-alert
@@ -32,97 +32,107 @@ function Chips(props) {
     <div className={classes.root}>
       <Chip label="Basic Chip" className={classes.chip} />
       <Chip
-      avatar={<Avatar>MB</Avatar>}
-      label="Clickable Chip"
-      onClick={handleClick}
-      className={classes.chip} />
+        avatar={<Avatar>MB</Avatar>}
+        label="Clickable Chip"
+        onClick={handleClick}
+        className={classes.chip}
+      />
 
       <Chip
-      avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
-      label="Deletable Chip"
-      onDelete={handleDelete}
-      className={classes.chip} />
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+        label="Deletable Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+      />
 
       <Chip
-      avatar={
-      <Avatar>
+        avatar={
+          <Avatar>
             <FaceIcon />
-          </Avatar>}
-
-      label="Clickable Deletable Chip"
-      onClick={handleClick}
-      onDelete={handleDelete}
-      className={classes.chip} />
-
-      <Chip
-      icon={<FaceIcon />}
-      label="Clickable Deletable Chip"
-      onClick={handleClick}
-      onDelete={handleDelete}
-      className={classes.chip} />
+          </Avatar>
+        }
+        label="Clickable Deletable Chip"
+        onClick={handleClick}
+        onDelete={handleDelete}
+        className={classes.chip}
+      />
 
       <Chip
-      label="Custom delete icon Chip"
-      onClick={handleClick}
-      onDelete={handleDelete}
-      className={classes.chip}
-      deleteIcon={<DoneIcon />} />
+        icon={<FaceIcon />}
+        label="Clickable Deletable Chip"
+        onClick={handleClick}
+        onDelete={handleDelete}
+        className={classes.chip}
+      />
 
       <Chip
-      label="Clickable Link Chip"
-      className={classes.chip}
-      component="a"
-      href="#chip"
-      clickable />
+        label="Custom delete icon Chip"
+        onClick={handleClick}
+        onDelete={handleDelete}
+        className={classes.chip}
+        deleteIcon={<DoneIcon />}
+      />
 
       <Chip
-      avatar={<Avatar>MB</Avatar>}
-      label="Primary Clickable Chip"
-      clickable
-      className={classes.chip}
-      color="primary"
-      onDelete={handleDelete}
-      deleteIcon={<DoneIcon />} />
+        label="Clickable Link Chip"
+        className={classes.chip}
+        component="a"
+        href="#chip"
+        clickable
+      />
 
       <Chip
-      icon={<FaceIcon />}
-      label="Primary Clickable Chip"
-      clickable
-      className={classes.chip}
-      color="primary"
-      onDelete={handleDelete}
-      deleteIcon={<DoneIcon />} />
+        avatar={<Avatar>MB</Avatar>}
+        label="Primary Clickable Chip"
+        clickable
+        className={classes.chip}
+        color="primary"
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
 
       <Chip
-      label="Deletable Primary Chip"
-      onDelete={handleDelete}
-      className={classes.chip}
-      color="primary" />
+        icon={<FaceIcon />}
+        label="Primary Clickable Chip"
+        clickable
+        className={classes.chip}
+        color="primary"
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
 
       <Chip
-      avatar={
-      <Avatar>
+        label="Deletable Primary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="primary"
+      />
+
+      <Chip
+        avatar={
+          <Avatar>
             <FaceIcon />
-          </Avatar>}
-
-      label="Deletable Secondary Chip"
-      onDelete={handleDelete}
-      className={classes.chip}
-      color="secondary" />
+          </Avatar>
+        }
+        label="Deletable Secondary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="secondary"
+      />
 
       <Chip
-      icon={<FaceIcon />}
-      label="Deletable Secondary Chip"
-      onDelete={handleDelete}
-      className={classes.chip}
-      color="secondary" />
-
-    </div>);
-
+        icon={<FaceIcon />}
+        label="Deletable Secondary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="secondary"
+      />
+    </div>
+  );
 }
 
 Chips.propTypes = {
-  classes: PropTypes.object.isRequired };
-
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Chips);

@@ -6,16 +6,15 @@ import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import NavigationIcon from '@material-ui/icons/Navigation';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   fab: {
-    margin: theme.spacing(1) },
+    margin: theme.spacing(1),
+  },
 
   extendedIcon: {
-    marginRight: theme.spacing(1) } }));
-
-
-
+    marginRight: theme.spacing(1),
+  },
+}));
 
 function FloatingActionButtons() {
   const classes = useStyles();
@@ -35,8 +34,8 @@ function FloatingActionButtons() {
       <Fab disabled aria-label="Delete" className={classes.fab}>
         <DeleteIcon />
       </Fab>
-    </div>);
-
+    </div>
+  );
 }
 
 export default FloatingActionButtons;

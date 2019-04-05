@@ -9,22 +9,21 @@ import HomeIcon from '@material-ui/icons/Home';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import GrainIcon from '@material-ui/icons/Grain';
 
-
-
-const styles = (theme) => (
-{
+const styles = theme => ({
   root: {
-    padding: theme.spacing(1, 2) },
+    padding: theme.spacing(1, 2),
+  },
 
   link: {
-    display: 'flex' },
+    display: 'flex',
+  },
 
   icon: {
     marginRight: theme.spacing(0.5),
     width: 20,
-    height: 20 } });
-
-
+    height: 20,
+  },
+});
 
 function handleClick(event) {
   event.preventDefault();
@@ -41,11 +40,11 @@ function IconBreadcrumbs(props) {
           Material-UI
         </Link>
         <Link
-        color="inherit"
-        href="/getting-started/installation/"
-        onClick={handleClick}
-        className={classes.link}>
-
+          color="inherit"
+          href="/getting-started/installation/"
+          onClick={handleClick}
+          className={classes.link}
+        >
           <WhatshotIcon className={classes.icon} />
           Core
         </Link>
@@ -54,12 +53,12 @@ function IconBreadcrumbs(props) {
           Breadcrumb
         </Typography>
       </Breadcrumbs>
-    </Paper>);
-
+    </Paper>
+  );
 }
 
 IconBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired };
-
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(IconBreadcrumbs);

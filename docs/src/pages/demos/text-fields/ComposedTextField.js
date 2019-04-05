@@ -8,31 +8,24 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-const styles = (theme) => (
-{
+const styles = theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap' },
+    flexWrap: 'wrap',
+  },
 
   formControl: {
-    margin: theme.spacing(1) } });
-
-
-
-
-
-
-
-
-
+    margin: theme.spacing(1),
+  },
+});
 
 class ComposedTextField extends React.Component {
   label = React.createRef();
 
   state = {
     labelWidth: 0,
-    name: 'Composed TextField' };
-
+    name: 'Composed TextField',
+  };
 
   componentDidMount() {
     this.setState({ labelWidth: this.label.current.offsetWidth });
@@ -55,10 +48,11 @@ class ComposedTextField extends React.Component {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="component-helper">Name</InputLabel>
           <Input
-          id="component-helper"
-          value={name}
-          onChange={this.handleChange}
-          aria-describedby="component-helper-text" />
+            id="component-helper"
+            value={name}
+            onChange={this.handleChange}
+            aria-describedby="component-helper-text"
+          />
 
           <FormHelperText id="component-helper-text">Some important helper text</FormHelperText>
         </FormControl>
@@ -70,10 +64,11 @@ class ComposedTextField extends React.Component {
         <FormControl className={classes.formControl} error>
           <InputLabel htmlFor="component-error">Name</InputLabel>
           <Input
-          id="component-error"
-          value={name}
-          onChange={this.handleChange}
-          aria-describedby="component-error-text" />
+            id="component-error"
+            value={name}
+            onChange={this.handleChange}
+            aria-describedby="component-error-text"
+          />
 
           <FormHelperText id="component-error-text">Error</FormHelperText>
         </FormControl>
@@ -82,23 +77,23 @@ class ComposedTextField extends React.Component {
             Name
           </InputLabel>
           <OutlinedInput
-          id="component-outlined"
-          value={name}
-          onChange={this.handleChange}
-          labelWidth={labelWidth} />
-
+            id="component-outlined"
+            value={name}
+            onChange={this.handleChange}
+            labelWidth={labelWidth}
+          />
         </FormControl>
         <FormControl className={classes.formControl} variant="filled">
           <InputLabel htmlFor="component-filled">Name</InputLabel>
           <FilledInput id="component-filled" value={name} onChange={this.handleChange} />
         </FormControl>
-      </div>);
-
-  }}
-
+      </div>
+    );
+  }
+}
 
 ComposedTextField.propTypes = {
-  classes: PropTypes.object.isRequired };
-
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(ComposedTextField);

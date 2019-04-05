@@ -18,14 +18,14 @@ class App extends React.Component {
       <React.Fragment>
         <Button onClick={this.handleClick}>Show snackbar</Button>
         <Button onClick={this.handleClickVariant('warning')}>Show warning snackbar</Button>
-      </React.Fragment>);
-
-  }}
-
+      </React.Fragment>
+    );
+  }
+}
 
 App.propTypes = {
-  enqueueSnackbar: PropTypes.func.isRequired };
-
+  enqueueSnackbar: PropTypes.func.isRequired,
+};
 
 const MyApp = withSnackbar(App);
 
@@ -33,8 +33,8 @@ function IntegrationNotistack() {
   return (
     <SnackbarProvider maxSnack={3}>
       <MyApp />
-    </SnackbarProvider>);
-
+    </SnackbarProvider>
+  );
 }
 
 export default IntegrationNotistack;

@@ -9,11 +9,11 @@ const useStyles = makeStyles({
     '& p': {
       color: 'green',
       '& span': {
-        color: 'blue' } } } });
-
-
-
-
+        color: 'blue',
+      },
+    },
+  },
+});
 
 export default function NestedStylesHook() {
   const classes = useStyles();
@@ -24,6 +24,6 @@ export default function NestedStylesHook() {
         This is green since it is inside the paragraph{' '}
         <span>and this is blue since it is inside the span</span>
       </p>
-    </Paper>);
-
+    </Paper>
+  );
 }

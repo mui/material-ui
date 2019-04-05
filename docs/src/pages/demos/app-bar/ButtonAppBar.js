@@ -7,19 +7,19 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1 },
+    flexGrow: 1,
+  },
 
   menuButton: {
-    marginRight: theme.spacing(2) },
+    marginRight: theme.spacing(2),
+  },
 
   title: {
-    flexGrow: 1 } }));
-
-
-
+    flexGrow: 1,
+  },
+}));
 
 function ButtonAppBar() {
   const classes = useStyles();
@@ -36,8 +36,8 @@ function ButtonAppBar() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-    </div>);
-
+    </div>
+  );
 }
 
 export default ButtonAppBar;

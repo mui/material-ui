@@ -8,16 +8,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => (
-{
+const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex' },
+    display: 'flex',
+  },
 
   paper: {
-    marginRight: theme.spacing(2) } }));
-
-
-
+    marginRight: theme.spacing(2),
+  },
+}));
 
 function MenuListComposition() {
   const classes = useStyles();
@@ -47,19 +46,19 @@ function MenuListComposition() {
       </Paper>
       <div>
         <Button
-        buttonRef={anchorEl}
-        aria-owns={open ? 'menu-list-grow' : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}>
-
+          buttonRef={anchorEl}
+          aria-owns={open ? 'menu-list-grow' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
           Toggle Menu Grow
         </Button>
         <Popper open={open} anchorEl={anchorEl.current} transition disablePortal>
-          {({ TransitionProps, placement }) =>
-          <Grow
-          {...TransitionProps}
-          style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}>
-
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            >
               <Paper id="menu-list-grow">
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList>
@@ -69,12 +68,12 @@ function MenuListComposition() {
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
-            </Grow>}
-
+            </Grow>
+          )}
         </Popper>
       </div>
-    </div>);
-
+    </div>
+  );
 }
 
 export default MenuListComposition;

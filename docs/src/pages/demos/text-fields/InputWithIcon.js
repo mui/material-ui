@@ -9,14 +9,11 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-const styles = (theme) => (
-{
+const styles = theme => ({
   margin: {
-    margin: theme.spacing(1) } });
-
-
-
-
+    margin: theme.spacing(1),
+  },
+});
 
 function InputWithIcon(props) {
   const { classes } = props;
@@ -26,25 +23,26 @@ function InputWithIcon(props) {
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="input-with-icon-adornment">With a start adornment</InputLabel>
         <Input
-        id="input-with-icon-adornment"
-        startAdornment={
-        <InputAdornment position="start">
+          id="input-with-icon-adornment"
+          startAdornment={
+            <InputAdornment position="start">
               <AccountCircle />
-            </InputAdornment>} />
-
-
+            </InputAdornment>
+          }
+        />
       </FormControl>
       <TextField
-      className={classes.margin}
-      id="input-with-icon-textfield"
-      label="TextField"
-      InputProps={{
-        startAdornment:
-        <InputAdornment position="start">
+        className={classes.margin}
+        id="input-with-icon-textfield"
+        label="TextField"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
               <AccountCircle />
-            </InputAdornment> }} />
-
-
+            </InputAdornment>
+          ),
+        }}
+      />
 
       <div className={classes.margin}>
         <Grid container spacing={1} alignItems="flex-end">
@@ -56,12 +54,12 @@ function InputWithIcon(props) {
           </Grid>
         </Grid>
       </div>
-    </div>);
-
+    </div>
+  );
 }
 
 InputWithIcon.propTypes = {
-  classes: PropTypes.object.isRequired };
-
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(InputWithIcon);

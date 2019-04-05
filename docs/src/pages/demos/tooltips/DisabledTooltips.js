@@ -8,8 +8,8 @@ function DisabledTooltips() {
       <span>
         <Button disabled>A Disabled Button</Button>
       </span>
-    </Tooltip>);
-
+    </Tooltip>
+  );
 }
 
 export default DisabledTooltips;

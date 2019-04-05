@@ -7,18 +7,16 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-
-
-const styles = (theme) => (
-{
+const styles = theme => ({
   root: {
     justifyContent: 'center',
-    flexWrap: 'wrap' },
+    flexWrap: 'wrap',
+  },
 
   paper: {
-    padding: theme.spacing(1, 2) } });
-
-
+    padding: theme.spacing(1, 2),
+  },
+});
 
 function handleClick(event) {
   event.preventDefault();
@@ -65,12 +63,12 @@ function CustomSeparator(props) {
           <Typography color="textPrimary">Breadcrumb</Typography>
         </Breadcrumbs>
       </Paper>
-    </div>);
-
+    </div>
+  );
 }
 
 CustomSeparator.propTypes = {
-  classes: PropTypes.object.isRequired };
-
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(CustomSeparator);

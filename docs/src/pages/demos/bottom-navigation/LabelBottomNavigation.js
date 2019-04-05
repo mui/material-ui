@@ -9,9 +9,9 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const useStyles = makeStyles({
   root: {
-    width: 500 } });
-
-
+    width: 500,
+  },
+});
 
 function LabelBottomNavigation() {
   const classes = useStyles();
@@ -27,8 +27,8 @@ function LabelBottomNavigation() {
       <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
       <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
       <BottomNavigationAction label="Folder" value="folder" icon={<Icon>folder</Icon>} />
-    </BottomNavigation>);
-
+    </BottomNavigation>
+  );
 }
 
 export default LabelBottomNavigation;
