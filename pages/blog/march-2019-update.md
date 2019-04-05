@@ -26,7 +26,7 @@ People are wondering what they should use. We are encouraging the usage of `make
 
 ## Our roadmap intent for April
 
-*we will do our best, no guarantee*
+*(We'll do our best, no guarantee!)*
 
 - We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui-org/material-ui/issues/13663). You can already find [the upgrade path](https://next.material-ui.com/guides/migration-v3/) from v3 to v4 in the documentation. We will release or first beta version (no more breaking changes in beta).
 We have heard your feedback. You find that we introduce too many breaking changes.
