@@ -20,7 +20,7 @@ People are wondering what they should use. We are encouraging the usage of `make
   -import { unstable_Box as Box } from '@material-ui/core/Box';
   +import Box from '@material-ui/core/Box';
   ```
-- We have commited to [a new Roadmap](https://next.material-ui.com/discover-more/roadmap/)  (prioritized) for the next 6 months.
+- We have commited to [a new Roadmap](https://next.material-ui.com/discover-more/roadmap/) (prioritized) for the next 6 months.
 - We have migrated 50% of the codebase from the Classes API to the Hooks API. Once we are done with this task, we can remove the internal usage of higher-order components.
 - We have introduced [a simplified server-side rendering API](https://next.material-ui.com/css-in-js/advanced/#server-side-rendering), inspired by styled-components.
 
