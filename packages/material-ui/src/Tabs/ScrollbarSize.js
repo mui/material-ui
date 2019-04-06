@@ -18,53 +18,49 @@ const styles = {
  * The component is originates from https://github.com/STORIS/react-scrollbar-size.
  * It has been moved into the core in order to minimize the bundle size.
  */
-class ScrollbarSize extends React.Component {
-  constructor() {
-    super();
+function ScrollbarSize(props) {
+  const { onChange } = props;
+  const scrollbarHeight = React.useRef();
+  const nodeRef = React.useRef();
 
-    if (typeof window !== 'undefined') {
-      this.handleResize = debounce(() => {
-        const prevHeight = this.scrollbarHeight;
-        this.setMeasurements();
-
-        if (prevHeight !== this.scrollbarHeight) {
-          this.props.onChange(this.scrollbarHeight);
-        }
-      }, 166); // Corresponds to 10 frames at 60 Hz.
-    }
-  }
-
-  componentDidMount() {
-    this.setMeasurements();
-    this.props.onChange(this.scrollbarHeight);
-  }
-
-  componentWillUnmount() {
-    this.handleResize.clear();
-  }
-
-  handleRef = ref => {
-    this.nodeRef = ref;
-  };
-
-  setMeasurements = () => {
-    const nodeRef = this.nodeRef;
-
-    if (!nodeRef) {
+  const setMeasurements = () => {
+    if (!nodeRef.current) {
       return;
     }
 
-    this.scrollbarHeight = nodeRef.offsetHeight - nodeRef.clientHeight;
+    scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <EventListener target="window" onResize={this.handleResize} />
-        <div style={styles} ref={this.handleRef} />
-      </React.Fragment>
-    );
+  let handleResize = () => {};
+
+  if (typeof window !== 'undefined') {
+    handleResize = debounce(() => {
+      const prevHeight = scrollbarHeight.current;
+      setMeasurements();
+
+      if (prevHeight !== scrollbarHeight.current) {
+        onChange(scrollbarHeight.current);
+      }
+    }, 166); // Corresponds to 10 frames at 60 Hz.
   }
+
+  const handleRef = ref => {
+    nodeRef.current = ref;
+  };
+
+  React.useEffect(() => {
+    setMeasurements();
+    onChange(scrollbarHeight.current);
+
+    return () => handleResize.clear();
+  }, [onChange]);
+
+  return (
+    <React.Fragment>
+      <EventListener target="window" onResize={handleResize} />
+      <div style={styles} ref={handleRef} />
+    </React.Fragment>
+  );
 }
 
 ScrollbarSize.propTypes = {
