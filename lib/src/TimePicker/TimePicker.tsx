@@ -8,6 +8,7 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
+import ToolbarText from '../_shared/ToolbarText';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import ClockType from '../constants/ClockType';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
@@ -162,16 +163,21 @@ export class TimePicker extends React.Component<TimePickerProps> {
         >
           <div className={hourMinuteClassName}>
             <ToolbarButton
-              variant="h2"
+              toolbarTextProps={{
+                variant: 'h2',
+              }}
               onClick={this.openHourView}
               selected={openView === ClockType.HOURS}
               label={utils.getHourText(date, Boolean(ampm))}
+              size="large"
             />
 
-            <ToolbarButton variant="h2" label=":" selected={false} className={classes.separator} />
+            <ToolbarText variant="h2" label=":" selected={false} className={classes.separator} />
 
             <ToolbarButton
-              variant="h2"
+              toolbarTextProps={{
+                variant: 'h2',
+              }}
               onClick={this.openMinutesView}
               selected={openView === ClockType.MINUTES}
               label={utils.getMinuteText(date)}
@@ -179,7 +185,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
 
             {seconds && (
               <React.Fragment>
-                <ToolbarButton
+                <ToolbarText
                   variant="h2"
                   label=":"
                   selected={false}
@@ -187,7 +193,9 @@ export class TimePicker extends React.Component<TimePickerProps> {
                 />
 
                 <ToolbarButton
-                  variant="h2"
+                  toolbarTextProps={{
+                    variant: 'h2',
+                  }}
                   onClick={this.openSecondsView}
                   selected={openView === ClockType.SECONDS}
                   label={utils.getSecondText(date)}
@@ -199,17 +207,21 @@ export class TimePicker extends React.Component<TimePickerProps> {
           {ampm && (
             <div className={seconds ? classes.ampmSelectionWithSeconds : classes.ampmSelection}>
               <ToolbarButton
+                toolbarTextProps={{
+                  variant: 'subtitle1',
+                }}
                 className={classes.ampmLabel}
                 selected={meridiemMode === 'am'}
-                variant="subtitle1"
                 label={utils.getMeridiemText('am')}
                 onClick={this.setMeridiemMode('am')}
               />
 
               <ToolbarButton
+                toolbarTextProps={{
+                  variant: 'subtitle1',
+                }}
                 className={classes.ampmLabel}
                 selected={meridiemMode === 'pm'}
-                variant="subtitle1"
                 label={utils.getMeridiemText('pm')}
                 onClick={this.setMeridiemMode('pm')}
               />
@@ -247,10 +259,16 @@ export const styles = () =>
       cursor: 'default',
     },
     ampmSelection: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       marginLeft: 20,
       marginRight: -20,
     },
     ampmSelectionWithSeconds: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       marginLeft: 15,
       marginRight: 10,
     },
