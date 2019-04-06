@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -7,16 +7,19 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  formControl: {
-    margin: theme.spacing.unit * 3,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+    },
+    formControl: {
+      margin: theme.spacing.unit * 3,
+    },
+  });
 
-function CheckboxesGroup(props) {
+export interface Props extends WithStyles<typeof styles> {}
+
+function CheckboxesGroup(props: Props) {
   const { classes } = props;
   const [state, setState] = React.useState({
     gilad: true,
@@ -24,7 +27,7 @@ function CheckboxesGroup(props) {
     antoine: false,
   });
 
-  const handleChange = name => event => {
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [name]: event.target.checked });
   };
 
@@ -33,19 +36,17 @@ function CheckboxesGroup(props) {
 
   return (
     <div className={classes.root}>
-      <FormControl component={'fieldset'} className={classes.formControl}>
-        <FormLabel component={'legend'}>Assign responsibility</FormLabel>
+      <FormControl component={'fieldset' as 'div'} className={classes.formControl}>
+        <FormLabel component={'legend' as 'div'}>Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
             label="Gilad Gray"
           />
-
           <FormControlLabel
             control={<Checkbox checked={jason} onChange={handleChange('jason')} value="jason" />}
             label="Jason Killian"
           />
-
           <FormControlLabel
             control={
               <Checkbox checked={antoine} onChange={handleChange('antoine')} value="antoine" />
@@ -55,19 +56,22 @@ function CheckboxesGroup(props) {
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      <FormControl required error={error} component={'fieldset'} className={classes.formControl}>
-        <FormLabel component={'legend'}>Pick two</FormLabel>
+      <FormControl
+        required
+        error={error}
+        component={'fieldset' as 'div'}
+        className={classes.formControl}
+      >
+        <FormLabel component={'legend' as 'div'}>Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
             label="Gilad Gray"
           />
-
           <FormControlLabel
             control={<Checkbox checked={jason} onChange={handleChange('jason')} value="jason" />}
             label="Jason Killian"
           />
-
           <FormControlLabel
             control={
               <Checkbox checked={antoine} onChange={handleChange('antoine')} value="antoine" />
