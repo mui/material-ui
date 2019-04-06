@@ -11,7 +11,7 @@ import { ExtendMui } from '../typings/extendMui';
 import { KeyboardIcon } from './icons/KeyboardIcon';
 
 export interface KeyboardDateInputProps
-  extends ExtendMui<BaseTextFieldProps, 'onError' | 'onChange' | 'value'> {
+  extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
   // Properly extend different variants from mui textfield
   inputVariant?: TextFieldProps['variant'];
   inputValue: string;

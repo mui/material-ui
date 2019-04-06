@@ -18,8 +18,8 @@ describe('e2e - KeyboardDateTimePicker (inline)', () => {
     component = mount(
       <KeyboardDateTimePicker
         autoOk
-        // @ts-ignore
         variant="inline"
+        inputVariant="outlined"
         onChange={onChangeMock}
         onClose={onCloseMock}
         onOpen={onOpenMock}
