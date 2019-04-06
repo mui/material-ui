@@ -45,6 +45,7 @@ export const styles = createStyles({
   toolbarBtn: {
     padding: 0,
     minWidth: '16px',
+    textTransform: 'none',
   },
 });
 

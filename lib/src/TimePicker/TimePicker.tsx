@@ -208,9 +208,9 @@ export class TimePicker extends React.Component<TimePickerProps> {
             <div className={seconds ? classes.ampmSelectionWithSeconds : classes.ampmSelection}>
               <ToolbarButton
                 toolbarTextProps={{
+                  className: classes.ampmLabel,
                   variant: 'subtitle1',
                 }}
-                className={classes.ampmLabel}
                 selected={meridiemMode === 'am'}
                 label={utils.getMeridiemText('am')}
                 onClick={this.setMeridiemMode('am')}
@@ -218,9 +218,9 @@ export class TimePicker extends React.Component<TimePickerProps> {
 
               <ToolbarButton
                 toolbarTextProps={{
+                  className: classes.ampmLabel,
                   variant: 'subtitle1',
                 }}
-                className={classes.ampmLabel}
                 selected={meridiemMode === 'pm'}
                 label={utils.getMeridiemText('pm')}
                 onClick={this.setMeridiemMode('pm')}

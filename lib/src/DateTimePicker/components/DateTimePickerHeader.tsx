@@ -40,6 +40,10 @@ export const styles = (theme: Theme) =>
       height: 60,
       minWidth: 110,
       marginRight: 4,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
     },
     timeHeader: {
       height: 65,
@@ -51,6 +55,9 @@ export const styles = (theme: Theme) =>
     ampmSelection: {
       top: 11,
       position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       marginLeft: 10,
       marginRight: -10,
     },
@@ -128,9 +135,9 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
           <div className={classes.ampmSelection}>
             <ToolbarButton
               toolbarTextProps={{
+                className: classes.ampmLabel,
                 variant: 'subtitle1',
               }}
-              className={classes.ampmLabel}
               selected={meridiemMode === 'am'}
               label={utils.getMeridiemText('am')}
               onClick={setMeridiemMode('am')}
@@ -138,9 +145,9 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
 
             <ToolbarButton
               toolbarTextProps={{
+                className: classes.ampmLabel,
                 variant: 'subtitle1',
               }}
-              className={classes.ampmLabel}
               selected={meridiemMode === 'pm'}
               label={utils.getMeridiemText('pm')}
               onClick={setMeridiemMode('pm')}
