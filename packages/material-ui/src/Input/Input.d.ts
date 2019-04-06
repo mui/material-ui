@@ -18,7 +18,6 @@ export type InputClassKey =
   | 'input'
   | 'inputMarginDense'
   | 'inputMultiline'
-  | 'inputType'
   | 'inputTypeSearch';
 
 declare const Input: React.ComponentType<InputProps>;
