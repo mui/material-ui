@@ -75,6 +75,7 @@ const useStyles = makeStyles((theme: Theme) =>
     input: {
       display: 'flex',
       padding: 0,
+      height: 'auto',
     },
     valueContainer: {
       display: 'flex',
@@ -147,7 +148,7 @@ function Control(props: ControlProps<OptionType>) {
           ...props.innerProps,
         },
       }}
-      {...props.selectProps.textFieldProps}
+      {...props.selectProps.TextFieldProps}
     />
   );
 }
@@ -265,7 +266,7 @@ function IntegrationReactSelect() {
         <Select
           classes={classes}
           styles={selectStyles}
-          textFieldProps={{
+          TextFieldProps={{
             label: 'Label',
             InputLabelProps: {
               shrink: true,
