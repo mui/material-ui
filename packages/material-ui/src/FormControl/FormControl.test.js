@@ -71,7 +71,7 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ filled: false }), true);
+      assert.strictEqual(testFunction.args[0][0].filled, false);
     });
 
     it('should not be focused initially', () => {
@@ -81,7 +81,7 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ focused: false }), true);
+      assert.strictEqual(testFunction.args[0][0].focused, false);
     });
   });
 
@@ -101,12 +101,11 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ focused: false }), true);
+      assert.strictEqual(testFunction.args[0][0].focused, false);
       wrapper.find('input').simulate('focus');
-      assert.strictEqual(testFunction.calledWithMatch({ focused: true }), true);
-      testFunction.resetHistory();
+      assert.strictEqual(testFunction.args[1][0].focused, true);
       wrapper.setProps({ disabled: true });
-      assert.strictEqual(testFunction.calledWithMatch({ focused: false }), true);
+      assert.strictEqual(testFunction.args[2][0].focused, false);
     });
   });
 
@@ -119,7 +118,7 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ filled: true }), true);
+      assert.strictEqual(testFunction.args[0][0].filled, true);
     });
 
     it('should be filled with a defaultValue', () => {
@@ -130,7 +129,7 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ filled: true }), true);
+      assert.strictEqual(testFunction.args[0][0].filled, true);
     });
 
     it('should not be adornedStart with an endAdornment', () => {
@@ -141,7 +140,7 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ adornedStart: false }), true);
+      assert.strictEqual(testFunction.args[0][0].adornedStart, false);
     });
 
     it('should be adornedStar with a startAdornment', () => {
@@ -152,7 +151,7 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ adornedStart: true }), true);
+      assert.strictEqual(testFunction.args[0][0].adornedStart, true);
     });
   });
 
@@ -165,7 +164,7 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ adornedStart: false }), true);
+      assert.strictEqual(testFunction.args[0][0].adornedStart, false);
     });
 
     it('should be adorned with a startAdornment', () => {
@@ -176,7 +175,7 @@ describe('<FormControl />', () => {
           <TestComponent fn={testFunction} />
         </FormControl>,
       );
-      assert.strictEqual(testFunction.calledWithMatch({ adornedStart: true }), true);
+      assert.strictEqual(testFunction.args[0][0].adornedStart, true);
     });
   });
 
