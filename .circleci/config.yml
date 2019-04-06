@@ -1,7 +1,8 @@
 version: 2
 jobs:
   checkout_code:
-    executor: rn/linux_js
+    docker:
+      - image: circleci/node:lts
     steps:
       - checkout
       - persist_to_workspace:
