@@ -62,9 +62,7 @@ function HorizontalNonLinearStepper() {
   }
 
   function handleNext() {
-    let newActiveStep;
-
-    newActiveStep =
+    const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
           // find the first step that has been completed
