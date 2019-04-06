@@ -9,10 +9,6 @@ import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
 import { WrapperProps } from './Wrapper';
 
 export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> {
-  /** On open callback */
-  onOpen?: () => void;
-  /** On close callback */
-  onClose?: () => void;
   /** Dialog props passed to material-ui Dialog */
   PopoverProps?: Partial<PopoverPropsType>;
   /** Show only calendar for datepicker in popover mode */
@@ -23,8 +19,6 @@ const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = 
   open,
   wider,
   children,
-  onOpen,
-  onClose,
   PopoverProps,
   onClear,
   onDismiss,

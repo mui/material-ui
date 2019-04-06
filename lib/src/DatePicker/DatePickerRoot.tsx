@@ -46,7 +46,6 @@ export interface BaseDatePickerProps {
   onYearChange?: (date: MaterialUiPickersDate) => void;
   /** Callback firing on month change */
   onMonthChange?: (date: MaterialUiPickersDate) => void;
-  initialFocusedDate?: DateType;
 }
 
 export interface DatePickerRootProps

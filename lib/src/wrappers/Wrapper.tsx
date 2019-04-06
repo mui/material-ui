@@ -18,7 +18,10 @@ export interface WrapperProps<T> {
   wider?: boolean;
 }
 
-type OmitInnerWrapperProps<T extends WrapperProps<any>> = Omit<T, keyof WrapperProps<any>>;
+type OmitInnerWrapperProps<T extends WrapperProps<any>> = Omit<
+  T,
+  keyof WrapperProps<any> | 'showTabs'
+>;
 
 export type ModalRoot = { variant?: 'dialog' } & OmitInnerWrapperProps<ModalWrapperProps>;
 

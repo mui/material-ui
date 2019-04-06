@@ -13,18 +13,16 @@ import { Omit } from '@material-ui/core';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import DateTimePickerView, { DateTimePickerViewType } from '../constants/DateTimePickerView';
 import { BaseDatePickerProps } from '../DatePicker/DatePickerRoot';
+import { BaseTimePickerProps } from '../TimePicker/TimePickerRoot';
 import { MaterialUiPickersDate } from '../typings/date';
 
 export interface BaseDateTimePickerProps
-  extends Omit<BaseDatePickerProps, 'openTo' | 'openToYearSelection' | 'views'> {
+  extends Omit<BaseTimePickerProps, 'seconds'>,
+    Omit<BaseDatePickerProps, 'views' | 'openTo' | 'openToYearSelection' | 'views'> {
   /** Auto move between date, hours and minutes */
   autoSubmit?: boolean;
   /** Show or hide date/time tabs (hidden automatically on small screens) */
   showTabs?: boolean;
-  /** Control 12h or 24h view mode for clock */
-  ampm?: boolean;
-  /** Step over minutes */
-  minutesStep?: number;
   /** Initial view to show when datetime picker is open */
   openTo?: 'year' | 'date' | 'hours' | 'minutes';
   /** Date tab icon */
@@ -32,7 +30,11 @@ export interface BaseDateTimePickerProps
   /** Time tab icon */
   timeIcon?: React.ReactNode;
   /** Container component for date time picker views */
-  ViewContainerComponent?: string | React.ComponentType<any>;
+  ViewContainerComponent?:
+    | string
+    | React.ComponentType<
+        {} | { openView: BaseDateTimePickerProps['openTo']; onChange: () => void }
+      >;
 }
 
 export interface DateTimePickerProps extends BaseDateTimePickerProps, WithUtilsProps {
@@ -48,7 +50,9 @@ interface DateTimePickerState {
 export class DateTimePickerRoot extends React.Component<DateTimePickerProps, DateTimePickerState> {
   public static propTypes: any = {
     autoSubmit: PropTypes.bool,
-    openTo: PropTypes.oneOf(Object.keys(DateTimePickerView).map(key => DateTimePickerView[key])),
+    openTo: PropTypes.oneOf(
+      Object.keys(DateTimePickerView).map(key => DateTimePickerView[key as any])
+    ),
     showTabs: PropTypes.bool,
     ViewContainerComponent: PropTypes.oneOfType([
       PropTypes.string,

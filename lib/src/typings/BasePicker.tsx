@@ -8,8 +8,6 @@ export interface BasePickerProps {
   onChange: (date: MaterialUiPickersDate) => void;
   /** Auto accept date on selection */
   autoOk?: boolean;
-  /** Control 12h or 24h view mode for clock */
-  ampm?: boolean;
   /** Format string */
   format?: string;
   /** Dynamic formatter of text field label */
@@ -30,8 +28,6 @@ export interface BasePickerProps {
   onClose?: () => void;
   /** Controlled picker open state */
   open?: boolean;
-  minDate?: DateType;
-  maxDate?: DateType;
   mergePreviousDateOnChange?: boolean;
   forwardedRef?: any;
 }

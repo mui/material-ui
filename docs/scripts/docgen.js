@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const parser = require('react-docgen-typescript').withDefaultConfig({
-  skipPropsWithoutDoc: true,
+  propFilter: {
+    skipPropsWithoutDoc: true,
+    skipPropsWithName: ['ViewContainerComponent'],
+  },
 });
 
 const doc = {};

@@ -44,7 +44,7 @@ export const getError = (
     maxDateMessage,
     minDateMessage,
     invalidDateMessage,
-  }: DatePickerProps
+  }: Omit<DatePickerProps, 'openTo'> // DateTimePicker doesn't support month in openTo
 ): React.ReactNode => {
   const parsedValue = utils.date(value);
 
