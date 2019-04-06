@@ -55,5 +55,5 @@ workflows:
             - checkout_code
 
       - test_cypress:
-          required:
+          requires:
             - javascript
