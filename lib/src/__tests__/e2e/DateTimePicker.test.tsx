@@ -11,7 +11,7 @@ describe('e2e - DateTimePicker', () => {
     jest.clearAllMocks();
     component = mount(
       <DateTimePicker
-        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        date={utilsToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
         openTo="date"
         leftArrowIcon="keyboard_arrow_left"
@@ -60,7 +60,7 @@ describe('e2e - DateTimePicker', () => {
   it('Should change meridiem', () => {
     component
       .find('ToolbarButton')
-      .at(4)
+      .at(5)
       .simulate('click');
 
     if (process.env.UTILS === 'moment') {
@@ -68,6 +68,6 @@ describe('e2e - DateTimePicker', () => {
       return;
     }
 
-    expect(onChangeMock).toHaveBeenCalledWith(utilsToUse.date('2018-01-01T12:00:00.000Z'), false);
+    expect(onChangeMock).toHaveBeenCalledWith(utilsToUse.date('2018-01-01T12:00:00.000'), false);
   });
 });

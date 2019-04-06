@@ -59,7 +59,7 @@ describe('e2e -- DatePicker views year', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
-        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        date={utilsToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
         onYearChange={onYearChangeMock}
         views={['year']}
@@ -89,7 +89,7 @@ describe('e2e -- DatePicker views year and month', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
-        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        date={utilsToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
         onMonthChange={onMonthChangeMock}
         views={['year', 'month']}
@@ -133,7 +133,7 @@ describe('e2e -- DatePicker views year and month open from year', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
-        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        date={utilsToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
         views={['year', 'month']}
         openToYearSelection

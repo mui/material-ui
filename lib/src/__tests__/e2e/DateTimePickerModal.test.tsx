@@ -19,7 +19,7 @@ describe('e2e - DateTimePickerModal', () => {
         format={format}
         onClose={onCloseMock}
         onChange={onChangeMock}
-        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        value={utilsToUse.date('2018-01-01T00:00:00.000')}
       />
     );
   });
@@ -34,10 +34,10 @@ describe('e2e - DateTimePickerModal', () => {
   });
 
   it('Should update state when passing new value from outside', () => {
-    component.setProps({ value: '2018-01-01T00:00:00.000Z' });
+    component.setProps({ value: '2018-01-01T00:00:00.000' });
     component.update(); // make additional react tick to update text field
 
-    const expectedString = utilsToUse.format(utilsToUse.date('2018-01-01T00:00:00.000Z'), format);
+    const expectedString = utilsToUse.format(utilsToUse.date('2018-01-01T00:00:00.000'), format);
 
     expect(component.find('input').props().value).toBe(expectedString);
   });

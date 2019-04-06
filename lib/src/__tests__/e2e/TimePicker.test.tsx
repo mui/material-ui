@@ -10,7 +10,7 @@ describe('e2e - TimePicker', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     component = mount(
-      <TimePicker date={utilsToUse.date('2018-01-01T00:00:00.000Z')} onChange={onChangeMock} />
+      <TimePicker date={utilsToUse.date('2018-01-01T00:00:00.000')} onChange={onChangeMock} />
     );
   });
 

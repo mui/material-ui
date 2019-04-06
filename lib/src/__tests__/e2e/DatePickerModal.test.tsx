@@ -16,7 +16,7 @@ describe('e2e -- DatePickerModal keyboard input', () => {
         placeholder="10/10/2018"
         format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
         mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
-        value={'2018-01-01T00:00:00.000Z'}
+        value={'2018-01-01T00:00:00.000'}
         onChange={onChangeMock}
         InputAdornmentProps={{
           disableTypography: true,
@@ -49,7 +49,7 @@ describe('e2e -- DatePickerModal keyboard input', () => {
 describe('e2e - DatePickerModal default year format', () => {
   let component: ReactWrapper<DatePickerModalProps>;
   const onChangeMock = jest.fn();
-  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
+  const date = utilsToUse.date('2018-01-01T00:00:00.000');
 
   beforeEach(() => {
     component = mount(<DatePickerModal onChange={onChangeMock} value={date} views={['year']} />);
@@ -65,7 +65,7 @@ describe('e2e - DatePickerModal default year format', () => {
 describe('e2e - DatePickerModal default year month format', () => {
   let component: ReactWrapper<DatePickerModalProps>;
   const onChangeMock = jest.fn();
-  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
+  const date = utilsToUse.date('2018-01-01T00:00:00.000');
 
   beforeEach(() => {
     component = mount(
@@ -83,7 +83,7 @@ describe('e2e - DatePickerModal default year month format', () => {
 describe('e2e - DatePickerModal default year month day format', () => {
   let component: ReactWrapper<DatePickerModalProps>;
   const onChangeMock = jest.fn();
-  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
+  const date = utilsToUse.date('2018-01-01T00:00:00.000');
 
   beforeEach(() => {
     component = mount(

@@ -18,7 +18,7 @@ describe('e2e - DatePickerInline', () => {
         onChange={onChangeMock}
         onClose={onCloseMock}
         onOpen={onOpenMock}
-        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        value={utilsToUse.date('2018-01-01T00:00:00.000')}
       />
     );
   });
@@ -60,7 +60,7 @@ describe('e2e - InlineDatePicker onlyCalendar', () => {
     const component = mount(
       <DatePickerInline
         onlyCalendar
-        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        value={utilsToUse.date('2018-01-01T00:00:00.000')}
         onChange={jest.fn()}
         onClose={jest.fn()}
         onOpen={jest.fn()}
