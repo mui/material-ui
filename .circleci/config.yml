@@ -1,6 +1,17 @@
 version: 2
 jobs:
-  build:
+  javascript:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/eslint-plugin-import-groups
+    steps:
+      - yarn lint
+      - yarn build:analyze
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  test_cypress:
     docker:
       - image: cypress/base:8
         environment:
@@ -25,3 +36,16 @@ jobs:
             - ~/.cache
       - run: yarn workspace docs build
       - run: yarn workspace docs start & npx wait-on http://localhost:3000 && npm run e2e:run -- --record
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - checkout_code
+      - javascript:
+          requires:
+            - checkout_code
+
+      - test_cypress:
+          required:
+            - javascript
