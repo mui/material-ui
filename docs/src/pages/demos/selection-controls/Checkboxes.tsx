@@ -8,7 +8,7 @@ function Checkboxes() {
     checkedF: true,
   });
 
-  const handleChange = (name: string) => (event: React.MouseEvent) => {
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [name]: event.target.checked });
   };
 
