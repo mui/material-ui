@@ -14,8 +14,8 @@ jobs:
       - image: circleci/node:lts
     working_directory: ~/eslint-plugin-import-groups
     steps:
-      - yarn lint
-      - yarn build:analyze
+      - run: yarn lint
+      - run: yarn workspace material-ui-pickers build:analyze
       - persist_to_workspace:
           root: .
           paths: .
