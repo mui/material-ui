@@ -14,6 +14,8 @@ jobs:
     docker:
       - image: circleci/node:lts
     working_directory: ~/material-ui-pickers
+    - attach_workspace:
+        at: .
     steps:
       - run: yarn lint
       - run: yarn workspace material-ui-pickers build:analyze
