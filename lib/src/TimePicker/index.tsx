@@ -1,10 +1,10 @@
-import { TimePickerInlineProps } from './TimePickerInline';
-import { TimePickerModalProps } from './TimePickerModal';
+import { KeyboardTimePickerProps } from './KeyboardTimePicker';
+import { TimePickerProps } from './TimePicker';
 
-export type TimePickerProps = TimePickerModalProps;
+export type TimePickerProps = TimePickerProps;
 
-export type TimePickerInlineProps = TimePickerInlineProps;
+export type KeyboardTimePickerProps = KeyboardTimePickerProps;
 
-export { default } from './TimePickerModal';
+export { KeyboardTimePicker } from './KeyboardTimePicker';
 
-export { default as InlineTimePicker } from './TimePickerInline';
+export { default } from './TimePicker';

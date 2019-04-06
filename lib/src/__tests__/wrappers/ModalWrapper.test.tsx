@@ -1,57 +1,44 @@
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import { ModalDialog } from '../../_shared/ModalDialog';
+import { PureDateInput } from '../../_shared/PureDateInput';
 import ModalWrapper, { ModalWrapperProps } from '../../wrappers/ModalWrapper';
 import { shallow } from '../test-utils';
 
 describe('ModalWrapper', () => {
+  const onAcceptMock = jest.fn();
   let component: ShallowWrapper<ModalWrapperProps>;
 
   beforeEach(() => {
     component = shallow(
       <ModalWrapper
-        value={new Date()}
-        onOpen={jest.fn()}
-        onClose={jest.fn()}
+        open
         onDismiss={jest.fn()}
-        onAccept={jest.fn()}
+        onAccept={onAcceptMock}
         onClear={jest.fn()}
-        onChange={jest.fn()}
-        format="mm dd"
+        onSetToday={jest.fn()}
+        InputComponent={PureDateInput}
+        DateInputProps={{
+          inputValue: 'bar',
+          onChange: jest.fn(),
+        }}
       >
         <div>foo</div>
       </ModalWrapper>
     );
   });
 
-  it('Should renders', () => {
-    expect(component).toBeTruthy();
-  });
+  it('Should properly handle keyDownEvent on Modal', () => {
+    const dispatchKeyDown = (key: string) => {
+      component
+        .find('WithStyles(ModalDialog)')
+        .simulate('KeyDownInner', { key, preventDefault: jest.fn() });
+    };
 
-  it('Should dispatch onOpen callback', () => {
-    component.find('WithUtils(DateTextField)').simulate('click');
-    expect((component.state() as ModalWrapper['state']).open).toBeTruthy();
-    expect((component.instance() as ModalWrapper).props.onOpen).toHaveBeenCalled();
-  });
+    dispatchKeyDown('Shift');
+    expect(onAcceptMock).not.toBeCalled();
+    jest.resetAllMocks();
 
-  it('Should dispatch onClose callback', () => {
-    component.setState({ open: true });
-    component.find('WithStyles(ModalDialog)').simulate('dismiss');
-    expect((component.state() as ModalWrapper['state']).open).toBeFalsy();
-    expect((component.instance() as ModalWrapper).props.onClose).toHaveBeenCalled();
-  });
-
-  it('Should dispatch onAccept when accepted', () => {
-    component.setState({ open: true });
-    component.find('WithStyles(ModalDialog)').simulate('accept');
-    expect((component.state() as ModalWrapper['state']).open).toBeFalsy();
-    expect((component.instance() as ModalWrapper).props.onAccept).toHaveBeenCalled();
-  });
-
-  it('Should dispatch onClear', () => {
-    component.setState({ open: true });
-    component.find('WithStyles(ModalDialog)').simulate('clear');
-    expect((component.state() as ModalWrapper['state']).open).toBeFalsy();
-    expect((component.instance() as ModalWrapper).props.onClear).toHaveBeenCalled();
+    dispatchKeyDown('Enter');
+    expect(onAcceptMock).toHaveBeenCalled();
   });
 });

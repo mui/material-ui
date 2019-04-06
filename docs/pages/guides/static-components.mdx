@@ -8,15 +8,18 @@ import * as StaticComponents from './StaticComponents.example'
 ## Static components
 
 Somewhere its required to use some internal control for calendar or some timeinput. Here you
-are! You can use directly any sub-control of the pickers. Please note - if you want to use
-internal controls **ALL** your imports must be from the relative paths
+are! You can use directly any sub-control of the pickers.
 
 <Ad />
 
 Also you can use our own HOC that is using for any picker which provide managing temporary
 chosen date and submitting state logic.
 
+**Warning:** Make sure, that *all* your imports are consistent (or default or named) and **do not mixed**
+
 #### Static components example
-Please make sure that your imports are consistent
+
+* `inputProps` - props to manage date input state, format and validation.
+* `wrapperProps` - props to manage accept, dismiss, clear and any modal/inline functionality.
 
 <Example source={StaticComponents} />
