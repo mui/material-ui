@@ -17,6 +17,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - run: yarn
       # - run: yarn lint
       - run: yarn workspace material-ui-pickers build:analyze
       - persist_to_workspace:
