@@ -1,11 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 
-const styles = theme => ({
+function MadeWithLove() {
+  return (
+    <Typography variant="body2" color="textSecondary">
+      {'Built with love by the '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI
+      </Link>
+      {' team.'}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -20,10 +32,10 @@ const styles = theme => ({
     marginTop: 'auto',
     backgroundColor: 'white',
   },
-});
+}));
 
-function StickyFooter(props) {
-  const { classes } = props;
+function StickyFooter() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -41,14 +53,11 @@ function StickyFooter(props) {
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">My sticky footer can be found here.</Typography>
+          <MadeWithLove />
         </Container>
       </footer>
     </div>
   );
 }
 
-StickyFooter.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(StickyFooter);
+export default StickyFooter;

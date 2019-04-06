@@ -262,7 +262,7 @@ function render() {
   const css = sheets.toString();
 
   return `
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <style id="jss-server-side">${css}</style>

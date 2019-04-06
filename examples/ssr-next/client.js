@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createMuiTheme } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
 import App from './App';
+import theme from './theme';
 
 function Main() {
   React.useEffect(() => {
@@ -14,20 +13,13 @@ function Main() {
     }
   }, []);
 
-  return <App />;
+  return (
+    <ThemeProvider theme={theme}>
+      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  );
 }
 
-// Create a theme instance.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-  },
-});
-
-ReactDOM.hydrate(
-  <ThemeProvider theme={theme}>
-    <Main />
-  </ThemeProvider>,
-  document.querySelector('#root'),
-);
+ReactDOM.hydrate(<Main />, document.querySelector('#root'));

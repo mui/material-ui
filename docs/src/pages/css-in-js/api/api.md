@@ -138,7 +138,7 @@ The method returns the collected styles. It's a CSS string.
 const css = sheets.toString();
 
 const response = `
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <style id="jss-server-side">${css}</style>

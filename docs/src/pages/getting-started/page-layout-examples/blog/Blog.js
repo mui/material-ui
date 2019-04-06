@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,7 +21,19 @@ import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 
-const styles = theme => ({
+function MadeWithLove() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by the '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI
+      </Link>
+      {' team.'}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles(theme => ({
   '@global': {
     strong: {
       fontWeight: theme.typography.fontWeightMedium,
@@ -96,7 +107,7 @@ const styles = theme => ({
     marginTop: theme.spacing(8),
     padding: theme.spacing(6, 0),
   },
-});
+}));
 
 const sections = [
   'Technology',
@@ -145,8 +156,8 @@ const archives = [
 
 const social = ['GitHub', 'Twitter', 'Facebook'];
 
-function Blog(props) {
-  const { classes } = props;
+export default function Blog() {
+  const classes = useStyles();
 
   return (
     <React.Fragment>
@@ -305,15 +316,10 @@ function Blog(props) {
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
             Something here to give the footer a purpose!
           </Typography>
+          <MadeWithLove />
         </Container>
       </footer>
       {/* End footer */}
     </React.Fragment>
   );
 }
-
-Blog.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Blog);

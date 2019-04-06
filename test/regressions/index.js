@@ -63,7 +63,13 @@ const blacklistFilename = [
   'docs-demos-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
 
-  // flaky
+  // Already tested once assembled
+  'docs-getting-started-page-layout-examples-dashboard/Chart.png',
+  'docs-getting-started-page-layout-examples-dashboard/Deposits.png',
+  'docs-getting-started-page-layout-examples-dashboard/Orders.png',
+  'docs-getting-started-page-layout-examples-dashboard/Title.png',
+
+  // Flaky
   'docs-demos-grid-list/ImageGridList.png',
 
   // Redux isolation
