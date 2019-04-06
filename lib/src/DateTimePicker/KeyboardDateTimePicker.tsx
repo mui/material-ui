@@ -7,8 +7,8 @@ import {
 } from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
+import { dateTimePickerDefaultProps } from '../constants/prop-types';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
-import DateTimePicker from './DateTimePicker';
 import DateTimePickerRoot, { BaseDateTimePickerProps } from './DateTimePickerRoot';
 
 export type KeyboardDateTimePickerProps = BaseDateTimePickerProps &
@@ -99,7 +99,7 @@ export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
   );
 }
 
-KeyboardDateTimePicker.defaultProps = DateTimePicker.defaultProps;
+KeyboardDateTimePicker.defaultProps = dateTimePickerDefaultProps;
 
 export default React.forwardRef((props: KeyboardDateTimePickerProps, ref) => (
   <KeyboardDateTimePicker {...props} forwardedRef={ref} />

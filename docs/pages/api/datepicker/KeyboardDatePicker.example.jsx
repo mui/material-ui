@@ -22,7 +22,7 @@ function KeyboardDatePickerExample(props) {
         label="Masked input"
         placeholder="10/10/2018"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
         format={props.getFormatString({
           moment: 'YYYY/MM/DD',
           dateFns: 'yyyy/MM/dd',

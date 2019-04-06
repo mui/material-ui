@@ -4,6 +4,7 @@ import { DateValidationProps, getError } from '../_helpers/text-field-helper';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
+import { datePickerDefaultProps } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
@@ -81,12 +82,7 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
   );
 };
 
-DatePicker.defaultProps = {
-  views: ['year', 'day'],
-  invalidDateMessage: 'Invalid Date Format',
-  minDateMessage: 'Date should not be before minimal date',
-  maxDateMessage: 'Date should not be after maximal date',
-};
+DatePicker.defaultProps = datePickerDefaultProps;
 
 export default React.forwardRef((props: DatePickerProps, ref) => (
   <DatePicker {...props} forwardedRef={ref} />

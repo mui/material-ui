@@ -24,13 +24,16 @@ export const getDisplayDate = (
   return utils.isValid(date) ? utils.format(date, format) : invalidLabel!;
 };
 
-export interface DateValidationProps {
+export interface BaseValidationProps {
+  /** Message, appearing when date cannot be parsed */
+  invalidDateMessage?: React.ReactNode;
+}
+
+export interface DateValidationProps extends BaseValidationProps {
   /** Error message, shown if date is less then minimal date */
   minDateMessage?: React.ReactNode;
   /** Error message, shown if date is more then maximal date */
   maxDateMessage?: React.ReactNode;
-  /** Message, appearing when date cannot be parsed */
-  invalidDateMessage?: React.ReactNode;
 }
 
 export const getError = (

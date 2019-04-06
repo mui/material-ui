@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { DateValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
+import { BaseValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import {
   BaseKeyboardPickerProps,
   useKeyboardPickerState,
 } from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
+import { timePickerDefaultProps } from '../constants/prop-types';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
-import TimePicker from './TimePicker';
 import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 
 export type KeyboardTimePickerProps = BaseTimePickerProps &
-  DateValidationProps &
+  BaseValidationProps &
   BaseKeyboardPickerProps &
   ExtendWrapper<KeyboardDateInputProps>;
 
@@ -26,8 +26,6 @@ export function KeyboardTimePicker(props: KeyboardTimePickerProps) {
     initialFocusedDate,
     invalidDateMessage,
     labelFunc,
-    maxDateMessage,
-    minDateMessage,
     onAccept,
     onChange,
     value,
@@ -57,7 +55,7 @@ export function KeyboardTimePicker(props: KeyboardTimePickerProps) {
   );
 }
 
-KeyboardTimePicker.defaultProps = TimePicker.defaultProps;
+KeyboardTimePicker.defaultProps = timePickerDefaultProps;
 
 export default React.forwardRef((props: KeyboardTimePickerProps, ref) => (
   <KeyboardTimePicker {...props} forwardedRef={ref} />

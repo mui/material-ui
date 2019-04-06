@@ -1,17 +1,19 @@
 import * as React from 'react';
-import { getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
+import { BaseValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
+import { timePickerDefaultProps } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 
 export type TimePickerProps = BasePickerProps &
+  BaseValidationProps &
   BaseTimePickerProps &
   ExtendWrapper<PureDateInputProps>;
 
-export const DatePicker: React.FC<TimePickerProps> = props => {
+export const TimePicker: React.FC<TimePickerProps> = props => {
   const {
     ampm,
     seconds,
@@ -21,12 +23,14 @@ export const DatePicker: React.FC<TimePickerProps> = props => {
     forwardedRef,
     initialFocusedDate,
     labelFunc,
+    invalidDateMessage,
     onAccept,
     onChange,
     value,
     variant,
     ...other
   } = props;
+
   const utils = useUtils();
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
     getValidationError: () => getError(value, utils, props),
@@ -50,10 +54,8 @@ export const DatePicker: React.FC<TimePickerProps> = props => {
   );
 };
 
-DatePicker.defaultProps = {
-  ampm: true,
-};
+TimePicker.defaultProps = timePickerDefaultProps;
 
 export default React.forwardRef((props: TimePickerProps, ref) => (
-  <DatePicker {...props} forwardedRef={ref} />
+  <TimePicker {...props} forwardedRef={ref} />
 ));

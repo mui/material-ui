@@ -4,6 +4,7 @@ import { toShowDateTimePickerTabs } from '../_helpers/utils';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
+import { dateTimePickerDefaultProps } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import DateTimePickerRoot, { BaseDateTimePickerProps } from './DateTimePickerRoot';
@@ -13,7 +14,7 @@ export type DateTimePickerProps = BasePickerProps &
   BaseDateTimePickerProps &
   ExtendWrapper<PureDateInputProps>;
 
-export const DatePicker: React.FC<DateTimePickerProps> = props => {
+export const DateTimePicker: React.FC<DateTimePickerProps> = props => {
   const {
     allowKeyboardControl,
     ampm,
@@ -96,11 +97,8 @@ export const DatePicker: React.FC<DateTimePickerProps> = props => {
   );
 };
 
-DatePicker.defaultProps = {
-  ampm: true,
-  showTabs: true,
-};
+DateTimePicker.defaultProps = dateTimePickerDefaultProps;
 
 export default React.forwardRef((props: DateTimePickerProps, ref) => (
-  <DatePicker {...props} forwardedRef={ref} />
+  <DateTimePicker {...props} forwardedRef={ref} />
 ));
