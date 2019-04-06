@@ -40,6 +40,8 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
     onYearChange,
     openTo,
     openToYearSelection,
+    onOpen,
+    onClose,
     renderDay,
     rightArrowIcon,
     shouldDisableDate,

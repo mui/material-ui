@@ -35,6 +35,8 @@ export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
     maxDate,
     maxDateMessage,
     minDate,
+    onOpen,
+    onClose,
     minDateMessage,
     minutesStep,
     onAccept,

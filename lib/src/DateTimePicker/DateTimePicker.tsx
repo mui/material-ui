@@ -36,6 +36,8 @@ export const DatePicker: React.FC<DateTimePickerProps> = props => {
     minutesStep,
     onAccept,
     onChange,
+    onOpen,
+    onClose,
     onMonthChange,
     onYearChange,
     openTo,

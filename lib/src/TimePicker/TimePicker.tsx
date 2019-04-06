@@ -21,8 +21,6 @@ export const DatePicker: React.FC<TimePickerProps> = props => {
     forwardedRef,
     initialFocusedDate,
     labelFunc,
-    maxDate,
-    minDate,
     onAccept,
     onChange,
     value,
