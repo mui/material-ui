@@ -12,7 +12,7 @@ jobs:
   javascript:
     docker:
       - image: circleci/node:lts
-    working_directory: ~/eslint-plugin-import-groups
+    working_directory: ~/material-ui-pickers
     steps:
       - run: yarn lint
       - run: yarn workspace material-ui-pickers build:analyze
