@@ -67,6 +67,12 @@ The checkbox is the secondary action for the list item and a separate target.
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
+### Transfer List
+
+A transfer list enables the user to move one or more list items between lists. For completeness, this example Includes controls for "move all" and "swap selected", but not every transfer-list needs these.
+
+{{"demo": "pages/demos/lists/TransferList.js"}}
+
 ### Switch
 
 The switch is the secondary action and a separate target.
