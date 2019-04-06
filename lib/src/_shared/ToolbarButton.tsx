@@ -9,7 +9,7 @@ import { ExtendMui } from '../typings/extendMui';
 import ToolbarText from './ToolbarText';
 
 export interface ToolbarButtonProps extends ExtendMui<ButtonProps>, WithStyles<typeof styles> {
-  toolbarTextProps: ExtendMui<TypographyProps>;
+  toolbarTextProps?: ExtendMui<TypographyProps>;
   selected: boolean;
   label: string;
 }
