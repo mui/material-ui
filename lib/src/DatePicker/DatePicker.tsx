@@ -165,7 +165,9 @@ export class DatePicker extends React.PureComponent<DatePickerProps> {
       <>
         <PickerToolbar className={clsx({ [classes.toolbarCenter]: this.isYearOnly })}>
           <ToolbarButton
-            variant={this.isYearOnly ? 'h3' : 'subtitle1'}
+            toolbarTextProps={{
+              variant: this.isYearOnly ? 'h3' : 'subtitle1',
+            }}
             onClick={this.isYearOnly ? undefined : this.openYearSelection}
             selected={openView === 'year'}
             label={utils.getYearText(this.date)}
@@ -173,7 +175,9 @@ export class DatePicker extends React.PureComponent<DatePickerProps> {
 
           {!this.isYearOnly && !this.isYearAndMonth && (
             <ToolbarButton
-              variant="h4"
+              toolbarTextProps={{
+                variant: 'h4',
+              }}
               onClick={this.openCalendar}
               selected={openView === 'day'}
               label={utils.getDatePickerHeaderText(this.date)}
@@ -182,7 +186,9 @@ export class DatePicker extends React.PureComponent<DatePickerProps> {
 
           {this.isYearAndMonth && (
             <ToolbarButton
-              variant="h4"
+              toolbarTextProps={{
+                variant: 'h4',
+              }}
               onClick={this.openMonthSelection}
               selected={openView === 'month'}
               label={utils.getMonthText(this.date)}

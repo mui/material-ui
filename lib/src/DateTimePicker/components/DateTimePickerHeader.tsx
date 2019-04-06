@@ -7,6 +7,7 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
+import ToolbarText from '../../_shared/ToolbarText';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import DateTimePickerView, { DateTimePickerViewType } from '../../constants/DateTimePickerView';
 import { MaterialUiPickersDate } from '../../typings/date';
@@ -82,14 +83,18 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
     <PickerToolbar className={clsx(classes.toolbar, { [classes.toolBar24h]: !ampm })}>
       <div className={classes.dateHeader}>
         <ToolbarButton
-          variant="subtitle1"
+          toolbarTextProps={{
+            variant: 'subtitle1',
+          }}
           onClick={() => onOpenViewChange(DateTimePickerView.YEAR)}
           selected={openView === DateTimePickerView.YEAR}
           label={utils.getYearText(date)}
         />
 
         <ToolbarButton
-          variant="h4"
+          toolbarTextProps={{
+            variant: 'h4',
+          }}
           onClick={() => onOpenViewChange(DateTimePickerView.DATE)}
           selected={openView === DateTimePickerView.DATE}
           label={utils.getDateTimePickerHeaderText(date)}
@@ -99,16 +104,20 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
       <div className={classes.timeHeader}>
         <div className={classes.hourMinuteLabel}>
           <ToolbarButton
-            variant="h3"
+            toolbarTextProps={{
+              variant: 'h3',
+            }}
             onClick={() => onOpenViewChange(DateTimePickerView.HOUR)}
             selected={openView === DateTimePickerView.HOUR}
             label={utils.getHourText(date, ampm!)}
           />
 
-          <ToolbarButton variant="h3" label=":" selected={false} className={classes.separator} />
+          <ToolbarText variant="h3" label=":" selected={false} className={classes.separator} />
 
           <ToolbarButton
-            variant="h3"
+            toolbarTextProps={{
+              variant: 'h3',
+            }}
             onClick={() => onOpenViewChange(DateTimePickerView.MINUTES)}
             selected={openView === DateTimePickerView.MINUTES}
             label={utils.getMinuteText(date)}
@@ -118,17 +127,21 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
         {ampm && (
           <div className={classes.ampmSelection}>
             <ToolbarButton
+              toolbarTextProps={{
+                variant: 'subtitle1',
+              }}
               className={classes.ampmLabel}
               selected={meridiemMode === 'am'}
-              variant="subtitle1"
               label={utils.getMeridiemText('am')}
               onClick={setMeridiemMode('am')}
             />
 
             <ToolbarButton
+              toolbarTextProps={{
+                variant: 'subtitle1',
+              }}
               className={classes.ampmLabel}
               selected={meridiemMode === 'pm'}
-              variant="subtitle1"
               label={utils.getMeridiemText('pm')}
               onClick={setMeridiemMode('pm')}
             />
