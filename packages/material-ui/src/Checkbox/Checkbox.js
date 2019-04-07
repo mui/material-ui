@@ -136,7 +136,7 @@ Checkbox.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The value of the component.
+   * The value of the component. The DOM API casts this to a string.
    */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
