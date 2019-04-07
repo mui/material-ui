@@ -143,7 +143,7 @@ const useStyles = makeStyles({
 ## CSS injection order
 
 > It's **really important** to understand how the CSS specificity is calculated by the browser.
-It's one of the key element to know when overriding styles.
+It's one of the key elements to know when overriding styles.
 We **encourage** you to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 By default, the style tags are injected **last** in the `<head>` element of the page.
@@ -151,7 +151,7 @@ They gain more specificity than any other style tags on your page e.g. CSS modul
 
 ### injectFirst
 
-The `StylesProvider` component has a `injectFirst` prop to inject the style tags **first** in the head (less priority):
+The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
