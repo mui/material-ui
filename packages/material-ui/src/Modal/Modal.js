@@ -79,23 +79,6 @@ class Modal extends React.Component {
     }
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    if (!getHasTransition(nextProps)) {
-      // Otherwise let handleExited take care of marking exited.
-      return {
-        exited: true,
-      };
-    }
-
-    return null;
-  }
-
   handleOpen = () => {
     const container = getContainer(this.props.container) || this.getDoc().body;
 
@@ -132,6 +115,10 @@ class Modal extends React.Component {
     if (!(hasTransition && this.props.closeAfterTransition) || reason === 'unmount') {
       this.props.manager.remove(this);
     }
+  };
+
+  handleEntered = () => {
+    this.setState({ exited: false });
   };
 
   handleExited = () => {
@@ -232,6 +219,7 @@ class Modal extends React.Component {
 
     // It's a Transition like component
     if (hasTransition) {
+      childProps.onEntered = createChainedFunction(this.handleEntered, children.props.onEntered);
       childProps.onExited = createChainedFunction(this.handleExited, children.props.onExited);
     }
 

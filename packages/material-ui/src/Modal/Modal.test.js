@@ -375,6 +375,38 @@ describe('<Modal />', () => {
       const modalNode = modalRef.current;
       assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
     });
+
+    it('should remove the children in the DOM when closed on update frame immediately after mount', () => {
+      const wrapper = mount(
+        <Modal open={false} keepMounted={false}>
+          <span>Hello</span>
+        </Modal>,
+      );
+      wrapper.setProps({ open: true });
+      wrapper.setProps({ open: false });
+      wrapper.update();
+      assert.strictEqual(wrapper.find('span').length, 0);
+    });
+
+    /* Test case for https://github.com/mui-org/material-ui/issues/15180 */
+    it('should remove the transition children in the DOM when closed on update frame immediately after mount', () => {
+      const TestCase = props => (
+        <Modal open={props.open} keepMounted={false}>
+          <Fade in={props.open}>
+            <span>Hello</span>
+          </Fade>
+        </Modal>
+      );
+      TestCase.propTypes = {
+        open: PropTypes.bool,
+      };
+
+      const wrapper = mount(<TestCase open={false} />);
+      wrapper.setProps({ open: true });
+      wrapper.setProps({ open: false });
+      wrapper.update();
+      assert.strictEqual(wrapper.find('span').length, 0);
+    });
   });
 
   describe('focus', () => {
