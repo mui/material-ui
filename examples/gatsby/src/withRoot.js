@@ -22,8 +22,6 @@ function withRoot(Component) {
     render() {
       return (
         <JssProvider generateClassName={this.muiPageContext.generateClassName}>
-          {/* MuiThemeProvider makes the theme available down the React
-              tree thanks to React context. */}
           <MuiThemeProvider
             theme={this.muiPageContext.theme}
             sheetsManager={this.muiPageContext.sheetsManager}

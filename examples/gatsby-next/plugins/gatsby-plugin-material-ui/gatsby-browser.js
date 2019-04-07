@@ -1,8 +1,5 @@
-/* eslint-disable react/prop-types */
-
 import React from 'react';
-import { ThemeProvider } from '@material-ui/styles';
-import theme from './.cache/theme';
+import { StylesProvider } from '@material-ui/styles';
 
 export const onInitialClientRender = () => {
   if (process.env.BUILD_STAGE === `develop`) {
@@ -16,6 +13,10 @@ export const onInitialClientRender = () => {
   }
 };
 
-export const wrapRootElement = ({ element }) => {
-  return <ThemeProvider theme={theme}>{element}</ThemeProvider>;
+export const wrapRootElement = ({ element }, pluginOptions) => {
+  if (pluginOptions.stylesProvider) {
+    return <StylesProvider {...pluginOptions.stylesProvider}>{element}</StylesProvider>;
+  }
+
+  return element;
 };
