@@ -13,7 +13,7 @@ The Link component is built on top of the [Typography](/api/typography/) compone
 
 However, the Link has different default properties than the Typography: - `color="primary"` as the link needs to stand out. - `variant="inherit"` as the link will, most of the time, be used as a child of a Typograpy component.
 
-## Accessibility
+## Доступность
 
 - When providing the content for the link, avoid generic descriptions like "click here" or "go to". Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - For the best user experience links should stand out from the text on the page.

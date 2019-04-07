@@ -2,7 +2,7 @@
 title: Checkbox, Radio, Switch React component
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
-# Selection Controls
+# Controles de selección
 
 <p class="description">Selection controls allow the user to select options.</p>
 
@@ -94,3 +94,7 @@ When a label can't be used, it's necessary to add an attribute directly to the i
   inputProps={{ 'aria-label': 'Checkbox A' } }
 />
 ```
+
+## Guidance
+
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

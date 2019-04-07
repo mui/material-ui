@@ -51,6 +51,7 @@
   "traffic": "Trafic",
   "newest": "Plus récent",
   "stars": "Étoiles GitHub",
+  "visit": "Visiter le site web",
   "dashboardTitle": "Tableau de bord",
   "dashboardDescr": "Un tableau de bord minimal. Le graphique est implementé avec l'aide de Recharts, mais il peut être remplacé par une solution alternative.",
   "signInTitle": "Connexion",

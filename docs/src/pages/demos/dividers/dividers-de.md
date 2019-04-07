@@ -1,8 +1,8 @@
 ---
-title: Trenner React-Komponente
+title: Divider React-Komponente
 components: Divider
 ---
-# Trenner
+# Trenner (Divider)
 
 <p class="description">Ein Trenner ist eine dünne Linie, die den Inhalt in Listen und Layouts gruppiert.</p>
 

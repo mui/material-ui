@@ -1,4 +1,4 @@
-# Style Library Interoperability
+# Interoperabilidad de la biblioteca de estilos
 
 <p class="description">While it is simple to use the JSS based styling solution provided by Material-UI to style your application, it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.</p>
 
@@ -55,7 +55,7 @@ function PlainCssButton() {
 export default PlainCssButton;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/l5qv4y57vl)
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
@@ -98,7 +98,7 @@ export default StyledComponents;
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k553lz1qrv)
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
@@ -151,8 +151,6 @@ export default StyledComponentsDeep;
 ```
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideHeader": true}}
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j4n13yl1r9)
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
@@ -232,7 +230,7 @@ function CssModulesButton() {
 export default CssModulesButton;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j01r75wx)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/5km241l9xn)
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
@@ -249,8 +247,8 @@ Emotion's **css()** method works seamlessly with Material-UI.
 import { jsx, css } from "@emotion/core";
 import Button from "@material-ui/core/Button";
 
-// Nós apenas atribuímos a eles o atributo className do Button
-function EmotionCSS() {
+// We just assign them the Button's className attribute
+function EmotionButton() {
   return (
     <div>
       <Button>Material-UI</Button>
@@ -271,7 +269,7 @@ function EmotionCSS() {
   );
 }
 
-export default EmotionCSS;
+export default EmotionButton;
 ```
 
 {{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideHeader": true}}
@@ -317,8 +315,6 @@ export default EmotionStyled;
 
 {{"demo": "pages/guides/interoperability/EmotionStyled.js", "hideHeader": true}}
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4q8o1y975w)
-
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ### Deeper elements
@@ -362,8 +358,6 @@ export default EmotionDeep;
 ```
 
 {{"demo": "pages/guides/interoperability/EmotionDeep.js", "hideHeader": true}}
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xj81yqx504)
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
@@ -410,7 +404,7 @@ function GlobalCssButton() {
 export default GlobalCssButton;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/9yxopv4vmp)
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
@@ -423,7 +417,7 @@ Material-UI's styling solution shares many building blocks with [react-jss](http
 ```jsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss/lib/injectSheet';
+import injectSheet from 'react-jss';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -454,59 +448,7 @@ ReactJssButton.propTypes = {
 export default injectSheet(styles)(ReactJssButton);
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/219x6qqx0p)
-
-## CSS to MUI webpack Loader
-
-The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for webpack allows you to write CSS that gets transpiled into JS for use with the `withStyles()` higher-order component. It provides a few hooks for accessing the theme from within the CSS.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [ 'css-to-mui-loader' ]
-      }
-    ]
-  }
-}
-```
-
-**CssToMuiButton.css**
-
-```css
-.button {
-  background: $(theme.palette.primary.main);
-  padding: 2su; /* Material-UI spacing units */
-}
-
-.button:hover {
-  background: $(theme.palette.primary.light);
-}
-
-@media $(theme.breakpoints.down('sm')) {
-  .button {
-    font-size: $(theme.typography.caption.fontSize);
-  }
-}
-```
-
-**CssToMuiButton.js**
-
-```js
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './CssToMuiButton.css';
-
-const CssToMuiButton = withStyles(styles)(({ classes }) => (
-  <Button className={classes.button}>
-    CSS to MUI Button
-  </Button>
-));
-```
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/24kllqxvmp)
 
 ## Glamor
 
@@ -515,38 +457,26 @@ const CssToMuiButton = withStyles(styles)(({ classes }) => (
 A good way to apply styles with Glamor is using the **css()** function and then **classnames** to get them as strings:
 
 ```jsx
-import React from 'react';
-import glamorous from 'glamorous';
-import { css } from 'glamor';
-import classnames from 'classnames';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { css } from "glamor";
+import Button from "@material-ui/core/Button";
 
 const buttonStyles = {
-  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
   borderRadius: 3,
   border: 0,
-  color: 'white',
+  color: "white",
   height: 48,
-  padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  padding: "0 30px",
+  boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .30)"
 };
-
-// First we get the clsx with Glamor css function
-const buttonClasses = css(buttonStyles);
-
-// We need the class names to be strings
-const className = buttonClasses.toString();
 
 // Then we just assign them the Button's className attribute
 function GlamorButton() {
   return (
     <div>
-      <Button>
-        Material-UI
-      </Button>
-      <Button className={className}>
-        Glamor
-      </Button>
+      <Button>Material-UI</Button>
+      <Button {...css(buttonStyles)}>Glamor</Button>
     </div>
   );
 }
@@ -554,6 +484,6 @@ function GlamorButton() {
 export default GlamorButton;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vp2znmj40)
 
 **Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.

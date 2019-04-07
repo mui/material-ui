@@ -1,12 +1,12 @@
 # Rahmen
 
-<p class="description">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.</p>
+<p class="description">Verwenden Sie die Ränder Werkzeuge, um den Rand und den Randradius eines Elements schnell zu gestalten. Ideal für Bilder, Schaltflächen oder andere Elemente.</p>
 
-## Border
+## Rahmen
 
-Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.
+Verwenden Sie Ränder Werkzeuge, um die Ränder eines Elements hinzuzufügen oder zu entfernen. Wählen Sie aus einzelne oder allen Grenzen aus.
 
-### Additive
+### Zusätze
 
 ```jsx
 <Box border={1}>…
@@ -18,7 +18,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 
 {{"demo": "pages/system/borders/BorderAdditive.js"}}
 
-### Subtractive
+### Subtraktionen
 
 ```jsx
 <Box border={0}>…
@@ -30,7 +30,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 
 {{"demo": "pages/system/borders/BorderSubtractive.js"}}
 
-## Border color
+## Rahmen Farbe
 
 ```jsx
 <Box borderColor="primary.main">…
@@ -58,7 +58,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 import { borders } from '@material-ui/system';
 ```
 
-| Import name    | Eigenschaften  | CSS property    | Theme key                                                        |
+| Inportname     | Eigenschaften  | CSS-Eigenschaft | Theme-Schlüssel                                                  |
 |:-------------- |:-------------- |:--------------- |:---------------------------------------------------------------- |
 | `border`       | `border`       | `border`        | `borders`                                                        |
 | `borderTop`    | `borderTop`    | `border-top`    | `borders`                                                        |

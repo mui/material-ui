@@ -2,7 +2,7 @@
 title: Composant React Diviseurs
 components: Divider
 ---
-# Diviseurs (Dividers)
+# Dividers (Séparateurs)
 
 <p class="description">Un diviseur est une ligne mince qui regroupe le contenu dans des listes et des mises en page.</p>
 

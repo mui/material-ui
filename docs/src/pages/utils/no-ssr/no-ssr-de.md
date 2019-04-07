@@ -22,4 +22,6 @@ Diese Komponente kann in verschiedenen Situationen nützlich sein:
 
 Die Hauptaufgabe der NoSSR Komponente ist das **Verzögerte Rendern**. Wie in der vorherigen Demo veranschaulicht, können Sie damit das Rendern vom Server auf den Client verschieben.
 
-Sie können es aber auch verwenden, um das Rendern im Client selbst zu verschieben. Sie können mit der Eigenschaft `verzögern` ** einen Client Rendern abwarten**, um die Kinder zu rendern.
+But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
+
+{{"demo": "pages/utils/no-ssr/FrameDeferring.js"}}

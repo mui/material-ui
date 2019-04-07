@@ -24,7 +24,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a Snackbar.
 
-⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
@@ -44,36 +44,36 @@ Some snackbars with varying message length.
 
 ### Snackbars consécutifs
 
-Per [Google's guidelines](https://material.io/design/components/snackbars.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
+When multiple snackbar updates are necessary, they should appear one at a time.
 
 {{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
 
-### Don't block the floating action button
+### Snackbars and floating action buttons (FABs)
 
-Move the floating action button vertically to accommodate the snackbar height.
+Snackbars should appear above FABs (on mobile).
 
-{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
-
-### Direction de contrôle
-
-Change the direction of the transition. Slide is the default transition.
-
-{{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
+{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
 
 ### Changer la transition
 
-Utilisez une transition différente.
+[Grow](/utils/transitions/#grow) is the default transition but you can use a different one.
 
-{{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
+{{"demo": "pages/demos/snackbars/TransitionsSnackbar.js"}}
+
+### Control Slide direction
+
+You can change the direction of the [Slide](/utils/transitions/#slide) transition.
+
+{{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
 
 ## Projets complémentaires
 
-For more advanced use cases you might be able to take advantage of:
+Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
 
 ### notistack
 
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-Dans l'exemple suivant, nous montrons comment utiliser [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). Il vous permet également de les empiler les uns sur les autres.
+Dans l'exemple suivant, nous montrons comment utiliser [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another (but discouraged by the specification).
 
 {{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}

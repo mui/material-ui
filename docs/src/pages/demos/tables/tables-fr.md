@@ -1,8 +1,8 @@
 ---
-title: Composant React Tableau
+title: Composant React Table
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
-# Tableaux (Table)
+# Table (Tableaux)
 
 <p class="description">Les tableaux de données affichent des ensembles de données. Ils peuvent être entièrement personnalisés.</p>
 
@@ -66,7 +66,7 @@ Un exemple simple avec des colonnes couvrant & lignes.
 
 ## Table virtualisée
 
-Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https://github.com/bvaughn/react-virtualized) avec le composant `Table`. Il affiche 200 lignes et peut facilement gérer plus.
+Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https://github.com/bvaughn/react-virtualized) avec le composant `Table`. Il affiche 200 lignes et peut facilement gérer plus. Virtualization helps with performance issues.
 
 {{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 

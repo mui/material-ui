@@ -1,8 +1,8 @@
 # API
 
-<p class="description">The API reference of the @material-ui/system package.</p>
+<p class="description">Die API-Referenz des @material-ui/system Pakets.</p>
 
-| Gruppe                            | Import name      | Eigenschaften    | CSS property                    | Theme key                                                              |
+| Gruppe                            | Inportname       | Eigenschaften    | CSS-Eigenschaft                 | Theme-Schlüssel                                                        |
 |:--------------------------------- |:---------------- |:---------------- |:------------------------------- |:---------------------------------------------------------------------- |
 | [borders](/system/borders/)       | `border`         | `border`         | `border`                        | `borders`                                                              |
 | [borders](/system/borders/)       | `borderBottom`   | `borderBottom`   | `border-bottom`                 | `borders`                                                              |

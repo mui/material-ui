@@ -46,6 +46,6 @@ Bien que cela soit découragé par la spécification Material Design, vous pouve
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 
-## Champ de texte
+## Text Fields (Champs de texte)
 
 Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).

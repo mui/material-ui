@@ -1,5 +1,5 @@
 ---
-title: Menu React component
+title: Menü React-Komponente
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
 # Menüs

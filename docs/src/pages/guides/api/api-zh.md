@@ -67,7 +67,7 @@ const styles = {
 - 当它们是顶级组件抽象的关键时，它们自己的扁平属性， 例如，`input`组件的` id `属性。
 - 当用户可能需要调整内部render方法的子组件时，他们自己的` xxxProps `属性，例如，在内部使用`input`的组件上公开` inputProps `和` InputProps `属性。
 - 他们自己的` xxxComponent `属性，用于执行组件注入。
-- 当用户可能需要执行命令性操作时，他们自己的` xxxRef `属性， 例如，公开` inputRef `属性以访问`input`组件上的native `input`。 这有助于回答问题[“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element-)
+- 当用户可能需要执行命令性操作时，他们自己的` xxxRef `属性， 例如，公开` inputRef `属性以访问`input`组件上的native `input`。 这有助于回答问题[“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### 属性名称
 

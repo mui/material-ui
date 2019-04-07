@@ -4,9 +4,9 @@
 
 1. [Variação específica para uma situação única](#1-specific-variation-for-a-one-time-situation)
 2. [Variação dinâmica para uma situação única](#2-dynamic-variation-for-a-one-time-situation)
-3. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
+3. [Variação específica de um componente](#3-specific-variation-of-a-component) reutilizado em contextos diferentes
 4. [Material Design variations](#4-material-design-variations) such as with the button component
-5. [Global theme variation](#5-global-theme-variation)
+5. [Variação do tema global](#5-global-theme-variation)
 
 ## 1. Variação específica para uma situação única
 
@@ -22,7 +22,7 @@ This example uses the [`withStyles()`](/css-in-js/basics/#higher-order-component
 
 ### Sobrescrever usando classes
 
-When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component. The list of classes for each component is documented in the **Component API** section. For instance, you can have a look at the [Button CSS API](/api/button/#css). Alternatively, you can use the [browser dev tools](#using-the-dev-tools).
+When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component. The list of classes for each component is documented in the **Component API** section. For instance, you can have a look at the [Button CSS API](/api/button/#css). Como alternativa, você pode usar as [ferramentas de desenvolvimento do navegador](#using-the-dev-tools).
 
 This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to provide an object that maps the **names of classes to override** (style rules) to the **CSS class names to apply** (values). The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles you wish to add or override.
 
@@ -30,11 +30,11 @@ Notice that in addition to the button styling, the button label's capitalization
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
-### Using the dev tools
+### Usando as ferramentas de desenvolvimento
 
-The browser dev tools can save you a lot of time. Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
+As ferramentas de desenvolvimento do navegador podem poupar muito tempo. Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
 
-Let's go back to the above demo. How can you override the button label?
+Let's go back to the above demo. Como você pode substituir o rótulo do botão?
 
 ![dev-tools](/static/images/customization/dev-tools.png)
 
@@ -44,7 +44,7 @@ Using the dev tools, you know that you need to target the `Button` component and
 <Button classes={{ label: 'my-class-name' }} />
 ```
 
-### Shorthand
+### Forma abreviada
 
 The above code example can be condensed by using **the same CSS API** as the child component. In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
 
@@ -152,7 +152,7 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
+[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
 
 ## 2. Variação dinâmica para uma situação única
 
@@ -194,7 +194,7 @@ The Material Design specification documents different variations of certain comp
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components/) documentation to find out the current status of all supported Material Design components.
 
-## 5. Global theme variation
+## 5. Variação do tema global
 
 ### Theme variables
 

@@ -51,6 +51,7 @@
   "traffic": "流量",
   "newest": "最新的",
   "stars": "GitHub 点赞数",
+  "visit": "访问网站",
   "dashboardTitle": "管理面板",
   "dashboardDescr": "这是一个含有任务栏和迷你变体抽屉的最小化管理面板。这个图表由 Recharts 提供，但是很容易替换成其他的。",
   "signInTitle": "登录",

@@ -4,7 +4,7 @@ title: React Themes built by or curated by the Material-UI Team description: Our
 
 * * *
 
-# Premium Themes
+# Thèmes premium
 
 <p class="description">React Themes & Template built by or curated by Material-UI's creators.</p>
 

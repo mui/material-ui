@@ -2,7 +2,7 @@
 title: Composant React de barre d'application
 components: AppBar, Toolbar, Menu
 ---
-# Barre d'application (App Bar)
+# App Bar (Barre d'application)
 
 <p class="description">La barre d'application affiche des informations et des actions relatives à l'écran actuel.</p>
 
@@ -40,4 +40,4 @@ Une barre de recherche latérale.
 
 ## Barre inférieure
 
-{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}
+{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
