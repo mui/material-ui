@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { mount } from 'enzyme';
-import EventListener from 'react-event-listener';
 import { spy, useFakeTimers, stub } from 'sinon';
 import ScrollbarSize from './ScrollbarSize';
 
@@ -54,10 +53,7 @@ describe('<ScrollbarSize />', () => {
 
     it('should call on first resize event', () => {
       assert.strictEqual(onChange.callCount, 1);
-      wrapper
-        .find(EventListener)
-        .props()
-        .onResize();
+      window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
       assert.strictEqual(onChange.callCount, 2);
       assert.strictEqual(onChange.calledWith(17), true);
@@ -65,10 +61,7 @@ describe('<ScrollbarSize />', () => {
 
     it('should not call on second resize event', () => {
       assert.strictEqual(onChange.callCount, 1);
-      wrapper
-        .find(EventListener)
-        .props()
-        .onResize();
+      window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
       assert.strictEqual(onChange.callCount, 2);
     });

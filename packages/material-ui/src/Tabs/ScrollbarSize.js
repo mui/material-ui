@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 
 const styles = {
@@ -31,10 +30,8 @@ function ScrollbarSize(props) {
     scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
   };
 
-  let handleResize = () => {};
-
-  if (typeof window !== 'undefined') {
-    handleResize = debounce(() => {
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
       const prevHeight = scrollbarHeight.current;
       setMeasurements();
 
@@ -42,7 +39,11 @@ function ScrollbarSize(props) {
         onChange(scrollbarHeight.current);
       }
     }, 166); // Corresponds to 10 frames at 60 Hz.
-  }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [onChange]);
 
   const handleRef = ref => {
     nodeRef.current = ref;
@@ -51,13 +52,10 @@ function ScrollbarSize(props) {
   React.useEffect(() => {
     setMeasurements();
     onChange(scrollbarHeight.current);
-
-    return () => handleResize.clear();
   }, [onChange]);
 
   return (
     <React.Fragment>
-      <EventListener target="window" onResize={handleResize} />
       <div style={styles} ref={handleRef} />
     </React.Fragment>
   );
