@@ -1,27 +1,32 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-const styles = () => ({
-  root: {
-    '&:not($checked)': {
-      color: green[400],
+const styles = () =>
+  createStyles({
+    root: {
+      '&:not($checked)': {
+        color: green[400],
+      },
+      '&$checked': {
+        color: green[600],
+      },
     },
-    '&$checked': {
-      color: green[600],
-    },
-  },
-  checked: {},
-});
+    checked: {},
+  });
 
-const GreenCheckbox = withStyles(styles)(props => <Checkbox color="default" {...props} />);
+interface Props extends WithStyles<typeof styles> {}
+
+const GreenCheckbox: React.ComponentType<CheckboxProps> = withStyles(styles)((props: Props) => (
+  <Checkbox color="default" {...props} />
+));
 
 function CheckboxLabels() {
   const [state, setState] = React.useState({
@@ -31,7 +36,7 @@ function CheckboxLabels() {
     checkedG: true,
   });
 
-  const handleChange = name => event => {
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [name]: event.target.checked });
   };
 
