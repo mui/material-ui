@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -10,6 +12,9 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles(theme => ({
   root: {
     margin: 'auto',
+  },
+  cardHeader: {
+    padding: '8px 16px',
   },
   list: {
     minWidth: 180,
@@ -34,6 +39,10 @@ function intersection(a, b) {
   return a.filter(value => b.indexOf(value) !== -1);
 }
 
+function union(a, b) {
+  return [...a, ...not(b, a)];
+}
+
 function TransferList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
@@ -56,9 +65,17 @@ function TransferList() {
     setChecked(newChecked);
   };
 
-  const handleAllRight = () => {
-    setRight(right.concat(left));
-    setLeft([]);
+  const numberOfChecked = items => (
+    intersection(checked, items).length
+  )
+
+  const handleToggleAll = items => () => {
+    // If all selected
+    if (numberOfChecked(items) === items.length) {
+      setChecked(not(checked, items));
+    } else {
+      setChecked(union(checked, items));
+    }
   };
 
   const handleCheckedRight = () => {
@@ -67,62 +84,52 @@ function TransferList() {
     setChecked(not(checked, leftChecked));
   };
 
-  const handleSwap = () => {
-    const newLeft = left.concat(rightChecked);
-    const newRight = right.concat(leftChecked);
-
-    setLeft(not(newLeft, leftChecked));
-    setRight(not(newRight, rightChecked));
-
-    setChecked([]);
-  };
-
   const handleCheckedLeft = () => {
     setLeft(left.concat(rightChecked));
     setRight(not(right, rightChecked));
     setChecked(not(checked, rightChecked));
   };
 
-  const handleAllLeft = () => {
-    setLeft(left.concat(right));
-    setRight([]);
-  };
-
-  const customList = (items) => (
-    <List className={classes.list} dense>
-      {items.map(value => (
-        <ListItem
-          className={classes.listItem}
-          key={value}
-          role={undefined}
-          button
-          onClick={handleToggle(value)}
-        >
-          <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
-          <ListItemText primary={`List item ${value + 1}`} />
-        </ListItem>
-      ))}
-      <ListItem />
-    </List>
-  )
+  const customList = (title, items) => (
+    <Card>
+      <CardHeader
+        className={classes.cardHeader}
+        avatar={
+          <Checkbox
+            onClick={handleToggleAll(items)}
+            checked={numberOfChecked(items) === items.length}
+            indeterminate={
+              numberOfChecked(items) !== items.length &&
+              numberOfChecked(items) !== 0
+            }
+          />
+        }
+        title={title}
+        subheader={`${numberOfChecked(items)}/${items.length}`}
+      />
+      <List className={classes.list} dense>
+        {items.map(value => (
+          <ListItem
+            className={classes.listItem}
+            key={value}
+            role={undefined}
+            button
+            onClick={handleToggle(value)}
+          >
+            <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
+            <ListItemText primary={`List item ${value + 1}`} />
+          </ListItem>
+        ))}
+        <ListItem />
+      </List>
+    </Card>
+  );
 
   return (
     <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
-      <Grid item>
-        {customList(left)}
-      </Grid>
+      <Grid item>{customList('Left', left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
-          <Button
-            variant="outlined"
-            size="small"
-            className={classes.button}
-            onClick={handleAllRight}
-            disabled={left.length === 0}
-            aria-label="move all right"
-          >
-            ≫
-          </Button>
           <Button
             variant="outlined"
             size="small"
@@ -137,37 +144,15 @@ function TransferList() {
             variant="outlined"
             size="small"
             className={classes.button}
-            onClick={handleSwap}
-            disabled={leftChecked.length === 0 || rightChecked.length === 0}
-            aria-label="swap selected"
-          >
-            ≷
-          </Button>
-          <Button
-            variant="outlined"
-            size="small"
-            className={classes.button}
             onClick={handleCheckedLeft}
             disabled={rightChecked.length === 0}
             aria-label="move selected left"
           >
             &lt;
           </Button>
-          <Button
-            variant="outlined"
-            size="small"
-            className={classes.button}
-            onClick={handleAllLeft}
-            disabled={right.length === 0}
-            aria-label="move all left"
-          >
-            ≪
-          </Button>
         </Grid>
       </Grid>
-      <Grid item>
-        {customList(right)}
-      </Grid>
+      <Grid item>{customList('Right', right)}</Grid>
     </Grid>
   );
 }
