@@ -79,7 +79,7 @@ But most of the time, you want to rely on a theme's values to increase the UI co
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
-const theme = {
+const theme = {
   spacing: 4,
   palette: {
     primary: '#007bff',

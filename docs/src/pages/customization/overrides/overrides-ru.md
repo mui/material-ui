@@ -30,11 +30,11 @@ Notice that in addition to the button styling, the button label's capitalization
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
-### Using the dev tools
+### Использование инструментов разработчика
 
-The browser dev tools can save you a lot of time. Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
+Инструменты разработчика браузера могут сэкономить вам много времени. Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
 
-Let's go back to the above demo. How can you override the button label?
+Let's go back to the above demo. Как вы можете переопределить метку кнопки?
 
 ![dev-tools](/static/images/customization/dev-tools.png)
 
@@ -152,7 +152,7 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
+[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
 
 ## 2. Dynamic variation for a one-time situation
 

@@ -40,4 +40,4 @@ Barra de búsqueda secundaria.
 
 ## App bar en pie de página
 
-{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}
+{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}

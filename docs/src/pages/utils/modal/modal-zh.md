@@ -58,7 +58,7 @@ components: Modal
 </Modal>
 ```
 
-我们创建了许多永远不会渲染的React元素，这是很浪费的。
+We create a lot of React elements that will never be mounted. It's wasteful 
 
 ```jsx
 <Modal open={false}>

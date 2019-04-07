@@ -97,15 +97,15 @@ Text Buttons（文本按钮），Contained Buttons（实心按钮），Floating 
 
 ## Third-party routing library（第三方路由库）
 
-一个常见的用例是使用按钮来触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在所有地方受益于它：
+一个常见的用例是使用按钮来触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定`ButtonBase`的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在任何地方使用它：
 
 ```jsx
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-// required for react-router-dom < 5.0.0 
-// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
+// react-router-dom < 5.0.0 要求
+// 请查看 https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
 const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
 <Button component={Link} to="/open-collective">
@@ -119,7 +119,7 @@ const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={r
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-// use `ref` instead of `innerRef` with react-router-dom@^5.0.0
+// 在 react-router-dom@^5.0.0 中使用 `ref` 而不是 `innerRef`
 const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
 
 <Button component={MyLink}>

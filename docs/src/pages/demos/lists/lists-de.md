@@ -1,8 +1,8 @@
 ---
-title: Listen React Komponente
+title: List React Komponente
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
-# Listen
+# Listen (List)
 
 <p class="description">Listen sind durchgehende, vertikale Indexe von Text oder Bildern.</p>
 
@@ -83,3 +83,9 @@ Diese Funktion basiert auf der CSS-Sticky-Positionierung. Leider ist es [ nicht 
 ## Eingerückte Liste
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
+
+## Virtualized List
+
+In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Sie zeigt 200 Zeilen an und kann auch einfach mehr verwalten. Virtualisierung hilft bei Leistungsproblemen.
+
+{{"demo": "pages/demos/lists/VirtualizedList.js"}}

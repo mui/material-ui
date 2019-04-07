@@ -2,7 +2,7 @@
 
 <p class="description">使用一整套响应式Flexbox实用程序，快速管理网格列，导航，组件等的布局，对齐和大小调整。</p>
 
-文档页面的灵感来自[ Flexbox完整指南](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 。 我们强烈建议您阅读并记住它。
+If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
 
 ## 父母的属性
 

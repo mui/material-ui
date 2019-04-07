@@ -58,7 +58,7 @@ Cependant, créer des éléments React a aussi un coût. Considérons le cas sui
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful
+We create a lot of React elements that will never be mounted. It's wasteful 
 
 ```jsx
 <Modal open={false}>

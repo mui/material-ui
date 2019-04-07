@@ -1,52 +1,52 @@
-# Overrides
+# Überschreibungen
 
-<p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
+<p class="description">Da Komponenten in verschiedenen Kontexten verwendet werden können, unterstützt Material-UI verschiedene Arten von Anpassungsanforderungen, die von den spezifischsten bis zu den allgemeinsten reichen.</p>
 
-1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
-2. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
-3. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
-4. [Material Design variations](#4-material-design-variations) such as with the button component
+1. [Spezifische Abweichung für eine einmalige Situation](#1-specific-variation-for-a-one-time-situation)
+2. [Dynamische Variation für eine einmalige Situation](#2-dynamic-variation-for-a-one-time-situation)
+3. [ Spezifische Variation einer Komponente ](#3-specific-variation-of-a-component) wiederverwendet in verschiedenen Kontexten
+4. [ Variationen des Materialdesigns ](#4-material-design-variations) wie mit der Button-Komponente
 5. [Global theme variation](#5-global-theme-variation)
 
-## 1. Specific variation for a one-time situation
+## 1. Spezifische Abweichung für eine einmalige Situation
 
-You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
+Möglicherweise müssen Sie den Stil einer Komponente für eine bestimmte Implementierung ändern, für die Sie die folgenden Lösungen zur Verfügung haben:
 
-### Overriding with class names
+### Überschreiben mit Klassennamen
 
-The first way to override the style of a component is to use **class names**. Every component provides a `className` property which is always applied to the root element.
+Die erste Möglichkeit, den Stil einer Komponente zu überschreiben, besteht in der Verwendung von **Klassennamen**. Jede Komponente stellt eine `Klassennamen` Eigenschaft bereit, die immer auf das unterste Element angewendet wird.
 
-This example uses the [`withStyles()`](/css-in-js/basics/#higher-order-component-api) higher-order component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/css-in-js/advanced/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
+In diesem Beispiel wird die [`withStyles()`](/css-in-js/basics/#higher-order-component-api) höherer Ordnung Komponente verwendet um benutzerdefinierte Stile in den DOM einzufügen und den Klassennamen mittels ihre `classes` Eigenschaftan die ` ClassNames` Komponente zu übergeben. Sie können sich [für jede andere Styling-Lösung](/guides/interoperability/) entscheiden oder sogar Standard CSS benutzen, um die Stile zu schaffen. Stellen Sie aber sicher, die [CSS - Injektionsreihenfolge](/css-in-js/advanced/#css-injection-order) zu prüfen, da das CSS, welches durch die Material UI-Komponente in den DOM injiziert wird, die höchste Spezifität hat, da der `<link>` am Ende des `<4 />` injiziert wird, um sicherzustellen, dass die Komponenten immer richtig gerendert werden.
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
-### Overriding with classes
+### Überschreiben mit Klassen
 
-When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component. The list of classes for each component is documented in the **Component API** section. For instance, you can have a look at the [Button CSS API](/api/button/#css). Alternatively, you can use the [browser dev tools](#using-the-dev-tools).
+Wenn die ` Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die ` classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen. Die Liste der Klassen für jede Komponente ist in der **Komponenten-API** Sektion dokumentiert. Zum Beispiel können Sie sich die [ Button CSS-API](/api/button/#css) anschauen. Alternativ können Sie die [Browser-Entwicklungswerkzeuge](#using-the-dev-tools) verwenden.
 
-This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to provide an object that maps the **names of classes to override** (style rules) to the **CSS class names to apply** (values). The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles you wish to add or override.
+In diesem Beispiel wird auch `withStyles()` verwendet (siehe oben), aber hier verwendet `ClassesNesting` die `Button` `classes` Eigenschaft, welche ein Objekt liefert, das die **Namen der zu überschreibenden Klassen** (Stilregeln) auf die anzuwendenden **CSS-Klassennamen ** (Werte) abbildet. Die vorhandenen Klassen der Komponente werden weiterhin eingefügt. Daher müssen nur die spezifischen Styles gesetzt werden die Sie hinzufügen oder überschreiben möchten.
 
-Notice that in addition to the button styling, the button label's capitalization has been changed:
+Beachten Sie, dass zusätzlich zum Buttonstil die Großschreibung der Buttonbeschriftung geändert wurde:
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
-### Using the dev tools
+### Verwenden der Dev-Tools
 
-The browser dev tools can save you a lot of time. Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
+Mit den Browser-Entwicklertools können Sie viel Zeit sparen. Die Klassennamen der Material-UI im Entwicklungsmodus [folgen einem einfachen Muster](/css-in-js/advanced/#class-names): `Mui[Komponentenname]-[Stilregelname]-[UUID]`.
 
-Let's go back to the above demo. How can you override the button label?
+Gehen wir zurück zur obigen Demo. Wie können Sie die Beschriftung des Buttons überschreiben?
 
 ![dev-tools](/static/images/customization/dev-tools.png)
 
-Using the dev tools, you know that you need to target the `Button` component and the `label` style rule:
+Mit den Entwicklungswerkzeugen wissen Sie, dass Sie die `Button` Komponente und die `label` Stilregel als Ziel festlegen müssen:
 
 ```jsx
 <Button classes={{ label: 'my-class-name' }} />
 ```
 
-### Shorthand
+### Kurzform
 
-The above code example can be condensed by using **the same CSS API** as the child component. In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
+Das obige Codebeispiel kann durch Verwendung **derselben CSS-API** als untergeordnete Komponente komprimiert werden. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
 
 ```jsx
 const StyledButton = withStyles({
@@ -67,17 +67,17 @@ const StyledButton = withStyles({
 
 {{"demo": "pages/customization/overrides/ClassesShorthand.js"}}
 
-### Internal states
+### Interne Zustände
 
-The components internal states, like *hover*, *focus*, *disabled* and *selected*, are styled with a higher CSS specificity. [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
+Die internen Zustände der Komponenten, z. B. *hover*, *focus*, *disabled* und *selected*, sind mit einer höheren CSS-Spezifität gestaltet. [Spezifität ist ein Gewicht](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) das für eine gegebene CSS-Deklaration gilt.
 
-In order to override the components internal states, **you need to increase specificity**. Here is an example with the *disable* state and the button component using a **pseudo-class** (`:disabled`):
+Um die internen Zustände der Komponenten außer Kraft zu setzen, **müssen Sie die Spezifität erhöhen **. Hier ist ein Beispiel mit dem *disable* Zustand und einer Button Komponente mittels einer **pseudo-class** (`:disabled`):
 
 ```css
 .button {
   color: black;
 }
-/* We increase the specificity */
+/* Wir erhöhen die Spezifität */
 .button:disabled {
   color: white;
 }
@@ -87,13 +87,13 @@ In order to override the components internal states, **you need to increase spec
 <Button disabled className="button">
 ```
 
-Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform. Let's take the menu item component and the *selected* state as an example. Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components:
+Manchmal können Sie keine **Pseudoklasse** verwenden, da der Zustand nicht in der Plattform existiert. Nehmen wir die Menüpunkt Komponente und den *selected* Zustand als Beispiel. Abgesehen vom Zugriff auf verschachtelte Elemente kann die `classes` Eigenschaft verwendet werden, um die internen Zustände von Material-UI-Komponenten anzupassen:
 
 ```css
 .menu-item {
   color: black;
 }
-/* We increase the specificity */
+/* Wir erhöhen die Spezifität */
 .menu-item.selected {
   color: blue;
 }
@@ -103,13 +103,13 @@ Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the pl
 <MenuItem selected classes={{ root: 'menu-item', selected: 'selected' }}>
 ```
 
-##### Why do I need to increase specificity to override one component state?
+##### Warum muss ich die Spezifität erhöhen, um einen Komponentenzustand außer Kraft zu setzen?
 
-By design, the CSS specification makes the pseudo-classes increase the specificity. For consistency, Material-UI increases the specificity of its custom states. This has one important advantage, it's allowing you to cherry-pick the state you want to customize.
+Die CSS-Spezifikation bewirkt, dass die Pseudoklassen die Spezifität erhöhen. Aus Gründen der Konsistenz erhöht die Material-UI die Spezifität ihrer benutzerdefinierten Zustände. Dies hat einen wichtigen Vorteil: Sie können den Zustand auswählen, den Sie anpassen möchten.
 
-### Use `$ruleName` to reference a local rule within the same style sheet
+### Verwenden Sie `$ruleName` um eine lokale Regel innerhalb desselben Stylesheets referenzieren
 
-The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
+Das [jss-nested](https://github.com/cssinjs/jss-nested) Plugin (standardmäßig verfügbar) macht es einfach, die Spezifität verbessern.
 
 ```js
 const styles = {
@@ -122,7 +122,7 @@ const styles = {
 };
 ```
 
-compiles to:
+kompiliert zu:
 
 ```css
 .root-x.disable-x {
@@ -130,7 +130,7 @@ compiles to:
 }
 ```
 
-⚠️ You need to apply the two generated class names (`root` & `disabled`) to the DOM to make it work.
+⚠️ Sie müssen die beiden generierten Klassennamen (`root` & `disabled`) an das DOM übergeben, damit es funktioniert.
 
 ```jsx
 <Button
@@ -144,35 +144,35 @@ compiles to:
 
 {{"demo": "pages/customization/overrides/ClassesState.js"}}
 
-### Overriding with inline-style
+### Überschreiben mit Inline-Style
 
-The second way to override the style of a component is to use the **inline-style** approach. Every component provides a `style` property. These properties are always applied to the root element.
+Die zweite Möglichkeit, den Stil einer Komponente zu überschreiben, ist die Verwendung des **Inline-Stils** Ansatzes. Jede Komponente bietet eine `style` Eigenschaft. Diese Eigenschaft werden immer auf das unterste Element angewendet.
 
-You don't have to worry about CSS specificity as the inline-style takes precedence over the regular CSS.
+Sie müssen sich keine Gedanken über die CSS-Spezifität machen, da der Inline-Stil Vorrang vor dem regulären CSS hat.
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
+[Wann sollte ich Inline-Styles und wann Klassen verwenden?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
 
-## 2. Dynamic variation for a one-time situation
+## 2. Dynamische Variation für eine einmalige Situation
 
-You have learned how to override the style of the Material-UI components in the previous sections. Now, let's see how we can make these overrides dynamic. We demonstrate 5 alternatives, each has it's pros and cons.
+In den vorherigen Abschnitten haben Sie gelernt, wie Sie den Stil der Material-UI-Komponenten überschreiben. Nun wollen wir mal sehen, wie wir diese Überschreibungen dynamisch machen können. Wir zeigen 5 Alternativen, von denen jede ihre Vor- und Nachteile hat.
 
-### Dynamic CSS
+### Dynamisches CSS
 
 {{"demo": "pages/customization/overrides/DynamicCSS.js"}}
 
-⚠️ This demo relies on the [`@material-ui/styles`](/css-in-js/basics/) package. It doesn't work with the stable version.
+Dem Diese Demo basiert auf dem [`@material-ui/styles`](/css-in-js/basics/) Paket. Es funktioniert nicht mit der stabilen Version.
 
-### Class name branch
+### Klassenname Branch
 
 {{"demo": "pages/customization/overrides/DynamicClassName.js"}}
 
-### CSS variables
+### CSS-Variablen
 
 {{"demo": "pages/customization/overrides/DynamicCSSVariables.js"}}
 
-### Inline-style
+### Inline-Stil
 
 {{"demo": "pages/customization/overrides/DynamicInlineStyle.js"}}
 
@@ -180,32 +180,32 @@ You have learned how to override the style of the Material-UI components in the 
 
 {{"demo": "pages/customization/overrides/DynamicThemeNesting.js"}}
 
-## 3. Specific variation of a component
+## 3. Spezifische Variation einer Komponente
 
-You might need to create a variation of a component and use it in different contexts, for instance a colorful button on your product page, however you probably want to keep your code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+Möglicherweise müssen Sie eine Variation einer Komponente erstellen und in verschiedenen Kontexten verwenden, beispielsweise auf einer farbigen Button auf Ihrer Produktseite. Allerdings möchten Sie wahrscheinlich, dass Ihr Code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) bleibt.
 
-The best approach is to follow option 1 and then take advantage of the composition power of React by exporting your customized component to use wherever you need it.
+Der beste Ansatz ist, Option 1 zu folgen und dann die Kompositionskraft von React zu nutzen, indem Sie Ihre benutzerdefinierte Komponente exportieren, um sie dort zu verwenden, wo Sie sie benötigen.
 
 {{"demo": "pages/customization/overrides/Component.js", "hideEditButton": true}}
 
-## 4. Material Design variations
+## 4. Material Design Variationen
 
-The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (formerly "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (formerly "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
+In der Material Design-Spezifikation werden verschiedene Variationen bestimmter Komponenten dokumentiert, z. B. wie Buttons in unterschiedlichen Formen erscheinen:[text](https://material.io/design/components/buttons.html#text-button) (früher "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (früher "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) und mehr.
 
-Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components/) documentation to find out the current status of all supported Material Design components.
+Die Material-UI versucht, alle diese Variationen zu implementieren. Bitte beachten Sie die [Unterstützte Komponente ](/getting-started/supported-components/) Dokumentation, um den aktuellen Status aller unterstützten Material Design-Komponenten herauszufinden.
 
 ## 5. Global theme variation
 
-### Theme variables
+### Theme-Variablen
 
-In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes by adjusting the [theme configuration variables](/customization/themes/#theme-configuration-variables).
+Um die Konsistenz zwischen den Komponenten zu verbessern und das Erscheinungsbild der Benutzeroberfläche insgesamt zu verwalten, bietet die Material-UI einen Mechanismus zum Anwenden globaler Änderungen durch Anpassen der [Theme Konfigurationsvariablen](/customization/themes/#theme-configuration-variables) an.
 
-### Global theme override
+### Globales Theme überschreiben
 
-Do you want to customize **all the instances** of a component type?
+Möchten Sie **alle Instanzen** eines Komponententyps anpassen?
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM. Learn more about it in the [themes section](/customization/themes/#customizing-all-instances-of-a-component-type) of the documentation.
+Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der `overrides` Schlüssel des `Theme` verwenden, um potenziell jeden einzelnen von Material-UI in den DOM eingefügten Stil zu ändern. Weitere Informationen dazu finden Sie im [Themen](/customization/themes/#customizing-all-instances-of-a-component-type) Abschnitt der Dokumentation.
 
-### Global CSS override
+### Globales CSS überschreiben
 
-You can also customize all instances of a component with CSS. We expose a `dangerouslyUseGlobalCSS` option to do so. Learn more about it in the [styles section](/css-in-js/advanced/#deterministic-class-names) of the documentation. It's very similar to how you would customize Bootstrap.
+Sie können auch alle Instanzen einer Komponente mit CSS anpassen. Wir stellen dazu die `dangerouslyUseGlobalCSS` Option zur Verfügung. Weitere Informationen dazu finden Sie im [Style](/css-in-js/advanced/#deterministic-class-names) Abschnitt der Dokumentation. Es ist sehr ähnlich, wie Sie Bootstrap anpassen würden.

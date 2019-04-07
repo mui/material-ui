@@ -1,8 +1,8 @@
 ---
-title: Checkbox, Radio, Switch React component
+title: Checkbox, Radio, Switch React-Komponente
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
-# Auswahlsteuerelemente
+# Auswahlsteuerelemente (Selection Controls)
 
 <p class="description">Auswahlsteuerungen ermöglichen dem Benutzer die Auswahl von Optionen.</p>
 
@@ -34,59 +34,59 @@ Ein `Optionsfeld` kann auch ohne Wrapper einzeln verwendet werden.
 
 [Kontrollkästchen ](https://material.io/design/components/selection-controls.html#checkboxes) ermöglichen die Auswahl einer einzelnen Option aus einem Set. Kontrollkästchen können verwendet werden, um eine Option ein- oder auszuschalten.
 
-Wenn in einer Liste mehrere Optionen erscheinen, können Sie durch Kontrollkästchen die Abstände erhalten statt Ein- / Aus - Schalter zu verwenden. If you have a single option, avoid using a checkbox and use an on/off switch instead.
+Wenn in einer Liste mehrere Optionen erscheinen, können Sie durch Kontrollkästchen die Abstände erhalten statt Ein- / Aus - Schalter zu verwenden. Wenn Sie nur eine Option haben, vermeiden Sie die Verwendung eines Kontrollkästchens und verwenden Sie stattdessen einen Ein- / Ausschalter.
 
 {{"demo": "pages/demos/selection-controls/Checkboxes.js"}}
 
-`Checkbox` can also be used with a label description thanks to the `FormControlLabel` component.
+Die `Checkbox` kann dank der `FormControlLabel` Komponente auch mit einer Etikettenbeschreibung verwendet werden.
 
 {{"demo": "pages/demos/selection-controls/CheckboxLabels.js"}}
 
-## Checkboxes with FormGroup
+## Kontrollkästchen mit FormGroup
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
+`FormGroup` ist ein hilfreicher Wrapper zum Gruppieren von Auswahlsteuerungskomponenten, welcher eine einfachere API bietet.
 
 {{"demo": "pages/demos/selection-controls/CheckboxesGroup.js"}}
 
 ## Schalter
 
-[Switches](https://material.io/design/components/selection-controls.html#switches) toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
+[Schalter](https://material.io/design/components/selection-controls.html#switches) wechseln den Status einer einzelnen Einstellung zwischen ein und aus. Sie sind die bevorzugte Methode zum Anpassen der Einstellungen auf dem Handy.
 
-The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
+Die Option, die der Schalter steuert, sowie der Status, in dem er sich befindet, sollte aus dem entsprechenden Inline-Label hervorgehen.
 
 {{"demo": "pages/demos/selection-controls/Switches.js"}}
 
-### Switches with FormControlLabel
+### Schalter mit FormControlLabel
 
-`Switch` can also be used with a label description thanks to the `FormControlLabel` component.
+Ein `Schalter` kann dank der `FormControlLabel` Komponente auch mit einer Etikettenbeschreibung verwendet werden.
 
 {{"demo": "pages/demos/selection-controls/SwitchLabels.js"}}
 
-### Switches with FormGroup
+### Schalter mit FormGroup
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API. However, we encourage you to use a [Checkbox](#checkboxes) instead.
+`FormGroup` ist ein hilfreicher Wrapper zum Gruppieren von Auswahlsteuerungskomponenten, der eine einfachere API bietet. Wir empfehlen jedoch, stattdessen eine [Checkbox](#checkboxes) verwenden.
 
 {{"demo": "pages/demos/selection-controls/SwitchesGroup.js"}}
 
-### Customized Switches
+### Anpasster Schalter
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
+Wenn du die [Überschreibungs Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du die Farbe des Schalters ändern kannst, und ein iOS Schalter.
 
 ⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 
-## Label placement
+## Etikettenplatzierung
 
-You can change the placement of the label:
+Sie können die Platzierung des Etiketts ändern:
 
 {{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}
 
-## Accessibility
+## Barrierefreiheit
 
-All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+Alle Formularsteuerelemente sollten Beschriftungen haben. Dazu gehören Optionsfelder, Kontrollkästchen und Schalter. In den meisten Fällen wird dazu das Element `<label>` ([FormControlLabel](/api/form-control-label/)) verwendet.
 
-When a label can't be used, it's necessary to add an attribute directly to the input component. In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attribut direkt hinzugefügt werden. In diesem Fall können Sie das zusätzliche Attribut (z. B. `aria-label`, `aria-labelby`, `title`) über die Eigenschaft `inputProps` anwenden.
 
 ```jsx
 <Checkbox
@@ -94,3 +94,7 @@ When a label can't be used, it's necessary to add an attribute directly to the i
   inputProps={{ 'aria-label': 'Checkbox A' } }
 />
 ```
+
+## Anleitung
+
+- [Kontrollkästchen vs. Optionsfelder](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

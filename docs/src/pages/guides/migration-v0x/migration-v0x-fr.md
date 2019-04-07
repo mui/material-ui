@@ -1,12 +1,12 @@
-# Migration From v0.x to v1
+# Migration de v0.x vers v1
 
-<p class="description">Yeah, v1 has been released! Take advantage of 2 years worth of effort.</p>
+<p class="description">Yeah, la v1 est sortie! Take advantage of 2 years worth of effort.</p>
 
 ## FAQ
 
 ### Woah - the API is way different! Does that mean 1.0 is completely different, I’ll have to learn the basics all over again, and migrating will be practically impossible?
 
-I’m glad you asked! The answer is no. The core concepts haven’t changed. You will notice that the API provides more flexibility, but this has a cost. We have been making lower-level components, abstracting less complexity.
+Je suis content que vous ayez demandé! La réponse est non. Les concepts de base n'ont pas changé. You will notice that the API provides more flexibility, but this has a cost. We have been making lower-level components, abstracting less complexity.
 
 ### What motivated such a large change?
 
