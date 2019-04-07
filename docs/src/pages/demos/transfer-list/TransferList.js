@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     minWidth: 180,
-    height: 240,
+    height: 230,
     backgroundColor: theme.palette.background.paper,
     overflow: 'scroll',
   },
@@ -116,7 +116,7 @@ function CheckboxList() {
             onClick={handleAllRight}
             disabled={left.length === 0}
           >
-            »
+            ≫
           </Button>
           <Button
             variant="outlined"
@@ -134,7 +134,7 @@ function CheckboxList() {
             onClick={handleSwap}
             disabled={leftChecked.length === 0 || rightChecked.length === 0}
           >
-            {'<>'}
+            ≷
           </Button>
           <Button
             variant="outlined"
@@ -152,7 +152,7 @@ function CheckboxList() {
             onClick={handleAllLeft}
             disabled={right.length === 0}
           >
-            «
+            ≪
           </Button>
         </Grid>
       </Grid>
