@@ -139,14 +139,8 @@ describe('<Collapse />', () => {
       });
 
       describe('handleExit()', () => {
-        let heightStub;
-
         before(() => {
-          heightStub = stub(container.instance().style, 'height').get(() => '666px');
-        });
-
-        after(() => {
-          heightStub.restore();
+          container.instance().style.height = '666px';
         });
 
         it('should set height to the wrapper height', () => {
