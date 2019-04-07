@@ -34,46 +34,54 @@ describe('<Grow />', () => {
   );
 
   describe('event callbacks', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
     describe('entering', () => {
-      it('should fire callbacks', done => {
+      it('should fire callbacks', () => {
         const handleEnter = spy();
         const handleEntering = spy();
+        const handleEntered = spy();
 
         mount(
           <Grow
             onEnter={handleEnter}
             onEntering={handleEntering}
-            onEntered={() => {
-              assert.strictEqual(handleEnter.callCount, 1);
-              assert.strictEqual(handleEnter.args[0].length, 1);
-              assert.strictEqual(handleEntering.callCount, 1);
-              assert.strictEqual(handleEntering.args[0].length, 2);
-              done();
-            }}
+            onEntered={handleEntered}
             {...defaultProps}
           >
             <div />
           </Grow>,
         );
+
+        assert.strictEqual(handleEnter.callCount, 1);
+        assert.strictEqual(handleEnter.args[0].length, 1);
+        assert.strictEqual(handleEntering.callCount, 1);
+        assert.strictEqual(handleEntering.args[0].length, 2);
+        clock.tick(1000);
+        assert.strictEqual(handleEntered.callCount, 1);
+        assert.strictEqual(handleEntered.args[0].length, 2);
       });
     });
 
     describe('exiting', () => {
-      it('should fire callbacks', done => {
+      it('should fire callbacks', () => {
         const handleExit = spy();
         const handleExiting = spy();
+        const handleEntered = spy();
 
         const wrapper = mount(
           <Grow
             onExit={handleExit}
             onExiting={handleExiting}
-            onExited={() => {
-              assert.strictEqual(handleExit.callCount, 1);
-              assert.strictEqual(handleExit.args[0].length, 1);
-              assert.strictEqual(handleExiting.callCount, 1);
-              assert.strictEqual(handleExiting.args[0].length, 1);
-              done();
-            }}
+            onExited={handleEntered}
             {...defaultProps}
           >
             <div />
@@ -83,6 +91,14 @@ describe('<Grow />', () => {
         wrapper.setProps({
           in: false,
         });
+
+        assert.strictEqual(handleExit.callCount, 1);
+        assert.strictEqual(handleExit.args[0].length, 1);
+        assert.strictEqual(handleExiting.callCount, 1);
+        assert.strictEqual(handleExiting.args[0].length, 1);
+        clock.tick(1000);
+        assert.strictEqual(handleEntered.callCount, 1);
+        assert.strictEqual(handleEntered.args[0].length, 1);
       });
     });
   });
@@ -92,6 +108,7 @@ describe('<Grow />', () => {
     const leaveDuration = 446;
 
     it('should create proper easeOut animation onEnter', () => {
+      const handleEnter = spy();
       mount(
         <Grow
           {...defaultProps}
@@ -99,60 +116,59 @@ describe('<Grow />', () => {
             enter: enterDuration,
             exit: leaveDuration,
           }}
-          onEnter={node => {
-            assert.match(node.style.transition, new RegExp(`${enterDuration}ms`));
-          }}
+          onEnter={handleEnter}
         />,
       );
+
+      assert.match(handleEnter.args[0][0].style.transition, new RegExp(`${enterDuration}ms`));
     });
 
     it('should create proper sharp animation onExit', () => {
-      mount(
+      const handleExit = spy();
+      const wrapper = mount(
         <Grow
           {...defaultProps}
           timeout={{
             enter: enterDuration,
             exit: leaveDuration,
           }}
-          onExit={node => {
-            assert.match(node.style.transition, new RegExp(`${leaveDuration}ms`));
-          }}
+          onExit={handleExit}
         />,
       );
+
+      wrapper.setProps({
+        in: false,
+      });
+
+      assert.match(handleExit.args[0][0].style.transition, new RegExp(`${leaveDuration}ms`));
     });
   });
 
   describe('transition lifecycle', () => {
     describe('handleEnter()', () => {
       it('should set style properties', () => {
-        mount(
-          <Grow
-            {...defaultProps}
-            onEnter={node => {
-              assert.match(
-                node.style.transition,
-                /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-              );
-            }}
-          />,
+        const handleEnter = spy();
+        mount(<Grow {...defaultProps} onEnter={handleEnter} />);
+
+        assert.match(
+          handleEnter.args[0][0].style.transition,
+          /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
         );
       });
     });
 
     describe('handleExit()', () => {
       it('should set style properties', () => {
-        mount(
-          <Grow
-            {...defaultProps}
-            onExit={node => {
-              assert.strictEqual(node.style.opacity, '0', 'should be transparent');
-              assert.strictEqual(
-                node.style.transform,
-                'scale(0.75, 0.5625)',
-                'should have the exit scale',
-              );
-            }}
-          />,
+        const handleExit = spy();
+        const wrapper = mount(<Grow {...defaultProps} onExit={handleExit} />);
+
+        wrapper.setProps({ in: false });
+
+        assert.strictEqual(handleExit.args[0][0].style.opacity, '0', 'should be transparent');
+        assert.strictEqual(
+          handleExit.args[0][0].style.transform,
+          'scale(0.75, 0.5625)',
+          'should have the exit scale',
         );
       });
     });
