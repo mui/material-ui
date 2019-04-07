@@ -42,7 +42,10 @@ function ScrollbarSize(props) {
 
     window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      handleResize.clear();
+      window.removeEventListener('resize', handleResize);
+    };
   }, [onChange]);
 
   const handleRef = ref => {
