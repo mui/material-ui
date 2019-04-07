@@ -54,11 +54,7 @@ function ScrollbarSize(props) {
     onChange(scrollbarHeight.current);
   }, [onChange]);
 
-  return (
-    <React.Fragment>
-      <div style={styles} ref={handleRef} />
-    </React.Fragment>
-  );
+  return <div style={styles} ref={handleRef} />;
 }
 
 ScrollbarSize.propTypes = {
