@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CheckboxList() {
+function TransferList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([0, 1, 2, 3]);
@@ -88,24 +88,28 @@ function CheckboxList() {
     setRight([]);
   };
 
+  const customList = (items) => (
+    <List className={classes.list} dense>
+      {items.map(value => (
+        <ListItem
+          className={classes.listItem}
+          key={value}
+          role={undefined}
+          button
+          onClick={handleToggle(value)}
+        >
+          <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
+          <ListItemText primary={`List item ${value + 1}`} />
+        </ListItem>
+      ))}
+      <ListItem />
+    </List>
+  )
+
   return (
     <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
       <Grid item>
-        <List className={classes.list} dense>
-          {left.map(value => (
-            <ListItem
-              className={classes.listItem}
-              key={value}
-              role={undefined}
-              button
-              onClick={handleToggle(value)}
-            >
-              <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
-              <ListItemText primary={`List item ${value + 1}`} />
-            </ListItem>
-          ))}
-          <ListItem />
-        </List>
+        {customList(left)}
       </Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
@@ -115,6 +119,7 @@ function CheckboxList() {
             className={classes.button}
             onClick={handleAllRight}
             disabled={left.length === 0}
+            aria-label="move all right"
           >
             ≫
           </Button>
@@ -124,6 +129,7 @@ function CheckboxList() {
             className={classes.button}
             onClick={handleCheckedRight}
             disabled={leftChecked.length === 0}
+            aria-label="move selected roght"
           >
             &gt;
           </Button>
@@ -133,6 +139,7 @@ function CheckboxList() {
             className={classes.button}
             onClick={handleSwap}
             disabled={leftChecked.length === 0 || rightChecked.length === 0}
+            aria-label="swap selected"
           >
             ≷
           </Button>
@@ -142,6 +149,7 @@ function CheckboxList() {
             className={classes.button}
             onClick={handleCheckedLeft}
             disabled={rightChecked.length === 0}
+            aria-label="move selected left"
           >
             &lt;
           </Button>
@@ -151,30 +159,17 @@ function CheckboxList() {
             className={classes.button}
             onClick={handleAllLeft}
             disabled={right.length === 0}
+            aria-label="move all left"
           >
             ≪
           </Button>
         </Grid>
       </Grid>
       <Grid item>
-        <List className={classes.list} dense>
-          {right.map(value => (
-            <ListItem
-              className={classes.listItem}
-              key={value}
-              role={undefined}
-              button
-              onClick={handleToggle(value)}
-            >
-              <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
-              <ListItemText primary={`List item ${value + 1}`} />
-            </ListItem>
-          ))}
-          <ListItem />
-        </List>
+        {customList(right)}
       </Grid>
     </Grid>
   );
 }
 
-export default CheckboxList;
+export default TransferList;
