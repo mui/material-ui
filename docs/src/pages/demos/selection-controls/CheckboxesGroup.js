@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -7,17 +7,17 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   root: {
     display: 'flex',
   },
   formControl: {
     margin: theme.spacing(3),
   },
-}));
+});
 
-function CheckboxesGroup() {
-  const classes = useStyles();
+function CheckboxesGroup(props) {
+  const { classes } = props;
   const [state, setState] = React.useState({
     gilad: true,
     jason: false,
@@ -33,8 +33,8 @@ function CheckboxesGroup() {
 
   return (
     <div className={classes.root}>
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Assign responsibility</FormLabel>
+      <FormControl component={'fieldset'} className={classes.formControl}>
+        <FormLabel component={'legend'}>Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
@@ -53,8 +53,8 @@ function CheckboxesGroup() {
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      <FormControl required error={error} component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Pick two</FormLabel>
+      <FormControl required error={error} component={'fieldset'} className={classes.formControl}>
+        <FormLabel component={'legend'}>Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
@@ -77,4 +77,4 @@ function CheckboxesGroup() {
   );
 }
 
-export default CheckboxesGroup;
+export default withStyles(styles)(CheckboxesGroup);

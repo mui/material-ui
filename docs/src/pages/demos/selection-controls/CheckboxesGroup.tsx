@@ -37,7 +37,7 @@ function CheckboxesGroup(props: Props) {
   return (
     <div className={classes.root}>
       <FormControl component={'fieldset' as 'div'} className={classes.formControl}>
-        <FormLabel component={'legend' as 'div'}>Assign responsibility</FormLabel>
+        <FormLabel component={'legend' as 'label'}>Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
@@ -62,7 +62,7 @@ function CheckboxesGroup(props: Props) {
         component={'fieldset' as 'div'}
         className={classes.formControl}
       >
-        <FormLabel component={'legend' as 'div'}>Pick two</FormLabel>
+        <FormLabel component={'legend' as 'label'}>Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
