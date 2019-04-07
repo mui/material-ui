@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -9,24 +9,17 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-const styles = () =>
-  createStyles({
-    root: {
-      '&:not($checked)': {
-        color: green[400],
-      },
-      '&$checked': {
-        color: green[600],
-      },
+const GreenCheckbox: React.ComponentType<CheckboxProps> = withStyles({
+  root: {
+    '&:not($checked)': {
+      color: green[400],
     },
-    checked: {},
-  });
-
-interface Props extends WithStyles<typeof styles> {}
-
-const GreenCheckbox: React.ComponentType<CheckboxProps> = withStyles(styles)((props: Props) => (
-  <Checkbox color="default" {...props} />
-));
+    '&$checked': {
+      color: green[600],
+    },
+  },
+  checked: {},
+})(props => <Checkbox color="default" {...props} />);
 
 function CheckboxLabels() {
   const [state, setState] = React.useState({
