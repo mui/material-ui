@@ -24,7 +24,6 @@ export const styles = theme => ({
     userSelect: 'none',
     paddingRight: 32,
     borderRadius: 0, // Reset
-    height: '1.1875em', // Reset (19px), match the native input line-height
     width: 'calc(100% - 32px)',
     minWidth: 16, // So it doesn't collapse.
     cursor: 'pointer',
@@ -64,7 +63,6 @@ export const styles = theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    minHeight: '1.1875em', // Reset (19px), match the native input line-height
   },
   /* Styles applied to the `Input` component `disabled` class. */
   disabled: {},

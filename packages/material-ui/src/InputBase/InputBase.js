@@ -76,6 +76,7 @@ export const styles = theme => {
       border: 0,
       boxSizing: 'content-box',
       background: 'none',
+      height: '1.1875em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
       // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',
@@ -119,13 +120,10 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
+      height: 'auto',
+      minHeight: '1.1875em', // Reset (19px), match the native input line-height
       resize: 'none',
       padding: 0,
-    },
-    /* Styles applied to the `input` element if `type` is not "text"`. */
-    inputType: {
-      // type="date" or type="time", etc. have specific styles we need to reset.
-      height: '1.1875em', // Reset (19px), match the native input line-height
     },
     /* Styles applied to the `input` element if `type="search"`. */
     inputTypeSearch: {
@@ -352,7 +350,6 @@ class InputBase extends React.Component {
       classes.input,
       {
         [classes.disabled]: fcs.disabled,
-        [classes.inputType]: type !== 'text',
         [classes.inputTypeSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
         [classes.inputMarginDense]: fcs.margin === 'dense',
