@@ -84,7 +84,7 @@ Paper.propTypes = {
 
 Paper.defaultProps = {
   component: 'div',
-  elevation: 2,
+  elevation: 1,
   square: false,
 };
 
