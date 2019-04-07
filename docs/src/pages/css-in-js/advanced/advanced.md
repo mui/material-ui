@@ -249,7 +249,7 @@ export default App;
 
 ### makeStyles
 
-Whenever you need to make use of the `useStyles` hook, you should instantiate a new instance by calling `makeStyles()` in each and every module. If you import an instance from another module, the CSS injection order could be broken. It may also only manifest when building in `production` mode, so be careful with that if you witness different behavior between `dev` and `production`.
+When using `useStyles`, you should instantiate a new instance by calling `makeStyles()` in each file. If you import an instance from another file, the CSS injection order can break and cause different behaviour in `dev` and `production`.
 
 ## Server-side rendering
 
