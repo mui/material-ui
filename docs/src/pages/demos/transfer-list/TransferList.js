@@ -8,11 +8,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
-  '@global': {
-    html: {
-      backgroundColor: '#eeeeee',
-    },
-  },
   root: {
     margin: 'auto',
   },
