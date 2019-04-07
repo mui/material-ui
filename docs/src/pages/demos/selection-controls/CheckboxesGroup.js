@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -76,5 +77,9 @@ function CheckboxesGroup(props) {
     </div>
   );
 }
+
+CheckboxesGroup.propTypes = {
+  classes: PropTypes.object,
+};
 
 export default withStyles(styles)(CheckboxesGroup);
