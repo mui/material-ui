@@ -23,10 +23,6 @@ function ScrollbarSize(props) {
   const nodeRef = React.useRef();
 
   const setMeasurements = () => {
-    if (!nodeRef.current) {
-      return;
-    }
-
     scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
   };
 
@@ -48,16 +44,12 @@ function ScrollbarSize(props) {
     };
   }, [onChange]);
 
-  const handleRef = ref => {
-    nodeRef.current = ref;
-  };
-
   React.useEffect(() => {
     setMeasurements();
     onChange(scrollbarHeight.current);
   }, [onChange]);
 
-  return <div style={styles} ref={handleRef} />;
+  return <div style={styles} ref={nodeRef} />;
 }
 
 ScrollbarSize.propTypes = {
