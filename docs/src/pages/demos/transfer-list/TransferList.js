@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 180,
     height: 230,
     backgroundColor: theme.palette.background.paper,
-    overflow: 'scroll',
+    overflow: 'auto',
   },
   listItem: {
     paddingTop: 4,
