@@ -74,23 +74,23 @@ workflows:
           requires:
             - javascript
 
-      # - test_moment:
-      #     <<: *js_defaults
-      #     requires:
-      #       - javascript
-      #     steps:
-      #       - run: cd lib && yarn test:moment
+      - test_moment:
+          requires:
+            - javascript
+          <<: *js_defaults
+          steps:
+            - run: cd lib && yarn test:moment
 
-      # - test_date-fns:
-      #     <<: *js_defaults
-      #     requires:
-      #       - javascript
-      #     steps:
-      #       - run: cd lib && yarn test:date-fns
+      - test_date-fns:
+          requires:
+            - javascript
+          <<: *js_defaults
+          steps:
+            - run: cd lib && yarn test:date-fns
 
-      # - test_luxon:
-      #     <<: *js_defaults
-      #     requires:
-      #       - javascript
-      #     steps:
-      #       - run: cd lib && yarn test:luxon
+      - test_luxon:
+          requires:
+            - javascript
+          <<: *js_defaults
+          steps:
+            - run: cd lib && yarn test:luxon
