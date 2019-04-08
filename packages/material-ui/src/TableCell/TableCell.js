@@ -69,6 +69,7 @@ export const styles = theme => ({
       padding: 0,
     },
   },
+  paddingNumber: ({ padding }) => ({ padding }),
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -136,6 +137,7 @@ function TableCell(props) {
                 [classes[`align${capitalize(align)}`]]: align !== 'inherit',
                 [classes.numeric]: numeric,
                 [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
+                [classes['paddingNumber']]: typeof padding === 'number',
               },
               classNameProp,
             );
@@ -191,7 +193,7 @@ TableCell.propTypes = {
    * Sets the padding applied to the cell.
    * By default, the Table parent component set the value.
    */
-  padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
+  padding: PropTypes.oneOfType(PropTypes.number, [PropTypes.oneOf(['default', 'checkbox', 'dense', 'none'])]),
   /**
    * Set scope attribute.
    */
