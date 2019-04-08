@@ -6,15 +6,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
   root: {
     margin: 'auto',
   },
-  list: {
-    minWidth: 180,
+  paper: {
+    width: 200,
     height: 230,
-    backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
   },
   listItem: {
@@ -79,21 +79,23 @@ function TransferList() {
   };
 
   const customList = items => (
-    <List className={classes.list} dense>
-      {items.map(value => (
-        <ListItem
-          className={classes.listItem}
-          key={value}
-          role={undefined}
-          button
-          onClick={handleToggle(value)}
-        >
-          <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
-          <ListItemText primary={`List item ${value + 1}`} />
-        </ListItem>
-      ))}
-      <ListItem />
-    </List>
+    <Paper elevation={1} className={classes.paper}>
+      <List dense>
+        {items.map(value => (
+          <ListItem
+            className={classes.listItem}
+            key={value}
+            role={undefined}
+            button
+            onClick={handleToggle(value)}
+          >
+            <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
+            <ListItemText primary={`List item ${value + 1}`} />
+          </ListItem>
+        ))}
+        <ListItem />
+      </List>
+    </Paper>
   );
 
   return (

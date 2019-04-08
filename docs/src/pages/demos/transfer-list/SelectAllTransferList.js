@@ -8,16 +8,17 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
   root: {
     margin: 'auto',
   },
   cardHeader: {
-    padding: '8px 16px',
+    padding: theme.spacing(1, 2),
   },
   list: {
-    minWidth: 180,
+    width: 200,
     height: 230,
     backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
@@ -102,6 +103,7 @@ function TransferList() {
         title={title}
         subheader={`${numberOfChecked(items)}/${items.length}`}
       />
+      <Divider />
       <List className={classes.list} dense>
         {items.map(value => (
           <ListItem
