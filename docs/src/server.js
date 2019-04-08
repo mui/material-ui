@@ -1,3 +1,4 @@
+import address from 'address';
 import http from 'http';
 import express from 'express';
 import url from 'url';
@@ -46,15 +47,16 @@ async function run() {
 
   const server = http.createServer(app);
   const port = parseInt(process.env.PORT, 10) || 3000;
-  const host = process.env.HOST || 'localhost';
 
-  server.listen(port, host, err => {
+  server.listen(port, err => {
     if (err) {
       throw err;
     }
+
+    const lanHost = address.ip();
     log.info({
       name: 'http',
-      msg: `ready on http://${host}:${port}`,
+      msg: `ready on http://localhost:${port} and http://${lanHost}:${port}`,
     });
   });
 

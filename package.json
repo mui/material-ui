@@ -86,6 +86,7 @@
     "@types/react-window": "^1.7.0",
     "@types/styled-components": "^4.1.11",
     "@zeit/next-typescript": "^1.1.1",
+    "address": "^1.0.3",
     "argos-cli": "^0.1.1",
     "autoprefixer": "^9.0.0",
     "autosuggest-highlight": "^3.1.1",
