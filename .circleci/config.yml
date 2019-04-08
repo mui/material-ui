@@ -22,6 +22,7 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
+          root: ~/
           paths:
             - ~/material-ui-pickers
             - ~/.cache
