@@ -1,12 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '90%',
   },
@@ -26,7 +26,7 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step) {
+function getStepContent(step: number) {
   switch (step) {
     case 0:
       return 'Step 1: Select campaign settings...';
@@ -42,7 +42,7 @@ function getStepContent(step) {
 function HorizontalNonLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState({});
+  const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({});
   const steps = getSteps();
 
   function totalSteps() {
@@ -75,7 +75,7 @@ function HorizontalNonLinearStepper() {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   }
 
-  const handleStep = step => () => {
+  const handleStep = (step: number) => () => {
     setActiveStep(step);
   };
 

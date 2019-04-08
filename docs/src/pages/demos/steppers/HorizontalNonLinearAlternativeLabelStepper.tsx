@@ -1,12 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '90%',
   },
@@ -29,7 +29,7 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step) {
+function getStepContent(step: number) {
   switch (step) {
     case 0:
       return 'Step 1: Select campaign settings...';
@@ -45,15 +45,15 @@ function getStepContent(step) {
 function HorizontalNonLinearAlternativeLabelStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState(new Set());
-  const [skipped, setSkipped] = React.useState(new Set());
+  const [completed, setCompleted] = React.useState(new Set<number>());
+  const [skipped, setSkipped] = React.useState(new Set<number>());
   const steps = getSteps();
 
   function totalSteps() {
     return getSteps().length;
   }
 
-  function isStepOptional(step) {
+  function isStepOptional(step: number) {
     return step === 1;
   }
 
@@ -103,7 +103,7 @@ function HorizontalNonLinearAlternativeLabelStepper() {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   }
 
-  const handleStep = step => () => {
+  const handleStep = (step: number) => () => {
     setActiveStep(step);
   };
 
@@ -124,15 +124,15 @@ function HorizontalNonLinearAlternativeLabelStepper() {
 
   function handleReset() {
     setActiveStep(0);
-    setCompleted(new Set());
-    setSkipped(new Set());
+    setCompleted(new Set<number>());
+    setSkipped(new Set<number>());
   }
 
-  function isStepSkipped(step) {
+  function isStepSkipped(step: number) {
     return skipped.has(step);
   }
 
-  function isStepComplete(step) {
+  function isStepComplete(step: number) {
     return completed.has(step);
   }
 
@@ -140,8 +140,8 @@ function HorizontalNonLinearAlternativeLabelStepper() {
     <div className={classes.root}>
       <Stepper alternativeLabel nonLinear activeStep={activeStep}>
         {steps.map((label, index) => {
-          const stepProps = {};
-          const buttonProps = {};
+          const stepProps: { completed?: boolean } = {};
+          const buttonProps: { optional?: React.ReactNode } = {};
           if (isStepOptional(index)) {
             buttonProps.optional = <Typography variant="caption">Optional</Typography>;
           }
@@ -194,7 +194,6 @@ function HorizontalNonLinearAlternativeLabelStepper() {
                   Skip
                 </Button>
               )}
-
               {activeStep !== steps.length &&
                 (completed.has(activeStep) ? (
                   <Typography variant="caption" className={classes.completed}>

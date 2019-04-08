@@ -141,6 +141,7 @@ function HorizontalNonLinearStepperWithError() {
                   Skip
                 </Button>
               )}
+
               <Button
                 variant="contained"
                 color="primary"
