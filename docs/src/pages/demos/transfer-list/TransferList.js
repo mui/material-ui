@@ -67,16 +67,6 @@ function TransferList() {
     setChecked(not(checked, leftChecked));
   };
 
-  const handleSwap = () => {
-    const newLeft = left.concat(rightChecked);
-    const newRight = right.concat(leftChecked);
-
-    setLeft(not(newLeft, leftChecked));
-    setRight(not(newRight, rightChecked));
-
-    setChecked([]);
-  };
-
   const handleCheckedLeft = () => {
     setLeft(left.concat(rightChecked));
     setRight(not(right, rightChecked));
@@ -132,16 +122,6 @@ function TransferList() {
             aria-label="move selected roght"
           >
             &gt;
-          </Button>
-          <Button
-            variant="outlined"
-            size="small"
-            className={classes.button}
-            onClick={handleSwap}
-            disabled={leftChecked.length === 0 || rightChecked.length === 0}
-            aria-label="swap selected"
-          >
-            ≷
           </Button>
           <Button
             variant="outlined"
