@@ -39,6 +39,7 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache
+            - ~/.cache/Cypress
 
       # - run: yarn lint
       - run: yarn workspace material-ui-pickers build:analyze
