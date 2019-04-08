@@ -375,6 +375,40 @@ describe('<Modal />', () => {
       const modalNode = modalRef.current;
       assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
     });
+
+    /* Test case for https://github.com/mui-org/material-ui/issues/15180 */
+    it('should remove the transition children in the DOM when closed on whilst transition status is entering', () => {
+      const TestCaseChildren = props => (
+        <Fade in={props.open} tabIndex={-1}>
+          <span>Hello</span>
+        </Fade>
+      );
+      TestCaseChildren.propTypes = { open: PropTypes.bool };
+
+      const TestCase = props => (
+        <Modal open={props.open} keepMounted={false}>
+          <TestCaseChildren open={props.open} />
+        </Modal>
+      );
+      TestCase.propTypes = { open: PropTypes.bool };
+
+      const wrapper = mount(<TestCase open={false} />);
+      assert.strictEqual(wrapper.contains(TestCaseChildren), false);
+
+      wrapper.setProps({ open: true });
+      wrapper.update();
+      assert.strictEqual(wrapper.contains(TestCaseChildren), true);
+      assert.strictEqual(
+        wrapper
+          .find(TestCaseChildren)
+          .find('Transition')
+          .instance().state.status,
+        'entering',
+      );
+
+      wrapper.setProps({ open: false });
+      assert.strictEqual(wrapper.contains(TestCaseChildren), false);
+    });
   });
 
   describe('focus', () => {

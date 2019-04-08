@@ -130,7 +130,7 @@ class SwipeableDrawer extends React.Component {
       drawerStyle.transition = transition;
     }
 
-    if (!this.props.disableBackdropTransition && !this.props.hideBackdrop) {
+    if (this.backdropRef && !this.props.disableBackdropTransition && !this.props.hideBackdrop) {
       const backdropStyle = this.backdropRef.style;
       backdropStyle.opacity = 1 - translate / this.getMaxTranslate();
 
