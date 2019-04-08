@@ -17,7 +17,19 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: yarn
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}
+            - v1-deps
+      - run:
+          name: Install Dependencies
+          command: yarn
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
       # - run: yarn lint
       - run: yarn workspace material-ui-pickers build:analyze
       - persist_to_workspace:
@@ -33,20 +45,6 @@ jobs:
     working_directory: ~/app
 
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
-            - v1-deps-{{ .Branch }}
-            - v1-deps
-      - run:
-          name: Install Dependencies
-          command: yarn
-      - save_cache:
-          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
       - run: yarn workspace docs build
       - run: yarn workspace docs start & npx wait-on http://localhost:3000 && npm run e2e:run -- --record
 
