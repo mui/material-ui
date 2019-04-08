@@ -24,8 +24,8 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - ~/material-ui-pickers
-            - ~/.cache
+            - material-ui-pickers
+            - .cache
 
   javascript:
     <<: *js_defaults
