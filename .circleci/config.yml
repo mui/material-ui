@@ -97,18 +97,7 @@ workflows:
           # record: true
           # yarn: true
 
-      - cypress/run:
-          name: 'Cypress tests'
-          # job will use workspace with code and dependencies
-          # installed by the "install" job
-          requires:
-            - javascript
-          # use executor with Chrome installed
-          executor: cypress/browsers-chrome69
-          # use browser "chrome" for running tests
-          browser: chrome
-          record: true
-          start: 'npm start'
+      - cypress/run
 
       - test_moment:
           requires:
