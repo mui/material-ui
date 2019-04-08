@@ -78,7 +78,7 @@ function TransferList() {
     setRight([]);
   };
 
-  const customList = (items) => (
+  const customList = items => (
     <List className={classes.list} dense>
       {items.map(value => (
         <ListItem
@@ -94,13 +94,11 @@ function TransferList() {
       ))}
       <ListItem />
     </List>
-  )
+  );
 
   return (
     <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
-      <Grid item>
-        {customList(left)}
-      </Grid>
+      <Grid item>{customList(left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
@@ -145,9 +143,7 @@ function TransferList() {
           </Button>
         </Grid>
       </Grid>
-      <Grid item>
-        {customList(right)}
-      </Grid>
+      <Grid item>{customList(right)}</Grid>
     </Grid>
   );
 }

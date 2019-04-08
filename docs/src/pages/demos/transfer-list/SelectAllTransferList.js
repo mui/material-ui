@@ -65,9 +65,7 @@ function TransferList() {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = items => (
-    intersection(checked, items).length
-  )
+  const numberOfChecked = items => intersection(checked, items).length;
 
   const handleToggleAll = items => () => {
     // If all selected
@@ -98,10 +96,7 @@ function TransferList() {
           <Checkbox
             onClick={handleToggleAll(items)}
             checked={numberOfChecked(items) === items.length}
-            indeterminate={
-              numberOfChecked(items) !== items.length &&
-              numberOfChecked(items) !== 0
-            }
+            indeterminate={numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0}
           />
         }
         title={title}
