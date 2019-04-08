@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { createMount } from 'packages/material-ui/src/test-utils';
 import Portal from 'packages/material-ui/src/Portal';
 import SelectAndDialog from './fixtures/select/SelectAndDialog';
-import sleep from 'modules/waterfall/sleep';
 
 describe('<Select> integration', () => {
   let mount;
@@ -18,86 +17,78 @@ describe('<Select> integration', () => {
 
   describe('with Dialog', () => {
     it('should focus the selected item', done => {
-      (async () => {
-        const wrapper = mount(<SelectAndDialog />);
-        const portalLayer = wrapper
-          .find(Portal)
-          .instance()
-          .getMountNode();
-        const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
+      const wrapper = mount(<SelectAndDialog />);
+      const portalLayer = wrapper
+        .find(Portal)
+        .instance()
+        .getMountNode();
+      const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
 
-        wrapper.setProps({
-          MenuProps: {
-            onExited: () => {
-              assert.strictEqual(
-                document.activeElement,
-                selectDisplay,
-                'should focus back the select input',
-              );
-              done();
-            },
+      wrapper.setProps({
+        MenuProps: {
+          onExited: () => {
+            assert.strictEqual(
+              document.activeElement,
+              selectDisplay,
+              'should focus back the select input',
+            );
+            done();
           },
-        });
+        },
+      });
 
-        // Let's open the select component
-        selectDisplay.focus();
-        selectDisplay.click();
+      // Let's open the select component
+      selectDisplay.focus();
+      selectDisplay.click();
 
-        const dialogPortalLayer = document.querySelectorAll('[data-mui-test="Modal"]')[1];
+      const dialogPortalLayer = document.querySelectorAll('[data-mui-test="Modal"]')[1];
 
-        assert.strictEqual(
-          document.activeElement,
-          dialogPortalLayer.querySelectorAll('li')[1],
-          'should focus the selected menu item',
-        );
+      assert.strictEqual(
+        document.activeElement,
+        dialogPortalLayer.querySelectorAll('li')[1],
+        'should focus the selected menu item',
+      );
 
-        await sleep(0); // Wait for the onEntered callback.
-
-        // Now, let's close the select component
-        const backdrop = dialogPortalLayer.querySelector('[data-mui-test="Backdrop"]');
-        backdrop.click();
-      })();
+      // Now, let's close the select component
+      const backdrop = dialogPortalLayer.querySelector('[data-mui-test="Backdrop"]');
+      backdrop.click();
     });
 
     it('should be able to change the selected item', done => {
-      (async () => {
-        const wrapper = mount(<SelectAndDialog />);
-        const portalLayer = wrapper
-          .find(Portal)
-          .instance()
-          .getMountNode();
-        const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
+      const wrapper = mount(<SelectAndDialog />);
+      const portalLayer = wrapper
+        .find(Portal)
+        .instance()
+        .getMountNode();
+      const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
 
-        wrapper.setProps({
-          MenuProps: {
-            onExited: () => {
-              assert.strictEqual(
-                document.activeElement,
-                selectDisplay,
-                'should focus back the select input',
-              );
-              done();
-            },
+      wrapper.setProps({
+        MenuProps: {
+          onExited: () => {
+            assert.strictEqual(
+              document.activeElement,
+              selectDisplay,
+              'should focus back the select input',
+            );
+            done();
           },
-        });
+        },
+      });
 
-        // Let's open the select component
-        selectDisplay.focus();
-        selectDisplay.click();
+      // Let's open the select component
+      selectDisplay.focus();
+      selectDisplay.click();
 
-        const dialogPortalLayer = document.querySelectorAll('[data-mui-test="Modal"]')[1];
+      const dialogPortalLayer = document.querySelectorAll('[data-mui-test="Modal"]')[1];
 
-        assert.strictEqual(
-          document.activeElement,
-          dialogPortalLayer.querySelectorAll('li')[1],
-          'should focus the selected menu item',
-        );
+      assert.strictEqual(
+        document.activeElement,
+        dialogPortalLayer.querySelectorAll('li')[1],
+        'should focus the selected menu item',
+      );
 
-        await sleep(0); // Wait for the onEntered callback.
-
-        // Now, let's close the select component
-        dialogPortalLayer.querySelectorAll('li')[2].click();
-      })();
+      // Now, let's close the select component
+      dialogPortalLayer.querySelectorAll('li')[2].click();
     });
   });
 });

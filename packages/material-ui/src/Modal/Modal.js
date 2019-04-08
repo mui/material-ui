@@ -117,7 +117,7 @@ class Modal extends React.Component {
     }
   };
 
-  handleEntered = () => {
+  handleEnter = () => {
     this.setState({ exited: false });
   };
 
@@ -219,7 +219,7 @@ class Modal extends React.Component {
 
     // It's a Transition like component
     if (hasTransition) {
-      childProps.onEntered = createChainedFunction(this.handleEntered, children.props.onEntered);
+      childProps.onEnter = createChainedFunction(this.handleEnter, children.props.onEnter);
       childProps.onExited = createChainedFunction(this.handleExited, children.props.onExited);
     }
 

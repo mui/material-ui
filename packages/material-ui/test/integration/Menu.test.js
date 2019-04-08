@@ -150,18 +150,13 @@ describe('<Menu> integration', () => {
     let wrapper;
     let portalLayer;
 
-    beforeEach(done => {
+    beforeEach(() => {
       wrapper = mount(<SimpleMenu transitionDuration={0} />);
       wrapper.find('button').simulate('click');
       portalLayer = wrapper
         .find(Portal)
         .instance()
         .getMountNode();
-
-      // Wait for the onEntered callback.
-      setTimeout(() => {
-        done();
-      }, 0);
     });
 
     it('should close the menu with tab', done => {
