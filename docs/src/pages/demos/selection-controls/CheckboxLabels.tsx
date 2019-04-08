@@ -9,7 +9,7 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-const GreenCheckbox: React.ComponentType<CheckboxProps> = withStyles({
+const GreenCheckbox = withStyles({
   root: {
     '&:not($checked)': {
       color: green[400],
@@ -19,7 +19,7 @@ const GreenCheckbox: React.ComponentType<CheckboxProps> = withStyles({
     },
   },
   checked: {},
-})(props => <Checkbox color="default" {...props} />);
+})((props: CheckboxProps) => <Checkbox color="default" {...props} />);
 
 function CheckboxLabels() {
   const [state, setState] = React.useState({
