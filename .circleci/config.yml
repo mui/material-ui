@@ -49,27 +49,22 @@ jobs:
           root: .
           paths: .
 
-  test_moment:
+  jest_tests:
+    description: Running jest test with separate library
+    parameters:
+      lib:
+        description: "Library to run tests"
+        type: string
+      after-tests:
+        description: "Steps that will be executed after test run is finished"
+        type: steps
+        default: []
     <<: *js_defaults
     steps:
-      - attach_workspace:
-          at: .
-      - run: cd lib && yarn test:moment -- -- --runInBand
-
-  test_date-fns:
-    <<: *js_defaults
-    steps:
-      - attach_workspace:
-          at: .
-      - run: cd lib && yarn test:date-fns -- -- --runInBand
-      - run: cd lib && npx codecov
-
-  test_luxon:
-    <<: *js_defaults
-    steps:
-      - attach_workspace:
-          at: .
-      - run: cd lib && yarn test:luxon -- -- --runInBand
+      - run: cd lib
+      # --runInBand required to not get out of memory @see https://discuss.circleci.com/t/memory-problems-with-jest-and-workers/10297
+      - run: yarn test:<<parameters.saywhat>> -- -- --runInBand
+      - steps: << parameters.after-tests >>
 
 ####################
 # Workflow
@@ -79,6 +74,7 @@ workflows:
     jobs:
       - checkout_code
       - javascript:
+          name: 'Install deps, lint and build'
           requires:
             - checkout_code
 
@@ -94,14 +90,22 @@ workflows:
           record: true
           yarn: true
 
-      - test_moment:
+      - jest_tests:
+          name: 'Date-fns jest tests'
+          lib: date-fns
+          run-after:
+            - run: npx codecov
           requires:
             - javascript
 
-      - test_date-fns:
+      - jest_tests:
+          name: 'Moment jest tests'
+          lib: moment
           requires:
             - javascript
 
-      - test_luxon:
+      - jest_tests:
+          name: 'Luxon jest tests'
+          lib: luxon
           requires:
             - javascript
