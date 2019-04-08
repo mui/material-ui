@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -7,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
   },
@@ -24,7 +24,7 @@ function CheckboxesGroup() {
     antoine: false,
   });
 
-  const handleChange = name => event => {
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [name]: event.target.checked });
   };
 
@@ -33,8 +33,8 @@ function CheckboxesGroup() {
 
   return (
     <div className={classes.root}>
-      <FormControl component={'fieldset'} className={classes.formControl}>
-        <FormLabel component={'legend'}>Assign responsibility</FormLabel>
+      <FormControl component={'fieldset' as 'div'} className={classes.formControl}>
+        <FormLabel component={'legend' as 'label'}>Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
@@ -53,8 +53,13 @@ function CheckboxesGroup() {
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      <FormControl required error={error} component={'fieldset'} className={classes.formControl}>
-        <FormLabel component={'legend'}>Pick two</FormLabel>
+      <FormControl
+        required
+        error={error}
+        component={'fieldset' as 'div'}
+        className={classes.formControl}
+      >
+        <FormLabel component={'legend' as 'label'}>Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
