@@ -63,7 +63,7 @@ jobs:
     steps:
       - run: cd lib
       # --runInBand required to not get out of memory @see https://discuss.circleci.com/t/memory-problems-with-jest-and-workers/10297
-      - run: yarn test:<<parameters.saywhat>> -- -- --runInBand
+      - run: yarn test:<<parameters.lib>> -- -- --runInBand
       - steps: << parameters.after-tests >>
 
 ####################
