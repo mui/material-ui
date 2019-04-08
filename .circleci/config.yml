@@ -10,6 +10,9 @@ defaults: &js_defaults
   working_directory: ~/material-ui-pickers
 
 version: 2
+orbs:
+  cypress: cypress-io/cypress@1.5.1
+
 ####################
 # Custom jobs
 ####################
@@ -42,26 +45,14 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache
-            - ~/.cache/Cypress
 
       # - run: yarn lint
       - run: yarn workspace material-ui-pickers build:analyze
       - persist_to_workspace:
           root: .
-          paths: .
-
-  test_cypress:
-    docker:
-      - image: cypress/base:8
-        environment:
-          TERM: xterm
-    working_directory: ~/material-ui-pickers
-
-    steps:
-      - attach_workspace:
-          at: .
-      - run: yarn workspace docs build
-      - run: yarn workspace docs start & npx wait-on http://localhost:3000 && yarn e2e:run --record
+          paths:
+            - .
+            - ~/.cache
 
   test_moment:
     <<: *js_defaults
@@ -97,9 +88,14 @@ workflows:
           requires:
             - checkout_code
 
-      - test_cypress:
-          requires:
-            - javascript
+      - cypress/run:
+          name: Cypress tests
+          executor: cypress/browsers-chrome69
+          build: 'yarn workspace docs build'
+          start: 'yarn workspace docs start'
+          wait-on: "http://localhost:3000"
+          record: true
+          yarn: true
 
       - test_moment:
           requires:
