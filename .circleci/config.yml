@@ -87,6 +87,8 @@ workflows:
 
       - cypress/run:
           name: Cypress tests
+          requires:
+            - javascript
           executor: cypress/browsers-chrome69
           build: 'yarn workspace docs build'
           start: 'yarn workspace docs start'
