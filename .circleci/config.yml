@@ -79,6 +79,8 @@ workflows:
             - javascript
           <<: *js_defaults
           steps:
+            - attach_workspace:
+              at: .
             - run: cd lib && yarn test:moment
 
       - test_date-fns:
@@ -86,6 +88,8 @@ workflows:
             - javascript
           <<: *js_defaults
           steps:
+            - attach_workspace:
+              at: .
             - run: cd lib && yarn test:date-fns
 
       - test_luxon:
@@ -93,4 +97,6 @@ workflows:
             - javascript
           <<: *js_defaults
           steps:
+            - attach_workspace:
+              at: .
             - run: cd lib && yarn test:luxon
