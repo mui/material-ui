@@ -57,21 +57,36 @@ describe('<Collapse />', () => {
     let wrapper;
     let container;
     let clock;
+    let nodeEnterHeightStyle;
+    let nodeEnteringHeightStyle;
+    let nodeExitHeightStyle;
 
     const handleEnter = spy();
+    const handleEnterWrapper = (...args) => {
+      handleEnter(...args);
+      nodeEnterHeightStyle = args[0].style.height;
+    };
     const handleEntering = spy();
+    const handleEnteringWrapper = (...args) => {
+      handleEntering(...args);
+      nodeEnteringHeightStyle = args[0].style.height;
+    };
     const handleEntered = spy();
     const handleExit = spy();
+    const handleExitWrapper = (...args) => {
+      handleExit(...args);
+      nodeExitHeightStyle = args[0].style.height;
+    };
     const handleExiting = spy();
     const handleExited = spy();
 
     before(() => {
       wrapper = mount(
         <Collapse
-          onEnter={handleEnter}
-          onEntering={handleEntering}
+          onEnter={handleEnterWrapper}
+          onEntering={handleEnteringWrapper}
           onEntered={handleEntered}
-          onExit={handleExit}
+          onExit={handleExitWrapper}
           onExiting={handleExiting}
           onExited={handleExited}
         >
@@ -94,21 +109,13 @@ describe('<Collapse />', () => {
 
       describe('handleEnter()', () => {
         it('should set element height to 0 initially', () => {
-          assert.strictEqual(
-            handleEnter.args[0][0].style.height,
-            '0px',
-            'should set the height to 0',
-          );
+          assert.strictEqual(nodeEnterHeightStyle, '0px', 'should set the height to 0');
         });
       });
 
       describe('handleEntering()', () => {
-        it('should set height to the 0', () => {
-          assert.strictEqual(
-            handleEntering.args[0][0].style.height,
-            '0px',
-            'should have 0px height',
-          );
+        it('should set height to the wrapper height', () => {
+          assert.strictEqual(nodeEnteringHeightStyle, '666px', 'should have 0px height');
         });
 
         it('should call handleEntering', () => {
@@ -141,11 +148,7 @@ describe('<Collapse />', () => {
 
       describe('handleExit()', () => {
         it('should set height to the wrapper height', () => {
-          assert.strictEqual(
-            handleExit.args[0][0].style.height,
-            '666px',
-            'should have 666px height',
-          );
+          assert.strictEqual(nodeExitHeightStyle, '666px', 'should have 666px height');
         });
       });
 
