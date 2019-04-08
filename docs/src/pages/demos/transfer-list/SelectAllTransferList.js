@@ -133,7 +133,7 @@ function TransferList() {
             className={classes.button}
             onClick={handleCheckedRight}
             disabled={leftChecked.length === 0}
-            aria-label="move selected roght"
+            aria-label="move selected right"
           >
             &gt;
           </Button>
