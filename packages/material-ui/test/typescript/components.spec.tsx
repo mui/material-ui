@@ -1026,3 +1026,32 @@ const LinkTest = () => {
     </Typography>
   );
 };
+
+const refTest = () => {
+  // for a detailed explanation of refs in react see https://github.com/mui-org/material-ui/pull/15199
+  const genericRef = React.createRef<Element>();
+  const divRef = React.createRef<HTMLDivElement>();
+  const inputRef = React.createRef<HTMLInputElement>();
+
+  <Paper ref={genericRef} />;
+  <Paper ref={divRef} />;
+  // undesired: throws when assuming inputRef.current.value !== undefined
+  <Paper ref={inputRef} />;
+  // recommended: soundness is the responsibility of the dev
+  // alternatively use React.useRef<unknown>()  or React.createRef<unknown>()
+  <Paper
+    ref={ref => {
+      // with runtime overhead, sound usage
+      if (ref instanceof HTMLInputElement) {
+        const i: number = ref.valueAsNumber;
+      }
+      // unsafe casts, sound usage, no runtime overhead
+      const j: number = (ref as HTMLInputElement).valueAsNumber;
+      // unsafe casts, unsound usage, no runtime overhead
+      const k: number = (ref as any).valueAsNumber;
+      // tslint:disable-next-line ban-ts-ignore
+      // @ts-ignore unsound usage, no runtime overhead, least syntax
+      const n: number = ref.valueAsNumber;
+    }}
+  />;
+};

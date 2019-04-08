@@ -8,9 +8,9 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
   const overriddenProps: AppBarProps = getThemeProps({ name: 'MuiAppBar', props, theme });
 
   // AvatarProps not assignable to AppBarProps
-  // $ExpectError
   const wronglyNamedProps: AppBarProps = getThemeProps({
     name: 'MuiAvatar',
+    // $ExpectError
     props,
     theme,
   });

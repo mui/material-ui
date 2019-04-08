@@ -7,13 +7,21 @@ export { StyledComponentProps };
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
  */
-export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
+export type StandardProps<
   C,
-  'classes' | Removals
-> &
+  ClassKey extends string,
+  Removals extends keyof C = never,
+  AcceptsRef = true
+> = Omit<C, 'classes' | Removals> &
   StyledComponentProps<ClassKey> & {
     className?: string;
     style?: React.CSSProperties;
+  } & {
+    ref?: AcceptsRef extends true
+      ? C extends { ref?: infer RefType }
+        ? RefType
+        : React.Ref<unknown>
+      : never;
   };
 
 export type PaletteType = 'light' | 'dark';

@@ -39,9 +39,9 @@ const ExpansionPanelSummary = withStyles({
     },
   },
   expanded: {},
-})(props => <MuiExpansionPanelSummary {...props} />) as any;
+})((props: ExpansionPanelSummaryProps) => <MuiExpansionPanelSummary {...props} />);
 
-ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
+(ExpansionPanelSummary as any).muiName = 'ExpansionPanelSummary';
 
 const ExpansionPanelDetails = withStyles(theme => ({
   root: {
@@ -53,7 +53,7 @@ interface CustomizedExpansionPanelStates {
   expanded: string | boolean;
 }
 
-class CustomizedExpansionPanel extends React.Component<any, CustomizedExpansionPanelStates> {
+class CustomizedExpansionPanel extends React.Component<{}, CustomizedExpansionPanelStates> {
   state = {
     expanded: 'panel1',
   };
