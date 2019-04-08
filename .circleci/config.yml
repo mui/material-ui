@@ -86,7 +86,7 @@ workflows:
             - checkout_code
 
       - cypress/run:
-          name: Cypress tests
+          name: 'Cypress tests'
           requires:
             - javascript
           executor: cypress/browsers-chrome69
