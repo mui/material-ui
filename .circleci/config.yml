@@ -77,25 +77,12 @@ jobs:
 # Workflow
 ####################
 workflows:
-  version: 2
   build_and_test:
     jobs:
       - checkout_code
       - javascript:
           requires:
             - checkout_code
-
-      # - cypress/run:
-          # name: 'Cypress tests'
-          # requires:
-          #   - javascript
-          # executor: cypress/browsers-chrome69
-          # build: 'yarn workspace docs build'
-          # start: 'yarn workspace docs start'
-          # # wait-on: 'http://localhost:3000'
-          # browser: chrome
-          # record: true
-          # yarn: true
 
       - cypress/run
 
