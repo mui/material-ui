@@ -122,7 +122,7 @@ function TransferList() {
 
   return (
     <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
-      <Grid item>{customList('Left', left)}</Grid>
+      <Grid item>{customList('Available', left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
@@ -147,7 +147,7 @@ function TransferList() {
           </Button>
         </Grid>
       </Grid>
-      <Grid item>{customList('Right', right)}</Grid>
+      <Grid item>{customList('Selected', right)}</Grid>
     </Grid>
   );
 }
