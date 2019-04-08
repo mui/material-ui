@@ -9,7 +9,7 @@ defaults: &js_defaults
         TERM: xterm
   working_directory: ~/material-ui-pickers
 
-version: 2
+version: 2.1
 orbs:
   cypress: cypress-io/cypress@1.5.1
 
