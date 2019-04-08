@@ -1,27 +1,112 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: cypress/base:8
-        environment:
-          ## this enables colors in the output
-          TERM: xterm
-    working_directory: ~/app
+####################
+# Defaults
+####################
+defaults: &js_defaults
+  docker:
+    - image: circleci/node:lts
+      environment:
+        ## this enables colors in the output
+        TERM: xterm
+  working_directory: ~/material-ui-pickers
 
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1.5.1
+
+####################
+# Custom jobs
+####################
+jobs:
+  checkout_code:
+    <<: *js_defaults
     steps:
       - checkout
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  javascript:
+    <<: *js_defaults
+    steps:
+      - attach_workspace:
+          at: .
       - restore_cache:
+          name: Restore Cache
           keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
-            - v1-deps-{{ .Branch }}
-            - v1-deps
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: yarn
+          command: yarn install --frozen-lockfile
       - save_cache:
-          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          name: Save Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.npm
             - ~/.cache
-      - run: yarn workspace docs build
-      - run: yarn workspace docs start & npx wait-on http://localhost:3000 && npm run e2e:run -- --record
+
+      # - run: yarn lint
+      - run: yarn workspace material-ui-pickers build:analyze
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  jest_tests:
+    description: Running jest test with separate library
+    parameters:
+      lib:
+        description: "Library to run tests"
+        type: string
+      after-tests:
+        description: "Steps that will be executed after test run is finished"
+        type: steps
+        default: []
+    <<: *js_defaults
+    steps:
+      - attach_workspace:
+          at: .
+      # --runInBand required to not get out of memory @see https://discuss.circleci.com/t/memory-problems-with-jest-and-workers/10297
+      - run: cd lib && yarn test:<<parameters.lib>> -- -- --runInBand
+      - steps: << parameters.after-tests >>
+
+####################
+# Workflow
+####################
+workflows:
+  build_and_test:
+    jobs:
+      - checkout_code
+      - javascript:
+          name: 'Install deps, lint and build'
+          requires:
+            - checkout_code
+
+      - cypress/run:
+          name: 'Cypress tests'
+          requires:
+            - 'Install deps, lint and build'
+          executor: cypress/browsers-chrome69
+          build: 'yarn workspace docs build'
+          start: 'yarn workspace docs start'
+          wait-on: 'http://localhost:3000'
+          browser: chrome
+          record: true
+          yarn: true
+
+      - jest_tests:
+          name: 'Date-fns jest tests'
+          lib: date-fns
+          after-tests:
+            - run: npx codecov
+          requires:
+            - 'Install deps, lint and build'
+
+      - jest_tests:
+          name: 'Moment jest tests'
+          lib: moment
+          requires:
+            - 'Install deps, lint and build'
+
+      - jest_tests:
+          name: 'Luxon jest tests'
+          lib: luxon
+          requires:
+            - 'Install deps, lint and build'
