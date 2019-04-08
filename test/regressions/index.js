@@ -68,6 +68,9 @@ const blacklistFilename = [
   'docs-getting-started-page-layout-examples-dashboard/Deposits.png',
   'docs-getting-started-page-layout-examples-dashboard/Orders.png',
   'docs-getting-started-page-layout-examples-dashboard/Title.png',
+  'docs-getting-started-page-layout-examples-checkout/AddressForm.png',
+  'docs-getting-started-page-layout-examples-checkout/PaymentForm.png',
+  'docs-getting-started-page-layout-examples-checkout/Review.png',
 
   // Flaky
   'docs-demos-grid-list/ImageGridList.png',
@@ -97,7 +100,7 @@ const demos = requireDemos.keys().reduce((res, path) => {
     return res;
   }
 
-  if (/^docs-premium-themes(.*)/.test(suite) || /\.hooks$/.test(name)) {
+  if (/^docs-premium-themes(.*)/.test(suite)) {
     return res;
   }
 

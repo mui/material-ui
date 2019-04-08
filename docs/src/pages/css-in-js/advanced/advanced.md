@@ -128,7 +128,8 @@ If you prefer using the CSS syntax, you can use the [jss-plugin-template](https:
 const useStyles = makeStyles({
   root: `
     background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-    border-radius: 3;
+    border-radius: 3px;
+    font-size: 16px;
     border: 0;
     color: white;
     height: 48px;
