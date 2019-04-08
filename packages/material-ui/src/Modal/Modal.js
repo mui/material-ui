@@ -250,7 +250,7 @@ class Modal extends React.Component {
           onKeyDown={this.handleKeyDown}
           role="presentation"
           className={clsx(classes.root, className, {
-            [classes.hidden]: exited,
+            [classes.hidden]: !open && exited,
           })}
           {...other}
         >
