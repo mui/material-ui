@@ -93,7 +93,7 @@ workflows:
       - jest_tests:
           name: 'Date-fns jest tests'
           lib: date-fns
-          run-after:
+          after-tests:
             - run: npx codecov
           requires:
             - 'Install deps, lint and build'
