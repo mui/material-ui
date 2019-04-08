@@ -69,7 +69,6 @@ function TransferList() {
   const numberOfChecked = items => intersection(checked, items).length;
 
   const handleToggleAll = items => () => {
-    // If all selected
     if (numberOfChecked(items) === items.length) {
       setChecked(not(checked, items));
     } else {
@@ -102,7 +101,7 @@ function TransferList() {
           />
         }
         title={title}
-        subheader={`${numberOfChecked(items)}/${items.length}`}
+        subheader={`${numberOfChecked(items)}/${items.length} selected`}
       />
       <Divider />
       <List className={classes.list} dense>
@@ -125,7 +124,7 @@ function TransferList() {
 
   return (
     <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
-      <Grid item>{customList('Available', left)}</Grid>
+      <Grid item>{customList('Choices', left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
@@ -150,7 +149,7 @@ function TransferList() {
           </Button>
         </Grid>
       </Grid>
-      <Grid item>{customList('Selected', right)}</Grid>
+      <Grid item>{customList('Chosen', right)}</Grid>
     </Grid>
   );
 }
