@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import FormGroup from '../FormGroup';
-import { setRef } from '../utils/reactHelpers';
+import { useForkRef } from '../utils/reactHelpers';
 import RadioGroupContext from './RadioGroupContext';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
@@ -60,15 +60,10 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   };
   const context = { name, onChange: handleChange, value };
 
+  const handleRef = useForkRef(ref, rootRef);
+
   return (
-    <FormGroup
-      role="radiogroup"
-      ref={nodeRef => {
-        setRef(ref, nodeRef);
-        setRef(rootRef, nodeRef);
-      }}
-      {...other}
-    >
+    <FormGroup role="radiogroup" ref={handleRef} {...other}>
       <RadioGroupContext.Provider value={context}>{children}</RadioGroupContext.Provider>
     </FormGroup>
   );
