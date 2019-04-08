@@ -1,9 +1,21 @@
+####
+# Defaults
+####
+defaults: &js_defaults
+  docker:
+    - image: circleci/node:lts
+      environment:
+        ## this enables colors in the output
+        TERM: xterm
+  working_directory: ~/material-ui-pickers
+
 version: 2
 jobs:
+  ####
+  # Custom jobs
+  ####
   checkout_code:
-    docker:
-      - image: circleci/node:lts
-    working_directory: ~/material-ui-pickers
+    <<: *js_defaults
     steps:
       - checkout
       - persist_to_workspace:
@@ -11,9 +23,7 @@ jobs:
           paths: .
 
   javascript:
-    docker:
-      - image: circleci/node:lts
-    working_directory: ~/material-ui-pickers
+    <<: *js_defaults
     steps:
       - attach_workspace:
           at: .
@@ -40,7 +50,6 @@ jobs:
     docker:
       - image: cypress/base:8
         environment:
-          ## this enables colors in the output
           TERM: xterm
     working_directory: ~/material-ui-pickers
 
@@ -48,6 +57,9 @@ jobs:
       - run: yarn workspace docs build
       - run: yarn workspace docs start & npx wait-on http://localhost:3000 && yarn e2e:run --record
 
+####
+# Worflow
+####
 workflows:
   version: 2
   build_and_test:
@@ -58,22 +70,26 @@ workflows:
             - checkout_code
 
       - test_cypress:
+          <<: *js_defaults
           requires:
             - javascript
 
       - test_moment:
+          <<: *js_defaults
           requires:
             - javascript
           steps:
             - run: cd lib && yarn test:moment
 
       - test_date-fns:
+          <<: *js_defaults
           requires:
             - javascript
           steps:
             - run: cd lib && yarn test:date-fns
 
       - test_luxon:
+          <<: *js_defaults
           requires:
             - javascript
           steps:
