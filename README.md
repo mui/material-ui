@@ -8,6 +8,8 @@
 
 Accessible, customizable, delightful date & time pickers for [@material-ui/core](https://material-ui.com/)
 
+You can find a pre-release (next) docs version [here](https://next.material-ui-pickers.dev/)
+
 [![npm package](https://img.shields.io/npm/v/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
 [![npm download](https://img.shields.io/npm/dm/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
 [![codecov](https://codecov.io/gh/dmtrKovalenko/material-ui-pickers/branch/develop/graph/badge.svg)](https://codecov.io/gh/dmtrKovalenko/material-ui-pickers)
