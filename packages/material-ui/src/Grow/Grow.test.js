@@ -44,7 +44,7 @@ describe('<Grow />', () => {
       clock.restore();
     });
 
-    describe('entering', () => {
+    describe('when entering', () => {
       it('should fire callbacks', () => {
         const handleEnter = spy();
         const handleEntering = spy();
@@ -71,17 +71,17 @@ describe('<Grow />', () => {
       });
     });
 
-    describe('exiting', () => {
+    describe('when exiting', () => {
       it('should fire callbacks', () => {
         const handleExit = spy();
         const handleExiting = spy();
-        const handleEntered = spy();
+        const handleExited = spy();
 
         const wrapper = mount(
           <Grow
             onExit={handleExit}
             onExiting={handleExiting}
-            onExited={handleEntered}
+            onExited={handleExited}
             {...defaultProps}
           >
             <div />
@@ -97,8 +97,8 @@ describe('<Grow />', () => {
         assert.strictEqual(handleExiting.callCount, 1);
         assert.strictEqual(handleExiting.args[0].length, 1);
         clock.tick(1000);
-        assert.strictEqual(handleEntered.callCount, 1);
-        assert.strictEqual(handleEntered.args[0].length, 1);
+        assert.strictEqual(handleExited.callCount, 1);
+        assert.strictEqual(handleExited.args[0].length, 1);
       });
     });
   });
@@ -188,7 +188,7 @@ describe('<Grow />', () => {
     describe('prop: timeout', () => {
       describe('onEnter', () => {
         it('should delay based on height when timeout is auto', () => {
-          const next = spy();
+          const handleEntered = spy();
 
           const theme = createMuiTheme({
             transitions: {
@@ -197,7 +197,7 @@ describe('<Grow />', () => {
           });
 
           const wrapper = mount(
-            <Grow timeout="auto" onEntered={next} theme={theme}>
+            <Grow timeout="auto" onEntered={handleEntered} theme={theme}>
               <div />
             </Grow>,
           );
@@ -209,11 +209,11 @@ describe('<Grow />', () => {
           });
 
           const autoTransitionDuration = 10;
-          assert.strictEqual(next.callCount, 0);
+          assert.strictEqual(handleEntered.callCount, 0);
           clock.tick(0);
-          assert.strictEqual(next.callCount, 0);
+          assert.strictEqual(handleEntered.callCount, 0);
           clock.tick(autoTransitionDuration);
-          assert.strictEqual(next.callCount, 1);
+          assert.strictEqual(handleEntered.callCount, 1);
 
           const next2 = spy();
           mount(
@@ -229,21 +229,21 @@ describe('<Grow />', () => {
 
         it('should use timeout as delay when timeout is number', () => {
           const timeout = 10;
-          const next = spy();
-          mount(<Grow {...defaultProps} timeout={timeout} onEntered={next} />);
-          assert.strictEqual(next.callCount, 0);
+          const handleEntered = spy();
+          mount(<Grow {...defaultProps} timeout={timeout} onEntered={handleEntered} />);
+          assert.strictEqual(handleEntered.callCount, 0);
           clock.tick(0);
-          assert.strictEqual(next.callCount, 0);
+          assert.strictEqual(handleEntered.callCount, 0);
           clock.tick(timeout);
-          assert.strictEqual(next.callCount, 1);
+          assert.strictEqual(handleEntered.callCount, 1);
         });
       });
 
       describe('onExit', () => {
         it('should delay based on height when timeout is auto', () => {
-          const next = spy();
+          const handleExited = spy();
           const wrapper = mount(
-            <Grow in timeout="auto" onExited={next}>
+            <Grow in timeout="auto" onExited={handleExited}>
               <div />
             </Grow>,
           );
@@ -254,26 +254,28 @@ describe('<Grow />', () => {
             in: false,
           });
 
-          assert.strictEqual(next.callCount, 0);
+          assert.strictEqual(handleExited.callCount, 0);
           clock.tick(0);
-          assert.strictEqual(next.callCount, 1);
+          assert.strictEqual(handleExited.callCount, 1);
         });
 
         it('should use timeout as delay when timeout is number', () => {
           const timeout = 20;
-          const next = spy();
-          const wrapper = mount(<Grow {...defaultProps} timeout={timeout} onExited={next} />);
+          const handleExited = spy();
+          const wrapper = mount(
+            <Grow {...defaultProps} timeout={timeout} onExited={handleExited} />,
+          );
 
           clock.tick(timeout);
           wrapper.setProps({
             in: false,
           });
 
-          assert.strictEqual(next.callCount, 0);
+          assert.strictEqual(handleExited.callCount, 0);
           clock.tick(0);
-          assert.strictEqual(next.callCount, 0);
+          assert.strictEqual(handleExited.callCount, 0);
           clock.tick(timeout);
-          assert.strictEqual(next.callCount, 1);
+          assert.strictEqual(handleExited.callCount, 1);
         });
       });
     });
