@@ -81,7 +81,7 @@ workflows:
       - cypress/run:
           name: 'Cypress tests'
           requires:
-            - javascript
+            - 'Install deps, lint and build'
           executor: cypress/browsers-chrome69
           build: 'yarn workspace docs build'
           start: 'yarn workspace docs start'
@@ -96,16 +96,16 @@ workflows:
           run-after:
             - run: npx codecov
           requires:
-            - javascript
+            - 'Install deps, lint and build'
 
       - jest_tests:
           name: 'Moment jest tests'
           lib: moment
           requires:
-            - javascript
+            - 'Install deps, lint and build'
 
       - jest_tests:
           name: 'Luxon jest tests'
           lib: luxon
           requires:
-            - javascript
+            - 'Install deps, lint and build'
