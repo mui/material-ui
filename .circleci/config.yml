@@ -64,21 +64,21 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: cd lib && yarn test:moment
+      - run: cd lib && yarn test:moment -- -- --maxWorkers=2
 
   test_date-fns:
     <<: *js_defaults
     steps:
       - attach_workspace:
           at: .
-      - run: cd lib && yarn test:date-fns
+      - run: cd lib && yarn test:date-fns -- -- --maxWorkers=2
 
   test_luxon:
     <<: *js_defaults
     steps:
       - attach_workspace:
           at: .
-      - run: cd lib && yarn test:luxon
+      - run: cd lib && yarn test:luxon -- -- --maxWorkers=2
 
 ####################
 # Workflow
