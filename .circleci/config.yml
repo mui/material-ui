@@ -22,14 +22,15 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-          root: .
-          paths: .
+          paths:
+            - ~/material-ui-pickers
+            - ~/.cache
 
   javascript:
     <<: *js_defaults
     steps:
       - attach_workspace:
-          at: .
+          at: ~/
       - restore_cache:
           name: Restore Cache
           keys:
@@ -46,23 +47,23 @@ jobs:
       # - run: yarn lint
       - run: yarn workspace material-ui-pickers build:analyze
       - persist_to_workspace:
-          root: .
+          root: ~/
           paths:
-            - .
+            - ~/material-ui-pickers
             - ~/.cache
 
   test_moment:
     <<: *js_defaults
     steps:
       - attach_workspace:
-          at: .
+          at: ~/
       - run: cd lib && yarn test:moment -- -- --runInBand
 
   test_date-fns:
     <<: *js_defaults
     steps:
       - attach_workspace:
-          at: .
+          at: ~/
       - run: cd lib && yarn test:date-fns -- -- --runInBand
       - run: cd lib && npx codecov
 
@@ -70,7 +71,7 @@ jobs:
     <<: *js_defaults
     steps:
       - attach_workspace:
-          at: .
+          at: ~/
       - run: cd lib && yarn test:luxon -- -- --runInBand
 
 ####################
