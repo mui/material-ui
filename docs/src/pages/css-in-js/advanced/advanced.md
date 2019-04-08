@@ -142,14 +142,18 @@ const useStyles = makeStyles({
 
 ## CSS injection order
 
-By default, the styles are injected **last** in the `<head>` element of your page.
-They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components.
+> It's **really important** to understand how the CSS specificity is calculated by the browser.
+It's one of the key elements to know when overriding styles.
+We **encourage** you to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+
+By default, the style tags are injected **last** in the `<head>` element of the page.
+They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
 
 ### injectFirst
 
-The `StylesProvider` component has a `injectFirst` prop to inject the styles **first**:
+The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
-```js
+```jsx
 import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
@@ -157,6 +161,41 @@ import { StylesProvider } from '@material-ui/styles';
       Styled components can override Material-UI's styles. */}
 </StylesProvider>
 ```
+
+### makeStyles / withStyles / styled
+
+The injection of style tags happens in the **same order** as the makeStyles / withStyles / styled invocations. For instance the color red wins in this case:
+
+```jsx
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyleBase = makeStyles({
+  root: {
+    color: 'blue', // 🔵
+  },
+});
+
+const useStyle = makeStyles({
+  root: {
+    color: 'red', // 🔴
+  },
+});
+
+export default function MyComponent() {
+  // Order doesn't matter
+  const classes = useStyles();
+  const classesBase = useStyleBase();
+
+  // Order doesn't matter
+  const className = clsx(classes.root, useStyleBase.root)
+
+  // color: red 🔴 wins.
+  return <div className={className} />;
+}
+```
+
+The hook call order or the class name concatenation orders **don't matter**.
 
 ### insertionPoint
 
@@ -167,10 +206,10 @@ By adjusting the placement of the `insertionPoint` within your HTML head you can
 
 The simplest approach is to add an HTML comment that determines where JSS will inject the styles:
 
-```jsx
+```html
 <head>
   <!-- jss-insertion-point -->
-  <link href="..." />
+  <link href="...">
 </head>
 ```
 
