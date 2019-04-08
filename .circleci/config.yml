@@ -42,11 +42,11 @@ jobs:
         environment:
           ## this enables colors in the output
           TERM: xterm
-    working_directory: ~/app
+    working_directory: ~/material-ui-pickers
 
     steps:
       - run: yarn workspace docs build
-      - run: yarn workspace docs start & npx wait-on http://localhost:3000 && npm run e2e:run -- --record
+      - run: yarn workspace docs start & npx wait-on http://localhost:3000 && yarn e2e:run --record
 
 workflows:
   version: 2
@@ -60,3 +60,21 @@ workflows:
       - test_cypress:
           requires:
             - javascript
+
+      - test_moment:
+          requires:
+            - javascript
+          steps:
+            - run: cd lib && yarn test:moment
+
+      - test_date-fns:
+          requires:
+            - javascript
+          steps:
+            - run: cd lib && yarn test:date-fns
+
+      - test_luxon:
+          requires:
+            - javascript
+          steps:
+            - run: cd lib && yarn test:luxon
