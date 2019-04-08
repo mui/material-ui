@@ -8,21 +8,21 @@ import { createMuiTheme } from '@material-ui/core/styles';
 describe('<Collapse />', () => {
   let mount;
   let classes;
-  const props = {
+  const defaultProps = {
     in: true,
     children: <div />,
   };
 
   before(() => {
     mount = createMount();
-    classes = getClasses(<Collapse {...props} />);
+    classes = getClasses(<Collapse {...defaultProps} />);
   });
 
   after(() => {
     mount.cleanUp();
   });
 
-  describeConformance(<Collapse {...props} />, () => ({
+  describeConformance(<Collapse {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'Transition',
     mount,
@@ -31,7 +31,7 @@ describe('<Collapse />', () => {
   }));
 
   it('should render a container around the wrapper', () => {
-    const wrapper = mount(<Collapse {...props} classes={{ container: 'woofCollapse1' }} />);
+    const wrapper = mount(<Collapse {...defaultProps} classes={{ container: 'woofCollapse1' }} />);
     const child = wrapper.find('Transition').childAt(0);
     assert.strictEqual(child.name(), 'div');
     assert.strictEqual(child.hasClass(classes.container), true);
@@ -40,7 +40,7 @@ describe('<Collapse />', () => {
 
   it('should render a wrapper around the children', () => {
     const children = <h1>Hello</h1>;
-    const wrapper = mount(<Collapse {...props}>{children}</Collapse>);
+    const wrapper = mount(<Collapse {...defaultProps}>{children}</Collapse>);
     const child = wrapper.find('Transition').childAt(0);
     assert.strictEqual(child.childAt(0).name(), 'div');
     assert.strictEqual(
@@ -79,6 +79,7 @@ describe('<Collapse />', () => {
         </Collapse>,
       );
       container = wrapper.find('Transition').childAt(0);
+      stub(container.childAt(0).instance(), 'clientHeight').get(() => 666);
       clock = useFakeTimers();
     });
 
@@ -112,7 +113,7 @@ describe('<Collapse />', () => {
 
         it('should call handleEntering', () => {
           assert.strictEqual(handleEntering.callCount, 1);
-          assert.strictEqual(handleEntering.calledWith(container.instance()), true);
+          assert.strictEqual(handleEntering.args[0][0], container.instance());
         });
       });
 
@@ -139,10 +140,6 @@ describe('<Collapse />', () => {
       });
 
       describe('handleExit()', () => {
-        before(() => {
-          container.instance().style.height = '666px';
-        });
-
         it('should set height to the wrapper height', () => {
           assert.strictEqual(
             handleExit.args[0][0].style.height,
@@ -163,7 +160,7 @@ describe('<Collapse />', () => {
 
         it('should call onExiting', () => {
           assert.strictEqual(handleExiting.callCount, 1);
-          assert.strictEqual(handleExiting.calledWith(container.instance()), true);
+          assert.strictEqual(handleExiting.args[0][0], container.instance());
         });
       });
 
@@ -176,7 +173,7 @@ describe('<Collapse />', () => {
         it('should call onExited', () => {
           clock.tick(1000);
           assert.strictEqual(handleExited.callCount, 1);
-          assert.strictEqual(handleExited.calledWith(container.instance()), true);
+          assert.strictEqual(handleExited.args[0][0], container.instance());
         });
       });
     });
@@ -284,7 +281,7 @@ describe('<Collapse />', () => {
 
       const wrapper = mount(
         <Collapse
-          {...props}
+          {...defaultProps}
           onExiting={handleExiting}
           timeout={{
             exit: 446,
@@ -303,7 +300,7 @@ describe('<Collapse />', () => {
     const collapsedHeight = '10px';
 
     it('should work when closed', () => {
-      const wrapper = mount(<Collapse {...props} collapsedHeight={collapsedHeight} />);
+      const wrapper = mount(<Collapse {...defaultProps} collapsedHeight={collapsedHeight} />);
       const child = wrapper.find('Transition').childAt(0);
       assert.strictEqual(child.props().style.minHeight, collapsedHeight);
     });
@@ -311,7 +308,7 @@ describe('<Collapse />', () => {
     it('should be taken into account in handleExiting', () => {
       const handleExiting = spy();
       const wrapper = mount(
-        <Collapse {...props} collapsedHeight={collapsedHeight} onExiting={handleExiting} />,
+        <Collapse {...defaultProps} collapsedHeight={collapsedHeight} onExiting={handleExiting} />,
       );
       wrapper.setProps({ in: false });
 

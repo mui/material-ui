@@ -63,7 +63,9 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   const autoTransitionDuration = React.useRef();
 
   React.useEffect(() => {
-    return () => clearTimeout(timer.current);
+    return () => {
+      clearTimeout(timer.current);
+    };
   });
 
   const handleEnter = node => {
