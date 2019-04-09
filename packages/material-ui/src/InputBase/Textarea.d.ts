@@ -12,7 +12,7 @@ export interface TextareaProps
   rows?: string | number;
   rowsMax?: string | number;
   textareaRef?: React.Ref<any> | React.RefObject<any>;
-  value?: string;
+  value?: any;
 }
 
 export type TextareaClassKey = 'root' | 'shadow' | 'textarea';
