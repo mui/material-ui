@@ -6,10 +6,11 @@
 
 Les [layouts responsive](https://material.io/design/layout/responsive-layout-grid.html) Material Design s'adaptent à toutes les tailles d'écran possibles. Nous fournissons les helpers suivants pour rendre l'UI responsive :
 
-- [Grid](/layout/grid/) : La grille crée une cohérence visuelle entre les layouts tout en permettant une certaine flexibilité pour une large variété de designs ;
-- [Breakpoints](/layout/breakpoints/) : Nous fournissons une API bas niveau qui permet l'utilisation de breakpoints dans de nombreux contextes ;
-- [useMediaQuery](/layout/use-media-query/) : Ceci est un hook media query CSS pour React ;
-- [Hidden](/layout/hidden/) : ce composant peut être utilisé pour modifier la visibilité des éléments.
+- [Grid](/layout/grid/): The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.
+- [Container](/layout/container/): The container centers your content horizontally. It's the most basic layout element.
+- [Breakpoints](/layout/breakpoints/): API that enables the use of breakpoints in a wide variety of contexts.
+- [useMediaQuery](/layout/use-media-query/) : Ceci est un hook media query CSS pour React ; It listens for matches to a CSS media query.
+- [Hidden](/layout/hidden/): Quickly and responsively toggle the visibility value of components and more with our hidden utilities.
 
 ## z-index
 

@@ -6,8 +6,10 @@
     "@material-ui/core": "next",
     "@material-ui/styles": "next",
     "gatsby": "latest",
+    "gatsby-plugin-react-helmet": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-helmet": "latest"
   },
   "scripts": {
     "develop": "gatsby develop",

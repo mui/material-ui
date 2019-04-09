@@ -46,7 +46,7 @@ function SimpleCard(props: Props) {
         <Typography className={classes.pos} color="textSecondary">
           adjective
         </Typography>
-        <Typography component="p">
+        <Typography variant="body2" component="p">
           well meaning and kindly.
           <br />
           {'"a benevolent smile"'}

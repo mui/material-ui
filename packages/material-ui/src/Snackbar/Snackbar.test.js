@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Snackbar from './Snackbar';
-import Slide from '../Slide';
+import Grow from '../Grow';
 
 describe('<Snackbar />', () => {
   let mount;
@@ -381,9 +381,9 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: TransitionComponent', () => {
-    it('should use a Slide by default', () => {
+    it('should use a Grow by default', () => {
       const wrapper = mount(<Snackbar open message="message" />);
-      assert.strictEqual(wrapper.find(Slide).exists(), true, 'should use a Slide by default');
+      assert.strictEqual(wrapper.find(Grow).exists(), true);
     });
 
     it('accepts a different component that handles the transition', () => {

@@ -89,15 +89,13 @@ function HorizontalNonLinearAlternativeLabelStepper() {
   }
 
   function handleNext() {
-    let newActiveStep;
+    const newActiveStep =
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !completed.has(i))
+        : activeStep + 1;
 
-    if (isLastStep() && !allStepsCompleted()) {
-      // It's the last step, but not all steps have been completed
-      // find the first step that has been completed
-      newActiveStep = steps.findIndex((step, i) => !completed.has(i));
-    } else {
-      newActiveStep = activeStep + 1;
-    }
     setActiveStep(newActiveStep);
   }
 
@@ -196,6 +194,7 @@ function HorizontalNonLinearAlternativeLabelStepper() {
                   Skip
                 </Button>
               )}
+
               {activeStep !== steps.length &&
                 (completed.has(activeStep) ? (
                   <Typography variant="caption" className={classes.completed}>

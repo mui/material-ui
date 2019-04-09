@@ -3,11 +3,11 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('docs/src/pages/customization/default-theme', false, /\.md|\.js$/);
+const req = require.context('docs/src/pages/customization/default-theme', false, /\.(md|js|tsx)$/);
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/customization/default-theme',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/customization/default-theme';
 

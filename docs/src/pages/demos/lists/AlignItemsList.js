@@ -31,7 +31,12 @@ function AlignItemsList(props) {
           primary="Brunch this weekend?"
           secondary={
             <React.Fragment>
-              <Typography component="span" className={classes.inline} color="textPrimary">
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
                 Ali Connors
               </Typography>
               {" — I'll be in your neighborhood doing errands this…"}
@@ -47,7 +52,12 @@ function AlignItemsList(props) {
           primary="Summer BBQ"
           secondary={
             <React.Fragment>
-              <Typography component="span" className={classes.inline} color="textPrimary">
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
                 to Scott, Alex, Jennifer
               </Typography>
               {" — Wish I could come, but I'm out of town this…"}
@@ -63,7 +73,12 @@ function AlignItemsList(props) {
           primary="Oui Oui"
           secondary={
             <React.Fragment>
-              <Typography component="span" className={classes.inline} color="textPrimary">
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
                 Sandra Adams
               </Typography>
               {' — Do you have Paris recommendations? Have you ever…'}

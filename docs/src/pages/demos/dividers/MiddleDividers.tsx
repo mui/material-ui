@@ -24,7 +24,7 @@ const styles = (theme: Theme) =>
       margin: theme.spacing(2),
     },
     section3: {
-      margin: theme.spacing(6, 2, 2),
+      margin: theme.spacing(3, 1, 1),
     },
   });
 
@@ -47,7 +47,7 @@ function MiddleDividers(props: Props) {
             </Typography>
           </Grid>
         </Grid>
-        <Typography color="textSecondary">
+        <Typography color="textSecondary" variant="body2">
           Pinstriped cornflower blue cotton blouse takes you on a walk to the park or just down the
           hall.
         </Typography>
@@ -59,15 +59,13 @@ function MiddleDividers(props: Props) {
         </Typography>
         <div>
           <Chip className={classes.chip} label="Extra Soft" />
-          <Chip className={classes.chip} label="Soft" />
+          <Chip className={classes.chip} color="primary" label="Soft" />
           <Chip className={classes.chip} label="Medium" />
           <Chip className={classes.chip} label="Hard" />
         </div>
       </div>
       <div className={classes.section3}>
-        <Button variant="contained" color="primary" fullWidth>
-          Add to cart
-        </Button>
+        <Button color="primary">Add to cart</Button>
       </div>
     </div>
   );

@@ -1,18 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(2),
   },
-});
+}));
 
-function DotBadge(props) {
-  const { classes } = props;
+function DotBadge() {
+  const classes = useStyles();
 
   return (
     <div>
@@ -31,8 +30,4 @@ function DotBadge(props) {
   );
 }
 
-DotBadge.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(DotBadge);
+export default DotBadge;

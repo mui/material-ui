@@ -2,6 +2,16 @@ import { assert } from 'chai';
 import animate from './animate';
 
 describe('animate', () => {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  // The test fails on Safari with just:
+  //
+  // container.scrollLeft = 200;
+  // assert.strictEqual(container.scrollLeft, 200); 💥
+  if (isSafari) {
+    return;
+  }
+
   let container;
 
   before(() => {

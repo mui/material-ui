@@ -120,9 +120,53 @@ export default withStyles(styles)(HigherOrderComponent);
 
 {{"demo": "pages/css-in-js/basics/HigherOrderComponent.js"}}
 
+## Nesting selectors
+
+You can nest selectors to target elements inside the current class or component. The following example is powered by the Hook API, it works the same way with the other APIs.
+
+```js
+const useStyles = makeStyles({
+  root: {
+    padding: 16,
+    color: 'red',
+    '& p': {
+      color: 'green',
+      '& span': {
+        color: 'blue'
+      }
+    }
+  },
+});
+```
+
+{{"demo": "pages/css-in-js/basics/NestedStylesHook.js"}}
+
 ## Adapting based on props
 
-You can pass a function ("interpolations") to a style property to adapt it based on its props. This button component has a color property that changes its color:
+You can pass a function ("interpolations") to a style property to adapt it based on its props. The function can be provided at the style rule level or at the CSS property level:
+
+```jsx
+const useStyles = makeStyles({
+  // style rule
+  foo: props => ({
+    backgroundColor: props.backgroundColor,
+  },
+  bar: {
+    // CSS property
+    color: props => props.color,
+  },
+});
+
+function MyComponent() {
+  const props = { backgroundColor: 'black', color: 'white' };
+  // It injects the props as the first argument of useStyles();
+  const classes = useStyles(props);
+
+  return <div className={`${classes.foo} ${classes.bar}`} />
+}
+```
+
+This button component has a color property that changes its color:
 
 ### Adapting hook API
 

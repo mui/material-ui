@@ -9,25 +9,23 @@ components: TextField
 - En móvil, los selectores son los mas adecuados para despliegue en diálogos de confirmación.
 - Para despliegue en línea, como en un formulario, considere usar controles compactos tales como los botones desplegables segmentados.
 
-#### Aviso
+## Native pickers
 
-Estamos recurriendo a **controles de entrada nativos**.
+⚠️ Los controles de entrada nativos compatibles con los navegadores [no son perfectos](https://caniuse.com/#feat=input-datetime). Have a look at the [complementary projects](#complementary-projects) for a richer solution.
 
-⚠️ Los controles de entrada nativos compatibles con los navegadores [no son perfectos](https://caniuse.com/#feat=input-datetime). Eche un vistazo a los [proyectos complementarios](#complementary-projects) para mejores soluciones.
+### Selectores de fecha
 
-## Selectores de fecha
-
-Un selector de fecha nativo con `type="date"`, puede ser usado también como calendario.
+A native date picker example with `type="date"`.
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 
-## Selectores de fecha y hora
+### Selectores de fecha y hora
 
 Un ejemplo de selector de fecha y hora con `type="datetime-local"`.
 
 {{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
 
-## Selectores de hora
+### Selectores de hora
 
 Un ejemplo de un selector de hora nativo con `type="time"`.
 

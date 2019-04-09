@@ -1,6 +1,6 @@
 # 断点
 
-<p class="description">断点是为了满足特定的布局需要而对预设的各种屏幕大小进行标识的范围。</p>
+<p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
 
 为了获得最佳的用户体验，material design 的接口需要在各种断点范围下自适应布局需要。 Material-UI 使用了原先 [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) 的 **简化** 实现。
 

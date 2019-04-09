@@ -116,7 +116,11 @@ function FilledInputAdornments() {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton aria-label="Toggle password visibility" onClick={handleClickShowPassword}>
+              <IconButton
+                edge="end"
+                aria-label="Toggle password visibility"
+                onClick={handleClickShowPassword}
+              >
                 {values.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>

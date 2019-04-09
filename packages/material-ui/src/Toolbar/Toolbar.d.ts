@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 
 export interface ToolbarProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ToolbarClassKey> {
-  component?: React.ElementType<ToolbarProps>;
+  component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   disableGutters?: boolean;
   variant?: 'regular' | 'dense';
 }

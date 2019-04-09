@@ -11,7 +11,6 @@ function Page(props) {
     <AppTheme
       title="Dashboard page layout example - Material-UI"
       description={props.t('dashboardDescr')}
-      hideCredit
     >
       <Dashboard />
     </AppTheme>

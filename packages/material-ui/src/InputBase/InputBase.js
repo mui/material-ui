@@ -76,6 +76,7 @@ export const styles = theme => {
       border: 0,
       boxSizing: 'content-box',
       background: 'none',
+      height: '1.1875em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
       // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',
@@ -119,13 +120,10 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
+      height: 'auto',
+      minHeight: '1.1875em', // Reset (19px), match the native input line-height
       resize: 'none',
       padding: 0,
-    },
-    /* Styles applied to the `input` element if `type` is not "text"`. */
-    inputType: {
-      // type="date" or type="time", etc. have specific styles we need to reset.
-      height: '1.1875em', // Reset (19px), match the native input line-height
     },
     /* Styles applied to the `input` element if `type="search"`. */
     inputTypeSearch: {
@@ -352,7 +350,6 @@ class InputBase extends React.Component {
       classes.input,
       {
         [classes.disabled]: fcs.disabled,
-        [classes.inputType]: type !== 'text',
         [classes.inputTypeSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
         [classes.inputMarginDense]: fcs.margin === 'dense',
@@ -440,12 +437,11 @@ InputBase.propTypes = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it here:
-   * https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the input will be focused during the first mount.
+   * If `true`, the `input` element will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -458,7 +454,7 @@ InputBase.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default input value, useful when not controlling the component.
+   * The default `input` element value, useful when not controlling the component.
    */
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
@@ -470,7 +466,7 @@ InputBase.propTypes = {
     ),
   ]),
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the `input` element will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -496,16 +492,16 @@ InputBase.propTypes = {
    */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * The component used for the native input.
+   * The component used for the `input` element.
    * Either a string to use a DOM element or a component.
    */
   inputComponent: PropTypes.elementType,
   /**
-   * Attributes applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -574,7 +570,7 @@ InputBase.propTypes = {
    */
   renderPrefix: PropTypes.func,
   /**
-   * If `true`, the input will be required.
+   * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
   /**
@@ -590,11 +586,11 @@ InputBase.propTypes = {
    */
   startAdornment: PropTypes.node,
   /**
-   * Type of the input element. It should be a valid HTML5 input type.
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
   type: PropTypes.string,
   /**
-   * The input value, required for a controlled component.
+   * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.oneOfType([
     PropTypes.string,

@@ -1,19 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
   input: {
     display: 'none',
   },
-});
+}));
 
-function TextButtons(props) {
-  const { classes } = props;
+function TextButtons() {
+  const classes = useStyles();
+
   return (
     <div>
       <Button className={classes.button}>Default</Button>
@@ -45,8 +45,4 @@ function TextButtons(props) {
   );
 }
 
-TextButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(TextButtons);
+export default TextButtons;

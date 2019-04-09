@@ -35,9 +35,9 @@ describe('<Typography />', () => {
     assert.strictEqual(wrapper.text(), 'Hello');
   });
 
-  it('should render body2 root by default', () => {
+  it('should render body1 root by default', () => {
     const wrapper = shallow(<Typography>Hello</Typography>);
-    assert.strictEqual(wrapper.hasClass(classes.body2), true);
+    assert.strictEqual(wrapper.hasClass(classes.body1), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

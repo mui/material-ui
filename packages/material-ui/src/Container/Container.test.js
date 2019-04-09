@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Container from './Container';
 
 describe('<Container />', () => {
@@ -18,6 +23,13 @@ describe('<Container />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<Container {...defaultProps} />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLElement,
+  }));
 
   describe('prop: maxWidth', () => {
     it('should support different maxWidth values', () => {

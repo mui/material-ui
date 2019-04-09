@@ -1,6 +1,6 @@
 # Цвет
 
-<p class="description">Используйте цвет, чтобы передать смысл. Из коробки вы получаете доступ ко всем цветам в спецификации Material Design.</p>
+<p class="description">Используйте цвет, чтобы передать смысл. Вы получаете доступ ко всем цветам в спецификации Material Design из коробки.</p>
 
 [Система цветов](https://material.io/design/color/) Material Design может быть использована для создания цветовой темы, которая отражает ваш бренд или стиль.
 
@@ -45,7 +45,7 @@ const color = HUE[SHADE];
 
 ## Инструменты для работы с цветом
 
-To test a [material.io/design/color](https://material.io/design/color/) color scheme with the Material-UI documentation, simply select colors using the palette and sliders below. Alternatively, you can enter hex values in the Primary and Secondary text fields.
+Используйте палитру и слайдеры, расположенные ниже, чтобы опробовать цветовую схему [material.io/design/color](https://material.io/design/color/) на документации Material-UI. Либо можете ввести шестнадцатеричные значения в текстовые поля Primary и Secondary.
 
 {{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 

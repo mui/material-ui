@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
@@ -54,6 +53,7 @@ describe('<ClickAwayListener />', () => {
 
     it('should not be call when clicking inside', () => {
       const handleClickAway = spy();
+      const ref = React.createRef();
       wrapper = mount(
         <ClickAwayListener onClickAway={handleClickAway}>
           <span>Hello</span>
@@ -61,7 +61,7 @@ describe('<ClickAwayListener />', () => {
       );
 
       const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
-      const el = ReactDOM.findDOMNode(wrapper.instance());
+      const el = ref.current;
       if (el) {
         el.dispatchEvent(event);
       }
@@ -73,15 +73,17 @@ describe('<ClickAwayListener />', () => {
       const handleClickAway = spy();
       wrapper = mount(
         <ClickAwayListener onClickAway={handleClickAway}>
-          <ClickAwayListener onClickAway={event => event.preventDefault()}>
-            <span>Hello</span>
-          </ClickAwayListener>
+          <span>Hello</span>
         </ClickAwayListener>,
       );
+      const preventDefault = event => event.preventDefault();
+      window.document.body.addEventListener('mouseup', preventDefault);
 
       const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
       window.document.body.dispatchEvent(event);
       assert.strictEqual(handleClickAway.callCount, 0);
+
+      window.document.body.removeEventListener('mouseup', preventDefault);
     });
   });
 
@@ -156,25 +158,11 @@ describe('<ClickAwayListener />', () => {
     });
   });
 
-  describe('IE 11 issue', () => {
-    it('should not call the hook if the event is triggered after being unmounted', () => {
-      const handleClickAway = spy();
-      wrapper = mount(
-        <ClickAwayListener onClickAway={handleClickAway}>
-          <span>Hello</span>
-        </ClickAwayListener>,
-      );
-      wrapper.instance().mounted = false;
-      fireBodyMouseEvent('mouseup');
-      assert.strictEqual(handleClickAway.callCount, 0);
-    });
-  });
-
   it('should handle null child', () => {
-    const Child = () => null;
+    const Child = React.forwardRef(() => null);
     const handleClickAway = spy();
     wrapper = mount(
-      <ClickAwayListener onClickAway={handleClickAway}>
+      <ClickAwayListener getTargetEl={() => null} onClickAway={handleClickAway}>
         <Child />
       </ClickAwayListener>,
     );

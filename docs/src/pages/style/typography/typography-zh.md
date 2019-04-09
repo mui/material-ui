@@ -9,14 +9,22 @@ components: Typography
 
 ## 常规
 
-*Roboto*字体将**不** 由Material-UI 自动加载。 开发人员负责加载应用程序中使用的所有字体。 Roboto字体有几个简单的方法来开始。
+*Roboto*字体将**不** 由Material-UI 自动加载。 开发人员负责加载应用程序中使用的所有字体。 Roboto字体有几个简单的方法来开始。 For more advanced configuration, check out [the theme customization section](/customization/themes/#typography).
 
 ## Roboto 字体 CDN
 
 下面显示的是用于从 CDN 加载Roboto字体的示例链接标记。
 
+*HTML*
+
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+```
+
+*JSX*
+
+```jsx
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
 ## 通过 npm 安装
@@ -78,5 +86,5 @@ const theme = createMuiTheme({
       },
     },
   },
-})
+});
 ```

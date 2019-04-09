@@ -40,7 +40,7 @@ Porém, criar elementos React tem um preço também. Considere o caso a seguir:
       <TableRow>
         <TableCell>Dessert (100g serving)</TableCell>
         <TableCell align="right">Calories</TableCell>
-        <TableCell align="right">Fat (g)</TableCell>
+        <TableCell align="right">Fat&nbsp;(g)</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -68,7 +68,7 @@ We create a lot of React elements that will never be mounted. It's wasteful
 
 This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
 
-## Accessibility
+## Acessibilidade
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
 

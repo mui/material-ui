@@ -18,12 +18,13 @@ const useStyles = makeStyles(
       },
       body: {
         margin: 0, // Remove the margin in all browsers.
+        color: theme.palette.text.primary,
+        ...theme.typography.body2,
         backgroundColor: theme.palette.background.default,
         '@media print': {
           // Save printer ink.
           backgroundColor: theme.palette.common.white,
         },
-        ...theme.typography.body2,
       },
     },
   }),

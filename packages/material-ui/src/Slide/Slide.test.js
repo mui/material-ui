@@ -1,7 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  describeConformance,
+  unwrap,
+} from '@material-ui/core/test-utils';
 import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
@@ -25,11 +30,18 @@ describe('<Slide />', () => {
     mount.cleanUp();
   });
 
-  it('should render a Transition', () => {
-    const wrapper = shallow(<Slide {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'EventListener');
-    assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
-  });
+  describeConformance(
+    <Slide in>
+      <div />
+    </Slide>,
+    () => ({
+      classes: {},
+      inheritComponent: 'Transition',
+      mount,
+      refInstanceof: React.Component,
+      testComponentPropWith: false,
+    }),
+  );
 
   it('should not override children styles', () => {
     const wrapper = mount(

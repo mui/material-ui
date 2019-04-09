@@ -198,7 +198,7 @@ function makeStyles(stylesOrCreator, options = {}) {
     ...stylesOptions2
   } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
-  const classNamePrefix = name || classNamePrefixOption || 'Hook';
+  const classNamePrefix = name || classNamePrefixOption || 'makeStyles';
   stylesCreator.options = {
     index: increment(),
     name,

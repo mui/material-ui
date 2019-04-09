@@ -2,7 +2,7 @@
 title: 弹出器 React 组件
 components: Popper
 ---
-# Popper
+# 弹出提示 (Popper)
 
 <p class="description">Popper 可以用来在其他元素之上显示一些内容。它是 react-popper 的替代品。</p>
 
@@ -13,7 +13,8 @@ components: Popper
 - 
 - 子级元素是使用 [`Portal`](/utils/portal/) 组件，以避免在文档中出现问题。 您可以使用 `disablePortal` 禁用此行为。
 - 和 [`Popver`](/utils/popover/) 不同，滚动和单击不会被阻止。 Popper组件会随着可视窗口中的可使用区域更新其位置。
-- 将 `anchorEl` 作为引用对象传递以创建新的 `Popper.js` 实例。
+- Clicking away does not hide the `Popper` component. If you need this behavior, you can use [`ClickAwayListener`](utils/click-away-listener/) - see the example in the [menu documentation section](/demos/menus/#menulist-composition).
+- The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
 ## 简单 Popper
 

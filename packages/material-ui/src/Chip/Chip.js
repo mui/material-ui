@@ -5,7 +5,7 @@ import warning from 'warning';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
-import { setRef } from '../utils/reactHelpers';
+import { useForkRef } from '../utils/reactHelpers';
 import unsupportedProp from '../utils/unsupportedProp';
 import { capitalize } from '../utils/helpers';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
@@ -356,6 +356,8 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       'and the icon property at the same time. Pick one.',
   );
 
+  const handleRef = useForkRef(chipRef, ref);
+
   return (
     <Component
       role={clickable || onDelete ? 'button' : undefined}
@@ -364,10 +366,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       onClick={onClick}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
-      ref={nodeRef => {
-        setRef(chipRef, nodeRef);
-        setRef(ref, nodeRef);
-      }}
+      ref={handleRef}
       {...other}
     >
       {avatar || icon}

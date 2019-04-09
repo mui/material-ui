@@ -1,23 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
   input: {
     display: 'none',
   },
-});
+}));
 
-function IconButtons(props) {
-  const { classes } = props;
+function IconButtons() {
+  const classes = useStyles();
+
   return (
     <div>
       <IconButton className={classes.button} aria-label="Delete">
@@ -42,8 +42,4 @@ function IconButtons(props) {
   );
 }
 
-IconButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(IconButtons);
+export default IconButtons;

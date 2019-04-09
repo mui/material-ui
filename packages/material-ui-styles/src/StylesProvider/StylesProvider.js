@@ -89,6 +89,10 @@ StylesProvider.propTypes = {
   jss: PropTypes.object,
   /**
    * @ignore
+   */
+  serverGenerateClassName: PropTypes.func,
+  /**
+   * @ignore
    *
    * Beta feature.
    *
@@ -96,7 +100,7 @@ StylesProvider.propTypes = {
    */
   sheetsCache: PropTypes.object,
   /**
-   * @ignore.
+   * @ignore
    *
    * The sheetsManager is used to deduplicate style sheet injection in the page.
    * It's deduplicating using the (theme, styles) couple.

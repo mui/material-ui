@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import {
   createShallow,
   createMount,
-  findOutermostIntrinsic,
+  describeConformance,
   getClasses,
   unwrap,
 } from '@material-ui/core/test-utils';
@@ -29,17 +29,13 @@ describe('<TouchRipple />', () => {
     mount.cleanUp();
   });
 
-  it('should render a span', () => {
-    const wrapper = mount(<TouchRipple />);
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.type(), 'span');
-    assert.strictEqual(root.hasClass(classes.root), true);
-  });
-
-  it('should render the custom className', () => {
-    const wrapper = mount(<TouchRipple className="test-class-name" />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('test-class-name'), true);
-  });
+  describeConformance(<TouchRipple />, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: React.Component,
+    testComponentPropWith: false,
+  }));
 
   describe('prop: center', () => {
     it('should should compute the right ripple dimensions', () => {

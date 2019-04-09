@@ -8,9 +8,8 @@ import withStyles from '../styles/withStyles';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    fontFamily: theme.typography.fontFamily,
     color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(16),
+    ...theme.typography.body1,
     lineHeight: 1,
     padding: 0,
     '&$focused': {
@@ -86,7 +85,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
           })}
           data-mui-test="FormLabelAsterisk"
         >
-          {'\u2009*'}
+          &thinsp;{'*'}
         </span>
       )}
     </Component>

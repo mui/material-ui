@@ -9,8 +9,7 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(12),
+    ...theme.typography.caption,
     textAlign: 'left',
     marginTop: 8,
     lineHeight: '1em',

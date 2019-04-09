@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
@@ -58,7 +60,6 @@ function MarkdownDocs(props) {
   if (req) {
     demos = {};
     const markdowns = {};
-    const sourceFiles = reqSource.keys();
     req.keys().forEach(filename => {
       if (filename.indexOf('.md') !== -1) {
         const match = filename.match(/-([a-z]{2})\.md$/);
@@ -68,16 +69,21 @@ function MarkdownDocs(props) {
         } else {
           markdowns.en = req(filename);
         }
+      } else if (filename.indexOf('.tsx') !== -1) {
+        const demoName = `${reqPrefix}/${filename.replace(/\.\//g, '').replace(/\.tsx/g, '.js')}`;
+
+        demos[demoName] = {
+          ...demos[demoName],
+          tsx: req(filename).default,
+          rawTS: reqSource(filename),
+        };
       } else {
-        const demoName = `${reqPrefix}/${filename.replace(/.\//g, '')}`;
-        const tsFilename = filename.replace(/\.js$/, '.tsx');
-        const hasTSVersion = sourceFiles.indexOf(tsFilename) !== -1;
+        const demoName = `${reqPrefix}/${filename.replace(/\.\//g, '')}`;
 
         demos[demoName] = {
           ...demos[demoName],
           js: req(filename).default,
           raw: reqSource(filename),
-          rawTS: hasTSVersion ? reqSource(tsFilename) : undefined,
         };
       }
     });
@@ -109,7 +115,7 @@ function MarkdownDocs(props) {
                 sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
               />
             </div>
-            {contents.map(content => {
+            {contents.map((content, index) => {
               if (demos && demoRegexp.test(content)) {
                 let demoOptions;
                 try {
@@ -155,7 +161,7 @@ function MarkdownDocs(props) {
               }
 
               return (
-                <MarkdownElement className={classes.markdownElement} key={content} text={content} />
+                <MarkdownElement className={classes.markdownElement} key={index} text={content} />
               );
             })}
           </AppContent>

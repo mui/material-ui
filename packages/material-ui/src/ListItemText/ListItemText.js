@@ -77,6 +77,7 @@ const ListItemText = React.forwardRef(function ListItemText(props, ref) {
         if (secondary != null && secondary.type !== Typography && !disableTypography) {
           secondary = (
             <Typography
+              variant="body2"
               className={clsx(classes.secondary, {
                 [classes.textDense]: dense,
               })}

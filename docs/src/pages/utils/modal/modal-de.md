@@ -40,7 +40,7 @@ Das Erstellen von React-Elementen ist jedoch ebenfalls mit Kosten verbunden. Bet
       <TableRow>
         <TableCell>Dessert (100g serving)</TableCell>
         <TableCell align="right">Calories</TableCell>
-        <TableCell align="right">Fat (g)</TableCell>
+        <TableCell align="right">Fat&nbsp;(g)</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -78,10 +78,10 @@ Auf diese Weise nutzen Sie [React Rendering Laziness Evaluation](https://overrea
   aria-describedby="simple-modal-description"
 >
   <Typography variant="h6" id="modal-title">
-    My Title
+    Mein Titel
   </Typography>
   <Typography variant="subtitle1" id="simple-modal-description">
-    My Description
+    Meine Beschreibung
   </Typography>
 </Modal>
 ```

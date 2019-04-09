@@ -1,6 +1,6 @@
 ## 支持 Material-UI
 
-Material-UI 是一个拥有 MIT 许可证的开源项目。 可能完全因为这些超棒的[backers](/discover-more/backers/)，这个项目不断的在开发。
+Material-UI 是一个使用 MIT 许可证的开源项目。 可能完全因为这些超棒的[backers](/discover-more/backers/)，这个项目不断的在开发。
 
 ### 金牌赞助商
 

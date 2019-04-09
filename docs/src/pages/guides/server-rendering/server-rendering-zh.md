@@ -4,13 +4,13 @@
 
 当服务器收到请求时，它会将所需的组件呈现为HTML字符串，然后将其作为响应发送给客户端。 从那时起，客户接管渲染职责。
 
-## 服务器上的Material-UI
+## Material-UI on the server
 
-Material-UI是从头开始设计的，具有在服务器上呈现的约束，但是由您决定是否正确集成。 为页面提供所需的CSS非常重要，否则页面将仅使用HTML呈现，然后等待客户端注入CSS，从而导致其闪烁。 要将样式注入客户端，我们需要：
+Material-UI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated. It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker (FOUC). 要将样式注入客户端，我们需要：
 
-1. 在每个请求上创建一个全新的 `sheetRegistry` 和 `theme` 实例。
-2. 使用服务器端API和实例呈现React树。
-3. 将CSS从 `sheetRegistry`拉出来。
+1. Create a fresh, new [`ServerStyleSheets`](/css-in-js/api/#serverstylesheets) instance on every request.
+2. Render the React tree with the server-side collector.
+3. Pull the CSS out.
 4. 将CSS传递给客户端。
 
 在客户端，在删除服务器端注入的CSS之前，将第二次注入CSS。
@@ -19,7 +19,7 @@ Material-UI是从头开始设计的，具有在服务器上呈现的约束，但
 
 在下面的配方中，我们将了解如何设置服务器端呈现。
 
-### 服务器端
+### The server-side
 
 以下是我们的服务器端将会是什么样子的大纲。 我们将使用 [app.use](http://expressjs.com/en/api.html) 设置一个 [Express中间件](http://expressjs.com/en/guide/using-middleware.html) 来处理进入我们服务器的所有请求。 如果您不熟悉Express或中间件，只需知道每次服务器收到请求时都会调用我们的handleRender函数。
 
@@ -50,23 +50,22 @@ app.listen(port);
 
 ### 处理请求
 
-我们需要对每个请求做的第一件事就是创建一个新的 `sheetRegistry` 和 `theme` 实例。
+The first thing that we need to do on every request is create a new `ServerStyleSheets`.
 
 When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/css-in-js/api/#stylesprovider) and [`ThemeProvider`](/css-in-js/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 在服务器端渲染的关键步骤是为了使我们的组件的初始HTML **前** 我们把它发送给客户端。 为此，我们使用 [ReactDOMServer.renderToString（）](https://reactjs.org/docs/react-dom-server.html)。
 
-然后我们使用 `sheetRegistry.toString（）`从我们的 `sheetRegistry` 获取CSS。 我们将在 `renderFullPage` 函数中看到它是如何传递的。
+We then get the CSS from our `sheets` using `sheets.toString()`. 我们将在 `renderFullPage` 函数中看到它是如何传递的。
 
 ```jsx
-import ReactDOMServer from 'react-dom/server'
-import { SheetsRegistry } from 'jss';
+import ReactDOMServer from 'react-dom/server';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 
-// Create a theme instance.
+// Create a theme object.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -75,31 +74,22 @@ const theme = createMuiTheme({
 });
 
 function handleRender(req, res) {
-  // Create a sheetsRegistry instance.
-  const sheetsRegistry = new SheetsRegistry();
-  // Create a sheetsManager instance.
-  const sheetsManager = new Map();
-  // Create a new class name generator.
-  const generateClassName = createGenerateClassName();
+  const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    <StylesProvider
-      generateClassName={generateClassName}
-      sheetsRegistry={sheetsRegistry}
-      sheetsManager={sheetsManager}
-    >
+    sheets.collect(
       <ThemeProvider theme={theme}>
         <App />
-      </ThemeProvider>
-    </StylesProvider>
-  )
+      </ThemeProvider>,
+    ),
+  );
 
-  // Grab the CSS from our sheetsRegistry.
-  const css = sheetsRegistry.toString()
+  // Grab the CSS from our sheets.
+  const css = sheets.toString();
 
   // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css))
+  res.send(renderFullPage(html, css));
 }
 ```
 
@@ -113,7 +103,6 @@ function renderFullPage(html, css) {
     <!doctype html>
     <html>
       <head>
-        <title>Material-UI</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
@@ -150,7 +139,7 @@ function Main() {
   return <App />;
 }
 
-// Create a theme instance.
+// Create a theme object.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -184,18 +173,18 @@ CSS仅在页面的第一次加载时生成。 然后，服务器上缺少连续�
 
 #### 要采取的行动
 
-我们依赖缓存（工作表管理器），每个组件类型 只注入一次CSS（如果你使用两个按钮，你只需要一次按钮的CSS）。 您需要为每个请求**提供 **个新的 `sheetsManager`。
+我们依赖缓存（工作表管理器），每个组件类型 只注入一次CSS（如果你使用两个按钮，你只需要一次按钮的CSS）。 You need to create **a new `sheets` for each request**.
 
 *example of fix:*
 
 ```diff
--// Create a sheetsManager instance.
--const sheetsManager = new Map();
+-// Create a sheets instance.
+-const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
 
-+ // Create a sheetsManager instance.
-+ const sheetsManager = new Map();
++ // Create a sheets instance.
++ const sheets = new ServerStyleSheets();
 
   //…
 
@@ -247,4 +236,3 @@ function handleRender(req, res) {
 ```
 
 - 您需要确保服务器和客户端共享相同的 `process.env.NODE_ENV` 值。
-- react-jss依赖版本应该与^ 8.0.0语义版本匹配。

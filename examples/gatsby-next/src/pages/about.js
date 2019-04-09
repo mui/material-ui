@@ -1,40 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/styles';
+import Box from '@material-ui/core/Box';
+import MuiLink from '@material-ui/core/Link';
+import ProTip from '../components/ProTip';
 import Link from '../components/Link';
 
-const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing(20),
-  },
-});
-
-function About(props) {
-  const { classes } = props;
-
+function MadeWithLove() {
   return (
-    <div className={classes.root}>
-      <Typography variant="h4" component="h1" gutterBottom>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by the '}
+      <MuiLink color="inherit" href="https://material-ui.com/">
         Material-UI
-      </Typography>
-      <Typography variant="subtitle1" component="h2" gutterBottom>
-        about page
-      </Typography>
-      <Typography gutterBottom>
-        <Link to="/">Go to the main page</Link>
-      </Typography>
-      <Button variant="contained" color="primary">
-        Do nothing button
-      </Button>
-    </div>
+      </MuiLink>
+      {' team.'}
+    </Typography>
   );
 }
 
-About.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(About);
+export default function App() {
+  return (
+    <Container maxWidth="sm">
+      <Box my={4}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Gatsby v4-alpha example
+        </Typography>
+        <Link to="/">Go to the main page</Link>
+        <ProTip />
+        <MadeWithLove />
+      </Box>
+    </Container>
+  );
+}

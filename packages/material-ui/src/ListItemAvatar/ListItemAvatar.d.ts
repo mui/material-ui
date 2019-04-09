@@ -1,6 +1,7 @@
 import { StandardProps } from '..';
 
-export interface ListItemAvatarProps extends StandardProps<{}, ListItemAvatarClassKey> {}
+export interface ListItemAvatarProps
+  extends StandardProps<{}, ListItemAvatarClassKey, never, false> {}
 
 export type ListItemAvatarClassKey = 'root' | 'icon';
 

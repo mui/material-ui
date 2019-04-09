@@ -78,7 +78,7 @@ describe('StylesProvider', () => {
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.strictEqual(sheetsRegistry.toString().length > 10, true);
       assert.deepEqual(sheetsRegistry.registry[0].classes, {
-        root: 'Hook-root-1',
+        root: 'makeStyles-root-1',
       });
     }
 

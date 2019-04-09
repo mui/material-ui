@@ -8,7 +8,7 @@
 We provide the following helpers to make the UI responsive:
 
 - [Grid](/layout/grid/): The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.
-- [Layout](/layout/layout/): Components and options for laying out your project.
+- [Container](/layout/container/): The container centers your content horizontally. It's the most basic layout element.
 - [Breakpoints](/layout/breakpoints/): API that enables the use of breakpoints in a wide variety of contexts.
 - [useMediaQuery](/layout/use-media-query/): This is a CSS media query hook for React. It listens for matches to a CSS media query.
 - [Hidden](/layout/hidden/):

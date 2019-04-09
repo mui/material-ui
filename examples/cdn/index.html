@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <title>My page</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
     <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
@@ -82,6 +82,7 @@ class Index extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Dialog open={open} onClose={this.handleClose}>
             <DialogTitle>Super Secret Password</DialogTitle>

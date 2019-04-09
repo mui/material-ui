@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   badge: {
     top: '50%',
     right: -3,
@@ -14,10 +13,10 @@ const styles = theme => ({
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
     }`,
   },
-});
+}));
 
-function CustomizedBadge(props) {
-  const { classes } = props;
+function CustomizedBadge() {
+  const classes = useStyles();
 
   return (
     <IconButton aria-label="Cart">
@@ -28,8 +27,4 @@ function CustomizedBadge(props) {
   );
 }
 
-CustomizedBadge.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedBadge);
+export default CustomizedBadge;

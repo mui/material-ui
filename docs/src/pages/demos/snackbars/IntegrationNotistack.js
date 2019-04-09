@@ -9,7 +9,7 @@ class App extends React.Component {
   };
 
   handleClickVariant = variant => () => {
-    // variant could be success, error, warning or info
+    // variant could be success, error, warning, info, or default
     this.props.enqueueSnackbar('This is a warning message!', { variant });
   };
 

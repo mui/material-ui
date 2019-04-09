@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
+import { setRef, withForwardedRef } from '../utils';
 
 function flipPlacement(placement) {
   const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
@@ -33,7 +34,7 @@ function getAnchorEl(anchorEl) {
  * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
  */
 class Popper extends React.Component {
-  tooltip = React.createRef();
+  tooltipRef = React.createRef();
 
   constructor(props) {
     super();
@@ -84,7 +85,7 @@ class Popper extends React.Component {
 
   handleOpen = () => {
     const { anchorEl, modifiers, open, placement, popperOptions = {}, disablePortal } = this.props;
-    const popperNode = this.tooltip.current;
+    const popperNode = this.tooltipRef.current;
 
     if (!popperNode || !anchorEl || !open) {
       return;
@@ -139,12 +140,18 @@ class Popper extends React.Component {
     this.popper = null;
   };
 
+  handleRef = ref => {
+    setRef(this.props.innerRef, ref);
+    setRef(this.tooltipRef, ref);
+  };
+
   render() {
     const {
       anchorEl,
       children,
       container,
       disablePortal,
+      innerRef,
       keepMounted,
       modifiers,
       open,
@@ -173,7 +180,7 @@ class Popper extends React.Component {
     return (
       <Portal onRendered={this.handleOpen} disablePortal={disablePortal} container={container}>
         <div
-          ref={this.tooltip}
+          ref={this.handleRef}
           role="tooltip"
           style={{
             // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
@@ -199,10 +206,27 @@ Popper.propTypes = {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
-      if (!(resolvedAnchorEl instanceof HTMLElement)) {
+      if (resolvedAnchorEl instanceof HTMLElement) {
+        const box = resolvedAnchorEl.getBoundingClientRect();
+
+        if (
+          process.env.NODE_ENV !== 'test' &&
+          box.top === 0 &&
+          box.left === 0 &&
+          box.right === 0 &&
+          box.bottom === 0
+        ) {
+          return new Error(
+            [
+              'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+              'The node element should be visible.',
+            ].join('\n'),
+          );
+        }
+      } else {
         return new Error(
           [
-            'Material-UI: the anchorEl property provided to the component is invalid.',
+            'Material-UI: the `anchorEl` prop provided to the component is invalid.',
             `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );
@@ -227,6 +251,11 @@ Popper.propTypes = {
    * The children stay within it's parent DOM hierarchy.
    */
   disablePortal: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardedRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or
@@ -280,4 +309,4 @@ Popper.defaultProps = {
   transition: false,
 };
 
-export default Popper;
+export default withForwardedRef(Popper);

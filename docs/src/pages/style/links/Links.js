@@ -25,8 +25,8 @@ function Links(props) {
       <Link href={dudUrl} color="inherit" className={classes.link}>
         {'color="inherit"'}
       </Link>
-      <Link href={dudUrl} variant="body1" className={classes.link}>
-        {'variant="body1"'}
+      <Link href={dudUrl} variant="body2" className={classes.link}>
+        {'variant="body2"'}
       </Link>
     </Typography>
   );

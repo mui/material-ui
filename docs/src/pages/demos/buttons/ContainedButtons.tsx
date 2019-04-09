@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       margin: theme.spacing(1),
@@ -11,10 +10,12 @@ const styles = (theme: Theme) =>
     input: {
       display: 'none',
     },
-  });
+  }),
+);
 
-function ContainedButtons(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+function ContainedButtons() {
+  const classes = useStyles();
+
   return (
     <div>
       <Button variant="contained" className={classes.button}>
@@ -48,8 +49,4 @@ function ContainedButtons(props: WithStyles<typeof styles>) {
   );
 }
 
-ContainedButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(ContainedButtons);
+export default ContainedButtons;

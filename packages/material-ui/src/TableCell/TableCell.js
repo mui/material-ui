@@ -22,7 +22,7 @@ export const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
-    padding: '13px 40px 13px 16px',
+    padding: '14px 40px 14px 16px',
     '&:last-child': {
       paddingRight: 16,
     },
@@ -47,7 +47,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `padding="dense"`. */
   sizeSmall: {
-    padding: '5px 24px 5px 16px',
+    padding: '6px 24px 6px 16px',
     '&:last-child': {
       paddingRight: 16,
     },

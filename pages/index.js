@@ -87,7 +87,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: 20,
+    minHeight: 21,
     boxSizing: 'content-box',
     '& span': {
       display: 'flex',

@@ -22,6 +22,37 @@ On the client side, the CSS will be injected a second time before removing the s
 
 In the following recipe, we are going to look at how to set up server-side rendering.
 
+### The theme
+
+We create a theme that will be shared between the client and the server.
+
+`theme.js`
+
+```js
+import { createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#556cd6',
+    },
+    secondary: {
+      main: '#19857b',
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      default: '#fff',
+    },
+  },
+});
+
+export default theme;
+```
+
 ### The server-side
 
 The following is the outline for what our server-side is going to look like.
@@ -32,8 +63,6 @@ If you're unfamiliar with Express or middleware, just know that our handleRender
 
 ```js
 import express from 'express';
-import React from 'react';
-import App from './App';
 
 // We are going to fill these out in the sections to follow.
 function renderFullPage(html, css) {
@@ -66,19 +95,12 @@ We then get the CSS from our `sheets` using `sheets.toString()`.
 We will see how this is passed along in our `renderFullPage` function.
 
 ```jsx
+import express from 'express';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
-
-// Create a theme object.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-  },
-});
+import App from './App';
+import theme from './theme';
 
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
@@ -98,6 +120,16 @@ function handleRender(req, res) {
   // Send the rendered page back to the client.
   res.send(renderFullPage(html, css));
 }
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
+app.use(handleRender);
+
+const port = 3000;
+app.listen(port);
 ```
 
 ### Inject Initial Component HTML and CSS
@@ -107,9 +139,10 @@ The final step on the server-side is to inject our initial component HTML and CS
 ```js
 function renderFullPage(html, css) {
   return `
-    <!doctype html>
+    <!DOCTYPE html>
     <html>
       <head>
+        <title>My page</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
@@ -130,11 +163,9 @@ Let's take a look at our client file:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
 import App from './App';
+import theme from './theme';
 
 function Main() {
   React.useEffect(() => {
@@ -144,23 +175,14 @@ function Main() {
     }
   }, []);
 
-  return <App />;
+  return (
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  );
 }
 
-// Create a theme object.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-  },
-});
-
-ReactDOM.hydrate(
-  <ThemeProvider theme={theme}>
-    <Main />
-  </ThemeProvider>,
-  document.querySelector('#root'),
-);
+ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
 ## Reference implementations

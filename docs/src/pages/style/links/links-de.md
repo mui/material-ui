@@ -7,13 +7,13 @@ components: Link
 
 ## Einfache Links
 
-The Link component is built on top of the [Typography](/api/typography/) component. You can leverage its properties.
+Die Link-Komponente wird auf der [Typography](/api/typography/) Komponente aufgebaut. Sie können diese Eigenschaften nutzen.
 
 {{"demo": "pages/style/links/Links.js"}}
 
-However, the Link has different default properties than the Typography: - `color="primary"` as the link needs to stand out. - `variant="inherit"` as the link will, most of the time, be used as a child of a Typograpy component.
+Der Link hat jedoch andere Standardeigenschaften als die Typografie: - `color = "primary"` da der Link hervorstechen muss. - `variant = "inherit"` da ein Link meistens als untergeordnetes Element einer Typograpy-Komponente verwendet wird.
 
-## Accessibility
+## Barrierefreiheit
 
 - Vermeide generische Beschreibungen wie "Hier klicken" oder "Gehe zu" beim Erstellen eines Links. Verwende stattdessen [spezifische Beschreibungen](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - Für eine optimale Benutzererfahrungen sollten Links aus dem Text der Seite hervorgehoben werden.

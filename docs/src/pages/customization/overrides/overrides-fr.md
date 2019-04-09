@@ -6,7 +6,7 @@
 2. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
 3. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
 4. [Material Design variations](#4-material-design-variations) such as with the button component
-5. [Global theme variation](#5-global-theme-variation)
+5. [Variation globale du thème](#5-global-theme-variation)
 
 ## 1. Specific variation for a one-time situation
 
@@ -30,7 +30,7 @@ Notice that in addition to the button styling, the button label's capitalization
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
-### Using the dev tools
+### Utiliser les outils de développement
 
 The browser dev tools can save you a lot of time. Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
 
@@ -67,7 +67,7 @@ const StyledButton = withStyles({
 
 {{"demo": "pages/customization/overrides/ClassesShorthand.js"}}
 
-### Internal states
+### États internes
 
 The components internal states, like *hover*, *focus*, *disabled* and *selected*, are styled with a higher CSS specificity. [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
 
@@ -122,7 +122,7 @@ const styles = {
 };
 ```
 
-compiles to:
+compile vers :
 
 ```css
 .root-x.disable-x {
@@ -152,7 +152,7 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
+[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
 
 ## 2. Dynamic variation for a one-time situation
 
@@ -194,7 +194,7 @@ The Material Design specification documents different variations of certain comp
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components/) documentation to find out the current status of all supported Material Design components.
 
-## 5. Global theme variation
+## 5. Variation globale du thème
 
 ### Theme variables
 

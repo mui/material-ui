@@ -1,33 +1,31 @@
 ---
-title: Datums-Auswahl, Zeit-Auswahl React Komponenten
+title: Date Picker, Time Picker React-Komponenten
 components: TextField
 ---
-# Pickers
+# Auswähler (Picker)
 
 <p class="description">Pickers bieten eine einfache Möglichkeit, um einen einzelnen Wert aus einem vorher festgelegten Satz auszuwählen.</p>
 
 - Auf dem Handy sind Pcikers am besten für die Anzeige im Bestätigungsdialogfeld geeignet.
 - Für die Inline-Anzeige, z. B. in einem Formular, sollten Sie kompakte Steuerelemente wie segmentierte Dropdown-Schaltflächen verwenden.
 
-#### Benachrichtigung
+## Native Picker
 
-Wir greifen auf **native Eingabesteuerelemente** zurück.
+⚠️ Unterstützung von systemeigenen Eingabesteuerelementen durch Browser [ist nicht perfekt](https://caniuse.com/#feat=input-datetime). Sehen Sie sich die [ergänzenden Projekte](#complementary-projects) an, um weitere Lösungen zu erhalten.
 
-⚠️ Unterstützung von systemeigenen Eingabesteuerelementen durch Browser [ist nicht perfekt](https://caniuse.com/#feat=input-datetime). Sehen Sie sich die [ergänzenden Projekte](#complementary-projects) an, um bessere Lösungen zu erhalten.
+### Datums-Auswahl
 
-## Datums-Auswahl
-
-Ein natives Datumsauswahlbeispiel mit `type="date"`, es kann auch als Kalender verwendet werden.
+A native date picker example with `type="date"`.
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 
-## Datum & Zeitauswahl
+### Datum & Zeitauswahl
 
 Ein natives Datum & Zeitauswahlbeispiel mit `type="datetime-local"`.
 
 {{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
 
-## Zeitauswahl
+### Zeitauswahl
 
 Ein natives Datum Zeitauswahlbeispiel mit `type="time"`.
 

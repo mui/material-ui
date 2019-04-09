@@ -82,7 +82,7 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 
 {{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}
 
-## 无障碍功能
+## 可及性
 
 所有表单控件都应该有标签，这包括单选按钮，复选框和开关。 在大多数情况下，这是通过使用 `<label>` 元素（[FormControlLabel](/api/form-control-label/)）完成的。
 
@@ -94,3 +94,7 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
   inputProps={{ 'aria-label': '复选框 A' }}
 />
 ```
+
+## Guidance
+
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

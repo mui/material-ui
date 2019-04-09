@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import MailIcon from '@material-ui/icons/Mail';
@@ -10,17 +9,18 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(2),
   },
   padding: {
     padding: theme.spacing(0, 2),
   },
-});
+}));
 
-function SimpleBadge(props) {
-  const { classes } = props;
+function SimpleBadge() {
+  const classes = useStyles();
+
   return (
     <div>
       <div>
@@ -59,8 +59,4 @@ function SimpleBadge(props) {
   );
 }
 
-SimpleBadge.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleBadge);
+export default SimpleBadge;

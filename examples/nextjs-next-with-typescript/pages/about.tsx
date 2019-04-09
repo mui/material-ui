@@ -1,37 +1,34 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
-import Link from 'next/link';
+import Box from '@material-ui/core/Box';
+import MuiLink from '@material-ui/core/Link';
+import ProTip from '../src/ProTip';
+import Link from '../src/Link';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-}));
-
-function About() {
-  const classes = useStyles({});
-
+function MadeWithLove() {
   return (
-    <div className={classes.root}>
-      <Typography variant="h4" gutterBottom>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by the '}
+      <MuiLink color="inherit" href="https://material-ui.com/">
         Material-UI
-      </Typography>
-      <Typography variant="subtitle1" gutterBottom>
-        about page
-      </Typography>
-      <Typography gutterBottom>
-        <Link href="/">
-          <a>Go to the main page</a>
-        </Link>
-      </Typography>
-      <Button variant="contained" color="primary">
-        Do nothing button
-      </Button>
-    </div>
+      </MuiLink>
+      {' team.'}
+    </Typography>
   );
 }
 
-export default About;
+export default function App() {
+  return (
+    <Container maxWidth="sm">
+      <Box my={4}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Next.js v4-alpha with TypeScript example
+        </Typography>
+        <Link href="/">Go to the main page</Link>
+        <ProTip />
+        <MadeWithLove />
+      </Box>
+    </Container>
+  );
+}

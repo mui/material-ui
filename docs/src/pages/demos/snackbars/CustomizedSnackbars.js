@@ -64,7 +64,6 @@ function MySnackbarContentWrapper(props) {
       }
       action={[
         <IconButton
-          edge="end"
           key="close"
           aria-label="Close"
           color="inherit"
@@ -110,7 +109,7 @@ function CustomizedSnackbars() {
 
   return (
     <div>
-      <Button className={classes.margin} onClick={handleClick}>
+      <Button variant="outlined" className={classes.margin} onClick={handleClick}>
         Open success snackbar
       </Button>
       <Snackbar

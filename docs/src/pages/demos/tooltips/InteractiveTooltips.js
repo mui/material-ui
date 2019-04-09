@@ -1,17 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
-});
+}));
 
-function InteractiveTooltips(props) {
-  const { classes } = props;
+function InteractiveTooltips() {
+  const classes = useStyles();
 
   return (
     <div>
@@ -25,8 +24,4 @@ function InteractiveTooltips(props) {
   );
 }
 
-InteractiveTooltips.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(InteractiveTooltips);
+export default InteractiveTooltips;

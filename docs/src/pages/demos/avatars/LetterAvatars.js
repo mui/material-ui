@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import Grid from '@material-ui/core/Grid';
 
-const styles = {
+const useStyles = makeStyles({
   avatar: {
     margin: 10,
   },
@@ -20,10 +19,11 @@ const styles = {
     color: '#fff',
     backgroundColor: deepPurple[500],
   },
-};
+});
 
-function LetterAvatars(props) {
-  const { classes } = props;
+function LetterAvatars() {
+  const classes = useStyles();
+
   return (
     <Grid container justify="center" alignItems="center">
       <Avatar className={classes.avatar}>H</Avatar>
@@ -33,8 +33,4 @@ function LetterAvatars(props) {
   );
 }
 
-LetterAvatars.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LetterAvatars);
+export default LetterAvatars;

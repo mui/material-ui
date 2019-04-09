@@ -2,7 +2,7 @@
 title: Composant React Puce
 components: Chip
 ---
-# Puces (Chips)
+# Chips (Puces)
 
 <p class="description">Les puces sont des éléments compacts qui représentent une entrée, un attribut ou une action.</p>
 

@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
@@ -22,10 +21,11 @@ const styles = theme => ({
   iconSmall: {
     fontSize: 20,
   },
-});
+}));
 
-function IconLabelButtons(props) {
-  const { classes } = props;
+function IconLabelButtons() {
+  const classes = useStyles();
+
   return (
     <div>
       <Button variant="contained" color="secondary" className={classes.button}>
@@ -53,8 +53,4 @@ function IconLabelButtons(props) {
   );
 }
 
-IconLabelButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(IconLabelButtons);
+export default IconLabelButtons;

@@ -63,6 +63,18 @@ const blacklistFilename = [
   'docs-demos-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
 
+  // Already tested once assembled
+  'docs-getting-started-page-layout-examples-dashboard/Chart.png',
+  'docs-getting-started-page-layout-examples-dashboard/Deposits.png',
+  'docs-getting-started-page-layout-examples-dashboard/Orders.png',
+  'docs-getting-started-page-layout-examples-dashboard/Title.png',
+  'docs-getting-started-page-layout-examples-checkout/AddressForm.png',
+  'docs-getting-started-page-layout-examples-checkout/PaymentForm.png',
+  'docs-getting-started-page-layout-examples-checkout/Review.png',
+
+  // Flaky
+  'docs-demos-grid-list/ImageGridList.png',
+
   // Redux isolation
   'docs-demos-chips/ChipsPlayground.png',
   'docs-utils-popover/AnchorPlayground.png',
@@ -88,7 +100,7 @@ const demos = requireDemos.keys().reduce((res, path) => {
     return res;
   }
 
-  if (/^docs-premium-themes(.*)/.test(suite) || /\.hooks$/.test(name)) {
+  if (/^docs-premium-themes(.*)/.test(suite)) {
     return res;
   }
 

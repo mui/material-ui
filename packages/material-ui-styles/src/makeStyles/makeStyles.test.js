@@ -205,13 +205,13 @@ describe('makeStyles', () => {
         </ThemeProvider>,
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
       wrapper.update();
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
       wrapper.setProps({ theme: createMuiTheme() });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
 
       wrapper.unmount();
       assert.strictEqual(sheetsRegistry.registry.length, 0);
@@ -307,16 +307,16 @@ describe('makeStyles', () => {
 
       const wrapper = mount(<Test />);
       assert.strictEqual(sheetsRegistry.registry.length, 2);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
-      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'Hook-root-2' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'makeStyles-root-2' });
       assert.deepEqual(sheetsRegistry.registry[1].rules.map.root.style, {
         margin: '8px',
         padding: '8px',
       });
       wrapper.setProps({ padding: 4 });
       assert.strictEqual(sheetsRegistry.registry.length, 2);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Hook-root-1' });
-      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'Hook-root-2' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'makeStyles-root-2' });
       assert.deepEqual(sheetsRegistry.registry[1].rules.map.root.style, {
         margin: '8px',
         padding: '4px',
@@ -413,7 +413,7 @@ describe('makeStyles', () => {
           <StyledComponent2 />
         </StylesProvider>,
       );
-      assert.strictEqual(sheetsRegistry.registry[0].options.classNamePrefix, 'Hook');
+      assert.strictEqual(sheetsRegistry.registry[0].options.classNamePrefix, 'makeStyles');
       assert.strictEqual(sheetsRegistry.registry[0].options.name, undefined);
       assert.strictEqual(sheetsRegistry.registry[1].options.classNamePrefix, 'Fooo');
       assert.strictEqual(sheetsRegistry.registry[1].options.name, 'Fooo');
@@ -503,7 +503,7 @@ describe('makeStyles', () => {
       assert.strictEqual(
         sheetsRegistry.toString(),
         `
-.Hook-root-2 {
+.makeStyles-root-2 {
   color: white;
   background-color: black;
 }`,
@@ -515,7 +515,7 @@ describe('makeStyles', () => {
       assert.strictEqual(
         sheetsRegistry.toString(),
         `
-.Hook-root-4 {
+.makeStyles-root-4 {
   color: blue;
   background-color: black;
 }`,
@@ -526,7 +526,7 @@ describe('makeStyles', () => {
       assert.strictEqual(
         sheetsRegistry.toString(),
         `
-.Hook-root-4 {
+.makeStyles-root-4 {
   color: blue;
   background-color: green;
 }`,

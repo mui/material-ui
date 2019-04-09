@@ -7,8 +7,15 @@ type Style = ThemeStyle | 'srOnly';
 export interface TypographyProps
   extends StandardProps<React.HTMLAttributes<HTMLElement>, TypographyClassKey> {
   align?: PropTypes.Alignment;
-  color?: PropTypes.Color | 'textPrimary' | 'textSecondary' | 'error';
-  component?: React.ElementType<TypographyProps>;
+  color?:
+    | 'initial'
+    | 'inherit'
+    | 'primary'
+    | 'secondary'
+    | 'textPrimary'
+    | 'textSecondary'
+    | 'error';
+  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
   display?: 'initial' | 'block' | 'inline';
   gutterBottom?: boolean;
   noWrap?: boolean;

@@ -3,6 +3,7 @@ import { GenerateId, Jss } from 'jss';
 export interface StylesOptions {
   disableGeneration?: boolean;
   generateClassName?: GenerateId;
+  injectFirst?: boolean;
   jss?: Jss;
   // TODO need info @oliviertassinari
   sheetsCache?: {};

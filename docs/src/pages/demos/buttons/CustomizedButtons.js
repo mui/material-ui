@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
   },
@@ -52,7 +51,7 @@ const styles = theme => ({
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
     },
   },
-});
+}));
 
 const theme = createMuiTheme({
   palette: {
@@ -60,8 +59,8 @@ const theme = createMuiTheme({
   },
 });
 
-function CustomizedButtons(props) {
-  const { classes } = props;
+function CustomizedButtons() {
+  const classes = useStyles();
 
   return (
     <div>
@@ -85,8 +84,4 @@ function CustomizedButtons(props) {
   );
 }
 
-CustomizedButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedButtons);
+export default CustomizedButtons;

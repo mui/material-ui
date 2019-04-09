@@ -19,8 +19,10 @@ and `align-items="flex-start"` mode styles to `Avatar`.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">element</span> |   | The content of the component – normally `Avatar`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The content of the component – normally `Avatar`. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+
+The component cannot hold a ref.
 
 Any other properties supplied will be spread to the root element (native element).
 

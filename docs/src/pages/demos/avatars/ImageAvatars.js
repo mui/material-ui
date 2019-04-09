@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 
-const styles = {
+const useStyles = makeStyles({
   avatar: {
     margin: 10,
   },
@@ -13,10 +12,11 @@ const styles = {
     width: 60,
     height: 60,
   },
-};
+});
 
-function ImageAvatars(props) {
-  const { classes } = props;
+function ImageAvatars() {
+  const classes = useStyles();
+
   return (
     <Grid container justify="center" alignItems="center">
       <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.avatar} />
@@ -25,8 +25,4 @@ function ImageAvatars(props) {
   );
 }
 
-ImageAvatars.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ImageAvatars);
+export default ImageAvatars;

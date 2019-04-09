@@ -8,6 +8,7 @@ import Popper from '../Popper';
 import Tooltip from './Tooltip';
 import Input from '../Input';
 import createMuiTheme from '../styles/createMuiTheme';
+import RootRef from '../RootRef';
 
 function persist() {}
 
@@ -40,8 +41,8 @@ describe('<Tooltip />', () => {
   it('should render the correct structure', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
     assert.strictEqual(wrapper.type(), React.Fragment);
-    assert.strictEqual(wrapper.childAt(0).name(), 'RootRef');
-    assert.strictEqual(wrapper.childAt(1).name(), 'Popper');
+    assert.strictEqual(wrapper.childAt(0).type(), RootRef);
+    assert.strictEqual(wrapper.childAt(1).type(), Popper);
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.popper), true);
   });
 
