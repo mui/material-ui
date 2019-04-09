@@ -377,37 +377,39 @@ describe('<Modal />', () => {
     });
 
     /* Test case for https://github.com/mui-org/material-ui/issues/15180 */
-    it('should remove the transition children in the DOM when closed on whilst transition status is entering', () => {
-      const TestCaseChildren = props => (
-        <Fade in={props.open} tabIndex={-1}>
-          <span>Hello</span>
-        </Fade>
-      );
-      TestCaseChildren.propTypes = { open: PropTypes.bool };
-
+    it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
+      const onEntering = spy();
+      const onEntered = spy();
+      const childrenId = '__Modal_test_js__children__id__';
+      const childrenIdSelector = `#${childrenId}`;
       const TestCase = props => (
         <Modal open={props.open} keepMounted={false}>
-          <TestCaseChildren open={props.open} />
+          <Fade
+            in={props.open}
+            exit={false} // Disable exit transition, so it immediately unmounts when open=false
+            onEntering={onEntering}
+            onEntered={onEntered}
+          >
+            <span id={childrenId}>Hello</span>
+          </Fade>
         </Modal>
       );
       TestCase.propTypes = { open: PropTypes.bool };
 
       const wrapper = mount(<TestCase open={false} />);
-      assert.strictEqual(wrapper.contains(TestCaseChildren), false);
+      assert.isFalse(wrapper.exists(childrenIdSelector));
+      assert.strictEqual(onEntering.callCount, 0);
 
       wrapper.setProps({ open: true });
       wrapper.update();
-      assert.strictEqual(wrapper.contains(TestCaseChildren), true);
-      assert.strictEqual(
-        wrapper
-          .find(TestCaseChildren)
-          .find('Transition')
-          .instance().state.status,
-        'entering',
-      );
+      assert.isTrue(wrapper.exists(childrenIdSelector));
+      assert.strictEqual(onEntering.callCount, 1);
+      assert.strictEqual(onEntered.callCount, 0);
 
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.contains(TestCaseChildren), false);
+      wrapper.update();
+      assert.isFalse(wrapper.exists(childrenIdSelector));
+      assert.strictEqual(onEntered.callCount, 0); // Ensure transition state was never "entered"
     });
   });
 

@@ -151,32 +151,6 @@ describe('<Drawer />', () => {
       it('should start closed', () => {
         const wrapper = mount(drawerElement);
         assert.strictEqual(wrapper.find('Modal').props().open, false);
-        assert.strictEqual(wrapper.contains('Slide'), false);
-      });
-
-      it('should open and close', () => {
-        const wrapper = mount(drawerElement);
-
-        wrapper.setProps({ open: true });
-        wrapper.update();
-        assert.strictEqual(wrapper.find('Slide').props().in, true);
-
-        wrapper.setProps({ open: false });
-        wrapper.update();
-        assert.strictEqual(wrapper.contains('Slide'), false);
-      });
-    });
-
-    describe('opening and closing with keepMounted Modal', () => {
-      const drawerElement = (
-        <Drawer ModalProps={{ keepMounted: true }}>
-          <h1>Hello</h1>
-        </Drawer>
-      );
-
-      it('should start closed', () => {
-        const wrapper = mount(drawerElement);
-        assert.strictEqual(wrapper.find('Modal').props().open, false);
       });
 
       it('should open and close', () => {
