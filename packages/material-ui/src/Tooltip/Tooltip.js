@@ -1,13 +1,14 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
-import RootRef from '../RootRef';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
 import Popper from '../Popper';
+import { useForkRef } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
@@ -72,6 +73,18 @@ export const styles = theme => ({
   },
 });
 
+function useMountedRef() {
+  const mountedRef = React.useRef(false);
+  React.useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  return mountedRef;
+}
+
 function Tooltip(props) {
   const {
     children,
@@ -100,8 +113,13 @@ function Tooltip(props) {
   const ignoreNonTouchEvents = React.useRef(false);
   const { current: isControlled } = React.useRef(props.open != null);
   const childrenRef = React.useRef();
+  // can be removed once we drop support for non ref forwarding class components
+  const handleOwnRef = React.useCallback(ref => {
+    childrenRef.current = ReactDOM.findDOMNode(ref);
+  }, []);
+  const handleRef = useForkRef(children.ref, handleOwnRef);
   const defaultId = React.useRef();
-  const isMounted = React.useRef(false);
+  const mountedRef = useMountedRef();
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
   const leaveTimer = React.useRef();
@@ -130,11 +148,11 @@ function Tooltip(props) {
     defaultId.current = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
 
     // Rerender with defaultId and childrenRef.
-    if (openProp && !isMounted.current) {
+    if (openProp && !mountedRef.current) {
       forceUpdate();
     }
-    isMounted.current = true;
-  }, [isControlled, title, openProp]);
+    mountedRef.current = true;
+  }, [isControlled, title, openProp, mountedRef]);
 
   React.useEffect(() => {
     return () => {
@@ -325,7 +343,7 @@ function Tooltip(props) {
 
   return (
     <React.Fragment>
-      <RootRef rootRef={childrenRef}>{React.cloneElement(children, childrenProps)}</RootRef>
+      {React.cloneElement(children, { ref: handleRef, ...childrenProps })}
       <Popper
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,
