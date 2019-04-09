@@ -11,7 +11,7 @@ defaults: &js_defaults
 
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.5.1
+  cypress: cypress-io/cypress@1.6.0
 
 ####################
 # Custom jobs
@@ -98,6 +98,7 @@ workflows:
           browser: chrome
           record: true
           yarn: true
+          cache-key: yarn-packages-{{ checksum "yarn.lock" }}
 
       - jest_tests:
           name: 'Date-fns jest tests'
