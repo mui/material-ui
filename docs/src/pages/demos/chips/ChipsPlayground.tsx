@@ -49,7 +49,7 @@ class ChipsPlayground extends React.Component<Props, State> {
   handleChange = (key: keyof State) => (event: React.ChangeEvent<{}>, value: string) => {
     this.setState({
       [key]: value,
-    });
+    } as any);
   };
 
   handleDeleteExample = () => {
