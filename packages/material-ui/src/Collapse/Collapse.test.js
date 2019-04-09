@@ -111,13 +111,13 @@ describe('<Collapse />', () => {
 
       describe('handleEnter()', () => {
         it('should set element height to 0 initially', () => {
-          assert.strictEqual(nodeEnterHeightStyle, '0px', 'should set the height to 0');
+          assert.strictEqual(nodeEnterHeightStyle, '0px');
         });
       });
 
       describe('handleEntering()', () => {
         it('should set height to the wrapper height', () => {
-          assert.strictEqual(nodeEnteringHeightStyle, '666px', 'should have 0px height');
+          assert.strictEqual(nodeEnteringHeightStyle, '666px');
         });
 
         it('should call handleEntering', () => {
@@ -129,15 +129,11 @@ describe('<Collapse />', () => {
       describe('handleEntered()', () => {
         it('should set height to auto', () => {
           clock.tick(1000);
-          assert.strictEqual(
-            handleEntered.args[0][0].style.height,
-            'auto',
-            'should have auto height',
-          );
+          assert.strictEqual(handleEntered.args[0][0].style.height, 'auto');
         });
 
         it('should have called onEntered', () => {
-          assert.strictEqual(handleEntered.callCount, 1, 'should have called props.onEntered');
+          assert.strictEqual(handleEntered.callCount, 1);
         });
       });
     });
@@ -150,17 +146,13 @@ describe('<Collapse />', () => {
 
       describe('handleExit()', () => {
         it('should set height to the wrapper height', () => {
-          assert.strictEqual(nodeExitHeightStyle, '666px', 'should have 666px height');
+          assert.strictEqual(nodeExitHeightStyle, '666px');
         });
       });
 
       describe('handleExiting()', () => {
         it('should set height to the 0', () => {
-          assert.strictEqual(
-            handleExiting.args[0][0].style.height,
-            '0px',
-            'should have 0px height',
-          );
+          assert.strictEqual(handleExiting.args[0][0].style.height, '0px');
         });
 
         it('should call onExiting', () => {
@@ -172,7 +164,7 @@ describe('<Collapse />', () => {
       describe('handleExited()', () => {
         it('should set height to the 0', () => {
           clock.tick(1000);
-          assert.strictEqual(handleExited.args[0][0].style.height, '0px', 'should have 0px height');
+          assert.strictEqual(handleExited.args[0][0].style.height, '0px');
         });
 
         it('should call onExited', () => {
@@ -317,11 +309,7 @@ describe('<Collapse />', () => {
       );
       wrapper.setProps({ in: false });
 
-      assert.strictEqual(
-        handleExiting.args[0][0].style.height,
-        collapsedHeight,
-        'should have 10px height',
-      );
+      assert.strictEqual(handleExiting.args[0][0].style.height, collapsedHeight);
     });
   });
 });
