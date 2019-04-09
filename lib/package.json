@@ -44,7 +44,6 @@
     "react-text-mask": "^5.4.3",
     "react-transition-group": "^2.5.3",
     "rifm": "^0.7.0",
-    "ts-jest": "^24.0.1",
     "tslib": "^1.9.3"
   },
   "size-limit": [
@@ -110,7 +109,7 @@
     "rollup-plugin-typescript": "^1.0.0",
     "rollup-plugin-uglify": "^6.0.2",
     "size-limit": "^0.21.1",
-    "ts-jest": "^23.10.5",
+    "ts-jest": "^24.0.1",
     "ts-lib": "0.0.5",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.3.3"

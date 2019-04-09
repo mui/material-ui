@@ -2,8 +2,9 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ClockType from '../constants/ClockType';
-import PickerToolbar from '../_shared/PickerToolbar';
+import ToolbarText from '../_shared/ToolbarText';
 import ToolbarButton from '../_shared/ToolbarButton';
+import PickerToolbar from '../_shared/PickerToolbar';
 import TimePickerView from './components/TimePickerView';
 import withStyles from '@material-ui/core/styles/withStyles';
 import createStyles from '@material-ui/core/styles/createStyles';
@@ -166,7 +167,7 @@ export class TimePickerRoot extends React.Component<TimePickerProps> {
               label={utils.getHourText(date, Boolean(ampm))}
             />
 
-            <ToolbarButton variant="h2" label=":" selected={false} className={classes.separator} />
+            <ToolbarText variant="h2" label=":" selected={false} className={classes.separator} />
 
             <ToolbarButton
               variant="h2"
@@ -177,7 +178,7 @@ export class TimePickerRoot extends React.Component<TimePickerProps> {
 
             {seconds && (
               <React.Fragment>
-                <ToolbarButton
+                <ToolbarText
                   variant="h2"
                   label=":"
                   selected={false}
@@ -195,19 +196,25 @@ export class TimePickerRoot extends React.Component<TimePickerProps> {
           </div>
 
           {ampm && (
-            <div className={seconds ? classes.ampmSelectionWithSeconds : classes.ampmSelection}>
+            <div
+              className={clsx(classes.ampmSelection, {
+                [classes.ampmSelectionWithSeconds]: seconds,
+              })}
+            >
               <ToolbarButton
-                className={classes.ampmLabel}
-                selected={meridiemMode === 'am'}
+                disableRipple
                 variant="subtitle1"
+                selected={meridiemMode === 'am'}
+                typographyClassName={classes.ampmLabel}
                 label={utils.getMeridiemText('am')}
                 onClick={this.setMeridiemMode('am')}
               />
 
               <ToolbarButton
-                className={classes.ampmLabel}
-                selected={meridiemMode === 'pm'}
+                disableRipple
                 variant="subtitle1"
+                selected={meridiemMode === 'pm'}
+                typographyClassName={classes.ampmLabel}
                 label={utils.getMeridiemText('pm')}
                 onClick={this.setMeridiemMode('pm')}
               />
@@ -247,6 +254,8 @@ export const styles = () =>
     ampmSelection: {
       marginLeft: 20,
       marginRight: -20,
+      display: 'flex',
+      flexDirection: 'column',
     },
     ampmSelectionWithSeconds: {
       marginLeft: 15,

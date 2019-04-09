@@ -13,7 +13,7 @@ describe('e2e - DateTimePicker', () => {
       <DateTimePicker
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        openTo="date"
+        openTo="hours"
         leftArrowIcon="keyboard_arrow_left"
         rightArrowIcon="keyboard_arrow_right"
         dateRangeIcon="date_range"
@@ -52,7 +52,7 @@ describe('e2e - DateTimePicker', () => {
   it('Should render minutes view', () => {
     component
       .find('ToolbarButton')
-      .at(4)
+      .at(3)
       .simulate('click');
     expect(component.find('TimePickerView').props().type).toBe('minutes');
   });
@@ -60,7 +60,7 @@ describe('e2e - DateTimePicker', () => {
   it('Should change meridiem', () => {
     component
       .find('ToolbarButton')
-      .at(6)
+      .at(5)
       .simulate('click');
 
     if (process.env.UTILS === 'moment') {

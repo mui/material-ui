@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ToolbarButton from '../../_shared/ToolbarButton';
+import ToolbarText from '../../_shared/ToolbarText';
 import PickerToolbar from '../../_shared/PickerToolbar';
+import ToolbarButton from '../../_shared/ToolbarButton';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import DateTimePickerView, { DateTimePickerViewType } from '../../constants/DateTimePickerView';
@@ -38,6 +39,10 @@ export const styles = (theme: Theme) =>
       height: 60,
       minWidth: 110,
       marginRight: 4,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
     },
     timeHeader: {
       height: 65,
@@ -49,6 +54,9 @@ export const styles = (theme: Theme) =>
     ampmSelection: {
       top: 11,
       position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       marginLeft: 10,
       marginRight: -10,
     },
@@ -104,7 +112,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
             label={utils.getHourText(date, ampm!)}
           />
 
-          <ToolbarButton variant="h3" label=":" selected={false} className={classes.separator} />
+          <ToolbarText variant="h3" label=":" selected={false} className={classes.separator} />
 
           <ToolbarButton
             variant="h3"
@@ -117,17 +125,17 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
         {ampm && (
           <div className={classes.ampmSelection}>
             <ToolbarButton
-              className={classes.ampmLabel}
-              selected={meridiemMode === 'am'}
               variant="subtitle1"
+              typographyClassName={classes.ampmLabel}
+              selected={meridiemMode === 'am'}
               label={utils.getMeridiemText('am')}
               onClick={setMeridiemMode('am')}
             />
 
             <ToolbarButton
-              className={classes.ampmLabel}
-              selected={meridiemMode === 'pm'}
               variant="subtitle1"
+              typographyClassName={classes.ampmLabel}
+              selected={meridiemMode === 'pm'}
               label={utils.getMeridiemText('pm')}
               onClick={setMeridiemMode('pm')}
             />
