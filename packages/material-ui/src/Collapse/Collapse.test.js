@@ -297,7 +297,7 @@ describe('<Collapse />', () => {
       wrapper.setProps({
         in: false,
       });
-      assert.strictEqual(handleExiting.args[0][0].style.transitionDuration, '446ms', true);
+      assert.strictEqual(handleExiting.args[0][0].style.transitionDuration, '446ms');
     });
   });
 
