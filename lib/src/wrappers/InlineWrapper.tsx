@@ -15,6 +15,16 @@ export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> 
   onlyCalendar?: boolean;
 }
 
+export const styles = {
+  popoverPaper: {
+    width: DIALOG_WIDTH,
+    paddingBottom: 8,
+  },
+  popoverPaperWider: {
+    width: DIALOG_WIDTH_WIDER,
+  },
+};
+
 const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = ({
   open,
   wider,
@@ -84,16 +94,6 @@ InlineWrapper.propTypes = {
 
 InlineWrapper.defaultProps = {
   onlyCalendar: false,
-};
-
-export const styles = {
-  popoverPaper: {
-    width: DIALOG_WIDTH,
-    paddingBottom: 8,
-  },
-  popoverPaperWider: {
-    width: DIALOG_WIDTH_WIDER,
-  },
 };
 
 export default withStyles(styles)(InlineWrapper);

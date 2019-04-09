@@ -24,6 +24,7 @@ export interface ModalDialogProps extends DialogProps {
   wider?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
   children,
   classes,

@@ -17,7 +17,8 @@
     "dev": "yarn workspace docs dev",
     "release": "yarn workspace material-ui-pickers release && yarn workspace docs deploy",
     "e2e:open": "cypress open",
-    "e2e:run": "cypress run"
+    "e2e:run": "cypress run",
+    "lint": "eslint 'lib/**/*.ts*'"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,11 @@
       "git add"
     ]
   },
+  "eslintIgnore": [
+    "**/node_modules",
+    "**/coverage",
+    "*.d.ts"
+  ],
   "dependencies": {
     "cypress": "^3.1.4",
     "wait-on": "^3.2.0"
