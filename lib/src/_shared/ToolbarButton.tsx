@@ -1,32 +1,42 @@
-import { Theme } from '@material-ui/core';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import { createStyles, withStyles, WithStyles } from '@material-ui/core';
+import Button, { ButtonProps } from '@material-ui/core/Button';
+import { TypographyProps } from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { ExtendMui } from '../typings/extendMui';
 
-export interface ToolbarButtonProps extends ExtendMui<TypographyProps>, WithStyles<typeof styles> {
+import { ExtendMui } from '../typings/extendMui';
+import ToolbarText from './ToolbarText';
+
+export interface ToolbarButtonProps
+  extends ExtendMui<ButtonProps, 'variant'>,
+    WithStyles<typeof styles> {
+  variant: TypographyProps['variant'];
   selected: boolean;
   label: string;
+  typographyClassName?: string;
 }
 
-const ToolbarButton: React.SFC<ToolbarButtonProps> = ({
+const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
   classes,
-  selected,
-  label,
   className = null,
+  label,
+  selected,
+  variant,
+  typographyClassName,
   ...other
-}) => (
-  <Typography
-    className={clsx(classes.toolbarBtn, className, {
-      [classes.toolbarBtnSelected]: selected,
-    })}
-    {...other}
-  >
-    {label}
-  </Typography>
-);
+}) => {
+  return (
+    <Button className={clsx(classes.toolbarBtn, className)} {...other}>
+      <ToolbarText
+        className={typographyClassName}
+        variant={variant}
+        label={label}
+        selected={selected}
+      />
+    </Button>
+  );
+};
 
 (ToolbarButton as any).propTypes = {
   selected: PropTypes.bool.isRequired,
@@ -40,13 +50,11 @@ ToolbarButton.defaultProps = {
   className: '',
 };
 
-export const styles = (theme: Theme) => ({
+export const styles = createStyles({
   toolbarBtn: {
-    cursor: 'pointer',
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
-  toolbarBtnSelected: {
-    color: theme.palette.common.white,
+    padding: 0,
+    minWidth: '16px',
+    textTransform: 'none',
   },
 });
 
