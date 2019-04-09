@@ -318,7 +318,7 @@ describe('<Collapse />', () => {
       assert.strictEqual(
         handleExiting.args[0][0].style.height,
         collapsedHeight,
-        'should have 0px height',
+        'should have 10px height',
       );
     });
   });
