@@ -63,8 +63,8 @@ function SimpleDialog(props) {
 }
 
 SimpleDialog.propTypes = {
-  open: PropTypes.bool,
   onClose: PropTypes.func,
+  open: PropTypes.bool,
   selectedValue: PropTypes.string,
 };
 
