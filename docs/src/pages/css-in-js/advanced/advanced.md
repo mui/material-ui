@@ -349,7 +349,7 @@ const useStyles = makeStyles({
 });
 ```
 
-This will generate a class name such as `AppBar-root-123` . However, the following CSS won't work:
+This will generate a class name such as `AppBar-root-123`. However, the following CSS won't work:
 
 ```css
 .AppBar-root-123 {
