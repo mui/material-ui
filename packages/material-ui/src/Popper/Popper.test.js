@@ -100,13 +100,13 @@ describe('<Popper />', () => {
   describe('mount', () => {
     it('should mount without any issue', () => {
       const wrapper = mount(<Popper {...defaultProps} open={false} />);
-      assert.strictEqual(wrapper.find('span').length, 0);
+      assert.isFalse(wrapper.exists(defaultChildrenSelector));
       wrapper.setProps({ open: true });
       wrapper.update();
-      assert.strictEqual(wrapper.find('span').length, 1);
-      assert.strictEqual(wrapper.find('span').text(), 'Hello World');
+      assert.isTrue(wrapper.exists(defaultChildrenSelector));
+      assert.strictEqual(wrapper.find(defaultChildrenSelector).text(), 'Hello World');
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.find('span').length, 0);
+      assert.isFalse(wrapper.exists(defaultChildrenSelector));
     });
 
     it('should position the popper when opening', () => {
@@ -130,16 +130,12 @@ describe('<Popper />', () => {
     it('should work', () => {
       const wrapper = mount(
         <Popper {...defaultProps} open transition>
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
-              <span>Hello World</span>
-            </Grow>
-          )}
+          {({ TransitionProps }) => <Grow {...TransitionProps}>{defaultProps.children}</Grow>}
         </Popper>,
       );
       const instance = wrapper.find('Popper').instance();
-      assert.strictEqual(wrapper.find('span').length, 1);
-      assert.strictEqual(wrapper.find('span').text(), 'Hello World');
+      assert.isTrue(wrapper.exists(defaultChildrenSelector));
+      assert.strictEqual(wrapper.find(defaultChildrenSelector).text(), 'Hello World');
       assert.strictEqual(instance.popper !== null, true);
       wrapper.setProps({ anchorEl: null, open: false });
       wrapper
@@ -154,11 +150,7 @@ describe('<Popper />', () => {
     it('should update the exited state', () => {
       const wrapper = mount(
         <Popper {...defaultProps} open transition>
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
-              <span>Hello World</span>
-            </Grow>
-          )}
+          {({ TransitionProps }) => <Grow {...TransitionProps}>{defaultProps.children}</Grow>}
         </Popper>,
       );
       wrapper.setProps({ open: false });
