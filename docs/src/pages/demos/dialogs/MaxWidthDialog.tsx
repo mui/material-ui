@@ -36,7 +36,7 @@ export type MaxWidthDialogProps = WithStyles<typeof styles>;
 export interface MaxWidthDialogState {
   open: boolean;
   fullWidth: boolean;
-  maxWidth: string | boolean;
+  maxWidth: DialogProps['maxWidth'];
 }
 
 class MaxWidthDialog extends React.Component<MaxWidthDialogProps, MaxWidthDialogState> {
@@ -55,7 +55,8 @@ class MaxWidthDialog extends React.Component<MaxWidthDialogProps, MaxWidthDialog
   };
 
   handleMaxWidthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const maxWidth = event.target.value === 'false' ? false : event.target.value;
+    const maxWidth =
+      event.target.value === 'false' ? false : (event.target.value as DialogProps['maxWidth']);
 
     this.setState({ maxWidth });
   };
@@ -74,7 +75,7 @@ class MaxWidthDialog extends React.Component<MaxWidthDialogProps, MaxWidthDialog
         </Button>
         <Dialog
           fullWidth={this.state.fullWidth}
-          maxWidth={this.state.maxWidth as DialogProps['maxWidth']}
+          maxWidth={this.state.maxWidth}
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="max-width-dialog-title"
