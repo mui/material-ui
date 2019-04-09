@@ -131,15 +131,7 @@ Input.propTypes = {
   /**
    * The default `input` element value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the `input` element will be disabled.
    */
@@ -230,15 +222,7 @@ Input.propTypes = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  value: PropTypes.any,
 };
 
 InputBase.defaultProps = {
