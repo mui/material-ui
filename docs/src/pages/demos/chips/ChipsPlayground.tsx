@@ -27,9 +27,9 @@ const styles = (theme: Theme) =>
     },
   });
 
-export type Props = WithStyles<typeof styles>;
+export type ChipsPlaygroundProps = WithStyles<typeof styles>;
 
-export interface State {
+export interface ChipsPlaygroundState {
   color: string;
   onDelete: string;
   avatar: string;
@@ -37,7 +37,7 @@ export interface State {
   variant: string;
 }
 
-class ChipsPlayground extends React.Component<Props, State> {
+class ChipsPlayground extends React.Component<ChipsPlaygroundProps, ChipsPlaygroundState> {
   state = {
     color: 'default',
     onDelete: 'none',
@@ -46,7 +46,10 @@ class ChipsPlayground extends React.Component<Props, State> {
     variant: 'default',
   };
 
-  handleChange = (key: keyof State) => (event: React.ChangeEvent<{}>, value: string) => {
+  handleChange = (key: keyof ChipsPlaygroundState) => (
+    event: React.ChangeEvent<{}>,
+    value: string,
+  ) => {
     this.setState({
       [key]: value,
     } as any);
@@ -233,7 +236,7 @@ class ChipsPlayground extends React.Component<Props, State> {
   }
 }
 
-(ChipsPlayground as React.ComponentClass<Props>).propTypes = {
+(ChipsPlayground as React.ComponentClass<ChipsPlaygroundProps, ChipsPlaygroundState>).propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
