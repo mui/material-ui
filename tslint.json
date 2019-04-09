@@ -5,6 +5,7 @@
     "rules": {
         "deprecation": true,
         "file-name-casing": false,
+        "no-empty-interface": false,
         "no-unnecessary-callback-wrapper": false,
         "no-unnecessary-generics": false,
         "semicolon": [true, "always", "ignore-bound-class-methods"]
