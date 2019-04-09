@@ -22,7 +22,13 @@ const useStyles = makeStyles({
   },
 });
 
-function SimpleDialog(props) {
+export interface SimpleDialogProps {
+  open: boolean;
+  selectedValue: string;
+  onClose: (value: string) => void;
+}
+
+function SimpleDialog(props: SimpleDialogProps) {
   const classes = useStyles();
   const { onClose, selectedValue, ...other } = props;
 
@@ -30,7 +36,7 @@ function SimpleDialog(props) {
     onClose(selectedValue);
   }
 
-  function handleListItemClick(value) {
+  function handleListItemClick(value: string) {
     onClose(value);
   }
 
@@ -48,7 +54,6 @@ function SimpleDialog(props) {
             <ListItemText primary={email} />
           </ListItem>
         ))}
-
         <ListItem button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
             <Avatar>
@@ -76,7 +81,7 @@ function SimpleDialogDemo() {
     setOpen(true);
   }
 
-  const handleClose = value => {
+  const handleClose = (value: string) => {
     setOpen(false);
     setSelectedValue(value);
   };
