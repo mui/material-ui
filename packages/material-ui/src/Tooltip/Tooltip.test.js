@@ -3,14 +3,13 @@ import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Popper from '../Popper';
 import Tooltip from './Tooltip';
 import Input from '../Input';
 import createMuiTheme from '../styles/createMuiTheme';
 import RootRef from '../RootRef';
 
-const TooltipNaked = unwrap(Tooltip);
 const theme = createMuiTheme();
 
 describe('<Tooltip />', () => {
@@ -181,7 +180,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
-      const wrapper = mount(<TooltipNaked classes={{}} enterDelay={111} {...defaultProps} />);
+      const wrapper = mount(<Tooltip enterDelay={111} {...defaultProps} />);
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('focus');
       assert.strictEqual(wrapper.find(Popper).props().open, false);
@@ -191,7 +190,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should take the leaveDelay into account', () => {
-      const wrapper = mount(<TooltipNaked classes={{}} leaveDelay={111} {...defaultProps} />);
+      const wrapper = mount(<Tooltip leaveDelay={111} {...defaultProps} />);
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('focus');
       clock.tick(0);
@@ -286,7 +285,7 @@ describe('<Tooltip />', () => {
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
-      const tooltipNaked = wrapper.find(TooltipNaked);
+
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('mouseOver', { type: 'mouseOver' });
       clock.tick(0);
