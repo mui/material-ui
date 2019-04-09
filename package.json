@@ -57,7 +57,8 @@
   "eslintIgnore": [
     "**/node_modules",
     "**/coverage",
-    "*.d.ts"
+    "*.d.ts",
+    "videos/"
   ],
   "dependencies": {
     "cypress": "^3.1.4",
