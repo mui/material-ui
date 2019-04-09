@@ -61,6 +61,8 @@ describe('<Collapse />', () => {
     let nodeEnteringHeightStyle;
     let nodeExitHeightStyle;
 
+    /* We needs to create wrappers here because the node is passed by reference
+       and it's style is overwritten by the later stages */
     const handleEnter = spy();
     const handleEnterWrapper = (...args) => {
       handleEnter(...args);
