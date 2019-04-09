@@ -109,7 +109,7 @@ export default function MyComponent() {
 }
 ```
 
-## `ServerStyleSheets([options])`
+## `ServerStyleSheets`
 
 This is a class helper to handle server-side rendering.
 The instance offers the following API.
@@ -121,17 +121,19 @@ const sheets = new ServerStyleSheets();
 ```
 
 #### Arguments
-1. `options` (*Object* [optional]): The `ServerStyleSheets` instantiation call accepts an `options` object as a first argument. The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
 
-#### Examples
+The `new ServerStyleSheets([options])` instantiation accepts an options object as a first argument.
 
-```js
-import { ServerStyleSheets } from '@material-ui/styles';
+1. `options` (*Object* [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
 
-const sheets = new ServerStyleSheets({
-  disableGeneration: true,
-});
-```
+  **Examples**
+
+  ```js
+  import { ServerStyleSheets } from '@material-ui/styles';
+  import generateClassName from './generateClassName';
+
+  const sheets = new ServerStyleSheets({ generateClassName });
+  ```
 
 ### `sheets.collect(node) => void`
 
