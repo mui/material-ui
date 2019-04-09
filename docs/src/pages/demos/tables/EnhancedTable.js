@@ -21,10 +21,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
-let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
-  counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
+  return { name, calories, fat, carbs, protein };
 }
 
 function desc(a, b, orderBy) {
@@ -228,19 +226,19 @@ function EnhancedTable() {
 
   function handleSelectAllClick(event) {
     if (event.target.checked) {
-      const newSelecteds = data.map(n => n.id);
+      const newSelecteds = data.map(n => n.name);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   }
 
-  function handleClick(event, id) {
-    const selectedIndex = selected.indexOf(id);
+  function handleClick(event, name) {
+    const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
+      newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -267,7 +265,7 @@ function EnhancedTable() {
     setDense(event.target.checked);
   }
 
-  const isSelected = id => selected.indexOf(id) !== -1;
+  const isSelected = name => selected.indexOf(name) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -292,28 +290,28 @@ function EnhancedTable() {
             <TableBody>
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
-                  const isItemSelected = isSelected(n.id);
+                .map(row => {
+                  const isItemSelected = isSelected(row.name);
                   return (
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, n.id)}
+                      onClick={event => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={n.id}
+                      key={row.name}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox checked={isItemSelected} />
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        {n.name}
+                        {row.name}
                       </TableCell>
-                      <TableCell align="right">{n.calories}</TableCell>
-                      <TableCell align="right">{n.fat}</TableCell>
-                      <TableCell align="right">{n.carbs}</TableCell>
-                      <TableCell align="right">{n.protein}</TableCell>
+                      <TableCell align="right">{row.calories}</TableCell>
+                      <TableCell align="right">{row.fat}</TableCell>
+                      <TableCell align="right">{row.carbs}</TableCell>
+                      <TableCell align="right">{row.protein}</TableCell>
                     </TableRow>
                   );
                 })}

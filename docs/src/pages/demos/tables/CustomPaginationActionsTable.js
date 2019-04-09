@@ -80,10 +80,8 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-let counter = 0;
 function createData(name, calories, fat) {
-  counter += 1;
-  return { id: counter, name, calories, fat };
+  return { name, calories, fat };
 }
 
 const useStyles2 = makeStyles(theme => ({
@@ -138,7 +136,7 @@ function CustomPaginationActionsTable() {
         <Table className={classes.table}>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-              <TableRow key={row.id}>
+              <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
