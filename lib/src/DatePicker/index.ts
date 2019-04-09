@@ -1,10 +1,10 @@
-import { DatePickerInlineProps } from './DatePickerInline';
-import { DatePickerModalProps } from './DatePickerModal';
+import { DatePickerProps } from './DatePicker';
+import { KeyboardDatePickerProps } from './KeyboardDatePicker';
 
-export type DatePickerProps = DatePickerModalProps;
+export type DatePickerProps = DatePickerProps;
 
-export type DatePickerInlineProps = DatePickerInlineProps;
+export type KeyboardDatePickerProps = KeyboardDatePickerProps;
 
-export { default } from './DatePickerModal';
+export { KeyboardDatePicker } from './KeyboardDatePicker';
 
-export { default as InlineDatePicker } from './DatePickerInline';
+export { default } from './DatePicker';

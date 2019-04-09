@@ -1,15 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 const parser = require('react-docgen-typescript').withDefaultConfig({
-  skipPropsWithoutDoc: true,
+  propFilter: {
+    skipPropsWithoutDoc: true,
+    skipPropsWithName: ['ViewContainerComponent'],
+  },
 });
 
 const doc = {};
 const srcPath = path.resolve(__dirname, '..', '..', 'lib', 'src');
 const files = [
-  'DatePicker/DatePickerModal.tsx',
-  'TimePicker/TimePickerModal.tsx',
-  'DateTimePicker/DateTimePickerModal.tsx',
+  'DatePicker/DatePicker.tsx',
+  'TimePicker/TimePicker.tsx',
+  'DateTimePicker/DateTimePicker.tsx',
 ];
 
 files.forEach(filePart => {

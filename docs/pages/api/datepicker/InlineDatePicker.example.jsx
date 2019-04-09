@@ -1,4 +1,4 @@
-import { InlineDatePicker } from 'material-ui-pickers';
+import { DatePicker, KeyboardDatePicker } from 'material-ui-pickers';
 import React, { Fragment, useState } from 'react';
 
 function InlineDatePickerDemo(props) {
@@ -6,35 +6,35 @@ function InlineDatePickerDemo(props) {
 
   return (
     <Fragment>
-      <div className="picker">
-        <InlineDatePicker label="Basic example" value={selectedDate} onChange={handleDateChange} />
-      </div>
+      <DatePicker
+        variant="inline"
+        label="Basic example"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
-      <div className="picker">
-        <InlineDatePicker
-          onlyCalendar
-          label="Only calendar"
-          helperText="No year selection"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <DatePicker
+        onlyCalendar
+        variant="inline"
+        label="Only calendar"
+        helperText="No year selection"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
-      <div className="picker">
-        <InlineDatePicker
-          keyboard
-          clearable
-          variant="outlined"
-          label="With keyboard"
-          value={selectedDate}
-          onChange={handleDateChange}
-          format={props.getFormatString({
-            moment: 'MM/DD/YYYY',
-            dateFns: 'MM/dd/yyyy',
-          })}
-          mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
-        />
-      </div>
+      <KeyboardDatePicker
+        autoOk
+        variant="inline"
+        inputVariant="outlined"
+        label="With keyboard"
+        value={selectedDate}
+        onChange={handleDateChange}
+        InputAdornmentProps={{ position: 'start' }}
+        format={props.getFormatString({
+          moment: 'MM/DD/YYYY',
+          dateFns: 'MM/dd/yyyy',
+        })}
+      />
     </Fragment>
   );
 }

@@ -1,6 +1,6 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import TimePicker, { TimePickerProps } from '../../TimePicker/TimePicker';
+import TimePicker, { TimePickerProps } from '../../TimePicker/TimePickerRoot';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - TimePicker', () => {

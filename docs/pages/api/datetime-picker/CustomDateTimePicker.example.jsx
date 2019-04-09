@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
-import { DateTimePicker } from 'material-ui-pickers';
+import { DateTimePicker, KeyboardDatePicker } from 'material-ui-pickers';
 import { IconButton, InputAdornment } from '@material-ui/core';
 import AlarmIcon from '@material-ui/icons/AddAlarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
@@ -50,8 +50,7 @@ class CustomDateTimePicker extends PureComponent {
         </div>
 
         <div className="picker">
-          <DateTimePicker
-            keyboard
+          <KeyboardDatePicker
             label="Keyboard with error handler"
             onError={console.log}
             minDate={new Date('2018-01-01T00:00')}
@@ -61,28 +60,6 @@ class CustomDateTimePicker extends PureComponent {
               moment: 'YYYY/MM/DD hh:mm A',
               dateFns: 'yyyy/MM/dd hh:mm a',
             })}
-            disableOpenOnEnter
-            mask={[
-              /\d/,
-              /\d/,
-              /\d/,
-              /\d/,
-              '/',
-              /\d/,
-              /\d/,
-              '/',
-              /\d/,
-              /\d/,
-              ' ',
-              /\d/,
-              /\d/,
-              ':',
-              /\d/,
-              /\d/,
-              ' ',
-              /a|p/i,
-              'M',
-            ]}
           />
         </div>
 

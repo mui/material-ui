@@ -1,23 +1,24 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import DateTimePicker, { DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
 import { mount, utilsToUse } from '../test-utils';
 
+const format = process.env.UTILS === 'moment' ? 'MM/DD/YYYY HH:mm' : 'MM/dd/yyyy hh:mm';
+
 describe('e2e - DateTimePicker', () => {
   let component: ReactWrapper<DateTimePickerProps>;
+
+  const onCloseMock = jest.fn();
   const onChangeMock = jest.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
     component = mount(
       <DateTimePicker
-        date={utilsToUse.date('2018-01-01T00:00:00.000')}
+        format={format}
+        onClose={onCloseMock}
         onChange={onChangeMock}
-        openTo="date"
-        leftArrowIcon="keyboard_arrow_left"
-        rightArrowIcon="keyboard_arrow_right"
-        dateRangeIcon="date_range"
-        timeIcon="access_time"
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
   });
@@ -26,48 +27,82 @@ describe('e2e - DateTimePicker', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should render year selection', () => {
-    component
-      .find('ToolbarButton')
-      .first()
-      .simulate('click');
-
-    expect(component.find('Year').length).toBe(201);
-
-    component
-      .find('Year')
-      .at(1)
-      .simulate('click');
-    expect(onChangeMock).toHaveBeenCalled();
+  it('Should open modal with picker on click', () => {
+    component.find('input').simulate('click');
+    expect(component.find('Dialog').props().open).toBeTruthy();
   });
 
-  it('Should render hour view', () => {
-    component
-      .find('ToolbarButton')
-      .at(2)
-      .simulate('click');
-    expect(component.find('TimePickerView').props().type).toBe('hours');
+  it('Should update state when passing new value from outside', () => {
+    component.setProps({ value: '2018-01-01T00:00:00.000Z' });
+    component.update(); // make additional react tick to update text field
+
+    const expectedString = utilsToUse.format(utilsToUse.date('2018-01-01T00:00:00.000Z'), format);
+    expect(component.find('input').props().value).toBe(expectedString);
   });
 
-  it('Should render minutes view', () => {
+  it('Should change internal state on update', () => {
+    component.find('input').simulate('click');
     component
-      .find('ToolbarButton')
+      .find('Day button')
       .at(3)
       .simulate('click');
-    expect(component.find('TimePickerView').props().type).toBe('minutes');
+
+    expect(
+      component
+        .find('ToolbarButton')
+        .at(0)
+        .text()
+    ).toBe('2018');
+    // expect(component.find('ToolbarButton').at(1).text()).toBe('Jan 3');
   });
 
-  it('Should change meridiem', () => {
-    component
-      .find('ToolbarButton')
-      .at(5)
-      .simulate('click');
+  it('Should handle accept on enter', () => {
+    component.find('input').simulate('click');
+    const onKeyDown = component
+      .find('EventListener')
+      .at(0)
+      .props().onKeyDown;
 
-    if (process.env.UTILS === 'moment') {
-      expect(onChangeMock).toHaveBeenCalled();
-      return;
+    if (!onKeyDown) {
+      throw new Error('Expected onKeyDown to be non-null');
     }
 
-    expect(onChangeMock).toHaveBeenCalledWith(utilsToUse.date('2018-01-01T12:00:00.000'), false);
+    act(() => {
+      onKeyDown({
+        key: 'Enter',
+        preventDefault: jest.fn(),
+      } as any);
+    });
+
+    expect(onCloseMock).toHaveBeenCalled();
+    expect(onChangeMock).toHaveBeenCalled();
+  });
+});
+
+describe('e2e -- Controlling open state', () => {
+  let component: ReactWrapper<DateTimePickerProps>;
+  const onCloseMock = jest.fn();
+
+  beforeEach(() => {
+    component = mount(
+      <DateTimePicker
+        open
+        onClose={onCloseMock}
+        onChange={jest.fn()}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      />
+    );
+  });
+
+  it('Should be opened', () => {
+    expect(component.find('WithStyles(Dialog)').prop('open')).toBeTruthy();
+  });
+
+  it('Should close', () => {
+    component
+      .find('DialogActions button')
+      .at(0)
+      .simulate('click');
+    expect(onCloseMock).toHaveBeenCalled();
   });
 });

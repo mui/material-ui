@@ -1,21 +1,24 @@
 import * as React from 'react';
 import { getFormatByViews } from '../_helpers/date-utils';
 import { DateValidationProps, getError } from '../_helpers/text-field-helper';
-import { usePickerState } from '../_shared/hooks/usePickerState';
+import {
+  BaseKeyboardPickerProps,
+  useKeyboardPickerState,
+} from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
+import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 import { datePickerDefaultProps } from '../constants/prop-types';
-import { BasePickerProps } from '../typings/BasePicker';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
 
-export type DatePickerProps = BasePickerProps &
+export type KeyboardDatePickerProps = BaseDatePickerProps &
   DateValidationProps &
-  BaseDatePickerProps &
-  ExtendWrapper<PureDateInputProps>;
+  BaseKeyboardPickerProps &
+  ExtendWrapper<KeyboardDateInputProps>;
 
-export const DatePicker: React.FC<DatePickerProps> = props => {
+export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
   const {
+    variant,
     allowKeyboardControl,
     animateYearScrolling,
     autoOk,
@@ -35,29 +38,28 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
     onChange,
     onMonthChange,
     onYearChange,
-    onOpen,
-    onClose,
     openTo,
     openToYearSelection,
+    onOpen,
+    onClose,
     renderDay,
     rightArrowIcon,
     shouldDisableDate,
     value,
-    variant,
     views,
     ...other
   } = props;
 
   const utils = useUtils();
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
+  const { pickerProps, inputProps, wrapperProps } = useKeyboardPickerState(props, {
     getDefaultFormat: () => getFormatByViews(views!, utils),
-    getValidationError: () => getError(value, utils, props),
+    getValidationError: () => getError(value, utils, props as any),
   });
 
   return (
     <Wrapper
       variant={variant}
-      InputComponent={PureDateInput}
+      InputComponent={KeyboardDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}
       {...other}
@@ -80,10 +82,10 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
       />
     </Wrapper>
   );
-};
+}
 
-DatePicker.defaultProps = datePickerDefaultProps;
+KeyboardDatePicker.defaultProps = datePickerDefaultProps;
 
-export default React.forwardRef((props: DatePickerProps, ref) => (
-  <DatePicker {...props} forwardedRef={ref} />
+export default React.forwardRef((props: KeyboardDatePickerProps, ref) => (
+  <KeyboardDatePicker {...props} forwardedRef={ref} />
 ));

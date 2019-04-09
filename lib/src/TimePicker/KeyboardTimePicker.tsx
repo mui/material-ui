@@ -1,39 +1,40 @@
 import * as React from 'react';
 import { BaseValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
-import { usePickerState } from '../_shared/hooks/usePickerState';
+import {
+  BaseKeyboardPickerProps,
+  useKeyboardPickerState,
+} from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
+import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 import { timePickerDefaultProps } from '../constants/prop-types';
-import { BasePickerProps } from '../typings/BasePicker';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 
-export type TimePickerProps = BasePickerProps &
+export type KeyboardTimePickerProps = BaseTimePickerProps &
   BaseValidationProps &
-  BaseTimePickerProps &
-  ExtendWrapper<PureDateInputProps>;
+  BaseKeyboardPickerProps &
+  ExtendWrapper<KeyboardDateInputProps>;
 
-export const TimePicker: React.FC<TimePickerProps> = props => {
+export function KeyboardTimePicker(props: KeyboardTimePickerProps) {
   const {
     ampm,
     seconds,
     minutesStep,
-    autoOk,
+    variant,
     format,
     forwardedRef,
     initialFocusedDate,
-    labelFunc,
     invalidDateMessage,
+    labelFunc,
     onAccept,
     onChange,
     value,
-    variant,
     ...other
   } = props;
 
   const utils = useUtils();
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
-    getValidationError: () => getError(value, utils, props),
+  const { pickerProps, inputProps, wrapperProps } = useKeyboardPickerState(props, {
+    getValidationError: () => getError(value, utils, props as any),
     getDefaultFormat: () =>
       pick12hOr24hFormat(format, ampm, {
         '12h': utils.time12hFormat,
@@ -44,7 +45,7 @@ export const TimePicker: React.FC<TimePickerProps> = props => {
   return (
     <Wrapper
       variant={variant}
-      InputComponent={PureDateInput}
+      InputComponent={KeyboardDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}
       {...other}
@@ -52,10 +53,10 @@ export const TimePicker: React.FC<TimePickerProps> = props => {
       <TimePickerRoot {...pickerProps} ampm={ampm} seconds={seconds} minutesStep={minutesStep} />
     </Wrapper>
   );
-};
+}
 
-TimePicker.defaultProps = timePickerDefaultProps;
+KeyboardTimePicker.defaultProps = timePickerDefaultProps;
 
-export default React.forwardRef((props: TimePickerProps, ref) => (
-  <TimePicker {...props} forwardedRef={ref} />
+export default React.forwardRef((props: KeyboardTimePickerProps, ref) => (
+  <KeyboardTimePicker {...props} forwardedRef={ref} />
 ));

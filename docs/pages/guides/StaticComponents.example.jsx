@@ -1,44 +1,35 @@
 import React, { useState } from 'react';
 import { Paper } from '@material-ui/core/';
-
 import DateFnsUtils from '@date-io/date-fns';
-import { BasePicker, MuiPickersUtilsProvider, TimePickerView, Calendar } from 'material-ui-pickers';
+import { usePickerState, TimePickerView, Calendar } from 'material-ui-pickers';
 
 function StaticPickers() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [value, handleDateChange] = useState(new Date());
+  const { pickerProps, wrapperProps, inputProps } = usePickerState(
+    { value, onChange: handleDateChange },
+    {
+      getDefaultFormat: () => 'MM/dd/yyyy',
+      getValidationError: () => null,
+    }
+  );
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <BasePicker value={selectedDate} onChange={handleDateChange}>
-        {({
-          date,
-          handleAccept,
-          handleChange,
-          handleClear,
-          handleDismiss,
-          handleSetTodayDate,
-          handleTextFieldChange,
-          pick12hOr24hFormat,
-        }) => (
-          <div>
-            <div className="picker">
-              <Paper style={{ overflow: 'hidden' }}>
-                <Calendar date={date} onChange={handleChange} />
-              </Paper>
-            </div>
+    <div>
+      <div className="picker">
+        <Paper style={{ overflow: 'hidden' }}>
+          <Calendar {...pickerProps} />
+        </Paper>
+      </div>
 
-            <TimePickerView
-              type="hours"
-              date={date}
-              ampm={false}
-              onMinutesChange={() => {}}
-              onSecondsChange={() => {}}
-              onHourChange={handleChange}
-            />
-          </div>
-        )}
-      </BasePicker>
-    </MuiPickersUtilsProvider>
+      <TimePickerView // or just directly use components
+        type="hours"
+        date={value}
+        ampm={false}
+        onMinutesChange={() => {}}
+        onSecondsChange={() => {}}
+        onHourChange={handleDateChange}
+      />
+    </div>
   );
 }
 
