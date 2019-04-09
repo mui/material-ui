@@ -18,7 +18,7 @@ export interface SwitchBaseProps
   readOnly?: boolean;
   required?: boolean;
   tabIndex?: number;
-  value?: string | number | boolean;
+  value?: any;
 }
 
 export type SwitchBaseClassKey = 'root' | 'checked' | 'disabled' | 'input';
