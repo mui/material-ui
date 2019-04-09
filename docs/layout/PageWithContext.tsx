@@ -1,17 +1,16 @@
-import React, { useState, useCallback } from 'react';
-import { MuiThemeProvider, Theme, createMuiTheme, jssPreset, CssBaseline } from '@material-ui/core';
-import JssProvider from 'react-jss/lib/JssProvider';
-
-import Layout from './Layout';
 import rtl from 'jss-rtl';
+import Layout from './Layout';
+import JssProvider from 'react-jss/lib/JssProvider';
+import React, { useState, useCallback } from 'react';
+import orange from '@material-ui/core/colors/deepOrange';
 import { create } from 'jss';
-import { UtilsContext } from '../_shared/UtilsServiceContext';
-import { createUtilsService, UtilsLib, utilsMap } from '../utils/utilsService';
+import { SnackbarProvider } from 'notistack';
+import { setPrismTheme } from '../utils/prism';
 import { PageContext } from '../utils/getPageContext';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
-import { setPrismTheme } from '../utils/prism';
-import orange from '@material-ui/core/colors/deepOrange';
-import { SnackbarProvider } from 'notistack';
+import { UtilsContext } from '../_shared/UtilsServiceContext';
+import { createUtilsService, UtilsLib, utilsMap } from '../utils/utilsService';
+import { MuiThemeProvider, Theme, createMuiTheme, jssPreset, CssBaseline } from '@material-ui/core';
 
 export type ThemeType = 'light' | 'dark';
 export type Direction = Theme['direction'];
@@ -37,11 +36,11 @@ const createCustomMuiTheme = (theme: ThemeType, direction: Theme['direction']) =
   });
 };
 
-type Props = {
+interface Props {
   children: React.ReactChild;
   pageContext: PageContext;
   initialTheme?: ThemeType;
-};
+}
 
 export const PageWithContexts: React.SFC<Props> = ({
   children,

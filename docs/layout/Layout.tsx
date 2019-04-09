@@ -1,6 +1,15 @@
-import React, { Component } from 'react';
 import clsx from 'clsx';
+import React, { Component } from 'react';
+import MenuIcon from '@material-ui/icons/Menu';
+import DrawerMenu from './components/DrawerMenu';
+import Github from '../_shared/svgIcons/GithubIcon';
+import SettingsIcon from '@material-ui/icons/Settings';
+import LightbulbOutlineIcon from '../_shared/svgIcons/LightbulbIcon';
+import TextDirectionRtLIcon from '@material-ui/icons/FormatTextdirectionRToL';
+import TextDirectionLtrIcon from '@material-ui/icons/FormatTextdirectionLToR';
+import { createOverrides } from './styleOverrides';
 import { withRouter, WithRouterProps } from 'next/router';
+import { utilsMap, UtilsLib } from '../utils/utilsService';
 import {
   Hidden,
   Drawer,
@@ -15,17 +24,6 @@ import {
   Menu,
   MenuItem,
 } from '@material-ui/core';
-
-import Github from '../_shared/svgIcons/GithubIcon';
-import DrawerMenu from './components/DrawerMenu';
-import { utilsMap, UtilsLib } from '../utils/utilsService';
-
-import MenuIcon from '@material-ui/icons/Menu';
-import SettingsIcon from '@material-ui/icons/Settings';
-import TextDirectionLtrIcon from '@material-ui/icons/FormatTextdirectionLToR';
-import TextDirectionRtLIcon from '@material-ui/icons/FormatTextdirectionRToL';
-import LightbulbOutlineIcon from '../_shared/svgIcons/LightbulbIcon';
-import { createOverrides } from './styleOverrides';
 
 interface LayoutProps extends WithRouterProps, WithStyles<typeof styles, true> {
   toggleThemeType: () => void;

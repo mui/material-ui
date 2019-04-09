@@ -1,8 +1,8 @@
 import React from 'react';
 import App from 'next/app';
-import { PageWithContexts, ThemeType } from '../layout/PageWithContext';
-import getPageContext from '../utils/getPageContext';
 import cookies from 'next-cookies';
+import getPageContext from '../utils/getPageContext';
+import { PageWithContexts, ThemeType } from '../layout/PageWithContext';
 
 class MyApp extends App<{ theme: ThemeType }> {
   pageContext = getPageContext();

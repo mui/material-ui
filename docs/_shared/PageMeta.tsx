@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { withRouter, WithRouterProps } from 'next/router';
 import { LOGO_URL, HOST_URL } from '_constants';
+import { withRouter, WithRouterProps } from 'next/router';
 
 interface PageMetaProps extends WithRouterProps {
   title?: string;

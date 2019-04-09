@@ -1,5 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import PageMeta from '_shared/PageMeta';
+import Logo from '_shared/svgIcons/Logo';
+import PatreonSponsors from '_shared/PatreonSponsors';
 import {
   Button,
   createStyles,
@@ -10,10 +13,6 @@ import {
   withStyles,
   WithStyles,
 } from '@material-ui/core';
-
-import Logo from '_shared/svgIcons/Logo';
-import PageMeta from '_shared/PageMeta';
-import PatreonSponsors from '_shared/PatreonSponsors';
 
 const styles = (theme: Theme) =>
   createStyles({
