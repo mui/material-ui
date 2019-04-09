@@ -23,7 +23,7 @@ export const styles = theme => {
     }),
   };
   const placeholderHidden = {
-    opacity: 0,
+    opacity: '0 !important',
   };
   const placeholderVisible = {
     opacity: light ? 0.42 : 0.5,
