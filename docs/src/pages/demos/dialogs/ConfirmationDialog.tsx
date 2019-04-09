@@ -31,56 +31,47 @@ const options = [
 ];
 
 export interface ConfirmationDialogRawProps {
+  classes: Record<'paper', 'string'>;
   value: string;
   open: boolean;
   onClose: (value: string) => void;
 }
 
-const useConfirmationDialogRawStyles = makeStyles({
-  paper: {
-    width: '80%',
-    maxHeight: 435,
-  },
-});
-
 function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
-  const classes = useConfirmationDialogRawStyles();
-  const [value, setValue] = React.useState(props.value);
+  const { onClose, value: valueProp, ...other } = props;
+  const [value, setValue] = React.useState(valueProp);
   const radioGroupRef = React.useRef<HTMLElement>(null);
 
-  React.useEffect(() => {
-    setValue(props.value);
-  }, [props.value]);
+  if (valueProp !== value) {
+    setValue(valueProp);
+  }
 
   function handleEntering() {
-    if (radioGroupRef.current) {
+    if (radioGroupRef.current != null) {
       radioGroupRef.current.focus();
     }
   }
 
   function handleCancel() {
-    props.onClose(props.value);
+    onClose(value);
   }
 
   function handleOk() {
-    props.onClose(value);
+    onClose(value);
   }
 
   function handleChange(event: React.ChangeEvent<{}>, newValue: string) {
     setValue(newValue);
   }
 
-  const { value: valueProps, onClose, ...otherProps } = props;
-
   return (
     <Dialog
-      classes={classes}
       disableBackdropClick
       disableEscapeKeyDown
       maxWidth="xs"
       onEntering={handleEntering}
       aria-labelledby="confirmation-dialog-title"
-      {...otherProps}
+      {...other}
     >
       <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
       <DialogContent dividers>
@@ -110,20 +101,23 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
 
 ConfirmationDialogRaw.propTypes = {
   onClose: PropTypes.func,
-  open: PropTypes.bool,
   value: PropTypes.string,
 };
 
-const useConfirmationDialogStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
+  paper: {
+    width: '80%',
+    maxHeight: 435,
+  },
 }));
 
 function ConfirmationDialog() {
-  const classes = useConfirmationDialogStyles();
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
 
@@ -155,7 +149,14 @@ function ConfirmationDialog() {
         <ListItem button divider disabled>
           <ListItemText primary="Default notification ringtone" secondary="Tethys" />
         </ListItem>
-        <ConfirmationDialogRaw open={open} onClose={handleClose} value={value} />
+        <ConfirmationDialogRaw
+          classes={{
+            paper: classes.paper,
+          }}
+          open={open}
+          onClose={handleClose}
+          value={value}
+        />
       </List>
     </div>
   );
