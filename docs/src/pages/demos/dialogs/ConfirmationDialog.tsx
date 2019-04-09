@@ -109,8 +109,8 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
 }
 
 ConfirmationDialogRaw.propTypes = {
-  open: PropTypes.bool,
   onClose: PropTypes.func,
+  open: PropTypes.bool,
   value: PropTypes.string,
 };
 
