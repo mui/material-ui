@@ -33,7 +33,7 @@ function NativeSelects() {
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth);
+    setLabelWidth(inputLabel.current ? inputLabel.current.offsetWidth : 0);
   }, []);
 
   const handleChange = name => event => {
