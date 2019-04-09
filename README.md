@@ -21,6 +21,8 @@
 [![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui/next.svg)](https://david-dm.org/mui-org/material-ui/next?type=dev)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](http://isitmaintained.com/project/mui-org/material-ui "Average time to resolve an issue")
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/material-ui-docs/localized.svg?cache=v1)](https://translate.material-ui.com/project/material-ui-docs)
+[![Code-Typing-Tutor](https://code-typing-tutor.com/badge/react-material-ui.svg)](https://code-typing-tutor.com/react-material-ui)
+
 
 </div>
 
