@@ -1,20 +1,18 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { convertToMeridiem } from '../_helpers/time-utils';
+import * as PropTypes from 'prop-types';
+import View from './components/DateTimePickerView';
 import Calendar from '../DatePicker/components/Calendar';
+import DateTimePickerTabs from './components/DateTimePickerTabs';
 import YearSelection from '../DatePicker/components/YearSelection';
 import TimePickerView from '../TimePicker/components/TimePickerView';
 import DatetimePickerHeader, { MeridiemMode } from './components/DateTimePickerHeader';
-import DateTimePickerTabs from './components/DateTimePickerTabs';
-import View from './components/DateTimePickerView';
-
-import { Omit } from '@material-ui/core';
-import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import DateTimePickerView, { DateTimePickerViewType } from '../constants/DateTimePickerView';
+import { Omit } from '@material-ui/core';
+import { MaterialUiPickersDate } from '../typings/date';
+import { convertToMeridiem } from '../_helpers/time-utils';
+import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import { BaseDatePickerProps } from '../DatePicker/DatePickerRoot';
 import { BaseTimePickerProps } from '../TimePicker/TimePickerRoot';
-import { MaterialUiPickersDate } from '../typings/date';
 
 export interface BaseDateTimePickerProps
   extends Omit<BaseTimePickerProps, 'seconds'>,

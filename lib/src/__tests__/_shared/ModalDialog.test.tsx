@@ -1,8 +1,8 @@
-import { WithStyles } from '@material-ui/core';
-import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import { ModalDialog, ModalDialogProps, styles } from '../../_shared/ModalDialog';
+import { ShallowWrapper } from 'enzyme';
 import { shallow } from '../test-utils';
+import { WithStyles } from '@material-ui/core';
+import { ModalDialog, ModalDialogProps, styles } from '../../_shared/ModalDialog';
 
 const initialProps: ModalDialogProps & WithStyles<typeof styles> = {
   onAccept: jest.fn(),

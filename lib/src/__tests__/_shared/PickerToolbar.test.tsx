@@ -1,6 +1,6 @@
-import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import PickerToolbar, { PickerToolbarProps } from '../../_shared/PickerToolbar';
+import { ShallowWrapper } from 'enzyme';
 import { shallow } from '../test-utils';
 
 describe('PickerToolbar', () => {

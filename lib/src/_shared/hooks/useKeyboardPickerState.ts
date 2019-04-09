@@ -1,12 +1,12 @@
-import { IUtils } from '@date-io/core/IUtils';
+import { useUtils } from './useUtils';
 import { Omit } from '@material-ui/core';
 import { useEffect, useState } from 'react';
-import { getDisplayDate } from '../../_helpers/text-field-helper';
+import { IUtils } from '@date-io/core/IUtils';
 import { DateType } from '../../constants/prop-types';
 import { BasePickerProps } from '../../typings/BasePicker';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { HookOptions, usePickerState } from './usePickerState';
-import { useUtils } from './useUtils';
+import { getDisplayDate } from '../../_helpers/text-field-helper';
 
 export interface BaseKeyboardPickerProps extends Omit<BasePickerProps, 'value' | 'onChange'> {
   value?: DateType;

@@ -1,10 +1,10 @@
-import { Theme } from '@material-ui/core';
-import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
+import createStyles from '@material-ui/core/styles/createStyles';
 import ClockType, { ClockTypeType } from '../../constants/ClockType';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import { Theme } from '@material-ui/core';
 
 export interface ClockPointerProps extends WithStyles<typeof styles> {
   value: number;

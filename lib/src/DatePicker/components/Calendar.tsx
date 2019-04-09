@@ -1,18 +1,17 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import Day from './Day';
+import DayWrapper from './DayWrapper';
+import CalendarHeader from './CalendarHeader';
 import EventListener from 'react-event-listener';
-
-import { Theme } from '@material-ui/core';
-import { IconButtonProps } from '@material-ui/core/IconButton';
+import SlideTransition, { SlideDirection } from './SlideTransition';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import { Theme } from '@material-ui/core';
+import { MaterialUiPickersDate } from '../../typings/date';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import { DateType, DomainPropTypes } from '../../constants/prop-types';
-import { MaterialUiPickersDate } from '../../typings/date';
-import CalendarHeader from './CalendarHeader';
-import Day from './Day';
-import DayWrapper from './DayWrapper';
-import SlideTransition, { SlideDirection } from './SlideTransition';
 
 export type RenderDay = (
   day: MaterialUiPickersDate,

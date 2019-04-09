@@ -1,10 +1,10 @@
-import { Theme } from '@material-ui/core';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
+import Typography from '@material-ui/core/Typography';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
+import { Theme } from '@material-ui/core';
 
 const positions = {
   0: [0, 40],

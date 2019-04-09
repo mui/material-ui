@@ -1,13 +1,13 @@
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import Year from './Year';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
 // @ts-ignore
 import { findDOMNode } from 'react-dom';
+import { MaterialUiPickersDate } from '../../typings/date';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import { DateType, DomainPropTypes } from '../../constants/prop-types';
-import { MaterialUiPickersDate } from '../../typings/date';
-import Year from './Year';
 
 export interface YearSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
   date: MaterialUiPickersDate;

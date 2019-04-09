@@ -1,8 +1,8 @@
-import { IUtils } from '@date-io/core/IUtils';
-import { Omit } from '@material-ui/core';
 import * as React from 'react';
-import { MuiPickersContext } from '../MuiPickersUtilsProvider';
+import { Omit } from '@material-ui/core';
+import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../typings/date';
+import { MuiPickersContext } from '../MuiPickersUtilsProvider';
 
 export interface WithUtilsProps {
   utils: IUtils<MaterialUiPickersDate>;

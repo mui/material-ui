@@ -1,12 +1,11 @@
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { Theme } from '@material-ui/core';
-import createStyles from '@material-ui/core/styles/createStyles';
-import { getHours, getMinutes } from '../../_helpers/time-utils';
-import ClockType, { ClockTypeType } from '../../constants/ClockType';
+import * as PropTypes from 'prop-types';
 import ClockPointer from './ClockPointer';
+import createStyles from '@material-ui/core/styles/createStyles';
+import ClockType, { ClockTypeType } from '../../constants/ClockType';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import { Theme } from '@material-ui/core';
+import { getHours, getMinutes } from '../../_helpers/time-utils';
 
 export interface ClockProps extends WithStyles<typeof styles> {
   type: ClockTypeType;
@@ -14,7 +13,7 @@ export interface ClockProps extends WithStyles<typeof styles> {
   onChange: (value: number, isFinish?: boolean) => void;
   ampm?: boolean;
   minutesStep?: number;
-  children: Array<React.ReactElement<any>>;
+  children: React.ReactElement<any>[];
 }
 
 export class Clock extends React.Component<ClockProps> {

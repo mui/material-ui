@@ -1,14 +1,14 @@
 import * as React from 'react';
+import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
+import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
+import { useUtils } from '../_shared/hooks/useUtils';
+import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
+import { timePickerDefaultProps } from '../constants/prop-types';
 import { BaseValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import {
   BaseKeyboardPickerProps,
   useKeyboardPickerState,
 } from '../_shared/hooks/useKeyboardPickerState';
-import { useUtils } from '../_shared/hooks/useUtils';
-import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
-import { timePickerDefaultProps } from '../constants/prop-types';
-import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
-import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 
 export type KeyboardTimePickerProps = BaseTimePickerProps &
   BaseValidationProps &

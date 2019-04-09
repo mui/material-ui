@@ -1,9 +1,9 @@
-import { Theme } from '@material-ui/core';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
+import { Theme } from '@material-ui/core';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export type SlideDirection = 'right' | 'left';

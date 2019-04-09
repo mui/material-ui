@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { BaseValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
-import { usePickerState } from '../_shared/hooks/usePickerState';
+import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { timePickerDefaultProps } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
-import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
+import { usePickerState } from '../_shared/hooks/usePickerState';
+import { timePickerDefaultProps } from '../constants/prop-types';
+import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
+import { BaseValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 
 export type TimePickerProps = BasePickerProps &
   BaseValidationProps &

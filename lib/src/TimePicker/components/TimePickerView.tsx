@@ -1,11 +1,10 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Clock from './Clock';
-
-import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import ClockType, { ClockTypeType } from '../../constants/ClockType';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
+import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 
 export interface TimePickerViewProps extends WithUtilsProps {
   date: MaterialUiPickersDate;

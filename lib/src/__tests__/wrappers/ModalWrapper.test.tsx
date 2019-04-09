@@ -1,8 +1,8 @@
-import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import { PureDateInput } from '../../_shared/PureDateInput';
 import ModalWrapper, { ModalWrapperProps } from '../../wrappers/ModalWrapper';
+import { ShallowWrapper } from 'enzyme';
 import { shallow } from '../test-utils';
+import { PureDateInput } from '../../_shared/PureDateInput';
 
 describe('ModalWrapper', () => {
   const onAcceptMock = jest.fn();

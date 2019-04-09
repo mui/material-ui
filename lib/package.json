@@ -65,8 +65,7 @@
     "build:typescript": "tsc --project tsconfig.json",
     "build": "npm run build:typescript && npm run build:bundle && npm run build:copy",
     "build:analyze": "npm run build",
-    "release": "npm run test && npm run build && yarn publish build -f",
-    "lint": "tslint --project tsconfig.json"
+    "release": "npm run test && npm run build && yarn publish build -f"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -113,7 +112,6 @@
     "size-limit": "^0.21.1",
     "ts-jest": "^23.10.5",
     "ts-lib": "0.0.5",
-    "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.3.3"
   },

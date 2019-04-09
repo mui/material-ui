@@ -1,5 +1,5 @@
-import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from './date';
+import { DateType } from '../constants/prop-types';
 
 export interface BasePickerProps {
   /** Picker value */
