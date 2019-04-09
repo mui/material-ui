@@ -10,7 +10,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
-import Chip from '@material-ui/core/Chip';
+import Chip, { ChipProps } from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
@@ -130,12 +130,12 @@ class ChipsPlayground extends React.Component<Props, State> {
             <Grid item className={classes.chipWrapper}>
               <Chip
                 label="Awesome Chip Component"
-                color={color}
+                color={color as ChipProps['color']}
                 deleteIcon={onDelete === 'custom' ? <DoneIcon /> : undefined}
                 onDelete={onDelete !== 'none' ? this.handleDeleteExample : undefined}
                 avatar={avatarToPlayground}
                 icon={iconToPlayground}
-                variant={variant}
+                variant={variant as ChipProps['variant']}
               />
             </Grid>
           </Grid>
