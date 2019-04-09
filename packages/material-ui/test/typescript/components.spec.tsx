@@ -69,7 +69,6 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-  withMobileDialog,
 } from '@material-ui/core';
 import {
   withStyles,
@@ -951,17 +950,6 @@ const SelectTest = () => (
 );
 
 const InputAdornmentTest = () => <InputAdornment position="end" onClick={() => alert('Hello')} />;
-
-const ResponsiveComponentTest = () => {
-  const ResponsiveComponent = withMobileDialog({
-    breakpoint: 'sm',
-  })(({ children, width, fullScreen }) => (
-    <div style={{ width, position: fullScreen ? 'fixed' : 'static' }}>{children}</div>
-  ));
-  <ResponsiveComponent />;
-
-  const ResponsiveDialogComponent = withMobileDialog<DialogProps>()(Dialog);
-};
 
 const TooltipComponentTest = () => (
   <div>
