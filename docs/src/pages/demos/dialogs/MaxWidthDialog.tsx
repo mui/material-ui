@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
+import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -14,24 +14,33 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 
-const styles = theme => ({
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: 'auto',
-    width: 'fit-content',
-  },
-  formControl: {
-    marginTop: theme.spacing(2),
-    minWidth: 120,
-  },
-  formControlLabel: {
-    marginTop: theme.spacing(1),
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      margin: 'auto',
+      width: 'fit-content',
+    },
+    formControl: {
+      marginTop: theme.spacing(2),
+      minWidth: 120,
+    },
+    formControlLabel: {
+      marginTop: theme.spacing(1),
+    },
+  });
 
-class MaxWidthDialog extends React.Component {
-  state = {
+export type MaxWidthDialogProps = WithStyles<typeof styles>;
+
+export interface MaxWidthDialogState {
+  open: boolean;
+  fullWidth: boolean;
+  maxWidth: string | boolean;
+}
+
+class MaxWidthDialog extends React.Component<MaxWidthDialogProps, MaxWidthDialogState> {
+  state: MaxWidthDialogState = {
     open: false,
     fullWidth: true,
     maxWidth: 'sm',
@@ -45,13 +54,13 @@ class MaxWidthDialog extends React.Component {
     this.setState({ open: false });
   };
 
-  handleMaxWidthChange = event => {
+  handleMaxWidthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const maxWidth = event.target.value === 'false' ? false : event.target.value;
 
     this.setState({ maxWidth });
   };
 
-  handleFullWidthChange = event => {
+  handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ fullWidth: event.target.checked });
   };
 
@@ -65,7 +74,7 @@ class MaxWidthDialog extends React.Component {
         </Button>
         <Dialog
           fullWidth={this.state.fullWidth}
-          maxWidth={this.state.maxWidth}
+          maxWidth={this.state.maxWidth as DialogProps['maxWidth']}
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="max-width-dialog-title"
@@ -118,8 +127,8 @@ class MaxWidthDialog extends React.Component {
   }
 }
 
-MaxWidthDialog.propTypes = {
+(MaxWidthDialog as React.ComponentClass<MaxWidthDialogProps, MaxWidthDialogState>).propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(MaxWidthDialog);
