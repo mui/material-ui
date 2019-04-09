@@ -86,7 +86,7 @@ RadioGroup.propTypes = {
   /**
    * The default `input` element value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  defaultValue: PropTypes.any,
   /**
    * The name used to reference the value of the control.
    */
@@ -110,7 +110,7 @@ RadioGroup.propTypes = {
   /**
    * Value of the selected radio button.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.any,
 };
 
 export default RadioGroup;
