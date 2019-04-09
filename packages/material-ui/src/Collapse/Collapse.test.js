@@ -278,7 +278,7 @@ describe('<Collapse />', () => {
       );
 
       wrapper.setProps({ in: true });
-      assert.strictEqual(handleEntering.args[0][0].style.transitionDuration, '556ms', true);
+      assert.strictEqual(handleEntering.args[0][0].style.transitionDuration, '556ms');
     });
 
     it('should create proper sharp animation onExiting', () => {
