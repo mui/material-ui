@@ -6,13 +6,16 @@ import { createShallow, createMount, describeConformance } from '@material-ui/co
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Popper from './Popper';
+import { Transition } from 'react-transition-group';
 
 describe('<Popper />', () => {
   let shallow;
   let mount;
+  const defaultChildrenId = '__Popper_test_js__children__id__';
+  const defaultChildrenSelector = `#${defaultChildrenId}`;
   const defaultProps = {
     anchorEl: () => window.document.createElement('div'),
-    children: <span>Hello World</span>,
+    children: <span id={defaultChildrenId}>Hello World</span>,
     open: true,
   };
 
@@ -158,14 +161,54 @@ describe('<Popper />', () => {
           )}
         </Popper>,
       );
-      wrapper.setProps({
-        open: false,
-      });
+      wrapper.setProps({ open: false });
       wrapper
         .find(Grow)
         .props()
         .onExited();
       assert.strictEqual(wrapper.find('Popper').instance().state.exited, true);
+    });
+  });
+
+  describe('prop: keepMounted', () => {
+    it('should keep the children in the DOM', () => {
+      const wrapper = mount(<Popper {...defaultProps} open={false} keepMounted />);
+      assert.isTrue(wrapper.exists(defaultChildrenSelector));
+    });
+
+    /* Test case for https://github.com/mui-org/material-ui/issues/15180 */
+    it('should remove from DOM when closed whilst transition has entering status', () => {
+      const onEntering = spy();
+      const onEntered = spy();
+      const wrapper = mount(
+        <Popper {...defaultProps} open={false} keepMounted={false} transition>
+          {({ TransitionProps }) => (
+            <Transition
+              {...TransitionProps}
+              appear
+              exit={false} // Disable exit animation, so it immediately unmounts on close
+              timeout={500}
+              onEntering={onEntering}
+              onEntered={onEntered}
+            >
+              {defaultProps.children}
+            </Transition>
+          )}
+        </Popper>,
+      );
+      assert.isFalse(wrapper.exists(defaultChildrenSelector));
+      assert.strictEqual(onEntering.callCount, 0);
+
+      wrapper.setProps({ open: true });
+      wrapper.update();
+      assert.isTrue(wrapper.exists(defaultChildrenSelector));
+      assert.strictEqual(onEntering.callCount, 1);
+      assert.strictEqual(onEntered.callCount, 0);
+
+      wrapper.setProps({ open: false });
+      wrapper.update();
+      assert.isFalse(wrapper.exists(defaultChildrenSelector));
+      assert.strictEqual(onEntered.callCount, 0); // Ensuring component was never "entered"
     });
   });
 
