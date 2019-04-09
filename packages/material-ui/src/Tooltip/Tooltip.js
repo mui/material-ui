@@ -145,10 +145,6 @@ function Tooltip(props) {
     };
   });
 
-  const onRootRef = ref => {
-    childrenRef.current = ref;
-  };
-
   const handleOpen = event => {
     // The mouseover event will trigger for every nested element in the tooltip.
     // We can skip rerendering when the tooltip is already open.
@@ -329,7 +325,7 @@ function Tooltip(props) {
 
   return (
     <React.Fragment>
-      <RootRef rootRef={onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
+      <RootRef rootRef={childrenRef}>{React.cloneElement(children, childrenProps)}</RootRef>
       <Popper
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,
