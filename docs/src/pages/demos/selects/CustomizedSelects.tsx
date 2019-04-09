@@ -60,11 +60,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 function CustomizedSelects() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
-
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setAge(event.target.value);
   };
-
   return (
     <form className={classes.root} autoComplete="off">
       <FormControl className={classes.margin}>
