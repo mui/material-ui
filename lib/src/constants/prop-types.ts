@@ -1,7 +1,7 @@
 import * as PropTypes from 'prop-types';
-import { DatePickerProps } from '../DatePicker/DatePicker';
-import { DateTimePickerProps } from '../DateTimePicker';
 import { TimePickerProps } from '../TimePicker';
+import { DateTimePickerProps } from '../DateTimePicker';
+import { DatePickerProps } from '../DatePicker/DatePicker';
 
 const date = PropTypes.oneOfType([
   PropTypes.object,
@@ -16,6 +16,7 @@ export type DateType = object | string | number | Date | null | undefined;
 
 export const DomainPropTypes = { date, datePickerView };
 
+/* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
 export const timePickerDefaultProps = {
   ampm: true,
   invalidDateMessage: 'Invalid Time Format',

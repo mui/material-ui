@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import { DatePicker, KeyboardDatePicker } from 'material-ui-pickers';
-import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
-import { MuiPickersContext } from 'material-ui-pickers';
 import LeftArrowIcon from '@material-ui/icons/KeyboardArrowLeft';
 import RightArrowIcon from '@material-ui/icons/KeyboardArrowRight';
+import { Grid, Typography } from '@material-ui/core';
+import { MuiPickersContext } from 'material-ui-pickers';
+import { DatePicker, KeyboardDatePicker } from 'material-ui-pickers';
+import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
 
 function Regression() {
   const utils = useContext(MuiPickersContext);

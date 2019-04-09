@@ -1,9 +1,9 @@
-import { Omit } from '@material-ui/core';
-import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
+import { Omit } from '@material-ui/core';
 import { WrapperProps } from './Wrapper';
+import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
 
 export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
   /** "OK" label message */

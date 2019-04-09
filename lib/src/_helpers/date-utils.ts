@@ -1,7 +1,7 @@
 import { IUtils } from '@date-io/core/IUtils';
-import { DatePickerViewType } from '../constants/DatePickerView';
 import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
+import { DatePickerViewType } from '../constants/DatePickerView';
 
 interface FindClosestDateParams {
   date: MaterialUiPickersDate;

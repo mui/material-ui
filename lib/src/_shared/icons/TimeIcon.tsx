@@ -1,5 +1,5 @@
-import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 import React from 'react';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 export const TimeIcon: React.SFC<SvgIconProps> = props => {
   return (

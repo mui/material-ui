@@ -1,16 +1,15 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { Theme } from '@material-ui/core';
+import * as PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import createStyles from '@material-ui/core/styles/createStyles';
+import SlideTransition, { SlideDirection } from './SlideTransition';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
+import { Theme } from '@material-ui/core';
+import { MaterialUiPickersDate } from '../../typings/date';
 import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../_shared/icons/ArrowRightIcon';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { MaterialUiPickersDate } from '../../typings/date';
-import SlideTransition, { SlideDirection } from './SlideTransition';
 
 export interface CalendarHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
   currentMonth: object;

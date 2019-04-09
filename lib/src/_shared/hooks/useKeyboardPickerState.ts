@@ -1,12 +1,12 @@
-import { IUtils } from '@date-io/core/IUtils';
+import { useUtils } from './useUtils';
 import { Omit } from '@material-ui/core';
 import { useEffect, useState } from 'react';
-import { getDisplayDate } from '../../_helpers/text-field-helper';
+import { IUtils } from '@date-io/core/IUtils';
 import { DateType } from '../../constants/prop-types';
 import { BasePickerProps } from '../../typings/BasePicker';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { HookOptions, usePickerState } from './usePickerState';
-import { useUtils } from './useUtils';
+import { getDisplayDate } from '../../_helpers/text-field-helper';
 
 export interface BaseKeyboardPickerProps extends Omit<BasePickerProps, 'value' | 'onChange'> {
   value?: DateType;
@@ -40,6 +40,11 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
     }
   }, [props.value]);
 
+  function handleChange(date: MaterialUiPickersDate) {
+    const dateString = utils.format(date, format);
+    props.onChange(date, dateString);
+  }
+
   const { inputProps: innerInputProps, wrapperProps, pickerProps } = usePickerState(
     // Extend props interface
     { ...props, value: dateValue, onChange: handleChange },
@@ -57,11 +62,6 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
       props.onChange(date, value);
     },
   };
-
-  function handleChange(date: MaterialUiPickersDate) {
-    const dateString = utils.format(date, wrapperProps.format);
-    props.onChange(date, dateString);
-  }
 
   return {
     inputProps,

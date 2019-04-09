@@ -1,9 +1,9 @@
-import { IUtils } from '@date-io/core/IUtils';
-import { useCallback, useDebugValue, useEffect, useRef, useState } from 'react';
-import { MaterialUiPickersDate } from '../..';
-import { getDisplayDate } from '../../_helpers/text-field-helper';
-import { BasePickerProps } from '../../typings/BasePicker';
 import { useUtils } from './useUtils';
+import { IUtils } from '@date-io/core/IUtils';
+import { MaterialUiPickersDate } from '../..';
+import { BasePickerProps } from '../../typings/BasePicker';
+import { getDisplayDate } from '../../_helpers/text-field-helper';
+import { useCallback, useDebugValue, useEffect, useRef, useState } from 'react';
 
 export interface HookOptions {
   getDefaultFormat: () => string;

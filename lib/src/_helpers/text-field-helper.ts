@@ -1,6 +1,6 @@
-import { IUtils } from '@date-io/core/IUtils';
-import { Omit } from '@material-ui/core';
 import { DatePickerProps } from '..';
+import { Omit } from '@material-ui/core';
+import { IUtils } from '@date-io/core/IUtils';
 import { DateType } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
 import { MaterialUiPickersDate } from '../typings/date';

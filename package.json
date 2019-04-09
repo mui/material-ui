@@ -17,7 +17,8 @@
     "dev": "yarn workspace docs dev",
     "release": "yarn workspace material-ui-pickers release && yarn workspace docs deploy",
     "e2e:open": "cypress open",
-    "e2e:run": "cypress run"
+    "e2e:run": "cypress run",
+    "lint": "eslint './**/*.ts*'"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,13 @@
   },
   "homepage": "https://github.com/dmtrKovalenko/material-ui-pickers#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-pretty-imports": "^1.0.2",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3"
@@ -46,6 +54,12 @@
       "git add"
     ]
   },
+  "eslintIgnore": [
+    "**/node_modules",
+    "**/coverage",
+    "*.d.ts",
+    "videos/"
+  ],
   "dependencies": {
     "cypress": "^3.1.4",
     "wait-on": "^3.2.0"

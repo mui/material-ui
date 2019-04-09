@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cookies from 'next-cookies';
-import Document, { Head, Main, NextScript, NextDocumentContext } from 'next/document';
 import flush from 'styled-jsx/server';
-import { PageContext } from '../utils/getPageContext';
+import Document, { Head, Main, NextScript, NextDocumentContext } from 'next/document';
 import { prismThemes } from '../utils/prism';
 import { ThemeType } from 'layout/PageWithContext';
+import { PageContext } from '../utils/getPageContext';
 
 class MyDocument extends Document<{ theme?: ThemeType }> {
   static getInitialProps = (ctx: NextDocumentContext) => {

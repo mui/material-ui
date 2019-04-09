@@ -1,19 +1,18 @@
-import withStyles from '@material-ui/core/styles/withStyles';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { WithStyles } from '@material-ui/core';
-import createStyles from '@material-ui/core/styles/createStyles';
-import { convertToMeridiem } from '../_helpers/time-utils';
-import PickerToolbar from '../_shared/PickerToolbar';
-import ToolbarButton from '../_shared/ToolbarButton';
-import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
 import ClockType from '../constants/ClockType';
-import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
-import { MaterialUiPickersDate } from '../typings/date';
-import TimePickerView from './components/TimePickerView';
 import ToolbarText from '../_shared/ToolbarText';
+import ToolbarButton from '../_shared/ToolbarButton';
+import PickerToolbar from '../_shared/PickerToolbar';
+import TimePickerView from './components/TimePickerView';
+import withStyles from '@material-ui/core/styles/withStyles';
+import createStyles from '@material-ui/core/styles/createStyles';
+import { WithStyles } from '@material-ui/core';
+import { MaterialUiPickersDate } from '../typings/date';
+import { convertToMeridiem } from '../_helpers/time-utils';
+import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
+import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 
 export interface BaseTimePickerProps {
   /** 12h/24h view for hour selection clock */

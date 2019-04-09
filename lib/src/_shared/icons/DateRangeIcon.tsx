@@ -1,5 +1,5 @@
-import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 import React from 'react';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 export const DateRangeIcon: React.SFC<SvgIconProps> = props => {
   return (

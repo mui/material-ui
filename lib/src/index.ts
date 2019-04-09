@@ -1,7 +1,7 @@
-import { DatePickerProps, KeyboardDatePickerProps } from './DatePicker';
-import { DateTimePickerProps, KeyboardDateTimePicker } from './DateTimePicker';
-import { KeyboardTimePickerProps, TimePickerProps } from './TimePicker';
 import { MaterialUiPickersDate } from './typings/date';
+import { DatePickerProps, KeyboardDatePickerProps } from './DatePicker';
+import { KeyboardTimePickerProps, TimePickerProps } from './TimePicker';
+import { DateTimePickerProps, KeyboardDateTimePicker } from './DateTimePicker';
 
 export type TimePickerProps = TimePickerProps;
 

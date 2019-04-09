@@ -1,5 +1,5 @@
-import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { utilsToUse } from '../test-utils';
+import { findClosestEnabledDate } from '../../_helpers/date-utils';
 
 describe('findClosestEnabledDate', () => {
   const day18thText = utilsToUse.getDayText(utilsToUse.date('2018-08-18'));

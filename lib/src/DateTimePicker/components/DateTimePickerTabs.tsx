@@ -1,14 +1,13 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { Theme } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import { DateRangeIcon } from '../../_shared/icons/DateRangeIcon';
-import { TimeIcon } from '../../_shared/icons/TimeIcon';
+import Paper from '@material-ui/core/Paper';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import DateTimePickerView, { DateTimePickerViewType } from '../../constants/DateTimePickerView';
+import { Theme } from '@material-ui/core';
+import { TimeIcon } from '../../_shared/icons/TimeIcon';
+import { DateRangeIcon } from '../../_shared/icons/DateRangeIcon';
 
 const viewToTabIndex = (openView: DateTimePickerViewType) => {
   if (openView === DateTimePickerView.DATE || openView === DateTimePickerView.YEAR) {

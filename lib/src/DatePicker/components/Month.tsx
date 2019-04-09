@@ -1,10 +1,9 @@
-import { Theme } from '@material-ui/core';
+import * as React from 'react';
+import clsx from 'clsx';
+import Typography from '@material-ui/core/Typography';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
+import { Theme } from '@material-ui/core';
 
 export interface MonthProps extends WithStyles<typeof styles> {
   children: React.ReactNode;

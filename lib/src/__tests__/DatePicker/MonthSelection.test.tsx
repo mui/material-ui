@@ -1,8 +1,8 @@
-import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import Month from '../../DatePicker/components/Month';
-import { MonthSelection, MonthSelectionProps } from '../../DatePicker/components/MonthSelection';
+import { ShallowWrapper } from 'enzyme';
 import { shallow, utilsToUse } from '../test-utils';
+import { MonthSelection, MonthSelectionProps } from '../../DatePicker/components/MonthSelection';
 
 describe('MonthSelection', () => {
   let component: ShallowWrapper<MonthSelectionProps>;

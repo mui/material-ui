@@ -1,12 +1,12 @@
+import * as React from 'react';
+import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
-import Dialog, { DialogProps } from '@material-ui/core/Dialog';
+import EventListener from 'react-event-listener';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import * as React from 'react';
-import EventListener from 'react-event-listener';
+import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 
 export interface ModalDialogProps extends DialogProps {
   onAccept: () => void;
@@ -24,6 +24,7 @@ export interface ModalDialogProps extends DialogProps {
   wider?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
   children,
   classes,
@@ -76,12 +77,11 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
         </Button>
       )}
 
-      {!clearable &&
-        showTodayButton && (
-          <Button color="primary" onClick={onSetToday}>
-            {todayLabel}
-          </Button>
-        )}
+      {!clearable && showTodayButton && (
+        <Button color="primary" onClick={onSetToday}>
+          {todayLabel}
+        </Button>
+      )}
 
       <Button color="primary" onClick={onDismiss}>
         {cancelLabel}

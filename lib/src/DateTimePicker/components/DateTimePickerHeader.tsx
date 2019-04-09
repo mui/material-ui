@@ -1,16 +1,15 @@
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { Theme } from '@material-ui/core';
-import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
+import ToolbarText from '../../_shared/ToolbarText';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
-import ToolbarText from '../../_shared/ToolbarText';
-import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
+import createStyles from '@material-ui/core/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import DateTimePickerView, { DateTimePickerViewType } from '../../constants/DateTimePickerView';
+import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 
 export const styles = (theme: Theme) =>
   createStyles({

@@ -1,12 +1,12 @@
-import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import { TextFieldProps } from '@material-ui/core/TextField';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
 import EventListener from 'react-event-listener';
-import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
+import { TextFieldProps } from '@material-ui/core/TextField';
+import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
 
 export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> {
   /** Dialog props passed to material-ui Dialog */
@@ -14,6 +14,16 @@ export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> 
   /** Show only calendar for datepicker in popover mode */
   onlyCalendar?: boolean;
 }
+
+export const styles = {
+  popoverPaper: {
+    width: DIALOG_WIDTH,
+    paddingBottom: 8,
+  },
+  popoverPaperWider: {
+    width: DIALOG_WIDTH_WIDER,
+  },
+};
 
 const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = ({
   open,
@@ -54,7 +64,6 @@ const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = 
       <InputComponent inputRef={ref} {...other} {...DateInputProps} />
 
       <Popover
-        id="picker-popover"
         open={open}
         onClose={onAccept}
         anchorEl={ref.current}
@@ -85,16 +94,6 @@ InlineWrapper.propTypes = {
 
 InlineWrapper.defaultProps = {
   onlyCalendar: false,
-};
-
-export const styles = {
-  popoverPaper: {
-    width: DIALOG_WIDTH,
-    paddingBottom: 8,
-  },
-  popoverPaperWider: {
-    width: DIALOG_WIDTH_WIDER,
-  },
 };
 
 export default withStyles(styles)(InlineWrapper);

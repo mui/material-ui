@@ -1,7 +1,7 @@
-import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import { Calendar, CalendarProps } from '../../DatePicker/components/Calendar';
+import { ShallowWrapper } from 'enzyme';
 import { shallowRender, utilsToUse } from '../test-utils';
+import { Calendar, CalendarProps } from '../../DatePicker/components/Calendar';
 
 describe('Calendar', () => {
   let component: ShallowWrapper<CalendarProps>;

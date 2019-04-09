@@ -1,9 +1,9 @@
-import { Theme } from '@material-ui/core';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import { Theme } from '@material-ui/core';
 import { ExtendMui } from '../typings/extendMui';
 
 export interface ToolbarTextProps extends ExtendMui<TypographyProps>, WithStyles<typeof styles> {

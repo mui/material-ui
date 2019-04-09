@@ -1,6 +1,6 @@
 import { IUtils } from '@date-io/core/IUtils';
-import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 import { MaterialUiPickersDate } from '../typings/date';
+import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 
 const center = {
   x: 260 / 2,

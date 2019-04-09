@@ -1,12 +1,12 @@
-import DateFnsUtils from '@date-io/date-fns';
+import * as React from 'react';
+import * as enzyme from 'enzyme';
 import LuxonUtils from '@date-io/luxon';
 import MomentUtils from '@date-io/moment';
+import DateFnsUtils from '@date-io/date-fns';
+import MuiPickersUtilsProvider from '../MuiPickersUtilsProvider';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import * as enzyme from 'enzyme';
-import * as React from 'react';
 import { WithUtilsProps } from '../_shared/WithUtils';
-import MuiPickersUtilsProvider from '../MuiPickersUtilsProvider';
 
 const theme = createMuiTheme({
   typography: {

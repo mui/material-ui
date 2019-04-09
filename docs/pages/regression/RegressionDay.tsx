@@ -1,6 +1,6 @@
 import React from 'react';
-import { IconButtonProps } from '@material-ui/core/IconButton';
 import { IUtils } from '@date-io/core/IUtils';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 
 export const createRegressionDay = (utils: IUtils<any>) => (
   day: any,

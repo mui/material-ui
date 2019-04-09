@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import NavigationMenu from './NavigationMenu';
+import { version } from 'material-ui-pickers/package.json';
 import {
   Divider,
   Toolbar,
@@ -9,9 +11,6 @@ import {
   Theme,
   WithStyles,
 } from '@material-ui/core';
-
-import NavigationMenu from './NavigationMenu';
-import { version } from 'material-ui-pickers/package.json';
 
 const DrawerMenu: React.SFC<WithStyles<typeof styles>> = ({ classes }) => (
   <div className={classes.drawerRoot}>

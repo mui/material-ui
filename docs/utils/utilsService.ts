@@ -1,6 +1,6 @@
-import MomentUtils from '@date-io/moment';
 import LuxonUtils from '@date-io/luxon';
 import DayJsUtils from '@date-io/dayjs';
+import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
 
 export const utilsMap = {

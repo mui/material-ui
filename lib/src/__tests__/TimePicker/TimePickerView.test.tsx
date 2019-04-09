@@ -1,7 +1,7 @@
-import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import { TimePickerView, TimePickerViewProps } from '../../TimePicker/components/TimePickerView';
+import { ShallowWrapper } from 'enzyme';
 import { shallow, utilsToUse } from '../test-utils';
+import { TimePickerView, TimePickerViewProps } from '../../TimePicker/components/TimePickerView';
 
 describe('TimePickerView', () => {
   let component: ShallowWrapper<TimePickerViewProps>;

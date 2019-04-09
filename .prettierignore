@@ -1,0 +1,4 @@
+node-modules/
+build/
+coverage/
+*.mp4

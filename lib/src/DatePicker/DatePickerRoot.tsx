@@ -1,19 +1,18 @@
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
+import ToolbarButton from '../_shared/ToolbarButton';
+import PickerToolbar from '../_shared/PickerToolbar';
+import YearSelection from './components/YearSelection';
+import MonthSelection from './components/MonthSelection';
+import Calendar, { RenderDay } from './components/Calendar';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
-import PickerToolbar from '../_shared/PickerToolbar';
-import ToolbarButton from '../_shared/ToolbarButton';
+import { MaterialUiPickersDate } from '../typings/date';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import { DatePickerViewType } from '../constants/DatePickerView';
 import { DateType, DomainPropTypes } from '../constants/prop-types';
-import { MaterialUiPickersDate } from '../typings/date';
-import Calendar, { RenderDay } from './components/Calendar';
-import MonthSelection from './components/MonthSelection';
-import YearSelection from './components/YearSelection';
+import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
 
 export interface BaseDatePickerProps {
   /** Min selectable date */
@@ -27,7 +26,7 @@ export interface BaseDatePickerProps {
   /** To animate scrolling to current year (with scrollIntoView) */
   animateYearScrolling?: boolean;
   /** Array of views to show. Order year -> month -> day */
-  views?: Array<'year' | 'month' | 'day'>;
+  views?: ('year' | 'month' | 'day')[];
   /** Initial view to show when date picker is open */
   openTo?: 'year' | 'month' | 'day';
   /** @deprecated use openTo instead */

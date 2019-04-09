@@ -1,6 +1,6 @@
-import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import ToolbarText, { ToolbarTextProps } from '../../_shared/ToolbarText';
+import { ShallowWrapper } from 'enzyme';
 import { shallow } from '../test-utils';
 
 describe('Toolbar Text', () => {

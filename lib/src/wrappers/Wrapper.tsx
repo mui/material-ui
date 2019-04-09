@@ -1,9 +1,9 @@
-import { Omit } from '@material-ui/core';
 import React from 'react';
-import { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
-import { PureDateInputProps } from '../_shared/PureDateInput';
-import InlineWrapper, { InlineWrapperProps } from './InlineWrapper';
 import ModalWrapper, { ModalWrapperProps } from './ModalWrapper';
+import InlineWrapper, { InlineWrapperProps } from './InlineWrapper';
+import { Omit } from '@material-ui/core';
+import { PureDateInputProps } from '../_shared/PureDateInput';
+import { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 
 export type WrapperVariant = 'dialog' | 'inline';
 

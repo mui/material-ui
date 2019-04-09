@@ -1,5 +1,5 @@
-import { KeyboardTimePickerProps } from './KeyboardTimePicker';
 import { TimePickerProps } from './TimePicker';
+import { KeyboardTimePickerProps } from './KeyboardTimePicker';
 
 export type TimePickerProps = TimePickerProps;
 

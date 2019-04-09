@@ -1,6 +1,6 @@
-import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
 import DatePickerRoot, { DatePickerRootProps } from '../../DatePicker/DatePickerRoot';
+import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - DatePickerRoot', () => {

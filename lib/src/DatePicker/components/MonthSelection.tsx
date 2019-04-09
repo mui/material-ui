@@ -1,10 +1,9 @@
 import * as React from 'react';
-
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
+import Month from './Month';
 import { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
-import Month from './Month';
+import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 
 export interface MonthSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
   date: MaterialUiPickersDate;

@@ -1,12 +1,11 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/core';
-import Button, { ButtonProps } from '@material-ui/core/Button';
-import { TypographyProps } from '@material-ui/core/Typography';
-import clsx from 'clsx';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { ExtendMui } from '../typings/extendMui';
+import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
 import ToolbarText from './ToolbarText';
+import Button, { ButtonProps } from '@material-ui/core/Button';
+import { ExtendMui } from '../typings/extendMui';
+import { TypographyProps } from '@material-ui/core/Typography';
+import { createStyles, withStyles, WithStyles } from '@material-ui/core';
 
 export interface ToolbarButtonProps
   extends ExtendMui<ButtonProps, 'variant'>,
