@@ -43,8 +43,16 @@ jobs:
           paths:
             - ~/.cache
 
-      # - run: yarn lint
-      - run: yarn workspace material-ui-pickers build:analyze
+      - run:
+          name: Eslint
+          command: yarn lint
+      - run:
+          name: Ensure prettier was run
+          command: yarn prettier --check './**/*.ts*'
+      - run:
+          name: Build and analyze bundlesize
+          command: yarn workspace material-ui-pickers build:analyze
+
       - persist_to_workspace:
           root: .
           paths: .
