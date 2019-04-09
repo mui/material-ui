@@ -6,11 +6,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import withMobileDialog, { InjectedProps } from '@material-ui/core/withMobileDialog';
+import withMobileDialog, { WithMobileDialog } from '@material-ui/core/withMobileDialog';
 
-export type ResponsiveDialogProps = InjectedProps;
+export type ResponsiveDialogProps = WithMobileDialog;
 
-function ResponsiveDialog(props: InjectedProps) {
+function ResponsiveDialog(props: ResponsiveDialogProps) {
   const { fullScreen } = props;
   const [open, setOpen] = React.useState(false);
 
