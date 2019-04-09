@@ -52,6 +52,19 @@ install();
 ```
 
 It is **recommended** to place the above code in a separate file (e.g. `bootstrap.js`) and to import it in your application's entry point (e.g. `index.js`).
+
+This bootstrap file should be imported before any of your own components that use Material-UI components. 
+
+eg.
+
+```
+import "./bootstrap"; 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
+import { ThemeProvider } from '@material-ui/styles';
+```
+
 This ensures that the installation is executed before anything else, because ECMAScript imports are hoisted to the top of the module. If the installation step is not performed correctly the resulting build could have conflicting class names.
 
 We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**.
