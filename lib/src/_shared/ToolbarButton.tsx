@@ -8,10 +8,13 @@ import * as React from 'react';
 import { ExtendMui } from '../typings/extendMui';
 import ToolbarText from './ToolbarText';
 
-export interface ToolbarButtonProps extends ExtendMui<ButtonProps>, WithStyles<typeof styles> {
-  toolbarTextProps?: ExtendMui<TypographyProps>;
+export interface ToolbarButtonProps
+  extends ExtendMui<ButtonProps, 'variant'>,
+    WithStyles<typeof styles> {
+  variant: TypographyProps['variant'];
   selected: boolean;
   label: string;
+  typographyClassName?: string;
 }
 
 const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
@@ -19,12 +22,18 @@ const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
   className = null,
   label,
   selected,
-  toolbarTextProps,
+  variant,
+  typographyClassName,
   ...other
 }) => {
   return (
     <Button className={clsx(classes.toolbarBtn, className)} {...other}>
-      <ToolbarText {...toolbarTextProps} label={label} selected={selected} />
+      <ToolbarText
+        className={typographyClassName}
+        variant={variant}
+        label={label}
+        selected={selected}
+      />
     </Button>
   );
 };

@@ -11,6 +11,7 @@ export interface ToolbarTextProps extends ExtendMui<TypographyProps>, WithStyles
   label: string;
 }
 
+// TODO make a styled(Typography) when updated to material-ui
 const ToolbarText: React.FunctionComponent<ToolbarTextProps> = ({
   classes,
   selected,

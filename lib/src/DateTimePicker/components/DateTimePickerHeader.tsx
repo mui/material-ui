@@ -90,18 +90,14 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
     <PickerToolbar className={clsx(classes.toolbar, { [classes.toolBar24h]: !ampm })}>
       <div className={classes.dateHeader}>
         <ToolbarButton
-          toolbarTextProps={{
-            variant: 'subtitle1',
-          }}
+          variant="subtitle1"
           onClick={() => onOpenViewChange(DateTimePickerView.YEAR)}
           selected={openView === DateTimePickerView.YEAR}
           label={utils.getYearText(date)}
         />
 
         <ToolbarButton
-          toolbarTextProps={{
-            variant: 'h4',
-          }}
+          variant="h4"
           onClick={() => onOpenViewChange(DateTimePickerView.DATE)}
           selected={openView === DateTimePickerView.DATE}
           label={utils.getDateTimePickerHeaderText(date)}
@@ -111,9 +107,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
       <div className={classes.timeHeader}>
         <div className={classes.hourMinuteLabel}>
           <ToolbarButton
-            toolbarTextProps={{
-              variant: 'h3',
-            }}
+            variant="h3"
             onClick={() => onOpenViewChange(DateTimePickerView.HOUR)}
             selected={openView === DateTimePickerView.HOUR}
             label={utils.getHourText(date, ampm!)}
@@ -122,9 +116,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
           <ToolbarText variant="h3" label=":" selected={false} className={classes.separator} />
 
           <ToolbarButton
-            toolbarTextProps={{
-              variant: 'h3',
-            }}
+            variant="h3"
             onClick={() => onOpenViewChange(DateTimePickerView.MINUTES)}
             selected={openView === DateTimePickerView.MINUTES}
             label={utils.getMinuteText(date)}
@@ -134,20 +126,16 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
         {ampm && (
           <div className={classes.ampmSelection}>
             <ToolbarButton
-              toolbarTextProps={{
-                className: classes.ampmLabel,
-                variant: 'subtitle1',
-              }}
+              variant="subtitle1"
+              typographyClassName={classes.ampmLabel}
               selected={meridiemMode === 'am'}
               label={utils.getMeridiemText('am')}
               onClick={setMeridiemMode('am')}
             />
 
             <ToolbarButton
-              toolbarTextProps={{
-                className: classes.ampmLabel,
-                variant: 'subtitle1',
-              }}
+              variant="subtitle1"
+              typographyClassName={classes.ampmLabel}
               selected={meridiemMode === 'pm'}
               label={utils.getMeridiemText('pm')}
               onClick={setMeridiemMode('pm')}
