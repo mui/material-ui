@@ -376,40 +376,41 @@ describe('<Modal />', () => {
       assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
     });
 
-    /* Test case for https://github.com/mui-org/material-ui/issues/15180 */
+    // Test case for https://github.com/mui-org/material-ui/issues/15180
     it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
-      const onEntering = spy();
-      const onEntered = spy();
-      const childrenId = '__Modal_test_js__children__id__';
-      const childrenIdSelector = `#${childrenId}`;
-      const TestCase = props => (
-        <Modal open={props.open} keepMounted={false}>
-          <Fade
-            in={props.open}
-            exit={false} // Disable exit transition, so it immediately unmounts when open=false
-            onEntering={onEntering}
-            onEntered={onEntered}
-          >
-            <span id={childrenId}>Hello</span>
-          </Fade>
-        </Modal>
-      );
-      TestCase.propTypes = { open: PropTypes.bool };
+      const children = <p>Hello World</p>;
 
-      const wrapper = mount(<TestCase open={false} />);
-      assert.isFalse(wrapper.exists(childrenIdSelector));
-      assert.strictEqual(onEntering.callCount, 0);
+      class OpenClose extends React.Component {
+        state = {
+          open: false,
+        };
 
-      wrapper.setProps({ open: true });
-      wrapper.update();
-      assert.isTrue(wrapper.exists(childrenIdSelector));
-      assert.strictEqual(onEntering.callCount, 1);
-      assert.strictEqual(onEntered.callCount, 0);
+        handleClick = () => {
+          this.setState({ open: true }, () => {
+            this.setState({ open: false });
+          });
+        };
 
-      wrapper.setProps({ open: false });
-      wrapper.update();
-      assert.isFalse(wrapper.exists(childrenIdSelector));
-      assert.strictEqual(onEntered.callCount, 0); // Ensure transition state was never "entered"
+        render() {
+          return (
+            <div>
+              <button type="button" onClick={this.handleClick}>
+                Toggle Tooltip
+              </button>
+              <Modal open={this.state.open}>
+                <Fade in={this.state.open}>
+                  <span>{children}</span>
+                </Fade>
+              </Modal>
+            </div>
+          );
+        }
+      }
+
+      const wrapper = mount(<OpenClose />);
+      assert.strictEqual(wrapper.contains(children), false);
+      wrapper.find('button').simulate('click');
+      assert.strictEqual(wrapper.contains(children), false);
     });
   });
 
