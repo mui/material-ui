@@ -66,7 +66,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     return () => {
       clearTimeout(timer.current);
     };
-  });
+  }, []);
 
   const handleEnter = node => {
     node.style.height = collapsedHeight;
