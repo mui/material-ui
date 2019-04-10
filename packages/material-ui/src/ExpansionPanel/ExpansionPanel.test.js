@@ -40,7 +40,6 @@ describe('<ExpansionPanel />', () => {
     const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
     const root = wrapper.find(`.${classes.root}`).first();
     assert.strictEqual(root.type(), Paper);
-    assert.strictEqual(root.props().elevation, 1);
     assert.strictEqual(root.props().square, false);
     wrapper.setProps({ expanded: true });
     assert.strictEqual(root.hasClass(classes.expanded), false, 'uncontrolled');
