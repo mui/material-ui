@@ -79,7 +79,7 @@ function TransferList() {
   };
 
   const customList = items => (
-    <Paper elevation={1} className={classes.paper}>
+    <Paper className={classes.paper}>
       <List dense>
         {items.map(value => (
           <ListItem
