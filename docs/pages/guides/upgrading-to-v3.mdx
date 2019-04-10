@@ -1,0 +1,117 @@
+## Upgrading to v3
+
+Version `v3` for material-ui-pickers coming with whole bunch of breaking changes. This is a guide of how-to update :)
+
+#### ⬇️ Install
+Right now it's possible to install the prerelease version by
+
+```
+npm i material-ui-pickers@next @material-ui/core@next @material-ui/styles
+
+yarn add material-ui-pickers@next @material-ui/core@next @material-ui/styles
+```
+
+**Note**: it's required also to update your `@material-ui/core` version to `@next` and install `@material-ui/styles`
+
+
+#### 🌚 Imports
+There are a lot of changes for imports. From now on we are not providing `keyboard` prop on the pickers.
+Keyboard mode comes with separate components like `<KeyboardDatePicker />`.
+Thus you will be sure that keyboard-specific logic will be correctly tree-shaked.
+
+```diff
+- import { DatePicker } from 'material-ui-pickers'
++ import { KeyboardDatePicker } from 'material-ui-pickers'
+
+- <DatePicker keyboard />
++ <KeyboardDatePicker />
+```
+
+Also there are no more wrapper-specific components, like `InlineDatePicker`. Use `variant` prop instead.
+
+```diff
+- import { InlineDatePicker } from 'material-ui-pickers'
++ import { DatePicker } from 'material-ui-pickers'
+
+- <InlineDatePicker />
++ <DatePicker variant="inline" />
+```
+
+#### 💪 State management
+
+We done a lot of work to make state-management of pickers more obvios and simplify form integration experience.
+From now on there is no hidden internal state under the hood. Your components are truly controlled.
+
+That means that now `onChange` will be called on **each** particular day-click or keystroke.
+So if you are doing some heavy operations in `onChange`, like xhr requests, dom mutations or redirects -
+move them to the `onAccept`. This callback will be fired only when user actually accepts the date.
+
+```diff
+- <DatePicker
+-   onChange={(newDate) => {
+-     setDate(newDate) // stateLogic
+-     requestSomeDataFromServer(newDate) // async action
+-   }}
+- />
+
++ <DatePicker
++   onChange={setDate}
++   onAccept={requestSomeDataFromServer}
++ />
+```
+
+#### ⌨ Keyboard mode
+
+Previously keyboard mode was a bit painful, especially from form inegration prospective.
+That's why we recreated it from scratch.
+Now `onChange` prop for `<Keyboard(Date|Time)Picker />` has different signature from the pure inputs:
+
+```ts
+type KeybordOnChange = (date: MaterialUiPickersDate | null, value: string | undefined) => void;
+```
+
+It is even possible to control keyboard pickers by pure string. `value` prop will work as well
+
+```jsx
+function KeyboardString() {
+  const [value, setValue] = useState('01/01/2019')
+
+  return (
+    <KeyboardDatePicker
+      format="MM/dd/yyyy"
+      inputValue={value}
+      onChange={(_, newValue) => setValue(newValue)}
+    />
+  )
+}
+```
+
+Also we completely replaced [react-text-mask](https://www.npmjs.com/package/react-text-mask) with [rifm](https://github.com/istarkov/rifm).
+That saved us several kbs of bundlesize, improved performance
+
+##### 🎉 And now no more need in mask prop 🎉
+
+Mask will be generated and applied automatically from `format` passed.
+So please, make sure that your format are easy to input from keyboard.
+And it is still possible to fully customize mask, checkout [this](/api/timepicker#keyboard-input) example.
+
+
+```diff
+<KeyboardDatePicker
+  format="dd/MM/yyyy"
+- mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+/>
+```
+
+#### 🚪 Controlling open/close state
+
+`ref` approach to customize open/close state was replaced with `open` props and `onClose`, `onOpen` callbacks.
+Checkout [new example](/guides/controlling-programmatically)
+
+
+#### 🙈 Misc
+- Improved accessibility by making toolbar button actually focusable `<button />`
+- Remove `withUtils` hoc, and provide `useUtils` hoc
+- Remove `BasePicker` hoc, and provide `usePickerState` and `useKeyboardPickerState` hooks
+- Remove `openToYearSelection` prop in favor of `openTo`
+- Remove exported `MuiPickersContextConsumer` in favor of `useUtils` hook
