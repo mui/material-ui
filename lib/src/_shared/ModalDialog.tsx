@@ -24,7 +24,6 @@ export interface ModalDialogProps extends DialogProps {
   wider?: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
 export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
   children,
   classes,
@@ -66,8 +65,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
       classes={{
         root: clearable || showTodayButton ? classes.dialogActions : undefined,
         action: clsx(classes.dialogAction, {
-          [classes.clearableDialogAction]: clearable,
-          [classes.todayDialogAction]: !clearable && showTodayButton,
+          [classes.withAdditionalAction]: clearable || showTodayButton,
         }),
       }}
     >
@@ -123,13 +121,8 @@ export const styles = createStyles({
     // see https://github.com/dmtrKovalenko/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
   },
-  clearableDialogAction: {
-    '&:first-child': {
-      marginRight: 'auto',
-    },
-  },
-  todayDialogAction: {
-    '&:first-child': {
+  withAdditionalAction: {
+    '& > *:first-child': {
       marginRight: 'auto',
     },
   },
