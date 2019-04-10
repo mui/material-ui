@@ -296,7 +296,7 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 1, 'should not call console.error');
+      assert.strictEqual(consoleErrorMock.callCount(), 0);
     });
   });
 
