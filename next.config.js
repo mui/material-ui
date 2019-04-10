@@ -1,8 +1,10 @@
 const webpack = require('webpack');
+const path = require('path');
 const pkg = require('./package.json');
 const withTM = require('next-plugin-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
+const { isConcurrent } = require('./docs/src/featureFlags');
 const withTypescript = require('@zeit/next-typescript');
 
 const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
@@ -36,6 +38,13 @@ module.exports = withTypescript({
 
     config.resolve.alias['react-dom$'] = 'react-dom/profiling';
     config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
+    if (isConcurrent) {
+      config.resolve.alias.debounce = path.join(__dirname, 'docs/src/modules/scheduledCallback');
+      config.resolve.alias['lodash/throttle'] = path.join(
+        __dirname,
+        'docs/src/modules/scheduledCallback',
+      );
+    }
 
     return Object.assign({}, config, {
       plugins,

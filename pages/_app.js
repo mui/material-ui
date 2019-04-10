@@ -11,18 +11,14 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import { isConcurrent, isStrict } from 'docs/src/featureFlags';
 
-// Add the strict mode back once the number of warnings is manageable.
-// We might miss important warnings by keeping the strict mode 🌊🌊🌊.
-/**
- * @type {'loose' | 'strict' | 'concurrent'}
- */
-const mode = 'loose';
-const ReactMode = {
-  concurrent: React.unstable_ConcurrentMode,
-  loose: React.Fragment,
-  strict: React.StrictMode,
-}[mode];
+// eslint-disable-next-line no-nested-ternary
+const ReactMode = isConcurrent
+  ? React.unstable_ConcurrentMode
+  : isStrict
+  ? React.StrictMode
+  : React.Fragment;
 
 let dependenciesLoaded = false;
 
