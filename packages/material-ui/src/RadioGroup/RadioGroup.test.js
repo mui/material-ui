@@ -204,47 +204,58 @@ describe('<RadioGroup />', () => {
       assert.strictEqual(handleChange2.callCount, 1);
     });
 
-    it('passes the value of the selected Radio as a string', () => {
-      function selectNth(wrapper, n) {
-        return wrapper
-          .find('input[type="radio"]')
-          .at(n)
-          .simulate('change');
-      }
-      function isNthChecked(wrapper, n) {
-        return wrapper
-          .find('input[type="radio"]')
-          .at(n)
-          .is('[checked=true]');
-      }
-      function Test(props) {
-        const { values, ...other } = props;
-        return (
-          <RadioGroup {...other}>
-            {values.map(value => {
-              return <Radio key={value.id} value={value} />;
-            })}
-          </RadioGroup>
-        );
-      }
-      Test.propTypes = {
-        values: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.number.isRequired })),
-      };
+    describe('with non-string values', () => {
+      before(() => {
+        // swallow prop-types warnings
+        consoleErrorMock.spy();
+      });
 
-      const values = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
-      const handleChange = spy();
+      after(() => {
+        consoleErrorMock.reset();
+      });
 
-      const wrapper = mount(<Test onChange={handleChange} value={values[1]} values={values} />);
-      // on the initial mount it works because we compare to the `value` prop
-      assert.strictEqual(isNthChecked(wrapper, 0), false);
-      assert.strictEqual(isNthChecked(wrapper, 1), true);
+      it('passes the value of the selected Radio as a string', () => {
+        function selectNth(wrapper, n) {
+          return wrapper
+            .find('input[type="radio"]')
+            .at(n)
+            .simulate('change');
+        }
+        function isNthChecked(wrapper, n) {
+          return wrapper
+            .find('input[type="radio"]')
+            .at(n)
+            .is('[checked=true]');
+        }
+        function Test(props) {
+          const { values, ...other } = props;
+          return (
+            <RadioGroup {...other}>
+              {values.map(value => {
+                return <Radio key={value.id} value={value} />;
+              })}
+            </RadioGroup>
+          );
+        }
+        Test.propTypes = {
+          values: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.number.isRequired })),
+        };
 
-      selectNth(wrapper, 0);
-      // on updates, however, we compare against event.target.value
-      // object information is lost on stringification.
-      assert.strictEqual(isNthChecked(wrapper, 0), false);
-      assert.strictEqual(isNthChecked(wrapper, 1), true);
-      assert.strictEqual(handleChange.firstCall.args[1], '[object Object]');
+        const values = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+        const handleChange = spy();
+
+        const wrapper = mount(<Test onChange={handleChange} value={values[1]} values={values} />);
+        // on the initial mount it works because we compare to the `value` prop
+        assert.strictEqual(isNthChecked(wrapper, 0), false);
+        assert.strictEqual(isNthChecked(wrapper, 1), true);
+
+        selectNth(wrapper, 0);
+        // on updates, however, we compare against event.target.value
+        // object information is lost on stringification.
+        assert.strictEqual(isNthChecked(wrapper, 0), false);
+        assert.strictEqual(isNthChecked(wrapper, 1), true);
+        assert.strictEqual(handleChange.firstCall.args[1], '[object Object]');
+      });
     });
   });
 
