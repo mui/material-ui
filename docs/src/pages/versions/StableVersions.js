@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
-const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next', 'alpha', 'beta', 'rc'];
+const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
 
 const styles = {
   root: {
