@@ -143,7 +143,7 @@ Switch.propTypes = {
   /**
    * If `true`, the component is checked.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
    */
@@ -204,7 +204,7 @@ Switch.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.any,
 };
 
 Switch.defaultProps = {

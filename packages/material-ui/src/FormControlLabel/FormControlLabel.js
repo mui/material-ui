@@ -114,7 +114,7 @@ FormControlLabel.propTypes = {
   /**
    * If `true`, the component appears selected.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -163,7 +163,7 @@ FormControlLabel.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.string,
+  value: PropTypes.any,
 };
 
 FormControlLabel.defaultProps = {

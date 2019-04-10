@@ -9,7 +9,7 @@ export interface InputBaseProps
   > {
   autoComplete?: string;
   autoFocus?: boolean;
-  defaultValue?: Array<string | number | boolean | object> | string | number | boolean | object;
+  defaultValue?: unknown;
   disabled?: boolean;
   endAdornment?: React.ReactNode;
   error?: boolean;
@@ -37,7 +37,7 @@ export interface InputBaseProps
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;
   type?: string;
-  value?: Array<string | number | boolean | object> | string | number | boolean | object;
+  value?: unknown;
   onFilled?: () => void;
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
