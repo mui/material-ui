@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import withForwardedRef from '../utils/withForwardedRef';
 import { isMuiElement } from '../utils/reactHelpers';
 import FormControlContext from './FormControlContext';
 
@@ -49,26 +48,46 @@ export const styles = {
  *
  * ⚠️ Only one input can be used within a FormControl.
  */
-class FormControl extends React.Component {
-  static getDerivedStateFromProps(props, state) {
-    if (props.disabled && state.focused) {
-      return { focused: false };
-    }
-    return null;
-  }
-
-  constructor(props) {
-    super();
-
-    this.state = {
-      adornedStart: false,
-      filled: false,
-      focused: false,
-    };
-
+const FormControl = React.forwardRef(function FormControl(props, ref) {
+  const {
+    children,
+    classes,
+    className,
+    component: Component,
+    disabled,
+    error,
+    fullWidth,
+    margin,
+    required,
+    variant,
+    ...other
+  } = props;
+  const [adornedStart] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
     // to fully support server-side rendering.
-    const { children } = props;
+    let initialAdornedStart = false;
+
+    if (children) {
+      React.Children.forEach(children, child => {
+        if (!isMuiElement(child, ['Input', 'Select'])) {
+          return;
+        }
+
+        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
+
+        if (input && isAdornedStart(input.props)) {
+          initialAdornedStart = true;
+        }
+      });
+    }
+    return initialAdornedStart;
+  });
+
+  const [filled, setFilled] = React.useState(() => {
+    // We need to iterate through the children and find the Input in order
+    // to fully support server-side rendering.
+    let initialFilled = false;
+
     if (children) {
       React.Children.forEach(children, child => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
@@ -76,87 +95,74 @@ class FormControl extends React.Component {
         }
 
         if (isFilled(child.props, true)) {
-          this.state.filled = true;
-        }
-
-        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
-
-        if (input && isAdornedStart(input.props)) {
-          this.state.adornedStart = true;
+          initialFilled = true;
         }
       });
     }
+
+    return initialFilled;
+  });
+
+  const [focused, setFocused] = React.useState(false);
+
+  if (disabled && focused) {
+    setFocused(false);
   }
 
-  handleFocus = () => {
-    this.setState(state => (!state.focused ? { focused: true } : null));
+  const handleFocus = () => {
+    setFocused(true);
   };
 
-  handleBlur = () => {
-    this.setState(state => (state.focused ? { focused: false } : null));
+  const handleBlur = () => {
+    setFocused(false);
   };
 
-  handleDirty = () => {
-    if (!this.state.filled) {
-      this.setState({ filled: true });
+  const handleDirty = () => {
+    if (!filled) {
+      setFilled(true);
     }
   };
 
-  handleClean = () => {
-    if (this.state.filled) {
-      this.setState({ filled: false });
+  const handleClean = () => {
+    if (filled) {
+      setFilled(false);
     }
   };
 
-  render() {
-    const {
-      classes,
-      className,
-      component: Component,
-      disabled,
-      error,
-      fullWidth,
-      innerRef,
-      margin,
-      required,
-      variant,
-      ...other
-    } = this.props;
-    const { adornedStart, filled, focused } = this.state;
+  const childContext = {
+    adornedStart,
+    disabled,
+    error,
+    filled,
+    focused,
+    margin,
+    onBlur: handleBlur,
+    onEmpty: handleClean,
+    onFilled: handleDirty,
+    onFocus: handleFocus,
+    required,
+    variant,
+  };
 
-    const childContext = {
-      adornedStart,
-      disabled,
-      error,
-      filled,
-      focused,
-      margin,
-      onBlur: this.handleBlur,
-      onEmpty: this.handleClean,
-      onFilled: this.handleDirty,
-      onFocus: this.handleFocus,
-      required,
-      variant,
-    };
-
-    return (
-      <FormControlContext.Provider value={childContext}>
-        <Component
-          className={clsx(
-            classes.root,
-            {
-              [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
-              [classes.fullWidth]: fullWidth,
-            },
-            className,
-          )}
-          ref={innerRef}
-          {...other}
-        />
-      </FormControlContext.Provider>
-    );
-  }
-}
+  return (
+    <FormControlContext.Provider value={childContext}>
+      <Component
+        className={clsx(
+          classes.root,
+          {
+            [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
+            [classes.fullWidth]: fullWidth,
+          },
+          className,
+        )}
+        ref={ref}
+        {...other}
+      >
+        {children}
+      </Component>
+    </FormControlContext.Provider>
+  );
+});
 
 FormControl.propTypes = {
   /**
@@ -190,11 +196,6 @@ FormControl.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
   margin: PropTypes.oneOf(['none', 'dense', 'normal']),
@@ -218,4 +219,4 @@ FormControl.defaultProps = {
   variant: 'standard',
 };
 
-export default withStyles(styles, { name: 'MuiFormControl' })(withForwardedRef(FormControl));
+export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

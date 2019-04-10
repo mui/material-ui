@@ -83,3 +83,9 @@ function ListItemLink(props) {
 ## Inset List（嵌入列表）
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
+
+## Virtualized List
+
+In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. 它渲染了200行，可以轻松处理更多行。 Virtualization helps with performance issues.
+
+{{"demo": "pages/demos/lists/VirtualizedList.js"}}

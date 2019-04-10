@@ -40,4 +40,4 @@ Uma barra de pesquisa na lateral.
 
 ## Barra de Aplicativos inferior
 
-{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}
+{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}

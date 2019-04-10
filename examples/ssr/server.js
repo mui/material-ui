@@ -14,10 +14,10 @@ import App from './App';
 
 function renderFullPage(html, css) {
   return `
-    <!doctype html>
+    <!DOCTYPE html>
     <html>
       <head>
-        <title>Material-UI</title>
+        <title>My page</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>

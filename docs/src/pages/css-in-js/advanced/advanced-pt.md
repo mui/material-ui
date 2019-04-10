@@ -1,10 +1,26 @@
-# Advanced
+# Avançado
 
 <p class="description">Advanced Usage.</p>
 
 ## Theming
 
 Add a `ThemeProvider` to the top level of your app to access the theme down the React's component tree. Then, you can access the theme object in the style functions.
+
+```jsx
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = {
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+};
+
+function Theming() {
+  return (
+    <ThemeProvider theme={theme}>
+      <DeepChild />
+    </ThemeProvider>
+  );
+}
+```
 
 {{"demo": "pages/css-in-js/advanced/Theming.js"}}
 
@@ -14,9 +30,28 @@ You might need to access the theme variables inside your React components.
 
 ### `useTheme` hook
 
+```jsx
+import { useTheme } from '@material-ui/styles';
+
+function DeepChild() {
+  const theme = useTheme();
+  return <span>{`spacing ${theme.spacing}`}</span>;
+}
+```
+
 {{"demo": "pages/css-in-js/advanced/UseTheme.js"}}
 
 ### `withTheme` HOC
+
+```jsx
+import { withTheme } from '@material-ui/styles';
+
+function DeepChildRaw(props) {
+  return <span>{`spacing ${props.theme.spacing}`}</span>;
+}
+
+const DeepChild = withTheme(DeepChildRaw);
+```
 
 {{"demo": "pages/css-in-js/advanced/WithTheme.js"}}
 
@@ -102,11 +137,26 @@ const useStyles = makeStyles({
 
 ## Ordem de injeção de CSS
 
-O CSS inserido pelo Material-UI para estilizar um componente tem a maior especificidade possível, pois o `<link>` é inserido na parte inferior do `<head>` para garantir que os componentes sejam sempre renderizados corretamente.
+Por padrão, os estilos são inseridos **por último** no `<head>` elemento da sua página. Eles ganham mais especificidade que outras folhas de estilos na sua página como por exemplo: módulos CSS e componentes estilizados.
 
-Você pode, no entanto, também querer substituir esses estilos, por exemplo, com componentes estilizados. Se você está enfrentando um problema de ordem de injeção de CSS, o JSS [ fornece um mecanismo ](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) para lidar com essa situação. Ajustando o posicionamento do ponto de inserção ` ` dentro do seu HTML header, você pode [ controlar a ordem em ](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) que as regras CSS são aplicadas aos seus componentes.
+### injectFirst
 
-### Comentário HTML
+The `StylesProvider` component has a `injectFirst` prop to inject the styles **first**:
+
+```js
+import { StylesProvider } from '@material-ui/styles';
+
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      Styled components can override Material-UI's styles. */}
+</StylesProvider>
+```
+
+### insertionPoint
+
+JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to gain more control on this situation. Ajustando o posicionamento do ponto de inserção ` ` dentro do seu HTML header, você pode [ controlar a ordem em ](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) que as regras CSS são aplicadas aos seus componentes.
+
+#### Comentário HTML
 
 A abordagem mais simples é adicionar um comentário HTML que determine onde o JSS irá inserir os estilos:
 
@@ -134,7 +184,7 @@ function App() {
 export default App;
 ```
 
-### Outro elemento HTML
+#### Outro elemento HTML
 
 [Create React App](https://github.com/facebook/create-react-app) remove comentários em HTML ao criar a compilação de produção. Para contornar o problema, você pode fornecer um elemento DOM (diferente de um comentário) como o ponto de inserção do JSS.
 
@@ -164,7 +214,7 @@ function App() {
 export default App;
 ```
 
-### JS createComment
+#### JS createComment
 
 codesandbox.io impede o acesso ao elemento `<head>`. Para contornar o problema, você pode usar a API JavaScript `document.createComment()`:
 
@@ -188,7 +238,47 @@ function App() {
 export default App;
 ```
 
-## Server Side Rendering
+## Server-side rendering
+
+This example returns a string of html and inlines the critical css required right before it’s used:
+
+```jsx
+import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheets } from '@material-ui/styles';
+
+function render() {
+  const sheets = new ServerStyleSheets();
+
+  const html = ReactDOMServer.renderToString(sheets.collect(<App />));
+  const css = sheets.toString();
+
+  return `
+<!doctype html>
+<html>
+  <head>
+    <style id="jss-server-side">${css}</style>
+  </head>
+  <body>
+    <div id="root">${html}</div>
+  </body>
+</html>
+  `;
+}
+```
+
+You can [follow our server side guide](/guides/server-rendering/) for a more detailed example or read the [`ServerStyleSheets`](/css-in-js/api/#serverstylesheets) API documentation.
+
+### Gatsby
+
+We have [an official plugin that](https://github.com/hupe1980/gatsby-plugin-material-ui) enables server-side rendering for @material-ui/styles. Refer to the plugin's page for setup and usage instructions.
+
+Refer to [our example](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next/pages/_document.js) for an up-to-date usage example.
+
+### Next.js
+
+You need to have a custom `pages/_document.js`. Then [copy the logic](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+
+Refer to [our example](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) for an up-to-date usage example.
 
 ## Class names
 
@@ -204,31 +294,31 @@ const useStyles = makeStyles({
 });
 ```
 
-It will generate a `AppBar-root-5pbwdt` class name. However, the following CSS won't work:
+It will generate a `AppBar-root-123` class name. However, the following CSS won't work:
 
 ```css
-.AppBar-root-5pbwdt {
+.AppBar-root-123 {
   opacity: 0.6;
 }
 ```
 
 You have to use the `classes` property of a component to override them. Thanks to the non-deterministic nature of our class names, we can implement optimizations for development and production. Eles são fáceis de depurar no desenvolvimento e tão curtos quanto possível na produção:
 
-- In **development**, the class name will be: `.AppBar-root-5pbwdt`, following this logic:
+- In **development**, the class name will be: `.AppBar-root-123`, following this logic:
 
 ```js
 const sheetName = 'AppBar';
 const ruleName = 'root';
-const identifier = 5pbwdt;
+const identifier = 123;
 
 const className = `${sheetName}-${ruleName}-${identifier}`;
 ```
 
-- In **production**, the class name will be: `.jss5pbwdt`, following this logic:
+- In **production**, the class name will be: `.jss123`, following this logic:
 
 ```js
 const productionPrefix = 'jss';
-const identifier = 5pbwdt;
+const identifier = 123;
 
 const className = `${productionPrefix}-${identifier}`;
 ```
@@ -274,6 +364,10 @@ const Button = styled(styles, { name: 'button' })(ButtonBase);
 const Button = withStyles(styles, { name: 'button' })(ButtonBase);
 ```
 
+## CSS prefixes
+
+JSS uses feature detection to apply the correct prefixes. [Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
+
 ## Content Security Policy (CSP)
 
 ### What is CSP and why is it useful?
@@ -308,13 +402,13 @@ header('Content-Security-Policy')
   .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
-If you are using Server Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
+If you are using Server-Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
 
 ```jsx
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheetsRegistry.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheets.toString() } }
 />
 ```
 

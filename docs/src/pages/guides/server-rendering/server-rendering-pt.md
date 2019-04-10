@@ -4,13 +4,13 @@
 
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client. From that point on, the client takes over rendering duties.
 
-## Material-UI on the Server
+## Material-UI no servidor
 
-Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated. It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker. To inject the style down to the client, we need to:
+O Material-UI foi desenhado da base com as limitações de renderizar no servidor, mas você pode se certificar que será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). To inject the style down to the client, we need to:
 
-1. Create a fresh, new `sheetsRegistry` and `theme` instance on every request.
-2. Render the React tree with the server-side API and the instance.
-3. Pull the CSS out of the `sheetsRegistry`.
+1. Cria uma instância nova e fresca do [`ServerStyleSheets`](/css-in-js/api/#serverstylesheets) em cada requisição.
+2. Render the React tree with the server-side collector.
+3. Pull the CSS out.
 4. Pass the CSS along to the client.
 
 On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
@@ -19,7 +19,7 @@ On the client side, the CSS will be injected a second time before removing the s
 
 In the following recipe, we are going to look at how to set up server-side rendering.
 
-### The Server Side
+### The server-side
 
 The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
 
@@ -50,23 +50,22 @@ app.listen(port);
 
 ### Handling the Request
 
-The first thing that we need to do on every request is create a new `sheetsRegistry` and `theme` instance.
+The first thing that we need to do on every request is create a new `ServerStyleSheets`.
 
 When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/css-in-js/api/#stylesprovider) and [`ThemeProvider`](/css-in-js/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
+We then get the CSS from our `sheets` using `sheets.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
 ```jsx
-import ReactDOMServer from 'react-dom/server'
-import { SheetsRegistry } from 'jss';
+import ReactDOMServer from 'react-dom/server';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 
-// Create a theme instance.
+// Create a theme object.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -75,31 +74,22 @@ const theme = createMuiTheme({
 });
 
 function handleRender(req, res) {
-  // Create a sheetsRegistry instance.
-  const sheetsRegistry = new SheetsRegistry();
-  // Crie uma instância do sheetsManager.
-  const sheetsManager = new Map();
-  // Create a new class name generator.
-  const generateClassName = createGenerateClassName();
+  const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    <StylesProvider
-      generateClassName={generateClassName}
-      sheetsRegistry={sheetsRegistry}
-      sheetsManager={sheetsManager}
-    >
+    sheets.collect(
       <ThemeProvider theme={theme}>
         <App />
-      </ThemeProvider>
-    </StylesProvider>
-  )
+      </ThemeProvider>,
+    ),
+  );
 
-  // Grab the CSS from our sheetsRegistry.
-  const css = sheetsRegistry.toString()
+  // Grab the CSS from our sheets.
+  const css = sheets.toString();
 
-  // Envie a página renderizada de volta ao cliente.
-  res.send(renderFullPage(html, css))
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, css));
 }
 ```
 
@@ -113,7 +103,6 @@ function renderFullPage(html, css) {
     <!doctype html>
     <html>
       <head>
-        <title>Material-UI</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
@@ -150,7 +139,7 @@ function Main() {
   return <App />;
 }
 
-// Create a theme instance.
+// Create a theme object.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -184,22 +173,22 @@ The CSS is only generated on the first load of the page. Then, the CSS is missin
 
 #### Action to Take
 
-We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to provide **a new `sheetsManager` for each request**.
+We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` for each request**.
 
 *example of fix:*
 
 ```diff
-- // Cria uma instância do sheetsManager.
--const sheetsManager = new Map();
+-// Create a sheets instance.
+-const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
 
-+ // Crie uma instância de sheetsManager.
-+ const sheetsManager = new Map();
++ // Create a sheets instance.
++ const sheets = new ServerStyleSheets();
 
   //…
 
-  // Renderize o componente para uma string.
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
 ```
 
@@ -247,4 +236,3 @@ function handleRender(req, res) {
 ```
 
 - You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
-- The react-jss dependency version should match the ^8.0.0 semantic versioning.

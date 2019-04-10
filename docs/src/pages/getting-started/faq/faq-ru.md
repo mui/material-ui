@@ -14,7 +14,9 @@ You could end up accidentally using two class name generators in a variety of sc
 
 - You accidentally **bundle** two versions of Material-UI. You might have a dependency not correctly setting Material-UI as a peer dependency.
 - You are using `StylesProvider` for a **subset** of your React Tree.
-- You are using a bundler and it is splitting code in a way results in multiple class name generator instances to be created. > If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+- You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
+
+> If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 
 Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/css-in-js/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared between them**.
 

@@ -1,8 +1,8 @@
 ---
-title: Zirkulärer Fortschritt, Linearer Fortschritt React Komponente
+title: Circular Progress, Linear Progress React-Komponente
 components: CircularProgress, LinearProgress
 ---
-# Fortschritt
+# Fortschritt (Progress)
 
 <p class="description">Fortschrittsanzeigen geben eine unbestimmte Wartezeit oder die Länge eines Prozesses an.</p>
 
@@ -16,7 +16,7 @@ components: CircularProgress, LinearProgress
 
 Wenn Sie den Fortschritt für eine Folge von Prozessen anzeigen, geben Sie den Gesamtfortschritt und nicht den Fortschritt der einzelnen Aktivitäten an.
 
-## Circular
+## Kreisförmig
 
 [Zirkulärer Fortschritt](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) unterstützt sowohl bestimmte als auch unbestimmte Prozesse.
 

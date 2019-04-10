@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
-import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import rerender from 'test/utils/rerender';
 import {
@@ -639,22 +638,6 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(onKeyDownSpy.callCount, 1);
         assert.strictEqual(onKeyDownSpy.calledWith(event), true);
       });
-    });
-  });
-
-  describe('prop: ref', () => {
-    it('should be able to get a ref of the root element', () => {
-      function ButtonBaseRef(props) {
-        return <ButtonBase ref={props.rootRef} />;
-      }
-      ButtonBaseRef.propTypes = {
-        rootRef: PropTypes.func.isRequired,
-      };
-
-      const ref = spy();
-      mount(<ButtonBaseRef rootRef={ref}>Hello</ButtonBaseRef>);
-      assert.strictEqual(ref.callCount, 1);
-      assert.strictEqual(ReactDOM.findDOMNode(ref.args[0][0]).type, 'button');
     });
   });
 

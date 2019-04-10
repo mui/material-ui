@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 
 export interface TooltipProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title', false> {
   children: React.ReactElement;
   disableFocusListener?: boolean;
   disableHoverListener?: boolean;

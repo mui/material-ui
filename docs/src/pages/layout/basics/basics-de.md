@@ -1,21 +1,22 @@
 # Grundlegendes
 
-<p class="description">Material Design layouts encourage consistency across platforms, environments, and screen sizes by using uniform elements and spacing.</p>
+<p class="description">Layouts für Materialdesigns fördern die Konsistenz über Plattformen, Umgebungen und Bildschirmgrößen hinweg, indem einheitliche Elemente und Abstände verwendet werden.</p>
 
 ## Responsive UI
 
-[Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size. We provide the following helpers to make the UI responsive:
+[Responsive Layouts](https://material.io/design/layout/responsive-layout-grid.html) passen sich in Material Design an jede mögliche Bildschirmgröße an. Wir bieten die folgenden Helfer, um die Benutzeroberfläche ansprechbar zu machen:
 
-- [Grid](/layout/grid/): The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-- [Breakpoints](/layout/breakpoints/): We provide a low-level API that enables the use of breakpoints in a wide variety of contexts.
-- [useMediaQuery](/layout/use-media-query/): This is a CSS media query hook for React.
-- [Hidden](/layout/hidden/): The hidden component can be used to change the visibility of the elements.
+- [Grid](/layout/grid/): Das responsive Layoutraster von Material Design passt sich der Bildschirmgröße und -ausrichtung an und sorgt für Konsistenz über alle Layouts hinweg.
+- [Container](/layout/container/): The container centers your content horizontally. Es ist das grundlegendste Layoutelement.
+- [ Rasterpunkte](/layout/breakpoints/): API, die die Verwendung von Rasterpunkten in einer Vielzahl von Kontexten ermöglicht.
+- [useMediaQuery](/layout/use-media-query/): Dies ist ein CSS-Media-Abfrage-Hook für React. Es wartet auf Übereinstimmungen mit einer CSS-Medienabfrage.
+- [Hidden](/layout/hidden/): Wechseln Sie mit unseren versteckten Komponenten schnell und ansprechend den Sichtbarkeitswert von Komponenten und mehr.
 
 ## z-index
 
-Several Material-UI components utilize `z-index`, the CSS property that helps control layout by providing a third axis to arrange content. We utilize a default z-index scale in Material-UI that's been designed to properly layer drawers, modals, snackbars, tooltips, and more.
+Mehrere Material-UI-Komponenten verwenden den `Z-Index `, die CSS-Eigenschaft, die das Layout steuert, indem eine dritte Achse zum Anordnen von Inhalt bereitgestellt wird. Wir verwenden eine Standard-Z-Indexskala in der Material-Benutzeroberfläche, welche Drawer, Modale, Snackbars, Tooltips und vieles mehr richtig, übereinander in Lagen aufbauen.
 
-[These values](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
+[Diese Werte](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js) beginnen mit einer beliebigen Anzahl, hoch und spezifisch genug, um Konflikte idealerweise zu vermeiden.
 
 - mobile stepper: 1000
 - app bar: 1100
@@ -24,4 +25,4 @@ Several Material-UI components utilize `z-index`, the CSS property that helps co
 - snackbar: 1400
 - tooltip: 1500
 
-These values can always be customized. You will find them in the theme under the [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) key. We don’t encourage customization of individual values; should you change one, you likely need to change them all.
+Diese Werte können immer angepasst werden. Sie finden sie im Theme unter dem [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) Schlüssel. Wir ermutigen nicht dazu, individuelle Werte anzupassen. Wenn Sie einen ändern, müssen Sie wahrscheinlich alle ändern.

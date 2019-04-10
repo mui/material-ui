@@ -66,4 +66,5 @@ you need to use the following style sheet name: `MuiListItem`.
 ## Demos
 
 - [Lists](/demos/lists/)
+- [Transfer List](/demos/transfer-list/)
 

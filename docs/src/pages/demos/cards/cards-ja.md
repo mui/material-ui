@@ -32,6 +32,8 @@ Cardは複数のアクション、UIコントロール、およびオーバー�
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
+> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+
 ## UIコントロール
 
 Card内の補足的なアクションは、通常はカードの下部に配置されているアイコンとテキスト及びUIコントロールから明示的に呼び出されます。

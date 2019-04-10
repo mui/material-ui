@@ -1,27 +1,27 @@
-# Server Rendering
+# Server-Rendering
 
-<p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
+<p class="description">Der gebräuchlichste Anwendungsfall für das serverseitige Rendern ist das anfängliche Rendern, wenn ein Benutzer (oder Suchmaschinen-Crawler) Ihre App zum ersten Mal anfordert.</p>
 
-When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client. From that point on, the client takes over rendering duties.
+Wenn der Server die Anforderung empfängt, stellt er die erforderlichen Komponenten in einem HTML-String dar und sendet sie als Antwort an den Client. Ab diesem Zeitpunkt übernimmt der Client die Rendering-Aufgaben.
 
-## Material-UI on the Server
+## Material-UI auf dem Server
 
-Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated. It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker. To inject the style down to the client, we need to:
+Die Material-UI wurde von Grund auf mit der Möglichkeit des Renderns auf dem Server entwickelt. Sie müssen jedoch sicherstellen, dass sie korrekt integriert ist. Es ist wichtig, die Seite mit dem erforderlichen CSS zu versehen, andernfalls wird die Seite nur mit HTM-Code gerendert und dann darauf gewartet, dass der Client das CSS einfügt was zu flackern führt (FOUC). Um den Stil in den Client zu injizieren, müssen wir:
 
-1. Create a fresh, new `sheetsRegistry` and `theme` instance on every request.
-2. Render the React tree with the server-side API and the instance.
-3. Pull the CSS out of the `sheetsRegistry`.
-4. Pass the CSS along to the client.
+1. Eine neue [`ServerStyleSheets`](/css-in-js/api/#serverstylesheets) Instanz bei jede Anfrage erstellen.
+2. Den React-Baum mit dem serverseitigen Collector rendern.
+3. Das CSS herausziehen.
+4. Das CSS zum Client weiterleiten.
 
-On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
+Auf der Clientseite wird das CSS ein zweites Mal eingefügt, bevor das serverseitige injizierte CSS entfernt wird.
 
 ## Installation
 
-In the following recipe, we are going to look at how to set up server-side rendering.
+Im folgenden Rezept wird beschrieben, wie das serverseitige Rendering eingerichtet wird.
 
-### The Server Side
+### Die Server-Seite
 
-The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
+Im Folgenden wird beschrieben, wie unsere Serverseite aussehen wird. Wir werden eine[ Express-Middleware](http://expressjs.com/en/guide/using-middleware.html) mit [ app.use ](http://expressjs.com/en/api.html) einrichten, um alle Anfragen zu bearbeiten, die auf unserem Server eingehen. Wenn Sie mit Express oder Middleware nicht vertraut sind, sollten Sie wissen, dass unsere handleRender-Funktion jedes Mal aufgerufen wird, wenn der Server eine Anfrage erhält.
 
 `server.js`
 
@@ -30,7 +30,7 @@ import express from 'express';
 import React from 'react';
 import App from './App';
 
-// We are going to fill these out in the sections to follow.
+// Diese werden in den folgenden Abschnitten gefüllt.
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -48,25 +48,24 @@ const port = 3000;
 app.listen(port);
 ```
 
-### Handling the Request
+### Verarbeiten der Anfrage
 
-The first thing that we need to do on every request is create a new `sheetsRegistry` and `theme` instance.
+Als Erstes müssen wir bei jeder Anfrage ein neues `ServerStyleSheets` erstellen.
 
-When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/css-in-js/api/#stylesprovider) and [`ThemeProvider`](/css-in-js/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+Beim Rendern wickeln wir die `App`, unsere Wurzelkomponente, in einem [`StylesProvider`](/css-in-js/api/#stylesprovider) und [`ThemeProvider`](/css-in-js/api/#themeprovider) ein, um die Stilkonfiguration und das `Theme` für alle Komponenten im Komponentenbaum verfügbar zu machen.
 
-The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+Der wichtigste Schritt beim serverseitigen Rendern ist das Rendern des ursprünglichen HTM-Codes unserer Komponente **bevor** wir es an den Kunden senden. Dazu verwenden wir [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
+Wir erhalten dann das CSS aus unsere `Sheets` mit `sheets.toString()`. Wir werden sehen, wie dies in unserer ` enderFullPage`-Funktion weitergegeben wird.
 
 ```jsx
-import ReactDOMServer from 'react-dom/server'
-import { SheetsRegistry } from 'jss';
+import ReactDOMServer from 'react-dom/server';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 
-// Create a theme instance.
+// Erstellen des Theme Objekts.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -75,37 +74,28 @@ const theme = createMuiTheme({
 });
 
 function handleRender(req, res) {
-  // Create a sheetsRegistry instance.
-  const sheetsRegistry = new SheetsRegistry();
-  // Create a sheetsManager instance.
-  const sheetsManager = new Map();
-  // Create a new class name generator.
-  const generateClassName = createGenerateClassName();
+  const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
+  // Rednern des Komponenten als String.
   const html = ReactDOMServer.renderToString(
-    <StylesProvider
-      generateClassName={generateClassName}
-      sheetsRegistry={sheetsRegistry}
-      sheetsManager={sheetsManager}
-    >
+    sheets.collect(
       <ThemeProvider theme={theme}>
         <App />
-      </ThemeProvider>
-    </StylesProvider>
-  )
+      </ThemeProvider>,
+    ),
+  );
 
-  // Grab the CSS from our sheetsRegistry.
-  const css = sheetsRegistry.toString()
+  // Entnahme des CSS aus dem Sheet.
+  const css = sheets.toString();
 
-  // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css))
+  // Zurücksenden der gerenderten Seite an den Client.
+  res.send(renderFullPage(html, css));
 }
 ```
 
-### Inject Initial Component HTML and CSS
+### Injizieren der ursprüngliche HTML Komponente und CSS
 
-The final step on the server-side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
+Der letzte Schritt auf der Serverseite ist das Einfügen unserer ursprünglichen HTML Komponente und CSS in eine Vorlage, die auf der Clientseite gerendert werden soll.
 
 ```js
 function renderFullPage(html, css) {
@@ -113,7 +103,6 @@ function renderFullPage(html, css) {
     <!doctype html>
     <html>
       <head>
-        <title>Material-UI</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
@@ -124,9 +113,9 @@ function renderFullPage(html, css) {
 }
 ```
 
-### The Client Side
+### Die Client-Seite
 
-The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at our client file:
+Die Client-Seite ist unkompliziert. Wir müssen nur das serverseitig erzeugte CSS entfernen. Werfen wir einen Blick auf unsere Client Datei:
 
 `client.js`
 
@@ -150,7 +139,7 @@ function Main() {
   return <App />;
 }
 
-// Create a theme instance.
+// Ein Theme Objekt wird erstellt.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -166,75 +155,75 @@ ReactDOM.hydrate(
 );
 ```
 
-## Reference implementations
+## Referenzimplementierungen
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) folder:
+Wir bieten verschiedene Referenzimplementierungen an, die Sie im [GitHub-Repository](https://github.com/mui-org/material-ui) finden können unter dem [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) Ordner:
 
-- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
+- [Die Referenzimplementierung dieses Tutorials](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
 
-## Troubleshooting
+## Problemlösungen
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](#reference-implementations), bit by bit.
+Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. Eine fehlende Eigenschaft, eine falsche Aufrufreihenfolge oder eine fehlende Komponente. Bei der Konfiguration sind wir sehr streng. Um herauszufinden, was falsch ist, können Sie am besten Ihr Projekt mit einem bereits funktionierenden Setup vergleichen. Schauen Sie sich unsere [Referenzimplementierungen](#reference-implementations) an, Stück für Stück.
 
-### CSS works only on first load then is missing
+### CSS funktioniert nur beim ersten Laden, dann fehlt es
 
-The CSS is only generated on the first load of the page. Then, the CSS is missing on the server for consecutive requests.
+Das CSS wird nur beim ersten Laden der Seite generiert. Auf dem Server fehlt dann das CSS bei aufeinanderfolgende Anfragen.
 
-#### Action to Take
+#### Zu ergreifende Maßnahmen
 
-We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to provide **a new `sheetsManager` for each request**.
+Wir setzen auf einen Cache, den Sheets-Manager, um das CSS nur einmal pro Komponententyp (wenn Sie zwei Schaltflächen verwenden, benötigen Sie nur einmal das CSS der Schaltfläche) zu injizieren. Sie müssen **für jede Anfrage ein neues `sheet`** erstellen.
 
-*example of fix:*
+*beispiel für fix:*
 
 ```diff
--// Create a sheetsManager instance.
--const sheetsManager = new Map();
+- // Eine Sheet Instanz erstellen.
+-const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
 
-+ // Create a sheetsManager instance.
-+ const sheetsManager = new Map();
++ // Eine Sheet Instanz erstellen.
++ const sheets = new ServerStyleSheets();
 
   //…
 
-  // Render the component to a string.
+  // Rendern des Komponenten als String.
   const html = ReactDOMServer.renderToString(
 ```
 
-### React class name hydration mismatch
+### React Klassenname Hydratation Nichtübereinstimmung
 
-There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
+Es gibt eine Nichtübereinstimmung der Klassennamen zwischen Client und Server. Es könnte für die erste Anfrage funktionieren. Ein anderes Symptom ist, dass sich das Styling zwischen dem Laden der ersten Seite und dem Herunterladen der Clientskripte ändert.
 
-#### Action to Take
+#### Zu ergreifende Maßnahmen
 
-The class names value relies on the concept of [class name generator](/css-in-js/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
+Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/css-in-js/advanced/#class-names). Die gesamte Seite muss mit **einem einzigen Generator** gerendert werden. Dieser Generator muss sich auf dem Server und auf dem Client identisch verhalten. Zum Beispiel:
 
-- You need to provide a new class name generator for each request. But you might share a `createGenerateClassName()` between different requests:
+- Sie müssen für jede Anforderung einen neuen Klassennamengenerator bereitstellen. Sie können jedoch einen `createGenerateClassName()` Funktion zwischen verschiedenen Anfragen teilen:
 
-*example of fix:*
+*beispiel für fix:*
 
 ```diff
--// Create a new class name generator.
+- // Erstellen Sie einen neuen Klassennamengenerator.
 -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
-+ // Create a new class name generator.
++ // Erstellt einen neuen Klassennamengenerator.
 + const generateClassName = createGenerateClassName();
 
   //…
 
-  // Render the component to a string.
+  // Render der Komponente als String.
   const html = ReactDOMServer.renderToString(
 ```
 
-- You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
+- Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@material-ui/core` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
     
-    You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+    Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
 
-*example of fix (package.json):*
+*beispiel für fix (package.json):*
 
 ```diff
   "dependencies": {
@@ -246,5 +235,4 @@ function handleRender(req, res) {
   },
 ```
 
-- You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
-- The react-jss dependency version should match the ^8.0.0 semantic versioning.
+- Sie müssen sicherstellen, dass Server und Client denselben `process.env.NODE_ENV verwenden` Wert haben.

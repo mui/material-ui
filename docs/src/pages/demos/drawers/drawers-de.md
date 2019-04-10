@@ -1,8 +1,8 @@
 ---
-title: Navigationsleiste React-Komponente
+title: Drawer React-Komponente
 components: Drawer, SwipeableDrawer
 ---
-# Seitliches Menü
+# Seitliches Menü (Drawer)
 
 <p class="description">Navigationsfächer bieten Zugriff auf Ziele in Ihrer App. Seitenblätter sind Flächen, die zusätzlichen Inhalt enthalten, der am linken oder rechten Rand des Bildschirms verankert ist.</p>
 
@@ -31,7 +31,7 @@ Wir verwenden auf dieser Dokumentations-Website die folgenden Eigenschaften, um 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
 ## Responsive Navigationsleiste

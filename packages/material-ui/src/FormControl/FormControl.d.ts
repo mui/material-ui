@@ -3,7 +3,7 @@ import { StandardProps, PropTypes } from '..';
 
 export interface FormControlProps
   extends StandardProps<React.HtmlHTMLAttributes<HTMLDivElement>, FormControlClassKey> {
-  component?: React.ElementType<FormControlProps>;
+  component?: React.ElementType<React.HtmlHTMLAttributes<HTMLDivElement>>;
   disabled?: boolean;
   error?: boolean;
   fullWidth?: boolean;

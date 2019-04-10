@@ -94,3 +94,7 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
   inputProps={{ 'aria-label': 'Checkbox A' } }
 />
 ```
+
+## Guidance
+
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

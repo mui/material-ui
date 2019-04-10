@@ -7,7 +7,7 @@ export interface FormHelperTextProps
   error?: boolean;
   filled?: boolean;
   focused?: boolean;
-  component?: React.ElementType<FormHelperTextProps>;
+  component?: React.ElementType<React.HTMLAttributes<HTMLParagraphElement>>;
   margin?: 'dense';
   required?: boolean;
   variant?: 'standard' | 'outlined' | 'filled';

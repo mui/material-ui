@@ -83,3 +83,9 @@ Switch является второстепенным действием.
 ## Вставленный список
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
+
+## Virtualized List
+
+In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
+
+{{"demo": "pages/demos/lists/VirtualizedList.js"}}

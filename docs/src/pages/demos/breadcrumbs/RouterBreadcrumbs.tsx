@@ -14,7 +14,8 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Route, MemoryRouter } from 'react-router';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import { Omit } from '@material-ui/core';
 
 interface RouterBreadcrumbsState {
   readonly open: boolean;
@@ -35,7 +36,7 @@ const breadcrumbNameMap: { [key: string]: string } = {
   '/drafts': 'Drafts',
 };
 
-function ListItemLink(props: ListItemLinkProps) {
+function ListItemLink(props: Omit<ListItemLinkProps, 'ref'>) {
   const { to, open, ...other } = props;
   const primary = breadcrumbNameMap[to];
 

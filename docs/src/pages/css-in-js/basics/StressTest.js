@@ -47,7 +47,7 @@ function StressTest() {
   const theme = React.useMemo(() => ({ color }), [color]);
 
   return (
-    <ThemeProvider theme={() => theme}>
+    <ThemeProvider theme={theme}>
       <div>
         <fieldset>
           <div>

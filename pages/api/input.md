@@ -68,7 +68,6 @@ This property accepts the following keys:
 | <span class="prop-name">input</span> | Styles applied to the `input` element.
 | <span class="prop-name">inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
-| <span class="prop-name">inputType</span> | Styles applied to the `input` element if `type` is not "text"`.
 | <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section

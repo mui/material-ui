@@ -1,43 +1,43 @@
 ---
-title: Slider React component
+title: Slider React Komponente
 components: Slider
 ---
-# Slider
+# Schieberegler
 
-<p class="description">Sliders allow users to make selections from a range of values.</p>
+<p class="description">Schieberegler erlauben es Nutzern, eine Auswahl aus einer Reihe von Werten zu treffen.</p>
 
-[Sliders](https://material.io/design/components/sliders.html) reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
+[Schieberegler](https://material.io/design/components/sliders.html) spiegeln einen Wertebereich entlang einer Leiste wider, aus dem Benutzer einen einzelnen Wert auswählen können. Sie sind ideal zum Anpassen von Einstellungen wie Lautstärke, Helligkeit oder Anwenden von Bildfiltern.
 
-Sliders can have icons on both ends of the bar that reflect a range of values.
+Schieberegler können an beiden Enden der Leiste Symbole enthalten, die einen Wertebereich widerspiegeln.
 
-#### Immediate effects
+#### Sofortige Auswirkungen
 
-Changes made with sliders are immediate, allowing a user to make slider adjustments until finding their preference. They shouldn’t be paired with settings that have even minor delays in providing user feedback.
+Mit Schiebereglern vorgenommene Änderungen sind sofort wirksam, sodass ein Benutzer Anpassungen vornehmen kann, bis er seine Präferenz findet. Sie sollten nicht mit Einstellungen gepaart werden, bei denen die Rückmeldungen von Benutzern nur geringfügig verzögert werden.
 
-#### Current state
+#### Aktueller Zustand
 
-Sliders reflect the current state of the settings they control.
+Schieberegler zeigen den aktuellen Status der Einstellungen an, die sie steuern.
 
-## Simple slider
+## Einfacher Schieberegler
 
 {{"demo": "pages/lab/slider/SimpleSlider.js"}}
 
-## Slider with steps
+## Schieberegler mit Stufen
 
 {{"demo": "pages/lab/slider/StepSlider.js"}}
 
-## Disabled slider
+## Deaktivierter Schieberegler
 
 {{"demo": "pages/lab/slider/DisabledSlider.js"}}
 
-## Vertical slider
+## Vertikaler Schieberegler
 
 {{"demo": "pages/lab/slider/VerticalSlider.js"}}
 
-## Custom thumb
+## Benutzerdefinierter Anzeigepunkte
 
 {{"demo": "pages/lab/slider/CustomIconSlider.js"}}
 
-## Custom value reducer
+## Benutzerdefinierte Wertreduzierer
 
 {{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}

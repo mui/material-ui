@@ -83,3 +83,9 @@ Este recurso está dependendo do posicionamento de sticky CSS. Infelizmente, [n�
 ## Lista de Inserção
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
+
+## Virtualized List
+
+In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. São renderizadas 200 linhas e pode facilmente lidar com mais. Virtualization helps with performance issues.
+
+{{"demo": "pages/demos/lists/VirtualizedList.js"}}

@@ -1,6 +1,6 @@
 # Breakpoints
 
-<p class="description">A breakpoint is the range of predetermined screen sizes that have specific layout requirements.</p>
+<p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
 
 For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 

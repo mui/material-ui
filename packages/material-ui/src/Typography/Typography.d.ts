@@ -15,7 +15,7 @@ export interface TypographyProps
     | 'textPrimary'
     | 'textSecondary'
     | 'error';
-  component?: React.ElementType<TypographyProps>;
+  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
   display?: 'initial' | 'block' | 'inline';
   gutterBottom?: boolean;
   noWrap?: boolean;

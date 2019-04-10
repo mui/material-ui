@@ -22,4 +22,6 @@ components: NoSsr
 
 在它的核心，NoSsr组件的目的是 **延迟渲染**。 如上一个演示中所示，您可以使用它将渲染从服务器推迟到客户端。
 
-但您也可以使用它来推迟客户端本身的渲染。 您可以 **等待具有 `defer` 属性的屏幕帧** 来渲染子项。
+But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
+
+{{"demo": "pages/utils/no-ssr/FrameDeferring.js"}}

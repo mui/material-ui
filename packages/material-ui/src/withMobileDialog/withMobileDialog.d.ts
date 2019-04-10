@@ -1,16 +1,20 @@
 import { Breakpoint } from '../styles/createBreakpoints';
 import { WithWidth } from '../withWidth';
+import { PropInjector } from '..';
 
 export interface WithMobileDialogOptions {
   breakpoint: Breakpoint;
 }
 
-export interface InjectedProps {
-  fullScreen?: boolean;
+export interface WithMobileDialog extends WithWidth {
+  fullScreen: boolean;
 }
+
+/**
+ * @deprecated
+ */
+export interface InjectedProps extends WithMobileDialog {}
 
 export default function withMobileDialog<P = {}>(
   options?: WithMobileDialogOptions,
-): (
-  component: React.ComponentType<P & InjectedProps & Partial<WithWidth>>,
-) => React.ComponentType<P & Partial<WithWidth>>;
+): PropInjector<WithMobileDialog, Partial<WithMobileDialog>>;

@@ -85,8 +85,6 @@ export const styles = theme => {
     inputMarginDense: {},
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {},
-    /* Styles applied to the `input` element if `type` is not "text"`. */
-    inputType: {},
     /* Styles applied to the `input` element if `type="search"`. */
     inputTypeSearch: {},
   };

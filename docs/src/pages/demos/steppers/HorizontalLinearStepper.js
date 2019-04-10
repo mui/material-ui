@@ -130,6 +130,7 @@ function HorizontalLinearStepper() {
                   Skip
                 </Button>
               )}
+
               <Button
                 variant="contained"
                 color="primary"

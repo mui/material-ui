@@ -1,5 +1,107 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.7
+###### *Apr 8, 2019*
+
+A big thanks to the 24 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🔥 Many new TypeScript & hook demos @Dudrie, @jasondashwang, @sperry94, @Adherentman, @gabrielgene and @Tevinthuku
+- 🎀 6 more core components migrated from Classes to Hooks @joshwooding.
+- 📐 Update the selection controls and Snackbar to better match the Material Design specification.
+- And many more 🐛 bug fixes and 💄 improvements.
+
+### `@material-ui/core@v4.0.0-alpha.7`
+
+#### Breaking changes
+
+- [Switch][Radio][Checkbox] Improve specification compliance (#15097) @oliviertassinari
+
+  Refactore the implementation to make it easier to override the styles.
+  Rename the class names to match the specification wording:
+
+  ```diff
+  -icon
+  -bar
+  +thumb
+  +track
+  ```
+
+- [Snackbar] Match the new specification (#15122) @oliviertassinari
+
+  - Change the dimensions
+  - Change the default transition to from `Slide` to `Grow`.
+
+- [TextField] Fix height inconsistency (#15217) @gautam-relayr
+
+  Remove the `inputType` class from `InputBase`.
+
+#### Changes
+
+- [Box] Add remaining props to type declaration (#15101) @iamsoorena
+- [theme] Prepare the deprecation of theme.mixins.gutters (#15124) @oliviertassinari
+- [Switch] Add demo for labels on both sides (#14900) @s7dhansh
+- [Zoom] Convert to function component (#15133) @joshwooding
+- [Tab] Remove internal indicator prop types (#15143) @sperry94
+- [Grid] Add root class (#15163) @eps1lon
+- [Grow] Convert to function component (#15134) @joshwooding
+- [CardMedia] Move object-fit to the core (#15166) @gebigoma
+- [core] Forward ref in Collapse, Popper and SwipeableDrawer (#15170) @eps1lon
+- [Popover] Fix the warning when anchorReference="anchorPosition" (#15182) @xaviergonz
+- [styles] Fix getLuminance for hsl (#14391) @strayiker
+- [Select] Trigger the open callbacks even when uncontrolled (#15176) @rreznichenko
+- [Popover] Add warning when non-ref-holding component is used in Paper (#15181) @eps1lon
+- [TablePaginationActions] Convert to function component (#15189) @joshwooding
+- [TextField] Add links to Input and Select (#15148) @MrHen
+- [CardMedia] Allow generic component in TypeScript (#15098) @Domino987
+- [Button] Improve types with regard to react-router (#15193) @eps1lon
+- [NoSsr] Convert to function component (#15167) @joshwooding
+- [ClickAwayListener] Remove findDOMNode usage (#15179) @eps1lon
+- [FormControl] Convert to function component (#15208) @joshwooding
+- [SwitchBase] Convert to function component (#15188) @joshwooding
+
+### `@material-ui/styles@v4.0.0-alpha.7`
+
+- [styles] Fix types of ServerStyleSheets.collect (#15156) @evenchange4
+- [styles] Add injectFirst to StylesOptions interface (#15192) @stefanorie
+- [styles] Memoize theme to prevent re-rendering (#15201) @jhrdina
+
+### Docs
+
+- [docs] SimplePortal example using Hooks (#15125) @ralvs
+- [example] Simplify ssr examples (#15127) @oliviertassinari
+- [docs] Add Grid List TypeScript demos (#15118) @Dudrie
+- [docs] Polish Snackbar demos (#15129) @eps1lon
+- [docs] More Table TypeScript demos (#15086) @jasondashwang
+- [docs] Add most Progress TypeScript demos (#15104) @sperry94
+- [docs] Flatten /layout/layout (#15120) @oliviertassinari
+- [docs] Migrate docs' App Bar page to hooks (#15121) @gabrielgene
+- [docs] Migrate docs' Tooltips page to hooks (#15137) @gabrielgene
+- [docs] Use Date type instead of any for MUI pickers demo (#15144) @gabrielgene
+- [docs] Add virtualized List example (#15149) @joshwooding
+- [docs] Update Style Library Interoperability + Container forwardRef (#15147) @oliviertassinari
+- [docs] Run the TypeScript demos (#15159) @oliviertassinari
+- [docs] Add Breadcrumbs TypeScript demos (#15139) @Adherentman
+- [docs] Fix anchor link (#15174) @eps1lon
+- [docs] Convert customized select component to use hooks (#15177) @Tevinthuku
+- [docs] Add ExpansionPanels TypeScript Demo (#15162) @Adherentman
+- [docs] Add ref forwarding to API docs (#15135) @eps1lon
+- [docs] Add ImgMediaCard TypeScript demo (#15130) @jasondashwang
+- [docs] Link 'React Material-UI Cookbook' (#15211) @oliviertassinari
+- [docs] Fix the docs in dev mode for IE 11 (#15230) @oliviertassinari
+- [docs] New translations (#15235) @mbrookes
+- [examples] Update all the examples + page layout examples (#15219) @nareshbhatia
+- [docs] Tidy up moved / deleted translations and update the Crowdin config (#15247) @mbrookes
+
+### Core
+
+- [test] Forward ref behavior (#15131) @eps1lon
+- [core] Use explicit html entity (#15132) @eps1lon
+- [test] Decouple root class from root component (#15168) @eps1lon
+- [core] Polish `type` type of button related components (#15158) @eps1lon
+- [DialogContentText] Test conformance (#15206) @eps1lon
+
 ## 4.0.0-alpha.6
 ###### *Mar 30, 2019*
 

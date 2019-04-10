@@ -8,7 +8,11 @@ export interface LinkProps
     LinkClassKey,
     'component'
   > {
-  component?: React.ElementType<LinkProps>;
+  /**
+   * we only document this here since we use an anchor element instead of the
+   * default component in typography.
+   */
+  component?: React.ElementType<React.AnchorHTMLAttributes<HTMLAnchorElement> & TypographyProps>;
   TypographyClasses?: TypographyProps['classes'];
   underline?: 'none' | 'hover' | 'always';
 }
