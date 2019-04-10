@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import compose from 'docs/src/modules/utils/compose';
 
 const users = [
   {
@@ -53,17 +55,17 @@ const styles = theme => ({
 });
 
 function HomeUsers(props) {
-  const { classes } = props;
+  const { classes, t } = props;
 
   return (
     <div className={classes.root}>
       <NoSsr>
         <div className={classes.container}>
           <Typography variant="h4" align="center" gutterBottom>
-            {"Who's using Material-UI?"}
+            {t('whosUsing')}
           </Typography>
           <Typography variant="body1" align="center" gutterBottom>
-            Join these and many other great organisations!
+            {t('joinThese')}
           </Typography>
           <Grid container justify="center" className={classes.grid}>
             {users.map(user => (
@@ -75,7 +77,7 @@ function HomeUsers(props) {
             ))}
           </Grid>
           <Typography variant="body1" align="center" gutterBottom>
-            Are you using Material-UI?
+            {t('usingMui')}
           </Typography>
           <Grid container justify="center">
             <Button
@@ -84,7 +86,7 @@ function HomeUsers(props) {
               rel="noopener nofollow"
               target="_blank"
             >
-              Let us know!
+              {t('letUsKnow')}
             </Button>
           </Grid>
         </div>
@@ -95,6 +97,11 @@ function HomeUsers(props) {
 
 HomeUsers.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(HomeUsers);
+export default compose(
+  connect(state => ({ t: state.options.t })),
+  withStyles(styles),
+)(HomeUsers);
+

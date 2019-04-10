@@ -10,7 +10,7 @@ import compose from 'docs/src/modules/utils/compose';
 function Head(props) {
   const {
     t,
-    description = t('headDescription'),
+    description = t('strapline'),
     router,
     title = t('headTitle'),
     userLanguage,
