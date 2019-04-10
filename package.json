@@ -61,7 +61,7 @@
     "videos/"
   ],
   "dependencies": {
-    "cypress": "^3.1.4",
+    "cypress": "^3.2.0",
     "wait-on": "^3.2.0"
   }
 }
