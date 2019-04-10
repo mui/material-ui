@@ -234,7 +234,7 @@ describe('<SpeedDial />', () => {
         <SpeedDial
           {...defaultProps}
           ButtonProps={{
-            buttonRef: ref => {
+            ref: ref => {
               dialButtonRef = ref;
             },
           }}
@@ -246,7 +246,7 @@ describe('<SpeedDial />', () => {
             <SpeedDialAction
               key={i}
               ButtonProps={{
-                buttonRef: ref => {
+                ref: ref => {
                   actionRefs[i] = ref;
                 },
               }}

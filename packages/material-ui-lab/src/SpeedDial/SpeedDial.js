@@ -155,7 +155,7 @@ class SpeedDial extends React.Component {
   render() {
     const {
       ariaLabel,
-      ButtonProps: { buttonRef: origDialButtonRef, ...ButtonProps } = {},
+      ButtonProps: { ref: origDialButtonRef, ...ButtonProps } = {},
       children: childrenProp,
       classes,
       className: classNameProp,
@@ -202,10 +202,10 @@ class SpeedDial extends React.Component {
       const delay = 30 * (open ? validChildCount : totalValidChildren - validChildCount);
       validChildCount += 1;
 
-      const { ButtonProps: { buttonRef: origButtonRef, ...ChildButtonProps } = {} } = child.props;
+      const { ButtonProps: { ref: origButtonRef, ...ChildButtonProps } = {} } = child.props;
       const NewChildButtonProps = {
         ...ChildButtonProps,
-        buttonRef: this.createHandleSpeedDialActionButtonRef(validChildCount - 1, origButtonRef),
+        ref: this.createHandleSpeedDialActionButtonRef(validChildCount - 1, origButtonRef),
       };
 
       return React.cloneElement(child, {
@@ -259,7 +259,7 @@ class SpeedDial extends React.Component {
             className={classes.fab}
             {...clickProp}
             {...ButtonProps}
-            buttonRef={ref => {
+            ref={ref => {
               this.actions[0] = ref;
               setRef(origDialButtonRef, ref);
             }}

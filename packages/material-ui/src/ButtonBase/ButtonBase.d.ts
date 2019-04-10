@@ -10,7 +10,10 @@ import {
 export interface ButtonBaseTypeMap {
   props: {
     action?: (actions: ButtonBaseActions) => void;
-    buttonRef?: React.Ref<any> | React.RefObject<any>;
+    /**
+     * Prefer `ref` instead.
+     */
+    buttonRef?: React.Ref<unknown>;
     centerRipple?: boolean;
     disabled?: boolean;
     disableRipple?: boolean;
