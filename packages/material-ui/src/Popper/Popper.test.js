@@ -6,16 +6,13 @@ import { createShallow, createMount, describeConformance } from '@material-ui/co
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Popper from './Popper';
-import { Transition } from 'react-transition-group';
 
 describe('<Popper />', () => {
   let shallow;
   let mount;
-  const defaultChildrenId = '__Popper_test_js__children__id__';
-  const defaultChildrenSelector = `#${defaultChildrenId}`;
   const defaultProps = {
     anchorEl: () => window.document.createElement('div'),
-    children: <span id={defaultChildrenId}>Hello World</span>,
+    children: <span>Hello World</span>,
     open: true,
   };
 
@@ -100,13 +97,13 @@ describe('<Popper />', () => {
   describe('mount', () => {
     it('should mount without any issue', () => {
       const wrapper = mount(<Popper {...defaultProps} open={false} />);
-      assert.isFalse(wrapper.exists(defaultChildrenSelector));
+      assert.strictEqual(wrapper.find('span').length, 0);
       wrapper.setProps({ open: true });
       wrapper.update();
-      assert.isTrue(wrapper.exists(defaultChildrenSelector));
-      assert.strictEqual(wrapper.find(defaultChildrenSelector).text(), 'Hello World');
+      assert.strictEqual(wrapper.find('span').length, 1);
+      assert.strictEqual(wrapper.find('span').text(), 'Hello World');
       wrapper.setProps({ open: false });
-      assert.isFalse(wrapper.exists(defaultChildrenSelector));
+      assert.strictEqual(wrapper.find('span').length, 0);
     });
 
     it('should position the popper when opening', () => {
@@ -126,16 +123,61 @@ describe('<Popper />', () => {
     });
   });
 
+  describe('prop: keepMounted', () => {
+    // Test case for https://github.com/mui-org/material-ui/issues/15180
+    it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
+      const children = <p>Hello World</p>;
+
+      class OpenClose extends React.Component {
+        state = {
+          open: false,
+        };
+
+        handleClick = () => {
+          this.setState({ open: true }, () => {
+            this.setState({ open: false });
+          });
+        };
+
+        render() {
+          return (
+            <div>
+              <button type="button" onClick={this.handleClick}>
+                Toggle Tooltip
+              </button>
+              <Popper {...defaultProps} open={this.state.open} transition>
+                {({ TransitionProps }) => (
+                  <Grow {...TransitionProps}>
+                    <span>{children}</span>
+                  </Grow>
+                )}
+              </Popper>
+            </div>
+          );
+        }
+      }
+
+      const wrapper = mount(<OpenClose />);
+      assert.strictEqual(wrapper.contains(children), false);
+      wrapper.find('button').simulate('click');
+      assert.strictEqual(wrapper.contains(children), false);
+    });
+  });
+
   describe('prop: transition', () => {
     it('should work', () => {
       const wrapper = mount(
         <Popper {...defaultProps} open transition>
-          {({ TransitionProps }) => <Grow {...TransitionProps}>{defaultProps.children}</Grow>}
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <span>Hello World</span>
+            </Grow>
+          )}
         </Popper>,
       );
       const instance = wrapper.find('Popper').instance();
-      assert.isTrue(wrapper.exists(defaultChildrenSelector));
-      assert.strictEqual(wrapper.find(defaultChildrenSelector).text(), 'Hello World');
+      assert.strictEqual(wrapper.find('span').length, 1);
+      assert.strictEqual(wrapper.find('span').text(), 'Hello World');
       assert.strictEqual(instance.popper !== null, true);
       wrapper.setProps({ anchorEl: null, open: false });
       wrapper
@@ -150,57 +192,21 @@ describe('<Popper />', () => {
     it('should update the exited state', () => {
       const wrapper = mount(
         <Popper {...defaultProps} open transition>
-          {({ TransitionProps }) => <Grow {...TransitionProps}>{defaultProps.children}</Grow>}
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <span>Hello World</span>
+            </Grow>
+          )}
         </Popper>,
       );
-      wrapper.setProps({ open: false });
+      wrapper.setProps({
+        open: false,
+      });
       wrapper
         .find(Grow)
         .props()
         .onExited();
       assert.strictEqual(wrapper.find('Popper').instance().state.exited, true);
-    });
-  });
-
-  describe('prop: keepMounted', () => {
-    it('should keep the children in the DOM', () => {
-      const wrapper = mount(<Popper {...defaultProps} open={false} keepMounted />);
-      assert.isTrue(wrapper.exists(defaultChildrenSelector));
-    });
-
-    /* Test case for https://github.com/mui-org/material-ui/issues/15180 */
-    it('should remove from DOM when closed whilst transition has entering status', () => {
-      const onEntering = spy();
-      const onEntered = spy();
-      const wrapper = mount(
-        <Popper {...defaultProps} open={false} keepMounted={false} transition>
-          {({ TransitionProps }) => (
-            <Transition
-              {...TransitionProps}
-              appear
-              exit={false} // Disable exit animation, so it immediately unmounts on close
-              timeout={500}
-              onEntering={onEntering}
-              onEntered={onEntered}
-            >
-              {defaultProps.children}
-            </Transition>
-          )}
-        </Popper>,
-      );
-      assert.isFalse(wrapper.exists(defaultChildrenSelector));
-      assert.strictEqual(onEntering.callCount, 0);
-
-      wrapper.setProps({ open: true });
-      wrapper.update();
-      assert.isTrue(wrapper.exists(defaultChildrenSelector));
-      assert.strictEqual(onEntering.callCount, 1);
-      assert.strictEqual(onEntered.callCount, 0);
-
-      wrapper.setProps({ open: false });
-      wrapper.update();
-      assert.isFalse(wrapper.exists(defaultChildrenSelector));
-      assert.strictEqual(onEntered.callCount, 0); // Ensuring component was never "entered"
     });
   });
 

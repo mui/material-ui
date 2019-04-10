@@ -293,6 +293,7 @@ Popper.propTypes = {
 
 Popper.defaultProps = {
   disablePortal: false,
+  keepMounted: false,
   placement: 'bottom',
   transition: false,
 };
