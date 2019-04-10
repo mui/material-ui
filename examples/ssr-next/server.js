@@ -12,9 +12,9 @@ function renderFullPage(html, css) {
       <head>
         <title>My page</title>
         <style id="jss-server-side">${css}</style>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <!-- Fonts to support Material Design -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
       </head>
       <body>
         <script async src="build/bundle.js"></script>
