@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -30,10 +30,17 @@ const options = [
   'Umbriel',
 ];
 
-function ConfirmationDialogRaw(props) {
+export interface ConfirmationDialogRawProps {
+  classes: Record<'paper', 'string'>;
+  value: string;
+  open: boolean;
+  onClose: (value: string) => void;
+}
+
+function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
   const { onClose, value: valueProp, ...other } = props;
   const [value, setValue] = React.useState(valueProp);
-  const radioGroupRef = React.useRef(null);
+  const radioGroupRef = React.useRef<HTMLElement>(null);
 
   if (valueProp !== value) {
     setValue(valueProp);
@@ -53,7 +60,7 @@ function ConfirmationDialogRaw(props) {
     onClose(value);
   }
 
-  function handleChange(event, newValue) {
+  function handleChange(event: React.ChangeEvent<{}>, newValue: string) {
     setValue(newValue);
   }
 
@@ -97,7 +104,7 @@ ConfirmationDialogRaw.propTypes = {
   value: PropTypes.string,
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -118,7 +125,7 @@ function ConfirmationDialog() {
     setOpen(true);
   }
 
-  function handleClose(newValue) {
+  function handleClose(newValue: string) {
     setOpen(false);
     setValue(newValue);
   }
