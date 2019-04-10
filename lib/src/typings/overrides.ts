@@ -17,11 +17,11 @@ import { styles as DTHeaderStyles } from '../DateTimePicker/components/DateTimeP
 import { styles as MuiPickersYearSelectionStyles } from '../DatePicker/components/YearSelection';
 import { styles as MuiPickersMonthSelectionStyles } from '../DatePicker/components/MonthSelection';
 
-type Classes<T> = Partial<
+type Classes<T extends object, P extends object = {}> = Partial<
   StyleRules<
     T extends string
       ? T
-      : T extends StyleRulesCallback<infer K>
+      : T extends StyleRulesCallback<infer K, P>
       ? K
       : T extends StyleRules<infer D>
       ? D
