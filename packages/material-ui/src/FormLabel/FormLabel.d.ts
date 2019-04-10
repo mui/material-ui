@@ -7,11 +7,6 @@ declare const FormLabel: OverridableComponent<{
     error?: boolean;
     filled?: boolean;
     focused?: boolean;
-    /**
-     * Should only be used if ref forwarding `component` is used.
-     * This is imprecise if `<FormLabel component={SomeComponent} />` is used.
-     */
-    ref?: React.Ref<HTMLElement>;
     required?: boolean;
   };
   defaultComponent: 'label';
