@@ -119,7 +119,6 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
         },
         className,
       )}
-
       ref={ref}
       square={square}
       {...other}
