@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { List } from '@material-ui/core';
 import NavItem from './NavItem';
+import { List } from '@material-ui/core';
 
 const navItems = [
   {
@@ -39,16 +38,16 @@ const navItems = [
         href: '/guides/controlling-programmatically',
       },
       { title: 'Static picker`s components', href: '/guides/static-components' },
+      { title: 'Updating to v3', href: '/guides/upgrading-to-v3' },
     ],
   },
 ];
 
-class NavigationMenu extends React.Component {
-  mapNavigation(depth) {
-    return ({ title, children, href }) => {
-      const { location } = this.props;
+class NavigationMenu extends React.Component<any> {
+  mapNavigation(depth: number) {
+    return ({ title, children, href }: any) => {
       const open =
-        children && children.length > 0 ? children.some(item => item.href === true) : false;
+        children && children.length > 0 ? children.some((item: any) => item.href === true) : false;
 
       return (
         <NavItem key={href || title} title={title} depth={depth} href={href} open={open}>
