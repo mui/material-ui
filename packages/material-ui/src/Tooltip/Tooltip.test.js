@@ -254,11 +254,11 @@ describe('<Tooltip />', () => {
   });
 
   describe('disabled button warning', () => {
-    before(() => {
+    beforeEach(() => {
       consoleErrorMock.spy();
     });
 
-    after(() => {
+    afterEach(() => {
       consoleErrorMock.reset();
     });
 
@@ -290,7 +290,7 @@ describe('<Tooltip />', () => {
 
     it('should not raise a warning when we are controlled', () => {
       mount(
-        <Tooltip title="Hello World" open={true}>
+        <Tooltip title="Hello World" open>
           <button type="submit" disabled>
             Hello World
           </button>
