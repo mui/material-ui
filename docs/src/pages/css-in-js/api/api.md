@@ -147,13 +147,13 @@ It collects the style sheets during the rendering so they can be later sent to t
 
 The method returns the collected styles.
 
-⚠️ You should call `.collect()` before using this method.
+⚠️ You must call `.collect()` before using this method.
 
 ### `sheets.getStyleElement() => CSS React element`
 
 The method is an alternative to `.toString()` when you are rendering the whole page with React.
 
-⚠️ You should call `.collect()` before using this method.
+⚠️ You must call `.collect()` before using this method.
 
 ## `styled(Component)(styles, [options]) => Component`
 
