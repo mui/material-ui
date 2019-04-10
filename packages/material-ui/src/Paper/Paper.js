@@ -73,7 +73,7 @@ Paper.propTypes = {
   component: PropTypes.elementType,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
-   * It's accepting values between 0 and 24 inclusive.
+   * It accepts values between 0 and 24 inclusive.
    */
   elevation: PropTypes.number,
   /**
