@@ -2,9 +2,10 @@ import prism from 'prismjs';
 import { ThemeType } from '../layout/PageWithContext';
 
 import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-diff';
 import 'prismjs/components/prism-typescript';
 
-export type AvailableLanguages = 'jsx' | 'typescript' | 'markup' | 'json';
+export type AvailableLanguages = 'jsx' | 'typescript' | 'markup' | 'json' | 'diff';
 export const prismThemes = {
   light: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css',
   dark: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css',

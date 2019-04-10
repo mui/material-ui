@@ -31,6 +31,7 @@ interface LayoutProps extends WithRouterProps, WithStyles<typeof styles, true> {
 
 const styles = (theme: Theme) =>
   createStyles({
+    // @ts-ignore
     '@global': createOverrides(theme),
     flex: {
       flex: 1,

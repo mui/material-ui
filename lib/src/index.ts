@@ -37,10 +37,10 @@ export { default as TimePickerView } from './TimePicker/components/TimePickerVie
 
 export { default as Clock } from './TimePicker/components/Clock';
 
+export { useUtils } from './_shared/hooks/useUtils';
+
 export { usePickerState } from './_shared/hooks/usePickerState';
 
-export {
-  default as MuiPickersUtilsProvider,
-  MuiPickersContext,
-  MuiPickersContextConsumer,
-} from './MuiPickersUtilsProvider';
+export { useKeyboardPickerState } from './_shared/hooks/useKeyboardPickerState';
+
+export { default as MuiPickersUtilsProvider, MuiPickersContext } from './MuiPickersUtilsProvider';

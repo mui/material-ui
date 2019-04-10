@@ -63,23 +63,16 @@ export class DatePickerRoot extends React.PureComponent<DatePickerRootProps> {
   public static propTypes: any = {
     views: PropTypes.arrayOf(DomainPropTypes.datePickerView),
     openTo: DomainPropTypes.datePickerView,
-    openToYearSelection: PropTypes.bool,
   };
 
   public static defaultProps = {
-    openToYearSelection: false,
     minDate: new Date('1900-01-01'),
     maxDate: new Date('2100-01-01'),
     views: ['year', 'day'] as DatePickerViewType[],
   };
 
   public state: DatePickerState = {
-    // TODO in v3 remove openToYearSelection
-    openView: this.props.openTo
-      ? this.props.openTo
-      : this.props.openToYearSelection
-      ? 'year'
-      : this.props.views![this.props.views!.length - 1],
+    openView: this.props.openTo || this.props.views![this.props.views!.length - 1],
   };
 
   get date() {
