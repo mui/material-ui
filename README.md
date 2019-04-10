@@ -30,7 +30,7 @@ npm i material-ui-pickers
 yarn add material-ui-pickers
 ```
 
-Next channel (v3-alpha). [Docs site](https://next.material-ui-pickers.dev/).
+Next channel (v3-alpha). [Docs site](https://next.material-ui-pickers.dev/). [Migration guide](https://next.material-ui-pickers.dev/guides/upgrading-to-v3)
 
 ```sh
 // via npm
