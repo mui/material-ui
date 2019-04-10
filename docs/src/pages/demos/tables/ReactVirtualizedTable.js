@@ -152,7 +152,7 @@ const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 // ---
 
-const data = [
+const sample = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
   ['Eclair', 262, 16.0, 24, 6.0],
@@ -167,7 +167,7 @@ function createData(id, dessert, calories, fat, carbs, protein) {
 const rows = [];
 
 for (let i = 0; i < 200; i += 1) {
-  const randomSelection = data[Math.floor(Math.random() * data.length)];
+  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
   rows.push(createData(i, ...randomSelection));
 }
 
