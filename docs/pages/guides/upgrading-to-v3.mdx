@@ -47,17 +47,14 @@ So if you are doing some heavy operations in `onChange`, like xhr requests, dom 
 move them to the `onAccept`. This callback will be fired only when user actually accepts the date.
 
 ```diff
-- <DatePicker
--   onChange={(newDate) => {
--     setDate(newDate) // stateLogic
--     requestSomeDataFromServer(newDate) // async action
--   }}
-- />
-
-+ <DatePicker
-+   onChange={setDate}
-+   onAccept={requestSomeDataFromServer}
-+ />
+<DatePicker
++ onChange={setDate} // stateLogic
++ onAccept={requestSomeDataFromServer} // async action
+- onChange={(newDate) => {
+-   setDate(newDate)
+-   requestSomeDataFromServer(newDate)
+- }}
+/>
 ```
 
 #### ⌨ Keyboard mode
