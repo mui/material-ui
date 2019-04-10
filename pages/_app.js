@@ -14,8 +14,15 @@ import loadScript from 'docs/src/modules/utils/loadScript';
 
 // Add the strict mode back once the number of warnings is manageable.
 // We might miss important warnings by keeping the strict mode 🌊🌊🌊.
-const USE_STRICT_MODE = false;
-const ReactMode = USE_STRICT_MODE ? React.StrictMode : React.Fragment;
+/**
+ * @type {'loose' | 'strict' | 'concurrent'}
+ */
+const mode = 'loose';
+const ReactMode = {
+  concurrent: React.unstable_ConcurrentMode,
+  loose: React.Fragment,
+  strict: React.StrictMode,
+}[mode];
 
 let dependenciesLoaded = false;
 
