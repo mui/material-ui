@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
+import HomeUsers from 'docs/src/modules/components/HomeUsers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
@@ -170,6 +171,7 @@ class HomePage extends React.Component {
           <HomeQuickWord />
           <HomeSteps />
           <HomeBackers />
+          <HomeUsers />
           <HomeFooter />
         </div>
         <script
