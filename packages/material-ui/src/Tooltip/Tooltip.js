@@ -114,13 +114,12 @@ function Tooltip(props) {
   const [, forceUpdate] = React.useState(0);
   const ignoreNonTouchEvents = React.useRef(false);
   const { current: isControlled } = React.useRef(props.open != null);
-  const childrenRef = React.useRef();
+  const [childNode, setChildNode] = React.useState();
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback(ref => {
-    childrenRef.current = ReactDOM.findDOMNode(ref);
-    forceUpdate(n => !n);
+    setChildNode(ReactDOM.findDOMNode(ref));
   }, []);
-  const handleRef = useForkRef(children.ref, handleOwnRef);
+  const handleRef = useForkRef(childNode, handleOwnRef);
   const defaultId = React.useRef();
   const mountedRef = useMountedRef();
   const closeTimer = React.useRef();
@@ -129,30 +128,34 @@ function Tooltip(props) {
   const touchTimer = React.useRef();
 
   React.useEffect(() => {
-    warning(
-      !childrenRef.current.disabled ||
-        (childrenRef.current.disabled && isControlled) ||
-        (childrenRef.current.disabled && title === '') ||
-        childrenRef.current.tagName.toLowerCase() !== 'button',
-      [
-        'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
-        'A disabled element does not fire events.',
-        "Tooltip needs to listen to the child element's events to display the title.",
-        '',
-        'Place a `div` container on top of the element.',
-      ].join('\n'),
-    );
+    if (childNode) {
+      warning(
+        !childNode.disabled ||
+        (childNode.disabled && isControlled) ||
+          (childNode.disabled && title === '') ||
+          childNode.tagName.toLowerCase() !== 'button',
+        [
+          'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
+          'A disabled element does not fire events.',
+          "Tooltip needs to listen to the child element's events to display the title.",
+          '',
+          'Place a `div` container on top of the element.',
+        ].join('\n'),
+      );
+    }
+  }, [isControlled, title, childNode]);
 
+  React.useEffect(() => {
     // Fallback to this default id when possible.
     // Use the random value for client side rendering only.
     // We can't use it server-side.
     defaultId.current = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
 
-    // Rerender with defaultId and childrenRef.
+    // Rerender with defaultId and childNode.
     if (openProp && !mountedRef.current) {
       forceUpdate(n => !n);
     }
-  }, [isControlled, title, openProp, mountedRef]);
+  }, [mountedRef, openProp]);
 
   React.useEffect(() => {
     return () => {
@@ -161,7 +164,7 @@ function Tooltip(props) {
       clearTimeout(leaveTimer.current);
       clearTimeout(touchTimer.current);
     };
-  });
+  }, []);
 
   const handleOpen = event => {
     // The mouseover event will trigger for every nested element in the tooltip.
@@ -190,7 +193,9 @@ function Tooltip(props) {
     // Remove the title ahead of time.
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
-    childrenRef.current.setAttribute('title', '');
+    if (childNode) {
+      childNode.setAttribute('title', '');
+    }
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
@@ -208,8 +213,8 @@ function Tooltip(props) {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
-    if (!childrenRef.current) {
-      childrenRef.current = event.currentTarget;
+    if (!childNode) {
+      setChildNode(event.currentTarget);
     }
 
     handleEnter(event);
@@ -349,8 +354,8 @@ function Tooltip(props) {
           [classes.popperInteractive]: interactive,
         })}
         placement={placement}
-        anchorEl={childrenRef.current}
-        open={childrenRef.current ? open : false}
+        anchorEl={childNode}
+        open={childNode ? open : false}
         id={childrenProps['aria-describedby']}
         transition
         {...interactiveWrapperListeners}

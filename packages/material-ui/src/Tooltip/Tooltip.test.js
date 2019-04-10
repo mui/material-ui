@@ -55,12 +55,12 @@ describe('<Tooltip />', () => {
   describe('prop: title', () => {
     it('should display if the title is present', () => {
       const wrapper = mount(<Tooltip {...defaultProps} open />);
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
 
     it('should not display if the title is an empty string', () => {
       const wrapper = mount(<Tooltip {...defaultProps} title="" open />);
-      assert.strictEqual(wrapper.find(Popper).props().open, false);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     });
 
     it('should be passed down to the child as a native title', () => {
@@ -85,10 +85,13 @@ describe('<Tooltip />', () => {
   it('should respond to external events', () => {
     const wrapper = mount(<Tooltip {...defaultProps} />);
     const children = wrapper.find('#testChild');
-    assert.strictEqual(wrapper.find(Popper).props().open, false);
+    assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     children.simulate('mouseOver');
-    assert.strictEqual(wrapper.find(Popper).props().open, true);
+    children.simulate('focus');
+    assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     children.simulate('mouseLeave');
+    assert.strictEqual(wrapper.find(Popper).props().open, false);
+    children.simulate('blur');
     assert.strictEqual(wrapper.find(Popper).props().open, false);
   });
 
@@ -110,19 +113,6 @@ describe('<Tooltip />', () => {
     assert.strictEqual(handleClose.callCount, 1);
   });
 
-  it('should close when the interaction is over', () => {
-    const wrapper = mount(<Tooltip {...defaultProps} />);
-    const children = wrapper.find('#testChild');
-    assert.strictEqual(wrapper.find(Popper).props().open, false);
-    children.simulate('mouseOver');
-    children.simulate('focus');
-    assert.strictEqual(wrapper.find(Popper).props().open, true);
-    children.simulate('mouseLeave');
-    assert.strictEqual(wrapper.find(Popper).props().open, false);
-    children.simulate('blur');
-    assert.strictEqual(wrapper.find(Popper).props().open, false);
-  });
-
   describe('touch screen', () => {
     it('should not respond to quick events', () => {
       const wrapper = mount(<Tooltip {...defaultProps} />);
@@ -130,7 +120,7 @@ describe('<Tooltip />', () => {
       children.simulate('touchStart');
       children.simulate('touchEnd');
       children.simulate('focus');
-      assert.strictEqual(wrapper.find(Popper).props().open, false);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     });
 
     it('should open on long press', () => {
@@ -140,7 +130,7 @@ describe('<Tooltip />', () => {
       children.simulate('focus');
       clock.tick(1000);
       wrapper.update();
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
       children.simulate('touchEnd');
       children.simulate('blur');
       clock.tick(1500);
@@ -169,10 +159,10 @@ describe('<Tooltip />', () => {
 
       const wrapper = mount(<AutoFocus />);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.find(Popper).props().open, false);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       clock.tick(0);
       wrapper.update();
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
   });
 
@@ -181,10 +171,10 @@ describe('<Tooltip />', () => {
       const wrapper = mount(<Tooltip enterDelay={111} {...defaultProps} />);
       const children = wrapper.find('#testChild');
       children.simulate('focus');
-      assert.strictEqual(wrapper.find(Popper).props().open, false);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       clock.tick(111);
       wrapper.update();
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
 
     it('should take the leaveDelay into account', () => {
@@ -192,9 +182,9 @@ describe('<Tooltip />', () => {
       const children = wrapper.find('#testChild');
       children.simulate('focus');
       clock.tick(0);
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
       children.simulate('blur');
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
       clock.tick(111);
       wrapper.update();
       assert.strictEqual(wrapper.find(Popper).props().open, false);
