@@ -1,15 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
   let mount;
-  const defaultProps = {
-    in: true,
-    children: <div />,
-  };
 
   before(() => {
     mount = createMount();
@@ -32,93 +28,106 @@ describe('<Zoom />', () => {
     }),
   );
 
-  describe('event callbacks', () => {
-    describe('entering', () => {
-      it('should fire callbacks', done => {
-        const handleEnter = spy();
-        const handleEntering = spy();
+  describe('transition lifecycle', () => {
+    let clock;
+    let wrapper;
+    let child;
 
-        mount(
-          <Zoom
-            onEnter={handleEnter}
-            onEntering={handleEntering}
-            onEntered={() => {
-              assert.strictEqual(handleEnter.callCount, 1);
-              assert.strictEqual(handleEnter.args[0].length, 1);
-              assert.strictEqual(handleEntering.callCount, 1);
-              assert.strictEqual(handleEntering.args[0].length, 2);
-              done();
-            }}
-            {...defaultProps}
-          >
-            <div />
-          </Zoom>,
-        );
-      });
+    const handleEnter = spy();
+    const handleEntering = spy();
+    const handleEntered = spy();
+    const handleExit = spy();
+    const handleExiting = spy();
+    const handleExited = spy();
+
+    before(() => {
+      clock = useFakeTimers();
+      wrapper = mount(
+        <Zoom
+          onEnter={handleEnter}
+          onEntering={handleEntering}
+          onEntered={handleEntered}
+          onExit={handleExit}
+          onExiting={handleExiting}
+          onExited={handleExited}
+        >
+          <div id="test" />
+        </Zoom>,
+      );
+      child = wrapper.find('#test');
     });
 
-    describe('exiting', () => {
-      it('should fire callbacks', done => {
-        const handleExit = spy();
-        const handleExiting = spy();
+    after(() => {
+      clock.restore();
+    });
 
-        const wrapper = mount(
-          <Zoom
-            onExit={handleExit}
-            onExiting={handleExiting}
-            onExited={() => {
-              assert.strictEqual(handleExit.callCount, 1);
-              assert.strictEqual(handleExit.args[0].length, 1);
-              assert.strictEqual(handleExiting.callCount, 1);
-              assert.strictEqual(handleExiting.args[0].length, 1);
-              done();
-            }}
-            {...defaultProps}
-          >
-            <div />
-          </Zoom>,
-        );
+    describe('in', () => {
+      before(() => {
+        wrapper.setProps({ in: true });
+      });
 
-        wrapper.setProps({
-          in: false,
+      describe('handleEnter()', () => {
+        it('should call handleEnter()', () => {
+          assert.strictEqual(handleEnter.callCount, 1);
+          assert.strictEqual(handleEnter.args[0][0], child.instance());
+        });
+
+        it('should set style properties', () => {
+          assert.match(
+            handleEnter.args[0][0].style.transition,
+            /transform 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+          );
+        });
+      });
+
+      describe('handleEntering()', () => {
+        it('should call handleEntering()', () => {
+          assert.strictEqual(handleEntering.callCount, 1);
+          assert.strictEqual(handleEntering.args[0][0], child.instance());
+        });
+      });
+
+      describe('handleEntered()', () => {
+        it('should call handleEntered()', () => {
+          clock.tick(1000);
+          assert.strictEqual(handleEntered.callCount, 1);
+          assert.strictEqual(handleEntered.args[0][0], child.instance());
         });
       });
     });
-  });
 
-  describe('transition lifecycle', () => {
-    describe('handleEnter()', () => {
-      it('should set the style properties', () => {
-        mount(
-          <Zoom
-            {...defaultProps}
-            onEnter={node => {
-              assert.match(
-                node.style.transition,
-                /transform 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-              );
-            }}
-          />,
-        );
+    describe('out', () => {
+      before(() => {
+        wrapper.setProps({ in: true });
+        wrapper.setProps({ in: false });
       });
-    });
 
-    describe('handleExit()', () => {
-      it('should set the style properties', () => {
-        const wrapper = mount(
-          <Zoom
-            {...defaultProps}
-            onExit={node => {
-              assert.match(
-                node.style.transition,
-                /transform 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-              );
-            }}
-          />,
-        );
+      describe('handleExit()', () => {
+        it('should call handleExit()', () => {
+          assert.strictEqual(handleExit.callCount, 1);
+          assert.strictEqual(handleExit.args[0][0], child.instance());
+        });
 
-        wrapper.setProps({
-          in: false,
+        it('should set style properties', () => {
+          assert.match(
+            handleExit.args[0][0].style.transition,
+            /transform 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+          );
+        });
+      });
+
+      describe('handleExiting()', () => {
+        it('should call handleExiting()', () => {
+          assert.strictEqual(handleExiting.callCount, 1);
+          assert.strictEqual(handleExiting.args[0][0], child.instance());
+        });
+      });
+
+      describe('handleExited()', () => {
+        it('should call handleExited()', () => {
+          clock.tick(1000);
+          assert.strictEqual(handleExited.callCount, 1);
+          assert.strictEqual(handleExited.args[0][0], child.instance());
         });
       });
     });
