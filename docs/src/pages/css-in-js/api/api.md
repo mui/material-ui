@@ -111,7 +111,7 @@ export default function MyComponent() {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle [server-side rendering](/guides/server-rendering/).
+This is a class helper to handle server-side rendering. [You can follow our guide for a practical approach](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -127,14 +127,10 @@ const response = `
   <head>
     <style id="jss-server-side">${cssString}</style>
   </head>
-  <body>
-    ${html}
-  </body>
+  <body>${html}</body>
 </html>
 `;
 ```
-
-The instance offers the following API.
 
 ### `new ServerStyleSheets([options])`
 
@@ -144,15 +140,20 @@ The instantiation accepts an options object as a first argument.
 
 ### `sheets.collect(node) => React element`
 
-The method wraps your node in a provider element.
+The method wraps your React node in a provider element.
+It collects the style sheets during the rendering so they can be later sent to the client.
 
 ### `sheets.toString() => CSS string`
 
-The method returns the collected styles. It's a CSS string.
+The method returns the collected styles.
+
+⚠️ You should call `.collect()` before using this method.
 
 ### `sheets.getStyleElement() => CSS React element`
 
-The method is an alternative to `toString()` when you are rendering the whole page with React.
+The method is an alternative to `.toString()` when you are rendering the whole page with React.
+
+⚠️ You should call `.collect()` before using this method.
 
 ## `styled(Component)(styles, [options]) => Component`
 
