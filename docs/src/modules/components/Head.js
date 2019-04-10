@@ -8,13 +8,7 @@ import { connect } from 'react-redux';
 import compose from 'docs/src/modules/utils/compose';
 
 function Head(props) {
-  const {
-    t,
-    description = t('headDescription'),
-    router,
-    title = t('headTitle'),
-    userLanguage,
-  } = props;
+  const { t, description = t('strapline'), router, title = t('headTitle'), userLanguage } = props;
 
   return (
     <NextHead>
