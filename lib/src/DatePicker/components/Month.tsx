@@ -1,8 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import createStyles from '@material-ui/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 
 export interface MonthProps extends WithStyles<typeof styles> {
@@ -37,7 +37,7 @@ export class Month extends React.PureComponent<MonthProps> {
         tabIndex={disabled ? -1 : 0}
         onClick={this.handleClick}
         onKeyPress={this.handleClick}
-        color={selected ? 'primary' : 'default'}
+        color={selected ? 'primary' : undefined}
         variant={selected ? 'h5' : 'subtitle1'}
         children={children}
         {...other}

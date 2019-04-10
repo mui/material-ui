@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import createStyles from '@material-ui/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 
 const positions = {
@@ -83,7 +83,7 @@ export class ClockNumber extends React.Component<ClockNumberProps> {
 }
 
 export const styles = (theme: Theme) => {
-  const size = theme.spacing.unit * 4;
+  const size = theme.spacing(4);
 
   return createStyles({
     clockNumber: {

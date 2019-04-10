@@ -5,7 +5,7 @@ import DayWrapper from './DayWrapper';
 import CalendarHeader from './CalendarHeader';
 import EventListener from 'react-event-listener';
 import SlideTransition, { SlideDirection } from './SlideTransition';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { IconButtonProps } from '@material-ui/core/IconButton';
@@ -282,7 +282,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 export const styles = (theme: Theme) => ({
   transitionContainer: {
     minHeight: 36 * 6,
-    marginTop: theme.spacing.unit * 1.5,
+    marginTop: theme.spacing(1.5),
   },
   week: {
     display: 'flex',

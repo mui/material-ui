@@ -36,7 +36,7 @@ describe('e2e - KeyboardDateTimePicker (inline)', () => {
 
   it('Should open modal with picker on click', () => {
     component.find('button#keyboard-button').simulate('click');
-    expect(component.find('WithStyles(Popover)').props().open).toBeTruthy();
+    expect(component.find('WithStyles(ForwardRef(Popover))').props().open).toBeTruthy();
     expect(onOpenMock).toHaveBeenCalled();
   });
 

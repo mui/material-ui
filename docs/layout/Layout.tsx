@@ -10,16 +10,14 @@ import TextDirectionLtrIcon from '@material-ui/icons/FormatTextdirectionLToR';
 import { createOverrides } from './styleOverrides';
 import { withRouter, WithRouterProps } from 'next/router';
 import { utilsMap, UtilsLib } from '../utils/utilsService';
+import { withStyles, WithStyles, createStyles } from '@material-ui/styles';
 import {
   Hidden,
   Drawer,
   AppBar,
   Toolbar,
   IconButton,
-  withStyles,
   Tooltip,
-  WithStyles,
-  createStyles,
   Theme,
   Menu,
   MenuItem,

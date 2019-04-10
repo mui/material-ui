@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { ShallowWrapper } from 'enzyme';
 import { shallow } from '../test-utils';
-import { WithStyles } from '@material-ui/core';
-import { ModalDialog, ModalDialogProps, styles } from '../../_shared/ModalDialog';
+import { ModalDialog, ModalDialogProps } from '../../_shared/ModalDialog';
 
-const initialProps: ModalDialogProps & WithStyles<typeof styles> = {
+const initialProps = {
   onAccept: jest.fn(),
   onDismiss: jest.fn(),
   onClear: jest.fn(),
@@ -29,26 +28,24 @@ describe('ModalDialog', () => {
     component = shallow(<ModalDialog {...props} />);
   });
 
-  it('Should renders', () => {
-    // console.log(component.debug());
-    expect(component).toBeTruthy();
-  });
-
   it('Should render dialog content', () => {
-    expect(component.find('WithStyles(DialogContent)').props().children).toBe(props.children);
+    expect(component.find('WithStyles(ForwardRef(DialogContent))').props().children).toBe(
+      props.children
+    );
   });
 
   it('Should render dialog actions with 2 buttons', () => {
-    expect(component.find('WithStyles(DialogActions)').length).toBe(1);
+    expect(component.find('WithStyles(ForwardRef(DialogActions))').length).toBe(1);
     expect(
       component
-        .find('WithStyles(Button)')
+        .find('WithStyles(ForwardRef(Button))')
         .at(0)
         .props().children
     ).toBe('Cancel');
+
     expect(
       component
-        .find('WithStyles(Button)')
+        .find('WithStyles(ForwardRef(Button))')
         .at(1)
         .props().children
     ).toBe('OK');
@@ -56,7 +53,7 @@ describe('ModalDialog', () => {
 
   it('Should handle on OK button click', () => {
     component
-      .find('WithStyles(Button)')
+      .find('WithStyles(ForwardRef(Button))')
       .at(1)
       .simulate('click');
     expect(props.onAccept).toHaveBeenCalled();
@@ -64,7 +61,7 @@ describe('ModalDialog', () => {
 
   it('Should handle on Cancel button click', () => {
     component
-      .find('WithStyles(Button)')
+      .find('WithStyles(ForwardRef(Button))')
       .at(0)
       .simulate('click');
     expect(props.onDismiss).toHaveBeenCalled();
@@ -84,7 +81,7 @@ describe('ModalDialog with Clear Button', () => {
 
   it('Should handle on Clear button click', () => {
     component
-      .find('WithStyles(Button)')
+      .find('WithStyles(ForwardRef(Button))')
       .at(0)
       .simulate('click');
     expect(props.onClear).toHaveBeenCalled();
@@ -104,7 +101,7 @@ describe('ModalDialog with Today Button', () => {
 
   it('Should handle on Clear button click', () => {
     component
-      .find('WithStyles(Button)')
+      .find('WithStyles(ForwardRef(Button))')
       .at(0)
       .simulate('click');
     expect(props.onSetToday).toHaveBeenCalled();

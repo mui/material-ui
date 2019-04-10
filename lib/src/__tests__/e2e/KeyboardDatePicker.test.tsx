@@ -47,7 +47,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
       />
     );
 
-    expect(component.find('TextField').prop('helperText')).toBe('Invalid Date Format');
+    expect(component.find('ForwardRef(TextField)').prop('helperText')).toBe('Invalid Date Format');
   });
 
   it('Should render error message if date is after maxDate', () => {
@@ -60,7 +60,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
       />
     );
 
-    expect(component.find('TextField').prop('helperText')).toBe(
+    expect(component.find('ForwardRef(TextField)').prop('helperText')).toBe(
       'Date should not be after maximal date'
     );
   });
@@ -75,7 +75,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
       />
     );
 
-    expect(component.find('TextField').prop('helperText')).toBe(
+    expect(component.find('ForwardRef(TextField)').prop('helperText')).toBe(
       'Date should not be before minimal date'
     );
   });

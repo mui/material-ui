@@ -3,16 +3,8 @@ import Link from 'next/link';
 import PageMeta from '_shared/PageMeta';
 import Logo from '_shared/svgIcons/Logo';
 import PatreonSponsors from '_shared/PatreonSponsors';
-import {
-  Button,
-  createStyles,
-  Paper,
-  Theme,
-  Toolbar,
-  Typography,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
+import { Button, Paper, Typography, Theme, Toolbar } from '@material-ui/core';
 
 const styles = (theme: Theme) =>
   createStyles({

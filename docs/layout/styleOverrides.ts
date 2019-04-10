@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core';
-import { StyleRules } from '@material-ui/core/styles';
+import { StyleRules } from '@material-ui/styles';
 
-export const createOverrides = (theme: Theme): StyleRules => ({
+export const createOverrides = (theme: Theme): StyleRules<any> => ({
   body: {
     fontFamily: 'roboto',
     '-webkit-font-smoothing:': 'antialiased',

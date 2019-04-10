@@ -5,7 +5,7 @@ import ToolbarText from './ToolbarText';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { ExtendMui } from '../typings/extendMui';
 import { TypographyProps } from '@material-ui/core/Typography';
-import { createStyles, withStyles, WithStyles } from '@material-ui/core';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 
 export interface ToolbarButtonProps
   extends ExtendMui<ButtonProps, 'variant'>,

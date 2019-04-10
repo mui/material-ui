@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import createStyles from '@material-ui/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 
 export interface YearProps extends WithStyles<typeof styles> {
@@ -48,7 +48,7 @@ export class Year extends React.PureComponent<YearProps> {
         tabIndex={disabled ? -1 : 0}
         onClick={this.handleClick}
         onKeyPress={this.handleClick}
-        color={selected ? 'primary' : 'default'}
+        color={selected ? 'primary' : undefined}
         variant={selected ? 'h5' : 'subtitle1'}
         children={children}
         {...other}
@@ -60,7 +60,7 @@ export class Year extends React.PureComponent<YearProps> {
 export const styles = (theme: Theme) =>
   createStyles({
     root: {
-      height: theme.spacing.unit * 5,
+      height: theme.spacing(5),
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

@@ -6,9 +6,9 @@ import { styles as ToolbarButtonStyles } from '../_shared/ToolbarButton';
 import { styles as TimePickerStyles } from '../TimePicker/TimePickerRoot';
 import { styles as CalendarStyles } from '../DatePicker/components/Calendar';
 import { styles as MuiPickersYearStyles } from '../DatePicker/components/Year';
+import { StyleRules, StyleRulesCallback } from '@material-ui/styles/withStyles';
 import { styles as MuiPickersMonthStyles } from '../DatePicker/components/Month';
 import { styles as ClockNumberStyles } from '../TimePicker/components/ClockNumber';
-import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
 import { styles as ClockPointerStyles } from '../TimePicker/components/ClockPointer';
 import { styles as DTTabsStyles } from '../DateTimePicker/components/DateTimePickerTabs';
 import { styles as CalendarHeaderStyles } from '../DatePicker/components/CalendarHeader';
@@ -17,11 +17,11 @@ import { styles as DTHeaderStyles } from '../DateTimePicker/components/DateTimeP
 import { styles as MuiPickersYearSelectionStyles } from '../DatePicker/components/YearSelection';
 import { styles as MuiPickersMonthSelectionStyles } from '../DatePicker/components/MonthSelection';
 
-type Classes<T> = Partial<
+type Classes<T extends object, P extends object = {}> = Partial<
   StyleRules<
     T extends string
       ? T
-      : T extends StyleRulesCallback<infer K>
+      : T extends StyleRulesCallback<infer K, P>
       ? K
       : T extends StyleRules<infer D>
       ? D

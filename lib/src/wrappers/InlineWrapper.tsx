@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import EventListener from 'react-event-listener';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
 import { TextFieldProps } from '@material-ui/core/TextField';

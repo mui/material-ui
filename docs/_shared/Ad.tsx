@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { loadScript } from 'utils/helpers';
-import { Grid, createStyles, Theme, withStyles } from '@material-ui/core';
+import { Grid, Theme } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/styles';
 
 const styles = (theme: Theme) =>
   createStyles({
