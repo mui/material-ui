@@ -32,7 +32,7 @@ describe('<StepButton />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('passes active, completed, disabled to StepLabel', () => {

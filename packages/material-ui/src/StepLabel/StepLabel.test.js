@@ -30,7 +30,7 @@ describe('<StepLabel />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('merges styles into the root node', () => {

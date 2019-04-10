@@ -34,7 +34,7 @@ describe('<TouchRipple />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: React.Component,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: center', () => {

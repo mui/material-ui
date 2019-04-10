@@ -28,8 +28,7 @@ describe('<Grow />', () => {
       classes: {},
       inheritComponent: 'Transition',
       mount,
-      skip: ['refForwarding'],
-      testComponentPropWith: false,
+      skip: ['componentProp', 'refForwarding'],
     }),
   );
 

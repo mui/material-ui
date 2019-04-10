@@ -24,7 +24,7 @@ describe('<TextField />', () => {
     inheritComponent: FormControl,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('mount', () => {

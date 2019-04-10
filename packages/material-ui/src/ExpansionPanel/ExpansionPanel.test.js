@@ -33,7 +33,7 @@ describe('<ExpansionPanel />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render and not be controlled', () => {

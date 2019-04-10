@@ -28,7 +28,7 @@ describe('<ExpansionPanelActions />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render children with the button class wrapped in a div with the action class', () => {

@@ -24,8 +24,7 @@ describe('<Fade />', () => {
     classes: {},
     inheritComponent: 'Transition',
     mount,
-    skip: ['refForwarding'],
-    testComponentPropWith: false,
+    skip: ['componentProp', 'refForwarding'],
   }));
 
   describe('transition lifecycle', () => {

@@ -46,7 +46,7 @@ describe('<Modal />', () => {
       inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
-      testComponentPropWith: false,
+      skip: ['componentProp'],
     }),
   );
 
