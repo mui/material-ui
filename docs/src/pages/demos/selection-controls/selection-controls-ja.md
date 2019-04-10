@@ -94,3 +94,7 @@ When a label can't be used, it's necessary to add an attribute directly to the i
   inputProps={{ 'aria-label': 'Checkbox A' } }
 />
 ```
+
+## Guidance
+
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

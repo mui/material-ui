@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
@@ -11,10 +10,22 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 
-const styles = theme => ({
+function MadeWithLove() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by the '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI
+      </Link>
+      {' team.'}
+    </Typography>
+  );
+}
+const useStyles = makeStyles(theme => ({
   icon: {
     marginRight: theme.spacing(2),
   },
@@ -44,12 +55,12 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
-});
+}));
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-function Album(props) {
-  const { classes } = props;
+export default function Album() {
+  const classes = useStyles();
 
   return (
     <React.Fragment>
@@ -131,14 +142,9 @@ function Album(props) {
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           Something here to give the footer a purpose!
         </Typography>
+        <MadeWithLove />
       </footer>
       {/* End footer */}
     </React.Fragment>
   );
 }
-
-Album.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Album);

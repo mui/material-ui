@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -12,10 +11,22 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
-const styles = theme => ({
+function MadeWithLove() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by the '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI
+      </Link>
+      {' team.'}
+    </Typography>
+  );
+}
+const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
@@ -62,7 +73,7 @@ const styles = theme => ({
       paddingBottom: theme.spacing(6),
     },
   },
-});
+}));
 
 const tiers = [
   {
@@ -117,8 +128,8 @@ const footers = [
   },
 ];
 
-function Pricing(props) {
-  const { classes } = props;
+export default function Pricing() {
+  const classes = useStyles();
 
   return (
     <React.Fragment>
@@ -216,14 +227,11 @@ function Pricing(props) {
             </Grid>
           ))}
         </Grid>
+        <Box mt={5}>
+          <MadeWithLove />
+        </Box>
       </Container>
       {/* End footer */}
     </React.Fragment>
   );
 }
-
-Pricing.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Pricing);

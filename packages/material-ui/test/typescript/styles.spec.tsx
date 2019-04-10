@@ -14,7 +14,7 @@ import {
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { blue } from '@material-ui/core/colors';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps, ButtonBase } from '@material-ui/core';
 
 // Shared types for examples
 interface ComponentProps extends WithStyles<typeof styles> {
@@ -241,11 +241,11 @@ const DecoratedComponent = withStyles(styles)(
 // Allow nested pseudo selectors
 withStyles(theme =>
   createStyles({
-    guttered: theme.mixins.gutters({
+    guttered: {
       '&:hover': {
         textDecoration: 'none',
       },
-    }),
+    },
     listItem: {
       '&:hover $listItemIcon': {
         visibility: 'inherit',
@@ -462,4 +462,18 @@ withStyles(theme =>
   const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
   // Property 'nonDefaulted' is missing in type '{}'
   const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
+}
+
+// https://github.com/mui-org/material-ui/issues/14586
+{
+  const styles = createStyles({
+    root: {
+      color: 'red',
+    },
+  });
+
+  const StyledButton = withStyles(styles)(Button);
+
+  // undesired
+  <StyledButton component="a" />; // $ExpectError
 }

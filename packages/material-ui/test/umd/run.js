@@ -58,6 +58,27 @@ async function createApp() {
     'https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js',
     umdPath,
   );
+  index = index.replace(
+    'function App() {',
+    `
+const {
+  Button,
+  Dialog,
+} = MaterialUI;
+
+function App() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <React.Fragment>
+      <Button onClick={() => setOpen(true)}>Super Secret Password</Button>
+      <Dialog open={open}>
+        1-2-3-4-5
+      </Dialog>
+    </React.Fragment>
+  );
+     `,
+  );
   app.get('/', (req, res) => {
     res.send(index);
   });

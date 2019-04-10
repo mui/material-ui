@@ -3,10 +3,11 @@ const pkg = require('./package.json');
 const withTM = require('next-plugin-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
+const withTypescript = require('@zeit/next-typescript');
 
 const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
 
-module.exports = {
+module.exports = withTypescript({
   webpack: (config, options) => {
     // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
@@ -32,6 +33,9 @@ module.exports = {
         }),
       );
     }
+
+    config.resolve.alias['react-dom$'] = 'react-dom/profiling';
+    config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
 
     return Object.assign({}, config, {
       plugins,
@@ -97,4 +101,4 @@ module.exports = {
     // Number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 3, // default 2
   },
-};
+});

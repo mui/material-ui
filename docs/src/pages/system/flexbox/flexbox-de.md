@@ -2,7 +2,7 @@
 
 <p class="description">Verwalten Sie schnell das Layout, die Ausrichtung und die Größe von Rasterspalten, Navigation, Komponenten und mehr mit einer umfassenden Suite von responsiven Flexbox-Dienstprogrammen.</p>
 
-Die Dokumentationsseite ist stark von [ A Complete Guide to Flexbox inspiriert ](https://css-tricks.com/snippets/css/a-guide-to-flexbox/). Wir empfehlen Ihnen dringend, es zu lesen und sich einzuprägen.
+Wenn Sie **neu sind oder Flexbox nicht gut kennen**, empfehlen wir Ihnen, dies zu lesen: [CSS-Tricks Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## Eigenschaften für das übergeordnete Element
 
@@ -109,15 +109,15 @@ Die Dokumentationsseite ist stark von [ A Complete Guide to Flexbox inspiriert ]
 import { flexbox } from '@material-ui/system';
 ```
 
-| Import name      | Eigenschaften    | CSS property      | Theme key |
-|:---------------- |:---------------- |:----------------- |:--------- |
-| `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
-| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |
-| `justifyContent` | `justifyContent` | `justify-content` | none      |
-| `alignItems`     | `alignItems`     | `align-items`     | none      |
-| `alignContent`   | `alignContent`   | `align-content`   | none      |
-| `order`          | `order`          | `order`           | none      |
-| `flex`           | `flex`           | `flex`            | none      |
-| `flexGrow`       | `flexGrow`       | `flex-grow`       | none      |
-| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none      |
-| `alignSelf`      | `alignSelf`      | `align-self`      | none      |
+| Inportname       | Eigenschaften    | CSS-Eigenschaft   | Theme-Schlüssel |
+|:---------------- |:---------------- |:----------------- |:--------------- |
+| `flexDirection`  | `flexDirection`  | `flex-direction`  | none            |
+| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none            |
+| `justifyContent` | `justifyContent` | `justify-content` | none            |
+| `alignItems`     | `alignItems`     | `align-items`     | none            |
+| `alignContent`   | `alignContent`   | `align-content`   | none            |
+| `order`          | `order`          | `order`           | none            |
+| `flex`           | `flex`           | `flex`            | none            |
+| `flexGrow`       | `flexGrow`       | `flex-grow`       | none            |
+| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none            |
+| `alignSelf`      | `alignSelf`      | `align-self`      | none            |

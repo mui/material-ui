@@ -20,16 +20,18 @@ Uses an additional container component if `ListItemSecondaryAction` is the last 
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">alignItems</span> | <span class="prop-type">enum:&nbsp;'flex-start'&nbsp;&#124;<br>&nbsp;'center'<br></span> | <span class="prop-default">'center'</span> | Defines the `align-items` style property. |
 | <span class="prop-name">button</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be a button (using `ButtonBase`). |
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. If a `ListItemSecondaryAction` is used it must be the last child. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |   | The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. If a `ListItemSecondaryAction` is used it must be the last child. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`. |
 | <span class="prop-name">ContainerComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is the last child. |
-| <span class="prop-name">ContainerProps</span> | <span class="prop-type">object</span> |   | Properties applied to the container component if used. |
+| <span class="prop-name">ContainerProps</span> | <span class="prop-type">object</span> |  | Properties applied to the container component if used. |
 | <span class="prop-name">dense</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be disabled. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 | <span class="prop-name">divider</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Use to apply selected styling. |
+
+The `ref` is forwarded to the root element.
 
 Any other properties supplied will be spread to the root element (native element).
 
@@ -64,4 +66,5 @@ you need to use the following style sheet name: `MuiListItem`.
 ## Demos
 
 - [Lists](/demos/lists/)
+- [Transfer List](/demos/transfer-list/)
 

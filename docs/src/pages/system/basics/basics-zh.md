@@ -79,7 +79,7 @@ export default Box;
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
-const theme = {
+const theme = {
   spacing: 4,
   palette: {
     primary: '#007bff',

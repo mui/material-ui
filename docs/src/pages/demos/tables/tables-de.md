@@ -1,8 +1,8 @@
 ---
-title: Tabellen React-Komponente
+title: Table React-Komponente
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
-# Tabellen
+# Tabellen (Tables)
 
 <p class="description">Daten-Tabellen zeigen Listen von Daten an. Diese können vollständig benutzerdefiniert gestaltet werden.</p>
 
@@ -66,7 +66,7 @@ Ein einfaches Beispiel mit überspannenden Zeilen & Spalten.
 
 ## Virtualisierte Tabelle
 
-Im folgenden Beispiel zeigen wir wie Sie [react-virtualized](https://github.com/bvaughn/react-virtualized) mit der `Table<` Komponente nutzen können. Sie zeigt 200 Zeilen an und kann auch einfach mehr verwalten.
+Im folgenden Beispiel zeigen wir wie Sie [react-virtualized](https://github.com/bvaughn/react-virtualized) mit der `Table<` Komponente nutzen können. Sie zeigt 200 Zeilen an und kann auch einfach mehr verwalten. Virtualisierung hilft bei Leistungsproblemen.
 
 {{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 

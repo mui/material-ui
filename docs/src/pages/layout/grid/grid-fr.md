@@ -1,5 +1,5 @@
 ---
-title: Grid React component
+title: Composant React Grid
 components: Grid
 ---
 # Grid
@@ -8,15 +8,17 @@ components: Grid
 
 The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs. Material Design’s responsive UI is based on a 12-column grid layout.
 
-## Comment ça fonctionne
+## Comment ça marche
 
-The grid system is implemented with the `Grid` component:
+Le système de grille est implémenté avec le composant `Grid`:
 
 - It uses [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 - There are two types of layout: *containers* and *items*.
 - Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
+
+If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
 
 ## Ecartement
 
@@ -44,7 +46,7 @@ Some columns have multiple widths defined, causing the layout to change at the d
 
 ## Interactif
 
-Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels utilisant différents paramètres:
+Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels des différents paramètres:
 
 {{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
 

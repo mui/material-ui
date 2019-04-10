@@ -1,29 +1,28 @@
 # @material-ui/styles
 
-<p class="description">You can leverage our styling solution, even if you are not using our components.</p>
+<p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
 
-Material-UI aims to provide strong foundations for building dynamic UIs.
-For the sake of simplicity, **we expose our styling solution to users**.
-You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
+Material-UI aims to provide a strong foundation for building dynamic UIs.
+For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package.
+You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
 
-## Material-UI's styling solution
+## Why use Material-UI's styling solution?
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited.
-We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
-a *CSS-in-JS* solution.
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited.
+We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style).
 It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 We think that this is the future:
 
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-Material-UI's styling solution is inspired by many other styling libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
 - 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
 - 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
-- 🧩 It's extensible via a [plugins](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
-- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core. It's a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles).
+- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
+- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
+- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
 
 ## Installation
 
@@ -39,7 +38,7 @@ yarn add @material-ui/styles
 
 ## Getting started
 
-We provide 3 different APIs. They all share the same underlying logic.
+We provide 3 different APIs to generate and apply styles, however they all share the same underlying logic.
 
 ### Hook API
 
@@ -69,6 +68,9 @@ export default function Hook() {
 {{"demo": "pages/css-in-js/basics/Hook.js"}}
 
 ### Styled components API
+
+Note: this only applies to the calling syntax – style definitions still use a JSS object. 
+You can also [change this behavior](/css-in-js/advanced#string-templates), with some limitations.
 
 ```jsx
 import React from 'react';
@@ -129,7 +131,7 @@ export default withStyles(styles)(HigherOrderComponent);
 ## Nesting selectors
 
 You can nest selectors to target elements inside the current class or component.
-The following example is powered by the Hook API, it works the same way with the other APIs.
+The following example uses the Hook API, but it works the same way with the other APIs.
 
 ```js
 const useStyles = makeStyles({
@@ -150,8 +152,9 @@ const useStyles = makeStyles({
 
 ## Adapting based on props
 
-You can pass a function ("interpolations") to a style property to adapt it based on its props.
-The function can be provided at the style rule level or at the CSS property level:
+You can pass a function to `makeStyles` ("interpolation")
+in order to adapt the generated value based on the component's props.
+The function can be provided at the style rule level, or at the CSS property level:
 
 ```jsx
 const useStyles = makeStyles({
@@ -166,8 +169,9 @@ const useStyles = makeStyles({
 });
 
 function MyComponent() {
+  // Simulated props for the purpose of the example
   const props = { backgroundColor: 'black', color: 'white' };
-  // It injects the props as the first argument of useStyles();
+  // Pass the props as the first argument of useStyles()
   const classes = useStyles(props);
 
   return <div className={`${classes.foo} ${classes.bar}`} />
@@ -176,15 +180,15 @@ function MyComponent() {
 
 This button component has a color property that changes its color:
 
-### Adapting hook API
+### Adapting the hook API
 
 {{"demo": "pages/css-in-js/basics/AdaptingHook.js", "react":"next"}}
 
-### Adapting styled components API
+### Adapting the styled components API
 
 {{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js"}}
 
-### Adapting higher-order component API
+### Adapting the higher-order component API
 
 {{"demo": "pages/css-in-js/basics/AdaptingHOC.js"}}
 

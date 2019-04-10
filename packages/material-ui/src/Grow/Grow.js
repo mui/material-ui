@@ -27,22 +27,21 @@ const styles = {
  * [Popover](/utils/popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Grow extends React.Component {
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
+function Grow(props) {
+  const { children, in: inProp, onEnter, onExit, style, theme, timeout, ...other } = props;
+  const timer = React.useRef();
+  const autoTimeout = React.useRef();
 
-  handleEnter = node => {
-    const { theme, timeout } = this.props;
+  const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
 
-    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+    const { duration: transitionDuration, delay } = getTransitionProps(props, {
       mode: 'enter',
     });
     let duration = 0;
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
-      this.autoTimeout = duration;
+      autoTimeout.current = duration;
     } else {
       duration = transitionDuration;
     }
@@ -58,21 +57,20 @@ class Grow extends React.Component {
       }),
     ].join(',');
 
-    if (this.props.onEnter) {
-      this.props.onEnter(node);
+    if (onEnter) {
+      onEnter(node);
     }
   };
 
-  handleExit = node => {
-    const { theme, timeout } = this.props;
+  const handleExit = node => {
     let duration = 0;
 
-    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+    const { duration: transitionDuration, delay } = getTransitionProps(props, {
       mode: 'exit',
     });
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
-      this.autoTimeout = duration;
+      autoTimeout.current = duration;
     } else {
       duration = transitionDuration;
     }
@@ -91,46 +89,48 @@ class Grow extends React.Component {
     node.style.opacity = '0';
     node.style.transform = getScale(0.75);
 
-    if (this.props.onExit) {
-      this.props.onExit(node);
+    if (onExit) {
+      onExit(node);
     }
   };
 
-  addEndListener = (_, next) => {
-    if (this.props.timeout === 'auto') {
-      this.timer = setTimeout(next, this.autoTimeout || 0);
+  const addEndListener = (_, next) => {
+    if (timeout === 'auto') {
+      timer.current = setTimeout(next, autoTimeout.current || 0);
     }
   };
 
-  render() {
-    const { children, in: inProp, onEnter, onExit, style, theme, timeout, ...other } = this.props;
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
 
-    return (
-      <Transition
-        appear
-        in={inProp}
-        onEnter={this.handleEnter}
-        onExit={this.handleExit}
-        addEndListener={this.addEndListener}
-        timeout={timeout === 'auto' ? null : timeout}
-        {...other}
-      >
-        {(state, childProps) => {
-          return React.cloneElement(children, {
-            style: {
-              opacity: 0,
-              transform: getScale(0.75),
-              visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-              ...styles[state],
-              ...style,
-              ...children.props.style,
-            },
-            ...childProps,
-          });
-        }}
-      </Transition>
-    );
-  }
+  return (
+    <Transition
+      appear
+      in={inProp}
+      onEnter={handleEnter}
+      onExit={handleExit}
+      addEndListener={addEndListener}
+      timeout={timeout === 'auto' ? null : timeout}
+      {...other}
+    >
+      {(state, childProps) => {
+        return React.cloneElement(children, {
+          style: {
+            opacity: 0,
+            transform: getScale(0.75),
+            visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
+            ...styles[state],
+            ...style,
+            ...children.props.style,
+          },
+          ...childProps,
+        });
+      }}
+    </Transition>
+  );
 }
 
 Grow.propTypes = {

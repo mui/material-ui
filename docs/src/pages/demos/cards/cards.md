@@ -33,6 +33,8 @@ By default, we use the combination of a `<div>` element and a *background image*
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
+> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+
 ## UI Controls
 
 Supplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card.

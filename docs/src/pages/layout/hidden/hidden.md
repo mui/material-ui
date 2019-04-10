@@ -32,7 +32,7 @@ mdDown      |                     hide | show
 
 ### js
 
-By default, the `js` implementation is used, responsively hiding content based on using the [`withWidth()`](/layout/breakpoints/#withwidth-) higher-order component that watches screen size.
+By default, the `js` implementation is used, responsively hiding content based on using the [`withWidth()`](/layout/breakpoints/#withwidth) higher-order component that watches screen size.
 This has the benefit of not rendering any content at all unless the breakpoint is met.
 
 ### css

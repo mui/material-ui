@@ -7,7 +7,7 @@ import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
-import { setRef } from '../utils/reactHelpers';
+import { useForkRef } from '../utils/reactHelpers';
 
 function resetTabIndex(list, selectedItem, setCurrentTabIndex) {
   const currentFocus = ownerDocument(list).activeElement;
@@ -145,14 +145,16 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
   };
 
+  const handleOwnRef = React.useCallback(refArg => {
+    // StrictMode ready
+    listRef.current = ReactDOM.findDOMNode(refArg);
+  }, []);
+  const handleRef = useForkRef(handleOwnRef, ref);
+
   return (
     <List
       role="menu"
-      ref={refArg => {
-        // StrictMode ready
-        listRef.current = ReactDOM.findDOMNode(refArg);
-        setRef(ref, listRef.current);
-      }}
+      ref={handleRef}
       className={className}
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}

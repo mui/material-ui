@@ -43,9 +43,9 @@ function TableHook() {
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
             <TableCell>Calories</TableCell>
-            <TableCell>Fat (g)</TableCell>
-            <TableCell>Carbs (g)</TableCell>
-            <TableCell>Protein (g)</TableCell>
+            <TableCell>Fat&nbsp;(g)</TableCell>
+            <TableCell>Carbs&nbsp;(g)</TableCell>
+            <TableCell>Protein&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

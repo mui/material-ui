@@ -1,25 +1,21 @@
-# Default Theme
+# Tema Padrão
 
 <p class="description">Veja como o objeto tema se parece com os valores padrão.</p>
 
-## Explore
+## Explorar
 
-Explore the documentation theme object:
-
-## Explore
-
-Explore the documentation theme object:
+Explore a documentação do objeto tema:
 
 {{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
 
-> Tip: you can play with the documentation theme object in **your console**. We expose a documentation `theme` variable on all the documentation pages. Please note that the documentation site is using a custom theme.
+> Dica: você pode trabalhar com a documentação do objeto tema em **seu console**. Expomos uma variável `tema` de documentação em todas as páginas de documentação. Por favor, note que o site de documentação está usando um tema personalizado.
 
-If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), and the related imports which `createMuiTheme` uses.
+Se você quiser aprender mais sobre como o tema é montado, dê uma olhada em [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), e as importações relacionadas que `createMuiTheme` usa.
 
 ## @material-ui/core/styles vs @material-ui/styles
 
-Material-UI styles are powered by the [@material-ui/styles](/css-in-js/basics/) npm package. It's a styling solution for React. This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles), it has has no knowledge of the default Material-UI theme. To remove the need for injecting a theme in the React's context **systematically**, we are wrapping the style modules (`makeStyles`, `withStyles` and `styled`) with the default Material-UI theme:
+Os estilos do Material-UI são fornecidos pelo pacote npm [@material-ui/styles](/css-in-js/basics/). É uma solução de estilo para o React. Esta solução é [isolada](https://bundlephobia.com/result?p=@material-ui/styles), não tem conhecimento do tema padrão do Material-UI. Para remover a necessidade de injetar um tema no contexto do React **sistematicamente**, estamos envolvendo os módulos de estilo (`makeStyles`, `withStyles` e `styled`) com o tema padrão Material-UI:
 
-- `@material-ui/core/styles/makeStyles` wraps `@material-ui/styles/makeStyles`.
-- `@material-ui/core/styles/withStyles` wraps `@material-ui/styles/withStyles`.
-- `@material-ui/core/styles/styled` wraps `@material-ui/styles/styled`.
+- `@material-ui/core/styles/makeStyles` encapsula `@material-ui/styles/makeStyles`.
+- `@material-ui/core/styles/makeStyles` encapsula `@material-ui/styles/makeStyles`.
+- `@material-ui/core/styles/styled` encapsula `@material-ui/styles/styled`.

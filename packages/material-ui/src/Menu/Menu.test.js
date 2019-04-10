@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createMount, getClasses, testRef } from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Popover from '../Popover';
 import Menu from './Menu';
 import MenuList from '../MenuList';
@@ -11,13 +11,12 @@ const MENU_LIST_HEIGHT = 100;
 describe('<Menu />', () => {
   let classes;
   let mount;
-  let defaultProps;
+  const defaultProps = {
+    open: false,
+    anchorEl: () => document.createElement('div'),
+  };
 
   before(() => {
-    defaultProps = {
-      open: false,
-      anchorEl: document.createElement('div'),
-    };
     classes = getClasses(<Menu {...defaultProps} />);
     mount = createMount();
   });
@@ -26,14 +25,13 @@ describe('<Menu />', () => {
     mount.cleanUp();
   });
 
-  it('does forward refs', () => {
-    testRef(<Menu {...defaultProps} open />, mount);
-  });
-
-  it('should render a Popover', () => {
-    const wrapper = mount(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.find(Popover).exists(), true);
-  });
+  describeConformance(<Menu {...defaultProps} open />, () => ({
+    classes,
+    inheritComponent: Popover,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   describe('event callbacks', () => {
     describe('entering', () => {
@@ -142,14 +140,6 @@ describe('<Menu />', () => {
           .exists(),
         true,
       );
-    });
-
-    it('should spread other props on the Popover', () => {
-      assert.strictEqual(wrapper.find(Popover).props()['data-test'], 'hi');
-    });
-
-    it('should have the user classes', () => {
-      assert.strictEqual(wrapper.find(Popover).hasClass('test-class'), true);
     });
   });
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import { assert } from 'chai';
 import { stub } from 'sinon';
-import { createMount, testRef } from '@material-ui/core/test-utils';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import MenuList from './MenuList';
 import getScrollbarSize from '../utils/getScrollbarSize';
+import List from '../List';
 
 function setStyleWidthForJsdomOrBrowser(style, width) {
   style.width = '';
@@ -26,22 +27,13 @@ describe('<MenuList />', () => {
     mount.cleanUp();
   });
 
-  it('does forward refs', () => {
-    testRef(<MenuList />, mount);
-  });
-
-  describe('list node', () => {
-    let wrapper;
-
-    before(() => {
-      wrapper = mount(<MenuList className="test-class" data-test="hi" />);
-    });
-
-    it('should render a List', () => {
-      assert.strictEqual(wrapper.props()['data-test'], 'hi');
-      assert.strictEqual(wrapper.hasClass('test-class'), true);
-    });
-  });
+  describeConformance(<MenuList />, () => ({
+    classes: {},
+    inheritComponent: List,
+    mount,
+    refInstanceof: window.HTMLUListElement,
+    testComponentPropWith: false,
+  }));
 
   describe('prop: children', () => {
     it('should support invalid children', () => {

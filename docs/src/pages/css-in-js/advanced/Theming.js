@@ -1,11 +1,11 @@
 import React from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   root: {
     background: theme.background,
     border: 0,
+    fontSize: 16,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     color: 'white',
@@ -17,7 +17,11 @@ const useStyles = makeStyles(theme => ({
 function DeepChild() {
   const classes = useStyles();
 
-  return <Button className={classes.root}>Theming</Button>;
+  return (
+    <button type="button" className={classes.root}>
+      Theming
+    </button>
+  );
 }
 
 const theme = {

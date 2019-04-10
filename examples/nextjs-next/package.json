@@ -6,7 +6,6 @@
     "@material-ui/core": "next",
     "@material-ui/styles": "next",
     "clsx": "latest",
-    "jss": "next",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",

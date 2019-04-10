@@ -2,7 +2,7 @@
 title: 气泡卡片 React 组件
 components: Grow, Popover
 ---
-# 酥料饼
+# 弹出框 (Popover)
 
 <p class="description">弹出框可用于在元素边缘显示某些内容。</p>
 
@@ -33,6 +33,6 @@ components: Grow, Popover
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover state for you in most cases.
+在大多数情况下，一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以为你处理popper 的 state 。
 
 {{"demo": "pages/utils/popover/PopoverPopupState.js"}}

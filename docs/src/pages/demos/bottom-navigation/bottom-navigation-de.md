@@ -1,5 +1,5 @@
 ---
-title: Untere Navigation React component
+title: Bottom Navigation React-Komponente
 components: BottomNavigation, BottomNavigationAction
 ---
 # Bottom Navigation (Untere Navigation)

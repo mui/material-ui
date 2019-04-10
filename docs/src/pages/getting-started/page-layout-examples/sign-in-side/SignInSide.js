@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,12 +7,25 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+function MadeWithLove() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by the '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI
+      </Link>
+      {' team.'}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
   },
@@ -40,10 +52,10 @@ const styles = theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-});
+}));
 
-function SignInSide(props) {
-  const { classes } = props;
+export default function SignInSide() {
+  const classes = useStyles();
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -105,15 +117,12 @@ function SignInSide(props) {
                 </Link>
               </Grid>
             </Grid>
+            <Box mt={5}>
+              <MadeWithLove />
+            </Box>
           </form>
         </div>
       </Grid>
     </Grid>
   );
 }
-
-SignInSide.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SignInSide);

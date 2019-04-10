@@ -2,18 +2,17 @@
   "name": "create-react-app-next",
   "version": "4.0.0",
   "private": true,
+  "scripts": {
+    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@material-ui/core": "next",
-    "jss": "next",
-    "prop-types": "latest",
+    "clsx": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
   }
 }

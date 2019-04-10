@@ -1,22 +1,35 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  describeConformance,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Grid from './Grid';
 
 describe('<Grid />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Grid />);
   });
 
-  it('should render', () => {
-    const wrapper = shallow(<Grid className="woofGrid" />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass('woofGrid'), true);
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<Grid />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'span',
+  }));
 
   describe('prop: container', () => {
     it('should apply the container class', () => {
@@ -29,13 +42,6 @@ describe('<Grid />', () => {
     it('should apply the item class', () => {
       const wrapper = shallow(<Grid item />);
       assert.strictEqual(wrapper.hasClass(classes.item), true);
-    });
-  });
-
-  describe('prop: component', () => {
-    it('should change the component', () => {
-      const wrapper = shallow(<Grid component="span" />);
-      assert.strictEqual(wrapper.name(), 'span');
     });
   });
 

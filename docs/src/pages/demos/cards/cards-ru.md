@@ -32,6 +32,8 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
+> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+
 ## Элементы управления
 
 Все доступные в пределах карточки дополнительные действия следует явно изображать с помощью иконок, текста и других элементов управления, обычно размещаемых в нижней части карточки.

@@ -22,7 +22,7 @@ const styles = theme => ({
     flexShrink: 0,
     order: 2,
     position: 'sticky',
-    wordBreak: 'break-word',
+    wordBreak: 'break-all',
     height: 'calc(100vh - 70px - 29px)',
     overflowY: 'auto',
     padding: theme.spacing(2, 2, 2, 0),

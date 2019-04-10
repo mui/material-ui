@@ -21,7 +21,7 @@ Mecanismo de Toque:
 
 {{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
 
-## Alerts
+## Alerts (Alertas)
 
 Alertas são interrupções urgentes, requerendo confirmação que informou ao usuário a situação.
 
@@ -49,21 +49,21 @@ Os fórmulas de diálogo permite que os usuários preencham os campos de um fór
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
-## Customized dialog
+## Diálogo personalizado
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `DialogTitle` to support a close button.
+Se você leu a página [documentação de sobreposição (Overrides)](/customization/overrides/), mas você não está confiante em como utilizar, aqui está um exemplo de como você pode personalizar o `DialogTitle` para ter um botão de fechar.
 
 ⚠️ Embora a especificação do design do material incentive o tema, este exemplo está fora do caminho comum.
 
 {{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
 
-## Full-screen dialogs
+## Diálogos em tela cheia
 
 {{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
 
-## Optional sizes
+## Tamanhos opcionais
 
-You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean. When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
+Você pode definir uma largura máxima usando `maxWidth` enumerável combinado com o booleano `fullWidth`. Quando a propriedade `fullWidth` for verdadeira, a caixa de diálogo será adaptada com base no valor definido em `maxWidth`.
 
 {{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
 
@@ -73,17 +73,17 @@ You may make a dialog responsively full screen the dialog using `withMobileDialo
 
 {{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 
-## Confirmation dialogs
+## Diálogos de confirmação
 
-Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+As caixas de diálogo de confirmação exigem que os usuários confirmem explicitamente suas escolhas antes que uma opção seja confirmada. Por exemplo, os usuários podem ouvir vários toques, mas apenas fazer uma seleção final ao tocar em "OK".
 
-Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Tocar em “Cancelar” em uma caixa de diálogo de confirmação ou pressionar Voltar, cancela a ação, descarta todas as alterações e fecha a caixa de diálogo.
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
 
-## Accessibility
+## Acessibilidade
 
-Follow the [Modal accessibility section](/utils/modal/#accessibility).
+Siga a seção [Acessibilidade Modal](/utils/modal/#accessibility).
 
 ## Scrolling long content
 

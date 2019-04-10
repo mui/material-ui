@@ -23,10 +23,8 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
 function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { name, calories, fat, carbs, protein };
 }
 
 const rows = [
@@ -48,14 +46,14 @@ function DenseTable(props) {
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
               <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat (g)</TableCell>
-              <TableCell align="right">Carbs (g)</TableCell>
-              <TableCell align="right">Protein (g)</TableCell>
+              <TableCell align="right">Fat&nbsp;(g)</TableCell>
+              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+              <TableCell align="right">Protein&nbsp;(g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map(row => (
-              <TableRow key={row.id}>
+              <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>

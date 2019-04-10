@@ -120,9 +120,53 @@ export default withStyles(styles)(HigherOrderComponent);
 
 {{"demo": "pages/css-in-js/basics/HigherOrderComponent.js"}}
 
+## Nesting selectors
+
+You can nest selectors to target elements inside the current class or component. The following example is powered by the Hook API, it works the same way with the other APIs.
+
+```js
+const useStyles = makeStyles({
+  root: {
+    padding: 16,
+    color: 'red',
+    '& p': {
+      color: 'green',
+      '& span': {
+        color: 'blue'
+      }
+    }
+  },
+});
+```
+
+{{"demo": "pages/css-in-js/basics/NestedStylesHook.js"}}
+
 ## 适应基于道具
 
-您可以将函数（“插值”）传递给样式属性，以根据其道具对其进行调整。 此按钮组件具有更改其颜色的颜色属性：
+您可以将函数（“插值”）传递给样式属性，以根据其道具对其进行调整。 The function can be provided at the style rule level or at the CSS property level:
+
+```jsx
+const useStyles = makeStyles({
+  // style rule
+  foo: props => ({
+    backgroundColor: props.backgroundColor,
+  },
+  bar: {
+    // CSS property
+    color: props => props.color,
+  },
+});
+
+function MyComponent() {
+  const props = { backgroundColor: 'black', color: 'white' };
+  // It injects the props as the first argument of useStyles();
+  const classes = useStyles(props);
+
+  return <div className={`${classes.foo} ${classes.bar}`} />
+}
+```
+
+此按钮组件具有更改其颜色的颜色属性：
 
 ### 适应 hook API
 

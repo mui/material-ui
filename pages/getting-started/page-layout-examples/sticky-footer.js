@@ -11,7 +11,6 @@ function Page(props) {
     <AppTheme
       title="Sticky footer page layout example - Material-UI"
       description={props.t('stickyFooterDescr')}
-      hideCredit
     >
       <StickyFooter />
     </AppTheme>

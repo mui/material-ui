@@ -1,32 +1,32 @@
 # 安装
 
-<p class="description">安装 Material-UI -- 这个世界上最受欢迎的 React UI 框架.</p>
+<p class="description">安装 Material-UI —— 世界上最受欢迎的 React UI 框架。</p>
 
-Material-UI 可通过 [npm](https://www.npmjs.com/package/@material-ui/core) 包的形式进行安装。
+Material-UI 可以通过 [npm 包](https://www.npmjs.com/package/@material-ui/core)来安装。
 
 ## npm
 
-将 Material-UI 下载并保存到你的 `package.json` 依赖文件里，请运行:
+安装 Material-UI 并写入 `package.json` 依赖文件：
 
 ```sh
-// with npm
+// 使用 npm
 npm install @material-ui/core@next
 
-// with yarn
+// 使用 yarn
 yarn add @material-ui/core@next
 ```
 
-请注意 [react](https://www.npmjs.com/package/react) >= 16.3.0版和[ react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0版是同版本依赖。
+请注意，需要依赖 [react](https://www.npmjs.com/package/react) >= 16.3.0 版和 [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 版。
 
 ## Roboto 字体
 
-在设计 Material-UI 时我们使用了[Roboto](https://fonts.google.com/specimen/Roboto)字体。 因此，请务必遵循这些说明。 例如，通过 Google Web Fonts 引入：
+Material-UI 的设计与 [Roboto](https://fonts.google.com/specimen/Roboto) 字体相配。 因此，请按照[此说明](/style/typography/#general)载入字体。 例如，使用 Google Web Fonts：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-或者，如果您使用 JSX 而不是 HTML 来渲染页头：
+如果要使用 JSX 嵌套 HTML 来渲染页面头部，可以使用：
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />

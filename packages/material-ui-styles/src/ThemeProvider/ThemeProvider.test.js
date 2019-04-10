@@ -53,6 +53,42 @@ describe('ThemeProvider', () => {
     assert.strictEqual(wrapper.text(), 'foobar');
   });
 
+  it('should memoize the merged output', () => {
+    const themes = [];
+
+    function Test() {
+      const theme = useTheme();
+      themes.push(theme);
+
+      return (
+        <span>
+          {theme.foo}
+          {theme.bar}
+        </span>
+      );
+    }
+    const MemoTest = React.memo(Test);
+
+    const outerTheme = { bar: 'bar' };
+    const innerTheme = { foo: 'foo' };
+
+    function Container() {
+      return (
+        <ThemeProvider theme={outerTheme}>
+          <ThemeProvider theme={innerTheme}>
+            <MemoTest />
+          </ThemeProvider>
+        </ThemeProvider>
+      );
+    }
+
+    const wrapper = mount(<Container />);
+    assert.strictEqual(wrapper.text(), 'foobar');
+    wrapper.setProps({});
+    assert.strictEqual(wrapper.text(), 'foobar');
+    assert.strictEqual(themes[0], themes[1]);
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();

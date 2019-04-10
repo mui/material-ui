@@ -1,6 +1,6 @@
 # Anzeige
 
-<p class="description">Quickly and responsively toggle the display value of components and more with our display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.</p>
+<p class="description">Wechseln Sie mit unseren Anzeigekomponenten schnell und ansprechend den Anzeigewert von Komponenten und mehr. Unterstützt einige der gebräuchlichsten Werte sowie einige Extras zur Steuerung der Anzeige beim Drucken.</p>
 
 ## Beispiele
 
@@ -18,43 +18,43 @@
 
 {{"demo": "pages/system/display/Block.js"}}
 
-## Hiding elements
+## Elemente verstecken
 
-For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide element responsively for each screen size.
+Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklassen zum Anzeigen und Ausblenden von Elementen nach Gerätetypen. Erstellen Sie keine völlig unterschiedlichen Versionen derselben Seite, sondern blenden Sie Elemente für jede Bildschirmgröße entsprechend aus.
 
-| Screen Size        | Klasse                                               |
-|:------------------ |:---------------------------------------------------- |
-| Hidden on all      | `display="none"`                                     |
-| Hidden only on xs  | `display={{ xs: 'none', sm: 'block' }}`              |
-| Hidden only on sm  | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
-| Hidden only on md  | `display={{ xs: 'block', md: 'none', lg: 'block' }}` |
-| Hidden only on lg  | `display={{ xs: 'block', lg: 'none', xl: 'block' }}` |
-| Hidden only on xl  | `display={{ xs: 'block', xl: 'none' }}`              |
-| Visible only on xs | `display={{ xs: 'block', sm: 'none' }}`              |
-| Visible only on sm | `display={{ xs: 'none', sm: 'block', md: 'none' }}`  |
-| Visible only on md | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
-| Visible only on lg | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
-| Visible only on xl | `display={{ xs: 'none', xl: 'block' }}`              |
+| Bildschirmgröße      | Klasse                                               |
+|:-------------------- |:---------------------------------------------------- |
+| Für alle versteckt   | `display="none"`                                     |
+| Versteckt nur bei xs | `display={{ xs: 'none', sm: 'block' }}`              |
+| Versteckt nur bei sm | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
+| Versteckt nur bei md | `display={{ xs: 'block', md: 'none', lg: 'block' }}` |
+| Versteckt nur bei lg | `display={{ xs: 'block', lg: 'none', xl: 'block' }}` |
+| Versteckt nur bei xl | `display={{ xs: 'block', xl: 'none' }}`              |
+| Sichtbar nur bei xs  | `display={{ xs: 'block', sm: 'none' }}`              |
+| Sichtbar nur bei sm  | `display={{ xs: 'none', sm: 'block', md: 'none' }}`  |
+| Sichtbar nur bei md  | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
+| Sichtbar nur bei lg  | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
+| Sichtbar nur bei xl  | `display={{ xs: 'none', xl: 'block' }}`              |
 
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
-  hide on screens wider than md
+  auf Bildschirmen ausblenden, die breiter als md sind
 </Box>
 <Box display={{ xs: 'none', md: 'block' }}>
-  hide on screens smaller than md
+  ausblenden auf Bildschirmen, die kleiner als md sind
 </Box>
 ```
 
 {{"demo": "pages/system/display/Hiding.js"}}
 
-## Display in print
+## Im Druck anzeigen
 
 ```jsx
 <Box display="block" displayPrint="none">
-  Screen Only (Hide on print only)
+  Nur Bildschirm (Beim Drucken ausgeblendet)
 </Box>
 <Box display="none" displayPrint="block">
-  Print Only (Hide on screen only)
+  Nur Druck (Auf dem Bildschirm ausgeblendet)
 </Box>
 ```
 
@@ -66,7 +66,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 import { display } from '@material-ui/system';
 ```
 
-| Import name    | Eigenschaften  | CSS property | Theme key |
-|:-------------- |:-------------- |:------------ |:--------- |
-| `displayRaw`   | `display`      | `display`    | none      |
-| `displayPrint` | `displayPrint` | `display`    | none      |
+| Inportname     | Eigenschaften  | CSS-Eigenschaft | Theme-Schlüssel |
+|:-------------- |:-------------- |:--------------- |:--------------- |
+| `displayRaw`   | `display`      | `display`       | none            |
+| `displayPrint` | `displayPrint` | `display`       | none            |

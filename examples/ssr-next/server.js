@@ -1,20 +1,20 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { SheetsRegistry } from 'jss';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import App from './App';
+import theme from './theme';
 
 function renderFullPage(html, css) {
   return `
-    <!doctype html>
-    <html>
+    <!DOCTYPE html>
+    <html lang="en" dir="ltr">
       <head>
-        <title>Material-UI</title>
+        <title>My page</title>
         <style id="jss-server-side">${css}</style>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Fonts to support Material Design -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
       </head>
       <body>
         <script async src="build/bundle.js"></script>
@@ -24,37 +24,20 @@ function renderFullPage(html, css) {
   `;
 }
 
-// Create a theme instance.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-  },
-});
-
 function handleRender(req, res) {
-  // Create a sheetsRegistry instance.
-  const sheetsRegistry = new SheetsRegistry();
-  // Create a sheetsManager instance.
-  const sheetsManager = new Map();
-  // Create a new class name generator.
-  const generateClassName = createGenerateClassName();
+  const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    <StylesProvider
-      generateClassName={generateClassName}
-      sheetsRegistry={sheetsRegistry}
-      sheetsManager={sheetsManager}
-    >
+    sheets.collect(
       <ThemeProvider theme={theme}>
         <App />
-      </ThemeProvider>
-    </StylesProvider>,
+      </ThemeProvider>,
+    ),
   );
 
-  // Grab the CSS from our sheetsRegistry.
-  const css = sheetsRegistry.toString();
+  // Grab the CSS from our sheets.
+  const css = sheets.toString();
 
   // Send the rendered page back to the client.
   res.send(renderFullPage(html, css));

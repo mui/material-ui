@@ -4,10 +4,6 @@ import Button from '@material-ui/core/Button';
 import { SnackbarProvider, VariantType, withSnackbar, withSnackbarProps } from 'notistack';
 
 class App extends React.Component<withSnackbarProps> {
-  static propTypes = {
-    enqueueSnackbar: PropTypes.func.isRequired,
-  };
-
   handleClick = () => {
     this.props.enqueueSnackbar('I love snacks.');
   };
@@ -26,6 +22,10 @@ class App extends React.Component<withSnackbarProps> {
     );
   }
 }
+
+(App as React.ComponentClass<withSnackbarProps>).propTypes = {
+  enqueueSnackbar: PropTypes.func.isRequired,
+};
 
 const MyApp = withSnackbar(App);
 

@@ -58,6 +58,8 @@ const styles = theme => ({
   },
 });
 
+const LinkRouter = props => <Link {...props} component={RouterLink} />;
+
 class RouterBreadcrumbs extends React.Component {
   state = {
     open: true,
@@ -81,9 +83,9 @@ class RouterBreadcrumbs extends React.Component {
 
                 return (
                   <Breadcrumbs aria-label="Breadcrumb">
-                    <Link component={RouterLink} color="inherit" to="/">
+                    <LinkRouter color="inherit" to="/">
                       Home
-                    </Link>
+                    </LinkRouter>
                     {pathnames.map((value, index) => {
                       const last = index === pathnames.length - 1;
                       const to = `/${pathnames.slice(0, index + 1).join('/')}`;
@@ -93,9 +95,9 @@ class RouterBreadcrumbs extends React.Component {
                           {breadcrumbNameMap[to]}
                         </Typography>
                       ) : (
-                        <Link component={RouterLink} color="inherit" to={to} key={to}>
+                        <LinkRouter color="inherit" to={to} key={to}>
                           {breadcrumbNameMap[to]}
-                        </Link>
+                        </LinkRouter>
                       );
                     })}
                   </Breadcrumbs>
@@ -106,7 +108,7 @@ class RouterBreadcrumbs extends React.Component {
               <List component="nav">
                 <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
+                  <List component={'div'} disablePadding>
                     <ListItemLink to="/inbox/important" className={classes.nested} />
                   </List>
                 </Collapse>

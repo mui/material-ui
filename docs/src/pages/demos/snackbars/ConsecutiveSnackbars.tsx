@@ -29,13 +29,9 @@ export interface State {
 class ConsecutiveSnackbars extends React.Component<Props, State> {
   queue: SnackbarMessage[] = [];
 
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      open: false,
-    };
-  }
+  state: State = {
+    open: false,
+  };
 
   handleClick = (message: string) => () => {
     this.queue.push({
@@ -74,12 +70,12 @@ class ConsecutiveSnackbars extends React.Component<Props, State> {
 
   render() {
     const { classes } = this.props;
-    const { messageInfo = {} as SnackbarMessage } = this.state;
+    const { messageInfo = {} as Partial<SnackbarMessage> } = this.state;
 
     return (
       <div>
-        <Button onClick={this.handleClick('message a')}>Show message A</Button>
-        <Button onClick={this.handleClick('message b')}>Show message B</Button>
+        <Button onClick={this.handleClick('Message A')}>Show message A</Button>
+        <Button onClick={this.handleClick('Message B')}>Show message B</Button>
         <Snackbar
           key={messageInfo.key}
           anchorOrigin={{

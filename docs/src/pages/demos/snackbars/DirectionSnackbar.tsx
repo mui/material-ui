@@ -25,14 +25,10 @@ export interface State {
   Transition?: React.ComponentType<TransitionProps>;
 }
 
-class DirectionSnackbar extends React.Component<void, State> {
-  constructor() {
-    super();
-
-    this.state = {
-      open: false,
-    };
-  }
+class DirectionSnackbar extends React.Component<{}, State> {
+  state: State = {
+    open: false,
+  };
 
   handleClick = (Transition: React.ComponentType<TransitionProps>) => () => {
     this.setState({ open: true, Transition });

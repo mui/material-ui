@@ -12,6 +12,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';
 import ExpansionPanelSummary from '../ExpansionPanelSummary';
+import Collapse from '../Collapse';
 
 describe('<ExpansionPanel />', () => {
   let mount;
@@ -67,7 +68,7 @@ describe('<ExpansionPanel />', () => {
     );
     assert.strictEqual(
       wrapper
-        .find('Collapse')
+        .find(Collapse)
         .find('div#panel-content')
         .text(),
       'Hello',

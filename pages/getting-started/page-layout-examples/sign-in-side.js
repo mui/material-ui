@@ -11,7 +11,6 @@ function Page(props) {
     <AppTheme
       title="Sign In side page layout example - Material-UI"
       description={props.t('signInSideDescr')}
-      hideCredit
     >
       <SignInSide />
     </AppTheme>

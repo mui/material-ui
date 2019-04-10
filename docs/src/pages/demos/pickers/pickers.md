@@ -17,7 +17,7 @@ Have a look at the [complementary projects](#complementary-projects) for a riche
 
 ### Date pickers
 
-A native date picker example with `type="date"`, it can be used as a calendar too.
+A native date picker example with `type="date"`.
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 

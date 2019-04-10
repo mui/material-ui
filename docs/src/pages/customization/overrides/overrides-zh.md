@@ -152,7 +152,7 @@ const styles = {
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-[我什么时候应该使用 inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
+[我什么时候应该使用 inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
 
 ## 2。 一次性情况的动态变化
 

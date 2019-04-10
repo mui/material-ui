@@ -34,10 +34,8 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
 function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { name, calories, fat, carbs, protein };
 }
 
 const rows = [
@@ -58,14 +56,14 @@ function CustomizedTable(props) {
           <TableRow>
             <CustomTableCell>Dessert (100g serving)</CustomTableCell>
             <CustomTableCell align="right">Calories</CustomTableCell>
-            <CustomTableCell align="right">Fat (g)</CustomTableCell>
-            <CustomTableCell align="right">Carbs (g)</CustomTableCell>
-            <CustomTableCell align="right">Protein (g)</CustomTableCell>
+            <CustomTableCell align="right">Fat&nbsp;(g)</CustomTableCell>
+            <CustomTableCell align="right">Carbs&nbsp;(g)</CustomTableCell>
+            <CustomTableCell align="right">Protein&nbsp;(g)</CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow className={classes.row} key={row.id}>
+            <TableRow className={classes.row} key={row.name}>
               <CustomTableCell component="th" scope="row">
                 {row.name}
               </CustomTableCell>

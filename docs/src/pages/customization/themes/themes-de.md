@@ -1,53 +1,53 @@
 # Themes
 
-<p class="description">Customize Material-UI with your theme. You can change the colors, the typography and much more.</p>
+<p class="description">Passen Sie die Material-UI an Ihrem Design an. Sie können die Farben, die Typografie und vieles mehr ändern.</p>
 
-The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
+Das Theme legt die Farbe der Komponenten, die Dunkelheit der Oberflächen, die Schatten, die geeignete Deckkraft der Tintenelemente usw. fest.
 
-Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
+Mithilfe von Designs können Sie Ihrer App einen einheitlichen Ton verleihen. Sie können **alle Designaspekte** Ihres Projekts anpassen, um die spezifischen Anforderungen Ihres Unternehmens oder Ihrer Marke zu erfüllen.
 
-To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type.
+Um die Konsistenz zwischen Apps zu erhöhen, stehen helle und dunkle Themenarten zur Auswahl. Standardmäßig verwenden Komponenten den Light-Theme-Typ.
 
 ## Theme provider
 
-If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
+Wenn Sie das Design anpassen möchten, müssen Sie die `ThemeProvider` Komponente verwenden, um ein Theme in Ihre Anwendung einzufügen. Dies ist jedoch optional. Material-UI-Komponenten werden mit einem Standarddesign geliefert.
 
-`ThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](/css-in-js/api/#themeprovider).
+`ThemeProvider` stützt sich auf die Kontext - Funktion von React um das Theme an die Komponenten zu übergeben. Deswegen müssen Sie den `ThemeProvider` als ein übergeordnetes Element der Komponenten, die Sie anpassen möchten, setzen. Mehr darüber erfahren Sie im [API](/css-in-js/api/#themeprovider) Abschnitt.
 
-## Theme configuration variables
+## Theme-Konfigurationsvariablen
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
+Das Ändern der Konfigurationsvariablen für das Theme ist der effektivste Weg, um die Material-UI an Ihre Bedürfnisse anzupassen. Die folgenden Abschnitte behandeln die wichtigsten Theme-Variablen:
 
 - [Palette](#palette)
-- [Type (light / dark theme)](#type-light-dark-theme)
+- [Typ (helles/dunkles Theme)](#type-light-dark-theme)
 - [Typografie](#typography)
 - [Abstände](#spacing)
-- [Other variables](#other-variables)
-- [Custom variables](#custom-variables)
+- [Andere Variablen](#other-variables)
+- [Benutzerdefinierte Variablen](#other-variables)
 
-### Palette
+## Palette
 
-#### Intentionen
+### Intentionen
 
-A color intention is a mapping of a palette to a given intention within your application.
+Eine Farbintention ist eine Zuordnung einer Palette zu einer bestimmten Intention in Ihrer Anwendung.
 
-The theme exposes the following color intentions:
+Das Theme stellt die folgenden FarbIntentionen zur Verfügung:
 
-- primary - used to represent primary interface elements for a user.
-- secondary - used to represent secondary interface elements for a user.
-- error - used to represent interface elements that the user should be made aware of.
+- primary - wird verwendet, um primäre Oberflächenelemente für einen Benutzer darzustellen.
+- secondary - wird verwendet, um sekundäre Oberflächenelemente für einen Benutzer darzustellen.
+- error- wird verwendet, um Oberflächenelemente darzustellen, auf die der Benutzer aufmerksam gemacht werden sollte.
 
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention, and the un-prefixed shades for the other intentions.
+Die Standardpalette verwendet die mit `A` (`A200` usw.) gekennzeichneten Schattierungen für die sekundäre Intention, und die nicht vorangestellten Farben für die anderen Intentionen.
 
-If you want to learn more about color, you can check out [the color section](/style/color/).
+Wenn Sie mehr über Farbe erfahren möchten, können Sie sich im [Farbabschnitt](/style/color/) informeiren.
 
-#### Custom palette
+### Benutzerdefinierte Palette
 
-You may override the default palette values by including a `palette` object as part of your theme.
+Sie können die Standardpalettenwerte überschreiben, indem Sie ein `Palette` Objekt als Teil Ihres Themas hinzufügen.
 
-If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'intention' objects are provided, they will replace the defaults.
+Wenn eine der [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) oder [` palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'Intent'-Objekte bereitgestellt ist, wird die Standardeinstellungen ersetzen.
 
-The intention value can either be a [color](/style/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
+Der Intentionswert kann entweder ein [ Farbobjekt ](/style/color/) sein oder ein Objekt mit einem oder mehreren der Schlüssel, die von der folgenden TypeScript-Schnittstelle angegeben werden:
 
 ```ts
 interface PaletteIntention {
@@ -58,9 +58,9 @@ interface PaletteIntention {
 };
 ```
 
-**Using a color object**
+**Verwenden eines Farbobjekts**
 
-The simplest way to customize an intention is to import one or more of the provided colors and apply them to a palette intention:
+Die einfachste Möglichkeit, eine Absicht anzupassen, besteht darin, eine oder mehrere der angegebenen Farben zu importieren und auf eine Palettenabsicht anzuwenden:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -73,7 +73,7 @@ const theme = createMuiTheme({
 });
 ```
 
-If the intention key receives a color object as in the example above, the following mapping is used to populate the required keys:
+Wenn die Absicht Schlüssel ein Farbobjekt wie im Beispiel empfängt, wird die folgende Abbildung verwendet, um die restlichen, erforderlichen Schlüssel zu füllen:
 
 ```js
 palette: {
@@ -98,7 +98,7 @@ palette: {
 },
 ```
 
-This example illustrates how you could recreate the default palette values:
+Dieses Beispiel zeigt, wie Sie die Standardpalettenwerte neu erstellen können:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -106,27 +106,27 @@ import indigo from '@material-ui/core/colors/indigo';
 import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
 
-// All the following keys are optional.
-// We try our best to provide a great default value.
+// Alle folgende Schlüssel sind optional.
+// Wir versuchen unser Bestes, um einen hervorragenden Standardwert bereitzustellen.
 const theme = createMuiTheme({
   palette: {
     primary: indigo,
     secondary: pink,
     error: red,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
+    // Wird von `getContrastText()` benutzt, um den Kontrast zwischen Text und 
+    // Hintergrund zu maximieren.
     contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
+    // Wird verwendet, um die Luminanz einer Farbe um ungefähr
+    // zwei Indizes in der Tonpalette zu verschieben.
+    // Zum Beispiel von Red 500 zu Red 300 oder Red 700 zu wechseln.
     tonalOffset: 0.2,
   },
 });
 ```
 
-**Providing the colors directly**
+**Die Farben direkt zur Verfügung stellen**
 
-If you wish to provide more customized colors, you can either create your own color object, or directly supply colors to some or all of the intention's keys:
+Wenn Sie mehr benutzerdefinierte Farben bereitstellen möchten, können Sie entweder ein eigenes Farbobjekt erstellen oder Farben für einige oder alle Schlüssel der Absichten direkt angeben:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -134,43 +134,43 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
+      // light: wird von palette.primary.main berechnet,
       main: '#ff4400',
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      // dark: wird von palette.primary.main berechnet,
+      // contrastText: wird von palette.primary.main berechnet,
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
+      // dark: wird von palette.primary.main berechnet,
       contrastText: '#ffcc00',
     },
-    // error: will use the default color
+    // error: wird die Standardfarbe benutzen
   },
 });
 ```
 
-As in the example above, if the intention object contains custom colors using any of the `main`, `light`, `dark` or `contrastText` keys, these map as follows:
+Wie im obigen Beispiel, wenn das Absichtsobjekt benutzerdefinierte Farben mit einem der Hauptbereiche `main`, `light`, `dark` or `contrastText` Schlüssel enthält, ist die Zuordnung wie folgt:
 
-- If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`, according to the `tonalOffset` value.
+- Wenn der `dark` und / oder `light` Schlüssel weggelassen wird, werden ihre Werte von `main` berechnet, gemäß dem `tonalOffset` Wert.
 
-- If `contrastText` is omitted, its value will be calculated to contrast with `main`, according to the`contrastThreshold` value.
+- Wenn `contrastText` weggelassen wird, wird sein Wert so berechnet, dass er mit `main` kontrastiert, gemäß dem `contrastThreshold` Wert.
 
-Both the `tonalOffset` and `contrastThreshold` values may be customized as needed. A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker. A higher value for `contrastThreshold` increases the point at which a background color is considered light, and given a dark `contrastText`.
+Sowohl `tonalOffset` als auch`contrastThreshold` können nach Bedarf angepasst werden. Ein höherer Wert für `tonalOffset` berechnet für `light` hellere und für `dark` dunklere Töne. Ein höherer Wert für `contrastThreshold` erhöht den Punkt ab wann eine Hintergrundfarbe als hell angesehen und einen dunklen `contrastText` gegeben wird.
 
-Note that `contrastThreshold` follows a non-linear curve.
+Beachten Sie, dass `contrastThreshold` einer nichtlinearen Kurve folgt.
 
-#### Beispiel
+### Beispiel
 
 {{"demo": "pages/customization/themes/Palette.js"}}
 
-#### Farbwerkzeug
+### Farbwerkzeug
 
-Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color/#color-tool) to help you.
+Etwas Inspiration gefällig? Das Material-Design-Team hat ein fantastisches [Konfigurationstool](/style/color/#color-tool) entwickelt, um dir zu helfen.
 
-### Type (light /dark theme)
+## Typ (helles/dunkles Theme)
 
-You can make the theme dark by setting `type` to `dark`. While it's only a single property value change, internally it modifies the value of the following keys:
+Sie können das Theme dunkel machen, indem Sie `type` auf `dark` setzen. Während es sich nur um eine einzelne Eigenschaftswertänderung handelt, ändert es intern den Wert der folgenden Schlüssel:
 
 - `palette.text`
 - `palette.divider`
@@ -187,20 +187,21 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/DarkTheme.js", "hideEditButton": true}}
 
-### Typografie
+## Typografie
 
-Too many type sizes and styles at once can spoil any layout. The theme provides a **limited set of type sizes** that work well together along with the layout grid. These sizes are used across the components.
+Zu viele Schriftgrößen und -stile gleichzeitig können jedes Layout beeinträchtigen. Das Theme bietet eine **begrenzte Anzahl von Schriftgrößen** die gut zusammen mit dem Layoutraster funktionieren. Diese Größen werden für die Komponenten verwendet.
 
-Have a look at the following example regarding changing the default values, such as the font family. If you want to learn more about typography, you can check out [the typography section](/style/typography/).
+Sehen Sie sich das folgende Beispiel zum Ändern der Standardwerte an, z. B. der Schriftfamilie an. Wenn Sie mehr über Typografie erfahren möchten, können Sie sich im [Typografie ](/style/typography/) informeiren.
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
-#### Typography - Font family
+### Schriftfamilie
+
+Sie können die Systemschriftart anstelle der Standardschriftart Roboto verwenden.
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -217,33 +218,85 @@ const theme = createMuiTheme({
 });
 ```
 
-#### Typography - Font size
+### Bereitstellen von eigenen Schriftarten
 
-Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a much better user experience. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
+Um Schriftarten selbst zu hosten, laden Sie diese als ` ttf`, ` woff ` und/oder ` woff2 ` herunter und importieren Sie diese in Ihren Code.
 
-To change the font-size of Material-UI you can provide a `fontSize` property. The default value is `14px`.
+⚠️ Voraussetzung dafür ist, dass Sie in Ihrem Build-Prozess ein Plugin oder Loader haben, dass das Laden von `ttf`, `woff` und `woff2` Datein ermöglicht. Schriftarten werden *nicht * in deinen Bundle eingebettet sein. Sie werden von Ihrem Webserver anstelle von CDN geladen.
+
+```js
+import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
+
+const raleway = {
+  fontFamily: 'Raleway',
+  fontStyle: 'normal',
+  fontDisplay: 'swap',
+  fontWeight: 400,
+  src: `
+    local('Raleway'),
+    local('Raleway-Regular'),
+    url(${RalewayWoff2}) format('woff2')
+  `,
+  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+};
+```
+
+Dann können Sie das Theme ändern, um diese neue Schriftart zu verwenden. Es erfordert die Verwendung von einer [` CssBaseline `](/style/css-baseline/) Komponente, um Raleway global als Schriftfamilie zu definieren.
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    // In Japanese the characters are usually larger.
+    fontFamily: [
+      'Raleway',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-family': [raleway],
+      },
+    },
+  },
+});
+```
+
+### Schriftgröße
+
+Material-UI verwendet `rem` Einheiten für die Schriftgröße. Die Standardschriftgröße des Browsers `<html>` ist `16px`, aber Browser haben eine Option, um diesen Wert zu ändern, deshalb ermöglichen es uns `rem` Einheiten, die Einstellungen des Benutzers anzupassen, was zu einer viel besseren Benutzererfahrung führt. Benutzer ändern Schriftgröße aus alle Arten von Gründen, von Sehschwäche bis zu optimalen Einstellungen für Geräte, die sehr unterschiedlich in Größe und Betrachtungsabstand sein können.
+
+Um die Schriftgröße der Material-UI zu ändern, können Sie eine `fontSize` Eigenschaft angeben. Der Standardwert ist `14px`.
+
+```js
+const theme = createMuiTheme ({
+  Typografie: {
+    // Auf Japanisch sind die Zeichen normalerweise größer.
     fontSize: 12,
   },
 });
 ```
 
-The computed font size by the browser follows this mathematical equation:
+Die vom Browser berechnete Schriftgröße folgt dieser mathematischen Gleichung:
 
 ![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-#### Typography - HTML font size
+### HTML-Schriftgröße
 
-You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). We provide a `htmlFontSize` theme property for this use case. It's telling Material-UI what's the font-size on the `<html>` element is. It's used to adjust the `rem` value so the calculated font-size always match the specification.
+Möglicherweise möchten Sie die Standardschriftgröße des `<html>` Elements ändern. Zum Beispiel bei der Verwendung der [10px-Vereinfachung](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). Wir bieten eine `htmlFontSize` Theme-Eigenschaft für diesen Anwendungsfall an. Es sagt dem Material-UI, was die Schriftgröße des `<html>`-Elements ist. Es wird verwendet, um den `rem` Wert einzustellen, damit die berechnete Schriftgröße immer der Spezifikation entspricht.
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    // Informiere die Material-UI über die Schriftgröße des HTML-Elements.
     htmlFontSize: 10,
   },
 });
@@ -255,26 +308,26 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+*Sie müssen das obige CSS auf das HTML-Element dieser Seite anwenden, um die unten stehende Demo korrekt anzuzeigen*
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
-### Abstände
+## Abstände
 
-We encourage you to use the `theme.spacing()` helper to create consistent spacing between the elements of your UI. Material-UI uses [a recommended 8px scaling factor by default](https://material.io/design/layout/understanding-layout.html).
+Wir empfehlen Ihnen, den `theme.spacing()` Helfer zu verwenden, um einen konsistenten Abstand zwischen den Elementen Ihrer Benutzeroberfläche zu erstellen. Die Material-UI verwendet standardmäßig den [empfohlenen 8px-Skalierungsfaktor](https://material.io/design/layout/understanding-layout.html).
 
 ```js
 const styles = theme => ({
   root: {
-    // JSS uses px as the default units for this CSS property.
-    padding: theme.spacing(2), // Outputs 8 * 2
+    // JSS verwendet px als Standardeinheiten für diese CSS-Eigenschaft.
+    auffüllen: theme.spacing (2), // Ergibt 8 * 2
   },
 });
 ```
 
-You can change the spacing transformation by providing:
+Sie können die Abstandstransformation ändern, indem Sie Folgendes angeben:
 
-- a number
+- eine Zahl
 
 ```js
 const theme = createMuiTheme({
@@ -284,47 +337,47 @@ const theme = createMuiTheme({
 theme.spacing(2) // = 4 * 2
 ```
 
-- or a function
+- oder eine Funktion
 
 ```js
 const theme = createMuiTheme({
-  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
+  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap Strategie)
 });
 
 theme.spacing(2) // = 0.5rem = 8px
 ```
 
-#### Multiple arity
+### Mehrere Aritäten
 
-The `theme.spacing()` helper accepts up to 4 arguments. You can use the arguments to reduce the boilerplate:
+Der`theme.spacing ()` Helfer akzeptiert bis zu 4 Argumente. Sie können die Argumente verwenden, um den Boilerplate zu reduzieren:
 
 ```diff
 <br />-  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
 +  padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
-### Other variables
+## Andere Variablen
 
-In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc. You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+Neben der Palette, den dunklen und den hellen Typen sowie der Typografie normalisiert das Theme die Implementierung, indem es viele weitere Standardwerte bereitstellt, wie zum Beispiel breakpoints, Schatten, Übergänge, etc. Sie können den [Standard-Themenbereich](/customization/default-theme/) auschecken, um das Standarddesign vollständig anzuzeigen.
 
-### Custom variables
+## Benutzerdefinierte Variablen
 
-When using Material-UI's theme with our [styling solution](/css-in-js/basics) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+Wenn Sie das Material-UI-Theme mit unserer [Styling-Lösung](/css-in-js/basics) oder einer [beliebige andere](/guides/interoperability/#themeprovider) verwenden, kann praktisch sein, dem Theme weitere Variablen hinzuzufügen, damit Sie sie überall verwenden können. Zum Beispiel:
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
-## Customizing all instances of a component type
+## Anpassen aller Instanzen eines Komponententyps
 
 ### CSS
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change every single **style** injected by Material-UI into the DOM. That's a really powerful feature.
+Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der `overrides` Schlüssel des `Theme` verwenden, um potenziell jeden einzelnen von Material-UI in den DOM eingefügten **Stil** zu ändern. Das ist eine sehr mächtige Funktion.
 
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Name of the component ⚛️ / style sheet
-      text: { // Name of the rule
-        color: 'white', // Some CSS
+    MuiButton: { // Name der Komponente ⚛️ / Style-Sheet
+      text: { // Name der Regel
+        color: 'white', // Einige CSS
       },
     },
   },
@@ -333,19 +386,19 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/OverridesCss.js"}}
 
-The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
+Die Liste dieser Anpassungspunkte für jede Komponente ist unter der **Komponenten-API** Sektion dokumentiert. Zum Beispiel können Sie sich den [Button](/api/button/#css) anschauen. Alternativ können Sie sich immer die [Implementierung](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js) ansehen.
 
 ### Eigenschaften
 
-You can also apply properties on all the instances of a component type. We expose a `props` key in the `theme` for this use case.
+Sie können auch Eigenschaften auf alle Instanzen eines Komponententyps anwenden. Wir stellen einen `props` Schlüssel im `Theme` für diesen Anwendungsfall zur Verfügung.
 
 ```js
 const theme = createMuiTheme({
   props: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      // Die Eigenschaft, die angewendet werden soll
+      disableRipple: true, // Kein Ripple-Effekt in der ganzen Applikation mehr 
     },
   },
 });
@@ -353,15 +406,15 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/OverridesProperties.js"}}
 
-## Accessing the theme in a component
+## Zugriff auf das Theme in einer Komponente
 
-Möglicherweise müssen Sie auf die Themevariablen in Ihren React-Komponenten zugreifen. Let's say you want to display the value of the primary color, you can use the `withTheme` higher-order component to do so. Here is an example:
+Möglicherweise müssen Sie auf die Themevariablen in Ihren React-Komponenten zugreifen. Angenommen, Sie möchten den Wert der Primärfarbe anzeigen, können Sie die `withTheme` Komponente höherer Ordnung dazu verwenden. Hier ist ein Beispiel:
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 
-## Nesting the theme
+## Schachteln des Themes
 
-The theming solution is very flexible, as [you can nest](/css-in-js/advanced/#theme-nesting) multiple theme providers. Dies kann sehr nützlich sein, wenn Sie sich mit unterschiedlichen Bereichen Ihrer Anwendung befassen, die sich voneinander unterscheiden.
+Die Theming-Lösung ist sehr flexibel, da Sie mehrere Theme-anbieter [verschachteln können](/css-in-js/advanced/#theme-nesting). Dies kann sehr nützlich sein, wenn Sie sich mit unterschiedlichen Bereichen Ihrer Anwendung befassen, die sich voneinander unterscheiden.
 
 {{"demo": "pages/customization/themes/ThemeNesting.js"}}
 
@@ -369,26 +422,26 @@ Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere
 
 {{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
 
-#### A note on performance
+#### Ein Hinweis zur Leistung
 
-The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that we cache the injected CSS with the following tuple `(styles, theme)`.
+Die Auswirkungen der Verschachtelung der `ThemeProviders` Komponente auf die Performanz sind mit der Arbeit von JSS hinter den Kulissen verbunden. Der wichtigste Punkt zu verstehen ist, dass wir das injizierte CSS mit dem folgenden Tupel `(styles, theme)` zwischenspeichern.
 
-- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
-- `styles`: The larger the styles object is, the more work is needed.
+- `Theme`: Wenn Sie bei jedem Rendering ein neues Themebereitstellen, wird ein neues CSS-Objekt berechnet und eingefügt. Sowohl für die Konsistenz der Benutzeroberfläche als auch für die Leistung ist es besser, eine begrenzte Anzahl von Themeobjekten wiederzugeben.
+- `styles`: Je größer das Styles-Objekt ist, desto mehr Arbeit ist erforderlich.
 
 ## API
 
 ### `createMuiTheme(options) => theme`
 
-Generate a theme base on the options received.
+Generieren Sie eine Themenbasis von den gegebenen Optionen.
 
 #### Argumente
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
+1. `options` (*Object*): Nimmt ein unvollständiges Themeobjekt auf und fügt die fehlenden Teile hinzu.
 
 #### Rückgabewerte
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (*Object*): Ein vollständiges, gebrauchsfertiges Themeobjekt.
 
 #### Beispiele
 

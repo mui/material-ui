@@ -1,7 +1,7 @@
 ---
-components: Typography
+components: タイポグラフィ
 ---
-# Typography
+# タイポグラフィ
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
@@ -9,14 +9,22 @@ Too many type sizes and styles at once can spoil any layout. A [typographic scal
 
 ## General
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started.
+The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/themes/#typography).
 
 ## Roboto Font CDN
 
 Shown below is a sample link markup used to load the Roboto font from a CDN.
 
+*HTML*
+
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+```
+
+*JSX*
+
+```jsx
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
 ## Install with npm
@@ -78,5 +86,5 @@ const theme = createMuiTheme({
       },
     },
   },
-})
+});
 ```

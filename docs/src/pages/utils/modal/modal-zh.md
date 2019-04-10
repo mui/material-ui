@@ -40,7 +40,7 @@ components: Modal
       <TableRow>
         <TableCell>Dessert (100g serving)</TableCell>
         <TableCell align="right">Calories</TableCell>
-        <TableCell align="right">Fat (g)</TableCell>
+        <TableCell align="right">Fat&nbsp;(g)</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -58,7 +58,7 @@ components: Modal
 </Modal>
 ```
 
-我们创建了许多永远不会渲染的React元素，这是很浪费的。
+We create a lot of React elements that will never be mounted. It's wasteful 
 
 ```jsx
 <Modal open={false}>

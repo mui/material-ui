@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
+  describeConformance,
   findOutermostIntrinsic,
   getClasses,
 } from '@material-ui/core/test-utils';
@@ -18,7 +19,10 @@ describe('<Popover />', () => {
   let shallow;
   let mount;
   let classes;
-  let defaultProps;
+  const defaultProps = {
+    open: false,
+    anchorEl: () => document.createElement('div'),
+  };
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -28,15 +32,19 @@ describe('<Popover />', () => {
         <div />
       </Popover>,
     );
-    defaultProps = {
-      open: false,
-      anchorEl: document.createElement('div'),
-    };
   });
 
   after(() => {
     mount.cleanUp();
   });
+
+  describeConformance(<Popover {...defaultProps} open />, () => ({
+    classes,
+    inheritComponent: Modal,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: false,
+  }));
 
   describe('root node', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
@@ -464,6 +472,15 @@ describe('<Popover />', () => {
       assert.strictEqual(otherWrapper.find(Modal).props().container, undefined);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(consoleErrorMock.args()[0][0], 'It should be a HTMLElement instance');
+    });
+
+    it('warns if a component for the Paper is used that cant hold a ref', () => {
+      mount(<Popover {...defaultProps} PaperProps={{ component: () => <div />, elevation: 4 }} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `Popover`. Expected an element type that can hold a ref.',
+      );
     });
 
     // it('should warn if anchorEl is not visible', () => {

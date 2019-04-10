@@ -5,7 +5,6 @@ import theme from './theme';
 
 function withRoot(Component) {
   function WithRoot(props) {
-    // ThemeProvider makes the theme available down the React tree thanks to React context.
     return (
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
