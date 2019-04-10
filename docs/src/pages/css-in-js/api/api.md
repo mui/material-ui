@@ -111,78 +111,48 @@ export default function MyComponent() {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle server-side rendering.
-The instance offers the following API.
-
-```js
-import { ServerStyleSheets } from '@material-ui/styles';
-
-const sheets = new ServerStyleSheets();
-```
-
-#### Arguments
-
-The `new ServerStyleSheets([options])` instantiation accepts an options object as a first argument.
-
-1. `options` (*Object* [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
-
-  **Examples**
-
-  ```js
-  import { ServerStyleSheets } from '@material-ui/styles';
-  import generateClassName from './generateClassName';
-
-  const sheets = new ServerStyleSheets({ generateClassName });
-  ```
-
-### `sheets.collect(node) => void`
-
-The method wraps your node in a provider element.
+This is a class helper to handle [server-side rendering](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheets } from '@material-ui/styles';
 
+const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
-```
-
-### `sheets.toString() => CSS string`
-
-The method returns the collected styles. It's a CSS string.
-
-```js
-const css = sheets.toString();
+const cssString = sheets.toString();
 
 const response = `
 <!DOCTYPE html>
 <html>
   <head>
-    <style id="jss-server-side">${css}</style>
+    <style id="jss-server-side">${cssString}</style>
   </head>
   <body>
-    ...
+    ${html}
   </body>
 </html>
 `;
 ```
 
-### `sheets.getStyleElement() => CSS React node`
+The instance offers the following API.
+
+### `new ServerStyleSheets([options])`
+
+The instantiation accepts an options object as a first argument.
+
+1. `options` (*Object* [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
+
+### `sheets.collect(node) => React element`
+
+The method wraps your node in a provider element.
+
+### `sheets.toString() => CSS string`
+
+The method returns the collected styles. It's a CSS string.
+
+### `sheets.getStyleElement() => CSS React element`
 
 The method is an alternative to `toString()` when you are rendering the whole page with React.
-
-```jsx
-const style = sheets.getStyleElement();
-
-const response = (
-  <html lang="en" dir="ltr">
-    <Head>
-      {style}
-    </Head>
-    <body>
-      <Main />
-    </body>
-  </html>
-);
-```
 
 ## `styled(Component)(styles, [options]) => Component`
 
