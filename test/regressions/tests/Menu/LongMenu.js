@@ -34,12 +34,14 @@ const options = [
 const ITEM_HEIGHT = 48;
 
 class LongMenu extends React.Component {
+  buttonRef = React.createRef();
+
   state = {
     anchorEl: null,
   };
 
   componentDidMount() {
-    this.setState({ anchorEl: this.buttonRef });
+    this.setState({ anchorEl: this.buttonRef.current });
   }
 
   render() {
@@ -50,9 +52,7 @@ class LongMenu extends React.Component {
     return (
       <div className={classes.root}>
         <IconButton
-          buttonRef={ref => {
-            this.buttonRef = ref;
-          }}
+          ref={this.buttonRef}
           aria-label="More"
           aria-owns={open ? 'long-menu' : undefined}
           aria-haspopup="true"
