@@ -15,7 +15,7 @@ export interface FormControlLabelProps
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
-  value?: any;
+  value?: unknown;
 }
 
 export type FormControlLabelClassKey = 'root' | 'start' | 'disabled' | 'label';

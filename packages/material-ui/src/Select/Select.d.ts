@@ -19,7 +19,7 @@ export interface SelectProps
   open?: boolean;
   renderValue?: (value: SelectProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
-  value?: any;
+  value?: unknown;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 

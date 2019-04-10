@@ -8,7 +8,7 @@ export interface NativeSelectProps
     Pick<NativeSelectInputProps, 'onChange'> {
   IconComponent?: React.ElementType;
   input?: React.ReactNode;
-  value?: any;
+  value?: unknown;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 

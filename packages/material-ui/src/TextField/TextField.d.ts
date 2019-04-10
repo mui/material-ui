@@ -13,7 +13,7 @@ export interface BaseTextFieldProps
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
-  defaultValue?: any;
+  defaultValue?: unknown;
   disabled?: boolean;
   error?: boolean;
   FormHelperTextProps?: Partial<FormHelperTextProps>;
@@ -34,7 +34,7 @@ export interface BaseTextFieldProps
   select?: boolean;
   SelectProps?: Partial<SelectProps>;
   type?: string;
-  value?: any;
+  value?: unknown;
 }
 
 export interface StandardTextFieldProps extends BaseTextFieldProps {
