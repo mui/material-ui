@@ -5,8 +5,8 @@ import { FormGroupProps, FormGroupClassKey } from '../FormGroup';
 export interface RadioGroupProps
   extends StandardProps<FormGroupProps, RadioGroupClassKey, 'onChange'> {
   name?: string;
-  onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
-  value?: any;
+  onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
+  value?: string;
 }
 
 export type RadioGroupClassKey = FormGroupClassKey;
