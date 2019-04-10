@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import compose from 'docs/src/modules/utils/compose';
@@ -33,21 +34,19 @@ const users = [
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     backgroundColor: theme.palette.background.paper,
     minHeight: 160,
-    paddingTop: theme.spacing.unit * 5,
+    paddingTop: theme.spacing(5),
   },
   container: {
-    paddingTop: theme.spacing.unit * 14,
-    paddingBottom: theme.spacing.unit * 14,
-    margin: 'auto',
+    paddingTop: theme.spacing(14),
+    paddingBottom: theme.spacing(14),
     borderTop: `1px solid ${theme.palette.divider}`,
-    maxWidth: theme.spacing.unit * 110,
   },
   grid: {
-    marginTop: theme.spacing.unit * 5,
-    marginBottom: theme.spacing.unit * 5,
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
   },
   img: {
     margin: '12px 24px',
@@ -60,7 +59,7 @@ function HomeUsers(props) {
   return (
     <div className={classes.root}>
       <NoSsr>
-        <div className={classes.container}>
+        <Container className={classes.container}>
           <Typography variant="h4" align="center" gutterBottom>
             {t('whosUsing')}
           </Typography>
@@ -70,6 +69,7 @@ function HomeUsers(props) {
           <Grid container justify="center" className={classes.grid}>
             {users.map(user => (
               <img
+                key={user.caption}
                 src={`/static/images/users/${user.logo}`}
                 alt={user.caption}
                 className={classes.img}
@@ -89,7 +89,7 @@ function HomeUsers(props) {
               {t('letUsKnow')}
             </Button>
           </Grid>
-        </div>
+        </Container>
       </NoSsr>
     </div>
   );
