@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const withCSS = require('@zeit/next-css');
 const withImages = require('next-images');

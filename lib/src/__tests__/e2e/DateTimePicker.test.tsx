@@ -29,7 +29,7 @@ describe('e2e - DateTimePicker', () => {
 
   it('Should open modal with picker on click', () => {
     component.find('input').simulate('click');
-    expect(component.find('Dialog').props().open).toBeTruthy();
+    expect(component.find('WithStyles(ForwardRef(Dialog))').prop('open')).toBeTruthy();
   });
 
   it('Should update state when passing new value from outside', () => {
@@ -95,12 +95,12 @@ describe('e2e -- Controlling open state', () => {
   });
 
   it('Should be opened', () => {
-    expect(component.find('WithStyles(Dialog)').prop('open')).toBeTruthy();
+    expect(component.find('WithStyles(ForwardRef(Dialog))').prop('open')).toBeTruthy();
   });
 
   it('Should close', () => {
     component
-      .find('DialogActions button')
+      .find('ForwardRef(DialogActions) button')
       .at(0)
       .simulate('click');
     expect(onCloseMock).toHaveBeenCalled();

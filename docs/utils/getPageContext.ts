@@ -1,7 +1,13 @@
 import { SheetsRegistry } from 'jss';
-import { createGenerateClassName } from '@material-ui/core';
+import { createGenerateClassName } from '@material-ui/styles';
 
-function createPageContext() {
+export interface PageContext {
+  generateClassName: any;
+  sheetsManager: Map<string, string>;
+  sheetsRegistry: SheetsRegistry;
+}
+
+export default function(): PageContext {
   return {
     // This is needed in order to deduplicate the injection of CSS in the page.
     sheetsManager: new Map(),
@@ -10,23 +16,4 @@ function createPageContext() {
     // The standard class name generator.
     generateClassName: createGenerateClassName(),
   };
-}
-
-export type PageContext = ReturnType<typeof createPageContext>;
-let pageContext: PageContext;
-
-export default function getPageContext() {
-  // Make sure to create a new context for every server-side request so that data
-  // isn't shared between connections (which would be bad).
-  // @ts-ignore
-  if (!process.browser) {
-    return createPageContext();
-  }
-
-  // Reuse context on the client-side.
-  if (!pageContext) {
-    pageContext = createPageContext();
-  }
-
-  return pageContext;
 }

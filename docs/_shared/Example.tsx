@@ -7,15 +7,8 @@ import { copy } from 'utils/helpers';
 import { GITHUB_EDIT_URL } from '_constants';
 import { withUtilsService } from './UtilsServiceContext';
 import { withSnackbar, InjectedNotistackProps } from 'notistack';
-import {
-  IconButton,
-  withStyles,
-  Collapse,
-  WithStyles,
-  createStyles,
-  Theme,
-  Tooltip,
-} from '@material-ui/core';
+import { IconButton, Collapse, Theme, Tooltip } from '@material-ui/core';
+import { withStyles, WithStyles, createStyles } from '@material-ui/styles';
 
 interface Props extends WithStyles<typeof styles>, InjectedNotistackProps {
   source: { raw: string; relativePath: string; default: React.FC<any> };

@@ -91,16 +91,18 @@ describe('e2e - DatePicker inline variant', () => {
   it('Should open modal with picker on click', () => {
     component.find('input').simulate('click');
 
-    expect(component.find('WithStyles(Popover)').props().open).toBeTruthy();
+    expect(component.find('WithStyles(ForwardRef(Popover))').props().open).toBeTruthy();
     expect(onOpenMock).toHaveBeenCalled();
   });
 
   it('Should close on popover close request', () => {
-    const popoverOnClose = component.find('WithStyles(Popover)').prop('onClose') as () => void;
+    const popoverOnClose = component
+      .find('WithStyles(ForwardRef(Popover))')
+      .prop('onClose') as () => void;
 
     popoverOnClose();
 
-    expect(component.find('WithStyles(Popover)').props().open).toBeFalsy();
+    expect(component.find('WithStyles(ForwardRef(Popover))').props().open).toBeFalsy();
     expect(onCloseMock).toHaveBeenCalled();
   });
 
@@ -112,6 +114,6 @@ describe('e2e - DatePicker inline variant', () => {
       .simulate('click');
 
     expect(onChangeMock).toHaveBeenCalled();
-    expect(component.find('WithStyles(Popover)').props().open).toBeFalsy();
+    expect(component.find('WithStyles(ForwardRef(Popover))').props().open).toBeFalsy();
   });
 });

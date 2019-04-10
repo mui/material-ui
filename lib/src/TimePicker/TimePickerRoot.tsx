@@ -6,12 +6,11 @@ import ToolbarText from '../_shared/ToolbarText';
 import ToolbarButton from '../_shared/ToolbarButton';
 import PickerToolbar from '../_shared/PickerToolbar';
 import TimePickerView from './components/TimePickerView';
-import withStyles from '@material-ui/core/styles/withStyles';
-import createStyles from '@material-ui/core/styles/createStyles';
-import { WithStyles } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../typings/date';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
+import { WithStyles, withStyles, createStyles } from '@material-ui/styles';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 
 export interface BaseTimePickerProps {
@@ -23,10 +22,50 @@ export interface BaseTimePickerProps {
   minutesStep?: number;
 }
 
+export const styles = () =>
+  createStyles({
+    toolbar: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    toolbarLeftPadding: {
+      paddingLeft: 50,
+    },
+    separator: {
+      margin: '0 4px 0 2px',
+      cursor: 'default',
+    },
+    ampmSelection: {
+      marginLeft: 20,
+      marginRight: -20,
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    ampmSelectionWithSeconds: {
+      marginLeft: 15,
+      marginRight: 10,
+    },
+    ampmLabel: {
+      fontSize: 18,
+    },
+    hourMinuteLabel: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+    },
+    hourMinuteLabelReverse: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+      flexDirection: 'row-reverse',
+    },
+  });
+
 export interface TimePickerProps
   extends BaseTimePickerProps,
     WithUtilsProps,
     WithStyles<typeof styles, true> {
+  theme: Theme;
   date: MaterialUiPickersDate;
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
 }
@@ -238,46 +277,10 @@ export class TimePickerRoot extends React.Component<TimePickerProps> {
   }
 }
 
-export const styles = () =>
-  createStyles({
-    toolbar: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    toolbarLeftPadding: {
-      paddingLeft: 50,
-    },
-    separator: {
-      margin: '0 4px 0 2px',
-      cursor: 'default',
-    },
-    ampmSelection: {
-      marginLeft: 20,
-      marginRight: -20,
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    ampmSelectionWithSeconds: {
-      marginLeft: 15,
-      marginRight: 10,
-    },
-    ampmLabel: {
-      fontSize: 18,
-    },
-    hourMinuteLabel: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-end',
-    },
-    hourMinuteLabelReverse: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-end',
-      flexDirection: 'row-reverse',
-    },
-  });
-
 export default withStyles(styles, {
   withTheme: true,
   name: 'MuiPickersTimePicker',
-})(withUtils()(TimePickerRoot));
+})(
+  // @ts-ignore
+  withUtils()(TimePickerRoot)
+);

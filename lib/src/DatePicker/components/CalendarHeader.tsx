@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import createStyles from '@material-ui/core/styles/createStyles';
+import createStyles from '@material-ui/styles/createStyles';
 import SlideTransition, { SlideDirection } from './SlideTransition';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
@@ -108,8 +108,8 @@ export const styles = (theme: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginTop: theme.spacing.unit / 2,
-      marginBottom: theme.spacing.unit,
+      marginTop: theme.spacing(0.5),
+      marginBottom: theme.spacing(1),
     },
     transitionContainer: {
       width: '100%',
