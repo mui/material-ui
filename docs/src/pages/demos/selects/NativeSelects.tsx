@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function NativeSelects() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [state, setState] = React.useState<{ age: string | number; name: string }>({
     age: '',
     name: 'hai',
   });
@@ -37,7 +37,7 @@ function NativeSelects() {
   }, []);
 
   const handleChange = (name: keyof typeof state) => (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<{ value: unknown }>,
   ) => {
     setState({
       ...state,

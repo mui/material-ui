@@ -60,8 +60,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 function CustomizedSelects() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setAge(event.target.value);
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setAge(event.target.value as string);
   };
   return (
     <form className={classes.root} autoComplete="off">
