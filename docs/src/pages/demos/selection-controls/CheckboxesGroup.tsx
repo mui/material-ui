@@ -33,8 +33,8 @@ function CheckboxesGroup() {
 
   return (
     <div className={classes.root}>
-      <FormControl component={'fieldset' as 'div'} className={classes.formControl}>
-        <FormLabel component={'legend' as 'label'}>Assign responsibility</FormLabel>
+      <FormControl component="fieldset" className={classes.formControl}>
+        <FormLabel component="legend">Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
@@ -53,13 +53,8 @@ function CheckboxesGroup() {
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      <FormControl
-        required
-        error={error}
-        component={'fieldset' as 'div'}
-        className={classes.formControl}
-      >
-        <FormLabel component={'legend' as 'label'}>Pick two</FormLabel>
+      <FormControl required error={error} component="fieldset" className={classes.formControl}>
+        <FormLabel component="legend">Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={gilad} onChange={handleChange('gilad')} value="gilad" />}
