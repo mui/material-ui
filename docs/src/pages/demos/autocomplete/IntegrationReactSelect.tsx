@@ -156,7 +156,7 @@ function Control(props: ControlProps<OptionType>) {
 function Option(props: OptionProps<OptionType>) {
   return (
     <MenuItem
-      buttonRef={props.innerRef}
+      ref={props.innerRef}
       selected={props.isFocused}
       component="div"
       style={{

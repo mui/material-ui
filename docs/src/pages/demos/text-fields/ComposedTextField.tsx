@@ -27,7 +27,7 @@ interface State {
 }
 
 class ComposedTextField extends React.Component<Props, State> {
-  label = React.createRef<HTMLElement>();
+  label = React.createRef<HTMLLabelElement>();
 
   state = {
     labelWidth: 0,

@@ -29,10 +29,8 @@ export type TabClassKey =
   | 'selected'
   | 'disabled'
   | 'fullWidth'
-  | 'wrapper'
-  | 'labelContainer'
-  | 'label'
-  | 'labelWrapped';
+  | 'wrapped'
+  | 'wrapper';
 
 export type TabProps = SimplifiedPropsOf<typeof Tab>;
 

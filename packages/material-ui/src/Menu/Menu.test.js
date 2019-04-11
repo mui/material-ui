@@ -30,7 +30,7 @@ describe('<Menu />', () => {
     inheritComponent: Popover,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('event callbacks', () => {

@@ -202,7 +202,7 @@ TextField.propTypes = {
   /**
    * The default value of the `input` element.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the `input` element will be disabled.
    */
@@ -310,12 +310,7 @@ TextField.propTypes = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
-  ]),
+  value: PropTypes.any,
   /**
    * The variant to use.
    */

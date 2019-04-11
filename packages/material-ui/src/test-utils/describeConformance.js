@@ -64,18 +64,14 @@ function testClassName(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testComponentProp(element, getOptions) {
-  const { testComponentPropWith } = getOptions();
-
   describe('prop: component', () => {
-    if (testComponentPropWith !== false) {
-      it('can render another root component with the `component` prop', () => {
-        const { classes, mount, testComponentPropWith: component = 'em' } = getOptions();
+    it('can render another root component with the `component` prop', () => {
+      const { classes, mount, testComponentPropWith: component = 'em' } = getOptions();
 
-        const wrapper = mount(React.cloneElement(element, { component }));
+      const wrapper = mount(React.cloneElement(element, { component }));
 
-        assert.strictEqual(findRootComponent(wrapper, { classes, component }).exists(), true);
-      });
-    }
+      assert.strictEqual(findRootComponent(wrapper, { classes, component }).exists(), true);
+    });
   });
 }
 

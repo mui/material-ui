@@ -38,7 +38,7 @@ describe('<Stepper />', () => {
       inheritComponent: Paper,
       mount,
       refInstanceof: window.HTMLDivElement,
-      testComponentPropWith: false,
+      skip: ['componentProp'],
     }),
   );
 

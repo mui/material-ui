@@ -23,7 +23,7 @@ describe('<Radio />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('styleSheet', () => {

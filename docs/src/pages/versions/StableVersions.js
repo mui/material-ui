@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
+const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
 
 const styles = {
   root: {
@@ -46,7 +47,7 @@ class StableVersions extends React.Component {
   async componentDidMount() {
     const branches = await getBranches();
     let docs = branches.map(n => n.name);
-    docs = docs.filter(version => version !== 'latest');
+    docs = docs.filter(value => FILTERED_BRANCHES.indexOf(value) === -1);
     docs = docs.map(version => ({
       version,
       // Replace dot with dashes for Netlify branch subdomains

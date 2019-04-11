@@ -254,11 +254,11 @@ describe('<Tooltip />', () => {
   });
 
   describe('disabled button warning', () => {
-    before(() => {
+    beforeEach(() => {
       consoleErrorMock.spy();
     });
 
-    after(() => {
+    afterEach(() => {
       consoleErrorMock.reset();
     });
 
@@ -273,7 +273,7 @@ describe('<Tooltip />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 0, 'should not call console.error');
     });
 
-    it('should raise a warning when we can listen to events', () => {
+    it('should raise a warning when we are uncontrolled and can not listen to events', () => {
       mount(
         <Tooltip title="Hello World">
           <button type="submit" disabled>
@@ -286,6 +286,17 @@ describe('<Tooltip />', () => {
         consoleErrorMock.args()[0][0],
         /Material-UI: you are providing a disabled `button` child to the Tooltip component/,
       );
+    });
+
+    it('should not raise a warning when we are controlled', () => {
+      mount(
+        <Tooltip title="Hello World" open>
+          <button type="submit" disabled>
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 0);
     });
   });
 
