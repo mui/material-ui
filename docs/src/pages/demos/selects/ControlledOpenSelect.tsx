@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function ControlledOpenSelect() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
 
-  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    setAge(event.target.value);
+  function handleChange(event: React.ChangeEvent<{ value: unknown }>) {
+    setAge(event.target.value as number);
   }
 
   function handleClose() {

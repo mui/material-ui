@@ -73,12 +73,12 @@ function MultipleSelect() {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<Name[]>([]);
 
-  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    setPersonName((event.target.value as unknown) as Name[]);
+  function handleChange(event: React.ChangeEvent<{ value: unknown }>) {
+    setPersonName(event.target.value as Name[]);
   }
 
-  function handleChangeMultiple(event: React.ChangeEvent<HTMLSelectElement>) {
-    const { options } = event.target;
+  function handleChangeMultiple(event: React.ChangeEvent<{ value: unknown }>) {
+    const { options } = event.target as HTMLSelectElement;
     const value: Name[] = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
       if (options[i].selected) {

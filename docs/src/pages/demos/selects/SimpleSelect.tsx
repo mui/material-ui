@@ -36,10 +36,10 @@ function SimpleSelect() {
     setLabelWidth(inputLabel.current ? inputLabel.current.offsetWidth : 0);
   }, []);
 
-  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
+  function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
     setValues(oldValues => ({
       ...oldValues,
-      [event.target.name]: event.target.value,
+      [event.target.name as string]: event.target.value,
     }));
   }
 
