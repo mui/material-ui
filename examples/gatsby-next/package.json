@@ -9,7 +9,8 @@
     "gatsby-plugin-react-helmet": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-helmet": "latest"
+    "react-helmet": "latest",
+    "styled-components": "latest"
   },
   "scripts": {
     "develop": "gatsby develop",
