@@ -37,37 +37,41 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   const listRef = React.useRef();
   const selectedItemRef = React.useRef();
 
-  React.useImperativeHandle(actions, () => ({
-    focus: () => {
-      if (selectedItemRef.current) {
-        selectedItemRef.current.focus();
-        return;
-      }
+  React.useImperativeHandle(
+    actions,
+    () => ({
+      focus: () => {
+        if (selectedItemRef.current) {
+          selectedItemRef.current.focus();
+          return;
+        }
 
-      if (listRef.current && listRef.current.firstChild) {
-        listRef.current.firstChild.focus();
-      }
-    },
-    getContentAnchorEl: () => {
-      if (selectedItemRef.current) {
-        return selectedItemRef.current;
-      }
-      return listRef.current.firstChild;
-    },
-    adjustStyleForScrollbar: (containerElement, theme) => {
-      // Let's ignore that piece of logic if users are already overriding the width
-      // of the menu.
-      const noExplicitWidth = !listRef.current.style.width;
-      if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
-        const scrollbarSize = `${getScrollbarSize(true)}px`;
-        listRef.current.style[
-          theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'
-        ] = scrollbarSize;
-        listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
-      }
-      return listRef.current;
-    },
-  }));
+        if (listRef.current && listRef.current.firstChild) {
+          listRef.current.firstChild.focus();
+        }
+      },
+      getContentAnchorEl: () => {
+        if (selectedItemRef.current) {
+          return selectedItemRef.current;
+        }
+        return listRef.current.firstChild;
+      },
+      adjustStyleForScrollbar: (containerElement, theme) => {
+        // Let's ignore that piece of logic if users are already overriding the width
+        // of the menu.
+        const noExplicitWidth = !listRef.current.style.width;
+        if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
+          const scrollbarSize = `${getScrollbarSize(true)}px`;
+          listRef.current.style[
+            theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'
+          ] = scrollbarSize;
+          listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
+        }
+        return listRef.current;
+      },
+    }),
+    [],
+  );
 
   React.useEffect(() => {
     resetTabIndex(listRef.current, selectedItemRef.current, setCurrentTabIndex);
