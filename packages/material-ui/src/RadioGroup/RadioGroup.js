@@ -18,19 +18,23 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     return null;
   });
 
-  React.useImperativeHandle(actions, () => ({
-    focus: () => {
-      let input = rootRef.current.querySelector('input:not(:disabled):checked');
+  React.useImperativeHandle(
+    actions,
+    () => ({
+      focus: () => {
+        let input = rootRef.current.querySelector('input:not(:disabled):checked');
 
-      if (!input) {
-        input = rootRef.current.querySelector('input:not(:disabled)');
-      }
+        if (!input) {
+          input = rootRef.current.querySelector('input:not(:disabled)');
+        }
 
-      if (input) {
-        input.focus();
-      }
-    },
-  }));
+        if (input) {
+          input.focus();
+        }
+      },
+    }),
+    [],
+  );
 
   React.useEffect(() => {
     warning(
