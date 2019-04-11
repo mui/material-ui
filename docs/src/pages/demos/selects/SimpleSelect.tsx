@@ -33,7 +33,7 @@ function SimpleSelect() {
   const inputLabel = React.useRef<HTMLLabelElement>(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
-    setLabelWidth(inputLabel.current ? inputLabel.current.offsetWidth : 0);
+    setLabelWidth(inputLabel.current!.offsetWidth);
   }, []);
 
   function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
