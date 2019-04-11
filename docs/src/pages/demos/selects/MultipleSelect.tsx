@@ -56,10 +56,7 @@ const names = [
   'Kelly Snyder',
 ];
 
-type ValuesOf<T extends string[]> = T[number];
-type Name = ValuesOf<typeof names>;
-
-function getStyles(name: Name, personName: Name[], theme: Theme) {
+function getStyles(name: string, personName: string[], theme: Theme) {
   return {
     fontWeight:
       personName.indexOf(name) === -1
@@ -71,15 +68,15 @@ function getStyles(name: Name, personName: Name[], theme: Theme) {
 function MultipleSelect() {
   const classes = useStyles();
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState<Name[]>([]);
+  const [personName, setPersonName] = React.useState<string[]>([]);
 
   function handleChange(event: React.ChangeEvent<{ value: unknown }>) {
-    setPersonName(event.target.value as Name[]);
+    setPersonName(event.target.value as string[]);
   }
 
   function handleChangeMultiple(event: React.ChangeEvent<{ value: unknown }>) {
     const { options } = event.target as HTMLSelectElement;
-    const value: Name[] = [];
+    const value: string[] = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
       if (options[i].selected) {
         value.push(options[i].value);
@@ -113,7 +110,7 @@ function MultipleSelect() {
           value={personName}
           onChange={handleChange}
           input={<Input id="select-multiple-checkbox" />}
-          renderValue={selected => (selected as Name[]).join(', ')}
+          renderValue={selected => (selected as string[]).join(', ')}
           MenuProps={MenuProps}
         >
           {names.map(name => (
@@ -133,7 +130,7 @@ function MultipleSelect() {
           input={<Input id="select-multiple-chip" />}
           renderValue={selected => (
             <div className={classes.chips}>
-              {(selected as Name[]).map(value => (
+              {(selected as string[]).map(value => (
                 <Chip key={value} label={value} className={classes.chip} />
               ))}
             </div>
@@ -155,11 +152,11 @@ function MultipleSelect() {
           onChange={handleChange}
           input={<Input id="select-multiple-placeholder" />}
           renderValue={selected => {
-            if ((selected as Name[]).length === 0) {
+            if ((selected as string[]).length === 0) {
               return <em>Placeholder</em>;
             }
 
-            return (selected as Name[]).join(', ');
+            return (selected as string[]).join(', ');
           }}
           MenuProps={MenuProps}
         >
