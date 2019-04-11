@@ -375,6 +375,43 @@ describe('<Modal />', () => {
       const modalNode = modalRef.current;
       assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
     });
+
+    // Test case for https://github.com/mui-org/material-ui/issues/15180
+    it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
+      const children = <p>Hello World</p>;
+
+      class OpenClose extends React.Component {
+        state = {
+          open: false,
+        };
+
+        handleClick = () => {
+          this.setState({ open: true }, () => {
+            this.setState({ open: false });
+          });
+        };
+
+        render() {
+          return (
+            <div>
+              <button type="button" onClick={this.handleClick}>
+                Toggle Tooltip
+              </button>
+              <Modal open={this.state.open}>
+                <Fade in={this.state.open}>
+                  <span>{children}</span>
+                </Fade>
+              </Modal>
+            </div>
+          );
+        }
+      }
+
+      const wrapper = mount(<OpenClose />);
+      assert.strictEqual(wrapper.contains(children), false);
+      wrapper.find('button').simulate('click');
+      assert.strictEqual(wrapper.contains(children), false);
+    });
   });
 
   describe('focus', () => {
