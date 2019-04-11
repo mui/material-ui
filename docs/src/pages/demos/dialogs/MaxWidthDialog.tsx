@@ -54,10 +54,8 @@ class MaxWidthDialog extends React.Component<MaxWidthDialogProps, MaxWidthDialog
     this.setState({ open: false });
   };
 
-  handleMaxWidthChange = (event: React.ChangeEvent<HTMLSelectElement>, value: any) => {
-    this.setState({
-      maxWidth: value as DialogProps['maxWidth'],
-    });
+  handleMaxWidthChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    this.setState({ maxWidth: event.target.value as MaxWidthDialogState['maxWidth'] });
   };
 
   handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {

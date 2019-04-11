@@ -45,10 +45,8 @@ class MaxWidthDialog extends React.Component {
     this.setState({ open: false });
   };
 
-  handleMaxWidthChange = (event, value) => {
-    this.setState({
-      maxWidth: value,
-    });
+  handleMaxWidthChange = event => {
+    this.setState({ maxWidth: event.target.value });
   };
 
   handleFullWidthChange = event => {
