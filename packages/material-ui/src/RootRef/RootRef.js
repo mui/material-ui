@@ -5,6 +5,13 @@ import { exactProp } from '@material-ui/utils';
 import { setRef } from '../utils/reactHelpers';
 
 /**
+ * ⚠️⚠️⚠️
+ * If you want the DOM element of a Material-UI component check out
+ * [/getting-started/faq/#how-can-i-access-the-dom-element](FAQ: How can I access the DOM element?)
+ * first.
+ *
+ * This component uses `findDOMNode` which is deprecated in React.StrictMode.
+ *
  * Helper component to allow attaching a ref to a
  * wrapped element to access the underlying DOM element.
  *
