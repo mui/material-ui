@@ -9,16 +9,16 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 const styles = (theme: Theme) =>
-    createStyles({
+  createStyles({
     root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
     },
     inline: {
-        display: 'inline',
+      display: 'inline',
     },
-});
+  });
 
 export interface AlignItemListProps extends WithStyles<typeof styles> {}
 
