@@ -1,5 +1,4 @@
 import * as PropTypes from 'prop-types';
-import { isLazy, isMemo } from 'react-is';
 import chainPropTypes from './chainPropTypes';
 
 function isClassComponent(elementType) {
@@ -28,11 +27,7 @@ function elementTypeAcceptingRef(props, propName, componentName, location, propF
    * or class components. "Safe" means there's no public API.
    *
    */
-  if (isLazy(propValue)) {
-    warningHint = 'But you passed a React.lazy component.';
-  } else if (isMemo(propValue)) {
-    warningHint = 'But you passed a React.memo component.';
-  } else if (typeof propValue === 'function' && !isClassComponent(propValue)) {
+  if (typeof propValue === 'function' && !isClassComponent(propValue)) {
     warningHint = 'Did you accidentally provide a plain function component instead?';
   }
 

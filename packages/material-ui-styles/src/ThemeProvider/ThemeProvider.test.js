@@ -86,7 +86,7 @@ describe('ThemeProvider', () => {
     assert.strictEqual(wrapper.text(), 'foobar');
     wrapper.setProps({});
     assert.strictEqual(wrapper.text(), 'foobar');
-    assert.strictEqual(themes[0], themes[1]);
+    assert.strictEqual(themes.length, 1);
   });
 
   describe('warnings', () => {
