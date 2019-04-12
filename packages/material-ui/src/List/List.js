@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ListContext from './ListContext';
+import handleListKeyDown from '../utils/handleListKeyDown';
+import { useForkRef } from '../utils/reactHelpers';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -35,12 +38,26 @@ const List = React.forwardRef(function List(props, ref) {
     className,
     component: Component,
     dense,
+    disableListWrap,
     disablePadding,
+    onKeyDown,
     subheader,
     ...other
   } = props;
 
   const context = React.useMemo(() => ({ dense }), [dense]);
+
+  const listRef = React.useRef();
+  const selectedItemRef = React.useRef();
+
+  const handleKeyDown = event =>
+    handleListKeyDown(event, listRef, selectedItemRef, disableListWrap, onKeyDown);
+
+  const handleOwnRef = React.useCallback(refArg => {
+    // StrictMode ready
+    listRef.current = ReactDOM.findDOMNode(refArg);
+  }, []);
+  const handleRef = useForkRef(handleOwnRef, ref);
 
   return (
     <Component
@@ -53,7 +70,8 @@ const List = React.forwardRef(function List(props, ref) {
         },
         className,
       )}
-      ref={ref}
+      onKeyDown={handleKeyDown}
+      ref={handleRef}
       {...other}
     >
       <ListContext.Provider value={context}>
@@ -90,9 +108,17 @@ List.propTypes = {
    */
   dense: PropTypes.bool,
   /**
+   * If `true`, the menu items will not wrap focus.
+   */
+  disableListWrap: PropTypes.bool,
+  /**
    * If `true`, vertical padding will be removed from the list.
    */
   disablePadding: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * The content of the subheader, normally `ListSubheader`.
    */
