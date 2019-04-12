@@ -10,19 +10,17 @@ import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 
 const styles = (theme: Theme) =>
-createStyles({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
+  createStyles({
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
+    },
+  });
 
-
-export interface FolderListProps extends WithStyles<typeof styles> {}  
+export interface FolderListProps extends WithStyles<typeof styles> {}
 
 function FolderList(props: FolderListProps) {
-
   const { classes } = props;
   return (
     <List className={classes.root}>
@@ -47,7 +45,6 @@ function FolderList(props: FolderListProps) {
     </List>
   );
 }
-
 
 FolderList.propTypes = {
   classes: PropTypes.object.isRequired,
