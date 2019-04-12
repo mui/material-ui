@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 
 const styles = {
@@ -20,10 +20,7 @@ function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
 }
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
-    ? React.useLayoutEffect
-    : React.useEffect;
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 /**
  * @ignore - internal component.
@@ -36,12 +33,12 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef();
   const [state, setState] = React.useState({});
-  const inputShallowRef = React.useRef();
+  const shallowRef = React.useRef();
   const handleRef = useForkRef(ref, inputRef);
 
-  const syncHeightWithShadow = () => {
+  const syncHeight = () => {
     const input = inputRef.current;
-    const inputShallow = inputShallowRef.current;
+    const inputShallow = shallowRef.current;
 
     const computedStyle = window.getComputedStyle(input);
     inputShallow.style.width = computedStyle.width;
@@ -88,7 +85,7 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
-      syncHeightWithShadow();
+      syncHeight();
     }, 166); // Corresponds to 10 frames at 60 Hz.
 
     window.addEventListener('resize', handleResize);
@@ -99,12 +96,12 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
   });
 
   useEnhancedEffect(() => {
-    syncHeightWithShadow();
+    syncHeight();
   });
 
   const handleChange = event => {
     if (!isControlled) {
-      syncHeightWithShadow();
+      syncHeight();
     }
 
     if (onChange) {
@@ -129,7 +126,7 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
         aria-hidden="true"
         className={props.className}
         readOnly
-        ref={inputShallowRef}
+        ref={shallowRef}
         tabIndex={-1}
         style={styles.shadow}
       />

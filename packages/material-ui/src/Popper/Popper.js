@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
-import { setRef, withForwardedRef } from '../utils';
+import setRef from '../utils/setRef';
+import withForwardedRef from '../utils/withForwardedRef';
 
 function flipPlacement(placement) {
   const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';

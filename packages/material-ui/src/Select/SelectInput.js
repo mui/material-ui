@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import warning from 'warning';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
-import { setRef } from '../utils/reactHelpers';
+import setRef from '../utils/setRef';
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {

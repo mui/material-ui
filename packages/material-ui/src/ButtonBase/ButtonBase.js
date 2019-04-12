@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withForwardedRef from '../utils/withForwardedRef';
-import { setRef } from '../utils/reactHelpers';
+import setRef from '../utils/setRef';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
 import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
