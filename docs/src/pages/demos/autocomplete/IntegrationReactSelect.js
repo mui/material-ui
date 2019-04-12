@@ -88,6 +88,7 @@ const useStyles = makeStyles(theme => ({
   placeholder: {
     position: 'absolute',
     left: 2,
+    bottom: 6,
     fontSize: 16,
   },
   paper: {
