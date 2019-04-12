@@ -149,13 +149,15 @@ function Tooltip(props) {
     // Fallback to this default id when possible.
     // Use the random value for client side rendering only.
     // We can't use it server-side.
-    defaultId.current = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
+    if (!defaultId.current) {
+      defaultId.current = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
+    }
 
     // Rerender with defaultId and childNode.
-    if (openProp && !mountedRef.current) {
+    if (openProp) {
       forceUpdate(n => !n);
     }
-  }, [mountedRef, openProp]);
+  }, [openProp]);
 
   React.useEffect(() => {
     return () => {
