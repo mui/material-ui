@@ -263,6 +263,7 @@ ListItem.propTypes = {
 ListItem.defaultProps = {
   alignItems: 'center',
   button: false,
+  component: 'li',
   ContainerComponent: 'li',
   disabled: false,
   disableGutters: false,

@@ -24,8 +24,8 @@ function ListItemLink(props) {
 function SimpleList(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
-      <List component="nav">
+    <nav className={classes.root} role="navigation">
+      <List>
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
@@ -40,7 +40,7 @@ function SimpleList(props) {
         </ListItem>
       </List>
       <Divider />
-      <List component="nav">
+      <List>
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>
@@ -48,7 +48,7 @@ function SimpleList(props) {
           <ListItemText primary="Spam" />
         </ListItemLink>
       </List>
-    </div>
+    </nav>
   );
 }
 
