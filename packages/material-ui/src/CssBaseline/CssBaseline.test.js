@@ -7,7 +7,9 @@ describe('<CssBaseline />', () => {
   let mount;
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: makeStyles will retain the styles in the head in strict mode
+    // which becomes an issue for global styles
+    mount = createMount({ strict: false });
   });
 
   after(() => {

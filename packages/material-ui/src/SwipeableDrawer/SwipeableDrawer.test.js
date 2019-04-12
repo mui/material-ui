@@ -142,10 +142,10 @@ describe('<SwipeableDrawer />', () => {
       }
     });
 
-    const bodyWidth = () => document.body.offsetWidth;
-    const windowHeight = () => window.innerHeight;
+    const bodyWidth = document.body.offsetWidth;
+    const windowHeight = window.innerHeight;
     const tests = [
-      () => ({
+      {
         anchor: 'left',
         openTouches: [
           { pageX: 0, clientY: 0 },
@@ -159,23 +159,23 @@ describe('<SwipeableDrawer />', () => {
         ],
         edgeTouch: { pageX: 10, clientY: 50 },
         ignoreTouch: { pageX: 100, clientY: 0 },
-      }),
-      () => ({
+      },
+      {
         anchor: 'right',
         openTouches: [
-          { pageX: bodyWidth(), clientY: 0 },
-          { pageX: bodyWidth() - 20, clientY: 0 },
-          { pageX: bodyWidth() - 180, clientY: 0 },
+          { pageX: bodyWidth, clientY: 0 },
+          { pageX: bodyWidth - 20, clientY: 0 },
+          { pageX: bodyWidth - 180, clientY: 0 },
         ],
         closeTouches: [
-          { pageX: bodyWidth() - 200, clientY: 0 },
-          { pageX: bodyWidth() - 180, clientY: 0 },
-          { pageX: bodyWidth() - 10, clientY: 0 },
+          { pageX: bodyWidth - 200, clientY: 0 },
+          { pageX: bodyWidth - 180, clientY: 0 },
+          { pageX: bodyWidth - 10, clientY: 0 },
         ],
-        edgeTouch: { pageX: bodyWidth() - 10, clientY: 50 },
-        ignoreTouch: { pageX: bodyWidth() - 100, clientY: 0 },
-      }),
-      () => ({
+        edgeTouch: { pageX: bodyWidth - 10, clientY: 50 },
+        ignoreTouch: { pageX: bodyWidth - 100, clientY: 0 },
+      },
+      {
         anchor: 'top',
         openTouches: [
           { pageX: 0, clientY: 0 },
@@ -189,29 +189,27 @@ describe('<SwipeableDrawer />', () => {
         ],
         edgeTouch: { pageX: 50, clientY: 10 },
         ignoreTouch: { pageX: 0, clientY: 100 },
-      }),
-      () => ({
+      },
+      {
         anchor: 'bottom',
         openTouches: [
-          { pageX: 0, clientY: windowHeight() },
-          { pageX: 0, clientY: windowHeight() - 20 },
-          { pageX: 0, clientY: windowHeight() - 180 },
+          { pageX: 0, clientY: windowHeight },
+          { pageX: 0, clientY: windowHeight - 20 },
+          { pageX: 0, clientY: windowHeight - 180 },
         ],
         closeTouches: [
-          { pageX: 0, clientY: windowHeight() - 200 },
-          { pageX: 0, clientY: windowHeight() - 180 },
-          { pageX: 0, clientY: windowHeight() - 10 },
+          { pageX: 0, clientY: windowHeight - 200 },
+          { pageX: 0, clientY: windowHeight - 180 },
+          { pageX: 0, clientY: windowHeight - 10 },
         ],
-        edgeTouch: { pageX: 50, clientY: windowHeight() - 10 },
-        ignoreTouch: { pageX: 0, clientY: windowHeight() - 100 },
-      }),
+        edgeTouch: { pageX: 50, clientY: windowHeight - 10 },
+        ignoreTouch: { pageX: 0, clientY: windowHeight - 100 },
+      },
     ];
 
-    tests.forEach(getParams => {
-      describe(`anchor=${getParams().anchor}`, () => {
-        let params;
+    tests.forEach(params => {
+      describe(`anchor=${params.anchor}`, () => {
         beforeEach(() => {
-          params = getParams();
           wrapper.setProps({ anchor: params.anchor });
         });
 
