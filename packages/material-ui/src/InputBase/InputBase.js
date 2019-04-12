@@ -156,9 +156,6 @@ class InputBase extends React.Component {
   constructor(props) {
     super(props);
     this.isControlled = props.value != null;
-    if (this.isControlled) {
-      this.checkDirty(props);
-    }
   }
 
   state = {
@@ -166,9 +163,7 @@ class InputBase extends React.Component {
   };
 
   componentDidMount() {
-    if (!this.isControlled) {
-      this.checkDirty(this.inputRef);
-    }
+    this.checkDirty(this.isControlled ? this.props : this.inputRef);
   }
 
   componentDidUpdate(prevProps) {
