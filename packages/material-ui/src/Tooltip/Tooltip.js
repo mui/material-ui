@@ -73,18 +73,6 @@ export const styles = theme => ({
   },
 });
 
-function useMountedRef() {
-  const mountedRef = React.useRef(false);
-  React.useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
-
-  return mountedRef;
-}
-
 function Tooltip(props) {
   const {
     children,
@@ -121,7 +109,6 @@ function Tooltip(props) {
   }, []);
   const handleRef = useForkRef(childNode, handleOwnRef);
   const defaultId = React.useRef();
-  const mountedRef = useMountedRef();
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
   const leaveTimer = React.useRef();
@@ -131,7 +118,7 @@ function Tooltip(props) {
     if (childNode) {
       warning(
         !childNode.disabled ||
-        (childNode.disabled && isControlled) ||
+          (childNode.disabled && isControlled) ||
           (childNode.disabled && title === '') ||
           childNode.tagName.toLowerCase() !== 'button',
         [
