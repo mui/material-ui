@@ -9,13 +9,15 @@ import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 
-const styles = (theme: Theme) => createStyles({
+const styles = (theme: Theme) =>
+createStyles({
   root: {
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
 });
+
 
 export interface FolderListProps extends WithStyles<typeof styles> {}  
 
