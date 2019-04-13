@@ -72,7 +72,7 @@ The option that the switch controls, as well as the state it’s in, should be m
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
 
-⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 
@@ -94,3 +94,7 @@ When a label can't be used, it's necessary to add an attribute directly to the i
   inputProps={{ 'aria-label': 'Checkbox A' } }
 />
 ```
+
+## Guidance
+
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

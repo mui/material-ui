@@ -2,69 +2,69 @@
 title: Tabs React-Komponente
 components: Tabs, Tab
 ---
-# Reiter
+# Tabs
 
-<p class="description">Tabs make it easy to explore and switch between different views.</p>
+<p class="description">Tabs erleichtern das Erkunden und Wechseln zwischen verschiedenen Ansichten.</p>
 
-[Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+[Tabs](https://material.io/design/components/tabs.html) organisieren und ermöglichen die Navigation zwischen zusammengehörigen Inhaltsgruppen auf derselben Hierarchieebene.
 
-## Simple Tabs
+## Einfache Tabs
 
 Ein einfaches Beispiel ohne Verzierungen.
 
 {{"demo": "pages/demos/tabs/SimpleTabs.js"}}
 
-### Wrapped Labels
+### Umwickelte Tabs
 
-Lange Reiter-Beschriftungen werden automatisch umgebrochen. Sollte die Beschriftung für den Reiter zu lang sein, läuft sie über und der Text ist nicht sichtbar.
+Lange Tab-Beschriftungen werden automatisch umgebrochen. Sollte die Beschriftung für den Tab zu lang sein, läuft sie über und der Text ist nicht sichtbar.
 
 {{"demo": "pages/demos/tabs/TabsWrappedLabel.js"}}
 
-### Disabled Tab
+### Deaktivierter Tab
 
-A Tab can be disabled by setting `disabled` property.
+Ein Tab kann durch die Eigenschaft `disabled` deaktiviert werden.
 
 {{"demo": "pages/demos/tabs/DisabledTabs.js"}}
 
 ## Feste Tabs
 
-Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory.
+Feste Tabs sollten mit einer begrenzten Anzahl von Tabs verwendet werden, und wenn eine gleichmäßige Platzierung das Muskelgedächtnis verbessert.
 
-### Gesamtbreite
+### Gesamte Breite
 
-The `variant="fullWidth"` property should be used for smaller views. This demo also uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Tab transition, and allowing tabs to be swiped on touch devices.
+Die Eigenschaft `variant="fullWidth"` sollte für kleinere Ansichten verwendet werden. Diese Demo verwendet auch [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views), um den Tab-Übergang zu animieren und Tabs auf Touch-Geräten zu ziehen.
 
 {{"demo": "pages/demos/tabs/FullWidthTabs.js"}}
 
 ### Zentriert
 
-The `centered` property should be used for larger views.
+Die Eigenschaft `centered` sollte für kleinere Ansichten verwendet werden.
 
 {{"demo": "pages/demos/tabs/CenteredTabs.js"}}
 
-## Scrollable Tabs
+## Scrollbare Tabs
 
-### Automatic Scroll Buttons
+### Automatische Scroll-Tasten
 
-Left and right scroll buttons will automatically be presented on desktop and hidden on mobile. (based on viewport width)
+Die linken und rechten Bildlauftasten werden automatisch auf dem Desktop angezeigt und auf dem Handy ausgeblendet. (basierend auf der Breite des Ansichtsfensters)
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonAuto.js"}}
 
-### Forced Scroll Buttons
+### Erzwungene Bildlaufschaltflächen
 
-Left and right scroll buttons will be presented regardless of the viewport width.
+Die linken und rechten Bildlauftasten werden unabhängig von der Breite des Ansichtsfensters angezeigt.
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonForce.js"}}
 
-### Prevent Scroll Buttons
+### Scrolltasten verhindern
 
-Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+Linke und rechte Bildlauftasten werden niemals angezeigt. Der gesamte Bildlauf muss durch Benutzeragenten-Bildlaufmechanismen (z. B. Wischen nach links / rechts, Shift-Mausrad usw.) eingeleitet werden
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonPrevent.js"}}
 
-## Customized Tabs
+## Benutzerdefinierte Tabs
 
-If you have read the [overrides documentation page](/customization/overrides/) but aren't confident jumping in, here's an example of how you can change the main color of the Tabs.
+Wenn du die [Überschreibungs Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du die Farbe der Tabs ändern kannst.
 
 ⚠️ Auch wenn die Material-Design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
@@ -72,13 +72,13 @@ If you have read the [overrides documentation page](/customization/overrides/) b
 
 ## Nav-Tabs
 
-By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
+Standardmäßig verwenden Tabs ein `Button` -Element, aber Sie können Ihren eigenen benutzerdefinierten Tag oder eine Komponente zur Verfügung stellen. Hier ein Beispiel für die Implementierung der Tabnavigation:
 
 {{"demo": "pages/demos/tabs/NavTabs.js"}}
 
-## Icon Tabs
+## Symbol-Tabs
 
-Tab labels may be either all icons or all text.
+Tab-Beschriftungen können entweder nur Symbole oder nur Text enthalten.
 
 {{"demo": "pages/demos/tabs/IconTabs.js"}}
 

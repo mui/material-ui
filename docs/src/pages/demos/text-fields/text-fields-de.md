@@ -1,14 +1,14 @@
 ---
-title: Textfeld React-Komponente
+title: Text Field React-Komponente
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
-# Text Felder
+# Text Felder (Text Fields)
 
 <p class="description">Text Felder lassen Nutzer Text eingeben und bearbeiten.</p>
 
 [Text Felder](https://material.io/design/components/text-fields.html) erlauben Nutzern, Text in eine Benutzeroberfläche einzugeben. Sie erscheinen typischerweise in Formen und Dialogen.
 
-## TextField
+## Textfeld
 
 Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält.
 

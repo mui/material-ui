@@ -207,7 +207,7 @@ Textarea.propTypes = {
   /**
    * @ignore
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultValue: PropTypes.any,
   /**
    * @ignore
    */
@@ -236,7 +236,7 @@ Textarea.propTypes = {
   /**
    * @ignore
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.any,
 };
 
 Textarea.defaultProps = {

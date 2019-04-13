@@ -26,6 +26,8 @@ import Tab from '@material-ui/core/Tab';
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 | <span class="prop-name">wrapped</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Tab labels appear in a single row. They can use a second line if needed. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS

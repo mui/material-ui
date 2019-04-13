@@ -24,6 +24,8 @@ For the `Radio`, you should be using the `RadioGroup` component instead of this 
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">row</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Display group of elements in a compact row. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

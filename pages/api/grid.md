@@ -36,6 +36,8 @@ import Grid from '@material-ui/core/Grid';
 | <span class="prop-name">xs</span> | <span class="prop-type">enum:&nbsp;false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br></span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority. |
 | <span class="prop-name">zeroMinWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, it sets `min-width: 0` on the item. Refer to the limitations section of the documentation to better understand the use case. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

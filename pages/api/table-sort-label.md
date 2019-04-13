@@ -25,6 +25,8 @@ A button based label for placing inside `TableCell` for column sorting.
 | <span class="prop-name">hideSortIcon</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Hide sort icon when active is false. |
 | <span class="prop-name">IconComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ArrowDownwardIcon</span> | Sort icon to use. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS

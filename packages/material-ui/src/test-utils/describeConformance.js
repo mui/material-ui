@@ -64,18 +64,14 @@ function testClassName(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testComponentProp(element, getOptions) {
-  const { testComponentPropWith } = getOptions();
-
   describe('prop: component', () => {
-    if (testComponentPropWith !== false) {
-      it('can render another root component with the `component` prop', () => {
-        const { classes, mount, testComponentPropWith: component = 'em' } = getOptions();
+    it('can render another root component with the `component` prop', () => {
+      const { classes, mount, testComponentPropWith: component = 'em' } = getOptions();
 
-        const wrapper = mount(React.cloneElement(element, { component }));
+      const wrapper = mount(React.cloneElement(element, { component }));
 
-        assert.strictEqual(findRootComponent(wrapper, { classes, component }).exists(), true);
-      });
-    }
+      assert.strictEqual(findRootComponent(wrapper, { classes, component }).exists(), true);
+    });
   });
 }
 
@@ -156,9 +152,9 @@ const fullSuite = {
  * @property {string} classes - `classes` of the component provided by `@material-ui/styles`
  * @property {string} inheritComponent - The element type that receives spread props.
  * @property {function} mount - Should be a return value from createMount
- * @property {string[]?} only - If specified only run the tests listed
+ * @property {(keyof typeof fullSuite)[]?} only - If specified only run the tests listed
  * @property {boolean} refInstanceof - `ref` will be an instanceof this constructor.
- * @property {string[]?} skip - Skip the specified tests
+ * @property {keyof typeof fullSuite[]?} skip - Skip the specified tests
  * @property {string?} testComponentPropWith - The host component that should be rendered instead.
  */
 

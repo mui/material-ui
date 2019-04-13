@@ -1,29 +1,29 @@
 ---
-title: Speed Dial React component
+title: Schnellwahl React Komponente
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
 # Schnellwahl
 
-<p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
+<p class="description">Wenn gedrückt, kann eine schwebende Aktionstaste drei bis sechs verwandte Aktionen in Form einer Kurzwahl anzeigen.</p>
 
-If more than six actions are needed, something other than a FAB should be used to present them.
+Wenn mehr als sechs Aktionen erforderlich sind, sollten andere als FAB verwendet werden, um sie zu präsentieren.
 
-## Simple Speed Dial
+## Einfache Schnellwahl
 
-The floating action button can display related actions.
+Die schwebende Aktionstaste kann verwandte Aktionen anzeigen.
 
 {{"demo": "pages/lab/speed-dial/SpeedDials.js"}}
 
-## Custom close icon
+## Kundenspezifisches Schließsymbol
 
-You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props of the `SpeedDialIcon` component.
+Sie können ein alternatives Symbol für den geschlossenen und den geöffneten Zustand mit den `icon` und `openIcon` Eigenschaften der Komponente `SpeedDialIcon` bereitstellen.
 
 {{"demo": "pages/lab/speed-dial/OpenIconSpeedDial.js"}}
 
-## Persistent action tooltips
+## Anhaltenden Aktion Tooltips
 
-The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
+Die SpeedDialActions-Tooltips können dauerhaft angezeigt werden, sodass Benutzer nicht lange drücken müssen, um den Tooltip auf Touch-Geräten anzuzeigen.
 
-It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the property.
+Sie ist hier für alle Geräte zu Demonstrationszwecken aktiviert, in der Produktion jedoch kann durch die `isTouch` Logik die Eigenschaft bedingt festgelegt werden.
 
 {{"demo": "pages/lab/speed-dial/SpeedDialTooltipOpen.js"}}

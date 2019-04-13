@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme: Theme) =>
 function MenuListComposition() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const anchorEl = React.useRef<null | HTMLElement>(null);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   function handleToggle() {
     setOpen(!open);
   }
 
   function handleClose(event: React.MouseEvent<EventTarget>) {
-    if (anchorEl.current && anchorEl.current.contains(event.target as HTMLElement)) {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
 
@@ -47,14 +47,14 @@ function MenuListComposition() {
       </Paper>
       <div>
         <Button
-          buttonRef={anchorEl}
+          ref={anchorRef}
           aria-owns={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
           Toggle Menu Grow
         </Button>
-        <Popper open={open} anchorEl={anchorEl.current} transition disablePortal>
+        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}

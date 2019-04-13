@@ -51,6 +51,7 @@
   "traffic": "Tráfico",
   "newest": "Lo último",
   "stars": "Estrellas de GitHub",
+  "visit": "Visit the website",
   "dashboardTitle": "Dashboard",
   "dashboardDescr": "Un dashboard simple con barra de tareas y mini dibujo variante. Gráfico por cortesía de Recharts, pero es muy simple sustituirlo por otra alternativa.",
   "signInTitle": "Iniciar sesión",

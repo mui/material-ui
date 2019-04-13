@@ -17,6 +17,7 @@ import appList from './appList';
 
 const styles = theme => ({
   root: {
+    flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     // Hide the demo container padding
     margin: -theme.spacing(3),

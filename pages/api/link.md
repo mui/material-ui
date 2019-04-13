@@ -26,6 +26,8 @@ import Link from '@material-ui/core/Link';
 | <span class="prop-name">underline</span> | <span class="prop-type">enum:&nbsp;'none'&nbsp;&#124;<br>&nbsp;'hover'&nbsp;&#124;<br>&nbsp;'always'<br></span> | <span class="prop-default">'hover'</span> | Controls when the link should have an underline. |
 | <span class="prop-name">variant</span> | <span class="prop-type">string</span> | <span class="prop-default">'inherit'</span> | Applies the theme typography styles. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([Typography](/api/typography/)).
 
 ## CSS

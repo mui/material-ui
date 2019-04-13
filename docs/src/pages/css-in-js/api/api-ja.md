@@ -37,7 +37,7 @@ export default function App() {
 
 ## `createStyles(styles) => styles`
 
-This function doesn't really "do anything" at runtime, it's just the identity function. Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `withStyles` which are a function of the `Theme`.
+This function doesn't really "do anything" at runtime, it's just the identity function. Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 
 #### Arguments
 
@@ -50,21 +50,20 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 #### 例
 
 ```jsx
-import { withStyles, createStyles } from '@material-ui/styles';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
-const styles = createStyles({
+const styles = makeStyles((theme: Theme) => createStyles({
   root: {
-    backgroundColor: 'red',
+    backgroundColor: theme.color.red,
   },
-});
+}));
 
-class MyComponent extends React.Component {
-  render () {
-    return <div className={this.props.classes.root} />;
-  }
+function MyComponent {
+  const classes = useStyles();
+  return <div className={classes.root} />;
 }
 
-export default withStyles(styles)(MyComponent);
+export default MyComponent;
 ```
 
 ## `makeStyles(styles, [options]) => hook`
@@ -103,6 +102,65 @@ export default function MyComponent() {
 }
 ```
 
+## `ServerStyleSheets`
+
+This is a class helper to handle server-side rendering. The instance offers the following API.
+
+```js
+import { ServerStyleSheets } from '@material-ui/styles';
+
+const sheets = new ServerStyleSheets();
+```
+
+### `sheets.collect(node) => void`
+
+The method wraps your node in a provider element.
+
+```jsx
+import ReactDOMServer from 'react-dom/server';
+
+const html = ReactDOMServer.renderToString(sheets.collect(<App />));
+```
+
+### `sheets.toString() => CSS string`
+
+The method returns the collected styles. It's a CSS string.
+
+```js
+const css = sheets.toString();
+
+const response = `
+<!doctype html>
+<html>
+  <head>
+    <style id="jss-server-side">${css}</style>
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+`;
+```
+
+### `sheets.getStyleElement() => CSS React node`
+
+The method is an alternative to `toString()` when you are rendering the whole page with React.
+
+```jsx
+const style = sheets.getStyleElement();
+
+const response = (
+  <html lang="en" dir="ltr">
+    <Head>
+      {style}
+    </Head>
+    <body>
+      <Main />
+    </body>
+  </html>
+);
+```
+
 ## `styled(Component)(styles, [options]) => Component`
 
 Link a style sheet with a function component using the **styled components** pattern.
@@ -110,7 +168,7 @@ Link a style sheet with a function component using the **styled components** pat
 #### Arguments
 
 1. `Component`: The component that will be wrapped.
-2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
+2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
 3. `options` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
@@ -132,41 +190,140 @@ const MyComponent = styled('div')({
   backgroundColor: 'red',
 });
 
+const MyThemeComponent = styled('div')(({
+  theme
+}) => ({
+  padding: theme.spacing(1),
+}));
+
 export default function StyledComponents() {
-  return <MyComponent />;
+  return (
+    <MyThemeComponent>
+      <MyComponent />
+    </MyThemeComponent>
+  );
 }
 ```
 
 ## `StylesProvider`
 
-This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to React context.
+This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to the context.
 
 It should preferably be used at **the root of your component tree**.
 
-#### 例
+#### PropsBy default, the styles are injected last in the 
 
-```jsx
-import React from 'react';
+<head>
+  element of your page. They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components. If you want to override the Material-UI's styles, set this prop.</td> </tr> 
+  
+  <tr>
+    <td align="left">
+      <span class="prop-name">jss</span>
+    </td>
+    
+    <td align="left">
+      <span class="prop-type">object</span>
+    </td>
+    
+    <td align="left">
+      
+    </td>
+    
+    <td align="left">
+      JSS's instance.
+    </td>
+  </tr></tbody> </table> 
+  
+  <h4>
+    例
+  </h4>
+  
+  <pre><code class="jsx">import React from 'react';
 import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/styles';
 
 function App() {
   return (
-    <StylesProvider jss={jss}>...</StylesProvider>
+    &lt;StylesProvider jss={jss}&gt;...&lt;/StylesProvider&gt;
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
-```
-
-## `ThemeProvider`
-
-This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context. It should preferably be used at **the root of your component tree**.
-
-#### 例
-
-```jsx
-import React from 'react';
+ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
+</code></pre>
+  
+  <h2>
+    <code>ThemeProvider</code>
+  </h2>
+  
+  <p>
+    This component takes a <code>theme</code> property, and makes it available down the React tree thanks to the context. It should preferably be used at <strong>the root of your component tree</strong>.
+  </p>
+  
+  <h4>
+    Props
+  </h4>
+  
+  <table>
+    <tr>
+      <th align="left">
+        Name
+      </th>
+      
+      <th align="left">
+        Type
+      </th>
+      
+      <th align="left">
+        Default
+      </th>
+      
+      <th align="left">
+        Description
+      </th>
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class="prop-name required">children&nbsp;*</span>
+      </td>
+      
+      <td align="left">
+        <span class="prop-type">node</span>
+      </td>
+      
+      <td align="left">
+        
+      </td>
+      
+      <td align="left">
+        Your component tree.
+      </td>
+    </tr>
+    
+    <tr>
+      <td align="left">
+        <span class="prop-name required">theme&nbsp;*</span>
+      </td>
+      
+      <td align="left">
+        <span class="prop-type">union:&nbsp;object&nbsp;&#124;&nbsp;func</span>
+      </td>
+      
+      <td align="left">
+        
+      </td>
+      
+      <td align="left">
+        A theme object. You can provide a function to extend the outer theme.
+      </td>
+    </tr>
+  </table>
+  
+  <h4>
+    例
+  </h4>
+  
+  <pre><code class="jsx">import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -174,63 +331,113 @@ const theme = {};
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>...</ThemeProvider>
+    &lt;ThemeProvider theme={theme}&gt;...&lt;/ThemeProvider&gt;
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
-```
-
-## `useTheme() => theme`
-
-This hook returns the `theme` object so it can be used inside a function component.
-
-#### Returns
-
-`theme`: The theme object.
-
-#### 例
-
-```jsx
-import React from 'react';
+ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
+</code></pre>
+  
+  <h2>
+    <code>useTheme() =&gt; theme</code>
+  </h2>
+  
+  <p>
+    This hook returns the <code>theme</code> object so it can be used inside a function component.
+  </p>
+  
+  <h4>
+    Returns
+  </h4>
+  
+  <p>
+    <code>theme</code>: The theme object previously injected in the context.
+  </p>
+  
+  <h4>
+    例
+  </h4>
+  
+  <pre><code class="jsx">import React from 'react';
 import { useTheme } from '@material-ui/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
 
-  return <div>{`spacing ${theme.spacing}`}</div>;
+  return &lt;div&gt;{`spacing ${theme.spacing}`}&lt;/div&gt;;
 }
-```
-
-## `withStyles(styles, [options]) => higher-order component`
-
-Link a style sheet with a component using the **higher-order component** pattern. It does not modify the component passed to it; instead, it returns a new component with a `classes` property. This `classes` object contains the name of the class names injected in the DOM.
-
-Some implementation details that might be interesting to being aware of:
-
-- It adds a `classes` property so you can override the injected class names from the outside.
-- It forwards refs to the inner component.
-- The `innerRef` prop is deprecated. Use `ref` instead.
-- It does **not** copy over statics. For instance, it can be used to defined a `getInitialProps()` static method (next.js).
-
-#### Arguments
-
-1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]): 
-    - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-    - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
-
-#### Returns
-
-`higher-order component`: Should be used to wrap a component.
-
-#### 例
-
-```jsx
-import React from 'react';
+</code></pre>
+  
+  <h2>
+    <code>withStyles(styles, [options]) =&gt; higher-order component</code>
+  </h2>
+  
+  <p>
+    Link a style sheet with a component using the <strong>higher-order component</strong> pattern. It does not modify the component passed to it; instead, it returns a new component with a <code>classes</code> property. This <code>classes</code> object contains the name of the class names injected in the DOM.
+  </p>
+  
+  <p>
+    Some implementation details that might be interesting to being aware of:
+  </p>
+  
+  <ul>
+    <li>
+      It adds a <code>classes</code> property so you can override the injected class names from the outside.
+    </li>
+    <li>
+      It forwards refs to the inner component.
+    </li>
+    <li>
+      The <code>innerRef</code> prop is deprecated. Use <code>ref</code> instead.
+    </li>
+    <li>
+      It does <strong>not</strong> copy over statics. For instance, it can be used to defined a <code>getInitialProps()</code> static method (next.js).
+    </li>
+  </ul>
+  
+  <h4>
+    Arguments
+  </h4>
+  
+  <ol start="1">
+    <li>
+      <code>styles</code> (<em>Function | Object</em>): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
+    </li>
+    
+    <li>
+      <code>options</code> (<em>Object</em> [optional]): <ul>
+        <li>
+          <code>options.defaultTheme</code> (<em>Object</em> [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+        </li>
+        <li>
+          <code>options.withTheme</code> (<em>Boolean</em> [optional]): Defaults to <code>false</code>. Provide the <code>theme</code> object to the component as a property.
+        </li>
+        <li>
+          <code>options.name</code> (<em>String</em> [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+        </li>
+        <li>
+          <code>options.flip</code> (<em>Boolean</em> [optional]): When set to <code>false</code>, this sheet will opt-out the <code>rtl</code> transformation. When set to <code>true</code>, the styles are inversed. When set to <code>null</code>, it follows <code>theme.direction</code>.
+        </li>
+        <li>
+          The other keys are forwarded to the options argument of <a href="http://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet([styles], [options])</a>.
+        </li>
+      </ul>
+    </li>
+  </ol>
+  
+  <h4>
+    Returns
+  </h4>
+  
+  <p>
+    <code>higher-order component</code>: Should be used to wrap a component.
+  </p>
+  
+  <h4>
+    例
+  </h4>
+  
+  <pre><code class="jsx">import React from 'react';
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
@@ -241,17 +448,18 @@ const styles = {
 
 class MyComponent extends React.Component {
   render () {
-    return <div className={this.props.classes.root} />;
+    return &lt;div className={this.props.classes.root} /&gt;;
   }
 }
 
 export default withStyles(styles)(MyComponent);
-```
-
-Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) like so:
-
-```jsx
-import React from 'react';
+</code></pre>
+  
+  <p>
+    Also, you can use as <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators">decorators</a> like so:
+  </p>
+  
+  <pre><code class="jsx">import React from 'react';
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
@@ -263,34 +471,49 @@ const styles = {
 @withStyles(styles)
 class MyComponent extends React.Component {
   render () {
-    return <div className={this.props.classes.root} />;
+    return &lt;div className={this.props.classes.root} /&gt;;
   }
 }
 
 export default MyComponent
-```
-
-## `withTheme(Component) => Component`
-
-Provide the `theme` object as a property of the input component so it can be used in the render method.
-
-#### Arguments
-
-1. `Component`: The component that will be wrapped.
-
-#### Returns
-
-`Component`: The new component created. Does forward refs to the inner component.
-
-#### 例
-
-```jsx
-import React from 'react';
+</code></pre>
+  
+  <h2>
+    <code>withTheme(Component) =&gt; Component</code>
+  </h2>
+  
+  <p>
+    Provide the <code>theme</code> object as a property of the input component so it can be used in the render method.
+  </p>
+  
+  <h4>
+    Arguments
+  </h4>
+  
+  <ol start="1">
+    <li>
+      <code>Component</code>: The component that will be wrapped.
+    </li>
+  </ol>
+  
+  <h4>
+    Returns
+  </h4>
+  
+  <p>
+    <code>Component</code>: The new component created. Does forward refs to the inner component.
+  </p>
+  
+  <h4>
+    例
+  </h4>
+  
+  <pre><code class="jsx">import React from 'react';
 import { withTheme } from '@material-ui/styles';
 
 function MyComponent(props) {
-  return <div>{props.theme.direction}</div>;
+  return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
 }
 
 export default withTheme(MyComponent);
-```
+</code></pre>

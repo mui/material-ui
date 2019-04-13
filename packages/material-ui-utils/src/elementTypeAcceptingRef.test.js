@@ -2,6 +2,7 @@
 import { assert } from 'chai';
 import * as PropTypes from 'prop-types';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { createMount } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
@@ -36,12 +37,19 @@ describe('elementTypeAcceptingRef', () => {
   });
 
   describe('acceptance', () => {
+    let rootNode;
+
     function assertPass(Component, options = {}) {
       const { failsOnMount = false, shouldMount = true } = options;
 
       checkPropType(Component);
       if (shouldMount) {
-        mount(<Component ref={React.createRef()} />);
+        ReactDOM.render(
+          <React.Suspense fallback={<p />}>
+            <Component ref={React.createRef()} />
+          </React.Suspense>,
+          rootNode,
+        );
       }
 
       assert.strictEqual(
@@ -50,6 +58,14 @@ describe('elementTypeAcceptingRef', () => {
         `but got '${consoleErrorMock.args()[0]}'`,
       );
     }
+
+    before(() => {
+      rootNode = document.createElement('div');
+    });
+
+    afterEach(() => {
+      ReactDOM.unmountComponentAtNode(rootNode);
+    });
 
     it('accepts nully values', () => {
       assertPass(undefined, { shouldMount: false });
@@ -86,6 +102,20 @@ describe('elementTypeAcceptingRef', () => {
       assertPass(Component);
     });
 
+    it('accepts memo', () => {
+      const Component = React.memo('div');
+
+      assertPass(Component);
+    });
+
+    it('accepts lazy', () => {
+      const Component = React.lazy(() => Promise.resolve({ default: props => <div {...props} /> }));
+
+      // should actually fail when mounting since the ref is forwarded to a function component
+      // but since this happens in a promise our consoleErrorMock doesn't catch it properly
+      assertPass(Component);
+    });
+
     it('technically allows other exotics like strict mode', () => {
       assertPass(React.StrictMode);
     });
@@ -112,20 +142,6 @@ describe('elementTypeAcceptingRef', () => {
       const Component = () => null;
 
       assertFail(Component, 'Did you accidentally provide a plain function component instead?');
-    });
-
-    it('rejects memo', () => {
-      const Component = React.memo(() => React.createElement('div'));
-
-      // use actual hint once we don't have to mock React.useMemo
-      assertFail(Component, 'Did you accidentally provide a plain function component instead?');
-      // assertFail(Component, 'But you passed a React.memo component.');
-    });
-
-    it('rejects lazy', () => {
-      const Component = React.lazy(() => Promise.resolve({ default: () => null }));
-
-      assertFail(Component, 'But you passed a React.lazy component.');
     });
   });
 });

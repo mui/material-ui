@@ -22,8 +22,6 @@ class MyApp extends App {
         <Head>
           <title>My page</title>
         </Head>
-        {/* ThemeProvider makes the theme available down the React
-            tree thanks to React context. */}
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />

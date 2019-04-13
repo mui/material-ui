@@ -28,7 +28,7 @@ describe('<FormGroup />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a div with a div child', () => {

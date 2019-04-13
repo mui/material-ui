@@ -28,6 +28,8 @@ attribute to `true` on that region until it has finished loading.
 | <span class="prop-name">valueBuffer</span> | <span class="prop-type">number</span> |  | The value for the buffer variant. Value between 0 and 100. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'buffer'&nbsp;&#124;<br>&nbsp;'query'<br></span> | <span class="prop-default">'indeterminate'</span> | The variant to use. Use indeterminate or query when there is no progress value. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

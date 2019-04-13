@@ -55,7 +55,7 @@ function PlainCssButton() {
 export default PlainCssButton;
 ```
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/l5qv4y57vl)
 
 **注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
@@ -98,7 +98,7 @@ export default StyledComponents;
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k553lz1qrv)
 
 **注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
@@ -152,13 +152,11 @@ export default StyledComponentsDeep;
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideHeader": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j4n13yl1r9)
-
 **注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
 ### ThemeProvider
 
-材料的UI具有丰富的主题，结构，您可以利用为 的颜色的处理，过渡，媒体查询等。
+Material-UI has a rich theme structure that you can leverage for the color manipulations, the transitions, the media queries, and more.
 
 {{“demo”：“pages/guides/interoperability/StyledComponentsTheme.js”}}
 
@@ -232,7 +230,7 @@ function CssModulesButton() {
 export default CssModulesButton;
 ```
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j01r75wx)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/5km241l9xn)
 
 **注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
@@ -249,8 +247,8 @@ Emotion的 **css()** 方法与Material-UI无缝协作。
 import { jsx, css } from "@emotion/core";
 import Button from "@material-ui/core/Button";
 
-// 我们只是为它们分配Button的className属性
-function EmotionCSS() {
+// We just assign them the Button's className attribute
+function EmotionButton() {
   return (
     <div>
       <Button>Material-UI</Button>
@@ -271,7 +269,7 @@ function EmotionCSS() {
   );
 }
 
-export default EmotionCSS;
+export default EmotionButton;
 ```
 
 {{“demo”：“pages/guides/interoperability/EmotionCSS.js”，“hideHeader”：true}}
@@ -317,8 +315,6 @@ export default EmotionStyled;
 
 {{"demo": "pages/guides/interoperability/EmotionStyled.js", "hideHeader": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4q8o1y975w)
-
 **注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
 ### 更深层的元素
@@ -363,13 +359,11 @@ export default EmotionDeep;
 
 {{"demo": "pages/guides/interoperability/EmotionDeep.js", "hideHeader": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xj81yqx504)
-
 **注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
 ### ThemeProvider
 
-材料的UI具有丰富的主题，结构，您可以利用为 的颜色的处理，过渡，媒体查询等。
+Material-UI has a rich theme structure that you can leverage for the color manipulations, the transitions, the media queries, and more.
 
 {{"demo": "pages/guides/interoperability/EmotionTheme.js"}}
 
@@ -410,7 +404,7 @@ function GlobalCssButton() {
 export default GlobalCssButton;
 ```
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/9yxopv4vmp)
 
 **注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
@@ -423,7 +417,7 @@ Material-UI's styling solution shares many building blocks with [react-jss](http
 ```jsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss/lib/injectSheet';
+import injectSheet from 'react-jss';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -454,59 +448,7 @@ ReactJssButton.propTypes = {
 export default injectSheet(styles)(ReactJssButton);
 ```
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/219x6qqx0p)
-
-## CSS到MUI webpack Loader
-
-The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for webpack allows you to write CSS that gets transpiled into JS for use with the `withStyles()` higher-order component. It provides a few hooks for accessing the theme from within the CSS.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [ 'css-to-mui-loader' ]
-      }
-    ]
-  }
-}
-```
-
-**CssToMuiButton.css**
-
-```css
-.button {
-  background: $(theme.palette.primary.main);
-  padding: 2su; /* Material-UI spacing units */
-}
-
-.button:hover {
-  background: $(theme.palette.primary.light);
-}
-
-@media $(theme.breakpoints.down('sm')) {
-  .button {
-    font-size: $(theme.typography.caption.fontSize);
-  }
-}
-```
-
-**CssToMuiButton.js**
-
-```js
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './CssToMuiButton.css';
-
-const CssToMuiButton = withStyles(styles)(({ classes }) => (
-  <Button className={classes.button}>
-    CSS to MUI Button
-  </Button>
-));
-```
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/24kllqxvmp)
 
 ## Glamor
 
@@ -515,38 +457,26 @@ const CssToMuiButton = withStyles(styles)(({ classes }) => (
 使用Glamour应用样式的好方法是使用 **css()** 函数，然后使用 **classnames** 将它们作为字符串：
 
 ```jsx
-import React from 'react';
-import glamorous from 'glamorous';
-import { css } from 'glamor';
-import classnames from 'classnames';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { css } from "glamor";
+import Button from "@material-ui/core/Button";
 
 const buttonStyles = {
-  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
   borderRadius: 3,
   border: 0,
-  color: 'white',
+  color: "white",
   height: 48,
-  padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  padding: "0 30px",
+  boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .30)"
 };
 
-// 首先我们应该通过 Glamor css function 获得 clsx
-const buttonClasses = css(buttonStyles);
-
-// 我们需要类名是字符串
-const className = buttonClasses.toString();
-
-// 然后我们只为它们分配Button的className属性
+// Then we just assign them the Button's className attribute
 function GlamorButton() {
   return (
     <div>
-      <Button>
-        Material-UI
-      </Button>
-      <Button className={className}>
-        Glamor
-      </Button>
+      <Button>Material-UI</Button>
+      <Button {...css(buttonStyles)}>Glamor</Button>
     </div>
   );
 }
@@ -554,6 +484,6 @@ function GlamorButton() {
 export default GlamorButton;
 ```
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vp2znmj40)
 
 **Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。

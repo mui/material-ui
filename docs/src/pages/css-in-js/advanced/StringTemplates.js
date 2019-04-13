@@ -2,7 +2,6 @@ import React from 'react';
 import { jssPreset, StylesProvider, makeStyles } from '@material-ui/styles';
 import { create } from 'jss';
 import jssTemplate from 'jss-plugin-template';
-import Button from '@material-ui/core/Button';
 
 const jss = create({
   plugins: [jssTemplate(), ...jssPreset().plugins],
@@ -11,7 +10,8 @@ const jss = create({
 const useStyles = makeStyles({
   root: `
     background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-    border-radius: 3;
+    border-radius: 3px;
+    font-size: 16px;
     border: 0;
     color: white;
     height: 48px;
@@ -22,7 +22,11 @@ const useStyles = makeStyles({
 
 function Child() {
   const classes = useStyles();
-  return <Button className={classes.root}>String templates</Button>;
+  return (
+    <button type="button" className={classes.root}>
+      String templates
+    </button>
+  );
 }
 
 function StringTemplates() {

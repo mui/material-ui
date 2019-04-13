@@ -235,7 +235,7 @@ function generateProps(reactAPI) {
     const prop = getProp(reactAPI.props, propRaw);
 
     if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propRaw}"" property is missing a description`);
+      throw new Error(`The "${propRaw}" property is missing a description`);
     }
 
     const description = generatePropDescription(prop);
@@ -272,6 +272,14 @@ function generateProps(reactAPI) {
 
     return textProps;
   }, text);
+
+  let refHint = 'The `ref` is forwarded to the root element.';
+  if (reactAPI.forwardsRefTo == null) {
+    refHint = 'The component cannot hold a ref.';
+  } else if (reactAPI.forwardsRefTo === 'React.Component') {
+    refHint = 'The `ref` is attached to a component class.';
+  }
+  text = `${text}\n${refHint}\n`;
 
   if (reactAPI.spread) {
     text = `${text}

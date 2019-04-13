@@ -27,6 +27,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 | <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |  | If `true`, the input of this label is focused (used by `FormGroup` components). |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the label will indicate that the input is required. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

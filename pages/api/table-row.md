@@ -25,6 +25,8 @@ based on the material table element parent (head, body, etc).
 | <span class="prop-name">hover</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will shade on hover. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will have the selected shading. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

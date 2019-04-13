@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -22,7 +21,7 @@ const payments = [
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   listItem: {
     padding: theme.spacing(1, 0),
   },
@@ -32,10 +31,11 @@ const styles = theme => ({
   title: {
     marginTop: theme.spacing(2),
   },
-});
+}));
 
-function Review(props) {
-  const { classes } = props;
+export default function Review() {
+  const classes = useStyles();
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -84,9 +84,3 @@ function Review(props) {
     </React.Fragment>
   );
 }
-
-Review.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Review);

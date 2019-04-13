@@ -33,6 +33,8 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 | <span class="prop-name">rowsPerPageOptions</span> | <span class="prop-type">array</span> | <span class="prop-default">[10, 25, 50, 100]</span> | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
 | <span class="prop-name">SelectProps</span> | <span class="prop-type">object</span> |  | Properties applied to the rows per page [`Select`](/api/select/) element. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([TableCell](/api/table-cell/)).
 
 ## CSS

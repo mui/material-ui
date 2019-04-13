@@ -61,6 +61,7 @@ const useStyles = makeStyles(theme => ({
   input: {
     display: 'flex',
     padding: 0,
+    height: 'auto',
   },
   valueContainer: {
     display: 'flex',
@@ -87,6 +88,7 @@ const useStyles = makeStyles(theme => ({
   placeholder: {
     position: 'absolute',
     left: 2,
+    bottom: 6,
     fontSize: 16,
   },
   paper: {
@@ -130,7 +132,7 @@ function Control(props) {
           ...props.innerProps,
         },
       }}
-      {...props.selectProps.textFieldProps}
+      {...props.selectProps.TextFieldProps}
     />
   );
 }
@@ -138,7 +140,7 @@ function Control(props) {
 function Option(props) {
   return (
     <MenuItem
-      buttonRef={props.innerRef}
+      ref={props.innerRef}
       selected={props.isFocused}
       component="div"
       style={{
@@ -248,7 +250,7 @@ function IntegrationReactSelect() {
         <Select
           classes={classes}
           styles={selectStyles}
-          textFieldProps={{
+          TextFieldProps={{
             label: 'Label',
             InputLabelProps: {
               shrink: true,

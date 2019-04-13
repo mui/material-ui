@@ -65,6 +65,8 @@ const inlineStyles = {
 };
 
 class AnchorPlayground extends React.Component {
+  anchorRef = React.createRef();
+
   state = {
     open: false,
     anchorOriginVertical: 'top',
@@ -144,13 +146,7 @@ class AnchorPlayground extends React.Component {
       <div>
         <Grid container justify="center">
           <Grid item className={classes.buttonWrapper}>
-            <Button
-              buttonRef={node => {
-                this.anchorEl = node;
-              }}
-              variant="contained"
-              onClick={this.handleClickButton}
-            >
+            <Button ref={this.anchorRef} variant="contained" onClick={this.handleClickButton}>
               Open Popover
             </Button>
             {anchorReference === 'anchorEl' && (
@@ -166,7 +162,7 @@ class AnchorPlayground extends React.Component {
         </Grid>
         <Popover
           open={open}
-          anchorEl={this.anchorEl}
+          anchorEl={this.anchorRef.current}
           anchorReference={anchorReference}
           anchorPosition={{ top: positionTop, left: positionLeft }}
           onClose={this.handleClose}

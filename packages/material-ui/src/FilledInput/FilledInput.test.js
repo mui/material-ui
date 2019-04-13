@@ -27,7 +27,7 @@ describe('<FilledInput />', () => {
     inheritComponent: InputBase,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should have the underline class', () => {

@@ -83,3 +83,9 @@ Esta característica se basa en el posicionamiento adhesivo CSS. Desafortunadame
 ## Lista con Margen
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
+
+## Virtualized List
+
+In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Renderiza 200 filas y fácilmente puede manejar más. La virtualización ayuda con problemas de rendimiento.
+
+{{"demo": "pages/demos/lists/VirtualizedList.js"}}

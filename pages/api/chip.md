@@ -30,6 +30,8 @@ Chips represent complex entities in small blocks, such as a contact.
 | <span class="prop-name">onDelete</span> | <span class="prop-type">func</span> |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'outlined'<br></span> | <span class="prop-default">'default'</span> | The variant to use. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

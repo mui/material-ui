@@ -32,7 +32,7 @@ describe('<MenuList />', () => {
     inheritComponent: List,
     mount,
     refInstanceof: window.HTMLUListElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: children', () => {

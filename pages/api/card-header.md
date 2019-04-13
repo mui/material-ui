@@ -28,6 +28,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 | <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | The content of the Card Title. |
 | <span class="prop-name">titleTypographyProps</span> | <span class="prop-type">object</span> |  | These props will be forwarded to the title (as long as disableTypography is not `true`). |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

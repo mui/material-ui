@@ -10,7 +10,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 对话框会带有目的性地中断用户体验，请谨慎使用。
 
-## 基本对话框
+## 最基础的对话框
 
 基本对话框可以提供有关列表项的详细信息或操作。 例如, 它们可以显示头像、图标、解释或交互操作 (如添加帐户)。
 
@@ -21,20 +21,20 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
 
-## 警报
+## 警告框
 
 警报是一种紧急中断的行为，用以通知用户某一情况并需要确认,。
 
-大多数警报不需要标题。 大多数警报不需要标题。 他们通过以下其中一种方式的一两句话来得出一个决定：
+大多数警告不需要标题。 大多数警告不需要标题。 他们通过以下其中一种方式的一两句话来得出一个决定：
 
-- 问一个问题 (例如 "确认删除此对话？")
+- 问一个问题 (例如 "是否删除此对话？")
 - 发表一个和动作按钮相关的声明
 
 仅对高风险情况使用带标题栏警报,，例如连接可能丢失。 用户应该仅根据标题和按钮文本，就能理解要做出的选择。
 
 如果需要标题请:
 
-- 使用明确的问题或声明，并在内容区域对其做出解释, 例如 "擦除 USB 存储？"。
+- 使用明确的问题或声明，并在内容区域对其做出解释, 例如 "是否要清除 USB 上的内容？"。
 - 避免道歉、模棱两可或问题, 例如 "警告！" 或 "你确定吗？“
 
 {{"demo": "pages/demos/dialogs/AlertDialog.js"}}
@@ -53,7 +53,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 如果您已经阅读了 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个如何自定义 `DialogTitle` 以支持关闭按钮的示例。
 
-⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
+⚠️虽然 Material Design 规范鼓励主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
 
@@ -81,9 +81,9 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
 
-## 无障碍功能
+## 可访问性
 
-参考 [Modal accessibility 部分](/utils/modal/#accessibility)
+参考 [模态框可访问性部分](/utils/modal/#accessibility)
 
 ## 长内容滚动
 

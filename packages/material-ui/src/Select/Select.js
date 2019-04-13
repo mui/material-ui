@@ -111,7 +111,7 @@ Select.propTypes = {
    */
   input: PropTypes.element,
   /**
-   * Attributes applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps: PropTypes.object,
@@ -175,15 +175,7 @@ Select.propTypes = {
    * The input value.
    * This property is required when the `native` property is `false` (default).
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  value: PropTypes.any,
   /**
    * The variant to use.
    */

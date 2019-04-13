@@ -27,7 +27,7 @@ describe('<ListItemText />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render with inset class', () => {

@@ -66,7 +66,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 ## 大型列表渲染（Virtualized Table）
 
-在下面的示例中，我们演示了如何将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用。 它渲染了200行，可以轻松处理更多行。
+在下面的示例中，我们演示了如何将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用。 它渲染了200行，可以轻松处理更多行。 Virtualization helps with performance issues.
 
 {{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 

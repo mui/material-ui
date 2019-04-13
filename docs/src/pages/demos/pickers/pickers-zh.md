@@ -9,25 +9,23 @@ components: TextField
 - 在移动端，选择器最适合在确认对话框中展示。
 - 对于内联显示（如在一个表单中），请考虑使用紧凑型控件，如分段下拉按钮。
 
-#### 注意
-
-我们回归到 **原生输入控件**。
+## 原生的选择器
 
 ⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。 看看 [补充项目](#complementary-projects) 以获得更丰富的解决方案。
 
-## 日期选择器
+### 日期选择器
 
-一个原生的 `type="date"` 日期选择器示例 ，它也可以用作日历：
+一个原生的 `type="time"` 时间选择器示例 。
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 
-## 日期和时间选择器
+### 日期和时间选择器
 
 一个原生的 `type="datetime-local"` 日期和时间选择器示例。
 
 {{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
 
-## 时间选择器
+### 时间选择器
 
 一个原生的 `type="time"` 时间选择器示例 。
 

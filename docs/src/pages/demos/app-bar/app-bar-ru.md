@@ -40,4 +40,4 @@ components: AppBar, Toolbar, Menu
 
 ## Нижняя панели навигации
 
-{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}
+{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}

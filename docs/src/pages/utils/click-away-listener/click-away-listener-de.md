@@ -1,15 +1,15 @@
 ---
-title: Click away listener React component
+title: Wegklick Zuhörer
 components: ClickAwayListener
 ---
-# Click away listener
+# Wegklick Zuhörer
 
-<p class="description">Listen for click events that occur somewhere in the document, outside of the element itself.</p>
+<p class="description">Hört auf Klickereignisse, die sich irgendwo im Dokument außerhalb des Elements selbst befinden.</p>
 
-## Simple menu
+## Einfaches Menü
 
-For instance, if you need to hide a menu when people click anywhere else on your page:
+Wenn Sie beispielsweise ein Menü ausblenden müssen, wenn Personen auf eine andere Stelle auf Ihrer Seite klicken:
 
 {{"demo": "pages/utils/click-away-listener/ClickAway.js"}}
 
-You can find a more advanced demo on the [menu documentation section](/demos/menus/#menulist-composition).
+Sie können eine erweiterte Demo in dem [Menü Dokumentation Abschnitt](/demos/menus/#menulist-composition) finden.

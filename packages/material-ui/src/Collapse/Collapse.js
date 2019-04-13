@@ -7,7 +7,6 @@ import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
-import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => ({
   /* Styles applied to the container element. */
@@ -41,31 +40,53 @@ export const styles = theme => ({
  * [Vertical Stepper](/demos/steppers/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Collapse extends React.Component {
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
+const Collapse = React.forwardRef(function Collapse(props, ref) {
+  const {
+    children,
+    classes,
+    className,
+    collapsedHeight,
+    component: Component,
+    in: inProp,
+    onEnter,
+    onEntered,
+    onEntering,
+    onExit,
+    onExiting,
+    style,
+    theme,
+    timeout,
+    ...other
+  } = props;
+  const timer = React.useRef();
+  const wrapperRef = React.useRef();
+  const autoTransitionDuration = React.useRef();
 
-  handleEnter = node => {
-    node.style.height = this.props.collapsedHeight;
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
 
-    if (this.props.onEnter) {
-      this.props.onEnter(node);
+  const handleEnter = node => {
+    node.style.height = collapsedHeight;
+
+    if (onEnter) {
+      onEnter(node);
     }
   };
 
-  handleEntering = node => {
-    const { timeout, theme } = this.props;
-    const wrapperHeight = this.wrapperRef ? this.wrapperRef.clientHeight : 0;
+  const handleEntering = node => {
+    const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
-    const { duration: transitionDuration } = getTransitionProps(this.props, {
+    const { duration: transitionDuration } = getTransitionProps(props, {
       mode: 'enter',
     });
 
     if (timeout === 'auto') {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
-      this.autoTransitionDuration = duration2;
+      autoTransitionDuration.current = duration2;
     } else {
       node.style.transitionDuration =
         typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
@@ -73,121 +94,94 @@ class Collapse extends React.Component {
 
     node.style.height = `${wrapperHeight}px`;
 
-    if (this.props.onEntering) {
-      this.props.onEntering(node);
+    if (onEntering) {
+      onEntering(node);
     }
   };
 
-  handleEntered = node => {
+  const handleEntered = node => {
     node.style.height = 'auto';
 
-    if (this.props.onEntered) {
-      this.props.onEntered(node);
+    if (onEntered) {
+      onEntered(node);
     }
   };
 
-  handleExit = node => {
-    const wrapperHeight = this.wrapperRef ? this.wrapperRef.clientHeight : 0;
+  const handleExit = node => {
+    const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
     node.style.height = `${wrapperHeight}px`;
 
-    if (this.props.onExit) {
-      this.props.onExit(node);
+    if (onExit) {
+      onExit(node);
     }
   };
 
-  handleExiting = node => {
-    const { timeout, theme } = this.props;
-    const wrapperHeight = this.wrapperRef ? this.wrapperRef.clientHeight : 0;
+  const handleExiting = node => {
+    const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
-    const { duration: transitionDuration } = getTransitionProps(this.props, {
+    const { duration: transitionDuration } = getTransitionProps(props, {
       mode: 'exit',
     });
 
     if (timeout === 'auto') {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
-      this.autoTransitionDuration = duration2;
+      autoTransitionDuration.current = duration2;
     } else {
       node.style.transitionDuration =
         typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
     }
 
-    node.style.height = this.props.collapsedHeight;
+    node.style.height = collapsedHeight;
 
-    if (this.props.onExiting) {
-      this.props.onExiting(node);
+    if (onExiting) {
+      onExiting(node);
     }
   };
 
-  addEndListener = (_, next) => {
-    if (this.props.timeout === 'auto') {
-      this.timer = setTimeout(next, this.autoTransitionDuration || 0);
+  const addEndListener = (_, next) => {
+    if (timeout === 'auto') {
+      timer.current = setTimeout(next, autoTransitionDuration.current || 0);
     }
   };
 
-  render() {
-    const {
-      children,
-      classes,
-      className,
-      collapsedHeight,
-      component: Component,
-      in: inProp,
-      innerRef,
-      onEnter,
-      onEntered,
-      onEntering,
-      onExit,
-      onExiting,
-      style,
-      theme,
-      timeout,
-      ...other
-    } = this.props;
-
-    return (
-      <Transition
-        in={inProp}
-        onEnter={this.handleEnter}
-        onEntered={this.handleEntered}
-        onEntering={this.handleEntering}
-        onExit={this.handleExit}
-        onExiting={this.handleExiting}
-        addEndListener={this.addEndListener}
-        timeout={timeout === 'auto' ? null : timeout}
-        {...other}
-      >
-        {(state, childProps) => (
-          <Component
-            className={clsx(
-              classes.container,
-              {
-                [classes.entered]: state === 'entered',
-                [classes.hidden]: state === 'exited' && !inProp && collapsedHeight === '0px',
-              },
-              className,
-            )}
-            style={{
-              minHeight: collapsedHeight,
-              ...style,
-            }}
-            ref={innerRef}
-            {...childProps}
-          >
-            <div
-              className={classes.wrapper}
-              ref={ref => {
-                this.wrapperRef = ref;
-              }}
-            >
-              <div className={classes.wrapperInner}>{children}</div>
-            </div>
-          </Component>
-        )}
-      </Transition>
-    );
-  }
-}
+  return (
+    <Transition
+      in={inProp}
+      onEnter={handleEnter}
+      onEntered={handleEntered}
+      onEntering={handleEntering}
+      onExit={handleExit}
+      onExiting={handleExiting}
+      addEndListener={addEndListener}
+      timeout={timeout === 'auto' ? null : timeout}
+      {...other}
+    >
+      {(state, childProps) => (
+        <Component
+          className={clsx(
+            classes.container,
+            {
+              [classes.entered]: state === 'entered',
+              [classes.hidden]: state === 'exited' && !inProp && collapsedHeight === '0px',
+            },
+            className,
+          )}
+          style={{
+            minHeight: collapsedHeight,
+            ...style,
+          }}
+          ref={ref}
+          {...childProps}
+        >
+          <div className={classes.wrapper} ref={wrapperRef}>
+            <div className={classes.wrapperInner}>{children}</div>
+          </div>
+        </Component>
+      )}
+    </Transition>
+  );
+});
 
 Collapse.propTypes = {
   /**
@@ -216,11 +210,6 @@ Collapse.propTypes = {
    * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
-  /**
-   * @ignore
-   * from `withForwardedRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
@@ -273,4 +262,4 @@ Collapse.muiSupportAuto = true;
 export default withStyles(styles, {
   withTheme: true,
   name: 'MuiCollapse',
-})(withForwardedRef(Collapse));
+})(Collapse);

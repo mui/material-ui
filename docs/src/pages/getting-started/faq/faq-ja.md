@@ -14,7 +14,9 @@
 
 - 誤ってMaterial-UIの2つのバージョンを**bundle**してしまっている場合、 依存関係がMaterial-UIを対の依存関係として正しく設定されていない可能性があります
 - Reactツリーの**サブセット**に`StylesProvider`を使用している場合
-- bundlerを使っていて、それが複数のクラス名ジェネレータインスタンスが作成されるという方法でコード分割しています。 > webpackで [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)を使用している場合は、[`最適化環境下`で`runtimeChunk`を設定してみてください](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)
+- You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
+
+> If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 
 全体として、各Material-UIアプリケーションをコンポーネントツリーの最上部にある[`StylesProvider`](/css-in-js/api/#stylesprovider)コンポーネントでWrapし、**コンポーネントツリー間で共有される単一のクラス名ジェネレータを使用することで**、この問題を簡単に解決できます。
 

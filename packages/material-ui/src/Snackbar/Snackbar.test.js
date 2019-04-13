@@ -23,7 +23,7 @@ describe('<Snackbar />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: onClose', () => {

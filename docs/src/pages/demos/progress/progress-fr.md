@@ -2,7 +2,7 @@
 title: Circular Progress, Linear Progress React component
 components: CircularProgress, LinearProgress
 ---
-# Progress
+# Barres de progression
 
 <p class="description">Les indicateurs de progression expriment un temps d'attente non spécifié ou affichent la durée d'un processus.</p>
 

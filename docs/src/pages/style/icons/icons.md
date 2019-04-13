@@ -86,8 +86,9 @@ but [https://materialdesignicons.com](https://materialdesignicons.com/) provides
 The `Icon` component will display an icon from any icon font that supports ligatures.
 As a prerequisite, you must include one, such as the
 [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
+
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the
@@ -95,6 +96,7 @@ class name using the Icon component's `className` property.
 
 To use an icon simply wrap the icon name (font ligature) with the `Icon` component,
 for example:
+
 ```jsx
 import Icon from '@material-ui/core/Icon';
 

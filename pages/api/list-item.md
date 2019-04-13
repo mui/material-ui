@@ -31,6 +31,8 @@ Uses an additional container component if `ListItemSecondaryAction` is the last 
 | <span class="prop-name">divider</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Use to apply selected styling. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS
@@ -64,4 +66,5 @@ you need to use the following style sheet name: `MuiListItem`.
 ## Demos
 
 - [Lists](/demos/lists/)
+- [Transfer List](/demos/transfer-list/)
 

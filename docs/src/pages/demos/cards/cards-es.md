@@ -32,6 +32,8 @@ Por defecto usamos una combinacion de un `<div>` y una *imagen de fondo* para mo
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
+> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+
 ## Controles de IU
 
 Acciones adicionales dentro de las tarjetas son iniciadas explícitamente usando iconos, texto y controles de IU, localizados de manera típica en el pie de la tarjeta.

@@ -33,6 +33,8 @@ Responsively hides children based on the selected implementation.
 | <span class="prop-name">xsDown</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, screens this size and down will be hidden. |
 | <span class="prop-name">xsUp</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, screens this size and up will be hidden. |
 
+The component cannot hold a ref.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## Demos

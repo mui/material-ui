@@ -2,7 +2,7 @@
 title: Composant React Tiroir
 components: Drawer, SwipeableDrawer
 ---
-# Tiroir (Drawer)
+# Drawer (Tiroir)
 
 <p class="description">Les tiroirs de navigation permettent d'accéder aux destinations de votre application. Les feuilles latérales sont des surfaces contenant du contenu supplémentaire ancré au bord gauche ou droit de l'écran.</p>
 
@@ -31,7 +31,7 @@ We are using the following set of properties on this documentation website for o
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
 ## Responsive drawer

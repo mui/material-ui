@@ -51,6 +51,7 @@
   "traffic": "Datenverkehr",
   "newest": "neueste",
   "stars": "Github-Star",
+  "visit": "Besuchen sie die Website",
   "dashboardTitle": "Dashboard",
   "dashboardDescr": "Ein minimales Dashboard mit Taskleiste und einem Drawer in mini Variante. Das Diagramm wurde von Recharts zur Verfügung gestellt, aber es ist leicht ein anderes Paket dafür zu nutzen.",
   "signInTitle": "Anmelden",

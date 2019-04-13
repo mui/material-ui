@@ -94,6 +94,8 @@ export function getDependencies(raw, options = {}) {
     '@material-ui/system': 'next',
     '@material-ui/utils': 'next',
     'date-fns': 'next',
+    jss: 'next',
+    'jss-plugin-template': 'next',
   };
   const re = /^import\s.*\sfrom\s+'([^']+)|import\s'([^']+)'/gm;
   let m;

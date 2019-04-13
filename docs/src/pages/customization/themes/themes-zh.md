@@ -25,9 +25,9 @@
 - [其他变量](#other-variables)
 - [自定义变量](#custom-variables)
 
-### 调色板
+## Palette（调色）
 
-#### 意向
+### Intentions
 
 颜色意图是将调色板映射到应用程序中的给定意图。
 
@@ -41,7 +41,7 @@
 
 如果您想了解更多的颜色，你可以检查出 [颜色项](/style/color/)。
 
-#### 自定义调色板
+### Custom palette
 
 您可以通过在主题中包含 `palette` 对象来覆盖默认调色板值。
 
@@ -160,15 +160,15 @@ const theme = createMuiTheme({
 
 请注意， `contrastThreshold` 遵循非线性曲线。
 
-#### 示例
+### 示例
 
 {{"demo": "pages/customization/themes/Palette.js"}}
 
-#### 颜色工具
+### 颜色工具
 
 需要灵感？ Material Design团队已经构建了一个非常棒的 [调色板配置工具](/style/color/#color-tool) 来帮助您。
 
-### 类型（浅色/深色主题）
+## Type (light /dark theme)
 
 您可以通过将 `type` 设置为 `dark`来使主题变暗。 虽然它只是一个属性值更改，但在内部它会修改以下键的值：
 
@@ -187,7 +187,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/DarkTheme.js", "hideEditButton": true}}
 
-### 活版印刷
+## Typography
 
 太多类型的尺寸和样式会破坏任何布局。 样式提供了 **有限集合型尺寸的** 可以与布局网格一起很好地工作。 这些尺寸用于各个组件。
 
@@ -195,12 +195,13 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
-#### 排版 - 字体系列
+### 字体系列
+
+You can use the system font instead of the default Roboto font.
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    // 使用系统字体而不是默认的Roboto字体。
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -217,11 +218,63 @@ const theme = createMuiTheme({
 });
 ```
 
-#### 排版 - 字体大小
+### Self-host fonts
 
-Material-UI使用 `rem` 单位作为字体大小。 浏览器 `<html>` 元件默认字体大小是 `16px的`，但浏览器有一个选项，以改变该值， 所以 `REM` 单元允许我们以适应用户的设置，产生了更好的用户体验。 用户可以出于各种原因更改字体大小设置，从视力不佳到为大小和观看距离差异很大的设备选择最佳设置 。
+To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
-要更改Material-UI的字体大小，您可以提供 `fontSize` 属性。 默认值为 `14px`。
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will *not* be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
+
+```js
+import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
+
+const raleway = {
+  fontFamily: 'Raleway',
+  fontStyle: 'normal',
+  fontDisplay: 'swap',
+  fontWeight: 400,
+  src: `
+    local('Raleway'),
+    local('Raleway-Regular'),
+    url(${RalewayWoff2}) format('woff2')
+  `,
+  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+};
+```
+
+Then, you can change the theme to use this new font. It requires use of the [`CssBaseline`](/style/css-baseline/) component to globally define Raleway as a font family.
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Raleway',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-family': [raleway],
+      },
+    },
+  },
+});
+```
+
+### 字体大小 
+
+Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a much better user experience. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
+
+To change the font-size of Material-UI you can provide a `fontSize` property. The default value is `14px`.
 
 ```js
 const theme = createMuiTheme({
@@ -232,13 +285,13 @@ const theme = createMuiTheme({
 });
 ```
 
-浏览器计算出的字体大小遵循以下数学公式：
+The computed font size by the browser follows this mathematical equation:
 
 ![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-#### 排版 - HTML字体大小
+### HTML font size
 
-您可能想要更改 `<html>` 元素的默认字体大小。 例如，使用 [10px简化时](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/)。 我们为此用例提供了一个 `htmlFontSize` 主题属性。 它告诉Material-UI `<html>` 元素的字体大小是多少。 它用于调整 `rem` 值，因此计算出的字体大小始终与规范匹配。
+You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). We provide a `htmlFontSize` theme property for this use case. It's telling Material-UI what's the font-size on the `<html>` element is. It's used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({
@@ -255,11 +308,11 @@ html {
 }
 ```
 
-*您需要在此页面的html元素上应用上述CSS，以查看正确呈现的以下演示*
+*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
-### 间距
+## 间距
 
 我们鼓励您使用 `theme.spacing()` 帮助器在UI的元素之间创建一致的间距。 Material-UI默认使用[8px的缩放系数](https://material.io/design/layout/understanding-layout.html) 。
 
@@ -294,7 +347,7 @@ const theme = createMuiTheme({
 theme.spacing(2) // = 0.5rem = 8px
 ```
 
-#### 多个参数
+### 多个参数
 
 ` theme.spacing() ` 最多接受4个参数。 您可以使用参数来减少样板：
 
@@ -303,17 +356,17 @@ theme.spacing(2) // = 0.5rem = 8px
 +  padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
-### 其他变量
+## 其他变量
 
 除了调色板，暗色和浅色类型以及排版外，样式还通过提供更多默认值（例如断点，阴影，过渡等）来实现标准。 您可以查看[默认样式部分](/customization/default-theme/)完整查看默认样式。
 
-### 自定义变量
+## 自定义变量
 
 When using Material-UI's theme with our [styling solution](/css-in-js/basics) or [any others](/guides/interoperability/#themeprovider). 可以方便地向样式添加其他变量，以便您可以在任何地方使用它们。 例如：
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
-## 自定义组件类型的所有实例
+## Customizing all instances of a component type
 
 ### CSS
 
@@ -359,7 +412,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 
-## 嵌套主题
+## Nesting the theme
 
 这样的主题方式非常灵活，比如 [你可以嵌套](/css-in-js/advanced/#theme-nesting)多个主题提供器 在处理具有彼此明显外观的应用程序的不同区域时，这非常有用。
 

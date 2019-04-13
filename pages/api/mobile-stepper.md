@@ -27,6 +27,8 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 | <span class="prop-name required">steps&nbsp;*</span> | <span class="prop-type">number</span> |  | The total steps. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text'&nbsp;&#124;<br>&nbsp;'dots'&nbsp;&#124;<br>&nbsp;'progress'<br></span> | <span class="prop-default">'dots'</span> | The variant to use. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
 ## CSS

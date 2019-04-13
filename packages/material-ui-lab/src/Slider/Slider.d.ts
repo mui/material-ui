@@ -13,7 +13,7 @@ export type ValueReducer = (
 export const defaultValueReducer: ValueReducer;
 
 export interface SliderProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange'> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange', false> {
   disabled?: boolean;
   vertical?: boolean;
   max?: number;

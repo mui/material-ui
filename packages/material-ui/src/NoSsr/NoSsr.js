@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
 
+const useEnhancedEffect =
+  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
+    ? React.useLayoutEffect
+    : React.useEffect;
+
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
  *
@@ -11,51 +16,30 @@ import { exactProp } from '@material-ui/utils';
  * - Reduce the rendering time on the server.
  * - Under too heavy server load, you can turn on service degradation.
  */
-class NoSsr extends React.Component {
-  mounted = false;
+function NoSsr(props) {
+  const { children, defer, fallback } = props;
+  const [mountedState, setMountedState] = React.useState(false);
 
-  state = {
-    mounted: false,
-  };
-
-  componentDidMount() {
-    this.mounted = true;
-
-    if (this.props.defer) {
-      // Wondering why we use two RAFs? Check this video out:
-      // https://www.youtube.com/watch?v=cCOL7MC4Pl0
-      //
-      // The componentDidMount() method is called after the DOM nodes are inserted.
-      // The UI might not have rendering the changes. We request a frame.
-      requestAnimationFrame(() => {
-        // The browser should be about to render the DOM nodes
-        // that React committed at this point.
-        // We don't want to interrupt. Let's wait the next frame.
-        requestAnimationFrame(() => {
-          // The UI is up-to-date at this point.
-          // We can continue rendering the children.
-          if (this.mounted) {
-            this.setState({ mounted: true });
-          }
-        });
-      });
-    } else {
-      this.setState({ mounted: true });
+  useEnhancedEffect(() => {
+    if (!defer) {
+      setMountedState(true);
     }
-  }
+  }, [defer]);
 
-  componentWillUnmount() {
-    this.mounted = false;
-  }
+  React.useEffect(() => {
+    if (defer) {
+      setMountedState(true);
+    }
+  }, [defer]);
 
-  render() {
-    const { children, fallback } = this.props;
-
-    return this.state.mounted ? children : fallback;
-  }
+  // We need the Fragment here to force react-docgen to recognise NoSsr as a component.
+  return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
 }
 
 NoSsr.propTypes = {
+  /**
+   * You can wrap a node.
+   */
   children: PropTypes.node.isRequired,
   /**
    * If `true`, the component will not only prevent server-side rendering.
@@ -69,7 +53,8 @@ NoSsr.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  NoSsr.propTypes = exactProp(NoSsr.propTypes);
+  // eslint-disable-next-line
+  NoSsr['propTypes' + ''] = exactProp(NoSsr.propTypes);
 }
 
 NoSsr.defaultProps = {

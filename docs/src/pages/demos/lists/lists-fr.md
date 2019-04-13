@@ -2,7 +2,7 @@
 title: Composant React Liste
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
-# Listes (Lists)
+# Lists (Listes)
 
 <p class="description">Les listes sont continues, des index verticaux de texte ou d’images.</p>
 
@@ -83,3 +83,9 @@ Cette fonctionnalité repose sur le positionnement persistant (sticky) de CSS. M
 ## Liste Insets
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
+
+## Virtualized List
+
+In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Il affiche 200 lignes et peut facilement gérer plus. Virtualization helps with performance issues.
+
+{{"demo": "pages/demos/lists/VirtualizedList.js"}}

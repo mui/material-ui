@@ -62,15 +62,12 @@ function HorizontalNonLinearStepper() {
   }
 
   function handleNext() {
-    let newActiveStep;
-
-    if (isLastStep() && !allStepsCompleted()) {
-      // It's the last step, but not all steps have been completed,
-      // find the first step that has been completed
-      newActiveStep = steps.findIndex((step, i) => !(i in completed));
-    } else {
-      newActiveStep = activeStep + 1;
-    }
+    const newActiveStep =
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !(i in completed))
+        : activeStep + 1;
     setActiveStep(newActiveStep);
   }
 

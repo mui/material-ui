@@ -1,15 +1,13 @@
-import React from 'react';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
-import theme from './.cache/theme';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 // Keep track of sheets for each page
 const globalLeak = new Map();
 
-export const wrapRootElement = ({ element, pathname }) => {
-  const sheets = new ServerStyleSheets();
+export const wrapRootElement = ({ element, pathname }, pluginOptions) => {
+  const sheets = new ServerStyleSheets(pluginOptions.stylesProvider);
   globalLeak.set(pathname, sheets);
 
-  return sheets.collect(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+  return sheets.collect(element);
 };
 
 export const onRenderBody = ({ setHeadComponents, pathname }) => {

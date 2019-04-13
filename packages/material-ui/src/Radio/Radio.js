@@ -66,7 +66,7 @@ Radio.propTypes = {
   /**
    * If `true`, the component is checked.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
    */
@@ -97,11 +97,11 @@ Radio.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Attributes applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -123,7 +123,7 @@ Radio.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.any,
 };
 
 Radio.defaultProps = {

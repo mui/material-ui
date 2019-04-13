@@ -30,7 +30,7 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: placement', () => {
@@ -120,6 +120,49 @@ describe('<Popper />', () => {
       assert.strictEqual(instance.popper !== null, true);
       wrapper.setProps({ open: false });
       assert.strictEqual(instance.popper, null);
+    });
+  });
+
+  describe('prop: keepMounted', () => {
+    describe('by default', () => {
+      // Test case for https://github.com/mui-org/material-ui/issues/15180
+      it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
+        const children = <p>Hello World</p>;
+
+        class OpenClose extends React.Component {
+          state = {
+            open: false,
+          };
+
+          handleClick = () => {
+            this.setState({ open: true }, () => {
+              this.setState({ open: false });
+            });
+          };
+
+          render() {
+            return (
+              <div>
+                <button type="button" onClick={this.handleClick}>
+                  Toggle Tooltip
+                </button>
+                <Popper {...defaultProps} open={this.state.open} transition>
+                  {({ TransitionProps }) => (
+                    <Grow {...TransitionProps}>
+                      <span>{children}</span>
+                    </Grow>
+                  )}
+                </Popper>
+              </div>
+            );
+          }
+        }
+
+        const wrapper = mount(<OpenClose />);
+        assert.strictEqual(wrapper.contains(children), false);
+        wrapper.find('button').simulate('click');
+        assert.strictEqual(wrapper.contains(children), false);
+      });
     });
   });
 

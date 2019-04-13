@@ -24,6 +24,8 @@ import Table from '@material-ui/core/Table';
 | <span class="prop-name">padding</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'none'<br></span> | <span class="prop-default">'default'</span> | Allows TableCells to inherit padding of the Table. |
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'<br></span> | <span class="prop-default">'medium'</span> | Allows TableCells to inherit size of the Table. |
 
+The `ref` is forwarded to the root element.
+
 Any other properties supplied will be spread to the root element (native element).
 
 ## CSS

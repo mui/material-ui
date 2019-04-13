@@ -7,7 +7,7 @@ export interface FormControlLabelProps
     FormControlLabelClassKey,
     'onChange'
   > {
-  checked?: boolean | string;
+  checked?: boolean;
   control: React.ReactElement;
   disabled?: boolean;
   inputRef?: React.Ref<any>;
@@ -15,7 +15,7 @@ export interface FormControlLabelProps
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
-  value?: string;
+  value?: unknown;
 }
 
 export type FormControlLabelClassKey = 'root' | 'start' | 'disabled' | 'label';

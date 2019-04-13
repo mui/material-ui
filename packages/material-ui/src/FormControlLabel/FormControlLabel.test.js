@@ -29,7 +29,7 @@ describe('<FormControlLabel />', () => {
     inheritComponent: 'label',
     mount,
     refInstanceof: window.HTMLLabelElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render the label text inside an additional element', () => {

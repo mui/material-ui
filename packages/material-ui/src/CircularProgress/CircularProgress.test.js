@@ -28,7 +28,7 @@ describe('<CircularProgress />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render with the primary color by default', () => {

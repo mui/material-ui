@@ -69,7 +69,6 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-  withMobileDialog,
 } from '@material-ui/core';
 import {
   withStyles,
@@ -79,7 +78,6 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 import { DialogProps } from '@material-ui/core/Dialog';
-import { ButtonProps } from '@material-ui/core/Button';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 
@@ -171,78 +169,6 @@ const BottomNavigationTest = () => {
     </BottomNavigation>
   );
 };
-
-const ButtonTest = () => (
-  <div>
-    <Button>I am a button!</Button>
-    <Button color="inherit">Contrast</Button>
-    <Button disabled>Disabled</Button>
-    <Button href="#link-button">Link</Button>
-    <Button size="small">Small</Button>
-    <Button variant="contained">Contained</Button>
-    <Button variant="outlined" color="primary" aria-label="add">
-      Outlined
-    </Button>
-    <Button tabIndex={1} title="some button">
-      Title
-    </Button>
-    <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complex Link</Button>
-    <Button component={ReactRouterLink} to="/open-collective">
-      Link
-    </Button>
-    <Button href="/open-collective">Link</Button>
-    <Button component={ReactRouterLink} to="/open-collective">
-      Link
-    </Button>
-    <Button href="/open-collective">Link</Button>
-    // By default the underlying component is a button element:
-    <Button
-      ref={elem => {
-        elem; // $ExpectType HTMLButtonElement | null
-      }}
-      onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
-        log(e);
-      }}
-    >
-      Button
-    </Button>
-    // If an href is provided, an anchor is used:
-    <Button
-      href="/open-collective"
-      ref={elem => {
-        elem; // $ExpectType HTMLAnchorElement | null
-      }}
-      onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
-        log(e);
-      }}
-    >
-      Link
-    </Button>
-    // If a component prop is specified, use that:
-    <Button<'div'>
-      component="div"
-      ref={elem => {
-        elem; // $ExpectType HTMLDivElement | null
-      }}
-      onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
-        log(e);
-      }}
-    >
-      Div
-    </Button>
-    {
-      // Can't have an onClick handler if the overriding component doesn't specify one:
-      // $ExpectError
-      <Button<typeof TestOverride> component={TestOverride} onClick={log}>
-        TestOverride
-      </Button>
-    }
-  </div>
-);
 
 const IconButtonTest = () => (
   <div>
@@ -1025,17 +951,6 @@ const SelectTest = () => (
 
 const InputAdornmentTest = () => <InputAdornment position="end" onClick={() => alert('Hello')} />;
 
-const ResponsiveComponentTest = () => {
-  const ResponsiveComponent = withMobileDialog({
-    breakpoint: 'sm',
-  })(({ children, width, fullScreen }) => (
-    <div style={{ width, position: fullScreen ? 'fixed' : 'static' }}>{children}</div>
-  ));
-  <ResponsiveComponent />;
-
-  const ResponsiveDialogComponent = withMobileDialog<DialogProps>()(Dialog);
-};
-
 const TooltipComponentTest = () => (
   <div>
     <Tooltip id="tooltip-top-start" title="Add" placement="top-start">
@@ -1085,31 +1000,6 @@ const InputLabelTest = () => (
   />
 );
 
-const ReactRouterLinkTest = () => {
-  interface ButtonLinkProps extends ButtonProps {
-    to: string;
-    replace?: boolean;
-  }
-
-  const ButtonLink = (props: ButtonLinkProps) => (
-    <Button {...props} component={ReactRouterLink as any} />
-  );
-
-  const reactRouterButtonLink1 = (
-    <ButtonLink color="primary" to="/">
-      Go Home
-    </ButtonLink>
-  );
-
-  const MyLink = (props: any) => <ReactRouterLink to="/" {...props} />;
-
-  const reactRouterButtonLink2 = (
-    <Button color="primary" component={MyLink}>
-      Go Home
-    </Button>
-  );
-};
-
 const LinkTest = () => {
   const dudUrl = 'javascript:;';
   return (
@@ -1123,4 +1013,33 @@ const LinkTest = () => {
       </Link>
     </Typography>
   );
+};
+
+const refTest = () => {
+  // for a detailed explanation of refs in react see https://github.com/mui-org/material-ui/pull/15199
+  const genericRef = React.createRef<Element>();
+  const divRef = React.createRef<HTMLDivElement>();
+  const inputRef = React.createRef<HTMLInputElement>();
+
+  <Paper ref={genericRef} />;
+  <Paper ref={divRef} />;
+  // undesired: throws when assuming inputRef.current.value !== undefined
+  <Paper ref={inputRef} />;
+  // recommended: soundness is the responsibility of the dev
+  // alternatively use React.useRef<unknown>()  or React.createRef<unknown>()
+  <Paper
+    ref={ref => {
+      // with runtime overhead, sound usage
+      if (ref instanceof HTMLInputElement) {
+        const i: number = ref.valueAsNumber;
+      }
+      // unsafe casts, sound usage, no runtime overhead
+      const j: number = (ref as HTMLInputElement).valueAsNumber;
+      // unsafe casts, unsound usage, no runtime overhead
+      const k: number = (ref as any).valueAsNumber;
+      // tslint:disable-next-line ban-ts-ignore
+      // @ts-ignore unsound usage, no runtime overhead, least syntax
+      const n: number = ref.valueAsNumber;
+    }}
+  />;
 };

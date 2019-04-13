@@ -70,7 +70,7 @@ Checkbox.propTypes = {
   /**
    * If `true`, the component is checked.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
    */
@@ -120,7 +120,7 @@ Checkbox.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -136,9 +136,9 @@ Checkbox.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The value of the component.
+   * The value of the component. The DOM API casts this to a string.
    */
-  value: PropTypes.string,
+  value: PropTypes.any,
 };
 
 Checkbox.defaultProps = {

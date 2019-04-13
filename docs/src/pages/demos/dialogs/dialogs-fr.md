@@ -2,7 +2,7 @@
 title: Composant React Dialogue
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
-# Dialogues (Dialoges)
+# Dialogs (Dialogues)
 
 <p class="description">Les boîtes de dialogue informent les utilisateurs sur une tâche et peuvent contenir des informations critiques, nécessiter des décisions ou impliquer plusieurs tâches.</p>
 
