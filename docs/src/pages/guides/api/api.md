@@ -139,7 +139,7 @@ Going back to the previous button example; since it requires 3 degrees of freedo
 
 ### Ref
 
-The `ref` is forwarded to the root element. This means that without changing the rendered root element
-via `component` prop it is forwarded to the outermost DOM element that component
-renders. If you pass a different component via `component` prop the ref will be attached
+The `ref` is forwarded to the root element. This means that, without changing the rendered root element
+via the `component` prop, it is forwarded to the outermost DOM element that which component
+renders. If you pass a different component via the `component` prop the ref will be attached
 to that component instead.

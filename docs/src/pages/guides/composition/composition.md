@@ -143,14 +143,14 @@ ref forwarding. However, only the following component types can be given a `ref`
 * [React.lazy components](https://reactjs.org/docs/react-api.html#reactlazy)
 * [React.memo components](https://reactjs.org/docs/react-api.html#reactmemo)
 
-If you don't use one of the above types in Material-UI components you might see a warning from
-React in your console similar to 
+If you don't use one of the above types when using your components in conjunction with Material-UI, you might see a warning from
+React in your console similar to:
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Be aware that you still get this warnings for lazy and memo components if their
+Be aware that you will still get this warning for `lazy` and `memo` components if their
 wrapped component can't hold a ref.
 
-In some instances we issue an additional warning to help debugging similar to 
+In some instances we issue an additional warning to help debugging, similar to: 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 
