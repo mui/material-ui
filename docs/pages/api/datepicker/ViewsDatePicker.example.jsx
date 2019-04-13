@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { DatePicker } from 'material-ui-pickers';
 
-function YearMonthPicker(props) {
+function YearMonthPicker() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (

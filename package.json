@@ -18,7 +18,7 @@
     "release": "yarn workspace material-ui-pickers release && yarn workspace docs deploy",
     "e2e:open": "cypress open",
     "e2e:run": "cypress run",
-    "lint": "eslint './**/*.ts*'"
+    "lint": "eslint './**/*.ts*' './**/*.js' './**/*.jsx'"
   },
   "repository": {
     "type": "git",

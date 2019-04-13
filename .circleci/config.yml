@@ -48,7 +48,7 @@ jobs:
           command: yarn lint
       - run:
           name: Ensure prettier was run
-          command: yarn prettier --check './**/*.ts*'
+          command: yarn prettier --check './**/*.ts*' './**/*.js*'
       - run:
           name: Build and analyze bundlesize
           command: yarn workspace material-ui-pickers build:analyze

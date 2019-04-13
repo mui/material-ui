@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import lightBlue from '@material-ui/core/colors/lightBlue';
 import { DatePicker } from 'material-ui-pickers';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import lightBlue from '@material-ui/core/colors/lightBlue';
 
 const materialTheme = createMuiTheme({
   overrides: {

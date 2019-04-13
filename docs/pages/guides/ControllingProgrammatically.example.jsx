@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
-import React, { PureComponent, useState, useCallback, useRef } from 'react';
-import { Button, withStyles } from '@material-ui/core';
+import React, { useState } from 'react';
 import { DatePicker } from 'material-ui-pickers';
+import { Button, withStyles } from '@material-ui/core';
 
 function ControllingProgrammaticallyExample(props) {
   const [isOpen, setIsOpen] = useState(false);

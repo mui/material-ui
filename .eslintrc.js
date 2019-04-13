@@ -1,6 +1,12 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  parserOptions: {},
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   settings: {
     react: {
       version: 'detect',
@@ -18,6 +24,8 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': 0,
     '@typescript-eslint/no-non-null-assertion': 0,
     '@typescript-eslint/no-explicit-any': 0,
+    // in scripts and config files it's required to use dynamic require
+    '@typescript-eslint/no-var-requires': 0,
     'react/no-children-prop': 0,
     'react/jsx-uses-vars': 2,
     'react/jsx-uses-react': 2,

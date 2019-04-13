@@ -1,9 +1,10 @@
+import clsx from 'clsx';
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import PropTypesDoc from '../prop-types.json';
+import PropTypesTableHeader from './PropTypesTableHeader.mdx';
 import {
   Table,
-  Typography,
   withStyles,
   Paper,
   TableBody,
@@ -11,8 +12,6 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core';
-import PropTypesDoc from '../prop-types.json';
-import PropTypesTableHeader from './PropTypesTableHeader.mdx';
 
 class PropTypesTable extends React.PureComponent {
   static propTypes = {

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import { withStyles, Avatar, List, ListItem, ListItemText } from '@material-ui/core';
 import patrons from '../patrons.json';
+import React, { Component } from 'react';
+import { withStyles, Avatar, List, ListItem, ListItemText } from '@material-ui/core';
 
 class PatreonSponsors extends Component {
   static propTypes = {

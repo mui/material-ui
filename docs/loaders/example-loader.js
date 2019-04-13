@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const loaderUtils = require('loader-utils');
 const safeJsonStringify = require('safe-json-stringify');
 const nextBabelLoader = require('next/dist/build/webpack/loaders/next-babel-loader');
 

@@ -20,6 +20,7 @@ files.forEach(filePart => {
   const parsedDoc = parser.parse(file)[0];
 
   doc[filePart] = Object.entries(parsedDoc.props)
+    // eslint-disable-next-line
     .filter(([key, value]) => value.description && !value.parent.fileName.includes('@types'))
     .reduce((obj, [key, value]) => {
       obj[key] = value;

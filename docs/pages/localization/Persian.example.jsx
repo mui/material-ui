@@ -1,6 +1,6 @@
-import React, { Component, useState } from 'react';
 import moment from 'moment';
 import jMoment from 'moment-jalaali';
+import React, { useState } from 'react';
 import JalaliUtils from '@date-io/jalaali';
 import {
   TimePicker,
