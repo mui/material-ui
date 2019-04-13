@@ -127,7 +127,7 @@ export default withTheme(withStyles(styles)(Modal));
 ## How can I access the DOM element?
 
 All Material-UI components that should render something in the DOM forward their
-ref to the underlying built-in component. This means that you can get DOM elements
+ref to the underlying DOM component. This means that you can get DOM elements
 by reading the ref attached to Material-UI components:
 
 ```jsx
