@@ -136,7 +136,7 @@ Some of the components need access to the DOM node. This was previously possible
 by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` and
 ref forwarding. However, only the following component types can be given a `ref`:
 
-* Any Material-UI component
+- Any Material-UI component
 * class components i.e. `React.Component` or `React.PureComponent`
 * DOM (or host) components e.g. `div` or `button`
 * [React.forwardRef components](https://reactjs.org/docs/react-api.html#reactforwardref)
