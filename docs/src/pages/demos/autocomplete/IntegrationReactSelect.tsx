@@ -102,6 +102,7 @@ const useStyles = makeStyles((theme: Theme) =>
     placeholder: {
       position: 'absolute',
       left: 2,
+      bottom: 6,
       fontSize: 16,
     },
     paper: {
