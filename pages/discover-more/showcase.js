@@ -12,7 +12,7 @@ const reqSource = require.context(
 const reqPrefix = 'pages/discover-more/showcase';
 
 function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+  return <MarkdownDocs disableTocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

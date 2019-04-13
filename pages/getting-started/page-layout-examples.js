@@ -16,7 +16,9 @@ const reqSource = require.context(
 const reqPrefix = 'pages/getting-started/page-layout-examples';
 
 function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+  return (
+    <MarkdownDocs disableTocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />
+  );
 }
 
 export default Page;

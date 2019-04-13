@@ -20,13 +20,25 @@ const styles = theme => ({
       maxWidth: 'calc(100% - 240px - 175px)',
     },
   },
+  disableTocs: {
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: 'calc(100%)',
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: 'calc(100% - 240px)',
+    },
+  },
 });
 
 function AppContent(props) {
-  const { className, classes, children } = props;
+  const { className, classes, children, disableTocs } = props;
 
   return (
-    <main className={clsx(classes.root, className)}>
+    <main
+      className={clsx(classes.root, className, {
+        [classes.disableTocs]: disableTocs,
+      })}
+    >
       <Container>{children}</Container>
     </main>
   );
@@ -36,6 +48,7 @@ AppContent.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  disableTocs: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(AppContent);
