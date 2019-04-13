@@ -56,7 +56,7 @@ describe('useMediaQuery', () => {
       const text = () => ref.current.textContent;
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)');
-        React.useEffect(() => values(matches), [matches]);
+        React.useEffect(() => values(matches));
         return <span ref={ref}>{`${matches}`}</span>;
       };
 
