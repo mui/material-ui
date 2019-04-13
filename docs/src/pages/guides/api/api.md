@@ -136,3 +136,10 @@ The Material-UI components use a combination of the two approaches according to 
 - An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
 
 Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
+
+## Glossary
+
+- **BFS**: Breadth-first search.
+- **host element**: a DOM node in the context of `react-dom`.
+- **root component**: the outermost (first when doing BFS) component that renders a host element.
+- **root element**: the outermost (first when doing BFS) element that renders a host element.
