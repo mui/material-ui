@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import { createMount } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
@@ -176,7 +177,7 @@ describe('useMediaQuery', () => {
     assert.strictEqual(values.callCount, 3);
   });
 
-  it.skip('should observe the media query', () => {
+  it('should observe the media query', () => {
     const ref = React.createRef();
     const text = () => ref.current.textContent;
     const Test = props => {
@@ -193,8 +194,10 @@ describe('useMediaQuery', () => {
     assert.strictEqual(text(), 'false');
 
     window.matchMedia = createMatchMedia(30000, listeners);
-    listeners[0]({
-      matches: true,
+    act(() => {
+      listeners[0]({
+        matches: true,
+      });
     });
     assert.strictEqual(text(), 'true');
     assert.strictEqual(values.callCount, 2);
