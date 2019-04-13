@@ -33,8 +33,7 @@ describe('<NativeSelect />', () => {
     inheritComponent: Input,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['rootClass'],
-    testComponentPropWith: false,
+    skip: ['componentProp', 'rootClass'],
   }));
 
   it('should provide the classes to the input component', () => {

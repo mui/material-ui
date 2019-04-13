@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
-const DialogTitle = withStyles(theme => ({
+const styles = theme => ({
   root: {
     margin: 0,
     padding: theme.spacing(2),
@@ -20,7 +20,9 @@ const DialogTitle = withStyles(theme => ({
     top: theme.spacing(1),
     color: theme.palette.grey[500],
   },
-}))(props => {
+});
+
+const DialogTitle = withStyles(styles)(props => {
   const { children, classes, onClose } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root}>

@@ -102,6 +102,7 @@ const useStyles = makeStyles((theme: Theme) =>
     placeholder: {
       position: 'absolute',
       left: 2,
+      bottom: 6,
       fontSize: 16,
     },
     paper: {
@@ -156,7 +157,7 @@ function Control(props: ControlProps<OptionType>) {
 function Option(props: OptionProps<OptionType>) {
   return (
     <MenuItem
-      buttonRef={props.innerRef}
+      ref={props.innerRef}
       selected={props.isFocused}
       component="div"
       style={{

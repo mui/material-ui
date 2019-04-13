@@ -43,7 +43,7 @@ describe('<Popover />', () => {
     inheritComponent: Modal,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('root node', () => {

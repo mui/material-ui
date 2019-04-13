@@ -32,7 +32,7 @@ describe('<ExpansionPanelSummary />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render with the content', () => {

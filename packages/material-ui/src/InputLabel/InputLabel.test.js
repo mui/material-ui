@@ -29,7 +29,7 @@ describe('<InputLabel />', () => {
     inheritComponent: FormLabel,
     mount,
     refInstanceof: window.HTMLLabelElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a label with text', () => {

@@ -91,6 +91,7 @@ class Tooltip extends React.Component {
   componentDidMount() {
     warning(
       !this.childrenRef.disabled ||
+        (this.childrenRef.disabled && this.isControlled) ||
         (this.childrenRef.disabled && this.props.title === '') ||
         this.childrenRef.tagName.toLowerCase() !== 'button',
       [

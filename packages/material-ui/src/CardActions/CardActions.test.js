@@ -28,7 +28,7 @@ describe('<CardActions />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should pass the action class to children', () => {

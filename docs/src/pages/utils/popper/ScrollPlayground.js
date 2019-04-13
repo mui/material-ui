@@ -103,6 +103,8 @@ const styles = theme => ({
 });
 
 class ScrollPlayground extends React.Component {
+  anchorRef = React.createRef();
+
   state = {
     arrow: false,
     arrowRef: null,
@@ -186,9 +188,7 @@ class ScrollPlayground extends React.Component {
           >
             <div>
               <Button
-                buttonRef={node => {
-                  this.anchorEl = node;
-                }}
+                ref={this.anchorRef}
                 variant="contained"
                 onClick={this.handleClickButton}
                 aria-describedby={id}
@@ -201,7 +201,7 @@ class ScrollPlayground extends React.Component {
               <Popper
                 id={id}
                 open={open}
-                anchorEl={this.anchorEl}
+                anchorEl={this.anchorRef.current}
                 placement={placement}
                 disablePortal={disablePortal}
                 className={classes.popper}

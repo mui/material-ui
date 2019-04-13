@@ -10,7 +10,7 @@ const { AppBar, Avatar, Badge, Icon, Toolbar } = atoms;
 const { Tabs, Tab, ListItem, InputAdornment } = molecules;
 
 const Header = () => (
-  <AppBar position="sticky" elevation={1}>
+  <AppBar position="sticky">
     <Toolbar>
       <Grid container alignItems="center" spacing={2}>
         <Grid item xs={6} sm={4}>

@@ -36,7 +36,7 @@ function CustomizedInputBase(props: Props) {
   const { classes } = props;
 
   return (
-    <Paper className={classes.root} elevation={1}>
+    <Paper className={classes.root}>
       <IconButton className={classes.iconButton} aria-label="Menu">
         <MenuIcon />
       </IconButton>

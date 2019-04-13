@@ -234,7 +234,7 @@ describe('<SpeedDial />', () => {
         <SpeedDial
           {...defaultProps}
           ButtonProps={{
-            buttonRef: ref => {
+            ref: ref => {
               dialButtonRef = ref;
             },
           }}
@@ -246,7 +246,7 @@ describe('<SpeedDial />', () => {
             <SpeedDialAction
               key={i}
               ButtonProps={{
-                buttonRef: ref => {
+                ref: ref => {
                   actionRefs[i] = ref;
                 },
               }}
@@ -350,8 +350,9 @@ describe('<SpeedDial />', () => {
         resetDialToOpen(dialDirection);
 
         getDialButton().simulate('keydown', { keyCode: keycodes[firstKey] });
-        assert.isTrue(
+        assert.strictEqual(
           isActionFocused(firstFocusedAction),
+          true,
           `focused action initial ${firstKey} should be ${firstFocusedAction}`,
         );
 
@@ -363,8 +364,9 @@ describe('<SpeedDial />', () => {
           getActionButton(previousFocusedAction).simulate('keydown', {
             keyCode: keycodes[arrowKey],
           });
-          assert.isTrue(
+          assert.strictEqual(
             isActionFocused(expectedFocusedAction),
+            true,
             `focused action after ${combinationUntilNot.join(
               ',',
             )} should be ${expectedFocusedAction}`,

@@ -206,7 +206,11 @@ describe('<Chip />', () => {
       const onDeleteSpy = spy();
       wrapper.setProps({ onDelete: onDeleteSpy });
 
-      chip.find(CancelIcon).simulate('click', { stopPropagation: () => {} });
+      // simulate seems to not work on memo components
+      wrapper
+        .find(CancelIcon)
+        .props()
+        .onClick({ stopPropagation: () => {} });
       assert.strictEqual(onDeleteSpy.callCount, 1);
     });
 
@@ -215,7 +219,10 @@ describe('<Chip />', () => {
       const stopPropagationSpy = spy();
       wrapper.setProps({ onDelete: onDeleteSpy });
 
-      chip.find(CancelIcon).simulate('click', { stopPropagation: stopPropagationSpy });
+      wrapper
+        .find(CancelIcon)
+        .props()
+        .onClick({ stopPropagation: stopPropagationSpy });
       assert.strictEqual(stopPropagationSpy.callCount, 1);
     });
 
@@ -292,7 +299,10 @@ describe('<Chip />', () => {
         <Chip label="Custom delete icon Chip" onDelete={onDeleteSpy} deleteIcon={<CheckBox />} />,
       );
 
-      wrapper.find(CheckBox).simulate('click', { stopPropagation: () => {} });
+      wrapper
+        .find(CheckBox)
+        .props()
+        .onClick({ stopPropagation: () => {} });
       assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
     });
 

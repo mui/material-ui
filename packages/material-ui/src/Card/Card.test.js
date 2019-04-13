@@ -22,7 +22,7 @@ describe('<Card />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('when raised should render Paper with 8dp', () => {

@@ -37,7 +37,7 @@ describe('<Switch />', () => {
     inheritComponent: IconButton,
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   })); */
 
   describe('styleSheet', () => {

@@ -29,7 +29,7 @@ describe('<Backdrop />', () => {
     inheritComponent: Fade,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a backdrop div', () => {

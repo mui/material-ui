@@ -29,7 +29,7 @@ describe('<Link />', () => {
     inheritComponent: Typography,
     mount,
     refInstanceof: window.HTMLAnchorElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render children', () => {

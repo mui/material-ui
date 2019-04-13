@@ -156,9 +156,6 @@ class InputBase extends React.Component {
   constructor(props) {
     super(props);
     this.isControlled = props.value != null;
-    if (this.isControlled) {
-      this.checkDirty(props);
-    }
   }
 
   state = {
@@ -166,9 +163,7 @@ class InputBase extends React.Component {
   };
 
   componentDidMount() {
-    if (!this.isControlled) {
-      this.checkDirty(this.inputRef);
-    }
+    this.checkDirty(this.isControlled ? this.props : this.inputRef);
   }
 
   componentDidUpdate(prevProps) {
@@ -456,15 +451,7 @@ InputBase.propTypes = {
   /**
    * The default `input` element value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the `input` element will be disabled.
    */
@@ -592,15 +579,7 @@ InputBase.propTypes = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  value: PropTypes.any,
 };
 
 InputBase.defaultProps = {

@@ -66,23 +66,6 @@ class Popper extends React.Component {
     this.handleClose();
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    if (!nextProps.transition) {
-      // Otherwise let handleExited take care of marking exited.
-      return {
-        exited: true,
-      };
-    }
-
-    return null;
-  }
-
   handleOpen = () => {
     const { anchorEl, modifiers, open, placement, popperOptions = {}, disablePortal } = this.props;
     const popperNode = this.tooltipRef.current;
@@ -124,6 +107,10 @@ class Popper extends React.Component {
         placement: data.placement,
       });
     }
+  };
+
+  handleEnter = () => {
+    this.setState({ exited: false });
   };
 
   handleExited = () => {
@@ -173,6 +160,7 @@ class Popper extends React.Component {
     if (transition) {
       childProps.TransitionProps = {
         in: open,
+        onEnter: this.handleEnter,
         onExited: this.handleExited,
       };
     }
@@ -305,6 +293,7 @@ Popper.propTypes = {
 
 Popper.defaultProps = {
   disablePortal: false,
+  keepMounted: false,
   placement: 'bottom',
   transition: false,
 };

@@ -22,7 +22,7 @@ describe('<Checkbox />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should have the classes required for Checkbox', () => {
