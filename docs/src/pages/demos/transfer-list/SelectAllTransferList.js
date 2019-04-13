@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
@@ -22,10 +23,6 @@ const useStyles = makeStyles(theme => ({
     height: 230,
     backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
-  },
-  listItem: {
-    paddingTop: 4,
-    paddingBottom: 4,
   },
   button: {
     margin: theme.spacing(0.5, 0),
@@ -106,14 +103,10 @@ function TransferList() {
       <Divider />
       <List className={classes.list} dense>
         {items.map(value => (
-          <ListItem
-            className={classes.listItem}
-            key={value}
-            role={undefined}
-            button
-            onClick={handleToggle(value)}
-          >
-            <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
+          <ListItem key={value} role={undefined} button onClick={handleToggle(value)}>
+            <ListItemIcon>
+              <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
+            </ListItemIcon>
             <ListItemText primary={`List item ${value + 1}`} />
           </ListItem>
         ))}

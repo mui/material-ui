@@ -12,13 +12,9 @@ export const styles = {
 };
 
 const ExpansionPanelDetails = React.forwardRef(function ExpansionPanelDetails(props, ref) {
-  const { classes, children, className, ...other } = props;
+  const { classes, className, ...other } = props;
 
-  return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      {children}
-    </div>
-  );
+  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
 
 ExpansionPanelDetails.propTypes = {

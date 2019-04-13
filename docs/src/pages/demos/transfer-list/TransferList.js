@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
@@ -16,10 +17,6 @@ const useStyles = makeStyles(theme => ({
     width: 200,
     height: 230,
     overflow: 'auto',
-  },
-  listItem: {
-    paddingTop: 4,
-    paddingBottom: 4,
   },
   button: {
     margin: theme.spacing(0.5, 0),
@@ -82,14 +79,10 @@ function TransferList() {
     <Paper className={classes.paper}>
       <List dense>
         {items.map(value => (
-          <ListItem
-            className={classes.listItem}
-            key={value}
-            role={undefined}
-            button
-            onClick={handleToggle(value)}
-          >
-            <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
+          <ListItem key={value} role={undefined} button onClick={handleToggle(value)}>
+            <ListItemIcon>
+              <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
+            </ListItemIcon>
             <ListItemText primary={`List item ${value + 1}`} />
           </ListItem>
         ))}

@@ -50,7 +50,7 @@ export const styles = theme => ({
 });
 
 const Icon = React.forwardRef(function Icon(props, ref) {
-  const { children, classes, className, color, component: Component, fontSize, ...other } = props;
+  const { classes, className, color, component: Component, fontSize, ...other } = props;
 
   return (
     <Component
@@ -66,9 +66,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
       aria-hidden="true"
       ref={ref}
       {...other}
-    >
-      {children}
-    </Component>
+    />
   );
 });
 

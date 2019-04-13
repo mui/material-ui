@@ -12,11 +12,11 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    paddingLeft: 16,
+    paddingRight: 16,
     [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3),
+      paddingLeft: 24,
+      paddingRight: 24,
     },
   },
   /* Styles applied to the root element if `variant="regular"`. */
@@ -28,29 +28,21 @@ export const styles = theme => ({
 });
 
 const Toolbar = React.forwardRef(function Toolbar(props, ref) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    component: Component,
-    disableGutters,
-    variant,
-    ...other
-  } = props;
-
-  const className = clsx(
-    classes.root,
-    classes[variant],
-    {
-      [classes.gutters]: !disableGutters,
-    },
-    classNameProp,
-  );
+  const { classes, className, component: Component, disableGutters, variant, ...other } = props;
 
   return (
-    <Component className={className} ref={ref} {...other}>
-      {children}
-    </Component>
+    <Component
+      className={clsx(
+        classes.root,
+        classes[variant],
+        {
+          [classes.gutters]: !disableGutters,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
 });
 

@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
@@ -113,7 +114,9 @@ function BottomAppBar() {
               {id === 1 && <ListSubheader className={classes.subheader}>Today</ListSubheader>}
               {id === 3 && <ListSubheader className={classes.subheader}>Yesterday</ListSubheader>}
               <ListItem button>
-                <Avatar alt="Profile Picture" src={person} />
+                <ListItemAvatar>
+                  <Avatar alt="Profile Picture" src={person} />
+                </ListItemAvatar>
                 <ListItemText primary={primary} secondary={secondary} />
               </ListItem>
             </React.Fragment>

@@ -77,7 +77,6 @@ const styles = theme => ({
 
 function LayoutBody(props) {
   const {
-    children,
     classes,
     className,
     component: Component,
@@ -104,9 +103,7 @@ function LayoutBody(props) {
       )}
       style={style}
       {...other}
-    >
-      {children}
-    </Component>
+    />
   );
 }
 

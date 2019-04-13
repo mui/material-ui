@@ -116,6 +116,4 @@ ListSubheader.defaultProps = {
   inset: false,
 };
 
-ListSubheader.muiName = 'ListSubheader';
-
 export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);

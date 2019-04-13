@@ -34,7 +34,7 @@ function CheckboxListSecondary() {
   };
 
   return (
-    <List dense className={classes.root}>
+    <List className={classes.root}>
       {[0, 1, 2, 3].map(value => (
         <ListItem key={value} button>
           <ListItemAvatar>
@@ -42,7 +42,11 @@ function CheckboxListSecondary() {
           </ListItemAvatar>
           <ListItemText primary={`Line item ${value + 1}`} />
           <ListItemSecondaryAction>
-            <Checkbox onChange={handleToggle(value)} checked={checked.indexOf(value) !== -1} />
+            <Checkbox
+              edge="end"
+              onChange={handleToggle(value)}
+              checked={checked.indexOf(value) !== -1}
+            />
           </ListItemSecondaryAction>
         </ListItem>
       ))}

@@ -85,7 +85,6 @@ export const styles = theme => ({
 
 const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   const {
-    children,
     classes,
     className,
     disableAnimation,
@@ -131,9 +130,7 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
       }}
       ref={ref}
       {...other}
-    >
-      {children}
-    </FormLabel>
+    />
   );
 });
 
