@@ -24,7 +24,7 @@ import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 
 The component cannot hold a ref.
 
-Any other properties supplied will be spread to the root element (native element).
+Any other properties supplied will be provided to the root element (native element).
 
 ## CSS
 

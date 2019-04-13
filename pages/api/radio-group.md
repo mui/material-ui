@@ -26,7 +26,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([FormGroup](/api/form-group/)).
+Any other properties supplied will be provided to the root element ([FormGroup](/api/form-group/)).
 
 ## Inheritance
 

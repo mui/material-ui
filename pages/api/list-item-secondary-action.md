@@ -23,7 +23,7 @@ Must be used as the last child of ListItem to function properly.
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element (native element).
+Any other properties supplied will be provided to the root element (native element).
 
 ## CSS
 

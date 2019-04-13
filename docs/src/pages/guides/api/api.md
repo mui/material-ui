@@ -139,7 +139,8 @@ Going back to the previous button example; since it requires 3 degrees of freedo
 
 ## Glossary
 
-- **BFS**: Breadth-first search.
-- **host element**: a DOM node in the context of `react-dom`.
-- **root component**: the outermost (first when doing BFS) component that renders a host element.
-- **root element**: the outermost (first when doing BFS) element that renders a host element.
+- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
+- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
+- **root component**: the outermost component that renders a host component.
+- **root element**: the outermost element that renders a host component.

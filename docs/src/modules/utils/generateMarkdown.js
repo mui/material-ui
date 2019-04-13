@@ -283,7 +283,7 @@ function generateProps(reactAPI) {
 
   if (reactAPI.spread) {
     text = `${text}
-Any other properties supplied will be spread to the root element (${
+Any other properties supplied will be provided to the root element (${
       reactAPI.inheritance
         ? `[${reactAPI.inheritance.component}](${Router._rewriteUrlForNextExport(
             reactAPI.inheritance.pathname,

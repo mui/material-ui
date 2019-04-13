@@ -35,7 +35,7 @@ Responsively hides children based on the selected implementation.
 
 The component cannot hold a ref.
 
-Any other properties supplied will be spread to the root element (native element).
+Any other properties supplied will be provided to the root element (native element).
 
 ## Demos
 
