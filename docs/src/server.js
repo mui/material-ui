@@ -40,6 +40,7 @@ async function run() {
       });
       return;
     }
+
     nextHandler(req, res);
   });
 
