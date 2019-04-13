@@ -4,6 +4,7 @@ import { mkdir, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { parse as docgenParse } from 'react-docgen';
+import prettier from 'prettier';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
@@ -75,7 +76,7 @@ function getInheritance(src) {
 }
 
 async function buildDocs(options) {
-  const { component: componentObject, pagesMarkdown } = options;
+  const { component: componentObject, pagesMarkdown, prettierConfigPath } = options;
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
@@ -170,7 +171,15 @@ async function buildDocs(options) {
       return;
     }
 
-    writeFileSync(path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`), markdown);
+    const markdownFilename = path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`);
+    const prettierOptions = prettier.resolveConfig.sync(markdownFilename, {
+      config: prettierConfigPath,
+    });
+    writeFileSync(
+      markdownFilename,
+      prettier.format(markdown, { ...prettierOptions, filepath: markdownFilename }),
+    );
+
     writeFileSync(
       path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
       `import 'docs/src/modules/components/bootstrap';
@@ -192,6 +201,7 @@ export default Page;
 }
 
 function run() {
+  const prettierConfigPath = path.join(__dirname, '../../prettier.config.js');
   const pagesMarkdown = findPagesMarkdown()
     .map(markdown => {
       const markdownSource = readFileSync(markdown.filename, 'utf8');
@@ -204,7 +214,7 @@ function run() {
   const components = findComponents(path.resolve(rootDirectory, args[2]));
 
   components.forEach(component => {
-    buildDocs({ component, pagesMarkdown }).catch(error => {
+    buildDocs({ component, pagesMarkdown, prettierConfigPath }).catch(error => {
       console.warn(`error building docs for ${component.filename}`);
       console.error(error);
       process.exit(1);
