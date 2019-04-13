@@ -3,117 +3,129 @@
   <head>
     <title>My page</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
-    <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
+    <meta
+      name="viewport"
+      content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+    />
+    <script
+      src="https://unpkg.com/react@latest/umd/react.development.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/babel-standalone@latest/babel.min.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   </head>
   <body>
     <div id="root"></div>
     <script type="text/babel">
-const {
-  Button,
-  colors,
-  createMuiTheme,
-  CssBaseline,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Icon,
-  MuiThemeProvider,
-  Typography,
-  withStyles,
-} = window['material-ui'];
+      const {
+        Button,
+        colors,
+        createMuiTheme,
+        CssBaseline,
+        Dialog,
+        DialogActions,
+        DialogContent,
+        DialogContentText,
+        DialogTitle,
+        Icon,
+        MuiThemeProvider,
+        Typography,
+        withStyles,
+      } = window['material-ui'];
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: colors.purple[300],
-      main: colors.purple[500],
-      dark: colors.purple[700],
-    },
-    secondary: {
-      light: colors.green[300],
-      main: colors.green[500],
-      dark: colors.green[700],
-    },
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
+      const theme = createMuiTheme({
+        palette: {
+          primary: {
+            light: colors.purple[300],
+            main: colors.purple[500],
+            dark: colors.purple[700],
+          },
+          secondary: {
+            light: colors.green[300],
+            main: colors.green[500],
+            dark: colors.green[700],
+          },
+        },
+        typography: {
+          useNextVariants: true,
+        },
+      });
 
-const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-  icon: {
-    marginRight: theme.spacing.unit,
-  },
-});
+      const styles = theme => ({
+        root: {
+          textAlign: 'center',
+          paddingTop: theme.spacing.unit * 20,
+        },
+        icon: {
+          marginRight: theme.spacing.unit,
+        },
+      });
 
-class Index extends React.Component {
-  state = {
-    open: false,
-  };
+      class Index extends React.Component {
+        state = {
+          open: false,
+        };
 
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
+        handleClose = () => {
+          this.setState({
+            open: false,
+          });
+        };
 
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
+        handleClick = () => {
+          this.setState({
+            open: true,
+          });
+        };
 
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
+        render() {
+          const { classes } = this.props;
+          const { open } = this.state;
 
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div className={classes.root}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Dialog open={open} onClose={this.handleClose}>
-            <DialogTitle>Super Secret Password</DialogTitle>
-            <DialogContent>
-              <DialogContentText>1-2-3-4-5</DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button color="primary" onClick={this.handleClose}>
-                OK
-              </Button>
-            </DialogActions>
-          </Dialog>
-          <Typography variant="h4" gutterBottom>
-            Material-UI
-          </Typography>
-          <Typography variant="subtitle1" gutterBottom>
-            example project
-          </Typography>
-          <Button variant="contained" color="secondary" onClick={this.handleClick}>
-            <Icon className={classes.icon}>fingerprint</Icon>
-            Super Secret Password
-          </Button>
-        </div>
-      </MuiThemeProvider>
-    );
-  }
-}
+          return (
+            <MuiThemeProvider theme={theme}>
+              <div className={classes.root}>
+                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                <CssBaseline />
+                <Dialog open={open} onClose={this.handleClose}>
+                  <DialogTitle>Super Secret Password</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>1-2-3-4-5</DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button color="primary" onClick={this.handleClose}>
+                      OK
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+                <Typography variant="h4" gutterBottom>
+                  Material-UI
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom>
+                  example project
+                </Typography>
+                <Button variant="contained" color="secondary" onClick={this.handleClick}>
+                  <Icon className={classes.icon}>fingerprint</Icon>
+                  Super Secret Password
+                </Button>
+              </div>
+            </MuiThemeProvider>
+          );
+        }
+      }
 
-const App = withStyles(styles)(Index);
+      const App = withStyles(styles)(Index);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+      ReactDOM.render(<App />, document.getElementById('root'));
     </script>
   </body>
 </html>
