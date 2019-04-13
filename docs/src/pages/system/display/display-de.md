@@ -23,7 +23,7 @@
 Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklassen zum Anzeigen und Ausblenden von Elementen nach Gerätetypen. Erstellen Sie keine völlig unterschiedlichen Versionen derselben Seite, sondern blenden Sie Elemente für jede Bildschirmgröße entsprechend aus.
 
 | Bildschirmgröße      | Klasse                                               |
-|:-------------------- |:---------------------------------------------------- |
+| :------------------- | :--------------------------------------------------- |
 | Für alle versteckt   | `display="none"`                                     |
 | Versteckt nur bei xs | `display={{ xs: 'none', sm: 'block' }}`              |
 | Versteckt nur bei sm | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
@@ -67,6 +67,6 @@ import { display } from '@material-ui/system';
 ```
 
 | Inportname     | Eigenschaften  | CSS-Eigenschaft | Theme-Schlüssel |
-|:-------------- |:-------------- |:--------------- |:--------------- |
+| :------------- | :------------- | :-------------- | :-------------- |
 | `displayRaw`   | `display`      | `display`       | none            |
 | `displayPrint` | `displayPrint` | `display`       | none            |

@@ -2,6 +2,7 @@
 title: 文字提示 React 组件
 components: Tooltip
 ---
+
 # 文字提示
 
 <p class="description">当用户鼠标悬浮，聚焦或者轻触一个元素时，文字提示会显示有意义的文本。</p>
@@ -22,13 +23,13 @@ components: Tooltip
 
 如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入，这里有一个如何为主题提供工具提示的示例。
 
-⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
+⚠️ 虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 
 ## 自定义子元素
 
-工具提示需要将DOM事件侦听器应用于其子元素。 如果子项是自定义的React元素，则需要确保它将其属性传播到基础DOM元素。
+工具提示需要将 DOM 事件侦听器应用于其子元素。 如果子项是自定义的 React 元素，则需要确保它将其属性传播到基础 DOM 元素。
 
 ```jsx
 function MyComponent(props) {
@@ -71,7 +72,7 @@ function MyComponent(props) {
 
 ## 对于 disabled 的元素
 
-默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 要允许已禁用的元素激活文字提示，请添加一个简单的包装元素，如`span`。
+默认情况下，`<Button>`等 disabled 的元素不会触发用户交互，因此`Tooltip`不会在 hover 等正常事件上激活显示。 要允许已禁用的元素激活文字提示，请添加一个简单的包装元素，如`span`。
 
 {{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 
@@ -83,8 +84,8 @@ function MyComponent(props) {
 
 ## 显示和隐藏
 
-当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 可以通过` enterDelay `和` leaveDelay `属性来控制显示及隐藏文字提示的延迟，如上面的控制文字提示演示中所示。
+当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 可以通过`enterDelay`和`leaveDelay`属性来控制显示及隐藏文字提示的延迟，如上面的控制文字提示演示中所示。
 
-在移动设备上，当用户长按元素并在延迟1500ms后，将显示文字提示。 您可以使用`disableTouchListener`属性禁用此功能。
+在移动设备上，当用户长按元素并在延迟 1500ms 后，将显示文字提示。 您可以使用`disableTouchListener`属性禁用此功能。
 
 {{"demo": "pages/demos/tooltips/DelayTooltips.js"}}

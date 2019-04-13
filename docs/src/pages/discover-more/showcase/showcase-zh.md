@@ -2,6 +2,6 @@
 
 <p class="description">以下是使用Material-UI的一些公共应用程序的列表。</p>
 
-想要添加你的应用程序吗？ 发现了一个不再有效或不再使用Material-UI的应用程序？ 请在[GitHub](https://github.com/mui-org/material-ui)上提交Pull Request来更新[此页面](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/discover-more/showcase/appList.js) ！
+想要添加你的应用程序吗？ 发现了一个不再有效或不再使用 Material-UI 的应用程序？ 请在[GitHub](https://github.com/mui-org/material-ui)上提交 Pull Request 来更新[此页面](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/discover-more/showcase/appList.js) ！
 
 {{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true}}

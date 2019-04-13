@@ -55,7 +55,7 @@ interface PaletteIntention {
   main: string;
   dark?: string;
   contrastText?: string;
-};
+}
 ```
 
 **Using a color object**
@@ -222,7 +222,7 @@ const theme = createMuiTheme({
 
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
-⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will *not* be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -237,7 +237,8 @@ const raleway = {
     local('Raleway-Regular'),
     url(${RalewayWoff2}) format('woff2')
   `,
-  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
 };
 ```
 
@@ -308,7 +309,7 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
@@ -334,7 +335,7 @@ const theme = createMuiTheme({
   spacing: 4,
 });
 
-theme.spacing(2) // = 4 * 2
+theme.spacing(2); // = 4 * 2
 ```
 
 - or a function
@@ -344,7 +345,7 @@ const theme = createMuiTheme({
   spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
 });
 
-theme.spacing(2) // = 0.5rem = 8px
+theme.spacing(2); // = 0.5rem = 8px
 ```
 
 ### Multiple arity
@@ -375,8 +376,10 @@ When the configuration variables aren't powerful enough, you can take advantage 
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Name of the component ⚛️ / style sheet
-      text: { // Name of the rule
+    MuiButton: {
+      // Name of the component ⚛️ / style sheet
+      text: {
+        // Name of the rule
         color: 'white', // Some CSS
       },
     },
@@ -398,7 +401,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application
     },
   },
 });
@@ -437,11 +440,11 @@ Generate a theme base on the options received.
 
 #### Argumentos
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
+1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
 
 #### Returns
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (_Object_): A complete, ready to use theme object.
 
 #### Exemplos
 

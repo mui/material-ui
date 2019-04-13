@@ -2,6 +2,7 @@
 title: Нижняя панель навигации, компонент React
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation (Нижняя панель навигации)
 
 <p class="description">Нижние панели навигации позволяют перемещаться между основными пунктами назначения в приложении.</p>

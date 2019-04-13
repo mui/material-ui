@@ -2,6 +2,7 @@
 title: Breadcrumbs React component
 components: Breadcrumbs, Link, Typography
 ---
+
 # Breadcrumbs
 
 <p class="description">Breadcrumbs allow users to make selections from a range of values.</p>

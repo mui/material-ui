@@ -41,7 +41,7 @@ Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 > Haftungsausschluss: Die Daten werden als allgemeine Hinweise angeboten und können von uns bei Bedarf angepasst werden, um die Lieferung eines qualitativ hochwertigen Codes sicherzustellen.
 
 | Datum       | Version                    |
-|:----------- |:-------------------------- |
+| :---------- | :------------------------- |
 | Januar 2019 | `@material-ui/core` v4.0.0 |
 | Juli 2019   | `@material-ui/core` v5.0.0 |
 

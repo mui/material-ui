@@ -8,10 +8,10 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 
 #### Arguments
 
-1. `options` (*Object* [optional]): 
-    - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
-    - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
-    - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
+1. `options` (_Object_ [optional]):
+   - `options.dangerouslyUseGlobalCSS` (_Boolean_ [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
+   - `options.productionPrefix` (_String_ [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
+   - `options.seed` (_String_ [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
 
 #### Returns
 
@@ -29,9 +29,7 @@ const generateClassName = createGenerateClassName({
 });
 
 export default function App() {
-  return (
-    <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
-  );
+  return <StylesProvider generateClassName={generateClassName}>...</StylesProvider>;
 }
 ```
 
@@ -41,7 +39,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 #### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object.
+1. `styles` (_Function | Object_): A function generating the styles or a styles object.
 
 #### Returns
 
@@ -72,13 +70,13 @@ Link a style sheet with a function component using the **hook** pattern.
 
 #### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]): 
-    - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-    - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+1. `styles` (_Function | Object_): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
+2. `options` (_Object_ [optional]):
+   - `options.defaultTheme` (_Object_ [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+   - `options.withTheme` (_Boolean_ [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+   - `options.name` (_String_ [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+   - `options.flip` (_Boolean_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Returns
 
@@ -151,9 +149,7 @@ const style = sheets.getStyleElement();
 
 const response = (
   <html lang="en" dir="ltr">
-    <Head>
-      {style}
-    </Head>
+    <Head>{style}</Head>
     <body>
       <Main />
     </body>
@@ -168,13 +164,13 @@ Link a style sheet with a function component using the **styled components** pat
 #### Arguments
 
 1. `Component`: The component that will be wrapped.
-2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
-3. `options` (*Object* [optional]): 
-    - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-    - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+2. `styles` (_Function | Object_): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
+3. `options` (_Object_ [optional]):
+   - `options.defaultTheme` (_Object_ [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+   - `options.withTheme` (_Boolean_ [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+   - `options.name` (_String_ [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+   - `options.flip` (_Boolean_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Returns
 
@@ -190,9 +186,7 @@ const MyComponent = styled('div')({
   backgroundColor: 'red',
 });
 
-const MyThemeComponent = styled('div')(({
-  theme
-}) => ({
+const MyThemeComponent = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
@@ -211,7 +205,7 @@ This component allows you to change the behavior of the styling solution. It mak
 
 It should preferably be used at **the root of your component tree**.
 
-#### PropsBy default, the styles are injected last in the 
+#### PropsBy default, the styles are injected last in the
 
 <head>
   element of your page. They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components. If you want to override the Material-UI's styles, set this prop.</td> </tr> 
@@ -243,14 +237,14 @@ import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/styles';
 
 function App() {
-  return (
-    &lt;StylesProvider jss={jss}&gt;...&lt;/StylesProvider&gt;
-  );
+return (
+&lt;StylesProvider jss={jss}&gt;...&lt;/StylesProvider&gt;
+);
 }
 
 ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
 </code></pre>
-  
+
   <h2>
     <code>ThemeProvider</code>
   </h2>
@@ -330,14 +324,14 @@ import { ThemeProvider } from '@material-ui/styles';
 const theme = {};
 
 function App() {
-  return (
-    &lt;ThemeProvider theme={theme}&gt;...&lt;/ThemeProvider&gt;
-  );
+return (
+&lt;ThemeProvider theme={theme}&gt;...&lt;/ThemeProvider&gt;
+);
 }
 
 ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
 </code></pre>
-  
+
   <h2>
     <code>useTheme() =&gt; theme</code>
   </h2>
@@ -362,12 +356,12 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
 import { useTheme } from '@material-ui/styles';
 
 export default function MyComponent() {
-  const theme = useTheme();
+const theme = useTheme();
 
-  return &lt;div&gt;{`spacing ${theme.spacing}`}&lt;/div&gt;;
+return &lt;div&gt;{`spacing ${theme.spacing}`}&lt;/div&gt;;
 }
 </code></pre>
-  
+
   <h2>
     <code>withStyles(styles, [options]) =&gt; higher-order component</code>
   </h2>
@@ -441,20 +435,20 @@ export default function MyComponent() {
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
-  root: {
-    backgroundColor: 'red',
-  },
+root: {
+backgroundColor: 'red',
+},
 };
 
 class MyComponent extends React.Component {
-  render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
-  }
+render () {
+return &lt;div className={this.props.classes.root} /&gt;;
+}
 }
 
 export default withStyles(styles)(MyComponent);
 </code></pre>
-  
+
   <p>
     Also, you can use as <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators">decorators</a> like so:
   </p>
@@ -463,21 +457,21 @@ export default withStyles(styles)(MyComponent);
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
-  root: {
-    backgroundColor: 'red',
-  },
+root: {
+backgroundColor: 'red',
+},
 };
 
 @withStyles(styles)
 class MyComponent extends React.Component {
-  render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
-  }
+render () {
+return &lt;div className={this.props.classes.root} /&gt;;
+}
 }
 
 export default MyComponent
 </code></pre>
-  
+
   <h2>
     <code>withTheme(Component) =&gt; Component</code>
   </h2>
@@ -512,7 +506,7 @@ export default MyComponent
 import { withTheme } from '@material-ui/styles';
 
 function MyComponent(props) {
-  return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
+return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
 }
 
 export default withTheme(MyComponent);

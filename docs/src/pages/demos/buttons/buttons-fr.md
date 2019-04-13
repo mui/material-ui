@@ -2,6 +2,7 @@
 title: Composant React Button
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # Buttons (Boutons)
 
 <p class="description">Les boutons permettent aux utilisateurs de prendre des mesures et de faire des choix en un seul clic.</p>
@@ -104,7 +105,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-// required for react-router-dom < 5.0.0 
+// required for react-router-dom < 5.0.0
 // see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
 const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
@@ -116,15 +117,15 @@ const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={r
 ou si vous souhaitez éviter les collisions de propriétés :
 
 ```jsx
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 // use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
+const MyLink = React.forwardRef((props, ref) => (
+  <Link to="/open-collective" {...props} innerRef={ref} />
+));
 
-<Button component={MyLink}>
-  Link
-</Button>
+<Button component={MyLink}>Link</Button>;
 ```
 
-*Remarque: la création de `MyLink` est nécessaire pour éviter un démontage inattendu. Vous en saurez plus à ce sujet dans notre [guide des propriétés des composants](/guides/composition/#component-property).*
+_Remarque: la création de `MyLink` est nécessaire pour éviter un démontage inattendu. Vous en saurez plus à ce sujet dans notre [guide des propriétés des composants](/guides/composition/#component-property)._

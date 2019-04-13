@@ -2,6 +2,7 @@
 title: Диалог, компонент React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
+
 # Диалоги
 
 <p class="description">Диалоги информируют пользователей о задаче и могут содержать критическую информацию, требовать решения или включать несколько задач.</p>
@@ -69,7 +70,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## Отзывчивый полноэкранный режим
 
-Вы можете сделать диалог в полноэкранном режиме, используя `withMobileDialog`. По умолчанию `withMobileDialog () (Dialog)` переходит в полноэкранный режим когда [размер экрана](/layout/basics/) *равен или ниже* значения `sm`. Вы можете выбрать собственную точку остановки, например `xs`, передав аргумент `breakpoint`: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+Вы можете сделать диалог в полноэкранном режиме, используя `withMobileDialog`. По умолчанию `withMobileDialog () (Dialog)` переходит в полноэкранный режим когда [размер экрана](/layout/basics/) _равен или ниже_ значения `sm`. Вы можете выбрать собственную точку остановки, например `xs`, передав аргумент `breakpoint`: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
 
 {{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 

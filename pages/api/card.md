@@ -12,14 +12,12 @@ filename: /packages/material-ui/src/Card/Card.js
 import Card from '@material-ui/core/Card';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">raised</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the card will use raised styling. |
+| Name                                   | Type                                  | Default                                 | Description                                                                                         |
+| :------------------------------------- | :------------------------------------ | :-------------------------------------- | :-------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |                                         | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">raised</span>  | <span class="prop-type">bool</span>   | <span class="prop-default">false</span> | If `true`, the card will use raised styling.                                                        |
 
 The `ref` is forwarded to the root element.
 
@@ -30,10 +28,9 @@ Any other properties supplied will be spread to the root element ([Paper](/api/p
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
+| Name                                | Description                         |
+| :---------------------------------- | :---------------------------------- |
+| <span class="prop-name">root</span> | Styles applied to the root element. |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Card/Card.js)
@@ -50,4 +47,3 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [Cards](/demos/cards/)
-

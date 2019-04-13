@@ -110,7 +110,7 @@ import { flexbox } from '@material-ui/system';
 ```
 
 | Импорт           | Свойство         | Свойство CSS      | В теме |
-|:---------------- |:---------------- |:----------------- |:------ |
+| :--------------- | :--------------- | :---------------- | :----- |
 | `flexDirection`  | `flexDirection`  | `flex-direction`  | none   |
 | `flexWrap`       | `flexWrap`       | `flex-wrap`       | none   |
 | `justifyContent` | `justifyContent` | `justify-content` | none   |

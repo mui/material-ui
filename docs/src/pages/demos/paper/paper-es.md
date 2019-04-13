@@ -2,6 +2,7 @@
 title: Componente React Papel
 components: Paper
 ---
+
 # Papel
 
 <p class="description">En Material Design, las propiedades físicas del papel son trasladadas a la pantalla. </p>

@@ -2,6 +2,7 @@
 title: Панель, компонент React
 components: Drawer, SwipeableDrawer
 ---
+
 # Панель
 
 <p class="description">Навигационные панели предназначены для предоставления ссылок на различные части вашего приложения. Боковые панели содержат дополнительную информацию и закрепляются по левую или правую сторону окна браузера.</p>
@@ -31,7 +32,7 @@ components: Drawer, SwipeableDrawer
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
 ## Приспосабливающаяся панель

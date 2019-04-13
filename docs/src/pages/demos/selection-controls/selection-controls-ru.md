@@ -2,6 +2,7 @@
 title: Checkbox, Radio, Switch React component
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
+
 # Элементы выбора
 
 <p class="description">С помощью элементов выбора можно выбирать опции из списка.</p>
@@ -89,10 +90,7 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 Когда метка не может быть использована, необходимо добавить атрибут непосредственно на поле ввода. В этом случае можно применить дополнительный атрибут (например, `aria-label`, `aria-labelledby`, `title`) через свойство `inputProps`.
 
 ```jsx
-<Checkbox
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
-/>
+<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />
 ```
 
 ## Guidance

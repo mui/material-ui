@@ -2,7 +2,7 @@
 
 <p class="description">您是否正在寻找一个范例项目来开始？</p>
 
-您可以在[GitHub存储库中](https://github.com/mui-org/material-ui)的[`/examples`](https://github.com/mui-org/material-ui/tree/next/examples)的文件夹下面，找到一些我们托管一些范例项目：
+您可以在[GitHub 存储库中](https://github.com/mui-org/material-ui)的[`/examples`](https://github.com/mui-org/material-ui/tree/next/examples)的文件夹下面，找到一些我们托管一些范例项目：
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
@@ -20,7 +20,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 如果你想从一个更完整的和现实世界的例子开始，你可以看看：
 
-- [Material Sense](https://github.com/alexanmtz/material-sense)，包括： 
+- [Material Sense](https://github.com/alexanmtz/material-sense)，包括：
   - 使用 recharts 的图表
   - 在导航示例中涵盖了 React Router
   - 一个具有用于生产环境创造的 Nginx 服务器的 Docker container(Docker 容器)。

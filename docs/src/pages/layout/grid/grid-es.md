@@ -2,6 +2,7 @@
 title: Componente Grid React
 components: Grid
 ---
+
 # Grid
 
 <p class="description">El grid responsive de Material Design se adapta al tamaño y orientación de la pantalla, garantizando la consistencia en todos los diseños.</p>
@@ -13,7 +14,7 @@ La [cuadrícula](https://material.io/design/layout/responsive-layout-grid.html) 
 El sistema de cuadrícula se implementa con el componente `Grid`:
 
 - Utiliza el [módulo Flexible Box de CSS](https://www.w3.org/TR/css-flexbox-1/) para una gran flexibilidad.
-- Hay dos tipos de layout:*contenedores (containers)* y *elementos (items)*.
+- Hay dos tipos de layout:_contenedores (containers)_ y _elementos (items)_.
 - Los anchos de los elementos se establecen en porcentajes, por lo que siempre son fluidos y tienen un tamaño relativo al elemento principal.
 - Los elementos tienen padding para crear el espacio entre los elementos individuales.
 - Hay cinco puntos de interrupción de la cuadrícula: xs, sm, md, lg y xl.
@@ -52,7 +53,7 @@ Debajo de esta línea hay una demostración interactiva que permite explorar el 
 
 ## Auto-layout
 
-El Auto-layout (disposición del diseño automática) hace que los *items* compartan equitativamente el espacio disponible. Eso significa que también se puede asignar el ancho a un *item* y que el resto cambiarán de tamaño automáticamente alrededor de éste.
+El Auto-layout (disposición del diseño automática) hace que los _items_ compartan equitativamente el espacio disponible. Eso significa que también se puede asignar el ancho a un _item_ y que el resto cambiarán de tamaño automáticamente alrededor de éste.
 
 {{"demo": "pages/layout/grid/AutoGrid.js"}}
 
@@ -87,13 +88,13 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 Existe una limitación con el margen negativo que utilizamos para implementar el espaciado entre los elementos. Un scroll horizontal aparecerá si un margen negativo va más allá del `<body>`. Hay 3 soluciones disponibles: 1. No usar la función de espaciado e implementarla en el espacio de usuario `spacing={0}` (por defecto). 2. Aplicar padding al padre con al menos la mitad del valor de espaciado aplicado al hijo:
 
 ```jsx
-  <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-      </Grid>
-    </div>
-  </body>
+<body>
+  <div style={{ padding: 20 }}>
+    <Grid container spacing={5}>
+      //...
+    </Grid>
+  </div>
+</body>
 ```
 
 1. Añadiendo `overflow-x: hidden;` al padre.

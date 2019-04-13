@@ -1,6 +1,7 @@
 ---
 components: Icon, SvgIcon
 ---
+
 # Иконки
 
 <p class="description">Руководство и рекомендации по использованию иконок в Material-UI.</p>
@@ -32,7 +33,7 @@ Material-UI предоставляет два компонента для ото
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) представлена как `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) представлена как `@material-ui/icons/DeleteForever`
 
-Для *"тематических"* иконок к названию иконки добавляется имя темы. Например
+Для _"тематических"_ иконок к названию иконки добавляется имя темы. Например
 
 - The Outlined [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) icon is exposed as `@material-ui/icons/DeleteOutlined`
 - The Rounded [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) icon is exposed as `@material-ui/icons/DeleteRounded`
@@ -62,7 +63,7 @@ import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 ```
 
-Примечание: такой способ импорта именованных экспортов приведет к тому, что *каждая иконка* будет включена в проект, поэтому не рекомендуется его использовать без настройки [tree-shaking](https://webpack.js.org/guides/tree-shaking/). Кроме того, это может повлиять на производительность горячей замены модулей.
+Примечание: такой способ импорта именованных экспортов приведет к тому, что _каждая иконка_ будет включена в проект, поэтому не рекомендуется его использовать без настройки [tree-shaking](https://webpack.js.org/guides/tree-shaking/). Кроме того, это может повлиять на производительность горячей замены модулей.
 
 ### Больше SVG-иконок
 
@@ -73,7 +74,7 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 Компонент `Icon` отображает иконку из любого иконочного шрифта с поддержкой лигатур. Предварительно необходимо включить в проект шрифт, такой как [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web), с помощью, например, Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Icon` корректно установит имя класса для иконочного шрифта Material. Для прочих шрифтов необходимо предоставить имя класса с помощью свойства `className` компонента Icon.
@@ -83,7 +84,7 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>
+<Icon>star</Icon>;
 ```
 
 По умолчанию иконка наследует текущий цвет текста. При желании вы можете установить цвет иконки с помощью одного из свойств цвета темы: `primary`, `secondary`, `action`, `error` или `disabled`.
@@ -128,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
-</IconButton>
+</IconButton>;
 ```
 
 ### Декоративные шрифтовые иконки

@@ -11,6 +11,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 Next, create a new issue that briefly explains the problem, and provides a bit of background as to the circumstances that triggered it, and steps to reproduce it.
 
 For code issues please include:
+
 - Material-UI version
 - React version
 - Browser version

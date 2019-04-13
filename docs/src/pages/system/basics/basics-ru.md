@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-`@material-ui/system` provides low-level utility functions called "*style functions*" for building powerful design systems. Some of the key features:
+`@material-ui/system` provides low-level utility functions called "_style functions_" for building powerful design systems. Some of the key features:
 
 - ⚛️ Access the theme values directly from the component props.
 - 🦋 Encourage UI consistency.
@@ -18,7 +18,7 @@ It's important to understand that this package exposes pure (side-effect free) s
 
 ### Demo
 
-In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [use JSS](#interoperability). The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
+In the rest of this _Getting Started_ section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [use JSS](#interoperability). The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
 
 ```jsx
 import { palette, spacing, typography } from '@material-ui/system';
@@ -31,11 +31,11 @@ const Box = styled.div`${palette}${spacing}${typography}`;
   color="primary.main"
   bgcolor="background.paper"
   fontFamily="h6.fontFamily"
-  fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' } }
-  p={{ xs: 2, sm: 3, md: 4} }
+  fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+  p={{ xs: 2, sm: 3, md: 4 }}
 >
   @material-ui/system
-</Box>
+</Box>;
 ```
 
 {{"demo": "pages/system/basics/Demo.js"}}
@@ -66,7 +66,9 @@ export default Box;
 This Box component now supports new [spacing properties](/system/spacing/#api) and [color properties](/system/palette/#api). For instance, you can provide a padding property: `p` and a color property: `color`.
 
 ```jsx
-<Box p="1rem" color="grey">Give me some space!</Box>
+<Box p="1rem" color="grey">
+  Give me some space!
+</Box>
 ```
 
 The component can be styled providing any valid CSS values.
@@ -76,8 +78,8 @@ The component can be styled providing any valid CSS values.
 But most of the time, you want to rely on a theme's values to increase the UI consistency. It's preferable to have a predetermined set of padding and color values. Import the theme provider of your styling solution.
 
 ```jsx
-import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
 
 const theme = {
   spacing: 4,
@@ -87,14 +89,10 @@ const theme = {
 };
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      {/* children */}
-    </ThemeProvider>
-  )
+  return <ThemeProvider theme={theme}>{/* children */}</ThemeProvider>;
 }
 
-export default App
+export default App;
 ```
 
 Now, you can provide a spacing multiplier value:
@@ -143,7 +141,12 @@ If you are already using `@material-ui/core`, we encourage you to start with the
 import { palette, spacing, compose } from '@material-ui/system';
 import { styled } from '@material-ui/styles';
 
-const Box = styled(compose(spacing, palette));
+const Box = styled(
+  compose(
+    spacing,
+    palette,
+  ),
+);
 ```
 
 {{"demo": "pages/system/basics/JSS.js"}}
@@ -244,11 +247,7 @@ const Box = styled.div`
   )}
 `;
 
-<Box
-  p={2}
-  sm={{ p: 3 } }
-  md={{ p: 4 } }
-/>
+<Box p={2} sm={{ p: 3 }} md={{ p: 4 }} />;
 
 /**
  * Saídas:
@@ -273,11 +272,12 @@ We don't support all the CSS properties. It's possible that you want to support 
 
 #### Аргументы
 
-1. `options` (*Object*): 
-  - `options.prop` (*String*): The property the style function will be triggered on.
-  - `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
-  - `options.themeKey` (*String* [optional]): The theme path prefix.
-  - `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
+1. `options` (_Object_):
+
+- `options.prop` (_String_): The property the style function will be triggered on.
+- `options.cssProperty` (_String|Boolean_ [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
+- `options.themeKey` (_String_ [optional]): The theme path prefix.
+- `options.transform` (_Function_ [optional]): Apply a transformation before outputing a CSS value.
 
 #### Возвращает
 
@@ -286,7 +286,7 @@ We don't support all the CSS properties. It's possible that you want to support 
 #### Примеры
 
 ```js
-import { style } from '@material-ui/system'
+import { style } from '@material-ui/system';
 
 const borderColor = style({
   prop: 'bc',
@@ -307,7 +307,7 @@ Merge multiple style functions into one.
 #### Примеры
 
 ```js
-import { style, compose } from '@material-ui/system'
+import { style, compose } from '@material-ui/system';
 
 export const textColor = style({
   prop: 'color',
@@ -320,7 +320,10 @@ export const bgcolor = style({
   themeKey: 'palette',
 });
 
-const palette = compose(textColor, bgcolor);
+const palette = compose(
+  textColor,
+  bgcolor,
+);
 ```
 
 ## Variants
@@ -360,7 +363,7 @@ const theme = {
 };
 
 // Renders the theme.typography.h1 style object.
-<Text variant="h1">variant=h1</Text>
+<Text variant="h1">variant=h1</Text>;
 ```
 
 {{"demo": "pages/system/basics/Variant.js"}}
@@ -384,7 +387,7 @@ const Box = styled.div`
 
 <Box color="white" css={{ bgcolor: 'palevioletred', p: 1, textTransform: 'uppercase' }}>
   CssProp
-</Box>
+</Box>;
 ```
 
 {{"demo": "pages/system/basics/CssProp.js"}}
@@ -407,7 +410,7 @@ In practice, a Box component can save you a lot of time. In this example, we dem
 - Tachyons was later on (2017) followed by [Tailwind CSS](https://tailwindcss.com/). They have made Atomic CSS more popular.
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. We have used the way they group their "Helper classes" as inspiration.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions. It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
-- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
+- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)

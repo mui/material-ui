@@ -4,7 +4,7 @@
 
 ## Bundle size matters
 
-Размер пакета Material-UI достаточно внушителен. We take size snapshots on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). Combined with [dangerJS](https://danger.systems/js/) we can inspect [detailed bundle size changes]((https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459)) on every Pull Request.
+Размер пакета Material-UI достаточно внушителен. We take size snapshots on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). Combined with [dangerJS](https://danger.systems/js/) we can inspect [detailed bundle size changes](<(https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459)>) on every Pull Request.
 
 ## How to reduce the bundle size?
 
@@ -43,12 +43,12 @@ Pick one of the following plugins:
 - [babel-transform-imports](https://bitbucket.org/amctheatres/babel-transform-imports) has a different api than a `babel-plugin-import` but does same thing.
 - [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
 
-**Important note**: Both of these options *should be temporary* until you add tree shaking capabilities to your project.
+**Important note**: Both of these options _should be temporary_ until you add tree shaking capabilities to your project.
 
 ## ECMAScript
 
 The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
-We also publish a second version of the components to target **evergreen browsers**. Вы можете найти эту версию в [каталоге ` / es ` ](https://unpkg.com/@material-ui/core@next/es/),. All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+We also publish a second version of the components to target **evergreen browsers**. Вы можете найти эту версию в [каталоге `/ es` ](https://unpkg.com/@material-ui/core@next/es/),. All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
 ⚠️ In order to minimize duplication of code in users' bundles, we **strongly discourage** library authors from using the `/es` folder.

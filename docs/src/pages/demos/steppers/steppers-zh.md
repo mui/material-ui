@@ -2,6 +2,7 @@
 title: 步进器React组件
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
+
 # 步进器
 
 <p class="description">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>
@@ -26,7 +27,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ## 水平的步进器
 
-可以通过更改一个初始值为0的当前步骤值`activeStep`来控制`Stepper` 使用`orientation`属性设置` Stepper </ code>方向。</p>
+可以通过更改一个初始值为 0 的当前步骤值`activeStep`来控制`Stepper` 使用`orientation`属性设置` Stepper </ code>方向。</p>
 
 <p>使用<code> orientation `属性设置`Step`组件方向。 请注意，您可以在跳过可选步骤时进行管理。 一旦为特定步骤确定了这一点，就必须设置` completed = {false} `以表示即使活动步骤索引超出了可选步骤，它也不会实际完成。
 
@@ -36,15 +37,15 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 非线性步进器允许用户在任何点输入多步流程。
 
-此示例类似于常规的水平步进器，但步骤不再基于` activeStep `属性自动设置` disabled = {true} `。
+此示例类似于常规的水平步进器，但步骤不再基于`activeStep`属性自动设置`disabled = {true}`。
 
-我们在这里使用` StepButton `来演示可点击的步骤标签以及设置` completed `。但是因为可以以非线性方式访问步骤，所以这取决于您自己的实现确定所有步骤何时完成（或者甚至是否需要完成）。
+我们在这里使用`StepButton`来演示可点击的步骤标签以及设置`completed`。但是因为可以以非线性方式访问步骤，所以这取决于您自己的实现确定所有步骤何时完成（或者甚至是否需要完成）。
 
 {{"demo": "pages/demos/steppers/HorizontalNonLinearStepper.js"}}
 
 ## 水平线性 - 可替换标签
 
-通过在` Stepper `组件上设置` alternativeLabel `属性，可以将标签放置在步骤图标下方。
+通过在`Stepper`组件上设置`alternativeLabel`属性，可以将标签放置在步骤图标下方。
 
 {{"demo": "pages/demos/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
 
@@ -64,9 +65,9 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Stepperr)的主要颜色的示例
 
-此组件使用自定义的 `StepConnector` 元素, 它根据 `active` 更改边框颜色, 并 ` completed ` 状态。
+此组件使用自定义的 `StepConnector` 元素, 它根据 `active` 更改边框颜色, 并 `completed` 状态。
 
-⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
+⚠️ 虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 

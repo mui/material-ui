@@ -6,7 +6,7 @@ Material-UI стремится обеспечить прочную основу 
 
 ## Material-UI's styling solution
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that this is the future:
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a _CSS-in-JS_ solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that this is the future:
 
 - [Унифицированный язык стилей](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [Конвертировать SCSS (Sass) в CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
@@ -21,7 +21,7 @@ Material-UI's styling solution is inspired by many other styling libraries like 
 
 ## Инструкция по установке
 
-Для установки и сохранения в вашем ` package.json ` зависимости, запустите:
+Для установки и сохранения в вашем `package.json` зависимости, запустите:
 
 ```sh
 // with npm
@@ -132,9 +132,9 @@ const useStyles = makeStyles({
     '& p': {
       color: 'green',
       '& span': {
-        color: 'blue'
-      }
-    }
+        color: 'blue',
+      },
+    },
   },
 });
 ```
@@ -182,7 +182,7 @@ This button component has a color property that changes its color:
 
 ## Stress test
 
-In the following stress test, you can update the *theme color* and the *background-color property* live:
+In the following stress test, you can update the _theme color_ and the _background-color property_ live:
 
 ```js
 const useStyles = makeStyles(theme => ({

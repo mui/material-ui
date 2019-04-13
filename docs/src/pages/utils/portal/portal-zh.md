@@ -2,6 +2,7 @@
 title: React Portal 组件
 components: Portal
 ---
+
 # Portal
 
 <p class="description">Portal 组件将其子节点渲染到当前组件层次结构之外的新 "子树" 中。</p>

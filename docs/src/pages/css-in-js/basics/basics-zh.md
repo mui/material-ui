@@ -6,18 +6,18 @@ Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见
 
 ## Material-UI 的样式解决方案
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a _CSS-in-JS_ solution. 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
 
 - [统一的样式语言](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [将 SCSS（Sass）转换为 CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
 Material-UI's styling solution is inspired by many other styling libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
-- 💅你可以期待 [与样式组件相同的优势](https://www.styled-components.com/docs/basics#motivation)。
+- 💅 你可以期待 [与样式组件相同的优势](https://www.styled-components.com/docs/basics#motivation)。
 - 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
 - 🧩 It's extensible via a [plugins](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
-- ⚡️它的核心使用 [JSS](https://github.com/cssinjs/jss)。 It's a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦小于 [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles)。
+- ⚡️ 它的核心使用 [JSS](https://github.com/cssinjs/jss)。 It's a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
+- 📦 小于 [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles)。
 
 ## 安装
 
@@ -33,7 +33,7 @@ yarn add @material-ui/styles
 
 ## 入门
 
-我们实现了3中不同的API。 它们都具有相同的底层逻辑。
+我们实现了 3 中不同的 API。 它们都具有相同的底层逻辑。
 
 ### Hook API
 
@@ -132,9 +132,9 @@ const useStyles = makeStyles({
     '& p': {
       color: 'green',
       '& span': {
-        color: 'blue'
-      }
-    }
+        color: 'blue',
+      },
+    },
   },
 });
 ```
@@ -182,7 +182,7 @@ function MyComponent() {
 
 ## Stress test
 
-In the following stress test, you can update the *theme color* and the *background-color property* live:
+In the following stress test, you can update the _theme color_ and the _background-color property_ live:
 
 ```js
 const useStyles = makeStyles(theme => ({

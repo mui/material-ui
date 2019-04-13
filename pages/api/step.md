@@ -12,17 +12,15 @@ filename: /packages/material-ui/src/Step/Step.js
 import Step from '@material-ui/core/Step';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">active</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Sets the step as active. Is passed to child components. |
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Should be `Step` sub-components such as `StepLabel`, `StepContent`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">completed</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
+| Name                                     | Type                                  | Default                                 | Description                                                                                                                  |
+| :--------------------------------------- | :------------------------------------ | :-------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">active</span>    | <span class="prop-type">bool</span>   | <span class="prop-default">false</span> | Sets the step as active. Is passed to child components.                                                                      |
+| <span class="prop-name">children</span>  | <span class="prop-type">node</span>   |                                         | Should be `Step` sub-components such as `StepLabel`, `StepContent`.                                                          |
+| <span class="prop-name">classes</span>   | <span class="prop-type">object</span> |                                         | Override or extend the styles applied to the component. See [CSS API](#css) below for more details.                          |
+| <span class="prop-name">completed</span> | <span class="prop-type">bool</span>   | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components.                                                                   |
+| <span class="prop-name">disabled</span>  | <span class="prop-type">bool</span>   | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
 
 The `ref` is forwarded to the root element.
 
@@ -33,14 +31,13 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
-| <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
-| <span class="prop-name">completed</span> | Styles applied to the root element if `completed={true}`.
+| Name                                            | Description                                                       |
+| :---------------------------------------------- | :---------------------------------------------------------------- |
+| <span class="prop-name">root</span>             | Styles applied to the root element.                               |
+| <span class="prop-name">horizontal</span>       | Styles applied to the root element if `orientation="horizontal"`. |
+| <span class="prop-name">vertical</span>         | Styles applied to the root element if `orientation="vertical"`.   |
+| <span class="prop-name">alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.  |
+| <span class="prop-name">completed</span>        | Styles applied to the root element if `completed={true}`.         |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Step/Step.js)
@@ -52,4 +49,3 @@ you need to use the following style sheet name: `MuiStep`.
 ## Demos
 
 - [Steppers](/demos/steppers/)
-

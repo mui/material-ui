@@ -2,6 +2,7 @@
 title: Componente React Migas de pan
 components: Breadcrumbs, Link, Typography
 ---
+
 # Migas de pan
 
 <p class="description">Las Migas de pan permiten a los usuarios realizar selecciones desde un rango de valores.</p>

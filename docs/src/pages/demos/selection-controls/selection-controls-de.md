@@ -2,6 +2,7 @@
 title: Checkbox, Radio, Switch React-Komponente
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
+
 # Auswahlsteuerelemente (Selection Controls)
 
 <p class="description">Auswahlsteuerungen ermöglichen dem Benutzer die Auswahl von Optionen.</p>
@@ -89,10 +90,7 @@ Alle Formularsteuerelemente sollten Beschriftungen haben. Dazu gehören Optionsf
 Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attribut direkt hinzugefügt werden. In diesem Fall können Sie das zusätzliche Attribut (z. B. `aria-label`, `aria-labelby`, `title`) über die Eigenschaft `inputProps` anwenden.
 
 ```jsx
-<Checkbox
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
-/>
+<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />
 ```
 
 ## Anleitung

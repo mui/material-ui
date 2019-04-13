@@ -38,7 +38,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application
     },
   },
 });
@@ -102,7 +102,7 @@ import { compose } from 'recompose';
 
 export default compose(
   withTheme,
-  withStyles(styles)
+  withStyles(styles),
 )(Modal);
 ```
 

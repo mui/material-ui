@@ -2,6 +2,7 @@
 title: React-компонент Аватар
 components: Avatar
 ---
+
 # Аватары
 
 <p class="description">Аватары встречаются в material design и используются во всем - от таблиц до диалоговых меню.</p>

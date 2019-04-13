@@ -2,15 +2,17 @@
 title: Popper React component
 components: Popper
 ---
+
 # Popper
 
 <p class="description">A Popper can be used to display some content on top of another. It's an alternative to react-popper.</p>
 
 Some important features of the `Popper` component:
 
-- 
-- 
-- 
+## -
+
+-
+
 - The children is [`Portal`](/utils/portal/) to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal`.
 - The scroll isn't blocked like with the [`Popover`](/utils/popover/) component. The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the `Popper` component. If you need this behavior, you can use [`ClickAwayListener`](utils/click-away-listener/) - see the example in the [menu documentation section](/demos/menus/#menulist-composition).

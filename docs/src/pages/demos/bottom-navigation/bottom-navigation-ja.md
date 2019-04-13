@@ -2,6 +2,7 @@
 title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation
 
 <p class="description">Bottom navigation bars allow movement between primary destinations in an app.</p>

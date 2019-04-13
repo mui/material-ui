@@ -9,7 +9,7 @@
 Make sure the `dir` attribute is set on the body, otherwise native components will break:
 
 ```html
-<body dir="rtl">
+<body dir="rtl"></body>
 ```
 
 ### 2. Theme
@@ -43,17 +43,13 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function RTL(props) {
-  return (
-    <StylesProvider jss={jss}>
-      {props.children}
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
 }
 ```
 
 ## Demonstração
 
-*Use the direction toggle button on the top right corner to flip the whole documentation*
+_Use the direction toggle button on the top right corner to flip the whole documentation_
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
@@ -61,6 +57,6 @@ function RTL(props) {
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning:
 
-*Use the direction toggle button on the top right corner to see the effect*
+_Use the direction toggle button on the top right corner to see the effect_
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

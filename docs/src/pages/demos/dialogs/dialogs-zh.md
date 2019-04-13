@@ -2,6 +2,7 @@
 title: React对话框组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
+
 # 对话框
 
 <p class="description">对话框用来给用户一个任务，可以提示关键信息、可以让用户进行确认、或者包含多个任务。</p>
@@ -53,7 +54,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 如果您已经阅读了 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个如何自定义 `DialogTitle` 以支持关闭按钮的示例。
 
-⚠️虽然 Material Design 规范鼓励主题，但这个例子是不合适的。
+⚠️ 虽然 Material Design 规范鼓励主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
 
@@ -63,13 +64,13 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 可选尺码
 
-您可以使用 `maxWidth` enumerable和 `fullWidth` boolean来设置对话框的最大宽度。 当 `fullWidth` 属性为true时，对话框将根据 `maxWidth` 值进行调整。
+您可以使用 `maxWidth` enumerable 和 `fullWidth` boolean 来设置对话框的最大宽度。 当 `fullWidth` 属性为 true 时，对话框将根据 `maxWidth` 值进行调整。
 
 {{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
 
 ## 响应式全屏
 
-您可以使用 `withMobileDialog`以对话方式全屏显示对话框。 默认情况下, `withMobileDialog() (Dialog)` 在 [屏幕大小](/layout/basics/)*小于等于* `sm`时响应式全屏。 你可以通过传递 `breakpoint`参数来选择你自己的全屏切换点，比如 `xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
+您可以使用 `withMobileDialog`以对话方式全屏显示对话框。 默认情况下, `withMobileDialog() (Dialog)` 在 [屏幕大小](/layout/basics/)_小于等于_ `sm`时响应式全屏。 你可以通过传递 `breakpoint`参数来选择你自己的全屏切换点，比如 `xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
 
 {{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 
@@ -89,8 +90,8 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 当对话框根据用户不同的设备和视图大小变得很长时，可以让他们进行滚动。
 
-- - `scroll=paper` 可以使对话框的内容在paper元素中滚动。
-- - `scroll=body`可以使对话框的内容在body元素内滚动。
+- - `scroll=paper` 可以使对话框的内容在 paper 元素中滚动。
+- - `scroll=body`可以使对话框的内容在 body 元素内滚动。
 
 请尝试下面的例子来加深理解：
 

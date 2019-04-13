@@ -2,6 +2,7 @@
 title: Composant React de navigation inférieure
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation (Barre de navigation inférieure)
 
 <p class="description">Les barres de navigation inférieures permettent le mouvement entre les destinations principales dans une application.</p>

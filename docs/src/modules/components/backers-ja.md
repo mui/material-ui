@@ -1,10 +1,10 @@
-## Material-UIをサポートする
+## Material-UI をサポートする
 
-Material-UIはMITライセンスのオープンソースプロジェクトです。 以下の素晴らしい[サポーターたち](/discover-more/backers/)の支援のおかげで、継続的な開発が完全に可能になった独立したプロジェクトです。
+Material-UI は MIT ライセンスのオープンソースプロジェクトです。 以下の素晴らしい[サポーターたち](/discover-more/backers/)の支援のおかげで、継続的な開発が完全に可能になった独立したプロジェクトです。
 
 ### ゴールドサポーター
 
-ゴールドスポンサーは、毎月500ドル以上をMaterial-UIに約束してくれた方々です。
+ゴールドスポンサーは、毎月 500 ドル以上を Material-UI に約束してくれた方々です。
 
 [パトロン](https://www.patreon.com/oliviertassinari)によるものです。
 

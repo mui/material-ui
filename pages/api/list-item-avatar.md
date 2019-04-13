@@ -17,10 +17,10 @@ and `align-items="flex-start"` mode styles to `Avatar`.
 
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The content of the component – normally `Avatar`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| Name                                                     | Type                                   | Default | Description                                                                                         |
+| :------------------------------------------------------- | :------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------- |
+| <span class="prop-name required">children&nbsp;\*</span> | <span class="prop-type">element</span> |         | The content of the component – normally `Avatar`.                                                   |
+| <span class="prop-name">classes</span>                   | <span class="prop-type">object</span>  |         | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 The component cannot hold a ref.
 
@@ -31,12 +31,11 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the root element when.
-| <span class="prop-name">icon</span> | Styles applied to the children – typically the `Avatar` component.
+| Name                                               | Description                                                        |
+| :------------------------------------------------- | :----------------------------------------------------------------- |
+| <span class="prop-name">root</span>                | Styles applied to the root element.                                |
+| <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the root element when.                           |
+| <span class="prop-name">icon</span>                | Styles applied to the children – typically the `Avatar` component. |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ListItemAvatar/ListItemAvatar.js)
@@ -48,4 +47,3 @@ you need to use the following style sheet name: `MuiListItemAvatar`.
 ## Demos
 
 - [Lists](/demos/lists/)
-

@@ -3,7 +3,7 @@
 <p class="description">Сводка API пакета @material-ui/system.</p>
 
 | Группа                            | Импорт           | Свойство         | Свойство CSS                    | В теме                                                                 |
-|:--------------------------------- |:---------------- |:---------------- |:------------------------------- |:---------------------------------------------------------------------- |
+| :-------------------------------- | :--------------- | :--------------- | :------------------------------ | :--------------------------------------------------------------------- |
 | [borders](/system/borders/)       | `border`         | `border`         | `border`                        | `borders`                                                              |
 | [borders](/system/borders/)       | `borderBottom`   | `borderBottom`   | `border-bottom`                 | `borders`                                                              |
 | [borders](/system/borders/)       | `borderColor`    | `borderColor`    | `border-color`                  | [`palette`](/customization/default-theme/?expend-path=$.palette)       |

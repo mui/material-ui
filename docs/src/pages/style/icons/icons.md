@@ -45,7 +45,7 @@ When importing an icon, keep in mind that the names of the icons are `PascalCase
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) is exposed as `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) is exposed as `@material-ui/icons/DeleteForever`
 
-For *"themed"* icons, append the theme name to the icon name. For instance with the
+For _"themed"_ icons, append the theme name to the icon name. For instance with the
 
 - The Outlined [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) icon is exposed as `@material-ui/icons/DeleteOutlined`
 - The Rounded [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) icon is exposed as `@material-ui/icons/DeleteRounded`
@@ -63,17 +63,19 @@ There are three exceptions to this rule:
 #### Imports
 
 - If your environment doesn't support tree-shaking, the **recommended** way to import the icons is the following:
+
 ```jsx
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 ```
 
 - If your environment support tree-shaking you can also import the icons this way:
+
 ```jsx
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 ```
 
-Note: Importing named exports in this way will result in the code for *every icon* being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). It may also impact Hot Module Reload performance.
+Note: Importing named exports in this way will result in the code for _every icon_ being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). It may also impact Hot Module Reload performance.
 
 ### More SVG icons
 
@@ -100,7 +102,7 @@ for example:
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>
+<Icon>star</Icon>;
 ```
 
 By default, an Icon will inherit the current text color.
@@ -127,10 +129,11 @@ For more details, you can check out [why GitHub migrated](https://blog.github.co
 
 Icons can convey all sorts of meaningful information, so it’s important that they reach the largest amount of people possible.
 There are two use cases you’ll want to consider:
+
 - **Decorative Icons** are only being used for visual or branding reinforcement.
-If they were removed from the page, users would still understand and be able to use your page.
+  If they were removed from the page, users would still understand and be able to use your page.
 - **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration.
-This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
+  This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
 
 ### Decorative SVG Icons
 
@@ -154,7 +157,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
-</IconButton>
+</IconButton>;
 ```
 
 ### Decorative Font Icons

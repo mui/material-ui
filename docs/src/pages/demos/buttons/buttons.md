@@ -128,7 +128,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-// required for react-router-dom < 5.0.0 
+// required for react-router-dom < 5.0.0
 // see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
 const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
@@ -140,15 +140,15 @@ const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={r
 or if you want to avoid properties collision:
 
 ```jsx
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 // use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
+const MyLink = React.forwardRef((props, ref) => (
+  <Link to="/open-collective" {...props} innerRef={ref} />
+));
 
-<Button component={MyLink}>
-  Link
-</Button>
+<Button component={MyLink}>Link</Button>;
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+_Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property)._

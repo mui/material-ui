@@ -2,6 +2,7 @@
 title: Composants React de transitions
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
+
 # Les transitions
 
 <p class="description">Les transitions contribue à rendre une interface utilisateur expressif et facile à utiliser.</p>

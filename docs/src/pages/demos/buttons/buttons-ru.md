@@ -2,6 +2,7 @@
 title: React-компонент Кнопка
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # Кнопки
 
 <p class="description">Кнопки позволяют пользователям выполнять действия и делать выбор одним нажатием.</p>
@@ -57,7 +58,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Кнопка с плавающим действием, которая охватывает несколько боковых экранов (например, экраны с вкладками), должна анимироваться при переходах.
 
-Переход масштабирование (Zoom) может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем ` enterDelay `, чтобы разрешить исходящим кнопкам плавающего действия анимироваться постепенно.
+Переход масштабирование (Zoom) может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем `enterDelay`, чтобы разрешить исходящим кнопкам плавающего действия анимироваться постепенно.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
@@ -104,7 +105,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-// required for react-router-dom < 5.0.0 
+// required for react-router-dom < 5.0.0
 // see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
 const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
@@ -116,15 +117,15 @@ const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={r
 или если вы хотите избежать столкновения свойств:
 
 ```jsx
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 // use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
+const MyLink = React.forwardRef((props, ref) => (
+  <Link to="/open-collective" {...props} innerRef={ref} />
+));
 
-<Button component={MyLink}>
-  Link
-</Button>
+<Button component={MyLink}>Link</Button>;
 ```
 
-*Примечание: Создание `MyLink` необходимо для предотвращения неожиданного отключения. Вы можете прочитать больше об этом в нашем [руководстве по свойствам компонента](/guides/composition/#component-property).*
+_Примечание: Создание `MyLink` необходимо для предотвращения неожиданного отключения. Вы можете прочитать больше об этом в нашем [руководстве по свойствам компонента](/guides/composition/#component-property)._

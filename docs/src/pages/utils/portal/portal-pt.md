@@ -2,6 +2,7 @@
 title: Componente React Modal
 components: Portal
 ---
+
 # Portal
 
 <p class="description">O componente portal renderiza seu filho em uma nova sub-árvore fora da hierarquia do componente atual.</p>

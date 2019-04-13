@@ -2,6 +2,7 @@
 title: React Breadcrumbs（面包屑导航）组件
 components: Breadcrumbs, Link, Typography
 ---
+
 # Breadcrumbs（面包屑导航）
 
 <p class="description">面包屑导航允许用户在一系列的值中进行选择。</p>
@@ -12,7 +13,7 @@ components: Breadcrumbs, Link, Typography
 
 ## 自定义分隔符
 
-在以下的示例中，我们使用了两个字符串分隔符和一个SVG图标。
+在以下的示例中，我们使用了两个字符串分隔符和一个 SVG 图标。
 
 {{"demo": "pages/demos/breadcrumbs/CustomSeparator.js"}}
 

@@ -20,8 +20,8 @@ can be a user and we encourage users to participate in the community as much as 
 following ways.
 
 - Evangelize Material-UI by [linking to our website](https://material-ui.com/),
-[following us on twitter](https://twitter.com/MaterialUI), or just talking about us with your
-friends.
+  [following us on twitter](https://twitter.com/MaterialUI), or just talking about us with your
+  friends.
 - Tell us what we're doing well or where we can improve.
 - Give us moral support. A "Thank You" always brightens our day!
 - [Support us on OpenCollective](https://opencollective.com/material-ui).
@@ -33,14 +33,14 @@ in concrete ways. Anyone can be a contributor. In addition to their participatio
 also contribute in the following ways.
 
 - Support new users by answering questions on
-[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) and
-[Spectrum](https://spectrum.chat/material-ui).
+  [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) and
+  [Spectrum](https://spectrum.chat/material-ui).
 - Reviewing and commenting on [existing pull requests](https://github.com/mui-org/material-ui/pulls)
-and [issues](https://github.com/mui-org/material-ui/issues).
+  and [issues](https://github.com/mui-org/material-ui/issues).
 - Reporting bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
 - Fixing bugs, adding features, and
-[improving our documentation](https://github.com/mui-org/material-ui/tree/next/docs) by
-[submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  [improving our documentation](https://github.com/mui-org/material-ui/tree/next/docs) by
+  [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 
 ### Committers
 
@@ -53,7 +53,7 @@ addition to their participation as a contributor, committers have the following 
 - Ability to label, close, and manage [Github issues](https://github.com/mui-org/material-ui/issues).
 - Ability to [close and merge pull requests](https://github.com/mui-org/material-ui/pulls?q=is%3Apr+is%3Aclosed).
 - Ability to [submit expenses](https://opencollective.com/material-ui/expenses/new) that are
-approved by the Core Team.
+  approved by the Core Team.
 - Ability to receive payment for work done on Material-UI or one of Mui-Org's projects.
 - Nominate and vote on new committers and Core Team members.
 
@@ -77,13 +77,13 @@ In addition to their participation as a committer, Core Team members have the fo
 - Access to Material-UI's [Twitter](https://twitter.com/MaterialUI) and Medium account.
 - Owner access to [mui-org on GitHub](https://github.com/mui-org).
 - Admin access to various tools and services ([npm](https://www.npmjs.com/package/@material-ui/core),
-[CircleCi](https://circleci.com/gh/mui-org/material-ui),
-[BrowserStack](https://www.browserstack.com/), [Spectrum](https://spectrum.chat/material-ui)).
+  [CircleCi](https://circleci.com/gh/mui-org/material-ui),
+  [BrowserStack](https://www.browserstack.com/), [Spectrum](https://spectrum.chat/material-ui)).
 - Admin access to all financial accounts.
 - Vote on the removal of committers and Core Team members.
 - Vote on decisions when consensus cannot be reached by the community.
 - Vote on approval of expenses and payments on [OpenCollective](https://opencollective.com/material-ui).
-Core Team members cannot vote to approve their own expenses or payments.
+  Core Team members cannot vote to approve their own expenses or payments.
 - Vote on changes to project governance.
 
 ### Core Team Chair

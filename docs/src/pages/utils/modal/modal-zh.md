@@ -2,6 +2,7 @@
 title: 模态框 React 组件
 components: Modal
 ---
+
 # 模态
 
 <p class="description">模态框组件可以用来快速创建对话框、弹出窗口，灯箱等任何你所需的组件。</p>
@@ -11,8 +12,8 @@ components: Modal
 - 管理模态堆叠时，一次一个是不够的。
 - 创建一个背景，用于禁用模态下的交互。
 - 它会在打开时禁用页面内容的滚动。
-- ♿️它妥善管理焦点;移动到模态内容， 并保持它直到模态关闭。
-- ♿️自动添加适当的ARIA角色。
+- ♿️ 它妥善管理焦点;移动到模态内容， 并保持它直到模态关闭。
+- ♿️ 自动添加适当的 ARIA 角色。
 
 > **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 模态框的窗口可以描述用户界面的一部分。 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
 
@@ -29,9 +30,9 @@ components: Modal
 
 ## 性能
 
-模态框的内容是用 **延迟加载**的方式加载到DOM中的。 以此确保即使你的React树中有许多关闭的模态框， 你的页面速度也不会减慢。
+模态框的内容是用 **延迟加载**的方式加载到 DOM 中的。 以此确保即使你的 React 树中有许多关闭的模态框， 你的页面速度也不会减慢。
 
-然而， 创建一个React组件也会有成本。考虑一下以下的情况：
+然而， 创建一个 React 组件也会有成本。考虑一下以下的情况：
 
 ```jsx
 <Modal open={false}>
@@ -58,7 +59,7 @@ components: Modal
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+We create a lot of React elements that will never be mounted. It's wasteful
 
 ```jsx
 <Modal open={false}>
@@ -73,10 +74,7 @@ This way, you take advantage of [React render laziness evaluation](https://overr
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
 
 ```jsx
-<Modal
-  aria-labelledby="simple-modal-title"
-  aria-describedby="simple-modal-description"
->
+<Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
   <Typography variant="h6" id="modal-title">
     My Title
   </Typography>

@@ -2,6 +2,7 @@
 title: Componente de React Button
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # Botones
 
 <p class="description">Los botones permiten a los usuarios ejecutar acciones, y tomar decisiones, con un simple toque.</p>
@@ -104,7 +105,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-// required for react-router-dom < 5.0.0 
+// required for react-router-dom < 5.0.0
 // see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
 const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
@@ -116,15 +117,15 @@ const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={r
 o si quieres evitar un choque de propiedades:
 
 ```jsx
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 // use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
+const MyLink = React.forwardRef((props, ref) => (
+  <Link to="/open-collective" {...props} innerRef={ref} />
+));
 
-<Button component={MyLink}>
-  Link
-</Button>
+<Button component={MyLink}>Link</Button>;
 ```
 
-*Nota: Crear `MyLink` es necesario para prevenir una montura inesperada. Más información en nuestra [guía de propiedades de componentes](/guides/composition/#component-property).*
+_Nota: Crear `MyLink` es necesario para prevenir una montura inesperada. Más información en nuestra [guía de propiedades de componentes](/guides/composition/#component-property)._

@@ -2,6 +2,7 @@
 title: Grid List React Komponente
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
+
 # Rasterliste (Grid List)
 
 <p class="description">Rasterlisten zeigen eine Sammlung von Bildern in einem organisierten Raster an.</p>

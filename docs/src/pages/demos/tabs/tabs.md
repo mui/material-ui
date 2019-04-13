@@ -60,7 +60,7 @@ Left and right scroll buttons will be presented regardless of the viewport width
 
 ### Prevent Scroll Buttons
 
-Left and right scroll buttons will never be presented.  All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonPrevent.js"}}
 

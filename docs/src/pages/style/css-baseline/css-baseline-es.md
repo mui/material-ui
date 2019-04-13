@@ -1,6 +1,7 @@
 ---
 components: CssBaseline
 ---
+
 # Base de CSS
 
 <p class="description">Material-UI provee un componente llamado CssBaseline como un punto de partida elegante, simple y consistente para empezar a desarrollar.</p>

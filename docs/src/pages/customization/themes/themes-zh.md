@@ -10,13 +10,13 @@
 
 ## ThemeProvider
 
-如果你想要自定义样式，则需要使用 `MuiThemeProvider` 组件才能将样式注入到你的应用中。 但是，这是可选的; Material-UI组件带有默认样式。
+如果你想要自定义样式，则需要使用 `MuiThemeProvider` 组件才能将样式注入到你的应用中。 但是，这是可选的; Material-UI 组件带有默认样式。
 
-`MuiThemeProvider` 依赖于React的Context上下文将样式传递给组件， 因此您需要确保 `MuiThemeProvider` 是您想要自定义的组件的父级元素。 您可以在[ API ](/css-in-js/api/#themeprovider)中了解有关此内容的更多信息 。
+`MuiThemeProvider` 依赖于 React 的 Context 上下文将样式传递给组件， 因此您需要确保 `MuiThemeProvider` 是您想要自定义的组件的父级元素。 您可以在[ API ](/css-in-js/api/#themeprovider)中了解有关此内容的更多信息 。
 
 ## 主题配置变量
 
-更改主题配置变量是将Material-UI与您的需求相匹配的最有效方法。 以下列出了一些重要的样式变量：
+更改主题配置变量是将 Material-UI 与您的需求相匹配的最有效方法。 以下列出了一些重要的样式变量：
 
 - [调色板](#palette)
 - [类型（浅色/深色主题）](#type-light-dark-theme)
@@ -55,7 +55,7 @@ interface PaletteIntention {
   main: string;
   dark?: string;
   contrastText?: string;
-};
+}
 ```
 
 **使用颜色对象**
@@ -166,7 +166,7 @@ const theme = createMuiTheme({
 
 ### 颜色工具
 
-需要灵感？ Material Design团队已经构建了一个非常棒的 [调色板配置工具](/style/color/#color-tool) 来帮助您。
+需要灵感？ Material Design 团队已经构建了一个非常棒的 [调色板配置工具](/style/color/#color-tool) 来帮助您。
 
 ## Type (light /dark theme)
 
@@ -222,7 +222,7 @@ const theme = createMuiTheme({
 
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
-⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will *not* be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -237,7 +237,8 @@ const raleway = {
     local('Raleway-Regular'),
     url(${RalewayWoff2}) format('woff2')
   `,
-  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
 };
 ```
 
@@ -270,7 +271,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### 字体大小 
+### 字体大小
 
 Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a much better user experience. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
 
@@ -308,13 +309,13 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
 ## 间距
 
-我们鼓励您使用 `theme.spacing()` 帮助器在UI的元素之间创建一致的间距。 Material-UI默认使用[8px的缩放系数](https://material.io/design/layout/understanding-layout.html) 。
+我们鼓励您使用 `theme.spacing()` 帮助器在 UI 的元素之间创建一致的间距。 Material-UI 默认使用[8px 的缩放系数](https://material.io/design/layout/understanding-layout.html) 。
 
 ```js
 const styles = theme => ({
@@ -334,7 +335,7 @@ const theme = createMuiTheme({
   spacing: 4,
 });
 
-theme.spacing(2) // = 4 * 2
+theme.spacing(2); // = 4 * 2
 ```
 
 - 或一个函数
@@ -344,12 +345,12 @@ const theme = createMuiTheme({
   spacing: factor => `${0.25 * factor}rem`, // (Bootstrap 策略)
 });
 
-theme.spacing(2) // = 0.5rem = 8px
+theme.spacing(2); // = 0.5rem = 8px
 ```
 
 ### 多个参数
 
-` theme.spacing() ` 最多接受4个参数。 您可以使用参数来减少样板：
+`theme.spacing()` 最多接受 4 个参数。 您可以使用参数来减少样板：
 
 ```diff
 <br />-  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
@@ -370,13 +371,15 @@ When using Material-UI's theme with our [styling solution](/css-in-js/basics) or
 
 ### CSS
 
-当配置变量不够强大时，您可以利用 `overrides` 的 `theme` 键来潜在地将Material-UI注入的每个 **style** 更改为DOM。 这是一个十分强有力的特点。
+当配置变量不够强大时，您可以利用 `overrides` 的 `theme` 键来潜在地将 Material-UI 注入的每个 **style** 更改为 DOM。 这是一个十分强有力的特点。
 
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // 组件的名称 ⚛️ / 样式表
-      text: { // 规则的名称
+    MuiButton: {
+      // 组件的名称 ⚛️ / 样式表
+      text: {
+        // 规则的名称
         color: 'white', // 一些CSS
       },
     },
@@ -398,7 +401,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application
     },
   },
 });
@@ -408,7 +411,7 @@ const theme = createMuiTheme({
 
 ## 访问组件中的主题
 
-您可能需要访问React组件中的主题变量。 好比说你想要显示原色变量的值。你可以使用 `withTheme`高阶组件来实现。 下面是一个示例：
+您可能需要访问 React 组件中的主题变量。 好比说你想要显示原色变量的值。你可以使用 `withTheme`高阶组件来实现。 下面是一个示例：
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 
@@ -424,9 +427,9 @@ const theme = createMuiTheme({
 
 #### 关于性能
 
-The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. 一句话来讲，我们以 `(styles, theme)`为键值缓存了注入的CSS。
+The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. 一句话来讲，我们以 `(styles, theme)`为键值缓存了注入的 CSS。
 
-- `theme`: 每次渲染时，如果你提供了一个新的主题，一个新的CSS对象将会被生成并注入。 不管是为了更统一的UI风格还是性能，都应该尽量不要每次生成新的主题 object。
+- `theme`: 每次渲染时，如果你提供了一个新的主题，一个新的 CSS 对象将会被生成并注入。 不管是为了更统一的 UI 风格还是性能，都应该尽量不要每次生成新的主题 object。
 - `styles`: 样式 object 越大，需要的运算越多。
 
 ## API
@@ -437,11 +440,11 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 #### 参数
 
-1. `options` （*Object*）：采用不完整的主题对象并添加缺少的部分。
+1. `options` （_Object_）：采用不完整的主题对象并添加缺少的部分。
 
 #### 返回结果
 
-`theme` （*Object*）：一个完整的，随时可用的主题对象。
+`theme` （_Object_）：一个完整的，随时可用的主题对象。
 
 #### 例子
 

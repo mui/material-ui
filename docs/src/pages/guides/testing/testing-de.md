@@ -40,15 +40,15 @@ Generate an enhanced shallow function with the needed context. Please refer to t
 
 #### Arguments
 
-1. `Optionen` (*Object* [optional]) 
-    - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
-    - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
-    - `options.dive` (*Boolean* [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
-    - The other keys are forwarded to the options argument of `enzyme.shallow()`.
+1. `Optionen` (_Object_ [optional])
+   - `options.shallow` (_Function_ [optional]): The shallow function to enhance, it uses **enzyme by default**.
+   - `options.untilSelector` (_String_ [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
+   - `options.dive` (_Boolean_ [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
+   - The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
 #### Rückgabewerte
 
-`shallow` (*shallow*): A shallow function.
+`shallow` (_shallow_): A shallow function.
 
 #### Beispiele
 
@@ -58,7 +58,8 @@ import { createShallow } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let shallow;
 
-  before(() => {  // This is Mocha; in Jest, use beforeAll
+  before(() => {
+    // This is Mocha; in Jest, use beforeAll
     shallow = createShallow();
   });
 
@@ -74,13 +75,13 @@ Generate an enhanced mount function with the needed context. Please refer to the
 
 #### Arguments
 
-1. `Optionen` (*Object* [optional]) 
-    - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
-    - The other keys are forwarded to the options argument of `enzyme.mount()`.
+1. `Optionen` (_Object_ [optional])
+   - `options.mount` (_Function_ [optional]): The mount function to enhance, it uses **enzyme by default**.
+   - The other keys are forwarded to the options argument of `enzyme.mount()`.
 
 #### Rückgabewerte
 
-`mount` (*mount*): A mount function.
+`mount` (_mount_): A mount function.
 
 #### Beispiele
 
@@ -110,13 +111,13 @@ Generate a render to string function with the needed context. Please refer to th
 
 #### Arguments
 
-1. `Optionen` (*Object* [optional]) 
-    - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.
-    - The other keys are forwarded to the options argument of `enzyme.render()`.
+1. `Optionen` (_Object_ [optional])
+   - `options.render` (_Function_ [optional]): The render function to enhance, it uses **enzyme by default**.
+   - The other keys are forwarded to the options argument of `enzyme.render()`.
 
 #### Rückgabewerte
 
-`render` (*Function*): A render to string function.
+`render` (_Function_): A render to string function.
 
 #### Beispiele
 

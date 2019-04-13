@@ -9,7 +9,7 @@ You can use it, but you don't have to, since Material-UI is also [interoperable 
 ## Why use Material-UI's styling solution?
 
 In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited.
-We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style).
+We have [adopted a _CSS-in-JS_ solution](https://github.com/oliviertassinari/a-journey-toward-better-style).
 It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 We think that this is the future:
 
@@ -69,7 +69,7 @@ export default function Hook() {
 
 ### Styled components API
 
-Note: this only applies to the calling syntax – style definitions still use a JSS object. 
+Note: this only applies to the calling syntax – style definitions still use a JSS object.
 You can also [change this behavior](/css-in-js/advanced#string-templates), with some limitations.
 
 ```jsx
@@ -141,9 +141,9 @@ const useStyles = makeStyles({
     '& p': {
       color: 'green',
       '& span': {
-        color: 'blue'
-      }
-    }
+        color: 'blue',
+      },
+    },
   },
 });
 ```
@@ -194,7 +194,7 @@ This button component has a color property that changes its color:
 
 ## Stress test
 
-In the following stress test, you can update the *theme color* and the *background-color property* live:
+In the following stress test, you can update the _theme color_ and the _background-color property_ live:
 
 ```js
 const useStyles = makeStyles(theme => ({

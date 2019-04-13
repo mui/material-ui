@@ -2,6 +2,7 @@
 title: Bottom Navigation React-Komponente
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation (Untere Navigation)
 
 <p class="description">Die unteren Navigationsleisten ermöglichen die Bewegung zwischen primären Zielen in einer App.</p>

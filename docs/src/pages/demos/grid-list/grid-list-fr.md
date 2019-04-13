@@ -2,6 +2,7 @@
 title: Composant React Grid List
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
+
 # Liste de grille
 
 <p class="description">Grid lists display a collection of images in an organized grid.</p>

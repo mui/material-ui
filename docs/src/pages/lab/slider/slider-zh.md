@@ -2,6 +2,7 @@
 title: 滑块反应组件
 components: Slider
 ---
+
 # 滑条
 
 <p class="description">滑块允许用户从一系列值中进行选择。</p>

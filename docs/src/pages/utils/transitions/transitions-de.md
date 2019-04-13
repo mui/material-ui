@@ -2,6 +2,7 @@
 title: Übergang React Komponente
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
+
 # Übergänge
 
 <p class="description">Übergänge helfen, eine Oberfläche ausdrucksvoll und einfach zu benutzen zu gestalten.</p>
@@ -32,7 +33,7 @@ export default Main() {
 
 ## Collapse
 
-Klappt senkrecht vom oberen Rand des Kind-Elementes ausgehend auf. Das ` collapsedHeight` Property kann benutzt werden, um die minimale Höhe festzulegen, wenn nicht ausgeklappt.
+Klappt senkrecht vom oberen Rand des Kind-Elementes ausgehend auf. Das `collapsedHeight` Property kann benutzt werden, um die minimale Höhe festzulegen, wenn nicht ausgeklappt.
 
 {{"demo": "pages/utils/transitions/SimpleCollapse.js"}}
 
@@ -46,7 +47,7 @@ Blende von Transparent zu Undurchsichtig ein.
 
 Erweitert sich von der Mitte des untergeordneten Elements nach außen, während es von transparent nach opak einblendet.
 
-Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und bedingt die ` Timeout` Eigenschaft anpassen, um die Eintrittsgeschwindigkeit zu beeinflussen.
+Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und bedingt die `Timeout` Eigenschaft anpassen, um die Eintrittsgeschwindigkeit zu beeinflussen.
 
 {{"demo": "pages/utils/transitions/SimpleGrow.js"}}
 

@@ -12,17 +12,15 @@ filename: /packages/material-ui/src/Table/Table.js
 import Table from '@material-ui/core/Table';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the table, normally `TableHead` and `TableBody`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'table'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">padding</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'none'<br></span> | <span class="prop-default">'default'</span> | Allows TableCells to inherit padding of the Table. |
-| <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'<br></span> | <span class="prop-default">'medium'</span> | Allows TableCells to inherit size of the Table. |
+| Name                                                     | Type                                                                                                                | Default                                     | Description                                                                                         |
+| :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ | :------------------------------------------ | :-------------------------------------------------------------------------------------------------- |
+| <span class="prop-name required">children&nbsp;\*</span> | <span class="prop-type">node</span>                                                                                 |                                             | The content of the table, normally `TableHead` and `TableBody`.                                     |
+| <span class="prop-name">classes</span>                   | <span class="prop-type">object</span>                                                                               |                                             | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">component</span>                 | <span class="prop-type">elementType</span>                                                                          | <span class="prop-default">'table'</span>   | The component used for the root node. Either a string to use a DOM element or a component.          |
+| <span class="prop-name">padding</span>                   | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'none'<br></span> | <span class="prop-default">'default'</span> | Allows TableCells to inherit padding of the Table.                                                  |
+| <span class="prop-name">size</span>                      | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'<br></span>                                 | <span class="prop-default">'medium'</span>  | Allows TableCells to inherit size of the Table.                                                     |
 
 The `ref` is forwarded to the root element.
 
@@ -33,10 +31,9 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
+| Name                                | Description                         |
+| :---------------------------------- | :---------------------------------- |
+| <span class="prop-name">root</span> | Styles applied to the root element. |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Table/Table.js)
@@ -48,4 +45,3 @@ you need to use the following style sheet name: `MuiTable`.
 ## Demos
 
 - [Tables](/demos/tables/)
-

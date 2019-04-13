@@ -20,7 +20,7 @@ Create React App - отличный проект для изучения React. 
 
 Если вы хотите начать с более полного и реального примера, вы можете взглянуть на:
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), который включает в себя: 
+- [Material Sense](https://github.com/alexanmtz/material-sense), который включает в себя:
   - Graph using recharts
   - React Router включен с примером навигации
   - A docker container with an Nginx server for production build

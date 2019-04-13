@@ -6,7 +6,7 @@ Material-UI está disponible como un [ paquete npm ](https://www.npmjs.com/packa
 
 ## npm
 
-Para instalarlo y guardarlo en las dependencias de tu ` package.json `, ejecuta:
+Para instalarlo y guardarlo en las dependencias de tu `package.json`, ejecuta:
 
 ```sh
 // con npm
@@ -23,7 +23,7 @@ Ten en cuenta que [ react ](https://www.npmjs.com/package/react) > = 16.3.0 y [ 
 Material-UI fue diseñado con la fuente [ Roboto ](https://fonts.google.com/specimen/Roboto) en mente. Así que asegúrate de seguir [ estas instrucciones ](/style/typography/#general). Por ejemplo, a través de Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
 Alternativamente, si estás utilizando JSX sobre HTML para renderizar el encabezado:
@@ -37,7 +37,7 @@ Alternativamente, si estás utilizando JSX sobre HTML para renderizar el encabez
 Con el fin de utilizar el componente `Icon` de la fuente primero debes agregar la fuente [Material icons](https://material.io/tools/icons/). Aquí hay [ algunas instrucciones ](/style/icons/#font-icons) sobre cómo hacerlo. Por ejemplo, a través de Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 Alternativamente, si estás utilizando JSX sobre HTML para renderizar el encabezado:

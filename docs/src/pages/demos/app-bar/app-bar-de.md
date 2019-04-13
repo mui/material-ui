@@ -2,6 +2,7 @@
 title: App Bar React-Komponente
 components: AppBar, Toolbar, Menu
 ---
+
 # App Bar
 
 <p class="description">In der App-Bar werden Informationen und Aktionen angezeigt, die sich auf den aktuellen Bildschirm beziehen.</p>

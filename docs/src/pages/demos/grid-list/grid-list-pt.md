@@ -2,6 +2,7 @@
 title: Grid List React component
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
+
 # Grid List (Lista de grade)
 
 <p class="description">As listas de grade exibem uma coleção de imagens em uma grade organizada.</p>

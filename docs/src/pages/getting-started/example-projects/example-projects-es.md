@@ -20,7 +20,7 @@ El código fuente de esta documentación también está incluido en el repositor
 
 Si quieres empezar con un ejemplo más completo y del mundo real, puedes echarle un vistazo a:
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), el cual incluye: 
+- [Material Sense](https://github.com/alexanmtz/material-sense), el cual incluye:
   - Graph using recharts
   - React Router incluido con un ejemplo de navegación
   - Un contenedor de docker con servidor Nginx para compilado de producción

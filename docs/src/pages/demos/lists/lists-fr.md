@@ -2,6 +2,7 @@
 title: Composant React Liste
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
+
 # Lists (Listes)
 
 <p class="description">Les listes sont continues, des index verticaux de texte ou d’images.</p>
@@ -23,7 +24,7 @@ function ListItemLink(props) {
 
 <ListItemLink href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>
+</ListItemLink>;
 ```
 
 Vous pouvez trouver une [démonstration avec la bibliothèque React Router en suivant cette section](/guides/composition/#react-router) de la documentation.

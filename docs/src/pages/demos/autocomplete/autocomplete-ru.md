@@ -2,6 +2,7 @@
 title: React-компонент Автозаполнение
 components: TextField, Paper, MenuItem, Popper
 ---
+
 # Автодополнение
 
 <p class="description">Автодополнение - это обычный ввод текста, дополненный панелью предлагаемых опций.</p>

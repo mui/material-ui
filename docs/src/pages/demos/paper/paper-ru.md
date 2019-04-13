@@ -2,6 +2,7 @@
 title: Сёдзи, компонент React
 components: Paper
 ---
+
 # Сёдзи
 
 <p class="description">В Material Design физические свойства бумаги переводятся на экран. </p>

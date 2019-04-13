@@ -59,7 +59,7 @@ import { borders } from '@material-ui/system';
 ```
 
 | Nombre del import | Prop           | Propiedad CSS   | Clave del tema                                                   |
-|:----------------- |:-------------- |:--------------- |:---------------------------------------------------------------- |
+| :---------------- | :------------- | :-------------- | :--------------------------------------------------------------- |
 | `border`          | `border`       | `border`        | `borders`                                                        |
 | `borderTop`       | `borderTop`    | `border-top`    | `borders`                                                        |
 | `borderLeft`      | `borderLeft`   | `border-left`   | `borders`                                                        |

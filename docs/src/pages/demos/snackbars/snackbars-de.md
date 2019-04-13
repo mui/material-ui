@@ -2,6 +2,7 @@
 title: Snackbar React-Komponente
 components: Snackbar, SnackbarContent
 ---
+
 # Snackbars
 
 <p class="description">Snackbars liefern kurze Nachrichten zu App-Prozessen - normalerweise am unteren Bildschirmrand</p>

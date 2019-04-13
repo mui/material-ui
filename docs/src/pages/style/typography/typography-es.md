@@ -1,6 +1,7 @@
 ---
 components: Tipografía
 ---
+
 # Tipografía
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
@@ -9,19 +10,19 @@ Too many type sizes and styles at once can spoil any layout. A [typographic scal
 
 ## General
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/themes/#typography).
+The _Roboto_ font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/themes/#typography).
 
 ## Roboto Font CDN
 
 Shown below is a sample link markup used to load the Roboto font from a CDN.
 
-*HTML*
+_HTML_
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
-*JSX*
+_JSX_
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
@@ -60,10 +61,12 @@ The Typography component uses the `variantMapping` property to associate a UI va
 - You can change the underlying element for a one time occassion with the `component` property:
 
 ```jsx
-{/* We already have an h1 in the page, let's not duplicate it. */}
+{
+  /* We already have an h1 in the page, let's not duplicate it. */
+}
 <Typography variant="h1" component="h2">
   h1. Heading
-</Typography>
+</Typography>;
 ```
 
 - You can change the mapping [globally using the theme](/customization/themes/#properties):

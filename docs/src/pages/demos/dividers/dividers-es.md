@@ -2,6 +2,7 @@
 title: Componente divisor de React
 components: Divider
 ---
+
 # Divisores
 
 <p class="description">Un divisor es una línea delgada que agrupa el contenido en listas y diseños.</p>

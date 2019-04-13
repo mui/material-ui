@@ -2,6 +2,7 @@
 title: React 选项卡组件
 components: Tabs, Tab
 ---
+
 # 选项卡
 
 <p class="description">选项卡可以轻松浏览和切换不同的视图.</p>
@@ -22,7 +23,7 @@ components: Tabs, Tab
 
 ### 禁用的选项
 
-可以通过设置 ` disabled ` 属性来禁用选项卡。
+可以通过设置 `disabled` 属性来禁用选项卡。
 
 {{"demo": "pages/demos/tabs/DisabledTabs.js"}}
 
@@ -66,7 +67,7 @@ components: Tabs, Tab
 
 如果您已阅读[覆盖文档页面](/customization/overrides/) 但是不自信地跳进来，这里是一个如何改变 Tabs 主色的例子。
 
-⚠️虽然 material design 规范鼓励创建主题，但这个例子是不合适的。
+⚠️ 虽然 material design 规范鼓励创建主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 

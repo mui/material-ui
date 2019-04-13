@@ -2,6 +2,7 @@
 title: Slider React component
 components: Slider
 ---
+
 # Slider
 
 <p class="description">Sliders allow users to make selections from a range of values.</p>

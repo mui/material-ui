@@ -2,6 +2,7 @@
 title: Drawer React component
 components: Drawer, SwipeableDrawer
 ---
+
 # Drawer
 
 <p class="description">A navegação por drawers dão acesso para lugares dentro de sua aplicação. Elas são fragmentos de sua aplicação que contém conteúdo suplementar que são colocados na borda da esquerda ou da direita da tela.</p>
@@ -31,7 +32,7 @@ We are using the following set of properties on this documentation website for o
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
 ## Responsive drawer

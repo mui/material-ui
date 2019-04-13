@@ -2,6 +2,7 @@
 title: React Button（按钮）组件
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # Buttons（按钮）
 
 <p class="description">按钮允许用户只需轻按一下即可采取行动并做出选择。</p>
@@ -45,9 +46,9 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 ## Floating Action Buttons（提升动作按钮）
 
-[提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FAB有两种类型：常规的和扩展的。
+[提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FAB 有两种类型：常规的和扩展的。
 
-只使用FAB是最适合呈现屏幕主要操作的方法。
+只使用 FAB 是最适合呈现屏幕主要操作的方法。
 
 在每个屏幕中，我们建议只有一个浮动操作按钮来表示最常见的操作。
 
@@ -67,7 +68,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/demos/buttons/ButtonSizes.js"}}
 
-## 带有icons（图标）和 label（标签）的按钮
+## 带有 icons（图标）和 label（标签）的按钮
 
 考虑到相比纯文本，我们更容易识别出图标，有时您可能想要在某个按钮上添加图标以增强应用程序的用户体验， 例如，如果您有一个删除按钮，则可以使用垃圾箱图标对其进行标记。
 
@@ -85,7 +86,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 如果您有阅读[“重写”文档](/customization/overrides/)，但你还不是很自信得完全掌握，我们提供了以下的例子，包括使用 classes 属性和 theme（主题）来更改 Button 的主要颜色；以及使用 Bootstrap 样式按钮。
 
-⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
+⚠️ 虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
@@ -116,15 +117,15 @@ const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={r
 或者如果你想避免属性冲突：
 
 ```jsx
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 // 在 react-router-dom@^5.0.0 中使用 `ref` 而不是 `innerRef`
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
+const MyLink = React.forwardRef((props, ref) => (
+  <Link to="/open-collective" {...props} innerRef={ref} />
+));
 
-<Button component={MyLink}>
-  Link
-</Button>
+<Button component={MyLink}>Link</Button>;
 ```
 
-*注意：创建 `MyLink` 是必要的，以防止意外的 unmounting。您可以在我们的 [组件属性指南](/guides/composition/#component-property)中阅读更多相关信息。*
+_注意：创建 `MyLink` 是必要的，以防止意外的 unmounting。您可以在我们的 [组件属性指南](/guides/composition/#component-property)中阅读更多相关信息。_

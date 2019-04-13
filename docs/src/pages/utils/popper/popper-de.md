@@ -2,15 +2,17 @@
 title: Popper React-Komponente
 components: Popper
 ---
+
 # Popper
 
 <p class="description">Mit einem Popper können Inhalte übereinander angezeigt werden. Es ist eine Alternative zum React-Popper.</p>
 
 Einige wichtige Funktionen der `Popper` Komponente:
 
-- 
-- 
-- 
+## -
+
+-
+
 - Das untergeordnete Element des Hauptteils des Dokuments ist ein [`Portal`](/utils/portal/), um Probleme beim Rendern zu vermeiden. Sie können dieses Verhalten mit `disablePortal` deaktivieren.
 - Bildlauf wird nicht wie bei der Komponente [`Popover`](/utils/popover/) blockiert. Die Platzierung des Popper wird mit dem verfügbaren Bereich im Ansichtsfenster aktualisiert.
 - Durch Wegklicken wird die `Popper` Komponente ausgeblendet. Wenn Sie dieses Verhalten benötigen, können Sie den [`ClickAwayListener`](utils/click-away-listener/) verwenden - siehe das Beispiel im [Menü Dokumentation Abschnitt](/demos/menus/#menulist-composition).

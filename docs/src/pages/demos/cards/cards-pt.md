@@ -2,6 +2,7 @@
 title: Componente React Card
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
+
 # Card (Cartões)
 
 <p class="description">Os cards contêm conteúdo e ações sobre um único assunto.</p>
@@ -28,7 +29,7 @@ Exemplo de um Card usando uma imagem para reforçar o conteúdo.
 
 {{"demo": "pages/demos/cards/MediaCard.js"}}
 
-Por padrão, usamos a combinação de um `<div>` elemento e um *background image* para exibir a mídia. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estes casos de uso:
+Por padrão, usamos a combinação de um `<div>` elemento e um _background image_ para exibir a mídia. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estes casos de uso:
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 

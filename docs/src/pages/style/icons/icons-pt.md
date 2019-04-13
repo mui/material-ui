@@ -1,6 +1,7 @@
 ---
 components: Icon, SvgIcon
 ---
+
 # Icons
 
 <p class="description">Guidance and suggestions for using icons with Material-UI.</p>
@@ -32,7 +33,7 @@ You can use [material.io/tools/icons](https://material.io/tools/icons/?style=bas
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) is exposed as `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) is exposed as `@material-ui/icons/DeleteForever`
 
-For *"themed"* icons, append the theme name to the icon name. For instance with the
+For _"themed"_ icons, append the theme name to the icon name. For instance with the
 
 - The Outlined [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) icon is exposed as `@material-ui/icons/DeleteOutlined`
 - The Rounded [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) icon is exposed as `@material-ui/icons/DeleteRounded`
@@ -62,7 +63,7 @@ import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 ```
 
-Note: Importing named exports in this way will result in the code for *every icon* being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). It may also impact Hot Module Reload performance.
+Note: Importing named exports in this way will result in the code for _every icon_ being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). It may also impact Hot Module Reload performance.
 
 ### More SVG icons
 
@@ -73,7 +74,7 @@ Looking for even more SVG icons? There are a lot of projects out there, but [htt
 The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
@@ -83,7 +84,7 @@ To use an icon simply wrap the icon name (font ligature) with the `Icon` compone
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>
+<Icon>star</Icon>;
 ```
 
 By default, an Icon will inherit the current text color. Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
@@ -128,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
-</IconButton>
+</IconButton>;
 ```
 
 ### Decorative Font Icons

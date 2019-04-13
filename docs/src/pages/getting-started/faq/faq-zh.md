@@ -2,21 +2,22 @@
 
 <p class="description">您在一个特定的问题上停滞不前吗？ 您可以先在我们的常见 FAQ (问题解答) 中检索一下常见问题。</p>
 
-如果您仍然无法找到您想要的内容, 您可以在[ gitter ](https://gitter.im/mui-org/material-ui) 社区中发起咨询。 对于如何提问，和其他并非功能性问题的，请使用[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 提问，请不要使用 Github 的 issues板块。 在 StackOverflow 里面有一个 ` material-ui `的标签， 您可以用它来标记你的问题。
+如果您仍然无法找到您想要的内容, 您可以在[ gitter ](https://gitter.im/mui-org/material-ui) 社区中发起咨询。 对于如何提问，和其他并非功能性问题的，请使用[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 提问，请不要使用 Github 的 issues 板块。 在 StackOverflow 里面有一个 `material-ui`的标签， 您可以用它来标记你的问题。
 
 ## 为什么我的组件在生产版本中没有正确地渲染？
 
-这样一个n°1问题很可能是当你的代码在生产模式下 bundle （打包）后，有一些class name（类名称）会产生冲突。 如果想要 Material-UI 正常工作, 页面上所有组件的 `classname` 值必须由 [类名称生成器](/css-in-js/advanced/#class-names) 的单个实例生成。
+这样一个 n°1 问题很可能是当你的代码在生产模式下 bundle （打包）后，有一些 class name（类名称）会产生冲突。 如果想要 Material-UI 正常工作, 页面上所有组件的 `classname` 值必须由 [类名称生成器](/css-in-js/advanced/#class-names) 的单个实例生成。
 
-若要更正此问题, 需要初始化页面上的所有组件, 以便它们之间只有 **1个类名称生成器 **。
+若要更正此问题, 需要初始化页面上的所有组件, 以便它们之间只有 **1 个类名称生成器 **。
 
 在很多情况下，您可能最终会意外地使用两个类名生成器：
 
 - 比如你一不小心 **打包**了 两个版本的 Material-UI。 你可能错误地将一个依赖和 material-ui 设置为同版本依赖了。
-- 对于你的React Tree（React树控件）而言，你在使用`StylesProvider`构建**subset（分支）**。
+- 对于你的 React Tree（React 树控件）而言，你在使用`StylesProvider`构建**subset（分支）**。
 - You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
 
-> >如果你正使用带有[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，请尝试在[`优化项(optimizations)`下</code>配置 `runtimeChunk</2></a> 。</p>
+> > 如果你正使用带有[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的 webpack，请尝试在[`优化项(optimizations)`下</code>配置 `runtimeChunk</2></a> 。</p>
+
 </blockquote>
 
 <p>总的来说，通过在其组件树顶部的<a href="/css-in-js/api/#stylesprovider"><code>StylesProvider`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)来包装每个 Material-UI 应用程序，**并且在他们之间使用单个类名称生成器**，能够简单地解决这个问题。
@@ -35,15 +36,16 @@
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  props: {
-    // Name of the component ⚛️
-    MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
-    },
-  },
+props: {
+// Name of the component ⚛️
+MuiButtonBase: {
+// The properties to apply
+disableRipple: true, // No more ripple, on the whole application
+},
+},
 });
-```
+
+````
 
 ## 如何禁用全局动画？
 
@@ -58,7 +60,7 @@ const theme = createMuiTheme({
     create: () => 'none',
   },
 });
-```
+````
 
 有时您会在某些情况下才使用这种行为，例如在测试期间或者在一些低端设备上，在这些情况下，您可以动态地更改主题的值。
 
@@ -71,7 +73,7 @@ const theme = createMuiTheme({
 - 它的 [API](https://cssinjs.org/json-api/)干净并且前后一致。
 - 它支持大量的进阶功能，可以通过自身和 [插件](https://cssinjs.org/plugins/)实现。
 
-然而，您可能已经在你的应用程序上添加了一些使用其他样式的Material-UI组件，或者已经熟悉了一个完全不同的API而不想学习新的？ 在这种情况下，请转到[Style Library Interoperability（样式库互用）](/guides/interoperability/) 部分，在哪里你可以找到我们提供的用其他样式库来替换 Material-UI 组件样式的简单方法。
+然而，您可能已经在你的应用程序上添加了一些使用其他样式的 Material-UI 组件，或者已经熟悉了一个完全不同的 API 而不想学习新的？ 在这种情况下，请转到[Style Library Interoperability（样式库互用）](/guides/interoperability/) 部分，在哪里你可以找到我们提供的用其他样式库来替换 Material-UI 组件样式的简单方法。
 
 ## 我到底应该使用 inline-style 还是 classes 呢?
 
@@ -84,7 +86,7 @@ const theme = createMuiTheme({
 
 ## 如何使用 react-router？
 
-我们在`ButtonBase` 组件里面解析了如何使用带有[第三方routing的库](/demos/buttons/#third-party-routing-library)。 大量我们的交互式组件的内部也使用了它：如`Button`，`MenuItem`，`<ListItem button />` ，`Tab`等。 您可以使用相同的解决方案。
+我们在`ButtonBase` 组件里面解析了如何使用带有[第三方 routing 的库](/demos/buttons/#third-party-routing-library)。 大量我们的交互式组件的内部也使用了它：如`Button`，`MenuItem`，`<ListItem button />` ，`Tab`等。 您可以使用相同的解决方案。
 
 ## 如何组合`withStyles()`和`withTheme`的 HOCs（高阶组件）呢?
 
@@ -103,7 +105,7 @@ import { compose } from 'recompose';
 
 export default compose(
   withTheme,
-  withStyles(styles)
+  withStyles(styles),
 )(Modal);
 ```
 
@@ -128,8 +130,8 @@ export default withTheme(withStyles(styles)(Modal));
 - 帮助改进[这篇文档](https://github.com/mui-org/material-ui/tree/next/docs).
 - 帮助他人开始使用。
 - [口口相传](https://twitter.com/MaterialUI)。
-- 回答[ StackOverflow上的问题](https://stackoverflow.com/questions/tagged/material-ui)或[ Spectrum ](https://spectrum.chat/material-ui) 。
+- 回答[ StackOverflow 上的问题](https://stackoverflow.com/questions/tagged/material-ui)或[ Spectrum ](https://spectrum.chat/material-ui) 。
 
-如果您在商业项目中使用了Material-UI，并希望通过成为我们的**赞助商</0 >来支持我们的持续发展，或者您一个业余项目或者爱好项目，并想成为我们的支持者， 您都可以通过[OpenCollective](https://opencollective.com/material-ui)实现。</p> 
+如果您在商业项目中使用了 Material-UI，并希望通过成为我们的\*\*赞助商</0 >来支持我们的持续发展，或者您一个业余项目或者爱好项目，并想成为我们的支持者， 您都可以通过[OpenCollective](https://opencollective.com/material-ui)实现。</p>
 
-筹集的所有资金都是透明管理的，赞助商在README和Material-UI主页上获得认可。
+筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上获得认可。

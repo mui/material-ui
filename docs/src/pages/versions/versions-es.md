@@ -20,7 +20,7 @@ Reconocemos que necesitas ** estabilidad ** por parte de la biblioteca de Materi
 
 Este documento contiene ** las prácticas que seguimos ** para proporcionarte una librería de IU de vanguardia, equilibrada con estabilidad. Nos esforzamos para asegurar que futuros cambios siempre sean introducidos de una manera predecible. Queremos que todos los que dependen de Material-UI sepan cuándo y cómo se agregan nuevas prestaciones, y que estén bien preparados cuando se remuevan obsoletas.
 
-Material-UI sigue estrictamente [ Versionado semántico 2.0.0](https://semver.org/). Los números en la versión de Material-UI tienen tres partes: ` mayor.menor.parche`. El número de versión se incrementa en base a el nivel de cambio incluido en tal lanzamiento.
+Material-UI sigue estrictamente [ Versionado semántico 2.0.0](https://semver.org/). Los números en la versión de Material-UI tienen tres partes: `mayor.menor.parche`. El número de versión se incrementa en base a el nivel de cambio incluido en tal lanzamiento.
 
 - ** Lanzamientos mayores** contienen nuevas prestaciones importantes, se espera alguna o mínima asistencia por parte del desarrollador durante la actualización. Al actualizar a una nueva versión mayor, es posible que debas ejecutar los scripts de actualización, refactorizar código, ejecutar pruebas adicionales, y aprender nuevas API.
 - ** Lanzamientos menores ** contienen nuevas prestaciones importantes. Los lanzamientos menores son totalmente compatibles con versiones anteriores; no se espera asistencia del desarrollador durante la actualización, pero opcionalmente puedes modificar tus aplicaciones y librerias para comenzar a usar nuevas API, prestaciones, y capacidades que se agregaron en ese lanzamiento.
@@ -41,7 +41,7 @@ En general, espera el siguiente ciclo de lanzamiento:
 > Descargo de responsabilidad: Las fechas se ofrecen como orientación general y podriamos ajustarlas cuando sea necesario para garantizar la entrega de un código de alta calidad.
 
 | Fecha         | Versión                    |
-|:------------- |:-------------------------- |
+| :------------ | :------------------------- |
 | Enero de 2019 | `@material-ui/core` v4.0.0 |
 | Julio de 2019 | `@material-ui/core` v5.0.0 |
 

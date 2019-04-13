@@ -2,6 +2,7 @@
 title: Dialog React-Komponente
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
+
 # Dialoge
 
 <p class="description">Dialoge informieren Benutzer über eine Aufgabe und können wichtige Informationen enthalten, Entscheidungen erfordern oder mehrere Aufgaben umfassen.</p>
@@ -69,7 +70,7 @@ Sie können die maximale Breite eines Dialogs festlegen, indem Sie die `maxWidth
 
 ## Responsive Vollbild
 
-Sie können einen Dialog responsive machen, indem Sie `withMobileDialog` verwenden. Standardmäßig wird `withMobileDialog()(Dialog)` gesetzt, wenn die [Bildschirmgröße](/layout/basics/) *kleiner gleich* `sm` ist. Sie können Ihre eigene Bruchstelle z. B. `xs` auswählen, indem Sie das Argument `breakpoint` `withMobileDialog({breakpoint: 'xs'}) (Dialog)` sezten.
+Sie können einen Dialog responsive machen, indem Sie `withMobileDialog` verwenden. Standardmäßig wird `withMobileDialog()(Dialog)` gesetzt, wenn die [Bildschirmgröße](/layout/basics/) _kleiner gleich_ `sm` ist. Sie können Ihre eigene Bruchstelle z. B. `xs` auswählen, indem Sie das Argument `breakpoint` `withMobileDialog({breakpoint: 'xs'}) (Dialog)` sezten.
 
 {{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 

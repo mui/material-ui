@@ -16,10 +16,10 @@ Must be used as the last child of ListItem to function properly.
 
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component, normally an `IconButton` or selection control. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| Name                                    | Type                                  | Default | Description                                                                                         |
+| :-------------------------------------- | :------------------------------------ | :------ | :-------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span>   |         | The content of the component, normally an `IconButton` or selection control.                        |
+| <span class="prop-name">classes</span>  | <span class="prop-type">object</span> |         | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 The `ref` is forwarded to the root element.
 
@@ -30,10 +30,9 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
+| Name                                | Description                         |
+| :---------------------------------- | :---------------------------------- |
+| <span class="prop-name">root</span> | Styles applied to the root element. |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js)
@@ -45,4 +44,3 @@ you need to use the following style sheet name: `MuiListItemSecondaryAction`.
 ## Demos
 
 - [Lists](/demos/lists/)
-

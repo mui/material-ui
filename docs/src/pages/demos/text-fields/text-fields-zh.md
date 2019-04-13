@@ -2,6 +2,7 @@
 title: React Text Field（文本框）组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
+
 # Text Fields（文本框）
 
 <p class="description">用户可以在文本框内输入或编辑文字。</p>
@@ -18,7 +19,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## Outlined（轮廓）
 
-` TextField`支持轮廓的样式。
+`TextField`支持轮廓的样式。
 
 {{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
 
@@ -44,11 +45,11 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 如果您有阅读[重写文档](/customization/overrides/)，但你还不是很自信能够完全掌握，以下是的示例展示了如何更改一个输入的主要颜色。
 
-⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
+⚠️ 虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
-自定义不止于CSS，您可以使用组合来构建自定义的组件，并让您的应用程序独树一帜。 以下是使用受Google地图启发的 [`InputBase`](/api/input-base/) 组件的示例。
+自定义不止于 CSS，您可以使用组合来构建自定义的组件，并让您的应用程序独树一帜。 以下是使用受 Google 地图启发的 [`InputBase`](/api/input-base/) 组件的示例。
 
 {{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
 
@@ -106,7 +107,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## 可访问性
 
-为了访问文本框， **输入框要链接到标签和辅助文本**。而底层的DOM节点也应具有此结构。
+为了访问文本框， **输入框要链接到标签和辅助文本**。而底层的 DOM 节点也应具有此结构。
 
 ```jsx
 <div class="form-control">

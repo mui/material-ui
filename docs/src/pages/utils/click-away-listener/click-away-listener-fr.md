@@ -2,6 +2,7 @@
 title: Click away listener React component
 components: ClickAwayListener
 ---
+
 # Click away listener
 
 <p class="description">Écoutez des événements click qui se produisent quelque part dans le document, en dehors de l’élément lui-même.</p>

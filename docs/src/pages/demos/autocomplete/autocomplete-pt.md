@@ -2,6 +2,7 @@
 title: Componente React Autocomplete
 components: TextField, Paper, MenuItem, Popper
 ---
+
 # Autocomplete (Autocompletar)
 
 <p class="description">O autocomplete é uma entrada de texto normal aprimorada por um painel de opções sugeridas.</p>

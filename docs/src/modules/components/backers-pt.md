@@ -4,7 +4,7 @@ O Material-UI é um projeto open source de licença MIT. É um projeto independe
 
 ### Patrocinadores de Ouro
 
-Patrocindadores de Ouro são os que apoiaram com $500 por mês ou mais o Material-UI.
+Patrocindadores de Ouro são os que apoiaram com \$500 por mês ou mais o Material-UI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 

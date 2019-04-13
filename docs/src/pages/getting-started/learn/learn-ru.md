@@ -22,17 +22,17 @@ We have a [selection of basic page layouts](/getting-started/page-layout-example
 
 ### Free
 
-- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
+- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI.
   - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Изучить React & Material-UI**: серия видеороликов, охватывающих все важные компоненты Material-UI. 
+- **Изучить React & Material-UI**: серия видеороликов, охватывающих все важные компоненты Material-UI.
   - 📹 [Видео](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Начало работы с Material-UI для React**: сообщение в блоге, которое поможет вам в создании простого списка карточек. 
+- **Начало работы с Material-UI для React**: сообщение в блоге, которое поможет вам в создании простого списка карточек.
   - 📝 [Сообщение в блоге](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [Видео](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
+- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts.
   - 📝 [The blog post](https://alligator.io/react/material-ui/)
 
 ### Paid
 
-- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
+- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI.
   - 📘 [The book](https://builderbook.org/book)

@@ -45,7 +45,7 @@ import { sizing } from '@material-ui/system';
 ```
 
 | Nombre del import | Prop        | Propiedad CSS | Clave del tema |
-|:----------------- |:----------- |:------------- |:-------------- |
+| :---------------- | :---------- | :------------ | :------------- |
 | `width`           | `width`     | `width`       | none           |
 | `maxWidth`        | `maxWidth`  | `max-width`   | none           |
 | `minWidth`        | `minWidth`  | `min-width`   | none           |

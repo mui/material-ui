@@ -2,6 +2,7 @@
 title: Breadcrumbs
 components: Breadcrumbs, Link, Typography
 ---
+
 # Хлебные крошки
 
 <p class="description">Хлебные крошки позволяют пользователям выбирать из диапазона значений.</p>

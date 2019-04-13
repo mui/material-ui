@@ -175,7 +175,7 @@ The CSS is only generated on the first load of the page. Then, the CSS is missin
 
 We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` for each request**.
 
-*example of fix:*
+_example of fix:_
 
 ```diff
 -// Create a sheets instance.
@@ -202,7 +202,7 @@ The class names value relies on the concept of [class name generator](/css-in-js
 
 - You need to provide a new class name generator for each request. But you might share a `createGenerateClassName()` between different requests:
 
-*example of fix:*
+_example of fix:_
 
 ```diff
 - // Cria um novo gerador de nome de classe.
@@ -220,10 +220,9 @@ function handleRender(req, res) {
 ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
-    
-    You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+  You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
-*example of fix (package.json):*
+_example of fix (package.json):_
 
 ```diff
   "dependencies": {

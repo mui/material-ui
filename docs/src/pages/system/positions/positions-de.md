@@ -18,7 +18,7 @@ import { positions } from '@material-ui/system';
 ```
 
 | Inportname | Eigenschaften | CSS-Eigenschaft | Theme-Schlüssel                                                |
-|:---------- |:------------- |:--------------- |:-------------------------------------------------------------- |
+| :--------- | :------------ | :-------------- | :------------------------------------------------------------- |
 | `position` | `position`    | `position`      | none                                                           |
 | `zIndex`   | `zIndex`      | `z-index`       | [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) |
 | `top`      | `top`         | `top`           | none                                                           |

@@ -2,13 +2,14 @@
 title: 扩展面板组件
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
+
 # 扩展面板
 
 <p class="description">扩展面板包含创建流程，允许轻量编辑元素。</p>
 
 [扩展面板](https://material.io/archive/guidelines/components/expansion-panels.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
-> **注意：**Material Design文档中不再记录扩展面板。
+> **注意：**Material Design 文档中不再记录扩展面板。
 
 ## 无障碍功能
 
@@ -20,7 +21,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## 受控手风琴
 
-扩展默认面板行为以使用` ExpansionPanel `组件创建手风琴。
+扩展默认面板行为以使用`ExpansionPanel`组件创建手风琴。
 
 {{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}
 
@@ -38,6 +39,6 @@ The content of ExpansionPanels is mounted by default even if the panel is not ex
 
 如果您已经在阅读 [组件覆写文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个关于如何自定义`ExpansionPanelSummary`组件背景自然色和给`ExpansionPanelDetails`组件添加填充的示例。
 
-⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
+⚠️ 虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/expansion-panels/CustomizedExpansionPanel.js"}}

@@ -9,7 +9,7 @@
 确保在主体上设置了 `dir` 属性，否则本机组件将中断：
 
 ```html
-<body dir="rtl">
+<body dir="rtl"></body>
 ```
 
 ### 2。 Theme
@@ -24,13 +24,13 @@ const theme = createMuiTheme({
 
 ### 3。 jss-rtl
 
-你需要这个JSS插件来翻转样式： [jss-rtl](https://github.com/alitaheri/jss-rtl)。
+你需要这个 JSS 插件来翻转样式： [jss-rtl](https://github.com/alitaheri/jss-rtl)。
 
 ```sh
 npm install jss-rtl
 ```
 
-在项目中安装了插件后，Material-UI组件仍然需要由jss实例加载，如下所述。 在内部，当withStyles使用该JSS插件 `direction: 'rtl'` 上设置的主题。 Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
+在项目中安装了插件后，Material-UI 组件仍然需要由 jss 实例加载，如下所述。 在内部，当 withStyles 使用该 JSS 插件 `direction: 'rtl'` 上设置的主题。 Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
 
 Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. We have a [`StylesProvider`](/css-in-js/api/#stylesprovider) component for this:
 
@@ -43,24 +43,20 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function RTL(props) {
-  return (
-    <StylesProvider jss={jss}>
-      {props.children}
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
 }
 ```
 
 ## 演示
 
-*Use the direction toggle button on the top right corner to flip the whole documentation*
+_Use the direction toggle button on the top right corner to flip the whole documentation_
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
-## 选择退出rtl转型
+## 选择退出 rtl 转型
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning:
 
-*Use the direction toggle button on the top right corner to see the effect*
+_Use the direction toggle button on the top right corner to see the effect_
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

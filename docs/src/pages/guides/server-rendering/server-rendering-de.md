@@ -56,7 +56,7 @@ Beim Rendern wickeln wir die `App`, unsere Wurzelkomponente, in einem [`StylesPr
 
 Der wichtigste Schritt beim serverseitigen Rendern ist das Rendern des ursprünglichen HTM-Codes unserer Komponente **bevor** wir es an den Kunden senden. Dazu verwenden wir [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-Wir erhalten dann das CSS aus unsere `Sheets` mit `sheets.toString()`. Wir werden sehen, wie dies in unserer ` enderFullPage`-Funktion weitergegeben wird.
+Wir erhalten dann das CSS aus unsere `Sheets` mit `sheets.toString()`. Wir werden sehen, wie dies in unserer `enderFullPage`-Funktion weitergegeben wird.
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -175,7 +175,7 @@ Das CSS wird nur beim ersten Laden der Seite generiert. Auf dem Server fehlt dan
 
 Wir setzen auf einen Cache, den Sheets-Manager, um das CSS nur einmal pro Komponententyp (wenn Sie zwei Schaltflächen verwenden, benötigen Sie nur einmal das CSS der Schaltfläche) zu injizieren. Sie müssen **für jede Anfrage ein neues `sheet`** erstellen.
 
-*beispiel für fix:*
+_beispiel für fix:_
 
 ```diff
 - // Eine Sheet Instanz erstellen.
@@ -202,7 +202,7 @@ Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/css-
 
 - Sie müssen für jede Anforderung einen neuen Klassennamengenerator bereitstellen. Sie können jedoch einen `createGenerateClassName()` Funktion zwischen verschiedenen Anfragen teilen:
 
-*beispiel für fix:*
+_beispiel für fix:_
 
 ```diff
 - // Erstellen Sie einen neuen Klassennamengenerator.
@@ -220,10 +220,9 @@ function handleRender(req, res) {
 ```
 
 - Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@material-ui/core` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
-    
-    Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
+  Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
 
-*beispiel für fix (package.json):*
+_beispiel für fix (package.json):_
 
 ```diff
   "dependencies": {

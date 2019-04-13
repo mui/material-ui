@@ -2,6 +2,7 @@
 title: Progresso
 components: CircularProgress, LinearProgress
 ---
+
 # Progress (Progresso)
 
 <p class="description">Os indicadores de progresso expressam um tempo de espera não especificado ou exibem a duração de um processo.</p>
@@ -67,7 +68,7 @@ The progress components accept a value in the range 0 - 100. This simplifies thi
 // MIN = Valor mínimo esperado
 // MAX = Valor esperado Maximium
 // Função para normalizar os valores (MIN / MAX pode ser integrado)
-const normalise = value => (value - MIN) * 100 / (MAX - MIN);
+const normalise = value => ((value - MIN) * 100) / (MAX - MIN);
 
 // Exemplo de componente que utiliza a função `normalise` no ponto de renderização.
 function Progress(props) {
@@ -76,7 +77,7 @@ function Progress(props) {
       <CircularProgress variant="determinate" value={normalise(props.value)} />
       <LinearProgress variant="determinate" value={normalise(props.value)} />
     </React.Fragment>
-  )
+  );
 }
 ```
 

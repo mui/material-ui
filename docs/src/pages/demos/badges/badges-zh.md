@@ -2,6 +2,7 @@
 title: React Badge（徽章）组件
 components: Badge
 ---
+
 # Badges（徽章）
 
 <p class="description">徽章会在其子项的右上角生成一个小徽章。</p>
@@ -28,7 +29,7 @@ components: Badge
 
 徽章的可见性是可以通过`invisible`属性来控制。
 
-带有 badgeContent 属性的徽章会在计数为0的时候自动隐藏。您可以使用 `showZero` 属性强制显示。
+带有 badgeContent 属性的徽章会在计数为 0 的时候自动隐藏。您可以使用 `showZero` 属性强制显示。
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
@@ -36,6 +37,6 @@ components: Badge
 
 如果你一直在阅读 [重写文档页面](/customization/overrides/)，但是你不确定如何开始，以下的例子演示了如何改变徽章在文档中的位置。
 
-⚠️虽然 material design 规范鼓励创建主题，但这个例子是不合适的。
+⚠️ 虽然 material design 规范鼓励创建主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}

@@ -12,19 +12,17 @@ filename: /packages/material-ui/src/Tab/Tab.js
 import Tab from '@material-ui/core/Tab';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp</span> |  | This property isn't supported. Use the `component` property if you need to change the children structure. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the tab will be disabled. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon element. |
-| <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label element. |
-| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | You can provide your own value. Otherwise, we fallback to the child position index. |
-| <span class="prop-name">wrapped</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Tab labels appear in a single row. They can use a second line if needed. |
+| Name                                    | Type                                           | Default                                 | Description                                                                                               |
+| :-------------------------------------- | :--------------------------------------------- | :-------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp</span> |                                         | This property isn't supported. Use the `component` property if you need to change the children structure. |
+| <span class="prop-name">classes</span>  | <span class="prop-type">object</span>          |                                         | Override or extend the styles applied to the component. See [CSS API](#css) below for more details.       |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span>            | <span class="prop-default">false</span> | If `true`, the tab will be disabled.                                                                      |
+| <span class="prop-name">icon</span>     | <span class="prop-type">node</span>            |                                         | The icon element.                                                                                         |
+| <span class="prop-name">label</span>    | <span class="prop-type">node</span>            |                                         | The label element.                                                                                        |
+| <span class="prop-name">value</span>    | <span class="prop-type">any</span>             |                                         | You can provide your own value. Otherwise, we fallback to the child position index.                       |
+| <span class="prop-name">wrapped</span>  | <span class="prop-type">bool</span>            | <span class="prop-default">false</span> | Tab labels appear in a single row. They can use a second line if needed.                                  |
 
 The `ref` is forwarded to the root element.
 
@@ -35,19 +33,18 @@ Any other properties supplied will be spread to the root element ([ButtonBase](/
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">labelIcon</span> | Styles applied to the root element if both `icon` and `label` are provided.
-| <span class="prop-name">textColorInherit</span> | Styles applied to the root element if `textColor="inherit"`.
-| <span class="prop-name">textColorPrimary</span> | Styles applied to the root element if `textColor="primary"`.
-| <span class="prop-name">textColorSecondary</span> | Styles applied to the root element if `textColor="secondary"`.
-| <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}` (controlled by the Tabs component).
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}` (controlled by the Tabs component).
-| <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component).
-| <span class="prop-name">wrapped</span> | Styles applied to the root element if `wrapped={true}`.
-| <span class="prop-name">wrapper</span> | Styles applied to the `icon` and `label`'s wrapper element.
+| Name                                              | Description                                                                                  |
+| :------------------------------------------------ | :------------------------------------------------------------------------------------------- |
+| <span class="prop-name">root</span>               | Styles applied to the root element.                                                          |
+| <span class="prop-name">labelIcon</span>          | Styles applied to the root element if both `icon` and `label` are provided.                  |
+| <span class="prop-name">textColorInherit</span>   | Styles applied to the root element if `textColor="inherit"`.                                 |
+| <span class="prop-name">textColorPrimary</span>   | Styles applied to the root element if `textColor="primary"`.                                 |
+| <span class="prop-name">textColorSecondary</span> | Styles applied to the root element if `textColor="secondary"`.                               |
+| <span class="prop-name">selected</span>           | Styles applied to the root element if `selected={true}` (controlled by the Tabs component).  |
+| <span class="prop-name">disabled</span>           | Styles applied to the root element if `disabled={true}` (controlled by the Tabs component).  |
+| <span class="prop-name">fullWidth</span>          | Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). |
+| <span class="prop-name">wrapped</span>            | Styles applied to the root element if `wrapped={true}`.                                      |
+| <span class="prop-name">wrapper</span>            | Styles applied to the `icon` and `label`'s wrapper element.                                  |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Tab/Tab.js)
@@ -64,4 +61,3 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [Tabs](/demos/tabs/)
-

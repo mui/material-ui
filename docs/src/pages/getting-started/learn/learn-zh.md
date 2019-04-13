@@ -22,17 +22,17 @@
 
 ### 免费的资源
 
-- **Meet Material-UI — 您最喜欢的用户界面库**：这是一篇指导您创建Todo MVC，同时涵盖了 Material-UI 的一些重要概念的博文。 
+- **Meet Material-UI — 您最喜欢的用户界面库**：这是一篇指导您创建 Todo MVC，同时涵盖了 Material-UI 的一些重要概念的博文。
   - 📝 [博文](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **学习 React 与 Material-UI**：涵盖 Material-UI 组成部分的系列视频。 
+- **学习 React 与 Material-UI**：涵盖 Material-UI 组成部分的系列视频。
   - 📹 [视频](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **在React中开始使用 Material-UI**：一篇博客文章，指导您构建一个简单的卡片列表。 
+- **在 React 中开始使用 Material-UI**：一篇博客文章，指导您构建一个简单的卡片列表。
   - 📝 [博文](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [视频](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**：一篇内容涵盖一些重要的 Material-UI 概念的博文。 
+- **Elegant UX in React with Material-UI**：一篇内容涵盖一些重要的 Material-UI 概念的博文。
   - 📝 [博文](https://alligator.io/react/material-ui/)
 
 ### 付费的资源
 
-- **Builder Book**：学习如何使用 Modern JavaScript 堆栈和 Material-UI 来从头开始创建一个全栈 JavaScript Web 应用程序。 
+- **Builder Book**：学习如何使用 Modern JavaScript 堆栈和 Material-UI 来从头开始创建一个全栈 JavaScript Web 应用程序。
   - 📘 [书](https://builderbook.org/book)

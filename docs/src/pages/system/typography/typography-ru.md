@@ -49,7 +49,7 @@ import { typography } from '@material-ui/system';
 ```
 
 | Импорт       | Свойство     | Свойство CSS  | В теме                                                                 |
-|:------------ |:------------ |:------------- |:---------------------------------------------------------------------- |
+| :----------- | :----------- | :------------ | :--------------------------------------------------------------------- |
 | `fontFamily` | `fontFamily` | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontSize`   | `fontSize`   | `font-size`   | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontWeight` | `fontWeight` | `font-weight` | [`typography`](/customization/default-theme/?expend-path=$.typography) |

@@ -2,7 +2,7 @@
 
 <p class="description">Suchen Sie ein Beispielprojekt, um anzufangen?</p>
 
-Wir hosten einige Beispielprojekte, die Sie im [GitHub-Repository](https://github.com/mui-org/material-ui) finden unter dem [` /examples`](https://github.com/mui-org/material-ui/tree/next/examples) Ordner:
+Wir hosten einige Beispielprojekte, die Sie im [GitHub-Repository](https://github.com/mui-org/material-ui) finden unter dem [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) Ordner:
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
@@ -20,7 +20,7 @@ Suchen Sie nach einem fortgeschritteneren Beispielprojekt?
 
 Wenn Sie mit einem vollständigeren und realistischeren Beispiel beginnen möchten, werfen Sie einen Blick auf Folgendes:
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), welches beinhaltet: 
+- [Material Sense](https://github.com/alexanmtz/material-sense), welches beinhaltet:
   - Diagramme mit recharts
   - React Router mit einem Navigationsbeispiel
   - Ein Docker-Container mit einem Nginx-Server für den Produktionsaufbau

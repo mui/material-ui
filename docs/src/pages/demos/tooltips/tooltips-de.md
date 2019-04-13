@@ -2,6 +2,7 @@
 title: Tooltip React-Komponente
 components: Tooltip
 ---
+
 # Tooltip
 
 <p class="description">Tooltips zeigen informativen Text an, wenn Benutzer auf ein Element zeigen, darauf fokussieren oder tippen.</p>

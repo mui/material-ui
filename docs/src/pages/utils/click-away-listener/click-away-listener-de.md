@@ -2,6 +2,7 @@
 title: Wegklick Zuhörer
 components: ClickAwayListener
 ---
+
 # Wegklick Zuhörer
 
 <p class="description">Hört auf Klickereignisse, die sich irgendwo im Dokument außerhalb des Elements selbst befinden.</p>

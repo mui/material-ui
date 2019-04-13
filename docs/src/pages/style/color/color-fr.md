@@ -14,7 +14,7 @@ A palette is a collection of colors, i.e. hues and their shades. Material-UI pro
 
 #### "Hue" & "Shade"
 
-A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" is the lightest shade of red (*pink!*), while "red 900" is the darkest. In addition, most hues come with "accent" shades, prefixed with an `A`.
+A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" is the lightest shade of red (_pink!_), while "red 900" is the darkest. In addition, most hues come with "accent" shades, prefixed with an `A`.
 
 ### Exemples
 
@@ -33,7 +33,7 @@ const accent = purple.A200; // #E040FB (alternative method)
 
 ### Color palette
 
-Given a *HUE* (red, pink, etc.) and a *SHADE* (500, 600, etc.) you can import the color like this:
+Given a _HUE_ (red, pink, etc.) and a _SHADE_ (500, 600, etc.) you can import the color like this:
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';

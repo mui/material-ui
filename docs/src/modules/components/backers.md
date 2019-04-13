@@ -6,7 +6,7 @@ thanks to the support of these awesome [backers](/discover-more/backers/).
 
 ### Gold Sponsors
 
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+Gold Sponsors are those who have pledged \$500/month and more to Material-UI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 

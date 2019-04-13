@@ -2,6 +2,7 @@
 title: Modal React component
 components: Modal
 ---
+
 # Modal
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
@@ -58,7 +59,7 @@ However, creating React elements has a cost too. Consider the following case:
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+We create a lot of React elements that will never be mounted. It's wasteful
 
 ```jsx
 <Modal open={false}>
@@ -73,10 +74,7 @@ We create a lot of React elements that will never be mounted. It's wasteful
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
 
 ```jsx
-<Modal
-  aria-labelledby="simple-modal-title"
-  aria-describedby="simple-modal-description"
->
+<Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
   <Typography variant="h6" id="modal-title">
     My Title
   </Typography>

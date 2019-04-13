@@ -4,7 +4,7 @@ Material-UI 是一个使用 MIT 许可证的开源项目。 可能完全因为�
 
 ### 金牌赞助商
 
-黄金赞助商是那些已经向 Material-UI 承诺每月至少捐赠500美元的人。
+黄金赞助商是那些已经向 Material-UI 承诺每月至少捐赠 500 美元的人。
 
 由[Patreon](https://www.patreon.com/oliviertassinari)
 

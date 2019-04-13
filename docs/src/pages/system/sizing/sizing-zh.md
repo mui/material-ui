@@ -4,7 +4,7 @@
 
 ## 支持的值
 
-Sizing样式函数支持不同的属性输入类型：
+Sizing 样式函数支持不同的属性输入类型：
 
 ```jsx
 <Box width={1/4}> // Numbers in [0,1] are multiplied by 100 and converted to % values.
@@ -44,8 +44,8 @@ Sizing样式函数支持不同的属性输入类型：
 import { sizing } from '@material-ui/system';
 ```
 
-| 导入名称        | Prop        | CSS 属性       | Theme key |
-|:----------- |:----------- |:------------ |:--------- |
+| 导入名称    | Prop        | CSS 属性     | Theme key |
+| :---------- | :---------- | :----------- | :-------- |
 | `width`     | `width`     | `width`      | none      |
 | `maxWidth`  | `maxWidth`  | `max-width`  | none      |
 | `minWidth`  | `minWidth`  | `min-width`  | none      |

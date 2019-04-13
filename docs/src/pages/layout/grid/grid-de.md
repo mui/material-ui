@@ -2,6 +2,7 @@
 title: Grid React Komponente
 components: Grid
 ---
+
 # Grid
 
 <p class="description">Das responsive Layoutraster von Material Design passt sich der Bildschirmgröße und -ausrichtung an und sorgt für Konsistenz über alle Layouts hinweg.</p>
@@ -13,7 +14,7 @@ Das [Grid](https://material.io/design/layout/responsive-layout-grid.html) sorgt 
 Das Rastersystem wird mit der `Grid-` Komponente implementiert:
 
 - Es verwendet das [CSS Flexible Box - Modul](https://www.w3.org/TR/css-flexbox-1/) für hohe Flexibilität.
-- Es gibt zwei Arten von Layouts: *Container* und *Elemente*.
+- Es gibt zwei Arten von Layouts: _Container_ und _Elemente_.
 - Die Elementbreiten werden in Prozent angegeben. Sie sind daher immer fließend und werden in Bezug auf das übergeordnete Element angepasst.
 - Elemente haben einen Abstand, um den Abstand zwischen den einzelnen Elementen zu erstellen.
 - Es gibt fünf Rasterpunkte: xs, sm, md, lg und xl.
@@ -52,7 +53,7 @@ Nachfolgend finden Sie eine interaktive Demo, mit der Sie die visuellen Ergebnis
 
 ## Automatisches Layout
 
-Das Auto-Layout sorgt dafür, dass die *Elemente* den verfügbaren Speicherplatz gleichermaßen teilen. Das bedeutet auch, dass Sie die Breite von *Elementen* einstellen können. Die Größe der anderen Elemente wird automatisch angepasst.
+Das Auto-Layout sorgt dafür, dass die _Elemente_ den verfügbaren Speicherplatz gleichermaßen teilen. Das bedeutet auch, dass Sie die Breite von _Elementen_ einstellen können. Die Größe der anderen Elemente wird automatisch angepasst.
 
 {{"demo": "pages/layout/grid/AutoGrid.js"}}
 
@@ -87,13 +88,13 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 Es gibt eine Einschränkung beim negativen Rand, den wir verwenden, um den Abstand zwischen den Elementen zu implementieren. Ein horizontaler Bildlauf wird angezeigt, wenn ein negativer Rand weiter als `<body>` geht. Es gibt 3 verfügbare Problemumgehungen: 1. Nicht die Abstands-Funktion benutzen und den Abstand in Anzeigeraum `spacing={0}` (Standard) setzen. 2. Anwenden von Paddings auf das übergeordnete Element, wobei mindestens der halbe Abstand auf das untergeordnete Element angewendet wird:
 
 ```jsx
-  <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-      </Grid>
-    </div>
-  </body>
+<body>
+  <div style={{ padding: 20 }}>
+    <Grid container spacing={5}>
+      //...
+    </Grid>
+  </div>
+</body>
 ```
 
 1. Hinzufügen von `overflow-x: hidden;` zum Elternteil.

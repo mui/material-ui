@@ -2,6 +2,7 @@
 title: App Bar React component
 components: AppBar, Toolbar, Menu
 ---
+
 # App Bar
 
 <p class="description">App Barには、現在の画面に関する情報と操作が表示されます。</p>
@@ -18,7 +19,7 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## 基本的な検索フィールド付きApp Bar
+## 基本的な検索フィールド付き App Bar
 
 基本的な検索バー
 
@@ -28,7 +29,7 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## 検索フィールド付きApp Bar
+## 検索フィールド付き App Bar
 
 サイド検索バー
 

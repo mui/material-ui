@@ -29,7 +29,7 @@ Example of a card using an image to reinforce the content.
 
 {{"demo": "pages/demos/cards/MediaCard.js"}}
 
-By default, we use the combination of a `<div>` element and a *background image* to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
+By default, we use the combination of a `<div>` element and a _background image_ to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 

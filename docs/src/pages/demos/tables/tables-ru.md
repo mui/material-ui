@@ -2,6 +2,7 @@
 title: React-компонент Таблица
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
+
 # Таблицы
 
 <p class="description">Таблицы отображают массивы данных. Они могут быть полностью кастомизированны.</p>

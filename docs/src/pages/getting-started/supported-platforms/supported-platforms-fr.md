@@ -6,9 +6,9 @@
 
 Material-UI prend en charge les dernières versions stables de tous les principaux navigateurs et plates-formes. Nous supportons également Internet Explorer 11. You don't need to provide any JavaScript polyfill as we manage unsupported browser features internally and in isolation.
 
-| IE | Edge  | Firefox | Chrome | Safari | Googlebot |
-|:-- |:----- |:------- |:------ |:------ |:--------- |
-| 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
+| IE  | Edge  | Firefox | Chrome | Safari | Googlebot |
+| :-- | :---- | :------ | :----- | :----- | :-------- |
+| 11  | >= 14 | >= 52   | >= 49  | >= 10  | ✅        |
 
 Étant donné que Googlebot utilise un service de rendu Web (WRS) pour indexer le contenu de la page, il est essentiel que Material-UI le prenne en charge. [WRS est basé sur Chrome 41](https://developers.google.com/search/docs/guides/rendering). Vous pouvez vous attendre à ce que les composants de Material-UI soient rendus sans problèmes majeurs.
 

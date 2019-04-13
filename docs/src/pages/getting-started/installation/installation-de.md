@@ -23,7 +23,7 @@ Beachten Sie, dass [react](https://www.npmjs.com/package/react) >= 16.3.0 und [r
 Material-UI wurde mit Blick auf die [Roboto](https://fonts.google.com/specimen/Roboto)-Schrift designed. Bitte folgen Sie daher [diesen Anweisungen](/style/typography/#general). Zum Beispiel über Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
 Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
@@ -37,7 +37,7 @@ Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
 Um die Font `Symbol` Komponente zu verwenden, müssen Sie zuerst die [Material Symbole Schriftart](https://material.io/tools/icons/) hinzufügen. Hier sind einige [Anweisungen](/style/icons/#font-icons) wie das geht. Zum Beispiel über Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:

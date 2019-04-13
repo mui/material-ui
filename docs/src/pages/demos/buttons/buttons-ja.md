@@ -2,11 +2,12 @@
 title: Button React component
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # ボタン
 
 <p class="description">Buttonを使用すると、ユーザーは1回のタップでアクションを実行したり選択したりできます。</p>
 
-[Button](https://material.io/design/components/buttons.html)は、ユーザが取りうるアクションを伝達します。一般的に次のようなUIのなかに配置されます。
+[Button](https://material.io/design/components/buttons.html)は、ユーザが取りうるアクションを伝達します。一般的に次のような UI のなかに配置されます。
 
 - Dialogs
 - Modal window
@@ -29,7 +30,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 - Dialog
 - Card
 
-Cardの中でText Buttonを用いることで、Cardの内容に重点を置くことができます。
+Card の中で Text Button を用いることで、Card の内容に重点を置くことができます。
 
 {{"demo": "pages/demos/buttons/TextButtons.js"}}
 
@@ -39,13 +40,13 @@ Cardの中でText Buttonを用いることで、Cardの内容に重点を置く�
 
 ### 代替手段
 
-Outlined buttonは、Contained buttonと比べると強調が弱く、 Text buttonと比べると強調の強いボタンです。
+Outlined button は、Contained button と比べると強調が弱く、 Text button と比べると強調の強いボタンです。
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
 ## Floating Action Buttons
 
-[floating action button](https://material.io/design/components/buttons-floating-action-button.html)(FAB) は画面上でもっとも重要で一般的なアクションを実行する際に使用します。 FABは画面の構成要素の中で最前面に配置され、一般的に円形で中央にアイコンが配置されます。 FABには次の二つのタイプがあります: regular extended
+[floating action button](https://material.io/design/components/buttons-floating-action-button.html)(FAB) は画面上でもっとも重要で一般的なアクションを実行する際に使用します。 FAB は画面の構成要素の中で最前面に配置され、一般的に円形で中央にアイコンが配置されます。 FAB には次の二つのタイプがあります: regular extended
 
 Only use a FAB if it is the most suitable way to present a screen’s primary action.
 
@@ -104,7 +105,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-// required for react-router-dom < 5.0.0 
+// required for react-router-dom < 5.0.0
 // see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
 const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
@@ -116,15 +117,15 @@ const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={r
 or if you want to avoid properties collision:
 
 ```jsx
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 // use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
+const MyLink = React.forwardRef((props, ref) => (
+  <Link to="/open-collective" {...props} innerRef={ref} />
+));
 
-<Button component={MyLink}>
-  Link
-</Button>
+<Button component={MyLink}>Link</Button>;
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+_Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property)._

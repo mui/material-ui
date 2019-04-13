@@ -24,7 +24,7 @@ trade-off, mainly completeness vs. speed.
 
 #### Run the core mocha unit/integration test suite.
 
-To run all of the unit tests just run  `yarn test:unit`
+To run all of the unit tests just run `yarn test:unit`
 
 If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.
 
@@ -33,18 +33,19 @@ If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and chan
 `yarn test:watch`
 
 First, we have the **unit test** suite.
-It uses [mocha](https://mochajs.org) and the *shallow* API of [enzyme](https://github.com/airbnb/enzyme) to allow testing the components in isolation.
+It uses [mocha](https://mochajs.org) and the _shallow_ API of [enzyme](https://github.com/airbnb/enzyme) to allow testing the components in isolation.
 It's the fastest approach, and is best suited for testing many combinations.
 Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Menu/Menu.test.js#L27) with the `Menu` component.
 
 Next, we have the **integration** tests.
-We are using the *mount* API of [enzyme](https://github.com/airbnb/enzyme).
+We are using the _mount_ API of [enzyme](https://github.com/airbnb/enzyme).
 It allows testing the integration of different components using a virtual DOM.
 This virtual DOM is provided by [jsdom](https://github.com/tmpvar/jsdom).
 It's here to make sure components work together.
 Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/test/integration/Menu.test.js#L28) with the `Menu` component.
 
 #### Create HTML coverage reports
+
 `yarn test:coverage:html`
 
 When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](http://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.

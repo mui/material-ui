@@ -2,6 +2,7 @@
 title: Componente React Cajón
 components: Drawer, SwipeableDrawer
 ---
+
 # Cajón
 
 <p class="description">Los cajones de navegación brindan acceso a los destinos en su aplicación. Las hojas laterales son superficies que contienen contenido complementario que están ancladas al borde izquierdo o derecho de la pantalla.</p>
@@ -31,7 +32,7 @@ Estamos utilizando el siguiente conjunto de propiedades en este sitio web de doc
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
 ## Cajón responsivo

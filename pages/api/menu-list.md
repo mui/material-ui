@@ -12,13 +12,11 @@ filename: /packages/material-ui/src/MenuList/MenuList.js
 import MenuList from '@material-ui/core/MenuList';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | MenuList contents, normally `MenuItem`s. |
+| Name                                           | Type                                | Default                                 | Description                                    |
+| :--------------------------------------------- | :---------------------------------- | :-------------------------------------- | :--------------------------------------------- |
+| <span class="prop-name">children</span>        | <span class="prop-type">node</span> |                                         | MenuList contents, normally `MenuItem`s.       |
 | <span class="prop-name">disableListWrap</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the menu items will not wrap focus. |
 
 The `ref` is forwarded to the root element.
@@ -33,4 +31,3 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [Menus](/demos/menus/)
-

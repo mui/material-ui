@@ -2,6 +2,7 @@
 title: No SSR React component
 components: NoSsr
 ---
+
 # No SSR
 
 <p class="description">NoSsr purposely removes components from the subject of Server Side Rendering (SSR).</p>

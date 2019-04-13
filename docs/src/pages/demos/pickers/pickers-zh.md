@@ -2,6 +2,7 @@
 title: 日期选择器，时间选择器反应组件
 components: TextField
 ---
+
 # 选择器
 
 <p class="description">选择器提供了一种从预先设定的集合中选取单个值的简单方法。</p>
@@ -39,7 +40,7 @@ components: TextField
 
 ![stars](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
 
-[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) 提供遵循Material Design规范的日期和时间控件。
+[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) 提供遵循 Material Design 规范的日期和时间控件。
 
 {{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
 

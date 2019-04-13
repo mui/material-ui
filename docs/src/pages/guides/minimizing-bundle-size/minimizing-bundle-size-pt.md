@@ -4,7 +4,7 @@
 
 ## Bundle size matters
 
-The bundle size of Material-UI is taken very seriously. We take size snapshots on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). Combined with [dangerJS](https://danger.systems/js/) we can inspect [detailed bundle size changes]((https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459)) on every Pull Request.
+The bundle size of Material-UI is taken very seriously. We take size snapshots on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). Combined with [dangerJS](https://danger.systems/js/) we can inspect [detailed bundle size changes](<(https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459)>) on every Pull Request.
 
 ## How to reduce the bundle size?
 
@@ -43,7 +43,7 @@ Pick one of the following plugins:
 - [babel-transform-imports](https://bitbucket.org/amctheatres/babel-transform-imports) has a different api than a `babel-plugin-import` but does same thing.
 - [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
 
-**Important note**: Both of these options *should be temporary* until you add tree shaking capabilities to your project.
+**Important note**: Both of these options _should be temporary_ until you add tree shaking capabilities to your project.
 
 ## ECMAScript
 

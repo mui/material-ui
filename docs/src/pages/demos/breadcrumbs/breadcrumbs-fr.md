@@ -2,6 +2,7 @@
 title: Composant React Fil d'Ariane
 components: Breadcrumbs, Link, Typography
 ---
+
 # Breadcrumbs (Fil d'Ariane)
 
 <p class="description">Le fil d'Ariane permet aux utilisateurs d’effectuer des sélections dans une plage de valeurs.</p>

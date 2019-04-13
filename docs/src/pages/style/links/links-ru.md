@@ -1,6 +1,7 @@
 ---
 components: Link
 ---
+
 # Ссылки
 
 <p class="description">Компонент Link позволяет легко кастомизировать анкерные элементы в соответствии с цветами и стилями типографики вашей темы.</p>
@@ -26,19 +27,19 @@ However, the Link has different default properties than the Typography: - `color
 When you use `target="_blank"` with Links it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
 
 - `rel="noopener"` prevents the new page from being able to access the window.opener property and ensures it runs in a separate process. Without this the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer""` has the same effect, but also prevents the *Referer* header from being sent to the new page. ⚠️ Removing the referrer header will affect analytics.
+- `rel="noreferrer""` has the same effect, but also prevents the _Referer_ header from being sent to the new page. ⚠️ Removing the referrer header will affect analytics.
 
 ## Сторонняя библиотека маршрутизации
 
 One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
 
 ```jsx
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
 <Link component={RouterLink} to="/open-collective">
   Link
-</Link>
+</Link>;
 ```
 
 или если вы хотите избежать столкновения свойств:
@@ -54,4 +55,4 @@ const MyLink = props => <RouterLink to="/open-collective" {...props} />
 </Link>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+_Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property)._

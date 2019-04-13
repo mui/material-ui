@@ -2,7 +2,7 @@
 
 <p class="description">我们精心策划了一系列值得一看的图书馆。</p>
 
-因为Material-UI解决的问题范围有限，我们尝试与其他库很好地协作. 随意提交pull-request来添加更多的项目; 如果符合我们的标准, 我们将接受他们。
+因为 Material-UI 解决的问题范围有限，我们尝试与其他库很好地协作. 随意提交 pull-request 来添加更多的项目; 如果符合我们的标准, 我们将接受他们。
 
 ## Design resources
 
@@ -11,11 +11,11 @@
 ## Material-UI 特定项目
 
 - [Advanced Filter Builder](https://github.com/logipro/logi-filter-builder) Component will help your users create powerful filter criterias.
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) 用于通过Material Design Color Tool创建Material-UI主题的在线工具
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) 用于通过 Material Design Color Tool 创建 Material-UI 主题的在线工具
 - [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/) A chart for Material-UI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([custom license](https://js.devexpress.com/licensing/)).
 - [ dx-react-grid-material-ui ](https://devexpress.github.io/devextreme-reactive/react/grid/)：Material-UI 的一种网格数据, 具有分页，排序功能，过滤，分组和编辑功能([自定义许可证](https://js.devexpress.com/licensing/))。
-- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) 用于更加方便地与Final Form配搭来使用Material UI的一组包装组件。
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) 用于结合formik来使用Material-UI的绑定。
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) 用于更加方便地与 Final Form 配搭来使用 Material UI 的一组包装组件。
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) 用于结合 formik 来使用 Material-UI 的绑定。
 - [material-table](https://github.com/mbrn/material-table)：DataTable 基于表格组件，它具有搜索，过滤，排序等附加功能。
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and Material-UI.
 - [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers) A datepicker or timepicker in Material UI Next or can be imported as a clock or calendar component.
@@ -31,7 +31,7 @@
 - [react-basket](https://github.com/mbrn/react-basket) A shopping basket components library based on material-ui components.
 - [react-material-ui-typescript](https://github.com/goemen/react-material-ui-typescript) A boilerplate for React using Typescript, Material UI and Redux, React Router.
 - [react-media-material-ui](https://github.com/jcoreio/react-media-material-ui) Easily use breakpoints from your Material-UI theme with [react-media](https://github.com/ReactTraining/react-media).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 用于更加方便地与Redux Form配搭来使用Material UI的一组包装组件。
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 用于更加方便地与 Redux Form 配搭来使用 Material UI 的一组包装组件。
 - [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Material-UI wrapper components for Uniforms.
 - [Wertarbyte](https://mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complementary components they have built.
 
@@ -46,5 +46,5 @@
 - [react-popper](https://github.com/FezVrasta/react-popper) React wrapper around PopperJS.
 - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) A React component for swipeable views. Plays well with the `Tabs` component.
 - [react-text-mask](https://github.com/text-mask/text-mask) Input mask for React, Angular, Ember, Vue, & plain JavaScript.
-- [redux-form](https://redux-form.com/7.3.0/examples/material-ui/) 在Redux中管理你的表单状态。
+- [redux-form](https://redux-form.com/7.3.0/examples/material-ui/) 在 Redux 中管理你的表单状态。
 - [uniforms](https://github.com/vazco/uniforms) A set of React libraries for building forms.

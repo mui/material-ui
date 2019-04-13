@@ -2,6 +2,7 @@
 title: 网格列表 React 组件
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
+
 # 网格列表
 
 <p class="description">网格列表在有组织的网格中显示图像集合。</p>
@@ -10,13 +11,13 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 ## 仅图像网格列表
 
-可滚动图像` GridList `的简单示例。
+可滚动图像`GridList`的简单示例。
 
 {{"demo": "pages/demos/grid-list/ImageGridList.js", "hideEditButton": true}}
 
 ## 带有标题栏的网格列表
 
-此示例演示如何使用` GridListTileBar `为每个` GridListTile `添加叠加层。 叠加层可以容纳` title `，` subtitle `和辅助操作 - 在本例中为` IconButton `。
+此示例演示如何使用`GridListTileBar`为每个`GridListTile`添加叠加层。 叠加层可以容纳`title`，`subtitle`和辅助操作 - 在本例中为`IconButton`。
 
 {{"demo": "pages/demos/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 
@@ -28,6 +29,6 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 ## 高级网格列表
 
-此示例演示了“精选”磁贴，使用` rows `和` cols ` props 来调整磁贴的大小，并使用` padding ` prop 来调整间距。 磁贴有一个自定义标题栏，位于顶部，并带有自定义渐变` titleBackground `。 辅助操作` IconButton `位于左侧。
+此示例演示了“精选”磁贴，使用`rows`和`cols` props 来调整磁贴的大小，并使用`padding` prop 来调整间距。 磁贴有一个自定义标题栏，位于顶部，并带有自定义渐变`titleBackground`。 辅助操作`IconButton`位于左侧。
 
 {{"demo": "pages/demos/grid-list/AdvancedGridList.js", "hideEditButton": true}}

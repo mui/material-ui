@@ -1,6 +1,7 @@
 ---
 components: Icon, SvgIcon
 ---
+
 # Icons
 
 <p class="description">Anleitungen und Vorschläge für die Verwendung von Symbolen mit der Material-UI.</p>
@@ -32,7 +33,7 @@ Sie können [material.io/tools/icons](https://material.io/tools/icons/?style=bas
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) ist unter `@material-ui/icons/Delete` bereitgestellt
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) ist unter `@material-ui/icons/DeleteForever` bereitgestellt
 
-Hängen Sie bei *"themed"* Symbolen den Themenamen an den Symbolnamen an. Zum Beispiel
+Hängen Sie bei _"themed"_ Symbolen den Themenamen an den Symbolnamen an. Zum Beispiel
 
 - Das umrahmte [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) Symbol ist unter `@material-ui/icons/DeleteOutlined` bereitgestellt
 - Das runde [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) Symbol ist unter `@material-ui/icons/DeleteRounded` bereitgestellt
@@ -62,7 +63,7 @@ import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 ```
 
-Hinweis: Wenn Sie benannte Exporte auf diese Weise importieren, wird der Code für *jedes Symbol* in Ihr Projekt eingefügt. Dies wird nicht empfohlen, es sei denn, Sie konfigurieren [Tree Shake](https://webpack.js.org/guides/tree-shaking/). Dies kann sich auch auf die Leistung des Hot Module Reload auswirken.
+Hinweis: Wenn Sie benannte Exporte auf diese Weise importieren, wird der Code für _jedes Symbol_ in Ihr Projekt eingefügt. Dies wird nicht empfohlen, es sei denn, Sie konfigurieren [Tree Shake](https://webpack.js.org/guides/tree-shaking/). Dies kann sich auch auf die Leistung des Hot Module Reload auswirken.
 
 ### Weitere SVG-Symbole
 
@@ -73,7 +74,7 @@ Auf der Suche nach noch mehr SVG-Icons? Es gibt eine Menge Projekte, aber [https
 Die `Symbol-` Komponente zeigt ein Symbol aus einer beliebigen Symbolschriftart an, die Ligaturen unterstützt. Voraussetzung ist, dass Sie eine, beispielsweise die [Material Icon-Schriftart](http://google.github.io/material-design-icons/#icon-font-for-the-web) in Ihr Projekt einfügen, beispielsweise über Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Symbol` legt den korrekten Klassennamen für die Material-Symbolschriftart fest. Bei anderen Schriftarten müssen Sie den Klassennamen mit der Eigenschaft `className` der Icon-Komponente angeben.
@@ -83,7 +84,7 @@ Um ein Symbol zu verwenden, wickeln Sie einfach das Symbol Namen (Schrift Ligatu
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>
+<Icon>star</Icon>;
 ```
 
 Standardmäßig erbt ein Symbol die aktuelle Textfarbe. Optional können Sie die Farbe des Symbols mithilfe einer der Designfarbeneigenschaften festlegen: `primary`, `secondary`, `action`, `error` & `disabled`.
@@ -128,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
-</IconButton>
+</IconButton>;
 ```
 
 ### Dekorative Schrift-Symbole

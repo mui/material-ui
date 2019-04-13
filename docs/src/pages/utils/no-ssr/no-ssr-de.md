@@ -2,6 +2,7 @@
 title: NoSSR React-Komponente
 components: NoSsr
 ---
+
 # NoSSR
 
 <p class="description">NoSSR entfernt absichtlich Komponenten aus dem Server Side Rendering (SSR) Theme.</p>

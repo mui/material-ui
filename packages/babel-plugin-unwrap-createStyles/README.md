@@ -13,7 +13,7 @@ This plugin unwraps them
 ## Recognized patterns
 
 ```ts
-import { createStyles, withStyles } from '@material-ui/core/styles'
+import { createStyles, withStyles } from '@material-ui/core/styles';
 
 const styles = () => createStyles({});
 
@@ -38,6 +38,7 @@ It works also with the `@material-ui/styles` package.
 ## Why not as a typescript transformer?
 
 Face these issues in chronological order
+
 1. no config API i.e. transformers are only supported for programmatic transpilation/compilation
 2. since we need to pipe prettier we might as well use a programmatic approach so back to transformer
 3. typescript does not preserve blanklines (Microsoft/TypeScript#843) back to babel plugins

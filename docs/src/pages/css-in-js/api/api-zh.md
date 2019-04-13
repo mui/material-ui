@@ -8,14 +8,14 @@
 
 #### 参数
 
-1. `选项` (*Object* [optional]): 
-    - ` options.dangerouslyUseGlobalCSS ` (*Boolean* [optional]): Defaults to `false`。 使Material-UI 类名称具有确定性。
-    - `options.productionPrefix` (*String* [optional])：初始值为`'jss'`. 用于在生产中对类名称进行前缀的字符串。
-    - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 当使用多个生成器时，它可用于避免类名冲突。
+1. `选项` (_Object_ [optional]):
+   - `options.dangerouslyUseGlobalCSS` (_Boolean_ [optional]): Defaults to `false`。 使 Material-UI 类名称具有确定性。
+   - `options.productionPrefix` (_String_ [optional])：初始值为`'jss'`. 用于在生产中对类名称进行前缀的字符串。
+   - `options.seed` (_String_ [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 当使用多个生成器时，它可用于避免类名冲突。
 
 #### 返回结果
 
-`类名生成器`：应该将生成器提供给JSS。
+`类名生成器`：应该将生成器提供给 JSS。
 
 #### 例子
 
@@ -29,9 +29,7 @@ const generateClassName = createGenerateClassName({
 });
 
 export default function App() {
-  return (
-    <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
-  );
+  return <StylesProvider generateClassName={generateClassName}>...</StylesProvider>;
 }
 ```
 
@@ -41,7 +39,7 @@ export default function App() {
 
 #### 参数
 
-1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。
+1. `styles`(_ Function | Object _): 生成样式或样式对象的函数。
 
 #### 返回结果
 
@@ -72,13 +70,13 @@ export default MyComponent;
 
 #### 参数
 
-1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
-2. `选项` (*Object* [optional]): 
-    - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-    - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
-    - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
-    - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
-    - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet)。
+1. `styles`(_ Function | Object _): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
+2. `选项` (_Object_ [optional]):
+   - `options.defaultTheme`（_Object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
+   - `options.withTheme` (_Boolean_ [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
+   - `options.name` (_String_ [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
+   - `options.flip` (_Boolean_ [optional])：当设置为 `false` 时, 此工作表将选择退出 `rtl` 转换。 如果设置为 `true`, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
+   - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet)。
 
 #### 返回结果
 
@@ -151,9 +149,7 @@ const style = sheets.getStyleElement();
 
 const response = (
   <html lang="en" dir="ltr">
-    <Head>
-      {style}
-    </Head>
+    <Head>{style}</Head>
     <body>
       <Main />
     </body>
@@ -168,13 +164,13 @@ const response = (
 #### 参数
 
 1. `Component` ：将被包装的组件。
-2. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 It's provided as property of the first argument.
-3. `选项` (*Object* [optional]): 
-    - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-    - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
-    - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
-    - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
-    - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet)。
+2. `styles`(_ Function | Object _): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 It's provided as property of the first argument.
+3. `选项` (_Object_ [optional]):
+   - `options.defaultTheme`（_Object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
+   - `options.withTheme` (_Boolean_ [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
+   - `options.name` (_String_ [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
+   - `options.flip` (_Boolean_ [optional])：当设置为 `false` 时, 此工作表将选择退出 `rtl` 转换。 如果设置为 `true`, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
+   - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet)。
 
 #### 返回结果
 
@@ -190,9 +186,7 @@ const MyComponent = styled('div')({
   backgroundColor: 'red',
 });
 
-const MyThemeComponent = styled('div')(({
-  theme
-}) => ({
+const MyThemeComponent = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
@@ -211,7 +205,7 @@ export default function StyledComponents() {
 
 它最好应在**组件树的根目录中使用** 。
 
-#### PropsBy default, the styles are injected last in the 
+#### PropsBy default, the styles are injected last in the
 
 <head>
   element of your page. They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components. If you want to override the Material-UI's styles, set this prop.</td> </tr> 
@@ -243,14 +237,14 @@ import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/styles';
 
 function App() {
-  return (
-    &lt;StylesProvider jss={jss}&gt;...&lt;/StylesProvider&gt;
-  );
+return (
+&lt;StylesProvider jss={jss}&gt;...&lt;/StylesProvider&gt;
+);
 }
 
 ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
 </code></pre>
-  
+
   <h2>
     <code>ThemeProvider</code>
   </h2>
@@ -330,14 +324,14 @@ import { ThemeProvider } from '@material-ui/styles';
 const theme = {};
 
 function App() {
-  return (
-    &lt;ThemeProvider theme={theme}&gt;...&lt;/ThemeProvider&gt;
-  );
+return (
+&lt;ThemeProvider theme={theme}&gt;...&lt;/ThemeProvider&gt;
+);
 }
 
 ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
 </code></pre>
-  
+
   <h2>
     <code>useTheme() =&gt; theme</code>
   </h2>
@@ -362,12 +356,12 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
 import { useTheme } from '@material-ui/styles';
 
 export default function MyComponent() {
-  const theme = useTheme();
+const theme = useTheme();
 
-  return &lt;div&gt;{`spacing ${theme.spacing}`}&lt;/div&gt;;
+return &lt;div&gt;{`spacing ${theme.spacing}`}&lt;/div&gt;;
 }
 </code></pre>
-  
+
   <h2>
     <code>withStyles(styles, [options]) =&gt; higher-order component</code>
   </h2>
@@ -441,20 +435,20 @@ export default function MyComponent() {
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
-  root: {
-    backgroundColor: 'red',
-  },
+root: {
+backgroundColor: 'red',
+},
 };
 
 class MyComponent extends React.Component {
-  render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
-  }
+render () {
+return &lt;div className={this.props.classes.root} /&gt;;
+}
 }
 
 export default withStyles(styles)(MyComponent);
 </code></pre>
-  
+
   <p>
     此外, 还可以像这样使用 <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators">修饰器</a>:
   </p>
@@ -463,21 +457,21 @@ export default withStyles(styles)(MyComponent);
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
-  root: {
-    backgroundColor: 'red',
-  },
+root: {
+backgroundColor: 'red',
+},
 };
 
 @withStyles(styles)
 class MyComponent extends React.Component {
-  render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
-  }
+render () {
+return &lt;div className={this.props.classes.root} /&gt;;
+}
 }
 
 export default MyComponent
 </code></pre>
-  
+
   <h2>
     <code>withTheme(Component) =&gt; Component</code>
   </h2>
@@ -512,7 +506,7 @@ export default MyComponent
 import { withTheme } from '@material-ui/styles';
 
 function MyComponent(props) {
-  return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
+return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
 }
 
 export default withTheme(MyComponent);

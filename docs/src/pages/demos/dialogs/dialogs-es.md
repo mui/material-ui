@@ -2,6 +2,7 @@
 title: Componente React Dialog
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
+
 # Diálogos
 
 <p class="description">Los diálogos informan a los usuarios sobre una tarea y pueden contener información importante, requerir decisiones, o involucrar múltiples tareas.</p>
@@ -69,7 +70,7 @@ Puede establecer un ancho máximo de diálogo utilizando el enumerable `maxWidth
 
 ## Pantalla completa responsiva
 
-Puede hacer un cuadro de diálogo responsivo a pantalla completa utilizando `withMobileDialog`. Por defecto, `withMobileDialog()(Dialog)` para pantallas completas responsivas cuyo [tamaño de pantalla](/layout/basics/) sea *menor o igual* al tamaño `sm`. Puede elegir su propio punto de quiebre por ejemplo `xs` pasando el argumento `breakpoint`, de la siguiente forma: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+Puede hacer un cuadro de diálogo responsivo a pantalla completa utilizando `withMobileDialog`. Por defecto, `withMobileDialog()(Dialog)` para pantallas completas responsivas cuyo [tamaño de pantalla](/layout/basics/) sea _menor o igual_ al tamaño `sm`. Puede elegir su propio punto de quiebre por ejemplo `xs` pasando el argumento `breakpoint`, de la siguiente forma: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
 
 {{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 

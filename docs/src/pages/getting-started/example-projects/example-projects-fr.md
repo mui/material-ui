@@ -20,7 +20,7 @@ Vous recherchez un exemple de projet plus avancé ?
 
 Si vous souhaitez commencer par un exemple plus complet et plus réaliste, vous pouvez consulter :
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), which includes: 
+- [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
   - Graph using recharts
   - React Router included with a navigation example
   - A docker container with an Nginx server for production build

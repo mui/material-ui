@@ -2,6 +2,7 @@
 title: React List（列表）组件
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
+
 # Lists（列表）
 
 <p class="description">列表是对文本或图像的连续、垂直的索引。</p>
@@ -23,10 +24,10 @@ function ListItemLink(props) {
 
 <ListItemLink href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>
+</ListItemLink>;
 ```
 
-你可以从这里查看[React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)
+你可以从这里查看[React Router 与文档此部分结合使用的相关样例](/guides/composition/#react-router)
 
 ## Nested List（嵌套列表）
 
@@ -48,7 +49,7 @@ function ListItemLink(props) {
 
 ## 对齐列表项
 
-在显示3行或更多行时，您应该更改列表项的对齐，设置 `alignItems="flex-start"` 这样的属性。
+在显示 3 行或更多行时，您应该更改列表项的对齐，设置 `alignItems="flex-start"` 这样的属性。
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
@@ -86,6 +87,6 @@ function ListItemLink(props) {
 
 ## Virtualized List
 
-In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. 它渲染了200行，可以轻松处理更多行。 Virtualization helps with performance issues.
+In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. 它渲染了 200 行，可以轻松处理更多行。 Virtualization helps with performance issues.
 
 {{"demo": "pages/demos/lists/VirtualizedList.js"}}

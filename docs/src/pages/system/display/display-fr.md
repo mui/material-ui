@@ -23,7 +23,7 @@
 For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide element responsively for each screen size.
 
 | Screen Size        | Class                                                |
-|:------------------ |:---------------------------------------------------- |
+| :----------------- | :--------------------------------------------------- |
 | Hidden on all      | `display="none"`                                     |
 | Hidden only on xs  | `display={{ xs: 'none', sm: 'block' }}`              |
 | Hidden only on sm  | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
@@ -67,6 +67,6 @@ import { display } from '@material-ui/system';
 ```
 
 | Import name    | Prop           | CSS property | Theme key |
-|:-------------- |:-------------- |:------------ |:--------- |
+| :------------- | :------------- | :----------- | :-------- |
 | `displayRaw`   | `display`      | `display`    | none      |
 | `displayPrint` | `displayPrint` | `display`    | none      |

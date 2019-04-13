@@ -37,10 +37,12 @@ find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/co
 ```
 
 **Notice**: if you are migrating from pre-v1.0, and your imports use `material-ui`, you will need to manually find and replace all references to `material-ui` in your code to `@material-ui/core`. E.g.:
+
 ```diff
 -import Typography from 'material-ui/Typography';
 +import Typography from '@material-ui/core/Typography';
 ```
+
 Subsequently, you can run the above `find ...` command to flatten your imports.
 
 #### `color-imports`
@@ -60,6 +62,7 @@ find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/co
 ```
 
 **additional options**
+
 ```
 jscodeshift -t <color-imports.js> <path> --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```

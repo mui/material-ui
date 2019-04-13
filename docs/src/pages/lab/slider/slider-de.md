@@ -2,6 +2,7 @@
 title: Slider React Komponente
 components: Slider
 ---
+
 # Schieberegler
 
 <p class="description">Schieberegler erlauben es Nutzern, eine Auswahl aus einer Reihe von Werten zu treffen.</p>

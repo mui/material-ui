@@ -12,17 +12,15 @@ filename: /packages/material-ui/src/RadioGroup/RadioGroup.js
 import RadioGroup from '@material-ui/core/RadioGroup';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
-| <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default `input` element value, useful when not controlling the component. |
-| <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | The name used to reference the value of the control. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`.<br>*value:* The `value` of the selected radio button |
-| <span class="prop-name">value</span> | <span class="prop-type">string</span> |  | Value of the selected radio button. |
+| Name                                        | Type                                  | Default | Description                                                                                                                                                                                                                                                                                    |
+| :------------------------------------------ | :------------------------------------ | :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">children</span>     | <span class="prop-type">node</span>   |         | The content of the component.                                                                                                                                                                                                                                                                  |
+| <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span>    |         | The default `input` element value, useful when not controlling the component.                                                                                                                                                                                                                  |
+| <span class="prop-name">name</span>         | <span class="prop-type">string</span> |         | The name used to reference the value of the control.                                                                                                                                                                                                                                           |
+| <span class="prop-name">onChange</span>     | <span class="prop-type">func</span>   |         | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>_event:_ The event source of the callback. You can pull out the new value by accessing `event.target.value`.<br>_value:_ The `value` of the selected radio button |
+| <span class="prop-name">value</span>        | <span class="prop-type">string</span> |         | Value of the selected radio button.                                                                                                                                                                                                                                                            |
 
 The `ref` is forwarded to the root element.
 
@@ -36,4 +34,3 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [Selection Controls](/demos/selection-controls/)
-

@@ -2,6 +2,7 @@
 title: Schalter React Komponente
 components: ToggleButton, ToggleButtonGroup
 ---
+
 # Schalter
 
 <p class="description">Schalter können verwendet werden, um verwandte Optionen zu gruppieren.</p>

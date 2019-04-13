@@ -4,7 +4,7 @@
 
 Für eine optimale Benutzererfahrung müssen Materialdesign-Schnittstellen in der Lage sein, ihr Layout an verschiedenen Haltepunkten anzupassen. Material-UI verwendet eine **vereinfachte** Implementierung der ursprünglichen [Spezifikation](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
-Jeder Haltepunkt (ein Schlüssel) stimmt mit einer *festen* Bildschirmbreite (ein Wert) überein:
+Jeder Haltepunkt (ein Schlüssel) stimmt mit einer _festen_ Bildschirmbreite (ein Wert) überein:
 
 - ** xs, ** extraklein: 0px
 - ** sm, ** klein: 600px
@@ -77,7 +77,7 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, ~~ del ~~ & span) basierend auf der Bildschirmbreite.
+In der folgenden Demo ändern wir das gerenderte DOM-Element (_ em_, <u> u</u>, ~~ del ~~ & span) basierend auf der Bildschirmbreite.
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
@@ -87,7 +87,7 @@ In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, 
 
 #### Argumente
 
-1. `key` (*String* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
+1. `key` (_String_ | _Number_): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
 
 #### Rückgabewerte
 
@@ -112,7 +112,7 @@ const styles = theme => ({
 
 #### Argumente
 
-1. `key` (*String* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
+1. `key` (_String_ | _Number_): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
 
 #### Rückgabewerte
 
@@ -138,7 +138,7 @@ const styles = theme => ({
 
 #### Argumente
 
-1. `key` (*String*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.).
+1. `key` (_String_): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.).
 
 #### Rückgabewerte
 
@@ -164,8 +164,8 @@ const styles = theme => ({
 
 #### Argumente
 
-1. `start` (*String*): Eine Haltepunktschlüssel (`xs`, `sm`, etc.).
-2. `end` (*String*): Eine Haltepunktschlüssel (`xs`, `sm`, etc.).
+1. `start` (_String_): Eine Haltepunktschlüssel (`xs`, `sm`, etc.).
+2. `end` (_String_): Eine Haltepunktschlüssel (`xs`, `sm`, etc.).
 
 #### Rückgabewerte
 
@@ -197,14 +197,14 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 Einige Implementierungsdetails, die interessant sein könnten:
 
-- Es leitet *nicht React statisch* Eigenschaften weiter, so dass dieser HOC "transparenter" ist. Es kann zum Beispiel verwendet werden, um eine `getInitialProps()` als statische Methode zu definieren (next.js).
+- Es leitet _nicht React statisch_ Eigenschaften weiter, so dass dieser HOC "transparenter" ist. Es kann zum Beispiel verwendet werden, um eine `getInitialProps()` als statische Methode zu definieren (next.js).
 
 #### Argumente
 
-1. `Optionen` (*Object* [optional]): 
-    - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
-    - `options.noSSR ` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf ` true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
-    - ` options.initialWidth ` (*Breakpoint* [optional]): Da ` window.innerWidth ` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/themes/#properties) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:
+1. `Optionen` (_Object_ [optional]):
+   - `options.withTheme` (_Boolean_ [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
+   - `options.noSSR` (_Boolean_ [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf `true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
+   - `options.initialWidth` (_Breakpoint_ [optional]): Da `window.innerWidth` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/themes/#properties) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:
 
 ```js
 const theme = createMuiTheme({
@@ -212,13 +212,13 @@ const theme = createMuiTheme({
     // withWidth component ⚛️
     MuiWithWidth: {
       // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 
+      initialWidth: 'lg', // Breakpoint being globally set
     },
   },
 });
 ```
 
-- `options.resizeInterval` (*Number* [optional]): Der Standardwert ist 166, entspricht 10 Bildern bei 60 Hz. Anzahl der Millisekunden, die gewartet werden muss, bevor auf ein Ereignis zur Größenänderung des Bildschirms reagiert wird.
+- `options.resizeInterval` (_Number_ [optional]): Der Standardwert ist 166, entspricht 10 Bildern bei 60 Hz. Anzahl der Millisekunden, die gewartet werden muss, bevor auf ein Ereignis zur Größenänderung des Bildschirms reagiert wird.
 
 #### Rückgabewerte
 
@@ -230,9 +230,9 @@ const theme = createMuiTheme({
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 class MyComponent extends React.Component {
-  render () {
+  render() {
     if (isWidthUp('sm', this.props.width)) {
-      return <span />
+      return <span />;
     }
 
     return <div />;

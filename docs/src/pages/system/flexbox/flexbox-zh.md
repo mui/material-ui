@@ -109,8 +109,8 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 import { flexbox } from '@material-ui/system';
 ```
 
-| 导入名称             | Prop             | CSS 属性            | Theme key |
-|:---------------- |:---------------- |:----------------- |:--------- |
+| 导入名称         | Prop             | CSS 属性          | Theme key |
+| :--------------- | :--------------- | :---------------- | :-------- |
 | `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
 | `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |
 | `justifyContent` | `justifyContent` | `justify-content` | none      |

@@ -14,7 +14,7 @@
 
 ## z-index
 
-Mehrere Material-UI-Komponenten verwenden den `Z-Index `, die CSS-Eigenschaft, die das Layout steuert, indem eine dritte Achse zum Anordnen von Inhalt bereitgestellt wird. Wir verwenden eine Standard-Z-Indexskala in der Material-Benutzeroberfläche, welche Drawer, Modale, Snackbars, Tooltips und vieles mehr richtig, übereinander in Lagen aufbauen.
+Mehrere Material-UI-Komponenten verwenden den `Z-Index`, die CSS-Eigenschaft, die das Layout steuert, indem eine dritte Achse zum Anordnen von Inhalt bereitgestellt wird. Wir verwenden eine Standard-Z-Indexskala in der Material-Benutzeroberfläche, welche Drawer, Modale, Snackbars, Tooltips und vieles mehr richtig, übereinander in Lagen aufbauen.
 
 [Diese Werte](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js) beginnen mit einer beliebigen Anzahl, hoch und spezifisch genug, um Konflikte idealerweise zu vermeiden.
 

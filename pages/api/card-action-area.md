@@ -12,14 +12,12 @@ filename: /packages/material-ui/src/CardActionArea/CardActionArea.js
 import CardActionArea from '@material-ui/core/CardActionArea';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| Name                                    | Type                                  | Default | Description                                                                                         |
+| :-------------------------------------- | :------------------------------------ | :------ | :-------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span>   |         | The content of the component.                                                                       |
+| <span class="prop-name">classes</span>  | <span class="prop-type">object</span> |         | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 The `ref` is forwarded to the root element.
 
@@ -30,12 +28,11 @@ Any other properties supplied will be spread to the root element ([ButtonBase](/
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">focusVisible</span> | Styles applied to the ButtonBase root element if the action area is keyboard focused.
-| <span class="prop-name">focusHighlight</span> | Styles applied to the overlay that covers the action area when it is keyboard focused.
+| Name                                          | Description                                                                            |
+| :-------------------------------------------- | :------------------------------------------------------------------------------------- |
+| <span class="prop-name">root</span>           | Styles applied to the root element.                                                    |
+| <span class="prop-name">focusVisible</span>   | Styles applied to the ButtonBase root element if the action area is keyboard focused.  |
+| <span class="prop-name">focusHighlight</span> | Styles applied to the overlay that covers the action area when it is keyboard focused. |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/CardActionArea/CardActionArea.js)
@@ -52,4 +49,3 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [Cards](/demos/cards/)
-

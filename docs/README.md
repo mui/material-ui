@@ -15,5 +15,5 @@ on how to get started contributing to Material-UI.
 
 ## How do I help improve to the translations?
 
-Please visit https://translate.material-ui.com/ where you will be able to select a language 
+Please visit https://translate.material-ui.com/ where you will be able to select a language
 and edit the translations. Please don't submit pull requests directly.

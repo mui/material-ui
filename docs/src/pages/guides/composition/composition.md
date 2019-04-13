@@ -9,12 +9,12 @@ we need a way to know the nature of the child elements a component receives.
 To solve this problem we tag some of our components when needed
 with a `muiName` static property.
 
-You may, however, need to wrap a component in order to enhance it, 
+You may, however, need to wrap a component in order to enhance it,
 which can conflict with the `muiName` solution. If you wrap a component verify if
 that component has this static property set.
 
-If you encounter this issue, you need to use the same tag for your wrapping component 
-that is used with the wrapped component. In addition, you should forward the properties, 
+If you encounter this issue, you need to use the same tag for your wrapping component
+that is used with the wrapped component. In addition, you should forward the properties,
 as the parent component may need to control the wrapped components props.
 
 Let's see an example:
@@ -35,7 +35,7 @@ Material-UI allows you to change the root node that will be rendered via a prope
 The component will render like this:
 
 ```js
-return React.createElement(this.props.component, props)
+return React.createElement(this.props.component, props);
 ```
 
 For example, by default a `List` component will render a `<ul>` element.
@@ -129,10 +129,10 @@ You can find the details in the [TypeScript guide](/guides/typescript#usage-of-c
 
 ### Caveat with refs
 
-Some components such as `ButtonBase` (and therefore `Button`) require access to the 
+Some components such as `ButtonBase` (and therefore `Button`) require access to the
 underlying DOM node. This was previously done with `ReactDOM.findDOMNode(this)`.
- However `findDOMNode` was deprecated (which disqualifies its usage in React's concurrent mode)
-in favour of component refs and ref forwarding. 
+However `findDOMNode` was deprecated (which disqualifies its usage in React's concurrent mode)
+in favour of component refs and ref forwarding.
 
 It is therefore necessary that the component you pass to the `component` prop
 can hold a ref. This includes:
@@ -142,6 +142,7 @@ can hold a ref. This includes:
 - built-in components e.g. `div` or `a`
 
 If this is not the case we will issue a prop type warning similar to:
+
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 In addition React will issue a warning.

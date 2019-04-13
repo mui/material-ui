@@ -29,7 +29,7 @@ of the `<head />` to ensure the components always render correctly.
 ### Overriding with classes
 
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component.
-The list of  classes for each
+The list of classes for each
 component is documented in the **Component API** section.
 For instance, you can have a look at the [Button CSS API](/api/button/#css).
 Alternatively, you can use the [browser dev tools](#using-the-dev-tools).
@@ -85,11 +85,11 @@ const StyledButton = withStyles({
 
 ### Internal states
 
-The components internal states, like *hover*, *focus*, *disabled* and *selected*, are styled with a higher CSS specificity.
+The components internal states, like _hover_, _focus_, _disabled_ and _selected_, are styled with a higher CSS specificity.
 [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
 
 In order to override the components internal states, **you need to increase specificity**.
-Here is an example with the *disable* state and the button component using a **pseudo-class** (`:disabled`):
+Here is an example with the _disable_ state and the button component using a **pseudo-class** (`:disabled`):
 
 ```css
 .button {
@@ -106,7 +106,7 @@ Here is an example with the *disable* state and the button component using a **p
 ```
 
 Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform.
-Let's take the menu item component and the *selected* state as an example.
+Let's take the menu item component and the _selected_ state as an example.
 Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components:
 
 ```css
@@ -209,7 +209,7 @@ It doesn't work with the stable version.
 
 ## 3. Specific variation of a component
 
-You might need to create a variation of a component and use it in different contexts, for instance a colorful button on your product page, however you probably want to keep your code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+You might need to create a variation of a component and use it in different contexts, for instance a colorful button on your product page, however you probably want to keep your code [_DRY_](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
 The best approach is to follow option 1 and then take advantage of the composition power of React by exporting your customized component to use wherever you need it.
 

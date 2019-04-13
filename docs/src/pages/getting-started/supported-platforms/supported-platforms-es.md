@@ -6,9 +6,9 @@
 
 Material-UI es compatible con las versiones más recientes y estables de todos los principales navegadores y plataformas. También es compatible con Internet Explorer 11. No es necesario utilizar ningún polyfill de JavaScript, ya que nosotros nos encargamos, internamente y de manera aislada, de las funciones de los navegadores no compatibles.
 
-| IE | Edge  | Firefox | Chrome | Safari | Googlebot |
-|:-- |:----- |:------- |:------ |:------ |:--------- |
-| 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
+| IE  | Edge  | Firefox | Chrome | Safari | Googlebot |
+| :-- | :---- | :------ | :----- | :----- | :-------- |
+| 11  | >= 14 | >= 52   | >= 49  | >= 10  | ✅        |
 
 Es fundamental que Material-UI sea compatible con el servicio de renderización web (WRS) utilizado por Googlebot para clasificar el contenido de la página web. [WRS está basado en Chrome 41](https://developers.google.com/search/docs/guides/rendering). Podrás contar con que los componentes de Material-UI sean renderizados sin mayores problemas.
 

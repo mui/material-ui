@@ -1,6 +1,7 @@
 ---
 title: Medienanfragen in React für Responsive Design
 ---
+
 # useMediaQuery
 
 <p class="description">Dies ist ein CSS-Media-Abfrage-Hook für React. Es wartet auf Übereinstimmungen mit einer CSS-Medienabfrage. Es ermöglicht das Rendern von Komponenten basierend darauf, ob die Abfrage übereinstimmt oder nicht.</p>
@@ -79,11 +80,11 @@ function MyComponent() {
 
 #### Argumente
 
-1. `query` (*String*): Eine string Representation der Medienabfrage.
-2. `Optionen` (*Object* [optional]): 
-    - ` options.defaultMatches ` (*Boolean* [optional]): Da `window.matchMedia()` auf dem Server nicht verfügbar ist, wird ein Standard Match zurückgegeben. Der Standardwert ist `false`.
-    - `options.noSsr ` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Es ist langsamer. Sie können diese Flag auf `true` setzten, wenn Sie **nicht serverseitig** rendern.
-    - `options.ssrMatchMedia` (*Function* [optional]) Vielleicht möchten Sie eine Heuristik verwenden, um annähernd den Bildschirm des Client - Browser zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder den Client-Hinweis https://caniuse.com/#search=client%20hint verwenden. Sie können eine globale Ponyfill mit [`benutzerdefinierten Eigenschaften`](/customization/themes/#properties) für das Theme bereitstellen. Lesen Sie hier mehr dazu: [serverseitige Rendering Beispiel](#server-side-rendering).
+1. `query` (_String_): Eine string Representation der Medienabfrage.
+2. `Optionen` (_Object_ [optional]):
+   - `options.defaultMatches` (_Boolean_ [optional]): Da `window.matchMedia()` auf dem Server nicht verfügbar ist, wird ein Standard Match zurückgegeben. Der Standardwert ist `false`.
+   - `options.noSsr` (_Boolean_ [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Es ist langsamer. Sie können diese Flag auf `true` setzten, wenn Sie **nicht serverseitig** rendern.
+   - `options.ssrMatchMedia` (_Function_ [optional]) Vielleicht möchten Sie eine Heuristik verwenden, um annähernd den Bildschirm des Client - Browser zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder den Client-Hinweis https://caniuse.com/#search=client%20hint verwenden. Sie können eine globale Ponyfill mit [`benutzerdefinierten Eigenschaften`](/customization/themes/#properties) für das Theme bereitstellen. Lesen Sie hier mehr dazu: [serverseitige Rendering Beispiel](#server-side-rendering).
 
 #### Rückgabewerte
 

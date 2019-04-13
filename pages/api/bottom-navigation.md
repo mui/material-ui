@@ -12,18 +12,16 @@ filename: /packages/material-ui/src/BottomNavigation/BottomNavigation.js
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
-| <span class="prop-name">showLabels</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, all `BottomNavigationAction`s will show their labels. By default, only the selected `BottomNavigationAction` will show its label. |
-| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the currently selected `BottomNavigationAction`. |
+| Name                                                     | Type                                       | Default                                 | Description                                                                                                                                                                                                 |
+| :------------------------------------------------------- | :----------------------------------------- | :-------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span class="prop-name required">children&nbsp;\*</span> | <span class="prop-type">node</span>        |                                         | The content of the component.                                                                                                                                                                               |
+| <span class="prop-name">classes</span>                   | <span class="prop-type">object</span>      |                                         | Override or extend the styles applied to the component. See [CSS API](#css) below for more details.                                                                                                         |
+| <span class="prop-name">component</span>                 | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.                                                                                                                  |
+| <span class="prop-name">onChange</span>                  | <span class="prop-type">func</span>        |                                         | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>_event:_ The event source of the callback<br>_value:_ We default to the index of the child |
+| <span class="prop-name">showLabels</span>                | <span class="prop-type">bool</span>        | <span class="prop-default">false</span> | If `true`, all `BottomNavigationAction`s will show their labels. By default, only the selected `BottomNavigationAction` will show its label.                                                                |
+| <span class="prop-name">value</span>                     | <span class="prop-type">any</span>         |                                         | The value of the currently selected `BottomNavigationAction`.                                                                                                                                               |
 
 The `ref` is forwarded to the root element.
 
@@ -34,10 +32,9 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
+| Name                                | Description                         |
+| :---------------------------------- | :---------------------------------- |
+| <span class="prop-name">root</span> | Styles applied to the root element. |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/BottomNavigation/BottomNavigation.js)
@@ -49,4 +46,3 @@ you need to use the following style sheet name: `MuiBottomNavigation`.
 ## Demos
 
 - [Bottom Navigation](/demos/bottom-navigation/)
-

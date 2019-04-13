@@ -45,7 +45,7 @@ import { sizing } from '@material-ui/system';
 ```
 
 | Импорт      | Свойство    | Свойство CSS | В теме |
-|:----------- |:----------- |:------------ |:------ |
+| :---------- | :---------- | :----------- | :----- |
 | `width`     | `width`     | `width`      | none   |
 | `maxWidth`  | `maxWidth`  | `max-width`  | none   |
 | `minWidth`  | `minWidth`  | `min-width`  | none   |

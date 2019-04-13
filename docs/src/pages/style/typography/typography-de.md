@@ -1,6 +1,7 @@
 ---
 components: Typografie
 ---
+
 # Typografie
 
 <p class="description">Verwenden Sie die Typografie, um Ihr Design und Ihren Inhalt so klar und effizient wie möglich darzustellen.</p>
@@ -9,19 +10,19 @@ Zu viele Schriftgrößen und -stile gleichzeitig können jedes Layout beeinträc
 
 ## Allgemein
 
-Die *Roboto* Schriftart wird **nicht** automatisch durch Material UI geladen werden. Der Entwickler ist dafür verantwortlich, alle, in seiner Anwendung verwendeten, Schriftarten zu laden. Roboto Font bietet einige einfache Einstiegsmöglichkeiten. Für anspruchsvollere Konfiguration, besuche [den Theme Anpassung Abschnitt](/customization/themes/#typography).
+Die _Roboto_ Schriftart wird **nicht** automatisch durch Material UI geladen werden. Der Entwickler ist dafür verantwortlich, alle, in seiner Anwendung verwendeten, Schriftarten zu laden. Roboto Font bietet einige einfache Einstiegsmöglichkeiten. Für anspruchsvollere Konfiguration, besuche [den Theme Anpassung Abschnitt](/customization/themes/#typography).
 
 ## Die Roboto Schrift
 
 Unten ist ein Beispiel für ein Link-Markup zum Laden der Roboto-Schriftart von einem CDN dargestellt.
 
-*HTML*
+_HTML_
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
-*JSX*
+_JSX_
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
@@ -60,10 +61,12 @@ Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-
 - Sie können das zugrunde liegende Element einmalig mit der Eigenschaft `component` ändern:
 
 ```jsx
-{/ * Wir haben bereits eine h1 auf der Seite, wir wollen diese nicht kopieren. * /}
+{
+  / * Wir haben bereits eine h1 auf der Seite, wir wollen diese nicht kopieren. * /;
+}
 <Typography variant="h1" component="h2">
   h1. Überschrift
-</Typography>
+</Typography>;
 ```
 
 - Sie können das Mapping [global mit dem Theme](/customization/themes/#properties) ändern:

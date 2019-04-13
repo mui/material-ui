@@ -63,7 +63,7 @@ interface PaletteIntention {
   main: string;
   dark?: string;
   contrastText?: string;
-};
+}
 ```
 
 **Using a color object**
@@ -165,10 +165,10 @@ As in the example above, if the intention object contains custom colors using an
 `main`, `light`, `dark` or `contrastText` keys, these map as follows:
 
 - If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`,
-according to the `tonalOffset` value.
+  according to the `tonalOffset` value.
 
 - If `contrastText` is omitted, its value will be calculated to contrast with `main`,
-according to the`contrastThreshold` value.
+  according to the`contrastThreshold` value.
 
 Both the `tonalOffset` and `contrastThreshold` values may be customized as needed.
 A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker.
@@ -244,7 +244,7 @@ const theme = createMuiTheme({
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
 ⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
-`woff2` files. Fonts will *not* be embedded within your bundle. They will be loaded from your webserver instead of a
+`woff2` files. Fonts will _not_ be embedded within your bundle. They will be loaded from your webserver instead of a
 CDN.
 
 ```js
@@ -260,7 +260,8 @@ const raleway = {
     local('Raleway-Regular'),
     url(${RalewayWoff2}) format('woff2')
   `,
-  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
 };
 ```
 
@@ -317,6 +318,7 @@ const theme = createMuiTheme({
 The computed font size by the browser follows this mathematical equation:
 
 ![font-size](/static/images/font-size.gif)
+
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
 ### HTML font size
@@ -341,7 +343,7 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
@@ -368,7 +370,7 @@ const theme = createMuiTheme({
   spacing: 4,
 });
 
-theme.spacing(2) // = 4 * 2
+theme.spacing(2); // = 4 * 2
 ```
 
 - or a function
@@ -378,13 +380,14 @@ const theme = createMuiTheme({
   spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
 });
 
-theme.spacing(2) // = 0.5rem = 8px
+theme.spacing(2); // = 0.5rem = 8px
 ```
 
 ### Multiple arity
 
 The `theme.spacing()` helper accepts up to 4 arguments.
 You can use the arguments to reduce the boilerplate:
+
 ```diff
 -  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
 +  padding: theme.spacing(1, 2), // '8px 16px'
@@ -414,8 +417,10 @@ That's a really powerful feature.
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Name of the component ⚛️ / style sheet
-      text: { // Name of the rule
+    MuiButton: {
+      // Name of the component ⚛️ / style sheet
+      text: {
+        // Name of the rule
         color: 'white', // Some CSS
       },
     },
@@ -483,11 +488,11 @@ Generate a theme base on the options received.
 
 #### Arguments
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
+1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
 
 #### Returns
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (_Object_): A complete, ready to use theme object.
 
 #### Examples
 

@@ -22,17 +22,17 @@ Wenn Sie das erste Mal die Material-UI lernen, finden Sie möglicherweise Blogbe
 
 ### Kostenlos
 
-- **Meet Material-UI  - Ihre neue bevorzugte Benutzeroberflächenbibliothek**: Ein Blogbeitrag, der Sie beim Erstellen eines Todo MVC unterstützt und einige wichtige Konzepte der Material-UI behandelt. 
+- **Meet Material-UI  - Ihre neue bevorzugte Benutzeroberflächenbibliothek**: Ein Blogbeitrag, der Sie beim Erstellen eines Todo MVC unterstützt und einige wichtige Konzepte der Material-UI behandelt.
   - 📝 [Der Blogbeitrag](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Learn React & Material-UI**: Eine Videoserie, die alle wichtigen Komponenten der Material-UI enthält. 
+- **Learn React & Material-UI**: Eine Videoserie, die alle wichtigen Komponenten der Material-UI enthält.
   - 📹 [Die Videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With Material-UI For React**: Ein Blogpost, der Sie beim Erstellen einer einfachen Kartenliste unterstützt. 
+- **Getting Started With Material-UI For React**: Ein Blogpost, der Sie beim Erstellen einer einfachen Kartenliste unterstützt.
   - 📝 [Der Blogbeitrag](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [Das Video](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**: ein Blog-Post mit wichtigen Material-UI-Konzepten. 
+- **Elegant UX in React with Material-UI**: ein Blog-Post mit wichtigen Material-UI-Konzepten.
   - 📝 [Der Blogbeitrag](https://alligator.io/react/material-ui/)
 
 ### Kostenpflichtig
 
-- **Builder Book**: Erfahren Sie, wie Sie eine vollständig full-stack JavaScript-Webanwendung mit einem modernen JavaScript-Stack und einer Material-UI von Grund auf erstellen. 
+- **Builder Book**: Erfahren Sie, wie Sie eine vollständig full-stack JavaScript-Webanwendung mit einem modernen JavaScript-Stack und einer Material-UI von Grund auf erstellen.
   - 📘 [ Das Buch ](https://builderbook.org/book)

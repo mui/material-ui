@@ -2,6 +2,7 @@
 title: Componente de Autocompletado de React
 components: TextField, Paper, MenuItem, Popper
 ---
+
 # Autocompletado
 
 <p class="description">El autocompletado es una caja de texto normal mejorada por un panel de opciones sugeridas.</p>

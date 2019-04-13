@@ -27,9 +27,9 @@ The version number is incremented based on the level of change included in the r
 
 - **Major releases** contain significant new features, some but minimal developer assistance is expected during the update. When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
 - **Minor releases** contain important new features.
-Minor releases are fully backward-compatible; no developer assistance is expected during update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
+  Minor releases are fully backward-compatible; no developer assistance is expected during update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
 - **Patch releases** are low risk, contain bug fixes and small new features.
-No developer assistance is expected during update.
+  No developer assistance is expected during update.
 
 ## Release frequency
 
@@ -45,10 +45,10 @@ In general, you can expect the following release cycle:
 
 > Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
 
-| Date | Version |
-|:-----|:--------|
+| Date         | Version                    |
+| :----------- | :------------------------- |
 | January 2019 | `@material-ui/core` v4.0.0 |
-| July 2019 | `@material-ui/core` v5.0.0 |
+| July 2019    | `@material-ui/core` v5.0.0 |
 
 You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
@@ -67,6 +67,7 @@ To make these transitions as easy as possible, we make two commitments to you:
 - We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
 
 To help ensure that you have sufficient time and a clear path to update, this is our deprecation policy:
+
 - We announce deprecated features in the changelog, and when possible, with warnings at runtime.
 - When we announce a deprecation, we also announce a recommended update path.
 - We support existing use of a stable API during the deprecation period, so your code will keep working during that period.

@@ -19,8 +19,8 @@ component and some styles:
 - ♿️ Adds the appropriate ARIA roles automatically.
 
 > **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
-A Modal window describes parts of a UI.
-An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+> A Modal window describes parts of a UI.
+> An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
 
 If you are creating a modal dialog, you probably want to use the [Dialog](/demos/dialogs/) component rather than directly using Modal.
 Modal is a lower-level construct that is leveraged by the following components:
@@ -81,13 +81,10 @@ The `TableComponent` render method will only be evaluated when opening the modal
 ## Accessibility
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`.
-Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
+  Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
 
 ```jsx
-<Modal
-  aria-labelledby="simple-modal-title"
-  aria-describedby="simple-modal-description"
->
+<Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
   <Typography variant="h6" id="modal-title">
     My Title
   </Typography>

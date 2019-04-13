@@ -2,6 +2,7 @@
 title: Сеть изображений, компонент React
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
+
 # Сеть изображений
 
 <p class="description">Сеть изображений суть коллекция изображений на упорядоченной сетке.</p>

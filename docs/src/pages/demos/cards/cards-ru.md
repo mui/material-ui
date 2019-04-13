@@ -2,6 +2,7 @@
 title: Card компонент из React
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
+
 # Карточки
 
 <p class="description">Карточки содержат контент и действия, относящиеся к одной теме.</p>
@@ -28,7 +29,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/demos/cards/MediaCard.js"}}
 
-По умолчанию мы используем комбинацию `<div>` элемента и *background image* для отображения медиа. Это может быть проблематично в некоторых ситуациях. Например, вам может понадобиться отобразить видео или адаптивное изображение. Используйте свойство `component` для этих случаев:
+По умолчанию мы используем комбинацию `<div>` элемента и _background image_ для отображения медиа. Это может быть проблематично в некоторых ситуациях. Например, вам может понадобиться отобразить видео или адаптивное изображение. Используйте свойство `component` для этих случаев:
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 

@@ -3,7 +3,7 @@
 <p class="description">Die API-Referenz des @material-ui/system Pakets.</p>
 
 | Gruppe                            | Inportname       | Eigenschaften    | CSS-Eigenschaft                 | Theme-Schlüssel                                                        |
-|:--------------------------------- |:---------------- |:---------------- |:------------------------------- |:---------------------------------------------------------------------- |
+| :-------------------------------- | :--------------- | :--------------- | :------------------------------ | :--------------------------------------------------------------------- |
 | [borders](/system/borders/)       | `border`         | `border`         | `border`                        | `borders`                                                              |
 | [borders](/system/borders/)       | `borderBottom`   | `borderBottom`   | `border-bottom`                 | `borders`                                                              |
 | [borders](/system/borders/)       | `borderColor`    | `borderColor`    | `border-color`                  | [`palette`](/customization/default-theme/?expend-path=$.palette)       |

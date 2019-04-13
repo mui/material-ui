@@ -2,6 +2,7 @@
 title: Schnellwahl React Komponente
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
+
 # Schnellwahl
 
 <p class="description">Wenn gedrückt, kann eine schwebende Aktionstaste drei bis sechs verwandte Aktionen in Form einer Kurzwahl anzeigen.</p>

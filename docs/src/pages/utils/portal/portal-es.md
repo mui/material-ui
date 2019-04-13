@@ -2,6 +2,7 @@
 title: Portal React component
 components: Portal
 ---
+
 # Portal
 
 <p class="description">The portal component renders its children into a new "subtree" outside of current component hierarchy.</p>

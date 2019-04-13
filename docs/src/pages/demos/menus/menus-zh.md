@@ -2,6 +2,7 @@
 title: React 菜单组件
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
+
 # 菜单
 
 <p class="description">菜单显示在临时出现的所点击位置上的选项列表。</p>
@@ -10,7 +11,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 ## 基本菜单
 
-默认情况下，简单菜单在锚元素上打开（此选项可以通过props更改）。 当靠近屏幕边缘时，简单的菜单会垂直重新对齐，以确保所有菜单项都完全可见。
+默认情况下，简单菜单在锚元素上打开（此选项可以通过 props 更改）。 当靠近屏幕边缘时，简单的菜单会垂直重新对齐，以确保所有菜单项都完全可见。
 
 选择一个选项后, 最好立即提交该选项并关闭菜单。
 
@@ -20,7 +21,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 ## 选择菜单
 
-如果用于项目选择, 则在打开时, 基本菜单会尝试将当前选定的菜单项与定位元素垂直对齐。 使用` selected `属性将菜单项设置为当前选中（从[ListItem](/api/list-item/))。
+如果用于项目选择, 则在打开时, 基本菜单会尝试将当前选定的菜单项与定位元素垂直对齐。 使用`selected`属性将菜单项设置为当前选中（从[ListItem](/api/list-item/))。
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
@@ -36,7 +37,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心跳入， 这里是一个如何自定义 `MenuItem`示例。
 
-⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
+⚠️ 虽然材料设计规范鼓励主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 

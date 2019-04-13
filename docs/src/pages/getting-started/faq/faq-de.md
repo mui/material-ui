@@ -18,9 +18,9 @@ In einer Reihe von Szenarien könnten Sie versehentlich zwei Klassennamengenerat
 
 > Wenn Sie Webpack mit dem [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) verwenden, versuchen Sie, den [`RuntimeChunk` Einstellung unter `Optimierungen`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) zu konfigurieren.
 
-Im Allgemeinen ist es einfach, dieses Problem zu beheben, indem jede Material-UI-Anwendung mit [` StylesProvider`](/css-in-js/api/#stylesprovider) Komponenten oben in ihren Komponentenbäumen verpackt wird **und verwenden einen einzigen Klassennamengenerator, der von ihnen genutzt wird **.
+Im Allgemeinen ist es einfach, dieses Problem zu beheben, indem jede Material-UI-Anwendung mit [`StylesProvider`](/css-in-js/api/#stylesprovider) Komponenten oben in ihren Komponentenbäumen verpackt wird **und verwenden einen einzigen Klassennamengenerator, der von ihnen genutzt wird **.
 
-⚠️ Wenn Sie es eilig haben, bieten wir eine Option als schnelle Notlösung, um die Klassennamen **deterministisch** zu machen: [`gefährliche UseGlobalCSS `](/css-in-js/advanced/#deterministic-class-names).
+⚠️ Wenn Sie es eilig haben, bieten wir eine Option als schnelle Notlösung, um die Klassennamen **deterministisch** zu machen: [`gefährliche UseGlobalCSS`](/css-in-js/advanced/#deterministic-class-names).
 
 ## Warum bewegen sich die fest positionierten Elemente, wenn ein Modal geöffnet wird?
 
@@ -38,7 +38,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application
     },
   },
 });
@@ -83,7 +83,7 @@ Verwenden Sie als Faustregel Inline-Style nur für dynamische Stileigenschaften.
 
 ## Wie verwende ich den react-router?
 
-Wir haben dokumentiert, wie Sie eine [Routing-Bibliothek von Drittanbietern](/demos/buttons/#third-party-routing-library) mit der `ButtonBase` Komponente verwenden. Viele unserer interaktiven Komponenten verwenden es intern: `Button`, `Menüelement`, ` <1 /> `, `Tab`, usw. Sie können dieselbe Lösung mit ihnen verwenden.
+Wir haben dokumentiert, wie Sie eine [Routing-Bibliothek von Drittanbietern](/demos/buttons/#third-party-routing-library) mit der `ButtonBase` Komponente verwenden. Viele unserer interaktiven Komponenten verwenden es intern: `Button`, `Menüelement`, `<1 />`, `Tab`, usw. Sie können dieselbe Lösung mit ihnen verwenden.
 
 ## Wie kombiniere ich die `withStyles()` und `withTheme` HOCs?
 
@@ -102,7 +102,7 @@ import { compose } from 'recompose';
 
 export default compose(
   withTheme,
-  withStyles(styles)
+  withStyles(styles),
 )(Modal);
 ```
 

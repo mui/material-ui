@@ -12,17 +12,15 @@ filename: /packages/material-ui/src/GridListTile/GridListTile.js
 import GridListTile from '@material-ui/core/GridListTile';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Theoretically you can pass any node as children, but the main use case is to pass an img, in which case GridListTile takes care of making the image "cover" available space (similar to `background-size: cover` or to `object-fit: cover`). |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Width of the tile in number of grid cells. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">rows</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Height of the tile in number of grid cells. |
+| Name                                     | Type                                       | Default                                | Description                                                                                                                                                                                                                                  |
+| :--------------------------------------- | :----------------------------------------- | :------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">children</span>  | <span class="prop-type">node</span>        |                                        | Theoretically you can pass any node as children, but the main use case is to pass an img, in which case GridListTile takes care of making the image "cover" available space (similar to `background-size: cover` or to `object-fit: cover`). |
+| <span class="prop-name">classes</span>   | <span class="prop-type">object</span>      |                                        | Override or extend the styles applied to the component. See [CSS API](#css) below for more details.                                                                                                                                          |
+| <span class="prop-name">cols</span>      | <span class="prop-type">number</span>      | <span class="prop-default">1</span>    | Width of the tile in number of grid cells.                                                                                                                                                                                                   |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component.                                                                                                                                                   |
+| <span class="prop-name">rows</span>      | <span class="prop-type">number</span>      | <span class="prop-default">1</span>    | Height of the tile in number of grid cells.                                                                                                                                                                                                  |
 
 The `ref` is forwarded to the root element.
 
@@ -33,13 +31,12 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">tile</span> | Styles applied to the `div` element that wraps the children.
-| <span class="prop-name">imgFullHeight</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
-| <span class="prop-name">imgFullWidth</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
+| Name                                         | Description                                                                       |
+| :------------------------------------------- | :-------------------------------------------------------------------------------- |
+| <span class="prop-name">root</span>          | Styles applied to the root element.                                               |
+| <span class="prop-name">tile</span>          | Styles applied to the `div` element that wraps the children.                      |
+| <span class="prop-name">imgFullHeight</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile. |
+| <span class="prop-name">imgFullWidth</span>  | Styles applied to an `img` element child, if needed to ensure it covers the tile. |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/GridListTile/GridListTile.js)
@@ -51,4 +48,3 @@ you need to use the following style sheet name: `MuiGridListTile`.
 ## Demos
 
 - [Grid List](/demos/grid-list/)
-

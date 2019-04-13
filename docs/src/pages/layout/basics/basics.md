@@ -12,7 +12,7 @@ We provide the following helpers to make the UI responsive:
 - [Breakpoints](/layout/breakpoints/): API that enables the use of breakpoints in a wide variety of contexts.
 - [useMediaQuery](/layout/use-media-query/): This is a CSS media query hook for React. It listens for matches to a CSS media query.
 - [Hidden](/layout/hidden/):
-Quickly and responsively toggle the visibility value of components and more with our hidden utilities.
+  Quickly and responsively toggle the visibility value of components and more with our hidden utilities.
 
 ## z-index
 

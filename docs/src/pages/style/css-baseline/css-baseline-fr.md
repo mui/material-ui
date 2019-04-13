@@ -1,6 +1,7 @@
 ---
 components: CssBaseline
 ---
+
 # Principes CSS
 
 <p class="description">Material-UI fournit un composant CssBaseline pour relancer une base élégante, cohérente et simple sur laquelle s'appuyer.</p>

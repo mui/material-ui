@@ -48,9 +48,9 @@
 import { typography } from '@material-ui/system';
 ```
 
-| Import name | Prop | CSS property | Theme key |
-|:------------|:-----|:-------------|:----------|
+| Import name  | Prop         | CSS property  | Theme key                                                              |
+| :----------- | :----------- | :------------ | :--------------------------------------------------------------------- |
 | `fontFamily` | `fontFamily` | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `fontSize` | `fontSize` | `font-size` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| `fontSize`   | `fontSize`   | `font-size`   | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontWeight` | `fontWeight` | `font-weight` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `textAlign` | `textAlign` | `text-align` | none |
+| `textAlign`  | `textAlign`  | `text-align`  | none                                                                   |

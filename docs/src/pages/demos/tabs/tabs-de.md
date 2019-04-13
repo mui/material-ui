@@ -2,6 +2,7 @@
 title: Tabs React-Komponente
 components: Tabs, Tab
 ---
+
 # Tabs
 
 <p class="description">Tabs erleichtern das Erkunden und Wechseln zwischen verschiedenen Ansichten.</p>

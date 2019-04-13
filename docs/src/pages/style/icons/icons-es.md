@@ -1,6 +1,7 @@
 ---
 components: Icon, SvgIcon
 ---
+
 # Iconos
 
 <p class="description">Guía y sugerencias para usar iconos con Material-UI.</p>
@@ -32,7 +33,7 @@ Se puede usar [material.io/tools/icons](https://material.io/tools/icons/?style=b
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) está disponible como `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) está disponible como `@material-ui/icons/DeleteForever`
 
-Para iconos con *"tema"*, adjunta el nombre del tema al nombre del icono. Por ejemplo
+Para iconos con _"tema"_, adjunta el nombre del tema al nombre del icono. Por ejemplo
 
 - El icono [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) Outlined (contorneado) está disponible como `@material-ui/icons/DeleteOutlined`
 - El icono [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) Rounded (redondeado) está disponible como `@material-ui/icons/DeleteRounded`
@@ -62,7 +63,7 @@ import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 ```
 
-Nota: Importar exports nombrados de este modo dará lugar a que el código para *cada icono* sea incluido en el proyecto, por lo que no se recomienda a menos que se configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). También puede afectar al rendimiento del módulo Hot Reload.
+Nota: Importar exports nombrados de este modo dará lugar a que el código para _cada icono_ sea incluido en el proyecto, por lo que no se recomienda a menos que se configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). También puede afectar al rendimiento del módulo Hot Reload.
 
 ### Más iconos SVG
 
@@ -73,7 +74,7 @@ Nota: Importar exports nombrados de este modo dará lugar a que el código para 
 El componente `Icon` mostrará iconos de cualquier fuente compatible con ligaduras. Como requisito previo, se debe incluir una, como la [fuente de iconos Material](http://google.github.io/material-design-icons/#icon-font-for-the-web) en el proyecto, por ejemplo, vía Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `icono` establecerá el nombre de clase correcto para la fuente de icono de Material. Para otras fuentes, debe proporcionar el nombre de la clase utilizando la propiedad `className` del componente Icon.
@@ -83,7 +84,7 @@ Para usar un icono, simplemente se envuelve el nombre del icono (ligadura de la 
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>
+<Icon>star</Icon>;
 ```
 
 Por defecto, un Icono heredará el color del texto actual. Opcionalmente, se puede cambiar el color usando uno de los atributos del color del tema: `primary`, `secondary`, `action`, `error` & `disabled`.
@@ -128,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
-</IconButton>
+</IconButton>;
 ```
 
 ### Iconos de Fuente Decorativos

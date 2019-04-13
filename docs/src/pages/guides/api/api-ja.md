@@ -84,34 +84,31 @@ Most of the controlled component are controlled via the `value` and the `onChang
 
 ### boolean vs enum
 
-There are two options to design the API for the variations of a component: with a *boolean*; or with an *enum*. For example, let's take a button that has different types. Each option has its pros and cons:
+There are two options to design the API for the variations of a component: with a _boolean_; or with an _enum_. For example, let's take a button that has different types. Each option has its pros and cons:
 
-- Option 1 *boolean*:
-    
-    ```tsx
-    type Props = {
+- Option 1 _boolean_:
+
+  ```tsx
+  type Props = {
     contained: boolean;
     fab: boolean;
-    };
-    ```
-    
-    This API enabled the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+  };
+  ```
 
-- Option 2 *enum*:
-    
-    ```tsx
-    type Props = {
+  This API enabled the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+
+- Option 2 _enum_:
+  ```tsx
+  type Props = {
     variant: 'text' | 'contained' | 'fab';
-    }
-    ```
-    
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
-    
-    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
+  };
+  ```
+  This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+  However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 
-- A *boolean* is used when **2** degrees of freedom are required.
-- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
+- A _boolean_ is used when **2** degrees of freedom are required.
+- An _enum_ is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
 
-Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
+Going back to the previous button example; since it requires 3 degrees of freedom, we use an _enum_.

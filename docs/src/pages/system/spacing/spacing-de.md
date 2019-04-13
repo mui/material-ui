@@ -6,19 +6,19 @@
 
 Die Abstand-Utility konvertiert die Abkürzung für Marginals und Padding-Eigenschaften in CSS-Deklarationen für Margin und Padding. Die Eigenschaften werden im Format `{property}{sides}`.
 
-Die *Eigenschaften* ist eine von:
+Die _Eigenschaften_ ist eine von:
 
-- ` m ` - für Klassen mit *margin*
-- `p` - für Klassen mit *padding*
+- `m` - für Klassen mit _margin_
+- `p` - für Klassen mit _padding_
 
-Die *sides* ist eine von:
+Die _sides_ ist eine von:
 
-- ` t ` - für Klassen, die * margin-top* oder *padding-top* setzen
-- `b` - für Klassen, die * margin-bottom* oder *padding-bottom* setzen
-- ` l ` - für Klassen, die * margin-links* oder *padding-links* setzen
-- ` r ` - für Klassen, die * margin-rechts* oder *padding-rechts* setzen
-- ` x ` - für Klassen, die sowohl **-links* als auch **-rechts* setzen
-- ` y ` - für Klassen, die sowohl **-top* als auch **-bottom* setzen
+- `t` - für Klassen, die _ margin-top_ oder _padding-top_ setzen
+- `b` - für Klassen, die _ margin-bottom_ oder _padding-bottom_ setzen
+- `l` - für Klassen, die _ margin-links_ oder _padding-links_ setzen
+- `r` - für Klassen, die _ margin-rechts_ oder _padding-rechts_ setzen
+- `x` - für Klassen, die sowohl **-links\* als auch **-rechts\* setzen
+- `y` - für Klassen, die sowohl **-top\* als auch **-bottom\* setzen
 - leerzeichen - für Klassen, die auf allen vier Seiten des Elements ein margin oder ein padding festlegen
 
 ## Transformation
@@ -93,7 +93,7 @@ import { spacing } from '@material-ui/system';
 ```
 
 | Inportname | Eigenschaften | CSS-Eigenschaft                 | Theme-Schlüssel                                                  |
-|:---------- |:------------- |:------------------------------- |:---------------------------------------------------------------- |
+| :--------- | :------------ | :------------------------------ | :--------------------------------------------------------------- |
 | `spacing`  | `m`           | `margin`                        | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing`  | `mt`          | `margin-top`                    | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing`  | `mr`          | `margin-right`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
@@ -109,7 +109,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`  | `px`          | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing`  | `py`          | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 
-*Einige Leute finden die Kurzform der Eigenschaft verwirrend. Sie können die Vollversion verwenden, wenn Sie möchten:*
+_Einige Leute finden die Kurzform der Eigenschaft verwirrend. Sie können die Vollversion verwenden, wenn Sie möchten:_
 
 ```diff
 -<Box pt={2} />

@@ -4,7 +4,7 @@ Material-UI es un proyecto de código abierto con licencia del MIT. Es un proyec
 
 ### Patrocinadores Gold
 
-Los Patrocinadores Gold son aquellos que se han comprometido a donar $500/mes o más a Material-UI.
+Los Patrocinadores Gold son aquellos que se han comprometido a donar \$500/mes o más a Material-UI.
 
 a través de [Patreon](https://www.patreon.com/oliviertassinari)
 

@@ -1,21 +1,22 @@
 ---
 title: React中的媒体查询用于响应式设计
 ---
+
 # useMediaQuery
 
 <p class="description">这是React的CSS媒体查询钩子。 它侦听与CSS媒体查询的匹配。 它允许根据查询是否匹配来呈现组件。</p>
 
 一些重要特点：
 
-- ⚛️它有一个惯用的React API。
-- 🚀它具有高性能，它会观察文档以检测其媒体查询何时发生更改，而不是定期轮询值。
+- ⚛️ 它有一个惯用的 React API。
+- 🚀 它具有高性能，它会观察文档以检测其媒体查询何时发生更改，而不是定期轮询值。
 - 📦 [1 kB gzipped](/size-snapshot).
-- 💄它是反应敏感和反应媒体的替代方案，旨在简化。
-- 🤖它支持服务器端渲染。
+- 💄 它是反应敏感和反应媒体的替代方案，旨在简化。
+- 🤖 它支持服务器端渲染。
 
 ## 简单的媒体查询
 
-您应该为挂钩的第一个参数提供媒体查询。 媒体查询字符串可以由任何有效的CSS媒体查询，如 `'print'`。
+您应该为挂钩的第一个参数提供媒体查询。 媒体查询字符串可以由任何有效的 CSS 媒体查询，如 `'print'`。
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -29,9 +30,9 @@ function MyComponent() {
 
 {{"demo": "pages/layout/use-media-query/SimpleMediaQuery.js"}}
 
-## 使用Material-UI的断点助手
+## 使用 Material-UI 的断点助手
 
-您可以使用Material-UI的 [断点助手](/layout/breakpoints/) ，如下所示：
+您可以使用 Material-UI 的 [断点助手](/layout/breakpoints/) ，如下所示：
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -49,7 +50,7 @@ function MyComponent() {
 
 ## 服务器端呈现
 
-服务器上需要实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ，我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery)。 We also encourage the usage of the `useMediaQueryTheme` version of the hook that fetches properties from the theme. 这样，您可以为所有React树提供一次 `ssrMatchMedia` 选项。
+服务器上需要实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ，我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery)。 We also encourage the usage of the `useMediaQueryTheme` version of the hook that fetches properties from the theme. 这样，您可以为所有 React 树提供一次 `ssrMatchMedia` 选项。
 
 {{"demo": "pages/layout/use-media-query/ServerSide.js"}}
 
@@ -79,11 +80,11 @@ function MyComponent() {
 
 #### 参数
 
-1. `query` （*String*）：表示要处理的媒体查询的字符串。
-2. `选项` (*Object* [optional]): 
-    - `options.defaultMatches` （*布尔值* [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
-    - `options.noSsr` (*Boolean* [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 它慢了。 您可以将此标志设置为 `真` ，如果你是 **没有做服务器端渲染**。
-    - `options.ssrMatchMedia` （*功能* [optional]）您可能希望使用启发式来近似 客户端浏览器的屏幕。 例如，您可以使用用户代理或客户端提示https://caniuse.com/#search=client%20hint。 您可以使用主题上的 [`自定义属性`](/customization/themes/#properties) 提供全局ponyfill。 检查 [服务器端呈现示例](#server-side-rendering)。
+1. `query` （_String_）：表示要处理的媒体查询的字符串。
+2. `选项` (_Object_ [optional]):
+   - `options.defaultMatches` （_布尔值_ [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
+   - `options.noSsr` (_Boolean_ [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 它慢了。 您可以将此标志设置为 `真` ，如果你是 **没有做服务器端渲染**。
+   - `options.ssrMatchMedia` （_功能_ [optional]）您可能希望使用启发式来近似 客户端浏览器的屏幕。 例如，您可以使用用户代理或客户端提示https://caniuse.com/#search=client%20hint。 您可以使用主题上的 [`自定义属性`](/customization/themes/#properties) 提供全局 ponyfill。 检查 [服务器端呈现示例](#server-side-rendering)。
 
 #### 返回结果
 

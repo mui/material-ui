@@ -2,6 +2,7 @@
 title: Menu React component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
+
 # Меню
 
 <p class="description">Меню временно отображают список вариантов.</p>

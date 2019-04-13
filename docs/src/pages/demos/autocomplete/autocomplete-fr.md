@@ -2,6 +2,7 @@
 title: Composant React Auto-complétion
 components: TextField, Paper, MenuItem, Popper
 ---
+
 # Autocomplete (Auto-complétion)
 
 <p class="description">La saisie semi-automatique est une entrée de texte normale améliorée par un panneau d'options suggérées.</p>

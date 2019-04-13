@@ -17,11 +17,11 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | A single child content element. |
-| <span class="prop-name">in</span> | <span class="prop-type">bool</span> |  | If `true`, the component will transition in. |
-| <span class="prop-name">timeout</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| Name                                    | Type                                                                                                         | Default                                                                                            | Description                                                                                                                             |
+| :-------------------------------------- | :----------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">children</span> | <span class="prop-type">element</span>                                                                       |                                                                                                    | A single child content element.                                                                                                         |
+| <span class="prop-name">in</span>       | <span class="prop-type">bool</span>                                                                          |                                                                                                    | If `true`, the component will transition in.                                                                                            |
+| <span class="prop-name">timeout</span>  | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 The component cannot hold a ref.
 
@@ -35,4 +35,3 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [Transitions](/utils/transitions/)
-

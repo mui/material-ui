@@ -15,7 +15,7 @@ Your name/logo will receive proper recognition and exposure by donating on eithe
 
 ## Gold Sponsors
 
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+Gold Sponsors are those who have pledged \$500/month and more to Material-UI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
@@ -60,19 +60,19 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
-| ♥️ | ♥️ | ♥️ | ♥️ | ♥️ |
-|---|---|---|---|---|
-| Olivier Baumann | Linus Gubenis | Scott Fortmann-Roe | Yosmany García Alfonso | cocoanton |
-| Hong Yuan | Lucas Nascimento | the-noob | Thomas Hermann | Diana-Alina Olaru |
-| Daniel Faust | David Langheiter | LocalMonero | Adam Wells | Vincent Bouzeran |
-| Ashwin Hegde | Eric Schultz | Conor Dunk | Jerome Wilson | Greenlink |
-| Jolse Maginnis | asmeikal | David Auffret | Naresh Bhatia | Henk van Hest |
-| Avétis KAZARIAN | Withinpixels | SIM KIM SIA | Renaud Bompuis | Yaron Malin |
-| Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
-| Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
-| Antonio Seveso | Ali Akhavan | Bruno Winck | Alessandro Annini | Victor Irzak |
-| Manuel U Grullon | Skaronator | Peter James | Vincz | Micah Davidson |
-| Nelson Batalha |
+| ♥️                   | ♥️               | ♥️                   | ♥️                     | ♥️                |
+| -------------------- | ---------------- | -------------------- | ---------------------- | ----------------- |
+| Olivier Baumann      | Linus Gubenis    | Scott Fortmann-Roe   | Yosmany García Alfonso | cocoanton         |
+| Hong Yuan            | Lucas Nascimento | the-noob             | Thomas Hermann         | Diana-Alina Olaru |
+| Daniel Faust         | David Langheiter | LocalMonero          | Adam Wells             | Vincent Bouzeran  |
+| Ashwin Hegde         | Eric Schultz     | Conor Dunk           | Jerome Wilson          | Greenlink         |
+| Jolse Maginnis       | asmeikal         | David Auffret        | Naresh Bhatia          | Henk van Hest     |
+| Avétis KAZARIAN      | Withinpixels     | SIM KIM SIA          | Renaud Bompuis         | Yaron Malin       |
+| Arvanitis Panagiotis | Jesse Weigel     | Bogdan Mihai Nicolae | Dung Tran              | Kyle Pennell      |
+| Kai Mit Pansen       | Eric Nagy        | Karens Grigorjancs   | Mohamed Turco          | Haroun Serang     |
+| Antonio Seveso       | Ali Akhavan      | Bruno Winck          | Alessandro Annini      | Victor Irzak      |
+| Manuel U Grullon     | Skaronator       | Peter James          | Vincz                  | Micah Davidson    |
+| Nelson Batalha       |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 

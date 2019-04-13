@@ -2,6 +2,7 @@
 title: Stepper React-Komponente
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
+
 # Stepper
 
 <p class="description">Stepper vermitteln den Fortschritt durch nummerierte Schritte. Es bietet einen assistentenartigen Workflow.</p>

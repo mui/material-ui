@@ -34,11 +34,13 @@ In order to use the font `Icon` component you must first add the [Material icons
 Here are [some instructions](/style/icons/#font-icons)
 on how to do so.
 For instance, via Google Web Fonts:
+
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 Alternatively, if you are using JSX over HTML to render the head:
+
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```

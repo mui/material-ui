@@ -6,9 +6,9 @@
 
 Die Material-UI unterstützt die neuesten, stabilen Versionen aller gängigen Browser und Plattformen. Wir unterstützen auch Internet Explorer 11. Sie müssen keine JavaScript-Komponente angeben, da wir nicht unterstützte Browserfunktionen intern und isoliert verwalten.
 
-| IE | Edge  | Firefox | Chrome | Safari | Googlebot |
-|:-- |:----- |:------- |:------ |:------ |:--------- |
-| 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
+| IE  | Edge  | Firefox | Chrome | Safari | Googlebot |
+| :-- | :---- | :------ | :----- | :----- | :-------- |
+| 11  | >= 14 | >= 52   | >= 49  | >= 10  | ✅        |
 
 Da Googlebot einen Web-Rendering-Service (WRS) zum Indizieren des Seiteninhalts verwendet, ist es entscheidend, dass Material-UI dies unterstützt. [ WRS basiert auf Chrome 41](https://developers.google.com/search/docs/guides/rendering). Sie können erwarten, dass die Komponenten von Material-UI ohne größere Probleme gerendert werden.
 

@@ -32,6 +32,7 @@ Only important bug fixes should be applied to `master` at this point.
 ### How to increase the chance of being accepted?
 
 We will only accept a pull request for which all tests pass. Make sure the following is true:
+
 - The branch is targeted at:
   - `master` for important fixes.
   - `next` for everything else including breaking changes.
@@ -40,10 +41,10 @@ We will only accept a pull request for which all tests pass. Make sure the follo
   - There is an open RFC issue that the PR addresses.
   - The issue and the PR should be included in [#13663](https://github.com/mui-org/material-ui/issues/13663).
 - If a feature is being added:
-   - If the result was already achievable with the core library, explain why this
-      feature needs to be added to the core.
-   - It includes relevant tests.
-   - If this is a common use case, considered adding an example to the documentation.
+  - If the result was already achievable with the core library, explain why this
+    feature needs to be added to the core.
+  - It includes relevant tests.
+  - If this is a common use case, considered adding an example to the documentation.
 - If a bug is being fixed, test cases that fail without the fix are included.
 - The code is formatted (run `yarn prettier`).
 - The code is linted (run `yarn lint`).
@@ -65,6 +66,7 @@ Please create a new branch from an up to date master on your fork. (Note, urgent
 5. Visit GitHub and make your pull request.
 
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
+
 ```sh
 git remote add upstream git@github.com:mui-org/material-ui.git
 git checkout next
@@ -77,10 +79,12 @@ yarn
 
 The documentation site is built with Material-UI and contains examples of all the components.
 To get started:
+
 ```sh
 yarn
 yarn docs:dev
 ```
+
 You can now access the documentation site [locally](http://localhost:3000).
 Changes to the docs will hot reload the site. If you make changes to TypeScript files
 in the docs run `yarn docs:typescript --watch` in a separate terminal.
@@ -90,6 +94,7 @@ Test coverage is limited at present, but where possible, please add tests for an
 ### Updating the component API documentation
 
 To update the component API documentation (auto generated from component PropTypes comments), run:
+
 ```sh
 yarn docs:api
 ```
@@ -117,13 +122,15 @@ For example, let say you want to add new demos for buttons component, then you h
 #### 1. Add a new React component file under the related directory.
 
 In this case, I'm going to add the new file to the following directory:
+
 ```
 docs/src/pages/demos/buttons/
 ```
+
 And let's give it a name: `SuperButtons.js`.
 
 We try to also document how to use this library with TypeScript. If you are familiar with
-that language try writing that demo in TypeScript in a *.tsx file. When you're done
+that language try writing that demo in TypeScript in a \*.tsx file. When you're done
 run `yarn docs:typescript:formatted` to automatically add a JavaScript version.
 
 Apart from the inherent pros and cons of TypeScript the demos are also used to test our
@@ -149,7 +156,7 @@ about translations](#Translations).
 
 #### 3. You are done 🎉!
 
-In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/mui-org/material-ui/pull/8922/files)).
+In case you missed something, [we have a real example that can be used as a summary report](<(https://github.com/mui-org/material-ui/pull/8922/files)>).
 
 ### About TypeScript demos
 
@@ -197,7 +204,7 @@ Now, every time you import `material-ui` in your project, it is going to use you
 
 Translations are handled via [Crowdin](https://translate.material-ui.com).
 You don't need to apply any changes to localized versions of our markdown files  
-i.e. files having a `-someLocale` suffix. Crowdin automatically takes care of syncing 
+i.e. files having a `-someLocale` suffix. Crowdin automatically takes care of syncing
 these changes across the localized versions.
 
 ## Roadmap

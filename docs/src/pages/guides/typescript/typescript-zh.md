@@ -2,17 +2,17 @@
 
 <p class="description">使用TypeScript，你可以为JavaScript添加类型接口，从而提高代码质量及工作效率</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example. TypeScript版本大于2.8
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example. TypeScript 版本大于 2.8
 
 Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json). 使用不太严格的 `tsconfig.json` 或省略某些库可能会导致错误。
 
-## WithStyles的使用
+## WithStyles 的使用
 
-在TypeScript中使用 `withStyles` 可能有点棘手，但有一些实用程序可以使体验尽可能轻松。
+在 TypeScript 中使用 `withStyles` 可能有点棘手，但有一些实用程序可以使体验尽可能轻松。
 
 ### 使用 `createStyles` 来打败类型扩展
 
-混淆的常见原因是TypeScript的 [类型扩展](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening)，这导致此示例无法按预期工作：
+混淆的常见原因是 TypeScript 的 [类型扩展](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening)，这导致此示例无法按预期工作：
 
 ```ts
 const styles = {
@@ -53,7 +53,7 @@ withStyles(({ palette, spacing }) => ({
 }));
 ```
 
-这是因为TypeScript [扩展了函数表达式](https://github.com/Microsoft/TypeScript/issues/241)的返回类型。
+这是因为 TypeScript [扩展了函数表达式](https://github.com/Microsoft/TypeScript/issues/241)的返回类型。
 
 因此，我们建议使用我们的 `createStyles` 帮助函数来构造样式规则对象：
 
@@ -67,15 +67,16 @@ const styles = createStyles({
 });
 
 // Theme-dependent styles
-const styles = ({ palette, spacing }: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: spacing.unit,
-    backgroundColor: palette.background.default,
-    color: palette.primary.main,
-  },
-});
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.main,
+    },
+  });
 ```
 
 `createStyles` 只是身份函数;它不会在运行时“做任何事情”，只是在编译时指导类型推断。
@@ -97,7 +98,7 @@ const styles = createStyles({
 });
 ```
 
-但是，为了允许这些样式传递TypeScript，定义必须与CSS类的名称和实际的CSS属性名称不一致。 由于此类名称应与CSS属性相同，因此应避免使用。
+但是，为了允许这些样式传递 TypeScript，定义必须与 CSS 类的名称和实际的 CSS 属性名称不一致。 由于此类名称应与 CSS 属性相同，因此应避免使用。
 
 ```ts
 // error because TypeScript thinks `@media (min-width: 960px)` is a class name
@@ -128,14 +129,21 @@ const ambiguousStyles = createStyles({
 
 ### 使用 `WithStyles`道具
 
-由于用 `withStyles(styles)` 装饰的组件获得了特殊的 `classes` prop注入，因此您需要相应地定义其props：
+由于用 `withStyles(styles)` 装饰的组件获得了特殊的 `classes` prop 注入，因此您需要相应地定义其 props：
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props {
   // 非风格的属性
@@ -155,11 +163,18 @@ interface Props {
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
 
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props extends WithStyles<typeof styles> {
   foo: number;
@@ -181,18 +196,18 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {
     render() {
-      const { text, type, color, classes } = this.props
+      const { text, type, color, classes } = this.props;
       return (
         <Typography variant={type} color={color} classes={classes}>
           {text}
         </Typography>
       );
     }
-  }
+  },
 );
 ```
 
-不幸的是，由于TypeScript装饰器</a>的 当前限制， `withStyles(styles)` 不能用作TypeScript中的装饰器。</p> 
+不幸的是，由于 TypeScript 装饰器</a>的 当前限制， `withStyles(styles)` 不能用作 TypeScript 中的装饰器。</p>
 
 ## 自定义 `主题`
 
@@ -207,16 +222,16 @@ import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     appDrawer: {
-      width: React.CSSProperties['width']
-      breakpoint: Breakpoint
-    }
+      width: React.CSSProperties['width'];
+      breakpoint: Breakpoint;
+    };
   }
   // allow configuration using `createMuiTheme`
   interface ThemeOptions {
     appDrawer?: {
-      width?: React.CSSProperties['width']
-      breakpoint?: Breakpoint
-    }
+      width?: React.CSSProperties['width'];
+      breakpoint?: Breakpoint;
+    };
   }
 }
 ```
@@ -235,7 +250,7 @@ export default function createMyTheme(options: ThemeOptions) {
       breakpoint: 'lg',
     },
     ...options,
-  })
+  });
 }
 ```
 
@@ -244,22 +259,24 @@ export default function createMyTheme(options: ThemeOptions) {
 ```ts
 import createMyTheme from './styles/createMyTheme';
 
-const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
+const theme = createMyTheme({ appDrawer: { breakpoint: 'md' } });
 ```
 
 ## `组件的用法`属性
 
-Material-UI允许您通过`组件替换组件的根节点`属性。 例如，一个`按钮`的根节点可以用React Router ` Link替换` ，以及传递给` Button的任何其他道具` ，例如`到` ，将传播到`链接`组件，意味着你可以这样做：
+Material-UI 允许您通过`组件替换组件的根节点`属性。 例如，一个`按钮`的根节点可以用 React Router `Link替换` ，以及传递给`Button的任何其他道具` ，例如`到` ，将传播到`链接`组件，意味着你可以这样做：
 
 ```jsx
 import { Link } from 'react-router-dom';
 
-<Button component={Link} to="/">Go Home</Button>
+<Button component={Link} to="/">
+  Go Home
+</Button>;
 ```
 
-但是，TypeScript会抱怨它，因为`到`不属于` ButtonProps `接口，并且使用当前类型声明，它无法推断哪些道具可以传递给`组件` 。
+但是，TypeScript 会抱怨它，因为`到`不属于`ButtonProps`接口，并且使用当前类型声明，它无法推断哪些道具可以传递给`组件` 。
 
-当前的解决方法是将链接转换为` any ` ：
+当前的解决方法是将链接转换为`any` ：
 
 ```tsx
 import { Link } from 'react-router-dom';
@@ -278,7 +295,7 @@ const LinkButton = (props: LinkButtonProps) => (
 <LinkButton color="primary" to="/">Go Home</LinkButton>
 ```
 
-Material-UI组件传递一些基本的事件处理程序道具（` onClick ` ，` onDoubleClick `等）到他们的根节点。 这些处理程序具有以下特征：
+Material-UI 组件传递一些基本的事件处理程序道具（`onClick` ，`onDoubleClick`等）到他们的根节点。 这些处理程序具有以下特征：
 
 ```ts
 (event: MouseEvent<HTMLElement, MouseEvent>) => void
@@ -305,5 +322,7 @@ import Button from '@material-ui/core/Button';
 const MyLink = (props: any) => <Link to="/" {...props} />;
 
 // usage:
-<Button color="primary" component={MyLink}>Go Home</Button>
+<Button color="primary" component={MyLink}>
+  Go Home
+</Button>;
 ```

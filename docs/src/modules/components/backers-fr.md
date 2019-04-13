@@ -4,7 +4,7 @@ Material-UI est un projet open source sous licence MIT. C'est un projet indépen
 
 ### Gold Sponsors
 
-Les Gold Sponsors sont ceux qui ont promis 500 $ / mois et plus à Material-UI.
+Les Gold Sponsors sont ceux qui ont promis 500 \$ / mois et plus à Material-UI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 

@@ -2,6 +2,7 @@
 title: React 消息条(Snackbar) 组件
 components: Snackbar, SnackbarContent
 ---
+
 # 消息条(Snackbar)
 
 <p class="description">消息条(Snackbar)通过一条消息来提供有关应用进程的简短信息-通常在屏幕底部</p>
@@ -16,7 +17,7 @@ components: Snackbar, SnackbarContent
 
 ## 基本消息条（Snackbar)
 
-一个旨在重现Google Keep消息条行为的基本消息条(Snackbar)。
+一个旨在重现 Google Keep 消息条行为的基本消息条(Snackbar)。
 
 {{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
 
@@ -24,7 +25,7 @@ components: Snackbar, SnackbarContent
 
 如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Snackbar)的主要颜色的示例
 
-⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
+⚠️ 虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
@@ -74,6 +75,6 @@ You can change the direction of the [Slide](/utils/transitions/#slide) transitio
 
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-在下面的示例中, 我们演示如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack可以很容易地显示零食栏（因此您不必处理它们的打开/关闭状态）。 It also enables you to stack them on top of one another (but discouraged by the specification).
+在下面的示例中, 我们演示如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 可以很容易地显示零食栏（因此您不必处理它们的打开/关闭状态）。 It also enables you to stack them on top of one another (but discouraged by the specification).
 
 {{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}

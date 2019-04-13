@@ -19,7 +19,7 @@ const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
-  }
+  },
 };
 
 withStyles(styles);
@@ -67,15 +67,16 @@ const styles = createStyles({
 });
 
 // Theme-dependent styles
-const styles = ({ palette, spacing }: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: spacing.unit,
-    backgroundColor: palette.background.default,
-    color: palette.primary.main,
-  },
-});
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.main,
+    },
+  });
 ```
 
 `createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
@@ -131,11 +132,18 @@ const ambiguousStyles = createStyles({
 Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props {
   // non-style props
@@ -155,11 +163,18 @@ However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yours
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
 
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props extends WithStyles<typeof styles> {
   foo: number;
@@ -181,14 +196,14 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {
     render() {
-      const { text, type, color, classes } = this.props
+      const { text, type, color, classes } = this.props;
       return (
         <Typography variant={type} color={color} classes={classes}>
           {text}
         </Typography>
       );
     }
-  }
+  },
 );
 ```
 
@@ -207,16 +222,16 @@ import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     appDrawer: {
-      width: React.CSSProperties['width']
-      breakpoint: Breakpoint
-    }
+      width: React.CSSProperties['width'];
+      breakpoint: Breakpoint;
+    };
   }
   // allow configuration using `createMuiTheme`
   interface ThemeOptions {
     appDrawer?: {
-      width?: React.CSSProperties['width']
-      breakpoint?: Breakpoint
-    }
+      width?: React.CSSProperties['width'];
+      breakpoint?: Breakpoint;
+    };
   }
 }
 ```
@@ -235,7 +250,7 @@ export default function createMyTheme(options: ThemeOptions) {
       breakpoint: 'lg',
     },
     ...options,
-  })
+  });
 }
 ```
 
@@ -244,7 +259,7 @@ This could be used like:
 ```ts
 import createMyTheme from './styles/createMyTheme';
 
-const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
+const theme = createMyTheme({ appDrawer: { breakpoint: 'md' } });
 ```
 
 ## Usage of `component` property
@@ -254,7 +269,9 @@ Material-UI allows you to replace a component's root node via a `component` prop
 ```jsx
 import { Link } from 'react-router-dom';
 
-<Button component={Link} to="/">Go Home</Button>
+<Button component={Link} to="/">
+  Go Home
+</Button>;
 ```
 
 However, TypeScript will complain about it, because `to` is not part of the `ButtonProps` interface, and with the current type declarations it has no way of inferring what props can be passed to `component`.
@@ -305,5 +322,7 @@ import Button from '@material-ui/core/Button';
 const MyLink = (props: any) => <Link to="/" {...props} />;
 
 // usage:
-<Button color="primary" component={MyLink}>Go Home</Button>
+<Button color="primary" component={MyLink}>
+  Go Home
+</Button>;
 ```

@@ -16,13 +16,13 @@ Möglicherweise müssen Sie den Stil einer Komponente für eine bestimmte Implem
 
 Die erste Möglichkeit, den Stil einer Komponente zu überschreiben, besteht in der Verwendung von **Klassennamen**. Jede Komponente stellt eine `Klassennamen` Eigenschaft bereit, die immer auf das unterste Element angewendet wird.
 
-In diesem Beispiel wird die [`withStyles()`](/css-in-js/basics/#higher-order-component-api) höherer Ordnung Komponente verwendet um benutzerdefinierte Stile in den DOM einzufügen und den Klassennamen mittels ihre `classes` Eigenschaftan die ` ClassNames` Komponente zu übergeben. Sie können sich [für jede andere Styling-Lösung](/guides/interoperability/) entscheiden oder sogar Standard CSS benutzen, um die Stile zu schaffen. Stellen Sie aber sicher, die [CSS - Injektionsreihenfolge](/css-in-js/advanced/#css-injection-order) zu prüfen, da das CSS, welches durch die Material UI-Komponente in den DOM injiziert wird, die höchste Spezifität hat, da der `<link>` am Ende des `<4 />` injiziert wird, um sicherzustellen, dass die Komponenten immer richtig gerendert werden.
+In diesem Beispiel wird die [`withStyles()`](/css-in-js/basics/#higher-order-component-api) höherer Ordnung Komponente verwendet um benutzerdefinierte Stile in den DOM einzufügen und den Klassennamen mittels ihre `classes` Eigenschaftan die `ClassNames` Komponente zu übergeben. Sie können sich [für jede andere Styling-Lösung](/guides/interoperability/) entscheiden oder sogar Standard CSS benutzen, um die Stile zu schaffen. Stellen Sie aber sicher, die [CSS - Injektionsreihenfolge](/css-in-js/advanced/#css-injection-order) zu prüfen, da das CSS, welches durch die Material UI-Komponente in den DOM injiziert wird, die höchste Spezifität hat, da der `<link>` am Ende des `<4 />` injiziert wird, um sicherzustellen, dass die Komponenten immer richtig gerendert werden.
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
 ### Überschreiben mit Klassen
 
-Wenn die ` Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die ` classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen. Die Liste der Klassen für jede Komponente ist in der **Komponenten-API** Sektion dokumentiert. Zum Beispiel können Sie sich die [ Button CSS-API](/api/button/#css) anschauen. Alternativ können Sie die [Browser-Entwicklungswerkzeuge](#using-the-dev-tools) verwenden.
+Wenn die `Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die `classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen. Die Liste der Klassen für jede Komponente ist in der **Komponenten-API** Sektion dokumentiert. Zum Beispiel können Sie sich die [ Button CSS-API](/api/button/#css) anschauen. Alternativ können Sie die [Browser-Entwicklungswerkzeuge](#using-the-dev-tools) verwenden.
 
 In diesem Beispiel wird auch `withStyles()` verwendet (siehe oben), aber hier verwendet `ClassesNesting` die `Button` `classes` Eigenschaft, welche ein Objekt liefert, das die **Namen der zu überschreibenden Klassen** (Stilregeln) auf die anzuwendenden **CSS-Klassennamen ** (Werte) abbildet. Die vorhandenen Klassen der Komponente werden weiterhin eingefügt. Daher müssen nur die spezifischen Styles gesetzt werden die Sie hinzufügen oder überschreiben möchten.
 
@@ -69,9 +69,9 @@ const StyledButton = withStyles({
 
 ### Interne Zustände
 
-Die internen Zustände der Komponenten, z. B. *hover*, *focus*, *disabled* und *selected*, sind mit einer höheren CSS-Spezifität gestaltet. [Spezifität ist ein Gewicht](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) das für eine gegebene CSS-Deklaration gilt.
+Die internen Zustände der Komponenten, z. B. _hover_, _focus_, _disabled_ und _selected_, sind mit einer höheren CSS-Spezifität gestaltet. [Spezifität ist ein Gewicht](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) das für eine gegebene CSS-Deklaration gilt.
 
-Um die internen Zustände der Komponenten außer Kraft zu setzen, **müssen Sie die Spezifität erhöhen **. Hier ist ein Beispiel mit dem *disable* Zustand und einer Button Komponente mittels einer **pseudo-class** (`:disabled`):
+Um die internen Zustände der Komponenten außer Kraft zu setzen, **müssen Sie die Spezifität erhöhen **. Hier ist ein Beispiel mit dem _disable_ Zustand und einer Button Komponente mittels einer **pseudo-class** (`:disabled`):
 
 ```css
 .button {
@@ -87,7 +87,7 @@ Um die internen Zustände der Komponenten außer Kraft zu setzen, **müssen Sie 
 <Button disabled className="button">
 ```
 
-Manchmal können Sie keine **Pseudoklasse** verwenden, da der Zustand nicht in der Plattform existiert. Nehmen wir die Menüpunkt Komponente und den *selected* Zustand als Beispiel. Abgesehen vom Zugriff auf verschachtelte Elemente kann die `classes` Eigenschaft verwendet werden, um die internen Zustände von Material-UI-Komponenten anzupassen:
+Manchmal können Sie keine **Pseudoklasse** verwenden, da der Zustand nicht in der Plattform existiert. Nehmen wir die Menüpunkt Komponente und den _selected_ Zustand als Beispiel. Abgesehen vom Zugriff auf verschachtelte Elemente kann die `classes` Eigenschaft verwendet werden, um die internen Zustände von Material-UI-Komponenten anzupassen:
 
 ```css
 .menu-item {
@@ -182,7 +182,7 @@ Dem Diese Demo basiert auf dem [`@material-ui/styles`](/css-in-js/basics/) Paket
 
 ## 3. Spezifische Variation einer Komponente
 
-Möglicherweise müssen Sie eine Variation einer Komponente erstellen und in verschiedenen Kontexten verwenden, beispielsweise auf einer farbigen Button auf Ihrer Produktseite. Allerdings möchten Sie wahrscheinlich, dass Ihr Code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) bleibt.
+Möglicherweise müssen Sie eine Variation einer Komponente erstellen und in verschiedenen Kontexten verwenden, beispielsweise auf einer farbigen Button auf Ihrer Produktseite. Allerdings möchten Sie wahrscheinlich, dass Ihr Code [_DRY_](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) bleibt.
 
 Der beste Ansatz ist, Option 1 zu folgen und dann die Kompositionskraft von React zu nutzen, indem Sie Ihre benutzerdefinierte Komponente exportieren, um sie dort zu verwenden, wo Sie sie benötigen.
 

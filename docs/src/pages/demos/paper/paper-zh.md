@@ -2,6 +2,7 @@
 title: React Paper 组件
 components: Paper
 ---
+
 # Paper
 
 <p class="description">在“材料设计”中，纸张的物理属性在屏幕上被体现出来。 </p>

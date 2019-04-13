@@ -114,7 +114,7 @@ import { compose } from 'recompose';
 
 export default compose(
   withTheme,
-  withStyles(styles)
+  withStyles(styles),
 )(Modal);
 ```
 

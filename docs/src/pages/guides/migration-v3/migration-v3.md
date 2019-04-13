@@ -5,8 +5,8 @@
 Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
-Have you upgraded your site and run into something that's not covered here?
-[Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md)
+> Have you upgraded your site and run into something that's not covered here?
+> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md)
 
 ## Introduction
 
@@ -16,8 +16,8 @@ We'll do our best to keep things easy to follow, and as sequential as possible s
 
 ## Why you should migrate
 
-This documentation page covers the *how* of migrating from v3 to v4.
-The *why* is covered in the release blog post: [*Work in progress, on Medium*](https://medium.com/material-ui).
+This documentation page covers the _how_ of migrating from v3 to v4.
+The _why_ is covered in the release blog post: [_Work in progress, on Medium_](https://medium.com/material-ui).
 
 ## Updating Your Dependencies
 
@@ -67,6 +67,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   -import { MuiThemeProvider } from '@material-ui/core/styles';
   +import { ThemeProvider } from '@material-ui/styles';
   ```
+
 - Remove the first option argument of `withTheme()`.
   The first argument was a placeholder for a potential future option.
   We have never found a need for it.
@@ -77,37 +78,43 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
+
 - Scope the keyframes API. You should apply the following changes in your codebase.
   It helps isolating the animation logic:
 
   ```diff
   rippleVisible: {
     opacity: 0.3,
--   animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
-+   animation: `$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)`,
+  ```
+
+- animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
+
+* animation: `$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)`,
   },
   '@keyframes mui-ripple-enter': {
-    '0%': {
-      opacity: 0.1,
-    },
-    '100%': {
-      opacity: 0.3,
-    },
+  '0%': {
+  opacity: 0.1,
   },
-  ```
+  '100%': {
+  opacity: 0.3,
+  },
+  },
+
+````
 
 ### Theme
 
 - The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
-  To use it correctly, you have to use the returned value.
+To use it correctly, you have to use the returned value.
 
-  ```diff
-  -const background = { main: color };
-  -theme.palette.augmentColor(background);
-  +const background = theme.palette.augmentColor({ main: color });
+```diff
+-const background = { main: color };
+-theme.palette.augmentColor(background);
++const background = theme.palette.augmentColor({ main: color });
 
-  console.log({ background });
-  ```
+console.log({ background });
+````
+
 - You can safely remove the next variant from the theme creation:
 
   ```js
@@ -136,6 +143,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   -<Typography headlineMapping={headlineMapping}>
   +<Typography variantMapping={variantMapping}>
   ```
+
 - [Typography] Change the default variant from `body2` to `body1`.
   A font size of 16px is a better default than 14px.
   Bootstrap, material.io or even our documentation use 16px as a default font size.
@@ -144,7 +152,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 - [Typography] Remove the default color from the typography variants.
   The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028.
-  The usage of *default* should be avoided, it lakes semantic.
+  The usage of _default_ should be avoided, it lakes semantic.
 
 ### Button
 
@@ -180,13 +188,16 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
     Foo
   </InputLabel>
   ```
+
 - [InputBase] Change the default box sizing model.
   It uses the following CSS now:
 
   ```css
   box-sizing: border-box;
   ```
+
   It solves issues with the `fullWidth` prop.
+
 - [InputBase] Remove the `inputType` class from `InputBase`.
 
 ### Layout
@@ -212,6 +223,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   -<TableCell numeric>{row.calories}</TableCell>
   +<TableCell align="right">{row.calories}</TableCell>
   ```
+
 - [TableRow] Remove the fixed height CSS property.
   The cell height is computed by the browser using the padding and line-height.
 - [TableCell] Move the `dense` mode to a different property:
@@ -220,13 +232,14 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   -<TableCell padding="dense" />
   +<TableCell size="small" />
   ```
+
 - [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
 
 ### Tabs
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
-This has allowed us to removed 2 intermediary DOM elements.
-You should be able to move the custom styles to the root class key.
+  This has allowed us to removed 2 intermediary DOM elements.
+  You should be able to move the custom styles to the root class key.
 
   ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
@@ -242,7 +255,7 @@ You should be able to move the custom styles to the root class key.
 
 ### Selection controls
 
-- [Switch][Radio][Checkbox] Improve specification compliance.
+- [Switch][radio][Checkbox] Improve specification compliance.
 
   Refactore the implementation to make it easier to override the styles.
   Rename the class names to match the specification wording:
@@ -274,7 +287,7 @@ You should be able to move the custom styles to the root class key.
 
 - [SvgIcon] Rename nativeColor -> htmlColor.
 
-  React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
+  React solved the same problem with the `for` HTML attribute, they have decided to call the prop `htmlFor`. This change follows the same reasoning.
 
   ```diff
   -<AddIcon nativeColor="#fff" />

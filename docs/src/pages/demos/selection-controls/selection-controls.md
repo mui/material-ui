@@ -68,6 +68,7 @@ should be made clear from the corresponding inline label.
 {{"demo": "pages/demos/selection-controls/Switches.js"}}
 
 ### Switches with FormControlLabel
+
 `Switch` can also be used with a label description thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/demos/selection-controls/SwitchLabels.js"}}
@@ -102,10 +103,7 @@ When a label can't be used, it's necessary to add an attribute directly to the i
 In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
-<Checkbox
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
-/>
+<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />
 ```
 
 ## Guidance

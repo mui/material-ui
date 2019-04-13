@@ -2,6 +2,7 @@
 title: Tabs React component
 components: Tabs, Tab
 ---
+
 # Tabs (Abas)
 
 <p class="description">As guias facilitam a exploração e alternam entre diferentes visualizações.</p>

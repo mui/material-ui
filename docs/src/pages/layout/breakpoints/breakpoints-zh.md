@@ -55,17 +55,17 @@ const styles = theme => ({
 
 {{"demo": "pages/layout/breakpoints/MediaQuery.js"}}
 
-## JavaScript媒体查询
+## JavaScript 媒体查询
 
 有时, 使用 CSS 是不够的。 您可能希望基于 JavaScript 中的断点值更改 React 渲染树。
 
-### useMediaQuery钩子
+### useMediaQuery 钩子
 
 您可以在 [userMediaQuery](/layout/use-media-query/) 页面上了解更多信息。
 
 ### withWidth()
 
-> ⚠️当React Hooks成为稳定版本时，此高阶组件将被弃用并使用[ useMediaQuery](/layout/use-media-query/) hook代替。
+> ⚠️ 当 React Hooks 成为稳定版本时，此高阶组件将被弃用并使用[ useMediaQuery](/layout/use-media-query/) hook 代替。
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -77,7 +77,7 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-在下面的演示中，我们基于屏幕宽度更改了渲染的DOM元素 (*em* ，<u>u</u> ，~~del~~ & span)。
+在下面的演示中，我们基于屏幕宽度更改了渲染的 DOM 元素 (_em_ ，<u>u</u> ，~~del~~ & span)。
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
@@ -87,11 +87,11 @@ export default withWidth()(MyComponent);
 
 #### 参数
 
-1. `key` （*String* | *Number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
+1. `key` （_String_ | _Number_ ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
 
 #### 返回结果
 
-`media query` ：准备与JSS一起使用的媒体查询字符串。
+`media query` ：准备与 JSS 一起使用的媒体查询字符串。
 
 #### 例子
 
@@ -112,11 +112,11 @@ const styles = theme => ({
 
 #### 参数
 
-1. `key` （*String* | *Number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
+1. `key` （_String_ | _Number_ ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
 
 #### 返回结果
 
-`media query` ：媒体查询字符串已经可以与JSS一起使用，其匹配的屏幕宽度小于breakpoint key给出的屏幕大小。
+`media query` ：媒体查询字符串已经可以与 JSS 一起使用，其匹配的屏幕宽度小于 breakpoint key 给出的屏幕大小。
 
 #### 例子
 
@@ -138,11 +138,11 @@ const styles = theme => ({
 
 #### 参数
 
-1. `key` （*String*）：断点键（`xs` ，`sm`等）。
+1. `key` （_String_）：断点键（`xs` ，`sm`等）。
 
 #### 返回结果
 
-`media query` ：媒体查询字符串已经可以与JSS一起使用，其匹配的屏幕宽度大于breakpoint key给出的屏幕大小。
+`media query` ：媒体查询字符串已经可以与 JSS 一起使用，其匹配的屏幕宽度大于 breakpoint key 给出的屏幕大小。
 
 #### 例子
 
@@ -164,8 +164,8 @@ const styles = theme => ({
 
 #### 参数
 
-1. `start` （*String*）：断点键（`xs` ，`sm`等）。
-2. `end` （*String*）：断点键（`xs` ，`sm`等）。
+1. `start` （_String_）：断点键（`xs` ，`sm`等）。
+2. `end` （_String_）：断点键（`xs` ，`sm`等）。
 
 #### 返回结果
 
@@ -197,14 +197,14 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 一些可能有趣的实现细节：
 
-- 它将转发*非 React 的静态* 属性，以便 HOC 更 "透明"。 例如，它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
+- 它将转发*非 React 的静态* 属性，以便 HOC 更 "透明"。 例如，它可用于定义 `getInitialProps()` 静态方法 (next.js)。
 
 #### 参数
 
-1. `选项` (*Object* [optional]): 
-    - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
-    - `options.noSSR` (*Boolean* [optional]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 用户界面可能会闪烁。 如果不进行服务器端渲染，可以将此标志设置为 `true`。
-    - `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 您可能希望使用启发式来近似 客户端浏览器屏幕宽度的屏幕宽度。 例如，您可以使用用户代理或客户端提示。 https://caniuse.com/#search=client%20hint，我们还可以在主题上使用 [`自定义属性`](/customization/themes/#properties) 全局设置初始宽度 。 为了设置initialWidth，我们需要传递一个具有以下形状的自定义属性：
+1. `选项` (_Object_ [optional]):
+   - `options.withTheme` (_Boolean_ [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
+   - `options.noSSR` (_Boolean_ [optional]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 用户界面可能会闪烁。 如果不进行服务器端渲染，可以将此标志设置为 `true`。
+   - `options.initialWidth` （_Breakpoint_ [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 您可能希望使用启发式来近似 客户端浏览器屏幕宽度的屏幕宽度。 例如，您可以使用用户代理或客户端提示。 https://caniuse.com/#search=client%20hint，我们还可以在主题上使用 [`自定义属性`](/customization/themes/#properties) 全局设置初始宽度 。 为了设置 initialWidth，我们需要传递一个具有以下形状的自定义属性：
 
 ```js
 const theme = createMuiTheme({
@@ -212,13 +212,13 @@ const theme = createMuiTheme({
     // withWidth component ⚛️
     MuiWithWidth: {
       // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 
+      initialWidth: 'lg', // Breakpoint being globally set
     },
   },
 });
 ```
 
-- `options.resizeInterval` (*Number* [optional]): 默认为166，对应于60 Hz的10帧。 响应屏幕调整大小事件之前等待的毫秒数。
+- `options.resizeInterval` (_Number_ [optional]): 默认为 166，对应于 60 Hz 的 10 帧。 响应屏幕调整大小事件之前等待的毫秒数。
 
 #### 返回结果
 
@@ -230,9 +230,9 @@ const theme = createMuiTheme({
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 class MyComponent extends React.Component {
-  render () {
+  render() {
     if (isWidthUp('sm', this.props.width)) {
-      return <span />
+      return <span />;
     }
 
     return <div />;

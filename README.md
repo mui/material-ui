@@ -19,7 +19,7 @@
 [![PeerDependencies](https://img.shields.io/david/peer/mui-org/material-ui/next.svg)](https://david-dm.org/mui-org/material-ui/next?type=peer&path=packages/material-ui)
 [![Dependencies](https://img.shields.io/david/mui-org/material-ui/next.svg)](https://david-dm.org/mui-org/material-ui/next?path=packages/material-ui)
 [![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui/next.svg)](https://david-dm.org/mui-org/material-ui/next?type=dev)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](http://isitmaintained.com/project/mui-org/material-ui "Average time to resolve an issue")
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](http://isitmaintained.com/project/mui-org/material-ui 'Average time to resolve an issue')
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/material-ui-docs/localized.svg?cache=v1)](https://translate.material-ui.com/project/material-ui-docs)
 
 </div>
@@ -29,6 +29,7 @@
 Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
 **[Stable channel v3](https://material-ui.com/)**
+
 ```sh
 // with npm
 npm install @material-ui/core
@@ -38,6 +39,7 @@ yarn add @material-ui/core
 ```
 
 **[Next channel v4.0.0-alpha](https://next.material-ui.com/)**
+
 ```sh
 // with npm
 npm install @material-ui/core@next
@@ -47,6 +49,7 @@ yarn add @material-ui/core@next
 ```
 
 **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
+
 ```sh
 // with npm
 npm install material-ui
@@ -55,12 +58,12 @@ npm install material-ui
 yarn add material-ui
 ```
 
-
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
 ## Supporting Material-UI
 
 Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](/BACKERS.md). If you'd like to join them, please consider:
+
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
 
@@ -72,7 +75,7 @@ Your name/logo will receive proper recognition and exposure by donating on eithe
 
 ### Gold Sponsors
 
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+Gold Sponsors are those who have pledged \$500/month and more to Material-UI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
@@ -121,7 +124,7 @@ Yes, it's really all you need to get started as you can see in this live and int
 
 ## Questions
 
-For *how-to* questions and other non-issues,
+For _how-to_ questions and other non-issues,
 please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui) instead of Github issues.
 There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
 

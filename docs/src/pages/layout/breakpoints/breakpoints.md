@@ -5,7 +5,7 @@
 For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints.
 Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
-Each breakpoint (a key) matches with a *fixed* screen width (a value):
+Each breakpoint (a key) matches with a _fixed_ screen width (a value):
 
 - **xs,** extra-small: 0px
 - **sm,** small: 600px
@@ -84,7 +84,7 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
+In the following demo, we change the rendered DOM element (_em_, <u>u</u>, ~~del~~ & span) based on the screen width.
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
@@ -94,7 +94,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 #### Arguments
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (_String_ | _Number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Returns
 
@@ -119,7 +119,7 @@ const styles = theme => ({
 
 #### Arguments
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (_String_ | _Number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Returns
 
@@ -145,7 +145,7 @@ const styles = theme => ({
 
 #### Arguments
 
-1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `key` (_String_): A breakpoint key (`xs`, `sm`, etc.).
 
 #### Returns
 
@@ -171,8 +171,8 @@ const styles = theme => ({
 
 #### Arguments
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `start` (_String_): A breakpoint key (`xs`, `sm`, etc.).
+2. `end` (_String_): A breakpoint key (`xs`, `sm`, etc.).
 
 #### Returns
 
@@ -207,19 +207,20 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 Some implementation details that might be interesting to being aware of:
 
-- It forwards *non React static* properties so this HOC is more "transparent".
-For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+- It forwards _non React static_ properties so this HOC is more "transparent".
+  For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
 #### Arguments
 
-1. `options` (*Object* [optional]):
-  - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-  - `options.noSSR` (*Boolean* [optional]): Defaults to `false`.
+1. `options` (_Object_ [optional]):
+
+- `options.withTheme` (_Boolean_ [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+- `options.noSSR` (_Boolean_ [optional]): Defaults to `false`.
   In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. The UI might blink.
   You can set this flag to `true` if you are not doing server-side rendering.
-  - `options.initialWidth` (*Breakpoint* [optional]):
+- `options.initialWidth` (_Breakpoint_ [optional]):
   As `window.innerWidth` is unavailable on the server,
   we default to rendering an empty component during the first mount.
   You might want to use an heuristic to approximate
@@ -240,7 +241,8 @@ const theme = createMuiTheme({
   },
 });
 ```
-  - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
+
+- `options.resizeInterval` (_Number_ [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
 #### Returns
 
@@ -252,9 +254,9 @@ const theme = createMuiTheme({
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 class MyComponent extends React.Component {
-  render () {
+  render() {
     if (isWidthUp('sm', this.props.width)) {
-      return <span />
+      return <span />;
     }
 
     return <div />;

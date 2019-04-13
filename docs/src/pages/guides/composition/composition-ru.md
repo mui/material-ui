@@ -13,7 +13,8 @@ You may, however, need to wrap a component in order to enhance it, which can con
 Давайте рассмотрим пример:
 
 ```jsx
-const WrappedIcon = props => <Icon {...props} />; WrappedIcon.muiName = Icon.muiName;
+const WrappedIcon = props => <Icon {...props} />;
+WrappedIcon.muiName = Icon.muiName;
 ```
 
 {{"demo": "pages/guides/composition/Composition.js"}}
@@ -27,7 +28,7 @@ Material-UI позволяет вам изменить корневой узел
 Компонент будет отображаться следующим образом:
 
 ```js
-return React.createElement(this.props.component, props)
+return React.createElement(this.props.component, props);
 ```
 
 Например, по умолчанию компонент `List` будет отображать `<ul>` элемент. Это можно изменить, передав [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) в свойство `component`. В следующем примере будет отображаться компонент `List` с `<nav>` элементом вместо корневого узла:
@@ -62,7 +63,7 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 );
 ```
 
-⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда ` ListItemLink ` отрисован. Не только React сделает ненужное обновление DOM, но и ripple эффект `ListItem` будет работать неправильно.
+⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда `ListItemLink` отрисован. Не только React сделает ненужное обновление DOM, но и ripple эффект `ListItem` будет работать неправильно.
 
 Решение простое: ** избегайте встроенных функций и вместо этого, передавайте статический компонент в свойство `component`**. Давайте изменим наш `ListItemLink` следующим образом:
 
@@ -89,7 +90,7 @@ class ListItemLink extends React.Component {
 }
 ```
 
-` renderLink ` теперь всегда будет ссылаться на один и тот же компонент.
+`renderLink` теперь всегда будет ссылаться на один и тот же компонент.
 
 ### Caveat with shorthand
 

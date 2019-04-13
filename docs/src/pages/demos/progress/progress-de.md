@@ -2,6 +2,7 @@
 title: Circular Progress, Linear Progress React-Komponente
 components: CircularProgress, LinearProgress
 ---
+
 # Fortschritt (Progress)
 
 <p class="description">Fortschrittsanzeigen geben eine unbestimmte Wartezeit oder die Länge eines Prozesses an.</p>

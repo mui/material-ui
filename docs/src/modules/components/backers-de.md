@@ -4,7 +4,7 @@ Material-UI ist ein MIT-lizenziertes quelloffenes Projekt. Dieses unabhängige P
 
 ### Gold-Sponsoren
 
-Gold-Sponsoren sind diejenigen, die $500 pro Monat und mehr für Material-UI gespendet haben.
+Gold-Sponsoren sind diejenigen, die \$500 pro Monat und mehr für Material-UI gespendet haben.
 
 über [Patreon](https://www.patreon.com/oliviertassinari)
 

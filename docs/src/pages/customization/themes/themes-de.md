@@ -45,7 +45,7 @@ Wenn Sie mehr über Farbe erfahren möchten, können Sie sich im [Farbabschnitt]
 
 Sie können die Standardpalettenwerte überschreiben, indem Sie ein `Palette` Objekt als Teil Ihres Themas hinzufügen.
 
-Wenn eine der [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) oder [` palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'Intent'-Objekte bereitgestellt ist, wird die Standardeinstellungen ersetzen.
+Wenn eine der [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) oder [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'Intent'-Objekte bereitgestellt ist, wird die Standardeinstellungen ersetzen.
 
 Der Intentionswert kann entweder ein [ Farbobjekt ](/style/color/) sein oder ein Objekt mit einem oder mehreren der Schlüssel, die von der folgenden TypeScript-Schnittstelle angegeben werden:
 
@@ -55,7 +55,7 @@ interface PaletteIntention {
   main: string;
   dark?: string;
   contrastText?: string;
-};
+}
 ```
 
 **Verwenden eines Farbobjekts**
@@ -113,7 +113,7 @@ const theme = createMuiTheme({
     primary: indigo,
     secondary: pink,
     error: red,
-    // Wird von `getContrastText()` benutzt, um den Kontrast zwischen Text und 
+    // Wird von `getContrastText()` benutzt, um den Kontrast zwischen Text und
     // Hintergrund zu maximieren.
     contrastThreshold: 3,
     // Wird verwendet, um die Luminanz einer Farbe um ungefähr
@@ -220,9 +220,9 @@ const theme = createMuiTheme({
 
 ### Bereitstellen von eigenen Schriftarten
 
-Um Schriftarten selbst zu hosten, laden Sie diese als ` ttf`, ` woff ` und/oder ` woff2 ` herunter und importieren Sie diese in Ihren Code.
+Um Schriftarten selbst zu hosten, laden Sie diese als `ttf`, `woff` und/oder `woff2` herunter und importieren Sie diese in Ihren Code.
 
-⚠️ Voraussetzung dafür ist, dass Sie in Ihrem Build-Prozess ein Plugin oder Loader haben, dass das Laden von `ttf`, `woff` und `woff2` Datein ermöglicht. Schriftarten werden *nicht * in deinen Bundle eingebettet sein. Sie werden von Ihrem Webserver anstelle von CDN geladen.
+⚠️ Voraussetzung dafür ist, dass Sie in Ihrem Build-Prozess ein Plugin oder Loader haben, dass das Laden von `ttf`, `woff` und `woff2` Datein ermöglicht. Schriftarten werden _nicht _ in deinen Bundle eingebettet sein. Sie werden von Ihrem Webserver anstelle von CDN geladen.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -237,11 +237,12 @@ const raleway = {
     local('Raleway-Regular'),
     url(${RalewayWoff2}) format('woff2')
   `,
-  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
 };
 ```
 
-Dann können Sie das Theme ändern, um diese neue Schriftart zu verwenden. Es erfordert die Verwendung von einer [` CssBaseline `](/style/css-baseline/) Komponente, um Raleway global als Schriftfamilie zu definieren.
+Dann können Sie das Theme ändern, um diese neue Schriftart zu verwenden. Es erfordert die Verwendung von einer [`CssBaseline`](/style/css-baseline/) Komponente, um Raleway global als Schriftfamilie zu definieren.
 
 ```js
 const theme = createMuiTheme({
@@ -277,7 +278,7 @@ Material-UI verwendet `rem` Einheiten für die Schriftgröße. Die Standardschri
 Um die Schriftgröße der Material-UI zu ändern, können Sie eine `fontSize` Eigenschaft angeben. Der Standardwert ist `14px`.
 
 ```js
-const theme = createMuiTheme ({
+const theme = createMuiTheme({
   Typografie: {
     // Auf Japanisch sind die Zeichen normalerweise größer.
     fontSize: 12,
@@ -308,7 +309,7 @@ html {
 }
 ```
 
-*Sie müssen das obige CSS auf das HTML-Element dieser Seite anwenden, um die unten stehende Demo korrekt anzuzeigen*
+_Sie müssen das obige CSS auf das HTML-Element dieser Seite anwenden, um die unten stehende Demo korrekt anzuzeigen_
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
@@ -320,7 +321,7 @@ Wir empfehlen Ihnen, den `theme.spacing()` Helfer zu verwenden, um einen konsist
 const styles = theme => ({
   root: {
     // JSS verwendet px als Standardeinheiten für diese CSS-Eigenschaft.
-    auffüllen: theme.spacing (2), // Ergibt 8 * 2
+    auffüllen: theme.spacing(2), // Ergibt 8 * 2
   },
 });
 ```
@@ -334,7 +335,7 @@ const theme = createMuiTheme({
   spacing: 4,
 });
 
-theme.spacing(2) // = 4 * 2
+theme.spacing(2); // = 4 * 2
 ```
 
 - oder eine Funktion
@@ -344,7 +345,7 @@ const theme = createMuiTheme({
   spacing: factor => `${0.25 * factor}rem`, // (Bootstrap Strategie)
 });
 
-theme.spacing(2) // = 0.5rem = 8px
+theme.spacing(2); // = 0.5rem = 8px
 ```
 
 ### Mehrere Aritäten
@@ -375,8 +376,10 @@ Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der 
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Name der Komponente ⚛️ / Style-Sheet
-      text: { // Name der Regel
+    MuiButton: {
+      // Name der Komponente ⚛️ / Style-Sheet
+      text: {
+        // Name der Regel
         color: 'white', // Einige CSS
       },
     },
@@ -398,7 +401,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // Die Eigenschaft, die angewendet werden soll
-      disableRipple: true, // Kein Ripple-Effekt in der ganzen Applikation mehr 
+      disableRipple: true, // Kein Ripple-Effekt in der ganzen Applikation mehr
     },
   },
 });
@@ -437,11 +440,11 @@ Generieren Sie eine Themenbasis von den gegebenen Optionen.
 
 #### Argumente
 
-1. `options` (*Object*): Nimmt ein unvollständiges Themeobjekt auf und fügt die fehlenden Teile hinzu.
+1. `options` (_Object_): Nimmt ein unvollständiges Themeobjekt auf und fügt die fehlenden Teile hinzu.
 
 #### Rückgabewerte
 
-`theme` (*Object*): Ein vollständiges, gebrauchsfertiges Themeobjekt.
+`theme` (_Object_): Ein vollständiges, gebrauchsfertiges Themeobjekt.
 
 #### Beispiele
 

@@ -4,7 +4,7 @@
 
 ## 符号
 
-空间实用程序将速记边距和填充道具转换为边距和填充CSS声明。 道具使用格式`{property}{sides}` 命名。
+空间实用程序将速记边距和填充道具转换为边距和填充 CSS 声明。 道具使用格式`{property}{sides}` 命名。
 
 其中*属性*是其中之一：
 
@@ -14,12 +14,12 @@
 哪边*边*是其中之一：
 
 - `t` - 对于设置* margin-top*或*padding-top*的类
-- `b` - 对于设置*margin-bottom的类*或*padding-bottom*的类
+- `b` - 对于设置*margin-bottom 的类*或*padding-bottom*的类
 - `l` - 对于设置*margin-left*或*padding-left*的类
 - `r` - 对于设置*margin-right*或*padding-right*的类
-- `x` - 对于设置** -left*和** -right*的类
-- `y` - 对于设置** -top*和** -bottom*的类
-- 空白 - 用于在元素的所有4个边上设置边距或填充的类
+- `x` - 对于设置** -left\*和** -right\*的类
+- `y` - 对于设置** -top\*和** -bottom\*的类
+- 空白 - 用于在元素的所有 4 个边上设置边距或填充的类
 
 ## 转型
 
@@ -61,7 +61,7 @@ const theme = {
 <Box m={2} /> // margin: 4px;
 ```
 
-- input: `string`: 该属性作为原始CSS值传递。
+- input: `string`: 该属性作为原始 CSS 值传递。
 
 ```jsx
 <Box m="2rem" /> // margin: 2rem;
@@ -92,8 +92,8 @@ const theme = {
 import { spacing } from '@material-ui/system';
 ```
 
-| 导入名称      | Prop | CSS 属性                          | Theme key                                                        |
-|:--------- |:---- |:------------------------------- |:---------------------------------------------------------------- |
+| 导入名称  | Prop | CSS 属性                        | Theme key                                                        |
+| :-------- | :--- | :------------------------------ | :--------------------------------------------------------------- |
 | `spacing` | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing` | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing` | `mr` | `margin-right`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
@@ -109,7 +109,7 @@ import { spacing } from '@material-ui/system';
 | `spacing` | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing` | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 
-*有些人发现该属性简写令人困惑，如果您愿意，可以使用完整版：*
+_有些人发现该属性简写令人困惑，如果您愿意，可以使用完整版：_
 
 ```diff
 -<Box pt={2} />

@@ -6,7 +6,7 @@ Material-UI hat das Ziel, eine solide Grundlage für dynamische UIs zu schaffen.
 
 ## Die Styling-Lösung von Material-UI
 
-In früheren Versionen hat Material-UI LESS verwendet, eine benutzerdefinierte Inline-Lösung zum Schreiben der Stile der Komponenten. Diese Ansätze erwiesen sich jedoch als begrenzt Einsetzbar. In letzter Zeit haben wir uns in Richtung einer *CSS-in-JS* Lösung [bewegt](https://github.com/oliviertassinari/a-journey-toward-better-style). Es ** schaltet viele großartige Funktionen frei ** (Verschachtelung von Themen, dynamische Stile, Selbstunterstützung usw.). Wir denken, das ist die Zukunft:
+In früheren Versionen hat Material-UI LESS verwendet, eine benutzerdefinierte Inline-Lösung zum Schreiben der Stile der Komponenten. Diese Ansätze erwiesen sich jedoch als begrenzt Einsetzbar. In letzter Zeit haben wir uns in Richtung einer _CSS-in-JS_ Lösung [bewegt](https://github.com/oliviertassinari/a-journey-toward-better-style). Es ** schaltet viele großartige Funktionen frei ** (Verschachtelung von Themen, dynamische Stile, Selbstunterstützung usw.). Wir denken, das ist die Zukunft:
 
 - [Eine vereinheitlichte Styling-Sprache](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [SCSS (Sass) in CSS-in-JS umwandeln](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
@@ -132,9 +132,9 @@ const useStyles = makeStyles({
     '& p': {
       color: 'green',
       '& span': {
-        color: 'blue'
-      }
-    }
+        color: 'blue',
+      },
+    },
   },
 });
 ```
@@ -182,7 +182,7 @@ Diese Buttonkomponente hat eine Farbeigenschaft, die ihre Farbe ändert:
 
 ## Stresstest
 
-Im folgenden Stresstest können Sie die *Themefarbe* und *background-color property* live aktualisieren:
+Im folgenden Stresstest können Sie die _Themefarbe_ und _background-color property_ live aktualisieren:
 
 ```js
 const useStyles = makeStyles(theme => ({

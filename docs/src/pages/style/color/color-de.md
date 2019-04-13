@@ -14,7 +14,7 @@ Eine Palette ist eine Sammlung von Farben, d.h. Farbtönen und deren Nuancen. Di
 
 #### "Farbton" & "Schatten"
 
-Eine einzelne Farbe innerhalb der Palette besteht aus einem Farbton wie "Rot" und eine Schattierung wie "500". "Rot 50" ist der hellste Rotton (*Pink!*), während "Rot 900" am dunkelsten ist. Darüber hinaus enthalten die meisten Farbtöne Akzentfarben, denen ein `A` vorangestellt ist.
+Eine einzelne Farbe innerhalb der Palette besteht aus einem Farbton wie "Rot" und eine Schattierung wie "500". "Rot 50" ist der hellste Rotton (_Pink!_), während "Rot 900" am dunkelsten ist. Darüber hinaus enthalten die meisten Farbtöne Akzentfarben, denen ein `A` vorangestellt ist.
 
 ### Beispiele
 
@@ -33,7 +33,7 @@ const accent = purple.A200; // #E040FB (alternative Methode)
 
 ### Farbpalette
 
-Wenn ein *Ton* (rot, pink usw.) und eine *Schattierung* (500, 600 usw.) gegeben sind, können Sie die Farbe folgendermaßen importieren:
+Wenn ein _Ton_ (rot, pink usw.) und eine _Schattierung_ (500, 600 usw.) gegeben sind, können Sie die Farbe folgendermaßen importieren:
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';
@@ -49,7 +49,7 @@ Um ein [ material.io/design/color ](https://material.io/design/color/) Farbschem
 
 {{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 
-Die im Farbmuster angezeigte Ausgabe kann direkt in eine [`createMuiTheme()`](/customization/themes/#createmuitheme-options-theme) Funktion (zur Verwendung mit [` MuiThemeProvider`](/customization/themes/#theme-provider)) eingefügt werden:
+Die im Farbmuster angezeigte Ausgabe kann direkt in eine [`createMuiTheme()`](/customization/themes/#createmuitheme-options-theme) Funktion (zur Verwendung mit [`MuiThemeProvider`](/customization/themes/#theme-provider)) eingefügt werden:
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';

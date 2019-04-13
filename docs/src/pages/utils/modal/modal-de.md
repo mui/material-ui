@@ -2,6 +2,7 @@
 title: Modal React-Komponente
 components: Modal
 ---
+
 # Modal
 
 <p class="description">Die modale Komponente bietet eine solide Grundlage für das Erstellen von Dialogen, Popovers, Leuchtkästen oder anderen Elementen.</p>
@@ -58,7 +59,7 @@ Das Erstellen von React-Elementen ist jedoch ebenfalls mit Kosten verbunden. Bet
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+We create a lot of React elements that will never be mounted. It's wasteful
 
 ```jsx
 <Modal open={false}>
@@ -73,10 +74,7 @@ Auf diese Weise nutzen Sie [React Rendering Laziness Evaluation](https://overrea
 - Achten Sie darauf, eine Referenzierung des modalen Titels durch `aria-labelledby = "id..."` zu dem `Modal` hinzufügen. Zusätzlich können Sie eine Beschreibung Ihres Modals mit der Eigenschaft `aria-descriptionby = "id..."` für das `Modal`angeben.
 
 ```jsx
-<Modal
-  aria-labelledby="simple-modal-title"
-  aria-describedby="simple-modal-description"
->
+<Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
   <Typography variant="h6" id="modal-title">
     Mein Titel
   </Typography>

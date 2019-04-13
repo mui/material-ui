@@ -1,8 +1,8 @@
-* * *
+---
 
 title: React Themes, die vom Material-UI-Team erstellt oder betreut wurden Beschreibung: Unsere Vorlagen-Sammlung umfasst Designs zum Erstellen von Administratoren, Dashboards, Zielseiten, E-Commerce-Sites, Anwendungen und mehr.
 
-* * *
+---
 
 # Premium-Themes
 

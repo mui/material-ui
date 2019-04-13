@@ -2,6 +2,7 @@
 title: React Bottom Navigation（底部导航栏）组件
 components: BottomNavigation,BottomNavigationAction
 ---
+
 # Bottom Navigation（底部导航栏）
 
 <p class="description">使用底部导航栏，您可以在应用程序的主要导航项之间跳转。</p>

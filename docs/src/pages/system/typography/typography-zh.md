@@ -23,7 +23,7 @@
 
 {{"demo": "pages/system/typography/FontWeight.js"}}
 
-## 字体大小 
+## 字体大小
 
 ```jsx
 <Box fontSize="fontSize">…
@@ -48,8 +48,8 @@
 import { typography } from '@material-ui/system';
 ```
 
-| 导入名称         | Prop         | CSS 属性        | Theme key                                                              |
-|:------------ |:------------ |:------------- |:---------------------------------------------------------------------- |
+| 导入名称     | Prop         | CSS 属性      | Theme key                                                              |
+| :----------- | :----------- | :------------ | :--------------------------------------------------------------------- |
 | `fontFamily` | `fontFamily` | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontSize`   | `fontSize`   | `font-size`   | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontWeight` | `fontWeight` | `font-weight` | [`typography`](/customization/default-theme/?expend-path=$.typography) |

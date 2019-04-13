@@ -1,4 +1,4 @@
-# 关于Lab
+# 关于 Lab
 
 <p class="description">这个包还在开发中, 尚未准备好添加到核心库中</p>
 
@@ -14,7 +14,7 @@ npm install @material-ui/lab
 yarn add @material-ui/lab
 ```
 
-该实验室对核心组件具有对等依赖性。 如果你尚未在你的项目中使用Material-UI, 你可以按如下方式安装:
+该实验室对核心组件具有对等依赖性。 如果你尚未在你的项目中使用 Material-UI, 你可以按如下方式安装:
 
 ```sh
 // 用npm安装

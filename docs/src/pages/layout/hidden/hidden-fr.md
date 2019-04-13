@@ -2,6 +2,7 @@
 title: Hidden React component
 components: Hidden
 ---
+
 # Hidden
 
 <p class="description">Quickly and responsively toggle the visibility value of components and more with our hidden utilities.</p>
@@ -34,19 +35,19 @@ If you are using server-side rendering, you can set `implementation="css"` if yo
 
 ## Breakpoint up
 
-Using any breakpoint `up` property, the given *children* will be hidden *at or above* the breakpoint.
+Using any breakpoint `up` property, the given _children_ will be hidden _at or above_ the breakpoint.
 
 {{"demo": "pages/layout/hidden/BreakpointUp.js"}}
 
 ## Breakpoint down
 
-Using any breakpoint `down` property, the given *children* will be hidden *at or below* the breakpoint.
+Using any breakpoint `down` property, the given _children_ will be hidden _at or below_ the breakpoint.
 
 {{"demo": "pages/layout/hidden/BreakpointDown.js"}}
 
 ## Breakpoint only
 
-Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
+Using the breakpoint `only` property, the given _children_ will be hidden _at_ the specified breakpoint(s).
 
 The `only` property can be used in two ways:
 

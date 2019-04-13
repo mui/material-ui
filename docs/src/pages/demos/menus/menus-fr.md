@@ -2,6 +2,7 @@
 title: Composant React Menu
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
+
 # Menus
 
 <p class="description">Les menus affichent une liste de choix sur des surfaces temporaires.</p>

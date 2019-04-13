@@ -2,6 +2,7 @@
 title: Панель расширения (Компонент React)
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
+
 # Expansion panels (Раскрывающиеся панели)
 
 <p class="description">Панель расширения содержит потоки создания и позволяет легко редактировать элементы.</p>

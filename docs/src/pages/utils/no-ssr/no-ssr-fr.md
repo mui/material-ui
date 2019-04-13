@@ -2,6 +2,7 @@
 title: No SSR React component
 components: NoSsr
 ---
+
 # Pas de SSR
 
 <p class="description">NoSsr supprime intentionnellement des composants du rendu côté serveur (SSR).</p>

@@ -2,6 +2,7 @@
 title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
 ---
+
 # Toggle Buttons
 
 <p class="description">Toggle buttons can be used to group related options.</p>

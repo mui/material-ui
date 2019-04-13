@@ -2,6 +2,7 @@
 title: 快速拨号React组件
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
+
 # 快速拨号
 
 <p class="description">当按下的时候，一个浮动按钮可以弹出3到6个相关联的按钮。</p>
@@ -22,7 +23,7 @@ components: SpeedDial, SpeedDialAction, SpeedDialIcon
 
 ## 持久性动作工具提示
 
-SpeedDialActions工具提示可以持久显示，这样用户无需长按即可在触摸设备上查看工具提示。
+SpeedDialActions 工具提示可以持久显示，这样用户无需长按即可在触摸设备上查看工具提示。
 
 它在所有设备上都可以用于演示目的，但在生产中它可以使用 `isTouch` 逻辑来有条件地设置属性。
 

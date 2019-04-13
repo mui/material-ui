@@ -2,6 +2,7 @@
 title: React Card（卡片）组件
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
+
 # Cards（卡片）
 
 <p class="description">卡片包含有关单个主题的内容和操作。</p>
@@ -12,7 +13,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 ## 简单的卡片
 
-尽管卡片支持多操作、多UI控件和过长的菜单，但请克制使用，切记，卡片只是那些复杂且详细信息的入口。
+尽管卡片支持多操作、多 UI 控件和过长的菜单，但请克制使用，切记，卡片只是那些复杂且详细信息的入口。
 
 {{"demo": "pages/demos/cards/SimpleCard.js"}}
 
@@ -28,7 +29,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/demos/cards/MediaCard.js"}}
 
-默认情况下，我们使用混合`<div>` 元素和 *背景图片* 来显示多媒体元素。 在某些情况下可能会产生一些问题。 例如, 您可能希望显示一个视频或一张响应式的图片。 对于这些用例, 请使用 `component` 属性:
+默认情况下，我们使用混合`<div>` 元素和 _背景图片_ 来显示多媒体元素。 在某些情况下可能会产生一些问题。 例如, 您可能希望显示一个视频或一张响应式的图片。 对于这些用例, 请使用 `component` 属性:
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 

@@ -14,7 +14,7 @@ Una paleta es una colección de colores, es decir, su matiz (color) y sus tonos.
 
 #### "Hue" & "Shade" (Matiz y tono)
 
-Un solo color dentro de la paleta está formado por un matiz como el "rojo" y un tono, como "500". "rojo 50" es el tono más claro de rojo (*¡rosa!*), mientras que "rojo 900" es el más oscuro. Además, la mayoría de los matices vienen con tonos de "acento", prefijados con una `A`.
+Un solo color dentro de la paleta está formado por un matiz como el "rojo" y un tono, como "500". "rojo 50" es el tono más claro de rojo (_¡rosa!_), mientras que "rojo 900" es el más oscuro. Además, la mayoría de los matices vienen con tonos de "acento", prefijados con una `A`.
 
 ### Ejemplos
 
@@ -33,7 +33,7 @@ const accent = purple.A200; // #E040FB (método alternativo)
 
 ### Paleta de colores
 
-Dado un *HUE (matiz)* (rojo, rosa, etc.) y una *SHADE (tono)* (500, 600, etc.) se puede importar el color así:
+Dado un _HUE (matiz)_ (rojo, rosa, etc.) y una _SHADE (tono)_ (500, 600, etc.) se puede importar el color así:
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';

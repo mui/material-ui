@@ -12,15 +12,13 @@ filename: /packages/material-ui/src/SnackbarContent/SnackbarContent.js
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 ```
 
-
-
 ## Props
 
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">message</span> | <span class="prop-type">node</span> |  | The message to display. |
+| Name                                   | Type                                  | Default | Description                                                                                         |
+| :------------------------------------- | :------------------------------------ | :------ | :-------------------------------------------------------------------------------------------------- |
+| <span class="prop-name">action</span>  | <span class="prop-type">node</span>   |         | The action to display.                                                                              |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |         | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">message</span> | <span class="prop-type">node</span>   |         | The message to display.                                                                             |
 
 The `ref` is forwarded to the root element.
 
@@ -31,12 +29,11 @@ Any other properties supplied will be spread to the root element ([Paper](/api/p
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">message</span> | Styles applied to the message wrapper element.
-| <span class="prop-name">action</span> | Styles applied to the action wrapper element if `action` is provided.
+| Name                                   | Description                                                           |
+| :------------------------------------- | :-------------------------------------------------------------------- |
+| <span class="prop-name">root</span>    | Styles applied to the root element.                                   |
+| <span class="prop-name">message</span> | Styles applied to the message wrapper element.                        |
+| <span class="prop-name">action</span>  | Styles applied to the action wrapper element if `action` is provided. |
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/SnackbarContent/SnackbarContent.js)
@@ -53,4 +50,3 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [Snackbars](/demos/snackbars/)
-

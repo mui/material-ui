@@ -2,6 +2,7 @@
 title: React抽屉组件
 components: Drawer, SwipeableDrawer
 ---
+
 # 抽屉
 
 <p class="description">导航抽屉可以访问您应用中的地址。侧栏是包含附加内容的平面，它固定在屏幕的左侧或右侧。</p>
@@ -14,7 +15,7 @@ components: Drawer, SwipeableDrawer
 
 临时导航抽屉可以打开或关闭。默认情况下关闭，抽屉打开会暂时在所有其他内容之上，直到选择一个部分。
 
-单击或者按Esc键可以关闭抽屉。当选择抽屉中的一项时，它也会关闭，通过操作 `open` prop来处理。
+单击或者按 Esc 键可以关闭抽屉。当选择抽屉中的一项时，它也会关闭，通过操作 `open` prop 来处理。
 
 {{"demo": "pages/demos/drawers/TemporaryDrawer.js"}}
 
@@ -31,7 +32,7 @@ components: Drawer, SwipeableDrawer
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
 ## 响应抽屉

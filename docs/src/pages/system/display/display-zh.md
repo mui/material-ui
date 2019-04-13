@@ -22,19 +22,19 @@
 
 为了更快地进行移动设备开发，请使用响应式显示类来按设备显示和隐藏元素。 避免创建相同站点的完全不同版本，而是相应地为每个屏幕大小隐藏元素。
 
-| 屏幕大小     | 类别                                                   |
-|:-------- |:---------------------------------------------------- |
+| 屏幕大小         | 类别                                                 |
+| :--------------- | :--------------------------------------------------- |
 | 隐藏在所有人身上 | `display="none"`                                     |
-| 仅隐藏在xs上  | `display={{ xs: 'none', sm: 'block' }}`              |
-| 隐藏在sm上   | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
-| 只在md上隐藏  | `display={{ xs: 'block', md: 'none', lg: 'block' }}` |
-| 隐藏在lg上   | `display={{ xs: 'block', lg: 'none', xl: 'block' }}` |
-| 只在xl上隐藏  | `display={{ xs: 'block', xl: 'none' }}`              |
-| 仅在xs上可见  | `display={{ xs: 'block', sm: 'none' }}`              |
-| 仅在sm上可见  | `display={{ xs: 'none', sm: 'block', md: 'none' }}`  |
-| 仅在md上可见  | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
-| 仅在lg上可见  | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
-| 仅在xl上可见  | `display={{ xs: 'none', xl: 'block' }}`              |
+| 仅隐藏在 xs 上   | `display={{ xs: 'none', sm: 'block' }}`              |
+| 隐藏在 sm 上     | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
+| 只在 md 上隐藏   | `display={{ xs: 'block', md: 'none', lg: 'block' }}` |
+| 隐藏在 lg 上     | `display={{ xs: 'block', lg: 'none', xl: 'block' }}` |
+| 只在 xl 上隐藏   | `display={{ xs: 'block', xl: 'none' }}`              |
+| 仅在 xs 上可见   | `display={{ xs: 'block', sm: 'none' }}`              |
+| 仅在 sm 上可见   | `display={{ xs: 'none', sm: 'block', md: 'none' }}`  |
+| 仅在 md 上可见   | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
+| 仅在 lg 上可见   | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
+| 仅在 xl 上可见   | `display={{ xs: 'none', xl: 'block' }}`              |
 
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
@@ -66,7 +66,7 @@
 import { display } from '@material-ui/system';
 ```
 
-| 导入名称           | Prop           | CSS 属性    | Theme key |
-|:-------------- |:-------------- |:--------- |:--------- |
+| 导入名称       | Prop           | CSS 属性  | Theme key |
+| :------------- | :------------- | :-------- | :-------- |
 | `displayRaw`   | `display`      | `display` | none      |
 | `displayPrint` | `displayPrint` | `display` | none      |

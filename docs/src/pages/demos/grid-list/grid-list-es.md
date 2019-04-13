@@ -2,6 +2,7 @@
 title: Componente React para Lista cuadriculada
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
+
 # Lista cuadriculada
 
 <p class="description">Las listas cuadriculadas muestran una colección de imágenes organizadas en una cuadrícula.</p>

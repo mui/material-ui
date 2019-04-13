@@ -2,6 +2,7 @@
 title: Checkbox, Radio, Switch React component
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
+
 # Contrôles de sélection
 
 <p class="description">Les contrôles de sélection permettent à l'utilisateur de sélectionner des options.</p>
@@ -89,10 +90,7 @@ All form controls should have labels, and this includes radio buttons, checkboxe
 When a label can't be used, it's necessary to add an attribute directly to the input component. In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
-<Checkbox
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
-/>
+<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />
 ```
 
 ## Guidance

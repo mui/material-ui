@@ -50,7 +50,7 @@ Pick one of the following plugins:
 - [babel-transform-imports](https://bitbucket.org/amctheatres/babel-transform-imports) has a different api than a `babel-plugin-import` but does same thing.
 - [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
 
-**Important note**: Both of these options *should be temporary* until you add tree shaking capabilities to your project.
+**Important note**: Both of these options _should be temporary_ until you add tree shaking capabilities to your project.
 
 ## ECMAScript
 

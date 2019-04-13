@@ -12,7 +12,7 @@ This is a reference for upgrading your site from Material-UI v3 to v4. While the
 
 ## Why you should migrate
 
-This documentation page covers the *how* of migrating from v3 to v4. The *why* is covered in the release blog post: [*Work in progress, on Medium*](https://medium.com/material-ui).
+This documentation page covers the _how_ of migrating from v3 to v4. The _why_ is covered in the release blog post: [_Work in progress, on Medium_](https://medium.com/material-ui).
 
 ## Updating Your Dependencies
 
@@ -51,22 +51,24 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 ### Estilos
 
 - Isolation of the styling solution of the core components in a dedicated package. Remove the `MuiThemeProvider` component:
-  
+
   ```diff
   -import { MuiThemeProvider } from '@material-ui/core/styles';
   +import { ThemeProvider } from '@material-ui/styles';
   ```
 
 - Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the emotion and styled-components API.
-  
+
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
 
 - Scope the keyframes API. You should apply the following changes in your codebase. It helps isolating the animation logic:
-  
+
   ```diff rippleVisible: { opacity: 0.3,
+
+  ```
 
 - animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
 - animation: `$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)`, }, '@keyframes mui-ripple-enter': { '0%': { opacity: 0.1, }, '100%': { opacity: 0.3, }, }, ```
@@ -74,17 +76,17 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 ### Theme
 
 - The `theme.palette.augmentColor()` method no longer performs a side effect on its input color. To use it correctly, you have to use the returned value.
-  
+
   ```diff
   -const background = { main: color };
   -theme.palette.augmentColor(background);
   +const background = theme.palette.augmentColor({ main: color });
-  
+
   console.log({ background });
   ```
 
 - You can safely remove the next variant from the theme creation:
-  
+
   ```js
   typography: {
     useNextVariants: true,
@@ -93,7 +95,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 
 ### Typography
 
-- [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements: 
+- [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements:
   - display4 => h1
   - display3 => h2
   - display2 => h3
@@ -105,7 +107,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
   - body1 (default) => body2 (default)
 - [Typography] Remove the opinionated `display: block` default typography style. You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 - [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
-  
+
   ```diff
   -<Typography headlineMapping={headlineMapping}>
   +<Typography variantMapping={variantMapping}>
@@ -113,22 +115,22 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 
 - [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. Bootstrap, material.io or even our documentation use 16px as a default font size. 14px like Ant Design is understandable as Chinese users have a different alphabet. We document 12px as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants. The color should inherit most of the time. It's the default behavior of the web.
-- [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028. The usage of *default* should be avoided, it lakes semantic.
+- [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028. The usage of _default_ should be avoided, it lakes semantic.
 
 ### Button
 
 - [Button] Remove the deprecated button variants (flat, raised and fab):
-  
+
   ```diff
   -<Button variant="raised" />
   +<Button variant="contained" />
   ```
-  
+
   ```diff
   -<Button variant="flat" />
   +<Button variant="text" />
   ```
-  
+
   ```diff
   -import Button from '@material-ui/core/Button';
   -<Button variant="fab" />
@@ -139,7 +141,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 ### TextField
 
 - [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component. The `FormLabelClasses` property has been removed.
-  
+
   ```diff
   <InputLabel
   - FormLabelClasses={{ asterisk: 'bar' } }
@@ -150,17 +152,17 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
   ```
 
 - [InputBase] Change the default box sizing model. It uses the following CSS now:
-  
+
   ```css
   box-sizing: border-box;
   ```
-  
+
   It solves issues with the `fullWidth` prop.
 
 ### Layout
 
 - [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
-  
+
   ```diff
     /**
      * Defines the space between the type `item` component.
@@ -169,13 +171,13 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  
+
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
 
 ### Table
 
 - [TableCell] Remove the deprecated `numeric` property.
-  
+
   ```diff
   -<TableCell numeric>{row.calories}</TableCell>
   +<TableCell align="right">{row.calories}</TableCell>
@@ -183,7 +185,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 
 - [TableRow] Remove the fixed height CSS property. The cell height is computed by the browser using the padding and line-height.
 - [TableCell] Move the `dense` mode to a different property:
-  
+
   ```diff
   -<TableCell padding="dense" />
   +<TableCell size="small" />
@@ -194,7 +196,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 ### Tabs (Abas)
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity. This has allowed us to removed 2 intermediary DOM elements. You should be able to move the custom styles to the root class key.
-  
+
   ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 ### Menu
@@ -209,7 +211,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 ### Divider
 
 - [Divider] Remove the deprecated inset prop.
-  
+
   ```diff
   -<Divider inset />
   +<Divider variant="inset" />
@@ -218,9 +220,9 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 ### SvgIcon
 
 - [SvgIcon] Rename nativeColor -> htmlColor.
-  
+
   React solved the same problem with the `for` HTML attribute, they have decided to call the prop `htmlFor`. This change follows the same reasoning.
-  
+
   ```diff
   -<AddIcon nativeColor="#fff" />
   +<AddIcon htmlColor="#fff" />
@@ -233,7 +235,7 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 ### UMD
 
 - This change eases the use of Material-UI with a CDN:
-  
+
   ```diff
   const {
     Button,
@@ -241,9 +243,9 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
   -} = window['material-ui'];
   +} = MaterialUI;
   ```
-  
+
   It's consistent with the other React projects:
-  
+
   - material-ui => MaterialUI
   - react-dom => ReactDOM
   - prop-types => PropTypes
@@ -251,5 +253,5 @@ The minimum required version of React was increased from `react@^16.3.0` to `rea
 ### Modal
 
 - [Modal] Ignore event.defaultPrevented (#14991) @oliviertassinari
-  
+
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event. `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc. Only special HTML elements have these default behaviors. People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.

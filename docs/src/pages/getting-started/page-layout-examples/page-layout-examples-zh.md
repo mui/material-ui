@@ -10,4 +10,4 @@
 
 {{"demo": "pages/page-layout-examples/PageLayoutExamples.js", "hideHeader": true}}
 
-如果在使用这些例子你做，可以提高更改或增强 开发经验，或者你想贡献一个附加的例子， 请考虑创建一个 [GitHub上拉请求](https://github.com/mui-org/material-ui/pulls)。
+如果在使用这些例子你做，可以提高更改或增强 开发经验，或者你想贡献一个附加的例子， 请考虑创建一个 [GitHub 上拉请求](https://github.com/mui-org/material-ui/pulls)。
