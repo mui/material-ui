@@ -7,9 +7,7 @@ import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 import { ExtendMui } from '../typings/extendMui';
 
-export interface PickerToolbarProps extends ExtendMui<ToolbarProps>, WithStyles<typeof styles> {
-  children: React.ReactNodeArray;
-}
+export interface PickerToolbarProps extends ExtendMui<ToolbarProps>, WithStyles<typeof styles> {}
 
 const PickerToolbar: React.SFC<PickerToolbarProps> = ({
   children,
@@ -29,10 +27,6 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
   className: PropTypes.string,
   classes: PropTypes.any.isRequired,
   innerRef: PropTypes.any,
-};
-
-PickerToolbar.defaultProps = {
-  className: '',
 };
 
 export const styles = (theme: Theme) =>

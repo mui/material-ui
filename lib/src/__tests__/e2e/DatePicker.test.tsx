@@ -102,7 +102,7 @@ describe('e2e - DatePicker inline variant', () => {
 
     popoverOnClose();
 
-    expect(component.find('WithStyles(ForwardRef(Popover))').props().open).toBeFalsy();
+    expect(component.find('WithStyles(ForwardRef(Popover))').prop('open')).toBeFalsy();
     expect(onCloseMock).toHaveBeenCalled();
   });
 

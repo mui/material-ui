@@ -29,14 +29,14 @@ export interface BaseDatePickerProps {
   views?: ('year' | 'month' | 'day')[];
   /** Initial view to show when date picker is open */
   openTo?: 'year' | 'month' | 'day';
-  /** @deprecated use openTo instead */
-  openToYearSelection?: boolean;
   /** Left arrow icon */
   leftArrowIcon?: React.ReactNode;
   /** Right arrow icon */
   rightArrowIcon?: React.ReactNode;
   /** Custom renderer for day */
   renderDay?: RenderDay;
+  /** Show only calendar, without toolbar */
+  onlyCalendar?: boolean;
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl?: boolean;
   /** Disable specific date */
@@ -61,6 +61,7 @@ interface DatePickerState {
 
 export class DatePickerRoot extends React.PureComponent<DatePickerRootProps> {
   public static propTypes: any = {
+    onlyCalendar: PropTypes.bool,
     views: PropTypes.arrayOf(DomainPropTypes.datePickerView),
     openTo: DomainPropTypes.datePickerView,
   };
@@ -68,6 +69,7 @@ export class DatePickerRoot extends React.PureComponent<DatePickerRootProps> {
   public static defaultProps = {
     minDate: new Date('1900-01-01'),
     maxDate: new Date('2100-01-01'),
+    onlyCalendar: false,
     views: ['year', 'day'] as DatePickerViewType[],
   };
 
@@ -150,36 +152,39 @@ export class DatePickerRoot extends React.PureComponent<DatePickerRootProps> {
       classes,
       onMonthChange,
       onYearChange,
+      onlyCalendar,
     } = this.props;
 
     return (
       <>
-        <PickerToolbar className={clsx({ [classes.toolbarCenter]: this.isYearOnly })}>
-          <ToolbarButton
-            variant={this.isYearOnly ? 'h3' : 'subtitle1'}
-            onClick={this.isYearOnly ? undefined : this.openYearSelection}
-            selected={openView === 'year'}
-            label={utils.getYearText(this.date)}
-          />
-
-          {!this.isYearOnly && !this.isYearAndMonth && (
+        {!onlyCalendar && (
+          <PickerToolbar className={clsx({ [classes.toolbarCenter]: this.isYearOnly })}>
             <ToolbarButton
-              variant="h4"
-              onClick={this.openCalendar}
-              selected={openView === 'day'}
-              label={utils.getDatePickerHeaderText(this.date)}
+              variant={this.isYearOnly ? 'h3' : 'subtitle1'}
+              onClick={this.isYearOnly ? undefined : this.openYearSelection}
+              selected={openView === 'year'}
+              label={utils.getYearText(this.date)}
             />
-          )}
 
-          {this.isYearAndMonth && (
-            <ToolbarButton
-              variant="h4"
-              onClick={this.openMonthSelection}
-              selected={openView === 'month'}
-              label={utils.getMonthText(this.date)}
-            />
-          )}
-        </PickerToolbar>
+            {!this.isYearOnly && !this.isYearAndMonth && (
+              <ToolbarButton
+                variant="h4"
+                onClick={this.openCalendar}
+                selected={openView === 'day'}
+                label={utils.getDatePickerHeaderText(this.date)}
+              />
+            )}
+
+            {this.isYearAndMonth && (
+              <ToolbarButton
+                variant="h4"
+                onClick={this.openMonthSelection}
+                selected={openView === 'month'}
+                label={utils.getMonthText(this.date)}
+              />
+            )}
+          </PickerToolbar>
+        )}
 
         {this.props.children}
 

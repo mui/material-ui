@@ -144,7 +144,7 @@
       "type": { "name": "boolean" }
     },
     "minDateMessage": {
-      "defaultValue": { "value": "Date should not be before minimal date" },
+      "defaultValue": null,
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -155,7 +155,7 @@
       "type": { "name": "ReactNode" }
     },
     "maxDateMessage": {
-      "defaultValue": { "value": "Date should not be after maximal date" },
+      "defaultValue": null,
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -166,12 +166,12 @@
       "type": { "name": "ReactNode" }
     },
     "invalidDateMessage": {
-      "defaultValue": { "value": "Invalid Date Format" },
+      "defaultValue": null,
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
-        "name": "DateValidationProps"
+        "name": "BaseValidationProps"
       },
       "required": false,
       "type": { "name": "ReactNode" }
@@ -253,17 +253,6 @@
       "required": false,
       "type": { "name": "\"year\" | \"month\" | \"day\"" }
     },
-    "openToYearSelection": {
-      "defaultValue": null,
-      "description": "@deprecated use openTo instead",
-      "name": "openToYearSelection",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
-    },
     "leftArrowIcon": {
       "defaultValue": null,
       "description": "Left arrow icon",
@@ -296,6 +285,17 @@
       },
       "required": false,
       "type": { "name": "RenderDay" }
+    },
+    "onlyCalendar": {
+      "defaultValue": null,
+      "description": "Show only calendar, without toolbar",
+      "name": "onlyCalendar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
     },
     "allowKeyboardControl": {
       "defaultValue": null,
@@ -486,8 +486,19 @@
       "required": false,
       "type": { "name": "boolean" }
     },
+    "invalidDateMessage": {
+      "defaultValue": null,
+      "description": "Message, appearing when date cannot be parsed",
+      "name": "invalidDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "BaseValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
     "ampm": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": null,
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
       "parent": {
@@ -692,7 +703,7 @@
       "name": "invalidDateMessage",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
-        "name": "DateValidationProps"
+        "name": "BaseValidationProps"
       },
       "required": false,
       "type": { "name": "ReactNode" }
@@ -709,7 +720,7 @@
       "type": { "name": "boolean" }
     },
     "showTabs": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": null,
       "description": "Show or hide date/time tabs (hidden automatically on small screens)",
       "name": "showTabs",
       "parent": {
@@ -753,7 +764,7 @@
       "type": { "name": "ReactNode" }
     },
     "ampm": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": null,
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
       "parent": {
@@ -861,6 +872,17 @@
       },
       "required": false,
       "type": { "name": "RenderDay" }
+    },
+    "onlyCalendar": {
+      "defaultValue": null,
+      "description": "Show only calendar, without toolbar",
+      "name": "onlyCalendar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
     },
     "allowKeyboardControl": {
       "defaultValue": null,
