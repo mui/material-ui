@@ -371,12 +371,7 @@ describe('<Slide />', () => {
         }),
         style: {},
       };
-      setTranslateValue(
-        {
-          direction: 'up',
-        },
-        element,
-      );
+      setTranslateValue('up', element);
       assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-780px)');
     });
 
