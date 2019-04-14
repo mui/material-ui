@@ -137,6 +137,13 @@ The Material-UI components use a combination of the two approaches according to 
 
 Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
 
+### Ref
+
+The `ref` is forwarded to the root element. This means that, without changing the rendered root element
+via the `component` prop, it is forwarded to the outermost DOM element that which component
+renders. If you pass a different component via the `component` prop the ref will be attached
+to that component instead.
+
 ## Glossary
 
 - **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).

@@ -72,7 +72,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
 | Antonio Seveso | Ali Akhavan | Bruno Winck | Alessandro Annini | Victor Irzak |
 | Manuel U Grullon | Skaronator | Peter James | Vincz | Micah Davidson |
-| Nelson Batalha |
+| Nelson Batalha | Daniel Woss | Michael Staub | Scott Fortmann-Roe |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 

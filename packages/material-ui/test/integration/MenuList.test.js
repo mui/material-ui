@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import MenuList from 'packages/material-ui/src/MenuList';
 import MenuItem from 'packages/material-ui/src/MenuItem';
-import RootRef from 'packages/material-ui/src/RootRef';
 import { createMount } from 'packages/material-ui/src/test-utils';
 
 function FocusOnMountMenuItem(props) {
@@ -11,11 +10,7 @@ function FocusOnMountMenuItem(props) {
   React.useLayoutEffect(() => {
     listItemRef.current.focus();
   }, []);
-  return (
-    <RootRef rootRef={listItemRef}>
-      <MenuItem {...props} tabIndex={0} />
-    </RootRef>
-  );
+  return <MenuItem {...props} ref={listItemRef} tabIndex={0} />;
 }
 
 function assertMenuItemTabIndexed(wrapper, tabIndexed) {

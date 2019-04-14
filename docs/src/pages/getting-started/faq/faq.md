@@ -126,7 +126,25 @@ export default withTheme(withStyles(styles)(Modal));
 
 ## How can I access the DOM element?
 
-Wrap the component with the [`RootRef`](/api/root-ref/) helper.
+All Material-UI components that should render something in the DOM forward their
+ref to the underlying DOM component. This means that you can get DOM elements
+by reading the ref attached to Material-UI components:
+
+```jsx
+// or a ref setter function
+const ref = React.createRef();
+// render
+<Button ref={ref} />;
+// usage
+const element = ref.current;
+```
+
+If you're not sure if the Material-UI component in question forwards its ref you
+can check the API documentation under "Props" e.g. the [/api/button/#props](Button API)
+includes
+> The ref is forwarded to the root element.
+
+indicating that you can access the DOM element with a ref.
 
 ## Why are the colors I am seeing different from what I see here?
 
