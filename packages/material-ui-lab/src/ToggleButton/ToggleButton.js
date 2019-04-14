@@ -170,4 +170,6 @@ ToggleButton.defaultProps = {
   disableRipple: false,
 };
 
+ToggleButton.muiName = 'ToggleButton';
+
 export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);

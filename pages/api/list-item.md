@@ -46,7 +46,7 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
 | <span class="prop-name">container</span> | Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
 | <span class="prop-name">focusVisible</span> | Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`.
-| <span class="prop-name">dense</span> | Styles applied to the `component` element if dense
+| <span class="prop-name">dense</span> | Styles applied to the `component` element if dense.
 | <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
 | <span class="prop-name">disabled</span> | Styles applied to the inner `component` element if `disabled={true}`.
 | <span class="prop-name">divider</span> | Styles applied to the inner `component` element if `divider={true}`.

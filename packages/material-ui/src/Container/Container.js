@@ -10,15 +10,15 @@ export const styles = theme => ({
     marginLeft: 'auto',
     boxSizing: 'border-box',
     marginRight: 'auto',
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      paddingLeft: 24,
-      paddingRight: 24,
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
     },
     [theme.breakpoints.up('md')]: {
-      paddingLeft: 32,
-      paddingRight: 32,
+      paddingLeft: theme.spacing(4),
+      paddingRight: theme.spacing(4),
     },
   },
   fixed: Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
@@ -59,7 +59,7 @@ export const styles = theme => ({
 });
 
 const Container = React.forwardRef(function Container(props, ref) {
-  const { classes, className, component: Component, fixed, maxWidth, ...other } = props;
+  const { children, classes, className, component: Component, fixed, maxWidth, ...other } = props;
 
   return (
     <Component
@@ -73,7 +73,9 @@ const Container = React.forwardRef(function Container(props, ref) {
       )}
       ref={ref}
       {...other}
-    />
+    >
+      {children}
+    </Component>
   );
 });
 

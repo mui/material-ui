@@ -14,7 +14,7 @@ export const styles = {
     marginBottom: 4,
   },
   /* Styles applied to the `Typography` components if primary and secondary are set. */
-  multipleLines: {
+  multilines: {
     marginTop: 6,
     marginBottom: 6,
   },
@@ -80,7 +80,7 @@ const ListItemText = React.forwardRef(function ListItemText(props, ref) {
         {
           [classes.dense]: dense,
           [classes.inset]: inset,
-          [classes.multipleLines]: primary && secondary,
+          [classes.multilines]: primary && secondary,
         },
         className,
       )}

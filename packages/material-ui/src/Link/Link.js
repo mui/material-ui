@@ -50,7 +50,7 @@ export const styles = {
 };
 
 const Link = React.forwardRef(function Link(props, ref) {
-  const { classes, className, component, TypographyClasses, underline, ...other } = props;
+  const { children, classes, className, component, TypographyClasses, underline, ...other } = props;
 
   return (
     <Typography
@@ -66,7 +66,9 @@ const Link = React.forwardRef(function Link(props, ref) {
       component={component}
       ref={ref}
       {...other}
-    />
+    >
+      {children}
+    </Typography>
   );
 });
 

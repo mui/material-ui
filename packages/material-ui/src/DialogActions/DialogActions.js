@@ -22,7 +22,7 @@ export const styles = {
 };
 
 const DialogActions = React.forwardRef(function DialogActions(props, ref) {
-  const { disableActionSpacing, classes, className, ...other } = props;
+  const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
     <div
@@ -35,7 +35,9 @@ const DialogActions = React.forwardRef(function DialogActions(props, ref) {
       )}
       ref={ref}
       {...other}
-    />
+    >
+      {children}
+    </div>
   );
 });
 

@@ -26,7 +26,7 @@ function InsetList(props: InsetListProps) {
         <ListItemIcon>
           <StarIcon />
         </ListItemIcon>
-        <ListItemText inset primary="Chelsea Otakan" />
+        <ListItemText primary="Chelsea Otakan" />
       </ListItem>
       <ListItem button>
         <ListItemText inset primary="Eric Hoffman" />

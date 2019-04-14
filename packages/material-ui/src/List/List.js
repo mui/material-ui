@@ -17,7 +17,7 @@ export const styles = {
     paddingTop: 8,
     paddingBottom: 8,
   },
-  /* Styles applied to the root element if dense */
+  /* Styles applied to the root element if dense. */
   dense: {},
   /* Styles applied to the root element if a `subheader` is provided. */
   subheader: {

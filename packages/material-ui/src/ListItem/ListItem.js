@@ -33,7 +33,7 @@ export const styles = theme => ({
   focusVisible: {
     backgroundColor: theme.palette.action.selected,
   },
-  /* Styles applied to the `component` element if dense */
+  /* Styles applied to the `component` element if dense. */
   dense: {
     paddingTop: 4,
     paddingBottom: 4,
