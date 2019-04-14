@@ -139,6 +139,8 @@ const Grow = React.forwardRef(function Grow(props, ref) {
 Grow.propTypes = {
   /**
    * A single child content element.
+   *
+   * ⚠️The component used as a child [must be able to hold a ref](/guides/composition/#children).
    */
   children: PropTypes.element,
   /**
