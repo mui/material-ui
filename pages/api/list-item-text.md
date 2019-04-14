@@ -40,7 +40,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">multilines</span> | Styles applied to the `Typography` components if primary and secondary are set.
+| <span class="prop-name">multiline</span> | Styles applied to the `Typography` components if primary and secondary are set.
 | <span class="prop-name">dense</span> | Styles applied to the `Typography` components if dense.
 | <span class="prop-name">inset</span> | Styles applied to the root element if `inset={true}`.
 | <span class="prop-name">primary</span> | Styles applied to the primary `Typography` component.
