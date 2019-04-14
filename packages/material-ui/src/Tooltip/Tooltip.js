@@ -100,19 +100,19 @@ function Tooltip(props) {
 
   const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);
+  const [childNode, setChildNode] = React.useState();
   const ignoreNonTouchEvents = React.useRef(false);
   const { current: isControlled } = React.useRef(props.open != null);
-  const [childNode, setChildNode] = React.useState();
-  // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(ref => {
-    setChildNode(ReactDOM.findDOMNode(ref));
-  }, []);
-  const handleRef = useForkRef(children.ref, handleOwnRef);
   const defaultId = React.useRef();
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
+  // can be removed once we drop support for non ref forwarding class components
+  const handleOwnRef = React.useCallback(ref => {
+    setChildNode(ReactDOM.findDOMNode(ref));
+  }, []);
+  const handleRef = useForkRef(children.ref, handleOwnRef);
 
   React.useEffect(() => {
     if (childNode) {
