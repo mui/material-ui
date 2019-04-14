@@ -6,65 +6,47 @@ import Transition from 'react-transition-group/Transition';
 /**
  * @ignore - internal component.
  */
-class Ripple extends React.Component {
-  state = {
-    visible: false,
-    leaving: false,
+function Ripple(props) {
+  const { classes, className, pulsate, rippleX, rippleY, rippleSize, ...other } = props;
+  const [visible, setVisible] = React.useState(false);
+  const [leaving, setLeaving] = React.useState(false);
+
+  const handleEnter = () => {
+    setVisible(true);
   };
 
-  handleEnter = () => {
-    this.setState({
-      visible: true,
-    });
+  const handleExit = () => {
+    setLeaving(true);
   };
 
-  handleExit = () => {
-    this.setState({
-      leaving: true,
-    });
+  const rippleClassName = clsx(
+    classes.ripple,
+    {
+      [classes.rippleVisible]: visible,
+      [classes.ripplePulsate]: pulsate,
+    },
+    className,
+  );
+
+  const rippleStyles = {
+    width: rippleSize,
+    height: rippleSize,
+    top: -(rippleSize / 2) + rippleY,
+    left: -(rippleSize / 2) + rippleX,
   };
 
-  render() {
-    const {
-      classes,
-      className: classNameProp,
-      pulsate,
-      rippleX,
-      rippleY,
-      rippleSize,
-      ...other
-    } = this.props;
-    const { visible, leaving } = this.state;
+  const childClassName = clsx(classes.child, {
+    [classes.childLeaving]: leaving,
+    [classes.childPulsate]: pulsate,
+  });
 
-    const rippleClassName = clsx(
-      classes.ripple,
-      {
-        [classes.rippleVisible]: visible,
-        [classes.ripplePulsate]: pulsate,
-      },
-      classNameProp,
-    );
-
-    const rippleStyles = {
-      width: rippleSize,
-      height: rippleSize,
-      top: -(rippleSize / 2) + rippleY,
-      left: -(rippleSize / 2) + rippleX,
-    };
-
-    const childClassName = clsx(classes.child, {
-      [classes.childLeaving]: leaving,
-      [classes.childPulsate]: pulsate,
-    });
-
-    return (
-      <Transition onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        <span className={rippleClassName} style={rippleStyles}>
-          <span className={childClassName} />
-        </span>
-      </Transition>
-    );
-  }
+  return (
+    <Transition onEnter={handleEnter} onExit={handleExit} {...other}>
+      <span className={rippleClassName} style={rippleStyles}>
+        <span className={childClassName} />
+      </span>
+    </Transition>
+  );
 }
 
 Ripple.propTypes = {
