@@ -115,21 +115,22 @@ function Tooltip(props) {
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   React.useEffect(() => {
-    if (childNode) {
-      warning(
-        !childNode.disabled ||
-          (childNode.disabled && isControlled) ||
-          (childNode.disabled && title === '') ||
-          childNode.tagName.toLowerCase() !== 'button',
-        [
-          'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
-          'A disabled element does not fire events.',
-          "Tooltip needs to listen to the child element's events to display the title.",
-          '',
-          'Place a `div` container on top of the element.',
-        ].join('\n'),
-      );
-    }
+    warning(
+      !(
+        childNode &&
+        childNode.disabled &&
+        !isControlled &&
+        title !== '' &&
+        childNode.tagName.toLowerCase() === 'button'
+      ),
+      [
+        'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
+        'A disabled element does not fire events.',
+        "Tooltip needs to listen to the child element's events to display the title.",
+        '',
+        'Place a `div` container on top of the element.',
+      ].join('\n'),
+    );
   }, [isControlled, title, childNode]);
 
   React.useEffect(() => {
