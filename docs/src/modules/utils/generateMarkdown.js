@@ -152,7 +152,7 @@ function generatePropDescription(prop) {
 
   let notes = '';
   if (isElementTypeAcceptingRefProp(type)) {
-    notes += '<br>[Needs to be able to hold a ref](/guides/composition#caveat-with-refs).';
+    notes += '<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs).';
   }
 
   return `${deprecated}${jsDocText}${signature}${notes}`;
