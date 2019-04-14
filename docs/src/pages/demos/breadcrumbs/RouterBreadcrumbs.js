@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -43,7 +43,7 @@ ListItemLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -56,7 +56,7 @@ const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
-});
+}));
 
 const LinkRouter = props => <Link {...props} component={RouterLink} />;
 
@@ -70,7 +70,7 @@ class RouterBreadcrumbs extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes } = useStyles();
 
     // Use NoSsr to avoid SEO issues with the documentation website.
     return (
@@ -123,8 +123,4 @@ class RouterBreadcrumbs extends React.Component {
   }
 }
 
-RouterBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(RouterBreadcrumbs);
+export default RouterBreadcrumbs;

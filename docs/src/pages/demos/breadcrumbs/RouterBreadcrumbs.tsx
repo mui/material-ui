@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -26,7 +26,7 @@ interface ListItemLinkProps extends LinkProps {
   open?: boolean;
 }
 
-interface RouterBreadcrumbsProp extends WithStyles<typeof styles> {}
+interface RouterBreadcrumbsProp extends WithStyles<typeof useStyles> {}
 
 const breadcrumbNameMap: { [key: string]: string } = {
   '/inbox': 'Inbox',
@@ -55,7 +55,7 @@ ListItemLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -69,7 +69,8 @@ const styles = (theme: Theme) =>
     nested: {
       paddingLeft: theme.spacing(4),
     },
-  });
+  }),
+);
 
 interface LinkRouterProps extends LinkProps {
   to: string;
@@ -88,7 +89,7 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes } = useStyles();
 
     // Use NoSsr to avoid SEO issues with the documentation website.
     return (
@@ -141,11 +142,4 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
   }
 }
 
-(RouterBreadcrumbs as React.ComponentClass<
-  RouterBreadcrumbsProp,
-  RouterBreadcrumbsState
->).propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(RouterBreadcrumbs);
+export default RouterBreadcrumbs;
