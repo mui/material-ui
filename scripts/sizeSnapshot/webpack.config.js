@@ -30,32 +30,32 @@ async function getSizeLimitBundles() {
     {
       name: '@material-ui/core',
       webpack: true,
-      path: 'packages/material-ui/build/index.js',
+      path: 'packages/material-ui/build/esm/index.js',
     },
     {
       name: '@material-ui/core/styles/createMuiTheme',
       webpack: true,
-      path: 'packages/material-ui/build/styles/createMuiTheme.js',
+      path: 'packages/material-ui/build/esm/styles/createMuiTheme.js',
     },
     {
       name: '@material-ui/lab',
       webpack: true,
-      path: 'packages/material-ui-lab/build/index.js',
+      path: 'packages/material-ui-lab/build/esm/index.js',
     },
     {
       name: '@material-ui/styles',
       webpack: true,
-      path: 'packages/material-ui-styles/build/index.js',
+      path: 'packages/material-ui-styles/build/esm/index.js',
     },
     {
       name: '@material-ui/system',
       webpack: true,
-      path: 'packages/material-ui-system/build/index.js',
+      path: 'packages/material-ui-system/build/esm/index.js',
     },
     {
       name: 'colorManipulator',
       webpack: true,
-      path: 'packages/material-ui/build/styles/colorManipulator.js',
+      path: 'packages/material-ui/build/esm/styles/colorManipulator.js',
     },
     {
       // why we use esm here: https://github.com/mui-org/material-ui/pull/13391#issuecomment-459692816
