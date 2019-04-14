@@ -107,7 +107,7 @@ function Tooltip(props) {
   const handleOwnRef = React.useCallback(ref => {
     setChildNode(ReactDOM.findDOMNode(ref));
   }, []);
-  const handleRef = useForkRef(childNode, handleOwnRef);
+  const handleRef = useForkRef(children.ref, handleOwnRef);
   const defaultId = React.useRef();
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
