@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -9,11 +9,9 @@ import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-interface CustomBreadcrumbProps extends WithStyles<typeof styles> {}
+interface CustomBreadcrumbProps extends WithStyles<typeof useStyles> {}
 
-interface CustomizedBreadcrumbsProps extends WithStyles<typeof styles> {}
-
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding: theme.spacing(1),
@@ -35,7 +33,8 @@ const styles = (theme: Theme) =>
       background: 'none',
       marginRight: -theme.spacing(1.5),
     },
-  });
+  }),
+);
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
@@ -43,23 +42,17 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 }
 
 function CustomBreadcrumb(props: CustomBreadcrumbProps) {
-  const { classes, ...rest } = props;
-  return <Chip className={classes.chip} {...rest} />;
+  const classes = useStyles();
+  return <Chip className={classes.chip} {...props} />;
 }
 
-CustomBreadcrumb.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-const StyledBreadcrumb = withStyles(styles)(CustomBreadcrumb);
-
-function CustomizedBreadcrumbs(props: CustomizedBreadcrumbsProps) {
-  const { classes } = props;
+function CustomizedBreadcrumbs() {
+  const classes = useStyles();
 
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">
-        <StyledBreadcrumb
+        <CustomBreadcrumb
           component="a"
           href="#"
           label="Home"
@@ -70,8 +63,8 @@ function CustomizedBreadcrumbs(props: CustomizedBreadcrumbsProps) {
           }
           onClick={handleClick}
         />
-        <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
-        <StyledBreadcrumb
+        <CustomBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
+        <CustomBreadcrumb
           label="Accessories"
           deleteIcon={<ExpandMoreIcon />}
           onClick={handleClick}
@@ -82,8 +75,4 @@ function CustomizedBreadcrumbs(props: CustomizedBreadcrumbsProps) {
   );
 }
 
-CustomizedBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(CustomizedBreadcrumbs);
+export default CustomizedBreadcrumbs;
