@@ -1,6 +1,6 @@
 import React from 'react';
-
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   root: {
     padding: theme.spacing(1),
   },
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     background: 'none',
     marginRight: -theme.spacing(1.5),
   },
-}));
+});
 
 function handleClick(event) {
   event.preventDefault();
@@ -38,17 +38,23 @@ function handleClick(event) {
 }
 
 function CustomBreadcrumb(props) {
-  const classes = useStyles();
-  return <Chip className={classes.chip} {...props} />;
+  const { classes, ...rest } = props;
+  return <Chip className={classes.chip} {...rest} />;
 }
 
-function CustomizedBreadcrumbs() {
-  const classes = useStyles();
+CustomBreadcrumb.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+const StyledBreadcrumb = withStyles(styles)(CustomBreadcrumb);
+
+function CustomizedBreadcrumbs(props) {
+  const { classes } = props;
 
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">
-        <CustomBreadcrumb
+        <StyledBreadcrumb
           component="a"
           href="#"
           label="Home"
@@ -59,9 +65,8 @@ function CustomizedBreadcrumbs() {
           }
           onClick={handleClick}
         />
-
-        <CustomBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
-        <CustomBreadcrumb
+        <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
+        <StyledBreadcrumb
           label="Accessories"
           deleteIcon={<ExpandMoreIcon />}
           onClick={handleClick}
@@ -72,4 +77,8 @@ function CustomizedBreadcrumbs() {
   );
 }
 
-export default CustomizedBreadcrumbs;
+CustomizedBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(CustomizedBreadcrumbs);
