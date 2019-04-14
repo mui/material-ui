@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Slide, { setTranslateValue } from './Slide';
-import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
 
 describe('<Slide />', () => {
@@ -102,7 +101,7 @@ describe('<Slide />', () => {
 
       describe('handleEntering()', () => {
         it('should reset the translate3d', () => {
-          assert.strictEqual(handleEntering.args[0][0].style.transform, 'translate(0, 0)');
+          assert.match(handleEntering.args[0][0].style.transform, /translate\(0(px)?, 0(px)?\)/);
         });
 
         it('should call handleEntering', () => {
@@ -171,20 +170,18 @@ describe('<Slide />', () => {
     });
 
     it('should create proper easeOut animation onEntering', () => {
-      const animation = transitions.create('transform', {
-        duration: enterDuration,
-        easing: easing.easeOut,
-      });
-      assert.strictEqual(handleEntering.args[0][0].style.transition, animation);
+      assert.match(
+        handleEntering.args[0][0].style.transition,
+        /transform 556ms cubic-bezier\(0(.0)?, 0, 0.2, 1\)( 0ms)?/,
+      );
     });
 
     it('should create proper sharp animation onExit', () => {
       wrapper.setProps({ in: false });
-      const animation = transitions.create('transform', {
-        duration: leaveDuration,
-        easing: easing.sharp,
-      });
-      assert.strictEqual(handleExit.args[0][0].style.transition, animation);
+      assert.match(
+        handleExit.args[0][0].style.transition,
+        /transform 446ms cubic-bezier\(0.4, 0, 0.6, 1\)( 0ms)?/,
+      );
     });
   });
 
