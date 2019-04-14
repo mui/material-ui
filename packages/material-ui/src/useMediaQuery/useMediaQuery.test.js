@@ -72,7 +72,7 @@ describe('useMediaQuery', () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
         });
-        React.useEffect(() => values(matches), [matches]);
+        React.useEffect(() => values(matches));
         return <span ref={ref}>{`${matches}`}</span>;
       };
 
@@ -90,7 +90,7 @@ describe('useMediaQuery', () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: false,
         });
-        React.useEffect(() => values(matches), [matches]);
+        React.useEffect(() => values(matches));
         return <span ref={ref}>{`${matches}`}</span>;
       };
 
@@ -106,7 +106,7 @@ describe('useMediaQuery', () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
         });
-        React.useEffect(() => values(matches), [matches]);
+        React.useEffect(() => values(matches));
         return <span ref={ref}>{`${matches}`}</span>;
       };
 
@@ -123,7 +123,7 @@ describe('useMediaQuery', () => {
           defaultMatches: true,
           noSsr: true,
         });
-        React.useEffect(() => values(matches), [matches]);
+        React.useEffect(() => values(matches));
         return <span ref={ref}>{`${matches}`}</span>;
       };
 
@@ -140,7 +140,7 @@ describe('useMediaQuery', () => {
       const matches = useMediaQuery('(min-width:2000px)', {
         defaultMatches: true,
       });
-      React.useEffect(() => values(matches), [matches]);
+      React.useEffect(() => values(matches));
       return <span ref={ref}>{`${matches}`}</span>;
     };
 
@@ -162,7 +162,7 @@ describe('useMediaQuery', () => {
       const matches = useMediaQuery(props.query, {
         defaultMatches: true,
       });
-      React.useEffect(() => values(matches), [matches]);
+      React.useEffect(() => values(matches));
       return <span ref={ref}>{`${matches}`}</span>;
     };
     Test.propTypes = {
@@ -174,7 +174,7 @@ describe('useMediaQuery', () => {
     assert.strictEqual(values.callCount, 2);
     wrapper.setProps({ query: '(min-width:100px)' });
     assert.strictEqual(text(), 'true');
-    assert.strictEqual(values.callCount, 3);
+    assert.strictEqual(values.callCount, 4);
   });
 
   it('should observe the media query', () => {
@@ -182,7 +182,7 @@ describe('useMediaQuery', () => {
     const text = () => ref.current.textContent;
     const Test = props => {
       const matches = useMediaQuery(props.query);
-      React.useEffect(() => values(matches), [matches]);
+      React.useEffect(() => values(matches));
       return <span ref={ref}>{`${matches}`}</span>;
     };
     Test.propTypes = {
