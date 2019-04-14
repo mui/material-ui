@@ -12,8 +12,7 @@ filename: /packages/material-ui/src/ListItemAvatar/ListItemAvatar.js
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 ```
 
-This is a simple wrapper to apply the `dense`
-and `align-items="flex-start"` mode styles to `Avatar`.
+A simple wrapper to apply `List` styles to an `Avatar`.
 
 ## Props
 

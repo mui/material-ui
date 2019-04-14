@@ -34,9 +34,7 @@ function InsetDividers(props: Props) {
         </ListItemAvatar>
         <ListItemText primary="Photos" secondary="Jan 9, 2014" />
       </ListItem>
-      <li>
-        <Divider variant="inset" />
-      </li>
+      <Divider variant="inset" component="li" />
       <ListItem>
         <ListItemAvatar>
           <Avatar>

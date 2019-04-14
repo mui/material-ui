@@ -8,6 +8,7 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     minWidth: 56,
+    flexShrink: 0,
   },
   /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
   alignItemsFlexStart: {
@@ -16,8 +17,7 @@ export const styles = {
 };
 
 /**
- * This is a simple wrapper to apply the `dense`
- * and `align-items="flex-start"` mode styles to `Avatar`.
+ * A simple wrapper to apply `List` styles to an `Avatar`.
  */
 const ListItemAvatar = React.forwardRef(function ListItemAvatar(props, ref) {
   const { classes, className, ...other } = props;

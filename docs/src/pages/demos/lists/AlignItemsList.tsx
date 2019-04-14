@@ -48,9 +48,7 @@ function AlignItemsList(props: AlignItemListProps) {
           }
         />
       </ListItem>
-      <li>
-        <Divider variant="inset" />
-      </li>
+      <Divider variant="inset" component="li" />
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -72,9 +70,7 @@ function AlignItemsList(props: AlignItemListProps) {
           }
         />
       </ListItem>
-      <li>
-        <Divider variant="inset" />
-      </li>
+      <Divider variant="inset" component="li" />
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/3.jpg" />
