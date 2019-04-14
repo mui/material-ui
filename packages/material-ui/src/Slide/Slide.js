@@ -16,8 +16,7 @@ const GUTTER = 24;
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
 // with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, node) {
-  const { direction } = props;
+function getTranslateValue(direction, node) {
   const rect = node.getBoundingClientRect();
 
   let transform;
@@ -59,8 +58,8 @@ function getTranslateValue(props, node) {
   return `translateY(-${rect.top + rect.height + GUTTER - offsetY}px)`;
 }
 
-export function setTranslateValue(props, node) {
-  const transform = getTranslateValue(props, node);
+export function setTranslateValue(direction, node) {
+  const transform = getTranslateValue(direction, node);
 
   if (transform) {
     node.style.webkitTransform = transform;
@@ -83,12 +82,12 @@ function Slide(props) {
     onExited,
     style,
     theme,
+    timeout,
     ...other
   } = props;
 
   const mountedRef = React.useRef(false);
   const childrenRef = React.useRef();
-  const [prevDirection, setPrevDirection] = React.useState();
   /**
    * used in cloneElement(children, { ref: handleRef })
    */
@@ -98,8 +97,9 @@ function Slide(props) {
   };
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
-  const handleEnter = node => {
-    setTranslateValue(props, node);
+  const handleEnter = () => {
+    const node = childrenRef.current;
+    setTranslateValue(direction, node);
     reflow(node);
 
     if (onEnter) {
@@ -107,10 +107,14 @@ function Slide(props) {
     }
   };
 
-  const handleEntering = node => {
-    const transitionProps = getTransitionProps(props, {
-      mode: 'enter',
-    });
+  const handleEntering = () => {
+    const node = childrenRef.current;
+    const transitionProps = getTransitionProps(
+      { timeout, style },
+      {
+        mode: 'enter',
+      },
+    );
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
       easing: theme.transitions.easing.easeOut,
@@ -126,10 +130,14 @@ function Slide(props) {
     }
   };
 
-  const handleExit = node => {
-    const transitionProps = getTransitionProps(props, {
-      mode: 'exit',
-    });
+  const handleExit = () => {
+    const node = childrenRef.current;
+    const transitionProps = getTransitionProps(
+      { timeout, style },
+      {
+        mode: 'exit',
+      },
+    );
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
@@ -138,14 +146,15 @@ function Slide(props) {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
     });
-    setTranslateValue(props, node);
+    setTranslateValue(direction, node);
 
     if (onExit) {
       onExit(node);
     }
   };
 
-  const handleExited = node => {
+  const handleExited = () => {
+    const node = childrenRef.current;
     // No need for transitions when the component is hidden
     node.style.webkitTransition = '';
     node.style.transition = '';
@@ -157,9 +166,9 @@ function Slide(props) {
 
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {
-      setTranslateValue(props, childrenRef.current);
+      setTranslateValue(direction, childrenRef.current);
     }
-  }, [props]);
+  }, [direction]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -169,7 +178,7 @@ function Slide(props) {
       }
 
       if (childrenRef.current) {
-        setTranslateValue(props, childrenRef.current);
+        setTranslateValue(direction, childrenRef.current);
       }
     }, 166); // Corresponds to 10 frames at 60 Hz.
 
@@ -179,7 +188,7 @@ function Slide(props) {
       handleResize.clear();
       window.removeEventListener('resize', handleResize);
     };
-  }, [direction, inProp, props]);
+  }, [direction, inProp]);
 
   React.useEffect(() => {
     // state.mounted handle SSR, once the component is mounted, we need
@@ -193,13 +202,12 @@ function Slide(props) {
   }, [inProp, updatePosition]);
 
   React.useEffect(() => {
-    if (prevDirection !== direction && !inProp) {
+    if (!inProp) {
       // We need to update the position of the drawer when the direction change and
       // when it's hidden.
       updatePosition();
     }
-    setPrevDirection(direction);
-  }, [direction, inProp, prevDirection, updatePosition]);
+  }, [inProp, updatePosition]);
 
   return (
     <Transition
@@ -209,6 +217,7 @@ function Slide(props) {
       onExited={handleExited}
       appear
       in={inProp}
+      timeout={timeout}
       {...other}
     >
       {(state, childProps) => {
@@ -228,8 +237,9 @@ function Slide(props) {
 
 Slide.propTypes = {
   /**
-   * A single child content element. The component used as a child must be able
-   * to hold a ref.
+   * A single child content element.
+   *
+   * ⚠️The component used as a child [must be able to hold a ref](/guides/composition/#children).
    */
   children: PropTypes.element,
   /**
