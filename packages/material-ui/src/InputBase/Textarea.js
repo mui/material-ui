@@ -20,10 +20,7 @@ function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
 }
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
-    ? React.useLayoutEffect
-    : React.useEffect;
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 /**
  * @ignore - internal component.
@@ -36,12 +33,12 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef();
   const [state, setState] = React.useState({});
-  const inputShallowRef = React.useRef();
+  const shadowRef = React.useRef();
   const handleRef = useForkRef(ref, inputRef);
 
-  const syncHeightWithShadow = () => {
+  const syncHeight = React.useCallback(() => {
     const input = inputRef.current;
-    const inputShallow = inputShallowRef.current;
+    const inputShallow = shadowRef.current;
 
     const computedStyle = window.getComputedStyle(input);
     inputShallow.style.width = computedStyle.width;
@@ -76,19 +73,23 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
         getStyleValue(computedStyle, 'border-top-width');
     }
 
-    // Need a large enough different to update the height.
-    // This prevents infinite rendering loop.
-    if (state.innerHeight == null || Math.abs(state.innerHeight - innerHeight) > 1) {
-      setState({
-        innerHeight,
-        outerHeight,
-      });
-    }
-  };
+    setState(prevState => {
+      // Need a large enough different to update the height.
+      // This prevents infinite rendering loop.
+      if (innerHeight > 0 && Math.abs((prevState.innerHeight || 0) - innerHeight) > 1) {
+        return {
+          innerHeight,
+          outerHeight,
+        };
+      }
+
+      return prevState;
+    });
+  }, [setState, rowsMin, rowsMax, props.placeholder]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
-      syncHeightWithShadow();
+      syncHeight();
     }, 166); // Corresponds to 10 frames at 60 Hz.
 
     window.addEventListener('resize', handleResize);
@@ -96,15 +97,15 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
       handleResize.clear();
       window.removeEventListener('resize', handleResize);
     };
-  });
+  }, [syncHeight]);
 
   useEnhancedEffect(() => {
-    syncHeightWithShadow();
+    syncHeight();
   });
 
   const handleChange = event => {
     if (!isControlled) {
-      syncHeightWithShadow();
+      syncHeight();
     }
 
     if (onChange) {
@@ -129,7 +130,7 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
         aria-hidden="true"
         className={props.className}
         readOnly
-        ref={inputShallowRef}
+        ref={shadowRef}
         tabIndex={-1}
         style={styles.shadow}
       />

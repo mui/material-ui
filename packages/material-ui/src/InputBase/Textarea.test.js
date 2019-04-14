@@ -1,9 +1,17 @@
 import React from 'react';
 import { assert } from 'chai';
+import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Textarea from './Textarea';
 
-describe('<Textarea />', () => {
+function getHeight(wrapper) {
+  return wrapper
+    .find('textarea')
+    .at(0)
+    .props().style.height;
+}
+
+describe.only('<Textarea />', () => {
   let mount;
 
   before(() => {
@@ -21,8 +29,151 @@ describe('<Textarea />', () => {
     skip: ['rootClass', 'componentProp'],
   }));
 
-  it('should render 2 textareas', () => {
-    const wrapper = mount(<Textarea />);
-    assert.strictEqual(wrapper.find('textarea').length, 2);
+  describe('layout', () => {
+    // Only run the test on node.
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      return;
+    }
+
+    const getComputedStyleStub = {};
+
+    function setLayout(wrapper, { getComputedStyle, inputHeight, shadowHeight }) {
+      const input = wrapper
+        .find('textarea')
+        .at(0)
+        .instance();
+      const shadow = wrapper
+        .find('textarea')
+        .at(1)
+        .instance();
+      getComputedStyleStub[input] = getComputedStyle;
+
+      let getter = 0;
+      stub(shadow, 'scrollHeight').get(() => {
+        getter += 1;
+        return getter % 2 === 1 ? inputHeight : shadowHeight;
+      });
+    }
+
+    before(() => {
+      stub(window, 'getComputedStyle').value(node => getComputedStyleStub[node] || {});
+    });
+
+    after(() => {
+      sinon.restore();
+    });
+
+    describe('resize', () => {
+      let clock;
+
+      before(() => {
+        clock = useFakeTimers();
+      });
+
+      after(() => {
+        clock.restore();
+      });
+
+      it('should handle the resize event', () => {
+        const wrapper = mount(<Textarea />);
+        assert.strictEqual(getHeight(wrapper), undefined);
+        setLayout(wrapper, {
+          getComputedStyle: {
+            'box-sizing': 'content-box',
+          },
+          inputHeight: 30,
+          shadowHeight: 15,
+        });
+        window.dispatchEvent(new window.Event('resize', {}));
+        clock.tick(166);
+        wrapper.update();
+        assert.strictEqual(getHeight(wrapper), 30);
+      });
+    });
+
+    it('should update when uncontrolled', () => {
+      const handleChange = spy();
+      const wrapper = mount(<Textarea onChange={handleChange} />);
+      assert.strictEqual(getHeight(wrapper), undefined);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        inputHeight: 30,
+        shadowHeight: 15,
+      });
+      wrapper
+        .find('textarea')
+        .at(0)
+        .simulate('change');
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), 30);
+      assert.strictEqual(handleChange.callCount, 1);
+    });
+
+    it('should take the border into account with border-box', () => {
+      const border = 5;
+      const wrapper = mount(<Textarea />);
+      assert.strictEqual(getHeight(wrapper), undefined);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'border-box',
+          'border-bottom-width': `${border}px`,
+        },
+        inputHeight: 30,
+        shadowHeight: 15,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), 30 + border);
+    });
+
+    it('should take the padding into account with content-box', () => {
+      const padding = 5;
+      const wrapper = mount(<Textarea />);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+          'padding-top': `${padding}px`,
+        },
+        inputHeight: 30,
+        shadowHeight: 15,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), 30 - padding);
+    });
+
+    it('should have at least "rowsMin" rows', () => {
+      const rowsMin = 3;
+      const lineHeight = 15;
+      const wrapper = mount(<Textarea rowsMin={rowsMin} />);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        inputHeight: 30,
+        shadowHeight: lineHeight,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), lineHeight * rowsMin);
+    });
+
+    it('should have at max "rowsMax" rows', () => {
+      const rowsMax = 3;
+      const lineHeight = 15;
+      const wrapper = mount(<Textarea rowsMax={rowsMax} />);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        inputHeight: 100,
+        shadowHeight: lineHeight,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), lineHeight * rowsMax);
+    });
   });
 });
