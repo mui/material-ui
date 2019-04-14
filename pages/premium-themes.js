@@ -13,7 +13,7 @@ const reqPrefix = 'pages/premium-themes';
 
 function Page() {
   return (
-    <MarkdownDocs disableTocs disableAd req={req} reqSource={reqSource} reqPrefix={reqPrefix} />
+    <MarkdownDocs disableToc disableAd req={req} reqSource={reqSource} reqPrefix={reqPrefix} />
   );
 }
 
