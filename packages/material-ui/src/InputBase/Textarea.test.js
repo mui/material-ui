@@ -11,7 +11,7 @@ function getHeight(wrapper) {
     .props().style.height;
 }
 
-describe.only('<Textarea />', () => {
+describe('<Textarea />', () => {
   let mount;
 
   before(() => {
@@ -37,21 +37,14 @@ describe.only('<Textarea />', () => {
 
     const getComputedStyleStub = {};
 
-    function setLayout(wrapper, { getComputedStyle, inputHeight, shadowHeight }) {
-      const input = wrapper
-        .find('textarea')
-        .at(0)
-        .instance();
-      const shadow = wrapper
-        .find('textarea')
-        .at(1)
-        .instance();
+    function setLayout(wrapper, { getComputedStyle, scrollHeight, lineHeight }) {
+      const input = wrapper.find('textarea').instance();
       getComputedStyleStub[input] = getComputedStyle;
 
-      let getter = 0;
-      stub(shadow, 'scrollHeight').get(() => {
-        getter += 1;
-        return getter % 2 === 1 ? inputHeight : shadowHeight;
+      let index = 0;
+      stub(input, 'scrollHeight').get(() => {
+        index += 1;
+        return index % 2 === 1 ? scrollHeight : lineHeight;
       });
     }
 
@@ -81,8 +74,8 @@ describe.only('<Textarea />', () => {
           getComputedStyle: {
             'box-sizing': 'content-box',
           },
-          inputHeight: 30,
-          shadowHeight: 15,
+          scrollHeight: 30,
+          lineHeight: 15,
         });
         window.dispatchEvent(new window.Event('resize', {}));
         clock.tick(166);
@@ -99,8 +92,8 @@ describe.only('<Textarea />', () => {
         getComputedStyle: {
           'box-sizing': 'content-box',
         },
-        inputHeight: 30,
-        shadowHeight: 15,
+        scrollHeight: 30,
+        lineHeight: 15,
       });
       wrapper
         .find('textarea')
@@ -120,8 +113,8 @@ describe.only('<Textarea />', () => {
           'box-sizing': 'border-box',
           'border-bottom-width': `${border}px`,
         },
-        inputHeight: 30,
-        shadowHeight: 15,
+        scrollHeight: 30,
+        lineHeight: 15,
       });
       wrapper.setProps();
       wrapper.update();
@@ -136,8 +129,8 @@ describe.only('<Textarea />', () => {
           'box-sizing': 'content-box',
           'padding-top': `${padding}px`,
         },
-        inputHeight: 30,
-        shadowHeight: 15,
+        scrollHeight: 30,
+        lineHeight: 15,
       });
       wrapper.setProps();
       wrapper.update();
@@ -152,8 +145,8 @@ describe.only('<Textarea />', () => {
         getComputedStyle: {
           'box-sizing': 'content-box',
         },
-        inputHeight: 30,
-        shadowHeight: lineHeight,
+        scrollHeight: 30,
+        lineHeight,
       });
       wrapper.setProps();
       wrapper.update();
@@ -168,8 +161,8 @@ describe.only('<Textarea />', () => {
         getComputedStyle: {
           'box-sizing': 'content-box',
         },
-        inputHeight: 100,
-        shadowHeight: lineHeight,
+        scrollHeight: 100,
+        lineHeight,
       });
       wrapper.setProps();
       wrapper.update();
