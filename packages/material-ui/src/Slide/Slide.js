@@ -86,7 +86,6 @@ function Slide(props) {
     ...other
   } = props;
 
-  const mountedRef = React.useRef(false);
   const childrenRef = React.useRef();
   /**
    * used in cloneElement(children, { ref: handleRef })
@@ -171,35 +170,24 @@ function Slide(props) {
   }, [direction]);
 
   React.useEffect(() => {
-    const handleResize = debounce(() => {
-      // Skip configuration where the position is screen size invariant.
-      if (inProp || direction === 'down' || direction === 'right') {
-        return;
-      }
+    // Skip configuration where the position is screen size invariant.
+    if (!inProp && direction !== 'down' && direction !== 'right') {
+      const handleResize = debounce(() => {
+        if (childrenRef.current) {
+          setTranslateValue(direction, childrenRef.current);
+        }
+      }, 166); // Corresponds to 10 frames at 60 Hz.
 
-      if (childrenRef.current) {
-        setTranslateValue(direction, childrenRef.current);
-      }
-    }, 166); // Corresponds to 10 frames at 60 Hz.
+      window.addEventListener('resize', handleResize);
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      handleResize.clear();
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [direction, inProp]);
-
-  React.useEffect(() => {
-    // state.mounted handle SSR, once the component is mounted, we need
-    // to properly hide it.
-    if (!inProp && !mountedRef.current) {
-      // We need to set initial translate values of transition element
-      // otherwise component will be shown when in=false.
-      updatePosition();
+      return () => {
+        handleResize.clear();
+        window.removeEventListener('resize', handleResize);
+      };
     }
-    mountedRef.current = true;
-  }, [inProp, updatePosition]);
+
+    return () => {};
+  }, [direction, inProp]);
 
   React.useEffect(() => {
     if (!inProp) {
