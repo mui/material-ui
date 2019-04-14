@@ -9,7 +9,7 @@ export const styles = {
   root: {
     minWidth: 56,
   },
-  /* Styles applied to the root element when context.alignItems="flex-start". */
+  /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
   alignItemsFlexStart: {
     marginTop: 8,
   },

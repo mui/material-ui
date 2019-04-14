@@ -35,7 +35,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the root element when context.alignItems="flex-start".
+| <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ListItemAvatar/ListItemAvatar.js)
