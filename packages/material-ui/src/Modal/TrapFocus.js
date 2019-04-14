@@ -1,13 +1,15 @@
 /* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import RootRef from '../RootRef';
 import ownerDocument from '../utils/ownerDocument';
+import { useForkRef } from '../utils/reactHelpers';
 
 function TrapFocus(props) {
   const {
+    children,
     disableAutoFocus,
     disableEnforceFocus,
     disableRestoreFocus,
@@ -15,11 +17,16 @@ function TrapFocus(props) {
     isEnabled,
     open,
   } = props;
-  const rootRef = React.useRef();
   const ignoreNextEnforceFocus = React.useRef();
   const sentinelStart = React.useRef();
   const sentinelEnd = React.useRef();
   const lastFocus = React.useRef();
+  const rootRef = React.useRef();
+  // can be removed once we drop support for non ref forwarding class components
+  const handleOwnRef = React.useCallback(ref => {
+    rootRef.current = ReactDOM.findDOMNode(ref);
+  }, []);
+  const handleRef = useForkRef(children.ref, handleOwnRef);
 
   // ⚠️ You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
   // https://reactjs.org/docs/hooks-reference.html#usememo
@@ -61,7 +68,7 @@ function TrapFocus(props) {
         return;
       }
 
-      if (!rootRef.current.contains(doc.activeElement)) {
+      if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
         rootRef.current.focus();
       }
     };
@@ -109,7 +116,7 @@ function TrapFocus(props) {
   return (
     <React.Fragment>
       <div tabIndex={0} ref={sentinelStart} data-test="sentinelStart" />
-      <RootRef rootRef={rootRef}>{props.children}</RootRef>
+      {React.cloneElement(children, { ref: handleRef })}
       <div tabIndex={0} ref={sentinelEnd} data-test="sentinelEnd" />
     </React.Fragment>
   );
