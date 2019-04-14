@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import FormGroup from '../FormGroup';
-import useForkRef from '../utils/useForkRef';
+import { useForkRef } from '../utils/reactHelpers';
 import RadioGroupContext from './RadioGroupContext';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {

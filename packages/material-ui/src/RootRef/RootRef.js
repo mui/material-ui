@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import setRef from '../utils/setRef';
+import { setRef } from '../utils/reactHelpers';
 
 /**
  * ⚠️⚠️⚠️

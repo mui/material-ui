@@ -7,7 +7,7 @@ import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
-import useForkRef from '../utils/useForkRef';
+import { useForkRef } from '../utils/reactHelpers';
 
 function resetTabIndex(list, selectedItem, setCurrentTabIndex) {
   const currentFocus = ownerDocument(list).activeElement;

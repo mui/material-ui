@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
-import setRef from '../utils/setRef';
+import { setRef } from '../utils/reactHelpers';
 import GridListTile from './GridListTile';
 
 describe('<GridListTile />', () => {

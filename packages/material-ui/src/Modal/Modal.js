@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
-import setRef from '../utils/setRef';
+import { setRef } from '../utils/reactHelpers';
 import withForwardedRef from '../utils/withForwardedRef';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';

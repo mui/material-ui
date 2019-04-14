@@ -8,7 +8,7 @@ import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
-import setRef from '../utils/setRef';
+import { setRef } from '../utils/reactHelpers';
 import withForwardedRef from '../utils/withForwardedRef';
 import Textarea from './Textarea';
 import { isFilled } from './utils';

@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
-import useForkRef from '../utils/useForkRef';
+import { useForkRef } from '../utils/reactHelpers';
 
 function useMountedRef() {
   const mountedRef = React.useRef(false);
