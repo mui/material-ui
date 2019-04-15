@@ -146,7 +146,7 @@ function InteractiveList() {
                     secondary={secondary ? 'Secondary text' : null}
                   />
                   <ListItemSecondaryAction>
-                    <IconButton aria-label="Delete">
+                    <IconButton edge="end" aria-label="Delete">
                       <DeleteIcon />
                     </IconButton>
                   </ListItemSecondaryAction>

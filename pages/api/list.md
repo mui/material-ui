@@ -39,7 +39,7 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">padding</span> | Styles applied to the root element if `disablePadding={false}`.
-| <span class="prop-name">dense</span> | Styles applied to the root element if `dense={true}` & `disablePadding={false}`.
+| <span class="prop-name">dense</span> | Styles applied to the root element if dense.
 | <span class="prop-name">subheader</span> | Styles applied to the root element if a `subheader` is provided.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section

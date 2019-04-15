@@ -4,55 +4,39 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ListContext from '../List/ListContext';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
-    width: 36,
-    height: 36,
-    fontSize: theme.typography.pxToRem(18),
-    marginRight: 4,
+    minWidth: 56,
+    flexShrink: 0,
   },
-  /* Styles applied to the root element when. */
+  /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
   alignItemsFlexStart: {
-    marginTop: 4,
+    marginTop: 8,
   },
-  /* Styles applied to the children – typically the `Avatar` component. */
-  icon: {
-    width: 20,
-    height: 20,
-    fontSize: theme.typography.pxToRem(20),
-  },
-});
+};
 
 /**
- * This is a simple wrapper to apply the `dense`
- * and `align-items="flex-start"` mode styles to `Avatar`.
+ * A simple wrapper to apply `List` styles to an `Avatar`.
  */
-function ListItemAvatar(props) {
-  const { children, classes, className, ...other } = props;
+const ListItemAvatar = React.forwardRef(function ListItemAvatar(props, ref) {
+  const { classes, className, ...other } = props;
+  const context = React.useContext(ListContext);
 
   return (
-    <ListContext.Consumer>
-      {context =>
-        React.cloneElement(children, {
-          className: clsx(
-            {
-              [classes.root]: context.dense,
-              [classes.alignItemsFlexStart]: context.alignItems === 'flex-start',
-            },
-            className,
-            children.props.className,
-          ),
-          childrenClassName: clsx(
-            { [classes.icon]: context.dense },
-            children.props.childrenClassName,
-          ),
-          ...other,
-        })
-      }
-    </ListContext.Consumer>
+    <div
+      className={clsx(
+        classes.root,
+        {
+          [classes.alignItemsFlexStart]: context.alignItems === 'flex-start',
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
-}
+});
 
 ListItemAvatar.propTypes = {
   /**
@@ -69,7 +53,5 @@ ListItemAvatar.propTypes = {
    */
   className: PropTypes.string,
 };
-
-ListItemAvatar.muiName = 'ListItemAvatar';
 
 export default withStyles(styles, { name: 'MuiListItemAvatar' })(ListItemAvatar);

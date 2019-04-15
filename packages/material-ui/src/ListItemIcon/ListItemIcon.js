@@ -6,7 +6,7 @@ import withStyles from '../styles/withStyles';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    marginRight: 16,
+    minWidth: 56,
     color: theme.palette.action.active,
     flexShrink: 0,
     display: 'inline-flex',
@@ -17,13 +17,9 @@ export const styles = theme => ({
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
-  const { children, classes, className: classNameProp, ...other } = props;
+  const { classes, className, ...other } = props;
 
-  return (
-    <div className={clsx(classes.root, classNameProp)} ref={ref} {...other}>
-      {children}
-    </div>
-  );
+  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
 
 ListItemIcon.propTypes = {

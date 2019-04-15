@@ -37,9 +37,7 @@ const ExpansionPanelSummary = withStyles({
     },
   },
   expanded: {},
-})(props => <MuiExpansionPanelSummary {...props} />);
-
-ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
+})(MuiExpansionPanelSummary);
 
 const ExpansionPanelDetails = withStyles(theme => ({
   root: {

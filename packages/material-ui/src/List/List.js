@@ -17,11 +17,8 @@ export const styles = {
     paddingTop: 8,
     paddingBottom: 8,
   },
-  /* Styles applied to the root element if `dense={true}` & `disablePadding={false}`. */
-  dense: {
-    paddingTop: 4,
-    paddingBottom: 4,
-  },
+  /* Styles applied to the root element if dense. */
+  dense: {},
   /* Styles applied to the root element if a `subheader` is provided. */
   subheader: {
     paddingTop: 0,
@@ -43,24 +40,24 @@ const List = React.forwardRef(function List(props, ref) {
   const context = React.useMemo(() => ({ dense }), [dense]);
 
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        {
-          [classes.dense]: dense && !disablePadding,
-          [classes.padding]: !disablePadding,
-          [classes.subheader]: subheader,
-        },
-        className,
-      )}
-      ref={ref}
-      {...other}
-    >
-      <ListContext.Provider value={context}>
+    <ListContext.Provider value={context}>
+      <Component
+        className={clsx(
+          classes.root,
+          {
+            [classes.dense]: dense,
+            [classes.padding]: !disablePadding,
+            [classes.subheader]: subheader,
+          },
+          className,
+        )}
+        ref={ref}
+        {...other}
+      >
         {subheader}
         {children}
-      </ListContext.Provider>
-    </Component>
+      </Component>
+    </ListContext.Provider>
   );
 });
 
@@ -85,8 +82,8 @@ List.propTypes = {
   component: PropTypes.elementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
-   * the list and list items. The property is available to descendant components as the
-   * `dense` context.
+   * the list and list items.
+   * The property is available to descendant components as the `dense` context.
    */
   dense: PropTypes.bool,
   /**

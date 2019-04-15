@@ -11,8 +11,6 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import ListItem from './ListItem';
-import ListItemAvatar from '../ListItemAvatar';
-import Avatar from '../Avatar';
 import ButtonBase from '../ButtonBase';
 import ListContext from '../List/ListContext';
 
@@ -53,20 +51,6 @@ describe('<ListItem />', () => {
     const wrapper = mount(<ListItem disableGutters />);
     const listItem = wrapper.find('li');
     assert.strictEqual(listItem.hasClass(classes.gutters), false);
-  });
-
-  it('should use dense class when ListItemAvatar is present', () => {
-    const wrapper = mount(
-      <ListContext.Provider value={{ dense: false }}>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar />
-          </ListItemAvatar>
-        </ListItem>
-      </ListContext.Provider>,
-    );
-    const listItem = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItem.hasClass(classes.dense), true);
   });
 
   describe('prop: button', () => {

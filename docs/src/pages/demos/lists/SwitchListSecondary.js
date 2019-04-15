@@ -43,7 +43,11 @@ function SwitchListSecondary() {
         </ListItemIcon>
         <ListItemText primary="Wi-Fi" />
         <ListItemSecondaryAction>
-          <Switch onChange={handleToggle('wifi')} checked={checked.indexOf('wifi') !== -1} />
+          <Switch
+            edge="end"
+            onChange={handleToggle('wifi')}
+            checked={checked.indexOf('wifi') !== -1}
+          />
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem>
@@ -53,6 +57,7 @@ function SwitchListSecondary() {
         <ListItemText primary="Bluetooth" />
         <ListItemSecondaryAction>
           <Switch
+            edge="end"
             onChange={handleToggle('bluetooth')}
             checked={checked.indexOf('bluetooth') !== -1}
           />
