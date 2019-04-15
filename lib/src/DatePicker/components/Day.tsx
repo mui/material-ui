@@ -3,58 +3,10 @@ import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import createStyles from '@material-ui/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
-import { Theme } from '@material-ui/core';
+import { Theme, makeStyles } from '@material-ui/core';
 
-export interface DayProps extends WithStyles<typeof styles> {
-  children: React.ReactNode;
-  current?: boolean;
-  disabled?: boolean;
-  hidden?: boolean;
-  selected?: boolean;
-}
-
-class Day extends React.PureComponent<DayProps> {
-  public static propTypes: any = {
-    children: PropTypes.node.isRequired,
-    classes: PropTypes.object.isRequired,
-    current: PropTypes.bool,
-    disabled: PropTypes.bool,
-    hidden: PropTypes.bool,
-    selected: PropTypes.bool,
-    innerRef: PropTypes.any,
-  };
-
-  public static defaultProps = {
-    disabled: false,
-    hidden: false,
-    current: false,
-    selected: false,
-  };
-
-  public render() {
-    const { children, classes, disabled, hidden, current, selected, ...other } = this.props;
-
-    const className = clsx(classes.day, {
-      [classes.hidden]: hidden,
-      [classes.current]: current,
-      [classes.isSelected]: selected,
-      [classes.isDisabled]: disabled,
-    });
-
-    return (
-      <IconButton className={className} tabIndex={hidden || disabled ? -1 : 0} {...other}>
-        <Typography variant="body1" color="inherit">
-          {children}
-        </Typography>
-      </IconButton>
-    );
-  }
-}
-
-export const styles = (theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles(
+  (theme: Theme) => ({
     day: {
       width: 36,
       height: 36,
@@ -84,6 +36,48 @@ export const styles = (theme: Theme) =>
       pointerEvents: 'none',
       color: theme.palette.text.hint,
     },
+  }),
+  { name: 'MuiPickersDay' }
+);
+
+export interface DayProps {
+  children: React.ReactNode;
+  current?: boolean;
+  disabled?: boolean;
+  hidden?: boolean;
+  selected?: boolean;
+}
+
+const Day: React.FC<DayProps> = ({ children, disabled, hidden, current, selected, ...other }) => {
+  const classes = useStyles();
+  const className = clsx(classes.day, {
+    [classes.hidden]: hidden,
+    [classes.current]: current,
+    [classes.isSelected]: selected,
+    [classes.isDisabled]: disabled,
   });
 
-export default withStyles(styles, { name: 'MuiPickersDay' })(Day as React.ComponentType<DayProps>);
+  return (
+    <IconButton className={className} tabIndex={hidden || disabled ? -1 : 0} {...other}>
+      <Typography variant="body2" color="inherit">
+        {children}
+      </Typography>
+    </IconButton>
+  );
+};
+
+Day.propTypes = {
+  current: PropTypes.bool,
+  disabled: PropTypes.bool,
+  hidden: PropTypes.bool,
+  selected: PropTypes.bool,
+};
+
+Day.defaultProps = {
+  disabled: false,
+  hidden: false,
+  current: false,
+  selected: false,
+};
+
+export default Day;
