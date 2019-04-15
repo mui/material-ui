@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
-import LayoutBody from '../components/LayoutBody';
+import Container from '@material-ui/core/Container';
 
 const styles = theme => ({
   root: {
@@ -16,7 +16,7 @@ const styles = theme => ({
       maxHeight: 1300,
     },
   },
-  layoutBody: {
+  container: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(14),
     display: 'flex',
@@ -54,7 +54,7 @@ function ProductHeroLayout(props) {
 
   return (
     <section className={classes.root}>
-      <LayoutBody className={classes.layoutBody} width="full">
+      <Container className={classes.container}>
         <img
           src="/static/themes/onepirate/productHeroWonder.png"
           alt="wonder"
@@ -71,7 +71,7 @@ function ProductHeroLayout(props) {
           width="12"
           alt="arrow down"
         />
-      </LayoutBody>
+      </Container>
     </section>
   );
 }

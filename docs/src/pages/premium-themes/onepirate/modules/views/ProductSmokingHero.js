@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
-import LayoutBody from '../components/LayoutBody';
 import Typography from '../components/Typography';
 
 const styles = theme => ({
@@ -32,7 +32,7 @@ function ProductSmokingHero(props) {
   const { classes } = props;
 
   return (
-    <LayoutBody className={classes.root} component="section">
+    <Container className={classes.root} component="section">
       <Button className={classes.button}>
         <Typography variant="h4" component="span">
           Got any questions? Need help?
@@ -42,7 +42,7 @@ function ProductSmokingHero(props) {
         We are here to help. Get in touch!
       </Typography>
       <img src="/static/themes/onepirate/producBuoy.svg" className={classes.buoy} alt="buoy" />
-    </LayoutBody>
+    </Container>
   );
 }
 
