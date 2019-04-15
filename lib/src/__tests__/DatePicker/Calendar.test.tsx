@@ -21,9 +21,7 @@ describe('Calendar', () => {
   });
 
   it('Should swipe between month', () => {
-    component.find('WithUtils(WithStyles(CalendarHeader))').prop<any>('onMonthChange')(
-      utilsToUse.date()
-    );
+    component.find('WithStyles(CalendarHeader)').prop<any>('onMonthChange')(utilsToUse.date());
     expect(onMonthChangeMock).toHaveBeenCalled();
   });
 });
