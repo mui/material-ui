@@ -1,5 +1,5 @@
-import { styles as DayStyles } from '../DatePicker/components/Day';
 import { styles as ModalDialogStyles } from '../_shared/ModalDialog';
+import { useStyles as DayStyles } from '../DatePicker/components/Day';
 import { styles as ClockStyles } from '../TimePicker/components/Clock';
 import { styles as PickerToolbarStyles } from '../_shared/PickerToolbar';
 import { styles as ToolbarButtonStyles } from '../_shared/ToolbarButton';

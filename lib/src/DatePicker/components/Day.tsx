@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { Theme, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme: Theme) => ({
     day: {
       width: 36,
