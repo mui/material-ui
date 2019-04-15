@@ -121,7 +121,6 @@ export const styles = theme => {
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
       height: 'auto',
-      minHeight: '1.1875em', // Reset (19px), match the native input line-height
       resize: 'none',
       padding: 0,
     },
@@ -308,6 +307,7 @@ class InputBase extends React.Component {
       renderPrefix,
       rows,
       rowsMax,
+      rowsMin,
       startAdornment,
       type,
       value,
@@ -370,14 +370,13 @@ class InputBase extends React.Component {
         ref: null,
       };
     } else if (multiline) {
-      if (rows && !rowsMax) {
+      if (rows && !rowsMax && !rowsMin) {
         InputComponent = 'textarea';
       } else {
         inputProps = {
           rowsMax,
-          textareaRef: this.handleRefInput,
+          rowsMin,
           ...inputProps,
-          ref: null,
         };
         InputComponent = Textarea;
       }
@@ -568,6 +567,10 @@ InputBase.propTypes = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * Start `InputAdornment` for this component.
    */

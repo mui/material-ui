@@ -1,34 +1,20 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
+import sinon, { spy, stub, useFakeTimers } from 'sinon';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Textarea from './Textarea';
 
-function assignRefs(wrapper) {
-  // refs don't work with shallow renders in enzyme so here we directly define
-  // 'this.input', 'this.shadow', etc. for this Textarea via wrapper.instance()
-  const inputRef = wrapper.find('textarea').last();
-  wrapper.instance().inputRef = inputRef;
-  const textareaShadowRef = wrapper.find('textarea').at(2);
-  wrapper.instance().shadowRef = textareaShadowRef;
-  const singlelineShadowRef = wrapper.find('textarea').first();
-  wrapper.instance().singlelineShadowRef = singlelineShadowRef;
-
-  return {
-    inputRef,
-    singlelineShadowRef,
-    textareaShadowRef,
-  };
+function getHeight(wrapper) {
+  return wrapper
+    .find('textarea')
+    .at(0)
+    .props().style.height;
 }
 
-const TextareaNaked = unwrap(Textarea);
-
 describe('<Textarea />', () => {
-  let shallow;
   let mount;
 
   before(() => {
-    shallow = createShallow();
     mount = createMount({ strict: true });
   });
 
@@ -36,131 +22,151 @@ describe('<Textarea />', () => {
     mount.cleanUp();
   });
 
-  it('should render 3 textareas', () => {
-    const wrapper = shallow(<TextareaNaked classes={{}} />);
-    assert.strictEqual(wrapper.find('textarea').length, 3);
-  });
+  describeConformance(<Textarea />, () => ({
+    inheritComponent: 'textarea',
+    mount,
+    refInstanceof: window.HTMLTextAreaElement,
+    skip: ['rootClass', 'componentProp'],
+  }));
 
-  it('should change its height when the height of its shadows changes', () => {
-    const wrapper = shallow(<TextareaNaked classes={{}} />);
-    assert.strictEqual(wrapper.state().height, 19);
+  describe('layout', () => {
+    // Only run the test on node.
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      return;
+    }
 
-    const refs = assignRefs(wrapper);
+    const getComputedStyleStub = {};
 
-    // jsdom doesn't support scroll height so we have to simulate it changing
-    // which makes this not so great of a test :(
-    refs.textareaShadowRef.scrollHeight = 43;
-    refs.singlelineShadowRef.scrollHeight = 43;
-    // this is needed to trigger the resize
-    refs.inputRef.simulate('change', { target: { value: 'x' } });
-    assert.strictEqual(wrapper.state().height, 43);
+    function setLayout(wrapper, { getComputedStyle, scrollHeight, lineHeight }) {
+      const input = wrapper.find('textarea').instance();
+      getComputedStyleStub[input] = getComputedStyle;
 
-    refs.textareaShadowRef.scrollHeight = 19;
-    refs.singlelineShadowRef.scrollHeight = 19;
-    refs.inputRef.simulate('change', { target: { value: '' } });
-    assert.strictEqual(wrapper.state().height, 19);
-  });
-
-  describe('height behavior', () => {
-    let instanceWrapper;
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = mount(<Textarea value="f" />);
-      instanceWrapper = wrapper.find('Textarea');
-    });
-
-    afterEach(() => {
-      wrapper.unmount();
-    });
-
-    it('should update the height when the value change', () => {
-      const instance = instanceWrapper.instance();
-      instance.singlelineShadowRef = { scrollHeight: 19 };
-      instance.shadowRef = { scrollHeight: 19 };
-      wrapper.setProps({ value: 'fo' });
-      assert.strictEqual(instanceWrapper.state().height, 19);
-      instance.shadowRef = { scrollHeight: 48 };
-      wrapper.setProps({ value: 'foooooo' });
-      assert.strictEqual(instanceWrapper.state().height, 48);
-    });
-
-    it('should respect the rowsMax property', () => {
-      const instance = instanceWrapper.instance();
-      const rowsMax = 4;
-      const lineHeight = 19;
-      instance.singlelineShadowRef = { scrollHeight: lineHeight };
-      instance.shadowRef = { scrollHeight: lineHeight * 5 };
-      wrapper.setProps({ rowsMax });
-      assert.strictEqual(instanceWrapper.state().height, lineHeight * rowsMax);
-    });
-  });
-
-  it('should set filled', () => {
-    const wrapper = shallow(<TextareaNaked classes={{}} />);
-    assert.strictEqual(wrapper.find('textarea').length, 3);
-
-    const refs = assignRefs(wrapper);
-    // this is needed to trigger the resize
-    refs.inputRef.simulate('change', { target: { value: 'x' } });
-    assert.strictEqual(wrapper.instance().value, 'x');
-    // this is needed to trigger the resize
-    refs.inputRef.simulate('change', { target: { value: '' } });
-    assert.strictEqual(wrapper.instance().value, '');
-  });
-
-  describe('prop: textareaRef', () => {
-    it('should be able to access the native textarea', () => {
-      const handleRef = spy();
-      mount(<Textarea textareaRef={handleRef} />);
-      assert.strictEqual(handleRef.callCount, 1);
-    });
-
-    it('should be able to return the input node via a ref object', () => {
-      const ref = React.createRef();
-      mount(<Textarea textareaRef={ref} />);
-      assert.strictEqual(ref.current.tagName, 'TEXTAREA');
-    });
-  });
-
-  describe('prop: onChange', () => {
-    it('should be call the callback', () => {
-      const handleChange = spy();
-      const wrapper = shallow(<TextareaNaked classes={{}} value="x" onChange={handleChange} />);
-      assert.strictEqual(wrapper.find('textarea').length, 3);
-
-      const refs = assignRefs(wrapper);
-      const event = { target: { value: 'xx' } };
-      refs.inputRef.simulate('change', event);
-      assert.strictEqual(wrapper.instance().value, 'xx');
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.deepEqual(handleChange.args[0], [event]);
-    });
-  });
-
-  describe('resize', () => {
-    let clock;
+      let index = 0;
+      stub(input, 'scrollHeight').get(() => {
+        index += 1;
+        return index % 2 === 1 ? scrollHeight : lineHeight;
+      });
+    }
 
     before(() => {
-      clock = useFakeTimers();
+      stub(window, 'getComputedStyle').value(node => getComputedStyleStub[node] || {});
     });
 
     after(() => {
-      clock.restore();
+      sinon.restore();
     });
 
-    it('should handle the resize event', () => {
-      const wrapper = shallow(<TextareaNaked classes={{}} />);
-      const refs = assignRefs(wrapper);
-      refs.textareaShadowRef.scrollHeight = 43;
-      refs.singlelineShadowRef.scrollHeight = 43;
+    describe('resize', () => {
+      let clock;
+
+      before(() => {
+        clock = useFakeTimers();
+      });
+
+      after(() => {
+        clock.restore();
+      });
+
+      it('should handle the resize event', () => {
+        const wrapper = mount(<Textarea />);
+        assert.strictEqual(getHeight(wrapper), undefined);
+        setLayout(wrapper, {
+          getComputedStyle: {
+            'box-sizing': 'content-box',
+          },
+          scrollHeight: 30,
+          lineHeight: 15,
+        });
+        window.dispatchEvent(new window.Event('resize', {}));
+        clock.tick(166);
+        wrapper.update();
+        assert.strictEqual(getHeight(wrapper), 30);
+      });
+    });
+
+    it('should update when uncontrolled', () => {
+      const handleChange = spy();
+      const wrapper = mount(<Textarea onChange={handleChange} />);
+      assert.strictEqual(getHeight(wrapper), undefined);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: 30,
+        lineHeight: 15,
+      });
       wrapper
-        .find('EventListener')
+        .find('textarea')
         .at(0)
-        .simulate('resize');
-      assert.strictEqual(wrapper.state().height, 19);
-      clock.tick(166);
-      assert.strictEqual(wrapper.state().height, 43);
+        .simulate('change');
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), 30);
+      assert.strictEqual(handleChange.callCount, 1);
+    });
+
+    it('should take the border into account with border-box', () => {
+      const border = 5;
+      const wrapper = mount(<Textarea />);
+      assert.strictEqual(getHeight(wrapper), undefined);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'border-box',
+          'border-bottom-width': `${border}px`,
+        },
+        scrollHeight: 30,
+        lineHeight: 15,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), 30 + border);
+    });
+
+    it('should take the padding into account with content-box', () => {
+      const padding = 5;
+      const wrapper = mount(<Textarea />);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+          'padding-top': `${padding}px`,
+        },
+        scrollHeight: 30,
+        lineHeight: 15,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), 30 - padding);
+    });
+
+    it('should have at least "rowsMin" rows', () => {
+      const rowsMin = 3;
+      const lineHeight = 15;
+      const wrapper = mount(<Textarea rowsMin={rowsMin} />);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: 30,
+        lineHeight,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), lineHeight * rowsMin);
+    });
+
+    it('should have at max "rowsMax" rows', () => {
+      const rowsMax = 3;
+      const lineHeight = 15;
+      const wrapper = mount(<Textarea rowsMax={rowsMax} />);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: 100,
+        lineHeight,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), lineHeight * rowsMax);
     });
   });
 });
