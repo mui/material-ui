@@ -45,7 +45,7 @@ export const shallowRender = (render: (props: any) => React.ReactElement<any>) =
 };
 
 // toHaveBeenCalledWith doesn't work with moment because of changing some internal props
-export const toHaveBeenCalledExceptMoment = (mock: jest.Mock<any, any>, ...params: any[]) => {
+export const toHaveBeenCalledExceptMoment = (mock: jest.Mock<any, any>, params: any[]) => {
   if (process.env.UTILS === 'moment') {
     return expect(mock).toHaveBeenCalled();
   }
