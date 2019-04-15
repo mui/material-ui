@@ -3,10 +3,10 @@ import { StandardProps } from '..';
 
 export interface DialogActionsProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, DialogActionsClassKey> {
-  disableActionSpacing?: boolean;
+  disableSpacing?: boolean;
 }
 
-export type DialogActionsClassKey = 'root' | 'action';
+export type DialogActionsClassKey = 'root' | 'spacing';
 
 declare const DialogActions: React.ComponentType<DialogActionsProps>;
 

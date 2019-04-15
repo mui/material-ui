@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Button'; // So we don't have any override priority issue.
 
 export const styles = {
@@ -10,22 +9,26 @@ export const styles = {
   root: {
     display: 'flex',
     alignItems: 'center',
+    padding: 8,
     justifyContent: 'flex-end',
-    padding: '16px 8px',
   },
-  /* Styles applied to the children. */
-  action: {
-    marginLeft: 8,
+  /* Styles applied to the root element if `disableSpacing={false}`. */
+  spacing: {
+    '& > * + *': {
+      marginLeft: 8,
+    },
   },
 };
 
 const ExpansionPanelActions = React.forwardRef(function ExpansionPanelActions(props, ref) {
-  const { children, classes, className, ...other } = props;
+  const { classes, className, disableSpacing, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      {cloneChildrenWithClassName(children, classes.action)}
-    </div>
+    <div
+      className={clsx(classes.root, { [classes.spacing]: !disableSpacing }, className)}
+      ref={ref}
+      {...other}
+    />
   );
 });
 
@@ -43,6 +46,14 @@ ExpansionPanelActions.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the actions do not have additional margin.
+   */
+  disableSpacing: PropTypes.bool,
+};
+
+ExpansionPanelActions.defaultProps = {
+  disableSpacing: false,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanelActions' })(ExpansionPanelActions);
