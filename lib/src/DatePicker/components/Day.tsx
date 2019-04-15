@@ -25,7 +25,7 @@ export const useStyles = makeStyles(
       fontWeight: 600,
     },
     isSelected: {
-      color: theme.palette.common.white,
+      color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.main,
       fontWeight: theme.typography.fontWeightMedium,
       '&:hover': {

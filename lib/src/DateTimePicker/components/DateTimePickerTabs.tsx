@@ -69,14 +69,18 @@ DateTimePickerTabs.defaultProps = {
   timeIcon: <TimeIcon />,
 };
 
-export const styles = (theme: Theme) => ({
-  tabs: {
-    color: theme.palette.common.white,
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.primary.main
-        : theme.palette.background.default,
-  },
-});
+export const styles = (theme: Theme) => {
+  // prettier-ignore
+  const tabsBackground = theme.palette.type === 'light'
+    ? theme.palette.primary.main
+    : theme.palette.background.default;
+
+  return {
+    tabs: {
+      color: theme.palette.getContrastText(tabsBackground),
+      backgroundColor: tabsBackground,
+    },
+  };
+};
 
 export default withStyles(styles, { name: 'MuiPickerDTTabs', withTheme: true })(DateTimePickerTabs);

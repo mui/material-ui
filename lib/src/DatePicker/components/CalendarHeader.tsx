@@ -83,6 +83,8 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   );
 };
 
+CalendarHeader.displayName = 'CalendarHeader';
+
 (CalendarHeader as any).propTypes = {
   currentMonth: PropTypes.object.isRequired,
   onMonthChange: PropTypes.func.isRequired,
@@ -94,7 +96,6 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   innerRef: PropTypes.any,
 };
 
-CalendarHeader.displayName = 'CalendarHeader';
 CalendarHeader.defaultProps = {
   leftArrowIcon: <ArrowLeftIcon />,
   rightArrowIcon: <ArrowRightIcon />,

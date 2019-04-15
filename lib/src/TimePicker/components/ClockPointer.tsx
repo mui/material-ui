@@ -18,7 +18,7 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,
     isInner: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
+    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key as any])).isRequired,
   };
 
   public static getDerivedStateFromProps = (
@@ -95,7 +95,7 @@ export const styles = (theme: Theme) =>
     thumb: {
       width: 4,
       height: 4,
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: theme.palette.primary.contrastText,
       borderRadius: '100%',
       position: 'absolute',
       top: -21,

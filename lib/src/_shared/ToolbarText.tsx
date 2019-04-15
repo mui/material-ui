@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core';
+import { fade } from '@material-ui/core/styles';
 import { ExtendMui } from '../typings/extendMui';
 
 export interface ToolbarTextProps extends ExtendMui<TypographyProps>, WithStyles<typeof styles> {
@@ -37,17 +38,20 @@ const ToolbarText: React.FunctionComponent<ToolbarTextProps> = ({
   innerRef: PropTypes.any,
 };
 
-ToolbarText.defaultProps = {
-  className: '',
-};
+export const styles = (theme: Theme) => {
+  const textColor =
+    theme.palette.type === 'light'
+      ? theme.palette.primary.contrastText
+      : theme.palette.getContrastText(theme.palette.background.default);
 
-export const styles = (theme: Theme) => ({
-  toolbarTxt: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
-  toolbarBtnSelected: {
-    color: theme.palette.common.white,
-  },
-});
+  return {
+    toolbarTxt: {
+      color: fade(textColor, 0.54),
+    },
+    toolbarBtnSelected: {
+      color: textColor,
+    },
+  };
+};
 
 export default withStyles(styles, { name: 'MuiPickersToolbarText' })(ToolbarText);
