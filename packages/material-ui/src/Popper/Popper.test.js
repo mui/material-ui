@@ -123,6 +123,22 @@ describe('<Popper />', () => {
     });
   });
 
+  describe('prop: popperOptions', () => {
+    const popperProps = {
+      onCreate: spy(),
+      onUpdate: spy()
+    };
+
+    it('should correctly pass down lifecycle callbacks to popperjs', () => {
+      const wrapper = mount(<Popper {...defaultProps} popperOptions={popperProps} />);
+      const instance = wrapper.find('Popper').instance();
+      instance.popper.options.onCreate({ placement: '' });
+      instance.popper.options.onUpdate({ placement: '' });
+      assert.strictEqual(popperProps.onCreate.callCount, 1);
+      assert.strictEqual(popperProps.onUpdate.callCount, 1);
+    });
+  });
+
   describe('prop: keepMounted', () => {
     describe('by default', () => {
       // Test case for https://github.com/mui-org/material-ui/issues/15180
