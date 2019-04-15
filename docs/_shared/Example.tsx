@@ -27,7 +27,7 @@ function Example({ classes, source, enqueueSnackbar }: Props) {
       copy(source.raw).then(() =>
         enqueueSnackbar('Source copied', { variant: 'success', autoHideDuration: 1000 })
       ),
-    [source]
+    [enqueueSnackbar, source.raw]
   );
 
   // make each component rerender on utils change

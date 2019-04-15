@@ -58,7 +58,8 @@
     "**/node_modules",
     "**/coverage",
     "*.d.ts",
-    "videos/"
+    "videos/",
+    "**/build"
   ],
   "dependencies": {
     "cypress": "^3.2.0",

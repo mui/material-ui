@@ -35,6 +35,7 @@ function makeControlledOpenProps(props: BasePickerProps) {
   };
 }
 
+/* eslint-disable react-hooks/rules-of-hooks */
 function useOpenState(props: BasePickerProps) {
   if (props.open !== undefined && props.open !== null) {
     return makeControlledOpenProps(props);
@@ -48,10 +49,11 @@ function useOpenState(props: BasePickerProps) {
     return newIsOpen
       ? props.onOpen && props.onOpen()
       : props.onClose && props.onClose()
-  }, [props.onOpen, props.onClose, setIsOpenState]);
+  }, [props]);
 
   return { isOpen, setIsOpen };
 }
+/* eslint-enable react-hooks/rules-of-hooks */
 
 export function usePickerState(props: BasePickerProps, options: HookOptions) {
   const utils = useUtils();
@@ -63,7 +65,7 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
       // if value was changed in closed state treat it as accepted
       acceptedDateRef.current = props.value;
     }
-  }, [props.value]);
+  }, [acceptedDateRef, isOpen, props.value]);
 
   const validationError = options.getValidationError();
   if (validationError && props.onError) {
@@ -86,18 +88,18 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
     if (props.onAccept) {
       props.onAccept(acceptedDate);
     }
-  }, [utils, props.onChange]);
+  }, [acceptedDateRef, setIsOpen, props]);
 
   const wrapperProps = {
     format,
     open: isOpen,
     onAccept: () => acceptDate(date),
     onClear: () => acceptDate(null),
-    onSetToday: useCallback(() => props.onChange(utils.date()), [date, utils, props.onChange]),
+    onSetToday: useCallback(() => props.onChange(utils.date()), [props, utils]),
     onDismiss: useCallback(() => {
       setIsOpen(false);
       props.onChange(acceptedDateRef.current);
-    }, [date, utils, props.onChange]),
+    }, [setIsOpen, props, acceptedDateRef]),
   };
 
   const pickerProps = {
@@ -110,7 +112,7 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
           acceptDate(newDate);
         }
       },
-      [props.onChange, props.autoOk]
+      [props, acceptDate]
     ),
   };
 

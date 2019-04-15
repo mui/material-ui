@@ -38,7 +38,7 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
     if (props.value === null || utils.isValid(props.value)) {
       setInnerInputValue(getDisplayDate(props.value, format, utils, props.value === null, props));
     }
-  }, [props.value]);
+  }, [format, props, props.value, utils]);
 
   function handleChange(date: MaterialUiPickersDate) {
     const dateString = utils.format(date, format);
