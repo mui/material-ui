@@ -6,26 +6,22 @@ function SecondsTimePicker() {
 
   return (
     <Fragment>
-      <div className="picker">
-        <TimePicker
-          seconds
-          format="hh:mm:ss a"
-          label="With seconds"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <TimePicker
+        seconds
+        format="hh:mm:ss a"
+        label="With seconds"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
-      <div className="picker">
-        <TimePicker
-          seconds
-          ampm={false}
-          format="HH:mm:ss"
-          label="24 hours"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <TimePicker
+        seconds
+        ampm={false}
+        format="HH:mm:ss"
+        label="24 hours"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
     </Fragment>
   );
 }

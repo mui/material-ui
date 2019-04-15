@@ -10,18 +10,16 @@ function ControllingProgrammaticallyExample(props) {
     <div className={props.classes.container}>
       <Button onClick={() => setIsOpen(true)}> Open picker </Button>
 
-      <div className="picker">
-        <DatePicker
-          variant="inline"
-          open={isOpen}
-          onOpen={() => setIsOpen(true)}
-          onClose={() => setIsOpen(false)}
-          label="Open me from button"
-          format="d MMM yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <DatePicker
+        variant="inline"
+        open={isOpen}
+        onOpen={() => setIsOpen(true)}
+        onClose={() => setIsOpen(false)}
+        label="Open me from button"
+        format="d MMM yyyy"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
     </div>
   );
 }

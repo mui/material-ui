@@ -29,11 +29,9 @@ function App() {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <div className="pickers">
-        <DatePicker value={selectedDate} onChange={handleDateChange} />
-        <TimePicker value={selectedDate} onChange={handleDateChange} />
-        <DateTimePicker value={selectedDate} onChange={handleDateChange} />
-      </div>
+      <DatePicker value={selectedDate} onChange={handleDateChange} />
+      <TimePicker value={selectedDate} onChange={handleDateChange} />
+      <DateTimePicker value={selectedDate} onChange={handleDateChange} />
     </MuiPickersUtilsProvider>
   );
 }

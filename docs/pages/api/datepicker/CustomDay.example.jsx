@@ -64,15 +64,13 @@ class CustomElements extends PureComponent {
     const { selectedDate } = this.state;
 
     return (
-      <div className="picker">
-        <DatePicker
-          label="Week picker"
-          value={selectedDate}
-          onChange={this.handleWeekChange}
-          renderDay={this.renderWrappedWeekDay}
-          labelFunc={this.formatWeekSelectLabel}
-        />
-      </div>
+      <DatePicker
+        label="Week picker"
+        value={selectedDate}
+        onChange={this.handleWeekChange}
+        renderDay={this.renderWrappedWeekDay}
+        labelFunc={this.formatWeekSelectLabel}
+      />
     );
   }
 }

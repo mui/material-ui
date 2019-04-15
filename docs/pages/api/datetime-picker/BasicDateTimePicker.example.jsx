@@ -6,30 +6,29 @@ function BasicDateTimePicker() {
 
   return (
     <Fragment>
-      <div className="picker">
-        <DateTimePicker value={selectedDate} onChange={handleDateChange} label="DateTimePicker" />
-      </div>
+      <DateTimePicker
+        label="DateTimePicker"
+        inputVariant="outlined"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
-      <div className="picker">
-        <DateTimePicker
-          autoOk
-          ampm={false}
-          disableFuture
-          value={selectedDate}
-          onChange={handleDateChange}
-          label="24h clock"
-        />
-      </div>
+      <DateTimePicker
+        autoOk
+        ampm={false}
+        disableFuture
+        value={selectedDate}
+        onChange={handleDateChange}
+        label="24h clock"
+      />
 
-      <div className="picker">
-        <DateTimePicker
-          value={selectedDate}
-          disablePast
-          onChange={handleDateChange}
-          label="With Today Button"
-          showTodayButton
-        />
-      </div>
+      <DateTimePicker
+        value={selectedDate}
+        disablePast
+        onChange={handleDateChange}
+        label="With Today Button"
+        showTodayButton
+      />
     </Fragment>
   );
 }

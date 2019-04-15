@@ -30,23 +30,21 @@ function DateFnsLocalizationExample() {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
-      <div className="picker">
-        <DatePicker
-          value={selectedDate}
-          onChange={handleDateChange}
-          InputProps={{
-            endAdornment: (
-              <IconButton
-                aria-label="Select locale"
-                onClick={handleMenuOpen}
-                aria-owns={anchorEl ? 'locale-menu' : null}
-              >
-                <MoreIcon />
-              </IconButton>
-            ),
-          }}
-        />
-      </div>
+      <DatePicker
+        value={selectedDate}
+        onChange={handleDateChange}
+        InputProps={{
+          endAdornment: (
+            <IconButton
+              aria-label="Select locale"
+              onClick={handleMenuOpen}
+              aria-owns={anchorEl ? 'locale-menu' : null}
+            >
+              <MoreIcon />
+            </IconButton>
+          ),
+        }}
+      />
 
       <Menu
         id="locale-menu"

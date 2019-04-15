@@ -6,24 +6,20 @@ function InlineTimePickerDemo() {
 
   return (
     <Fragment>
-      <div className="picker">
-        <TimePicker
-          variant="inline"
-          label="Inline mode"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <TimePicker
+        variant="inline"
+        label="Inline mode"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
-      <div className="picker">
-        <KeyboardTimePicker
-          ampm={false}
-          variant="inline"
-          label="With keyboard"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <KeyboardTimePicker
+        ampm={false}
+        variant="inline"
+        label="With keyboard"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
     </Fragment>
   );
 }

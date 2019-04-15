@@ -35,23 +35,21 @@ function MomentLocalizationExample() {
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils} locale={locale} moment={moment}>
-      <div className="picker">
-        <DatePicker
-          value={selectedDate}
-          onChange={handleDateChange}
-          InputProps={{
-            endAdornment: (
-              <IconButton
-                aria-label="Select locale"
-                onClick={handleMenuOpen}
-                aria-owns={anchorEl ? 'locale-menu' : null}
-              >
-                <MoreIcon />
-              </IconButton>
-            ),
-          }}
-        />
-      </div>
+      <DatePicker
+        value={selectedDate}
+        onChange={handleDateChange}
+        InputProps={{
+          endAdornment: (
+            <IconButton
+              aria-label="Select locale"
+              onClick={handleMenuOpen}
+              aria-owns={anchorEl ? 'locale-menu' : null}
+            >
+              <MoreIcon />
+            </IconButton>
+          ),
+        }}
+      />
 
       <Menu
         id="locale-menu"

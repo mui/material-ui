@@ -31,9 +31,7 @@ const FormikExample = () => {
         <Form>
           <Grid container>
             <Grid item container justify="center" xs={12}>
-              <div className="picker">
-                <Field name="date" component={DatePickerField} />
-              </div>
+              <Field name="date" component={DatePickerField} />
             </Grid>
 
             <Grid item xs={12} sm={12} style={{ margin: '24px' }}>
