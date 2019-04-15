@@ -24,7 +24,7 @@ export const createOverrides = (theme: Theme): StyleRules<any> => ({
   h6: theme.typography.h6,
   p: {
     lineHeight: 1.4,
-    color: theme.palette.text.primary,
+    ...theme.typography.body1,
   },
   a: {
     color: theme.palette.secondary.main,

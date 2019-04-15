@@ -15,11 +15,9 @@ function StaticPickers() {
 
   return (
     <div>
-      <div className="picker">
-        <Paper style={{ overflow: 'hidden' }}>
-          <Calendar {...pickerProps} />
-        </Paper>
-      </div>
+      <Paper style={{ overflow: 'hidden' }}>
+        <Calendar {...pickerProps} />
+      </Paper>
 
       <TimePickerView // or just directly use components
         type="hours"

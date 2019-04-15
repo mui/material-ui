@@ -5,8 +5,8 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import PickerToolbar from '../_shared/PickerToolbar';
 import YearSelection from './components/YearSelection';
 import MonthSelection from './components/MonthSelection';
-import Calendar, { RenderDay } from './components/Calendar';
 import createStyles from '@material-ui/styles/createStyles';
+import Calendar, { OutterCalendarProps } from './components/Calendar';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { MaterialUiPickersDate } from '../typings/date';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
@@ -14,7 +14,7 @@ import { DatePickerViewType } from '../constants/DatePickerView';
 import { DateType, DomainPropTypes } from '../constants/prop-types';
 import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
 
-export interface BaseDatePickerProps {
+export interface BaseDatePickerProps extends OutterCalendarProps {
   /** Min selectable date */
   minDate?: DateType;
   /** Max selectable date */
@@ -29,22 +29,8 @@ export interface BaseDatePickerProps {
   views?: ('year' | 'month' | 'day')[];
   /** Initial view to show when date picker is open */
   openTo?: 'year' | 'month' | 'day';
-  /** Left arrow icon */
-  leftArrowIcon?: React.ReactNode;
-  /** Right arrow icon */
-  rightArrowIcon?: React.ReactNode;
-  /** Custom renderer for day */
-  renderDay?: RenderDay;
-  /** Show only calendar, without toolbar */
-  onlyCalendar?: boolean;
-  /** Enables keyboard listener for moving between days in calendar */
-  allowKeyboardControl?: boolean;
-  /** Disable specific date */
-  shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
   /** Callback firing on year change */
   onYearChange?: (date: MaterialUiPickersDate) => void;
-  /** Callback firing on month change */
-  onMonthChange?: (date: MaterialUiPickersDate) => void;
 }
 
 export interface DatePickerRootProps
@@ -153,6 +139,8 @@ export class DatePickerRoot extends React.PureComponent<DatePickerRootProps> {
       onMonthChange,
       onYearChange,
       onlyCalendar,
+      leftArrowButtonProps,
+      rightArrowButtonProps,
     } = this.props;
 
     return (
@@ -220,7 +208,9 @@ export class DatePickerRoot extends React.PureComponent<DatePickerRootProps> {
             minDate={this.minDate}
             maxDate={this.maxDate}
             leftArrowIcon={leftArrowIcon}
+            leftArrowButtonProps={leftArrowButtonProps}
             rightArrowIcon={rightArrowIcon}
+            rightArrowButtonProps={rightArrowButtonProps}
             renderDay={renderDay}
             shouldDisableDate={shouldDisableDate}
             allowKeyboardControl={allowKeyboardControl}

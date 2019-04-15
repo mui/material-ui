@@ -99,7 +99,7 @@ export const styles = (theme: Theme) => {
       color: theme.palette.type === 'light' ? theme.palette.text.primary : theme.palette.text.hint,
     },
     selected: {
-      color: theme.palette.common.white,
+      color: theme.palette.primary.contrastText,
     },
   });
 };

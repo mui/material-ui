@@ -31,6 +31,8 @@ module.exports = {
     'react/jsx-uses-react': 2,
     'pretty-imports/sorted': 'warn',
     '@typescript-eslint/no-use-before-define': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/no-unused-vars': [
       'error',
       { vars: 'all', args: 'after-used', ignoreRestSiblings: true },

@@ -6,30 +6,24 @@ function BasicTimePicker() {
 
   return (
     <Fragment>
-      <div className="picker">
-        <TimePicker autoOk label="12 hours" value={selectedDate} onChange={handleDateChange} />
-      </div>
+      <TimePicker autoOk label="12 hours" value={selectedDate} onChange={handleDateChange} />
 
-      <div className="picker">
-        <TimePicker
-          clearable
-          ampm={false}
-          label="24 hours"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <TimePicker
+        clearable
+        ampm={false}
+        label="24 hours"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
-      <div className="picker">
-        <TimePicker
-          showTodayButton
-          todayLabel="now"
-          label="Step = 5"
-          value={selectedDate}
-          minutesStep={5}
-          onChange={handleDateChange}
-        />
-      </div>
+      <TimePicker
+        showTodayButton
+        todayLabel="now"
+        label="Step = 5"
+        value={selectedDate}
+        minutesStep={5}
+        onChange={handleDateChange}
+      />
     </Fragment>
   );
 }

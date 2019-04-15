@@ -14,7 +14,6 @@ export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
   clearLabel?: React.ReactNode;
   /** "Today" label message */
   todayLabel?: React.ReactNode;
-  showTabs?: boolean;
   /**
    * If true today button will be displayed
    * <b>Note*</b> that clear button has higher priority

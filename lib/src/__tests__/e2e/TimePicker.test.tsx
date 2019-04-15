@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TimePicker, { TimePickerProps } from '../../TimePicker/TimePickerRoot';
 import { ReactWrapper } from 'enzyme';
-import { mount, utilsToUse } from '../test-utils';
+import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
 
 describe('e2e - TimePicker', () => {
   let component: ReactWrapper<TimePickerProps>;
@@ -66,5 +66,14 @@ describe('e2e - TimePicker', () => {
     });
 
     expect(onChangeMock).toHaveBeenCalled();
+  });
+
+  it('Should change meridiem mode', () => {
+    component
+      .find('WithStyles(ToolbarButton)')
+      .at(3)
+      .simulate('click');
+
+    toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T12:00:00.000'), false]);
   });
 });

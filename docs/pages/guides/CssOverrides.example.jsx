@@ -40,14 +40,12 @@ function CssOverrides() {
 
   return (
     <MuiThemeProvider theme={materialTheme}>
-      <div className="picker">
-        <DatePicker
-          label="Light blue picker"
-          value={selectedDate}
-          onChange={handleDateChange}
-          animateYearScrolling={false}
-        />
-      </div>
+      <DatePicker
+        label="Light blue picker"
+        value={selectedDate}
+        onChange={handleDateChange}
+        animateYearScrolling={false}
+      />
     </MuiThemeProvider>
   );
 }

@@ -27,6 +27,7 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
     invalidDateMessage,
     labelFunc,
     leftArrowIcon,
+    leftArrowButtonProps,
     maxDate,
     maxDateMessage,
     minDate,
@@ -40,6 +41,7 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
     openTo,
     renderDay,
     rightArrowIcon,
+    rightArrowButtonProps,
     shouldDisableDate,
     value,
     variant,
@@ -70,10 +72,12 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
         disableFuture={disableFuture}
         disablePast={disablePast}
         leftArrowIcon={leftArrowIcon}
+        leftArrowButtonProps={leftArrowButtonProps}
         maxDate={maxDate}
         minDate={minDate}
         renderDay={renderDay}
         rightArrowIcon={rightArrowIcon}
+        rightArrowButtonProps={rightArrowButtonProps}
         shouldDisableDate={shouldDisableDate}
         views={views}
         openTo={openTo}

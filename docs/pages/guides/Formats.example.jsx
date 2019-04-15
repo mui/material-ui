@@ -16,17 +16,15 @@ function DateFnsLocalizationExample() {
 
   return (
     <MuiPickersUtilsProvider utils={LocalizedUtils} locale={frLocale}>
-      <div className="picker">
-        <DatePicker
-          clearable
-          helperText="Localization done right"
-          format="d MMM yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
-          clearLabel="vider"
-          cancelLabel="annuler"
-        />
-      </div>
+      <DatePicker
+        clearable
+        helperText="Localization done right"
+        format="d MMM yyyy"
+        value={selectedDate}
+        onChange={handleDateChange}
+        clearLabel="vider"
+        cancelLabel="annuler"
+      />
     </MuiPickersUtilsProvider>
   );
 }

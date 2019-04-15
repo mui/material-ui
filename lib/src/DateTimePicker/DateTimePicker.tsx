@@ -30,6 +30,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = props => {
     invalidDateMessage,
     labelFunc,
     leftArrowIcon,
+    leftArrowButtonProps,
     maxDate,
     maxDateMessage,
     minDate,
@@ -44,6 +45,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = props => {
     openTo,
     renderDay,
     rightArrowIcon,
+    rightArrowButtonProps,
     shouldDisableDate,
     showTabs,
     timeIcon,
@@ -66,6 +68,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = props => {
   return (
     <Wrapper
       variant={variant}
+      showTabs={toShowTabs}
       InputComponent={PureDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}
@@ -73,8 +76,8 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = props => {
     >
       <DateTimePickerRoot
         {...pickerProps}
-        allowKeyboardControl={allowKeyboardControl}
         ampm={ampm}
+        allowKeyboardControl={allowKeyboardControl}
         minutesStep={minutesStep}
         animateYearScrolling={animateYearScrolling}
         autoSubmit={autoSubmit}
@@ -82,6 +85,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = props => {
         disableFuture={disableFuture}
         disablePast={disablePast}
         leftArrowIcon={leftArrowIcon}
+        leftArrowButtonProps={leftArrowButtonProps}
         maxDate={maxDate}
         minDate={minDate}
         onMonthChange={onMonthChange}
@@ -89,6 +93,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = props => {
         openTo={openTo}
         renderDay={renderDay}
         rightArrowIcon={rightArrowIcon}
+        rightArrowButtonProps={rightArrowButtonProps}
         shouldDisableDate={shouldDisableDate}
         showTabs={toShowTabs}
         timeIcon={timeIcon}

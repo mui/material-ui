@@ -253,72 +253,6 @@
       "required": false,
       "type": { "name": "\"year\" | \"month\" | \"day\"" }
     },
-    "leftArrowIcon": {
-      "defaultValue": null,
-      "description": "Left arrow icon",
-      "name": "leftArrowIcon",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "ReactNode" }
-    },
-    "rightArrowIcon": {
-      "defaultValue": null,
-      "description": "Right arrow icon",
-      "name": "rightArrowIcon",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "ReactNode" }
-    },
-    "renderDay": {
-      "defaultValue": null,
-      "description": "Custom renderer for day",
-      "name": "renderDay",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "RenderDay" }
-    },
-    "onlyCalendar": {
-      "defaultValue": null,
-      "description": "Show only calendar, without toolbar",
-      "name": "onlyCalendar",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
-    },
-    "allowKeyboardControl": {
-      "defaultValue": null,
-      "description": "Enables keyboard listener for moving between days in calendar",
-      "name": "allowKeyboardControl",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
-    },
-    "shouldDisableDate": {
-      "defaultValue": null,
-      "description": "Disable specific date",
-      "name": "shouldDisableDate",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(day: any) => boolean" }
-    },
     "onYearChange": {
       "defaultValue": null,
       "description": "Callback firing on year change",
@@ -330,13 +264,105 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
+    "leftArrowIcon": {
+      "defaultValue": null,
+      "description": "Left arrow icon",
+      "name": "leftArrowIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "rightArrowIcon": {
+      "defaultValue": null,
+      "description": "Right arrow icon",
+      "name": "rightArrowIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "renderDay": {
+      "defaultValue": null,
+      "description": "Custom renderer for day",
+      "name": "renderDay",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "RenderDay" }
+    },
+    "onlyCalendar": {
+      "defaultValue": null,
+      "description": "Show only calendar, without toolbar",
+      "name": "onlyCalendar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": null,
+      "description": "Enables keyboard listener for moving between days in calendar",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "leftArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to left arrow button",
+      "name": "leftArrowButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    },
+    "rightArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to right arrow button",
+      "name": "rightArrowButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    },
+    "shouldDisableDate": {
+      "defaultValue": null,
+      "description": "Disable specific date",
+      "name": "shouldDisableDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "(day: any) => boolean" }
+    },
     "onMonthChange": {
       "defaultValue": null,
       "description": "Callback firing on month change",
       "name": "onMonthChange",
       "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
       },
       "required": false,
       "type": { "name": "(date: any) => void" }
@@ -840,72 +866,6 @@
       "required": false,
       "type": { "name": "boolean" }
     },
-    "leftArrowIcon": {
-      "defaultValue": null,
-      "description": "Left arrow icon",
-      "name": "leftArrowIcon",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "ReactNode" }
-    },
-    "rightArrowIcon": {
-      "defaultValue": null,
-      "description": "Right arrow icon",
-      "name": "rightArrowIcon",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "ReactNode" }
-    },
-    "renderDay": {
-      "defaultValue": null,
-      "description": "Custom renderer for day",
-      "name": "renderDay",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "RenderDay" }
-    },
-    "onlyCalendar": {
-      "defaultValue": null,
-      "description": "Show only calendar, without toolbar",
-      "name": "onlyCalendar",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
-    },
-    "allowKeyboardControl": {
-      "defaultValue": null,
-      "description": "Enables keyboard listener for moving between days in calendar",
-      "name": "allowKeyboardControl",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
-    },
-    "shouldDisableDate": {
-      "defaultValue": null,
-      "description": "Disable specific date",
-      "name": "shouldDisableDate",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(day: any) => boolean" }
-    },
     "onYearChange": {
       "defaultValue": null,
       "description": "Callback firing on year change",
@@ -917,13 +877,105 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
+    "leftArrowIcon": {
+      "defaultValue": null,
+      "description": "Left arrow icon",
+      "name": "leftArrowIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "rightArrowIcon": {
+      "defaultValue": null,
+      "description": "Right arrow icon",
+      "name": "rightArrowIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "renderDay": {
+      "defaultValue": null,
+      "description": "Custom renderer for day",
+      "name": "renderDay",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "RenderDay" }
+    },
+    "onlyCalendar": {
+      "defaultValue": null,
+      "description": "Show only calendar, without toolbar",
+      "name": "onlyCalendar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": null,
+      "description": "Enables keyboard listener for moving between days in calendar",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "leftArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to left arrow button",
+      "name": "leftArrowButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    },
+    "rightArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to right arrow button",
+      "name": "rightArrowButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    },
+    "shouldDisableDate": {
+      "defaultValue": null,
+      "description": "Disable specific date",
+      "name": "shouldDisableDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "(day: any) => boolean" }
+    },
     "onMonthChange": {
       "defaultValue": null,
       "description": "Callback firing on month change",
       "name": "onMonthChange",
       "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
-        "name": "BaseDatePickerProps"
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
       },
       "required": false,
       "type": { "name": "(date: any) => void" }

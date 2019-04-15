@@ -1,6 +1,7 @@
 import Ad from '_shared/Ad'
 import Example from '_shared/Example';
 import PageMeta from '_shared/PageMeta'
+import * as CssTheme from './CssTheme.example'
 import * as CssOverrides from './CssOverrides.example'
 
 <PageMeta title="CSS Overrides" />
@@ -12,14 +13,21 @@ colors/fonts/theme setting as any other material-ui component.
 
 <Ad />
 
+
+#### Default theme
+
+You can customize material-ui theme, that passed to `ThemeProvider` and picker`s will leverage your settings.
+
+<Example source={CssTheme} />
+
+#### Override example
+
 *Date/Time pickers are quite simple control from UX side, so most people just use default appearence*
 
 Thats why we are not providing any for-component classes api to override stylesheet for particular
 component. Only one way to override existed stylesheet - usage of global material-ui theme
 overrides.
 
-#### Override example
-You can find the override component name and class in the generated classnames for pickers components.
 
 <Example source={CssOverrides} />
 

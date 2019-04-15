@@ -16,40 +16,34 @@ function PersianExample() {
 
   return (
     <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
-      <div className="picker">
-        <DatePicker
-          clearable
-          okLabel="تأیید"
-          cancelLabel="لغو"
-          clearLabel="پاک کردن"
-          labelFunc={date => (date ? date.format('jYYYY/jMM/jDD') : '')}
-          value={selectedDate}
-          onChange={handleDateChange}
-          animateYearScrolling={false}
-        />
-      </div>
+      <DatePicker
+        clearable
+        okLabel="تأیید"
+        cancelLabel="لغو"
+        clearLabel="پاک کردن"
+        labelFunc={date => (date ? date.format('jYYYY/jMM/jDD') : '')}
+        value={selectedDate}
+        onChange={handleDateChange}
+        animateYearScrolling={false}
+      />
 
-      <div className="picker">
-        <TimePicker
-          clearable
-          okLabel="تأیید"
-          cancelLabel="لغو"
-          clearLabel="پاک کردن"
-          labelFunc={date => (date ? date.format('hh:mm A') : '')}
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <TimePicker
+        clearable
+        okLabel="تأیید"
+        cancelLabel="لغو"
+        clearLabel="پاک کردن"
+        labelFunc={date => (date ? date.format('hh:mm A') : '')}
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
-      <div className="picker">
-        <DateTimePicker
-          okLabel="تأیید"
-          cancelLabel="لغو"
-          labelFunc={date => (date ? date.format('jYYYY/jMM/jDD hh:mm A') : '')}
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <DateTimePicker
+        okLabel="تأیید"
+        cancelLabel="لغو"
+        labelFunc={date => (date ? date.format('jYYYY/jMM/jDD hh:mm A') : '')}
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
     </MuiPickersUtilsProvider>
   );
 }

@@ -29,6 +29,7 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
     invalidDateMessage,
     labelFunc,
     leftArrowIcon,
+    leftArrowButtonProps,
     maxDate,
     maxDateMessage,
     minDate,
@@ -43,6 +44,7 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
     openTo,
     renderDay,
     rightArrowIcon,
+    rightArrowButtonProps,
     shouldDisableDate,
     value,
     variant,
@@ -71,12 +73,14 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
         disableFuture={disableFuture}
         disablePast={disablePast}
         leftArrowIcon={leftArrowIcon}
+        leftArrowButtonProps={leftArrowButtonProps}
         maxDate={maxDate}
         minDate={minDate}
         onlyCalendar={onlyCalendar}
         openTo={openTo}
         renderDay={renderDay}
         rightArrowIcon={rightArrowIcon}
+        rightArrowButtonProps={rightArrowButtonProps}
         shouldDisableDate={shouldDisableDate}
         views={views}
       />
