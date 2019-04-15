@@ -3,31 +3,25 @@ import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Popper from '../Popper';
 import Tooltip from './Tooltip';
 import Input from '../Input';
 import createMuiTheme from '../styles/createMuiTheme';
-import RootRef from '../RootRef';
 
-function persist() {}
-
-const TooltipNaked = unwrap(Tooltip);
 const theme = createMuiTheme();
 
 describe('<Tooltip />', () => {
-  let shallow;
   let mount;
   let classes;
   let clock;
   const defaultProps = {
-    children: <span>Hello World</span>,
+    children: <span id="testChild">Hello World</span>,
     theme,
     title: 'Hello World',
   };
 
   before(() => {
-    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     // StrictModeViolation: uses RootRef, Grow and tests a lot of impl details
     mount = createMount({ strict: undefined });
     classes = getClasses(<Tooltip {...defaultProps} />);
@@ -40,16 +34,15 @@ describe('<Tooltip />', () => {
   });
 
   it('should render the correct structure', () => {
-    const wrapper = shallow(<Tooltip {...defaultProps} />);
-    assert.strictEqual(wrapper.type(), React.Fragment);
-    assert.strictEqual(wrapper.childAt(0).type(), RootRef);
-    assert.strictEqual(wrapper.childAt(1).type(), Popper);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.popper), true);
+    const wrapper = mount(<Tooltip {...defaultProps} />);
+    const children = wrapper.childAt(0);
+    assert.strictEqual(children.childAt(1).type(), Popper);
+    assert.strictEqual(children.childAt(1).hasClass(classes.popper), true);
   });
 
   describe('prop: disableHoverListener', () => {
     it('should hide the native title', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tooltip {...defaultProps} title="Hello World" disableHoverListener>
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -63,16 +56,16 @@ describe('<Tooltip />', () => {
   describe('prop: title', () => {
     it('should display if the title is present', () => {
       const wrapper = mount(<Tooltip {...defaultProps} open />);
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
 
     it('should not display if the title is an empty string', () => {
-      const wrapper = shallow(<Tooltip {...defaultProps} title="" open />);
-      assert.strictEqual(wrapper.find(Popper).props().open, false);
+      const wrapper = mount(<Tooltip {...defaultProps} title="" open />);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     });
 
     it('should be passed down to the child as a native title', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tooltip {...defaultProps} title="Hello World">
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -85,88 +78,64 @@ describe('<Tooltip />', () => {
 
   describe('prop: placement', () => {
     it('should have top placement', () => {
-      const wrapper = shallow(<Tooltip {...defaultProps} placement="top" />);
+      const wrapper = mount(<Tooltip {...defaultProps} placement="top" />);
       assert.strictEqual(wrapper.find(Popper).props().placement, 'top');
     });
   });
 
   it('should respond to external events', () => {
-    const wrapper = shallow(<Tooltip {...defaultProps} />);
-    wrapper.instance().childrenRef = document.createElement('div');
-    const children = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(wrapper.instance().state.open, false);
-    children.simulate('mouseOver', { type: 'mouseover' });
-    assert.strictEqual(wrapper.instance().state.open, true);
-    children.simulate('mouseLeave', { type: 'mouseleave' });
-    assert.strictEqual(wrapper.instance().state.open, false);
+    const wrapper = mount(<Tooltip {...defaultProps} />);
+    const children = wrapper.find('#testChild');
+    assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+    children.simulate('mouseOver');
+    children.simulate('focus');
+    assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+    children.simulate('mouseLeave');
+    assert.strictEqual(wrapper.find(Popper).props().open, false);
+    children.simulate('blur');
+    assert.strictEqual(wrapper.find(Popper).props().open, false);
   });
 
   it('should be controllable', () => {
     const handleRequestOpen = spy();
     const handleClose = spy();
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <Tooltip {...defaultProps} open onOpen={handleRequestOpen} onClose={handleClose} />,
     );
-    wrapper.instance().childrenRef = document.createElement('div');
-    const children = wrapper.childAt(0).childAt(0);
+    const children = wrapper.find('#testChild');
     assert.strictEqual(handleRequestOpen.callCount, 0);
     assert.strictEqual(handleClose.callCount, 0);
-    children.simulate('mouseOver', { type: 'mouseover' });
+    children.simulate('mouseOver');
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleClose.callCount, 0);
-    children.simulate('mouseLeave', { type: 'mouseleave' });
+    children.simulate('mouseLeave');
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleClose.callCount, 1);
   });
 
-  it('should close when the interaction is over', () => {
-    const wrapper = shallow(<Tooltip {...defaultProps} />);
-    const childrenRef = document.createElement('div');
-    childrenRef.tabIndex = 0;
-    wrapper.instance().childrenRef = childrenRef;
-    const children = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(wrapper.instance().state.open, false);
-    children.simulate('mouseOver', { type: 'mouseover' });
-    childrenRef.focus();
-    children.simulate('focus', { type: 'focus', persist });
-    clock.tick(0);
-    assert.strictEqual(wrapper.instance().state.open, true);
-    children.simulate('mouseLeave', { type: 'mouseleave' });
-    assert.strictEqual(wrapper.instance().state.open, false);
-    children.simulate('blur', { type: 'blur' });
-    assert.strictEqual(wrapper.instance().state.open, false);
-  });
-
   describe('touch screen', () => {
     it('should not respond to quick events', () => {
-      const wrapper = shallow(<Tooltip {...defaultProps} />);
-      const childrenRef = document.createElement('div');
-      childrenRef.tabIndex = 0;
-      wrapper.instance().childrenRef = childrenRef;
-      const children = wrapper.childAt(0).childAt(0);
-      children.simulate('touchStart', { type: 'touchstart', persist });
-      children.simulate('touchEnd', { type: 'touchend', persist });
-      childrenRef.focus();
-      children.simulate('focus', { type: 'focus', persist });
-      assert.strictEqual(wrapper.instance().state.open, false);
+      const wrapper = mount(<Tooltip {...defaultProps} />);
+      const children = wrapper.find('#testChild');
+      children.simulate('touchStart');
+      children.simulate('touchEnd');
+      children.simulate('focus');
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     });
 
     it('should open on long press', () => {
-      const wrapper = shallow(<Tooltip {...defaultProps} />);
-      const childrenRef = document.createElement('div');
-      childrenRef.tabIndex = 0;
-      wrapper.instance().childrenRef = childrenRef;
-      const children = wrapper.childAt(0).childAt(0);
-      children.simulate('touchStart', { type: 'touchstart', persist });
-      childrenRef.focus();
-      children.simulate('focus', { type: 'focus', persist });
-      clock.tick(1e3);
-      assert.strictEqual(wrapper.instance().state.open, true);
-      children.simulate('touchEnd', { type: 'touchend', persist });
-      children.simulate('blur', { type: 'blur' });
+      const wrapper = mount(<Tooltip {...defaultProps} />);
+      const children = wrapper.find('#testChild');
+      children.simulate('touchStart');
+      children.simulate('focus');
+      clock.tick(1000);
+      wrapper.update();
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      children.simulate('touchEnd');
+      children.simulate('blur');
       clock.tick(1500);
-      assert.strictEqual(wrapper.instance().state.open, false);
+      assert.strictEqual(wrapper.find(Popper).props().open, false);
     });
   });
 
@@ -191,37 +160,35 @@ describe('<Tooltip />', () => {
 
       const wrapper = mount(<AutoFocus />);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.find(Popper).props().open, false);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       clock.tick(0);
       wrapper.update();
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
   });
 
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
-      const wrapper = mount(<TooltipNaked classes={{}} enterDelay={111} {...defaultProps} />);
-      const childrenRef = wrapper.instance().childrenRef;
-      childrenRef.tabIndex = 0;
-      childrenRef.focus();
-      assert.strictEqual(document.activeElement, childrenRef);
-      assert.strictEqual(wrapper.instance().state.open, false);
+      const wrapper = mount(<Tooltip enterDelay={111} {...defaultProps} />);
+      const children = wrapper.find('#testChild');
+      children.simulate('focus');
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       clock.tick(111);
-      assert.strictEqual(wrapper.instance().state.open, true);
+      wrapper.update();
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
 
     it('should take the leaveDelay into account', () => {
-      const wrapper = mount(<TooltipNaked classes={{}} leaveDelay={111} {...defaultProps} />);
-      const childrenRef = wrapper.instance().childrenRef;
-      childrenRef.tabIndex = 0;
-      childrenRef.focus();
-      assert.strictEqual(document.activeElement, childrenRef);
+      const wrapper = mount(<Tooltip leaveDelay={111} {...defaultProps} />);
+      const children = wrapper.find('#testChild');
+      children.simulate('focus');
       clock.tick(0);
-      assert.strictEqual(wrapper.instance().state.open, true);
-      childrenRef.blur();
-      assert.strictEqual(wrapper.instance().state.open, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      children.simulate('blur');
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
       clock.tick(111);
-      assert.strictEqual(wrapper.instance().state.open, false);
+      wrapper.update();
+      assert.strictEqual(wrapper.find(Popper).props().open, false);
     });
   });
 
@@ -237,17 +204,16 @@ describe('<Tooltip />', () => {
     ].forEach(name => {
       it(`should be transparent for the ${name} event`, () => {
         const handler = spy();
-        const wrapper = shallow(
+        const wrapper = mount(
           <Tooltip {...defaultProps} title="Hello World">
-            <button type="submit" {...{ [name]: handler }}>
+            <button id="testChild" type="submit" {...{ [name]: handler }}>
               Hello World
             </button>
           </Tooltip>,
         );
-        wrapper.instance().childrenRef = document.createElement('div');
-        const children = wrapper.childAt(0).childAt(0);
+        const children = wrapper.find('#testChild');
         const type = name.slice(2).toLowerCase();
-        children.simulate(type, { type, persist });
+        children.simulate(type);
         clock.tick(0);
         assert.strictEqual(handler.callCount, 1);
       });
@@ -305,26 +271,28 @@ describe('<Tooltip />', () => {
     it('should keep the overlay open if the popper element is hovered', () => {
       const wrapper = mount(
         <Tooltip title="Hello World" interactive leaveDelay={111}>
-          <button type="submit">Hello World</button>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
         </Tooltip>,
       );
-      const tooltipNaked = wrapper.find(TooltipNaked);
-      const children = wrapper.childAt(0).childAt(0);
+
+      const children = wrapper.find('#testChild');
       children.simulate('mouseOver', { type: 'mouseOver' });
       clock.tick(0);
-      assert.strictEqual(tooltipNaked.instance().state.open, true);
+      assert.strictEqual(wrapper.find(Popper).props().open, true);
       const popper = wrapper.find(Popper);
       children.simulate('mouseLeave', { type: 'mouseleave' });
-      assert.strictEqual(tooltipNaked.instance().state.open, true);
+      assert.strictEqual(wrapper.find(Popper).props().open, true);
       popper.simulate('mouseOver', { type: 'mouseover' });
       clock.tick(111);
-      assert.strictEqual(tooltipNaked.instance().state.open, true);
+      assert.strictEqual(wrapper.find(Popper).props().open, true);
     });
   });
 
   describe('forward', () => {
     it('should forward properties to the child element', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tooltip className="foo" {...defaultProps}>
           <h1 className="bar">H1</h1>
         </Tooltip>,
@@ -333,7 +301,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should respect the properties priority', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tooltip hidden {...defaultProps}>
           <h1 hidden={false}>H1</h1>
         </Tooltip>,
