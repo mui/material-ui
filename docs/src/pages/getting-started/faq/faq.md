@@ -67,7 +67,7 @@ const theme = createMuiTheme({
 Sometimes you will want to enable this behavior conditionally, for instance during testing or on low-end devices,
 in these cases, you can dynamically change the theme value.
 
-You can go one step further by disabling all the transitions, animtions and the ripple effect:
+You can go one step further by disabling all the transitions, animations and the ripple effect:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
