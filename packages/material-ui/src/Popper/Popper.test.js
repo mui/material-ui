@@ -126,7 +126,7 @@ describe('<Popper />', () => {
   describe('prop: popperOptions', () => {
     const popperProps = {
       onCreate: spy(),
-      onUpdate: spy()
+      onUpdate: spy(),
     };
 
     it('should correctly pass down lifecycle callbacks to popperjs', () => {

@@ -98,7 +98,7 @@ class Popper extends React.Component {
       // We could have been using a custom modifier like react-popper is doing.
       // But it seems this is the best public API for this use case.
       onCreate: createChainedFunction(this.handlePopperUpdate, popperOptions.onCreate),
-      onUpdate: createChainedFunction(this.handlePopperUpdate, popperOptions.onUpdate)
+      onUpdate: createChainedFunction(this.handlePopperUpdate, popperOptions.onUpdate),
     });
   };
 
