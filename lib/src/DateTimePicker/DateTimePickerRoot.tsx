@@ -16,7 +16,7 @@ import { BaseTimePickerProps } from '../TimePicker/TimePickerRoot';
 
 export interface BaseDateTimePickerProps
   extends Omit<BaseTimePickerProps, 'seconds'>,
-    Omit<BaseDatePickerProps, 'views' | 'openTo' | 'openToYearSelection' | 'views'> {
+    Omit<BaseDatePickerProps, 'views' | 'openTo'> {
   /** Auto move between date, hours and minutes */
   autoSubmit?: boolean;
   /** Show or hide date/time tabs (hidden automatically on small screens) */
@@ -127,7 +127,9 @@ export class DateTimePickerRoot extends React.Component<DateTimePickerProps, Dat
       disablePast,
       disableFuture,
       leftArrowIcon,
+      leftArrowButtonProps,
       rightArrowIcon,
+      rightArrowButtonProps,
       dateRangeIcon,
       timeIcon,
       renderDay,
@@ -189,7 +191,9 @@ export class DateTimePickerRoot extends React.Component<DateTimePickerProps, Dat
               disablePast={disablePast}
               disableFuture={disableFuture}
               leftArrowIcon={leftArrowIcon}
+              leftArrowButtonProps={leftArrowButtonProps}
               rightArrowIcon={rightArrowIcon}
+              rightArrowButtonProps={rightArrowButtonProps}
               renderDay={renderDay}
               shouldDisableDate={shouldDisableDate}
               onMonthChange={onMonthChange}

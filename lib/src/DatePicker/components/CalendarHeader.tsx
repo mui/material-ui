@@ -1,21 +1,23 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import createStyles from '@material-ui/styles/createStyles';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
+import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import { Theme } from '@material-ui/core';
+import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../_shared/icons/ArrowRightIcon';
-import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 
-export interface CalendarHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
+export interface CalendarHeaderProps extends WithStyles<typeof styles, true> {
   currentMonth: object;
   onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
   leftArrowIcon?: React.ReactNode;
   rightArrowIcon?: React.ReactNode;
+  leftArrowButtonProps?: Partial<IconButtonProps>;
+  rightArrowButtonProps?: Partial<IconButtonProps>;
   disablePrevMonth?: boolean;
   disableNextMonth?: boolean;
   slideDirection: SlideDirection;
@@ -28,11 +30,13 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   onMonthChange,
   leftArrowIcon,
   rightArrowIcon,
+  leftArrowButtonProps,
+  rightArrowButtonProps,
   disablePrevMonth,
   disableNextMonth,
-  utils,
   slideDirection,
 }) => {
+  const utils = useUtils();
   const rtl = theme.direction === 'rtl';
 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(currentMonth), 'left');
@@ -42,6 +46,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
     <div>
       <div className={classes.switchHeader}>
         <IconButton
+          {...leftArrowButtonProps}
           disabled={disablePrevMonth}
           onClick={selectPreviousMonth}
           className={classes.iconButton}
@@ -60,6 +65,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
         </SlideTransition>
 
         <IconButton
+          {...rightArrowButtonProps}
           disabled={disableNextMonth}
           onClick={selectNextMonth}
           className={classes.iconButton}
@@ -143,9 +149,7 @@ export const styles = (theme: Theme) =>
     },
   });
 
-export default withUtils()(
-  withStyles(styles, {
-    withTheme: true,
-    name: 'MuiPickersCalendarHeader',
-  })(CalendarHeader)
-);
+export default withStyles(styles, {
+  withTheme: true,
+  name: 'MuiPickersCalendarHeader',
+})(CalendarHeader);

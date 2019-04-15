@@ -22,6 +22,8 @@ function CustomDateTimePicker(props) {
         minDate={new Date('2018-01-01')}
         helperText="Hardcoded helper text"
         leftArrowIcon={<AlarmIcon />}
+        leftArrowButtonProps={{ 'aria-label': 'Prev month' }}
+        rightArrowButtonProps={{ 'aria-label': 'Next month' }}
         rightArrowIcon={<SnoozeIcon />}
         InputProps={{
           endAdornment: (

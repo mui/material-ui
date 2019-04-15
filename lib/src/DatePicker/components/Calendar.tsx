@@ -7,11 +7,11 @@ import EventListener from 'react-event-listener';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
+import { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { DateType, DomainPropTypes } from '../../constants/prop-types';
 
 export type RenderDay = (
   day: MaterialUiPickersDate,
@@ -20,19 +20,37 @@ export type RenderDay = (
   dayComponent: React.ReactElement<IconButtonProps>
 ) => JSX.Element;
 
-export interface CalendarProps extends WithUtilsProps, WithStyles<typeof styles, true> {
+export interface OutterCalendarProps {
+  /** Left arrow icon */
+  leftArrowIcon?: React.ReactNode;
+  /** Right arrow icon */
+  rightArrowIcon?: React.ReactNode;
+  /** Custom renderer for day */
+  renderDay?: RenderDay;
+  /** Show only calendar, without toolbar */
+  onlyCalendar?: boolean;
+  /** Enables keyboard listener for moving between days in calendar */
+  allowKeyboardControl?: boolean;
+  /** Props to pass to left arrow icon */
+  leftArrowButtonProps?: Partial<IconButtonProps>;
+  /** Props to pass to right arrow icon */
+  rightArrowButtonProps?: Partial<IconButtonProps>;
+  /** Disable specific date */
+  shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
+  /** Callback firing on month change */
+  onMonthChange?: (date: MaterialUiPickersDate) => void;
+}
+
+export interface CalendarProps
+  extends OutterCalendarProps,
+    WithUtilsProps,
+    WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
+  onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
   minDate: DateType;
   maxDate: DateType;
-  onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
   disablePast?: boolean;
   disableFuture?: boolean;
-  leftArrowIcon?: React.ReactNode;
-  rightArrowIcon?: React.ReactNode;
-  renderDay?: RenderDay;
-  allowKeyboardControl?: boolean;
-  onMonthChange?: (date: MaterialUiPickersDate) => void;
-  shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 
 export interface CalendarState {
@@ -43,17 +61,9 @@ export interface CalendarState {
 
 export class Calendar extends React.Component<CalendarProps, CalendarState> {
   public static propTypes: any = {
-    date: PropTypes.object.isRequired,
-    minDate: DomainPropTypes.date,
-    maxDate: DomainPropTypes.date,
-    onChange: PropTypes.func.isRequired,
-    disablePast: PropTypes.bool,
-    disableFuture: PropTypes.bool,
     renderDay: PropTypes.func,
     shouldDisableDate: PropTypes.func,
-    utils: PropTypes.object.isRequired,
     allowKeyboardControl: PropTypes.bool,
-    innerRef: PropTypes.any,
   };
 
   public static defaultProps = {
@@ -251,18 +261,27 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
   public render() {
     const { currentMonth, slideDirection } = this.state;
-    const { classes, allowKeyboardControl } = this.props;
+    const {
+      classes,
+      allowKeyboardControl,
+      leftArrowButtonProps,
+      leftArrowIcon,
+      rightArrowButtonProps,
+      rightArrowIcon,
+    } = this.props;
 
     return (
       <React.Fragment>
         {allowKeyboardControl && <EventListener target="window" onKeyDown={this.handleKeyDown} />}
 
         <CalendarHeader
-          slideDirection={slideDirection}
           currentMonth={currentMonth}
+          slideDirection={slideDirection}
           onMonthChange={this.handleChangeMonth}
-          leftArrowIcon={this.props.leftArrowIcon}
-          rightArrowIcon={this.props.rightArrowIcon}
+          leftArrowIcon={leftArrowIcon}
+          leftArrowButtonProps={leftArrowButtonProps}
+          rightArrowIcon={rightArrowIcon}
+          rightArrowButtonProps={rightArrowButtonProps}
           disablePrevMonth={this.shouldDisablePrevMonth()}
           disableNextMonth={this.shouldDisableNextMonth()}
         />

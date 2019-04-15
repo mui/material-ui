@@ -32,6 +32,7 @@ export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
     invalidDateMessage,
     labelFunc,
     leftArrowIcon,
+    leftArrowButtonProps,
     maxDate,
     maxDateMessage,
     minDate,
@@ -46,6 +47,7 @@ export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
     openTo,
     renderDay,
     rightArrowIcon,
+    rightArrowButtonProps,
     shouldDisableDate,
     showTabs,
     timeIcon,
@@ -85,6 +87,7 @@ export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
         disableFuture={disableFuture}
         disablePast={disablePast}
         leftArrowIcon={leftArrowIcon}
+        leftArrowButtonProps={leftArrowButtonProps}
         maxDate={maxDate}
         minDate={minDate}
         onMonthChange={onMonthChange}
@@ -92,6 +95,7 @@ export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
         openTo={openTo}
         renderDay={renderDay}
         rightArrowIcon={rightArrowIcon}
+        rightArrowButtonProps={rightArrowButtonProps}
         shouldDisableDate={shouldDisableDate}
         showTabs={toShowTabs}
         timeIcon={timeIcon}
