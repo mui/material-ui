@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import { createMount } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
@@ -36,7 +37,7 @@ describe('useMediaQuery', () => {
   }
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   beforeEach(() => {
@@ -51,142 +52,154 @@ describe('useMediaQuery', () => {
 
   describe('option: defaultMatches', () => {
     it('should be false by default', () => {
+      const ref = React.createRef();
+      const text = () => ref.current.textContent;
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)');
-        values(matches);
-        return <span>{`${matches}`}</span>;
+        React.useEffect(() => values(matches));
+        return <span ref={ref}>{`${matches}`}</span>;
       };
 
-      const wrapper = mount(<Test />);
-      assert.strictEqual(wrapper.text(), 'false');
+      mount(<Test />);
+      assert.strictEqual(text(), 'false');
       assert.strictEqual(values.callCount, 1);
     });
 
     it('should take the option into account', () => {
+      const ref = React.createRef();
+      const text = () => ref.current.textContent;
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
         });
-        values(matches);
-        return <span>{`${matches}`}</span>;
+        React.useEffect(() => values(matches));
+        return <span ref={ref}>{`${matches}`}</span>;
       };
 
-      const wrapper = mount(<Test />);
-      assert.strictEqual(wrapper.text(), 'false');
+      mount(<Test />);
+      assert.strictEqual(text(), 'false');
       assert.strictEqual(values.callCount, 2);
     });
   });
 
   describe('option: noSsr', () => {
     it('should render once if the default value match the expectation', () => {
+      const ref = React.createRef();
+      const text = () => ref.current.textContent;
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: false,
         });
-        values(matches);
-        return <span>{`${matches}`}</span>;
+        React.useEffect(() => values(matches));
+        return <span ref={ref}>{`${matches}`}</span>;
       };
 
-      const wrapper = mount(<Test />);
-      assert.strictEqual(wrapper.text(), 'false');
+      mount(<Test />);
+      assert.strictEqual(text(), 'false');
       assert.strictEqual(values.callCount, 1);
     });
 
     it('should render twice if the default value does not match the expectation', () => {
+      const ref = React.createRef();
+      const text = () => ref.current.textContent;
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
         });
-        values(matches);
-        return <span>{`${matches}`}</span>;
+        React.useEffect(() => values(matches));
+        return <span ref={ref}>{`${matches}`}</span>;
       };
 
-      const wrapper = mount(<Test />);
-      assert.strictEqual(wrapper.text(), 'false');
+      mount(<Test />);
+      assert.strictEqual(text(), 'false');
       assert.strictEqual(values.callCount, 2);
     });
 
     it('should render once if the default value does not match the expectation', () => {
+      const ref = React.createRef();
+      const text = () => ref.current.textContent;
       const Test = () => {
         const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
           noSsr: true,
         });
-        values(matches);
-        return <span>{`${matches}`}</span>;
+        React.useEffect(() => values(matches));
+        return <span ref={ref}>{`${matches}`}</span>;
       };
 
-      const wrapper = mount(<Test />);
-      assert.strictEqual(wrapper.text(), 'false');
+      mount(<Test />);
+      assert.strictEqual(text(), 'false');
       assert.strictEqual(values.callCount, 1);
     });
   });
 
-  it('should try to reconcile only the first time', done => {
+  it('should try to reconcile only the first time', () => {
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
     const Test = () => {
       const matches = useMediaQuery('(min-width:2000px)', {
         defaultMatches: true,
       });
-      values(matches);
-      return <span>{`${matches}`}</span>;
+      React.useEffect(() => values(matches));
+      return <span ref={ref}>{`${matches}`}</span>;
     };
 
-    let wrapper = mount(<Test />);
-    assert.strictEqual(wrapper.text(), 'false');
+    mount(<Test />);
+    assert.strictEqual(text(), 'false');
     assert.strictEqual(values.callCount, 2);
-    setTimeout(() => {
-      ReactDOM.unmountComponentAtNode(mount.attachTo);
-      wrapper = mount(<Test />);
-      assert.strictEqual(wrapper.text(), 'false');
-      assert.strictEqual(values.callCount, 3);
 
-      setTimeout(() => {
-        assert.strictEqual(wrapper.text(), 'false');
-        assert.strictEqual(values.callCount, 3);
-        done();
-      });
-    });
+    ReactDOM.unmountComponentAtNode(mount.attachTo);
+
+    mount(<Test />);
+    assert.strictEqual(text(), 'false');
+    assert.strictEqual(values.callCount, 3);
   });
 
   it('should be able to change the query dynamically', () => {
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
     const Test = props => {
       const matches = useMediaQuery(props.query, {
         defaultMatches: true,
       });
-      values(matches);
-      return <span>{`${matches}`}</span>;
+      React.useEffect(() => values(matches));
+      return <span ref={ref}>{`${matches}`}</span>;
     };
     Test.propTypes = {
       query: PropTypes.string.isRequired,
     };
 
     const wrapper = mount(<Test query="(min-width:2000px)" />);
-    assert.strictEqual(wrapper.text(), 'false');
+    assert.strictEqual(text(), 'false');
     assert.strictEqual(values.callCount, 2);
     wrapper.setProps({ query: '(min-width:100px)' });
-    assert.strictEqual(wrapper.text(), 'true');
+    assert.strictEqual(text(), 'true');
     assert.strictEqual(values.callCount, 4);
   });
 
   it('should observe the media query', () => {
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
     const Test = props => {
       const matches = useMediaQuery(props.query);
-      values(matches);
-      return <span>{`${matches}`}</span>;
+      React.useEffect(() => values(matches));
+      return <span ref={ref}>{`${matches}`}</span>;
     };
     Test.propTypes = {
       query: PropTypes.string.isRequired,
     };
 
-    const wrapper = mount(<Test query="(min-width:2000px)" />);
+    mount(<Test query="(min-width:2000px)" />);
     assert.strictEqual(values.callCount, 1);
-    assert.strictEqual(wrapper.text(), 'false');
+    assert.strictEqual(text(), 'false');
 
     window.matchMedia = createMatchMedia(30000, listeners);
-    listeners[0]({
-      matches: true,
+    act(() => {
+      listeners[0]({
+        matches: true,
+      });
     });
-    assert.strictEqual(wrapper.text(), 'true');
+    assert.strictEqual(text(), 'true');
     assert.strictEqual(values.callCount, 2);
   });
 });

@@ -76,7 +76,8 @@ describe('<SwitchBase />', () => {
 
   before(() => {
     SwitchBaseNaked = unwrap(SwitchBase);
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(<SwitchBase {...defaultProps} />);
   });
 
@@ -122,7 +123,7 @@ describe('<SwitchBase />', () => {
   it('should spread custom props on the root node', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} data-my-prop="woofSwitchBase" />);
     assert.strictEqual(
-      wrapper.props()['data-my-prop'],
+      findOutermostIntrinsic(wrapper).props()['data-my-prop'],
       'woofSwitchBase',
       'custom prop should be woofSwitchBase',
     );

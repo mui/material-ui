@@ -22,7 +22,8 @@ describe('<Tooltip />', () => {
   };
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses RootRef, Grow and tests a lot of impl details
+    mount = createMount({ strict: undefined });
     classes = getClasses(<Tooltip {...defaultProps} />);
     clock = useFakeTimers();
   });

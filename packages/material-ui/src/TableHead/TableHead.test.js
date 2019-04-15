@@ -13,7 +13,7 @@ describe('<TableHead />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<TableHead>foo</TableHead>);
   });
 

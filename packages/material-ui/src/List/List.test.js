@@ -15,7 +15,7 @@ describe('<List />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<List />);
   });
 

@@ -25,7 +25,8 @@ describe('<Modal />', () => {
         <div />
       </Modal>,
     );
-    mount = createMount();
+    // StrictModeViolation: uses Backdrop
+    mount = createMount({ strict: false });
     savedBodyStyle = document.body.style;
   });
 

@@ -23,7 +23,7 @@ describe('<TableCell />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<TableCell />);
   });
 

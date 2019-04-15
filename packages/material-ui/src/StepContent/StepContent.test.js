@@ -20,7 +20,8 @@ describe('<StepContent />', () => {
   before(() => {
     classes = getClasses(<StepContent />);
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: uses Collapse
+    mount = createMount({ strict: false });
   });
 
   after(() => {

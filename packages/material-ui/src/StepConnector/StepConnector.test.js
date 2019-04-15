@@ -16,7 +16,7 @@ describe('<StepConnector />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<StepConnector />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

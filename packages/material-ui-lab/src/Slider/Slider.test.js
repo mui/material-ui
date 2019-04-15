@@ -20,7 +20,8 @@ describe('<Slider />', () => {
 
   before(() => {
     classes = getClasses(<Slider value={0} />);
-    mount = createMount();
+    // StrictMode violation: uses ButtonBase
+    mount = createMount({ strict: false });
   });
 
   after(() => {

@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
-import RootRef from '@material-ui/core/RootRef';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Popper from '@material-ui/core/Popper';
@@ -180,64 +179,65 @@ class ScrollPlayground extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.scrollContainer}>
-          <RootRef rootRef={this.centerScroll}>
-            <Grid className={classes.scroll} container alignItems="center" justify="center">
-              <div>
-                <Button
-                  ref={this.anchorRef}
-                  variant="contained"
-                  onClick={this.handleClickButton}
-                  aria-describedby={id}
-                >
-                  Toggle Popper
-                </Button>
-                <Typography className={classes.legend}>
-                  Scroll around this container to experiment with flip and preventOverflow
-                  modifiers.
-                </Typography>
-                <Popper
-                  id={id}
-                  open={open}
-                  anchorEl={this.anchorRef.current}
-                  placement={placement}
-                  disablePortal={disablePortal}
-                  className={classes.popper}
-                  modifiers={{
-                    flip: {
-                      enabled: flip,
-                    },
-                    arrow: {
-                      enabled: arrow,
-                      element: arrowRef,
-                    },
-                    preventOverflow: {
-                      enabled: preventOverflow !== 'disabled',
-                      boundariesElement:
-                        preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow,
-                    },
-                  }}
-                >
-                  {arrow ? <span className={classes.arrow} ref={this.handleArrowRef} /> : null}
-                  <Paper className={classes.paper}>
-                    <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-                    <DialogContent>
-                      <DialogContentText>
-                        Let Google help apps determine location.
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={this.handleClickButton} color="primary">
-                        Disagree
-                      </Button>
-                      <Button onClick={this.handleClickButton} color="primary">
-                        Agree
-                      </Button>
-                    </DialogActions>
-                  </Paper>
-                </Popper>
-              </div>
-            </Grid>
-          </RootRef>
+          <Grid
+            className={classes.scroll}
+            container
+            alignItems="center"
+            justify="center"
+            ref={this.centerScroll}
+          >
+            <div>
+              <Button
+                ref={this.anchorRef}
+                variant="contained"
+                onClick={this.handleClickButton}
+                aria-describedby={id}
+              >
+                Toggle Popper
+              </Button>
+              <Typography className={classes.legend}>
+                Scroll around this container to experiment with flip and preventOverflow modifiers.
+              </Typography>
+              <Popper
+                id={id}
+                open={open}
+                anchorEl={this.anchorRef.current}
+                placement={placement}
+                disablePortal={disablePortal}
+                className={classes.popper}
+                modifiers={{
+                  flip: {
+                    enabled: flip,
+                  },
+                  arrow: {
+                    enabled: arrow,
+                    element: arrowRef,
+                  },
+                  preventOverflow: {
+                    enabled: preventOverflow !== 'disabled',
+                    boundariesElement:
+                      preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow,
+                  },
+                }}
+              >
+                {arrow ? <span className={classes.arrow} ref={this.handleArrowRef} /> : null}
+                <Paper className={classes.paper}>
+                  <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>Let Google help apps determine location.</DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={this.handleClickButton} color="primary">
+                      Disagree
+                    </Button>
+                    <Button onClick={this.handleClickButton} color="primary">
+                      Agree
+                    </Button>
+                  </DialogActions>
+                </Paper>
+              </Popper>
+            </div>
+          </Grid>
         </div>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>

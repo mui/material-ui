@@ -21,7 +21,7 @@ describe('<TouchRipple />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    mount = createMount({ strict: undefined });
     classes = getClasses(<TouchRipple />);
   });
 

@@ -22,7 +22,8 @@ describe('<ButtonBase />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
-    mount = createMount();
+    // StrictModeViolation: uses TouchRipple
+    mount = createMount({ strict: false });
     classes = getClasses(<ButtonBase />);
   });
 
@@ -43,7 +44,7 @@ describe('<ButtonBase />', () => {
       const wrapper = mount(<ButtonBase type="submit">Hello</ButtonBase>);
       const button = wrapper.find('button');
       assert.strictEqual(button.exists(), true);
-      assert.strictEqual(wrapper.props().type, 'submit');
+      assert.strictEqual(button.props().type, 'submit');
     });
 
     it('should change the button component and add accessibility requirements', () => {
@@ -679,9 +680,10 @@ describe('<ButtonBase />', () => {
       wrapper.setProps({
         children: 'bar',
       });
+
       assert.strictEqual(
         rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
-        1,
+        2,
       );
     });
   });

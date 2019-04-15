@@ -13,7 +13,8 @@ describe('styled', () => {
   let StyledButton;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses makeStyles
+    mount = createMount({ strict: false });
     StyledButton = styled('button')({
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
       borderRadius: 3,

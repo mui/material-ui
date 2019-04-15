@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     justifyContent: 'center',
     flexWrap: 'wrap',
@@ -14,15 +13,15 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing(1, 2),
   },
-});
+}));
 
 function handleClick(event) {
   event.preventDefault();
   alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function SimpleBreadcrumbs(props) {
-  const { classes } = props;
+function SimpleBreadcrumbs() {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Paper elevation={0} className={classes.paper}>
@@ -59,8 +58,4 @@ function SimpleBreadcrumbs(props) {
   );
 }
 
-SimpleBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleBreadcrumbs);
+export default SimpleBreadcrumbs;

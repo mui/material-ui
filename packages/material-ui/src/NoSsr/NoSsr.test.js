@@ -8,7 +8,7 @@ describe('<NoSsr />', () => {
   let render;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     render = createRender();
   });
 
@@ -31,11 +31,10 @@ describe('<NoSsr />', () => {
     it('should render the children', () => {
       const wrapper = mount(
         <NoSsr>
-          <span>Hello</span>
+          <span id="client-only" />
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.find('span').length, 1);
-      assert.strictEqual(wrapper.text(), 'Hello');
+      assert.strictEqual(wrapper.find('#client-only').exists(), true);
     });
   });
 
@@ -56,10 +55,10 @@ describe('<NoSsr />', () => {
     it('should defer the rendering', () => {
       const wrapper = mount(
         <NoSsr defer>
-          <span>Hello</span>
+          <span id="client-only">Hello</span>
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.find('span').length, 1);
+      assert.strictEqual(wrapper.find('#client-only').exists(), true);
     });
   });
 });
