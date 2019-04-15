@@ -9,7 +9,7 @@ describe('<Input />', () => {
 
   before(() => {
     classes = getClasses(<Input />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

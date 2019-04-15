@@ -36,10 +36,11 @@ describe('useMediaQueryTheme', () => {
   });
 
   it('should use the ssr match media ponyfill', () => {
+    const containerRef = React.createRef();
     function MyComponent() {
       const matches = useMediaQueryTheme('(min-width:2000px)');
       values(matches);
-      return <span>{`${matches}`}</span>;
+      return <span ref={containerRef}>{`${matches}`}</span>;
     }
 
     const Test = () => {

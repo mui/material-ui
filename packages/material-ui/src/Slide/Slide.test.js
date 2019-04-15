@@ -1,12 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import {
-  createShallow,
-  createMount,
-  describeConformance,
-  unwrap,
-} from '@material-ui/core/test-utils';
+import { createShallow, createMount, describeConformance } from '@material-ui/core/test-utils';
 import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
@@ -14,7 +9,6 @@ import createMuiTheme from '../styles/createMuiTheme';
 describe('<Slide />', () => {
   let shallow;
   let mount;
-  const SlideNaked = unwrap(Slide);
   const defaultProps = {
     in: true,
     children: <div />,
@@ -23,7 +17,8 @@ describe('<Slide />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: uses react-transition-group
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -45,13 +40,13 @@ describe('<Slide />', () => {
 
   it('should not override children styles', () => {
     const wrapper = mount(
-      <SlideNaked
+      <Slide
         {...defaultProps}
         style={{ color: 'red', backgroundColor: 'yellow' }}
         theme={createMuiTheme()}
       >
         <div id="with-slide" style={{ color: 'blue' }} />
-      </SlideNaked>,
+      </Slide>,
     );
     assert.deepEqual(wrapper.find('#with-slide').props().style, {
       backgroundColor: 'yellow',
@@ -125,10 +120,8 @@ describe('<Slide />', () => {
 
   describe('prop: direction', () => {
     it('should update the position', () => {
-      const wrapper = mount(
-        <SlideNaked {...defaultProps} theme={createMuiTheme()} in={false} direction="left" />,
-      );
-      const transition = wrapper.instance().childDOMNode;
+      const wrapper = mount(<Slide {...defaultProps} in={false} direction="left" />);
+      const transition = wrapper.find('Slide').instance().childDOMNode;
 
       const transition1 = transition.style.transform;
       wrapper.setProps({
@@ -241,11 +234,11 @@ describe('<Slide />', () => {
   describe('mount', () => {
     it('should work when initially hidden', () => {
       const wrapper = mount(
-        <SlideNaked theme={createMuiTheme()} in={false}>
+        <Slide in={false}>
           <div>Foo</div>
-        </SlideNaked>,
+        </Slide>,
       );
-      const transition = wrapper.instance().childDOMNode;
+      const transition = wrapper.find('Slide').instance().childDOMNode;
 
       assert.strictEqual(transition.style.visibility, 'hidden');
       assert.notStrictEqual(transition.style.transform, undefined);
@@ -265,11 +258,11 @@ describe('<Slide />', () => {
 
     it('should recompute the correct position', () => {
       const wrapper = mount(
-        <SlideNaked theme={createMuiTheme()} direction="up" in={false}>
+        <Slide direction="up" in={false}>
           <div>Foo</div>
-        </SlideNaked>,
+        </Slide>,
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Slide').instance();
       instance.handleResize();
       clock.tick(166);
       const transition = instance.childDOMNode;

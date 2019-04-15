@@ -11,7 +11,7 @@ describe('<OutlinedInput />', () => {
 
   before(() => {
     classes = getClasses(<OutlinedInput />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

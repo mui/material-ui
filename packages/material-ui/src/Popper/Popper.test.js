@@ -18,7 +18,8 @@ describe('<Popper />', () => {
 
   before(() => {
     shallow = createShallow();
-    mount = createMount();
+    // StrictModeViolation: uses Portal
+    mount = createMount({ strict: false });
   });
 
   after(() => {

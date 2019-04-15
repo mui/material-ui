@@ -18,7 +18,8 @@ describe('<Menu />', () => {
 
   before(() => {
     classes = getClasses(<Menu {...defaultProps} />);
-    mount = createMount();
+    // StrictModeViolation: uses Popover
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -109,20 +110,20 @@ describe('<Menu />', () => {
   it('should pass onClose prop to Popover', () => {
     const fn = () => {};
     const wrapper = mount(<Menu {...defaultProps} onClose={fn} />);
-    assert.strictEqual(wrapper.props().onClose, fn);
+    assert.strictEqual(wrapper.find(Popover).props().onClose, fn);
   });
 
   it('should pass anchorEl prop to Popover', () => {
     const el = document.createElement('div');
     const wrapper = mount(<Menu {...defaultProps} anchorEl={el} />);
-    assert.strictEqual(wrapper.props().anchorEl, el);
+    assert.strictEqual(wrapper.find(Popover).props().anchorEl, el);
   });
 
   it('should pass through the `open` prop to Popover', () => {
     const wrapper = mount(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.props().open, false);
+    assert.strictEqual(wrapper.find(Popover).props().open, false);
     wrapper.setProps({ open: true });
-    assert.strictEqual(wrapper.props().open, true);
+    assert.strictEqual(wrapper.find(Popover).props().open, true);
   });
 
   describe('list node', () => {

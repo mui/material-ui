@@ -7,7 +7,7 @@ describe('<ListItemAvatar />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(
       <ListItemAvatar>
         <div />

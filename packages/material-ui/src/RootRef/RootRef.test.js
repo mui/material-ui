@@ -11,7 +11,8 @@ describe('<RootRef />', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses findDOMNode
+    mount = createMount({ strict: false });
   });
 
   after(() => {

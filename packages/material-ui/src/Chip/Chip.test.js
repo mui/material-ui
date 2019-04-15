@@ -13,7 +13,7 @@ describe('<Chip />', () => {
 
   before(() => {
     classes = getClasses(<Chip />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

@@ -80,7 +80,14 @@ async function getSizeLimitBundles() {
       // vs https://bundlephobia.com/result?p=react-media
       name: '@material-ui/core/useMediaQuery',
       webpack: true,
-      path: 'packages/material-ui/build/useMediaQuery/index.js',
+      path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
+    },
+    {
+      // vs https://bundlephobia.com/result?p=react-textarea-autosize
+      // vs https://bundlephobia.com/result?p=react-autosize-textarea
+      name: '@material-ui/core/Textarea',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/InputBase/Textarea.js',
     },
     {
       name: 'docs.main',

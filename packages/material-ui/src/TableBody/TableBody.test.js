@@ -14,7 +14,8 @@ describe('<TableBody />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
+
     classes = getClasses(<TableBody />);
   });
 

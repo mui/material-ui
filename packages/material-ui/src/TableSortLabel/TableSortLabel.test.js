@@ -17,7 +17,8 @@ describe('<TableSortLabel />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(<TableSortLabel />);
   });
 
@@ -75,8 +76,13 @@ describe('<TableSortLabel />', () => {
 
     it('should accept a custom icon for the sort icon', () => {
       const wrapper = mount(<TableSortLabel IconComponent={Sort} />);
-      assert.strictEqual(wrapper.props().IconComponent, Sort);
-      assert.strictEqual(wrapper.find(Sort).length, 1);
+      assert.strictEqual(
+        wrapper
+          .find(`.${classes.icon}`)
+          .first()
+          .type(),
+        Sort,
+      );
     });
   });
 

@@ -15,7 +15,7 @@ describe('<FormHelperText />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<FormHelperText />);
   });
 
