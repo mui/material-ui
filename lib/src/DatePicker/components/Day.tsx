@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import createStyles from '@material-ui/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
@@ -44,7 +45,9 @@ class Day extends React.PureComponent<DayProps> {
 
     return (
       <IconButton className={className} tabIndex={hidden || disabled ? -1 : 0} {...other}>
-        {children}
+        <Typography variant="body1" color="inherit">
+          {children}
+        </Typography>
       </IconButton>
     );
   }
