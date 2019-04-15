@@ -31,9 +31,9 @@ export interface OutterCalendarProps {
   onlyCalendar?: boolean;
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl?: boolean;
-  /** Props to pass to left arrow icon */
+  /** Props to pass to left arrow button */
   leftArrowButtonProps?: Partial<IconButtonProps>;
-  /** Props to pass to right arrow icon */
+  /** Props to pass to right arrow button */
   rightArrowButtonProps?: Partial<IconButtonProps>;
   /** Disable specific date */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;

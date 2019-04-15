@@ -321,7 +321,7 @@
     },
     "leftArrowButtonProps": {
       "defaultValue": null,
-      "description": "Props to pass to left arrow icon",
+      "description": "Props to pass to left arrow button",
       "name": "leftArrowButtonProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
@@ -334,7 +334,7 @@
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
-      "description": "Props to pass to right arrow icon",
+      "description": "Props to pass to right arrow button",
       "name": "rightArrowButtonProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
@@ -934,7 +934,7 @@
     },
     "leftArrowButtonProps": {
       "defaultValue": null,
-      "description": "Props to pass to left arrow icon",
+      "description": "Props to pass to left arrow button",
       "name": "leftArrowButtonProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
@@ -947,7 +947,7 @@
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
-      "description": "Props to pass to right arrow icon",
+      "description": "Props to pass to right arrow button",
       "name": "rightArrowButtonProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
