@@ -1,17 +1,15 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses, createMount } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
-  let shallow;
   let classes;
   let mount;
 
   before(() => {
-    shallow = createShallow();
     classes = getClasses(<TouchRipple />);
     mount = createMount({ strict: undefined });
   });
@@ -21,18 +19,19 @@ describe('<Ripple />', () => {
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={10} />,
     );
-    assert.strictEqual(wrapper.name(), 'Transition');
+    assert.strictEqual(wrapper.find('Transition').exists(), true);
   });
 
   it('should have the ripple className', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={11} />,
     );
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.ripple), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.fast), false);
+    const rippleWrapper = wrapper.find('span').first();
+    assert.strictEqual(rippleWrapper.hasClass(classes.ripple), true);
+    assert.strictEqual(rippleWrapper.hasClass(classes.fast), false);
   });
 
   describe('starting and stopping', () => {
@@ -43,7 +42,6 @@ describe('<Ripple />', () => {
         <Ripple
           classes={classes}
           timeout={{ exit: 0, enter: 0 }}
-          in={false}
           rippleX={0}
           rippleY={0}
           rippleSize={11}
@@ -52,10 +50,8 @@ describe('<Ripple />', () => {
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state().visible, false);
       wrapper.setProps({ in: true });
       wrapper.update();
-      assert.strictEqual(wrapper.state().visible, true);
       const rippleWrapper = wrapper.find('span').first();
       assert.strictEqual(rippleWrapper.hasClass(classes.rippleVisible), true);
     });
@@ -64,7 +60,6 @@ describe('<Ripple />', () => {
       wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
       wrapper.update();
-      assert.strictEqual(wrapper.state().leaving, true);
       const childWrapper = wrapper.find('span').last();
       assert.strictEqual(childWrapper.hasClass(classes.childLeaving), true);
     });
@@ -97,10 +92,8 @@ describe('<Ripple />', () => {
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state().visible, false);
       wrapper.setProps({ in: true });
       wrapper.update();
-      assert.strictEqual(wrapper.state().visible, true);
       const rippleWrapper = wrapper.find('span').first();
       assert.strictEqual(rippleWrapper.hasClass(classes.rippleVisible), true);
       const childWrapper = wrapper.find('span').last();
@@ -108,9 +101,9 @@ describe('<Ripple />', () => {
     });
 
     it('should stop the ripple', () => {
+      wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
       wrapper.update();
-      assert.strictEqual(wrapper.state().leaving, true);
       const childWrapper = wrapper.find('span').last();
       assert.strictEqual(childWrapper.hasClass(classes.childLeaving), true);
     });
