@@ -28,7 +28,7 @@ import Tab from '@material-ui/core/Tab';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
+Any other properties supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS
 
