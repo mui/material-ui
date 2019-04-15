@@ -68,6 +68,7 @@ export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
   return (
     <Wrapper
       variant={variant}
+      showTabs={showTabs}
       InputComponent={KeyboardDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}

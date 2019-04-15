@@ -16,6 +16,7 @@ export interface WrapperProps<T> {
   InputComponent: React.FC<T>;
   DateInputProps: T;
   wider?: boolean;
+  showTabs?: boolean;
 }
 
 type OmitInnerWrapperProps<T extends WrapperProps<any>> = Omit<

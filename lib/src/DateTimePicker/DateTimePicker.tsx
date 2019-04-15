@@ -66,6 +66,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = props => {
   return (
     <Wrapper
       variant={variant}
+      showTabs={toShowTabs}
       InputComponent={PureDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}

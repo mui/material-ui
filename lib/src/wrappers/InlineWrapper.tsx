@@ -33,6 +33,7 @@ const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = 
   onSetToday,
   classes,
   onAccept,
+  showTabs,
   DateInputProps,
   InputComponent,
   ...other
