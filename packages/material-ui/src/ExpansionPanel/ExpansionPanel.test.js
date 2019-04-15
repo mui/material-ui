@@ -20,7 +20,8 @@ describe('<ExpansionPanel />', () => {
   const minimalChildren = [<ExpansionPanelSummary key="header" />];
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses Collapse
+    mount = createMount({ strict: false });
     classes = getClasses(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
   });
 
@@ -87,7 +88,6 @@ describe('<ExpansionPanel />', () => {
     const wrapper = mount(
       <ExpansionPanel onChange={handleChange}>{minimalChildren}</ExpansionPanel>,
     );
-    assert.strictEqual(wrapper.type(), ExpansionPanel);
     wrapper.find(ExpansionPanelSummary).simulate('click');
     assert.strictEqual(handleChange.callCount, 1);
   });

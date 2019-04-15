@@ -18,7 +18,7 @@ describe('<InputAdornment />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<InputAdornment position="start">foo</InputAdornment>);
   });
 

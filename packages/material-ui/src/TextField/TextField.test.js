@@ -12,7 +12,7 @@ describe('<TextField />', () => {
 
   before(() => {
     classes = getClasses(<TextField />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -98,9 +98,7 @@ describe('<TextField />', () => {
     describe('with an outline', () => {
       it('should set outline props', () => {
         wrapper = mount(<TextField variant="outlined" />);
-
-        assert.strictEqual(wrapper.props().variant, 'outlined');
-        assert.strictEqual(typeof wrapper.find(OutlinedInput).props().labelWidth, 'number');
+        assert.strictEqual(wrapper.find(OutlinedInput).props().labelWidth, 0);
       });
 
       it('should set shrink prop on outline from label', () => {

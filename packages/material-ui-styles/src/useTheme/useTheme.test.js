@@ -8,7 +8,7 @@ describe('useTheme', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -16,17 +16,19 @@ describe('useTheme', () => {
   });
 
   it('should use the theme', () => {
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
     function Test() {
       const theme = useTheme();
 
-      return <span>{theme.foo}</span>;
+      return <span ref={ref}>{theme.foo}</span>;
     }
 
-    const wrapper = mount(
+    mount(
       <ThemeProvider theme={{ foo: 'foo' }}>
         <Test />
       </ThemeProvider>,
     );
-    assert.strictEqual(wrapper.text(), 'foo');
+    assert.strictEqual(text(), 'foo');
   });
 });

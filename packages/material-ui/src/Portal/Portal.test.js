@@ -14,7 +14,8 @@ describe('<Portal />', () => {
   const reactDomMock = {};
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses findDOMNode
+    mount = createMount({ strict: false });
     render = createRender();
   });
 
@@ -104,7 +105,7 @@ describe('<Portal />', () => {
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
       );
-      assert.strictEqual(wrapper.children().length, 0, 'should have no children');
+      assert.strictEqual(wrapper.find('Portal').children().length, 0, 'should have no children');
     });
 
     it('should have access to the mountNode', () => {
@@ -113,7 +114,7 @@ describe('<Portal />', () => {
           <h1>Foo</h1>
         </Portal>,
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Portal').instance();
       assert.strictEqual(instance.getMountNode(), instance.mountNode);
     });
 
@@ -123,7 +124,7 @@ describe('<Portal />', () => {
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Portal').instance();
       assert.notStrictEqual(instance.mountNode, null, 'should have a mountNode');
       assert.strictEqual(document.querySelectorAll('.woofPortal').length, 1);
     });
@@ -158,7 +159,7 @@ describe('<Portal />', () => {
 
       const wrapper = mount(<Parent />);
       assert.strictEqual(document.querySelectorAll('#test1').length, 1);
-      wrapper.setState({ show: false });
+      wrapper.find('Parent').setState({ show: false });
       assert.strictEqual(document.querySelectorAll('#test1').length, 0);
     });
 
@@ -192,12 +193,11 @@ describe('<Portal />', () => {
 
         render() {
           return (
-            <div>
-              <div
-                ref={ref => {
-                  this.containerRef = ref;
-                }}
-              />
+            <div
+              ref={ref => {
+                this.containerRef = ref;
+              }}
+            >
               <Portal container={this.state.container}>
                 <div id="test3" />
               </Portal>
@@ -207,9 +207,10 @@ describe('<Portal />', () => {
       }
 
       const wrapper = mount(<ContainerTest />);
+      const instanceWrapper = wrapper.find('ContainerTest');
 
       assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'BODY');
-      wrapper.setState({ container: wrapper.instance().containerRef });
+      instanceWrapper.setState({ container: instanceWrapper.instance().containerRef });
       setTimeout(() => {
         assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'DIV');
         done();

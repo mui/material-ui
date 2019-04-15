@@ -16,7 +16,7 @@ describe('<Container />', () => {
   };
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Container {...defaultProps} />);
   });
 

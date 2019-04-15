@@ -10,7 +10,7 @@ describe('<ListItemAvatar />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(
       <ListItemAvatar className="foo">
         <Avatar className="bar" />
@@ -34,18 +34,5 @@ describe('<ListItemAvatar />', () => {
     assert.strictEqual(avatar.hasClass('foo'), true);
     assert.strictEqual(avatar.hasClass('bar'), true);
     assert.strictEqual(avatar.hasClass(classes.root), true);
-  });
-
-  describe('List', () => {
-    it('should render an Avatar', () => {
-      const wrapper = mount(
-        <ListContext.Provider value={{ dense: true }}>
-          <ListItemAvatar>
-            <Avatar />
-          </ListItemAvatar>
-        </ListContext.Provider>,
-      );
-      assert.strictEqual(wrapper.type(), ListItemAvatar);
-    });
   });
 });

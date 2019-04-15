@@ -31,7 +31,8 @@ describe('<TablePagination />', () => {
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
     );
-    mount = createMount();
+    // StrictModeViolation: uses  ButtonBase
+    mount = createMount({ strict: false });
   });
 
   after(() => {

@@ -25,7 +25,7 @@ describe('<FormControl />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<FormControl />);
   });
 
@@ -52,14 +52,12 @@ describe('<FormControl />', () => {
     it('should have the margin normal class', () => {
       const wrapper = mount(<FormControl margin="normal" />);
 
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), true);
     });
 
     it('should have the margin dense class', () => {
       const wrapper = mount(<FormControl margin="dense" />);
 
-      assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), true);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), false);
     });

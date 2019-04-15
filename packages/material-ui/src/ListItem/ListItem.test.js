@@ -22,7 +22,8 @@ describe('<ListItem />', () => {
 
   before(() => {
     classes = getClasses(<ListItem />);
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -69,9 +70,9 @@ describe('<ListItem />', () => {
   });
 
   describe('prop: button', () => {
-    it('should render a div', () => {
+    it('renders a div', () => {
       const wrapper = mount(<ListItem button />);
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
+      assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
     });
   });
 
