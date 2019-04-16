@@ -92,7 +92,7 @@ describe('e2e -- DatePickerRoot views year and month', () => {
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         onMonthChange={onMonthChangeMock}
-        views={['year', 'month']}
+        views={['month', 'year']}
       />
     );
   });
@@ -135,7 +135,7 @@ describe('e2e -- DatePickerRoot views year and month open from year', () => {
       <DatePickerRoot
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        views={['year', 'month']}
+        views={['month', 'year']}
         openTo="year"
       />
     );

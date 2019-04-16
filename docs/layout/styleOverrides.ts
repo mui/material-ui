@@ -39,6 +39,7 @@ export const createOverrides = (theme: Theme): StyleRules<any> => ({
   ul: {
     color: theme.palette.text.primary,
   },
+  li: theme.typography.body1,
   code: {
     fontSize: 16,
     lineHeight: 1.4,
