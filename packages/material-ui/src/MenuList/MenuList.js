@@ -133,7 +133,17 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
      */
     const currentFocus = ownerDocument(list).activeElement;
 
-    if (key === 'ArrowDown') {
+    if (
+      (key === 'ArrowUp' || key === 'ArrowDown') &&
+      // currentFocus implies list does NOT contain the currentFocus
+      (!currentFocus || !list.contains(currentFocus))
+    ) {
+      if (selectedItemRef.current) {
+        selectedItemRef.current.focus();
+      } else {
+        list.firstChild.focus();
+      }
+    } else if (key === 'ArrowDown') {
       event.preventDefault();
       moveFocus(list, currentFocus, disableListWrap, nextItem);
     } else if (key === 'ArrowUp') {
