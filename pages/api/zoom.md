@@ -26,7 +26,7 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 
 The component cannot hold a ref.
 
-Any other properties supplied will be spread to the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
+Any other properties supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
 
 ## Inheritance
 

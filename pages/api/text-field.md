@@ -78,7 +78,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([FormControl](/api/form-control/)).
+Any other properties supplied will be provided to the root element ([FormControl](/api/form-control/)).
 
 ## Inheritance
 

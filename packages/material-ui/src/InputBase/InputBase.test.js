@@ -26,7 +26,7 @@ describe('<InputBase />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<InputBase />);
   });
 

@@ -237,8 +237,19 @@ You should be able to move the custom styles to the root class key.
 
 ### Dialog
 
-- [DialogActions] `action` CSS class is applied to root element instead of children if `disableActionSpacing={false}`.
+- [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+- [DialogActions] Rename the `action` CSS class `spacing`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
+
+### Card
+
+- [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+- [CardActions] Remove the `disableActionSpacing` CSS class.
+- [CardActions] Rename the `action` CSS class `spacing`.
+
+### ExpansionPanel
+
+- [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
 
 ### Selection controls
 

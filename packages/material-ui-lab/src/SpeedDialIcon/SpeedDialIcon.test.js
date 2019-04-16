@@ -13,7 +13,7 @@ describe('<SpeedDialIcon />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<SpeedDialIcon />);
   });
 

@@ -9,7 +9,7 @@ describe('ThemeProvider', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -17,51 +17,57 @@ describe('ThemeProvider', () => {
   });
 
   it('should provide the theme', () => {
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
     function Test() {
       const theme = useTheme();
 
-      return <span>{theme.foo}</span>;
+      return <span ref={ref}>{theme.foo}</span>;
     }
 
-    const wrapper = mount(
+    mount(
       <ThemeProvider theme={{ foo: 'foo' }}>
         <Test />
       </ThemeProvider>,
     );
-    assert.strictEqual(wrapper.text(), 'foo');
+    assert.strictEqual(text(), 'foo');
   });
 
   it('should merge the themes', () => {
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
     function Test() {
       const theme = useTheme();
 
       return (
-        <span>
+        <span ref={ref}>
           {theme.foo}
           {theme.bar}
         </span>
       );
     }
 
-    const wrapper = mount(
+    mount(
       <ThemeProvider theme={{ bar: 'bar' }}>
         <ThemeProvider theme={{ foo: 'foo' }}>
           <Test />
         </ThemeProvider>
       </ThemeProvider>,
     );
-    assert.strictEqual(wrapper.text(), 'foobar');
+    assert.strictEqual(text(), 'foobar');
   });
 
   it('should memoize the merged output', () => {
     const themes = [];
 
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
     function Test() {
       const theme = useTheme();
       themes.push(theme);
 
       return (
-        <span>
+        <span ref={ref}>
           {theme.foo}
           {theme.bar}
         </span>
@@ -83,9 +89,9 @@ describe('ThemeProvider', () => {
     }
 
     const wrapper = mount(<Container />);
-    assert.strictEqual(wrapper.text(), 'foobar');
+    assert.strictEqual(text(), 'foobar');
     wrapper.setProps({});
-    assert.strictEqual(wrapper.text(), 'foobar');
+    assert.strictEqual(text(), 'foobar');
     assert.strictEqual(themes.length, 1);
   });
 
@@ -104,7 +110,7 @@ describe('ThemeProvider', () => {
           <div />
         </ThemeProvider>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleErrorMock.callCount(), 2); // twice in strict mode
       assert.include(consoleErrorMock.args()[0][0], 'However, no outer theme is present.');
     });
 
@@ -117,7 +123,7 @@ describe('ThemeProvider', () => {
           ,
         </ThemeProvider>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleErrorMock.callCount(), 2);
       assert.include(
         consoleErrorMock.args()[0][0],
         'you should return an object from your theme function',

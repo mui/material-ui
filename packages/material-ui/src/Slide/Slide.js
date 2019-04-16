@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import Transition from 'react-transition-group/Transition';
-import ownerWindow from '../utils/ownerWindow';
 import { useForkRef } from '../utils/reactHelpers';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
@@ -24,7 +23,7 @@ function getTranslateValue(direction, node) {
   if (node.fakeTransform) {
     transform = node.fakeTransform;
   } else {
-    const computedStyle = ownerWindow(node).getComputedStyle(node);
+    const computedStyle = window.getComputedStyle(node);
     transform =
       computedStyle.getPropertyValue('-webkit-transform') ||
       computedStyle.getPropertyValue('transform');

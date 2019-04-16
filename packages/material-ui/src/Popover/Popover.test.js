@@ -26,7 +26,8 @@ describe('<Popover />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: uses Grow
+    mount = createMount({ strict: false });
     classes = getClasses(
       <Popover {...defaultProps}>
         <div />

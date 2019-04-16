@@ -42,7 +42,11 @@ function CheckboxListSecondary() {
           </ListItemAvatar>
           <ListItemText primary={`Line item ${value + 1}`} />
           <ListItemSecondaryAction>
-            <Checkbox onChange={handleToggle(value)} checked={checked.indexOf(value) !== -1} />
+            <Checkbox
+              edge="end"
+              onChange={handleToggle(value)}
+              checked={checked.indexOf(value) !== -1}
+            />
           </ListItemSecondaryAction>
         </ListItem>
       ))}

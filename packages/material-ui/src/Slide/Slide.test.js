@@ -14,7 +14,8 @@ describe('<Slide />', () => {
   };
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses react-transition-group
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -188,7 +189,7 @@ describe('<Slide />', () => {
   describe('prop: direction', () => {
     it('should update the position', () => {
       const wrapper = mount(
-        <Slide {...defaultProps} theme={createMuiTheme()} in={false} direction="left" />,
+        <Slide {...defaultProps} in={false} direction="left" />,
       );
       const child = wrapper.find('#testChild').instance();
 
@@ -322,7 +323,7 @@ describe('<Slide />', () => {
     it('should work when initially hidden', () => {
       const childRef = React.createRef();
       mount(
-        <Slide theme={createMuiTheme()} in={false}>
+        <Slide in={false}>
           <div ref={childRef}>Foo</div>
         </Slide>,
       );
@@ -346,7 +347,7 @@ describe('<Slide />', () => {
 
     it('should recompute the correct position', () => {
       const wrapper = mount(
-        <Slide theme={createMuiTheme()} direction="up" in={false}>
+        <Slide direction="up" in={false}>
           <div id="testChild">Foo</div>
         </Slide>,
       );

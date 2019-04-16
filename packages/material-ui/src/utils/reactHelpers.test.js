@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { isMuiElement, setRef, useForkRef } from './reactHelpers';
-import { Input, ListItemAvatar, ListItemSecondaryAction, SvgIcon } from '..';
+import { Input, ListItemSecondaryAction, SvgIcon } from '..';
 import { mount } from 'enzyme';
 
 describe('utils/reactHelpers.js', () => {
@@ -21,7 +21,6 @@ describe('utils/reactHelpers.js', () => {
     it('should be truthy for matching components', () => {
       [
         [Input, 'Input'],
-        [ListItemAvatar, 'ListItemAvatar'],
         [ListItemSecondaryAction, 'ListItemSecondaryAction'],
         [SvgIcon, 'SvgIcon'],
       ].forEach(([Component, muiName]) => {

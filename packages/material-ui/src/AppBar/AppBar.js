@@ -69,7 +69,7 @@ export const styles = theme => {
 };
 
 const AppBar = React.forwardRef(function AppBar(props, ref) {
-  const { children, classes, className, color, position, ...other } = props;
+  const { classes, className, color, position, ...other } = props;
 
   return (
     <Paper
@@ -87,9 +87,7 @@ const AppBar = React.forwardRef(function AppBar(props, ref) {
       )}
       ref={ref}
       {...other}
-    >
-      {children}
-    </Paper>
+    />
   );
 });
 

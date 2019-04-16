@@ -38,6 +38,10 @@ export const styles = theme => ({
 const Divider = React.forwardRef(function Divider(props, ref) {
   const { absolute, classes, className, component: Component, light, variant, ...other } = props;
 
+  if (Component === 'li' && !other.role) {
+    other.role = 'separator';
+  }
+
   return (
     <Component
       className={clsx(

@@ -20,7 +20,7 @@ describe('<MenuList />', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

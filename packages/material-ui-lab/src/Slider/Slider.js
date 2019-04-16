@@ -423,7 +423,7 @@ class Slider extends React.Component {
   handleRef = ref => {
     setRef(this.props.innerRef, ref);
 
-    // StrictMode ready
+    // #StrictMode ready
     const nextContainer = ReactDOM.findDOMNode(ref);
     const prevContainer = this.container;
 

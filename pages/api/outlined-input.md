@@ -48,7 +48,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([InputBase](/api/input-base/)).
+Any other properties supplied will be provided to the root element ([InputBase](/api/input-base/)).
 
 ## CSS
 

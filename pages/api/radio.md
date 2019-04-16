@@ -35,7 +35,7 @@ import Radio from '@material-ui/core/Radio';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([IconButton](/api/icon-button/)).
+Any other properties supplied will be provided to the root element ([IconButton](/api/icon-button/)).
 
 ## CSS
 

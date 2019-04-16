@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import LayoutBody from '../components/LayoutBody';
+import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
 const styles = theme => ({
@@ -11,7 +11,7 @@ const styles = theme => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.secondary.light,
   },
-  layoutBody: {
+  container: {
     marginTop: theme.spacing(15),
     marginBottom: theme.spacing(30),
     display: 'flex',
@@ -42,7 +42,7 @@ function ProductValues(props) {
 
   return (
     <section className={classes.root}>
-      <LayoutBody className={classes.layoutBody} width="large">
+      <Container className={classes.container}>
         <img
           src="/static/themes/onepirate/productCurvyLines.png"
           className={classes.curvyLines}
@@ -98,7 +98,7 @@ function ProductValues(props) {
             </div>
           </Grid>
         </Grid>
-      </LayoutBody>
+      </Container>
     </section>
   );
 }

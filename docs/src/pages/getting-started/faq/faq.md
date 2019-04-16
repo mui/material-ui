@@ -49,9 +49,9 @@ const theme = createMuiTheme({
 });
 ```
 
-## How can I disable animations globally?
+## How can I disable transitions globally?
 
-You can disable animations globally by providing the following in your theme:
+You can disable transitions globally by providing the following in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -66,6 +66,38 @@ const theme = createMuiTheme({
 
 Sometimes you will want to enable this behavior conditionally, for instance during testing or on low-end devices,
 in these cases, you can dynamically change the theme value.
+
+You can go one step further by disabling all the transitions, animations and the ripple effect:
+
+```js
+import { createMuiTheme } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  transitions: {
+    // So we have `transition: none;` everywhere
+    create: () => 'none',
+  },
+  overrides: {
+    // Name of the component ⚛️
+    CssBasline: {
+      // Name of the rule
+      '@global': {
+        '*, *::before, *::after': {
+          transition: 'none !important',
+          animation: 'none !important',
+        },
+      },
+    },
+  },
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application!
+    },
+  },
+});
+```
 
 ## Do I have to use JSS to style my app?
 
@@ -126,7 +158,25 @@ export default withTheme(withStyles(styles)(Modal));
 
 ## How can I access the DOM element?
 
-Wrap the component with the [`RootRef`](/api/root-ref/) helper.
+All Material-UI components that should render something in the DOM forward their
+ref to the underlying DOM component. This means that you can get DOM elements
+by reading the ref attached to Material-UI components:
+
+```jsx
+// or a ref setter function
+const ref = React.createRef();
+// render
+<Button ref={ref} />;
+// usage
+const element = ref.current;
+```
+
+If you're not sure if the Material-UI component in question forwards its ref you
+can check the API documentation under "Props" e.g. the [/api/button/#props](Button API)
+includes
+> The ref is forwarded to the root element.
+
+indicating that you can access the DOM element with a ref.
 
 ## Why are the colors I am seeing different from what I see here?
 

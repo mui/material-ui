@@ -36,7 +36,7 @@ import Menu from '@material-ui/core/Menu';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([Popover](/api/popover/)).
+Any other properties supplied will be provided to the root element ([Popover](/api/popover/)).
 
 ## CSS
 

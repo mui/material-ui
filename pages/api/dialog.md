@@ -44,7 +44,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([Modal](/api/modal/)).
+Any other properties supplied will be provided to the root element ([Modal](/api/modal/)).
 
 ## CSS
 

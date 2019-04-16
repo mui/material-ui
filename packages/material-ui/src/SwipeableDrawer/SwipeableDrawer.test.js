@@ -53,7 +53,8 @@ describe('<SwipeableDrawer />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    // test are mostly asserting on implementation details
+    mount = createMount({ strict: undefined });
   });
 
   after(() => {

@@ -15,7 +15,8 @@ describe('<Backdrop />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses Fade
+    mount = createMount({ strict: false });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Backdrop open />);
   });

@@ -14,7 +14,7 @@ describe('<FilledInput />', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<FilledInput />);
   });
 

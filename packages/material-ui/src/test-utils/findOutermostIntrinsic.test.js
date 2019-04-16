@@ -22,7 +22,7 @@ describe('findOutermostIntrinsic', () => {
   const Headless = ({ children }) => children;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: undefined });
   });
 
   after(() => {

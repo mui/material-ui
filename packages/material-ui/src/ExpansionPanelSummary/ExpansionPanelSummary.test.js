@@ -19,7 +19,8 @@ describe('<ExpansionPanelSummary />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(<ExpansionPanelSummary />);
   });
 

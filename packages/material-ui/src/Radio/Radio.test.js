@@ -11,7 +11,8 @@ describe('<Radio />', () => {
 
   before(() => {
     classes = getClasses(<Radio />);
-    mount = createMount();
+    // StrictModeViolation: uses Switchbase
+    mount = createMount({ strict: false });
   });
 
   after(() => {

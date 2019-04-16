@@ -46,7 +46,7 @@ import Popover from '@material-ui/core/Popover';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([Modal](/api/modal/)).
+Any other properties supplied will be provided to the root element ([Modal](/api/modal/)).
 
 ## CSS
 
