@@ -99,7 +99,7 @@ const styles = theme => ({
 class Demo extends React.Component {
   state = {
     anchorEl: null,
-    codeOpen: false,
+    codeOpen: Boolean(this.props.demoOptions.defaultCodeOpen),
     demoHovered: false,
     sourceHintSeen: false,
   };

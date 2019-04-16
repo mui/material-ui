@@ -19,7 +19,7 @@ export const styles = theme => ({
 });
 
 const DialogContent = React.forwardRef(function DialogContent(props, ref) {
-  const { classes, children, className, dividers, ...other } = props;
+  const { classes, className, dividers, ...other } = props;
 
   return (
     <div
@@ -32,9 +32,7 @@ const DialogContent = React.forwardRef(function DialogContent(props, ref) {
       )}
       ref={ref}
       {...other}
-    >
-      {children}
-    </div>
+    />
   );
 });
 
