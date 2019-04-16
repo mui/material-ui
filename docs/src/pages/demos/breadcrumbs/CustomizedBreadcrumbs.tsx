@@ -22,9 +22,9 @@ const StyledBreadcrumb = withStyles((theme: Theme) => ({
       backgroundColor: emphasize(theme.palette.grey[300], 0.12),
     },
   },
-}))((props: any) => <Chip {...props} />);
+}))(Chip) as typeof Chip; // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
-function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
   event.preventDefault();
   alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
@@ -47,7 +47,7 @@ function CustomizedBreadcrumbs() {
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">
-        <StyledBreadcrumb
+        <Chip
           component="a"
           href="#"
           label="Home"

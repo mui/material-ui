@@ -22,7 +22,7 @@ const StyledBreadcrumb = withStyles(theme => ({
       backgroundColor: emphasize(theme.palette.grey[300], 0.12),
     },
   },
-}))(props => <Chip {...props} />);
+}))(Chip); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
 function handleClick(event) {
   event.preventDefault();
@@ -45,7 +45,7 @@ function CustomizedBreadcrumbs() {
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">
-        <StyledBreadcrumb
+        <Chip
           component="a"
           href="#"
           label="Home"
