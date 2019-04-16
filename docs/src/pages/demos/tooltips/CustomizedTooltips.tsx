@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { withStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip, { TooltipProps } from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 function arrowGenerator(color: string) {
@@ -60,8 +61,8 @@ const LightTooltip = withStyles((theme: Theme) => ({
   },
 }))(Tooltip);
 
-const ArrowTooltip = withStyles((theme: Theme) =>
-  makeStyles({
+const useStylesArrow = makeStyles((theme: Theme) =>
+  createStyles({
     arrow: {
       position: 'absolute',
       fontSize: 6,
@@ -78,17 +79,14 @@ const ArrowTooltip = withStyles((theme: Theme) =>
     },
     popper: arrowGenerator(theme.palette.grey[700]),
   }),
-)(({ classes: { arrow, ...classes }, title, ...props }: any) => {
+);
+
+function ArrowTooltip(props: TooltipProps) {
+  const { arrow, ...classes } = useStylesArrow();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
 
   return (
     <Tooltip
-      title={
-        <React.Fragment>
-          {title}
-          <span className={arrow} ref={setArrowRef} />
-        </React.Fragment>
-      }
       classes={classes}
       PopperProps={{
         popperOptions: {
@@ -101,12 +99,18 @@ const ArrowTooltip = withStyles((theme: Theme) =>
         },
       }}
       {...props}
+      title={
+        <React.Fragment>
+          {props.title}
+          <span className={arrow} ref={setArrowRef} />
+        </React.Fragment>
+      }
     />
   );
-});
+}
 
-const BootstrapTooltip = withStyles((theme: Theme) =>
-  makeStyles({
+const useStylesBootstrap = makeStyles((theme: Theme) =>
+  createStyles({
     arrow: {
       position: 'absolute',
       fontSize: 6,
@@ -138,17 +142,14 @@ const BootstrapTooltip = withStyles((theme: Theme) =>
       margin: '8px 0',
     },
   }),
-)(({ classes: { arrow, ...classes }, title, ...props }: any) => {
+);
+
+function BootstrapTooltip(props: TooltipProps) {
+  const { arrow, ...classes } = useStylesBootstrap();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
 
   return (
     <Tooltip
-      title={
-        <React.Fragment>
-          {title}
-          <span className={arrow} ref={setArrowRef} />
-        </React.Fragment>
-      }
       classes={classes}
       PopperProps={{
         popperOptions: {
@@ -161,9 +162,15 @@ const BootstrapTooltip = withStyles((theme: Theme) =>
         },
       }}
       {...props}
+      title={
+        <React.Fragment>
+          {props.title}
+          <span className={arrow} ref={setArrowRef} />
+        </React.Fragment>
+      }
     />
   );
-});
+}
 
 const HtmlTooltip = withStyles((theme: Theme) => ({
   tooltip: {

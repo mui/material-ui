@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const ColorCircularProgress = withStyles({
@@ -31,7 +31,7 @@ const BorderLinearProgress = withStyles({
 })(LinearProgress);
 
 // Inspired by the Facebook spinners.
-const FacebookProgress = withStyles({
+const useStylesFacebook = makeStyles({
   root: {
     position: 'relative',
   },
@@ -44,24 +44,32 @@ const FacebookProgress = withStyles({
     position: 'absolute',
     left: 0,
   },
-})(({ classes, ...props }: any) => (
-  <div className={classes.root} {...props}>
-    <CircularProgress
-      variant="determinate"
-      value={100}
-      className={classes.top}
-      size={24}
-      thickness={4}
-    />
-    <CircularProgress
-      variant="indeterminate"
-      disableShrink
-      className={classes.bottom}
-      size={24}
-      thickness={4}
-    />
-  </div>
-));
+});
+
+function FacebookProgress(props: CircularProgressProps) {
+  const classes = useStylesFacebook();
+
+  return (
+    <div className={classes.root}>
+      <CircularProgress
+        variant="determinate"
+        value={100}
+        className={classes.top}
+        size={24}
+        thickness={4}
+        {...props}
+      />
+      <CircularProgress
+        variant="indeterminate"
+        disableShrink
+        className={classes.bottom}
+        size={24}
+        thickness={4}
+        {...props}
+      />
+    </div>
+  );
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
