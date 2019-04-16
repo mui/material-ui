@@ -21,7 +21,7 @@ function HiddenJs(props) {
           break;
         }
       }
-    } else if (only && width === only) {
+    } else if (width === only) {
       visible = false;
     }
   }
