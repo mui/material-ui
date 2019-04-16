@@ -3,6 +3,7 @@ import { StandardProps } from '..';
 
 export interface ContainerProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ContainerClassKey> {
+  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
   fixed?: boolean;
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
 }
