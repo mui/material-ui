@@ -9,12 +9,11 @@ export const styles = {
   root: {
     display: 'flex',
     alignItems: 'center',
+    padding: 8,
     justifyContent: 'flex-end',
-    flex: '0 0 auto',
-    margin: 8,
   },
-  /* Styles applied to the root element if `disableActionSpacing={false}`. */
-  action: {
+  /* Styles applied to the root element if `disableSpacing={false}`. */
+  spacing: {
     '& > * + *': {
       marginLeft: 8,
     },
@@ -22,17 +21,11 @@ export const styles = {
 };
 
 const DialogActions = React.forwardRef(function DialogActions(props, ref) {
-  const { disableActionSpacing, classes, className, ...other } = props;
+  const { disableSpacing, classes, className, ...other } = props;
 
   return (
     <div
-      className={clsx(
-        classes.root,
-        {
-          [classes.action]: !disableActionSpacing,
-        },
-        className,
-      )}
+      className={clsx(classes.root, { [classes.spacing]: !disableSpacing }, className)}
       ref={ref}
       {...other}
     />
@@ -54,13 +47,13 @@ DialogActions.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the dialog actions do not have additional margin.
+   * If `true`, the actions do not have additional margin.
    */
-  disableActionSpacing: PropTypes.bool,
+  disableSpacing: PropTypes.bool,
 };
 
 DialogActions.defaultProps = {
-  disableActionSpacing: false,
+  disableSpacing: false,
 };
 
 export default withStyles(styles, { name: 'MuiDialogActions' })(DialogActions);

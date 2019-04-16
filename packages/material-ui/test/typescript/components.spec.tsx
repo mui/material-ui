@@ -226,7 +226,7 @@ const CardMediaTest = () => (
         guests. Add 1 cup of frozen peas along with the mussels, if you like.
       </Typography>
     </CardContent>
-    <CardActions disableActionSpacing>
+    <CardActions disableSpacing>
       <IconButton aria-label="Add to favorites">
         <FakeIcon />
       </IconButton>
