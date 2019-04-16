@@ -100,7 +100,7 @@ const Landing: React.SFC<WithStyles<typeof styles>> = ({ classes }) => {
         </Typography>
 
         <Link prefetch href="/getting-started/installation">
-          <Button variant="contained" className={classes.getStarted}>
+          <Button variant="contained" size="large" className={classes.getStarted}>
             Get Started
           </Button>
         </Link>

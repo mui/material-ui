@@ -6,7 +6,10 @@ export interface BasePickerProps {
   value: DateType;
   /** onChange callback */
   onChange: (date: MaterialUiPickersDate) => void;
-  /** Auto accept date on selection */
+  /**
+   * Auto accept date on selection
+   * @default false
+   */
   autoOk?: boolean;
   /** Format string */
   format?: string;
@@ -14,9 +17,15 @@ export interface BasePickerProps {
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
   /** Date that will be initially highlighted */
   initialFocusedDate?: DateType;
-  /** Message displaying in text field, if date is invalid (doesn't work in keyboard mode) */
+  /**
+   * Message displaying in text field, if date is invalid (doesn't work in keyboard mode)
+   * @default 'Invalid Date Format'
+   */
   invalidLabel?: string;
-  /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
+  /**
+   * Message displaying in text field, if null passed (doesn't work in keyboard mode)\
+   * @default ' '
+   */
   emptyLabel?: string;
   /** Callback fired when date isAccepted */
   onAccept?: (date: MaterialUiPickersDate) => void;

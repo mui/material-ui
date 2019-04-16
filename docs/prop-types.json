@@ -23,7 +23,7 @@
       "type": { "name": "(date: any) => void" }
     },
     "autoOk": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -67,7 +67,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -78,8 +78,8 @@
       "type": { "name": "string" }
     },
     "emptyLabel": {
-      "defaultValue": null,
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
+      "defaultValue": { "value": "' '" },
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -176,8 +176,19 @@
       "required": false,
       "type": { "name": "ReactNode" }
     },
+    "onlyCalendar": {
+      "defaultValue": { "value": "false" },
+      "description": "Show only calendar, without toolbar",
+      "name": "onlyCalendar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
     "minDate": {
-      "defaultValue": null,
+      "defaultValue": { "value": "Date(1900-01-01)" },
       "description": "Min selectable date",
       "name": "minDate",
       "parent": {
@@ -188,7 +199,7 @@
       "type": { "name": "DateType" }
     },
     "maxDate": {
-      "defaultValue": null,
+      "defaultValue": { "value": "Date(2100-01-01)" },
       "description": "Max selectable date",
       "name": "maxDate",
       "parent": {
@@ -199,7 +210,7 @@
       "type": { "name": "DateType" }
     },
     "disablePast": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "Disable past dates",
       "name": "disablePast",
       "parent": {
@@ -210,7 +221,7 @@
       "type": { "name": "boolean" }
     },
     "disableFuture": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "Disable future dates",
       "name": "disableFuture",
       "parent": {
@@ -221,7 +232,7 @@
       "type": { "name": "boolean" }
     },
     "animateYearScrolling": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "To animate scrolling to current year (with scrollIntoView)",
       "name": "animateYearScrolling",
       "parent": {
@@ -232,7 +243,7 @@
       "type": { "name": "boolean" }
     },
     "views": {
-      "defaultValue": null,
+      "defaultValue": { "value": "[\"day\", \"year\"]" },
       "description": "Array of views to show. Order year -> month -> day",
       "name": "views",
       "parent": {
@@ -243,7 +254,7 @@
       "type": { "name": "(\"year\" | \"month\" | \"day\")[]" }
     },
     "openTo": {
-      "defaultValue": null,
+      "defaultValue": { "value": "props.views[0]" },
       "description": "Initial view to show when date picker is open",
       "name": "openTo",
       "parent": {
@@ -295,21 +306,12 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "RenderDay" }
-    },
-    "onlyCalendar": {
-      "defaultValue": null,
-      "description": "Show only calendar, without toolbar",
-      "name": "onlyCalendar",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
-        "name": "OutterCalendarProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+      }
     },
     "allowKeyboardControl": {
-      "defaultValue": null,
+      "defaultValue": { "value": "true" },
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
       "parent": {
@@ -392,7 +394,7 @@
       "type": { "name": "(date: any) => void" }
     },
     "autoOk": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -436,7 +438,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -447,8 +449,8 @@
       "type": { "name": "string" }
     },
     "emptyLabel": {
-      "defaultValue": null,
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
+      "defaultValue": { "value": "' '" },
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -524,7 +526,7 @@
       "type": { "name": "ReactNode" }
     },
     "ampm": {
-      "defaultValue": null,
+      "defaultValue": { "value": "true" },
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
       "parent": {
@@ -533,6 +535,17 @@
       },
       "required": false,
       "type": { "name": "boolean" }
+    },
+    "minutesStep": {
+      "defaultValue": { "value": "1" },
+      "description": "Step over minutes",
+      "name": "minutesStep",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePickerRoot.tsx",
+        "name": "BaseTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "number" }
     },
     "seconds": {
       "defaultValue": null,
@@ -544,17 +557,6 @@
       },
       "required": false,
       "type": { "name": "boolean" }
-    },
-    "minutesStep": {
-      "defaultValue": null,
-      "description": "Step over minutes",
-      "name": "minutesStep",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePickerRoot.tsx",
-        "name": "BaseTimePickerProps"
-      },
-      "required": false,
-      "type": { "name": "number" }
     }
   },
   "DateTimePicker/DateTimePicker.tsx": {
@@ -581,7 +583,7 @@
       "type": { "name": "(date: any) => void" }
     },
     "autoOk": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -625,7 +627,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -636,8 +638,8 @@
       "type": { "name": "string" }
     },
     "emptyLabel": {
-      "defaultValue": null,
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
+      "defaultValue": { "value": "' '" },
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -790,7 +792,7 @@
       "type": { "name": "ReactNode" }
     },
     "ampm": {
-      "defaultValue": null,
+      "defaultValue": { "value": "true" },
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
       "parent": {
@@ -801,7 +803,7 @@
       "type": { "name": "boolean" }
     },
     "minutesStep": {
-      "defaultValue": null,
+      "defaultValue": { "value": "1" },
       "description": "Step over minutes",
       "name": "minutesStep",
       "parent": {
@@ -812,7 +814,7 @@
       "type": { "name": "number" }
     },
     "minDate": {
-      "defaultValue": null,
+      "defaultValue": { "value": "Date(1900-01-01)" },
       "description": "Min selectable date",
       "name": "minDate",
       "parent": {
@@ -823,7 +825,7 @@
       "type": { "name": "DateType" }
     },
     "maxDate": {
-      "defaultValue": null,
+      "defaultValue": { "value": "Date(2100-01-01)" },
       "description": "Max selectable date",
       "name": "maxDate",
       "parent": {
@@ -834,7 +836,7 @@
       "type": { "name": "DateType" }
     },
     "disablePast": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "Disable past dates",
       "name": "disablePast",
       "parent": {
@@ -845,7 +847,7 @@
       "type": { "name": "boolean" }
     },
     "disableFuture": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "Disable future dates",
       "name": "disableFuture",
       "parent": {
@@ -856,7 +858,7 @@
       "type": { "name": "boolean" }
     },
     "animateYearScrolling": {
-      "defaultValue": null,
+      "defaultValue": { "value": "false" },
       "description": "To animate scrolling to current year (with scrollIntoView)",
       "name": "animateYearScrolling",
       "parent": {
@@ -908,21 +910,12 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "RenderDay" }
-    },
-    "onlyCalendar": {
-      "defaultValue": null,
-      "description": "Show only calendar, without toolbar",
-      "name": "onlyCalendar",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
-        "name": "OutterCalendarProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+      }
     },
     "allowKeyboardControl": {
-      "defaultValue": null,
+      "defaultValue": { "value": "true" },
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
       "parent": {
