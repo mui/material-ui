@@ -132,6 +132,21 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       color: theme.palette.primary.main,
     }),
   }));
+
+  {
+    // If any generic is provided, inferrence breaks.
+    // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
+    const useStyles = makeStyles<Theme>(theme => ({
+      root: {
+        background: 'blue',
+      },
+    }));
+
+    const classes = useStyles();
+
+    // This doesn't fail, because inferrence is broken
+    classes.other;
+  }
 }
 
 // styled
