@@ -90,10 +90,10 @@ function Slide(props) {
   /**
    * used in cloneElement(children, { ref: handleRef })
    */
-  const handleOwnRef = ref => {
+  const handleOwnRef = React.useCallback(ref => {
     // #StrictMode ready
     childrenRef.current = ReactDOM.findDOMNode(ref);
-  };
+  }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleEnter = () => {
