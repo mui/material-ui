@@ -20,7 +20,9 @@ export interface ModalProps
   keepMounted?: boolean;
   manager?: ModalManager;
   onBackdropClick?: React.ReactEventHandler<{}>;
-  onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+  onClose?: {
+    bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
+  }['bivarianceHack'];
   onEscapeKeyDown?: React.ReactEventHandler<{}>;
   onRendered?: PortalProps['onRendered'];
   open: boolean;
