@@ -151,6 +151,7 @@
     "lodash": "^4.17.11",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^6.8.3",
+    "material-table": "^1.32.0",
     "material-ui-pickers": "^2.0.2",
     "material-ui-popup-state": "^1.0.1",
     "mocha": "^5.0.0",
@@ -206,6 +207,7 @@
     "webpack-cli": "^3.2.3"
   },
   "resolutions": {
+    "@material-ui/core": "^4.0.0-alpha.7",
     "**/hoist-non-react-statics": "^3.2.1"
   },
   "sideEffects": false,
