@@ -20,10 +20,7 @@ export interface ModalProps
   keepMounted?: boolean;
   manager?: ModalManager;
   onBackdropClick?: React.ReactEventHandler<{}>;
-  onClose?: (
-    event: React.SyntheticEvent<unknown>,
-    reason: 'backdropClick' | 'escapeKeyDown',
-  ) => void;
+  onClose?: (event: React.ReactEventHandler<{}>, reason: 'backdropClick' | 'escapeKeyDown') => void;
   onEscapeKeyDown?: React.ReactEventHandler<{}>;
   onRendered?: PortalProps['onRendered'];
   open: boolean;
