@@ -32,4 +32,21 @@ describe('<Box />', () => {
     assert.strictEqual(wrapper.contains(testChildren), true);
     assert.strictEqual(wrapper.find('span').length, 1);
   });
+
+  it('forwards style props as DOM attributes', () => {
+    const elementRef = React.createRef();
+    mount(
+      <Box
+        color="primary.main"
+        fontFamily="Comic Sans"
+        fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+        ref={elementRef}
+      />,
+    );
+
+    const { current: element } = elementRef;
+    assert.strictEqual(element.getAttribute('color'), 'primary.main');
+    assert.strictEqual(element.getAttribute('font-family'), 'Comic Sans');
+    assert.strictEqual(element.getAttribute('font-size'), '[object Object]');
+  });
 });
