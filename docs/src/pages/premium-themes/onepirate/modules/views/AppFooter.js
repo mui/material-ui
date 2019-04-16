@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
-import LayoutBody from '../components/LayoutBody';
 import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
@@ -13,7 +13,7 @@ const styles = theme => ({
     display: 'flex',
     backgroundColor: theme.palette.secondary.light,
   },
-  layoutBody: {
+  container: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(8),
     display: 'flex',
@@ -67,9 +67,9 @@ function AppFooter(props) {
 
   return (
     <Typography component="footer" className={classes.root}>
-      <LayoutBody className={classes.layoutBody} width="large">
+      <Container className={classes.container}>
         <Grid container spacing={5}>
-          <Grid item xs={6} sm={4} md={2}>
+          <Grid item xs={6} sm={4} md={3}>
             <Grid
               container
               direction="column"
@@ -122,11 +122,11 @@ function AppFooter(props) {
           <Grid item>
             <Typography variant="caption">
               {'Icons made by '}
-              <Link href="http://www.freepik.com" title="Freepik">
+              <Link href="https://www.freepik.com" rel="nofollow" title="Freepik">
                 Freepik
               </Link>
               {' from '}
-              <Link href="https://www.flaticon.com/" title="Flaticon">
+              <Link href="https://www.flaticon.com" rel="nofollow" title="Flaticon">
                 www.flaticon.com
               </Link>
               {' is licensed by '}
@@ -141,7 +141,7 @@ function AppFooter(props) {
             </Typography>
           </Grid>
         </Grid>
-      </LayoutBody>
+      </Container>
     </Typography>
   );
 }

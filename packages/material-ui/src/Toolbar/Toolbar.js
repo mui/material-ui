@@ -29,7 +29,6 @@ export const styles = theme => ({
 
 const Toolbar = React.forwardRef(function Toolbar(props, ref) {
   const {
-    children,
     classes,
     className: classNameProp,
     component: Component,
@@ -47,11 +46,7 @@ const Toolbar = React.forwardRef(function Toolbar(props, ref) {
     classNameProp,
   );
 
-  return (
-    <Component className={className} ref={ref} {...other}>
-      {children}
-    </Component>
-  );
+  return <Component className={className} ref={ref} {...other} />;
 });
 
 Toolbar.propTypes = {
