@@ -7,7 +7,7 @@ export function cloneCrossUtils(date: Date | Moment | DateTime | Dayjs) {
     return (date as Dayjs).clone().toDate();
   }
 
-  if (date instanceof moment) {
+  if (moment.isMoment(date)) {
     return (date as Moment).clone().toDate();
   }
 
