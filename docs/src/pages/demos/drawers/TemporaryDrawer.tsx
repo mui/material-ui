@@ -29,9 +29,7 @@ function TemporaryDrawer() {
   });
 
   type DrawerSide = 'top' | 'left' | 'bottom' | 'right';
-  const toggleDrawer = (side: DrawerSide, open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent,
-  ) => {
+  const toggleDrawer = (side: DrawerSide, open: boolean) => (event: React.SyntheticEvent<any>) => {
     if (
       event.type === 'keydown' &&
       ((event as React.KeyboardEvent).key === 'Tab' ||
