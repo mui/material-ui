@@ -385,3 +385,35 @@ withStyles(theme =>
     color: number;
   }
 }
+
+function forwardRefTest() {
+  const styles = createStyles({
+    root: { color: 'red' },
+  });
+
+  function Anchor(props: WithStyles<typeof styles>) {
+    const { classes } = props;
+    return <a className={classes.root} />;
+  }
+  const StyledAnchor = withStyles(styles)(Anchor);
+
+  const anchorRef = React.useRef<HTMLAnchorElement>(null);
+  // forwarded to function components which can't hold refs
+  // property 'ref' does not exists
+  <StyledAnchor ref={anchorRef} />; // $ExpectError
+  <StyledAnchor innerRef={anchorRef} />;
+
+  const RefableAnchor = React.forwardRef<HTMLAnchorElement, WithStyles<typeof styles>>(
+    (props, ref) => {
+      const { classes } = props;
+      return <a className={classes.root} />;
+    },
+  );
+  const StyledRefableAnchor = withStyles(styles)(RefableAnchor);
+
+  <StyledRefableAnchor ref={anchorRef} />;
+  const buttonRef = React.createRef<HTMLButtonElement>();
+  // undesired: `innerRef` is currently typed as any but for backwards compat we're keeping it
+  // especially since `innerRef` will be removed in v5 and is equivalent to `ref`
+  <StyledRefableAnchor innerRef={buttonRef} />;
+}
