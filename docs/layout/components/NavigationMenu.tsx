@@ -1,5 +1,7 @@
 import React from 'react';
 import NavItem from './NavItem';
+import PropTypesDoc from '../../prop-types.json';
+import { withRouter } from 'next/router';
 import { List } from '@material-ui/core';
 
 const navItems = [
@@ -22,10 +24,20 @@ const navItems = [
   {
     title: 'Components',
     children: [
-      { title: 'Date Picker', href: '/api/datepicker' },
-      { title: 'Time Picker', href: '/api/timepicker' },
-      { title: 'Date & Time Picker', href: '/api/datetime-picker' },
+      { title: 'Date Picker', href: '/demo/datepicker' },
+      { title: 'Time Picker', href: '/demo/timepicker' },
+      { title: 'Date & Time Picker', href: '/demo/datetime-picker' },
     ],
+  },
+  {
+    title: 'Components API',
+    children: Object.keys(PropTypesDoc)
+      .filter(component => !['ModalWrapper'].includes(component))
+      .map(component => ({
+        title: component,
+        as: `/api/${component}`,
+        href: `/api/docs?component=${component}`,
+      })),
   },
   {
     title: 'Guides',
@@ -45,12 +57,15 @@ const navItems = [
 
 class NavigationMenu extends React.Component<any> {
   mapNavigation(depth: number) {
-    return ({ title, children, href }: any) => {
+    return ({ title, children, href, as }: any) => {
+      const { asPath } = this.props.router;
       const open =
-        children && children.length > 0 ? children.some((item: any) => item.href === true) : false;
+        children && children.length > 0
+          ? children.some((item: any) => item.href === asPath || item.as === asPath)
+          : false;
 
       return (
-        <NavItem key={href || title} title={title} depth={depth} href={href} open={open}>
+        <NavItem key={href || title} as={as} title={title} depth={depth} href={href} open={open}>
           {children && children.length > 0 && children.map(this.mapNavigation(depth + 1))}
         </NavItem>
       );
@@ -62,4 +77,4 @@ class NavigationMenu extends React.Component<any> {
   }
 }
 
-export default NavigationMenu;
+export default withRouter(NavigationMenu);

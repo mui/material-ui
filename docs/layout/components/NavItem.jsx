@@ -48,7 +48,7 @@ class NavItem extends React.Component {
   };
 
   render() {
-    const { href, title, children, classes, depth, router, ...props } = this.props;
+    const { href, title, children, as, classes, depth, router, ...props } = this.props;
     const style = { paddingLeft: `${(depth + 1) * 16}px` };
 
     if (depth === 0) {
@@ -58,12 +58,12 @@ class NavItem extends React.Component {
     if (href) {
       return (
         <ListItem disableGutters className={classes.listItem} {...props}>
-          <Link prefetch href={href}>
+          <Link prefetch as={as} href={href}>
             <Button
               onClick={this.handleClick}
               style={style}
               className={clsx(classes.button, {
-                [classes.selected]: router.pathname === href,
+                [classes.selected]: router.asPath === href || router.asPath === as,
               })}
             >
               {title}
