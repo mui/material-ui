@@ -16,7 +16,7 @@ Here are some highlights ✨:
 We hope the next release can be 4.0.0-beta.0.
 Here are the last breaking changes we want to introduce:
 
-- Remove the `dangerouslyUseGlobalCSS` option, make it the default behavior (#15140)
+- Remove the `dangerouslyUseGlobalCSS` option (make it the default behavior) (#15140)
 - Require the Slide and Modal child element to be able to hold a ref (#15344, #15347)
 - Hide the EventListener dependency of ClickAwayListener (#15126)
 
@@ -72,7 +72,6 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 - [Tooltip] Convert to function component (#15291) @joshwooding
 - [Ripple] Convert to function component (#15345) @joshwooding
 - [Textarea] Refactor the implementation (#15331) @oliviertassinari
-- [system] Add types (#15357) @eps1lon
 - [Modal] Add reason parameter to onClose function signature (#15373) @JarkEMones
 - [Box] Test props to attributes forwarding (#15365) @eps1lon
 - [Container] Add component prop for TypeScript (#15369) @Amere
@@ -83,9 +82,9 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 - Fix dependency duplication issue @oliviertassinari
 - [styles] Improve typings for makeStyles (#15366) @geirsagberg
 
-### `@material-ui/utils@v4.0.0-alpha.8`
+### `@material-ui/system@v4.0.0-alpha.8`
 
-- [utils] Fix lazy and memo components issuing forward ref warnings (#15322) @eps1lon
+- [system] Add types (#15357) @eps1lon
 
 ### `@material-ui/docs@v4.0.0-alpha.8`
 
@@ -147,6 +146,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 - [core] Upgrade react-transition-group (#15375) @eps1lon
 - [test] Add missing styles tests (#15376) @ellisio
 - [test] Add hoc + overrideable component workaround (#15381) @ellisio
+- [utils] Fix lazy and memo components issuing forward ref warnings (#15322) @eps1lon
 
 ## 4.0.0-alpha.7
 ###### *Apr 8, 2019*
