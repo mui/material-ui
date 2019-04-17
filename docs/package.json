@@ -41,6 +41,7 @@
     "jss-rtl": "^0.2.3",
     "luxon": "^1.11.2",
     "material-ui-pickers": "^3.0.0-alpha.1",
+    "material-ui-search-bar": "^1.0.0-beta.13",
     "moment": "^2.24.0",
     "moment-jalaali": "^0.8.3",
     "next": "^8.0.1",

@@ -1,5 +1,5 @@
 {
-  "DatePicker/DatePicker.tsx": {
+  "DatePicker": {
     "value": {
       "defaultValue": null,
       "description": "Picker value",
@@ -370,7 +370,413 @@
       "type": { "name": "(date: any) => void" }
     }
   },
-  "TimePicker/TimePicker.tsx": {
+  "KeyboardDatePicker": {
+    "onlyCalendar": {
+      "defaultValue": { "value": "false" },
+      "description": "Show only calendar, without toolbar",
+      "name": "onlyCalendar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "minDate": {
+      "defaultValue": { "value": "Date(1900-01-01)" },
+      "description": "Min selectable date",
+      "name": "minDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "DateType" }
+    },
+    "maxDate": {
+      "defaultValue": { "value": "Date(2100-01-01)" },
+      "description": "Max selectable date",
+      "name": "maxDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "DateType" }
+    },
+    "disablePast": {
+      "defaultValue": { "value": "false" },
+      "description": "Disable past dates",
+      "name": "disablePast",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "disableFuture": {
+      "defaultValue": { "value": "false" },
+      "description": "Disable future dates",
+      "name": "disableFuture",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "animateYearScrolling": {
+      "defaultValue": { "value": "false" },
+      "description": "To animate scrolling to current year (with scrollIntoView)",
+      "name": "animateYearScrolling",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "views": {
+      "defaultValue": { "value": "[\"day\", \"year\"]" },
+      "description": "Array of views to show. Order year -> month -> day",
+      "name": "views",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(\"year\" | \"month\" | \"day\")[]" }
+    },
+    "openTo": {
+      "defaultValue": { "value": "props.views[0]" },
+      "description": "Initial view to show when date picker is open",
+      "name": "openTo",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "\"year\" | \"month\" | \"day\"" }
+    },
+    "onYearChange": {
+      "defaultValue": null,
+      "description": "Callback firing on year change",
+      "name": "onYearChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "leftArrowIcon": {
+      "defaultValue": null,
+      "description": "Left arrow icon",
+      "name": "leftArrowIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "rightArrowIcon": {
+      "defaultValue": null,
+      "description": "Right arrow icon",
+      "name": "rightArrowIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "renderDay": {
+      "defaultValue": null,
+      "description": "Custom renderer for day",
+      "name": "renderDay",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+      }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": { "value": "true" },
+      "description": "Enables keyboard listener for moving between days in calendar",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "leftArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to left arrow button",
+      "name": "leftArrowButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    },
+    "rightArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to right arrow button",
+      "name": "rightArrowButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    },
+    "shouldDisableDate": {
+      "defaultValue": null,
+      "description": "Disable specific date",
+      "name": "shouldDisableDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "(day: any) => boolean" }
+    },
+    "onMonthChange": {
+      "defaultValue": null,
+      "description": "Callback firing on month change",
+      "name": "onMonthChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "minDateMessage": {
+      "defaultValue": null,
+      "description": "Error message, shown if date is less then minimal date",
+      "name": "minDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "DateValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "maxDateMessage": {
+      "defaultValue": null,
+      "description": "Error message, shown if date is more then maximal date",
+      "name": "maxDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "DateValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "invalidDateMessage": {
+      "defaultValue": null,
+      "description": "Message, appearing when date cannot be parsed",
+      "name": "invalidDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "BaseValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "open": {
+      "defaultValue": null,
+      "description": "Controlled picker open state",
+      "name": "open",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "onAccept": {
+      "defaultValue": null,
+      "description": "Callback fired when date isAccepted",
+      "name": "onAccept",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "autoOk": {
+      "defaultValue": { "value": "false" },
+      "description": "Auto accept date on selection",
+      "name": "autoOk",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "labelFunc": {
+      "defaultValue": null,
+      "description": "Dynamic formatter of text field label",
+      "name": "labelFunc",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any, invalidLabel: string) => string" }
+    },
+    "initialFocusedDate": {
+      "defaultValue": null,
+      "description": "Date that will be initially highlighted",
+      "name": "initialFocusedDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "DateType" }
+    },
+    "invalidLabel": {
+      "defaultValue": { "value": "'Invalid Date Format'" },
+      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "name": "invalidLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "emptyLabel": {
+      "defaultValue": { "value": "' '" },
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "name": "emptyLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "onOpen": {
+      "defaultValue": null,
+      "description": "On open callback",
+      "name": "onOpen",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "mask": {
+      "defaultValue": null,
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "maskChar": {
+      "defaultValue": null,
+      "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
+      "name": "maskChar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "refuse": {
+      "defaultValue": null,
+      "description": "Refuse values regexp",
+      "name": "refuse",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "RegExp" }
+    },
+    "InputAdornmentProps": {
+      "defaultValue": null,
+      "description": "Props to pass to keyboard input adornment",
+      "name": "InputAdornmentProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<InputAdornmentProps>" }
+    },
+    "KeyboardButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to keyboard adornment button",
+      "name": "KeyboardButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    }
+  },
+  "TimePicker": {
     "value": {
       "defaultValue": null,
       "description": "Picker value",
@@ -559,7 +965,231 @@
       "type": { "name": "boolean" }
     }
   },
-  "DateTimePicker/DateTimePicker.tsx": {
+  "KeyboardTimePicker": {
+    "ampm": {
+      "defaultValue": { "value": "true" },
+      "description": "12h/24h view for hour selection clock",
+      "name": "ampm",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePickerRoot.tsx",
+        "name": "BaseTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "minutesStep": {
+      "defaultValue": { "value": "1" },
+      "description": "Step over minutes",
+      "name": "minutesStep",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePickerRoot.tsx",
+        "name": "BaseTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "number" }
+    },
+    "seconds": {
+      "defaultValue": null,
+      "description": "Show the seconds view",
+      "name": "seconds",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePickerRoot.tsx",
+        "name": "BaseTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "invalidDateMessage": {
+      "defaultValue": null,
+      "description": "Message, appearing when date cannot be parsed",
+      "name": "invalidDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "BaseValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "open": {
+      "defaultValue": null,
+      "description": "Controlled picker open state",
+      "name": "open",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "onAccept": {
+      "defaultValue": null,
+      "description": "Callback fired when date isAccepted",
+      "name": "onAccept",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "autoOk": {
+      "defaultValue": { "value": "false" },
+      "description": "Auto accept date on selection",
+      "name": "autoOk",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "labelFunc": {
+      "defaultValue": null,
+      "description": "Dynamic formatter of text field label",
+      "name": "labelFunc",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any, invalidLabel: string) => string" }
+    },
+    "initialFocusedDate": {
+      "defaultValue": null,
+      "description": "Date that will be initially highlighted",
+      "name": "initialFocusedDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "DateType" }
+    },
+    "invalidLabel": {
+      "defaultValue": { "value": "'Invalid Date Format'" },
+      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "name": "invalidLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "emptyLabel": {
+      "defaultValue": { "value": "' '" },
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "name": "emptyLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "onOpen": {
+      "defaultValue": null,
+      "description": "On open callback",
+      "name": "onOpen",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "mask": {
+      "defaultValue": null,
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "maskChar": {
+      "defaultValue": null,
+      "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
+      "name": "maskChar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "refuse": {
+      "defaultValue": null,
+      "description": "Refuse values regexp",
+      "name": "refuse",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "RegExp" }
+    },
+    "InputAdornmentProps": {
+      "defaultValue": null,
+      "description": "Props to pass to keyboard input adornment",
+      "name": "InputAdornmentProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<InputAdornmentProps>" }
+    },
+    "KeyboardButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to keyboard adornment button",
+      "name": "KeyboardButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    }
+  },
+  "DateTimePicker": {
     "value": {
       "defaultValue": null,
       "description": "Picker value",
@@ -972,6 +1602,537 @@
       },
       "required": false,
       "type": { "name": "(date: any) => void" }
+    }
+  },
+  "KeyboardDateTimePicker": {
+    "autoSubmit": {
+      "defaultValue": null,
+      "description": "Auto move between date, hours and minutes",
+      "name": "autoSubmit",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePickerRoot.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "showTabs": {
+      "defaultValue": null,
+      "description": "Show or hide date/time tabs (hidden automatically on small screens)",
+      "name": "showTabs",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePickerRoot.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "openTo": {
+      "defaultValue": null,
+      "description": "Initial view to show when datetime picker is open",
+      "name": "openTo",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePickerRoot.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "\"date\" | \"year\" | \"hours\" | \"minutes\"" }
+    },
+    "dateRangeIcon": {
+      "defaultValue": null,
+      "description": "Date tab icon",
+      "name": "dateRangeIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePickerRoot.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "timeIcon": {
+      "defaultValue": null,
+      "description": "Time tab icon",
+      "name": "timeIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePickerRoot.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "ampm": {
+      "defaultValue": { "value": "true" },
+      "description": "12h/24h view for hour selection clock",
+      "name": "ampm",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePickerRoot.tsx",
+        "name": "BaseTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "minutesStep": {
+      "defaultValue": { "value": "1" },
+      "description": "Step over minutes",
+      "name": "minutesStep",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePickerRoot.tsx",
+        "name": "BaseTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "number" }
+    },
+    "minDate": {
+      "defaultValue": { "value": "Date(1900-01-01)" },
+      "description": "Min selectable date",
+      "name": "minDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "DateType" }
+    },
+    "maxDate": {
+      "defaultValue": { "value": "Date(2100-01-01)" },
+      "description": "Max selectable date",
+      "name": "maxDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "DateType" }
+    },
+    "disablePast": {
+      "defaultValue": { "value": "false" },
+      "description": "Disable past dates",
+      "name": "disablePast",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "disableFuture": {
+      "defaultValue": { "value": "false" },
+      "description": "Disable future dates",
+      "name": "disableFuture",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "animateYearScrolling": {
+      "defaultValue": { "value": "false" },
+      "description": "To animate scrolling to current year (with scrollIntoView)",
+      "name": "animateYearScrolling",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "onYearChange": {
+      "defaultValue": null,
+      "description": "Callback firing on year change",
+      "name": "onYearChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePickerRoot.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "leftArrowIcon": {
+      "defaultValue": null,
+      "description": "Left arrow icon",
+      "name": "leftArrowIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "rightArrowIcon": {
+      "defaultValue": null,
+      "description": "Right arrow icon",
+      "name": "rightArrowIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "renderDay": {
+      "defaultValue": null,
+      "description": "Custom renderer for day",
+      "name": "renderDay",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+      }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": { "value": "true" },
+      "description": "Enables keyboard listener for moving between days in calendar",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "leftArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to left arrow button",
+      "name": "leftArrowButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    },
+    "rightArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to right arrow button",
+      "name": "rightArrowButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    },
+    "shouldDisableDate": {
+      "defaultValue": null,
+      "description": "Disable specific date",
+      "name": "shouldDisableDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "(day: any) => boolean" }
+    },
+    "onMonthChange": {
+      "defaultValue": null,
+      "description": "Callback firing on month change",
+      "name": "onMonthChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "minDateMessage": {
+      "defaultValue": null,
+      "description": "Error message, shown if date is less then minimal date",
+      "name": "minDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "DateValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "maxDateMessage": {
+      "defaultValue": null,
+      "description": "Error message, shown if date is more then maximal date",
+      "name": "maxDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "DateValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "invalidDateMessage": {
+      "defaultValue": null,
+      "description": "Message, appearing when date cannot be parsed",
+      "name": "invalidDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "BaseValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "open": {
+      "defaultValue": null,
+      "description": "Controlled picker open state",
+      "name": "open",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "onAccept": {
+      "defaultValue": null,
+      "description": "Callback fired when date isAccepted",
+      "name": "onAccept",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "autoOk": {
+      "defaultValue": { "value": "false" },
+      "description": "Auto accept date on selection",
+      "name": "autoOk",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "labelFunc": {
+      "defaultValue": null,
+      "description": "Dynamic formatter of text field label",
+      "name": "labelFunc",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any, invalidLabel: string) => string" }
+    },
+    "initialFocusedDate": {
+      "defaultValue": null,
+      "description": "Date that will be initially highlighted",
+      "name": "initialFocusedDate",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "DateType" }
+    },
+    "invalidLabel": {
+      "defaultValue": { "value": "'Invalid Date Format'" },
+      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "name": "invalidLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "emptyLabel": {
+      "defaultValue": { "value": "' '" },
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "name": "emptyLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "onOpen": {
+      "defaultValue": null,
+      "description": "On open callback",
+      "name": "onOpen",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "mask": {
+      "defaultValue": null,
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "maskChar": {
+      "defaultValue": null,
+      "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
+      "name": "maskChar",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "refuse": {
+      "defaultValue": null,
+      "description": "Refuse values regexp",
+      "name": "refuse",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "RegExp" }
+    },
+    "InputAdornmentProps": {
+      "defaultValue": null,
+      "description": "Props to pass to keyboard input adornment",
+      "name": "InputAdornmentProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<InputAdornmentProps>" }
+    },
+    "KeyboardButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to keyboard adornment button",
+      "name": "KeyboardButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
+      }
+    }
+  },
+  "ModalWrapper": {
+    "okLabel": {
+      "defaultValue": null,
+      "description": "\"OK\" label message",
+      "name": "okLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "cancelLabel": {
+      "defaultValue": null,
+      "description": "\"Cancel\" label message",
+      "name": "cancelLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "clearLabel": {
+      "defaultValue": null,
+      "description": "\"Clear\" label message",
+      "name": "clearLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "todayLabel": {
+      "defaultValue": null,
+      "description": "\"Today\" label message",
+      "name": "todayLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "showTodayButton": {
+      "defaultValue": null,
+      "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
+      "name": "showTodayButton",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "DialogProps": {
+      "defaultValue": null,
+      "description": "Props to be passed directly to material-ui Dialog",
+      "name": "DialogProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<Pick<DialogProps, \"open\" | \"onEnter\" | \"onEntering\" | \"onEntered\" | \"onExit\" | \"onExiting\" | \"onExited\" | \"container\" | \"children\" | \"hidden\" | \"manifest\" | \"defaultChecked\" | ... 275 more ... | \"TransitionProps\">>"
+      }
+    },
+    "clearable": {
+      "defaultValue": null,
+      "description": "Show clear action in picker dialog",
+      "name": "clearable",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
     }
   }
 }

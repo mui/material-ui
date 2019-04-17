@@ -2,28 +2,31 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import EventListener from 'react-event-listener';
-import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
+import { makeStyles } from '@material-ui/core';
 import { TextFieldProps } from '@material-ui/core/TextField';
 import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
+
+export const useStyles = makeStyles(
+  {
+    popoverPaper: {
+      width: DIALOG_WIDTH,
+      paddingBottom: 8,
+    },
+    popoverPaperWider: {
+      width: DIALOG_WIDTH_WIDER,
+    },
+  },
+  { name: 'MuiPickersInlineWrapper' }
+);
 
 export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> {
   /** Dialog props passed to material-ui Dialog */
   PopoverProps?: Partial<PopoverPropsType>;
 }
 
-export const styles = {
-  popoverPaper: {
-    width: DIALOG_WIDTH,
-    paddingBottom: 8,
-  },
-  popoverPaperWider: {
-    width: DIALOG_WIDTH_WIDER,
-  },
-};
-
-const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = ({
+export const InlineWrapper: React.FC<InlineWrapperProps> = ({
   open,
   wider,
   children,
@@ -31,7 +34,6 @@ const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = 
   onClear,
   onDismiss,
   onSetToday,
-  classes,
   onAccept,
   showTabs,
   DateInputProps,
@@ -39,6 +41,7 @@ const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = 
   ...other
 }) => {
   const ref = React.useRef();
+  const classes = useStyles();
   const handleKeyDown = React.useCallback(
     (event: KeyboardEvent) => {
       switch (event.key) {
@@ -89,4 +92,4 @@ InlineWrapper.propTypes = {
   PopoverProps: PropTypes.object,
 } as any;
 
-export default withStyles(styles)(InlineWrapper);
+export default InlineWrapper;
