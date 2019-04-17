@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, react/no-danger */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -70,7 +70,7 @@ class MuiVirtualizedTable extends React.PureComponent {
           {label}
         </TableSortLabel>
       ) : (
-        label
+        <span dangerouslySetInnerHTML={{ __html: label }} />
       );
 
     return (
