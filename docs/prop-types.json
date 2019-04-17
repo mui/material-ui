@@ -368,6 +368,13 @@
       },
       "required": false,
       "type": { "name": "(date: any) => void" }
+    },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "required": false,
+      "type": { "name": "\"inline\" | \"dialog\"" }
     }
   },
   "KeyboardDatePicker": {
@@ -718,6 +725,13 @@
       "required": false,
       "type": { "name": "() => void" }
     },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "required": false,
+      "type": { "name": "\"inline\" | \"dialog\"" }
+    },
     "mask": {
       "defaultValue": null,
       "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
@@ -963,6 +977,13 @@
       },
       "required": false,
       "type": { "name": "boolean" }
+    },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "required": false,
+      "type": { "name": "\"inline\" | \"dialog\"" }
     }
   },
   "KeyboardTimePicker": {
@@ -1130,6 +1151,13 @@
       },
       "required": false,
       "type": { "name": "() => void" }
+    },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "required": false,
+      "type": { "name": "\"inline\" | \"dialog\"" }
     },
     "mask": {
       "defaultValue": null,
@@ -1602,6 +1630,13 @@
       },
       "required": false,
       "type": { "name": "(date: any) => void" }
+    },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "required": false,
+      "type": { "name": "\"inline\" | \"dialog\"" }
     }
   },
   "KeyboardDateTimePicker": {
@@ -1995,6 +2030,13 @@
       },
       "required": false,
       "type": { "name": "() => void" }
+    },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "required": false,
+      "type": { "name": "\"inline\" | \"dialog\"" }
     },
     "mask": {
       "defaultValue": null,

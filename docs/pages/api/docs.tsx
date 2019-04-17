@@ -37,7 +37,7 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
       <PropTypesTable src={componentName} />
 
       <h4> Modal Wrapper </h4>
-      <Typography gutterBottom>Available only with modal variant</Typography>
+      <Typography gutterBottom>Available only with variant "dialog" </Typography>
 
       <PropTypesTable disableHeader src="ModalWrapper" />
     </>

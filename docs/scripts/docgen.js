@@ -26,7 +26,10 @@ Object.entries(components).forEach(([name, filePart]) => {
 
   doc[name] = Object.entries(parsedDoc.props)
     // eslint-disable-next-line
-    .filter(([key, value]) => value.description && !value.parent.fileName.includes('@types'))
+    .filter(
+      ([key, value]) =>
+        value.description && (!value.parent || !value.parent.fileName.includes('@types'))
+    )
     .reduce((obj, [key, value]) => {
       obj[key] = value;
       return obj;

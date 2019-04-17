@@ -24,15 +24,19 @@ type OmitInnerWrapperProps<T extends WrapperProps<any>> = Omit<
   keyof WrapperProps<any> | 'showTabs'
 >;
 
-export type ModalRoot = { variant?: 'dialog' } & OmitInnerWrapperProps<ModalWrapperProps>;
+export type ModalRoot = OmitInnerWrapperProps<ModalWrapperProps>;
 
-export type InlineRoot = { variant?: 'inline' } & OmitInnerWrapperProps<InlineWrapperProps>;
+export type InlineRoot = OmitInnerWrapperProps<InlineWrapperProps>;
 
 // prettier-ignore
-export type ExtendWrapper<TInput extends PureDateInputProps | KeyboardDateInputProps> =
-  Omit<TInput, 'inputValue' | 'format' | 'validationError' | 'format' | 'forwardedRef'> & (
-    ModalRoot | InlineRoot
-  )
+export type ExtendWrapper<TInput extends PureDateInputProps | KeyboardDateInputProps> = {
+  /**
+   * Displaying variant
+   * @default 'dialog'
+   */
+  variant?: 'dialog' | 'inline'; // not WrapperVariant for docgen
+} & Omit<TInput, 'inputValue' | 'format' | 'validationError' | 'format' | 'forwardedRef'>
+  & (ModalRoot | InlineRoot)
 
 export function getWrapperFromVariant<T>(
   variant?: WrapperVariant
