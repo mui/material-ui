@@ -25,14 +25,23 @@ export const getDisplayDate = (
 };
 
 export interface BaseValidationProps {
-  /** Message, appearing when date cannot be parsed */
+  /**
+   * Message, appearing when date cannot be parsed
+   * @default 'Invalid Date Format'
+   */
   invalidDateMessage?: React.ReactNode;
 }
 
 export interface DateValidationProps extends BaseValidationProps {
-  /** Error message, shown if date is less then minimal date */
+  /**
+   * Error message, shown if date is less then minimal date
+   * @default 'Date should not be before minimal date'
+   */
   minDateMessage?: React.ReactNode;
-  /** Error message, shown if date is more then maximal date */
+  /**
+   * Error message, shown if date is more then maximal date
+   * @default 'Date should not be after maximal date'
+   */
   maxDateMessage?: React.ReactNode;
 }
 

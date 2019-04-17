@@ -12,11 +12,11 @@ export interface KeyboardDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
   // Properly extend different variants from mui textfield
   inputVariant?: TextFieldProps['variant'];
-  inputValue: string;
   format: string;
   onChange: (value: string) => void;
   onClick?: () => void;
   validationError?: React.ReactNode;
+  inputValue: string;
   /**
    * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)
    */

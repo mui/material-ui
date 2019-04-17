@@ -19,7 +19,7 @@ export interface BasePickerProps {
   initialFocusedDate?: DateType;
   /**
    * Message displaying in text field, if date is invalid (doesn't work in keyboard mode)
-   * @default 'Invalid Date Format'
+   * @default 'unknown'
    */
   invalidLabel?: string;
   /**

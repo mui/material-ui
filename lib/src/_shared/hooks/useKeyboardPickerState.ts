@@ -2,15 +2,15 @@ import { useUtils } from './useUtils';
 import { Omit } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { IUtils } from '@date-io/core/IUtils';
-import { DateType } from '../../constants/prop-types';
 import { BasePickerProps } from '../../typings/BasePicker';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { HookOptions, usePickerState } from './usePickerState';
 import { getDisplayDate } from '../../_helpers/text-field-helper';
 
-export interface BaseKeyboardPickerProps extends Omit<BasePickerProps, 'value' | 'onChange'> {
-  value?: DateType;
+export interface BaseKeyboardPickerProps extends Omit<BasePickerProps, 'onChange'> {
+  /** String value, overrides value prop. Controlling value over pure input string */
   inputValue?: string;
+  /** Keyboard onChange callback */
   onChange: (date: MaterialUiPickersDate | null, value: string | undefined) => void;
 }
 

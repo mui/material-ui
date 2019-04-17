@@ -53,8 +53,8 @@ function useOpenState(props: BasePickerProps) {
 
   return { isOpen, setIsOpen };
 }
-/* eslint-enable react-hooks/rules-of-hooks */
 
+/* eslint-enable react-hooks/rules-of-hooks */
 export function usePickerState(props: BasePickerProps, options: HookOptions) {
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);

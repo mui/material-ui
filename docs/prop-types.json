@@ -67,7 +67,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": { "value": "'unknown'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -144,7 +144,7 @@
       "type": { "name": "boolean" }
     },
     "minDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Date should not be before minimal date'" },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -155,7 +155,7 @@
       "type": { "name": "ReactNode" }
     },
     "maxDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Date should not be after maximal date'" },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -166,7 +166,7 @@
       "type": { "name": "ReactNode" }
     },
     "invalidDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -564,7 +564,7 @@
       "type": { "name": "(date: any) => void" }
     },
     "minDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Date should not be before minimal date'" },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -575,7 +575,7 @@
       "type": { "name": "ReactNode" }
     },
     "maxDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Date should not be after maximal date'" },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -586,7 +586,7 @@
       "type": { "name": "ReactNode" }
     },
     "invalidDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -595,6 +595,28 @@
       },
       "required": false,
       "type": { "name": "ReactNode" }
+    },
+    "inputValue": {
+      "defaultValue": null,
+      "description": "String value, overrides value prop. Controlling value over pure input string",
+      "name": "inputValue",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Keyboard onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any, value: string) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -651,6 +673,17 @@
       "required": false,
       "type": { "name": "() => void" }
     },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "DateType" }
+    },
     "autoOk": {
       "defaultValue": { "value": "false" },
       "description": "Auto accept date on selection",
@@ -685,7 +718,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": { "value": "'unknown'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -848,7 +881,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": { "value": "'unknown'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -925,7 +958,7 @@
       "type": { "name": "boolean" }
     },
     "invalidDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -1011,7 +1044,7 @@
       "type": { "name": "boolean" }
     },
     "invalidDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -1020,6 +1053,28 @@
       },
       "required": false,
       "type": { "name": "ReactNode" }
+    },
+    "inputValue": {
+      "defaultValue": null,
+      "description": "String value, overrides value prop. Controlling value over pure input string",
+      "name": "inputValue",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Keyboard onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any, value: string) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -1076,6 +1131,17 @@
       "required": false,
       "type": { "name": "() => void" }
     },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "DateType" }
+    },
     "autoOk": {
       "defaultValue": { "value": "false" },
       "description": "Auto accept date on selection",
@@ -1110,7 +1176,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": { "value": "'unknown'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -1273,7 +1339,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": { "value": "'unknown'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -1350,7 +1416,7 @@
       "type": { "name": "boolean" }
     },
     "minDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Date should not be before minimal date'" },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -1361,7 +1427,7 @@
       "type": { "name": "ReactNode" }
     },
     "maxDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Date should not be after maximal date'" },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -1372,7 +1438,7 @@
       "type": { "name": "ReactNode" }
     },
     "invalidDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -1858,7 +1924,7 @@
       "type": { "name": "(date: any) => void" }
     },
     "minDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Date should not be before minimal date'" },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -1869,7 +1935,7 @@
       "type": { "name": "ReactNode" }
     },
     "maxDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Date should not be after maximal date'" },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -1880,7 +1946,7 @@
       "type": { "name": "ReactNode" }
     },
     "invalidDateMessage": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'Invalid Date Format'" },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -1889,6 +1955,28 @@
       },
       "required": false,
       "type": { "name": "ReactNode" }
+    },
+    "inputValue": {
+      "defaultValue": null,
+      "description": "String value, overrides value prop. Controlling value over pure input string",
+      "name": "inputValue",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Keyboard onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any, value: string) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -1945,6 +2033,17 @@
       "required": false,
       "type": { "name": "() => void" }
     },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "DateType" }
+    },
     "autoOk": {
       "defaultValue": { "value": "false" },
       "description": "Auto accept date on selection",
@@ -1979,7 +2078,7 @@
       "type": { "name": "DateType" }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": { "value": "'unknown'" },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
