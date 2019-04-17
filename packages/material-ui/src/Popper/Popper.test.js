@@ -124,18 +124,16 @@ describe('<Popper />', () => {
   });
 
   describe('prop: popperOptions', () => {
-    const popperProps = {
-      onCreate: spy(),
-      onUpdate: spy(),
-    };
-
-    it('should correctly pass down lifecycle callbacks to popperjs', () => {
-      const wrapper = mount(<Popper {...defaultProps} popperOptions={popperProps} />);
-      const instance = wrapper.find('Popper').instance();
-      instance.popper.options.onCreate({ placement: '' });
-      instance.popper.options.onUpdate({ placement: '' });
-      assert.strictEqual(popperProps.onCreate.callCount, 1);
-      assert.strictEqual(popperProps.onUpdate.callCount, 1);
+    it('should pass all popperOptions to popperjs', done => {
+      const popperOptions = {
+        onCreate: data => {
+          data.instance.update({ placement: 'left' });
+        },
+        onUpdate: () => {
+          done();
+        },
+      };
+      mount(<Popper {...defaultProps} popperOptions={popperOptions} placement="top" open />);
     });
   });
 
