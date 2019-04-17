@@ -81,13 +81,17 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
         </Button>
       )}
 
-      <Button color="primary" onClick={onDismiss}>
-        {cancelLabel}
-      </Button>
+      {cancelLabel && (
+        <Button color="primary" onClick={onDismiss}>
+          {cancelLabel}
+        </Button>
+      )}
 
-      <Button color="primary" onClick={onAccept}>
-        {okLabel}
-      </Button>
+      {okLabel && (
+        <Button color="primary" onClick={onAccept}>
+          {okLabel}
+        </Button>
+      )}
     </DialogActions>
   </Dialog>
 );
