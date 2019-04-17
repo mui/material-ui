@@ -47,7 +47,7 @@ function CustomizedBreadcrumbs() {
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">
-        <Chip
+        <StyledBreadcrumb
           component="a"
           href="#"
           label="Home"
