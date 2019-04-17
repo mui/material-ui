@@ -233,7 +233,7 @@ function makeStyles(stylesOrCreator, options = {}) {
       return () => {
         detach(current);
       };
-    }, [theme, stylesCreator, stylesOptions.generateClassName]);
+    }, [theme, stylesCreator]);
 
     React.useEffect(() => {
       if (shouldUpdate.current) {

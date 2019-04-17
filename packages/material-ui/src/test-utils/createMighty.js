@@ -35,7 +35,7 @@ class TestCase extends React.Component {
     const Component = __strict ? React.StrictMode : React.Fragment;
 
     return (
-      <StylesProvider generateClassName={generateStableClassName}>
+      <StylesProvider generateClassName={generateStableClassName} sheetsManager={new Map()}>
         <Component>{React.cloneElement(__element, other)}</Component>
       </StylesProvider>
     );
