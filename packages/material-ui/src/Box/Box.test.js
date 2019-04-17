@@ -1,18 +1,10 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, describeConformance } from '@material-ui/core/test-utils';
+import { createTestSuite, describeConformance } from '@material-ui/core/test-utils';
 import Box from './Box';
 
 describe('<Box />', () => {
-  let mount;
-
-  before(() => {
-    mount = createMount();
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
+  const { mount } = createTestSuite({ strict: true });
 
   describeConformance(<Box />, () => ({
     mount,
