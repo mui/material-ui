@@ -99,6 +99,16 @@ function themes(t) {
       source:
         'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/tweeper',
     },
+    {
+      name: 'Gsuite',
+      description: 'A recreation of Gsuite layout and home page by customizing Material UI theme',
+      src: '/static/themes/gsuite.png',
+      price: t('free'),
+      category: t('landing'),
+      href: '/premium-themes/gsuite',
+      source:
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/gsuite',
+    },
   ];
 }
 
