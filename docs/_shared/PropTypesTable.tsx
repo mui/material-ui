@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     minWidth: 340,
   },
   searchBar: {
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
 
     [theme.breakpoints.up('sm')]: {
@@ -95,6 +96,7 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
           </Grid>
           <Grid item sm={6} xs={12}>
             <SearchBar
+              placeholder="Fuzzy Search"
               value={searchString}
               onChange={setSearchString}
               onCancelSearch={() => setSearchString('')}
