@@ -730,7 +730,7 @@
       "type": { "name": "string" }
     },
     "maskChar": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'_'" },
       "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
       "name": "maskChar",
       "parent": {
@@ -741,7 +741,7 @@
       "type": { "name": "string" }
     },
     "refuse": {
-      "defaultValue": null,
+      "defaultValue": { "value": "/[^\\dap]+/gi" },
       "description": "Refuse values regexp",
       "name": "refuse",
       "parent": {
@@ -1143,7 +1143,7 @@
       "type": { "name": "string" }
     },
     "maskChar": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'_'" },
       "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
       "name": "maskChar",
       "parent": {
@@ -1154,7 +1154,7 @@
       "type": { "name": "string" }
     },
     "refuse": {
-      "defaultValue": null,
+      "defaultValue": { "value": "/[^\\dap]+/gi" },
       "description": "Refuse values regexp",
       "name": "refuse",
       "parent": {
@@ -2008,7 +2008,7 @@
       "type": { "name": "string" }
     },
     "maskChar": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'_'" },
       "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
       "name": "maskChar",
       "parent": {
@@ -2019,7 +2019,7 @@
       "type": { "name": "string" }
     },
     "refuse": {
-      "defaultValue": null,
+      "defaultValue": { "value": "/[^\\dap]+/gi" },
       "description": "Refuse values regexp",
       "name": "refuse",
       "parent": {
@@ -2056,7 +2056,7 @@
   },
   "ModalWrapper": {
     "okLabel": {
-      "defaultValue": null,
+      "defaultValue": { "value": "'OK'" },
       "description": "\"OK\" label message",
       "name": "okLabel",
       "parent": {
@@ -2067,8 +2067,8 @@
       "type": { "name": "ReactNode" }
     },
     "cancelLabel": {
-      "defaultValue": null,
-      "description": "\"Cancel\" label message",
+      "defaultValue": { "value": "'CANCEL'" },
+      "description": "\"CANCEL\" label message",
       "name": "cancelLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
@@ -2078,8 +2078,8 @@
       "type": { "name": "ReactNode" }
     },
     "clearLabel": {
-      "defaultValue": null,
-      "description": "\"Clear\" label message",
+      "defaultValue": { "value": "'CLEAR'" },
+      "description": "\"CLEAR\" label message",
       "name": "clearLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
@@ -2089,8 +2089,8 @@
       "type": { "name": "ReactNode" }
     },
     "todayLabel": {
-      "defaultValue": null,
-      "description": "\"Today\" label message",
+      "defaultValue": { "value": "'CLEAR'" },
+      "description": "\"CLEAR\" label message",
       "name": "todayLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
@@ -2100,9 +2100,20 @@
       "type": { "name": "ReactNode" }
     },
     "showTodayButton": {
-      "defaultValue": null,
-      "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
+      "defaultValue": { "value": "false" },
+      "description": "If true today button will be displayed <b>Note*</b> that clear button has higher priority",
       "name": "showTodayButton",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "clearable": {
+      "defaultValue": { "value": "false" },
+      "description": "Show clear action in picker dialog",
+      "name": "clearable",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
@@ -2122,17 +2133,6 @@
       "type": {
         "name": "Partial<Pick<DialogProps, \"open\" | \"onEnter\" | \"onEntering\" | \"onEntered\" | \"onExit\" | \"onExiting\" | \"onExited\" | \"container\" | \"children\" | \"hidden\" | \"manifest\" | \"defaultChecked\" | ... 275 more ... | \"TransitionProps\">>"
       }
-    },
-    "clearable": {
-      "defaultValue": null,
-      "description": "Show clear action in picker dialog",
-      "name": "clearable",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
-        "name": "ModalWrapperProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
     }
   }
 }

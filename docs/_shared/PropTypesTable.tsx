@@ -32,9 +32,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.primary.main,
   },
   defaultValue: {
-    fontSize: 15,
-    minWidth: 200,
-    borderBottom: `1px dotted ${theme.palette.text.primary}`,
+    minWidth: 210,
+
+    '& > span': {
+      fontSize: 15,
+      borderBottom: `1px dotted ${theme.palette.text.primary}`,
+    },
   },
   description: {
     minWidth: 340,
@@ -48,7 +51,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const PropTypesTableLazy: React.FC<{ src: keyof typeof PropTypesDoc }> = ({ src }) => {
+interface PropTypesTableProps {
+  disableHeader?: boolean;
+  src: keyof typeof PropTypesDoc;
+}
+
+const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src }) => {
   const classes = useStyles();
   const [searchString, setSearchString] = useState('');
   const propsDoc = Object.values(PropTypesDoc[src]);
@@ -80,19 +88,21 @@ const PropTypesTableLazy: React.FC<{ src: keyof typeof PropTypesDoc }> = ({ src 
 
   return (
     <React.Fragment>
-      <Grid className={classes.header} container>
-        <Grid item sm={6} xs={12}>
-          <Typography variant="h4"> Props </Typography>
+      {!disableHeader && (
+        <Grid className={classes.header} container>
+          <Grid item sm={6} xs={12}>
+            <Typography variant="h4"> Props </Typography>
+          </Grid>
+          <Grid item sm={6} xs={12}>
+            <SearchBar
+              value={searchString}
+              onChange={setSearchString}
+              onCancelSearch={() => setSearchString('')}
+              className={classes.searchBar}
+            />
+          </Grid>
         </Grid>
-        <Grid item sm={6} xs={12}>
-          <SearchBar
-            value={searchString}
-            onChange={setSearchString}
-            onCancelSearch={() => setSearchString('')}
-            className={classes.searchBar}
-          />
-        </Grid>
-      </Grid>
+      )}
 
       <Paper className={classes.tableWrapper}>
         <Table>
@@ -117,13 +127,8 @@ const PropTypesTableLazy: React.FC<{ src: keyof typeof PropTypesDoc }> = ({ src 
                 </TableCell>
 
                 <TableCell className={classes.type}>{prop.type.name}</TableCell>
-                <TableCell>
-                  <Typography
-                    align="center"
-                    variant="body1"
-                    component="span"
-                    className={classes.defaultValue}
-                  >
+                <TableCell className={classes.defaultValue}>
+                  <Typography align="center" variant="body1" component="span">
                     {prop.defaultValue && prop.defaultValue.value}
                   </Typography>
                 </TableCell>

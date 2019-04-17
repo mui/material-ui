@@ -17,11 +17,19 @@ export interface KeyboardDateInputProps
   onChange: (value: string) => void;
   onClick?: () => void;
   validationError?: React.ReactNode;
-  /** Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__) */
+  /**
+   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)
+   */
   mask?: string;
-  /** Char string that will be replaced with number (for "_" mask will be "__/__/____") */
+  /**
+   * Char string that will be replaced with number (for "_" mask will be "__/__/____")
+   * @default '_'
+   */
   maskChar?: string;
-  /** Refuse values regexp */
+  /**
+   * Refuse values regexp
+   * @default /[^\dap]+/gi
+   */
   refuse?: RegExp;
   /** Props to pass to keyboard input adornment */
   InputAdornmentProps?: Partial<InputAdornmentProps>;
@@ -77,7 +85,5 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
     </Rifm>
   );
 };
-
-KeyboardDateInput.defaultProps = {};
 
 export default KeyboardDateInput;
