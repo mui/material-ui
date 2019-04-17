@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import React from 'react';
+import FuzzySearch from 'fuzzy-search';
 import PropTypesDoc from '../prop-types.json';
 import SearchBar from 'material-ui-search-bar';
+import React, { useMemo, useState } from 'react';
 import {
   Table,
   Paper,
@@ -16,9 +17,11 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  header: {
+    marginTop: 24,
+  },
   tableWrapper: {
     overflowX: 'auto',
-    // marginTop: 8
   },
   required: {
     color: '#8bc34a',
@@ -47,16 +50,47 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const PropTypesTableLazy: React.FC<{ src: keyof typeof PropTypesDoc }> = ({ src }) => {
   const classes = useStyles();
-  const propsDoc = PropTypesDoc[src] as any;
+  const [searchString, setSearchString] = useState('');
+  const propsDoc = Object.values(PropTypesDoc[src]);
+
+  const searcher = useMemo(
+    () =>
+      new FuzzySearch(propsDoc, ['name', 'defaultValue', 'description', 'type.name'], {
+        caseSensitive: false,
+      }),
+    [propsDoc]
+  );
+
+  // prettier-ignore
+  const propsToShow = useMemo(() => {
+    return searcher
+      .search(searchString.trim())
+      .sort((a, b) => {
+        if (a.required && !b.required) {
+          return -1;
+        }
+
+        if (!a.required && b.required) {
+          return 1;
+        }
+
+        return a.name.localeCompare(b.name)
+      });
+  }, [searchString, searcher]);
 
   return (
     <React.Fragment>
-      <Grid container>
+      <Grid className={classes.header} container>
         <Grid item sm={6} xs={12}>
           <Typography variant="h4"> Props </Typography>
         </Grid>
         <Grid item sm={6} xs={12}>
-          <SearchBar className={classes.searchBar} onChange={console.log} />
+          <SearchBar
+            value={searchString}
+            onChange={setSearchString}
+            onCancelSearch={() => setSearchString('')}
+            className={classes.searchBar}
+          />
         </Grid>
       </Grid>
 
@@ -72,35 +106,33 @@ const PropTypesTableLazy: React.FC<{ src: keyof typeof PropTypesDoc }> = ({ src 
           </TableHead>
 
           <TableBody>
-            {Object.keys(propsDoc)
-              .sort((a, b) => a.localeCompare(b))
-              .map(prop => (
-                <TableRow key={prop}>
-                  <TableCell
-                    className={clsx({
-                      [classes.required]: propsDoc[prop].required,
-                    })}
+            {propsToShow.map(prop => (
+              <TableRow key={prop.name}>
+                <TableCell
+                  className={clsx({
+                    [classes.required]: prop.required,
+                  })}
+                >
+                  {prop.required ? `${prop.name} *` : prop.name}
+                </TableCell>
+
+                <TableCell className={classes.type}>{prop.type.name}</TableCell>
+                <TableCell>
+                  <Typography
+                    align="center"
+                    variant="body1"
+                    component="span"
+                    className={classes.defaultValue}
                   >
-                    {propsDoc[prop].required ? `${prop} *` : prop}
-                  </TableCell>
+                    {prop.defaultValue && prop.defaultValue.value}
+                  </Typography>
+                </TableCell>
 
-                  <TableCell className={classes.type}>{propsDoc[prop].type.name}</TableCell>
-                  <TableCell>
-                    <Typography
-                      align="center"
-                      variant="body1"
-                      component="span"
-                      className={classes.defaultValue}
-                    >
-                      {propsDoc[prop].defaultValue && propsDoc[prop].defaultValue.value}
-                    </Typography>
-                  </TableCell>
-
-                  <TableCell className={classes.description}>
-                    <span dangerouslySetInnerHTML={{ __html: propsDoc[prop].description }} />
-                  </TableCell>
-                </TableRow>
-              ))}
+                <TableCell className={classes.description}>
+                  <span dangerouslySetInnerHTML={{ __html: prop.description }} />
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </Paper>
@@ -108,4 +140,4 @@ const PropTypesTableLazy: React.FC<{ src: keyof typeof PropTypesDoc }> = ({ src 
   );
 };
 
-export default PropTypesTableLazy;
+export default React.memo(PropTypesTableLazy);

@@ -23,7 +23,7 @@ export interface BasePickerProps {
    */
   invalidLabel?: string;
   /**
-   * Message displaying in text field, if null passed (doesn't work in keyboard mode)\
+   * Message displaying in text field, if null passed (doesn't work in keyboard mode)
    * @default ' '
    */
   emptyLabel?: string;

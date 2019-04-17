@@ -2,6 +2,7 @@ import * as React from 'react';
 import Ad from '_shared/Ad';
 import PropTypesTable from '_shared/PropTypesTable';
 import { PageMeta } from '_shared/PageMeta';
+import { Typography } from '@material-ui/core';
 import { WithRouterProps, withRouter } from 'next/router';
 
 const Docs: React.FC<WithRouterProps> = ({ router }) => {
@@ -20,7 +21,7 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
       <Ad />
 
       <h4> Inheritance </h4>
-      <p>
+      <Typography gutterBottom>
         Any prop not recognized by the pickers and their sub-components are passed down to
         material-ui{' '}
         <a
@@ -31,7 +32,7 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
           TextField
         </a>{' '}
         component.
-      </p>
+      </Typography>
 
       <PropTypesTable src={componentName} />
     </>

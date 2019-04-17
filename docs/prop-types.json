@@ -79,7 +79,7 @@
     },
     "emptyLabel": {
       "defaultValue": { "value": "' '" },
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -698,7 +698,7 @@
     },
     "emptyLabel": {
       "defaultValue": { "value": "' '" },
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -856,7 +856,7 @@
     },
     "emptyLabel": {
       "defaultValue": { "value": "' '" },
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1111,7 +1111,7 @@
     },
     "emptyLabel": {
       "defaultValue": { "value": "' '" },
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1269,7 +1269,7 @@
     },
     "emptyLabel": {
       "defaultValue": { "value": "' '" },
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1976,7 +1976,7 @@
     },
     "emptyLabel": {
       "defaultValue": { "value": "' '" },
-      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)\\",
+      "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
