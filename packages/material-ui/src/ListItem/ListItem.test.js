@@ -2,8 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import {
-  getClasses,
-  createMighty,
+  createTestSuite,
   describeConformance,
   findOutermostIntrinsic,
 } from '@material-ui/core/test-utils';
@@ -16,7 +15,7 @@ import ListContext from '../List/ListContext';
 
 describe('<ListItem />', () => {
   // StrictModeViolation: uses ButtonBase
-  const mount = createMighty({ strict: false });
+  const { getClasses, mount } = createTestSuite({ strict: false });
   let classes;
 
   before(() => {
@@ -30,10 +29,9 @@ describe('<ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
   }));
 
-  it.only('should render with gutters classes', () => {
+  it('should render with gutters classes', () => {
     const wrapper = mount(<ListItem className="woofListItem" />);
     const listItem = wrapper.find('li');
-    console.log(listItem.debug());
     assert.strictEqual(listItem.hasClass(classes.gutters), true);
   });
 

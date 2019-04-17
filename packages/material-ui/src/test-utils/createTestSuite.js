@@ -4,10 +4,21 @@ import * as PropTypes from 'prop-types';
 import { mount as enzymeMount } from 'enzyme';
 import * as mocha from 'mocha';
 import { StylesProvider } from '@material-ui/styles';
+import hash from '@emotion/hash';
 
-function generateStableClassName() {
-  console.log(1);
-  return 'foo';
+function generateStableClassName(rule, styleSheet) {
+  const isStatic = !styleSheet.options.link;
+
+  let suffix = '';
+  if (isStatic) {
+    const themeHash = hash(JSON.stringify(styleSheet.options.theme));
+    const raw = styleSheet.rules.raw[rule.key];
+    suffix = hash(`${themeHash}${rule.key}${JSON.stringify(raw)}`);
+  }
+
+  const prefix = styleSheet.options.classNamePrefix;
+  const meta = isStatic ? 'static' : 'dynamic';
+  return `${prefix}-${meta}-${rule.key}-${suffix}`;
 }
 
 /**
@@ -92,7 +103,21 @@ export default function createMount(options = {}) {
     });
   }
 
+  // Helper function to extract the classes from a styleSheet.
+  function getClasses(element) {
+    const { useStyles } = element.type;
+
+    let classes;
+    function Listener() {
+      classes = useStyles(element.props);
+      return null;
+    }
+    mighty(<Listener />);
+
+    return classes;
+  }
+
   mighty.attachTo = attachTo;
 
-  return mighty;
+  return { getClasses, mount: mighty };
 }
