@@ -5,7 +5,7 @@ import { ExtendMui } from '../typings/extendMui';
 
 export interface PureDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
-  // Properly extend different variants from mui textfield
+  /** Pass material-ui text field variant down, bypass internal variant prop */
   inputVariant?: TextFieldProps['variant'];
   inputValue: string;
   validationError?: React.ReactNode;

@@ -8,7 +8,7 @@ import { HookOptions, usePickerState } from './usePickerState';
 import { getDisplayDate } from '../../_helpers/text-field-helper';
 
 export interface BaseKeyboardPickerProps extends Omit<BasePickerProps, 'onChange'> {
-  /** String value, overrides value prop. Controlling value over pure input string */
+  /** String value for controlling value with pure input string. Overrides value prop */
   inputValue?: string;
   /** Keyboard onChange callback */
   onChange: (date: MaterialUiPickersDate | null, value: string | undefined) => void;

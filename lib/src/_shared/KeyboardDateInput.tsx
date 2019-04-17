@@ -10,13 +10,13 @@ import { makeMaskFromFormat, maskedDateFormatter } from '../_helpers/text-field-
 
 export interface KeyboardDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
-  // Properly extend different variants from mui textfield
-  inputVariant?: TextFieldProps['variant'];
   format: string;
   onChange: (value: string) => void;
   onClick?: () => void;
   validationError?: React.ReactNode;
   inputValue: string;
+  /** Pass material-ui text field variant down, bypass internal variant prop */
+  inputVariant?: TextFieldProps['variant'];
   /**
    * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)
    */

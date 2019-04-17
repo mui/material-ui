@@ -371,6 +371,17 @@
       "name": "variant",
       "required": false,
       "type": { "name": "\"inline\" | \"dialog\"" }
+    },
+    "inputVariant": {
+      "defaultValue": null,
+      "description": "Pass material-ui text field variant down, bypass internal variant prop",
+      "name": "inputVariant",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
+        "name": "PureDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
     }
   },
   "KeyboardDatePicker": {
@@ -598,7 +609,7 @@
     },
     "inputValue": {
       "defaultValue": null,
-      "description": "String value, overrides value prop. Controlling value over pure input string",
+      "description": "String value for controlling value with pure input string. Overrides value prop",
       "name": "inputValue",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
@@ -767,6 +778,17 @@
       },
       "required": false,
       "type": { "name": "string" }
+    },
+    "inputVariant": {
+      "defaultValue": null,
+      "description": "Pass material-ui text field variant down, bypass internal variant prop",
+      "name": "inputVariant",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
     },
     "maskChar": {
       "defaultValue": { "value": "'_'" },
@@ -1007,6 +1029,17 @@
       "name": "variant",
       "required": false,
       "type": { "name": "\"inline\" | \"dialog\"" }
+    },
+    "inputVariant": {
+      "defaultValue": null,
+      "description": "Pass material-ui text field variant down, bypass internal variant prop",
+      "name": "inputVariant",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
+        "name": "PureDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
     }
   },
   "KeyboardTimePicker": {
@@ -1056,7 +1089,7 @@
     },
     "inputValue": {
       "defaultValue": null,
-      "description": "String value, overrides value prop. Controlling value over pure input string",
+      "description": "String value for controlling value with pure input string. Overrides value prop",
       "name": "inputValue",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
@@ -1225,6 +1258,17 @@
       },
       "required": false,
       "type": { "name": "string" }
+    },
+    "inputVariant": {
+      "defaultValue": null,
+      "description": "Pass material-ui text field variant down, bypass internal variant prop",
+      "name": "inputVariant",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
     },
     "maskChar": {
       "defaultValue": { "value": "'_'" },
@@ -1687,6 +1731,17 @@
       "name": "variant",
       "required": false,
       "type": { "name": "\"inline\" | \"dialog\"" }
+    },
+    "inputVariant": {
+      "defaultValue": null,
+      "description": "Pass material-ui text field variant down, bypass internal variant prop",
+      "name": "inputVariant",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
+        "name": "PureDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
     }
   },
   "KeyboardDateTimePicker": {
@@ -1958,7 +2013,7 @@
     },
     "inputValue": {
       "defaultValue": null,
-      "description": "String value, overrides value prop. Controlling value over pure input string",
+      "description": "String value for controlling value with pure input string. Overrides value prop",
       "name": "inputValue",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
@@ -2127,6 +2182,17 @@
       },
       "required": false,
       "type": { "name": "string" }
+    },
+    "inputVariant": {
+      "defaultValue": null,
+      "description": "Pass material-ui text field variant down, bypass internal variant prop",
+      "name": "inputVariant",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
     },
     "maskChar": {
       "defaultValue": { "value": "'_'" },
