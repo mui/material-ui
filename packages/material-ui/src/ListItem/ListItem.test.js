@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import {
   getClasses,
-  createMount,
+  createMighty,
   describeConformance,
   findOutermostIntrinsic,
 } from '@material-ui/core/test-utils';
@@ -15,17 +15,12 @@ import ButtonBase from '../ButtonBase';
 import ListContext from '../List/ListContext';
 
 describe('<ListItem />', () => {
-  let mount;
+  // StrictModeViolation: uses ButtonBase
+  const mount = createMighty({ strict: false });
   let classes;
 
   before(() => {
     classes = getClasses(<ListItem />);
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<ListItem />, () => ({
@@ -35,9 +30,10 @@ describe('<ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
   }));
 
-  it('should render with gutters classes', () => {
+  it.only('should render with gutters classes', () => {
     const wrapper = mount(<ListItem className="woofListItem" />);
     const listItem = wrapper.find('li');
+    console.log(listItem.debug());
     assert.strictEqual(listItem.hasClass(classes.gutters), true);
   });
 
