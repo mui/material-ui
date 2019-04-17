@@ -474,6 +474,10 @@ withStyles(theme =>
 
   const StyledButton = withStyles(styles)(Button);
 
-  // undesired
+  // undesired; caused by https://github.com/Microsoft/TypeScript/issues/26591
   <StyledButton component="a" />; // $ExpectError
+
+  // workaround
+  const UnsafeStyledButton = withStyles({ root: { color: 'ref' } })(Button) as typeof Button;
+  <UnsafeStyledButton component="a" />;
 }
