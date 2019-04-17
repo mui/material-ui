@@ -1,6 +1,7 @@
 import Ad from '_shared/Ad';
 import Example from '_shared/Example'
 import PageMeta from '_shared/PageMeta'
+import LinkedComponents from '_shared/LinkedComponents'
 
 import * as BasicDateTimePicker from './BasicDateTimePicker.example'
 import * as InlineDateTimePicker from './InlineDateTimePicker.example'
@@ -23,7 +24,11 @@ This component combines material design date & time selection components. It all
 <Example source={InlineDateTimePicker} />
 
 #### Customization
+
 Applied mostly all customization, that available for date & time pickers
 
 <Example source={CustomDateTimePicker} />
 
+#### Components API
+
+<LinkedComponents components={['DateTimePicker', 'KeyboardDateTimePicker']} />
