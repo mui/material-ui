@@ -30,9 +30,15 @@ export interface OutterCalendarProps {
    * @default true
    */
   allowKeyboardControl?: boolean;
-  /** Props to pass to left arrow button */
+  /**
+   * Props to pass to left arrow button
+   * @type {Partial<IconButtonProps>}
+   */
   leftArrowButtonProps?: Partial<IconButtonProps>;
-  /** Props to pass to right arrow button */
+  /**
+   * Props to pass to right arrow button
+   * @type {Partial<IconButtonProps>}
+   */
   rightArrowButtonProps?: Partial<IconButtonProps>;
   /** Disable specific date */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;

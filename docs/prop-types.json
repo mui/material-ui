@@ -330,9 +330,7 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
@@ -343,9 +341,7 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     },
     "shouldDisableDate": {
       "defaultValue": null,
@@ -532,9 +528,7 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
@@ -545,9 +539,7 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     },
     "shouldDisableDate": {
       "defaultValue": null,
@@ -785,9 +777,7 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     }
   },
   "TimePicker": {
@@ -1212,9 +1202,7 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     }
   },
   "DateTimePicker": {
@@ -1592,9 +1580,7 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
@@ -1605,9 +1591,7 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     },
     "shouldDisableDate": {
       "defaultValue": null,
@@ -1838,9 +1822,7 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
@@ -1851,9 +1833,7 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     },
     "shouldDisableDate": {
       "defaultValue": null,
@@ -2091,9 +2071,7 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<{ action?: (actions: ButtonBaseActions) => void; buttonRef?: Ref<any>; centerRipple?: boolean; disabled?: boolean; disableRipple?: boolean; disableTouchRipple?: boolean; focusRipple?: boolean; ... 271 more ...; formTarget?: string; }>"
-      }
+      "type": { "name": "Partial<IconButtonProps>" }
     }
   },
   "ModalWrapper": {
@@ -2172,9 +2150,7 @@
         "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": {
-        "name": "Partial<Pick<DialogProps, \"open\" | \"onEnter\" | \"onEntering\" | \"onEntered\" | \"onExit\" | \"onExiting\" | \"onExited\" | \"container\" | \"children\" | \"hidden\" | \"manifest\" | \"defaultChecked\" | ... 275 more ... | \"TransitionProps\">>"
-      }
+      "type": { "name": "Partial<MuiDialogProps>" }
     }
   }
 }

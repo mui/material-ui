@@ -31,9 +31,15 @@ export interface KeyboardDateInputProps
    * @default /[^\dap]+/gi
    */
   refuse?: RegExp;
-  /** Props to pass to keyboard input adornment */
+  /**
+   * Props to pass to keyboard input adornment
+   * @type {Partial<InputAdornmentProps>}
+   */
   InputAdornmentProps?: Partial<InputAdornmentProps>;
-  /** Props to pass to keyboard adornment button */
+  /**
+   * Props to pass to keyboard adornment button
+   * @type {Partial<IconButtonProps>}
+   */
   KeyboardButtonProps?: Partial<IconButtonProps>;
 }
 

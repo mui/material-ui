@@ -20,17 +20,33 @@ const components = {
   ModalWrapper: 'wrappers/ModalWrapper.tsx',
 };
 
+const customTypePattern = '\n@type {';
+function processProp(prop) {
+  const { description } = prop;
+
+  if (description.includes(customTypePattern)) {
+    const startOfCustomType = description.indexOf(customTypePattern) + customTypePattern.length;
+    const enfOfCustomType = description.indexOf('}', startOfCustomType);
+
+    const customType = description.substr(startOfCustomType, enfOfCustomType - startOfCustomType);
+
+    prop.type.name = customType;
+    prop.description = description.slice(0, description.indexOf(customTypePattern));
+  }
+}
+
 Object.entries(components).forEach(([name, filePart]) => {
   const file = path.join(srcPath, filePart);
   const parsedDoc = parser.parse(file)[0];
 
   doc[name] = Object.entries(parsedDoc.props)
-    // eslint-disable-next-line
     .filter(
+      // eslint-disable-next-line
       ([key, value]) =>
         value.description && (!value.parent || !value.parent.fileName.includes('@types'))
     )
     .reduce((obj, [key, value]) => {
+      processProp(value);
       obj[key] = value;
       return obj;
     }, {});

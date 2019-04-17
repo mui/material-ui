@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
 import { Omit } from '@material-ui/core';
 import { WrapperProps } from './Wrapper';
-import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
+import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 
 export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
   /**
@@ -36,8 +36,11 @@ export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
    * @default false
    */
   clearable?: boolean;
-  /** Props to be passed directly to material-ui Dialog */
-  DialogProps?: Partial<Omit<DialogPropsType, 'classes'>>;
+  /**
+   * Props to be passed directly to material-ui Dialog
+   * @type {Partial<MuiDialogProps>}
+   */
+  DialogProps?: Partial<Omit<MuiDialogProps, 'classes'>>;
 }
 
 export const ModalWrapper: React.FC<ModalWrapperProps<any>> = ({
