@@ -22,7 +22,7 @@ const navItems = [
     ],
   },
   {
-    title: 'Components',
+    title: 'Components Demo',
     children: [
       { title: 'Date Picker', href: '/demo/datepicker' },
       { title: 'Time Picker', href: '/demo/timepicker' },
@@ -36,7 +36,7 @@ const navItems = [
       .map(component => ({
         title: component,
         as: `/api/${component}`,
-        href: `/api/docs?component=${component}`,
+        href: `/api/props?component=${component}`,
       })),
   },
   {

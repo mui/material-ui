@@ -8,6 +8,6 @@
   "builds": [{ "src": "docs/next.config.js", "use": "@now/next" }],
   "routes": [
     { "src": "/(.*)", "dest": "docs/$1" },
-    { "src": "/api/(?<name>[^/]+)$", "dest": "docs/api?component=$name" }
+    { "src": "/api/(?<name>[^/]+)$", "dest": "docs/api/props?component=$name" }
   ]
 }
