@@ -1,5 +1,153 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.8
+###### *Apr 17, 2019*
+
+A big thanks to the 27 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🔥 Many new TypeScript & hook demos @donigianrp, @sperry94, @jasondashwang, @cahilfoley, @bh1505 and @kenzhemir
+- 🎀 5 more core components migrated from Classes to Hooks @joshwooding, @oliviertassiari.
+- 📐 Update the List to better match the Material Design specification.
+- 🎁 Add new TransferList component @mbrookes.
+- And many more 🐛 bug fixes and 💄 improvements.
+
+We hope the next release can be 4.0.0-beta.0.
+Here are the last breaking changes we want to introduce:
+
+- Remove the `dangerouslyUseGlobalCSS` option, make it the default behavior (#15140)
+- Require the Slide and Modal child element to be able to hold a ref (#15344, #15347)
+- Hide the EventListener dependency of ClickAwayListener (#15126)
+
+We have done a lot of changes in the alpha phase.
+The beta phase will be used to stabilize the library, we might have introduced bugs.
+We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://next.material-ui.com/guides/migration-v3/).
+
+We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
+
+### `@material-ui/core@v4.0.0-alpha.8`
+
+#### Breaking change
+
+- [Paper] Reduce the default elevation (#15243) @oliviertassinari
+  Change the default Paper elevation to match the Card and the Expansion Panel:
+
+  ```diff
+  -<Paper />
+  +<Paper elevation={2} />
+  ```
+
+- [List] Update to match the specification (#15339) @oliviertassinari
+  Rework the list components to match the specification:
+
+  - The usage of the `ListItemAvatar` component is required when using an avatar
+  - The usage of the `ListItemIcon` component is required when using a left checkbox
+  - The `edge` property should be set on the icon buttons.
+
+- [actions] Rename disableActionSpacing to disableSpacing (#15355) @oliviertassinari
+
+  - [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+  - [CardActions] Remove the `disableActionSpacing` CSS class.
+  - [CardActions] Rename the `action` CSS class `spacing`.
+  - [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+  - [DialogActions] Rename the `action` CSS class `spacing`.
+  - [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
+
+#### Changes
+
+- [ScrollbarSize] Convert to function component (#15233) @joshwooding
+- [InputBase] Fix placeholder bug in Edge (#15267) @rodrigolabs
+- [TransferList] Add new component (#15232) @mbrookes
+- [withMobileDialog] Improve types (#15276) @eps1lon
+- [Collapse] Convert to function component (#15248) @joshwooding
+- [DialogContent] Add divider prop type for TypeScript (#15273) @sperry94
+- [Tab] Remove outdated classes from the definitions (#15297) @zheeeng
+- [Tooltip] Suppress disabled button warning when controlled (#15304) @tasinet
+- [typescript] Generic props for FormControl, FormLabel, List (#15292)
+- [Select] Fix incorrect event.target type in onChange (#15272) @sperry94
+- [Popper] Fix to defer setting of exited state to Transition component (#15250) @Sharakai
+- [Modal] Fix to defer setting of exited state to Transition component (#15266) @Sharakai
+- [InputBase] Fix onFilled/onEmpty being called during render (#15319) @eps1lon
+- [Tooltip] Convert to function component (#15291) @joshwooding
+- [Ripple] Convert to function component (#15345) @joshwooding
+- [Textarea] Refactor the implementation (#15331) @oliviertassinari
+- [system] Add types (#15357) @eps1lon
+- [Modal] Add reason parameter to onClose function signature (#15373) @JarkEMones
+- [Box] Test props to attributes forwarding (#15365) @eps1lon
+- [Container] Add component prop for TypeScript (#15369) @Amere
+- [Popper] Fix popperOptions prop (#15359) @jaipe
+
+### `@material-ui/styles@v4.0.0-alpha.8`
+
+- Fix dependency duplication issue @oliviertassinari
+- [styles] Improve typings for makeStyles (#15366) @geirsagberg
+
+### `@material-ui/utils@v4.0.0-alpha.8`
+
+- [utils] Fix lazy and memo components issuing forward ref warnings (#15322) @eps1lon
+
+### `@material-ui/docs@v4.0.0-alpha.8`
+
+- [NProgressBar] Add types (#15380) @eps1lon
+
+### Docs
+
+- [docs] Fix layout glitch when changing sort-by in showcases (#15255) @thomasnordquist
+- [docs] Add Checkbox TypeScript demo (#15222) @donigianrp
+- [docs] Add CheckboxLabel TypeScript demo (#15237) @donigianrp
+- [docs] Adding Most Stepper TypeScript Demos (#15223) @sperry94
+- [docs] Add CustomInputBase TypeScript demo (#15209) @jasondashwang
+- [docs] Add most Drawer TypeScript demos (#15119) @cahilfoley
+- [docs] Slight grammar changes to color.md (#15257) @raybooysen
+- [docs] Document sharing makeStyles between components (#15234) @johnraz
+- [docs] Improve the @material-ui/styles documentation (#15236) @oliviertassinari
+- [docs] Add CheckboxesGroup TypeScript demo (#15228) @donigianrp
+- [docs] Delete legacy lab/layout (#15285) @mbrookes
+- [docs] Proof the Styles section (#15268) @mbrookes
+- [docs] Enable react profiling in production (#15282) @eps1lon
+- [docs] Improve table demos (#15281) @eps1lon
+- [docs] Add ClippedDrawer TypeScript demo (#15284) @cahilfoley
+- [docs] Add most Dialog TypeScript demos (#15271) @sperry94
+- [docs] Who's using Material-UI? (#15301) @mbrookes
+- [examples] Fix HTML end tag (#15293) @raybooysen
+- [docs] Update version filter (#15307) @mbrookes
+- [docs] Removed styled-components in gatsby-next dependencies (#15313) @tatchi
+- [docs] Improve ServerStyleSheets documentation (#15287) @raymondsze
+- [docs] Add Select TypeScript demos (#15288) @cahilfoley
+- [docs] Fix placeholder position in react-select demo (#15332) @merceyz
+- [docs] Add some List TypeScript demos (#15323) @bh1505
+- [docs] Disable the table of content on a few pages (#15338) @oliviertassinari
+- [docs] Document ref forwarding (requirements) (#15298) @eps1lon
+- [example] Add Reason example (#15340) @Tevinthuku
+- [docs] Migrate docs' breadcrumbs page to hooks (#15349) @kenzhemir
+- [docs] Provide a definition to root element and component (#15337) @oliviertassinari
+- [docs] update FAQ doc (#15356) @gautam-pahuja
+- [docs] Expand demo by default instead of duplicating the code (#15364) @eps1lon
+- [docs] Promote material-table (#15367) @oliviertassinari
+- [docs] Improve the customization demos (#15368) @oliviertassinari
+- [docs] Use tsx syntax highlighting (#15385) @eps1lon
+
+### Core
+
+- [core] Allow docs:dev access over local network (#15259) @eps1lon
+- [core] Type ref for components (#15199) @eps1lon
+- [core] Dedupe lockfile (#15260) @eps1lon
+- [core] Ref cleanup (#15261) @eps1lon
+- [test] Add undesired withStyles + generic props component behavior (#15215) @eps1lon
+- [Transition] Update transition tests (#15249) @joshwooding
+- [core] Switch from buttonRef to ref usage (#15296) @eps1lon
+- [core] Synchronise value and checked prop typing (#15245) @joshwooding
+- [test] Use skip instead of testComponentPropWith: false (#15309) @eps1lon
+- [core] Reduce calls to actions props (#15312) @eps1lon
+- [test] Use actual React.memo (#15321) @eps1lon
+- [core] Add `strict` option to createMount (#15317) @eps1lon
+- [core] Use implicit children spread (#15354) @oliviertassinari
+- [core] Reduce calls to actions prop (#15370) @eps1lon
+- [core] Upgrade react-transition-group (#15375) @eps1lon
+- [test] Add missing styles tests (#15376) @ellisio
+- [test] Add hoc + overrideable component workaround (#15381) @ellisio
+
 ## 4.0.0-alpha.7
 ###### *Apr 8, 2019*
 
@@ -253,7 +401,7 @@ Here are some highlights ✨:
 - [docs] Document how to nest style selectors (#14957) @cojennin
 - [docs] BottomNavigation TypeScript docs (#14979) @vitkon
 - [docs] Add some Card TypeScript demos (#15011) @Dudrie
-- [docs] Add Badge Typescript demo for Maximum Value (#15013) @rahmatrhd
+- [docs] Add Badge TypeScript demo for Maximum Value (#15013) @rahmatrhd
 - [docs] Add TypeScript demos for Simple and Spanning Table (#14985) @jasondashwang
 - [docs] Add note to docs README regarding translations (#15020) @mbrookes
 - [docs] Content's max width changed for large displays (#15014) @kenzhemir
@@ -395,7 +543,7 @@ Here are some highlights ✨:
 - [Popover] Forward refs (#14737) @eps1lon
 - [Modal] Forward refs (#14738) @eps1lon
 - [createSpacing] Narrow return type (#14745) @eps1lon
-- [Chip] Correct Chip Typescript Definition Class Keys (#14750) @cvanem
+- [Chip] Correct Chip TypeScript Definition Class Keys (#14750) @cvanem
 - [MenuList] Remove focus method and test dependencies on instance methods (#14757) @ryancogswell
 - [Dialog] Forward refs (#14775) @eps1lon
 - [IconButton] Implement a new edge prop (#14758) @jedwards1211
@@ -1004,7 +1152,7 @@ Here are some highlights ✨:
 - [docs] Fix typos on the links for the JSS docs (#14235) @viniciusCamargo
 - [docs] Improve the performance (#14250) @oliviertassinari
 - [docs] Notification by locale (#14256) @oliviertassinari
-- [docs] Add component prop and React Router usage to Typescript guide (#14170) @hedgerh
+- [docs] Add component prop and React Router usage to TypeScript guide (#14170) @hedgerh
 - [docs] Tiny fixes (#14259) @mbrookes
 - [docs] Better server-side rendering example (#14269) @unalterable
 - [docs] Add Misheneye to the showcase (#14262) @gdub01
@@ -2872,7 +3020,7 @@ N/A
 - [docs] Add Outline docs (#11960) @tomasdev
 - [docs] Do SEO for the components (#11963) @oliviertassinari
 - [docs] Better API wording (#11973) @oliviertassinari
-- [docs] In Typescript doc, add missing `createStyles` to import (#11975) @Sylphony
+- [docs] In TypeScript doc, add missing `createStyles` to import (#11975) @Sylphony
 
 #### Core
 
@@ -3355,7 +3503,7 @@ The text underline color customization change:
 
 #### Core
 
-- [typescript] Add CreateMuiTheme props Typescript definition (#11296) @abnersajr
+- [typescript] Add CreateMuiTheme props TypeScript definition (#11296) @abnersajr
 - [typescript] Fix color type in augmentColor function (#11302) @AiusDa
 - Make WithStylesOptions extend the options argument of createStyleSheet (#11325) @pelotom
 - [core] Update the dev dependencies (#11355) @oliviertassinari
@@ -3532,7 +3680,7 @@ The rename started with #11090. I should have taken the time to complete it in t
 - [Stepper] Swipeable demo integration (#11241) @Klynger
 - [codemod] Prepare the import path breaking change (#11249) @oliviertassinari
 - [codemod] Support the private and direct imports (#11253) @oliviertassinari
-- [Table] Fix Typescript classes support (#11255) @t49tran
+- [Table] Fix TypeScript classes support (#11255) @t49tran
 
 #### Docs
 
@@ -3882,12 +4030,12 @@ I have made a mistake in [#8108](https://github.com/mui-org/material-ui/pull/810
 - [Input] Rename isDirty to isEmpty (#10704) @oliviertassinari
 - [Select] Perfom the layout computation as soon as possible (#10706) @oliviertassinari
 - [Stepper] Add error prop to StepIcon and StepLabel (#10705) @nicoffee
-- [Grid] Add zeroMinWidth to Typescript definition (#10712) @cvanem
+- [Grid] Add zeroMinWidth to TypeScript definition (#10712) @cvanem
 - [Select] Fix data-value value (#10723) @a-x-
 - [Tooltip] Update error message (#10742) @MoonDawg92
 - [TextField] Apply onFocus and onBlur on the input (#10746) @oliviertassinari
 - [TextField] Remove dead code (#10757) @oliviertassinari
-- [Checkbox] Add checkedPrimary and checkedSecondary to Typescript definition (#10747) @cvanem
+- [Checkbox] Add checkedPrimary and checkedSecondary to TypeScript definition (#10747) @cvanem
 - [️MuiThemeProvider] TypeScript disableStylesGeneration (#10759) @djeeg
 - [Input] Relax inputProps and inputComponent Types (#10767) @pelotom
 - [Tabs] Warn on invalid combination (#10788) @oliviertassinari
@@ -3939,7 +4087,7 @@ N/A
 #### Component Fixes / Enhancements
 
 - [Select] Fix chip alignment (#10611) @adamszeptycki
-- [Tabs] Add 'scrollButtons' and 'indicator' to TabsClassKey Typescript defintion (#10618) @cvanem
+- [Tabs] Add 'scrollButtons' and 'indicator' to TabsClassKey TypeScript defintion (#10618) @cvanem
 - [TablePagination] Add SelectProps property (#10629) @mrahman1122
 - [ListItemSecondaryAction] Vertically center (#10628) @jedwards1211
 - [Select] Add visual tests to prevent future regression (#10642) @oliviertassinari

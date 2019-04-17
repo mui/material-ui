@@ -235,6 +235,24 @@ You should be able to move the custom styles to the root class key.
 - [MenuItem] Remove the fixed height of the MenuItem.
   The padding and line-height are used by the browser to compute the height.
 
+### List
+
+- [List] Rework the list components to match the specification:
+
+  - The usage of the `ListItemAvatar` component is required when using an avatar
+  - The usage of the `ListItemIcon` component is required when using a left checkbox
+  - The `edge` property should be set on the icon buttons.
+
+### Paper
+
+- [Paper] Reduce the default elevation.
+  Change the default Paper elevation to match the Card and the Expansion Panel:
+
+  ```diff
+  -<Paper />
+  +<Paper elevation={2} />
+  ```
+
 ### Dialog
 
 - [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
