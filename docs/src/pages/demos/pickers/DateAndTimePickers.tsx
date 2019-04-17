@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',
@@ -14,12 +13,11 @@ const styles = (theme: Theme) =>
       marginRight: theme.spacing(1),
       width: 200,
     },
-  });
+  }),
+);
 
-export type Props = WithStyles<typeof styles>;
-
-function DateAndTimePickers(props: Props) {
-  const { classes } = props;
+function DateAndTimePickers() {
+  const classes = useStyles();
 
   return (
     <form className={classes.container} noValidate>
@@ -37,8 +35,4 @@ function DateAndTimePickers(props: Props) {
   );
 }
 
-DateAndTimePickers.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(DateAndTimePickers);
+export default DateAndTimePickers;
