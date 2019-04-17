@@ -138,6 +138,8 @@ function styled(Component) {
 
     if (process.env.NODE_ENV !== 'production') {
       StyledComponent.displayName = `Styled(${classNamePrefix})`;
+      // Exposed for test purposes.
+      StyledComponent.useStyles = useStyles;
     }
 
     hoistNonReactStatics(StyledComponent, Component);

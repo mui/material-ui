@@ -4,9 +4,15 @@ import { createTestSuite, describeConformance } from '@material-ui/core/test-uti
 import Box from './Box';
 
 describe('<Box />', () => {
-  const { mount } = createTestSuite({ strict: true });
+  let classes;
+  const { getClasses, mount } = createTestSuite({ strict: true });
+
+  before(() => {
+    classes = getClasses(<Box />);
+  });
 
   describeConformance(<Box />, () => ({
+    classes,
     mount,
     only: ['refForwarding'],
     refInstanceof: window.HTMLDivElement,
