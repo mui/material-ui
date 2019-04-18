@@ -413,6 +413,8 @@ function forwardRefTest() {
 
   <StyledRefableAnchor ref={anchorRef} />;
   const buttonRef = React.createRef<HTMLButtonElement>();
+  // HTMLButtonElement is missing properties
+  <StyledRefableAnchor ref={buttonRef} />; // $ExpectError
   // undesired: `innerRef` is currently typed as any but for backwards compat we're keeping it
   // especially since `innerRef` will be removed in v5 and is equivalent to `ref`
   <StyledRefableAnchor innerRef={buttonRef} />;
