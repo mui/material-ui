@@ -31,10 +31,8 @@ export type BaseDateTimePickerProps = Omit<BaseTimePickerProps, 'seconds'> &
      * @type {React.Component}
      */
     ViewContainerComponent?:
-      | React.ElementType<React.HTMLAttributes<HTMLElement>>
-      | React.ComponentType<
-          {} | { openView: BaseDateTimePickerProps['openTo']; onChange: () => void }
-        >;
+      | string
+      | React.ComponentType<{} | { openView: DateTimePickerView; onChange: () => void }>;
   };
 
 export interface DateTimePickerProps extends BaseDateTimePickerProps, WithUtilsProps {
