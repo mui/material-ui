@@ -27,8 +27,8 @@ export interface SimpleListProps extends WithStyles<typeof styles> {}
 function SimpleList(props: SimpleListProps) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
-      <List component="nav">
+    <nav className={classes.root} role="navigation" aria-label="Demo">
+      <List>
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
@@ -41,9 +41,7 @@ function SimpleList(props: SimpleListProps) {
           </ListItemIcon>
           <ListItemText primary="Drafts" />
         </ListItem>
-      </List>
-      <Divider />
-      <List component="nav">
+        <Divider component="li" role="separator" />
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>
@@ -51,7 +49,7 @@ function SimpleList(props: SimpleListProps) {
           <ListItemText primary="Spam" />
         </ListItemLink>
       </List>
-    </div>
+    </nav>
   );
 }
 
