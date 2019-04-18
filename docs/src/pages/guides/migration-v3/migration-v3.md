@@ -334,7 +334,7 @@ You should be able to move the custom styles to the root class key.
 
 ### Modal
 
-- [Modal] Ignore event.defaultPrevented (#14991) @oliviertassinari
+- [Modal] event.defaultPrevented is now ignored.
 
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
