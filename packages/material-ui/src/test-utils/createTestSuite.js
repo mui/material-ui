@@ -1,3 +1,4 @@
+/* eslint-disable mocha/no-top-level-hooks */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
@@ -60,8 +61,6 @@ export default function createMount(options = {}) {
     strict: globalStrict,
     beforeAll = mocha.before,
     afterAll = mocha.after,
-    beforeEach = mocha.beforeEach,
-    afterEach = mocha.afterEach,
     ...globalEnzymeOptions
   } = options;
 
