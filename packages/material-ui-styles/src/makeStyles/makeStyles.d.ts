@@ -4,7 +4,7 @@ import {
   PropsOfStyles,
   Styles,
   WithStylesOptions,
-} from '@material-ui/styles/withStyles';
+} from '../withStyles';
 
 // https://stackoverflow.com/a/49928360/3406963 without generic branch types
 export type IsAny<T> = 0 extends (1 & T) ? true : false;

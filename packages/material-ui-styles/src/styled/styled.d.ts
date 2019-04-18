@@ -1,9 +1,5 @@
 import { Omit } from '@material-ui/core';
-import {
-  CSSProperties,
-  StyledComponentProps,
-  WithStylesOptions,
-} from '@material-ui/styles/withStyles';
+import { CSSProperties, StyledComponentProps, WithStylesOptions } from '../withStyles';
 import * as React from 'react';
 
 /**
