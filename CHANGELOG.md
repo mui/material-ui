@@ -55,7 +55,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
   - [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
 
 - [Tooltip] Convert to function component (#15291) @joshwooding
-  - The child of the `Tooltip` needs to be able to hold a ref
+  The child of the `Tooltip` needs to be able to hold a ref
 
   ```diff
   class Component extends React.Component {
