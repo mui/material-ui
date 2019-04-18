@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import LayoutBody from '../components/LayoutBody';
+import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
 const styles = theme => ({
@@ -144,7 +144,7 @@ function ProductCategories(props) {
   ];
 
   return (
-    <LayoutBody className={classes.root} component="section" width="large">
+    <Container className={classes.root} component="section">
       <Typography variant="h4" marked="center" align="center" component="h2">
         For all tastes and all desires
       </Typography>
@@ -178,7 +178,7 @@ function ProductCategories(props) {
           </ButtonBase>
         ))}
       </div>
-    </LayoutBody>
+    </Container>
   );
 }
 

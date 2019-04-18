@@ -1,8 +1,8 @@
 {
   "name": "@material-ui/codemod",
+  "version": "4.0.0-alpha.0",
   "private": false,
   "author": "Material-UI Team",
-  "version": "4.0.0-alpha.0",
   "description": "Codemod scripts for Material-UI.",
   "keywords": [
     "react",

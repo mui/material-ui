@@ -87,7 +87,7 @@ const markedOptions = {
 
       case 'ts':
       case 'tsx':
-        language = prism.languages.typescript;
+        language = prism.languages.tsx;
         break;
 
       case 'js':

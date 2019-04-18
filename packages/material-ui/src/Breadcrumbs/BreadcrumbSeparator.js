@@ -16,13 +16,9 @@ const styles = {
  * @ignore - internal component.
  */
 function BreadcrumbSeparator(props) {
-  const { children, classes, className, ...other } = props;
+  const { classes, className, ...other } = props;
 
-  return (
-    <li aria-hidden="true" className={clsx(classes.root, className)} {...other}>
-      {children}
-    </li>
-  );
+  return <li aria-hidden="true" className={clsx(classes.root, className)} {...other} />;
 }
 
 BreadcrumbSeparator.propTypes = {
@@ -31,4 +27,4 @@ BreadcrumbSeparator.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateBreadcrumbSeparator' })(BreadcrumbSeparator);
+export default withStyles(styles, { name: 'PrivateBreadcrumbSeparator' })(BreadcrumbSeparator);

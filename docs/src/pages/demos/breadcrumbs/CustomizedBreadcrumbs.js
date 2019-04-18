@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
@@ -9,11 +8,8 @@ import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const styles = theme => ({
+const StyledBreadcrumb = withStyles(theme => ({
   root: {
-    padding: theme.spacing(1),
-  },
-  chip: {
     backgroundColor: theme.palette.grey[100],
     height: 24,
     color: theme.palette.grey[800],
@@ -26,30 +22,25 @@ const styles = theme => ({
       backgroundColor: emphasize(theme.palette.grey[300], 0.12),
     },
   },
-  avatar: {
-    background: 'none',
-    marginRight: -theme.spacing(1.5),
-  },
-});
+}))(Chip); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
 function handleClick(event) {
   event.preventDefault();
   alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function CustomBreadcrumb(props) {
-  const { classes, ...rest } = props;
-  return <Chip className={classes.chip} {...rest} />;
-}
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(1),
+  },
+  avatar: {
+    background: 'none',
+    marginRight: -theme.spacing(1.5),
+  },
+}));
 
-CustomBreadcrumb.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-const StyledBreadcrumb = withStyles(styles)(CustomBreadcrumb);
-
-function CustomizedBreadcrumbs(props) {
-  const { classes } = props;
+function CustomizedBreadcrumbs() {
+  const classes = useStyles();
 
   return (
     <Paper elevation={0} className={classes.root}>
@@ -77,8 +68,4 @@ function CustomizedBreadcrumbs(props) {
   );
 }
 
-CustomizedBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedBreadcrumbs);
+export default CustomizedBreadcrumbs;

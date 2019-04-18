@@ -20,6 +20,7 @@ import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">disableSpacing</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the actions do not have additional margin. |
 
 The `ref` is forwarded to the root element.
 
@@ -34,7 +35,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">action</span> | Styles applied to the children.
+| <span class="prop-name">spacing</span> | Styles applied to the root element if `disableSpacing={false}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ExpansionPanelActions/ExpansionPanelActions.js)

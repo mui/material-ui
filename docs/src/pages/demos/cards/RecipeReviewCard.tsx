@@ -25,9 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 0,
       paddingTop: '56.25%', // 16:9
     },
-    actions: {
-      display: 'flex',
-    },
     expand: {
       transform: 'rotate(0deg)',
       marginLeft: 'auto',
@@ -79,7 +76,7 @@ function RecipeReviewCard() {
           guests. Add 1 cup of frozen peas along with the mussels, if you like.
         </Typography>
       </CardContent>
-      <CardActions className={classes.actions} disableActionSpacing>
+      <CardActions disableSpacing>
         <IconButton aria-label="Add to favorites">
           <FavoriteIcon />
         </IconButton>

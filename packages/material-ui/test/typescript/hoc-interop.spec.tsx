@@ -8,7 +8,8 @@
  *
  * See https://github.com/Microsoft/TypeScript/issues/28339 for in-depth discussion
  */
-
+import { createStyles, ThemeProvider } from '@material-ui/styles';
+import { Button, withStyles } from '@material-ui/core';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import emotionStyled from '@emotion/styled';
 import * as React from 'react';
@@ -49,4 +50,22 @@ const filledProps = {
   <TextFieldWithRouter variant="filled" {...filledProps} />;
   // $ExpectError
   <TextFieldWithRouter {...filledProps} />; // desired
+}
+
+// https://github.com/mui-org/material-ui/issues/14586
+{
+  const styles = createStyles({
+    root: {
+      color: 'red',
+    },
+  });
+
+  const StyledButton = withStyles(styles)(Button);
+
+  // undesired; caused by https://github.com/Microsoft/TypeScript/issues/26591
+  <StyledButton component="a" />; // $ExpectError
+
+  // workaround
+  const UnsafeStyledButton = withStyles({ root: { color: 'ref' } })(Button) as typeof Button;
+  <UnsafeStyledButton component="a" />;
 }
