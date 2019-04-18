@@ -6,6 +6,7 @@
     "@material-ui/core": "next",
     "@material-ui/styles": "next",
     "gatsby": "latest",
+    "gatsby-plugin-material-ui": "next",
     "gatsby-plugin-react-helmet": "latest",
     "react": "latest",
     "react-dom": "latest",
