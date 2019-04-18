@@ -343,7 +343,7 @@ You should be able to move the custom styles to the root class key.
 
 ### Tooltip
 
-- [Tooltip] Convert to function component (#15291) @joshwooding
+- [Tooltip] The child needs to be able to hold a ref.
   
 
   ```diff
