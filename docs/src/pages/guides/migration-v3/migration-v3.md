@@ -345,7 +345,6 @@ You should be able to move the custom styles to the root class key.
 
 - [Tooltip] The child needs to be able to hold a ref.
   
-
   ```diff
   class Component extends React.Component {
     render() {
