@@ -19,11 +19,11 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | A single child content element. |
+| <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | A single child content element.<br>⚠️The component used as a child [must be able to hold a ref](/guides/composition/#children). |
 | <span class="prop-name">in</span> | <span class="prop-type">bool</span> |  | If `true`, the component will transition in. |
 | <span class="prop-name">timeout</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
-The `ref` is forwarded to the root element.
+The component cannot hold a ref.
 
 Any other properties supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
 

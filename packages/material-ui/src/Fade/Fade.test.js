@@ -24,9 +24,8 @@ describe('<Fade />', () => {
   describeConformance(<Fade {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: 'Transition',
-    refInstanceof: window.HTMLDivElement,
     mount,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'refForwarding'],
   }));
 
   describe('transition lifecycle', () => {

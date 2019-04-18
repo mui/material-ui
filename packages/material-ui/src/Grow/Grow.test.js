@@ -28,8 +28,7 @@ describe('<Grow />', () => {
       classes: {},
       inheritComponent: 'Transition',
       mount,
-      refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      skip: ['componentProp', 'refForwarding'],
     }),
   );
 
