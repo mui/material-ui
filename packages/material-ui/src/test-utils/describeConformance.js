@@ -107,13 +107,18 @@ function testPropsSpread(element, getOptions) {
  */
 function describeRef(element, getOptions) {
   describe('ref', () => {
-    it(`attaches the ref to the root`, () => {
+    const { inheritComponent } = getOptions();
+    it(`attaches the ref${inheritComponent != null ? ' to the root' : ''}`, () => {
       // type def in ConformanceOptions
-      const { classes, mount, refInstanceof } = getOptions();
+      const { mount, refInstanceof } = getOptions();
 
-      testRef(element, mount, current => {
-        assert.instanceOf(current, refInstanceof);
-        assert.sameMembers(classes.root.split(' '), Array.from(current.classList));
+      testRef(element, mount, (instance, wrapper) => {
+        assert.instanceOf(instance, refInstanceof);
+
+        if (inheritComponent && instance instanceof window.Element) {
+          const rootHost = findOutermostIntrinsic(wrapper);
+          assert.strictEqual(instance, rootHost.instance());
+        }
       });
     });
   });
