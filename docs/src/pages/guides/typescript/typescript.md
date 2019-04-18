@@ -249,63 +249,10 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 ```
 
 ## Usage of `component` property
-
 Material-UI allows you to replace a component's root node via a `component` property.
-For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component, meaning you can do this:
-```jsx
-import { Link } from 'react-router-dom';
+For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component. For a code
+example concerning `Button` and `react-router-dom` checkout [this Button demo](/demos/buttons/#third-party-routing-library)
 
-<Button component={Link} to="/">Go Home</Button>
-```
-
-However, TypeScript will complain about it, because `to` is not part of the `ButtonProps` interface, and with the current type declarations it has no way of inferring what props can be passed to `component`.
-
-The current workaround is to cast Link to `any`:
-
-```tsx
-import { Link } from 'react-router-dom';
-import Button, { ButtonProps } from '@material-ui/core/Button';
-
-interface LinkButtonProps extends ButtonProps {
-  to: string;
-  replace?: boolean;
-}
-
-const LinkButton = (props: LinkButtonProps) => (
-  <Button {...props} component={Link as any} />
-)
-
-// usage:
-<LinkButton color="primary" to="/">Go Home</LinkButton>
-```
-
-Material-UI components pass some basic event handler props (`onClick`, `onDoubleClick`, etc.) to their root nodes.
-These handlers have a signature of:
-```ts
-(event: MouseEvent<HTMLElement, MouseEvent>) => void
-```
-
-which is incompatible with the event handler signatures that `Link` expects, which are:
-```ts
-(event: MouseEvent<AnchorElement>) => void
-```
-
-Any element or component that you pass into `component` will have this problem if the signatures of their event handler props don't match.
-
+Not every component fully supports any component type you pass in. If you encounter a
+component that rejects its `component` props in TypeScript please open an issue.
 There is an ongoing effort to fix this by making component props generic.
-
-### Avoiding properties collision
-
-The previous strategy suffers from a little limitation: properties collision.
-The component providing the `component` property might not forward all its properties to the root element.
-To workaround this issue, you can create a custom component:
-
-```tsx
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-
-const MyLink = (props: any) => <Link to="/" {...props} />;
-
-// usage:
-<Button color="primary" component={MyLink}>Go Home</Button>
-```
