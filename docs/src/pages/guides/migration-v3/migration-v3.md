@@ -340,3 +340,20 @@ You should be able to move the custom styles to the root class key.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
   Only special HTML elements have these default behaviors.
   People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
+
+### Slide
+
+- [Slide] The child needs to be able to hold a ref.
+
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Slide><Component /></Slide>
+  <Slide><MyComponent /></Slide>
+  <Slide><div /></Slide>
+  ```
