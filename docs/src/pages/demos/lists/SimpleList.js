@@ -24,7 +24,7 @@ function ListItemLink(props) {
 function SimpleList(props) {
   const { classes } = props;
   return (
-    <nav className={classes.root} role="navigation" aria-label="Demo">
+    <nav className={classes.root} aria-label="Demo">
       <List>
         <ListItem button>
           <ListItemIcon>

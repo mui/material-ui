@@ -27,7 +27,7 @@ export interface SimpleListProps extends WithStyles<typeof styles> {}
 function SimpleList(props: SimpleListProps) {
   const { classes } = props;
   return (
-    <nav className={classes.root} role="navigation" aria-label="Demo">
+    <nav className={classes.root} aria-label="Demo">
       <List>
         <ListItem button>
           <ListItemIcon>
