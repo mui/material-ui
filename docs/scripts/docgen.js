@@ -3,7 +3,7 @@ const path = require('path');
 const parser = require('react-docgen-typescript').withDefaultConfig({
   propFilter: {
     skipPropsWithoutDoc: true,
-    skipPropsWithName: ['ViewContainerComponent'],
+    skipPropsWithName: [],
   },
 });
 
