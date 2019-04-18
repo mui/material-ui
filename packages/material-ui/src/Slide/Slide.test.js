@@ -188,9 +188,7 @@ describe('<Slide />', () => {
 
   describe('prop: direction', () => {
     it('should update the position', () => {
-      const wrapper = mount(
-        <Slide {...defaultProps} in={false} direction="left" />,
-      );
+      const wrapper = mount(<Slide {...defaultProps} in={false} direction="left" />);
       const child = wrapper.find('#testChild').instance();
 
       const transition1 = child.style.transform;
