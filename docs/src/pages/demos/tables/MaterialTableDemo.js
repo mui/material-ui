@@ -43,7 +43,6 @@ export default class MaterialTableDemo extends Component {
                 const data = this.state.data;
                 data.push(newData);
                 this.setState({ data }, () => resolve());
-                resolve();
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -53,7 +52,6 @@ export default class MaterialTableDemo extends Component {
                 const index = data.indexOf(oldData);
                 data[index] = newData;
                 this.setState({ data }, () => resolve());
-                resolve();
               }, 600);
             }),
           onRowDelete: oldData =>
@@ -63,7 +61,6 @@ export default class MaterialTableDemo extends Component {
                 const index = data.indexOf(oldData);
                 data.splice(index, 1);
                 this.setState({ data }, () => resolve());
-                resolve();
               }, 600);
             })
         }}
