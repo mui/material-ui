@@ -328,7 +328,7 @@ describe('<Modal />', () => {
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.calledWith(event), true);
       assert.strictEqual(onCloseSpy.callCount, 1);
-      assert.strictEqual(onCloseSpy.calledWith(event), true);
+      assert.strictEqual(onCloseSpy.calledWith(event, 'escapeKeyDown'), true);
     });
 
     it('when disableEscapeKeyDown should call only onClose', () => {

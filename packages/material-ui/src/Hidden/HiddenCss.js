@@ -152,4 +152,4 @@ HiddenCss.propTypes = {
   xsUp: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateHiddenCss' })(HiddenCss);
+export default withStyles(styles, { name: 'PrivateHiddenCss' })(HiddenCss);

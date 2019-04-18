@@ -34,6 +34,18 @@ export const styles = theme => {
           display: 'none',
         },
       },
+      '&$expanded': {
+        margin: '16px 0',
+        '&:first-child': {
+          marginTop: 0,
+        },
+        '&:last-child': {
+          marginBottom: 0,
+        },
+        '&:before': {
+          opacity: 0,
+        },
+      },
       '&$expanded + &': {
         '&:before': {
           display: 'none',
@@ -58,18 +70,7 @@ export const styles = theme => {
       },
     },
     /* Styles applied to the root element if `expanded={true}`. */
-    expanded: {
-      margin: '16px 0',
-      '&:first-child': {
-        marginTop: 0,
-      },
-      '&:last-child': {
-        marginBottom: 0,
-      },
-      '&:before': {
-        opacity: 0,
-      },
-    },
+    expanded: {},
     /* Styles applied to the root element if `disabled={true}`. */
     disabled: {
       backgroundColor: theme.palette.action.disabledBackground,

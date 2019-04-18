@@ -3,7 +3,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import Transition from 'react-transition-group/Transition';
+import { Transition } from 'react-transition-group';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';

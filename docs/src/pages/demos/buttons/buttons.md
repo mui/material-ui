@@ -123,32 +123,7 @@ component forwards this ref to the underlying DOM node.
 Given that a lot of our interactive components rely on `ButtonBase`, you should be
 able to take advantage of it everywhere:
 
-```jsx
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
+{{"demo": "pages/demos/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-// required for react-router-dom < 5.0.0 
-// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
-const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
-
-<Button component={Link} to="/open-collective">
-  Link
-</Button>
-```
-
-or if you want to avoid properties collision:
-
-```jsx
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-
-// use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
-
-<Button component={MyLink}>
-  Link
-</Button>
-```
-
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+_Note: Creating the Button components is necessary to prevent unexpected unmounting.
+You can read more about it in our [component property guide](/guides/composition/#component-property)._

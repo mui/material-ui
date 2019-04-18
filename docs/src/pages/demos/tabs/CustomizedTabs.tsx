@@ -38,54 +38,66 @@ const StyledTab = withStyles((theme: Theme) =>
   }),
 )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-const useStyles = makeStyles((theme: Theme) => ({
+const AntTabs = withStyles({
   root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-  tabsRoot: {
     borderBottom: '1px solid #e8e8e8',
   },
-  tabsIndicator: {
+  indicator: {
     backgroundColor: '#1890ff',
   },
-  tabRoot: {
-    textTransform: 'none',
-    minWidth: 72,
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
+})(Tabs);
+
+const AntTab = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      textTransform: 'none',
+      minWidth: 72,
+      fontWeight: theme.typography.fontWeightRegular,
+      marginRight: theme.spacing(4),
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+      '&:hover': {
+        color: '#40a9ff',
+        opacity: 1,
+      },
+      '&$selected': {
+        color: '#1890ff',
+        fontWeight: theme.typography.fontWeightMedium,
+      },
+      '&:focus': {
+        color: '#40a9ff',
+      },
     },
-    '&$tabSelected': {
-      color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
+    selected: {},
+  }),
+)((props: StyledTabProps) => <Tab disableRipple {...props} />);
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
     },
-    '&:focus': {
-      color: '#40a9ff',
+    typography: {
+      padding: theme.spacing(3),
     },
-  },
-  tabSelected: {},
-  typography: {
-    padding: theme.spacing(3),
-  },
-  demo2: {
-    backgroundColor: '#2e1534',
-  },
-}));
+    demo1: {
+      backgroundColor: theme.palette.background.paper,
+    },
+    demo2: {
+      backgroundColor: '#2e1534',
+    },
+  }),
+);
 
 function CustomizedTabs() {
   const classes = useStyles();
@@ -97,28 +109,14 @@ function CustomizedTabs() {
 
   return (
     <div className={classes.root}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
-      >
-        <Tab
-          disableRipple
-          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-          label="Tab 1"
-        />
-        <Tab
-          disableRipple
-          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-          label="Tab 2"
-        />
-        <Tab
-          disableRipple
-          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-          label="Tab 3"
-        />
-      </Tabs>
-      <Typography className={classes.typography}>Ant Design UI powered by Material-UI</Typography>
+      <div className={classes.demo1}>
+        <AntTabs value={value} onChange={handleChange}>
+          <AntTab label="Tab 1" />
+          <AntTab label="Tab 2" />
+          <AntTab label="Tab 3" />
+        </AntTabs>
+        <Typography className={classes.typography} />
+      </div>
       <div className={classes.demo2}>
         <StyledTabs value={value} onChange={handleChange}>
           <StyledTab label="Workflows" />

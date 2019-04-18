@@ -1,66 +1,263 @@
-import warning from 'warning';
-import hash from '@emotion/hash';
+import { assert } from 'chai';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import createGenerateClassName from './createGenerateClassName';
 
-function safePrefix(classNamePrefix) {
-  const prefix = String(classNamePrefix);
-  warning(prefix.length < 256, `Material-UI: the class name prefix is too long: ${prefix}.`);
-  return prefix;
-}
+describe('createGenerateClassName', () => {
+  const generateClassName = createGenerateClassName();
+  const generateClassNameGlobal = createGenerateClassName({ dangerouslyUseGlobalCSS: true });
 
-const themeHashCache = {};
-
-// Returns a function which generates unique class names based on counters.
-// When new generator function is created, rule counter is reset.
-// We need to reset the rule counter for SSR for each request.
-//
-// It's inspired by
-// https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName(options = {}) {
-  const { dangerouslyUseGlobalCSS = false, productionPrefix = 'jss', seed = '' } = options;
-  let ruleCounter = 0;
-
-  return (rule, styleSheet) => {
-    const isStatic = !styleSheet.options.link;
-
-    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name && isStatic) {
-      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
-    }
-
-    let suffix;
-
-    // It's a static rule.
-    if (isStatic) {
-      let themeHash = themeHashCache[styleSheet.options.theme];
-      if (!themeHash) {
-        themeHash = hash(JSON.stringify(styleSheet.options.theme));
-        themeHashCache[styleSheet.theme] = themeHash;
-      }
-      const raw = styleSheet.rules.raw[rule.key];
-      suffix = hash(`${themeHash}${rule.key}${JSON.stringify(raw)}`);
-    }
-
-    if (!suffix) {
-      ruleCounter += 1;
-      warning(
-        ruleCounter < 1e10,
-        [
-          'Material-UI: you might have a memory leak.',
-          'The ruleCounter is not supposed to grow that much.',
-        ].join(''),
+  describe('dangerouslyUseGlobalCSS', () => {
+    it('should have a stable classname', () => {
+      assert.strictEqual(
+        generateClassNameGlobal(
+          {
+            key: 'key',
+          },
+          {
+            options: {
+              name: 'MuiGrid',
+            },
+          },
+        ),
+        'MuiGrid-key',
       );
+      assert.strictEqual(
+        generateClassNameGlobal(
+          {
+            key: 'key',
+          },
+          {
+            rules: {
+              raw: {
+                key: () => ({}),
+              },
+            },
+            options: {
+              link: true,
+              classNamePrefix: 'classNamePrefix',
+            },
+          },
+        ),
+        'classNamePrefix-key-1',
+      );
+    });
+  });
 
-      suffix = ruleCounter;
+  it('should generate a class name', () => {
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key',
+        },
+        {
+          rules: {
+            raw: {
+              key: {
+                flex: 1,
+              },
+            },
+          },
+          options: {
+            theme: {},
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key-1',
+    );
+  });
+
+  it('should increase the counter only when needed', () => {
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key',
+        },
+        {
+          rules: {
+            raw: {
+              key: {
+                flex: 1,
+              },
+            },
+          },
+          options: {
+            theme: {},
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key-2',
+    );
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key',
+        },
+        {
+          rules: {
+            raw: {
+              key: () => ({}),
+            },
+          },
+          options: {
+            link: true,
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key-3',
+    );
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key',
+        },
+        {
+          rules: {
+            raw: {
+              key: () => ({}),
+            },
+          },
+          options: {
+            link: true,
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key-4',
+    );
+  });
+
+  it('should use the theme object, rule key and the style raw', () => {
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key1',
+        },
+        {
+          rules: {
+            raw: {
+              key1: {
+                flex: 1,
+              },
+            },
+          },
+          options: {
+            theme: {},
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key1-5',
+    );
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key2',
+        },
+        {
+          rules: {
+            raw: {
+              key2: {
+                flex: 1,
+              },
+            },
+          },
+          options: {
+            theme: {},
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key2-6',
+    );
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key2',
+        },
+        {
+          rules: {
+            raw: {
+              key2: {
+                flex: 2,
+              },
+            },
+          },
+          options: {
+            theme: {},
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key2-7',
+    );
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key2',
+        },
+        {
+          rules: {
+            raw: {
+              key2: {
+                flex: 2,
+              },
+            },
+          },
+          options: {
+            theme: {
+              spacing: 4,
+            },
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key2-8',
+    );
+  });
+
+  describe('classNamePrefix', () => {
+    it('should work without a classNamePrefix', () => {
+      const rule = { key: 'root' };
+      const styleSheet = {
+        rules: { raw: {} },
+        options: {},
+      };
+      const generateClassName2 = createGenerateClassName();
+      assert.strictEqual(generateClassName2(rule, styleSheet), 'root-1');
+    });
+  });
+
+  describe('production', () => {
+    // Only run the test on node.
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      return;
     }
 
-    if (process.env.NODE_ENV === 'production') {
-      return `${productionPrefix}${seed}${suffix}`;
-    }
+    let nodeEnv;
+    const env = process.env;
 
-    // Help with debuggability.
-    if (styleSheet.options.classNamePrefix) {
-      return `${safePrefix(styleSheet.options.classNamePrefix)}-${rule.key}-${seed}${suffix}`;
-    }
+    before(() => {
+      nodeEnv = env.NODE_ENV;
+      env.NODE_ENV = 'production';
+      consoleErrorMock.spy();
+    });
 
-    return `${rule.key}-${seed}${suffix}`;
-  };
-}
+    after(() => {
+      env.NODE_ENV = nodeEnv;
+      consoleErrorMock.reset();
+    });
+
+    it('should output a short representation', () => {
+      const rule = { key: 'root' };
+      const styleSheet = {
+        rules: { raw: {} },
+        options: {},
+      };
+      const generateClassName2 = createGenerateClassName();
+      assert.strictEqual(generateClassName2(rule, styleSheet), 'jss1');
+    });
+  });
+});

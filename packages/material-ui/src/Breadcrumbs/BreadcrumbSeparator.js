@@ -27,4 +27,4 @@ BreadcrumbSeparator.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateBreadcrumbSeparator' })(BreadcrumbSeparator);
+export default withStyles(styles, { name: 'PrivateBreadcrumbSeparator' })(BreadcrumbSeparator);

@@ -1,8 +1,8 @@
 {
   "name": "@material-ui/utils",
+  "version": "4.0.0-alpha.8",
   "private": false,
   "author": "Material-UI Team",
-  "version": "4.0.0-alpha.4",
   "description": "Material-UI Utils - Utility functions for Material-UI.",
   "main": "./src/index.js",
   "keywords": [

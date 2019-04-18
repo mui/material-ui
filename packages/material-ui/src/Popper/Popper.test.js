@@ -124,6 +124,20 @@ describe('<Popper />', () => {
     });
   });
 
+  describe('prop: popperOptions', () => {
+    it('should pass all popperOptions to popperjs', done => {
+      const popperOptions = {
+        onCreate: data => {
+          data.instance.update({ placement: 'left' });
+        },
+        onUpdate: () => {
+          done();
+        },
+      };
+      mount(<Popper {...defaultProps} popperOptions={popperOptions} placement="top" open />);
+    });
+  });
+
   describe('prop: keepMounted', () => {
     describe('by default', () => {
       // Test case for https://github.com/mui-org/material-ui/issues/15180

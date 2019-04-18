@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { withStyles, Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip, { TooltipProps } from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 function arrowGenerator(color: string) {
@@ -51,18 +52,17 @@ function arrowGenerator(color: string) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) =>
+const LightTooltip = withStyles((theme: Theme) => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[1],
+    fontSize: 11,
+  },
+}))(Tooltip);
+
+const useStylesArrow = makeStyles((theme: Theme) =>
   createStyles({
-    button: {
-      margin: theme.spacing(1),
-    },
-    lightTooltip: {
-      backgroundColor: theme.palette.common.white,
-      color: 'rgba(0, 0, 0, 0.87)',
-      boxShadow: theme.shadows[1],
-      fontSize: 11,
-    },
-    arrowPopper: arrowGenerator(theme.palette.grey[700]),
     arrow: {
       position: 'absolute',
       fontSize: 6,
@@ -77,120 +77,137 @@ const useStyles = makeStyles((theme: Theme) =>
         borderStyle: 'solid',
       },
     },
-    bootstrapPopper: arrowGenerator(theme.palette.common.black),
-    bootstrapTooltip: {
+    popper: arrowGenerator(theme.palette.grey[700]),
+  }),
+);
+
+function ArrowTooltip(props: TooltipProps) {
+  const { arrow, ...classes } = useStylesArrow();
+  const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
+
+  return (
+    <Tooltip
+      classes={classes}
+      PopperProps={{
+        popperOptions: {
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef,
+            },
+          },
+        },
+      }}
+      {...props}
+      title={
+        <React.Fragment>
+          {props.title}
+          <span className={arrow} ref={setArrowRef} />
+        </React.Fragment>
+      }
+    />
+  );
+}
+
+const useStylesBootstrap = makeStyles((theme: Theme) =>
+  createStyles({
+    arrow: {
+      position: 'absolute',
+      fontSize: 6,
+      width: '3em',
+      height: '3em',
+      '&::before': {
+        content: '""',
+        margin: 'auto',
+        display: 'block',
+        width: 0,
+        height: 0,
+        borderStyle: 'solid',
+      },
+    },
+    popper: arrowGenerator(theme.palette.common.black),
+    tooltip: {
       backgroundColor: theme.palette.common.black,
     },
-    bootstrapPlacementLeft: {
+    tooltipPlacementLeft: {
       margin: '0 8px',
     },
-    bootstrapPlacementRight: {
+    tooltipPlacementRight: {
       margin: '0 8px',
     },
-    bootstrapPlacementTop: {
+    tooltipPlacementTop: {
       margin: '8px 0',
     },
-    bootstrapPlacementBottom: {
+    tooltipPlacementBottom: {
       margin: '8px 0',
-    },
-    htmlPopper: arrowGenerator('#dadde9'),
-    htmlTooltip: {
-      backgroundColor: '#f5f5f9',
-      color: 'rgba(0, 0, 0, 0.87)',
-      maxWidth: 220,
-      fontSize: theme.typography.pxToRem(12),
-      border: '1px solid #dadde9',
-      '& b': {
-        fontWeight: theme.typography.fontWeightMedium,
-      },
     },
   }),
 );
 
-function CustomizedTooltips() {
-  const classes = useStyles();
+function BootstrapTooltip(props: TooltipProps) {
+  const { arrow, ...classes } = useStylesBootstrap();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
 
   return (
+    <Tooltip
+      classes={classes}
+      PopperProps={{
+        popperOptions: {
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef,
+            },
+          },
+        },
+      }}
+      {...props}
+      title={
+        <React.Fragment>
+          {props.title}
+          <span className={arrow} ref={setArrowRef} />
+        </React.Fragment>
+      }
+    />
+  );
+}
+
+const HtmlTooltip = withStyles((theme: Theme) => ({
+  tooltip: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: '1px solid #dadde9',
+    '& b': {
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+  },
+}))(Tooltip);
+
+function CustomizedTooltips() {
+  return (
     <div>
-      <Tooltip title="Add" classes={{ tooltip: classes.lightTooltip }}>
-        <Button className={classes.button}>Light</Button>
-      </Tooltip>
-      <Tooltip
-        title={
-          <React.Fragment>
-            Add
-            <span className={classes.arrow} ref={setArrowRef} />
-          </React.Fragment>
-        }
-        classes={{ popper: classes.arrowPopper }}
-        PopperProps={{
-          popperOptions: {
-            modifiers: {
-              arrow: {
-                enabled: Boolean(arrowRef),
-                element: arrowRef,
-              },
-            },
-          },
-        }}
-      >
-        <Button className={classes.button}>Arrow</Button>
-      </Tooltip>
-      <Tooltip
-        title={
-          <React.Fragment>
-            Add
-            <span className={classes.arrow} ref={setArrowRef} />
-          </React.Fragment>
-        }
-        classes={{
-          tooltip: classes.bootstrapTooltip,
-          popper: classes.bootstrapPopper,
-          tooltipPlacementLeft: classes.bootstrapPlacementLeft,
-          tooltipPlacementRight: classes.bootstrapPlacementRight,
-          tooltipPlacementTop: classes.bootstrapPlacementTop,
-          tooltipPlacementBottom: classes.bootstrapPlacementBottom,
-        }}
-        PopperProps={{
-          popperOptions: {
-            modifiers: {
-              arrow: {
-                enabled: Boolean(arrowRef),
-                element: arrowRef,
-              },
-            },
-          },
-        }}
-      >
-        <Button className={classes.button}>Bootstrap</Button>
-      </Tooltip>
-      <Tooltip
-        classes={{
-          popper: classes.htmlPopper,
-          tooltip: classes.htmlTooltip,
-        }}
-        PopperProps={{
-          popperOptions: {
-            modifiers: {
-              arrow: {
-                enabled: Boolean(arrowRef),
-                element: arrowRef,
-              },
-            },
-          },
-        }}
+      <LightTooltip title="Add">
+        <Button>Light</Button>
+      </LightTooltip>
+      <ArrowTooltip title="Add">
+        <Button>Arrow</Button>
+      </ArrowTooltip>
+      <BootstrapTooltip title="Add">
+        <Button>Bootstrap</Button>
+      </BootstrapTooltip>
+      <HtmlTooltip
         title={
           <React.Fragment>
             <Typography color="inherit">Tooltip with HTML</Typography>
             <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
             {"It's very engaging. Right?"}
-            <span className={classes.arrow} ref={setArrowRef} />
           </React.Fragment>
         }
       >
-        <Button className={classes.button}>HTML</Button>
-      </Tooltip>
+        <Button>HTML</Button>
+      </HtmlTooltip>
     </div>
   );
 }

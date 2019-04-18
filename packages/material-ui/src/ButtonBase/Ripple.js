@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Transition from 'react-transition-group/Transition';
+import { Transition } from 'react-transition-group';
 
 /**
  * @ignore - internal component.

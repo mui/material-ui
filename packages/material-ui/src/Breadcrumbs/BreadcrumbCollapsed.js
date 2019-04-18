@@ -46,4 +46,4 @@ BreadcrumbCollapsed.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateBreadcrumbCollapsed' })(BreadcrumbCollapsed);
+export default withStyles(styles, { name: 'PrivateBreadcrumbCollapsed' })(BreadcrumbCollapsed);
