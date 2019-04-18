@@ -95,7 +95,7 @@ workflows:
           build: 'yarn workspace docs build'
           start: 'yarn workspace docs start'
           wait-on: 'http://localhost:3000'
-          record: true
+          record: false
           yarn: true
           cache-key: yarn-packages-{{ checksum "yarn.lock" }}
 

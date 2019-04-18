@@ -10,22 +10,36 @@ import { makeMaskFromFormat, maskedDateFormatter } from '../_helpers/text-field-
 
 export interface KeyboardDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
-  // Properly extend different variants from mui textfield
-  inputVariant?: TextFieldProps['variant'];
-  inputValue: string;
   format: string;
   onChange: (value: string) => void;
   onClick?: () => void;
   validationError?: React.ReactNode;
-  /** Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__) */
+  inputValue: string;
+  /** Pass material-ui text field variant down, bypass internal variant prop */
+  inputVariant?: TextFieldProps['variant'];
+  /**
+   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)
+   */
   mask?: string;
-  /** Char string that will be replaced with number (for "_" mask will be "__/__/____") */
+  /**
+   * Char string that will be replaced with number (for "_" mask will be "__/__/____")
+   * @default '_'
+   */
   maskChar?: string;
-  /** Refuse values regexp */
+  /**
+   * Refuse values regexp
+   * @default /[^\dap]+/gi
+   */
   refuse?: RegExp;
-  /** Props to pass to keyboard input adornment */
+  /**
+   * Props to pass to keyboard input adornment
+   * @type {Partial<InputAdornmentProps>}
+   */
   InputAdornmentProps?: Partial<InputAdornmentProps>;
-  /** Props to pass to keyboard adornment button */
+  /**
+   * Props to pass to keyboard adornment button
+   * @type {Partial<IconButtonProps>}
+   */
   KeyboardButtonProps?: Partial<IconButtonProps>;
 }
 
@@ -77,7 +91,5 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
     </Rifm>
   );
 };
-
-KeyboardDateInput.defaultProps = {};
 
 export default KeyboardDateInput;

@@ -3,26 +3,44 @@ import * as PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
 import { Omit } from '@material-ui/core';
 import { WrapperProps } from './Wrapper';
-import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
+import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 
 export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
-  /** "OK" label message */
+  /**
+   * "OK" label message
+   * @default 'OK'
+   */
   okLabel?: React.ReactNode;
-  /** "Cancel" label message */
+  /**
+   * "CANCEL" label message
+   * @default 'CANCEL'
+   */
   cancelLabel?: React.ReactNode;
-  /** "Clear" label message */
+  /**
+   * "CLEAR" label message
+   * @default 'CLEAR'
+   */
   clearLabel?: React.ReactNode;
-  /** "Today" label message */
+  /**
+   * "CLEAR" label message
+   * @default 'CLEAR'
+   */
   todayLabel?: React.ReactNode;
   /**
-   * If true today button will be displayed
-   * <b>Note*</b> that clear button has higher priority
+   * If true today button will be displayed <b>Note*</b> that clear button has higher priority
+   * @default false
    */
   showTodayButton?: boolean;
-  /** Props to be passed directly to material-ui Dialog */
-  DialogProps?: Partial<Omit<DialogPropsType, 'classes'>>;
-  /** Show clear action in picker dialog */
+  /**
+   * Show clear action in picker dialog
+   * @default false
+   */
   clearable?: boolean;
+  /**
+   * Props to be passed directly to material-ui Dialog
+   * @type {Partial<MuiDialogProps>}
+   */
+  DialogProps?: Partial<Omit<MuiDialogProps, 'classes'>>;
 }
 
 export const ModalWrapper: React.FC<ModalWrapperProps<any>> = ({

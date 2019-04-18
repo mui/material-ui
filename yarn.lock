@@ -1221,6 +1221,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/fuzzy-search@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/fuzzy-search/-/fuzzy-search-2.1.0.tgz#a628a5136799a48d6fa72e88079d06a5f5a0c71a"
+  integrity sha512-huf9Mwh1pJPsN2riqiOOhFNBJfdZ88Pp7Vy9Y/8hYBcfIXPTHGk+B9OU2TSSV1FOTUh+JQfcg082wfAMMEJSoA==
+
 "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
@@ -2869,7 +2874,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.6:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -4823,6 +4828,11 @@ functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
+
+fuzzy-search@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/fuzzy-search/-/fuzzy-search-3.0.1.tgz#14a4964508a9607d6e9a88818e7ff634108260b6"
+  integrity sha512-rjUvzdsMlOyarm0oD5k6zVQwgvt4Tb5Xe3YdIGU+Vogw54+ueAGPUTMU2B9jfPQEie5cD11i/S9J9d+MNBSQ3Q==
 
 gauge@~2.7.3:
   version "2.7.4"
@@ -7119,6 +7129,14 @@ markdown-escapes@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.2.tgz#e639cbde7b99c841c0bacc8a07982873b46d2122"
   integrity sha512-lbRZ2mE3Q9RtLjxZBZ9+IMl68DKIXaVAhwvwn9pmjnPLS0h/6kyBMgNhqi1xFJ/2yv6cSyv0jbiZavZv93JkkA==
+
+material-ui-search-bar@^1.0.0-beta.13:
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/material-ui-search-bar/-/material-ui-search-bar-1.0.0-beta.13.tgz#08c246431666f91c3ca52df78987b86352783ee1"
+  integrity sha512-ETZiBvza26+0dyHamUO1Nmh5oRymdzmMM1Z6QH+wraQ6e+0GQdwuJjX4T0eL+nKYDBQB4UpSbFhkBs5ECN2QwA==
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.5.8"
 
 maximatch@^0.1.0:
   version "0.1.0"

@@ -14,12 +14,18 @@ import { WithStyles, withStyles, createStyles } from '@material-ui/styles';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 
 export interface BaseTimePickerProps {
-  /** 12h/24h view for hour selection clock */
+  /**
+   * 12h/24h view for hour selection clock
+   * @default true
+   */
   ampm?: boolean;
+  /**
+   * Step over minutes
+   * @default 1
+   */
+  minutesStep?: number;
   /** Show the seconds view */
   seconds?: boolean;
-  /** Step over minutes */
-  minutesStep?: number;
 }
 
 export const styles = () =>

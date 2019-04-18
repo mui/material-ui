@@ -13,27 +13,32 @@ import { IconButtonProps } from '@material-ui/core/IconButton';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 
-export type RenderDay = (
-  day: MaterialUiPickersDate,
-  selectedDate: MaterialUiPickersDate,
-  dayInCurrentMonth: boolean,
-  dayComponent: React.ReactElement<IconButtonProps>
-) => JSX.Element;
-
 export interface OutterCalendarProps {
   /** Left arrow icon */
   leftArrowIcon?: React.ReactNode;
   /** Right arrow icon */
   rightArrowIcon?: React.ReactNode;
   /** Custom renderer for day */
-  renderDay?: RenderDay;
-  /** Show only calendar, without toolbar */
-  onlyCalendar?: boolean;
-  /** Enables keyboard listener for moving between days in calendar */
+  renderDay?: (
+    day: MaterialUiPickersDate,
+    selectedDate: MaterialUiPickersDate,
+    dayInCurrentMonth: boolean,
+    dayComponent: JSX.Element
+  ) => JSX.Element;
+  /**
+   * Enables keyboard listener for moving between days in calendar
+   * @default true
+   */
   allowKeyboardControl?: boolean;
-  /** Props to pass to left arrow button */
+  /**
+   * Props to pass to left arrow button
+   * @type {Partial<IconButtonProps>}
+   */
   leftArrowButtonProps?: Partial<IconButtonProps>;
-  /** Props to pass to right arrow button */
+  /**
+   * Props to pass to right arrow button
+   * @type {Partial<IconButtonProps>}
+   */
   rightArrowButtonProps?: Partial<IconButtonProps>;
   /** Disable specific date */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
@@ -66,7 +71,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     allowKeyboardControl: PropTypes.bool,
   };
 
-  public static defaultProps = {
+  public static defaultProps: Partial<CalendarProps> = {
     minDate: new Date('1900-01-01'),
     maxDate: new Date('2100-01-01'),
     disablePast: false,

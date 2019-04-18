@@ -16,7 +16,7 @@ import { BaseTimePickerProps } from '../TimePicker/TimePickerRoot';
 
 export interface BaseDateTimePickerProps
   extends Omit<BaseTimePickerProps, 'seconds'>,
-    Omit<BaseDatePickerProps, 'views' | 'openTo'> {
+    Omit<BaseDatePickerProps, 'onlyCalendar' | 'views' | 'openTo'> {
   /** Auto move between date, hours and minutes */
   autoSubmit?: boolean;
   /** Show or hide date/time tabs (hidden automatically on small screens) */

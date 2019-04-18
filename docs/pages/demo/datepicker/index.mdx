@@ -1,7 +1,7 @@
 import Ad from '_shared/Ad';
 import Example from '_shared/Example'
 import PageMeta from '_shared/PageMeta'
-import PropTypesTable from '_shared/PropTypesTable'
+import LinkedComponents from '_shared/LinkedComponents'
 
 import * as CustomDay from './CustomDay.example'
 import * as BasicDatePicker from './BasicDatePicker.example'
@@ -26,7 +26,7 @@ color and type weight.
 #### Keyboard Input
 
 It is recommended to use keyboard input with mask for better desktop experience. Make sure that mask will be automatically
-generated from passed `format`. It's recommended to use only robust formats for keyboard input. 
+generated from passed `format`. It's recommended to use only robust formats for keyboard input.
 
 <Example source={KeyboardDatePicker} />
 
@@ -50,4 +50,6 @@ It is allowed to hardly customize displaying of dates. Thus you can add badges o
 
 <Example source={CustomDay} />
 
-<PropTypesTable src="DatePicker/DatePicker.tsx" />
+#### Components API
+
+<LinkedComponents components={['DatePicker', 'KeyboardDatePicker']} />

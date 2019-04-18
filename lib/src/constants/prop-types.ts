@@ -23,10 +23,11 @@ export const timePickerDefaultProps = {
 } as TimePickerProps;
 
 export const datePickerDefaultProps = {
-  views: ['year', 'day'],
+  views: ['day', 'year'],
   invalidDateMessage: 'Invalid Date Format',
   minDateMessage: 'Date should not be before minimal date',
   maxDateMessage: 'Date should not be after maximal date',
+  allowKeyboardControl: true,
 } as DatePickerProps;
 
 export const dateTimePickerDefaultProps = {
