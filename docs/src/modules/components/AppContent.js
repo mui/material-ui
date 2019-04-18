@@ -20,6 +20,10 @@ const styles = theme => ({
       maxWidth: 'calc(100% - 240px - 175px)',
     },
   },
+  anchor: {
+    position: 'absolute',
+    marginTop: -125,
+  },
   disableToc: {
     [theme.breakpoints.up('sm')]: {
       maxWidth: 'calc(100%)',
@@ -39,6 +43,7 @@ function AppContent(props) {
         [classes.disableToc]: disableToc,
       })}
     >
+      <div className={classes.anchor} id="content" />
       <Container>{children}</Container>
     </main>
   );

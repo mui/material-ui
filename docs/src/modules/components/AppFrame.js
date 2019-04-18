@@ -5,10 +5,12 @@ import NProgress from 'nprogress';
 import Router from 'next/router';
 import Interpolate from '@trendmicro/react-interpolate';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
 import Tooltip from '@material-ui/core/Tooltip';
 import NoSsr from '@material-ui/core/NoSsr';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,7 +25,6 @@ import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
-import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -98,6 +99,16 @@ const styles = theme => ({
     marginLeft: theme.spacing(2),
     flex: '0 1 auto',
   },
+  skipNav: {
+    position: 'absolute',
+    transition: theme.transitions.create('top'),
+    left: theme.spacing(2),
+    top: -56,
+    zIndex: 100000,
+    '&:focus': {
+      top: theme.spacing(2),
+    },
+  },
   appBar: {
     transition: theme.transitions.create('width'),
     '@media print': {
@@ -135,6 +146,18 @@ class AppFrame extends React.Component {
     const { canonical } = pathnameToLanguage(window.location.pathname);
     this.canonical = canonical;
   }
+
+  handleKeyDown = event => {
+    // Use event.keyCode to support IE 11
+    if (
+      event.keyCode === 9 &&
+      document.activeElement.nodeName === 'BODY' &&
+      document.activeElement !== this.skipNavRef
+    ) {
+      event.preventDefault();
+      this.skipNavRef.focus();
+    }
+  };
 
   handleDrawerOpen = () => {
     this.setState({ mobileOpen: true });
@@ -197,6 +220,17 @@ class AppFrame extends React.Component {
             <div className={classes.root}>
               <NProgressBar />
               <CssBaseline />
+              <Button
+                className={classes.skipNav}
+                variant="contained"
+                color="secondary"
+                href="#content"
+                ref={ref => {
+                  this.skipNavRef = ref;
+                }}
+              >
+                Skip to content
+              </Button>
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>

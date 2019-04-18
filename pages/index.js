@@ -38,6 +38,10 @@ const styles = theme => ({
   drawer: {
     width: 0,
   },
+  anchor: {
+    position: 'absolute',
+    marginTop: -125,
+  },
   hero: {
     paddingTop: 64 + 29,
     backgroundColor: theme.palette.background.paper,
@@ -119,6 +123,7 @@ class HomePage extends React.Component {
     return (
       <AppFrame classes={{ drawer: classes.drawer }}>
         <div className={classes.root}>
+          <div className={classes.anchor} id="content" />
           <Head />
           <div className={classes.hero}>
             <Container maxWidth="md" className={classes.content}>
