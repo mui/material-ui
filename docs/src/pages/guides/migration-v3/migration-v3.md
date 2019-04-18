@@ -345,7 +345,6 @@ You should be able to move the custom styles to the root class key.
 
 - [Tooltip] Convert to function component (#15291) @joshwooding
   
-  The child of the `Tooltip` needs to be able to hold a ref
 
   ```diff
   class Component extends React.Component {
