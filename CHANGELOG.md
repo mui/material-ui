@@ -54,6 +54,22 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
   - [DialogActions] Rename the `action` CSS class `spacing`.
   - [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
 
+- [Tooltip] Convert to function component (#15291) @joshwooding
+  The child of the `Tooltip` needs to be able to hold a ref
+
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Tooltip><Component /></Tooltip>
+  <Tooltip><MyComponent /></Tooltip>
+  <Tooltip><div /></Tooltip>
+  ```
+
 #### Changes
 
 - [ScrollbarSize] Convert to function component (#15233) @joshwooding
