@@ -10,6 +10,7 @@ import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import { useForkRef } from '../utils/reactHelpers';
+import useKeyboardFocus from './useKeyboardFocus';
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
@@ -201,6 +202,8 @@ function Tooltip(props) {
     }
   };
 
+  const isKeyboardFocus = useKeyboardFocus(disableFocusListener);
+
   const handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
@@ -209,7 +212,9 @@ function Tooltip(props) {
       setChildNode(event.currentTarget);
     }
 
-    handleEnter(event);
+    if (isKeyboardFocus()) {
+      handleEnter(event);
+    }
 
     const childrenProps = children.props;
     if (childrenProps.onFocus) {
