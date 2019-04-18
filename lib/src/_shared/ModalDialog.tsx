@@ -63,8 +63,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
 
     <DialogActions
       classes={{
-        root: clearable || showTodayButton ? classes.dialogActions : undefined,
-        action: clsx(classes.dialogAction, {
+        root: clsx({
           [classes.withAdditionalAction]: clearable || showTodayButton,
         }),
       }}
@@ -116,18 +115,14 @@ export const styles = createStyles({
   dialogWithTabs: {
     minHeight: dialogHeightWithTabs,
   },
-  dialogActions: {
+  withAdditionalAction: {
     // set justifyContent to default value to fix IE11 layout bug
     // see https://github.com/dmtrKovalenko/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
-  },
-  withAdditionalAction: {
+
     '& > *:first-child': {
       marginRight: 'auto',
     },
-  },
-  dialogAction: {
-    // empty but may be needed for override
   },
 });
 

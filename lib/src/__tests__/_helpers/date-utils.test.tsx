@@ -90,8 +90,8 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
+    expect(utilsToUse.isBefore(result, today)).toBe(false);
     expect(utilsToUse.getDayText(result)).toBe(day18thText);
-    expect(utilsToUse.isBefore(result, today)).toBe(true);
     expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, -31))).toBe(false);
   });
 
