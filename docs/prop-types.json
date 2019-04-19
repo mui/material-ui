@@ -136,7 +136,7 @@
     },
     "PopoverProps": {
       "defaultValue": null,
-      "description": "Dialog props passed to material-ui Dialog",
+      "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
       "name": "PopoverProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
@@ -543,7 +543,7 @@
     },
     "PopoverProps": {
       "defaultValue": null,
-      "description": "Dialog props passed to material-ui Dialog",
+      "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
       "name": "PopoverProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
@@ -994,7 +994,7 @@
     },
     "PopoverProps": {
       "defaultValue": null,
-      "description": "Dialog props passed to material-ui Dialog",
+      "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
       "name": "PopoverProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
@@ -1223,7 +1223,7 @@
     },
     "PopoverProps": {
       "defaultValue": null,
-      "description": "Dialog props passed to material-ui Dialog",
+      "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
       "name": "PopoverProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
@@ -1699,7 +1699,7 @@
     },
     "PopoverProps": {
       "defaultValue": null,
-      "description": "Dialog props passed to material-ui Dialog",
+      "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
       "name": "PopoverProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
@@ -2130,7 +2130,7 @@
     },
     "PopoverProps": {
       "defaultValue": null,
-      "description": "Dialog props passed to material-ui Dialog",
+      "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
       "name": "PopoverProps",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
