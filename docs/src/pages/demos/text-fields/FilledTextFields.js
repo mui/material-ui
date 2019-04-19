@@ -149,6 +149,18 @@ function FilledTextFields() {
         variant="filled"
       />
       <TextField
+        id="filled-multiline-flexible-min"
+        label="Multiline w/Min Rows"
+        multiline
+        rowsMax={Infinity}
+        rowsMin="2"
+        defaultValue="Default Value"
+        className={classes.textField}
+        margin="normal"
+        helperText="hello"
+        variant="filled"
+      />
+      <TextField
         id="filled-multiline-static"
         label="Multiline"
         multiline
