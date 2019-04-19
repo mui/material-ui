@@ -3,8 +3,8 @@ import { StandardProps } from '@material-ui/core';
 
 export interface BreadcrumbsProps
   extends StandardProps<React.HTMLAttributes<HTMLElement>, BreadcrumbsClassKey> {
-  itemsAfterCollapse?: boolean;
-  itemsBeforeCollapse?: boolean;
+  itemsAfterCollapse?: number;
+  itemsBeforeCollapse?: number;
   maxItems?: number;
   separator?: React.ReactNode;
 }
