@@ -14,26 +14,25 @@ import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import { BaseDatePickerProps } from '../DatePicker/DatePickerRoot';
 import { BaseTimePickerProps } from '../TimePicker/TimePickerRoot';
 
-export interface BaseDateTimePickerProps
-  extends Omit<BaseTimePickerProps, 'seconds'>,
-    Omit<BaseDatePickerProps, 'onlyCalendar' | 'views' | 'openTo'> {
-  /** Auto move between date, hours and minutes */
-  autoSubmit?: boolean;
-  /** Show or hide date/time tabs (hidden automatically on small screens) */
-  showTabs?: boolean;
-  /** Initial view to show when datetime picker is open */
-  openTo?: 'year' | 'date' | 'hours' | 'minutes';
-  /** Date tab icon */
-  dateRangeIcon?: React.ReactNode;
-  /** Time tab icon */
-  timeIcon?: React.ReactNode;
-  /** Container component for date time picker views */
-  ViewContainerComponent?:
-    | string
-    | React.ComponentType<
-        {} | { openView: BaseDateTimePickerProps['openTo']; onChange: () => void }
-      >;
-}
+export type BaseDateTimePickerProps = Omit<BaseTimePickerProps, 'seconds'> &
+  Omit<BaseDatePickerProps, 'onlyCalendar' | 'views' | 'openTo'> & {
+    autoSubmit?: boolean;
+    /** Show or hide date/time tabs (hidden automatically on small screens) */
+    showTabs?: boolean;
+    /** Initial view to show when datetime picker is open */
+    openTo?: 'year' | 'date' | 'hours' | 'minutes';
+    /** Date tab icon */
+    dateRangeIcon?: React.ReactNode;
+    /** Time tab icon */
+    timeIcon?: React.ReactNode;
+    /**
+     * View container that wraps DateTimePicker views
+     * @type {React.Component}
+     */
+    ViewContainerComponent?:
+      | string
+      | React.ComponentType<{} | { openView: DateTimePickerView; onChange: () => void }>;
+  };
 
 export interface DateTimePickerProps extends BaseDateTimePickerProps, WithUtilsProps {
   date: MaterialUiPickersDate;

@@ -22,7 +22,7 @@ export const useStyles = makeStyles(
 );
 
 export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> {
-  /** Dialog props passed to material-ui Dialog */
+  /** Popover props passed to material-ui Popover (with variant="inline") */
   PopoverProps?: Partial<PopoverPropsType>;
 }
 

@@ -39,6 +39,7 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
+    "@types/styled-jsx": "^2.2.8",
     "clsx": "^1.0.2",
     "react-event-listener": "^0.6.6",
     "react-transition-group": "^2.5.3",

@@ -35,8 +35,9 @@ export type ExtendWrapper<TInput extends PureDateInputProps | KeyboardDateInputP
    * @default 'dialog'
    */
   variant?: 'dialog' | 'inline'; // not WrapperVariant for docgen
-} & Omit<TInput, 'inputValue' | 'onChange' | 'format' | 'validationError' | 'format' | 'forwardedRef'>
-  & (ModalRoot | InlineRoot)
+} & ModalRoot
+  & InlineRoot
+  & Omit<TInput, 'inputValue' | 'onChange' | 'format' | 'validationError' | 'format' | 'forwardedRef'>
 
 export function getWrapperFromVariant<T>(
   variant?: WrapperVariant
