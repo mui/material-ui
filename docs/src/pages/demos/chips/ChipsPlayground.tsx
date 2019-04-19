@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
@@ -13,11 +13,11 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-type ColorType = "default" | "inherit" | "primary" | "secondary" | undefined;
+type ColorType = 'default' | 'inherit' | 'primary' | 'secondary' | undefined;
 
-type VariantType = "default" | "outlined" | undefined;
+type VariantType = 'default' | 'outlined' | undefined;
 
-type ActionType = "avatar" | "color" | "icon" | "onDelete" | "variant";
+type ActionType = 'avatar' | 'color' | 'icon' | 'onDelete' | 'variant';
 
 interface ChipsPlaygroundState {
   color: ColorType;
@@ -81,7 +81,7 @@ class ChipsPlayground extends React.Component<ChipsPlaygroundProp, ChipsPlaygrou
     }
 
     let iconToCode;
-    let iconToPlayground = <Fragment />;
+    let iconToPlayground = <React.Fragment />;
     switch (icon) {
       case 'none':
         iconToCode = '';
