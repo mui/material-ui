@@ -100,14 +100,14 @@ function themes(t) {
         'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/tweeper',
     },
     {
-      name: 'Gsuite',
-      description: 'A recreation of Gsuite layout and home page by customizing Material UI theme',
-      src: '/static/themes/gsuite.png',
+      name: 'Gmail',
+      description: 'A recreation of Gmail layout and home page by customizing Material UI theme',
+      src: '/static/themes/gmail.png',
       price: t('free'),
       category: t('landing'),
-      href: '/premium-themes/gsuite',
+      href: '/premium-themes/gmail',
       source:
-        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/gsuite',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/gmail',
     },
   ];
 }
