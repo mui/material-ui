@@ -212,6 +212,10 @@ Input.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
    * Start `InputAdornment` for this component.
    */
   startAdornment: PropTypes.node,
