@@ -31,7 +31,6 @@ function intersection(a: number[], b: number[]) {
   return a.filter(value => b.indexOf(value) !== -1);
 }
 
-
 function TransferList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState<number[]>([]);
