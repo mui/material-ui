@@ -275,16 +275,6 @@ describe('<SelectInput />', () => {
   });
 
   describe('prop: autoWidth', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should take the anchor width into account', () => {
       const wrapper = mount(<SelectInput {...defaultProps} />);
       const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]').instance();
