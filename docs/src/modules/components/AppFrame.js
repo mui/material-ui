@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LanguageIcon from '@material-ui/icons/Language';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import MuiLink from '@material-ui/core/Link';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
 import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
@@ -215,9 +216,9 @@ class AppFrame extends React.Component {
             <div className={classes.root}>
               <NProgressBar />
               <CssBaseline />
-              <Link color="secondary" className={classes.skipNav} href="#main-content">
+              <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
                 Skip to content
-              </Link>
+              </MuiLink>
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
