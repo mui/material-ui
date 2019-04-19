@@ -106,7 +106,7 @@ const GettingStartedLink = React.forwardRef((props, ref) => {
 
 class HomePage extends React.Component {
   componentDidMount() {
-    if (window.location.hash !== '') {
+    if (window.location.hash !== '' && window.location.hash !== '#main=content') {
       window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
     }
 
