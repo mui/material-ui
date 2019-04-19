@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-function generate(element: React.FunctionComponentElement<{key: number}>){
+function generate(element: React.FunctionComponentElement<{key: number}>) {
   return [0, 1, 2].map(value =>
     React.cloneElement(element, {
       key: value,
