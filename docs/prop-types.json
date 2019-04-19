@@ -1,27 +1,84 @@
 {
-  "DatePicker": {
-    "onChange": {
-      "defaultValue": null,
-      "description": "onChange callback",
-      "name": "onChange",
+  "ModalWrapper": {
+    "okLabel": {
+      "defaultValue": { "value": "'OK'" },
+      "description": "\"OK\" label message",
+      "name": "okLabel",
       "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any) => void" }
-    },
-    "format": {
-      "defaultValue": null,
-      "description": "Format string",
-      "name": "format",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": { "name": "ReactNode" }
     },
+    "cancelLabel": {
+      "defaultValue": { "value": "'CANCEL'" },
+      "description": "\"CANCEL\" label message",
+      "name": "cancelLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "clearLabel": {
+      "defaultValue": { "value": "'CLEAR'" },
+      "description": "\"CLEAR\" label message",
+      "name": "clearLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "todayLabel": {
+      "defaultValue": { "value": "'CLEAR'" },
+      "description": "\"CLEAR\" label message",
+      "name": "todayLabel",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "showTodayButton": {
+      "defaultValue": { "value": "false" },
+      "description": "If true today button will be displayed <b>Note*</b> that clear button has higher priority",
+      "name": "showTodayButton",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "clearable": {
+      "defaultValue": { "value": "false" },
+      "description": "Show clear action in picker dialog",
+      "name": "clearable",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "DialogProps": {
+      "defaultValue": null,
+      "description": "Props to be passed directly to material-ui Dialog",
+      "name": "DialogProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "name": "ModalWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<MuiDialogProps>" }
+    }
+  },
+  "DatePicker": {
     "open": {
       "defaultValue": null,
       "description": "Controlled picker open state",
@@ -42,6 +99,17 @@
         "name": "BasePickerProps"
       },
       "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
       "type": { "name": "(date: any) => void" }
     },
     "onError": {
@@ -65,6 +133,28 @@
       },
       "required": false,
       "type": { "name": "() => void" }
+    },
+    "PopoverProps": {
+      "defaultValue": null,
+      "description": "Dialog props passed to material-ui Dialog",
+      "name": "PopoverProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
+        "name": "InlineWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<PopoverProps>" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
     },
     "variant": {
       "defaultValue": { "value": "'dialog'" },
@@ -385,39 +475,6 @@
     }
   },
   "KeyboardDatePicker": {
-    "inputValue": {
-      "defaultValue": null,
-      "description": "String value for controlling value with pure input string. Overrides value prop",
-      "name": "inputValue",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
-        "name": "BaseKeyboardPickerProps"
-      },
-      "required": false,
-      "type": { "name": "string" }
-    },
-    "onChange": {
-      "defaultValue": null,
-      "description": "Keyboard onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
-        "name": "BaseKeyboardPickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any, value: string) => void" }
-    },
-    "format": {
-      "defaultValue": null,
-      "description": "Format string",
-      "name": "format",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "string" }
-    },
     "open": {
       "defaultValue": null,
       "description": "Controlled picker open state",
@@ -439,6 +496,17 @@
       },
       "required": false,
       "type": { "name": "(date: any) => void" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Keyboard onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any, value: string) => void" }
     },
     "onError": {
       "defaultValue": null,
@@ -469,6 +537,39 @@
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
         "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "PopoverProps": {
+      "defaultValue": null,
+      "description": "Dialog props passed to material-ui Dialog",
+      "name": "PopoverProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
+        "name": "InlineWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<PopoverProps>" }
+    },
+    "inputValue": {
+      "defaultValue": null,
+      "description": "String value for controlling value with pure input string. Overrides value prop",
+      "name": "inputValue",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
       },
       "required": false,
       "type": { "name": "string" }
@@ -836,28 +937,6 @@
     }
   },
   "TimePicker": {
-    "onChange": {
-      "defaultValue": null,
-      "description": "onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any) => void" }
-    },
-    "format": {
-      "defaultValue": null,
-      "description": "Format string",
-      "name": "format",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "string" }
-    },
     "open": {
       "defaultValue": null,
       "description": "Controlled picker open state",
@@ -878,6 +957,17 @@
         "name": "BasePickerProps"
       },
       "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
       "type": { "name": "(date: any) => void" }
     },
     "onError": {
@@ -901,6 +991,28 @@
       },
       "required": false,
       "type": { "name": "() => void" }
+    },
+    "PopoverProps": {
+      "defaultValue": null,
+      "description": "Dialog props passed to material-ui Dialog",
+      "name": "PopoverProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
+        "name": "InlineWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<PopoverProps>" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
     },
     "variant": {
       "defaultValue": { "value": "'dialog'" },
@@ -1043,39 +1155,6 @@
     }
   },
   "KeyboardTimePicker": {
-    "inputValue": {
-      "defaultValue": null,
-      "description": "String value for controlling value with pure input string. Overrides value prop",
-      "name": "inputValue",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
-        "name": "BaseKeyboardPickerProps"
-      },
-      "required": false,
-      "type": { "name": "string" }
-    },
-    "onChange": {
-      "defaultValue": null,
-      "description": "Keyboard onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
-        "name": "BaseKeyboardPickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any, value: string) => void" }
-    },
-    "format": {
-      "defaultValue": null,
-      "description": "Format string",
-      "name": "format",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "string" }
-    },
     "open": {
       "defaultValue": null,
       "description": "Controlled picker open state",
@@ -1097,6 +1176,17 @@
       },
       "required": false,
       "type": { "name": "(date: any) => void" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Keyboard onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any, value: string) => void" }
     },
     "onError": {
       "defaultValue": null,
@@ -1127,6 +1217,39 @@
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
         "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "PopoverProps": {
+      "defaultValue": null,
+      "description": "Dialog props passed to material-ui Dialog",
+      "name": "PopoverProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
+        "name": "InlineWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<PopoverProps>" }
+    },
+    "inputValue": {
+      "defaultValue": null,
+      "description": "String value for controlling value with pure input string. Overrides value prop",
+      "name": "inputValue",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
       },
       "required": false,
       "type": { "name": "string" }
@@ -1501,6 +1624,17 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "DateType" }
+    },
     "onChange": {
       "defaultValue": null,
       "description": "onChange callback",
@@ -1512,16 +1646,16 @@
       "required": true,
       "type": { "name": "(date: any) => void" }
     },
-    "format": {
+    "onError": {
       "defaultValue": null,
-      "description": "Format string",
-      "name": "format",
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": { "name": "(error: ReactNode, value: any) => void" }
     },
     "open": {
       "defaultValue": null,
@@ -1552,17 +1686,6 @@
       "required": false,
       "type": { "name": "boolean" }
     },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
-      "name": "onError",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
-    },
     "onClose": {
       "defaultValue": null,
       "description": "On close callback",
@@ -1574,23 +1697,34 @@
       "required": false,
       "type": { "name": "() => void" }
     },
+    "PopoverProps": {
+      "defaultValue": null,
+      "description": "Dialog props passed to material-ui Dialog",
+      "name": "PopoverProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
+        "name": "InlineWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<PopoverProps>" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
     "variant": {
       "defaultValue": { "value": "'dialog'" },
       "description": "Displaying variant",
       "name": "variant",
       "required": false,
-      "type": { "name": "\"inline\" | \"dialog\"" }
-    },
-    "value": {
-      "defaultValue": null,
-      "description": "Picker value",
-      "name": "value",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "DateType" }
+      "type": { "name": "\"dialog\" | \"inline\"" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -1910,16 +2044,27 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
-    "inputValue": {
+    "mask": {
       "defaultValue": null,
-      "description": "String value for controlling value with pure input string. Overrides value prop",
-      "name": "inputValue",
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "name": "mask",
       "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
-        "name": "BaseKeyboardPickerProps"
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
       },
       "required": false,
       "type": { "name": "string" }
+    },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "DateType" }
     },
     "onChange": {
       "defaultValue": null,
@@ -1932,16 +2077,16 @@
       "required": true,
       "type": { "name": "(date: any, value: string) => void" }
     },
-    "format": {
+    "onError": {
       "defaultValue": null,
-      "description": "Format string",
-      "name": "format",
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": { "name": "(error: ReactNode, value: any) => void" }
     },
     "open": {
       "defaultValue": null,
@@ -1972,17 +2117,6 @@
       "required": false,
       "type": { "name": "boolean" }
     },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
-      "name": "onError",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
-    },
     "onClose": {
       "defaultValue": null,
       "description": "On close callback",
@@ -1994,13 +2128,35 @@
       "required": false,
       "type": { "name": "() => void" }
     },
-    "mask": {
+    "PopoverProps": {
       "defaultValue": null,
-      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
-      "name": "mask",
+      "description": "Dialog props passed to material-ui Dialog",
+      "name": "PopoverProps",
       "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
-        "name": "KeyboardDateInputProps"
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/InlineWrapper.tsx",
+        "name": "InlineWrapperProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<PopoverProps>" }
+    },
+    "inputValue": {
+      "defaultValue": null,
+      "description": "String value for controlling value with pure input string. Overrides value prop",
+      "name": "inputValue",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
+    "format": {
+      "defaultValue": null,
+      "description": "Format string",
+      "name": "format",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
       },
       "required": false,
       "type": { "name": "string" }
@@ -2010,18 +2166,7 @@
       "description": "Displaying variant",
       "name": "variant",
       "required": false,
-      "type": { "name": "\"inline\" | \"dialog\"" }
-    },
-    "value": {
-      "defaultValue": null,
-      "description": "Picker value",
-      "name": "value",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "DateType" }
+      "type": { "name": "\"dialog\" | \"inline\"" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -2197,85 +2342,6 @@
       },
       "required": false,
       "type": { "name": "ReactNode" }
-    }
-  },
-  "ModalWrapper": {
-    "okLabel": {
-      "defaultValue": { "value": "'OK'" },
-      "description": "\"OK\" label message",
-      "name": "okLabel",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
-        "name": "ModalWrapperProps"
-      },
-      "required": false,
-      "type": { "name": "ReactNode" }
-    },
-    "cancelLabel": {
-      "defaultValue": { "value": "'CANCEL'" },
-      "description": "\"CANCEL\" label message",
-      "name": "cancelLabel",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
-        "name": "ModalWrapperProps"
-      },
-      "required": false,
-      "type": { "name": "ReactNode" }
-    },
-    "clearLabel": {
-      "defaultValue": { "value": "'CLEAR'" },
-      "description": "\"CLEAR\" label message",
-      "name": "clearLabel",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
-        "name": "ModalWrapperProps"
-      },
-      "required": false,
-      "type": { "name": "ReactNode" }
-    },
-    "todayLabel": {
-      "defaultValue": { "value": "'CLEAR'" },
-      "description": "\"CLEAR\" label message",
-      "name": "todayLabel",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
-        "name": "ModalWrapperProps"
-      },
-      "required": false,
-      "type": { "name": "ReactNode" }
-    },
-    "showTodayButton": {
-      "defaultValue": { "value": "false" },
-      "description": "If true today button will be displayed <b>Note*</b> that clear button has higher priority",
-      "name": "showTodayButton",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
-        "name": "ModalWrapperProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
-    },
-    "clearable": {
-      "defaultValue": { "value": "false" },
-      "description": "Show clear action in picker dialog",
-      "name": "clearable",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
-        "name": "ModalWrapperProps"
-      },
-      "required": false,
-      "type": { "name": "boolean" }
-    },
-    "DialogProps": {
-      "defaultValue": null,
-      "description": "Props to be passed directly to material-ui Dialog",
-      "name": "DialogProps",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
-        "name": "ModalWrapperProps"
-      },
-      "required": false,
-      "type": { "name": "Partial<MuiDialogProps>" }
     }
   }
 }

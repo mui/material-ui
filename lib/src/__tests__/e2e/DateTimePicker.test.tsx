@@ -15,6 +15,7 @@ describe('e2e - DateTimePicker', () => {
   beforeEach(() => {
     component = mount(
       <DateTimePicker
+        clearable
         format={format}
         onClose={onCloseMock}
         onChange={onChangeMock}

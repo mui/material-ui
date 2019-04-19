@@ -7,13 +7,12 @@ import YearSelection from '../DatePicker/components/YearSelection';
 import TimePickerView from '../TimePicker/components/TimePickerView';
 import DatetimePickerHeader, { MeridiemMode } from './components/DateTimePickerHeader';
 import DateTimePickerView, { DateTimePickerViewType } from '../constants/DateTimePickerView';
+import { Omit } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../typings/date';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import { BaseDatePickerProps } from '../DatePicker/DatePickerRoot';
 import { BaseTimePickerProps } from '../TimePicker/TimePickerRoot';
-
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export type BaseDateTimePickerProps = Omit<BaseTimePickerProps, 'seconds'> &
   Omit<BaseDatePickerProps, 'onlyCalendar' | 'views' | 'openTo'> & {

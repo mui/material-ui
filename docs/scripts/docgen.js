@@ -11,13 +11,14 @@ const doc = {};
 const srcPath = path.resolve(__dirname, '..', '..', 'lib', 'src');
 
 const components = {
+  // wrappers must be on top to correctly filter
+  ModalWrapper: 'wrappers/ModalWrapper.tsx',
   DatePicker: 'DatePicker/DatePicker.tsx',
   KeyboardDatePicker: 'DatePicker/KeyboardDatePicker.tsx',
   TimePicker: 'TimePicker/TimePicker.tsx',
   KeyboardTimePicker: 'TimePicker/KeyboardTimePicker.tsx',
   DateTimePicker: 'DateTimePicker/DateTimePicker.tsx',
   KeyboardDateTimePicker: 'DateTimePicker/KeyboardDateTimePicker.tsx',
-  ModalWrapper: 'wrappers/ModalWrapper.tsx',
 };
 
 const customTypePattern = '\n@type {';
@@ -35,18 +36,27 @@ function processProp(prop) {
   }
 }
 
+const removeExternalDeps = ([_, value]) =>
+  value.description && (!value.parent || !value.parent.fileName.includes('@types'));
+
+const removeWrapperProps = name => ([_, value]) => {
+  if (name !== 'ModalWrapper') {
+    return !Object.keys(doc['ModalWrapper']).includes(value.name);
+  }
+
+  return true;
+};
+
 Object.entries(components).forEach(([name, filePart]) => {
   const file = path.join(srcPath, filePart);
   const parsedDoc = parser.parse(file)[0];
 
   doc[name] = Object.entries(parsedDoc.props)
-    .filter(
-      // eslint-disable-next-line
-      ([key, value]) =>
-        value.description && (!value.parent || !value.parent.fileName.includes('@types'))
-    )
+    .filter(removeExternalDeps)
+    .filter(removeWrapperProps(name))
     .reduce((obj, [key, value]) => {
       processProp(value);
+
       obj[key] = value;
       return obj;
     }, {});
