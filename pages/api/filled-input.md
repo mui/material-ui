@@ -41,6 +41,7 @@ import FilledInput from '@material-ui/core/FilledInput';
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be required. |
 | <span class="prop-name">rows</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |  | Number of rows to display when multiline option is set to true. |
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |  | Maximum number of rows to display when multiline option is set to true. |
+| <span class="prop-name">rowsMin</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |  | Minimum number of rows to display when multiline option is set to true. |
 | <span class="prop-name">startAdornment</span> | <span class="prop-type">node</span> |  | Start `InputAdornment` for this component. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types). |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the `input` element, required for a controlled component. |
