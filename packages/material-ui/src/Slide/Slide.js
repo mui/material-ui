@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import { Transition } from 'react-transition-group';
-import { setRef } from '../utils/reactHelpers';
+import { useForkRef } from '../utils/reactHelpers';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
@@ -16,8 +15,7 @@ const GUTTER = 24;
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
 // with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, node) {
-  const { direction } = props;
+function getTranslateValue(direction, node) {
   const rect = node.getBoundingClientRect();
 
   let transform;
@@ -59,8 +57,8 @@ function getTranslateValue(props, node) {
   return `translateY(-${rect.top + rect.height + GUTTER - offsetY}px)`;
 }
 
-export function setTranslateValue(props, node) {
-  const transform = getTranslateValue(props, node);
+export function setTranslateValue(direction, node) {
+  const transform = getTranslateValue(direction, node);
 
   if (transform) {
     node.style.webkitTransform = transform;
@@ -72,65 +70,49 @@ export function setTranslateValue(props, node) {
  * The Slide transition is used by the [Drawer](/demos/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Slide extends React.Component {
-  mounted = false;
+function Slide(props) {
+  const {
+    children,
+    direction,
+    in: inProp,
+    onEnter,
+    onEntering,
+    onExit,
+    onExited,
+    style,
+    theme,
+    timeout,
+    ...other
+  } = props;
 
-  constructor() {
-    super();
+  const childrenRef = React.useRef();
+  /**
+   * used in cloneElement(children, { ref: handleRef })
+   */
+  const handleOwnRef = React.useCallback(ref => {
+    // #StrictMode ready
+    childrenRef.current = ReactDOM.findDOMNode(ref);
+  }, []);
+  const handleRef = useForkRef(children.ref, handleOwnRef);
 
-    if (typeof window !== 'undefined') {
-      this.handleResize = debounce(() => {
-        // Skip configuration where the position is screen size invariant.
-        if (this.props.in || this.props.direction === 'down' || this.props.direction === 'right') {
-          return;
-        }
-
-        if (this.childDOMNode) {
-          setTranslateValue(this.props, this.childDOMNode);
-        }
-      }, 166); // Corresponds to 10 frames at 60 Hz.
-    }
-  }
-
-  componentDidMount() {
-    this.mounted = true;
-
-    // state.mounted handle SSR, once the component is mounted, we need
-    // to properly hide it.
-    if (!this.props.in) {
-      // We need to set initial translate values of transition element
-      // otherwise component will be shown when in=false.
-      this.updatePosition();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.direction !== this.props.direction && !this.props.in) {
-      // We need to update the position of the drawer when the direction change and
-      // when it's hidden.
-      this.updatePosition();
-    }
-  }
-
-  componentWillUnmount() {
-    this.handleResize.clear();
-  }
-
-  handleEnter = node => {
-    setTranslateValue(this.props, node);
+  const handleEnter = () => {
+    const node = childrenRef.current;
+    setTranslateValue(direction, node);
     reflow(node);
 
-    if (this.props.onEnter) {
-      this.props.onEnter(node);
+    if (onEnter) {
+      onEnter(node);
     }
   };
 
-  handleEntering = node => {
-    const { theme } = this.props;
-
-    const transitionProps = getTransitionProps(this.props, {
-      mode: 'enter',
-    });
+  const handleEntering = () => {
+    const node = childrenRef.current;
+    const transitionProps = getTransitionProps(
+      { timeout, style },
+      {
+        mode: 'enter',
+      },
+    );
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
       easing: theme.transitions.easing.easeOut,
@@ -141,17 +123,19 @@ class Slide extends React.Component {
     });
     node.style.webkitTransform = 'translate(0, 0)';
     node.style.transform = 'translate(0, 0)';
-    if (this.props.onEntering) {
-      this.props.onEntering(node);
+    if (onEntering) {
+      onEntering(node);
     }
   };
 
-  handleExit = node => {
-    const { theme } = this.props;
-
-    const transitionProps = getTransitionProps(this.props, {
-      mode: 'exit',
-    });
+  const handleExit = () => {
+    const node = childrenRef.current;
+    const transitionProps = getTransitionProps(
+      { timeout, style },
+      {
+        mode: 'exit',
+      },
+    );
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
@@ -160,78 +144,82 @@ class Slide extends React.Component {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
     });
-    setTranslateValue(this.props, node);
+    setTranslateValue(direction, node);
 
-    if (this.props.onExit) {
-      this.props.onExit(node);
+    if (onExit) {
+      onExit(node);
     }
   };
 
-  handleExited = node => {
+  const handleExited = () => {
+    const node = childrenRef.current;
     // No need for transitions when the component is hidden
     node.style.webkitTransition = '';
     node.style.transition = '';
 
-    if (this.props.onExited) {
-      this.props.onExited(node);
+    if (onExited) {
+      onExited(node);
     }
   };
 
-  /**
-   * used in cloneElement(children, { ref: handleRef })
-   */
-  handleRef = ref => {
-    // #StrictMode ready
-    this.childDOMNode = ReactDOM.findDOMNode(ref);
-    setRef(this.props.children.ref, ref);
-  };
-
-  updatePosition() {
-    if (this.childDOMNode) {
-      setTranslateValue(this.props, this.childDOMNode);
+  const updatePosition = React.useCallback(() => {
+    if (childrenRef.current) {
+      setTranslateValue(direction, childrenRef.current);
     }
-  }
+  }, [direction]);
 
-  render() {
-    const {
-      children,
-      direction,
-      in: inProp,
-      onEnter,
-      onEntering,
-      onExit,
-      onExited,
-      style,
-      theme,
-      ...other
-    } = this.props;
+  React.useEffect(() => {
+    // Skip configuration where the position is screen size invariant.
+    if (!inProp && direction !== 'down' && direction !== 'right') {
+      const handleResize = debounce(() => {
+        if (childrenRef.current) {
+          setTranslateValue(direction, childrenRef.current);
+        }
+      }, 166); // Corresponds to 10 frames at 60 Hz.
 
-    return (
-      <EventListener target="window" onResize={this.handleResize}>
-        <Transition
-          onEnter={this.handleEnter}
-          onEntering={this.handleEntering}
-          onExit={this.handleExit}
-          onExited={this.handleExited}
-          appear
-          in={inProp}
-          {...other}
-        >
-          {(state, childProps) => {
-            return React.cloneElement(children, {
-              ref: this.handleRef,
-              style: {
-                visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-                ...style,
-                ...children.props.style,
-              },
-              ...childProps,
-            });
-          }}
-        </Transition>
-      </EventListener>
-    );
-  }
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        handleResize.clear();
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+
+    return () => {};
+  }, [direction, inProp]);
+
+  React.useEffect(() => {
+    if (!inProp) {
+      // We need to update the position of the drawer when the direction change and
+      // when it's hidden.
+      updatePosition();
+    }
+  }, [inProp, updatePosition]);
+
+  return (
+    <Transition
+      onEnter={handleEnter}
+      onEntering={handleEntering}
+      onExit={handleExit}
+      onExited={handleExited}
+      appear
+      in={inProp}
+      timeout={timeout}
+      {...other}
+    >
+      {(state, childProps) => {
+        return React.cloneElement(children, {
+          ref: handleRef,
+          style: {
+            visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
+            ...style,
+            ...children.props.style,
+          },
+          ...childProps,
+        });
+      }}
+    </Transition>
+  );
 }
 
 Slide.propTypes = {
