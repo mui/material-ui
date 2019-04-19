@@ -1,29 +1,35 @@
 import * as React from 'react';
 import { loadScript } from 'utils/helpers';
 import { Grid, Theme } from '@material-ui/core';
-import { withStyles, createStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    '@global': {
-      '#codefund': {
-        '& .cf-wrapper': {
-          backgroundColor:
-            theme.palette.type === 'dark' ? theme.palette.background.paper + '! important' : 'auto',
-        },
-        '& .cf-text': {
-          color: theme.palette.text.primary + '! important',
-        },
+const useStyles = makeStyles((theme: Theme) => ({
+  '@global': {
+    '#codefund': {
+      '& .cf-wrapper': {
+        paddingBottom: '0 !important',
+        backgroundColor:
+          theme.palette.type === 'dark'
+            ? theme.palette.background.paper + '! important'
+            : 'auto !important',
+      },
+      '& .cf-text': {
+        color: theme.palette.text.primary + '! important',
       },
     },
-  });
+  },
+}));
 
-const Ad: React.FunctionComponent = () => {
+const Ad: React.FC = () => {
+  useStyles();
   React.useEffect(() => {
     const codefundScriptPosition = document.querySelector('#codefund-script-position');
 
     if (codefundScriptPosition) {
-      loadScript('https://codefund.io/properties/197/funder.js', codefundScriptPosition);
+      loadScript(
+        'https://codefund.io/properties/197/funder.js?theme=light',
+        codefundScriptPosition
+      );
     }
   }, []);
 
@@ -35,4 +41,4 @@ const Ad: React.FunctionComponent = () => {
   );
 };
 
-export default withStyles(styles)(Ad);
+export default Ad;
