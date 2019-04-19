@@ -139,16 +139,6 @@ function TextFields() {
         margin="normal"
       />
       <TextField
-        id="filled-multiline-flexible-min"
-        label="Multiline w/Min Rows"
-        multiline
-        rowsMax={Infinity}
-        rowsMin="2"
-        defaultValue="Default Value"
-        className={classes.textField}
-        margin="normal"
-      />
-      <TextField
         id="standard-multiline-static"
         label="Multiline"
         multiline
