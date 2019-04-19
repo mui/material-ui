@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const safeJsonStringify = require('safe-json-stringify');
-const nextBabelLoader = require('next/dist/build/webpack/loaders/next-babel-loader');
 
 const root = path.resolve(__dirname, '..');
 
@@ -14,5 +12,5 @@ module.exports = function exampleLoader(source) {
     `\nexport const raw = ${escapedRawSource}` +
     `\nexport const relativePath = "${relativePath}"`;
 
-  nextBabelLoader.call(this, sourceWithExportedContext);
+  return sourceWithExportedContext;
 };

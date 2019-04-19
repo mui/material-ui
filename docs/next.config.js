@@ -42,11 +42,14 @@ module.exports = withBundleAnalyzer(
 
               // Process examples to inject raw code strings
               config.module.rules.push({
-                test: /\.example\.(js|mjs|jsx)$/,
+                test: /\.example\.(js|jsx)$/,
                 include: [path.resolve(__dirname, 'pages')],
-                use: {
-                  loader: path.resolve(__dirname, 'loaders', 'example-loader.js'),
-                },
+                use: [
+                  { loader: 'next-babel-loader' },
+                  {
+                    loader: path.resolve(__dirname, 'loaders', 'example-loader.js'),
+                  },
+                ],
               });
 
               // Resolve roots also for mdx pages
