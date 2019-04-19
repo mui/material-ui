@@ -15,14 +15,12 @@ const styles = theme => ({
       maxWidth: 'calc(100% - 175px)',
     },
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(5),
       maxWidth: 'calc(100% - 240px - 175px)',
     },
-  },
-  anchor: {
-    position: 'absolute',
-    marginTop: -125,
+    '&:focus': {
+      outline: 'none',
+    },
   },
   disableToc: {
     [theme.breakpoints.up('sm')]: {
@@ -38,14 +36,16 @@ function AppContent(props) {
   const { className, classes, children, disableToc } = props;
 
   return (
-    <main
+    <Container
+      component="main"
+      id="main-content"
+      tabIndex="-1"
       className={clsx(classes.root, className, {
         [classes.disableToc]: disableToc,
       })}
     >
-      <div className={classes.anchor} id="content" />
-      <Container>{children}</Container>
-    </main>
+      {children}
+    </Container>
   );
 }
 

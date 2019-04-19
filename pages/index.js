@@ -38,10 +38,6 @@ const styles = theme => ({
   drawer: {
     width: 0,
   },
-  anchor: {
-    position: 'absolute',
-    marginTop: -125,
-  },
   hero: {
     paddingTop: 64 + 29,
     backgroundColor: theme.palette.background.paper,
@@ -123,60 +119,61 @@ class HomePage extends React.Component {
     return (
       <AppFrame classes={{ drawer: classes.drawer }}>
         <div className={classes.root}>
-          <div className={classes.anchor} id="content" />
           <Head />
-          <div className={classes.hero}>
-            <Container maxWidth="md" className={classes.content}>
-              <img
-                src="/static/images/material-ui-logo.svg"
-                alt="Material-UI Logo"
-                className={classes.logo}
-              />
-              <div>
-                <Typography
-                  variant="h3"
-                  component="h1"
-                  color="inherit"
-                  gutterBottom
-                  className={classes.title}
-                >
-                  {'MATERIAL-UI'}
-                </Typography>
-                <Typography variant="h5" component="h2" color="inherit">
-                  {t('strapline')}
-                </Typography>
-                <Button
-                  component={GettingStartedLink}
-                  className={classes.button}
-                  variant="outlined"
-                  color="primary"
-                >
-                  {t('getStarted')}
-                </Button>
-              </div>
-            </Container>
-          </div>
-          <div className={classes.social}>
-            <a
-              className="github-button"
-              href="https://github.com/mui-org/material-ui"
-              data-icon="octicon-star"
-              data-show-count="true"
-            >
-              Star
-            </a>
-            <a
-              className="twitter-follow-button"
-              href="https://twitter.com/@materialui"
-              data-show-screen-name="false"
-            >
-              Follow
-            </a>
-          </div>
-          <HomeQuickWord />
-          <HomeSteps />
-          <HomeBackers />
-          <HomeUsers />
+          <main id="main-content" tabIndex="-1">
+            <div className={classes.hero}>
+              <Container maxWidth="md" className={classes.content}>
+                <img
+                  src="/static/images/material-ui-logo.svg"
+                  alt="Material-UI Logo"
+                  className={classes.logo}
+                />
+                <div>
+                  <Typography
+                    variant="h3"
+                    component="h1"
+                    color="inherit"
+                    gutterBottom
+                    className={classes.title}
+                  >
+                    {'MATERIAL-UI'}
+                  </Typography>
+                  <Typography variant="h5" component="h2" color="inherit">
+                    {t('strapline')}
+                  </Typography>
+                  <Button
+                    component={GettingStartedLink}
+                    className={classes.button}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    {t('getStarted')}
+                  </Button>
+                </div>
+              </Container>
+            </div>
+            <div className={classes.social}>
+              <a
+                className="github-button"
+                href="https://github.com/mui-org/material-ui"
+                data-icon="octicon-star"
+                data-show-count="true"
+              >
+                Star
+              </a>
+              <a
+                className="twitter-follow-button"
+                href="https://twitter.com/@materialui"
+                data-show-screen-name="false"
+              >
+                Follow
+              </a>
+            </div>
+            <HomeQuickWord />
+            <HomeSteps />
+            <HomeBackers />
+            <HomeUsers />
+          </main>
           <HomeFooter />
         </div>
         <script

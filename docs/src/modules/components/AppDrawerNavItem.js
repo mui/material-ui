@@ -55,6 +55,7 @@ class AppDrawerNavItem extends React.Component {
     const activeElement = document.querySelector(`.${this.props.classes.active}`);
     if (activeElement && activeElement.scrollIntoView) {
       activeElement.scrollIntoView({});
+      document.body.scrollIntoView({});
     }
   }
 
