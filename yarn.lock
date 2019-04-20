@@ -1721,12 +1721,12 @@
     write-file-atomic "^2.3.0"
 
 "@material-ui/core@^3.9.3":
-  version "4.0.0-alpha.7"
+  version "4.0.0-alpha.8"
   dependencies:
     "@babel/runtime" "^7.2.0"
-    "@material-ui/styles" "^4.0.0-alpha.6"
-    "@material-ui/system" "^4.0.0-alpha.0"
-    "@material-ui/utils" "^4.0.0-alpha.4"
+    "@material-ui/styles" "^4.0.0-alpha.8"
+    "@material-ui/system" "^4.0.0-alpha.8"
+    "@material-ui/utils" "^4.0.0-alpha.8"
     "@types/react-transition-group" "^2.0.16"
     clsx "^1.0.2"
     csstype "^2.5.2"
@@ -1738,7 +1738,7 @@
     popper.js "^1.14.1"
     prop-types "^15.7.2"
     react-event-listener "^0.6.6"
-    react-transition-group "^2.5.3"
+    react-transition-group "^4.0.0"
     warning "^4.0.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
@@ -13371,10 +13371,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.2.tgz#fe8101c46aa123f8353523ebdcf5730c2ae493e5"
-  integrity sha512-VCj5UiSyHBjwfYacmDuc/NOk4QQixbE+Wn7MFJuS0nRuPQbof132Pw4u53dm264O8LPc2MVsc7RJNml5szurkg==
+typescript@^3.4.4:
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.4.tgz#aac4a08abecab8091a75f10842ffa0631818f785"
+  integrity sha512-xt5RsIRCEaf6+j9AyOBgvVuAec0i92rgCaS3S+UVf5Z/vF2Hvtsw08wtUTJqp4djwznoAgjSxeCcU4r+CcDBJA==
 
 typescript@next:
   version "3.3.0-dev.20190112"
