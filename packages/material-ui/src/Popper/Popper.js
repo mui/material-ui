@@ -67,12 +67,12 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       return;
     }
 
-    if (popper.current) {
-      popper.current.destroy();
-      popper.current = null;
+    if (popperRef.current) {
+      popperRef.current.destroy();
+      popperRef.current = null;
     }
 
-    popper.current = new PopperJS(getAnchorEl(anchorEl), popperNode, {
+    popperRef.current = new PopperJS(getAnchorEl(anchorEl), popperNode, {
       placement: flipPlacement(placementProps),
       ...popperOptions,
       modifiers: {
@@ -99,12 +99,12 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   };
 
   const handleClose = () => {
-    if (!popper.current) {
+    if (!popperRef.current) {
       return;
     }
 
-    popper.current.destroy();
-    popper.current = null;
+    popperRef.current.destroy();
+    popperRef.current = null;
   };
 
   const handleExited = () => {
