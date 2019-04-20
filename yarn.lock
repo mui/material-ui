@@ -5224,7 +5224,7 @@ dtslint@^0.4.0:
     request "^2.88.0"
     strip-json-comments "^2.0.1"
     tslint "^5.12.0"
-    typescript next
+    typescript latest
 
 duplexer2@^0.1.2, duplexer2@~0.1.4:
   version "0.1.4"
