@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -8,7 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 function FormControlLabelPosition() {
   const [value, setValue] = React.useState('female');
 
-  function handleChange(event: ChangeEvent<{}>) {
+  function handleChange(event: React.ChangeEvent<{}>) {
     setValue((event.target as HTMLInputElement).value);
   }
 
