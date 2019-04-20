@@ -1,21 +1,24 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { PropTypes } from '..';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface FormControlProps
-  extends StandardProps<React.HtmlHTMLAttributes<HTMLDivElement>, FormControlClassKey> {
-  component?: React.ElementType<React.HtmlHTMLAttributes<HTMLDivElement>>;
-  disabled?: boolean;
-  error?: boolean;
-  fullWidth?: boolean;
-  margin?: PropTypes.Margin;
-  onBlur?: React.EventHandler<any>;
-  onFocus?: React.EventHandler<any>;
-  required?: boolean;
-  variant?: 'standard' | 'outlined' | 'filled';
-}
+declare const FormControl: OverridableComponent<{
+  props: {
+    disabled?: boolean;
+    error?: boolean;
+    fullWidth?: boolean;
+    margin?: PropTypes.Margin;
+    onBlur?: React.EventHandler<any>;
+    onFocus?: React.EventHandler<any>;
+    required?: boolean;
+    variant?: 'standard' | 'outlined' | 'filled';
+  };
+  defaultComponent: 'div';
+  classKey: FormControlClassKey;
+}>;
 
 export type FormControlClassKey = 'root' | 'marginNormal' | 'marginDense' | 'fullWidth';
 
-declare const FormControl: React.ComponentType<FormControlProps>;
+export type FormControlProps = SimplifiedPropsOf<typeof FormControl>;
 
 export default FormControl;

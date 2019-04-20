@@ -84,6 +84,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     required,
     rows,
     rowsMax,
+    rowsMin,
     select,
     SelectProps,
     type,
@@ -96,11 +97,11 @@ const TextField = React.forwardRef(function TextField(props, ref) {
   const labelRef = React.useRef();
   React.useEffect(() => {
     if (variant === 'outlined') {
-      // StrictMode ready
+      // #StrictMode ready
       const labelNode = ReactDOM.findDOMNode(labelRef.current);
       setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
     }
-  }, [variant]);
+  }, [variant, required]);
 
   warning(
     !select || Boolean(children),
@@ -130,6 +131,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       name={name}
       rows={rows}
       rowsMax={rowsMax}
+      rowsMin={rowsMin}
       type={type}
       value={value}
       id={id}
@@ -202,7 +204,7 @@ TextField.propTypes = {
   /**
    * The default value of the `input` element.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the `input` element will be disabled.
    */
@@ -295,6 +297,10 @@ TextField.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
    * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    */
@@ -310,12 +316,7 @@ TextField.propTypes = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
-  ]),
+  value: PropTypes.any,
   /**
    * The variant to use.
    */

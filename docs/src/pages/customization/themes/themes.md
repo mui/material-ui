@@ -354,7 +354,7 @@ Material-UI uses [a recommended 8px scaling factor by default](https://material.
 const styles = theme => ({
   root: {
     // JSS uses px as the default units for this CSS property.
-    padding: theme.spacing(2), // Outputs 8 * 2
+    padding: theme.spacing(2), // = 8 * 2
   },
 });
 ```
@@ -371,14 +371,24 @@ const theme = createMuiTheme({
 theme.spacing(2) // = 4 * 2
 ```
 
-- or a function
+- a function
 
 ```js
 const theme = createMuiTheme({
   spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
 });
 
-theme.spacing(2) // = 0.5rem = 8px
+theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px
+```
+
+- an array
+
+```js
+const theme = createMuiTheme({
+  spacing: factor => [0, 4, 8, 16, 32, 64][factor],
+});
+
+theme.spacing(2); // = 8
 ```
 
 ### Multiple arity

@@ -7,8 +7,8 @@ import Tweeper from 'docs/src/pages/premium-themes/tweeper/pages/tweeper/Profile
 function Page() {
   return (
     <AppTheme
-      title="Paperbase theme - Material-UI"
-      description={`A page that mimics Firebase.
+      title="Tweeper - Material-UI"
+      description={`A page that mimics Twitter.
         This item includes theming using the theme provider component.`}
     >
       <Tweeper />

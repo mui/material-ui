@@ -11,7 +11,7 @@ describe('<OutlinedInput />', () => {
 
   before(() => {
     classes = getClasses(<OutlinedInput />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -23,7 +23,7 @@ describe('<OutlinedInput />', () => {
     inheritComponent: InputBase,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a NotchedOutline', () => {

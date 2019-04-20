@@ -20,7 +20,8 @@ describe('<IconButton />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(<IconButton />);
   });
 
@@ -33,7 +34,7 @@ describe('<IconButton />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render an inner label span (bloody safari)', () => {

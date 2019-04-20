@@ -18,19 +18,23 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     return null;
   });
 
-  React.useImperativeHandle(actions, () => ({
-    focus: () => {
-      let input = rootRef.current.querySelector('input:not(:disabled):checked');
+  React.useImperativeHandle(
+    actions,
+    () => ({
+      focus: () => {
+        let input = rootRef.current.querySelector('input:not(:disabled):checked');
 
-      if (!input) {
-        input = rootRef.current.querySelector('input:not(:disabled)');
-      }
+        if (!input) {
+          input = rootRef.current.querySelector('input:not(:disabled)');
+        }
 
-      if (input) {
-        input.focus();
-      }
-    },
-  }));
+        if (input) {
+          input.focus();
+        }
+      },
+    }),
+    [],
+  );
 
   React.useEffect(() => {
     warning(
@@ -81,7 +85,7 @@ RadioGroup.propTypes = {
   /**
    * The default `input` element value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  defaultValue: PropTypes.any,
   /**
    * The name used to reference the value of the control.
    */
@@ -105,7 +109,7 @@ RadioGroup.propTypes = {
   /**
    * Value of the selected radio button.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.string,
 };
 
 export default RadioGroup;

@@ -26,7 +26,7 @@ describe('<NativeSelectInput />', () => {
 
   before(() => {
     shallow = createShallow();
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

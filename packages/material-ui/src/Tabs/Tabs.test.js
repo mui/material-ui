@@ -53,7 +53,8 @@ describe('<Tabs />', () => {
 
   before(() => {
     classes = getClasses(<Tabs onChange={noop} value={0} />);
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     render = createRender();
   });
 

@@ -17,7 +17,8 @@ describe('<Drawer />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses Slide
+    mount = createMount({ strict: false });
     classes = getClasses(
       <Drawer>
         <div />
@@ -38,7 +39,7 @@ describe('<Drawer />', () => {
       inheritComponent: Modal,
       mount,
       refInstanceof: window.HTMLDivElement,
-      testComponentPropWith: false,
+      skip: ['componentProp'],
     }),
   );
 

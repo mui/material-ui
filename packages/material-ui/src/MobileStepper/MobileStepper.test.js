@@ -46,7 +46,7 @@ describe('<MobileStepper />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a Paper with 0 elevation', () => {

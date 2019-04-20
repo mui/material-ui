@@ -14,7 +14,7 @@ describe('<FilledInput />', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<FilledInput />);
   });
 
@@ -27,7 +27,7 @@ describe('<FilledInput />', () => {
     inheritComponent: InputBase,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should have the underline class', () => {

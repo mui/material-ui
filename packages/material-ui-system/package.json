@@ -1,8 +1,8 @@
 {
   "name": "@material-ui/system",
+  "version": "4.0.0-alpha.8",
   "private": false,
   "author": "Material-UI Team",
-  "version": "4.0.0-alpha.0",
   "description": "Material-UI System - Design system for Material-UI.",
   "main": "./src/index.js",
   "keywords": [

@@ -20,7 +20,8 @@ describe('<StepContent />', () => {
   before(() => {
     classes = getClasses(<StepContent />);
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: uses Collapse
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -32,7 +33,7 @@ describe('<StepContent />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('merges styles and other props into the root node', () => {

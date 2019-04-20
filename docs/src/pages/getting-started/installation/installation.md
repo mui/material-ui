@@ -23,12 +23,8 @@ Please note that [react](https://www.npmjs.com/package/react) >= 16.3.0 and [rea
 Material-UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto)
 font in mind. So be sure to follow [these instructions](/style/typography/#general).
 For instance, via Google Web Fonts:
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-```
 
-Alternatively, if you are using JSX over HTML to render the head:
-```jsx
+```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
@@ -39,7 +35,7 @@ Here are [some instructions](/style/icons/#font-icons)
 on how to do so.
 For instance, via Google Web Fonts:
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 Alternatively, if you are using JSX over HTML to render the head:

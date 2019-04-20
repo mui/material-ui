@@ -14,7 +14,7 @@ describe('<ListItemText />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<ListItemText />);
   });
 
@@ -27,7 +27,7 @@ describe('<ListItemText />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render with inset class', () => {
@@ -47,12 +47,14 @@ describe('<ListItemText />', () => {
 
   describe('prop: primary', () => {
     it('should render primary text', () => {
-      const wrapper = mount(<ListItemText primary="This is the primary text" />);
+      const ref = React.createRef();
+      const text = () => ref.current.textContent;
+      const wrapper = mount(<ListItemText primary="This is the primary text" ref={ref} />);
       const listItemText = findOutermostIntrinsic(wrapper);
       const typography = listItemText.find(Typography);
       assert.strictEqual(typography.exists(), true);
       assert.strictEqual(typography.props().variant, 'body1');
-      assert.strictEqual(wrapper.text(), 'This is the primary text');
+      assert.strictEqual(text(), 'This is the primary text');
     });
 
     it('should use the primary node', () => {

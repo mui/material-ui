@@ -7,7 +7,7 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     position: 'absolute',
-    right: 4,
+    right: 16,
     top: '50%',
     transform: 'translateY(-50%)',
   },
@@ -17,13 +17,9 @@ export const styles = {
  * Must be used as the last child of ListItem to function properly.
  */
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
-  const { children, classes, className, ...other } = props;
+  const { classes, className, ...other } = props;
 
-  return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      {children}
-    </div>
-  );
+  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
 
 ListItemSecondaryAction.propTypes = {

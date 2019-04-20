@@ -4,6 +4,7 @@ import PopperJS from 'popper.js';
 import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
 import { setRef, withForwardedRef } from '../utils';
+import { createChainedFunction } from '../utils/helpers';
 
 function flipPlacement(placement) {
   const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
@@ -66,23 +67,6 @@ class Popper extends React.Component {
     this.handleClose();
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    if (!nextProps.transition) {
-      // Otherwise let handleExited take care of marking exited.
-      return {
-        exited: true,
-      };
-    }
-
-    return null;
-  }
-
   handleOpen = () => {
     const { anchorEl, modifiers, open, placement, popperOptions = {}, disablePortal } = this.props;
     const popperNode = this.tooltipRef.current;
@@ -113,8 +97,8 @@ class Popper extends React.Component {
       },
       // We could have been using a custom modifier like react-popper is doing.
       // But it seems this is the best public API for this use case.
-      onCreate: this.handlePopperUpdate,
-      onUpdate: this.handlePopperUpdate,
+      onCreate: createChainedFunction(this.handlePopperUpdate, popperOptions.onCreate),
+      onUpdate: createChainedFunction(this.handlePopperUpdate, popperOptions.onUpdate),
     });
   };
 
@@ -124,6 +108,10 @@ class Popper extends React.Component {
         placement: data.placement,
       });
     }
+  };
+
+  handleEnter = () => {
+    this.setState({ exited: false });
   };
 
   handleExited = () => {
@@ -173,6 +161,7 @@ class Popper extends React.Component {
     if (transition) {
       childProps.TransitionProps = {
         in: open,
+        onEnter: this.handleEnter,
         onExited: this.handleExited,
       };
     }
@@ -305,6 +294,7 @@ Popper.propTypes = {
 
 Popper.defaultProps = {
   disablePortal: false,
+  keepMounted: false,
   placement: 'bottom',
   transition: false,
 };

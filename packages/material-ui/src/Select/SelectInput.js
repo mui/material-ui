@@ -464,15 +464,7 @@ SelectInput.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]).isRequired,
+  value: PropTypes.any.isRequired,
   /**
    * The variant to use.
    */

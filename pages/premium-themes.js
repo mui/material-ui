@@ -12,7 +12,9 @@ const reqSource = require.context(
 const reqPrefix = 'pages/premium-themes';
 
 function Page() {
-  return <MarkdownDocs disableAd req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+  return (
+    <MarkdownDocs disableToc disableAd req={req} reqSource={reqSource} reqPrefix={reqPrefix} />
+  );
 }
 
 export default Page;

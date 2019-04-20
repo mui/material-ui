@@ -22,6 +22,14 @@ export const styles = theme => ({
     zIndex: 0, // Reset the stacking context.
     verticalAlign: 'middle', // For correct alignment with the text.
   },
+  /* Styles applied to the root element if `edge="start"`. */
+  edgeStart: {
+    marginLeft: -8,
+  },
+  /* Styles applied to the root element if `edge="end"`. */
+  edgeEnd: {
+    marginRight: -8,
+  },
   /* Styles applied to the internal `SwitchBase` component's `root` class. */
   switchBase: {
     position: 'absolute',
@@ -116,11 +124,20 @@ export const styles = theme => ({
 });
 
 const Switch = React.forwardRef(function Switch(props, ref) {
-  const { classes, className, color, ...other } = props;
+  const { classes, className, color, edge, ...other } = props;
   const icon = <span className={classes.thumb} />;
 
   return (
-    <span className={clsx(classes.root, className)}>
+    <span
+      className={clsx(
+        classes.root,
+        {
+          [classes.edgeStart]: edge === 'start',
+          [classes.edgeEnd]: edge === 'end',
+        },
+        className,
+      )}
+    >
       <SwitchBase
         type="checkbox"
         icon={icon}
@@ -143,7 +160,7 @@ Switch.propTypes = {
   /**
    * If `true`, the component is checked.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
    */
@@ -173,6 +190,13 @@ Switch.propTypes = {
    * If `true`, the ripple effect will be disabled.
    */
   disableRipple: PropTypes.bool,
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   */
+  edge: PropTypes.oneOf(['start', 'end', false]),
   /**
    * The icon to display when the component is unchecked.
    */
@@ -204,11 +228,12 @@ Switch.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.any,
 };
 
 Switch.defaultProps = {
   color: 'secondary',
+  edge: false,
 };
 
 export default withStyles(styles, { name: 'MuiSwitch' })(Switch);

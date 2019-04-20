@@ -22,7 +22,7 @@ export const styles = {
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
 const FormGroup = React.forwardRef(function FormGroup(props, ref) {
-  const { classes, className, children, row, ...other } = props;
+  const { classes, className, row, ...other } = props;
 
   return (
     <div
@@ -35,9 +35,7 @@ const FormGroup = React.forwardRef(function FormGroup(props, ref) {
       )}
       ref={ref}
       {...other}
-    >
-      {children}
-    </div>
+    />
   );
 });
 

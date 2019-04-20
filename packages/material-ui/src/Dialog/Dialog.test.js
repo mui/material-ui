@@ -25,7 +25,8 @@ describe('<Dialog />', () => {
   };
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses Fade
+    mount = createMount({ strict: false });
     classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
   });
 
@@ -42,7 +43,7 @@ describe('<Dialog />', () => {
       inheritComponent: Modal,
       mount,
       refInstanceof: window.HTMLDivElement,
-      testComponentPropWith: false,
+      skip: ['componentProp'],
     }),
   );
 

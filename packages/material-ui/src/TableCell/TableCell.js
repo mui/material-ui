@@ -101,7 +101,6 @@ export const styles = theme => ({
 const TableCell = React.forwardRef(function TableCell(props, ref) {
   const {
     align,
-    children,
     classes,
     className,
     component,
@@ -155,9 +154,7 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
       aria-sort={ariaSort}
       scope={scope}
       {...other}
-    >
-      {children}
-    </Component>
+    />
   );
 });
 

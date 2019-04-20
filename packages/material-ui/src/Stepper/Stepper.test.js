@@ -22,7 +22,8 @@ describe('<Stepper />', () => {
   before(() => {
     classes = getClasses(<Stepper />);
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: test uses StepContent
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -38,7 +39,7 @@ describe('<Stepper />', () => {
       inheritComponent: Paper,
       mount,
       refInstanceof: window.HTMLDivElement,
-      testComponentPropWith: false,
+      skip: ['componentProp'],
     }),
   );
 

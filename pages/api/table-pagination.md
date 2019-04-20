@@ -35,7 +35,7 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([TableCell](/api/table-cell/)).
+Any other properties supplied will be provided to the root element ([TableCell](/api/table-cell/)).
 
 ## CSS
 

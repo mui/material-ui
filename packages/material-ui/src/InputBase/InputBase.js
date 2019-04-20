@@ -121,7 +121,6 @@ export const styles = theme => {
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
       height: 'auto',
-      minHeight: '1.1875em', // Reset (19px), match the native input line-height
       resize: 'none',
       padding: 0,
     },
@@ -156,9 +155,6 @@ class InputBase extends React.Component {
   constructor(props) {
     super(props);
     this.isControlled = props.value != null;
-    if (this.isControlled) {
-      this.checkDirty(props);
-    }
   }
 
   state = {
@@ -166,9 +162,7 @@ class InputBase extends React.Component {
   };
 
   componentDidMount() {
-    if (!this.isControlled) {
-      this.checkDirty(this.inputRef);
-    }
+    this.checkDirty(this.isControlled ? this.props : this.inputRef);
   }
 
   componentDidUpdate(prevProps) {
@@ -313,6 +307,7 @@ class InputBase extends React.Component {
       renderPrefix,
       rows,
       rowsMax,
+      rowsMin,
       startAdornment,
       type,
       value,
@@ -375,14 +370,13 @@ class InputBase extends React.Component {
         ref: null,
       };
     } else if (multiline) {
-      if (rows && !rowsMax) {
+      if (rows && !rowsMax && !rowsMin) {
         InputComponent = 'textarea';
       } else {
         inputProps = {
           rowsMax,
-          textareaRef: this.handleRefInput,
+          rowsMin,
           ...inputProps,
-          ref: null,
         };
         InputComponent = Textarea;
       }
@@ -456,15 +450,7 @@ InputBase.propTypes = {
   /**
    * The default `input` element value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the `input` element will be disabled.
    */
@@ -582,6 +568,10 @@ InputBase.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
    * Start `InputAdornment` for this component.
    */
   startAdornment: PropTypes.node,
@@ -592,15 +582,7 @@ InputBase.propTypes = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  value: PropTypes.any,
 };
 
 InputBase.defaultProps = {

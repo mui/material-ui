@@ -21,7 +21,7 @@ describe('<TouchRipple />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    mount = createMount({ strict: undefined });
     classes = getClasses(<TouchRipple />);
   });
 
@@ -34,7 +34,7 @@ describe('<TouchRipple />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: React.Component,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: center', () => {

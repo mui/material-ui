@@ -11,7 +11,7 @@ module.exports = withTypescript({
   webpack: (config, options) => {
     // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
-      transpileModules: ['notistack', 'material-ui-pickers'],
+      transpileModules: ['notistack', 'material-ui-pickers', 'material-table'],
     }).webpack(config, options);
 
     const plugins = config.plugins.concat([
@@ -33,6 +33,9 @@ module.exports = withTypescript({
         }),
       );
     }
+
+    config.resolve.alias['react-dom$'] = 'react-dom/profiling';
+    config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
 
     return Object.assign({}, config, {
       plugins,

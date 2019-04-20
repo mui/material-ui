@@ -21,7 +21,7 @@ describe('<NativeSelect />', () => {
 
   before(() => {
     classes = getClasses(<NativeSelect {...props} />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -33,8 +33,7 @@ describe('<NativeSelect />', () => {
     inheritComponent: Input,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['rootClass'],
-    testComponentPropWith: false,
+    skip: ['componentProp', 'rootClass'],
   }));
 
   it('should provide the classes to the input component', () => {

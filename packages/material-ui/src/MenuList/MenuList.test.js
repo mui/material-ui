@@ -20,7 +20,7 @@ describe('<MenuList />', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -32,7 +32,7 @@ describe('<MenuList />', () => {
     inheritComponent: List,
     mount,
     refInstanceof: window.HTMLUListElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: children', () => {

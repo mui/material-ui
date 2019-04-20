@@ -8,7 +8,7 @@ class ServerStyleSheets {
     this.options = options;
   }
 
-  collect(children, options) {
+  collect(children) {
     // This is needed in order to deduplicate the injection of CSS in the page.
     const sheetsManager = new Map();
     // This is needed in order to inject the critical CSS.
@@ -21,8 +21,7 @@ class ServerStyleSheets {
         sheetsManager={sheetsManager}
         serverGenerateClassName={generateClassName}
         sheetsRegistry={this.sheetsRegistry}
-        sheetsCache={this.options.sheetsCache}
-        {...options}
+        {...this.options}
       >
         {children}
       </StylesProvider>

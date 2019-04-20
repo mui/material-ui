@@ -27,7 +27,7 @@ import List from '@material-ui/core/List';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element (native element).
+Any other properties supplied will be provided to the root element (native element).
 
 ## CSS
 
@@ -39,7 +39,7 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">padding</span> | Styles applied to the root element if `disablePadding={false}`.
-| <span class="prop-name">dense</span> | Styles applied to the root element if `dense={true}` & `disablePadding={false}`.
+| <span class="prop-name">dense</span> | Styles applied to the root element if dense.
 | <span class="prop-name">subheader</span> | Styles applied to the root element if a `subheader` is provided.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section

@@ -8,7 +8,8 @@ describe('<NestedMenu> integration', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: test uses Portal
+    mount = createMount({ strict: false });
   });
 
   after(() => {

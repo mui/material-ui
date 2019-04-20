@@ -33,7 +33,7 @@ describe('<Button />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render with the root & text classes but no others', () => {

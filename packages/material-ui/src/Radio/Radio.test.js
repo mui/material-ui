@@ -11,7 +11,8 @@ describe('<Radio />', () => {
 
   before(() => {
     classes = getClasses(<Radio />);
-    mount = createMount();
+    // StrictModeViolation: uses Switchbase
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -23,7 +24,7 @@ describe('<Radio />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('styleSheet', () => {

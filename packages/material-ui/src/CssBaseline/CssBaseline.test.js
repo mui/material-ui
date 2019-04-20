@@ -1,30 +1,27 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import CssBaseline from './CssBaseline';
 
 describe('<CssBaseline />', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: makeStyles will retain the styles in the head in strict mode
+    // which becomes an issue for global styles
+    mount = createMount({ strict: false });
   });
 
   after(() => {
     mount.cleanUp();
   });
 
-  it('should render nothing', () => {
-    const wrapper = mount(<CssBaseline />);
-    assert.strictEqual(wrapper.childAt(0).children().length, 0, 'should have no children');
-  });
-
-  it('should render a div with the root class', () => {
+  it('renders its children', () => {
     const wrapper = mount(
       <CssBaseline>
-        <div />
+        <div id="child" />
       </CssBaseline>,
     );
-    assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
+    assert.strictEqual(wrapper.find('#child').type(), 'div');
   });
 });

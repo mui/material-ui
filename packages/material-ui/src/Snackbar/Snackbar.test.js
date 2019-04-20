@@ -11,7 +11,8 @@ describe('<Snackbar />', () => {
 
   before(() => {
     classes = getClasses(<Snackbar open />);
-    mount = createMount();
+    // StrictModeViolation: uses Slide
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -23,7 +24,7 @@ describe('<Snackbar />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: onClose', () => {

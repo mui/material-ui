@@ -108,7 +108,7 @@ class RouterBreadcrumbs extends React.Component {
               <List component="nav">
                 <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                  <List component={'div'} disablePadding>
+                  <List component="div" disablePadding>
                     <ListItemLink to="/inbox/important" className={classes.nested} />
                   </List>
                 </Collapse>

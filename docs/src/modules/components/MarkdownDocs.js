@@ -46,6 +46,7 @@ function MarkdownDocs(props) {
   const {
     classes,
     disableAd,
+    disableToc,
     markdown: markdownProp,
     markdownLocation: markdownLocationProp,
     req,
@@ -102,13 +103,13 @@ function MarkdownDocs(props) {
             title={`${headers.title || getTitle(markdown)} - Material-UI`}
             description={headers.description || getDescription(markdown)}
           />
-          <AppTableOfContents contents={contents} />
+          {disableToc ? null : <AppTableOfContents contents={contents} />}
           {disableAd ? null : (
             <Portal container={() => document.querySelector('.description')}>
               <Ad />
             </Portal>
           )}
-          <AppContent className={classes.root}>
+          <AppContent disableToc={disableToc} className={classes.root}>
             <div className={classes.header}>
               <EditPage
                 markdownLocation={markdownLocation}
@@ -174,6 +175,7 @@ function MarkdownDocs(props) {
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
+  disableToc: PropTypes.bool,
   markdown: PropTypes.string,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
@@ -186,6 +188,7 @@ MarkdownDocs.propTypes = {
 
 MarkdownDocs.defaultProps = {
   disableAd: false,
+  disableToc: false,
 };
 
 export default compose(

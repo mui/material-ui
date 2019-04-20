@@ -17,7 +17,8 @@ describe('<BottomNavigationAction />', () => {
   const icon = <Icon>restore</Icon>;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(<BottomNavigationAction />);
   });
 
@@ -30,7 +31,7 @@ describe('<BottomNavigationAction />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a ButtonBase', () => {

@@ -12,6 +12,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';
 import ExpansionPanelSummary from '../ExpansionPanelSummary';
+import Collapse from '../Collapse';
 
 describe('<ExpansionPanel />', () => {
   let mount;
@@ -19,7 +20,8 @@ describe('<ExpansionPanel />', () => {
   const minimalChildren = [<ExpansionPanelSummary key="header" />];
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses Collapse
+    mount = createMount({ strict: false });
     classes = getClasses(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
   });
 
@@ -32,14 +34,13 @@ describe('<ExpansionPanel />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render and not be controlled', () => {
     const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
     const root = wrapper.find(`.${classes.root}`).first();
     assert.strictEqual(root.type(), Paper);
-    assert.strictEqual(root.props().elevation, 1);
     assert.strictEqual(root.props().square, false);
     wrapper.setProps({ expanded: true });
     assert.strictEqual(root.hasClass(classes.expanded), false, 'uncontrolled');
@@ -67,7 +68,7 @@ describe('<ExpansionPanel />', () => {
     );
     assert.strictEqual(
       wrapper
-        .find('Collapse')
+        .find(Collapse)
         .find('div#panel-content')
         .text(),
       'Hello',
@@ -87,7 +88,6 @@ describe('<ExpansionPanel />', () => {
     const wrapper = mount(
       <ExpansionPanel onChange={handleChange}>{minimalChildren}</ExpansionPanel>,
     );
-    assert.strictEqual(wrapper.type(), ExpansionPanel);
     wrapper.find(ExpansionPanelSummary).simulate('click');
     assert.strictEqual(handleChange.callCount, 1);
   });

@@ -1,7 +1,6 @@
 import React from 'react';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
-import { type } from 'os';
 
 const log = console.log;
 

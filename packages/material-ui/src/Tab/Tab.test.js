@@ -20,7 +20,8 @@ describe('<Tab />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(<Tab textColor="inherit" />);
   });
 
@@ -33,7 +34,7 @@ describe('<Tab />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: selected', () => {

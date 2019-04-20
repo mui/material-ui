@@ -178,6 +178,7 @@ IconButton.propTypes = {
 IconButton.defaultProps = {
   color: 'default',
   disabled: false,
+  edge: false,
   size: 'medium',
 };
 

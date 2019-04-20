@@ -29,7 +29,7 @@ describe('<SnackbarContent />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   describe('prop: action', () => {

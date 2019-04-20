@@ -7,7 +7,6 @@ import clsx from 'clsx';
  */
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
   const {
-    children,
     classes,
     className,
     disabled,
@@ -38,9 +37,7 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
         value={value}
         ref={inputRef || ref}
         {...other}
-      >
-        {children}
-      </select>
+      />
       <IconComponent className={classes.icon} />
     </div>
   );
@@ -88,12 +85,7 @@ NativeSelectInput.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
-  ]),
+  value: PropTypes.any,
   /**
    * The variant to use.
    */

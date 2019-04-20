@@ -4,7 +4,7 @@ import { StandardProps } from '..';
 export interface ExpansionPanelActionsProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelActionsClassKey> {}
 
-export type ExpansionPanelActionsClassKey = 'root' | 'action';
+export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
 
 declare const ExpansionPanelActions: React.ComponentType<ExpansionPanelActionsProps>;
 

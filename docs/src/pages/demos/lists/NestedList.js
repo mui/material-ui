@@ -42,19 +42,19 @@ function NestedList() {
         <ListItemIcon>
           <SendIcon />
         </ListItemIcon>
-        <ListItemText inset primary="Sent mail" />
+        <ListItemText primary="Sent mail" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <DraftsIcon />
         </ListItemIcon>
-        <ListItemText inset primary="Drafts" />
+        <ListItemText primary="Drafts" />
       </ListItem>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
-        <ListItemText inset primary="Inbox" />
+        <ListItemText primary="Inbox" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -63,7 +63,7 @@ function NestedList() {
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText inset primary="Starred" />
+            <ListItemText primary="Starred" />
           </ListItem>
         </List>
       </Collapse>

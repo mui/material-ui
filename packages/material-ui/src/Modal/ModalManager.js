@@ -1,4 +1,3 @@
-import ownerWindow from '../utils/ownerWindow';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import isOverflowing from './isOverflowing';
@@ -17,8 +16,7 @@ function findIndexOf(data, callback) {
 }
 
 function getPaddingRight(node) {
-  const win = ownerWindow(node);
-  return parseInt(win.getComputedStyle(node)['padding-right'], 10) || 0;
+  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
 }
 
 function setContainerStyle(data) {

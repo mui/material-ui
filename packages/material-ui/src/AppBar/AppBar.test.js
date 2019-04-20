@@ -15,7 +15,7 @@ describe('<AppBar />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<AppBar>Hello World</AppBar>);
   });
@@ -29,7 +29,7 @@ describe('<AppBar />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render with the root class and primary', () => {

@@ -28,7 +28,7 @@ describe('<DialogTitle />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render JSX children', () => {

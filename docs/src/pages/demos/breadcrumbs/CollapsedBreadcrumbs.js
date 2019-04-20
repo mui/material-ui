@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     justifyContent: 'center',
     flexWrap: 'wrap',
@@ -16,15 +15,15 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing(1, 2),
   },
-});
+}));
 
 function handleClick(event) {
   event.preventDefault();
   alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function CollapsedBreadcrumbs(props) {
-  const { classes } = props;
+function CollapsedBreadcrumbs() {
+  const classes = useStyles();
 
   return (
     <Paper elevation={0} className={classes.paper}>
@@ -47,8 +46,4 @@ function CollapsedBreadcrumbs(props) {
   );
 }
 
-CollapsedBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CollapsedBreadcrumbs);
+export default CollapsedBreadcrumbs;

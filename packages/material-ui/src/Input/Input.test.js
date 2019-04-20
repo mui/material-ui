@@ -9,7 +9,7 @@ describe('<Input />', () => {
 
   before(() => {
     classes = getClasses(<Input />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -21,6 +21,6 @@ describe('<Input />', () => {
     inheritComponent: InputBase,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 });

@@ -48,6 +48,7 @@ function SimpleDialog(props) {
             <ListItemText primary={email} />
           </ListItem>
         ))}
+
         <ListItem button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
             <Avatar>
@@ -63,6 +64,7 @@ function SimpleDialog(props) {
 
 SimpleDialog.propTypes = {
   onClose: PropTypes.func,
+  open: PropTypes.bool,
   selectedValue: PropTypes.string,
 };
 

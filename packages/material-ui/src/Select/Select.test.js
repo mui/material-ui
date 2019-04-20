@@ -24,7 +24,8 @@ describe('<Select />', () => {
 
   before(() => {
     classes = getClasses(<Select {...defaultProps} />);
-    mount = createMount();
+    // StrictModeViolation: test uses MenuItem
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -36,8 +37,7 @@ describe('<Select />', () => {
     inheritComponent: Input,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['rootClass'],
-    testComponentPropWith: false,
+    skip: ['componentProp', 'rootClass'],
   }));
 
   it('should provide the classes to the input component', () => {

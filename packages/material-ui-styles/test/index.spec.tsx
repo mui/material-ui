@@ -116,10 +116,6 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       },
     });
 
-  makeStyles<typeof style>(style, {
-    defaultTheme: validCustomTheme,
-  });
-
   makeStyles(style, {
     defaultTheme: validCustomTheme,
   });
@@ -129,10 +125,28 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
     defaultTheme: invalidCustomTheme,
   });
 
-  // $ExpectError
-  makeStyles<typeof style>(style, {
-    defaultTheme: invalidCustomTheme,
-  });
+  // Use styles with props and theme without createStyles
+  makeStyles((theme: Theme) => ({
+    root: (props: StyleProps) => ({
+      background: props.color,
+      color: theme.palette.primary.main,
+    }),
+  }));
+
+  {
+    // If any generic is provided, inferrence breaks.
+    // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
+    const useStyles = makeStyles<Theme>(theme => ({
+      root: {
+        background: 'blue',
+      },
+    }));
+
+    const classes = useStyles();
+
+    // This doesn't fail, because inferrence is broken
+    classes.other;
+  }
 }
 
 // styled

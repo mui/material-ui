@@ -7,7 +7,7 @@ describe('<DialogActions />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<DialogActions />);
   });
 
@@ -20,6 +20,6 @@ describe('<DialogActions />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 });

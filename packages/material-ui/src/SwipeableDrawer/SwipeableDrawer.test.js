@@ -53,7 +53,8 @@ describe('<SwipeableDrawer />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    // test are mostly asserting on implementation details
+    mount = createMount({ strict: undefined });
   });
 
   after(() => {
@@ -65,7 +66,7 @@ describe('<SwipeableDrawer />', () => {
     inheritComponent: Drawer,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a Drawer and a SwipeArea', () => {

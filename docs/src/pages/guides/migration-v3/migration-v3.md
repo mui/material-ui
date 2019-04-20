@@ -235,10 +235,39 @@ You should be able to move the custom styles to the root class key.
 - [MenuItem] Remove the fixed height of the MenuItem.
   The padding and line-height are used by the browser to compute the height.
 
+### List
+
+- [List] Rework the list components to match the specification:
+
+  - The usage of the `ListItemAvatar` component is required when using an avatar
+  - The usage of the `ListItemIcon` component is required when using a left checkbox
+  - The `edge` property should be set on the icon buttons.
+
+### Paper
+
+- [Paper] Reduce the default elevation.
+  Change the default Paper elevation to match the Card and the Expansion Panel:
+
+  ```diff
+  -<Paper />
+  +<Paper elevation={2} />
+  ```
+
 ### Dialog
 
-- [DialogActions] `action` CSS class is applied to root element instead of children if `disableActionSpacing={false}`.
+- [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+- [DialogActions] Rename the `action` CSS class `spacing`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
+
+### Card
+
+- [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+- [CardActions] Remove the `disableActionSpacing` CSS class.
+- [CardActions] Rename the `action` CSS class `spacing`.
+
+### ExpansionPanel
+
+- [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
 
 ### Selection controls
 
@@ -305,9 +334,42 @@ You should be able to move the custom styles to the root class key.
 
 ### Modal
 
-- [Modal] Ignore event.defaultPrevented (#14991) @oliviertassinari
+- [Modal] event.defaultPrevented is now ignored.
 
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
   Only special HTML elements have these default behaviors.
   People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
+
+### Slide
+
+- [Slide] The child needs to be able to hold a ref.
+
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Slide><Component /></Slide>
+  <Slide><MyComponent /></Slide>
+  <Slide><div /></Slide>
+
+### Tooltip
+
+- [Tooltip] The child needs to be able to hold a ref.
+
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Tooltip><Component /></Tooltip>
+  <Tooltip><MyComponent /></Tooltip>
+  <Tooltip><div /></Tooltip>
+  ```

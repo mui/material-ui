@@ -23,7 +23,7 @@ import MenuList from '@material-ui/core/MenuList';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be spread to the root element ([List](/api/list/)).
+Any other properties supplied will be provided to the root element ([List](/api/list/)).
 
 ## Inheritance
 

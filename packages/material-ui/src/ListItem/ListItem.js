@@ -5,7 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
-import MergeListContext from './MergeListContext';
+import ListContext from '../List/ListContext';
 
 export const styles = theme => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -18,8 +18,8 @@ export const styles = theme => ({
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
-    paddingTop: 11, // To use 10px in v4
-    paddingBottom: 11, // To use 10px in v4
+    paddingTop: 8,
+    paddingBottom: 8,
     '&$selected, &$selected:hover': {
       backgroundColor: theme.palette.action.selected,
     },
@@ -33,12 +33,10 @@ export const styles = theme => ({
   focusVisible: {
     backgroundColor: theme.palette.action.selected,
   },
-  /* Legacy styles applied to the root element. Use `root` instead. */
-  default: {},
-  /* Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`. */
+  /* Styles applied to the `component` element if dense. */
   dense: {
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingTop: 4,
+    paddingBottom: 4,
   },
   /* Styles applied to the `component` element if `alignItems="flex-start"`. */
   alignItemsFlexStart: {
@@ -76,7 +74,7 @@ export const styles = theme => ({
   secondaryAction: {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positioned.
-    paddingRight: 32,
+    paddingRight: 48,
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
@@ -91,11 +89,11 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     button,
     children: childrenProp,
     classes,
-    className: classNameProp,
+    className,
     component: componentProp,
     ContainerComponent,
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
-    dense: denseProp,
+    dense,
     disabled,
     disableGutters,
     divider,
@@ -104,72 +102,75 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     ...other
   } = props;
 
+  const context = React.useContext(ListContext);
+  const childContext = {
+    dense: dense || context.dense || false,
+    alignItems,
+  };
+
+  const children = React.Children.toArray(childrenProp);
+  const hasSecondaryAction =
+    children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
+
+  const componentProps = {
+    className: clsx(
+      classes.root,
+      {
+        [classes.dense]: childContext.dense,
+        [classes.gutters]: !disableGutters,
+        [classes.divider]: divider,
+        [classes.disabled]: disabled,
+        [classes.button]: button,
+        [classes.alignItemsFlexStart]: alignItems === 'flex-start',
+        [classes.secondaryAction]: hasSecondaryAction,
+        [classes.selected]: selected,
+      },
+      className,
+    ),
+    disabled,
+    ...other,
+  };
+  let Component = componentProp || 'li';
+
+  if (button) {
+    componentProps.component = componentProp || 'div';
+    componentProps.focusVisibleClassName = clsx(classes.focusVisible, focusVisibleClassName);
+    Component = ButtonBase;
+  }
+
+  if (hasSecondaryAction) {
+    // Use div by default.
+    Component = !componentProps.component && !componentProp ? 'div' : Component;
+
+    // Avoid nesting of li > li.
+    if (ContainerComponent === 'li') {
+      if (Component === 'li') {
+        Component = 'div';
+      } else if (componentProps.component === 'li') {
+        componentProps.component = 'div';
+      }
+    }
+
+    return (
+      <ListContext.Provider value={childContext}>
+        <ContainerComponent
+          className={clsx(classes.container, ContainerClassName)}
+          ref={ref}
+          {...ContainerProps}
+        >
+          <Component {...componentProps}>{children}</Component>
+          {children.pop()}
+        </ContainerComponent>
+      </ListContext.Provider>
+    );
+  }
+
   return (
-    <MergeListContext dense={denseProp} alignItems={alignItems}>
-      {({ dense }) => {
-        const children = React.Children.toArray(childrenProp);
-        const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
-        const hasSecondaryAction =
-          children.length &&
-          isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
-
-        const className = clsx(
-          classes.root,
-          classes.default,
-          {
-            [classes.dense]: dense || hasAvatar,
-            [classes.gutters]: !disableGutters,
-            [classes.divider]: divider,
-            [classes.disabled]: disabled,
-            [classes.button]: button,
-            [classes.alignItemsFlexStart]: alignItems === 'flex-start',
-            [classes.secondaryAction]: hasSecondaryAction,
-            [classes.selected]: selected,
-          },
-          classNameProp,
-        );
-
-        const componentProps = { className, disabled, ...other };
-        let Component = componentProp || 'li';
-
-        if (button) {
-          componentProps.component = componentProp || 'div';
-          componentProps.focusVisibleClassName = clsx(classes.focusVisible, focusVisibleClassName);
-          Component = ButtonBase;
-        }
-
-        if (hasSecondaryAction) {
-          // Use div by default.
-          Component = !componentProps.component && !componentProp ? 'div' : Component;
-
-          // Avoid nesting of li > li.
-          if (ContainerComponent === 'li') {
-            if (Component === 'li') {
-              Component = 'div';
-            } else if (componentProps.component === 'li') {
-              componentProps.component = 'div';
-            }
-          }
-
-          return (
-            <ContainerComponent
-              className={clsx(classes.container, ContainerClassName)}
-              ref={ref}
-              {...ContainerProps}
-            >
-              <Component {...componentProps}>{children}</Component>
-              {children.pop()}
-            </ContainerComponent>
-          );
-        }
-
-        return (
-          <Component ref={ref} {...componentProps}>
-            {children}
-          </Component>
-        );
-      }}
-    </MergeListContext>
+    <ListContext.Provider value={childContext}>
+      <Component ref={ref} {...componentProps}>
+        {children}
+      </Component>
+    </ListContext.Provider>
   );
 });
 
@@ -263,7 +264,6 @@ ListItem.defaultProps = {
   alignItems: 'center',
   button: false,
   ContainerComponent: 'li',
-  dense: false,
   disabled: false,
   disableGutters: false,
   divider: false,

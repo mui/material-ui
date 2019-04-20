@@ -15,7 +15,8 @@ describe('<Backdrop />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses Fade
+    mount = createMount({ strict: false });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Backdrop open />);
   });
@@ -29,7 +30,7 @@ describe('<Backdrop />', () => {
     inheritComponent: Fade,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: false,
+    skip: ['componentProp'],
   }));
 
   it('should render a backdrop div', () => {

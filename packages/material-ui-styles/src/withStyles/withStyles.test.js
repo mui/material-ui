@@ -17,7 +17,8 @@ describe('withStyles', () => {
   let generateClassName;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses makeStyles
+    mount = createMount({ strict: false });
   });
 
   beforeEach(() => {
