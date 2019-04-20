@@ -49,7 +49,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     ...other
   } = props;
   const tooltipRef = React.useRef();
-  const popper = React.useRef();
+  const popperRef = React.useRef();
   const [exited, setExited] = React.useState(!props.open);
   const [placement, setPlacement] = React.useState();
   const handleRef = useForkRef(tooltipRef, ref);
