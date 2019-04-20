@@ -1,8 +1,11 @@
-/* Warning if there are several instances of @material-ui/styles */
-if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
-  window['__@material-ui/styles-init__'] = window['__@material-ui/styles-init__'] || 0;
+import { ponyfillGlobal } from '@material-ui/utils';
 
-  if (window['__@material-ui/styles-init__'] === 1) {
+/* Warning if there are several instances of @material-ui/styles */
+if (process.env.NODE_ENV !== 'production') {
+  ponyfillGlobal['__@material-ui/styles-init__'] =
+    ponyfillGlobal['__@material-ui/styles-init__'] || 0;
+
+  if (ponyfillGlobal['__@material-ui/styles-init__'] === 1) {
     // eslint-disable-next-line no-console
     console.warn(
       [
@@ -15,7 +18,7 @@ if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
     );
   }
 
-  window['__@material-ui/styles-init__'] += 1;
+  ponyfillGlobal['__@material-ui/styles-init__'] += 1;
 }
 
 export { default as createGenerateClassName } from './createGenerateClassName';
