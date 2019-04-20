@@ -82,7 +82,6 @@ const markedOptions = {
         break;
 
       case 'js':
-      case 'sh':
         language = prism.languages.jsx;
         break;
 
@@ -92,7 +91,7 @@ const markedOptions = {
     }
 
     if (!language) {
-      throw new Error(`unsuppored language: "${lang}", "${code}"`);
+      language = prism.languages.jsx;
     }
 
     return prism.highlight(code, language);
