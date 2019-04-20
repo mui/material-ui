@@ -6,9 +6,10 @@ import endOfWeek from 'date-fns/endOfWeek';
 import React, { PureComponent } from 'react';
 import startOfWeek from 'date-fns/startOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
-// this guy required only on the docs site to work with dynamic date library
+// @ts-ignore this guy required only on the docs site to work with dynamic date library
 import { cloneCrossUtils } from 'utils/helpers';
 import { DatePicker } from 'material-ui-pickers';
+import { createStyles } from '@material-ui/styles';
 import { IconButton, withStyles } from '@material-ui/core';
 
 class CustomElements extends PureComponent {
@@ -75,7 +76,7 @@ class CustomElements extends PureComponent {
   }
 }
 
-const styles = theme => ({
+const styles = createStyles(theme => ({
   dayWrapper: {
     position: 'relative',
   },
@@ -115,6 +116,6 @@ const styles = theme => ({
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
   },
-});
+}));
 
 export default withStyles(styles)(CustomElements);

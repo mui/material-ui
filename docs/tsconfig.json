@@ -8,18 +8,16 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "preserveConstEnums": true,
     "removeComments": false,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
+    "rootDir": ".",
     "target": "esnext",
-    "checkJs": true,
-    "resolveJsonModule": true,
-    "paths": {
-      "material-ui-pickers": ["./material-ui-pickers-build"]
-    }
-  }
+    "resolveJsonModule": true
+  },
+  "include": ["../docs/**/*.ts*"]
 }

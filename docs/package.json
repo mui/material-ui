@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "build:typescript": "tsc -p tsconfig.json && tsc -p tsconfig.js.json",
     "start": "next start"
   },
   "keywords": [],
@@ -25,7 +26,7 @@
     "@types/luxon": "^1.11.0",
     "@types/next": "^8.0.1",
     "@types/prismjs": "^1.9.1",
-    "@types/react": "^16.8.3",
+    "@types/react": "^16.8.13",
     "@types/react-jss": "^8.6.2",
     "@types/styled-jsx": "^2.2.8",
     "@types/w3c-permissions": "^1.0.1",
@@ -59,6 +60,7 @@
     "react-jss": "^8.6.1",
     "remark-slug": "^5.1.1",
     "safe-json-stringify": "^1.2.0",
+    "typescript": "^3.4.4",
     "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {

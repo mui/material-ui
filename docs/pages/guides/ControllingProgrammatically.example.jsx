@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { DatePicker } from 'material-ui-pickers';
-import { Button, withStyles } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 
-function ControllingProgrammaticallyExample(props) {
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
+
+function ControllingProgrammaticallyExample() {
+  const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, handleDateChange] = useState('2018-01-01T00:00:00.000Z');
 
   return (
-    <div className={props.classes.container}>
+    <div className={classes.container}>
       <Button onClick={() => setIsOpen(true)}> Open picker </Button>
 
       <DatePicker
@@ -24,11 +32,4 @@ function ControllingProgrammaticallyExample(props) {
   );
 }
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-};
-
-export default withStyles(styles)(ControllingProgrammaticallyExample);
+export default ControllingProgrammaticallyExample;

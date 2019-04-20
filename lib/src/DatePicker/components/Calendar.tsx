@@ -52,8 +52,8 @@ export interface CalendarProps
     WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-  minDate: DateType;
-  maxDate: DateType;
+  minDate?: DateType;
+  maxDate?: DateType;
   disablePast?: boolean;
   disableFuture?: boolean;
 }

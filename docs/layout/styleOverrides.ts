@@ -10,21 +10,24 @@ export const createOverrides = (theme: Theme): StyleRules<any> => ({
   h1: theme.typography.h1,
   h2: {
     ...theme.typography.h2,
+    textTransform: 'unset',
     margin: '32px 0 16px',
   },
   h3: {
     ...theme.typography.h3,
+    textTransform: 'unset',
     margin: '32px 0 16px',
   },
   h4: {
     ...theme.typography.h4,
+    textTransform: 'unset',
     margin: '32px 0 8px',
   },
   h5: theme.typography.h5,
   h6: theme.typography.h6,
   p: {
-    lineHeight: 1.4,
     ...theme.typography.body1,
+    textTransform: 'unset',
   },
   a: {
     color: theme.palette.secondary.main,

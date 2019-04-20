@@ -4,30 +4,30 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
-import DateTimePickerView, { DateTimePickerViewType } from '../../constants/DateTimePickerView';
 import { Theme } from '@material-ui/core';
 import { TimeIcon } from '../../_shared/icons/TimeIcon';
+import { DateTimePickerViewType } from '../DateTimePickerRoot';
 import { DateRangeIcon } from '../../_shared/icons/DateRangeIcon';
 
 const viewToTabIndex = (openView: DateTimePickerViewType) => {
-  if (openView === DateTimePickerView.DATE || openView === DateTimePickerView.YEAR) {
+  if (openView === 'date' || openView === 'year') {
     return 'date';
   }
 
   return 'time';
 };
 
-const tabIndexToView = (tab: DateTimePickerView) => {
+const tabIndexToView = (tab: DateTimePickerViewType) => {
   if (tab === 'date') {
-    return DateTimePickerView.DATE;
+    return 'date';
   }
 
-  return DateTimePickerView.HOUR;
+  return 'hours';
 };
 
 export interface DateTimePickerTabsProps extends WithStyles<typeof styles, true> {
   view: DateTimePickerViewType;
-  onChange: (view: DateTimePickerView) => void;
+  onChange: (view: DateTimePickerViewType) => void;
   dateRangeIcon: React.ReactNode;
   timeIcon: React.ReactNode;
 }
@@ -36,7 +36,7 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = props => {
   const { view, onChange, classes, theme, dateRangeIcon, timeIcon } = props;
 
   const indicatorColor = theme.palette.type === 'light' ? 'secondary' : 'primary';
-  const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerView) => {
+  const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerViewType) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
     }

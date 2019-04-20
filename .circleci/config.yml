@@ -44,6 +44,9 @@ jobs:
             - ~/.cache
 
       - run:
+          name: Typescript
+          command: yarn workspaces run build:typescript
+      - run:
           name: Eslint
           command: yarn lint
       - run:

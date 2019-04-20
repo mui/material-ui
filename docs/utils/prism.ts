@@ -29,5 +29,5 @@ export function setPrismTheme(type: ThemeType) {
 }
 
 export function highlight(code: string, language: AvailableLanguages) {
-  return prism.highlight(code, prism.languages[language]);
+  return prism.highlight(code, prism.languages[language], language);
 }

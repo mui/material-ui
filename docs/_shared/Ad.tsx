@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
     '#codefund': {
       '& .cf-wrapper': {
-        paddingBottom: '0 !important',
         backgroundColor:
           theme.palette.type === 'dark'
             ? theme.palette.background.paper + '! important'

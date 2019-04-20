@@ -6,7 +6,7 @@ import createStyles from '@material-ui/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 
-const positions = {
+const positions: Record<number, number[]> = {
   0: [0, 40],
   1: [55, 19.6],
   2: [94.4, 59.5],

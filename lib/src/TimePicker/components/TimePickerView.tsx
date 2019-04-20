@@ -24,7 +24,7 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
     onSecondsChange: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
     minutesStep: PropTypes.number,
-    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
+    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key as any])).isRequired,
   };
 
   public static defaultProps = {

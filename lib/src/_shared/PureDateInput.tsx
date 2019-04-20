@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
 import { ExtendMui } from '../typings/extendMui';
 
@@ -7,27 +6,35 @@ export interface PureDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
   /** Pass material-ui text field variant down, bypass internal variant prop */
   inputVariant?: TextFieldProps['variant'];
+  InputProps?: TextFieldProps['InputProps'];
   inputValue: string;
   validationError?: React.ReactNode;
 }
-
-// Do not recreate new object each render
-const PureDateInputProps = { readOnly: true };
 
 export const PureDateInput: React.FC<PureDateInputProps> = ({
   inputValue,
   inputVariant,
   validationError,
+  InputProps,
   ...other
 }) => {
+  const PureDateInputProps = React.useMemo(
+    () => ({
+      ...InputProps,
+      readOnly: true,
+    }),
+    [InputProps]
+  );
+
   return (
     <TextField
-      variant={inputVariant as any}
       error={Boolean(validationError)}
       helperText={validationError}
-      InputProps={PureDateInputProps}
       {...other}
+      // do not overridable
       value={inputValue}
+      variant={inputVariant as any}
+      InputProps={PureDateInputProps}
     />
   );
 };

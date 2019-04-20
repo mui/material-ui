@@ -8,7 +8,6 @@ const DatePickerField = ({ field, form, ...other }) => {
   const currentError = form.errors[field.name];
   return (
     <DatePicker
-      keyboard
       clearable
       disablePast
       name={field.name}
@@ -18,7 +17,6 @@ const DatePickerField = ({ field, form, ...other }) => {
       error={Boolean(currentError)}
       onError={(_, error) => form.setFieldError(field.name, error)}
       onChange={date => form.setFieldValue(field.name, date, true)}
-      mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
       {...other}
     />
   );
@@ -26,7 +24,7 @@ const DatePickerField = ({ field, form, ...other }) => {
 
 const FormikExample = () => {
   return (
-    <Formik initialValues={{ date: new Date() }}>
+    <Formik onSubmit={console.log} initialValues={{ date: new Date() }}>
       {({ values, errors }) => (
         <Form>
           <Grid container>

@@ -43,7 +43,7 @@ function MomentLocalizationExample() {
             <IconButton
               aria-label="Select locale"
               onClick={handleMenuOpen}
-              aria-owns={anchorEl ? 'locale-menu' : null}
+              aria-owns={anchorEl ? 'locale-menu' : undefined}
             >
               <MoreIcon />
             </IconButton>

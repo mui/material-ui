@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "checkJs": true,
+    "noEmit": true,
+    "strict": true,
+    "baseUrl": ".",
+    "noImplicitAny": false
+  },
+  "include": ["./typings.d.ts", "./pages/**/*.jsx"]
+}

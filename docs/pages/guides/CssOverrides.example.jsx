@@ -1,7 +1,9 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import { DatePicker } from 'material-ui-pickers';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
 
 const materialTheme = createMuiTheme({
   overrides: {
@@ -39,14 +41,14 @@ function CssOverrides() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
-    <MuiThemeProvider theme={materialTheme}>
+    <ThemeProvider theme={materialTheme}>
       <DatePicker
         label="Light blue picker"
         value={selectedDate}
         onChange={handleDateChange}
         animateYearScrolling={false}
       />
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 
