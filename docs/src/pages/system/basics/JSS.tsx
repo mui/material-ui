@@ -10,11 +10,7 @@ const Box = styled('div')(
 );
 
 function JSS() {
-  return (
-    <Box color="white" bgcolor="palevioletred" p={1}>
-      JSS
-    </Box>
-  );
+  return <Box color="white">JSS</Box>;
 }
 
 export default JSS;
