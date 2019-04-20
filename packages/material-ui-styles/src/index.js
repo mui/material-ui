@@ -1,3 +1,21 @@
+/* Warning if there are several instances of @material-ui/styles */
+if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
+  window['__@material-ui/styles-init__'] =
+    window['__@material-ui/styles-init__'] || 0
+
+  if (window['__@material-ui/styles-init__'] === 1) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "It looks like there are several instances of '@material-ui/styles' initialized in this application. " +
+        'This may cause dynamic styles not rendering properly, errors happening during rehydration process ' +
+        'and makes you application bigger without a good reason.\n\n' +
+        'See https://s-c.sh/2BAXzed for more info.'
+    )
+  }
+
+  window['__@material-ui/styles-init__'] += 1
+}
+
 export { default as createGenerateClassName } from './createGenerateClassName';
 export { default as createStyles } from './createStyles';
 export { default as getThemeProps } from './getThemeProps';
