@@ -10,7 +10,7 @@ export type ComponentCreator<C extends React.ElementType> = <Theme, Props extend
   options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
   Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, 'classes' | 'className'> &
-    StyledComponentProps<'root'> & { className?: string } & Props
+    StyledComponentProps<'root'> & { className?: string } & Partial<Props>
 >;
 
 export interface StyledProps {
