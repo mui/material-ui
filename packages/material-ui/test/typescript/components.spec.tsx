@@ -598,9 +598,7 @@ const MenuTest = () => {
         // 'false' is not assignable to true | undefined
         button={false} // $ExpectError
         ref={elem => {
-          // previous error throws type checker off. Since this is an error anyway
-          // `any` is fine
-          elem; // $ExpectType any
+          elem; // $ExpectType HTMLLIElement | null
         }}
       />
     </Menu>
