@@ -3,13 +3,13 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('docs/src/pages/demos/selection-controls', false, /\.(md|js|tsx)$/);
+const req = require.context('docs/src/pages/demos/checkboxes', false, /\.(md|js|tsx)$/);
 const reqSource = require.context(
-  '!raw-loader!../../docs/src/pages/demos/selection-controls',
+  '!raw-loader!../../docs/src/pages/demos/checkboxes',
   false,
   /\.(js|tsx)$/,
 );
-const reqPrefix = 'pages/demos/selection-controls';
+const reqPrefix = 'pages/demos/checkboxes';
 
 function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
