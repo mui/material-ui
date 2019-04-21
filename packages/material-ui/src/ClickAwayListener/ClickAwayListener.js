@@ -1,11 +1,10 @@
-// @inheritedComponent EventListener
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
+import { exactProp } from '@material-ui/utils';
 
 function useMountedRef() {
   const mountedRef = React.useRef(false);
@@ -24,13 +23,14 @@ function useMountedRef() {
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 function ClickAwayListener(props) {
-  const { children, mouseEvent, touchEvent, onClickAway, ...other } = props;
+  const { children, mouseEvent, touchEvent, onClickAway } = props;
   const mountedRef = useMountedRef();
   const movedRef = React.useRef(false);
 
   const nodeRef = React.useRef();
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback(ref => {
+    // #StrictMode ready
     nodeRef.current = ReactDOM.findDOMNode(ref);
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
@@ -88,7 +88,7 @@ function ClickAwayListener(props) {
   return (
     <React.Fragment>
       {React.cloneElement(children, { ref: handleRef })}
-      <EventListener target="document" {...listenerProps} {...other} />
+      <EventListener target="document" {...listenerProps} />
     </React.Fragment>
   );
 }
@@ -113,6 +113,11 @@ ClickAwayListener.propTypes = {
    */
   touchEvent: PropTypes.oneOf(['onTouchStart', 'onTouchEnd', false]),
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line
+  ClickAwayListener['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
+}
 
 ClickAwayListener.defaultProps = {
   mouseEvent: 'onMouseUp',
