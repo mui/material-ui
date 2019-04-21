@@ -70,7 +70,7 @@ export function setTranslateValue(direction, node) {
  * The Slide transition is used by the [Drawer](/demos/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-function Slide(props) {
+const Slide = React.forwardRef(function Slide(props, ref) {
   const {
     children,
     direction,
@@ -89,11 +89,12 @@ function Slide(props) {
   /**
    * used in cloneElement(children, { ref: handleRef })
    */
-  const handleOwnRef = React.useCallback(ref => {
+  const handleOwnRef = React.useCallback(refArg => {
     // #StrictMode ready
-    childrenRef.current = ReactDOM.findDOMNode(ref);
+    childrenRef.current = ReactDOM.findDOMNode(refArg);
   }, []);
-  const handleRef = useForkRef(children.ref, handleOwnRef);
+  const handleRefIntermediary = useForkRef(children.ref, handleOwnRef);
+  const handleRef = useForkRef(handleRefIntermediary, ref);
 
   const handleEnter = () => {
     const node = childrenRef.current;
@@ -220,7 +221,7 @@ function Slide(props) {
       }}
     </Transition>
   );
-}
+});
 
 Slide.propTypes = {
   /**
