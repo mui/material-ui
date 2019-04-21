@@ -112,7 +112,7 @@ export default function Parent() {
 }
 ```
 
-However, the class names are often non deterministic, how can a parent component override the style of a nested element?
+However, the class names are often non-deterministic. How can a parent component override the style of a nested element?
 
 ### withStyles
 
