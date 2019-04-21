@@ -35,7 +35,7 @@ const prettierConfig = prettier.resolveConfig(process.cwd(), {
 
 const watchMode = process.argv.some(arg => arg === '--watch');
 
-async function getFiles(root, callback) {
+async function getFiles(root) {
   const files = [];
   const folderItem = await fse.readdir(root);
 
@@ -48,7 +48,7 @@ async function getFiles(root, callback) {
       if (ignoreList.some(ignorePath => filePath.endsWith(path.normalize(ignorePath)))) continue;
       files.push(filePath);
     } else if (stat.isDirectory()) {
-      files.push(...(await getFiles(filePath, callback)));
+      files.push(...(await getFiles(filePath)));
     }
   }
 
