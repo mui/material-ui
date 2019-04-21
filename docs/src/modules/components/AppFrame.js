@@ -100,7 +100,7 @@ const styles = theme => ({
     flex: '0 1 auto',
   },
   skipNav: {
-    position: 'absolute',
+    position: 'fixed',
     padding: theme.spacing(1),
     backgroundColor: theme.palette.background.paper,
     transition: theme.transitions.create('top', {
