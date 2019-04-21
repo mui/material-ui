@@ -104,8 +104,8 @@ const styles = theme => ({
     padding: theme.spacing(1),
     backgroundColor: theme.palette.background.paper,
     transition: theme.transitions.create('top', {
-      duration: theme.transitions.duration.enteringScreen,
-      easing: theme.transitions.easing.easeOut,
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.leavingScreen,
     }),
     left: theme.spacing(2),
     top: theme.spacing(-6),
@@ -113,7 +113,8 @@ const styles = theme => ({
     '&:focus': {
       top: theme.spacing(2),
       transition: theme.transitions.create('top', {
-        easing: theme.transitions.easing.easeIn,
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
       }),
     },
   },
