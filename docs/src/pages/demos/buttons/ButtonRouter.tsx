@@ -10,20 +10,19 @@ const AdapterLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) 
 ));
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
-const HomeLink = React.forwardRef<HTMLAnchorElement, Omit<LinkProps, 'innerRef' | 'to'>>(
-  (props, ref) => <Link innerRef={ref as any} to="/home" {...props} />,
+const CollisionLink = React.forwardRef<HTMLAnchorElement, Omit<LinkProps, 'innerRef' | 'to'>>(
+  (props, ref) => <Link innerRef={ref as any} to="/getting-started/installation/" {...props} />,
 );
 
-function App() {
+function ButtonRouter() {
   return (
     <Router>
       <Button color="primary" component={AdapterLink} to="/">
-        Root
+        Simple case
       </Button>
-      {/* Avoids property collision */}
-      <Button component={HomeLink}>Home</Button>
+      <Button component={CollisionLink}>Avoids props collision</Button>
     </Router>
   );
 }
 
-export default App;
+export default ButtonRouter;

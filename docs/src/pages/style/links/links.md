@@ -14,13 +14,14 @@ You can leverage its properties.
 {{"demo": "pages/style/links/Links.js"}}
 
 However, the Link has different default properties than the Typography:
+
 - `color="primary"` as the link needs to stand out.
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typograpy component.
 
 ## Accessibility
 
 - When providing the content for the link, avoid generic descriptions like "click here" or "go to".
-Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
+  Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - For the best user experience links should stand out from the text on the page.
 - If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
 
@@ -31,34 +32,15 @@ Instead, use [specific descriptions](https://developers.google.com/web/tools/lig
 When you use `target="_blank"` with Links it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
 
 - `rel="noopener"` prevents the new page from being able to access the window.opener property and ensures it runs in a separate process.
-Without this the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer""` has the same effect, but also prevents the *Referer* header from being sent to the new page.
-⚠️ Removing the referrer header will affect analytics.
+  Without this the target page can potentially redirect your page to a malicious URL.
+- `rel="noreferrer""` has the same effect, but also prevents the _Referer_ header from being sent to the new page.
+  ⚠️ Removing the referrer header will affect analytics.
 
 ## Third-party routing library
 
 One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
 
-```jsx
-import { Link as RouterLink } from 'react-router-dom'
-import Link from '@material-ui/core/Link';
+{{"demo": "pages/style/links/LinkRouter.js", "defaultCodeOpen": true}}
 
-<Link component={RouterLink} to="/open-collective">
-  Link
-</Link>
-```
-
-or if you want to avoid properties collision:
-
-```jsx
-import { Link as RouterLink } from 'react-router-dom'
-import Link from '@material-ui/core/Link';
-
-const MyLink = props => <RouterLink to="/open-collective" {...props} />
-
-<Link component={MyLink}>
-  Link
-</Link>
-```
-
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+_Note: Creating the Link components is necessary to prevent unexpected unmounting.
+You can read more about it in our [component property guide](/guides/composition/#component-property)._
