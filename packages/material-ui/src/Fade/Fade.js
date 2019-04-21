@@ -6,6 +6,7 @@ import { Transition } from 'react-transition-group';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
+import { useForkRef } from '../utils/reactHelpers';
 
 const styles = {
   entering: {
@@ -20,8 +21,9 @@ const styles = {
  * The Fade transition is used by the [Modal](/utils/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-function Fade(props) {
+const Fade = React.forwardRef(function Fade(props, ref) {
   const { children, in: inProp, onEnter, onExit, style, theme, ...other } = props;
+  const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
@@ -60,12 +62,13 @@ function Fade(props) {
             ...style,
             ...children.props.style,
           },
+          ref: handleRef,
           ...childProps,
         });
       }}
     </Transition>
   );
-}
+});
 
 Fade.propTypes = {
   /**

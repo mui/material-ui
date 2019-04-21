@@ -519,7 +519,7 @@ describe('<Modal />', () => {
     });
 
     it('should warn if the modal content is not focusable', () => {
-      const Dialog = () => <div />;
+      const Dialog = React.forwardRef((_, ref) => <div ref={ref} />);
 
       wrapper = mount(
         <Modal open>
