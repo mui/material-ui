@@ -138,38 +138,25 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     Component = ButtonBase;
   }
 
-  if (hasSecondaryAction) {
-    // Use div by default.
-    Component = !componentProps.component && !componentProp ? 'div' : Component;
-
-    // Avoid nesting of li > li.
-    if (ContainerComponent === 'li') {
-      if (Component === 'li') {
-        Component = 'div';
-      } else if (componentProps.component === 'li') {
-        componentProps.component = 'div';
-      }
+  // Avoid nesting of li > li.
+  if (ContainerComponent === 'li') {
+    if (Component === 'li') {
+      Component = 'div';
+    } else if (componentProps.component === 'li') {
+      componentProps.component = 'div';
     }
-
-    return (
-      <ListContext.Provider value={childContext}>
-        <ContainerComponent
-          className={clsx(classes.container, ContainerClassName)}
-          ref={ref}
-          {...ContainerProps}
-        >
-          <Component {...componentProps}>{children}</Component>
-          {children.pop()}
-        </ContainerComponent>
-      </ListContext.Provider>
-    );
   }
 
   return (
     <ListContext.Provider value={childContext}>
-      <Component ref={ref} {...componentProps}>
-        {children}
-      </Component>
+      <ContainerComponent
+        className={clsx(classes.container, ContainerClassName)}
+        ref={ref}
+        {...ContainerProps}
+      >
+        <Component {...componentProps}>{children}</Component>
+        {hasSecondaryAction ? children.pop() : null}
+      </ContainerComponent>
     </ListContext.Provider>
   );
 });
