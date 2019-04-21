@@ -52,7 +52,7 @@ interface State {
 
 function TextFields() {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
+  const [values, setValues] = React.useState<State>({
     name: 'Cat in the Hat',
     age: '',
     multiline: 'Controlled',
