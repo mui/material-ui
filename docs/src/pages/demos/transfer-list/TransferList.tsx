@@ -1,27 +1,21 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
+import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     margin: 'auto',
   },
-  cardHeader: {
-    padding: theme.spacing(1, 2),
-  },
-  list: {
+  paper: {
     width: 200,
     height: 230,
-    backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
   },
   button: {
@@ -29,28 +23,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function not(a, b) {
+function not(a: number[], b: number[]) {
   return a.filter(value => b.indexOf(value) === -1);
 }
 
-function intersection(a, b) {
+function intersection(a: number[], b: number[]) {
   return a.filter(value => b.indexOf(value) !== -1);
-}
-
-function union(a, b) {
-  return [...a, ...not(b, a)];
 }
 
 function TransferList() {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([]);
-  const [left, setLeft] = React.useState([0, 1, 2, 3]);
-  const [right, setRight] = React.useState([4, 5, 6, 7]);
+  const [checked, setChecked] = React.useState<number[]>([]);
+  const [left, setLeft] = React.useState<number[]>([0, 1, 2, 3]);
+  const [right, setRight] = React.useState<number[]>([4, 5, 6, 7]);
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  const handleToggle = value => () => {
+  const handleToggle = (value: number) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -63,14 +53,9 @@ function TransferList() {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = items => intersection(checked, items).length;
-
-  const handleToggleAll = items => () => {
-    if (numberOfChecked(items) === items.length) {
-      setChecked(not(checked, items));
-    } else {
-      setChecked(union(checked, items));
-    }
+  const handleAllRight = () => {
+    setRight(right.concat(left));
+    setLeft([]);
   };
 
   const handleCheckedRight = () => {
@@ -85,24 +70,15 @@ function TransferList() {
     setChecked(not(checked, rightChecked));
   };
 
-  const customList = (title, items) => (
-    <Card>
-      <CardHeader
-        className={classes.cardHeader}
-        avatar={
-          <Checkbox
-            onClick={handleToggleAll(items)}
-            checked={numberOfChecked(items) === items.length && items.length !== 0}
-            indeterminate={numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0}
-            disabled={items.length === 0}
-          />
-        }
-        title={title}
-        subheader={`${numberOfChecked(items)}/${items.length} selected`}
-      />
-      <Divider />
-      <List className={classes.list} dense>
-        {items.map(value => (
+  const handleAllLeft = () => {
+    setLeft(left.concat(right));
+    setRight([]);
+  };
+
+  const customList = (items: number[]) => (
+    <Paper className={classes.paper}>
+      <List dense>
+        {items.map((value: number) => (
           <ListItem key={value} role={undefined} button onClick={handleToggle(value)}>
             <ListItemIcon>
               <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
@@ -110,17 +86,26 @@ function TransferList() {
             <ListItemText primary={`List item ${value + 1}`} />
           </ListItem>
         ))}
-
         <ListItem />
       </List>
-    </Card>
+    </Paper>
   );
 
   return (
     <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
-      <Grid item>{customList('Choices', left)}</Grid>
+      <Grid item>{customList(left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
+          <Button
+            variant="outlined"
+            size="small"
+            className={classes.button}
+            onClick={handleAllRight}
+            disabled={left.length === 0}
+            aria-label="move all right"
+          >
+            ≫
+          </Button>
           <Button
             variant="outlined"
             size="small"
@@ -141,9 +126,19 @@ function TransferList() {
           >
             &lt;
           </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            className={classes.button}
+            onClick={handleAllLeft}
+            disabled={right.length === 0}
+            aria-label="move all left"
+          >
+            ≪
+          </Button>
         </Grid>
       </Grid>
-      <Grid item>{customList('Chosen', right)}</Grid>
+      <Grid item>{customList(right)}</Grid>
     </Grid>
   );
 }

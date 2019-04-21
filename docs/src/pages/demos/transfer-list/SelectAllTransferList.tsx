@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Card from '@material-ui/core/Card';
@@ -11,7 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     margin: 'auto',
   },
@@ -29,28 +29,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function not(a, b) {
+function not(a: number[], b: number[]) {
   return a.filter(value => b.indexOf(value) === -1);
 }
 
-function intersection(a, b) {
+function intersection(a: number[], b: number[]) {
   return a.filter(value => b.indexOf(value) !== -1);
 }
 
-function union(a, b) {
+function union(a: number[], b: number[]) {
   return [...a, ...not(b, a)];
 }
 
 function TransferList() {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([]);
-  const [left, setLeft] = React.useState([0, 1, 2, 3]);
-  const [right, setRight] = React.useState([4, 5, 6, 7]);
+  const [checked, setChecked] = React.useState<number[]>([]);
+  const [left, setLeft] = React.useState<number[]>([0, 1, 2, 3]);
+  const [right, setRight] = React.useState<number[]>([4, 5, 6, 7]);
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  const handleToggle = value => () => {
+  const handleToggle = (value: number) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -63,9 +63,9 @@ function TransferList() {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = items => intersection(checked, items).length;
+  const numberOfChecked = (items: number[]) => intersection(checked, items).length;
 
-  const handleToggleAll = items => () => {
+  const handleToggleAll = (items: number[]) => () => {
     if (numberOfChecked(items) === items.length) {
       setChecked(not(checked, items));
     } else {
@@ -85,7 +85,7 @@ function TransferList() {
     setChecked(not(checked, rightChecked));
   };
 
-  const customList = (title, items) => (
+  const customList = (title: React.ReactNode, items: number[]) => (
     <Card>
       <CardHeader
         className={classes.cardHeader}
@@ -102,7 +102,7 @@ function TransferList() {
       />
       <Divider />
       <List className={classes.list} dense>
-        {items.map(value => (
+        {items.map((value: number) => (
           <ListItem key={value} role={undefined} button onClick={handleToggle(value)}>
             <ListItemIcon>
               <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
@@ -110,7 +110,6 @@ function TransferList() {
             <ListItemText primary={`List item ${value + 1}`} />
           </ListItem>
         ))}
-
         <ListItem />
       </List>
     </Card>
