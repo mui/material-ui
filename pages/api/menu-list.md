@@ -18,10 +18,11 @@ import MenuList from '@material-ui/core/MenuList';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the list will be focused during the first mount. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | MenuList contents, normally `MenuItem`s. |
 | <span class="prop-name">disableListWrap</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the menu items will not wrap focus. |
 
-The `ref` is forwarded to the root element.
+The component cannot hold a ref.
 
 Any other properties supplied will be provided to the root element ([List](/api/list/)).
 

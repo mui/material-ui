@@ -118,9 +118,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
       } else {
         warning(
           false,
-          [
-            'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
-          ].join('\n'),
+          'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
         );
       }
     }
