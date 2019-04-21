@@ -38,11 +38,19 @@ describe('<Textarea />', () => {
     const getComputedStyleStub = {};
 
     function setLayout(wrapper, { getComputedStyle, scrollHeight, lineHeight }) {
-      const input = wrapper.find('textarea').instance();
+      const input = wrapper
+        .find('textarea')
+        .at(0)
+        .instance();
+      const shadow = wrapper
+        .find('textarea')
+        .at(1)
+        .instance();
+
       getComputedStyleStub[input] = getComputedStyle;
 
       let index = 0;
-      stub(input, 'scrollHeight').get(() => {
+      stub(shadow, 'scrollHeight').get(() => {
         index += 1;
         return index % 2 === 1 ? scrollHeight : lineHeight;
       });
