@@ -53,8 +53,8 @@ function ConfirmationDialogRaw(props) {
     onClose(value);
   }
 
-  function handleChange(event, newValue) {
-    setValue(newValue);
+  function handleChange(event) {
+    setValue(event.target.value);
   }
 
   return (

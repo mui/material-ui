@@ -8,8 +8,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 function FormControlLabelPosition() {
   const [value, setValue] = React.useState('female');
 
-  function handleChange(event: React.ChangeEvent<{}>) {
-    setValue((event.target as HTMLInputElement).value);
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value);
   }
 
   return (
