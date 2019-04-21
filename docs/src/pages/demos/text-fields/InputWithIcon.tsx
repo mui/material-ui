@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -9,17 +8,16 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     margin: {
       margin: theme.spacing(1),
     },
-  });
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
-
-function InputWithIcon(props: Props) {
-  const { classes } = props;
+function InputWithIcon() {
+  const classes = useStyles();
 
   return (
     <div>
@@ -60,8 +58,4 @@ function InputWithIcon(props: Props) {
   );
 }
 
-InputWithIcon.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(InputWithIcon);
+export default InputWithIcon;
