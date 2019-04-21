@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForkRef } from '../utils/reactHelpers';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import { useForkRef } from '../utils/reactHelpers';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
@@ -136,11 +136,11 @@ Textarea.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Number of rows to display when multiline option is set to true.
+   * Minimum umber of rows to display.
    */
   rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Maximum number of rows to display when multiline option is set to true.
+   * Maximum number of rows to display.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
