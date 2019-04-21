@@ -369,13 +369,16 @@ class InputBase extends React.Component {
         ref: null,
       };
     } else if (multiline) {
-      InputComponent = 'textarea';
-      inputProps = {
-        rows,
-        rowsMax,
-        ...inputProps,
-      };
-      InputComponent = Textarea;
+      if (rows && !rowsMax) {
+        InputComponent = 'textarea';
+      } else {
+        inputProps = {
+          rows,
+          rowsMax,
+          ...inputProps,
+        };
+        InputComponent = Textarea;
+      }
     } else {
       inputProps = {
         type,
