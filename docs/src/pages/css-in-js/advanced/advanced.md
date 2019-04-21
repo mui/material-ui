@@ -428,7 +428,7 @@ const useStyles = makeStyles({
 
 This will generate a class name such as `makeStyles-root-123`.
 
-You have to use the `classes` property of a component to override the class names.
+You have to use the `classes` property of a component to override the styles.
 The non-deterministic nature of the class names enables style isolation.
 
 - In **development**, the class name is: `.makeStyles-root-123`, following this logic:
