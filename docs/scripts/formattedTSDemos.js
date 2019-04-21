@@ -24,9 +24,7 @@ async function getUnstagedGitFiles() {
 }
 
 function fixBabelGeneratorIssues(source) {
-  return source
-    .replace(/\/>(\r\n|\r|\n)(\r\n|\r|\n)/g, '/>\n')
-    .replace(/,(\r\n|\r|\n)(\r\n|\r|\n)/g, ',\n');
+  return source.replace(/\/>\n\n/g, '/>\n').replace(/,\n\n/g, ',\n');
 }
 
 exec('yarn docs:typescript')
