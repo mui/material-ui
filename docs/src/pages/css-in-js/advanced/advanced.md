@@ -402,7 +402,7 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 We have [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`.
 Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next) for an up-to-date usage example.
 
 ### Next.js
 
