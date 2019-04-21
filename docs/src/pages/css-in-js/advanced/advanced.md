@@ -494,7 +494,7 @@ The CSS output:
 
 The customization the TextField can be cumbersome with the [`classes` API](#classes-prop)
 when you have to provide each class name value manually.
-It's easier to use the default values we have described above:
+It's easier to use the default values, as described above. For example:
 
 ```jsx
 import styled from 'styled-components';
