@@ -109,7 +109,7 @@ const styles = theme => ({
     }),
     left: theme.spacing(2),
     top: theme.spacing(-6),
-    zIndex: 100000,
+    zIndex: theme.zIndex.tooltip +1,
     '&:focus': {
       top: theme.spacing(2),
       transition: theme.transitions.create('top', {
