@@ -9,7 +9,7 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 #### Arguments
 
 1. `options` (*Object* [optional]):
-  - `options.disableGlobal` (*Boolan* [optional]): Default to `false`. Disable the generation of deterministic class names.
+  - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production. You can disable the minification in production by providing an empty string.
   - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
