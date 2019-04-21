@@ -20,11 +20,11 @@ const useStyles = makeStyles(theme => ({
 function ComposedTextField() {
   const [labelWidth, setLabelWidth] = React.useState(0);
   const [name, setName] = React.useState('Composed TextField');
-  const label = React.useRef(null);
+  const labelRef = React.useRef(null);
   const classes = useStyles();
 
   React.useEffect(() => {
-    setLabelWidth(label.current.offsetWidth);
+    setLabelWidth(labelRef.current.offsetWidth);
   }, []);
 
   function handleChange(event) {
@@ -63,7 +63,7 @@ function ComposedTextField() {
         <FormHelperText id="component-error-text">Error</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl} variant="outlined">
-        <InputLabel ref={label} htmlFor="component-outlined">
+        <InputLabel ref={labelRef} htmlFor="component-outlined">
           Name
         </InputLabel>
         <OutlinedInput
