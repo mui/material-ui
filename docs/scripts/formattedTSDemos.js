@@ -55,10 +55,9 @@ async function getFiles(root) {
   return files;
 }
 
+const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r\n|\r|\n)(\r\n|\r|\n)/g);
 function fixBabelGeneratorIssues(source) {
-  return source
-    .replace(/\/>(\r\n|\r|\n)(\r\n|\r|\n)/g, `/>${os.EOL}`)
-    .replace(/,(\r\n|\r|\n)(\r\n|\r|\n)/g, `,${os.EOL}`);
+  return source.replace(fixBabelIssuesRegExp, os.EOL);
 }
 
 async function transpileFile(filePath) {
