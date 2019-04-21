@@ -143,6 +143,11 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  '@global': {
+    '#main-content': {
+      outline: 'none',
+    },
+  },
 });
 
 class AppFrame extends React.Component {

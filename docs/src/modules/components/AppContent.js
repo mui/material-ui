@@ -18,9 +18,6 @@ const styles = theme => ({
       paddingRight: theme.spacing(5),
       maxWidth: 'calc(100% - 240px - 175px)',
     },
-    '&:focus': {
-      outline: 'none',
-    },
   },
   disableToc: {
     [theme.breakpoints.up('sm')]: {
