@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
@@ -59,9 +60,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
   const firstValidItemRef = React.useRef();
   const firstSelectedItemRef = React.useRef();
 
-  const getContentAnchorEl = () => {
-    return firstSelectedItemRef.current ? firstSelectedItemRef.current : firstValidItemRef.current;
-  };
+  const getContentAnchorEl = () => firstSelectedItemRef.current || firstValidItemRef.current;
 
   const handleEntering = element => {
     if (menuListActionsRef.current) {
@@ -83,8 +82,6 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     }
   };
 
-  const checkForSelectedItem = variant === 'selectedMenu';
-
   let firstValidElementIndex = null;
   let firstSelectedIndex = null;
 
@@ -104,7 +101,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     }
     let newChildProps = null;
     if (
-      checkForSelectedItem &&
+      variant === 'selectedMenu' &&
       firstSelectedIndex === null &&
       child.props.selected &&
       !child.props.disabled
@@ -118,16 +115,17 @@ const Menu = React.forwardRef(function Menu(props, ref) {
         newChildProps.tabIndex = 0;
       }
       newChildProps.ref = instance => {
-        // StrictMode ready
+        // #StrictMode ready
         firstSelectedItemRef.current = ReactDOM.findDOMNode(instance);
         setRef(child.ref, instance);
       };
     } else if (index === firstValidElementIndex) {
-      newChildProps = {};
-      newChildProps.ref = instance => {
-        // StrictMode ready
-        firstValidItemRef.current = ReactDOM.findDOMNode(instance);
-        setRef(child.ref, instance);
+      newChildProps = {
+        ref: instance => {
+          // #StrictMode ready
+          firstValidItemRef.current = ReactDOM.findDOMNode(instance);
+          setRef(child.ref, instance);
+        },
       };
     }
 
@@ -136,8 +134,6 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     }
     return child;
   });
-
-  const menuListAutoFocus = autoFocus && firstSelectedIndex === null;
 
   return (
     <Popover
@@ -162,12 +158,9 @@ const Menu = React.forwardRef(function Menu(props, ref) {
         data-mui-test="Menu"
         onKeyDown={handleListKeyDown}
         actions={menuListActionsRef}
-        autoFocus={menuListAutoFocus}
+        autoFocus={autoFocus && firstSelectedIndex === null}
         {...MenuListProps}
-        classes={{
-          ...MenuListProps.classes,
-          root: classes.list,
-        }}
+        className={clsx(classes.list, MenuListProps.className)}
       >
         {items}
       </MenuList>

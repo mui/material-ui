@@ -118,7 +118,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
       } else {
         warning(
           false,
-          'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
+          'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
         );
       }
     }
@@ -129,7 +129,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
   const handleOwnRef = React.useCallback(instance => {
-    // StrictMode ready
+    // #StrictMode ready
     listItemRef.current = ReactDOM.findDOMNode(instance);
   }, []);
   const handleRef = useForkRef(handleOwnRef, ref);

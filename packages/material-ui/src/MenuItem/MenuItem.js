@@ -32,7 +32,6 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
     classes,
     className,
     component,
-    disabled,
     disableGutters,
     role,
     selected,
@@ -41,7 +40,7 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
   } = props;
 
   let tabIndex;
-  if (!disabled) {
+  if (!props.disabled) {
     tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
   }
   return (
@@ -51,7 +50,6 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
       tabIndex={tabIndex}
       component={component}
       selected={selected}
-      disabled={disabled}
       disableGutters={disableGutters}
       className={clsx(
         classes.root,

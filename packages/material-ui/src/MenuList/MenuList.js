@@ -14,6 +14,7 @@ function nextItem(list, item, disableListWrap) {
   }
   return disableListWrap ? null : list.firstChild;
 }
+
 function previousItem(list, item, disableListWrap) {
   if (item && item.previousElementSibling) {
     return item.previousElementSibling;
@@ -24,6 +25,7 @@ function previousItem(list, item, disableListWrap) {
 function moveFocus(list, currentFocus, disableListWrap, traversalFunction) {
   let startingPoint = currentFocus;
   let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
+
   while (nextFocus) {
     if (nextFocus === startingPoint) {
       return;
@@ -46,16 +48,8 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction) {
   }
 }
 
-function focusNextItem(list, currentFocus, disableListWrap) {
-  moveFocus(list, currentFocus, disableListWrap, nextItem);
-}
-
-function focusPreviousItem(list, currentFocus, disableListWrap) {
-  moveFocus(list, currentFocus, disableListWrap, previousItem);
-}
-
 const MenuList = React.forwardRef(function MenuList(props, ref) {
-  const { actions, autoFocus, children, className, onKeyDown, disableListWrap, ...other } = props;
+  const { actions, autoFocus, className, onKeyDown, disableListWrap, ...other } = props;
   const listRef = React.useRef();
 
   React.useLayoutEffect(() => {
@@ -93,19 +87,19 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       (key === 'ArrowUp' || key === 'ArrowDown') &&
       (!currentFocus || (currentFocus && !list.contains(currentFocus)))
     ) {
-      focusNextItem(list, null, disableListWrap);
+      moveFocus(list, null, disableListWrap, nextItem);
     } else if (key === 'ArrowDown') {
       event.preventDefault();
-      focusNextItem(list, currentFocus, disableListWrap);
+      moveFocus(list, currentFocus, disableListWrap, nextItem);
     } else if (key === 'ArrowUp') {
       event.preventDefault();
-      focusPreviousItem(list, currentFocus, disableListWrap);
+      moveFocus(list, currentFocus, disableListWrap, previousItem);
     } else if (key === 'Home') {
       event.preventDefault();
-      focusNextItem(list, null, disableListWrap);
+      moveFocus(list, null, disableListWrap, nextItem);
     } else if (key === 'End') {
       event.preventDefault();
-      focusPreviousItem(list, null, disableListWrap);
+      moveFocus(list, null, disableListWrap, previousItem);
     }
 
     if (onKeyDown) {
@@ -127,9 +121,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       onKeyDown={handleKeyDown}
       tabIndex={autoFocus ? 0 : -1}
       {...other}
-    >
-      {children}
-    </List>
+    />
   );
 });
 

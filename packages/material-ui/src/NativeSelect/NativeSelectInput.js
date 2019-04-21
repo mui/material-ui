@@ -67,8 +67,8 @@ NativeSelectInput.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
-   * @deprecated
    * Use that property to pass a ref callback to the native select element.
+   * @deprecated
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**

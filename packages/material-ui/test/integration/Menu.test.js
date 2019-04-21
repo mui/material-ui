@@ -265,10 +265,10 @@ describe('<Menu> integration', () => {
       // it was so close to 100% that this has value in avoiding needing to drill into coverage
       // details to see what isn't being tested.
       mountTrackingMenu('menu', { themeDirection: 'rtl' });
-      assert.deepStrictEqual(contentAnchorTracker, [true, false, false]);
-      assert.deepStrictEqual(focusTracker, [false, false, false]);
+      assert.deepEqual(contentAnchorTracker, [true, false, false]);
+      assert.deepEqual(focusTracker, [false, false, false]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, false, false]);
+      assert.deepEqual(tabIndexTracker, [false, false, false]);
 
       // Adds coverage for Tab with no onClose
       TestUtils.Simulate.keyDown(document.activeElement, {
@@ -277,74 +277,74 @@ describe('<Menu> integration', () => {
     });
 
     it('[variant=menu] nothing selected', () => {
-      assert.deepStrictEqual(contentAnchorTracker, [true, false, false]);
-      assert.deepStrictEqual(focusTracker, [false, false, false]);
+      assert.deepEqual(contentAnchorTracker, [true, false, false]);
+      assert.deepEqual(focusTracker, [false, false, false]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, false, false]);
+      assert.deepEqual(tabIndexTracker, [false, false, false]);
     });
 
     it('[variant=menu] nothing selected, autoFocus on third', () => {
       mountTrackingMenu('menu', { autoFocusIndex: 2 });
-      assert.deepStrictEqual(contentAnchorTracker, [true, false, false]);
-      assert.deepStrictEqual(focusTracker, [false, false, true]);
+      assert.deepEqual(contentAnchorTracker, [true, false, false]);
+      assert.deepEqual(focusTracker, [false, false, true]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, false, false]);
+      assert.deepEqual(tabIndexTracker, [false, false, false]);
     });
 
     it('[variant=selectedMenu] nothing selected', () => {
       mountTrackingMenu('selectedMenu');
-      assert.deepStrictEqual(contentAnchorTracker, [true, false, false]);
-      assert.deepStrictEqual(focusTracker, [false, false, false]);
+      assert.deepEqual(contentAnchorTracker, [true, false, false]);
+      assert.deepEqual(focusTracker, [false, false, false]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, false, false]);
+      assert.deepEqual(tabIndexTracker, [false, false, false]);
     });
 
     it('[variant=selectedMenu] nothing selected, first index invalid', () => {
       mountTrackingMenu('selectedMenu', { invalidIndex: 0 });
-      assert.deepStrictEqual(contentAnchorTracker, [false, true, false]);
-      assert.deepStrictEqual(focusTracker, [false, false, false]);
+      assert.deepEqual(contentAnchorTracker, [false, true, false]);
+      assert.deepEqual(focusTracker, [false, false, false]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, false, false]);
+      assert.deepEqual(tabIndexTracker, [false, false, false]);
     });
 
     it('[variant=menu] second item selected', () => {
       mountTrackingMenu('menu', { selectedIndex: 1 });
-      assert.deepStrictEqual(contentAnchorTracker, [true, false, false]);
-      assert.deepStrictEqual(focusTracker, [false, false, false]);
+      assert.deepEqual(contentAnchorTracker, [true, false, false]);
+      assert.deepEqual(focusTracker, [false, false, false]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, false, false]);
+      assert.deepEqual(tabIndexTracker, [false, false, false]);
     });
 
     it('[variant=selectedMenu] second item selected, explicit tabIndex', () => {
       mountTrackingMenu('selectedMenu', { selectedIndex: 1, selectedTabIndex: 2 });
-      assert.deepStrictEqual(contentAnchorTracker, [false, true, false]);
-      assert.deepStrictEqual(focusTracker, [false, true, false]);
+      assert.deepEqual(contentAnchorTracker, [false, true, false]);
+      assert.deepEqual(focusTracker, [false, true, false]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, 2, false]);
+      assert.deepEqual(tabIndexTracker, [false, 2, false]);
     });
 
     it('[variant=selectedMenu] second item selected', () => {
       mountTrackingMenu('selectedMenu', { selectedIndex: 1 });
-      assert.deepStrictEqual(contentAnchorTracker, [false, true, false]);
-      assert.deepStrictEqual(focusTracker, [false, true, false]);
+      assert.deepEqual(contentAnchorTracker, [false, true, false]);
+      assert.deepEqual(focusTracker, [false, true, false]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, true, false]);
+      assert.deepEqual(tabIndexTracker, [false, true, false]);
     });
 
     it('[variant=selectedMenu] second item selected and disabled', () => {
       mountTrackingMenu('selectedMenu', { selectedIndex: 1, disabledIndex: 1 });
-      assert.deepStrictEqual(contentAnchorTracker, [true, false, false]);
-      assert.deepStrictEqual(focusTracker, [false, false, false]);
+      assert.deepEqual(contentAnchorTracker, [true, false, false]);
+      assert.deepEqual(focusTracker, [false, false, false]);
       assert.strictEqual(menuListFocusTracker, true);
-      assert.deepStrictEqual(tabIndexTracker, [false, false, false]);
+      assert.deepEqual(tabIndexTracker, [false, false, false]);
     });
 
     it('[variant=selectedMenu] second item selected, no autoFocus', () => {
       mountTrackingMenu('selectedMenu', { selectedIndex: 1, autoFocus: false });
-      assert.deepStrictEqual(contentAnchorTracker, [false, true, false]);
-      assert.deepStrictEqual(focusTracker, [false, false, false]);
+      assert.deepEqual(contentAnchorTracker, [false, true, false]);
+      assert.deepEqual(focusTracker, [false, false, false]);
       assert.strictEqual(menuListFocusTracker, false);
-      assert.deepStrictEqual(tabIndexTracker, [false, true, false]);
+      assert.deepEqual(tabIndexTracker, [false, true, false]);
     });
   });
 
