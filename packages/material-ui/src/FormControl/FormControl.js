@@ -46,7 +46,7 @@ export const styles = {
  *  - Input
  *  - InputLabel
  *
- * ⚠️ Only one input can be used within a FormControl.
+ * ⚠️Only one input can be used within a FormControl.
  */
 const FormControl = React.forwardRef(function FormControl(props, ref) {
   const {

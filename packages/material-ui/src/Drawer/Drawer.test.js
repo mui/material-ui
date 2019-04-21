@@ -159,11 +159,11 @@ describe('<Drawer />', () => {
 
         wrapper.setProps({ open: true });
         wrapper.update();
-        assert.strictEqual(wrapper.find('Slide').props().in, true);
+        assert.strictEqual(wrapper.find(Slide).props().in, true);
 
         wrapper.setProps({ open: false });
         wrapper.update();
-        assert.strictEqual(wrapper.find('Slide').props().in, false);
+        assert.strictEqual(wrapper.find(Slide).props().in, false);
       });
     });
   });
@@ -226,16 +226,16 @@ describe('<Drawer />', () => {
       );
 
       wrapper.setProps({ anchor: 'left' });
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'right');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
 
       wrapper.setProps({ anchor: 'right' });
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'left');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
 
       wrapper.setProps({ anchor: 'top' });
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'down');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'down');
 
       wrapper.setProps({ anchor: 'bottom' });
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'up');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'up');
     });
   });
 
@@ -252,11 +252,11 @@ describe('<Drawer />', () => {
 
       wrapper.setProps({ anchor: 'left' });
       // slide direction for left is right, if left is switched to right, we should get left
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'left');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
 
       wrapper.setProps({ anchor: 'right' });
       // slide direction for right is left, if right is switched to left, we should get right
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'right');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
     });
   });
 
