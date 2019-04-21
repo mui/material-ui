@@ -137,10 +137,10 @@ describe('<Textarea />', () => {
       assert.strictEqual(getHeight(wrapper), 30 - padding);
     });
 
-    it('should have at least "rowsMin" rows', () => {
-      const rowsMin = 3;
+    it('should have at least height of "rows"', () => {
+      const rows = 3;
       const lineHeight = 15;
-      const wrapper = mount(<Textarea rowsMin={rowsMin} />);
+      const wrapper = mount(<Textarea rows={rows} />);
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
@@ -150,7 +150,7 @@ describe('<Textarea />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), lineHeight * rowsMin);
+      assert.strictEqual(getHeight(wrapper), lineHeight * rows);
     });
 
     it('should have at max "rowsMax" rows', () => {

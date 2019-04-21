@@ -307,7 +307,6 @@ class InputBase extends React.Component {
       renderPrefix,
       rows,
       rowsMax,
-      rowsMin,
       startAdornment,
       type,
       value,
@@ -370,16 +369,13 @@ class InputBase extends React.Component {
         ref: null,
       };
     } else if (multiline) {
-      if (rows && !rowsMax && !rowsMin) {
-        InputComponent = 'textarea';
-      } else {
-        inputProps = {
-          rowsMax,
-          rowsMin,
-          ...inputProps,
-        };
-        InputComponent = Textarea;
-      }
+      InputComponent = 'textarea';
+      inputProps = {
+        rows,
+        rowsMax,
+        ...inputProps,
+      };
+      InputComponent = Textarea;
     } else {
       inputProps = {
         type,
@@ -567,10 +563,6 @@ InputBase.propTypes = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * Start `InputAdornment` for this component.
    */
