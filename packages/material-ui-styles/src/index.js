@@ -10,8 +10,8 @@ if (process.env.NODE_ENV !== 'production') {
     console.warn(
       [
         'It looks like there are several instances of `@material-ui/styles` initialized in this application.',
-        'This may cause theme propagation issue, broken class names ' +
-          'and makes you application bigger without a good reason.',
+        'This may cause theme propagation issues, broken class names ' +
+          'and makes your application bigger without a good reason.',
         '',
         'See https://next.material-ui.com/getting-started/faq#i-have-several-instances-of-styles-on-the-page for more info.',
       ].join('\n'),

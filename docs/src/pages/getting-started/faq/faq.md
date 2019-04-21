@@ -157,7 +157,7 @@ indicating that you can access the DOM element with a ref.
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
 
 > It looks like there are several instances of `@material-ui/styles` initialized in this application.
-This may cause theme propagation issue, broken class names and makes you application bigger without a good reason.
+This may cause theme propagation issues, broken class names and makes your application bigger without a good reason.
 
 ### Possible reasons
 
@@ -253,7 +253,7 @@ Then, the CSS is missing on the server for consecutive requests.
 
 We rely on a cache, the sheets manager, to only inject the CSS once per component type
 (if you use two buttons, you only need the CSS of the button one time).
-You need to create **a new `sheets` for each request**.
+You need to create **a new `sheets` instance for each request**.
 
 *example of fix:*
 ```diff
