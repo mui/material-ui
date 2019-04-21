@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable func-names */
 /* eslint-disable no-continue */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
