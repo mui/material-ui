@@ -408,7 +408,7 @@ Refer to [this example project](https://github.com/mui-org/material-ui/blob/next
 
 You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
 
-Refer to [this example](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next) for an up-to-date usage example.
 
 ## Class names
 
