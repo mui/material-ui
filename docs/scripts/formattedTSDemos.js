@@ -55,7 +55,7 @@ async function getFiles(root) {
   return files;
 }
 
-const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r\n|\r|\n)(\r\n|\r|\n)/g);
+const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r\n|\r|\n){2}/g);
 function fixBabelGeneratorIssues(source) {
   return source.replace(fixBabelIssuesRegExp, os.EOL);
 }
