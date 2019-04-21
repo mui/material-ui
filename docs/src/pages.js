@@ -21,7 +21,7 @@ const pages = [
       },
       {
         pathname: '/getting-started/faq',
-        title: 'Frequently Asked Questions',
+        title: 'FAQs',
       },
       {
         pathname: '/getting-started/supported-components',

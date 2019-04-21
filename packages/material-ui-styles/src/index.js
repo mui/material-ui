@@ -1,3 +1,26 @@
+import { ponyfillGlobal } from '@material-ui/utils';
+
+/* Warning if there are several instances of @material-ui/styles */
+if (process.env.NODE_ENV !== 'production') {
+  ponyfillGlobal['__@material-ui/styles-init__'] =
+    ponyfillGlobal['__@material-ui/styles-init__'] || 0;
+
+  if (ponyfillGlobal['__@material-ui/styles-init__'] === 1) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      [
+        'It looks like there are several instances of `@material-ui/styles` initialized in this application.',
+        'This may cause theme propagation issues, broken class names ' +
+          'and makes your application bigger without a good reason.',
+        '',
+        'See https://next.material-ui.com/getting-started/faq#i-have-several-instances-of-styles-on-the-page for more info.',
+      ].join('\n'),
+    );
+  }
+
+  ponyfillGlobal['__@material-ui/styles-init__'] += 1;
+}
+
 export { default as createGenerateClassName } from './createGenerateClassName';
 export { default as createStyles } from './createStyles';
 export { default as getThemeProps } from './getThemeProps';

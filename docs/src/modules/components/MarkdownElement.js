@@ -77,24 +77,26 @@ const markedOptions = {
   highlight(code, lang) {
     let language;
     switch (lang) {
-      case 'diff':
-        language = prism.languages.diff;
-        break;
-
-      case 'css':
-        language = prism.languages.css;
-        break;
-
       case 'ts':
-      case 'tsx':
         language = prism.languages.tsx;
         break;
 
       case 'js':
-      case 'jsx':
-      default:
+      case 'sh':
         language = prism.languages.jsx;
         break;
+
+      default:
+        language = prism.languages[lang];
+        break;
+    }
+
+    if (!language) {
+      if (lang) {
+        throw new Error(`unsuppored language: "${lang}", "${code}"`);
+      } else {
+        language = prism.languages.jsx;
+      }
     }
 
     return prism.highlight(code, language);
