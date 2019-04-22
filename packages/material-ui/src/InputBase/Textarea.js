@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForkRef } from '../utils/reactHelpers';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import { useForkRef } from '../utils/reactHelpers';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
@@ -28,7 +28,7 @@ const styles = {
  * To make public in v4+.
  */
 const Textarea = React.forwardRef(function Textarea(props, ref) {
-  const { onChange, rowsMax, rowsMin, style, value, ...other } = props;
+  const { onChange, rows, rowsMax, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef();
@@ -55,8 +55,8 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
     // The height of the outer content
     let outerHeight = innerHeight;
 
-    if (rowsMin != null) {
-      outerHeight = Math.max(Number(rowsMin) * singleRowHeight, outerHeight);
+    if (rows != null) {
+      outerHeight = Math.max(Number(rows) * singleRowHeight, outerHeight);
     }
     if (rowsMax != null) {
       outerHeight = Math.min(Number(rowsMax) * singleRowHeight, outerHeight);
@@ -85,7 +85,7 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
 
       return prevState;
     });
-  }, [setState, rowsMin, rowsMax, props.placeholder]);
+  }, [setState, rows, rowsMax, props.placeholder]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -152,13 +152,13 @@ Textarea.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Maximum number of rows to display when multiline option is set to true.
+   * Minimum umber of rows to display.
+   */
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Maximum number of rows to display.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * @ignore
    */
