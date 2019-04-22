@@ -60,8 +60,8 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
     onClose(value);
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
+  function handleChange(event: unknown, value: string) {
+    setValue(value);
   }
 
   return (
