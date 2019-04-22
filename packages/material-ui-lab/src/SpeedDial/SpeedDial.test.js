@@ -4,7 +4,6 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import {
   createMount,
-  createShallow,
   findOutermostIntrinsic,
   getClasses,
   wrapsIntrinsicElement,
@@ -16,7 +15,6 @@ import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
   let mount;
-  let shallow;
   let classes;
 
   const icon = <Icon>font_icon</Icon>;
@@ -34,7 +32,6 @@ describe('<SpeedDial />', () => {
   before(() => {
     // StrictModeViolation: uses ButtonBase
     mount = createMount({ strict: false });
-    shallow = createShallow({ dive: true });
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
@@ -52,7 +49,6 @@ describe('<SpeedDial />', () => {
         <SpeedDialAction icon={<Icon>save_icon</Icon>} tooltipTitle="Save" />
       </SpeedDial>,
     );
-
     wrapper.unmount();
   });
 
@@ -76,11 +72,11 @@ describe('<SpeedDial />', () => {
   });
 
   it('should render with a null child', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <SpeedDial {...defaultProps} icon={icon}>
-        <SpeedDialAction tooltipTitle="One" />
+        <SpeedDialAction icon={icon} tooltipTitle="One" />
         {null}
-        <SpeedDialAction tooltipTitle="Three" />
+        <SpeedDialAction icon={icon} tooltipTitle="Three" />
       </SpeedDial>,
     );
     assert.strictEqual(wrapper.find(SpeedDialAction).length, 2);
@@ -226,7 +222,7 @@ describe('<SpeedDial />', () => {
     let onkeydown;
     let wrapper;
 
-    const mountSpeedDial = (direction = 'up', actionCount = 6) => {
+    const mountSpeedDial = (direction = 'up', actionCount = 4) => {
       actionRefs = [];
       dialButtonRef = undefined;
       onkeydown = spy();
@@ -339,7 +335,10 @@ describe('<SpeedDial />', () => {
       });
     });
 
-    describe('actions navigation', () => {
+    // eslint-disable-next-line func-names
+    describe('actions navigation', function() {
+      this.timeout(5000); // This tests are really slow.
+
       /**
        * tests a combination of arrow keys on a focused SpeedDial
        */
