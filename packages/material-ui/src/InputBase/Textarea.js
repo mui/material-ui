@@ -9,6 +9,19 @@ function getStyleValue(computedStyle, property) {
 
 const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
+const styles = {
+  /* Styles applied to the shadow textarea element. */
+  shadow: {
+    // Visibility needed to hide the extra text area on iPads
+    visibility: 'hidden',
+    // Remove from the content flow
+    position: 'absolute',
+    // Ignore the scrollbar width
+    overflow: 'hidden',
+    height: '0',
+  },
+};
+
 /**
  * @ignore - internal component.
  *
@@ -20,27 +33,24 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef();
   const [state, setState] = React.useState({});
+  const shadowRef = React.useRef();
   const handleRef = useForkRef(ref, inputRef);
 
   const syncHeight = React.useCallback(() => {
     const input = inputRef.current;
-    const savedValue = input.value;
-    const savedHeight = input.style.height;
-    const savedOverflow = input.style.overflow;
-
-    input.style.overflow = 'hidden';
-    input.style.height = '0';
-
-    // The height of the inner content
-    input.value = savedValue || props.placeholder || 'x';
-    const innerHeight = input.scrollHeight;
+    const inputShallow = shadowRef.current;
 
     const computedStyle = window.getComputedStyle(input);
+    inputShallow.style.width = computedStyle.width;
+    inputShallow.value = input.value || props.placeholder || 'x';
+
+    // The height of the inner content
+    const innerHeight = inputShallow.scrollHeight;
     const boxSizing = computedStyle['box-sizing'];
 
     // Measure height of a textarea with a single row
-    input.value = 'x';
-    const singleRowHeight = input.scrollHeight;
+    inputShallow.value = 'x';
+    const singleRowHeight = inputShallow.scrollHeight;
 
     // The height of the outer content
     let outerHeight = innerHeight;
@@ -62,10 +72,6 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
         getStyleValue(computedStyle, 'border-bottom-width') +
         getStyleValue(computedStyle, 'border-top-width');
     }
-
-    input.style.overflow = savedOverflow;
-    input.style.height = savedHeight;
-    input.value = savedValue;
 
     setState(prevState => {
       // Need a large enough different to update the height.
@@ -108,17 +114,27 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
   };
 
   return (
-    <textarea
-      value={value}
-      onChange={handleChange}
-      ref={handleRef}
-      style={{
-        height: state.outerHeight,
-        overflow: state.outerHeight === state.innerHeight ? 'hidden' : null,
-        ...style,
-      }}
-      {...other}
-    />
+    <React.Fragment>
+      <textarea
+        value={value}
+        onChange={handleChange}
+        ref={handleRef}
+        style={{
+          height: state.outerHeight,
+          overflow: state.outerHeight === state.innerHeight ? 'hidden' : null,
+          ...style,
+        }}
+        {...other}
+      />
+      <textarea
+        aria-hidden="true"
+        className={props.className}
+        readOnly
+        ref={shadowRef}
+        tabIndex={-1}
+        style={{ ...styles.shadow, ...style }}
+      />
+    </React.Fragment>
   );
 });
 
