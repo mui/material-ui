@@ -109,8 +109,9 @@ function Tooltip(props) {
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
   // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(ref => {
-    setChildNode(ReactDOM.findDOMNode(ref));
+  const handleOwnRef = React.useCallback(instance => {
+    // #StrictMode ready
+    setChildNode(ReactDOM.findDOMNode(instance));
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 

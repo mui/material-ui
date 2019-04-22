@@ -23,8 +23,9 @@ function TrapFocus(props) {
   const lastFocus = React.useRef();
   const rootRef = React.useRef();
   // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(ref => {
-    rootRef.current = ReactDOM.findDOMNode(ref);
+  const handleOwnRef = React.useCallback(instance => {
+    // #StrictMode ready
+    rootRef.current = ReactDOM.findDOMNode(instance);
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 

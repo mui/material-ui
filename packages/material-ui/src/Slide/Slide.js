@@ -89,9 +89,9 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   /**
    * used in cloneElement(children, { ref: handleRef })
    */
-  const handleOwnRef = React.useCallback(refArg => {
+  const handleOwnRef = React.useCallback(instance => {
     // #StrictMode ready
-    childrenRef.current = ReactDOM.findDOMNode(refArg);
+    childrenRef.current = ReactDOM.findDOMNode(instance);
   }, []);
   const handleRefIntermediary = useForkRef(children.ref, handleOwnRef);
   const handleRef = useForkRef(handleRefIntermediary, ref);
