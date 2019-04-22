@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-console */
 /* eslint-disable no-continue */
 /* eslint-disable no-await-in-loop */
@@ -55,9 +56,22 @@ async function getFiles(root) {
   return files;
 }
 
-const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r\n|\r|\n){2}/g);
+function getLineFeed(source) {
+  if (source.length <= 1) return os.EOL;
+
+  for (let index = 1; index < source.length; index++) {
+    if (source[index] === '\n') {
+      if (source[index - 1] === '\r') return '\r\n';
+      return '\n';
+    }
+  }
+
+  return os.EOL;
+}
+
+const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r?\n){2}/g);
 function fixBabelGeneratorIssues(source) {
-  return source.replace(fixBabelIssuesRegExp, os.EOL);
+  return source.replace(fixBabelIssuesRegExp, getLineFeed(source));
 }
 
 async function transpileFile(filePath) {
