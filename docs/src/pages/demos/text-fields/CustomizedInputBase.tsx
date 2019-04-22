@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
@@ -9,31 +8,31 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 
-const styles = createStyles({
-  root: {
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
-    width: 400,
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-  divider: {
-    width: 1,
-    height: 28,
-    margin: 4,
-  },
-});
+const useStyles = makeStyles(
+  createStyles({
+    root: {
+      padding: '2px 4px',
+      display: 'flex',
+      alignItems: 'center',
+      width: 400,
+    },
+    input: {
+      marginLeft: 8,
+      flex: 1,
+    },
+    iconButton: {
+      padding: 10,
+    },
+    divider: {
+      width: 1,
+      height: 28,
+      margin: 4,
+    },
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
-
-function CustomizedInputBase(props: Props) {
-  const { classes } = props;
+function CustomizedInputBase() {
+  const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
@@ -52,8 +51,4 @@ function CustomizedInputBase(props: Props) {
   );
 }
 
-CustomizedInputBase.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(CustomizedInputBase);
+export default CustomizedInputBase;

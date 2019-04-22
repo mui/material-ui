@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Input from '@material-ui/core/Input';
 import InputBase from '@material-ui/core/InputBase';
@@ -12,7 +11,7 @@ import FilledInput from '@material-ui/core/FilledInput';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -87,7 +86,7 @@ const styles = theme => ({
       borderColor: theme.palette.primary.main,
     },
   },
-});
+}));
 
 const theme = createMuiTheme({
   palette: {
@@ -95,8 +94,8 @@ const theme = createMuiTheme({
   },
 });
 
-function CustomizedInputs(props) {
-  const { classes } = props;
+function CustomizedInputs() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -179,8 +178,4 @@ function CustomizedInputs(props) {
   );
 }
 
-CustomizedInputs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedInputs);
+export default CustomizedInputs;
