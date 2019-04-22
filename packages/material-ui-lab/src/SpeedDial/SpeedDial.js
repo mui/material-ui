@@ -73,6 +73,7 @@ class SpeedDial extends React.Component {
    * an index in this.actions
    */
   focusedAction = 0;
+
   /**
    * pressing this key while the focus is on a child SpeedDialAction focuses
    * the next SpeedDialAction.
