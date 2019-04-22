@@ -3,6 +3,7 @@
 /inbox / 301
 /trash / 301
 /spam / 301
+/demos/selection-controls/ /demos/radio-buttons/ 301
 /page-layout-examples/* /getting-started/page-layout-examples/:splat 301
 /guides/csp/ /css-in-js/advanced/#what-is-csp-and-why-is-it-useful 301
 /utils/modals/ /utils/modal/ 301
