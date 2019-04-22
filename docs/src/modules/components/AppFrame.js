@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LanguageIcon from '@material-ui/icons/Language';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import MuiLink from '@material-ui/core/Link';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
 import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
@@ -98,6 +99,25 @@ const styles = theme => ({
     marginLeft: theme.spacing(2),
     flex: '0 1 auto',
   },
+  skipNav: {
+    position: 'fixed',
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.background.paper,
+    transition: theme.transitions.create('top', {
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    left: theme.spacing(2),
+    top: theme.spacing(-6),
+    zIndex: theme.zIndex.tooltip + 1,
+    '&:focus': {
+      top: theme.spacing(2),
+      transition: theme.transitions.create('top', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+  },
   appBar: {
     transition: theme.transitions.create('width'),
     '@media print': {
@@ -121,6 +141,11 @@ const styles = theme => ({
   navIconHide: {
     [theme.breakpoints.up('lg')]: {
       display: 'none',
+    },
+  },
+  '@global': {
+    '#main-content': {
+      outline: 'none',
     },
   },
 });
@@ -197,6 +222,9 @@ class AppFrame extends React.Component {
             <div className={classes.root}>
               <NProgressBar />
               <CssBaseline />
+              <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
+                Skip to content
+              </MuiLink>
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
