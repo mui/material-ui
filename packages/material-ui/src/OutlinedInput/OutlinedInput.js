@@ -228,7 +228,7 @@ OutlinedInput.propTypes = {
   value: PropTypes.any,
 };
 
-InputBase.defaultProps = {
+OutlinedInput.defaultProps = {
   fullWidth: false,
   inputComponent: 'input',
   labelWidth: 0,
