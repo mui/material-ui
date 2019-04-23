@@ -151,7 +151,7 @@ jobs:
           command: yarn docs:typescript:formatted
       - run:
           name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
-          command: git diff --exit-code
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: Can we generate the documentation?
           command: yarn docs:api
