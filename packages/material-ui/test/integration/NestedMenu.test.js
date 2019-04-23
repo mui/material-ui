@@ -31,32 +31,32 @@ describe('<NestedMenu> integration', () => {
       assert.strictEqual(secondMenu, null);
     });
 
-    it('should focus the first item as nothing has been selected', () => {
+    it('should focus the list as nothing has been selected', () => {
       wrapper.setProps({ firstMenuOpen: true });
 
       portalLayer = wrapper
         .find(Portal)
         .instance()
         .getMountNode();
-      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('ul')[0]);
     });
 
-    it('should focus the first item of second menu', () => {
+    it('should focus the list of second menu', () => {
       wrapper.setProps({ firstMenuOpen: false, secondMenuOpen: true });
       const secondMenu = document.getElementById('second-menu');
-      assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('li')[0]);
+      assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('ul')[0]);
     });
 
     it('should open the first menu again', () => {
       wrapper.setProps({ firstMenuOpen: true, secondMenuOpen: false });
       const firstMenu = document.getElementById('first-menu');
-      assert.strictEqual(document.activeElement, firstMenu.querySelectorAll('li')[0]);
+      assert.strictEqual(document.activeElement, firstMenu.querySelectorAll('ul')[0]);
     });
 
     it('should be able to open second menu again', () => {
       wrapper.setProps({ firstMenuOpen: false, secondMenuOpen: true });
       const secondMenu = document.getElementById('second-menu');
-      assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('li')[0]);
+      assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('ul')[0]);
     });
   });
 });

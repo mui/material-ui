@@ -81,7 +81,7 @@ interface State {
 
 function FormattedInputs() {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
+  const [values, setValues] = React.useState<State>({
     textmask: '(1  )    -    ',
     numberformat: '1320',
   });

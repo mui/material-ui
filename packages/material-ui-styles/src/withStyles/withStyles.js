@@ -76,8 +76,8 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
      */
     classes: PropTypes.object,
     /**
-     * @deprecated
      * Use that property to pass a ref callback to the decorated component.
+     * @deprecated
      */
     innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), props => {
       if (props.innerRef == null) {

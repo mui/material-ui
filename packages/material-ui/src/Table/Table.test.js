@@ -60,7 +60,7 @@ describe('<Table />', () => {
       </Table>,
     );
 
-    assert.deepStrictEqual(context, {
+    assert.deepEqual(context, {
       size: 'medium',
       padding: 'default',
     });

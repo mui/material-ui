@@ -29,9 +29,9 @@ function ClickAwayListener(props) {
 
   const nodeRef = React.useRef();
   // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(ref => {
+  const handleOwnRef = React.useCallback(instance => {
     // #StrictMode ready
-    nodeRef.current = ReactDOM.findDOMNode(ref);
+    nodeRef.current = ReactDOM.findDOMNode(instance);
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 

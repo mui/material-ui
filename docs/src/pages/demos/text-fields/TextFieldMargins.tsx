@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',
@@ -14,12 +13,11 @@ const styles = (theme: Theme) =>
       marginRight: theme.spacing(1),
       width: 200,
     },
-  });
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
-
-const TextFieldMargins = (props: Props) => {
-  const { classes } = props;
+function TextFieldMargins() {
+  const classes = useStyles();
 
   return (
     <div className={classes.container}>
@@ -48,10 +46,6 @@ const TextFieldMargins = (props: Props) => {
       />
     </div>
   );
-};
+}
 
-TextFieldMargins.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(TextFieldMargins);
+export default TextFieldMargins;
