@@ -1,13 +1,10 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
-import createStyles from '@material-ui/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
-import { Theme } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export type SlideDirection = 'right' | 'left';
-interface SlideTransitionProps extends WithStyles<typeof styles> {
+interface SlideTransitionProps {
   transKey: React.Key;
   className?: string;
   slideDirection: SlideDirection;
@@ -15,61 +12,64 @@ interface SlideTransitionProps extends WithStyles<typeof styles> {
 }
 
 const animationDuration = 350;
-export const styles = (theme: Theme) => {
-  const slideTransition = theme.transitions.create('transform', {
-    duration: animationDuration,
-    easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
-  });
+export const useStyles = makeStyles(
+  (theme: Theme) => {
+    const slideTransition = theme.transitions.create('transform', {
+      duration: animationDuration,
+      easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
+    });
 
-  return createStyles({
-    transitionContainer: {
-      display: 'block',
-      position: 'relative',
-      '& > *': {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        left: 0,
+    return {
+      transitionContainer: {
+        display: 'block',
+        position: 'relative',
+        '& > *': {
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          left: 0,
+        },
       },
-    },
-    'slideEnter-left': {
-      willChange: 'transform',
-      transform: 'translate(100%)',
-    },
-    'slideEnter-right': {
-      willChange: 'transform',
-      transform: 'translate(-100%)',
-    },
-    slideEnterActive: {
-      transform: 'translate(0%)',
-      transition: slideTransition,
-    },
-    slideExit: {
-      transform: 'translate(0%)',
-    },
-    'slideExitActiveLeft-left': {
-      willChange: 'transform',
-      transform: 'translate(-200%)',
-      transition: slideTransition,
-    },
-    'slideExitActiveLeft-right': {
-      willChange: 'transform',
-      transform: 'translate(200%)',
-      transition: slideTransition,
-    },
-  });
-};
+      'slideEnter-left': {
+        willChange: 'transform',
+        transform: 'translate(100%)',
+      },
+      'slideEnter-right': {
+        willChange: 'transform',
+        transform: 'translate(-100%)',
+      },
+      slideEnterActive: {
+        transform: 'translate(0%)',
+        transition: slideTransition,
+      },
+      slideExit: {
+        transform: 'translate(0%)',
+      },
+      'slideExitActiveLeft-left': {
+        willChange: 'transform',
+        transform: 'translate(-200%)',
+        transition: slideTransition,
+      },
+      'slideExitActiveLeft-right': {
+        willChange: 'transform',
+        transform: 'translate(200%)',
+        transition: slideTransition,
+      },
+    };
+  },
+  { name: 'MuiPickersSlideTransition' }
+);
 
 const SlideTransition: React.SFC<SlideTransitionProps> = ({
-  classes,
-  className = null,
   children,
   transKey,
   slideDirection,
+  className = null,
 }) => {
+  const classes = useStyles();
   const transitionClasses = {
-    enterActive: classes.slideEnterActive,
     exit: classes.slideExit,
+    enterActive: classes.slideEnterActive,
     // @ts-ignore
     enter: classes['slideEnter-' + slideDirection],
     // @ts-ignore
@@ -86,25 +86,15 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
       }
     >
       <CSSTransition
-        key={transKey + slideDirection}
         mountOnEnter
         unmountOnExit
+        key={transKey + slideDirection}
         timeout={animationDuration}
-        children={children}
         classNames={transitionClasses}
+        children={children}
       />
     </TransitionGroup>
   );
 };
 
-(SlideTransition as any).propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
-  transKey: PropTypes.string.isRequired,
-  innerRef: PropTypes.any,
-};
-
-export default withStyles(styles, {
-  name: 'MuiPickersSlideTransition',
-})(SlideTransition);
+export default SlideTransition;

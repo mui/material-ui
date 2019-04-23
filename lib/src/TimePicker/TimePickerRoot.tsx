@@ -10,7 +10,7 @@ import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../typings/date';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
-import { WithStyles, withStyles, createStyles } from '@material-ui/styles';
+import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 
 export interface BaseTimePickerProps {
@@ -70,7 +70,7 @@ export const styles = () =>
 export interface TimePickerProps
   extends BaseTimePickerProps,
     WithUtilsProps,
-    WithStyles<typeof styles, true> {
+    WithStyles<typeof styles> {
   theme: Theme;
   date: MaterialUiPickersDate;
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
@@ -83,17 +83,12 @@ interface TimePickerState {
 
 export class TimePickerRoot extends React.Component<TimePickerProps> {
   public static propTypes: any = {
-    date: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired,
-    utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
     seconds: PropTypes.bool,
     minutesStep: PropTypes.number,
-    innerRef: PropTypes.any,
   };
 
   public static defaultProps = {
-    children: null,
     ampm: true,
     seconds: false,
     minutesStep: 1,

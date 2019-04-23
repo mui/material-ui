@@ -111,7 +111,6 @@ describe('e2e -- DatePickerRoot views year and month', () => {
     expect(component.find('Year').length).toBe(201);
 
     year.first().simulate('click');
-
     expect(component.find('Month').length).toBe(12);
   });
 

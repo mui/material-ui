@@ -7,13 +7,13 @@ import { styles as TimePickerStyles } from '../TimePicker/TimePickerRoot';
 import { styles as CalendarStyles } from '../DatePicker/components/Calendar';
 import { styles as MuiPickersYearStyles } from '../DatePicker/components/Year';
 import { StyleRules, StyleRulesCallback } from '@material-ui/styles/withStyles';
-import { styles as MuiPickersMonthStyles } from '../DatePicker/components/Month';
 import { styles as ClockNumberStyles } from '../TimePicker/components/ClockNumber';
+import { useStyles as MuiPickersMonthStyles } from '../DatePicker/components/Month';
 import { styles as ClockPointerStyles } from '../TimePicker/components/ClockPointer';
 import { styles as DTTabsStyles } from '../DateTimePicker/components/DateTimePickerTabs';
 import { styles as CalendarHeaderStyles } from '../DatePicker/components/CalendarHeader';
-import { styles as SlideTransitionStyles } from '../DatePicker/components/SlideTransition';
 import { styles as DTHeaderStyles } from '../DateTimePicker/components/DateTimePickerHeader';
+import { useStyles as SlideTransitionStyles } from '../DatePicker/components/SlideTransition';
 import { styles as MuiPickersYearSelectionStyles } from '../DatePicker/components/YearSelection';
 import { styles as MuiPickersMonthSelectionStyles } from '../DatePicker/components/MonthSelection';
 

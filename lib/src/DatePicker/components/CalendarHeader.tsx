@@ -1,9 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import createStyles from '@material-ui/styles/createStyles';
 import SlideTransition, { SlideDirection } from './SlideTransition';
-import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import { DateType } from '@date-io/type';
 import { Theme } from '@material-ui/core';
@@ -11,6 +9,7 @@ import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../_shared/icons/ArrowRightIcon';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
 export interface CalendarHeaderProps extends WithStyles<typeof styles, true> {
   currentMonth: DateType;

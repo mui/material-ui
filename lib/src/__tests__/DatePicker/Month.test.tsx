@@ -8,7 +8,7 @@ describe('Month', () => {
 
   beforeEach(() => {
     component = shallow(
-      <Month classes={{} as any} value={utilsToUse.date('01-01-2017')} onSelect={jest.fn()}>
+      <Month value={utilsToUse.date('01-01-2017')} onSelect={jest.fn()}>
         Oct
       </Month>
     );
@@ -24,12 +24,7 @@ describe('Month - disabled state', () => {
 
   beforeEach(() => {
     component = shallow(
-      <Month
-        classes={{} as any}
-        disabled
-        value={utilsToUse.date('01-01-2017')}
-        onSelect={jest.fn()}
-      >
+      <Month disabled value={utilsToUse.date('01-01-2017')} onSelect={jest.fn()}>
         Oct
       </Month>
     );

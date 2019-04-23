@@ -3,6 +3,14 @@ import TimePicker, { TimePickerProps } from '../../TimePicker/TimePickerRoot';
 import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
 
+const fakeTouchEvent = {
+  buttons: 1,
+  nativeEvent: {
+    offsetX: 20,
+    offsetY: 15,
+  },
+};
+
 describe('e2e - TimePicker', () => {
   let component: ReactWrapper<TimePickerProps>;
   const onChangeMock = jest.fn();
@@ -19,30 +27,26 @@ describe('e2e - TimePicker', () => {
   });
 
   it('Should submit onChange on moving', () => {
-    component.find('Clock div[role="menu"]').simulate('mouseMove', {
-      buttons: 1,
-      nativeEvent: {
-        offsetX: 20,
-        offsetY: 15,
-      },
-    });
+    component.find('Clock div[role="menu"]').simulate('mouseMove', fakeTouchEvent);
 
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it('Should submit hourview (mouse move)', () => {
-    component.find('Clock div[role="menu"]').simulate('mouseUp', {
-      nativeEvent: {
-        offsetX: 20,
-        offsetY: 15,
-      },
-    });
+    component
+      .find('WithStyles(ToolbarButton)')
+      .at(1)
+      .simulate('click');
+    component.find('Clock div[role="menu"]').simulate('mouseUp', fakeTouchEvent);
 
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it('Should change minutes (touch)', () => {
-    component.setState({ openView: 'minutes' });
+    component
+      .find('WithStyles(ToolbarButton)')
+      .at(2)
+      .simulate('click');
     component.find('Clock div[role="menu"]').simulate('touchMove', {
       buttons: 1,
       changedTouches: [

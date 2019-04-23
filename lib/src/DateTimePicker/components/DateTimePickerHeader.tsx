@@ -4,12 +4,11 @@ import clsx from 'clsx';
 import ToolbarText from '../../_shared/ToolbarText';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
-import createStyles from '@material-ui/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { DateTimePickerViewType } from '../DateTimePickerRoot';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
+import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
 
 export const styles = (theme: Theme) =>
   createStyles({

@@ -3,10 +3,10 @@ import * as PropTypes from 'prop-types';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
-import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
 import { TimeIcon } from '../../_shared/icons/TimeIcon';
 import { DateTimePickerViewType } from '../DateTimePickerRoot';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { DateRangeIcon } from '../../_shared/icons/DateRangeIcon';
 
 const viewToTabIndex = (openView: DateTimePickerViewType) => {

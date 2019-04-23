@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { Theme, makeStyles } from '@material-ui/core';
+import { Theme, makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(
   (theme: Theme) => ({

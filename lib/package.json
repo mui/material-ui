@@ -43,7 +43,7 @@
     "@types/styled-jsx": "^2.2.8",
     "clsx": "^1.0.2",
     "react-event-listener": "^0.6.6",
-    "react-transition-group": "^2.5.3",
+    "react-transition-group": "^4.0.0",
     "rifm": "^0.7.0",
     "tslib": "^1.9.3"
   },
