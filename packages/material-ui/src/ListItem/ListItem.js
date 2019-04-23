@@ -4,8 +4,10 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { isMuiElement } from '../utils/reactHelpers';
+import { isMuiElement, useForkRef } from '../utils/reactHelpers';
 import ListContext from '../List/ListContext';
+import ReactDOM from 'react-dom';
+import warning from 'warning';
 
 export const styles = theme => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -86,6 +88,7 @@ export const styles = theme => ({
 const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
     alignItems,
+    autoFocus,
     button,
     children: childrenProp,
     classes,
@@ -107,10 +110,29 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     dense: dense || context.dense || false,
     alignItems,
   };
+  const listItemRef = React.useRef();
+  React.useLayoutEffect(() => {
+    if (autoFocus) {
+      if (listItemRef.current) {
+        listItemRef.current.focus();
+      } else {
+        warning(
+          false,
+          'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
+        );
+      }
+    }
+  }, [autoFocus]);
 
   const children = React.Children.toArray(childrenProp);
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
+
+  const handleOwnRef = React.useCallback(instance => {
+    // #StrictMode ready
+    listItemRef.current = ReactDOM.findDOMNode(instance);
+  }, []);
+  const handleRef = useForkRef(handleOwnRef, ref);
 
   const componentProps = {
     className: clsx(
@@ -155,7 +177,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
       <ListContext.Provider value={childContext}>
         <ContainerComponent
           className={clsx(classes.container, ContainerClassName)}
-          ref={ref}
+          ref={handleRef}
           {...ContainerProps}
         >
           <Component {...componentProps}>{children}</Component>
@@ -167,7 +189,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 
   return (
     <ListContext.Provider value={childContext}>
-      <Component ref={ref} {...componentProps}>
+      <Component ref={handleRef} {...componentProps}>
         {children}
       </Component>
     </ListContext.Provider>
@@ -179,6 +201,11 @@ ListItem.propTypes = {
    * Defines the `align-items` style property.
    */
   alignItems: PropTypes.oneOf(['flex-start', 'center']),
+  /**
+   * If `true`, the list item will be focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   */
+  autoFocus: PropTypes.bool,
   /**
    * If `true`, the list item will be a button (using `ButtonBase`).
    */

@@ -19,9 +19,10 @@ import Menu from '@material-ui/core/Menu';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">anchorEl</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br></span> |  | The DOM element used to set the position of the menu. |
+| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true` (default), the menu list (possibly a particular item depending on the menu variant) will receive focus on open. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Menu contents, normally `MenuItem`s. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">disableAutoFocusItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the selected / first menu item will not be auto focused. |
+| <span class="prop-name">disableAutoFocusItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Same as `autoFocus=false`. |
 | <span class="prop-name">MenuListProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`MenuList`](/api/menu-list/) element. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"` |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |  | Callback fired before the Menu enters. |
@@ -33,6 +34,7 @@ import Menu from '@material-ui/core/Menu';
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the menu is visible. |
 | <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object</span> |  | `classes` property applied to the [`Popover`](/api/popover/) element. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br></span> | <span class="prop-default">'auto'</span> | The length of the transition in `ms`, or 'auto' |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'menu'&nbsp;&#124;<br>&nbsp;'selectedMenu'<br></span> | <span class="prop-default">'selectedMenu'</span> | The variant to use. Use `menu` to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element. |
 
 The `ref` is forwarded to the root element.
 
@@ -47,6 +49,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
+| <span class="prop-name">list</span> | Styles applied to the `List` component via `MenuList`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Menu/Menu.js)

@@ -202,6 +202,18 @@ describe('<SelectInput />', () => {
 
     it('should ignore onBlur the first time the menu is open', () => {
       const handleBlur = spy();
+      wrapper.setProps({ onBlur: handleBlur });
+
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
+      assert.strictEqual(wrapper.find(MenuItem).exists(), true);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
+      assert.strictEqual(handleBlur.callCount, 0);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
+      assert.strictEqual(handleBlur.callCount, 1);
+    });
+
+    it('should pass "name" as part of the event.target for onBlur', () => {
+      const handleBlur = spy();
       wrapper.setProps({ onBlur: handleBlur, name: 'blur-testing' });
 
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
@@ -390,6 +402,19 @@ describe('<SelectInput />', () => {
         assert.strictEqual(wrapper.find(MenuItem).exists(), true);
         assert.strictEqual(handleChange.callCount, 2);
         assert.deepEqual(handleChange.args[1][0].target.value, [30, 10]);
+      });
+    });
+
+    describe('no selection', () => {
+      it('should focus list if no selection', () => {
+        const wrapper = mount(<SelectInput {...defaultProps} value="" autoFocus />);
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
+        assert.strictEqual(wrapper.find(MenuItem).exists(), true);
+        const portalLayer = wrapper
+          .find(Portal)
+          .instance()
+          .getMountNode();
+        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('ul')[0]);
       });
     });
 
