@@ -48,11 +48,13 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction) {
   }
 }
 
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
 const MenuList = React.forwardRef(function MenuList(props, ref) {
   const { actions, autoFocus, className, onKeyDown, disableListWrap, ...other } = props;
   const listRef = React.useRef();
 
-  React.useLayoutEffect(() => {
+  useEnhancedEffect(() => {
     if (autoFocus) {
       listRef.current.focus();
     }
