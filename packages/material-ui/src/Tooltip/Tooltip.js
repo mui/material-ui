@@ -212,7 +212,7 @@ function Tooltip(props) {
       setChildNode(event.currentTarget);
     }
 
-    if (isKeyboardFocus()) {
+    if (isKeyboardFocus(event)) {
       handleEnter(event);
     }
 
