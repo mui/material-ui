@@ -42,6 +42,9 @@ export const styles = {
       pointerEvents: 'none', // Disable link interactions
       cursor: 'default',
     },
+    '&:focus-visible': {
+      backgroundColor: 'black',
+    },
   },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
