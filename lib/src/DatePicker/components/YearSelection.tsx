@@ -5,14 +5,15 @@ import createStyles from '@material-ui/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 // @ts-ignore
 import { findDOMNode } from 'react-dom';
+import { DateType } from '@date-io/type';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { DomainPropTypes } from '../../constants/prop-types';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { DateType, DomainPropTypes } from '../../constants/prop-types';
 
 export interface YearSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
   date: MaterialUiPickersDate;
-  minDate?: DateType;
-  maxDate?: DateType;
+  minDate: DateType;
+  maxDate: DateType;
   onChange: (date: MaterialUiPickersDate) => void;
   disablePast?: boolean | null | undefined;
   disableFuture?: boolean | null | undefined;
@@ -32,8 +33,6 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
 
   public static defaultProps = {
     animateYearScrolling: false,
-    minDate: new Date('1900-01-01'),
-    maxDate: new Date('2100-01-01'),
   };
 
   public selectedYearRef?: React.ReactInstance = undefined;

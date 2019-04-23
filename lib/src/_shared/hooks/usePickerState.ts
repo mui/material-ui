@@ -10,7 +10,10 @@ export interface HookOptions {
   getValidationError: () => React.ReactNode;
 }
 
-const valueToDate = (utils: IUtils<any>, { value, initialFocusedDate }: BasePickerProps) => {
+const valueToDate = (
+  utils: IUtils<MaterialUiPickersDate>,
+  { value, initialFocusedDate }: BasePickerProps
+) => {
   const initialDate = value || initialFocusedDate || utils.date();
   const date = utils.date(initialDate);
 
@@ -20,7 +23,7 @@ const valueToDate = (utils: IUtils<any>, { value, initialFocusedDate }: BasePick
 function useDateValues(props: BasePickerProps, options: HookOptions) {
   const utils = useUtils();
   const date = valueToDate(utils, props);
-  const acceptedDateRef = useRef(props.value);
+  const acceptedDateRef = useRef(date);
   const format = props.format || options.getDefaultFormat();
 
   return { acceptedDateRef, date, format };
@@ -63,9 +66,9 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
   useEffect(() => {
     if (!isOpen) {
       // if value was changed in closed state treat it as accepted
-      acceptedDateRef.current = props.value;
+      acceptedDateRef.current = date;
     }
-  }, [acceptedDateRef, isOpen, props.value]);
+  }, [acceptedDateRef, date, isOpen, props.value]);
 
   const validationError = options.getValidationError();
   if (validationError && props.onError) {

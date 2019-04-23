@@ -101,39 +101,6 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
-    "onChange": {
-      "defaultValue": null,
-      "description": "onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any) => void" }
-    },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
-      "name": "onError",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
-    },
-    "onClose": {
-      "defaultValue": null,
-      "description": "On close callback",
-      "name": "onClose",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "() => void" }
-    },
     "PopoverProps": {
       "defaultValue": null,
       "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
@@ -144,6 +111,17 @@
       },
       "required": false,
       "type": { "name": "Partial<PopoverProps>" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -161,7 +139,18 @@
       "description": "Displaying variant",
       "name": "variant",
       "required": false,
-      "type": { "name": "\"inline\" | \"dialog\"" }
+      "type": { "name": "\"dialog\" | \"inline\"" }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
     },
     "value": {
       "defaultValue": null,
@@ -172,7 +161,7 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -216,7 +205,7 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "invalidLabel": {
       "defaultValue": { "value": "'unknown'" },
@@ -244,6 +233,17 @@
       "defaultValue": null,
       "description": "On open callback",
       "name": "onOpen",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -304,7 +304,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "maxDate": {
       "defaultValue": { "value": "Date(2100-01-01)" },
@@ -315,7 +315,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "disablePast": {
       "defaultValue": { "value": "false" },
@@ -497,50 +497,6 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
-    "onChange": {
-      "defaultValue": null,
-      "description": "Keyboard onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
-        "name": "BaseKeyboardPickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any, value: string) => void" }
-    },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
-      "name": "onError",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
-    },
-    "onClose": {
-      "defaultValue": null,
-      "description": "On close callback",
-      "name": "onClose",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "() => void" }
-    },
-    "mask": {
-      "defaultValue": null,
-      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
-      "name": "mask",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
-        "name": "KeyboardDateInputProps"
-      },
-      "required": false,
-      "type": { "name": "string" }
-    },
     "PopoverProps": {
       "defaultValue": null,
       "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
@@ -563,6 +519,17 @@
       "required": false,
       "type": { "name": "string" }
     },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Keyboard onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any, value: string) => void" }
+    },
     "format": {
       "defaultValue": null,
       "description": "Format string",
@@ -579,7 +546,18 @@
       "description": "Displaying variant",
       "name": "variant",
       "required": false,
-      "type": { "name": "\"inline\" | \"dialog\"" }
+      "type": { "name": "\"dialog\" | \"inline\"" }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
     },
     "value": {
       "defaultValue": null,
@@ -590,7 +568,18 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
+    },
+    "mask": {
+      "defaultValue": null,
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -602,6 +591,17 @@
       },
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
     },
     "maskChar": {
       "defaultValue": { "value": "'_'" },
@@ -678,7 +678,7 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "invalidLabel": {
       "defaultValue": { "value": "'unknown'" },
@@ -733,7 +733,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "maxDate": {
       "defaultValue": { "value": "Date(2100-01-01)" },
@@ -744,7 +744,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "disablePast": {
       "defaultValue": { "value": "false" },
@@ -959,39 +959,6 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
-    "onChange": {
-      "defaultValue": null,
-      "description": "onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any) => void" }
-    },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
-      "name": "onError",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
-    },
-    "onClose": {
-      "defaultValue": null,
-      "description": "On close callback",
-      "name": "onClose",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "() => void" }
-    },
     "PopoverProps": {
       "defaultValue": null,
       "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
@@ -1002,6 +969,17 @@
       },
       "required": false,
       "type": { "name": "Partial<PopoverProps>" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -1019,7 +997,18 @@
       "description": "Displaying variant",
       "name": "variant",
       "required": false,
-      "type": { "name": "\"inline\" | \"dialog\"" }
+      "type": { "name": "\"dialog\" | \"inline\"" }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
     },
     "value": {
       "defaultValue": null,
@@ -1030,7 +1019,7 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -1074,7 +1063,7 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "invalidLabel": {
       "defaultValue": { "value": "'unknown'" },
@@ -1102,6 +1091,17 @@
       "defaultValue": null,
       "description": "On open callback",
       "name": "onOpen",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1177,50 +1177,6 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
-    "onChange": {
-      "defaultValue": null,
-      "description": "Keyboard onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
-        "name": "BaseKeyboardPickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any, value: string) => void" }
-    },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
-      "name": "onError",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
-    },
-    "onClose": {
-      "defaultValue": null,
-      "description": "On close callback",
-      "name": "onClose",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "() => void" }
-    },
-    "mask": {
-      "defaultValue": null,
-      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
-      "name": "mask",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
-        "name": "KeyboardDateInputProps"
-      },
-      "required": false,
-      "type": { "name": "string" }
-    },
     "PopoverProps": {
       "defaultValue": null,
       "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
@@ -1243,6 +1199,17 @@
       "required": false,
       "type": { "name": "string" }
     },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Keyboard onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any, value: string) => void" }
+    },
     "format": {
       "defaultValue": null,
       "description": "Format string",
@@ -1259,7 +1226,18 @@
       "description": "Displaying variant",
       "name": "variant",
       "required": false,
-      "type": { "name": "\"inline\" | \"dialog\"" }
+      "type": { "name": "\"dialog\" | \"inline\"" }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
     },
     "value": {
       "defaultValue": null,
@@ -1270,7 +1248,18 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
+    },
+    "mask": {
+      "defaultValue": null,
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -1282,6 +1271,17 @@
       },
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
     },
     "maskChar": {
       "defaultValue": { "value": "'_'" },
@@ -1358,7 +1358,7 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "invalidLabel": {
       "defaultValue": { "value": "'unknown'" },
@@ -1477,7 +1477,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "maxDate": {
       "defaultValue": { "value": "Date(2100-01-01)" },
@@ -1488,7 +1488,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "disablePast": {
       "defaultValue": { "value": "false" },
@@ -1624,39 +1624,6 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
-    "value": {
-      "defaultValue": null,
-      "description": "Picker value",
-      "name": "value",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "DateType" }
-    },
-    "onChange": {
-      "defaultValue": null,
-      "description": "onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any) => void" }
-    },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
-      "name": "onError",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
-    },
     "open": {
       "defaultValue": null,
       "description": "Controlled picker open state",
@@ -1686,17 +1653,6 @@
       "required": false,
       "type": { "name": "boolean" }
     },
-    "onClose": {
-      "defaultValue": null,
-      "description": "On close callback",
-      "name": "onClose",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "() => void" }
-    },
     "PopoverProps": {
       "defaultValue": null,
       "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
@@ -1707,6 +1663,17 @@
       },
       "required": false,
       "type": { "name": "Partial<PopoverProps>" }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -1725,6 +1692,28 @@
       "name": "variant",
       "required": false,
       "type": { "name": "\"dialog\" | \"inline\"" }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
+    },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "ParsableDate" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -1768,7 +1757,7 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "invalidLabel": {
       "defaultValue": { "value": "'unknown'" },
@@ -1796,6 +1785,17 @@
       "defaultValue": null,
       "description": "On open callback",
       "name": "onOpen",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1897,7 +1897,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "maxDate": {
       "defaultValue": { "value": "Date(2100-01-01)" },
@@ -1908,7 +1908,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "disablePast": {
       "defaultValue": { "value": "false" },
@@ -2044,50 +2044,6 @@
       "required": false,
       "type": { "name": "(date: any) => void" }
     },
-    "mask": {
-      "defaultValue": null,
-      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
-      "name": "mask",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
-        "name": "KeyboardDateInputProps"
-      },
-      "required": false,
-      "type": { "name": "string" }
-    },
-    "value": {
-      "defaultValue": null,
-      "description": "Picker value",
-      "name": "value",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "DateType" }
-    },
-    "onChange": {
-      "defaultValue": null,
-      "description": "Keyboard onChange callback",
-      "name": "onChange",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
-        "name": "BaseKeyboardPickerProps"
-      },
-      "required": true,
-      "type": { "name": "(date: any, value: string) => void" }
-    },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
-      "name": "onError",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
-    },
     "open": {
       "defaultValue": null,
       "description": "Controlled picker open state",
@@ -2117,17 +2073,6 @@
       "required": false,
       "type": { "name": "boolean" }
     },
-    "onClose": {
-      "defaultValue": null,
-      "description": "On close callback",
-      "name": "onClose",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "() => void" }
-    },
     "PopoverProps": {
       "defaultValue": null,
       "description": "Popover props passed to material-ui Popover (with variant=\"inline\")",
@@ -2150,6 +2095,17 @@
       "required": false,
       "type": { "name": "string" }
     },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Keyboard onChange callback",
+      "name": "onChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
+        "name": "BaseKeyboardPickerProps"
+      },
+      "required": true,
+      "type": { "name": "(date: any, value: string) => void" }
+    },
     "format": {
       "defaultValue": null,
       "description": "Format string",
@@ -2168,6 +2124,39 @@
       "required": false,
       "type": { "name": "\"dialog\" | \"inline\"" }
     },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed",
+      "name": "onError",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(error: ReactNode, value: any) => void" }
+    },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": { "name": "ParsableDate" }
+    },
+    "mask": {
+      "defaultValue": null,
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "string" }
+    },
     "inputVariant": {
       "defaultValue": null,
       "description": "Pass material-ui text field variant down, bypass internal variant prop",
@@ -2178,6 +2167,17 @@
       },
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "() => void" }
     },
     "maskChar": {
       "defaultValue": { "value": "'_'" },
@@ -2254,7 +2254,7 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "DateType" }
+      "type": { "name": "ParsableDate" }
     },
     "invalidLabel": {
       "defaultValue": { "value": "'unknown'" },

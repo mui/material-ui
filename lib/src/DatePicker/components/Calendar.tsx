@@ -7,7 +7,6 @@ import EventListener from 'react-event-listener';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { Theme } from '@material-ui/core';
-import { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
@@ -52,8 +51,8 @@ export interface CalendarProps
     WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-  minDate?: DateType;
-  maxDate?: DateType;
+  minDate?: MaterialUiPickersDate;
+  maxDate?: MaterialUiPickersDate;
   disablePast?: boolean;
   disableFuture?: boolean;
 }
@@ -113,14 +112,14 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
       const closestEnabledDate = findClosestEnabledDate({
         date,
         utils,
-        minDate,
-        maxDate,
+        minDate: utils.date(minDate),
+        maxDate: utils.date(maxDate),
         disablePast: Boolean(disablePast),
         disableFuture: Boolean(disableFuture),
         shouldDisableDate: this.shouldDisableDate,
       });
 
-      this.onDateSelect(closestEnabledDate || minDate, false);
+      this.onDateSelect(closestEnabledDate, false);
     }
   }
 
@@ -155,7 +154,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
     const now = utils.date();
     const firstEnabledMonth = utils.startOfMonth(
-      disablePast && utils.isAfter(now, minDate) ? now : utils.date(minDate)
+      disablePast && utils.isAfter(now, utils.date(minDate)) ? now : utils.date(minDate)
     );
 
     return !utils.isBefore(firstEnabledMonth, this.state.currentMonth);
@@ -166,7 +165,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
     const now = utils.date();
     const lastEnabledMonth = utils.startOfMonth(
-      disableFuture && utils.isBefore(now, maxDate) ? now : utils.date(maxDate)
+      disableFuture && utils.isBefore(now, utils.date(maxDate)) ? now : utils.date(maxDate)
     );
 
     return !utils.isAfter(lastEnabledMonth, this.state.currentMonth);
@@ -218,7 +217,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     const weeks = utils.getWeekArray(this.state.currentMonth);
 
     return weeks.map(week => (
-      <div key={`week-${week[0].toString()}`} className={classes.week}>
+      <div key={`week-${week[0]!.toString()}`} className={classes.week}>
         {this.renderDays(week)}
       </div>
     ));
@@ -253,7 +252,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
       return (
         <DayWrapper
           value={day}
-          key={day.toString()}
+          key={day!.toString()}
           disabled={disabled}
           dayInCurrentMonth={isDayInCurrentMonth}
           onSelect={this.onDateSelect}
@@ -280,7 +279,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
         {allowKeyboardControl && <EventListener target="window" onKeyDown={this.handleKeyDown} />}
 
         <CalendarHeader
-          currentMonth={currentMonth}
+          currentMonth={currentMonth!}
           slideDirection={slideDirection}
           onMonthChange={this.handleChangeMonth}
           leftArrowIcon={leftArrowIcon}
@@ -293,7 +292,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
         <SlideTransition
           slideDirection={slideDirection}
-          transKey={currentMonth.toString()}
+          transKey={currentMonth!.toString()}
           className={classes.transitionContainer}
         >
           <div>{this.renderWeeks()}</div>

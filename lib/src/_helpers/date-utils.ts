@@ -1,13 +1,12 @@
 import { IUtils } from '@date-io/core/IUtils';
-import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { DatePickerViewType } from '../constants/DatePickerView';
 
 interface FindClosestDateParams {
   date: MaterialUiPickersDate;
   utils: IUtils<MaterialUiPickersDate>;
-  minDate: DateType;
-  maxDate: DateType;
+  minDate: MaterialUiPickersDate;
+  maxDate: MaterialUiPickersDate;
   disableFuture: boolean;
   disablePast: boolean;
   shouldDisableDate: (date: MaterialUiPickersDate) => boolean;
@@ -24,10 +23,7 @@ export const findClosestEnabledDate = ({
 }: FindClosestDateParams) => {
   const today = utils.startOfDay(utils.date());
 
-  minDate = minDate && utils.date(minDate);
-  maxDate = maxDate && utils.date(maxDate);
-
-  if (disablePast && utils.isBefore(minDate, today)) {
+  if (disablePast && utils.isBefore(minDate!, today)) {
     minDate = today;
   }
 

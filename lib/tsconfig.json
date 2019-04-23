@@ -15,6 +15,6 @@
     "esModuleInterop": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["src/**/*.ts*"],
+  "include": ["src/**/*.ts*", "typings.d.ts"],
   "exclude": ["./src/__tests__/**/*", "build"]
 }

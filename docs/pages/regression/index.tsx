@@ -8,7 +8,7 @@ import { createRegressionDay as createRegressionDayRenderer } from './Regression
 
 function Regression() {
   const utils = useContext(MuiPickersContext);
-  const [date, changeDate] = useState(new Date('2019-01-01T00:00:00.000'));
+  const [date, changeDate] = useState<Date | null>(new Date('2019-01-01T00:00:00.000'));
 
   const sharedProps = {
     value: date,
@@ -39,7 +39,7 @@ function Regression() {
         <KeyboardDatePicker
           id="keyboard-mask-datepicker"
           {...sharedProps}
-          onChange={(date: any) => changeDate(date)}
+          onChange={date => changeDate(date)}
           format="MM/dd/yyyy"
         />
         <DatePicker disabled id="disabled" {...sharedProps} />

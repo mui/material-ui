@@ -12,7 +12,7 @@ const date = PropTypes.oneOfType([
 
 const datePickerView = PropTypes.oneOf(['year', 'month', 'day']);
 
-export type DateType = object | string | number | Date | null | undefined;
+export type ParsableDate = object | string | number | Date | null | undefined;
 
 export const DomainPropTypes = { date, datePickerView };
 

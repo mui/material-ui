@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Month from './Month';
-import { DateType } from '../../constants/prop-types';
+import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import { createStyles, WithStyles, withStyles } from '@material-ui/styles';
 
 export interface MonthSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
   date: MaterialUiPickersDate;
-  minDate?: DateType;
-  maxDate?: DateType;
+  minDate?: ParsableDate;
+  maxDate?: ParsableDate;
   onChange: (date: MaterialUiPickersDate) => void;
   disablePast?: boolean | null | undefined;
   disableFuture?: boolean | null | undefined;
@@ -27,7 +27,7 @@ export class MonthSelection extends React.PureComponent<MonthSelectionProps> {
     onChange(newDate);
   };
 
-  public shouldDisableMonth = (month: Date) => {
+  public shouldDisableMonth = (month: MaterialUiPickersDate) => {
     const { utils, disablePast, disableFuture, minDate, maxDate } = this.props;
     const now = utils.date();
     const utilMinDate = utils.date(minDate);

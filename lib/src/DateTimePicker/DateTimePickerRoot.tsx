@@ -67,6 +67,8 @@ export class DateTimePickerRoot extends React.Component<DateTimePickerProps, Dat
     showTabs: true,
     ampm: true,
     minutesStep: 1,
+    minDate: new Date('1900-01-01'),
+    maxDate: new Date('2100-01-01'),
     openTo: 'date' as DateTimePickerViewType,
     ViewContainerComponent: 'div',
   };
@@ -123,6 +125,7 @@ export class DateTimePickerRoot extends React.Component<DateTimePickerProps, Dat
     const { openView, meridiemMode } = this.state;
     const {
       date,
+      utils,
       minDate,
       maxDate,
       showTabs,
@@ -173,8 +176,8 @@ export class DateTimePickerRoot extends React.Component<DateTimePickerProps, Dat
           <View selected={openView === 'year'}>
             <YearSelection
               date={date}
-              minDate={minDate}
-              maxDate={maxDate}
+              minDate={utils.date(minDate)!}
+              maxDate={utils.date(maxDate)!}
               onYearChange={onYearChange}
               onChange={this.handleYearChange}
               disablePast={disablePast}
@@ -187,8 +190,8 @@ export class DateTimePickerRoot extends React.Component<DateTimePickerProps, Dat
             <Calendar
               allowKeyboardControl={allowKeyboardControl}
               date={date}
-              minDate={minDate!}
-              maxDate={maxDate!}
+              minDate={utils.date(minDate)}
+              maxDate={utils.date(maxDate)}
               onChange={this.handleDayChange}
               disablePast={disablePast}
               disableFuture={disableFuture}

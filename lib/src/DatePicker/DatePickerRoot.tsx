@@ -11,7 +11,7 @@ import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
 import { MaterialUiPickersDate } from '../typings/date';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import { DatePickerViewType } from '../constants/DatePickerView';
-import { DateType, DomainPropTypes } from '../constants/prop-types';
+import { ParsableDate, DomainPropTypes } from '../constants/prop-types';
 import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
 
 export interface BaseDatePickerProps extends OutterCalendarProps {
@@ -24,12 +24,12 @@ export interface BaseDatePickerProps extends OutterCalendarProps {
    * Min selectable date
    * @default Date(1900-01-01)
    */
-  minDate?: DateType;
+  minDate?: ParsableDate;
   /**
    * Max selectable date
    * @default Date(2100-01-01)
    */
-  maxDate?: DateType;
+  maxDate?: ParsableDate;
   /**
    * Disable past dates
    * @default false
@@ -94,11 +94,11 @@ export class DatePickerRoot extends React.PureComponent<DatePickerRootProps> {
   }
 
   get minDate() {
-    return this.props.utils.date(this.props.minDate);
+    return this.props.utils.date(this.props.minDate)!;
   }
 
   get maxDate() {
-    return this.props.utils.date(this.props.maxDate);
+    return this.props.utils.date(this.props.maxDate)!;
   }
 
   get isYearOnly() {

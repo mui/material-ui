@@ -1,12 +1,11 @@
 import { DatePickerProps } from '..';
 import { Omit } from '@material-ui/core';
 import { IUtils } from '@date-io/core/IUtils';
-import { DateType } from '../constants/prop-types';
+import { ParsableDate } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
-import { MaterialUiPickersDate } from '../typings/date';
 
 export const getDisplayDate = (
-  value: DateType,
+  value: ParsableDate,
   format: string,
   utils: IUtils<any>,
   isEmpty: boolean,
@@ -46,7 +45,7 @@ export interface DateValidationProps extends BaseValidationProps {
 }
 
 export const getError = (
-  value: MaterialUiPickersDate,
+  value: ParsableDate,
   utils: IUtils<any>,
   {
     maxDate,

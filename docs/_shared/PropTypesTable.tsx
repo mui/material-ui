@@ -60,31 +60,29 @@ interface PropTypesTableProps {
 const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src }) => {
   const classes = useStyles();
   const [searchString, setSearchString] = useState('');
-  const propsDoc = Object.values(PropTypesDoc[src]);
+  const propsDoc = Object.values(PropTypesDoc[src]).sort((a, b) => {
+    if (a.required && !b.required) {
+      return -1;
+    }
+
+    if (!a.required && b.required) {
+      return 1;
+    }
+
+    return a.name.localeCompare(b.name);
+  });
 
   const searcher = useMemo(
     () =>
       new FuzzySearch(propsDoc, ['name', 'defaultValue', 'description', 'type.name'], {
+        sort: true,
         caseSensitive: false,
       }),
     [propsDoc]
   );
 
-  // prettier-ignore
   const propsToShow = useMemo(() => {
-    return searcher
-      .search(searchString.trim())
-      .sort((a, b) => {
-        if (a.required && !b.required) {
-          return -1;
-        }
-
-        if (!a.required && b.required) {
-          return 1;
-        }
-
-        return a.name.localeCompare(b.name)
-      });
+    return searcher.search(searchString.trim());
   }, [searchString, searcher]);
 
   return (

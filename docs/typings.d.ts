@@ -16,3 +16,7 @@ declare module '@material-ui/core/styles/overrides' {
 
   export interface Overrides extends MuiPickersOverrides {}
 }
+
+declare module '@date-io/type' {
+  export type DateType = any;
+}

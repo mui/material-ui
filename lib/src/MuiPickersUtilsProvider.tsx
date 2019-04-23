@@ -9,7 +9,7 @@ export interface MuiPickersUtilsProviderProps {
   utils: any;
   children: React.ReactNode;
   locale?: any;
-  moment?: any;
+  libInstance?: any;
 }
 
 export default class MuiPickersUtilsProvider extends React.Component<MuiPickersUtilsProviderProps> {
@@ -24,12 +24,12 @@ export default class MuiPickersUtilsProvider extends React.Component<MuiPickersU
   };
 
   public static getDerivedStateFromProps({
-    utils: Utils,
     locale,
-    moment,
+    libInstance,
+    utils: Utils,
   }: MuiPickersUtilsProviderProps) {
     return {
-      utils: new Utils({ locale, moment }),
+      utils: new Utils({ locale, instance: libInstance }),
     };
   }
 

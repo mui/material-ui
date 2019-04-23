@@ -34,7 +34,7 @@ function MomentLocalizationExample() {
   }, []);
 
   return (
-    <MuiPickersUtilsProvider utils={MomentUtils} locale={locale} moment={moment}>
+    <MuiPickersUtilsProvider utils={MomentUtils} locale={locale} libInstance={moment}>
       <DatePicker
         value={selectedDate}
         onChange={handleDateChange}
