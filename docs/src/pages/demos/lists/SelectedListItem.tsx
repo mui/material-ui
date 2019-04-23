@@ -28,8 +28,8 @@ function SelectedListItem() {
   }
 
   return (
-    <div className={classes.root}>
-      <List component="nav">
+    <nav className={classes.root}>
+      <List>
         <ListItem
           button
           selected={selectedIndex === 0}
@@ -50,9 +50,7 @@ function SelectedListItem() {
           </ListItemIcon>
           <ListItemText primary="Drafts" />
         </ListItem>
-      </List>
-      <Divider />
-      <List component="nav">
+        <Divider component="li" />
         <ListItem
           button
           selected={selectedIndex === 2}
@@ -68,7 +66,7 @@ function SelectedListItem() {
           <ListItemText primary="Spam" />
         </ListItem>
       </List>
-    </div>
+    </nav>
   );
 }
 

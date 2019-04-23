@@ -34,7 +34,6 @@ function NestedList() {
 
   return (
     <List
-      component="nav"
       subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
       className={classes.root}
     >

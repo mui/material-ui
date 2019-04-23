@@ -34,7 +34,7 @@ function VirtualizedList() {
 
   return (
     <div className={classes.root}>
-      <FixedSizeList height={400} width={360} itemSize={46} itemCount={200}>
+      <FixedSizeList innerElementType="ul" height={400} width={360} itemSize={46} itemCount={200}>
         {Row}
       </FixedSizeList>
     </div>

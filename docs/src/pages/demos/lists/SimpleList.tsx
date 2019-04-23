@@ -18,8 +18,9 @@ const styles = (theme: Theme) =>
     },
   });
 
-function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
-  return <ListItem button component="a" {...props} />;
+function ListItemLink(props: any) {
+  const { href, ...other } = props;
+  return <ListItem button buttonBaseProps={{ component: 'a', href }} {...other} />;
 }
 
 export interface SimpleListProps extends WithStyles<typeof styles> {}
@@ -41,7 +42,7 @@ function SimpleList(props: SimpleListProps) {
           </ListItemIcon>
           <ListItemText primary="Drafts" />
         </ListItem>
-        <Divider component="li" role="separator" />
+        <Divider component="li" />
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>

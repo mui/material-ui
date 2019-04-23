@@ -8,7 +8,7 @@ import { isMuiElement } from '../utils/reactHelpers';
 import ListContext from '../List/ListContext';
 
 export const styles = theme => ({
-  /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -25,15 +25,9 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
-  container: {
+  li: {
     position: 'relative',
   },
-  // To remove in v4
-  /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
-  focusVisible: {
-    backgroundColor: theme.palette.action.selected,
-  },
-  /* Styles applied to the `component` element if dense. */
   dense: {
     paddingTop: 4,
     paddingBottom: 4,
@@ -80,19 +74,15 @@ export const styles = theme => ({
   selected: {},
 });
 
-/**
- * Uses an additional container component if `ListItemSecondaryAction` is the last child.
- */
 const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
     alignItems,
     button,
+    buttonBaseProps,
     children: childrenProp,
     classes,
-    className,
-    component: componentProp,
-    ContainerComponent,
-    ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
+    className: classNameProp,
+    component: Component,
     dense,
     disabled,
     disableGutters,
@@ -112,51 +102,39 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-  const componentProps = {
-    className: clsx(
-      classes.root,
-      {
-        [classes.dense]: childContext.dense,
-        [classes.gutters]: !disableGutters,
-        [classes.divider]: divider,
-        [classes.disabled]: disabled,
-        [classes.button]: button,
-        [classes.alignItemsFlexStart]: alignItems === 'flex-start',
-        [classes.secondaryAction]: hasSecondaryAction,
-        [classes.selected]: selected,
-      },
-      className,
-    ),
-    disabled,
-    ...other,
-  };
-  let Component = componentProp;
+  const className = clsx(
+    classes.root,
+    {
+      [classes.dense]: childContext.dense,
+      [classes.gutters]: !disableGutters,
+      [classes.divider]: divider,
+      [classes.disabled]: disabled,
+      [classes.button]: button,
+      [classes.alignItemsFlexStart]: alignItems === 'flex-start',
+      [classes.secondaryAction]: hasSecondaryAction,
+      [classes.selected]: selected,
+    },
+    classNameProp,
+  );
 
   if (button) {
-    Component = ButtonBase;
-    componentProps.component = 'button';
-    componentProps.focusVisibleClassName = clsx(classes.focusVisible, focusVisibleClassName);
-  }
-
-  // Avoid nesting of li > li.
-  if (ContainerComponent === 'li') {
-    if (Component === 'li') {
-      Component = 'div';
-    } else if (componentProps.component === 'li') {
-      componentProps.component = 'div';
-    }
+    return (
+      <ListContext.Provider value={childContext}>
+        <Component className={clsx(classes.li)} ref={ref} {...other}>
+          <ButtonBase className={className} disabled={disabled} {...buttonBaseProps}>
+            {children}
+          </ButtonBase>
+          {hasSecondaryAction ? children.pop() : null}
+        </Component>
+      </ListContext.Provider>
+    );
   }
 
   return (
     <ListContext.Provider value={childContext}>
-      <ContainerComponent
-        className={clsx(classes.container, ContainerClassName)}
-        ref={ref}
-        {...ContainerProps}
-      >
-        <Component {...componentProps}>{children}</Component>
-        {hasSecondaryAction ? children.pop() : null}
-      </ContainerComponent>
+      <Component className={className} ref={ref} {...other}>
+        {children}
+      </Component>
     </ListContext.Provider>
   );
 });
@@ -208,19 +186,14 @@ ListItem.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Properties applied to the ButtonBase component.
+   */
+  buttonBaseProps: PropTypes.object,
+  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
-   * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
   component: PropTypes.elementType,
-  /**
-   * The container component used when a `ListItemSecondaryAction` is the last child.
-   */
-  ContainerComponent: PropTypes.elementType,
-  /**
-   * Properties applied to the container component if used.
-   */
-  ContainerProps: PropTypes.object,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */
@@ -238,10 +211,6 @@ ListItem.propTypes = {
    */
   divider: PropTypes.bool,
   /**
-   * @ignore
-   */
-  focusVisibleClassName: PropTypes.string,
-  /**
    * Use to apply selected styling.
    */
   selected: PropTypes.bool,
@@ -250,8 +219,7 @@ ListItem.propTypes = {
 ListItem.defaultProps = {
   alignItems: 'center',
   button: false,
-  component: 'div',
-  ContainerComponent: 'li',
+  component: 'li',
   disabled: false,
   disableGutters: false,
   divider: false,

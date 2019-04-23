@@ -31,8 +31,8 @@ function PinnedSubheaderList(props) {
     <List className={classes.root} subheader={<li />}>
       {[0, 1, 2, 3, 4].map(sectionId => (
         <li key={`section-${sectionId}`} className={classes.listSection}>
+          <ListSubheader component="span">{`I'm sticky ${sectionId}`}</ListSubheader>
           <ul className={classes.ul}>
-            <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
             {[0, 1, 2].map(item => (
               <ListItem key={`item-${sectionId}-${item}`}>
                 <ListItemText primary={`Item ${item}`} />
