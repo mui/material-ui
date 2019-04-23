@@ -202,7 +202,7 @@ function Tooltip(props) {
     }
   };
 
-  const isKeyboardFocus = useKeyboardFocus(disableFocusListener);
+  const isKeyboardFocus = useKeyboardFocus();
 
   const handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769
