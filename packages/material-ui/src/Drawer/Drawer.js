@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Modal from '../Modal';
+import Backdrop from '../Backdrop';
 import withStyles from '../styles/withStyles';
 import Slide from '../Slide';
 import Paper from '../Paper';
@@ -178,6 +179,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
         ...BackdropPropsProp,
         transitionDuration,
       }}
+      BackdropComponent={Backdrop}
       className={clsx(classes.root, classes.modal, className)}
       open={open}
       onClose={onClose}

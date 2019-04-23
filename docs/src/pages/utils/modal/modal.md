@@ -17,6 +17,7 @@ component and some styles:
 - ♿️ It properly manages focus; moving to the modal content,
   and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
+- 📦 [6.5 kB gzipped](/size-snapshot).
 
 > **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
 A Modal window describes parts of a UI.

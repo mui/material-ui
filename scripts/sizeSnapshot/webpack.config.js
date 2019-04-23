@@ -65,6 +65,7 @@ async function getSizeLimitBundles() {
     },
     {
       // vs https://bundlephobia.com/result?p=react-modal
+      // vs https://bundlephobia.com/result?p=@reach/dialog
       name: 'Modal',
       webpack: true,
       path: 'packages/material-ui/build/esm/Modal/index.js',
