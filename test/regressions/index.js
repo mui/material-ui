@@ -122,7 +122,7 @@ vrtest.before(() => {
     document.body.appendChild(rootEl);
   }
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     webfontloader.load({
       google: {
         families: ['Roboto:300,400,500', 'Material+Icons'],
@@ -133,10 +133,10 @@ vrtest.before(() => {
       },
       timeout: 20000,
       active: () => {
-        resolve('active');
+        resolve('webfontloader: active');
       },
       inactive: () => {
-        resolve('inactive');
+        reject(new Error('webfontloader: inactive'));
       },
     });
   });

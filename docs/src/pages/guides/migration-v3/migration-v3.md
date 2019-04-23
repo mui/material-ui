@@ -60,6 +60,9 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
 ### Styles
 
+- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9.
+  Make sure JSS v9 is not installed in your environment.
+  Removing `react-jss` from your package.json can help.
 - Isolation of the styling solution of the core components in a dedicated package.
   Remove the `MuiThemeProvider` component:
 

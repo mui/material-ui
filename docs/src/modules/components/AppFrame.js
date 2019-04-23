@@ -263,6 +263,7 @@ class AppFrame extends React.Component {
                       color="inherit"
                       aria-owns={languageMenu ? 'language-menu' : undefined}
                       aria-haspopup="true"
+                      aria-label="Change language"
                       onClick={this.handleLanguageIconClick}
                       data-ga-event-category="AppBar"
                       data-ga-event-action="language"
