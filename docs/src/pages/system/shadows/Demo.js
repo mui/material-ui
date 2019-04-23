@@ -21,7 +21,7 @@ function Height() {
         p={1}
         style={{ width: '8rem', height: '5rem' }}
       >
-        boxShadow={2}
+        boxShadow={1}
       </Box>
       <Box
         boxShadow={2}
