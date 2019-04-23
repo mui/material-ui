@@ -83,6 +83,12 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
     },
     {
+      // vs https://bundlephobia.com/result?p=react-focus-lock
+      name: '@material-ui/core/TrapFocus',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/Modal/TrapFocus.js',
+    },
+    {
       // vs https://bundlephobia.com/result?p=react-textarea-autosize
       // vs https://bundlephobia.com/result?p=react-autosize-textarea
       name: '@material-ui/core/Textarea',
