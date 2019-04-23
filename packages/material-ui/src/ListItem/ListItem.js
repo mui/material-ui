@@ -130,12 +130,12 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     disabled,
     ...other,
   };
-  let Component = componentProp || 'li';
+  let Component = componentProp;
 
   if (button) {
-    componentProps.component = componentProp || 'div';
-    componentProps.focusVisibleClassName = clsx(classes.focusVisible, focusVisibleClassName);
     Component = ButtonBase;
+    componentProps.component = 'button';
+    componentProps.focusVisibleClassName = clsx(classes.focusVisible, focusVisibleClassName);
   }
 
   // Avoid nesting of li > li.
@@ -250,7 +250,7 @@ ListItem.propTypes = {
 ListItem.defaultProps = {
   alignItems: 'center',
   button: false,
-  component: 'li',
+  component: 'div',
   ContainerComponent: 'li',
   disabled: false,
   disableGutters: false,
