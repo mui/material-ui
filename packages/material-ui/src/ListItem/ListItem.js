@@ -82,6 +82,8 @@ export const styles = theme => ({
   selected: {},
 });
 
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
@@ -111,7 +113,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     alignItems,
   };
   const listItemRef = React.useRef();
-  React.useLayoutEffect(() => {
+  useEnhancedEffect(() => {
     if (autoFocus) {
       if (listItemRef.current) {
         listItemRef.current.focus();
