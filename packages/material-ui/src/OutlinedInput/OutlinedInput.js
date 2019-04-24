@@ -166,9 +166,9 @@ OutlinedInput.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * The width of the legend.
+   * The width of the label.
    */
-  labelWidth: PropTypes.number.isRequired,
+  labelWidth: PropTypes.number,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
@@ -228,9 +228,10 @@ OutlinedInput.propTypes = {
   value: PropTypes.any,
 };
 
-InputBase.defaultProps = {
+OutlinedInput.defaultProps = {
   fullWidth: false,
   inputComponent: 'input',
+  labelWidth: 0,
   multiline: false,
   type: 'text',
 };
