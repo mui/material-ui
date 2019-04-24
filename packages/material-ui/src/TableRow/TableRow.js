@@ -40,7 +40,14 @@ export const styles = theme => ({
  * based on the material table element parent (head, body, etc).
  */
 const TableRow = React.forwardRef(function TableRow(props, ref) {
-  const { classes, className, component: Component, hover, selected, ...other } = props;
+  const {
+    classes,
+    className,
+    component: Component = 'tr',
+    hover = false,
+    selected = false,
+    ...other
+  } = props;
   const tablelvl2 = React.useContext(Tablelvl2Context);
 
   return (
@@ -88,12 +95,6 @@ TableRow.propTypes = {
    * If `true`, the table row will have the selected shading.
    */
   selected: PropTypes.bool,
-};
-
-TableRow.defaultProps = {
-  component: 'tr',
-  hover: false,
-  selected: false,
 };
 
 export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

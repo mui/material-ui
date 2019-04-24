@@ -121,18 +121,18 @@ const defaultVariantMapping = {
 
 const Typography = React.forwardRef(function Typography(props, ref) {
   const {
-    align,
+    align = 'inherit',
     classes,
     className,
-    color,
+    color = 'initial',
     component,
-    display,
-    gutterBottom,
-    noWrap,
-    paragraph,
+    display = 'initial',
+    gutterBottom = false,
+    noWrap = false,
+    paragraph = false,
     theme,
-    variant,
-    variantMapping,
+    variant = 'body1',
+    variantMapping = defaultVariantMapping,
     ...other
   } = props;
 
@@ -245,17 +245,6 @@ Typography.propTypes = {
    * Alternatively, you can use the `component` property.
    */
   variantMapping: PropTypes.object,
-};
-
-Typography.defaultProps = {
-  align: 'inherit',
-  color: 'initial',
-  display: 'initial',
-  gutterBottom: false,
-  noWrap: false,
-  paragraph: false,
-  variant: 'body1',
-  variantMapping: defaultVariantMapping,
 };
 
 export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);

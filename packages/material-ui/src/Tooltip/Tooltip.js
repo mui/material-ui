@@ -79,23 +79,23 @@ function Tooltip(props) {
   const {
     children,
     classes,
-    disableFocusListener,
-    disableHoverListener,
-    disableTouchListener,
-    enterDelay,
-    enterTouchDelay,
+    disableFocusListener = false,
+    disableHoverListener = false,
+    disableTouchListener = false,
+    enterDelay = 0,
+    enterTouchDelay = 700,
     id,
-    interactive,
-    leaveDelay,
-    leaveTouchDelay,
+    interactive = false,
+    leaveDelay = 0,
+    leaveTouchDelay = 1500,
     onClose,
     onOpen,
     open: openProp,
-    placement,
+    placement = 'bottom',
     PopperProps,
     theme,
     title,
-    TransitionComponent,
+    TransitionComponent = Grow,
     TransitionProps,
     ...other
   } = props;
@@ -503,19 +503,6 @@ Tooltip.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-Tooltip.defaultProps = {
-  disableFocusListener: false,
-  disableHoverListener: false,
-  disableTouchListener: false,
-  enterDelay: 0,
-  enterTouchDelay: 700,
-  interactive: false,
-  leaveDelay: 0,
-  leaveTouchDelay: 1500,
-  placement: 'bottom',
-  TransitionComponent: Grow,
 };
 
 export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);

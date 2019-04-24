@@ -31,9 +31,9 @@ const Toolbar = React.forwardRef(function Toolbar(props, ref) {
   const {
     classes,
     className: classNameProp,
-    component: Component,
-    disableGutters,
-    variant,
+    component: Component = 'div',
+    disableGutters = false,
+    variant = 'regular',
     ...other
   } = props;
 
@@ -76,12 +76,6 @@ Toolbar.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['regular', 'dense']),
-};
-
-Toolbar.defaultProps = {
-  component: 'div',
-  disableGutters: false,
-  variant: 'regular',
 };
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);
