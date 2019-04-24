@@ -54,16 +54,11 @@ async function getFiles(root) {
 }
 
 function getLineFeed(source) {
-  if (source.length <= 1) return os.EOL;
-
-  for (let index = 1; index < source.length; index += 1) {
-    if (source[index] === '\n') {
-      if (source[index - 1] === '\r') return '\r\n';
-      return '\n';
-    }
+  const match = source.match(/\r\n|\n/);
+  if (match === null) {
+    return os.EOL;
   }
-
-  return os.EOL;
+  return match[0];
 }
 
 const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r?\n){2}/g);
