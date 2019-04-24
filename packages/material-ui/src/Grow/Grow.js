@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
+import { useForkRef } from '../utils/reactHelpers';
 
 function getScale(value) {
   return `scale(${value}, ${value ** 2})`;
@@ -27,10 +28,11 @@ const styles = {
  * [Popover](/utils/popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-function Grow(props) {
+const Grow = React.forwardRef(function Grow(props, ref) {
   const { children, in: inProp, onEnter, onExit, style, theme, timeout, ...other } = props;
   const timer = React.useRef();
   const autoTimeout = React.useRef();
+  const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
@@ -126,12 +128,13 @@ function Grow(props) {
             ...style,
             ...children.props.style,
           },
+          ref: handleRef,
           ...childProps,
         });
       }}
     </Transition>
   );
-}
+});
 
 Grow.propTypes = {
   /**

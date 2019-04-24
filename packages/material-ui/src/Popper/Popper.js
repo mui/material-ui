@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
-import { setRef, withForwardedRef } from '../utils';
 import { createChainedFunction } from '../utils/helpers';
+import { useForkRef } from '../utils/reactHelpers';
 
 function flipPlacement(placement) {
   const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
@@ -34,54 +34,46 @@ function getAnchorEl(anchorEl) {
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
  */
-class Popper extends React.Component {
-  tooltipRef = React.createRef();
+const Popper = React.forwardRef(function Popper(props, ref) {
+  const {
+    anchorEl,
+    children,
+    container,
+    disablePortal,
+    keepMounted,
+    modifiers,
+    open,
+    placement: placementProps,
+    popperOptions = {},
+    transition,
+    ...other
+  } = props;
+  const tooltipRef = React.useRef();
+  const popperRef = React.useRef();
+  const [exited, setExited] = React.useState(!props.open);
+  const [placement, setPlacement] = React.useState();
+  const handleRef = useForkRef(tooltipRef, ref);
 
-  constructor(props) {
-    super();
-    this.state = {
-      exited: !props.open,
+  const handleOpen = React.useCallback(() => {
+    const handlePopperUpdate = data => {
+      if (data.placement !== placement) {
+        setPlacement(data.placement);
+      }
     };
-  }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.open !== this.props.open && !this.props.open && !this.props.transition) {
-      // Otherwise handleExited will call this.
-      this.handleClose();
-    }
-
-    // Let's update the popper position.
-    if (
-      prevProps.open !== this.props.open ||
-      prevProps.anchorEl !== this.props.anchorEl ||
-      prevProps.popperOptions !== this.props.popperOptions ||
-      prevProps.modifiers !== this.props.modifiers ||
-      prevProps.disablePortal !== this.props.disablePortal ||
-      prevProps.placement !== this.props.placement
-    ) {
-      this.handleOpen();
-    }
-  }
-
-  componentWillUnmount() {
-    this.handleClose();
-  }
-
-  handleOpen = () => {
-    const { anchorEl, modifiers, open, placement, popperOptions = {}, disablePortal } = this.props;
-    const popperNode = this.tooltipRef.current;
+    const popperNode = tooltipRef.current;
 
     if (!popperNode || !anchorEl || !open) {
       return;
     }
 
-    if (this.popper) {
-      this.popper.destroy();
-      this.popper = null;
+    if (popperRef.current) {
+      popperRef.current.destroy();
+      popperRef.current = null;
     }
 
-    this.popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
-      placement: flipPlacement(placement),
+    popperRef.current = new PopperJS(getAnchorEl(anchorEl), popperNode, {
+      placement: flipPlacement(placementProps),
       ...popperOptions,
       modifiers: {
         ...(disablePortal
@@ -97,92 +89,79 @@ class Popper extends React.Component {
       },
       // We could have been using a custom modifier like react-popper is doing.
       // But it seems this is the best public API for this use case.
-      onCreate: createChainedFunction(this.handlePopperUpdate, popperOptions.onCreate),
-      onUpdate: createChainedFunction(this.handlePopperUpdate, popperOptions.onUpdate),
+      onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
+      onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
+  }, [anchorEl, disablePortal, modifiers, open, placement, placementProps, popperOptions]);
+
+  const handleEnter = () => {
+    setExited(false);
   };
 
-  handlePopperUpdate = data => {
-    if (data.placement !== this.state.placement) {
-      this.setState({
-        placement: data.placement,
-      });
-    }
-  };
-
-  handleEnter = () => {
-    this.setState({ exited: false });
-  };
-
-  handleExited = () => {
-    this.setState({ exited: true });
-    this.handleClose();
-  };
-
-  handleClose = () => {
-    if (!this.popper) {
+  const handleClose = () => {
+    if (!popperRef.current) {
       return;
     }
 
-    this.popper.destroy();
-    this.popper = null;
+    popperRef.current.destroy();
+    popperRef.current = null;
   };
 
-  handleRef = ref => {
-    setRef(this.props.innerRef, ref);
-    setRef(this.tooltipRef, ref);
+  const handleExited = () => {
+    setExited(true);
+    handleClose();
   };
 
-  render() {
-    const {
-      anchorEl,
-      children,
-      container,
-      disablePortal,
-      innerRef,
-      keepMounted,
-      modifiers,
-      open,
-      placement: placementProps,
-      popperOptions,
-      transition,
-      ...other
-    } = this.props;
-    const { exited, placement } = this.state;
-
-    if (!keepMounted && !open && (!transition || exited)) {
-      return null;
-    }
-
-    const childProps = {
-      placement: placement || flipPlacement(placementProps),
+  React.useEffect(() => {
+    return () => {
+      handleClose();
     };
+  }, []);
 
-    if (transition) {
-      childProps.TransitionProps = {
-        in: open,
-        onEnter: this.handleEnter,
-        onExited: this.handleExited,
-      };
+  React.useEffect(() => {
+    // Let's update the popper position.
+    handleOpen();
+  }, [handleOpen]);
+
+  React.useEffect(() => {
+    if (!open && !transition) {
+      // Otherwise handleExited will call this.
+      handleClose();
     }
+  }, [open, transition]);
 
-    return (
-      <Portal onRendered={this.handleOpen} disablePortal={disablePortal} container={container}>
-        <div
-          ref={this.handleRef}
-          role="tooltip"
-          style={{
-            // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
-            position: 'absolute',
-          }}
-          {...other}
-        >
-          {typeof children === 'function' ? children(childProps) : children}
-        </div>
-      </Portal>
-    );
+  if (!keepMounted && !open && (!transition || exited)) {
+    return null;
   }
-}
+
+  const childProps = {
+    placement: placement || flipPlacement(placementProps),
+  };
+
+  if (transition) {
+    childProps.TransitionProps = {
+      in: open,
+      onEnter: handleEnter,
+      onExited: handleExited,
+    };
+  }
+
+  return (
+    <Portal onRendered={handleOpen} disablePortal={disablePortal} container={container}>
+      <div
+        ref={handleRef}
+        role="tooltip"
+        style={{
+          // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
+          position: 'absolute',
+        }}
+        {...other}
+      >
+        {typeof children === 'function' ? children(childProps) : children}
+      </div>
+    </Portal>
+  );
+});
 
 Popper.propTypes = {
   /**
@@ -241,11 +220,6 @@ Popper.propTypes = {
    */
   disablePortal: PropTypes.bool,
   /**
-   * @ignore
-   * from `withForwardedRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Popper.
@@ -299,4 +273,4 @@ Popper.defaultProps = {
   transition: false,
 };
 
-export default withForwardedRef(Popper);
+export default Popper;

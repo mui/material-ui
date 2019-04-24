@@ -45,11 +45,6 @@ Table.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
    * Allows TableCells to inherit padding of the Table.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'none']),

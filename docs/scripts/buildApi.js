@@ -59,10 +59,6 @@ function getInheritance(src) {
       pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
       break;
 
-    case 'EventListener':
-      pathname = 'https://github.com/oliviertassinari/react-event-listener';
-      break;
-
     default:
       pathname = `/api/${kebabCase(component)}`;
       break;

@@ -15,7 +15,6 @@ const styles = theme => ({
       maxWidth: 'calc(100% - 175px)',
     },
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(5),
       maxWidth: 'calc(100% - 240px - 175px)',
     },
@@ -34,13 +33,16 @@ function AppContent(props) {
   const { className, classes, children, disableToc } = props;
 
   return (
-    <main
+    <Container
+      component="main"
+      id="main-content"
+      tabIndex="-1"
       className={clsx(classes.root, className, {
         [classes.disableToc]: disableToc,
       })}
     >
-      <Container>{children}</Container>
-    </main>
+      {children}
+    </Container>
   );
 }
 

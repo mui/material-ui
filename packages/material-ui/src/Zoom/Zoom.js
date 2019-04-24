@@ -6,6 +6,7 @@ import { Transition } from 'react-transition-group';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
+import { useForkRef } from '../utils/reactHelpers';
 
 const styles = {
   entering: {
@@ -21,8 +22,9 @@ const styles = {
  * [Button](https://material-ui.com/demos/buttons/#floating-action-buttons) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-function Zoom(props) {
+const Zoom = React.forwardRef(function Zoom(props, ref) {
   const { children, in: inProp, onEnter, onExit, style, theme, ...other } = props;
+  const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
@@ -61,12 +63,13 @@ function Zoom(props) {
             ...style,
             ...children.props.style,
           },
+          ref: handleRef,
           ...childProps,
         });
       }}
     </Transition>
   );
-}
+});
 
 Zoom.propTypes = {
   /**

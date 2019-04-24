@@ -2,7 +2,7 @@
 
 <p class="description">Stuck on a particular problem? Check some of these common gotchas first in our FAQ.</p>
 
-If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui).
+If you still can't find what you're looking for, you can ask the community in [Spectrum](https://spectrum.chat/material-ui).
 For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
 
 ## Why aren't my components rendering correctly in production builds?
@@ -101,21 +101,22 @@ const theme = createMuiTheme({
 
 ## Do I have to use JSS to style my app?
 
-It's highly recommended:
+It's recommended:
 
 - It comes built in, so carries no additional bundle size overhead.
 - It's fast & memory efficient.
-- It has a clean, consistent [API](https://cssinjs.org/json-api/).
-- It supports a number of advanced features, either natively, or through [plugins](https://cssinjs.org/plugins/).
+- It has a clean, consistent API.
+- It supports a number of advanced features, either natively, or through plugins.
 
 However perhaps you're adding some Material-UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
 [Style Library Interoperability](/guides/interoperability/) section,
 where we show how simple it is to restyle Material-UI components with alternative style libraries.
 
-## When should I use inline-style vs classes?
+## When should I use inline-style vs CSS?
 
-As a rule of thumb, only use inline-style for dynamic style properties. The CSS alternative provides more advantages, such as:
+As a rule of thumb, only use inline-style for dynamic style properties.
+The CSS alternative provides more advantages, such as:
 
 - auto-prefixing
 - better debugging
@@ -126,35 +127,8 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 We have documented how to use a [third-party routing library](/demos/buttons/#third-party-routing-library) with the `ButtonBase` component.
 A lot of our interactive components use it internally:
-`Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc.
+`Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc.
 You can use the same solution with them.
-
-## How do I combine the `withStyles()` and `withTheme` HOCs?
-
-There are a number of different options:
-
-**`withTheme` option:**
-
-```js
-export default withStyles(styles, { withTheme: true })(Modal);
-```
-
-**`compose()` helper function:**
-
-```js
-import { compose } from 'recompose';
-
-export default compose(
-  withTheme,
-  withStyles(styles)
-)(Modal);
-```
-
-**raw function chaining:**
-
-```js
-export default withTheme(withStyles(styles)(Modal));
-```
 
 ## How can I access the DOM element?
 
@@ -177,6 +151,171 @@ includes
 > The ref is forwarded to the root element.
 
 indicating that you can access the DOM element with a ref.
+
+## I have several instances of styles on the page
+
+If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
+
+> It looks like there are several instances of `@material-ui/styles` initialized in this application.
+This may cause theme propagation issues, broken class names and makes your application bigger without a good reason.
+
+### Possible reasons
+
+There are several common reasons for this to happen:
+
+- You have another `@material-ui/styles` library somewhere in your dependencies.
+- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@material-ui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
+- You have several applications that are using `@material-ui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
+
+### Duplicated module in node_modules
+
+If you think that the issue is in duplicated @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
+You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
+
+If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @material-ui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+
+If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
+
+If you are using npm you can try running `npm dedupe`.
+This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
+
+If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @material-ui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
+
+```diff
+  resolve: {
++   alias: {
++     "@material-ui/styles": path.resolve(appFolder, "node_modules", "@material-ui/styles"),
++   }
+  }
+```
+
+### Usage with Lerna
+
+One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages, is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
+
+```sh
+lerna bootstrap --hoist
+```
+
+Alternatively, you can remove @material-ui/styles from your package.json file and hoist it manually to your top-level package.json file.
+
+Example of a package.json file in a Lerna root folder
+
+```json
+{
+  "name": "my-monorepo",
+  "devDependencies": {
+    "lerna": "latest"
+  },
+  "dependencies": {
+    "@material-ui/styles": "^4.0.0"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "start": "lerna run start",
+    "build": "lerna run build"
+  }
+}
+```
+
+### Running multiple applications on one page
+
+If you have several applications running on one page, consider using one @material-ui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @material-ui/styles module:
+
+```diff
+  module.exports = {
+    entry: {
++     vendor: ["@material-ui/styles"],
+      app1: "./src/app.1.js",
+      app2: "./src/app.2.js",
+    },
+    plugins: [
++     new webpack.optimize.CommonsChunkPlugin({
++       name: "vendor",
++       minChunks: Infinity,
++     }),
+    ]
+  }
+```
+
+## My App doesn't render correctly on the server
+
+If it doesn't work, in 99% of cases it's a configuration issue.
+A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+
+### CSS works only on first load then is missing
+
+The CSS is only generated on the first load of the page.
+Then, the CSS is missing on the server for consecutive requests.
+
+#### Action to Take
+
+We rely on a cache, the sheets manager, to only inject the CSS once per component type
+(if you use two buttons, you only need the CSS of the button one time).
+You need to create **a new `sheets` instance for each request**.
+
+*example of fix:*
+```diff
+-// Create a sheets instance.
+-const sheets = new ServerStyleSheets();
+
+function handleRender(req, res) {
++ // Create a sheets instance.
++ const sheets = new ServerStyleSheets();
+
+  //…
+
+  // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
+```
+
+### React class name hydration mismatch
+
+There is a class name mismatch between the client and the server. It might work for the first request.
+Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
+
+#### Action to Take
+
+The class names value relies on the concept of [class name generator](/css-in-js/advanced/#class-names).
+The whole page needs to be rendered with **a single generator**.
+This generator needs to behave identically on the server and on the client. For instance:
+
+- You need to provide a new class name generator for each request.
+But you shouldn't share a `createGenerateClassName()` between different requests:
+
+*example of fix:*
+```diff
+-// Create a new class name generator.
+-const generateClassName = createGenerateClassName();
+
+function handleRender(req, res) {
++ // Create a new class name generator.
++ const generateClassName = createGenerateClassName();
+
+  //…
+
+  // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
+```
+
+- You need to verify that your client and server are running the **exactly the same version** of Material-UI.
+It is possible that a mismatch of even minor versions can cause styling problems.
+To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
+
+  You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+
+*example of fix (package.json):*
+```diff
+  "dependencies": {
+    ...
+-   "@material-ui/core": "^4.0.0",
++   "@material-ui/core": "4.0.0",
+    ...
+  },
+```
+
+- You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
 
 ## Why are the colors I am seeing different from what I see here?
 

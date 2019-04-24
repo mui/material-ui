@@ -7,18 +7,19 @@ import Button from '@material-ui/core/Button';
 // see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
 const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
 
-const HomeLink = React.forwardRef((props, ref) => <Link innerRef={ref} to="/home" {...props} />);
+const CollisionLink = React.forwardRef((props, ref) => (
+  <Link innerRef={ref} to="/getting-started/installation/" {...props} />
+));
 
-function App() {
+function ButtonRouter() {
   return (
     <Router>
       <Button color="primary" component={AdapterLink} to="/">
-        Root
+        Simple case
       </Button>
-      {/* Avoids property collision */}
-      <Button component={HomeLink}>Home</Button>
+      <Button component={CollisionLink}>Avoids props collision</Button>
     </Router>
   );
 }
 
-export default App;
+export default ButtonRouter;

@@ -32,6 +32,8 @@ const useStyles = makeStyles(theme => ({
 
 function SimpleModal() {
   const [open, setOpen] = React.useState(false);
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = React.useState(getModalStyle);
 
   const handleOpen = () => {
     setOpen(true);
@@ -52,7 +54,7 @@ function SimpleModal() {
         open={open}
         onClose={handleClose}
       >
-        <div style={getModalStyle()} className={classes.paper}>
+        <div style={modalStyle} className={classes.paper}>
           <Typography variant="h6" id="modal-title">
             Text in a modal
           </Typography>

@@ -258,6 +258,7 @@ class Demo extends React.Component {
                   placement="top"
                 >
                   <IconButton
+                    aria-label={codeOpen ? t('hideSource') : t('showSource')}
                     data-ga-event-category={gaCategory}
                     data-ga-event-action="expand"
                     onClick={this.handleClickCodeOpen}
@@ -272,6 +273,7 @@ class Demo extends React.Component {
                   placement="top"
                 >
                   <IconButton
+                    aria-label={t('viewGitHub')}
                     data-ga-event-category={gaCategory}
                     data-ga-event-action="github"
                     href={demoData.githubLocation}
@@ -288,6 +290,7 @@ class Demo extends React.Component {
                     placement="top"
                   >
                     <IconButton
+                      aria-label={t('codesandbox')}
                       data-ga-event-category={gaCategory}
                       data-ga-event-action="codesandbox"
                       onClick={this.handleClickCodeSandbox}

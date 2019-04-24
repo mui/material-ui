@@ -36,7 +36,7 @@ function HomeFooter(props) {
   return (
     <Container maxWidth="md">
       <footer className={classes.footer}>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" component="h3" gutterBottom>
           {t('quickLinks')}
         </Typography>
         <Typography variant="subtitle1" component="div">

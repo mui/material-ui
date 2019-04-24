@@ -45,9 +45,17 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+interface State {
+  amount: string;
+  password: string;
+  weight: string;
+  weightRange: string;
+  showPassword: boolean;
+}
+
 function InputAdornments() {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
+  const [values, setValues] = React.useState<State>({
     amount: '',
     password: '',
     weight: '',
@@ -55,9 +63,7 @@ function InputAdornments() {
     showPassword: false,
   });
 
-  const handleChange = (prop: 'amount' | 'password' | 'weight' | 'weightRange') => (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
