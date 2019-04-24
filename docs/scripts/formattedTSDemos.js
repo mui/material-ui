@@ -26,6 +26,9 @@ const babelConfig = {
   configFile: false,
 };
 
+const watchMode = process.argv.some(arg => arg === '--watch');
+const cacheDisabled = process.argv.some(arg => arg === '--disable-cache');
+
 const workspaceRoot = path.join(__dirname, '../../');
 
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
@@ -68,17 +71,27 @@ function fixBabelGeneratorIssues(source) {
   return source.replace(fixBabelIssuesRegExp, getLineFeed(source));
 }
 
-async function transpileFile(filePath) {
+async function transpileFile(tsxPath) {
+  const jsPath = tsxPath.replace('.tsx', '.js');
   try {
-    const { code } = await babel.transformFileAsync(filePath, babelConfig);
-    const prettified = prettier.format(code, { ...prettierConfig, filepath: filePath });
+    if (!cacheDisabled && fse.exists(jsPath)) {
+      const jsStat = await fse.stat(jsPath);
+      const tsxStat = await fse.stat(tsxPath);
+      if (jsStat.mtimeMs > tsxStat.mtimeMs) {
+        // JavaScript version is newer, skip transpiling
+        return -1;
+      }
+    }
+
+    const { code } = await babel.transformFileAsync(tsxPath, babelConfig);
+    const prettified = prettier.format(code, { ...prettierConfig, filepath: tsxPath });
     const formatted = fixBabelGeneratorIssues(prettified);
 
-    await fse.writeFile(filePath.replace('.tsx', '.js'), formatted);
-    return true;
+    await fse.writeFile(jsPath, formatted);
+    return 0;
   } catch (err) {
     console.error(err);
-    return false;
+    return 1;
   }
 }
 
@@ -87,22 +100,25 @@ async function transpileFile(filePath) {
 
   let successful = 0;
   let failed = 0;
-  (await Promise.all(tsxFiles.map(transpileFile))).forEach(item => {
-    if (item) successful += 1;
-    else failed += 1;
+  let skipped = 0;
+  (await Promise.all(tsxFiles.map(transpileFile))).forEach(result => {
+    if (result === 0) successful += 1;
+    else if (result === 1) failed += 1;
+    else if (result === -1) skipped += 1;
   });
 
   console.log(
     [
       '------ Summary ------',
       '%i demo(s) were successfully transpiled',
+      '%i demo(s) were skipped',
       '%i demo(s) were unsuccessful',
     ].join('\n'),
     successful,
+    skipped,
     failed,
   );
 
-  const watchMode = process.argv.some(arg => arg === '--watch');
   if (!watchMode) {
     if (failed > 0) {
       process.exit(1);
@@ -112,7 +128,7 @@ async function transpileFile(filePath) {
 
   tsxFiles.forEach(filePath => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
-      if (await transpileFile(filePath)) {
+      if ((await transpileFile(filePath)) === 0) {
         console.log('Success - %s', filePath);
       }
     });
