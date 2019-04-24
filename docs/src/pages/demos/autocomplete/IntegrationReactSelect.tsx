@@ -229,7 +229,7 @@ const components = {
 
 function IntegrationReactSelect() {
   const classes = useStyles();
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
   const [single, setSingle] = React.useState<ValueType<OptionType>>(null);
   const [multi, setMulti] = React.useState<ValueType<OptionType>>(null);
 

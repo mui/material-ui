@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function FullWidthTabs() {
   const classes = useStyles();
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
   const [value, setValue] = React.useState(0);
 
   function handleChange(event: React.ChangeEvent<{}>, newValue: number) {

@@ -33,7 +33,7 @@ interface TablePaginationActionsProps {
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
   const classes = useStyles1();
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
   const { count, page, rowsPerPage, onChangePage } = props;
 
   function handleFirstPageButtonClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {

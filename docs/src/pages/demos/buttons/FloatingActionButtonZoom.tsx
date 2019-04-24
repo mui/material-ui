@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function FloatingActionButtonZoom() {
   const classes = useStyles();
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
   const [value, setValue] = React.useState(0);
 
   function handleChange(event: unknown, newValue: number) {

@@ -60,7 +60,7 @@ interface ResponsiveDrawerProps {
 function ResponsiveDrawer(props: ResponsiveDrawerProps) {
   const { container } = props;
   const classes = useStyles();
-  const theme: Theme = useTheme();
+  const theme = useTheme<Theme>();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   function handleDrawerToggle() {
