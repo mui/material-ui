@@ -134,5 +134,5 @@ async function transpileFile(tsxPath) {
     });
   });
 
-  console.log('\nWatching files for changes...');
+  console.log('\nWatching for file changes...');
 })();
