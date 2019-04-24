@@ -71,12 +71,11 @@ function fixBabelGeneratorIssues(source) {
   return source.replace(fixBabelIssuesRegExp, getLineFeed(source));
 }
 
-async function transpileFile(tsxPath) {
+async function transpileFile(tsxPath, ignoreCache = false) {
   const jsPath = tsxPath.replace('.tsx', '.js');
   try {
-    if (!cacheDisabled && fse.exists(jsPath)) {
-      const jsStat = await fse.stat(jsPath);
-      const tsxStat = await fse.stat(tsxPath);
+    if (!cacheDisabled && !ignoreCache && fse.exists(jsPath)) {
+      const [jsStat, tsxStat] = await Promise.all([fse.stat(jsPath), fse.stat(tsxPath)]);
       if (jsStat.mtimeMs > tsxStat.mtimeMs) {
         // JavaScript version is newer, skip transpiling
         return -1;
@@ -101,7 +100,7 @@ async function transpileFile(tsxPath) {
   let successful = 0;
   let failed = 0;
   let skipped = 0;
-  (await Promise.all(tsxFiles.map(transpileFile))).forEach(result => {
+  (await Promise.all(tsxFiles.map(file => transpileFile(file)))).forEach(result => {
     if (result === 0) successful += 1;
     else if (result === 1) failed += 1;
     else if (result === -1) skipped += 1;
@@ -128,7 +127,7 @@ async function transpileFile(tsxPath) {
 
   tsxFiles.forEach(filePath => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
-      if ((await transpileFile(filePath)) === 0) {
+      if ((await transpileFile(filePath, true)) === 0) {
         console.log('Success - %s', filePath);
       }
     });
