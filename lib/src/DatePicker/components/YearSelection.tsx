@@ -7,7 +7,7 @@ import { DateType } from '@date-io/type';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { DomainPropTypes } from '../../constants/prop-types';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
+import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 
 export interface YearSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
   date: MaterialUiPickersDate;

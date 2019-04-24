@@ -10,8 +10,8 @@ import { MaterialUiPickersDate } from '../typings/date';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import { DatePickerViewType } from '../constants/DatePickerView';
 import { ParsableDate, DomainPropTypes } from '../constants/prop-types';
-import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
 import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
 export interface BaseDatePickerProps extends OutterCalendarProps {
   /**

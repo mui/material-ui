@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core';
-import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
 const positions: Record<number, number[]> = {
   0: [0, 40],

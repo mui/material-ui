@@ -10,7 +10,7 @@ import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../typings/date';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
-import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 
 export interface BaseTimePickerProps {

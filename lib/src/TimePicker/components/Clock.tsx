@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import ClockPointer from './ClockPointer';
-import ClockType, { ClockTypeType } from '../../constants/ClockType';
+import ClockType, { ClockViewType } from '../../constants/ClockType';
 import { Theme } from '@material-ui/core';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
-import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
 export interface ClockProps extends WithStyles<typeof styles> {
-  type: ClockTypeType;
+  type: ClockViewType;
   value: number;
   onChange: (value: number, isFinish?: boolean) => void;
   ampm?: boolean;

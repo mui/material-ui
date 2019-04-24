@@ -1,6 +1,7 @@
 import Ad from '_shared/Ad'
 import Example from '_shared/Example'
 import PageMeta from '_shared/PageMeta'
+import LinkedComponents from '_shared/LinkedComponents'
 import * as StaticComponents from './StaticComponents.example'
 
 <PageMeta title="Static componentes" />
@@ -23,3 +24,7 @@ chosen date and submitting state logic.
 * `wrapperProps` - props to manage accept, dismiss, clear and any modal/inline functionality.
 
 <Example source={StaticComponents} />
+
+#### Components API
+
+<LinkedComponents components={['Calendar', 'TimePickerView']} />

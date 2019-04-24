@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
 import { Theme } from '@material-ui/core';
 import { ExtendMui } from '../typings/extendMui';
-import { createStyles, WithStyles, withStyles } from '@material-ui/styles';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 
 export interface PickerToolbarProps extends ExtendMui<ToolbarProps>, WithStyles<typeof styles> {}
 

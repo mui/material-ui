@@ -7,8 +7,8 @@ import EventListener from 'react-event-listener';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { withStyles, WithStyles } from '@material-ui/styles';
 import { IconButtonProps } from '@material-ui/core/IconButton';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 
@@ -49,11 +49,17 @@ export interface CalendarProps
   extends OutterCalendarProps,
     WithUtilsProps,
     WithStyles<typeof styles, true> {
+  /** Calendar Date */
   date: MaterialUiPickersDate;
+  /** Calendar onChange */
   onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
+  /** Min date */
   minDate?: MaterialUiPickersDate;
+  /** Max date */
   maxDate?: MaterialUiPickersDate;
+  /** Disable past dates */
   disablePast?: boolean;
+  /** Disable future dates */
   disableFuture?: boolean;
 }
 

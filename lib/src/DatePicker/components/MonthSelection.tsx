@@ -3,7 +3,7 @@ import Month from './Month';
 import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { createStyles, WithStyles, withStyles } from '@material-ui/styles';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 
 export interface MonthSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
   date: MaterialUiPickersDate;

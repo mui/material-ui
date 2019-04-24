@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Ad from '_shared/Ad';
+import Code from '_shared/Code';
 import PropTypesTable from '_shared/PropTypesTable';
 import { PageMeta } from '_shared/PageMeta';
 import { Typography } from '@material-ui/core';
 import { WithRouterProps, withRouter } from 'next/router';
 
+const internalComponents = ['Calendar', 'TimePickerView'];
 const Docs: React.FC<WithRouterProps> = ({ router }) => {
   const componentName = router!.query!.component! as any; // just crash if name is invalid
 
@@ -19,6 +21,9 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
       <p>{description}</p>
 
       <Ad />
+
+      <h4> Import </h4>
+      <Code language="jsx">{`import { ${componentName} } from 'material-ui-pickers'`}</Code>
 
       <h4> Inheritance </h4>
       <Typography gutterBottom>
@@ -36,10 +41,14 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
 
       <PropTypesTable src={componentName} />
 
-      <h4> Modal Wrapper </h4>
-      <Typography gutterBottom>Available only with variant "dialog" </Typography>
+      {!internalComponents.includes(componentName) && (
+        <>
+          <h4> Modal Wrapper </h4>
+          <Typography gutterBottom>Available only with variant "dialog" </Typography>
 
-      <PropTypesTable disableHeader src="ModalWrapper" />
+          <PropTypesTable disableHeader src="ModalWrapper" />
+        </>
+      )}
     </>
   );
 };

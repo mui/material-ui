@@ -9,8 +9,7 @@ const styles = (theme: Theme) => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
     color: theme.palette.text.primary,
-    padding: 10,
-    paddingBottom: 0,
+    padding: 5,
     backgroundColor: theme.palette.background.paper,
 
     '& pre': {

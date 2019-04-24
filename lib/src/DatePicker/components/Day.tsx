@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -42,14 +42,26 @@ export const useStyles = makeStyles(
 );
 
 export interface DayProps {
+  /** Day text */
   children: React.ReactNode;
+  /** Is today */
   current?: boolean;
+  /** Disabled? */
   disabled?: boolean;
+  /** Hidden? */
   hidden?: boolean;
+  /** Selected? */
   selected?: boolean;
 }
 
-const Day: React.FC<DayProps> = ({ children, disabled, hidden, current, selected, ...other }) => {
+export const Day: React.FC<DayProps> = ({
+  children,
+  disabled,
+  hidden,
+  current,
+  selected,
+  ...other
+}) => {
   const classes = useStyles();
   const className = clsx(classes.day, {
     [classes.hidden]: hidden,
@@ -66,6 +78,8 @@ const Day: React.FC<DayProps> = ({ children, disabled, hidden, current, selected
     </IconButton>
   );
 };
+
+Day.displayName = 'Day';
 
 Day.propTypes = {
   current: PropTypes.bool,

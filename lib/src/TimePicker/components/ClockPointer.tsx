@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ClockType, { ClockTypeType } from '../../constants/ClockType';
+import ClockType, { ClockViewType } from '../../constants/ClockType';
 import { Theme } from '@material-ui/core';
-import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
 export interface ClockPointerProps extends WithStyles<typeof styles> {
   value: number;
   hasSelected: boolean;
   isInner: boolean;
-  type: ClockTypeType;
+  type: ClockViewType;
 }
 
 export class ClockPointer extends React.Component<ClockPointerProps> {

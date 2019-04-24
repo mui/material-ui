@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { Theme } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export type SlideDirection = 'right' | 'left';

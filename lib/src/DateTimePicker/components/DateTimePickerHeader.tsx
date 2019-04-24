@@ -8,7 +8,7 @@ import { Theme } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { DateTimePickerViewType } from '../DateTimePickerRoot';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
 export const styles = (theme: Theme) =>
   createStyles({

@@ -2,9 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import createStyles from '@material-ui/styles/createStyles';
-import withStyles, { WithStyles } from '@material-ui/styles/withStyles';
-import { Theme } from '@material-ui/core';
+import { Theme, withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
 export interface YearProps extends WithStyles<typeof styles> {
   children: React.ReactNode;

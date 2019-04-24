@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { Theme } from '@material-ui/core';
 import { TimeIcon } from '../../_shared/icons/TimeIcon';
 import { DateTimePickerViewType } from '../DateTimePickerRoot';
-import { withStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { DateRangeIcon } from '../../_shared/icons/DateRangeIcon';
 
 const viewToTabIndex = (openView: DateTimePickerViewType) => {
