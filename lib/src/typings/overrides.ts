@@ -12,7 +12,7 @@ import { useStyles as MuiPickersMonthStyles } from '../DatePicker/components/Mon
 import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
 import { styles as ClockPointerStyles } from '../TimePicker/components/ClockPointer';
 import { styles as DTTabsStyles } from '../DateTimePicker/components/DateTimePickerTabs';
-import { styles as CalendarHeaderStyles } from '../DatePicker/components/CalendarHeader';
+import { useStyles as CalendarHeaderStyles } from '../DatePicker/components/CalendarHeader';
 import { styles as DTHeaderStyles } from '../DateTimePicker/components/DateTimePickerHeader';
 import { useStyles as SlideTransitionStyles } from '../DatePicker/components/SlideTransition';
 import { styles as MuiPickersMonthSelectionStyles } from '../DatePicker/components/MonthSelection';
