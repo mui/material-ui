@@ -31,6 +31,10 @@ Sliders reflect the current state of the settings they control.
 
 {{"demo": "pages/lab/slider/DisabledSlider.js"}}
 
+## Customized Slider
+
+{{"demo": "pages/lab/slider/CustomizedSlider.js"}}
+
 ## Vertical slider
 
 {{"demo": "pages/lab/slider/VerticalSlider.js"}}
