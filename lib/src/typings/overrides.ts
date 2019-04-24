@@ -3,7 +3,7 @@ import { useStyles as DayStyles } from '../DatePicker/components/Day';
 import { styles as ClockStyles } from '../TimePicker/components/Clock';
 import { styles as PickerToolbarStyles } from '../_shared/PickerToolbar';
 import { styles as ToolbarButtonStyles } from '../_shared/ToolbarButton';
-import { styles as TimePickerStyles } from '../TimePicker/TimePickerRoot';
+import { useStyles as TimePickerStyles } from '../TimePicker/TimePickerRoot';
 import { styles as CalendarStyles } from '../DatePicker/components/Calendar';
 import { styles as MuiPickersYearStyles } from '../DatePicker/components/Year';
 import { styles as ClockNumberStyles } from '../TimePicker/components/ClockNumber';
