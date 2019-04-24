@@ -46,10 +46,6 @@ const ExpansionPanelDetails = withStyles(theme => ({
   },
 }))(MuiExpansionPanelDetails);
 
-interface CustomizedExpansionPanelStates {
-  expanded: string | boolean;
-}
-
 function CustomizedExpansionPanel() {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
