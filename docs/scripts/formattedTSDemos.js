@@ -40,18 +40,13 @@ async function getFiles(root) {
 
       if (stat.isDirectory()) {
         files.push(...(await getFiles(filePath)));
-        return;
-      }
-
-      if (
-        !stat.isFile() ||
-        !filePath.endsWith('.tsx') ||
-        ignoreList.some(ignorePath => filePath.endsWith(path.normalize(ignorePath)))
+      } else if (
+        stat.isFile() &&
+        filePath.endsWith('.tsx') &&
+        !ignoreList.some(ignorePath => filePath.endsWith(path.normalize(ignorePath)))
       ) {
-        return;
+        files.push(filePath);
       }
-
-      files.push(filePath);
     }),
   );
 
