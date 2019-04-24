@@ -262,32 +262,27 @@ describe('<Drawer />', () => {
 
   describe('isHorizontal', () => {
     it('should recognize left and right as horizontal swiping directions', () => {
-      assert.strictEqual(isHorizontal({ anchor: 'left' }), true);
-      assert.strictEqual(isHorizontal({ anchor: 'right' }), true);
-      assert.strictEqual(isHorizontal({ anchor: 'top' }), false);
-      assert.strictEqual(isHorizontal({ anchor: 'bottom' }), false);
+      assert.strictEqual(isHorizontal('left'), true);
+      assert.strictEqual(isHorizontal('right'), true);
+      assert.strictEqual(isHorizontal('top'), false);
+      assert.strictEqual(isHorizontal('bottom'), false);
     });
   });
 
   describe('getAnchor', () => {
     it('should return the anchor', () => {
-      const theme = createMuiTheme({
-        direction: 'ltr',
-      });
-
-      assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'left');
-      assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'right');
-      assert.strictEqual(getAnchor({ anchor: 'top', theme }), 'top');
-      assert.strictEqual(getAnchor({ anchor: 'bottom', theme }), 'bottom');
+      const direction = 'ltr';
+      assert.strictEqual(getAnchor(direction, 'left'), 'left');
+      assert.strictEqual(getAnchor(direction, 'right'), 'right');
+      assert.strictEqual(getAnchor(direction, 'top'), 'top');
+      assert.strictEqual(getAnchor(direction, 'bottom'), 'bottom');
     });
 
     it('should switch left/right if RTL is enabled', () => {
-      const theme = createMuiTheme({
-        direction: 'rtl',
-      });
+      const direction = 'rtl';
 
-      assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'right');
-      assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'left');
+      assert.strictEqual(getAnchor(direction, 'left'), 'right');
+      assert.strictEqual(getAnchor(direction, 'right'), 'left');
     });
   });
 });

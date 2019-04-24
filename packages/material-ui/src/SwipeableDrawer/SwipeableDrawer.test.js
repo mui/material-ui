@@ -1,13 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
-import { createMount, describeConformance, unwrap } from '@material-ui/core/test-utils';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
-import createMuiTheme from '../styles/createMuiTheme';
 
 function fireBodyMouseEvent(name, properties = {}) {
   const event = document.createEvent('MouseEvents');
@@ -34,7 +33,6 @@ function fireSwipeAreaMouseEvent(wrapper, name, properties = {}) {
 }
 
 describe('<SwipeableDrawer />', () => {
-  const SwipeableDrawerNaked = unwrap(SwipeableDrawer);
   let mount;
 
   function mockDrawerDOMNode(wrapper) {
@@ -70,48 +68,28 @@ describe('<SwipeableDrawer />', () => {
   }));
 
   it('should render a Drawer and a SwipeArea', () => {
-    const wrapper = mount(
-      <SwipeableDrawerNaked
-        onOpen={() => {}}
-        onClose={() => {}}
-        open={false}
-        theme={createMuiTheme()}
-      />,
-    ).find('SwipeableDrawer'); // unwrap withForwardedRef
-    assert.strictEqual(wrapper.childAt(0).type(), Drawer);
-    assert.strictEqual(
-      wrapper
-        .childAt(1)
-        .childAt(0)
-        .type(),
-      SwipeArea,
-    );
+    const wrapper = mount(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false} />); // unwrap withForwardedRef
+    assert.strictEqual(wrapper.find(Drawer).exists(), true);
+    assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
   });
 
   it('should hide the SwipeArea if swipe to open is disabled', () => {
     const wrapper = mount(
-      <SwipeableDrawerNaked
-        onOpen={() => {}}
-        onClose={() => {}}
-        open={false}
-        theme={createMuiTheme()}
-        disableSwipeToOpen
-      />,
-    ).find('SwipeableDrawer');
-    assert.strictEqual(wrapper.children().length, 1);
+      <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false} disableSwipeToOpen />,
+    );
+    assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
   });
 
   it('should accept user custom style', () => {
     const customStyle = { style: { backgroundColor: 'hotpink' } };
     const wrapper = mount(
-      <SwipeableDrawerNaked
+      <SwipeableDrawer
         onOpen={() => {}}
         onClose={() => {}}
         open={false}
-        theme={createMuiTheme()}
         PaperProps={customStyle}
       />,
-    ).find('SwipeableDrawer');
+    );
 
     assert.strictEqual(wrapper.props().PaperProps, customStyle);
   });
@@ -122,14 +100,9 @@ describe('<SwipeableDrawer />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <SwipeableDrawerNaked
-          onOpen={() => {}}
-          onClose={() => {}}
-          open={false}
-          theme={createMuiTheme()}
-        >
+        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false}>
           <h1>Hello</h1>
-        </SwipeableDrawerNaked>,
+        </SwipeableDrawer>,
       );
       instance = wrapper.find('SwipeableDrawer').instance();
       mockDrawerDOMNode(wrapper);
@@ -399,47 +372,30 @@ describe('<SwipeableDrawer />', () => {
   describe('disableSwipeToOpen', () => {
     it('should not support swipe to open if disableSwipeToOpen is set', () => {
       const wrapper = mount(
-        <SwipeableDrawerNaked
-          onOpen={() => {}}
-          onClose={() => {}}
-          open={false}
-          theme={createMuiTheme()}
-        >
+        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false}>
           <h1>Hello</h1>
-        </SwipeableDrawerNaked>,
+        </SwipeableDrawer>,
       );
 
       // simulate open swipe
       wrapper.setProps({ disableSwipeToOpen: true });
       fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
-      assert.strictEqual(
-        wrapper.find('SwipeableDrawer').instance().state.maybeSwiping,
-        false,
-        'should not be listening for open swipe',
-      );
+      assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
       wrapper.unmount();
     });
 
     it('should support swipe to close if disableSwipeToOpen is set', () => {
       const wrapper = mount(
-        <SwipeableDrawerNaked
-          onOpen={() => {}}
-          onClose={() => {}}
-          open={false}
-          theme={createMuiTheme()}
-        >
+        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open>
           <h1>Hello</h1>
-        </SwipeableDrawerNaked>,
+        </SwipeableDrawer>,
       );
 
       // simulate close swipe
-      wrapper.setProps({ disableSwipeToOpen: true, open: true });
+      wrapper.setProps({ disableSwipeToOpen: true });
+      assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
       fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
-      assert.strictEqual(
-        wrapper.find('SwipeableDrawer').instance().state.maybeSwiping,
-        true,
-        'should not be listening for open swipe',
-      );
+      assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
       wrapper.unmount();
     });
   });
@@ -449,30 +405,20 @@ describe('<SwipeableDrawer />', () => {
       const handleOpen = spy();
       const wrapper = mount(
         <div>
-          <SwipeableDrawerNaked
-            onOpen={handleOpen}
-            onClose={() => {}}
-            open={false}
-            theme={createMuiTheme()}
-          >
+          <SwipeableDrawer onOpen={handleOpen} onClose={() => {}} open={false}>
             <h1>Hello1</h1>
-          </SwipeableDrawerNaked>
-          <SwipeableDrawerNaked
-            onOpen={handleOpen}
-            onClose={() => {}}
-            open={false}
-            theme={createMuiTheme()}
-          >
+          </SwipeableDrawer>
+          <SwipeableDrawer onOpen={handleOpen} onClose={() => {}} open={false}>
             <h1>Hello2</h1>
-          </SwipeableDrawerNaked>
+          </SwipeableDrawer>
         </div>,
       );
       mockDrawerDOMNode(wrapper);
 
-      fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawerNaked).at(0), 'touchstart', {
+      fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawer).at(0), 'touchstart', {
         touches: [{ pageX: 0, clientY: 0 }],
       });
-      fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawerNaked).at(1), 'touchstart', {
+      fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawer).at(1), 'touchstart', {
         touches: [{ pageX: 0, clientY: 0 }],
       });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
@@ -484,14 +430,9 @@ describe('<SwipeableDrawer />', () => {
 
   it('does not crash when updating the parent component while swiping', () => {
     const wrapper = mount(
-      <SwipeableDrawerNaked
-        onOpen={() => {}}
-        onClose={() => {}}
-        open={false}
-        theme={createMuiTheme()}
-      >
+      <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false}>
         <h1>Hello</h1>
-      </SwipeableDrawerNaked>,
+      </SwipeableDrawer>,
     );
     fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
     // simulate paper ref being null because of the drawer being updated
@@ -505,26 +446,14 @@ describe('<SwipeableDrawer />', () => {
   describe('no backdrop', () => {
     it('does not crash when backdrop is hidden while swiping', () => {
       const wrapper = mount(
-        <SwipeableDrawerNaked
-          onClose={() => {}}
-          onOpen={() => {}}
-          open={false}
-          theme={createMuiTheme()}
-          hideBackdrop
-        />,
+        <SwipeableDrawer onClose={() => {}} onOpen={() => {}} open={false} hideBackdrop />,
       );
       fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
     });
 
     it('does not crash when backdrop props are empty while swiping', () => {
       const wrapper = mount(
-        <SwipeableDrawerNaked
-          onClose={() => {}}
-          onOpen={() => {}}
-          open={false}
-          theme={createMuiTheme()}
-          BackdropProps={{}}
-        />,
+        <SwipeableDrawer onClose={() => {}} onOpen={() => {}} open={false} BackdropProps={{}} />,
       );
       fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
     });
@@ -553,7 +482,7 @@ describe('<SwipeableDrawer />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `SwipeableDrawer`. Expected an element type that can hold a ref.',
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `ForwardRef(SwipeableDrawer)`. Expected an element type that can hold a ref.',
       );
     });
 
@@ -570,7 +499,7 @@ describe('<SwipeableDrawer />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `SwipeableDrawer`. Expected an element type that can hold a ref.',
+        'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `ForwardRef(SwipeableDrawer)`. Expected an element type that can hold a ref.',
       );
     });
   });
