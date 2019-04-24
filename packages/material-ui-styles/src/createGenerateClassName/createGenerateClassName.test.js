@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createGenerateClassName from './createGenerateClassName';
-import { nested } from '../ThemeProvider/ThemeProvider';
+import nested from '../ThemeProvider/nested';
 
 describe('createGenerateClassName', () => {
   it('should generate a class name', () => {
@@ -91,7 +91,7 @@ describe('createGenerateClassName', () => {
           },
         },
       ),
-      'root-1',
+      'MuiButton-2',
     );
   });
 

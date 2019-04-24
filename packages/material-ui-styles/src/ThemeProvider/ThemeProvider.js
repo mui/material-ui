@@ -4,6 +4,7 @@ import warning from 'warning';
 import { exactProp } from '@material-ui/utils';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
+import nested from './nested';
 
 // To support composition of theme.
 function mergeOuterLocalTheme(outerTheme, localTheme) {
@@ -23,8 +24,6 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
 
   return { ...outerTheme, ...localTheme };
 }
-
-export const nested = Symbol('nested');
 
 /**
  * This component takes a `theme` property.

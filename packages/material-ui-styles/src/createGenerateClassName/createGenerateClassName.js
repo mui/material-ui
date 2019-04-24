@@ -1,11 +1,5 @@
 import warning from 'warning';
-import { nested } from '../ThemeProvider/ThemeProvider';
-
-function safePrefix(classNamePrefix) {
-  const prefix = String(classNamePrefix);
-  warning(prefix.length < 256, `Material-UI: the class name prefix is too long: ${prefix}.`);
-  return prefix;
-}
+import nested from '../ThemeProvider/nested';
 
 /**
  * This is the list of the style rule name we use as drop in replacement for the built-in
@@ -35,30 +29,10 @@ const pseudoClasses = [
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
 export default function createGenerateClassName(options = {}) {
   const { disableGlobal = false, productionPrefix = 'jss', seed = '' } = options;
+  const classNameSeed = seed === '' ? '' : `-${seed}`;
   let ruleCounter = 0;
 
   return (rule, styleSheet) => {
-    const isGlobal =
-      !styleSheet.options.link &&
-      styleSheet.options.name &&
-      styleSheet.options.name.indexOf('Mui') === 0 &&
-      !disableGlobal;
-
-    if (isGlobal) {
-      if (pseudoClasses.indexOf(rule.key) !== -1) {
-        return rule.key;
-      }
-
-      if (!styleSheet.options.theme[nested]) {
-        const prefix = `${safePrefix(styleSheet.options.name)}${seed}`;
-
-        if (rule.key === 'root') {
-          return prefix;
-        }
-        return `${prefix}-${rule.key}`;
-      }
-    }
-
     ruleCounter += 1;
     warning(
       ruleCounter < 1e10,
@@ -68,15 +42,33 @@ export default function createGenerateClassName(options = {}) {
       ].join(''),
     );
 
-    if (process.env.NODE_ENV === 'production' && productionPrefix !== '') {
-      return `${productionPrefix}${seed}${ruleCounter}`;
+    const name = styleSheet.options.name;
+
+    // Is a global static MUI style?
+    if (name && name.indexOf('Mui') === 0 && !styleSheet.options.link && !disableGlobal) {
+      // We can use a shorthand class name, we never use the keys to style the components.
+      if (pseudoClasses.indexOf(rule.key) !== -1) {
+        return rule.key;
+      }
+
+      const prefix = `${name}${rule.key === 'root' ? '' : `-${rule.key}`}${classNameSeed}`;
+
+      if (!styleSheet.options.theme[nested] || seed !== '') {
+        return prefix;
+      }
+
+      return `${prefix}-${ruleCounter}`;
     }
 
-    const suffix = `${rule.key}-${seed}${ruleCounter}`;
+    if (process.env.NODE_ENV === 'production' && productionPrefix !== '') {
+      return `${productionPrefix}${classNameSeed}${ruleCounter}`;
+    }
+
+    const suffix = `${rule.key}${classNameSeed}-${ruleCounter}`;
 
     // Help with debuggability.
     if (styleSheet.options.classNamePrefix) {
-      return `${safePrefix(styleSheet.options.classNamePrefix)}-${suffix}`;
+      return `${styleSheet.options.classNamePrefix}-${suffix}`;
     }
 
     return suffix;
