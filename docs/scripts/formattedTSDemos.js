@@ -1,11 +1,7 @@
-/* eslint-disable no-plusplus */
 /* eslint-disable no-console */
-/* eslint-disable no-continue */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-restricted-syntax */
 
 /**
- * Transpiles and formats TS demos.
+ * Transpiles TypeScript demos to formatted JavaScript.
  * Can be used to verify that JS and TS demos are equivalent. No introduced change
  * would indicate equivalence.
  */
@@ -30,28 +26,34 @@ const babelConfig = {
   configFile: false,
 };
 
-const prettierConfig = prettier.resolveConfig(process.cwd(), {
+let prettierConfig = prettier.resolveConfig(process.cwd(), {
   config: path.join(__dirname, '../../prettier.config.js'),
 });
 
-const watchMode = process.argv.some(arg => arg === '--watch');
-
 async function getFiles(root) {
   const files = [];
-  const folderItem = await fse.readdir(root);
 
-  for (const name of folderItem) {
-    const filePath = path.join(root, name);
-    const stat = await fse.stat(filePath);
+  await Promise.all(
+    (await fse.readdir(root)).map(async name => {
+      const filePath = path.join(root, name);
+      const stat = await fse.stat(filePath);
 
-    if (stat.isFile()) {
-      if (!filePath.endsWith('.tsx')) continue;
-      if (ignoreList.some(ignorePath => filePath.endsWith(path.normalize(ignorePath)))) continue;
+      if (stat.isDirectory()) {
+        files.push(...(await getFiles(filePath)));
+        return;
+      }
+
+      if (
+        !stat.isFile() ||
+        !filePath.endsWith('.tsx') ||
+        ignoreList.some(ignorePath => filePath.endsWith(path.normalize(ignorePath)))
+      ) {
+        return;
+      }
+
       files.push(filePath);
-    } else if (stat.isDirectory()) {
-      files.push(...(await getFiles(filePath)));
-    }
-  }
+    }),
+  );
 
   return files;
 }
@@ -59,7 +61,7 @@ async function getFiles(root) {
 function getLineFeed(source) {
   if (source.length <= 1) return os.EOL;
 
-  for (let index = 1; index < source.length; index++) {
+  for (let index = 1; index < source.length; index += 1) {
     if (source[index] === '\n') {
       if (source[index - 1] === '\r') return '\r\n';
       return '\n';
@@ -77,37 +79,54 @@ function fixBabelGeneratorIssues(source) {
 async function transpileFile(filePath) {
   try {
     const { code } = await babel.transformFileAsync(filePath, babelConfig);
-    const prettified = prettier.format(code, { ...(await prettierConfig), filepath: filePath });
+    const prettified = prettier.format(code, { ...prettierConfig, filepath: filePath });
     const formatted = fixBabelGeneratorIssues(prettified);
 
     await fse.writeFile(filePath.replace('.tsx', '.js'), formatted);
     return true;
   } catch (err) {
     console.error(err);
-    if (!watchMode) process.exit(1);
     return false;
   }
 }
 
 (async () => {
+  prettierConfig = await prettierConfig;
+
   const tsxFiles = await getFiles(path.join(__dirname, '../src/pages'));
 
-  for (const filePath of tsxFiles) {
-    if (watchMode) {
-      fse.watchFile(filePath, async () => {
-        const successful = await transpileFile(filePath);
-        if (watchMode && successful) {
-          console.log('Successfully transpiled: %s', filePath);
-        }
-      });
+  let successful = 0;
+  let failed = 0;
+  (await Promise.all(tsxFiles.map(transpileFile))).forEach(item => {
+    if (item) successful += 1;
+    else failed += 1;
+  });
+
+  console.log(
+    [
+      '------ Summary ------',
+      '%i demo(s) were successfully transpiled',
+      '%i demo(s) were unsuccessful',
+    ].join('\n'),
+    successful,
+    failed,
+  );
+
+  const watchMode = process.argv.some(arg => arg === '--watch');
+  if (!watchMode) {
+    if (failed > 0) {
+      process.exit(1);
     }
-    await transpileFile(filePath);
+    return;
   }
 
-  if (watchMode) {
-    console.log('Watching files...');
-  }
-})().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+  tsxFiles.forEach(filePath => {
+    fse.watchFile(filePath, { interval: 500 }, async () => {
+      if (await transpileFile(filePath)) {
+        console.log('Success - %s', filePath);
+      }
+    });
+  });
+
+  console.log('\nWatching files for changes...');
+})();
