@@ -15,20 +15,37 @@ const styles = {
   },
 };
 
+const defaultTimeout = {
+  enter: duration.enteringScreen,
+  exit: duration.leavingScreen,
+};
+
 /**
  * The Fade transition is used by the [Modal](/utils/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Fade = React.forwardRef(function Fade(props, ref) {
-  const { children, in: inProp, onEnter, onExit, style, theme, ...other } = props;
+  const {
+    children,
+    in: inProp,
+    onEnter,
+    onExit,
+    style,
+    theme,
+    timeout = defaultTimeout,
+    ...other
+  } = props;
   const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
 
-    const transitionProps = getTransitionProps(props, {
-      mode: 'enter',
-    });
+    const transitionProps = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'enter',
+      },
+    );
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
@@ -38,9 +55,12 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   };
 
   const handleExit = node => {
-    const transitionProps = getTransitionProps(props, {
-      mode: 'exit',
-    });
+    const transitionProps = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'exit',
+      },
+    );
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
@@ -50,7 +70,14 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   };
 
   return (
-    <Transition appear in={inProp} onEnter={handleEnter} onExit={handleExit} {...other}>
+    <Transition
+      appear
+      in={inProp}
+      onEnter={handleEnter}
+      onExit={handleExit}
+      timeout={timeout}
+      {...other}
+    >
       {(state, childProps) => {
         return React.cloneElement(children, {
           style: {
@@ -101,13 +128,6 @@ Fade.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
-};
-
-Fade.defaultProps = {
-  timeout: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withTheme(Fade);

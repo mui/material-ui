@@ -82,12 +82,12 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
     children: childrenProp,
     classes,
     className,
-    defaultExpanded,
-    disabled,
+    defaultExpanded = false,
+    disabled = false,
     expanded: expandedProp,
     onChange,
-    square,
-    TransitionComponent,
+    square = false,
+    TransitionComponent = Collapse,
     TransitionProps,
     ...other
   } = props;
@@ -199,13 +199,6 @@ ExpansionPanel.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-ExpansionPanel.defaultProps = {
-  defaultExpanded: false,
-  disabled: false,
-  square: false,
-  TransitionComponent: Collapse,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);

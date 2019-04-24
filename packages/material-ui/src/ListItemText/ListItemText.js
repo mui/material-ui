@@ -35,8 +35,8 @@ const ListItemText = React.forwardRef(function ListItemText(props, ref) {
     children,
     classes,
     className,
-    disableTypography,
-    inset,
+    disableTypography = false,
+    inset = false,
     primary: primaryProp,
     primaryTypographyProps,
     secondary: secondaryProp,
@@ -137,11 +137,6 @@ ListItemText.propTypes = {
    * (as long as disableTypography is not `true`).
    */
   secondaryTypographyProps: PropTypes.object,
-};
-
-ListItemText.defaultProps = {
-  disableTypography: false,
-  inset: false,
 };
 
 export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

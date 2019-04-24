@@ -63,7 +63,15 @@ function ensureImageCover(imgEl, classes) {
 }
 
 const GridListTile = React.forwardRef(function GridListTile(props, ref) {
-  const { children, classes, className, cols, component: Component, rows, ...other } = props;
+  const {
+    children,
+    classes,
+    className,
+    cols = 1,
+    component: Component = 'li',
+    rows = 1,
+    ...other
+  } = props;
 
   const imgRef = React.useRef(null);
 
@@ -133,12 +141,6 @@ GridListTile.propTypes = {
    * Height of the tile in number of grid cells.
    */
   rows: PropTypes.number,
-};
-
-GridListTile.defaultProps = {
-  cols: 1,
-  component: 'li',
-  rows: 1,
 };
 
 export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);

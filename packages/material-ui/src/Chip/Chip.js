@@ -226,8 +226,8 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     classes,
     className: classNameProp,
     clickable: clickableProp,
-    color,
-    component: Component,
+    color = 'default',
+    component: Component = 'div',
     deleteIcon: deleteIconProp,
     icon: iconProp,
     label,
@@ -235,7 +235,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     onDelete,
     onKeyDown,
     onKeyUp,
-    variant,
+    variant = 'default',
     ...other
   } = props;
 
@@ -445,12 +445,6 @@ Chip.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['default', 'outlined']),
-};
-
-Chip.defaultProps = {
-  component: 'div',
-  color: 'default',
-  variant: 'default',
 };
 
 export default withStyles(styles, { name: 'MuiChip' })(Chip);

@@ -67,7 +67,7 @@ export const styles = theme => {
 };
 
 const AppBar = React.forwardRef(function AppBar(props, ref) {
-  const { classes, className, color, position, ...other } = props;
+  const { classes, className, color = 'primary', position = 'fixed', ...other } = props;
 
   return (
     <Paper
@@ -113,11 +113,6 @@ AppBar.propTypes = {
    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    */
   position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static', 'relative']),
-};
-
-AppBar.defaultProps = {
-  color: 'primary',
-  position: 'fixed',
 };
 
 export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

@@ -59,7 +59,14 @@ export const styles = theme => ({
 });
 
 const Container = React.forwardRef(function Container(props, ref) {
-  const { classes, className, component: Component, fixed, maxWidth, ...other } = props;
+  const {
+    classes,
+    className,
+    component: Component = 'div',
+    fixed = false,
+    maxWidth = 'lg',
+    ...other
+  } = props;
 
   return (
     <Component
@@ -106,12 +113,6 @@ Container.propTypes = {
    * Set to `false` to disable `maxWidth`.
    */
   maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
-};
-
-Container.defaultProps = {
-  component: 'div',
-  fixed: false,
-  maxWidth: 'lg',
 };
 
 export default withStyles(styles, { name: 'MuiContainer' })(Container);

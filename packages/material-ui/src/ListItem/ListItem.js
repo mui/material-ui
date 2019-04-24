@@ -90,21 +90,21 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
  */
 const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
-    alignItems,
+    alignItems = 'center',
     autoFocus,
-    button,
+    button = false,
     children: childrenProp,
     classes,
     className,
     component: componentProp,
-    ContainerComponent,
+    ContainerComponent = 'li',
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
     dense,
-    disabled,
-    disableGutters,
-    divider,
+    disabled = false,
+    disableGutters = false,
+    divider = false,
     focusVisibleClassName,
-    selected,
+    selected = false,
     ...other
   } = props;
 
@@ -288,16 +288,6 @@ ListItem.propTypes = {
    * Use to apply selected styling.
    */
   selected: PropTypes.bool,
-};
-
-ListItem.defaultProps = {
-  alignItems: 'center',
-  button: false,
-  ContainerComponent: 'li',
-  disabled: false,
-  disableGutters: false,
-  divider: false,
-  selected: false,
 };
 
 export default withStyles(styles, { name: 'MuiListItem' })(ListItem);
