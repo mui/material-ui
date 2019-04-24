@@ -2,35 +2,84 @@ import Code from './Code';
 import CodeIcon from '@material-ui/icons/Code';
 import CopyIcon from '@material-ui/icons/FileCopy';
 import GithubIcon from '_shared/svgIcons/GithubIcon';
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useContext } from 'react';
 import { copy } from 'utils/helpers';
 import { GITHUB_EDIT_URL } from '_constants';
-import { withUtilsService } from './UtilsServiceContext';
+import { replaceGetFormatStrings } from 'utils/utilsService';
 import { withSnackbar, InjectedNotistackProps } from 'notistack';
-import { IconButton, Collapse, Theme, Tooltip } from '@material-ui/core';
-import { withStyles, WithStyles, createStyles } from '@material-ui/styles';
+import { withUtilsService, UtilsContext } from './UtilsServiceContext';
+import { makeStyles, Theme, IconButton, Collapse, Tooltip } from '@material-ui/core';
 
-interface Props extends WithStyles<typeof styles>, InjectedNotistackProps {
+interface Props extends InjectedNotistackProps {
   source: { raw: string; relativePath: string; default: React.FC<any> };
 }
 
-function Example({ classes, source, enqueueSnackbar }: Props) {
+const useStyles = makeStyles<Theme>(theme => ({
+  exampleTitle: {
+    marginBottom: 8,
+    '@media(max-width: 600px)': {
+      marginLeft: 5,
+    },
+  },
+  pickers: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    minHeight: 160,
+    paddingTop: 40,
+    width: '100%',
+    margin: '0 auto 50px',
+    position: 'relative',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+
+      '& > div': {
+        marginBottom: 32,
+      },
+    },
+  },
+  sourceToolbar: {
+    display: 'flex',
+  },
+  toolbarSourceBtn: {
+    marginLeft: 'auto',
+  },
+  codeContainer: {
+    position: 'relative',
+  },
+  sourceBtn: {
+    position: 'absolute',
+    top: 10,
+    right: 5,
+  },
+}));
+
+function Example({ source, enqueueSnackbar }: Props) {
   if (!source.default || !source.raw || !source.relativePath) {
     throw new Error(
       'Missing component or raw component code, you likely forgot to .example to your example extension'
     );
   }
 
+  const classes = useStyles();
+  const currentLib = useContext(UtilsContext).lib;
   const [expanded, setExpanded] = useState(false);
+
+  const replacedSource = replaceGetFormatStrings(currentLib, source.raw);
   const copySource = useCallback(
     () =>
-      copy(source.raw).then(() =>
+      copy(replacedSource).then(() =>
         enqueueSnackbar('Source copied', { variant: 'success', autoHideDuration: 1000 })
       ),
-    [enqueueSnackbar, source.raw]
+    [enqueueSnackbar, replacedSource]
   );
 
-  // make each component rerender on utils change
+  // make each component rerender only on utils change
   const Component = useMemo(() => withUtilsService(source.default), [source.default]);
 
   return (
@@ -60,7 +109,9 @@ function Example({ classes, source, enqueueSnackbar }: Props) {
           </IconButton>
         </div>
 
-        <div className={classes.codeContainer}>{source.raw && <Code children={source.raw} />}</div>
+        <div className={classes.codeContainer}>
+          {replacedSource && <Code children={replacedSource} />}
+        </div>
       </Collapse>
 
       <div className={classes.pickers}>
@@ -76,50 +127,4 @@ function Example({ classes, source, enqueueSnackbar }: Props) {
   );
 }
 
-const styles = (theme: Theme) =>
-  createStyles({
-    exampleTitle: {
-      marginBottom: 8,
-      '@media(max-width: 600px)': {
-        marginLeft: 5,
-      },
-    },
-    pickers: {
-      display: 'flex',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      minHeight: 160,
-      paddingTop: 40,
-      width: '100%',
-      margin: '0 auto 50px',
-      position: 'relative',
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
-
-      [theme.breakpoints.down('sm')]: {
-        flexDirection: 'column',
-        alignItems: 'center',
-
-        '& > div': {
-          marginBottom: 32,
-        },
-      },
-    },
-    sourceToolbar: {
-      display: 'flex',
-    },
-    toolbarSourceBtn: {
-      marginLeft: 'auto',
-    },
-    codeContainer: {
-      position: 'relative',
-    },
-    sourceBtn: {
-      position: 'absolute',
-      top: 10,
-      right: 5,
-    },
-  });
-
-export default withSnackbar(withStyles(styles)(Example));
+export default withSnackbar(Example);

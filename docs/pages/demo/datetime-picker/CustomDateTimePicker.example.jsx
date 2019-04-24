@@ -42,7 +42,7 @@ function CustomDateTimePicker(props) {
         label="Keyboard with error handler"
         onError={console.log}
         minDate={new Date('2018-01-01T00:00')}
-        format={props.getFormatString({
+        format={props.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD hh:mm A',
           dateFns: 'yyyy/MM/dd hh:mm a',
         })}

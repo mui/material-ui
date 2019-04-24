@@ -12,7 +12,7 @@ function KeyboardDatePickerExample(props) {
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         minDate={new Date()}
-        format={props.getFormatString({
+        format={props.__willBeReplacedGetFormatString({
           moment: 'MM/DD/YYYY',
           dateFns: 'MM/dd/yyyy',
         })}
@@ -23,7 +23,7 @@ function KeyboardDatePickerExample(props) {
         placeholder="10/10/2018"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
-        format={props.getFormatString({
+        format={props.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD',
           dateFns: 'yyyy/MM/dd',
         })}

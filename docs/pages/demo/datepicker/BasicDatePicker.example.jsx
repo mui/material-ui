@@ -23,16 +23,16 @@ function BasicDatePicker(props) {
       />
 
       <DatePicker
-        label="Date of birth"
-        value={selectedDate}
         disableFuture
         openTo="year"
-        views={['year', 'month', 'day']}
-        onChange={handleDateChange}
-        format={props.getFormatString({
+        format={props.__willBeReplacedGetFormatString({
           moment: 'DD/MM/YYYY',
           dateFns: 'dd/MM/yyyy',
         })}
+        label="Date of birth"
+        views={['year', 'month', 'day']}
+        value={selectedDate}
+        onChange={handleDateChange}
       />
     </Fragment>
   );

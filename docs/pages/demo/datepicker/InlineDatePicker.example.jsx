@@ -30,9 +30,9 @@ function InlineDatePickerDemo(props) {
         value={selectedDate}
         onChange={handleDateChange}
         InputAdornmentProps={{ position: 'start' }}
-        format={props.getFormatString({
+        format={props.__willBeReplacedGetFormatString({
           moment: 'MM/DD/YYYY',
-          dateFns: 'MM/dd/yyyy',
+          'date-fns': 'MM/dd/yyyy',
         })}
       />
     </Fragment>

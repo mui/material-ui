@@ -21,7 +21,7 @@ function InlineDateTimePickerDemo(props) {
         onChange={handleDateChange}
         onError={console.log}
         disablePast
-        format={props.getFormatString({
+        format={props.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD HH:mm',
           dateFns: 'yyyy/MM/dd HH:mm',
         })}
