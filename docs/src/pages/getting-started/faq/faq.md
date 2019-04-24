@@ -359,7 +359,7 @@ function App() {
 ```
 
 where `Portal` would only mount the children into the container when `container.current` is available.
-With a simple heuristic Portal would re-render after it mounts because refs are up-to-date before any effects run.
+Here is a naive implementation of Portal: 
 
 ```jsx
 function Portal({ children, container }) {
@@ -376,6 +376,7 @@ function Portal({ children, container }) {
 }
 ```
 
+With this simple heuristic Portal would re-render after it mounts because refs are up-to-date before any effects run. 
 This assumption can introduce subtle bugs the farther away the actual host component with the container ref is.
 If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available. This is
 especially apparent for React.lazy components in Suspense. The above implementation could also not account for a change in the DOM node.
