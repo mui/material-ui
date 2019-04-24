@@ -9,7 +9,7 @@ import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../_shared/icons/ArrowRightIcon';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
 
 export interface CalendarHeaderProps extends WithStyles<typeof styles, true> {
   currentMonth: DateType;

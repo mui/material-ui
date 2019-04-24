@@ -3,9 +3,9 @@ import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core';
-import { fade } from '@material-ui/core/styles';
 import { ExtendMui } from '../typings/extendMui';
-import { withStyles, WithStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 export interface ToolbarTextProps extends ExtendMui<TypographyProps>, WithStyles<typeof styles> {
   selected: boolean;
