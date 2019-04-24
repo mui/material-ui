@@ -16,7 +16,7 @@ const tablelvl2 = {
 };
 
 const TableHead = React.forwardRef(function TableHead(props, ref) {
-  const { classes, className, component: Component, ...other } = props;
+  const { classes, className, component: Component = 'thead', ...other } = props;
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
@@ -44,10 +44,6 @@ TableHead.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
-};
-
-TableHead.defaultProps = {
-  component: 'thead',
 };
 
 export default withStyles(styles, { name: 'MuiTableHead' })(TableHead);

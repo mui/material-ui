@@ -56,7 +56,7 @@ const Radio = React.forwardRef(function Radio(props, ref) {
   const {
     checked: checkedProp,
     classes,
-    color,
+    color = 'secondary',
     name: nameProp,
     onChange: onChangeProp,
     ...other
@@ -78,6 +78,7 @@ const Radio = React.forwardRef(function Radio(props, ref) {
 
   return (
     <SwitchBase
+      color={color}
       type="radio"
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={<RadioButtonCheckedIcon />}
@@ -157,10 +158,6 @@ Radio.propTypes = {
    * The value of the component.
    */
   value: PropTypes.any,
-};
-
-Radio.defaultProps = {
-  color: 'secondary',
 };
 
 export default withStyles(styles, { name: 'MuiRadio' })(Radio);

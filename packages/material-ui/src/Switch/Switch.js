@@ -124,7 +124,7 @@ export const styles = theme => ({
 });
 
 const Switch = React.forwardRef(function Switch(props, ref) {
-  const { classes, className, color, edge, ...other } = props;
+  const { classes, className, color = 'secondary', edge = false, ...other } = props;
   const icon = <span className={classes.thumb} />;
 
   return (
@@ -229,11 +229,6 @@ Switch.propTypes = {
    * The value of the component.
    */
   value: PropTypes.any,
-};
-
-Switch.defaultProps = {
-  color: 'secondary',
-  edge: false,
 };
 
 export default withStyles(styles, { name: 'MuiSwitch' })(Switch);

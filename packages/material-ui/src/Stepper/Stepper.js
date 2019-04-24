@@ -26,16 +26,18 @@ export const styles = {
   },
 };
 
+const defaultConnector = <StepConnector />;
+
 const Stepper = React.forwardRef(function Stepper(props, ref) {
   const {
-    activeStep,
-    alternativeLabel,
+    activeStep = 0,
+    alternativeLabel = false,
     children,
     classes,
     className: classNameProp,
-    connector: connectorProp,
-    nonLinear,
-    orientation,
+    connector: connectorProp = defaultConnector,
+    nonLinear = false,
+    orientation = 'horizontal',
     ...other
   } = props;
 
@@ -129,14 +131,6 @@ Stepper.propTypes = {
    * The stepper orientation (layout flow direction).
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-};
-
-Stepper.defaultProps = {
-  activeStep: 0,
-  alternativeLabel: false,
-  connector: <StepConnector />,
-  nonLinear: false,
-  orientation: 'horizontal',
 };
 
 export default withStyles(styles, { name: 'MuiStepper' })(Stepper);

@@ -39,13 +39,13 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     anchorEl,
     children,
     container,
-    disablePortal,
-    keepMounted,
+    disablePortal = false,
+    keepMounted = false,
     modifiers,
     open,
-    placement: placementProps,
+    placement: placementProps = 'bottom',
     popperOptions = {},
-    transition,
+    transition = false,
     ...other
   } = props;
   const tooltipRef = React.useRef(null);
@@ -264,13 +264,6 @@ Popper.propTypes = {
    * Help supporting a react-transition-group/Transition component.
    */
   transition: PropTypes.bool,
-};
-
-Popper.defaultProps = {
-  disablePortal: false,
-  keepMounted: false,
-  placement: 'bottom',
-  transition: false,
 };
 
 export default Popper;

@@ -65,6 +65,11 @@ export function setTranslateValue(direction, node) {
   }
 }
 
+const defaultTimeout = {
+  enter: duration.enteringScreen,
+  exit: duration.leavingScreen,
+};
+
 /**
  * The Slide transition is used by the [Drawer](/demos/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
@@ -72,7 +77,7 @@ export function setTranslateValue(direction, node) {
 const Slide = React.forwardRef(function Slide(props, ref) {
   const {
     children,
-    direction,
+    direction = 'down',
     in: inProp,
     onEnter,
     onEntering,
@@ -80,7 +85,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     onExited,
     style,
     theme,
-    timeout,
+    timeout = defaultTimeout,
     ...other
   } = props;
 
@@ -267,14 +272,6 @@ Slide.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
-};
-
-Slide.defaultProps = {
-  direction: 'down',
-  timeout: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withTheme(Slide);

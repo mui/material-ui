@@ -79,7 +79,16 @@ export const styles = theme => {
 };
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
-  const { classes, labelWidth, notched, ...other } = props;
+  const {
+    classes,
+    fullWidth = false,
+    inputComponent = 'input',
+    labelWidth = 0,
+    multiline = false,
+    notched,
+    type = 'text',
+    ...other
+  } = props;
 
   return (
     <InputBase
@@ -99,7 +108,11 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
         root: clsx(classes.root, classes.underline),
         notchedOutline: null,
       }}
+      fullWidth={fullWidth}
+      inputComponent={inputComponent}
+      multiline={multiline}
       ref={ref}
+      type={type}
       {...other}
     />
   );
@@ -224,14 +237,6 @@ OutlinedInput.propTypes = {
    * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.any,
-};
-
-OutlinedInput.defaultProps = {
-  fullWidth: false,
-  inputComponent: 'input',
-  labelWidth: 0,
-  multiline: false,
-  type: 'text',
 };
 
 OutlinedInput.muiName = 'Input';
