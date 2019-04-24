@@ -28,7 +28,7 @@ const babelConfig = {
 
 const workspaceRoot = path.join(__dirname, '../../');
 
-let prettierConfig = prettier.resolveConfig(process.cwd(), {
+const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
   config: path.join(workspaceRoot, 'prettier.config.js'),
 });
 
@@ -83,8 +83,6 @@ async function transpileFile(filePath) {
 }
 
 (async () => {
-  prettierConfig = await prettierConfig;
-
   const tsxFiles = await getFiles(path.join(workspaceRoot, 'docs/src/pages'));
 
   let successful = 0;
