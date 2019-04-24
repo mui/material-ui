@@ -9,22 +9,21 @@ export interface MonthSelectionProps extends WithUtilsProps, WithStyles<typeof s
   date: MaterialUiPickersDate;
   minDate?: ParsableDate;
   maxDate?: ParsableDate;
-  onChange: (date: MaterialUiPickersDate) => void;
+  onChange: (date: MaterialUiPickersDate, isFinish: boolean) => void;
   disablePast?: boolean | null | undefined;
   disableFuture?: boolean | null | undefined;
+  onMonthChange?: (date: MaterialUiPickersDate) => void;
 }
 
 export class MonthSelection extends React.PureComponent<MonthSelectionProps> {
-  public static defaultProps = {
-    minDate: new Date('1900-01-01'),
-    maxDate: new Date('2100-01-01'),
-  };
-
   public onMonthSelect = (month: number) => {
-    const { date, onChange, utils } = this.props;
-
+    const { date, onMonthChange, onChange, utils } = this.props;
     const newDate = utils.setMonth(date, month);
-    onChange(newDate);
+
+    onChange(newDate, true);
+    if (onMonthChange) {
+      onMonthChange(newDate);
+    }
   };
 
   public shouldDisableMonth = (month: MaterialUiPickersDate) => {

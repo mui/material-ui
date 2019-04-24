@@ -13,7 +13,7 @@ export interface YearSelectionProps extends WithUtilsProps, WithStyles<typeof st
   date: MaterialUiPickersDate;
   minDate: DateType;
   maxDate: DateType;
-  onChange: (date: MaterialUiPickersDate) => void;
+  onChange: (date: MaterialUiPickersDate, isFinish: boolean) => void;
   disablePast?: boolean | null | undefined;
   disableFuture?: boolean | null | undefined;
   animateYearScrolling?: boolean | null | undefined;
@@ -67,7 +67,7 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
       onYearChange(newDate);
     }
 
-    onChange(newDate);
+    onChange(newDate, true);
   };
 
   public render() {

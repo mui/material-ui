@@ -23,7 +23,10 @@ export const timePickerDefaultProps = {
 } as TimePickerProps;
 
 export const datePickerDefaultProps = {
-  views: ['day', 'year'],
+  openTo: 'day',
+  views: ['year', 'day'],
+  minDate: new Date('1900-01-01'),
+  maxDate: new Date('2100-01-01'),
   invalidDateMessage: 'Invalid Date Format',
   minDateMessage: 'Date should not be before minimal date',
   maxDateMessage: 'Date should not be after maximal date',
@@ -34,6 +37,6 @@ export const dateTimePickerDefaultProps = {
   ...timePickerDefaultProps,
   ...datePickerDefaultProps,
   showTabs: true,
-  // @ts-ignore
-  views: undefined,
+  openTo: undefined,
+  views: undefined as never,
 } as DateTimePickerProps;

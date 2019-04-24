@@ -6,6 +6,7 @@ import { styles as ToolbarButtonStyles } from '../_shared/ToolbarButton';
 import { useStyles as TimePickerStyles } from '../TimePicker/TimePickerRoot';
 import { styles as CalendarStyles } from '../DatePicker/components/Calendar';
 import { styles as MuiPickersYearStyles } from '../DatePicker/components/Year';
+import { useStyles as DatePickerRootStyles } from '../DatePicker/DatePickerRoot';
 import { styles as ClockNumberStyles } from '../TimePicker/components/ClockNumber';
 import { useStyles as MuiPickersMonthStyles } from '../DatePicker/components/Month';
 import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
@@ -47,4 +48,5 @@ export interface MuiPickersOverrides {
   MuiPickersModal?: Classes<typeof ModalDialogStyles>;
   MuiPickersToolbar?: Classes<typeof PickerToolbarStyles>;
   MuiPickersToolbarButton?: Classes<typeof ToolbarButtonStyles>;
+  MuiPickersDatePickerRoot?: Classes<typeof DatePickerRootStyles>;
 }

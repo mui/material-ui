@@ -11,6 +11,7 @@ describe('e2e - DatePickerRoot', () => {
     jest.clearAllMocks();
     component = mount(
       <DatePickerRoot
+        openTo="day"
         animateYearScrolling={false}
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
@@ -92,13 +93,21 @@ describe('e2e -- DatePickerRoot views year and month', () => {
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         onMonthChange={onMonthChangeMock}
-        views={['month', 'year']}
+        openTo="month"
+        views={['year', 'month']}
       />
     );
   });
 
-  it('Should render month selection', () => {
+  it('Should select month', () => {
     expect(component.find('Month').length).toBe(12);
+    component
+      .find('Month')
+      .first()
+      .simulate('click');
+
+    expect(onChangeMock).toHaveBeenCalled();
+    expect(onMonthChangeMock).toHaveBeenCalled();
   });
 
   it('Should switch to year selection and back to month', () => {
@@ -113,16 +122,6 @@ describe('e2e -- DatePickerRoot views year and month', () => {
     year.first().simulate('click');
     expect(component.find('Month').length).toBe(12);
   });
-
-  it('Should select month', () => {
-    component
-      .find('Month')
-      .first()
-      .simulate('click');
-
-    expect(onChangeMock).toHaveBeenCalled();
-    expect(onMonthChangeMock).toHaveBeenCalled();
-  });
 });
 
 describe('e2e -- DatePickerRoot views year and month open from year', () => {
@@ -134,7 +133,7 @@ describe('e2e -- DatePickerRoot views year and month open from year', () => {
       <DatePickerRoot
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        views={['month', 'year']}
+        views={['year', 'month']}
         openTo="year"
       />
     );

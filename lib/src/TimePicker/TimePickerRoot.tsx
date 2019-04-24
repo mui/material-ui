@@ -28,43 +28,46 @@ export interface BaseTimePickerProps {
   seconds?: boolean;
 }
 
-export const useStyles = makeStyles({
-  toolbar: {
-    flexDirection: 'row',
-    alignItems: 'center',
+export const useStyles = makeStyles(
+  {
+    toolbar: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    toolbarLeftPadding: {
+      paddingLeft: 50,
+    },
+    separator: {
+      margin: '0 4px 0 2px',
+      cursor: 'default',
+    },
+    ampmSelection: {
+      marginLeft: 20,
+      marginRight: -20,
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    ampmSelectionWithSeconds: {
+      marginLeft: 15,
+      marginRight: 10,
+    },
+    ampmLabel: {
+      fontSize: 18,
+    },
+    hourMinuteLabel: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+    },
+    hourMinuteLabelReverse: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+      flexDirection: 'row-reverse',
+    },
   },
-  toolbarLeftPadding: {
-    paddingLeft: 50,
-  },
-  separator: {
-    margin: '0 4px 0 2px',
-    cursor: 'default',
-  },
-  ampmSelection: {
-    marginLeft: 20,
-    marginRight: -20,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  ampmSelectionWithSeconds: {
-    marginLeft: 15,
-    marginRight: 10,
-  },
-  ampmLabel: {
-    fontSize: 18,
-  },
-  hourMinuteLabel: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-  hourMinuteLabelReverse: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    flexDirection: 'row-reverse',
-  },
-});
+  { name: 'MuiPickersTimePicker' }
+);
 
 export interface TimePickerProps extends BaseTimePickerProps {
   date: MaterialUiPickersDate;
