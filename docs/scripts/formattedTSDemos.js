@@ -56,7 +56,7 @@ async function getFiles(root) {
 }
 
 function getLineFeed(source) {
-  const match = source.match(/\r\n|\n/);
+  const match = source.match(/\r?\n/);
   if (match === null) {
     return os.EOL;
   }
