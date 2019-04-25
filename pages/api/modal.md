@@ -28,10 +28,9 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">BackdropComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Backdrop</span> | A backdrop component. This property enables custom backdrop rendering. |
+| <span class="prop-name">BackdropComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">SimpleBackdrop</span> | A backdrop component. This property enables custom backdrop rendering. |
 | <span class="prop-name">BackdropProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`Backdrop`](/api/backdrop/) element. |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | A single child content element. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">closeAfterTransition</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | When set to true the Modal waits until a nested Transition is completed before closing. |
 | <span class="prop-name">container</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br></span> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. |
 | <span class="prop-name">disableAutoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.<br>Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers. |
@@ -51,24 +50,6 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 The `ref` is forwarded to the root element.
 
 Any other properties supplied will be provided to the root element (native element).
-
-## CSS
-
-You can override all the class names injected by Material-UI thanks to the `classes` property.
-This property accepts the following keys:
-
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">hidden</span> | Styles applied to the root element if the `Modal` has exited.
-
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Modal/Modal.js)
-for more detail.
-
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiModal`.
 
 ## Demos
 

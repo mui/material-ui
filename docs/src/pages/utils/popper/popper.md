@@ -11,12 +11,12 @@ Some important features of the `Popper` component:
 
 - 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/FezVrasta/popper.js)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- 📦 Less than [10 KB gzipped](/size-snapshot).
+- 📦 [10 kB gzipped](/size-snapshot).
 - The children is [`Portal`](/utils/portal/) to the body of the document to avoid rendering problems.
 You can disable this behavior with `disablePortal`.
 - The scroll isn't blocked like with the [`Popover`](/utils/popover/) component.
 The placement of the popper updates with the available area in the viewport.
-- Clicking away does not hide the `Popper` component. 
+- Clicking away does not hide the `Popper` component.
   If you need this behavior, you can use [`ClickAwayListener`](utils/click-away-listener/) - see the example in the [menu documentation section](/demos/menus/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
