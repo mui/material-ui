@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import tileData from './tileData';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -17,7 +16,7 @@ const styles = theme => ({
     width: 500,
     height: 450,
   },
-});
+}));
 
 /**
  * The example data is structured as follows:
@@ -37,8 +36,8 @@ const styles = theme => ({
  *   },
  * ];
  */
-function ImageGridList(props) {
-  const { classes } = props;
+function ImageGridList() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -53,8 +52,4 @@ function ImageGridList(props) {
   );
 }
 
-ImageGridList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ImageGridList);
+export default ImageGridList;
