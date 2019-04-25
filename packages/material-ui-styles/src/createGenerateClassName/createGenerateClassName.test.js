@@ -77,7 +77,7 @@ describe('createGenerateClassName', () => {
           },
         },
       ),
-      'MuiButton',
+      'MuiButton-root',
     );
     assert.strictEqual(
       generateClassName(
@@ -91,7 +91,7 @@ describe('createGenerateClassName', () => {
           },
         },
       ),
-      'MuiButton-2',
+      'MuiButton-root-2',
     );
   });
 
@@ -128,9 +128,9 @@ describe('createGenerateClassName', () => {
       );
     });
 
-    it('should disable the minification', () => {
+    it('should use the seed', () => {
       const generateClassName = createGenerateClassName({
-        productionPrefix: '',
+        seed: 'dark',
       });
       assert.strictEqual(
         generateClassName(
@@ -139,7 +139,7 @@ describe('createGenerateClassName', () => {
             options: {},
           },
         ),
-        'root-1',
+        'dark-jss1',
       );
     });
   });

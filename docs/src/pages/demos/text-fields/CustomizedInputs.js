@@ -16,7 +16,7 @@ const CssTextField = withStyles({
     '& .MuiInput-underline:after': {
       borderBottomColor: 'green',
     },
-    '& .MuiOutlinedInput': {
+    '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: 'red',
       },

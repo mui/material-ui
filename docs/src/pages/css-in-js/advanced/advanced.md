@@ -481,7 +481,7 @@ const useStyles = makeStyles({
 generates the following class names you that can override:
 
 ```css
-.MuiButton { /* … */ }
+.MuiButton-root { /* … */ }
 .MuiButton-label { /* … */ }
 .MuiButton-outlined { /* … */ }
 .MuiButton-outlined.disabled { /* … */ }
@@ -502,7 +502,7 @@ const StyledTextField = styled(TextField)`
   label.focused {
     color: green; 💚
   }
-  .MuiOutlinedInput {
+  .MuiOutlinedInput-root {
     fieldset {
       border-color: red; ❤️
     }

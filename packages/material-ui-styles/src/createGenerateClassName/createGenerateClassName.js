@@ -29,7 +29,7 @@ const pseudoClasses = [
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
 export default function createGenerateClassName(options = {}) {
   const { disableGlobal = false, productionPrefix = 'jss', seed = '' } = options;
-  const classNameSeed = seed === '' ? '' : `-${seed}`;
+  const seedPrefix = seed === '' ? '' : `${seed}-`;
   let ruleCounter = 0;
 
   return (rule, styleSheet) => {
@@ -51,7 +51,7 @@ export default function createGenerateClassName(options = {}) {
         return rule.key;
       }
 
-      const prefix = `${name}${rule.key === 'root' ? '' : `-${rule.key}`}${classNameSeed}`;
+      const prefix = `${seedPrefix}${name}-${rule.key}`;
 
       if (!styleSheet.options.theme[nested] || seed !== '') {
         return prefix;
@@ -60,17 +60,17 @@ export default function createGenerateClassName(options = {}) {
       return `${prefix}-${ruleCounter}`;
     }
 
-    if (process.env.NODE_ENV === 'production' && productionPrefix !== '') {
-      return `${productionPrefix}${classNameSeed}${ruleCounter}`;
+    if (process.env.NODE_ENV === 'production') {
+      return `${seedPrefix}${productionPrefix}${ruleCounter}`;
     }
 
-    const suffix = `${rule.key}${classNameSeed}-${ruleCounter}`;
+    const suffix = `${rule.key}-${ruleCounter}`;
 
     // Help with debuggability.
     if (styleSheet.options.classNamePrefix) {
-      return `${styleSheet.options.classNamePrefix}-${suffix}`;
+      return `${seedPrefix}${styleSheet.options.classNamePrefix}-${suffix}`;
     }
 
-    return suffix;
+    return `${seedPrefix}${suffix}`;
   };
 }

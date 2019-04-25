@@ -190,10 +190,10 @@ describe('withStyles', () => {
         </ThemeProvider>,
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root' });
       wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root' });
     });
 
     it('should support the overrides key', () => {

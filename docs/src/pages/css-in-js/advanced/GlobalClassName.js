@@ -6,7 +6,7 @@ const StyledTextField = styled(TextField)`
   label.focused {
     color: green;
   }
-  .MuiOutlinedInput {
+  .MuiOutlinedInput-root {
     fieldset {
       border-color: red;
     }
