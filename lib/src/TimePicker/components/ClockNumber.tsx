@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core';
@@ -40,19 +39,6 @@ export interface ClockNumberProps extends WithStyles<typeof styles> {
 }
 
 export class ClockNumber extends React.Component<ClockNumberProps> {
-  public static propTypes: any = {
-    index: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
-    selected: PropTypes.bool.isRequired,
-    classes: PropTypes.object.isRequired,
-    isInner: PropTypes.bool,
-    innerRef: PropTypes.any,
-  };
-
-  public static defaultProps = {
-    isInner: false,
-  };
-
   public getTransformStyle = (index: number) => {
     const position = positions[index];
 

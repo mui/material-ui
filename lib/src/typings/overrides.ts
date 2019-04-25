@@ -11,7 +11,7 @@ import { styles as ClockNumberStyles } from '../TimePicker/components/ClockNumbe
 import { useStyles as MuiPickersMonthStyles } from '../DatePicker/components/Month';
 import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
 import { styles as ClockPointerStyles } from '../TimePicker/components/ClockPointer';
-import { styles as DTTabsStyles } from '../DateTimePicker/components/DateTimePickerTabs';
+import { useStyles as DTTabsStyles } from '../DateTimePicker/components/DateTimePickerTabs';
 import { useStyles as CalendarHeaderStyles } from '../DatePicker/components/CalendarHeader';
 import { useStyles as SlideTransitionStyles } from '../DatePicker/components/SlideTransition';
 import { useStyles as DTHeaderStyles } from '../DateTimePicker/components/DateTimePickerHeader';

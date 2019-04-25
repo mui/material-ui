@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ClockType, { ClockViewType } from '../../constants/ClockType';
 import { Theme } from '@material-ui/core';
@@ -13,13 +12,6 @@ export interface ClockPointerProps extends WithStyles<typeof styles> {
 }
 
 export class ClockPointer extends React.Component<ClockPointerProps> {
-  public static propTypes: any = {
-    value: PropTypes.number.isRequired,
-    hasSelected: PropTypes.bool.isRequired,
-    isInner: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key as any])).isRequired,
-  };
-
   public static getDerivedStateFromProps = (
     nextProps: ClockPointerProps,
     state: ClockPointer['state']

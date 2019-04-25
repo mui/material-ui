@@ -2,11 +2,11 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Clock from './Clock';
 import ClockType, { ClockViewType } from '../../constants/ClockType';
+import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
-import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 
-export interface TimePickerViewProps extends WithUtilsProps {
+export interface TimePickerViewProps {
   /** TimePicker value */
   date: MaterialUiPickersDate;
   /** Clock type */
@@ -23,31 +23,27 @@ export interface TimePickerViewProps extends WithUtilsProps {
   onSecondsChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
 }
 
-export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
-  public static propTypes: any = {
-    date: PropTypes.object.isRequired,
-    onHourChange: PropTypes.func.isRequired,
-    onMinutesChange: PropTypes.func.isRequired,
-    onSecondsChange: PropTypes.func.isRequired,
-    ampm: PropTypes.bool,
-    minutesStep: PropTypes.number,
-    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key as any])).isRequired,
-  };
-
-  public static defaultProps = {
-    ampm: true,
-    minutesStep: 1,
-  };
-
-  public getViewProps = () => {
-    const { type, ampm, date, utils } = this.props;
-
+export const TimePickerView: React.FC<TimePickerViewProps> = ({
+  type,
+  onHourChange,
+  onMinutesChange,
+  onSecondsChange,
+  ampm,
+  date,
+  minutesStep,
+}) => {
+  const utils = useUtils();
+  const getViewProps = () => {
     switch (type) {
       case ClockType.HOURS:
         return {
           value: utils.getHours(date),
-          children: getHourNumbers({ date, ampm: Boolean(ampm), utils }),
-          onChange: this.handleHourChange,
+          children: getHourNumbers({ date, utils, ampm: Boolean(ampm) }),
+          onChange: (value: number, isFinish?: boolean) => {
+            const updatedTime = utils.setHours(date, value);
+
+            onHourChange(updatedTime, isFinish);
+          },
         };
 
       case ClockType.MINUTES:
@@ -55,7 +51,11 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
         return {
           value: minutesValue,
           children: getMinutesNumbers({ value: minutesValue, utils }),
-          onChange: this.handleMinutesChange,
+          onChange: (value: number, isFinish?: boolean) => {
+            const updatedTime = utils.setMinutes(date, value);
+
+            onMinutesChange(updatedTime, isFinish);
+          },
         };
 
       case ClockType.SECONDS:
@@ -63,7 +63,11 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
         return {
           value: secondsValue,
           children: getMinutesNumbers({ value: secondsValue, utils }),
-          onChange: this.handleSecondsChange,
+          onChange: (value: number, isFinish?: boolean) => {
+            const updatedTime = utils.setSeconds(date, value);
+
+            onSecondsChange(updatedTime, isFinish);
+          },
         };
 
       default:
@@ -71,33 +75,25 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
     }
   };
 
-  public handleHourChange = (hours: number, isFinish?: boolean) => {
-    const { date, utils } = this.props;
-    const updatedTime = utils.setHours(date, hours);
+  const viewProps = React.useMemo(getViewProps, [date, type, utils]);
+  return <Clock type={type} ampm={ampm} minutesStep={minutesStep} {...viewProps} />;
+};
 
-    this.props.onHourChange(updatedTime, isFinish);
-  };
+TimePickerView.displayName = 'TimePickerView';
 
-  public handleMinutesChange = (minutes: number, isFinish?: boolean) => {
-    const { date, utils } = this.props;
-    const updatedTime = utils.setMinutes(date, minutes);
+TimePickerView.propTypes = {
+  date: PropTypes.object.isRequired,
+  onHourChange: PropTypes.func.isRequired,
+  onMinutesChange: PropTypes.func.isRequired,
+  onSecondsChange: PropTypes.func.isRequired,
+  ampm: PropTypes.bool,
+  minutesStep: PropTypes.number,
+  type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key as any])).isRequired,
+} as any;
 
-    this.props.onMinutesChange(updatedTime, isFinish);
-  };
+TimePickerView.defaultProps = {
+  ampm: true,
+  minutesStep: 1,
+};
 
-  public handleSecondsChange = (seconds: number, isFinish?: boolean) => {
-    const { date, utils } = this.props;
-    const updatedTime = utils.setSeconds(date, seconds);
-
-    this.props.onSecondsChange(updatedTime, isFinish);
-  };
-
-  public render() {
-    const { ampm, type, minutesStep } = this.props;
-    const viewProps = this.getViewProps();
-
-    return <Clock type={type} ampm={ampm} minutesStep={minutesStep} {...viewProps} />;
-  }
-}
-
-export default withUtils()(TimePickerView);
+export default React.memo(TimePickerView);
