@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 
 const TAX_RATE = 0.07;
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing(3),
@@ -19,7 +18,7 @@ const styles = theme => ({
   table: {
     minWidth: 700,
   },
-});
+}));
 
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;
@@ -48,8 +47,9 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-function SpanningTable(props) {
-  const { classes } = props;
+function SpanningTable() {
+  const classes = useStyles();
+
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -91,8 +91,4 @@ function SpanningTable(props) {
   );
 }
 
-SpanningTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SpanningTable);
+export default SpanningTable;
