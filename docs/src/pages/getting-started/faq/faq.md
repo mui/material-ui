@@ -376,9 +376,10 @@ function Portal({ children, container }) {
 }
 ```
 
-With this simple heuristic Portal would re-render after it mounts because refs are up-to-date before any effects run. 
-This assumption can introduce subtle bugs the farther away the actual host component with the container ref is.
-If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available. This is
+With this simple heuristic `Portal` might re-render after it mounts because refs are up-to-date before any effects run.
+However, just because a ref is up-to-date doesn't mean it points to a defined instance.
+If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available.
+In the above example the `Portal` would run run an effect once but might not re-render because `ref.current` is still `null`. This is
 especially apparent for React.lazy components in Suspense. The above implementation could also not account for a change in the DOM node.
 
 This is why we require a prop with the actual DOM node so that React can take care of determining
