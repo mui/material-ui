@@ -126,10 +126,8 @@ The properties which define the number of grids the component will use for a giv
 and do **not** have similar effects on height within `column` and `column-reverse` containers.
 If used within `column` or `column-reverse` containers, these properties may have undesirable effects on the width of the `Grid` elements.
 
-
 ## CSS Grid Layout
 
-Material UI does not provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
-
+Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
 
 {{"demo": "pages/layout/grid/CSSGrid.js"}}
