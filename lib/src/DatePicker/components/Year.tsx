@@ -1,62 +1,19 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { Theme, withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme, makeStyles } from '@material-ui/core/styles';
 
-export interface YearProps extends WithStyles<typeof styles> {
+export interface YearProps {
   children: React.ReactNode;
   disabled?: boolean;
   onSelect: (value: any) => void;
   selected?: boolean;
   value: any;
+  forwardedRef?: React.Ref<HTMLElement | null>;
 }
 
-export class Year extends React.PureComponent<YearProps> {
-  public static propTypes: any = {
-    children: PropTypes.node.isRequired,
-    classes: PropTypes.object.isRequired,
-    disabled: PropTypes.bool,
-    onSelect: PropTypes.func.isRequired,
-    selected: PropTypes.bool,
-    value: PropTypes.any.isRequired,
-    innerRef: PropTypes.any,
-  };
-
-  public static defaultProps = {
-    selected: false,
-    disabled: false,
-  };
-
-  public handleClick = () => {
-    this.props.onSelect(this.props.value);
-  };
-
-  public render() {
-    const { classes, selected, disabled, value, children, ...other } = this.props;
-
-    return (
-      <Typography
-        role="button"
-        component="div"
-        className={clsx(classes.root, {
-          [classes.selected]: selected,
-          [classes.disabled]: disabled,
-        })}
-        tabIndex={disabled ? -1 : 0}
-        onClick={this.handleClick}
-        onKeyPress={this.handleClick}
-        color={selected ? 'primary' : undefined}
-        variant={selected ? 'h5' : 'subtitle1'}
-        children={children}
-        {...other}
-      />
-    );
-  }
-}
-
-export const styles = (theme: Theme) =>
-  createStyles({
+export const useStyles = makeStyles(
+  (theme: Theme) => ({
     root: {
       height: theme.spacing(5),
       display: 'flex',
@@ -77,6 +34,44 @@ export const styles = (theme: Theme) =>
       pointerEvents: 'none',
       color: theme.palette.text.hint,
     },
-  });
+  }),
+  { name: 'MuiPickersYear' }
+);
 
-export default withStyles(styles, { name: 'MuiPickersYear' })(Year);
+export const Year: React.FC<YearProps> = ({
+  onSelect,
+  forwardedRef,
+  value,
+  selected,
+  disabled,
+  children,
+  ...other
+}) => {
+  const classes = useStyles();
+  const handleClick = React.useCallback(() => onSelect(value), [onSelect, value]);
+
+  return (
+    <Typography
+      role="button"
+      component="div"
+      tabIndex={disabled ? -1 : 0}
+      onClick={handleClick}
+      onKeyPress={handleClick}
+      color={selected ? 'primary' : undefined}
+      variant={selected ? 'h5' : 'subtitle1'}
+      children={children}
+      ref={forwardedRef}
+      className={clsx(classes.root, {
+        [classes.selected]: selected,
+        [classes.disabled]: disabled,
+      })}
+      {...other}
+    />
+  );
+};
+
+Year.displayName = 'Year';
+
+export default React.forwardRef<HTMLElement, YearProps>((props, ref) => (
+  <Year {...props} forwardedRef={ref} />
+));

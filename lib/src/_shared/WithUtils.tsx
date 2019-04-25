@@ -1,33 +1,19 @@
 import * as React from 'react';
 import { Omit } from '@material-ui/core';
+import { useUtils } from './hooks/useUtils';
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../typings/date';
-import { MuiPickersContext } from '../MuiPickersUtilsProvider';
 
 export interface WithUtilsProps {
   utils: IUtils<MaterialUiPickersDate>;
 }
 
-export const checkUtils = (utils: IUtils<MaterialUiPickersDate> | null | undefined) => {
-  if (!utils) {
-    // tslint:disable-next-line
-    throw new Error(
-      'Can not find utils in context. You either a) forgot to wrap your component tree in MuiPickersUtilsProvider; or b) mixed named and direct file imports.  Recommendation: use named imports from the module index.'
-    );
-  }
-};
-
 export const withUtils = () => <P extends WithUtilsProps>(Component: React.ComponentType<P>) => {
-  const WithUtils: React.SFC<Omit<P, keyof WithUtilsProps>> = props => (
-    <MuiPickersContext.Consumer>
-      {utils => {
-        checkUtils(utils);
-        return <Component utils={utils} {...props as any} />;
-      }}
-    </MuiPickersContext.Consumer>
-  );
+  const WithUtils: React.SFC<Omit<P, keyof WithUtilsProps>> = props => {
+    const utils = useUtils();
+    return <Component utils={utils} {...props as any} />;
+  };
 
   WithUtils.displayName = `WithUtils(${Component.displayName || Component.name})`;
-
   return WithUtils;
 };

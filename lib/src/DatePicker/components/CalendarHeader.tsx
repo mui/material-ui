@@ -7,13 +7,12 @@ import { DateType } from '@date-io/type';
 import { Theme } from '@material-ui/core';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../_shared/icons/ArrowRightIcon';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
-export interface CalendarHeaderProps extends WithStyles<typeof styles, true> {
+export interface CalendarHeaderProps {
   currentMonth: DateType;
-  onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
   leftArrowIcon?: React.ReactNode;
   rightArrowIcon?: React.ReactNode;
   leftArrowButtonProps?: Partial<IconButtonProps>;
@@ -21,11 +20,52 @@ export interface CalendarHeaderProps extends WithStyles<typeof styles, true> {
   disablePrevMonth?: boolean;
   disableNextMonth?: boolean;
   slideDirection: SlideDirection;
+  onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
 }
 
+export const useStyles = makeStyles<Theme>(
+  theme => ({
+    switchHeader: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: theme.spacing(0.5),
+      marginBottom: theme.spacing(1),
+    },
+    transitionContainer: {
+      width: '100%',
+      height: 20,
+    },
+    iconButton: {
+      zIndex: 2,
+      backgroundColor: theme.palette.background.paper,
+      '& > *': {
+        // label
+        backgroundColor: theme.palette.background.paper,
+        '& > *': {
+          // icon
+          zIndex: 1,
+          overflow: 'visible',
+        },
+      },
+    },
+    daysHeader: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      maxHeight: 16,
+    },
+    dayLabel: {
+      width: 36,
+      margin: '0 2px',
+      textAlign: 'center',
+      color: theme.palette.text.hint,
+    },
+  }),
+  { name: 'MuiPickersCalendarHeader' }
+);
+
 export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
-  classes,
-  theme,
   currentMonth,
   onMonthChange,
   leftArrowIcon,
@@ -37,6 +77,8 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   slideDirection,
 }) => {
   const utils = useUtils();
+  const classes = useStyles();
+  const theme = useTheme<Theme>();
   const rtl = theme.direction === 'rtl';
 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(currentMonth), 'left');
@@ -91,15 +133,11 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
 
 CalendarHeader.displayName = 'CalendarHeader';
 
-(CalendarHeader as any).propTypes = {
-  currentMonth: PropTypes.object.isRequired,
-  onMonthChange: PropTypes.func.isRequired,
+CalendarHeader.propTypes = {
   leftArrowIcon: PropTypes.node,
   rightArrowIcon: PropTypes.node,
   disablePrevMonth: PropTypes.bool,
   disableNextMonth: PropTypes.bool,
-  slideDirection: PropTypes.oneOf(['right', 'left']).isRequired,
-  innerRef: PropTypes.any,
 };
 
 CalendarHeader.defaultProps = {
@@ -109,47 +147,4 @@ CalendarHeader.defaultProps = {
   disableNextMonth: false,
 };
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    switchHeader: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginTop: theme.spacing(0.5),
-      marginBottom: theme.spacing(1),
-    },
-    transitionContainer: {
-      width: '100%',
-      height: 20,
-    },
-    iconButton: {
-      zIndex: 2,
-      backgroundColor: theme.palette.background.paper,
-      '& > *': {
-        // label
-        backgroundColor: theme.palette.background.paper,
-        '& > *': {
-          // icon
-          zIndex: 1,
-          overflow: 'visible',
-        },
-      },
-    },
-    daysHeader: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      maxHeight: 16,
-    },
-    dayLabel: {
-      width: 36,
-      margin: '0 2px',
-      textAlign: 'center',
-      color: theme.palette.text.hint,
-    },
-  });
-
-export default withStyles(styles, {
-  withTheme: true,
-  name: 'MuiPickersCalendarHeader',
-})(CalendarHeader);
+export default CalendarHeader;

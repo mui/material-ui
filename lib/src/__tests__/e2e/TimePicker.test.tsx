@@ -47,6 +47,7 @@ describe('e2e - TimePicker', () => {
       .find('WithStyles(ToolbarButton)')
       .at(2)
       .simulate('click');
+
     component.find('Clock div[role="menu"]').simulate('touchMove', {
       buttons: 1,
       changedTouches: [
@@ -79,5 +80,49 @@ describe('e2e - TimePicker', () => {
       .simulate('click');
 
     toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T12:00:00.000'), false]);
+  });
+});
+
+describe('e2e - TimePicker with seconds', () => {
+  let component: ReactWrapper<TimePickerProps>;
+  const onChangeMock = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    component = mount(
+      <TimePicker
+        seconds
+        date={utilsToUse.date('2018-01-01T00:00:12.000')}
+        onChange={onChangeMock}
+      />
+    );
+  });
+
+  it('Should show seconds number', () => {
+    expect(
+      component
+        .find('WithStyles(ToolbarButton)')
+        .at(2)
+        .text()
+    ).toBe('12');
+  });
+
+  it('Should change seconds', () => {
+    component
+      .find('WithStyles(ToolbarButton)')
+      .at(2)
+      .simulate('click');
+
+    component.find('Clock div[role="menu"]').simulate('touchMove', {
+      buttons: 1,
+      changedTouches: [
+        {
+          clientX: 20,
+          clientY: 15,
+        },
+      ],
+    });
+
+    toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T00:00:53.000'), false]);
   });
 });

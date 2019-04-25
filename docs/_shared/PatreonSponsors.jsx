@@ -25,7 +25,7 @@ class PatreonSponsors extends Component {
             rel="noopenner noreferrer"
           >
             <ListItem button>
-              <Avatar alt={patron.full_name} src={patron.image_url} />
+              <Avatar className={classes.avatar} alt={patron.full_name} src={patron.image_url} />
               <ListItemText primary={patron.full_name} secondary={patron.email} />
             </ListItem>
           </a>
@@ -40,12 +40,15 @@ const styles = {
     margin: '0 auto',
   },
   patronList: {
-    maxWidth: 400,
+    maxWidth: 500,
     margin: '0 auto',
   },
   link: {
     textDecoration: 'none',
     color: 'unset',
+  },
+  avatar: {
+    marginRight: 8,
   },
 };
 

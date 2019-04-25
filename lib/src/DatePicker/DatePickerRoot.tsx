@@ -6,12 +6,12 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import YearSelection from './components/YearSelection';
 import MonthSelection from './components/MonthSelection';
 import Calendar, { OutterCalendarProps } from './components/Calendar';
+import { useUtils } from '../_shared/hooks/useUtils';
+import { makeStyles } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
-import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import { DatePickerViewType } from '../constants/DatePickerView';
-import { ParsableDate, DomainPropTypes } from '../constants/prop-types';
 import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { ParsableDate, DomainPropTypes, datePickerDefaultProps } from '../constants/prop-types';
 
 export interface BaseDatePickerProps extends OutterCalendarProps {
   /**
@@ -58,200 +58,167 @@ export interface BaseDatePickerProps extends OutterCalendarProps {
   onYearChange?: (date: MaterialUiPickersDate) => void;
 }
 
-export interface DatePickerRootProps
-  extends BaseDatePickerProps,
-    WithStyles<typeof styles>,
-    WithUtilsProps {
+export interface DatePickerRootProps extends BaseDatePickerProps {
   date: MaterialUiPickersDate;
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
 }
 
-interface DatePickerState {
-  openView: DatePickerViewType;
-}
-
-export class DatePickerRoot extends React.PureComponent<DatePickerRootProps> {
-  public static propTypes: any = {
-    onlyCalendar: PropTypes.bool,
-    views: PropTypes.arrayOf(DomainPropTypes.datePickerView),
-    openTo: DomainPropTypes.datePickerView,
-  };
-
-  public static defaultProps = {
-    onlyCalendar: false,
-    minDate: new Date('1900-01-01'),
-    maxDate: new Date('2100-01-01'),
-    views: ['day', 'year'] as DatePickerViewType[],
-  };
-
-  public state: DatePickerState = {
-    openView: this.props.openTo || this.props.views![0],
-  };
-
-  get date() {
-    return this.props.date;
-  }
-
-  get minDate() {
-    return this.props.utils.date(this.props.minDate)!;
-  }
-
-  get maxDate() {
-    return this.props.utils.date(this.props.maxDate)!;
-  }
-
-  get isYearOnly() {
-    return isYearOnlyView(this.props.views!);
-  }
-
-  get isYearAndMonth() {
-    return isYearAndMonthViews(this.props.views!);
-  }
-
-  public handleYearSelect = (date: MaterialUiPickersDate) => {
-    this.props.onChange(date, this.isYearOnly);
-
-    if (this.isYearOnly) {
-      return;
-    }
-
-    if (this.props.views!.includes('month')) {
-      return this.openMonthSelection();
-    }
-
-    this.openCalendar();
-  };
-
-  public handleMonthSelect = (date: MaterialUiPickersDate) => {
-    if (this.props.onMonthChange) {
-      this.props.onMonthChange(date);
-    }
-
-    const isFinish = !this.props.views!.includes('day');
-    this.props.onChange(date, isFinish);
-
-    if (!isFinish) {
-      this.openCalendar();
-    }
-  };
-
-  public openYearSelection = () => {
-    this.setState({ openView: 'year' });
-  };
-
-  public openCalendar = () => {
-    this.setState({ openView: 'day' });
-  };
-
-  public openMonthSelection = () => {
-    this.setState({ openView: 'month' });
-  };
-
-  public render() {
-    const { openView } = this.state;
-    const {
-      disablePast,
-      disableFuture,
-      onChange,
-      animateYearScrolling,
-      leftArrowIcon,
-      rightArrowIcon,
-      renderDay,
-      utils,
-      shouldDisableDate,
-      allowKeyboardControl,
-      classes,
-      onMonthChange,
-      onYearChange,
-      onlyCalendar,
-      leftArrowButtonProps,
-      rightArrowButtonProps,
-    } = this.props;
-
-    return (
-      <>
-        {!onlyCalendar && (
-          <PickerToolbar className={clsx({ [classes.toolbarCenter]: this.isYearOnly })}>
-            <ToolbarButton
-              variant={this.isYearOnly ? 'h3' : 'subtitle1'}
-              onClick={this.isYearOnly ? undefined : this.openYearSelection}
-              selected={openView === 'year'}
-              label={utils.getYearText(this.date)}
-            />
-
-            {!this.isYearOnly && !this.isYearAndMonth && (
-              <ToolbarButton
-                variant="h4"
-                onClick={this.openCalendar}
-                selected={openView === 'day'}
-                label={utils.getDatePickerHeaderText(this.date)}
-              />
-            )}
-
-            {this.isYearAndMonth && (
-              <ToolbarButton
-                variant="h4"
-                onClick={this.openMonthSelection}
-                selected={openView === 'month'}
-                label={utils.getMonthText(this.date)}
-              />
-            )}
-          </PickerToolbar>
-        )}
-
-        {this.props.children}
-
-        {openView === 'year' && (
-          <YearSelection
-            date={this.date}
-            onChange={this.handleYearSelect}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
-            onYearChange={onYearChange}
-            animateYearScrolling={animateYearScrolling}
-          />
-        )}
-        {openView === 'month' && (
-          <MonthSelection
-            date={this.date}
-            onChange={this.handleMonthSelect}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
-          />
-        )}
-        {openView === 'day' && (
-          <Calendar
-            date={this.date}
-            onChange={onChange}
-            onMonthChange={onMonthChange}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            leftArrowIcon={leftArrowIcon}
-            leftArrowButtonProps={leftArrowButtonProps}
-            rightArrowIcon={rightArrowIcon}
-            rightArrowButtonProps={rightArrowButtonProps}
-            renderDay={renderDay}
-            shouldDisableDate={shouldDisableDate}
-            allowKeyboardControl={allowKeyboardControl}
-          />
-        )}
-      </>
-    );
-  }
-}
-
-export const styles = () =>
-  createStyles({
+export const useStyles = makeStyles(
+  {
     toolbarCenter: {
       flexDirection: 'row',
       alignItems: 'center',
     },
-  });
+  },
+  { name: 'MuiPickersDatePickerRoot' }
+);
 
-export default withStyles(styles)(withUtils()(DatePickerRoot));
+export const DatePickerRoot: React.FC<DatePickerRootProps> = ({
+  date,
+  views = ['year', 'day'],
+  disablePast,
+  disableFuture,
+  onChange,
+  openTo,
+  minDate: unparsedMinDate,
+  maxDate: unparsedMaxDate,
+  animateYearScrolling,
+  leftArrowIcon,
+  rightArrowIcon,
+  renderDay,
+  shouldDisableDate,
+  allowKeyboardControl,
+  onMonthChange,
+  onYearChange,
+  onlyCalendar,
+  leftArrowButtonProps,
+  rightArrowButtonProps,
+}) => {
+  const utils = useUtils();
+  const classes = useStyles();
+  const [openView, setOpenView] = React.useState(
+    openTo && views.includes(openTo) ? openTo : views[0]
+  );
+
+  const isYearOnly = React.useMemo(() => isYearOnlyView(views), [views]);
+  const isYearAndMonth = React.useMemo(() => isYearAndMonthViews(views), [views]);
+  const minDate = React.useMemo(() => utils.date(unparsedMinDate)!, [unparsedMinDate, utils]);
+  const maxDate = React.useMemo(() => utils.date(unparsedMaxDate)!, [unparsedMaxDate, utils]);
+
+  const getNextAvailableView = React.useCallback(
+    (nextView: DatePickerViewType) => {
+      if (views.includes(nextView)) {
+        return nextView;
+      }
+
+      return views[views.indexOf(openView!) + 1];
+    },
+    [openView, views]
+  );
+
+  const handleChangeAndOpenNext = React.useCallback(
+    (nextView: DatePickerViewType) => {
+      return (date: MaterialUiPickersDate, isFinish?: boolean) => {
+        const nextViewToOpen = getNextAvailableView(nextView);
+        if (isFinish && nextViewToOpen) {
+          // do not close picker if needs to show next view
+          onChange(date, false);
+          setOpenView(nextViewToOpen);
+
+          return;
+        }
+
+        onChange(date, isFinish);
+      };
+    },
+    [getNextAvailableView, onChange]
+  );
+
+  return (
+    <>
+      {!onlyCalendar && (
+        <PickerToolbar className={clsx({ [classes.toolbarCenter]: isYearOnly })}>
+          <ToolbarButton
+            variant={isYearOnly ? 'h3' : 'subtitle1'}
+            onClick={() => setOpenView('year')}
+            selected={openView === 'year'}
+            label={utils.getYearText(date)}
+          />
+
+          {!isYearOnly && !isYearAndMonth && (
+            <ToolbarButton
+              variant="h4"
+              onClick={() => setOpenView('day')}
+              selected={openView === 'day'}
+              label={utils.getDatePickerHeaderText(date)}
+            />
+          )}
+
+          {isYearAndMonth && (
+            <ToolbarButton
+              variant="h4"
+              onClick={() => setOpenView('month')}
+              selected={openView === 'month'}
+              label={utils.getMonthText(date)}
+            />
+          )}
+        </PickerToolbar>
+      )}
+
+      {openView === 'year' && (
+        <YearSelection
+          date={date}
+          onChange={handleChangeAndOpenNext('month')}
+          minDate={minDate}
+          maxDate={maxDate}
+          disablePast={disablePast}
+          disableFuture={disableFuture}
+          onYearChange={onYearChange}
+          animateYearScrolling={animateYearScrolling}
+        />
+      )}
+      {openView === 'month' && (
+        <MonthSelection
+          date={date}
+          onChange={handleChangeAndOpenNext('day')}
+          minDate={minDate}
+          maxDate={maxDate}
+          disablePast={disablePast}
+          disableFuture={disableFuture}
+          onMonthChange={onMonthChange}
+        />
+      )}
+      {openView === 'day' && (
+        <Calendar
+          date={date}
+          onChange={onChange}
+          onMonthChange={onMonthChange}
+          disablePast={disablePast}
+          disableFuture={disableFuture}
+          minDate={minDate}
+          maxDate={maxDate}
+          leftArrowIcon={leftArrowIcon}
+          leftArrowButtonProps={leftArrowButtonProps}
+          rightArrowIcon={rightArrowIcon}
+          rightArrowButtonProps={rightArrowButtonProps}
+          renderDay={renderDay}
+          shouldDisableDate={shouldDisableDate}
+          allowKeyboardControl={allowKeyboardControl}
+        />
+      )}
+    </>
+  );
+};
+
+DatePickerRoot.propTypes = {
+  onlyCalendar: PropTypes.bool,
+  views: PropTypes.arrayOf(DomainPropTypes.datePickerView),
+  openTo: DomainPropTypes.datePickerView,
+} as any;
+
+DatePickerRoot.defaultProps = {
+  onlyCalendar: false,
+  ...datePickerDefaultProps,
+};
+
+export default DatePickerRoot;

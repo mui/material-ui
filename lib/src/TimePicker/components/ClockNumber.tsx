@@ -1,9 +1,7 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { Theme } from '@material-ui/core';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme, makeStyles } from '@material-ui/core/styles';
 
 const positions: Record<number, number[]> = {
   0: [0, 40],
@@ -32,77 +30,62 @@ const positions: Record<number, number[]> = {
   23: [-37, 50],
 };
 
-export interface ClockNumberProps extends WithStyles<typeof styles> {
+export interface ClockNumberProps {
   index: number;
   label: string;
   selected: boolean;
   isInner?: boolean;
 }
 
-export class ClockNumber extends React.Component<ClockNumberProps> {
-  public static propTypes: any = {
-    index: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
-    selected: PropTypes.bool.isRequired,
-    classes: PropTypes.object.isRequired,
-    isInner: PropTypes.bool,
-    innerRef: PropTypes.any,
-  };
+export const useStyles = makeStyles(
+  (theme: Theme) => {
+    const size = theme.spacing(4);
 
-  public static defaultProps = {
-    isInner: false,
-  };
+    return {
+      clockNumber: {
+        width: size,
+        height: size,
+        userSelect: 'none',
+        position: 'absolute',
+        left: `calc(50% - ${size / 2}px)`,
+        display: 'inline-flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '50%',
+        color:
+          theme.palette.type === 'light' ? theme.palette.text.primary : theme.palette.text.hint,
+      },
+      selected: {
+        color: theme.palette.primary.contrastText,
+      },
+    };
+  },
+  { name: 'MuiPickersClockNumber' }
+);
 
-  public getTransformStyle = (index: number) => {
+export const ClockNumber: React.FC<ClockNumberProps> = ({ selected, label, index, isInner }) => {
+  const classes = useStyles();
+  const className = clsx(classes.clockNumber, {
+    [classes.selected]: selected,
+  });
+
+  const transformStyle = React.useMemo(() => {
     const position = positions[index];
 
     return {
       transform: `translate(${position[0]}px, ${position[1]}px`,
     };
-  };
+  }, [index]);
 
-  public render() {
-    const { selected, label, index, classes, isInner } = this.props;
-
-    const className = clsx(classes.clockNumber, {
-      [classes.selected]: selected,
-    });
-
-    return (
-      <Typography
-        component="span"
-        className={className}
-        variant={isInner ? 'body2' : 'body1'}
-        style={this.getTransformStyle(index)}
-      >
-        {label}
-      </Typography>
-    );
-  }
-}
-
-export const styles = (theme: Theme) => {
-  const size = theme.spacing(4);
-
-  return createStyles({
-    clockNumber: {
-      width: size,
-      height: size,
-      userSelect: 'none',
-      position: 'absolute',
-      left: `calc(50% - ${size / 2}px)`,
-      display: 'inline-flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: '50%',
-      color: theme.palette.type === 'light' ? theme.palette.text.primary : theme.palette.text.hint,
-    },
-    selected: {
-      color: theme.palette.primary.contrastText,
-    },
-  });
+  return (
+    <Typography
+      component="span"
+      className={className}
+      variant={isInner ? 'body2' : 'body1'}
+      style={transformStyle}
+      children={label}
+    />
+  );
 };
 
-export default withStyles(styles, {
-  name: 'MuiPickersClockNumber',
-})(ClockNumber as React.ComponentType<ClockNumberProps>);
+export default ClockNumber;
