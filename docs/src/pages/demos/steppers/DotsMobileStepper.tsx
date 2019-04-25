@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, useTheme, Theme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 
 function DotsMobileStepper() {
   const classes = useStyles();
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
 
   function handleNext() {

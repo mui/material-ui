@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function PersistentDrawerRight() {
   const classes = useStyles();
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   function handleDrawerOpen() {

@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function TextMobileStepper() {
   const classes = useStyles();
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = tutorialSteps.length;
 

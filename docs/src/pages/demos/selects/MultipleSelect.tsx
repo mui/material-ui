@@ -67,7 +67,7 @@ function getStyles(name: string, personName: string[], theme: Theme) {
 
 function MultipleSelect() {
   const classes = useStyles();
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
 
   function handleChange(event: React.ChangeEvent<{ value: unknown }>) {
