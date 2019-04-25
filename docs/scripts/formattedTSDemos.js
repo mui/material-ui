@@ -71,6 +71,12 @@ function fixBabelGeneratorIssues(source) {
   return source.replace(fixBabelIssuesRegExp, getLineFeed(source));
 }
 
+const TranspileResult = {
+  Success: 0,
+  Skipped: 1,
+  Failed: 2,
+};
+
 async function transpileFile(tsxPath, ignoreCache = false) {
   const jsPath = tsxPath.replace('.tsx', '.js');
   try {
@@ -78,7 +84,7 @@ async function transpileFile(tsxPath, ignoreCache = false) {
       const [jsStat, tsxStat] = await Promise.all([fse.stat(jsPath), fse.stat(tsxPath)]);
       if (jsStat.mtimeMs > tsxStat.mtimeMs) {
         // JavaScript version is newer, skip transpiling
-        return -1;
+        return TranspileResult.Skipped;
       }
     }
 
@@ -87,10 +93,10 @@ async function transpileFile(tsxPath, ignoreCache = false) {
     const formatted = fixBabelGeneratorIssues(prettified);
 
     await fse.writeFile(jsPath, formatted);
-    return 0;
+    return TranspileResult.Success;
   } catch (err) {
     console.error(err);
-    return 1;
+    return TranspileResult.Failed;
   }
 }
 
@@ -101,9 +107,23 @@ async function transpileFile(tsxPath, ignoreCache = false) {
   let failed = 0;
   let skipped = 0;
   (await Promise.all(tsxFiles.map(file => transpileFile(file)))).forEach(result => {
-    if (result === 0) successful += 1;
-    else if (result === 1) failed += 1;
-    else if (result === -1) skipped += 1;
+    switch (result) {
+      case TranspileResult.Success: {
+        successful += 1;
+        break;
+      }
+      case TranspileResult.Failed: {
+        failed += 1;
+        break;
+      }
+      case TranspileResult.Skipped: {
+        skipped += 1;
+        break;
+      }
+      default: {
+        throw new Error(`No handler for ${result}`);
+      }
+    }
   });
 
   console.log(
