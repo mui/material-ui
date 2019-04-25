@@ -1,17 +1,16 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ToolbarText from '../../_shared/ToolbarText';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
 import { Theme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { DateTimePickerViewType } from '../DateTimePickerRoot';
-import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 
-export const styles = (theme: Theme) =>
-  createStyles({
+export const useStyles = makeStyles(
+  (theme: Theme) => ({
     toolbar: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -62,28 +61,31 @@ export const styles = (theme: Theme) =>
     ampmLabel: {
       fontSize: 18,
     },
-  });
+  }),
+  { name: 'MuiPickerDTHeader' }
+);
 
 export type MeridiemMode = 'am' | 'pm';
-export interface DateTimePickerHeaderProps extends WithUtilsProps, WithStyles<typeof styles> {
+export interface DateTimePickerHeaderProps {
   date: MaterialUiPickersDate;
   meridiemMode: MeridiemMode;
   openView: DateTimePickerViewType;
   onOpenViewChange: (view: DateTimePickerViewType) => void;
-  setMeridiemMode: (mode: MeridiemMode) => () => void;
+  setMeridiemMode: (mode: MeridiemMode) => void;
   ampm?: boolean;
 }
 
 export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
   date,
-  classes,
   openView,
   meridiemMode,
   onOpenViewChange,
   setMeridiemMode,
-  utils,
   ampm,
 }) => {
+  const utils = useUtils();
+  const classes = useStyles();
+
   return (
     <PickerToolbar className={clsx(classes.toolbar, { [classes.toolBar24h]: !ampm })}>
       <div className={classes.dateHeader}>
@@ -128,7 +130,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
               typographyClassName={classes.ampmLabel}
               selected={meridiemMode === 'am'}
               label={utils.getMeridiemText('am')}
-              onClick={setMeridiemMode('am')}
+              onClick={() => setMeridiemMode('am')}
             />
 
             <ToolbarButton
@@ -136,7 +138,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
               typographyClassName={classes.ampmLabel}
               selected={meridiemMode === 'pm'}
               label={utils.getMeridiemText('pm')}
-              onClick={setMeridiemMode('pm')}
+              onClick={() => setMeridiemMode('pm')}
             />
           </div>
         )}
@@ -145,13 +147,4 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
   );
 };
 
-(DateTimePickerHeader as any).propTypes = {
-  date: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
-  meridiemMode: PropTypes.string.isRequired,
-  utils: PropTypes.object.isRequired,
-  ampm: PropTypes.bool,
-  innerRef: PropTypes.any,
-};
-
-export default withStyles(styles, { name: 'MuiPickerDTHeader' })(withUtils()(DateTimePickerHeader));
+export default DateTimePickerHeader;

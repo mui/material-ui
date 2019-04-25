@@ -13,8 +13,8 @@ import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withSty
 import { styles as ClockPointerStyles } from '../TimePicker/components/ClockPointer';
 import { styles as DTTabsStyles } from '../DateTimePicker/components/DateTimePickerTabs';
 import { useStyles as CalendarHeaderStyles } from '../DatePicker/components/CalendarHeader';
-import { styles as DTHeaderStyles } from '../DateTimePicker/components/DateTimePickerHeader';
 import { useStyles as SlideTransitionStyles } from '../DatePicker/components/SlideTransition';
+import { useStyles as DTHeaderStyles } from '../DateTimePicker/components/DateTimePickerHeader';
 import { styles as MuiPickersMonthSelectionStyles } from '../DatePicker/components/MonthSelection';
 import { useStyles as MuiPickersYearSelectionStyles } from '../DatePicker/components/YearSelection';
 

@@ -74,6 +74,25 @@ export interface TimePickerProps extends BaseTimePickerProps {
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
 }
 
+export function useMeridiemMode(
+  date: MaterialUiPickersDate,
+  ampm: boolean | undefined,
+  onChange: (date: MaterialUiPickersDate, isFinished?: boolean | undefined) => void
+) {
+  const utils = useUtils();
+  const meridiemMode: MeridiemMode = utils.getHours(date) >= 12 ? 'pm' : 'am';
+
+  const handleMeridiemChange = React.useCallback(
+    (mode: MeridiemMode) => {
+      const timeWithMeridiem = convertToMeridiem(date, mode, Boolean(ampm), utils);
+      onChange(timeWithMeridiem, false);
+    },
+    [ampm, date, onChange, utils]
+  );
+
+  return { meridiemMode, handleMeridiemChange };
+}
+
 const TimePickerRoot: React.FC<TimePickerProps> = ({
   date,
   ampm,
@@ -85,19 +104,10 @@ const TimePickerRoot: React.FC<TimePickerProps> = ({
   const classes = useStyles();
   const theme = useTheme<Theme>();
   const [openView, setOpenView] = React.useState<ClockType>(ClockType.HOURS);
+  const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onChange);
 
-  const meridiemMode = utils.getHours(date) >= 12 ? 'pm' : 'am';
   const hourMinuteClassName =
     theme.direction === 'rtl' ? classes.hourMinuteLabelReverse : classes.hourMinuteLabel;
-
-  const handleMeridiemChange = React.useCallback(
-    (mode: MeridiemMode) => {
-      const timeWithMeridiem = convertToMeridiem(date, mode, Boolean(ampm), utils);
-
-      onChange(timeWithMeridiem, false);
-    },
-    [ampm, date, onChange, utils]
-  );
 
   const handleChangeAndOpenNext = React.useCallback(
     (nextView: ClockType | null) => {
