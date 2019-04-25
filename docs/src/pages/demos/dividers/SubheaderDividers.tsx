@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
     },
     dividerFullWidth: {
-      margin: theme.spacing(0.625, 0, 0, 2),
+      margin: `5px 0 0 ${theme.spacing(2)}px`,
     },
     dividerInset: {
       margin: theme.spacing(0.625, 0, 0, 9),
