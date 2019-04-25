@@ -12,6 +12,9 @@ const useStyles = makeStyles({
 });
 
 const StyledSlider = withStyles({
+  container: {
+    overflow: 'visible',
+  },
   thumb: {
     height: 32,
     width: 32,
@@ -21,10 +24,10 @@ const StyledSlider = withStyles({
       boxShadow: `0px 0px 0px ${8}px ${fade('#de235b', 0.16)}`,
     },
     '&$activated': {
-      boxShadow: `0px 0px 0px ${8 * 2}px ${fade('#de235b', 0.16)}`,
+      boxShadow: `0px 0px 0px ${8 * 1.5}px ${fade('#de235b', 0.16)}`,
     },
     '&$jumped': {
-      boxShadow: `0px 0px 0px ${8 * 2}px ${fade('#de235b', 0.16)}`,
+      boxShadow: `0px 0px 0px ${8 * 1.5}px ${fade('#de235b', 0.16)}`,
     },
   },
   track: {
