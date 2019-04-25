@@ -3,9 +3,8 @@ import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
-import { Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 // import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/styles';
 import ReactAutosuggest, {
   ChangeEvent,
   GetSuggestionValue,
