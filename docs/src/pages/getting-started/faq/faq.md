@@ -334,3 +334,67 @@ If you use Material-UI in a commercial project and would like to support its con
 or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 
 All funds raised are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
+
+## Why does component X require a DOM node in a prop instead of a ref object?
+
+Components like the [Portal](/api/Portal/#props) or [Popper](/api/Popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively.
+It seems convenient to simply pass a ref object in those props and let Material-UI access the current value.
+This works in a simple scenario:
+
+```jsx
+function App() {
+  const container = React.useRef(null);
+
+  return (
+    <div className="App">
+      <Portal container={container}>
+        <span>portaled children</span>
+      </Portal>
+      <div ref={container} />
+    </div>
+  );
+}
+```
+
+where `Portal` would only mount the children into the container when `container.current` is available.
+Here is a naive implementation of Portal: 
+
+```jsx
+function Portal({ children, container }) {
+  const [node, setNode] = React.useState(null);
+
+  React.useEffect(() => {
+    setNode(container.current);
+  }, [container]);
+
+  if (node === null) {
+    return null;
+  }
+  return ReactDOM.createPortal(children, node);
+}
+```
+
+With this simple heuristic `Portal` might re-render after it mounts because refs are up-to-date before any effects run.
+However, just because a ref is up-to-date doesn't mean it points to a defined instance.
+If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available.
+In the above example the `Portal` would run run an effect once but might not re-render because `ref.current` is still `null`. This is
+especially apparent for React.lazy components in Suspense. The above implementation could also not account for a change in the DOM node.
+
+This is why we require a prop with the actual DOM node so that React can take care of determining
+when the `Portal` should re-render:
+
+```jsx
+function App() {
+  const [container, setContainer] = React.useState(null);
+  const handleRef = React.useCallback(instance => setContainer(instance), [setContainer])
+
+  return (
+    <div className="App">
+      <Portal container={container}>
+        <span>Portaled</span>
+      </Portal>
+      <div ref={handleRef} />
+    </div>
+  );
+}
+```
