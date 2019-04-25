@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Month from './Month';
+import { makeStyles } from '@material-ui/core/styles';
+import { useUtils } from '../../_shared/hooks/useUtils';
 import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 
-export interface MonthSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
+export interface MonthSelectionProps {
   date: MaterialUiPickersDate;
   minDate?: ParsableDate;
   maxDate?: ParsableDate;
@@ -15,19 +15,32 @@ export interface MonthSelectionProps extends WithUtilsProps, WithStyles<typeof s
   onMonthChange?: (date: MaterialUiPickersDate) => void;
 }
 
-export class MonthSelection extends React.PureComponent<MonthSelectionProps> {
-  public onMonthSelect = (month: number) => {
-    const { date, onMonthChange, onChange, utils } = this.props;
-    const newDate = utils.setMonth(date, month);
+export const useStyles = makeStyles(
+  {
+    container: {
+      width: 310,
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignContent: 'stretch',
+    },
+  },
+  { name: 'MuiPickersMonthSelection' }
+);
 
-    onChange(newDate, true);
-    if (onMonthChange) {
-      onMonthChange(newDate);
-    }
-  };
+export const MonthSelection: React.FC<MonthSelectionProps> = ({
+  disablePast,
+  disableFuture,
+  minDate,
+  maxDate,
+  date,
+  onMonthChange,
+  onChange,
+}) => {
+  const utils = useUtils();
+  const classes = useStyles();
+  const currentMonth = utils.getMonth(date);
 
-  public shouldDisableMonth = (month: MaterialUiPickersDate) => {
-    const { utils, disablePast, disableFuture, minDate, maxDate } = this.props;
+  const shouldDisableMonth = (month: MaterialUiPickersDate) => {
     const now = utils.date();
     const utilMinDate = utils.date(minDate);
     const utilMaxDate = utils.date(maxDate);
@@ -46,42 +59,38 @@ export class MonthSelection extends React.PureComponent<MonthSelectionProps> {
     return isBeforeFirstEnabled || isAfterLastEnabled;
   };
 
-  public render() {
-    const { date, classes, utils } = this.props;
-    const currentMonth = utils.getMonth(date);
+  const onMonthSelect = React.useCallback(
+    (month: number) => {
+      const newDate = utils.setMonth(date, month);
 
-    return (
-      <div className={classes.container}>
-        {utils.getMonthArray(date).map(month => {
-          const monthNumber = utils.getMonth(month);
-          const monthText = utils.format(month, 'MMM');
+      onChange(newDate, true);
+      if (onMonthChange) {
+        onMonthChange(newDate);
+      }
+    },
+    [date, onChange, onMonthChange, utils]
+  );
 
-          return (
-            <Month
-              key={monthText}
-              value={monthNumber}
-              selected={monthNumber === currentMonth}
-              onSelect={this.onMonthSelect}
-              disabled={this.shouldDisableMonth(month)}
-            >
-              {monthText}
-            </Month>
-          );
-        })}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={classes.container}>
+      {utils.getMonthArray(date).map(month => {
+        const monthNumber = utils.getMonth(month);
+        const monthText = utils.format(month, 'MMM');
 
-export const styles = createStyles({
-  container: {
-    width: 310,
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignContent: 'stretch',
-  },
-});
+        return (
+          <Month
+            key={monthText}
+            value={monthNumber}
+            selected={monthNumber === currentMonth}
+            onSelect={onMonthSelect}
+            disabled={shouldDisableMonth(month)}
+          >
+            {monthText}
+          </Month>
+        );
+      })}
+    </div>
+  );
+};
 
-export default withStyles(styles, { name: 'MuiPickersMonthSelection' })(
-  withUtils()(MonthSelection)
-);
+export default MonthSelection;

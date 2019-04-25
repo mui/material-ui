@@ -7,16 +7,16 @@ import { useStyles as TimePickerStyles } from '../TimePicker/TimePickerRoot';
 import { styles as CalendarStyles } from '../DatePicker/components/Calendar';
 import { useStyles as DatePickerRootStyles } from '../DatePicker/DatePickerRoot';
 import { useStyles as MuiPickersYearStyles } from '../DatePicker/components/Year';
-import { styles as ClockNumberStyles } from '../TimePicker/components/ClockNumber';
 import { useStyles as MuiPickersMonthStyles } from '../DatePicker/components/Month';
 import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
 import { styles as ClockPointerStyles } from '../TimePicker/components/ClockPointer';
+import { useStyles as ClockNumberStyles } from '../TimePicker/components/ClockNumber';
 import { useStyles as DTTabsStyles } from '../DateTimePicker/components/DateTimePickerTabs';
 import { useStyles as CalendarHeaderStyles } from '../DatePicker/components/CalendarHeader';
 import { useStyles as SlideTransitionStyles } from '../DatePicker/components/SlideTransition';
 import { useStyles as DTHeaderStyles } from '../DateTimePicker/components/DateTimePickerHeader';
-import { styles as MuiPickersMonthSelectionStyles } from '../DatePicker/components/MonthSelection';
 import { useStyles as MuiPickersYearSelectionStyles } from '../DatePicker/components/YearSelection';
+import { useStyles as MuiPickersMonthSelectionStyles } from '../DatePicker/components/MonthSelection';
 
 type Classes<T> = Partial<
   StyleRules<
