@@ -63,12 +63,15 @@ function ensureImageCover(imgEl, classes) {
 }
 
 const GridListTile = React.forwardRef(function GridListTile(props, ref) {
+  // cols rows default values are for docs only
   const {
     children,
     classes,
     className,
+    // eslint-disable-next-line no-unused-vars
     cols = 1,
     component: Component = 'li',
+    // eslint-disable-next-line no-unused-vars
     rows = 1,
     ...other
   } = props;
