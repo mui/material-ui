@@ -102,6 +102,10 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     } else if (key === 'End') {
       event.preventDefault();
       moveFocus(list, null, disableListWrap, previousItem);
+    } else if (key.length === 1) {
+      event.preventDefault();
+      // TODO here's where the new logic goes
+      moveFocus(list, currentFocus, disableListWrap, nextItem);
     }
 
     if (onKeyDown) {
