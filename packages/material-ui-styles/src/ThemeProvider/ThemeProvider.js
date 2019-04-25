@@ -4,6 +4,7 @@ import warning from 'warning';
 import { exactProp } from '@material-ui/utils';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
+import nested from './nested';
 
 // To support composition of theme.
 function mergeOuterLocalTheme(outerTheme, localTheme) {
@@ -46,10 +47,16 @@ function ThemeProvider(props) {
     ].join('\n'),
   );
 
-  const theme = React.useMemo(
-    () => (outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme)),
-    [localTheme, outerTheme],
-  );
+  const theme = React.useMemo(() => {
+    const output = outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
+
+    if (outerTheme !== null && output) {
+      output[nested] = true;
+    }
+
+    return output;
+  }, [localTheme, outerTheme]);
+
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 }
 

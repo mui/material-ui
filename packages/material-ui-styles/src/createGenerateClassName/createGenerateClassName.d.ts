@@ -1,7 +1,7 @@
 import { GenerateId } from 'jss';
 
 export interface GenerateClassNameOptions {
-  dangerouslyUseGlobalCSS?: boolean;
+  disableGlobal?: boolean;
   productionPrefix?: string;
   seed?: string;
 }
