@@ -80,7 +80,7 @@ const TranspileResult = {
 async function transpileFile(tsxPath, ignoreCache = false) {
   const jsPath = tsxPath.replace('.tsx', '.js');
   try {
-    if (!cacheDisabled && !ignoreCache && fse.exists(jsPath)) {
+    if (!cacheDisabled && !ignoreCache && (await fse.exists(jsPath))) {
       const [jsStat, tsxStat] = await Promise.all([fse.stat(jsPath), fse.stat(tsxPath)]);
       if (jsStat.mtimeMs > tsxStat.mtimeMs) {
         // JavaScript version is newer, skip transpiling
