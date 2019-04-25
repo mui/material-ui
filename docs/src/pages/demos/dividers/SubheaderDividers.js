@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     margin: `5px 0 0 ${theme.spacing(2)}px`,
   },
   dividerInset: {
-    margin: theme.spacing(0.625, 0, 0, 9),
+    margin: `5px 0 0 ${theme.spacing(2)}px`,
   },
 }));
 
