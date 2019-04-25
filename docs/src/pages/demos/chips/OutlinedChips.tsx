@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -16,18 +15,20 @@ const styles = (theme: Theme) =>
     chip: {
       margin: theme.spacing(1),
     },
-  });
+  }),
+);
 
-function handleDelete() {
-  alert('You clicked the delete icon.'); // eslint-disable-line no-alert
-}
+function OutlinedChips() {
+  const classes = useStyles();
 
-function handleClick() {
-  alert('You clicked the Chip.'); // eslint-disable-line no-alert
-}
+  function handleDelete() {
+    alert('You clicked the delete icon.'); // eslint-disable-line no-alert
+  }
 
-function OutlinedChips(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+  function handleClick() {
+    alert('You clicked the Chip.'); // eslint-disable-line no-alert
+  }
+
   return (
     <div className={classes.root}>
       <Chip label="Basic Chip" className={classes.chip} variant="outlined" />
@@ -132,8 +133,4 @@ function OutlinedChips(props: WithStyles<typeof styles>) {
   );
 }
 
-OutlinedChips.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(OutlinedChips);
+export default OutlinedChips;
