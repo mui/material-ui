@@ -1,11 +1,10 @@
 import React, { SyntheticEvent } from 'react';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { string } from 'parsimmon';
 
 const styles = (theme: Theme) =>
   createStyles({
