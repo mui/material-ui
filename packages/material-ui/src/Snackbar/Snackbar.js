@@ -133,22 +133,27 @@ export const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   // }
 
   // Timer that controls delay before snackbar auto hides
-  const setAutoHideTimer = React.useCallback((autoHideDurationParam) => {
-    const autoHideDurationBefore = autoHideDurationParam != null ? autoHideDurationParam : autoHideDuration;
+  const setAutoHideTimer = React.useCallback(
+    autoHideDurationParam => {
+      const autoHideDurationBefore =
+        autoHideDurationParam != null ? autoHideDurationParam : autoHideDuration;
 
-    if (!onClose || autoHideDurationBefore == null) {
-      return;
-    }
-
-    clearTimeout(timerAutoHide.current);
-    timerAutoHide.current = setTimeout(() => {
-      const autoHideDurationAfter = autoHideDurationParam != null ? autoHideDurationParam : autoHideDuration;
-      if (!onClose || autoHideDurationAfter == null) {
+      if (!onClose || autoHideDurationBefore == null) {
         return;
       }
-      onClose(null, 'timeout');
-    }, autoHideDurationBefore);
-  }, [autoHideDuration, onClose]);
+
+      clearTimeout(timerAutoHide.current);
+      timerAutoHide.current = setTimeout(() => {
+        const autoHideDurationAfter =
+          autoHideDurationParam != null ? autoHideDurationParam : autoHideDuration;
+        if (!onClose || autoHideDurationAfter == null) {
+          return;
+        }
+        onClose(null, 'timeout');
+      }, autoHideDurationBefore);
+    },
+    [autoHideDuration, onClose],
+  );
 
   React.useEffect(() => {
     if (open) setAutoHideTimer();
