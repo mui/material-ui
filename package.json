@@ -193,7 +193,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-size-snapshot": "^0.8.0",
-    "rollup-plugin-uglify": "^6.0.0",
+    "rollup-plugin-terser": "^4.0.4",
     "sinon": "^7.0.0",
     "size-limit": "^0.21.0",
     "styled-components": "^4.1.1",
