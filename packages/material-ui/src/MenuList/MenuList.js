@@ -34,20 +34,14 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   if (text === undefined) {
     return false;
   }
-  text = text.trim();
+  text = text.trim().toLowerCase();
   if (text.length === 0) {
     return false;
   }
-  text = text.toLowerCase();
   if (textCriteria.repeating) {
-    return text.charAt(0) === textCriteria.keys[0];
+    return text[0] === textCriteria.keys[0];
   }
-  for (let charIndex = 0; charIndex < textCriteria.keys.length; charIndex += 1) {
-    if (charIndex >= text.length || text.charAt(charIndex) !== textCriteria.keys[charIndex]) {
-      return false;
-    }
-  }
-  return true;
+  return text.indexOf(textCriteria.keys.join('')) === 0;
 }
 
 function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textCriteria) {
@@ -55,12 +49,14 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
   let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
 
   while (nextFocus) {
+    // Prevent infinite loop.
     if (nextFocus === list.firstChild) {
       if (wrappedOnce) {
         return false;
       }
       wrappedOnce = true;
     }
+    // Move to the next element.
     if (
       !nextFocus.hasAttribute('tabindex') ||
       nextFocus.disabled ||
@@ -144,6 +140,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       const lowerKey = key.toLowerCase();
       const currTime = performance.now();
       if (criteria.keys.length > 0) {
+        // Reset
         if (currTime - criteria.lastTime > 500) {
           criteria.keys = [];
           criteria.repeating = true;
