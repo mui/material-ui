@@ -274,7 +274,7 @@ You should be able to move the custom styles to the root class key.
 
 ### Switch
 
-- [Switch] Refactore the implementation to make it easier to override the styles.
+- [Switch] Refactor the implementation to make it easier to override the styles.
   Rename the class names to match the specification wording:
 
   ```diff
