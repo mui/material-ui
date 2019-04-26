@@ -65,7 +65,7 @@ function assertMenuItemFocused(wrapper, focusedIndex, expectedNumMenuItems = 4, 
           // jsdom doesn't support innerText
           innerText = instance.textContent;
         }
-        assert.strictEqual(expectedInnerText, innerText);
+        assert.strictEqual(expectedInnerText, innerText.trim());
       }
     } else {
       assert.notStrictEqual(instance, document.activeElement);
@@ -474,13 +474,14 @@ describe('<MenuList> integration', () => {
           <MenuItem>Argentina</MenuItem>
           <MenuItem>color</MenuItem>
           <MenuItem />
+          <MenuItem>Hello Worm</MenuItem>
           <MenuItem>
             Hello <span style={{ display: 'none' }}>Test innerText</span> World
           </MenuItem>
         </MenuList>,
       );
       innerTextSupported = wrapper.find('ul').instance().innerText !== undefined;
-      assertFocused = getAssertMenuItemFocused(wrapper, 7);
+      assertFocused = getAssertMenuItemFocused(wrapper, 8);
     };
 
     beforeEach(resetWrapper);
@@ -542,9 +543,10 @@ describe('<MenuList> integration', () => {
         wrapper.simulate('keyDown', { key: 'w' });
         wrapper.simulate('keyDown', { key: 'o' });
         wrapper.simulate('keyDown', { key: 'r' });
+        assertFocused(6, 'Hello Worm');
         wrapper.simulate('keyDown', { key: 'l' });
         wrapper.simulate('keyDown', { key: 'd' });
-        assertFocused(6, 'Hello World');
+        assertFocused(7, 'Hello World');
       }
     });
   });

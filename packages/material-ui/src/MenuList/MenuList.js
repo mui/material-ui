@@ -31,7 +31,11 @@ function textCriteriaMatches(nextFocus, textCriteria) {
     // jsdom doesn't support innerText
     text = nextFocus.textContent;
   }
-  if (text === undefined || text.length === 0) {
+  if (text === undefined) {
+    return false;
+  }
+  text = text.trim();
+  if (text.length === 0) {
     return false;
   }
   text = text.toLowerCase();
