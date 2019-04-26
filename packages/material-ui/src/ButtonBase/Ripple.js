@@ -1,13 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/styles';
 import { Transition } from 'react-transition-group';
+
+const useStyles = makeStyles({
+  root: {
+    width: props => props.rippleSize,
+    height: props => props.rippleSize,
+    top: props => -(props.rippleSize / 2) + props.rippleY,
+    left: props => -(props.rippleSize / 2) + props.rippleX,
+  },
+}, { index: 100 });
 
 /**
  * @ignore - internal component.
  */
 function Ripple(props) {
   const { classes, className, pulsate, rippleX, rippleY, rippleSize, ...other } = props;
+  const rippleClasses = useStyles({ rippleX, rippleY, rippleSize });
   const [visible, setVisible] = React.useState(false);
   const [leaving, setLeaving] = React.useState(false);
 
@@ -26,14 +37,8 @@ function Ripple(props) {
       [classes.ripplePulsate]: pulsate,
     },
     className,
+    rippleClasses.root,
   );
-
-  const rippleStyles = {
-    width: rippleSize,
-    height: rippleSize,
-    top: -(rippleSize / 2) + rippleY,
-    left: -(rippleSize / 2) + rippleX,
-  };
 
   const childClassName = clsx(classes.child, {
     [classes.childLeaving]: leaving,
@@ -42,7 +47,7 @@ function Ripple(props) {
 
   return (
     <Transition onEnter={handleEnter} onExit={handleExit} {...other}>
-      <span className={rippleClassName} style={rippleStyles}>
+      <span className={rippleClassName}>
         <span className={childClassName} />
       </span>
     </Transition>
