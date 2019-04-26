@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -94,7 +93,7 @@ export const styles = theme => {
     },
   };
 };
-const i = 0
+
 export const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
