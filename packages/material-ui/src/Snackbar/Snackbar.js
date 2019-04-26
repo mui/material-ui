@@ -126,12 +126,6 @@ export const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const timerAutoHide = React.useRef();
   const [exited, setExited] = React.useState();
 
-  // if (typeof exited === 'undefined') {
-  //   setExited(!open);
-  // } else if (open) {
-  //   setExited(false);
-  // }
-
   // Timer that controls delay before snackbar auto hides
   const setAutoHideTimer = React.useCallback(
     autoHideDurationParam => {
@@ -205,6 +199,10 @@ export const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     setExited(true);
   };
 
+  const handleEnter = () => {
+    setExited(false);
+  };
+
   // So we only render active snackbars.
   if (!open && exited) {
     return null;
@@ -231,7 +229,7 @@ export const Snackbar = React.forwardRef(function Snackbar(props, ref) {
         <TransitionComponent
           appear
           in={open}
-          onEnter={onEnter}
+          onEnter={createChainedFunction(handleEnter, onEnter)}
           onEntered={onEntered}
           onEntering={onEntering}
           onExit={onExit}
