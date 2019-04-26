@@ -76,7 +76,7 @@ function assertMenuItemFocused(wrapper, focusedIndex, expectedNumMenuItems = 4, 
 function getAssertMenuItemFocused(wrapper, expectedNumMenuItems) {
   return (focusedIndex, expectedInnerText) => {
     return assertMenuItemFocused(wrapper, focusedIndex, expectedNumMenuItems, expectedInnerText);
-  }
+  };
 }
 
 describe('<MenuList> integration', () => {
@@ -473,14 +473,17 @@ describe('<MenuList> integration', () => {
           <MenuItem>Colorado</MenuItem>
           <MenuItem>Argentina</MenuItem>
           <MenuItem>color</MenuItem>
-          <MenuItem>Hello <span style={{display: 'none'}}>Test innerText</span> World</MenuItem>
+          <MenuItem />
+          <MenuItem>
+            Hello <span style={{ display: 'none' }}>Test innerText</span> World
+          </MenuItem>
         </MenuList>,
       );
       innerTextSupported = wrapper.find('ul').instance().innerText !== undefined;
-      assertFocused = getAssertMenuItemFocused(wrapper, 6);
+      assertFocused = getAssertMenuItemFocused(wrapper, 7);
     };
 
-    before(resetWrapper);
+    beforeEach(resetWrapper);
 
     it('should support repeating initial character', () => {
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
@@ -504,14 +507,23 @@ describe('<MenuList> integration', () => {
       assertFocused(2, 'Colorado');
     });
 
-    it('should reset matching after wait', (done) => {
+    it('should not move focus when additional keys match current focus', () => {
+      wrapper.simulate('keyDown', { key: 'c' });
+      assertFocused(2, 'Colorado');
+      wrapper.simulate('keyDown', { key: 'o' });
+      assertFocused(2, 'Colorado');
+      wrapper.simulate('keyDown', { key: 'l' });
+      assertFocused(2, 'Colorado');
+    });
+
+    it('should reset matching after wait', done => {
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       assertFocused(0, 'Arizona');
       wrapper.simulate('keyDown', { key: 'c' });
       assertFocused(2, 'Colorado');
       wrapper.simulate('keyDown', { key: 'z' });
       assertFocused(2, 'Colorado');
-      setTimeout(()=> {
+      setTimeout(() => {
         wrapper.simulate('keyDown', { key: 'a' });
         assertFocused(3, 'Argentina');
         done();
@@ -532,7 +544,7 @@ describe('<MenuList> integration', () => {
         wrapper.simulate('keyDown', { key: 'r' });
         wrapper.simulate('keyDown', { key: 'l' });
         wrapper.simulate('keyDown', { key: 'd' });
-        assertFocused(0, 'Hello World');
+        assertFocused(6, 'Hello World');
       }
     });
   });

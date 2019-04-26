@@ -22,13 +22,37 @@ function previousItem(list, item, disableListWrap) {
   return disableListWrap ? null : list.lastChild;
 }
 
-function moveFocus(list, currentFocus, disableListWrap, traversalFunction) {
+function textCriteriaMatches(nextFocus, textCriteria) {
+  if (textCriteria === undefined) {
+    return true;
+  }
+  let text = nextFocus.innerText;
+  if (text === undefined) {
+    // jsdom doesn't support innerText
+    text = nextFocus.textContent;
+  }
+  if (text === undefined || text.length === 0) {
+    return false;
+  }
+  text = text.toLowerCase();
+  if (textCriteria.repeating) {
+    return text.charAt(0) === textCriteria.keys[0];
+  }
+  for (let charIndex = 0; charIndex < textCriteria.keys.length; charIndex += 1) {
+    if (charIndex >= text.length || text.charAt(charIndex) !== textCriteria.keys[charIndex]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textCriteria) {
   let startingPoint = currentFocus;
   let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
 
   while (nextFocus) {
     if (nextFocus === startingPoint) {
-      return;
+      return false;
     }
     if (startingPoint === null) {
       startingPoint = nextFocus;
@@ -36,7 +60,8 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction) {
     if (
       !nextFocus.hasAttribute('tabindex') ||
       nextFocus.disabled ||
-      nextFocus.getAttribute('aria-disabled') === 'true'
+      nextFocus.getAttribute('aria-disabled') === 'true' ||
+      !textCriteriaMatches(nextFocus, textCriteria)
     ) {
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
@@ -45,7 +70,9 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction) {
   }
   if (nextFocus) {
     nextFocus.focus();
+    return true;
   }
+  return false;
 }
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
@@ -53,6 +80,12 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
 const MenuList = React.forwardRef(function MenuList(props, ref) {
   const { actions, autoFocus, className, onKeyDown, disableListWrap, ...other } = props;
   const listRef = React.useRef();
+  const textCriteriaRef = React.useRef({
+    keys: [],
+    repeating: true,
+    previousKeyMatched: true,
+    lastTime: null,
+  });
 
   useEnhancedEffect(() => {
     if (autoFocus) {
@@ -103,9 +136,30 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       event.preventDefault();
       moveFocus(list, null, disableListWrap, previousItem);
     } else if (key.length === 1) {
-      event.preventDefault();
-      // TODO here's where the new logic goes
-      moveFocus(list, currentFocus, disableListWrap, nextItem);
+      const criteria = textCriteriaRef.current;
+      const lowerKey = key.toLowerCase();
+      const currTime = performance.now();
+      if (criteria.keys.length > 0) {
+        if (currTime - criteria.lastTime > 500) {
+          criteria.keys = [];
+          criteria.repeating = true;
+          criteria.previousKeyMatched = true;
+        } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+          criteria.repeating = false;
+        }
+      }
+      criteria.lastTime = currTime;
+      criteria.keys.push(lowerKey);
+      const keepFocusOnCurrent =
+        currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
+      if (
+        criteria.previousKeyMatched &&
+        (keepFocusOnCurrent || moveFocus(list, currentFocus, disableListWrap, nextItem, criteria))
+      ) {
+        event.preventDefault();
+      } else {
+        criteria.previousKeyMatched = false;
+      }
     }
 
     if (onKeyDown) {
