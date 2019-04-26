@@ -30,7 +30,6 @@ export const styles = theme => ({
   container: {
     position: 'relative',
   },
-  // To remove in v4
   /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
   focusVisible: {
     backgroundColor: theme.palette.action.selected,

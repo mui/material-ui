@@ -192,6 +192,7 @@ MenuList.propTypes = {
   actions: PropTypes.shape({ current: PropTypes.object }),
   /**
    * If `true`, the list will be focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
    */
   autoFocus: PropTypes.bool,
   /**
