@@ -72,7 +72,7 @@ function ConsecutiveSnackbars() {
   const classes = useStyles();
   const [state, dispatch] = React.useReducer(reducer, DefaultState);
 
-  function handleClick(message: string) {
+  function handleClick(event: React.SyntheticEvent | MouseEvent, message: string) {
     dispatch({ type: 'addItem', payload: message });
   }
 
@@ -94,8 +94,8 @@ function ConsecutiveSnackbars() {
 
   return (
     <div>
-      <Button onClick={e => handleClick('Message A')}>Show message A</Button>
-      <Button onClick={e => handleClick('Message B')}>Show message B</Button>
+      <Button onClick={e => handleClick(e, 'Message A')}>Show message A</Button>
+      <Button onClick={e => handleClick(e, 'Message B')}>Show message B</Button>
       <Snackbar
         key={state.messageInfo === undefined ? undefined : state.messageInfo.key}
         anchorOrigin={{
