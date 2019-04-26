@@ -272,11 +272,9 @@ You should be able to move the custom styles to the root class key.
 
 - [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
 
-### Selection controls
+### Switch
 
-- [Switch][Radio][Checkbox] Improve specification compliance.
-
-  Refactore the implementation to make it easier to override the styles.
+- [Switch] Refactor the implementation to make it easier to override the styles.
   Rename the class names to match the specification wording:
 
   ```diff

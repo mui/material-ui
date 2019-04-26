@@ -28,7 +28,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The id of the `input` element. |
 | <span class="prop-name">indeterminate</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component appears indeterminate. This does not set the native input element to indeterminate due to inconsistent behavior across browsers. However, we set a `data-indeterminate` attribute on the input. |
 | <span class="prop-name">indeterminateIcon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;IndeterminateCheckBoxIcon /></span> | The icon to display when the component is indeterminate. |
-| <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `input` element. |
+| <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. |
 | <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | This property can be used to pass a ref callback to the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.<br>*checked:* The `checked` value of the switch |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | The input component property `type`. |
@@ -50,6 +50,8 @@ This property accepts the following keys:
 | <span class="prop-name">checked</span> | Styles applied to the root element if `checked={true}`.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">indeterminate</span> | Styles applied to the root element if `indeterminate={true}`.
+| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Checkbox/Checkbox.js)
