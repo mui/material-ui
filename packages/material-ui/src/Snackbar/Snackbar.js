@@ -94,7 +94,7 @@ export const styles = theme => {
   };
 };
 
-export const Snackbar = React.forwardRef(function Snackbar(props, ref) {
+const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
     anchorOrigin: { vertical, horizontal },
