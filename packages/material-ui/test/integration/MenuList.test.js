@@ -472,7 +472,12 @@ describe('<MenuList> integration', () => {
           <MenuItem>aardvark</MenuItem>
           <MenuItem>Colorado</MenuItem>
           <MenuItem>Argentina</MenuItem>
-          <MenuItem>color</MenuItem>
+          <MenuItem>
+            color{' '}
+            <a href="/" id="focusableDescendant">
+              Focusable Descendant
+            </a>
+          </MenuItem>
           <MenuItem />
           <MenuItem>Hello Worm</MenuItem>
           <MenuItem>
@@ -515,6 +520,13 @@ describe('<MenuList> integration', () => {
       assertFocused(2, 'Colorado');
       wrapper.simulate('keyDown', { key: 'l' });
       assertFocused(2, 'Colorado');
+    });
+
+    it('should avoid infinite loop if focus starts on descendant', () => {
+      const link = document.getElementById('focusableDescendant');
+      link.focus();
+      wrapper.simulate('keyDown', { key: 'z' });
+      assert.strictEqual(link, document.activeElement);
     });
 
     it('should reset matching after wait', done => {

@@ -51,15 +51,15 @@ function textCriteriaMatches(nextFocus, textCriteria) {
 }
 
 function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textCriteria) {
-  let startingPoint = currentFocus;
+  let wrappedOnce = false;
   let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
 
   while (nextFocus) {
-    if (nextFocus === startingPoint) {
-      return false;
-    }
-    if (startingPoint === null) {
-      startingPoint = nextFocus;
+    if (nextFocus === list.firstChild) {
+      if (wrappedOnce) {
+        return false;
+      }
+      wrappedOnce = true;
     }
     if (
       !nextFocus.hasAttribute('tabindex') ||
