@@ -4,17 +4,14 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Transition } from 'react-transition-group';
 
-const useStyles = makeStyles(
-  {
-    root: props => ({
-      width: props.rippleSize,
-      height: props.rippleSize,
-      top: -(props.rippleSize / 2) + props.rippleY,
-      left: -(props.rippleSize / 2) + props.rippleX,
-    }),
-  },
-  { index: 100 },
-);
+const useStyles = makeStyles({
+  root: props => ({
+    width: props.rippleSize,
+    height: props.rippleSize,
+    top: -(props.rippleSize / 2) + props.rippleY,
+    left: -(props.rippleSize / 2) + props.rippleX,
+  }),
+});
 
 /**
  * @ignore - internal component.
