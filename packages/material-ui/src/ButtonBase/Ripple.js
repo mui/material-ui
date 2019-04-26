@@ -6,12 +6,12 @@ import { Transition } from 'react-transition-group';
 
 const useStyles = makeStyles(
   {
-    root: {
-      width: props => props.rippleSize,
-      height: props => props.rippleSize,
-      top: props => -(props.rippleSize / 2) + props.rippleY,
-      left: props => -(props.rippleSize / 2) + props.rippleX,
-    },
+    root: props => ({
+      width: props.rippleSize,
+      height: props.rippleSize,
+      top: -(props.rippleSize / 2) + props.rippleY,
+      left: -(props.rippleSize / 2) + props.rippleX,
+    }),
   },
   { index: 100 },
 );
