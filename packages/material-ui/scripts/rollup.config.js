@@ -38,9 +38,14 @@ const commonjsOptions = {
   },
 };
 
+function onwarn(warning) {
+  throw Error(warning.message);
+}
+
 export default [
   {
     input,
+    onwarn,
     output: {
       file: 'build/umd/material-ui.development.js',
       format: 'umd',
@@ -58,6 +63,7 @@ export default [
   },
   {
     input,
+    onwarn,
     output: {
       file: 'build/umd/material-ui.production.min.js',
       format: 'umd',
