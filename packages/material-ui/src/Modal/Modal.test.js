@@ -7,7 +7,6 @@ import {
   createMount,
   findOutermostIntrinsic,
   describeConformance,
-  getClasses,
 } from '@material-ui/core/test-utils';
 import Fade from '../Fade';
 import Portal from '../Portal';
@@ -16,15 +15,9 @@ import Modal from './Modal';
 
 describe('<Modal />', () => {
   let mount;
-  let classes;
   let savedBodyStyle;
 
   before(() => {
-    classes = getClasses(
-      <Modal open={false}>
-        <div />
-      </Modal>,
-    );
     // StrictModeViolation: uses Backdrop
     mount = createMount({ strict: false });
     savedBodyStyle = document.body.style;
@@ -43,11 +36,10 @@ describe('<Modal />', () => {
       <div />
     </Modal>,
     () => ({
-      classes,
       inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      skip: ['rootClass', 'componentProp'],
     }),
   );
 
@@ -72,13 +64,12 @@ describe('<Modal />', () => {
       const modal = findOutermostIntrinsic(portal);
 
       assert.strictEqual(modal.type(), 'div');
-      assert.strictEqual(modal.hasClass(classes.root), true);
     });
   });
 
   describe('backdrop', () => {
     const modal = (
-      <Modal open id="modal">
+      <Modal open id="modal" BackdropComponent={Backdrop}>
         <div id="container">
           <h1 id="heading">Hello</h1>
         </div>
@@ -95,7 +86,7 @@ describe('<Modal />', () => {
       assert.strictEqual(transition.props().in, true);
     });
 
-    it('should pass a transitionDuration prop to the transition component', () => {
+    it('should pass prop to the transition component', () => {
       const wrapper = mount(modal);
       wrapper.setProps({ BackdropProps: { transitionDuration: 200 } });
 
@@ -369,7 +360,7 @@ describe('<Modal />', () => {
     it('does not include the children in the a11y tree', () => {
       const modalRef = React.createRef();
       mount(
-        <Modal keepMounted open={false} innerRef={modalRef}>
+        <Modal keepMounted open={false} ref={modalRef}>
           <div />
         </Modal>,
       );

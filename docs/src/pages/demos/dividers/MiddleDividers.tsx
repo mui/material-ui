@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, createStyles, Theme, WithStyles, WithTheme } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
@@ -26,12 +25,12 @@ const styles = (theme: Theme) =>
     section3: {
       margin: theme.spacing(3, 1, 1),
     },
-  });
+  }),
+);
 
-type Props = WithStyles<typeof styles> & WithTheme;
+function MiddleDividers() {
+  const classes = useStyles();
 
-function MiddleDividers(props: Props) {
-  const { classes } = props;
   return (
     <div className={classes.root}>
       <div className={classes.section1}>
@@ -71,8 +70,4 @@ function MiddleDividers(props: Props) {
   );
 }
 
-MiddleDividers.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(MiddleDividers);
+export default MiddleDividers;

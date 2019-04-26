@@ -1,18 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding: theme.spacing(3, 2),
     },
-  });
+  }),
+);
 
-function PaperSheet(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+function PaperSheet() {
+  const classes = useStyles();
 
   return (
     <div>
@@ -28,8 +28,4 @@ function PaperSheet(props: WithStyles<typeof styles>) {
   );
 }
 
-PaperSheet.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(PaperSheet);
+export default PaperSheet;

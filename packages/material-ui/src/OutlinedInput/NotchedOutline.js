@@ -101,7 +101,7 @@ NotchedOutline.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The width of the legend.
+   * The width of the label.
    */
   labelWidth: PropTypes.number.isRequired,
   /**

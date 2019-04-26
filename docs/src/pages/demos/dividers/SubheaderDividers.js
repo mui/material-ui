@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -10,7 +9,7 @@ import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -22,10 +21,11 @@ const styles = theme => ({
   dividerInset: {
     margin: `5px 0 0 ${theme.spacing(9)}px`,
   },
-});
+}));
 
-function SubheaderDividers(props) {
-  const { classes } = props;
+function SubheaderDividers() {
+  const classes = useStyles();
+
   return (
     <List className={classes.root}>
       <ListItem>
@@ -68,8 +68,4 @@ function SubheaderDividers(props) {
   );
 }
 
-SubheaderDividers.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SubheaderDividers);
+export default SubheaderDividers;

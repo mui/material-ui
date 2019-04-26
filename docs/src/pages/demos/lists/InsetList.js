@@ -1,22 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarIcon from '@material-ui/icons/Star';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-});
+}));
 
-function InsetList(props) {
-  const { classes } = props;
+function InsetList() {
+  const classes = useStyles();
+
   return (
     <List component="nav" className={classes.root}>
       <ListItem button>
@@ -32,8 +32,4 @@ function InsetList(props) {
   );
 }
 
-InsetList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(InsetList);
+export default InsetList;

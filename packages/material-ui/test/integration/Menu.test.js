@@ -385,7 +385,7 @@ describe('<Menu> integration', () => {
       });
       assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: true');
       const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
-      assert.strictEqual(typeof backdrop !== 'undefined', true);
+      assert.strictEqual(backdrop != null, true);
       backdrop.click();
       assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: false');
     });

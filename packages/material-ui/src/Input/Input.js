@@ -225,7 +225,7 @@ Input.propTypes = {
   value: PropTypes.any,
 };
 
-InputBase.defaultProps = {
+Input.defaultProps = {
   fullWidth: false,
   inputComponent: 'input',
   multiline: false,
