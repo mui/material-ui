@@ -20,14 +20,14 @@ They don’t have directional arrows; instead, they rely on motion emanating fro
 
 {{"demo": "pages/demos/tooltips/PositionedTooltips.js"}}
 
-## Customized Tooltips
+## Customized tooltips
 
 If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here's an example of how you can theme a tooltip.
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+but you are not confident jumping in, here are examples of how you can customize the component.
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
 ## Custom child element
 

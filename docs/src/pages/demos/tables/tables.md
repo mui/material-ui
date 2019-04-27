@@ -45,15 +45,14 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
-## Customized Tables
+## Customized tables
 
 If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in,
-here are examples of how you can change the look of a `TableCell`.
-
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+but you are not confident jumping in, here are examples of how you can customize the component.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 ## Custom Table Pagination Action
 
