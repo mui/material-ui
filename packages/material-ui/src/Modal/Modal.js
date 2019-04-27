@@ -167,7 +167,7 @@ class Modal extends React.Component {
   };
 
   handlePortalRef = ref => {
-    this.mountNode = ref ? ref.getMountNode() : ref;
+    this.mountNode = ref;
   };
 
   handleModalRef = ref => {

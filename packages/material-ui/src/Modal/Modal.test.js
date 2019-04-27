@@ -9,7 +9,6 @@ import {
   describeConformance,
 } from '@material-ui/core/test-utils';
 import Fade from '../Fade';
-import Portal from '../Portal';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';
 
@@ -176,10 +175,7 @@ describe('<Modal />', () => {
 
     it('should render the content into the portal', () => {
       wrapper.setProps({ open: true });
-      const portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
       const container = document.getElementById('container');
       const heading = document.getElementById('heading');
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createMount } from 'packages/material-ui/src/test-utils';
-import Portal from 'packages/material-ui/src/Portal';
 import NestedMenu from './fixtures/menus/NestedMenu';
 
 describe('<NestedMenu> integration', () => {
@@ -18,7 +17,6 @@ describe('<NestedMenu> integration', () => {
 
   describe('mounted open', () => {
     let wrapper;
-    let portalLayer;
 
     before(() => {
       wrapper = mount(<NestedMenu />);
@@ -34,10 +32,7 @@ describe('<NestedMenu> integration', () => {
     it('should focus the list as nothing has been selected', () => {
       wrapper.setProps({ firstMenuOpen: true });
 
-      portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('ul')[0]);
     });
 
