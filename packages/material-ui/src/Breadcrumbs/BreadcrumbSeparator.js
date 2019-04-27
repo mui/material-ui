@@ -18,7 +18,7 @@ const styles = {
 function BreadcrumbSeparator(props) {
   const { classes, className, ...other } = props;
 
-  return <li aria-hidden="true" className={clsx(classes.root, className)} {...other} />;
+  return <li aria-hidden className={clsx(classes.root, className)} {...other} />;
 }
 
 BreadcrumbSeparator.propTypes = {

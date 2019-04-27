@@ -127,7 +127,7 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
         {...other}
       />
       <textarea
-        aria-hidden="true"
+        aria-hidden
         className={props.className}
         readOnly
         ref={shadowRef}

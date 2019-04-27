@@ -31,9 +31,9 @@ function IconTabs() {
         indicatorColor="primary"
         textColor="primary"
       >
-        <Tab icon={<PhoneIcon />} />
-        <Tab icon={<FavoriteIcon />} />
-        <Tab icon={<PersonPinIcon />} />
+        <Tab icon={<PhoneIcon />} aria-label="Phone" />
+        <Tab icon={<FavoriteIcon />} aria-label="Favorite" />
+        <Tab icon={<PersonPinIcon />} aria-label="Person" />
       </Tabs>
     </Paper>
   );

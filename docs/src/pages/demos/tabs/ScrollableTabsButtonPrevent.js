@@ -45,13 +45,13 @@ function ScrollableTabsButtonPrevent() {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="off">
-          <Tab icon={<PhoneIcon />} />
-          <Tab icon={<FavoriteIcon />} />
-          <Tab icon={<PersonPinIcon />} />
-          <Tab icon={<HelpIcon />} />
-          <Tab icon={<ShoppingBasket />} />
-          <Tab icon={<ThumbDown />} />
-          <Tab icon={<ThumbUp />} />
+          <Tab icon={<PhoneIcon />} aria-label="Phone" />
+          <Tab icon={<FavoriteIcon />} aria-label="Favorite" />
+          <Tab icon={<PersonPinIcon />} aria-label="Person" />
+          <Tab icon={<HelpIcon />} aria-label="Help" />
+          <Tab icon={<ShoppingBasket />} aria-label="Shopping" />
+          <Tab icon={<ThumbDown />} aria-label="Up" />
+          <Tab icon={<ThumbUp />} aria-label="Down" />
         </Tabs>
       </AppBar>
       {value === 0 && <TabContainer>Item One</TabContainer>}
