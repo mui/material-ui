@@ -53,7 +53,7 @@ function DialogTitle(props: DialogTitleProps) {
 }
 
 DialogTitle.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   handleClose: PropTypes.func,
 } as any;
 
