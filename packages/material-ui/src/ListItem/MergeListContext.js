@@ -13,7 +13,7 @@ function MergeListContext(props) {
     <ListContext.Consumer>
       {context => {
         const childContext = {
-          dense: dense || context.dense || false,
+          dense: dense || (context && context.dense) || false,
           alignItems,
         };
 
