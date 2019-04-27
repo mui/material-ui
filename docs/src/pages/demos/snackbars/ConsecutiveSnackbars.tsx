@@ -1,132 +1,116 @@
-import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import React, { SyntheticEvent } from 'react';
+import PropTypes from 'prop-types';
+import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const useStyles = makeStyles((theme: Theme) =>
+const styles = (theme: Theme) =>
   createStyles({
     close: {
       padding: theme.spacing(0.5),
     },
-  }),
-);
+  });
 
-interface SnackbarMessage {
+export interface SnackbarMessage {
   message: string;
   key: number;
 }
 
-interface State {
-  queue: SnackbarMessage[];
+export type Props = WithStyles<typeof styles>;
+
+export interface State {
   open: boolean;
   messageInfo?: SnackbarMessage;
 }
 
-const DefaultState: State = {
-  open: false,
-  queue: [],
-  messageInfo: undefined,
-};
+class ConsecutiveSnackbars extends React.Component<Props, State> {
+  queue: SnackbarMessage[] = [];
 
-interface DispatchData {
-  type: 'addItem' | 'processQueue' | 'close';
-  payload?: any;
-}
+  state: State = {
+    open: false,
+  };
 
-function reducer(state: State, action: DispatchData): State {
-  switch (action.type) {
-    case 'addItem': {
-      const nextState = {
-        ...state,
-        queue: [...state.queue, { key: new Date().getTime(), message: action.payload }],
-      };
+  handleClick = (message: string) => () => {
+    this.queue.push({
+      message,
+      key: new Date().getTime(),
+    });
 
-      if (state.open) {
-        nextState.open = false;
-      } else {
-        nextState.messageInfo = nextState.queue.shift();
-        nextState.open = true;
-      }
-
-      return nextState;
+    if (this.state.open) {
+      // immediately begin dismissing current message
+      // to start showing new one
+      this.setState({ open: false });
+    } else {
+      this.processQueue();
     }
-    case 'processQueue': {
-      if (state.queue.length === 0) return state;
+  };
 
-      const nextState = { ...state, open: true };
-      nextState.messageInfo = nextState.queue.shift();
-      return nextState;
+  processQueue = () => {
+    if (this.queue.length > 0) {
+      this.setState({
+        messageInfo: this.queue.shift(),
+        open: true,
+      });
     }
-    case 'close': {
-      return { ...state, open: false };
-    }
-    default: {
-      return state;
-    }
-  }
-}
+  };
 
-function ConsecutiveSnackbars() {
-  const classes = useStyles();
-  const [state, dispatch] = React.useReducer(reducer, DefaultState);
-
-  function handleClick(event: React.SyntheticEvent | MouseEvent, message: string) {
-    dispatch({ type: 'addItem', payload: message });
-  }
-
-  function processQueue() {
-    dispatch({ type: 'processQueue' });
-  }
-
-  function handleClose(event: React.SyntheticEvent | MouseEvent, reason?: string) {
+  handleClose = (event: SyntheticEvent | MouseEvent, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
+    this.setState({ open: false });
+  };
 
-    dispatch({ type: 'close' });
+  handleExited = () => {
+    this.processQueue();
+  };
+
+  render() {
+    const { classes } = this.props;
+    const { messageInfo = {} as Partial<SnackbarMessage> } = this.state;
+
+    return (
+      <div>
+        <Button onClick={this.handleClick('Message A')}>Show message A</Button>
+        <Button onClick={this.handleClick('Message B')}>Show message B</Button>
+        <Snackbar
+          key={messageInfo.key}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          onExited={this.handleExited}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{messageInfo.message}</span>}
+          action={[
+            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
+              UNDO
+            </Button>,
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
+      </div>
+    );
   }
-
-  function handleExited() {
-    processQueue();
-  }
-
-  return (
-    <div>
-      <Button onClick={e => handleClick(e, 'Message A')}>Show message A</Button>
-      <Button onClick={e => handleClick(e, 'Message B')}>Show message B</Button>
-      <Snackbar
-        key={state.messageInfo === undefined ? undefined : state.messageInfo.key}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={state.open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        onExited={handleExited}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id">{state.messageInfo && state.messageInfo.message}</span>}
-        action={[
-          <Button key="undo" color="secondary" size="small" onClick={handleClose}>
-            UNDO
-          </Button>,
-          <IconButton
-            key="close"
-            aria-label="Close"
-            color="inherit"
-            className={classes.close}
-            onClick={handleClose}
-          >
-            <CloseIcon />
-          </IconButton>,
-        ]}
-      />
-    </div>
-  );
 }
 
-export default ConsecutiveSnackbars;
+(ConsecutiveSnackbars as React.ComponentClass<Props>).propTypes = {
+  classes: PropTypes.object.isRequired,
+} as any;
+
+export default withStyles(styles)(ConsecutiveSnackbars);
