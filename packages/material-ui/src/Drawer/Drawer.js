@@ -92,8 +92,8 @@ export function isHorizontal(anchor) {
   return ['left', 'right'].indexOf(anchor) !== -1;
 }
 
-export function getAnchor(direction, anchor) {
-  return direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
+export function getAnchor(theme, anchor) {
+  return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
 /**
@@ -127,7 +127,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
     mounted.current = true;
   }, []);
 
-  const anchor = getAnchor(theme.direction, anchorProp);
+  const anchor = getAnchor(theme, anchorProp);
   const drawer = (
     <Paper
       elevation={variant === 'temporary' ? elevation : 0}
