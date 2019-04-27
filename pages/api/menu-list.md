@@ -18,7 +18,7 @@ import MenuList from '@material-ui/core/MenuList';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the list will be focused during the first mount. |
+| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the list will be focused during the first mount. Focus will also be triggered if the value changes from false to true. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | MenuList contents, normally `MenuItem`s. |
 | <span class="prop-name">disableListWrap</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the menu items will not wrap focus. |
 
