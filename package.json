@@ -33,7 +33,7 @@
     "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:start": "next start",
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
-    "docs:typescript": "cross-env NODE_ENV=development babel docs/src --config-file ./docs/babel.config.ts.js --extensions .tsx --out-dir docs/src",
+    "docs:typescript": "node docs/scripts/formattedTSDemos --watch",
     "docs:typescript:check": "tslint -p docs/tsconfig.json",
     "docs:typescript:formatted": "node docs/scripts/formattedTSDemos",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
