@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
-import NoSsr from '@material-ui/core/NoSsr';
 import ListItem from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -72,53 +71,50 @@ class RouterBreadcrumbs extends React.Component {
   render() {
     const { classes } = this.props;
 
-    // Use NoSsr to avoid SEO issues with the documentation website.
     return (
-      <NoSsr>
-        <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-          <div className={classes.root}>
-            <Route>
-              {({ location }) => {
-                const pathnames = location.pathname.split('/').filter(x => x);
+      <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
+        <div className={classes.root}>
+          <Route>
+            {({ location }) => {
+              const pathnames = location.pathname.split('/').filter(x => x);
 
-                return (
-                  <Breadcrumbs aria-label="Breadcrumb">
-                    <LinkRouter color="inherit" to="/">
-                      Home
-                    </LinkRouter>
-                    {pathnames.map((value, index) => {
-                      const last = index === pathnames.length - 1;
-                      const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+              return (
+                <Breadcrumbs aria-label="Breadcrumb">
+                  <LinkRouter color="inherit" to="/">
+                    Home
+                  </LinkRouter>
+                  {pathnames.map((value, index) => {
+                    const last = index === pathnames.length - 1;
+                    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
-                      return last ? (
-                        <Typography color="textPrimary" key={to}>
-                          {breadcrumbNameMap[to]}
-                        </Typography>
-                      ) : (
-                        <LinkRouter color="inherit" to={to} key={to}>
-                          {breadcrumbNameMap[to]}
-                        </LinkRouter>
-                      );
-                    })}
-                  </Breadcrumbs>
-                );
-              }}
-            </Route>
-            <div className={classes.lists}>
-              <List component="nav">
-                <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
-                <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItemLink to="/inbox/important" className={classes.nested} />
-                  </List>
-                </Collapse>
-                <ListItemLink to="/trash" />
-                <ListItemLink to="/spam" />
-              </List>
-            </div>
+                    return last ? (
+                      <Typography color="textPrimary" key={to}>
+                        {breadcrumbNameMap[to]}
+                      </Typography>
+                    ) : (
+                      <LinkRouter color="inherit" to={to} key={to}>
+                        {breadcrumbNameMap[to]}
+                      </LinkRouter>
+                    );
+                  })}
+                </Breadcrumbs>
+              );
+            }}
+          </Route>
+          <div className={classes.lists}>
+            <List component="nav">
+              <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
+              <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemLink to="/inbox/important" className={classes.nested} />
+                </List>
+              </Collapse>
+              <ListItemLink to="/trash" />
+              <ListItemLink to="/spam" />
+            </List>
           </div>
-        </MemoryRouter>
-      </NoSsr>
+        </div>
+      </MemoryRouter>
     );
   }
 }
