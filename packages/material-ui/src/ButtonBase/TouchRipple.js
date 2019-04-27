@@ -24,10 +24,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the internal `Ripple` components `ripple` class. */
   ripple: {
-    width: 50,
-    height: 50,
-    left: 0,
-    top: 0,
     opacity: 0,
     position: 'absolute',
   },
