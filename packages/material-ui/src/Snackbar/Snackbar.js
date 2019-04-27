@@ -124,7 +124,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   } = props;
 
   const timerAutoHide = React.useRef();
-  const [exited, setExited] = React.useState();
+  const [exited, setExited] = React.useState(!open);
 
   // Timer that controls delay before snackbar auto hides
   const setAutoHideTimer = React.useCallback(
