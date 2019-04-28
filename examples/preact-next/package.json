@@ -6,7 +6,7 @@
     "@babel/core": "7.2.2",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/plugin-transform-react-jsx-self": "^7.2.0",
-    "@material-ui/core": "^4.0.0-alpha.8",
+    "@material-ui/core": "^4.0.0-beta.0",
     "@svgr/webpack": "4.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",

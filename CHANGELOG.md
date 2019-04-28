@@ -18,7 +18,8 @@ Here are some highlights ✨:
 The library has entered the beta phase of v4.
 We are grateful to all the contributors that have helped us so far.
 We will focus or effort on the stability of the library for the next two weeks.
-We don't plan more breaking changes, at the exception of changes that are required to fix bugs. We hope we can release v4 on May 15th, one year after v1.
+We don't plan more breaking changes, at the exception of changes that are required to fix bugs or that have minor impacts.
+We hope we can release v4 on May 15th, one year after v1.
 
 Please try the beta out! You can find an [upgrade guide](https://next.material-ui.com/guides/migration-v3/) to ease the transition.
 You will learn more about v4 in the final release blog post and our plans for the future.
