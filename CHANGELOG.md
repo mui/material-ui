@@ -1,5 +1,137 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-beta.0
+###### *Apr 28, 2019*
+
+A big thanks to the 21 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- ♿️ Significantly improve the keyboard behavior of the menu (#15360, #15495) @ryancogswell.
+- 💅 Generate global class names (#15140) @oliviertassinari.
+- 📦 Add example integration with Preact (#15401).
+- 🔥 Continue the TypeScript and hook demos migration @merceyz, @bh1505, @donigianrp, @eluchsinger, @eps1lon, @lksilva.
+- 🎀 4 more core components migrated from Classes to Hooks @joshwooding.
+- 📦 Reduce the cost of using the Modal by -74% standalone (#15466).
+- And many more 🐛 bug fixes and 💄 improvements.
+
+The library has entered the beta phase of v4.
+We are grateful to all the contributors that have helped us so far.
+We will focus or effort on the stability of the library for the next two weeks.
+We don't plan more breaking changes, at the exception of changes that are required to fix bugs. We hope we can release v4 on May 15th, one year after v1.
+
+Please try the beta out! You can find an [upgrade guide](https://next.material-ui.com/guides/migration-v3/) to ease the transition.
+You will learn more about v4 in the final release blog post and our plans for the future.
+
+### `@material-ui/core@v4.0.0-beta.0`
+
+#### Breaking changes
+
+- [styles] Generate global class names (#15140) @oliviertassinari
+  Remove the dangerouslyUseGlobalCSS options (makes it the default behavior).
+- [Modal] -74% bundle size reduction when used standalone (#15466) @oliviertassinari
+  Remove the classes customization API for the Modal component.
+- [core] Remove RootRef usage (#15347) @joshwooding
+  The Modal and Dialog child needs to be able to hold a ref.
+
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Modal><Component /></Modal>
+  <Modal><MyComponent /></Modal>
+  <Modal><div /></Modal>
+  ```
+
+- [ClickAwayListener] Hide react-event-listener (#15420) @oliviertassinari
+- [Slide] Convert to function component (#15344) @joshwooding
+  The child needs to be able to hold a ref.
+
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Slide><Component /></Slide>
+  <Slide><MyComponent /></Slide>
+  <Slide><div /></Slide>
+  ```
+
+#### Changes
+
+- [TextField] Update labelWidth for outline variant if required is updated (#15386) @dmiller9911
+- [Breadcrumbs] Fix types and enable component generic props (#15414) @Atralbus
+- [TextField] Pass rowsMin prop to underlying abstractions (#15411) @pachuka
+- [SelectInput] Convert to function component (#15410) @joshwooding
+- [Link] Improve TypeScript integration with react-router (#15412) @pachuka
+- [ButtonBase] Remove dead style (#15503) @koshea
+- [Menu] Improve performance and add support for variants (#15360) @ryancogswell
+- [MenuList] Add text keyboard focus navigation (#15495) @ryancogswell
+- [Modal] -74% bundle size reduction (#15466) @oliviertassinari
+- [Paper] Fix color inheritance issue using nested themes (#15465) @mustafahlvc
+- [Popper] Convert to function component (#15405) @joshwooding
+- [Radio][Checkbox] Revert breaking changes (#15483) @oliviertassinari
+- [Select] Display 0 as a valid value, fix a propType warning (#15468) @Princezhm
+- [Slider] Add Customized Slider Demo (#15478) @bh1505
+- [Snackbar] Convert to function component (#15504) @adeelibr
+- [Textarea] Fix cursor jump (#15436) @oliviertassinari
+- [Textarea] Remove rowsMin prop (#15430) @pachuka
+
+### `@material-ui/styles@v4.0.0-beta.0`
+
+- [styles] Add type test for withStyles + ref (#15383) @eps1lon
+- [styles] Warn if @material-ui/styles is duplicated (#15422) @oliviertassinari
+- [styles] Generate global class names (#15140) @oliviertassinari
+
+### Docs
+
+- [docs] Add Button + react-router TypeScript demo (#15382) @eps1lon
+- [docs] Add CustomizedSwitches TypeScript demo (#15424) @donigianrp
+- [docs] Add Interactive List TypeScript demos (#15416) @lksilva
+- [docs] Add Nested List and Switch List Secondary TypeScript demos (#15493) @bh1505
+- [docs] Add ref vs dom node prop explanation (#15458) @eps1lon
+- [docs] Add Selected List Item to TypeScript demos (#15417) @lksilva
+- [docs] Add SkipNav (#15409) @mbrookes
+- [docs] Add some Selection-Controls TypeScript demos (#15408) @bh1505
+- [docs] Add switches typescript demo (#15384) @JarkEMones
+- [docs] Add TypeScript demo for hook+props based styling (#15459) @eps1lon
+- [docs] Document Tooltip breaking changes (#15403) @joshwooding
+- [docs] Fix modal demo jumping on cursor move (#15462) @eps1lon
+- [docs] Improve CSS Grid documentation (#15477) @dmwyatt
+- [docs] Improved demo transpiling (#15438) @merceyz
+- [docs] material-table demo: persist the changes (#15392) @mbrn
+- [docs] Migrate Divider demos to hooks (#15490) @merceyz
+- [docs] Migrate Drawer demos to hooks (#15487) @merceyz
+- [docs] Migrate List demos to hooks (#15488) @merceyz
+- [docs] Migrate Paper demos to hooks (#15489) @merceyz
+- [docs] Migrate picker demos to hooks (#15390) @merceyz
+- [docs] Migrate Table demos to hooks (#15486) @merceyz
+- [docs] Migrate TextField demos to hooks (#15434) @merceyz
+- [docs] Remove unused imports and declarations (#15479) @merceyz
+- [docs] Separate out selection controls to own pages (#15427) @mbrookes
+- [docs] Small grammar fix for Menu (#15475) @mbrookes
+- [docs] Transfer List TypeScript Demo (#15419) @eluchsinger
+- [example] Add preact-next example (#15401) @oliviertassinari
+- [example] Fix gatsby-next (#15406) @TheHolyWaffle
+
+### Core
+
+- [core] Fix the CI fail (#15428) @oliviertassinari
+- [ci] Fail when demos are only available in TS (#15460) @eps1lon
+- [core] Fix useLayoutEffect warnings on the server (#15463) @eps1lon
+- [core] Minor nitpicks (#15432) @joshwooding
+- [core] Use terser for minification in umd bundle (#15491) @eps1lon
+- [test] Conform components forward ref to root component (#15425) @eps1lon
+- [test] Fix a flaky test (#15445) @oliviertassinari
+- [test] Keep track of the bundle size of TrapFocus (#15453) @oliviertassinari
+
 ## 4.0.0-alpha.8
 ###### *Apr 17, 2019*
 

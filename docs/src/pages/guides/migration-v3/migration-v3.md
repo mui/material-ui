@@ -204,7 +204,6 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
 
 ### Table
@@ -261,12 +260,30 @@ You should be able to move the custom styles to the root class key.
 - [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
 - [DialogActions] Rename the `action` CSS class `spacing`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
+- [Dialog] The child needs to be able to hold a ref.
+
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Dialog><Component /></Dialog>
+  <Dialog><MyComponent /></Dialog>
+  <Dialog><div /></Dialog>
+  ```
 
 ### Card
 
 - [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
 - [CardActions] Remove the `disableActionSpacing` CSS class.
 - [CardActions] Rename the `action` CSS class `spacing`.
+
+### ClickAwayListener
+
+- [ClickAwayListener] Hide react-event-listener.
 
 ### ExpansionPanel
 
@@ -303,7 +320,6 @@ You should be able to move the custom styles to the root class key.
 ### SvgIcon
 
 - [SvgIcon] Rename nativeColor -> htmlColor.
-
   React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
 
   ```diff
@@ -335,12 +351,45 @@ You should be able to move the custom styles to the root class key.
 
 ### Modal
 
-- [Modal] event.defaultPrevented is now ignored.
+- [Modal] The child needs to be able to hold a ref.
 
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Modal><Component /></Modal>
+  <Modal><MyComponent /></Modal>
+  <Modal><div /></Modal>
+  ```
+
+- [Modal] Remove the classes customization API for the Modal component.
+  (-74% bundle size reduction when used standalone)
+- [Modal] event.defaultPrevented is now ignored.
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
   Only special HTML elements have these default behaviors.
   People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
+
+### Portal
+
+- [Portal] The child needs to be able to hold a ref when `disablePortal` is used.
+
+  ```diff
+  class Component extends React.Component {
+    render() {
+      return <div />
+    }
+  }
+  -const MyComponent = props => <div {...props} />
+  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+  <Portal><Component /></Portal>
+  <Portal><MyComponent /></Portal>
+  <Portal><div /></Portal>
+  ```
 
 ### Slide
 
@@ -357,6 +406,7 @@ You should be able to move the custom styles to the root class key.
   <Slide><Component /></Slide>
   <Slide><MyComponent /></Slide>
   <Slide><div /></Slide>
+  ```
 
 ### Tooltip
 
