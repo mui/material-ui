@@ -28,12 +28,10 @@ However, we encourage you to use a [Checkbox](#checkboxes) instead.
 
 ## Customized switches
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are examples of how you can customize the component.
+If you have read the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/switches/CustomizedSwitches.js"}}
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
 ## Label placement
 

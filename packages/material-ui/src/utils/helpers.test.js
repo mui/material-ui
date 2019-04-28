@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { capitalize, contains } from './helpers';
+import { capitalize } from './helpers';
 
 describe('utils/helpers.js', () => {
   describe('capitalize', () => {
@@ -11,16 +11,6 @@ describe('utils/helpers.js', () => {
       assert.throw(() => {
         capitalize();
       }, /expects a string argument/);
-    });
-  });
-
-  describe('contains(obj, pred)', () => {
-    it('should check if an object contains the partial object', () => {
-      const obj = { woofHelpers: 'meow', cat: 'dog' };
-      const pred = { cat: 'dog' };
-      const failPred = { cat: 'meow' };
-      assert.strictEqual(contains(obj, pred), true);
-      assert.strictEqual(contains(obj, failPred), false);
     });
   });
 });

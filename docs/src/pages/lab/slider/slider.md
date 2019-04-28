@@ -35,14 +35,12 @@ Sliders reflect the current state of the settings they control.
 
 {{"demo": "pages/lab/slider/VerticalSlider.js"}}
 
-## Customized slider
+## Customized sliders
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are examples of how you can customize the component.
+If you have read the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/lab/slider/CustomizedSlider.js"}}
-
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 ## Custom thumb
 

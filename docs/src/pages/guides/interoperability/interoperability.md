@@ -211,7 +211,6 @@ export default function StyledComponentsDeep() {
 }
 ```
 
-
 ### ThemeProvider
 
 Material-UI has a rich theme structure that you can leverage for

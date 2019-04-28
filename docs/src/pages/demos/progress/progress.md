@@ -81,14 +81,12 @@ function Progress(props) {
 }
 ```
 
-## Customized progress
+## Customized progress bars
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are examples of how you can customize the component.
+If you have read the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here are some examples of how you can customize the component.
 
-{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+{{"demo": "pages/demos/progress/CustomizedProgressBars.js"}}
 
 ## Delaying appearance
 

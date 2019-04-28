@@ -27,12 +27,10 @@ In the following examples, we are using two string separators, and an SVG icon.
 
 ## Customized breadcrumbs
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are examples of how you can customize the component.
+If you have read the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/breadcrumbs/CustomizedBreadcrumbs.js"}}
-
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 ## Accessibility
 

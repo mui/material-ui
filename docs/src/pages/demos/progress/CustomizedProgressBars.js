@@ -1,7 +1,7 @@
 import React from 'react';
-import { makeStyles, createStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
-import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const ColorCircularProgress = withStyles({
@@ -46,7 +46,7 @@ const useStylesFacebook = makeStyles({
   },
 });
 
-function FacebookProgress(props: CircularProgressProps) {
+function FacebookProgress(props) {
   const classes = useStylesFacebook();
 
   return (
@@ -71,18 +71,16 @@ function FacebookProgress(props: CircularProgressProps) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
-function CustomizedProgress() {
+function CustomizedProgressBars() {
   const classes = useStyles();
 
   return (
@@ -100,4 +98,4 @@ function CustomizedProgress() {
   );
 }
 
-export default CustomizedProgress;
+export default CustomizedProgressBars;

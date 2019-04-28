@@ -66,13 +66,12 @@ Left and right scroll buttons will never be presented.  All scrolling must be in
 
 ## Customized tabs
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are examples of how you can customize the component.
+If you have read the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 
-- ⚠️ While the material design specification encourages theming, these examples are off the beaten path.
-- 👑 If you are looking for inspiration, you can check the [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
 
 ## Nav Tabs
 

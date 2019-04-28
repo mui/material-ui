@@ -43,11 +43,9 @@ panels it might be a good idea to change this default behavior by enabling the
 As with any performance optimization this is not a silver bullet. Be sure to identify
 bottlenecks first and then try out these optimization strategies.
 
-## Customized expansion panel
+## Customized expansion panels
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are examples of how you can customize the component.
+If you have read the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here is an example of how you can customize the component.
 
-{{"demo": "pages/demos/expansion-panels/CustomizedExpansionPanel.js"}}
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+{{"demo": "pages/demos/expansion-panels/CustomizedExpansionPanels.js"}}
