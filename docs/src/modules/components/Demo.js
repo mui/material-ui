@@ -50,6 +50,7 @@ const styles = theme => ({
     },
   },
   demo: {
+    outline: 'none',
     margin: 'auto',
     borderRadius: theme.shape.borderRadius,
     backgroundColor:
@@ -354,6 +355,7 @@ class Demo extends React.Component {
           className={clsx(classes.demo, {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
+          tabIndex={-1}
           onMouseEnter={this.handleDemoHover}
           onMouseLeave={this.handleDemoHover}
           style={{

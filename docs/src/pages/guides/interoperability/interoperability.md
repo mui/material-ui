@@ -58,7 +58,7 @@ Explicitly providing the class names to the component is too much effort?
 
 **GlobalCssButton.css**
 ```css
-.MuiButton {
+.MuiButton-root {
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
   border-radius: 3px;
   border: 0;
@@ -144,7 +144,7 @@ Another approach is to use the `&&` characters in styled-components to [bump up 
 If you attempt to style a Drawer with variant permanent,
 you will likely need to affect the Drawer's child paper element.
 However, the paper is not the root element of Drawer and therefore styled-components customization as above will not work.
-You need to use the [`classes`](/css-in-js/advanced/#classes) API of Material-UI.
+You need to use the [`classes`](/css-in-js/advanced/#overriding-styles-classes-prop) API of Material-UI.
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself. It also works around [this styled-components issue](https://github.com/styled-components/styled-components/issues/439) by "consuming" properties that should not be passed on to the underlying component.
 
@@ -178,8 +178,7 @@ export default function StyledComponentsDeep() {
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideHeader": true}}
 
-The above demo relies on the default `classes` values.
-You can provide your own class name if you prefer: `.label`.
+The above demo relies on the [default `classes` values](/css-in-js/advanced/#with-material-ui-core) but you can provide your own class name: `.label`.
 
 ```jsx
 import React from 'react';
