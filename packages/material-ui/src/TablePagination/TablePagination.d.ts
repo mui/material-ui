@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { OverridableComponent } from '../OverridableComponent';
 import { TablePaginationActionsProps } from './TablePaginationActions';
 import { StandardProps } from '..';
 import { TableCellProps } from '../TableCell';
@@ -16,7 +17,6 @@ export interface TablePaginationProps
   extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey, 'component'> {
   ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
   backIconButtonProps?: Partial<IconButtonProps>;
-  component?: React.ElementType<TablePaginationBaseProps>;
   count: number;
   labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
   labelRowsPerPage?: React.ReactNode;
@@ -43,6 +43,10 @@ export type TablePaginationClassKey =
   | 'selectIcon'
   | 'actions';
 
-declare const TablePagination: React.ComponentType<TablePaginationProps>;
+declare const TablePagination: OverridableComponent<{
+  props: TablePaginationProps;
+  defaultComponent: React.ComponentType<TablePaginationBaseProps>,
+  classKey: TablePaginationClassKey;
+}>;
 
 export default TablePagination;
