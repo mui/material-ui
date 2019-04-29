@@ -96,8 +96,6 @@ function ClickAwayListener(props) {
 ClickAwayListener.propTypes = {
   /**
    * The wrapped element.
-   *
-   * ⚠️The component used as a child [must be able to hold a ref](/guides/composition/#children).
    */
   children: elementAcceptingRef.isRequired,
   /**
