@@ -62,7 +62,7 @@ function handlePointerDown() {
 }
 
 function handleVisibilityChange() {
-  if (document.visibilityState === 'hidden') {
+  if (this.visibilityState === 'hidden') {
     // If the tab becomes active again, the browser will handle calling focus
     // on the element (Safari actually calls it twice).
     // If this tab change caused a blur on an element with focus-visible,
@@ -73,20 +73,20 @@ function handleVisibilityChange() {
   }
 }
 
-export function prepare() {
-  document.addEventListener('keydown', handleKeyDown, true);
-  document.addEventListener('mousedown', handlePointerDown, true);
-  document.addEventListener('pointerdown', handlePointerDown, true);
-  document.addEventListener('touchstart', handlePointerDown, true);
-  document.addEventListener('visibilitychange', handleVisibilityChange, true);
+export function prepare(ownerDocument) {
+  ownerDocument.addEventListener('keydown', handleKeyDown, true);
+  ownerDocument.addEventListener('mousedown', handlePointerDown, true);
+  ownerDocument.addEventListener('pointerdown', handlePointerDown, true);
+  ownerDocument.addEventListener('touchstart', handlePointerDown, true);
+  ownerDocument.addEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-export function teardown() {
-  document.removeEventListener('keydown', handleKeyDown, true);
-  document.removeEventListener('mousedown', handlePointerDown, true);
-  document.removeEventListener('pointerdown', handlePointerDown, true);
-  document.removeEventListener('touchstart', handlePointerDown, true);
-  document.removeEventListener('visibilitychange', handleVisibilityChange, true);
+export function teardown(ownerDocument) {
+  ownerDocument.removeEventListener('keydown', handleKeyDown, true);
+  ownerDocument.removeEventListener('mousedown', handlePointerDown, true);
+  ownerDocument.removeEventListener('pointerdown', handlePointerDown, true);
+  ownerDocument.removeEventListener('touchstart', handlePointerDown, true);
+  ownerDocument.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
 export function isFocusVisible(event) {

@@ -85,7 +85,7 @@ class ButtonBase extends React.Component {
   });
 
   componentDidMount() {
-    prepareFocusVisible();
+    prepareFocusVisible(this.getButtonNode().ownerDocument);
     if (this.props.action) {
       this.props.action({
         focusVisible: () => {
