@@ -166,7 +166,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     ...other
   } = props;
 
-  const mouseDownTarget = React.useRef(null);
+  const mouseDownTarget = React.useRef();
   const handleMouseDown = event => {
     mouseDownTarget.current = event.target;
   };

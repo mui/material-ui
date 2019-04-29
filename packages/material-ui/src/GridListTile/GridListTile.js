@@ -65,7 +65,7 @@ function ensureImageCover(imgEl, classes) {
 const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   const { children, classes, className, cols, component: Component, rows, ...other } = props;
 
-  const imgRef = React.useRef(null);
+  const imgRef = React.useRef();
 
   React.useEffect(() => {
     ensureImageCover(imgRef.current, classes);
