@@ -45,7 +45,7 @@ export type TablePaginationClassKey =
 
 declare const TablePagination: OverridableComponent<{
   props: TablePaginationProps;
-  defaultComponent: React.ComponentType<TablePaginationBaseProps>,
+  defaultComponent: React.ComponentType<TablePaginationBaseProps>;
   classKey: TablePaginationClassKey;
 }>;
 
