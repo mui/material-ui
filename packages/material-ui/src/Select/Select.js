@@ -8,7 +8,6 @@ import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-// To replace with InputBase in v4
 import Input from '../Input';
 import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';

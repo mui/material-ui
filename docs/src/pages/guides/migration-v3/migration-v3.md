@@ -46,9 +46,9 @@ yarn add @material-ui/core@next
 ### Update React version
 
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
-This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
+This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
-## Handling Breaking Changes
+## Handling breaking changes
 
 ### Core
 
@@ -84,19 +84,19 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   It helps isolating the animation logic:
 
   ```diff
-  rippleVisible: {
-    opacity: 0.3,
--   animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
-+   animation: `$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)`,
-  },
-  '@keyframes mui-ripple-enter': {
-    '0%': {
-      opacity: 0.1,
-    },
-    '100%': {
+    rippleVisible: {
       opacity: 0.3,
+  -   animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
+  +   animation: `$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)`,
     },
-  },
+    '@keyframes mui-ripple-enter': {
+      '0%': {
+        opacity: 0.1,
+      },
+      '100%': {
+        opacity: 0.3,
+      },
+    },
   ```
 
 ### Theme

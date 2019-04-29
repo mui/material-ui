@@ -35,7 +35,10 @@ Sliders reflect the current state of the settings they control.
 
 {{"demo": "pages/lab/slider/VerticalSlider.js"}}
 
-## Customized Slider
+## Customized sliders
+
+If you have read the [overrides documentation page](/customization/overrides/)
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/lab/slider/CustomizedSlider.js"}}
 

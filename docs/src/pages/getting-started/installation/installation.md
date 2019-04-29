@@ -16,7 +16,7 @@ npm install @material-ui/core@next
 yarn add @material-ui/core@next
 ```
 
-Please note that [react](https://www.npmjs.com/package/react) >= 16.3.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 are peer dependencies.
+Please note that [react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 are peer dependencies.
 
 ## Roboto Font
 
