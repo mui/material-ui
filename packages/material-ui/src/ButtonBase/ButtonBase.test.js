@@ -296,33 +296,21 @@ describe('<ButtonBase />', () => {
     });
 
     it('should set focus state for shadowRoot children', () => {
-      const wrapper = mount(<ButtonBase id="test-button">Hello</ButtonBase>, {
+      mount(<ButtonBase id="test-button">Hello</ButtonBase>, {
         attachTo: rootElement.shadowRoot,
       });
       simulatePointerDevice();
-
-      assert.strictEqual(wrapper.find(`.${classes.focusVisible}`).exists(), false);
 
       const button = rootElement.shadowRoot.getElementById('test-button');
       if (!button) {
         throw new Error('missing button');
       }
 
+      assert.strictEqual(button.classList.contains(classes.focusVisible), false);
+
       focusVisible(button);
 
-      if (document.activeElement !== rootElement) {
-        // Mock activeElement value and simulate host-retargeting in shadow root for
-        // jsdom@12.0.0 (https://github.com/jsdom/jsdom/issues/2343)
-        rootElement.focus();
-        rootElement.shadowRoot.activeElement = button;
-        wrapper.simulate('focus');
-      }
-
-      /* const event = new window.Event('keyup');
-      event.keyCode = 9; // Tab
-      window.dispatchEvent(event); */
-
-      assert.strictEqual(wrapper.find(`.${classes.focusVisible}`).exists(), true);
+      assert.strictEqual(button.classList.contains(classes.focusVisible), true);
     });
   });
 
