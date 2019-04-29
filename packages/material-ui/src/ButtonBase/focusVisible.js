@@ -97,7 +97,10 @@ export function isFocusVisible(event) {
   return hadKeyboardEvent || focusTriggersKeyboardModality(target);
 }
 
-export function handleBlur() {
+/**
+ * Should be called if a blur event is fired on a focus-visible element
+ */
+export function handleBlurVisible() {
   // To detect a tab/window switch, we look for a blur event followed
   // rapidly by a visibility change.
   // If we don't see a visibility change within 100ms, it's probably a

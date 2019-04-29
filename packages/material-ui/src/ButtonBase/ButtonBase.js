@@ -7,7 +7,7 @@ import withForwardedRef from '../utils/withForwardedRef';
 import { setRef } from '../utils/reactHelpers';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
-import { handleBlur, isFocusVisible, prepare as prepareFocusVisible } from './focusVisible';
+import { handleBlurVisible, isFocusVisible, prepare as prepareFocusVisible } from './focusVisible';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
@@ -78,8 +78,8 @@ class ButtonBase extends React.Component {
   handleContextMenu = createRippleHandler(this, 'ContextMenu', 'stop');
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', event => {
-    handleBlur(event);
     if (this.state.focusVisible) {
+      handleBlurVisible(event);
       this.setState({ focusVisible: false });
     }
   });
