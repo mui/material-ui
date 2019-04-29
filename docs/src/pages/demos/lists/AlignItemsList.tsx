@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -9,7 +8,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
@@ -19,12 +18,12 @@ const styles = (theme: Theme) =>
     inline: {
       display: 'inline',
     },
-  });
+  }),
+);
 
-export interface AlignItemListProps extends WithStyles<typeof styles> {}
+function AlignItemsList() {
+  const classes = useStyles();
 
-function AlignItemsList(props: AlignItemListProps) {
-  const { classes } = props;
   return (
     <List className={classes.root}>
       <ListItem alignItems="flex-start">
@@ -96,8 +95,4 @@ function AlignItemsList(props: AlignItemListProps) {
   );
 }
 
-AlignItemsList.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(AlignItemsList);
+export default AlignItemsList;

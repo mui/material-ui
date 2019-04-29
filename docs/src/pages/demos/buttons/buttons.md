@@ -95,16 +95,14 @@ deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
-## Customized Buttons
+## Customized buttons
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in,
-here are examples of how you can change the main color of a Button using classes,
-and using a theme; and of a Bootstrap style Button.
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+If you have read the [overrides documentation page](/customization/overrides/)
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
+
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
 ## Complex Buttons
 

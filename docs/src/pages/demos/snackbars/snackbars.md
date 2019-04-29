@@ -22,13 +22,10 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 {{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
 
-## Customized Snackbars
+## Customized snackbars
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in,
-here are examples of how you can change the look of a Snackbar.
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+If you have read the [overrides documentation page](/customization/overrides/)
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 

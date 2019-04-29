@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 const action = (
@@ -10,17 +9,17 @@ const action = (
   </Button>
 );
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 600,
   },
   snackbar: {
     margin: theme.spacing(1),
   },
-});
+}));
 
-function LongTextSnackbar(props) {
-  const { classes } = props;
+function LongTextSnackbar() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -49,8 +48,4 @@ function LongTextSnackbar(props) {
   );
 }
 
-LongTextSnackbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LongTextSnackbar);
+export default LongTextSnackbar;

@@ -1,16 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
-};
+});
 
-function LinearQuery(props) {
-  const { classes } = props;
+function LinearQuery() {
+  const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <LinearProgress variant="query" />
@@ -20,8 +20,4 @@ function LinearQuery(props) {
   );
 }
 
-LinearQuery.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LinearQuery);
+export default LinearQuery;

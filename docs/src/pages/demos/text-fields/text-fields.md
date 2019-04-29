@@ -52,10 +52,8 @@ The component takes care of the most used properties, then it's up to the user t
 
 ## Customized inputs
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here's an example of how you can change the main color of an Input.
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+If you have read the [overrides documentation page](/customization/overrides/)
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 

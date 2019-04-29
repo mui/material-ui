@@ -148,7 +148,7 @@ jobs:
       - install_js
       - run:
           name: Transpile TypeScript demos
-          command: yarn docs:typescript:formatted
+          command: yarn docs:typescript:formatted --disable-cache
       - run:
           name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
           command: git add -A && git diff --exit-code --staged

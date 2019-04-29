@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -8,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -31,7 +30,8 @@ const styles = (theme: Theme) =>
     icon: {
       color: 'white',
     },
-  });
+  }),
+);
 
 /**
  * The example data is structured as follows:
@@ -51,8 +51,8 @@ const styles = (theme: Theme) =>
  *   },
  * ];
  */
-function AdvancedGridList(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+function AdvancedGridList() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -78,8 +78,4 @@ function AdvancedGridList(props: WithStyles<typeof styles>) {
   );
 }
 
-AdvancedGridList.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(AdvancedGridList);
+export default AdvancedGridList;

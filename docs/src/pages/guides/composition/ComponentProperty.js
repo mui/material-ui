@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import NoSsr from '@material-ui/core/NoSsr';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -72,30 +71,27 @@ ListItemLinkShorthand.propTypes = {
 function ComponentProperty(props) {
   const { classes } = props;
 
-  // Use NoSsr to avoid SEO issues with the documentation website.
   return (
-    <NoSsr>
-      <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
-        <div className={classes.root}>
-          <Route>
-            {({ location }) => (
-              <Typography gutterBottom>Current route: {location.pathname}</Typography>
-            )}
-          </Route>
-          <div className={classes.lists}>
-            <List component="nav">
-              <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-              <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
-            </List>
-            <Divider />
-            <List component="nav">
-              <ListItemLinkShorthand to="/trash" primary="Trash" />
-              <ListItemLinkShorthand to="/spam" primary="Spam" />
-            </List>
-          </div>
+    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+      <div className={classes.root}>
+        <Route>
+          {({ location }) => (
+            <Typography gutterBottom>Current route: {location.pathname}</Typography>
+          )}
+        </Route>
+        <div className={classes.lists}>
+          <List component="nav">
+            <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
+            <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+          </List>
+          <Divider />
+          <List component="nav">
+            <ListItemLinkShorthand to="/trash" primary="Trash" />
+            <ListItemLinkShorthand to="/spam" primary="Spam" />
+          </List>
         </div>
-      </MemoryRouter>
-    </NoSsr>
+      </div>
+    </MemoryRouter>
   );
 }
 

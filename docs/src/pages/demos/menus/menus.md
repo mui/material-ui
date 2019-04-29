@@ -38,15 +38,12 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/demos/menus/MenuListComposition.js"}}
 
-## Customized MenuItem
+## Customized menus
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in,
-here is one example of how you can customize the `MenuItem`.
+If you have read the [overrides documentation page](/customization/overrides/)
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
-
-{{"demo": "pages/demos/menus/ListItemComposition.js"}}
+{{"demo": "pages/demos/menus/CustomizedMenus.js"}}
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:

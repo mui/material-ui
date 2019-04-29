@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, withStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -38,12 +37,11 @@ const styles = (theme: Theme) =>
       backgroundColor: theme.palette.background.default,
       padding: theme.spacing(3),
     },
-  });
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
-
-function PermanentDrawerLeft(props: Props) {
-  const { classes } = props;
+function PermanentDrawerLeft() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -113,8 +111,4 @@ function PermanentDrawerLeft(props: Props) {
   );
 }
 
-PermanentDrawerLeft.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(PermanentDrawerLeft);
+export default PermanentDrawerLeft;

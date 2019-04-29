@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
@@ -8,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Popper from '@material-ui/core/Popper';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const suggestions = [
   { label: 'Afghanistan' },
@@ -107,7 +106,7 @@ function getSuggestionValue(suggestion) {
   return suggestion.label;
 }
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     height: 250,
     flexGrow: 1,
@@ -133,106 +132,98 @@ const styles = theme => ({
   divider: {
     height: theme.spacing(2),
   },
-});
+}));
 
-class IntegrationAutosuggest extends React.Component {
-  state = {
+function IntegrationAutosuggest() {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [state, setState] = React.useState({
     single: '',
     popper: '',
-    suggestions: [],
+  });
+
+  const [stateSuggestions, setSuggestions] = React.useState([]);
+
+  const handleSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
   };
 
-  handleSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value),
-    });
+  const handleSuggestionsClearRequested = () => {
+    setSuggestions([]);
   };
 
-  handleSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: [],
-    });
-  };
-
-  handleChange = name => (event, { newValue }) => {
-    this.setState({
+  const handleChange = name => (event, { newValue }) => {
+    setState({
+      ...state,
       [name]: newValue,
     });
   };
 
-  render() {
-    const { classes } = this.props;
+  const autosuggestProps = {
+    renderInputComponent,
+    suggestions: stateSuggestions,
+    onSuggestionsFetchRequested: handleSuggestionsFetchRequested,
+    onSuggestionsClearRequested: handleSuggestionsClearRequested,
+    getSuggestionValue,
+    renderSuggestion,
+  };
 
-    const autosuggestProps = {
-      renderInputComponent,
-      suggestions: this.state.suggestions,
-      onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
-      onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
-      getSuggestionValue,
-      renderSuggestion,
-    };
-
-    return (
-      <div className={classes.root}>
-        <Autosuggest
-          {...autosuggestProps}
-          inputProps={{
-            classes,
-            placeholder: 'Search a country (start with a)',
-            value: this.state.single,
-            onChange: this.handleChange('single'),
-          }}
-          theme={{
-            container: classes.container,
-            suggestionsContainerOpen: classes.suggestionsContainerOpen,
-            suggestionsList: classes.suggestionsList,
-            suggestion: classes.suggestion,
-          }}
-          renderSuggestionsContainer={options => (
-            <Paper {...options.containerProps} square>
+  return (
+    <div className={classes.root}>
+      <Autosuggest
+        {...autosuggestProps}
+        inputProps={{
+          classes,
+          placeholder: 'Search a country (start with a)',
+          value: state.single,
+          onChange: handleChange('single'),
+        }}
+        theme={{
+          container: classes.container,
+          suggestionsContainerOpen: classes.suggestionsContainerOpen,
+          suggestionsList: classes.suggestionsList,
+          suggestion: classes.suggestion,
+        }}
+        renderSuggestionsContainer={options => (
+          <Paper {...options.containerProps} square>
+            {options.children}
+          </Paper>
+        )}
+      />
+      <div className={classes.divider} />
+      <Autosuggest
+        {...autosuggestProps}
+        inputProps={{
+          classes,
+          label: 'Label',
+          placeholder: 'With Popper',
+          value: state.popper,
+          onChange: handleChange('popper'),
+          inputRef: node => {
+            setAnchorEl(node);
+          },
+          InputLabelProps: {
+            shrink: true,
+          },
+        }}
+        theme={{
+          suggestionsList: classes.suggestionsList,
+          suggestion: classes.suggestion,
+        }}
+        renderSuggestionsContainer={options => (
+          <Popper anchorEl={anchorEl} open={Boolean(options.children)}>
+            <Paper
+              square
+              {...options.containerProps}
+              style={{ width: anchorEl ? anchorEl.clientWidth : undefined }}
+            >
               {options.children}
             </Paper>
-          )}
-        />
-        <div className={classes.divider} />
-        <Autosuggest
-          {...autosuggestProps}
-          inputProps={{
-            classes,
-            label: 'Label',
-            placeholder: 'With Popper',
-            value: this.state.popper,
-            onChange: this.handleChange('popper'),
-            inputRef: node => {
-              this.popperNode = node;
-            },
-            InputLabelProps: {
-              shrink: true,
-            },
-          }}
-          theme={{
-            suggestionsList: classes.suggestionsList,
-            suggestion: classes.suggestion,
-          }}
-          renderSuggestionsContainer={options => (
-            <Popper anchorEl={this.popperNode} open={Boolean(options.children)}>
-              <Paper
-                square
-                {...options.containerProps}
-                style={{ width: this.popperNode ? this.popperNode.clientWidth : null }}
-              >
-                {options.children}
-              </Paper>
-            </Popper>
-          )}
-        />
-      </div>
-    );
-  }
+          </Popper>
+        )}
+      />
+    </div>
+  );
 }
 
-IntegrationAutosuggest.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(IntegrationAutosuggest);
+export default IntegrationAutosuggest;

@@ -8,7 +8,7 @@ import Popover from '../Popover';
 import MenuList from '../MenuList';
 import warning from 'warning';
 import ReactDOM from 'react-dom';
-import { setRef } from '@material-ui/core/utils/reactHelpers';
+import { setRef } from '../utils/reactHelpers';
 
 const RTL_ORIGIN = {
   vertical: 'top',

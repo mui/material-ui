@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,7 +9,7 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   card: {
     display: 'flex',
   },
@@ -34,10 +33,11 @@ const styles = theme => ({
     height: 38,
     width: 38,
   },
-});
+}));
 
-function MediaControlCard(props) {
-  const { classes, theme } = props;
+function MediaControlCard() {
+  const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <Card className={classes.card}>
@@ -71,9 +71,4 @@ function MediaControlCard(props) {
   );
 }
 
-MediaControlCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(MediaControlCard);
+export default MediaControlCard;

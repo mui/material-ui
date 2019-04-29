@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
@@ -23,12 +22,11 @@ const styles = (theme: Theme) =>
       backgroundColor: 'inherit',
       padding: 0,
     },
-  });
+  }),
+);
 
-export interface PinnedSubheaderListProps extends WithStyles<typeof styles> {}
-
-function PinnedSubheaderList(props: PinnedSubheaderListProps) {
-  const { classes } = props;
+function PinnedSubheaderList() {
+  const classes = useStyles();
 
   return (
     <List className={classes.root} subheader={<li />}>
@@ -48,8 +46,4 @@ function PinnedSubheaderList(props: PinnedSubheaderListProps) {
   );
 }
 
-PinnedSubheaderList.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(PinnedSubheaderList);
+export default PinnedSubheaderList;

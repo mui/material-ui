@@ -7,14 +7,14 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
 
-They are the preferred way to adjust settings on mobile.
-
+[Switches](https://material.io/design/components/selection-controls.html#switches) are the preferred way to adjust settings on mobile.
 The option that the switch controls, as well as the state it’s in,
 should be made clear from the corresponding inline label.
 
 {{"demo": "pages/demos/switches/Switches.js"}}
 
 ## Switches with FormControlLabel
+
 `Switch` can also be used with a label description thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/demos/switches/SwitchLabels.js"}}
@@ -26,12 +26,10 @@ However, we encourage you to use a [Checkbox](#checkboxes) instead.
 
 {{"demo": "pages/demos/switches/SwitchesGroup.js"}}
 
-## Customized Switches
+## Customized switches
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+If you have read the [overrides documentation page](/customization/overrides/)
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/switches/CustomizedSwitches.js"}}
 

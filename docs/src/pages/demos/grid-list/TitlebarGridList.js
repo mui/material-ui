@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -9,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -24,7 +23,7 @@ const styles = theme => ({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
-});
+}));
 
 /**
  * The example data is structured as follows:
@@ -43,8 +42,8 @@ const styles = theme => ({
  *   },
  * ];
  */
-function TitlebarGridList(props) {
-  const { classes } = props;
+function TitlebarGridList() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -71,8 +70,4 @@ function TitlebarGridList(props) {
   );
 }
 
-TitlebarGridList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(TitlebarGridList);
+export default TitlebarGridList;
