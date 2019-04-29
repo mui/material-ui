@@ -65,9 +65,9 @@ const styles = theme => ({
   },
   content: {
     paddingBottom: theme.spacing.unit * 8,
-    paddingTop: theme.spacing.unit * 8,
+    paddingTop: theme.spacing.unit * 8 + 29,
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 12,
+      paddingTop: theme.spacing.unit * 12 + 29,
     },
   },
   button: {
