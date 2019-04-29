@@ -2,7 +2,6 @@ import * as React from 'react';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 import { Omit } from '..';
 import { TablePaginationActionsProps } from './TablePaginationActions';
-import { StandardProps } from '..';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
