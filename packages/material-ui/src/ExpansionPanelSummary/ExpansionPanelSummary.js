@@ -136,7 +136,7 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
           edge="end"
           component="div"
           tabIndex={-1}
-          aria-hidden="true"
+          aria-hidden
           {...IconButtonProps}
         >
           {expandIcon}

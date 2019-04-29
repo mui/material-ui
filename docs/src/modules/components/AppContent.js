@@ -36,7 +36,7 @@ function AppContent(props) {
     <Container
       component="main"
       id="main-content"
-      tabIndex="-1"
+      tabIndex={-1}
       className={clsx(classes.root, className, {
         [classes.disableToc]: disableToc,
       })}

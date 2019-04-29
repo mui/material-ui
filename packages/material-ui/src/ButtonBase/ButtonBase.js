@@ -309,7 +309,7 @@ class ButtonBase extends React.Component {
           setRef(buttonRef, ref);
           setRef(innerRef, ref);
         }}
-        tabIndex={disabled ? '-1' : tabIndex}
+        tabIndex={disabled ? -1 : tabIndex}
         {...buttonProps}
         {...other}
       >
@@ -468,7 +468,7 @@ ButtonBase.defaultProps = {
   disableRipple: false,
   disableTouchRipple: false,
   focusRipple: false,
-  tabIndex: '0',
+  tabIndex: 0,
   type: 'button',
 };
 
