@@ -118,7 +118,6 @@ class Tabs extends React.Component {
       classes,
       scrollable: deprecatedScrollable,
       ScrollButtonComponent,
-      scrollButtonLabel,
       scrollButtons,
       theme,
       variant,
@@ -139,7 +138,6 @@ class Tabs extends React.Component {
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsAuto]: scrollButtons === 'auto',
         })}
-        aria-label={scrollButtonLabel('start')}
       />
     ) : null;
 
@@ -151,7 +149,6 @@ class Tabs extends React.Component {
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsAuto]: scrollButtons === 'auto',
         })}
-        aria-label={scrollButtonLabel('end')}
       />
     ) : null;
 
@@ -318,7 +315,6 @@ class Tabs extends React.Component {
       onChange,
       scrollable: deprecatedScrollable = false,
       ScrollButtonComponent,
-      scrollButtonLabel,
       scrollButtons,
       TabIndicatorProps = {},
       textColor,
@@ -479,11 +475,6 @@ Tabs.propTypes = {
    */
   ScrollButtonComponent: PropTypes.elementType,
   /**
-   * A function that returns the aria-label attribute to apply on the scroll buttons.
-   * @param {string} position The position of the scroll button (start or end).
-   */
-  scrollButtonLabel: PropTypes.func,
-  /**
    * Determine behavior of scroll buttons when tabs are set to scroll
    * `auto` will only present them on medium and larger viewports
    * `on` will always present them
@@ -523,8 +514,6 @@ Tabs.defaultProps = {
   component: 'div',
   indicatorColor: 'secondary',
   ScrollButtonComponent: TabScrollButton,
-  scrollButtonLabel: position =>
-    position === 'start' ? 'Scroll to the start' : 'Scroll to the end',
   scrollButtons: 'auto',
   textColor: 'inherit',
   variant: 'standard',
