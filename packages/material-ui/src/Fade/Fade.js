@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
@@ -74,7 +75,7 @@ Fade.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: elementAcceptingRef,
   /**
    * If `true`, the component will transition in.
    */

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
-import { exactProp } from '@material-ui/utils';
+import { elementAcceptingRef, exactProp } from '@material-ui/utils';
 
 function useMountedRef() {
   const mountedRef = React.useRef(false);
@@ -99,7 +99,7 @@ ClickAwayListener.propTypes = {
    *
    * ⚠️The component used as a child [must be able to hold a ref](/guides/composition/#children).
    */
-  children: PropTypes.element.isRequired,
+  children: elementAcceptingRef.isRequired,
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    */
