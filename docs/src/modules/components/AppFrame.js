@@ -101,8 +101,8 @@ const styles = theme => ({
     display: 'block',
     padding: 4,
     textAlign: 'center',
-    backgroundColor: '#0a6fc2',
-    color: 'white',
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
   },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
