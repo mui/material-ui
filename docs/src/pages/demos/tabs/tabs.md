@@ -67,7 +67,7 @@ Left and right scroll buttons will never be presented.  All scrolling must be in
 ## Customized tabs
 
 If you have read the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are some examples of how you can customize the component.
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 

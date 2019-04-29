@@ -41,7 +41,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 ## Customized menus
 
 If you have read the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are some examples of how you can customize the component.
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/menus/CustomizedMenus.js"}}
 

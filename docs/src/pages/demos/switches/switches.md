@@ -29,7 +29,7 @@ However, we encourage you to use a [Checkbox](#checkboxes) instead.
 ## Customized switches
 
 If you have read the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are some examples of how you can customize the component.
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/switches/CustomizedSwitches.js"}}
 

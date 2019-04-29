@@ -23,7 +23,7 @@ we allow such pattern.
 ## Customized selects
 
 If you have read the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are some examples of how you can customize the component.
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 The first step is to style the `InputBase` component.
 Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a select field.

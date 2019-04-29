@@ -36,6 +36,6 @@ The badge auto hides with badgeContent is zero. You can override this with the `
 ## Customized badges
 
 If you have read the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here are some examples of how you can customize the component.
+and you are still not confident jumping in, here are some examples of how you can customize the component.
 
 {{"demo": "pages/demos/badges/CustomizedBadges.js"}}
