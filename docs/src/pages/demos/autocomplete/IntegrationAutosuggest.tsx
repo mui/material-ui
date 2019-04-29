@@ -7,9 +7,13 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Popper from '@material-ui/core/Popper';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const suggestions = [
+interface OptionType {
+  label: string;
+}
+
+const suggestions: OptionType[] = [
   { label: 'Afghanistan' },
   { label: 'Aland Islands' },
   { label: 'Albania' },
@@ -46,7 +50,7 @@ const suggestions = [
   { label: 'Brunei Darussalam' },
 ];
 
-function renderInputComponent(inputProps) {
+function renderInputComponent(inputProps: any) {
   const { classes, inputRef = () => {}, ref, ...other } = inputProps;
 
   return (
@@ -66,7 +70,10 @@ function renderInputComponent(inputProps) {
   );
 }
 
-function renderSuggestion(suggestion, { query, isHighlighted }) {
+function renderSuggestion(
+  suggestion: OptionType,
+  { query, isHighlighted }: Autosuggest.RenderSuggestionParams,
+) {
   const matches = match(suggestion.label, query);
   const parts = parse(suggestion.label, matches);
 
@@ -83,7 +90,7 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   );
 }
 
-function getSuggestions(value) {
+function getSuggestions(value: string) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
@@ -102,11 +109,11 @@ function getSuggestions(value) {
       });
 }
 
-function getSuggestionValue(suggestion) {
+function getSuggestionValue(suggestion: OptionType) {
   return suggestion.label;
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: 250,
     flexGrow: 1,
@@ -136,15 +143,14 @@ const useStyles = makeStyles(theme => ({
 
 function IntegrationAutosuggest() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [state, setState] = React.useState({
     single: '',
     popper: '',
   });
+  const [stateSuggestions, setSuggestions] = React.useState<OptionType[]>([]);
 
-  const [stateSuggestions, setSuggestions] = React.useState([]);
-
-  const handleSuggestionsFetchRequested = ({ value }) => {
+  const handleSuggestionsFetchRequested = ({ value }: any) => {
     setSuggestions(getSuggestions(value));
   };
 
@@ -152,7 +158,10 @@ function IntegrationAutosuggest() {
     setSuggestions([]);
   };
 
-  const handleChange = name => (event, { newValue }) => {
+  const handleChange = (name: keyof typeof state) => (
+    event: React.ChangeEvent<{}>,
+    { newValue }: Autosuggest.ChangeEvent,
+  ) => {
     setState({
       ...state,
       [name]: newValue,
@@ -199,7 +208,7 @@ function IntegrationAutosuggest() {
           placeholder: 'With Popper',
           value: state.popper,
           onChange: handleChange('popper'),
-          inputRef: node => {
+          inputRef: (node: HTMLInputElement | null) => {
             setAnchorEl(node);
           },
           InputLabelProps: {
