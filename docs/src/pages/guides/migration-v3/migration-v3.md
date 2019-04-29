@@ -43,7 +43,12 @@ or
 yarn add @material-ui/core@next
 ```
 
-# Update Material-UI Styles version
+### Update React version
+
+The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
+This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
+
+### Update Material-UI Styles version
 
 If you are previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles
 
@@ -62,11 +67,6 @@ or
 
 yarn add @material-ui/styles@next
 ```
-
-### Update React version
-
-The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
-This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
 ## Handling breaking changes
 
