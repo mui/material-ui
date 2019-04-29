@@ -23,7 +23,7 @@ export interface TableCellProps
 export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
   React.TdHTMLAttributes<HTMLTableDataCellElement>;
 
-export type Padding = 'normal' | 'checkbox' | 'none';
+export type Padding = 'default' | 'checkbox' | 'none';
 
 export type Size = 'small' | 'medium';
 
