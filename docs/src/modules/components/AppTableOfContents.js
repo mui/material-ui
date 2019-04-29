@@ -45,9 +45,9 @@ function getItems(contents) {
 
 const styles = theme => ({
   root: {
-    top: 70,
+    top: 70 + 29,
     // Fix IE 11 position sticky issue.
-    marginTop: 70,
+    marginTop: 70 + 29,
     width: 167,
     flexShrink: 0,
     order: 2,

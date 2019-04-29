@@ -24,6 +24,9 @@ const styles = theme => ({
       color: theme.palette.primary.main,
     },
   },
+  placeholder: {
+    height: 29,
+  },
   // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
   toolbarIe11: {
     display: 'flex',
@@ -96,6 +99,7 @@ function AppDrawer(props) {
     <PageContext.Consumer>
       {({ activePage, pages }) => (
         <div className={classes.nav}>
+          <div className={classes.placeholder} />
           <div className={classes.toolbarIe11}>
             <div className={classes.toolbar}>
               <Link
