@@ -1,3 +1,5 @@
+import warning from 'warning';
+
 // based on https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
 
 let hadKeyboardEvent = true;
@@ -91,6 +93,22 @@ export function teardown(ownerDocument) {
 
 export function isFocusVisible(event) {
   const { target } = event;
+  try {
+    return target.matches(':focus-visible');
+  } catch (error) {
+    // browsers not implementing :focus-visible will throw a SyntaxError
+    // we use our own heuristic for those browsers
+
+    // rethrow might be better if it's not the expected error but do we really
+    // want to crash if focus-visible malfunctioned?
+    warning(
+      error instanceof SyntaxError,
+      [
+        'Material-UI: focus-visible heuristic threw an unexpected error. ',
+        'Check caught errors in the debugger for more information.',
+      ].join(''),
+    );
+  }
 
   // no need for validFocusTarget check. the user does that by attaching it to
   // focusable events only
