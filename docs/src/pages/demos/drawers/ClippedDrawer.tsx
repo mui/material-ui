@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -36,12 +35,11 @@ const styles = (theme: Theme) =>
       padding: theme.spacing(3),
     },
     toolbar: theme.mixins.toolbar,
-  });
+  }),
+);
 
-interface ClippedDrawerProps extends WithStyles<typeof styles> {}
-
-function ClippedDrawer(props: ClippedDrawerProps) {
-  const { classes } = props;
+function ClippedDrawer() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -109,8 +107,4 @@ function ClippedDrawer(props: ClippedDrawerProps) {
   );
 }
 
-ClippedDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(ClippedDrawer);
+export default ClippedDrawer;

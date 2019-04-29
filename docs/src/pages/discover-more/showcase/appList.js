@@ -104,13 +104,6 @@ const appList = [
     dateAdded: '2000-01-28',
   },
   {
-    title: 'Onepixel',
-    description: 'Beautiful Stock Photos for $1.',
-    image: 'onepixel.jpg',
-    link: 'https://www.onepixel.com/',
-    dateAdded: '2000-01-26',
-  },
-  {
     title: 'Sweek',
     description:
       'Read thousands of free books, stories and serials on Sweek. ' +

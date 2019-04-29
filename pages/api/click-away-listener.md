@@ -26,12 +26,6 @@ For instance, if you need to hide a menu when people click anywhere else on your
 
 The component cannot hold a ref.
 
-Any other properties supplied will be provided to the root element ([EventListener](https://github.com/oliviertassinari/react-event-listener/)).
-
-## Inheritance
-
-The properties of the [EventListener](https://github.com/oliviertassinari/react-event-listener/) component, from react-event-listener, are also available.
-You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

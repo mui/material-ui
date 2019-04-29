@@ -50,7 +50,7 @@ describe('<ButtonBase />', () => {
     it('should change the button component and add accessibility requirements', () => {
       const wrapper = mount(<ButtonBase component="span" role="checkbox" aria-checked={false} />);
       const checkbox = wrapper.find('span[role="checkbox"]');
-      assert.strictEqual(checkbox.props().tabIndex, '0');
+      assert.strictEqual(checkbox.props().tabIndex, 0);
     });
 
     it('should not apply role="button" if type="button"', () => {
@@ -381,7 +381,7 @@ describe('<ButtonBase />', () => {
   describe('prop: disabled', () => {
     it('should not receive the focus', () => {
       const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
-      assert.strictEqual(wrapper.find('button').props().tabIndex, '-1');
+      assert.strictEqual(wrapper.find('button').props().tabIndex, -1);
     });
 
     it('should also apply it when using component', () => {

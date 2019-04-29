@@ -1,14 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import { createShallow, createMount, describeConformance } from '@material-ui/core/test-utils';
+import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Popper from './Popper';
 
 describe('<Popper />', () => {
-  let shallow;
   let mount;
   const defaultProps = {
     anchorEl: () => window.document.createElement('div'),
@@ -17,7 +16,6 @@ describe('<Popper />', () => {
   };
 
   before(() => {
-    shallow = createShallow();
     // StrictModeViolation: uses Portal
     mount = createMount({ strict: false });
   });
@@ -45,14 +43,14 @@ describe('<Popper />', () => {
 
     it('should have top placement', () => {
       const renderSpy = spy();
-      shallow(
+      mount(
         <Popper {...defaultProps} placement="top">
           {({ placement }) => {
             renderSpy(placement);
             return null;
           }}
         </Popper>,
-      ).dive();
+      );
       assert.strictEqual(renderSpy.callCount, 1);
       assert.strictEqual(renderSpy.args[0][0], 'top');
     });
@@ -81,46 +79,36 @@ describe('<Popper />', () => {
     ].forEach(test => {
       it(`should flip ${test.in} when direction=rtl is used`, () => {
         const renderSpy = spy();
-        shallow(
+        mount(
           <Popper {...defaultProps} placement={test.in}>
             {({ placement }) => {
               renderSpy(placement);
               return null;
             }}
           </Popper>,
-        ).dive();
+        );
         assert.strictEqual(renderSpy.callCount, 1);
         assert.strictEqual(renderSpy.args[0][0], test.out);
       });
     });
   });
 
-  describe('mount', () => {
-    it('should mount without any issue', () => {
+  describe('prop: open', () => {
+    it('should open without any issue', () => {
       const wrapper = mount(<Popper {...defaultProps} open={false} />);
-      assert.strictEqual(wrapper.find('span').length, 0);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       wrapper.setProps({ open: true });
       wrapper.update();
-      assert.strictEqual(wrapper.find('span').length, 1);
-      assert.strictEqual(wrapper.find('span').text(), 'Hello World');
-      wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.find('span').length, 0);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
     });
 
-    it('should position the popper when opening', () => {
-      const wrapper = mount(<Popper {...defaultProps} open={false} />);
-      const instance = wrapper.find('Popper').instance();
-      assert.strictEqual(instance.popper == null, true);
-      wrapper.setProps({ open: true });
-      assert.strictEqual(instance.popper !== null, true);
-    });
-
-    it('should not position the popper when closing', () => {
-      const wrapper = mount(<Popper {...defaultProps} open />);
-      const instance = wrapper.find('Popper').instance();
-      assert.strictEqual(instance.popper !== null, true);
+    it('should close without any issue', () => {
+      const wrapper = mount(<Popper {...defaultProps} />);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
       wrapper.setProps({ open: false });
-      assert.strictEqual(instance.popper, null);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').length, 0);
     });
   });
 
@@ -182,9 +170,19 @@ describe('<Popper />', () => {
   });
 
   describe('prop: transition', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
     it('should work', () => {
       const wrapper = mount(
-        <Popper {...defaultProps} open transition>
+        <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
               <span>Hello World</span>
@@ -192,38 +190,12 @@ describe('<Popper />', () => {
           )}
         </Popper>,
       );
-      const instance = wrapper.find('Popper').instance();
-      assert.strictEqual(wrapper.find('span').length, 1);
-      assert.strictEqual(wrapper.find('span').text(), 'Hello World');
-      assert.strictEqual(instance.popper !== null, true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
       wrapper.setProps({ anchorEl: null, open: false });
-      wrapper
-        .find(Grow)
-        .props()
-        .onExited();
-      assert.strictEqual(instance.popper, null);
-    });
-  });
-
-  describe('prop: onExited', () => {
-    it('should update the exited state', () => {
-      const wrapper = mount(
-        <Popper {...defaultProps} open transition>
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
-              <span>Hello World</span>
-            </Grow>
-          )}
-        </Popper>,
-      );
-      wrapper.setProps({
-        open: false,
-      });
-      wrapper
-        .find(Grow)
-        .props()
-        .onExited();
-      assert.strictEqual(wrapper.find('Popper').instance().state.exited, true);
+      clock.tick(0);
+      wrapper.update();
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     });
   });
 

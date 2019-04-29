@@ -3,59 +3,99 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import { useForkRef } from '../utils/reactHelpers';
 
-function resetTabIndex(list, selectedItem, setCurrentTabIndex) {
-  const currentFocus = ownerDocument(list).activeElement;
-
-  const items = [];
-  for (let i = 0; i < list.children.length; i += 1) {
-    items.push(list.children[i]);
+function nextItem(list, item, disableListWrap) {
+  if (item && item.nextElementSibling) {
+    return item.nextElementSibling;
   }
-
-  const currentFocusIndex = items.indexOf(currentFocus);
-
-  if (currentFocusIndex !== -1) {
-    return setCurrentTabIndex(currentFocusIndex);
-  }
-
-  if (selectedItem) {
-    return setCurrentTabIndex(items.indexOf(selectedItem));
-  }
-
-  return setCurrentTabIndex(0);
+  return disableListWrap ? null : list.firstChild;
 }
 
+function previousItem(list, item, disableListWrap) {
+  if (item && item.previousElementSibling) {
+    return item.previousElementSibling;
+  }
+  return disableListWrap ? null : list.lastChild;
+}
+
+function textCriteriaMatches(nextFocus, textCriteria) {
+  if (textCriteria === undefined) {
+    return true;
+  }
+  let text = nextFocus.innerText;
+  if (text === undefined) {
+    // jsdom doesn't support innerText
+    text = nextFocus.textContent;
+  }
+  if (text === undefined) {
+    return false;
+  }
+  text = text.trim().toLowerCase();
+  if (text.length === 0) {
+    return false;
+  }
+  if (textCriteria.repeating) {
+    return text[0] === textCriteria.keys[0];
+  }
+  return text.indexOf(textCriteria.keys.join('')) === 0;
+}
+
+function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textCriteria) {
+  let wrappedOnce = false;
+  let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
+
+  while (nextFocus) {
+    // Prevent infinite loop.
+    if (nextFocus === list.firstChild) {
+      if (wrappedOnce) {
+        return false;
+      }
+      wrappedOnce = true;
+    }
+    // Move to the next element.
+    if (
+      !nextFocus.hasAttribute('tabindex') ||
+      nextFocus.disabled ||
+      nextFocus.getAttribute('aria-disabled') === 'true' ||
+      !textCriteriaMatches(nextFocus, textCriteria)
+    ) {
+      nextFocus = traversalFunction(list, nextFocus, disableListWrap);
+    } else {
+      break;
+    }
+  }
+  if (nextFocus) {
+    nextFocus.focus();
+    return true;
+  }
+  return false;
+}
+
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
 const MenuList = React.forwardRef(function MenuList(props, ref) {
-  const { actions, children, className, onBlur, onKeyDown, disableListWrap, ...other } = props;
-  const [currentTabIndex, setCurrentTabIndex] = React.useState(null);
-  const blurTimeoutIDRef = React.useRef();
+  const { actions, autoFocus, className, onKeyDown, disableListWrap, ...other } = props;
   const listRef = React.useRef();
-  const selectedItemRef = React.useRef();
+  const textCriteriaRef = React.useRef({
+    keys: [],
+    repeating: true,
+    previousKeyMatched: true,
+    lastTime: null,
+  });
+
+  useEnhancedEffect(() => {
+    if (autoFocus) {
+      listRef.current.focus();
+    }
+  }, [autoFocus]);
 
   React.useImperativeHandle(
     actions,
     () => ({
-      focus: () => {
-        if (selectedItemRef.current) {
-          selectedItemRef.current.focus();
-          return;
-        }
-
-        if (listRef.current && listRef.current.firstChild) {
-          listRef.current.firstChild.focus();
-        }
-      },
-      getContentAnchorEl: () => {
-        if (selectedItemRef.current) {
-          return selectedItemRef.current;
-        }
-        return listRef.current.firstChild;
-      },
       adjustStyleForScrollbar: (containerElement, theme) => {
         // Let's ignore that piece of logic if users are already overriding the width
         // of the menu.
@@ -73,29 +113,6 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     [],
   );
 
-  React.useEffect(() => {
-    resetTabIndex(listRef.current, selectedItemRef.current, setCurrentTabIndex);
-    return () => {
-      clearTimeout(blurTimeoutIDRef.current);
-    };
-  }, []);
-
-  const handleBlur = event => {
-    blurTimeoutIDRef.current = setTimeout(() => {
-      if (listRef.current) {
-        const list = listRef.current;
-        const currentFocus = ownerDocument(list).activeElement;
-        if (!list.contains(currentFocus)) {
-          resetTabIndex(list, selectedItemRef.current, setCurrentTabIndex);
-        }
-      }
-    }, 30);
-
-    if (onBlur) {
-      onBlur(event);
-    }
-  };
-
   const handleKeyDown = event => {
     const list = listRef.current;
     const key = event.key;
@@ -105,31 +122,45 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       (key === 'ArrowUp' || key === 'ArrowDown') &&
       (!currentFocus || (currentFocus && !list.contains(currentFocus)))
     ) {
-      if (selectedItemRef.current) {
-        selectedItemRef.current.focus();
-      } else {
-        list.firstChild.focus();
-      }
+      moveFocus(list, null, disableListWrap, nextItem);
     } else if (key === 'ArrowDown') {
       event.preventDefault();
-      if (currentFocus.nextElementSibling) {
-        currentFocus.nextElementSibling.focus();
-      } else if (!disableListWrap) {
-        list.firstChild.focus();
-      }
+      moveFocus(list, currentFocus, disableListWrap, nextItem);
     } else if (key === 'ArrowUp') {
       event.preventDefault();
-      if (currentFocus.previousElementSibling) {
-        currentFocus.previousElementSibling.focus();
-      } else if (!disableListWrap) {
-        list.lastChild.focus();
-      }
+      moveFocus(list, currentFocus, disableListWrap, previousItem);
     } else if (key === 'Home') {
       event.preventDefault();
-      list.firstChild.focus();
+      moveFocus(list, null, disableListWrap, nextItem);
     } else if (key === 'End') {
       event.preventDefault();
-      list.lastChild.focus();
+      moveFocus(list, null, disableListWrap, previousItem);
+    } else if (key.length === 1) {
+      const criteria = textCriteriaRef.current;
+      const lowerKey = key.toLowerCase();
+      const currTime = performance.now();
+      if (criteria.keys.length > 0) {
+        // Reset
+        if (currTime - criteria.lastTime > 500) {
+          criteria.keys = [];
+          criteria.repeating = true;
+          criteria.previousKeyMatched = true;
+        } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+          criteria.repeating = false;
+        }
+      }
+      criteria.lastTime = currTime;
+      criteria.keys.push(lowerKey);
+      const keepFocusOnCurrent =
+        currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
+      if (
+        criteria.previousKeyMatched &&
+        (keepFocusOnCurrent || moveFocus(list, currentFocus, disableListWrap, nextItem, criteria))
+      ) {
+        event.preventDefault();
+      } else {
+        criteria.previousKeyMatched = false;
+      }
     }
 
     if (onKeyDown) {
@@ -137,21 +168,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
   };
 
-  const handleItemFocus = event => {
-    const list = listRef.current;
-    if (list) {
-      for (let i = 0; i < list.children.length; i += 1) {
-        if (list.children[i] === event.currentTarget) {
-          setCurrentTabIndex(i);
-          break;
-        }
-      }
-    }
-  };
-
-  const handleOwnRef = React.useCallback(refArg => {
-    // StrictMode ready
-    listRef.current = ReactDOM.findDOMNode(refArg);
+  const handleOwnRef = React.useCallback(instance => {
+    // #StrictMode ready
+    listRef.current = ReactDOM.findDOMNode(instance);
   }, []);
   const handleRef = useForkRef(handleOwnRef, ref);
 
@@ -161,34 +180,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       ref={handleRef}
       className={className}
       onKeyDown={handleKeyDown}
-      onBlur={handleBlur}
+      tabIndex={autoFocus ? 0 : -1}
       {...other}
-    >
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        warning(
-          child.type !== React.Fragment,
-          [
-            "Material-UI: the MenuList component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
-
-        return React.cloneElement(child, {
-          tabIndex: index === currentTabIndex ? 0 : -1,
-          ref: child.props.selected
-            ? refArg => {
-                // not StrictMode ready
-                selectedItemRef.current = ReactDOM.findDOMNode(refArg);
-              }
-            : undefined,
-          onFocus: handleItemFocus,
-        });
-      })}
-    </List>
+    />
   );
 });
 
@@ -197,6 +191,11 @@ MenuList.propTypes = {
    * @ignore
    */
   actions: PropTypes.shape({ current: PropTypes.object }),
+  /**
+   * If `true`, the list will be focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   */
+  autoFocus: PropTypes.bool,
   /**
    * MenuList contents, normally `MenuItem`s.
    */
@@ -209,10 +208,6 @@ MenuList.propTypes = {
    * If `true`, the menu items will not wrap focus.
    */
   disableListWrap: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
   /**
    * @ignore
    */

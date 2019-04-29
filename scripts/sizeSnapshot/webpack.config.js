@@ -65,6 +65,7 @@ async function getSizeLimitBundles() {
     },
     {
       // vs https://bundlephobia.com/result?p=react-modal
+      // vs https://bundlephobia.com/result?p=@reach/dialog
       name: 'Modal',
       webpack: true,
       path: 'packages/material-ui/build/esm/Modal/index.js',
@@ -81,6 +82,12 @@ async function getSizeLimitBundles() {
       name: '@material-ui/core/useMediaQuery',
       webpack: true,
       path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
+    },
+    {
+      // vs https://bundlephobia.com/result?p=react-focus-lock
+      name: '@material-ui/core/TrapFocus',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/Modal/TrapFocus.js',
     },
     {
       // vs https://bundlephobia.com/result?p=react-textarea-autosize

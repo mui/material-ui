@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',
@@ -12,12 +11,12 @@ const styles = (theme: Theme) =>
     input: {
       margin: theme.spacing(1),
     },
-  });
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
+function Inputs() {
+  const classes = useStyles();
 
-function Inputs(props: Props) {
-  const { classes } = props;
   return (
     <div className={classes.container}>
       <Input
@@ -54,8 +53,4 @@ function Inputs(props: Props) {
   );
 }
 
-Inputs.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(Inputs);
+export default Inputs;

@@ -14,6 +14,10 @@ import ListItem from './ListItem';
 import ButtonBase from '../ButtonBase';
 import ListContext from '../List/ListContext';
 
+const NoContent = React.forwardRef(() => {
+  return null;
+});
+
 describe('<ListItem />', () => {
   let mount;
   let classes;
@@ -161,6 +165,15 @@ describe('<ListItem />', () => {
         assert.include(
           consoleErrorMock.args()[0][0],
           'Warning: Failed prop type: Material-UI: you used an element',
+        );
+      });
+
+      it('should warn (but not error) with autoFocus with a function component with no content', () => {
+        mount(<ListItem component={NoContent} autoFocus />);
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.include(
+          consoleErrorMock.args()[0][0],
+          'Warning: Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
         );
       });
     });

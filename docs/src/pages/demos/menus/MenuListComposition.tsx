@@ -25,7 +25,7 @@ function MenuListComposition() {
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   function handleToggle() {
-    setOpen(!open);
+    setOpen(prevOpen => !prevOpen);
   }
 
   function handleClose(event: React.MouseEvent<EventTarget>) {

@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
@@ -18,7 +17,8 @@ const styles = (theme: Theme) =>
     table: {
       minWidth: 650,
     },
-  });
+  }),
+);
 
 function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
   return { name, calories, fat, carbs, protein };
@@ -32,10 +32,8 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export interface SimpleTableProps extends WithStyles<typeof styles> {}
-
-function SimpleTable(props: SimpleTableProps) {
-  const { classes } = props;
+function SimpleTable() {
+  const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
@@ -67,8 +65,4 @@ function SimpleTable(props: SimpleTableProps) {
   );
 }
 
-SimpleTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(SimpleTable);
+export default SimpleTable;

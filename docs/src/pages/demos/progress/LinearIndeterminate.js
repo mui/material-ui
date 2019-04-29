@@ -1,16 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
-};
+});
 
-function LinearIndeterminate(props) {
-  const { classes } = props;
+function LinearIndeterminate() {
+  const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <LinearProgress />
@@ -20,8 +20,4 @@ function LinearIndeterminate(props) {
   );
 }
 
-LinearIndeterminate.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LinearIndeterminate);
+export default LinearIndeterminate;

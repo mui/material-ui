@@ -118,7 +118,7 @@ function AppDrawer(props) {
   );
 
   return (
-    <nav className={className}>
+    <nav className={className} role="navigation" aria-label="Main navigation">
       <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{

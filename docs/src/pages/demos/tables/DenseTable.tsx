@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
@@ -22,7 +21,8 @@ const styles = (theme: Theme) =>
     table: {
       minWidth: 650,
     },
-  });
+  }),
+);
 
 function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
   return { name, calories, fat, carbs, protein };
@@ -36,10 +36,8 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export interface DenseTableProps extends WithStyles<typeof styles> {}
-
-function DenseTable(props: DenseTableProps) {
-  const { classes } = props;
+function DenseTable() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -73,8 +71,4 @@ function DenseTable(props: DenseTableProps) {
   );
 }
 
-DenseTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(DenseTable);
+export default DenseTable;

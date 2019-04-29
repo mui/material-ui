@@ -9,9 +9,9 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 #### Arguments
 
 1. `options` (*Object* [optional]):
-  - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
+  - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
-  - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
+  - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
 #### Returns
 
@@ -24,7 +24,6 @@ import React from 'react';
 import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
 
 const generateClassName = createGenerateClassName({
-  dangerouslyUseGlobalCSS: true,
   productionPrefix: 'c',
 });
 
@@ -212,11 +211,11 @@ It should preferably be used at **the root of your component tree**.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> | | Your component tree. |
-| <span class="prop-name">disableGeneration</span> | <span class="prop-type">bool</span> | false | You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property. |
-| <span class="prop-name">generateClassName</span> | <span class="prop-type">func</span> | | JSS's class name generator. |
-| <span class="prop-name">injectFirst</span> | <span class="prop-type">bool</span> | false | By default, the styles are injected last in the <head> element of your page. They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components. If you want to override the Material-UI's styles, set this prop. |
-| <span class="prop-name">jss</span> | <span class="prop-type">object</span> | | JSS's instance. |
+| children&nbsp;* | node | | Your component tree. |
+| disableGeneration | bool | false | You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property. |
+| generateClassName | func | | JSS's class name generator. |
+| injectFirst | bool | false | By default, the styles are injected last in the <head> element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop. |
+| jss | object | | JSS's instance. |
 
 #### Examples
 
@@ -243,8 +242,8 @@ It should preferably be used at **the root of your component tree**.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> | | Your component tree. |
-| <span class="prop-name required">theme&nbsp;*</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;&nbsp;func</span> | | A theme object. You can provide a function to extend the outer theme. |
+| children&nbsp;* | node | | Your component tree. |
+| theme&nbsp;* | union:&nbsp;object&nbsp;&#124;&nbsp;func | | A theme object. You can provide a function to extend the outer theme. |
 
 #### Examples
 

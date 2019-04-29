@@ -1,48 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import Input from '@material-ui/core/Input';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import FilledInput from '@material-ui/core/FilledInput';
-import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const styles = theme => ({
+const CssTextField = withStyles({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  cssLabel: {
-    '&$cssFocused': {
-      color: purple[500],
+    '& label.focused': {
+      color: 'green',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'green',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'red',
+      },
+      '&:hover fieldset': {
+        borderColor: 'yellow',
+      },
+      '&.focused fieldset': {
+        borderColor: 'green',
+      },
     },
   },
-  cssFocused: {},
-  cssUnderline: {
-    '&:after': {
-      borderBottomColor: purple[500],
-    },
-  },
-  cssOutlinedInput: {
-    '&$cssFocused $notchedOutline': {
-      borderColor: purple[500],
-    },
-  },
-  notchedOutline: {},
-  bootstrapRoot: {
+})(TextField);
+
+const BootstrapInput = withStyles(theme => ({
+  root: {
     'label + &': {
       marginTop: theme.spacing(3),
     },
   },
-  bootstrapInput: {
+  input: {
     borderRadius: 4,
     position: 'relative',
     backgroundColor: theme.palette.common.white,
@@ -69,10 +63,10 @@ const styles = theme => ({
       borderColor: theme.palette.primary.main,
     },
   },
-  bootstrapFormLabel: {
-    fontSize: 18,
-  },
-  redditRoot: {
+}))(InputBase);
+
+const useStylesReddit = makeStyles(theme => ({
+  root: {
     border: '1px solid #e2e2e1',
     overflow: 'hidden',
     borderRadius: 4,
@@ -81,13 +75,30 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: '#fff',
     },
-    '&.focused': {
+    '&$focused': {
       backgroundColor: '#fff',
       boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
       borderColor: theme.palette.primary.main,
     },
   },
-});
+  focused: {},
+}));
+
+function RedditTextField(props) {
+  const classes = useStylesReddit();
+
+  return <TextField InputProps={{ classes, disableUnderline: true }} {...props} />;
+}
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
 const theme = createMuiTheme({
   palette: {
@@ -95,43 +106,14 @@ const theme = createMuiTheme({
   },
 });
 
-function CustomizedInputs(props) {
-  const { classes } = props;
+function CustomizedInputs() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <FormControl className={classes.margin}>
-        <InputLabel
-          htmlFor="custom-css-standard-input"
-          classes={{
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
-          }}
-        >
-          Custom CSS
-        </InputLabel>
-        <Input
-          id="custom-css-standard-input"
-          classes={{
-            underline: classes.cssUnderline,
-          }}
-        />
-      </FormControl>
-      <TextField
+      <CssTextField className={classes.margin} id="custom-css-standard-input" label="Custom CSS" />
+      <CssTextField
         className={classes.margin}
-        InputLabelProps={{
-          classes: {
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
-          },
-        }}
-        InputProps={{
-          classes: {
-            root: classes.cssOutlinedInput,
-            focused: classes.cssFocused,
-            notchedOutline: classes.notchedOutline,
-          },
-        }}
         label="Custom CSS"
         variant="outlined"
         id="custom-css-outlined-input"
@@ -150,37 +132,21 @@ function CustomizedInputs(props) {
         />
       </ThemeProvider>
       <FormControl className={classes.margin}>
-        <InputLabel shrink htmlFor="bootstrap-input" className={classes.bootstrapFormLabel}>
+        <InputLabel shrink htmlFor="bootstrap-input">
           Bootstrap
         </InputLabel>
-        <InputBase
-          id="bootstrap-input"
-          defaultValue="react-bootstrap"
-          classes={{
-            root: classes.bootstrapRoot,
-            input: classes.bootstrapInput,
-          }}
-        />
+        <BootstrapInput defaultValue="react-bootstrap" id="bootstrap-input" />
       </FormControl>
-      <FormControl className={classes.margin} variant="filled">
-        <InputLabel htmlFor="reddit-input">Reddit</InputLabel>
-        <FilledInput
-          id="reddit-input"
-          defaultValue="react-reddit"
-          disableUnderline
-          classes={{
-            root: classes.redditRoot,
-            focused: 'focused',
-          }}
-        />
-      </FormControl>
+      <RedditTextField
+        label="Reddit"
+        className={classes.margin}
+        defaultValue="react-reddit"
+        variant="filled"
+        id="reddit-input"
+      />
       <InputBase className={classes.margin} defaultValue="Naked input" />
     </div>
   );
 }
 
-CustomizedInputs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedInputs);
+export default CustomizedInputs;

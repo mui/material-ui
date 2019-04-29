@@ -16,6 +16,7 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.primary,
     },
     /* Styles applied to the root element if `square={false}`. */
     rounded: {

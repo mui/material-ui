@@ -1,17 +1,15 @@
 import React from 'react';
-import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import url from 'url';
 import { connect } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { withStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
-import compose from 'docs/src/modules/utils/compose';
 
 let searchTimer;
 let initialized = false;
@@ -21,7 +19,6 @@ function loadDependencies() {
   if (dependenciesLoaded) {
     return;
   }
-
   dependenciesLoaded = true;
 
   loadCSS(
@@ -35,10 +32,6 @@ function loadDependencies() {
 }
 
 function initDocsearch(userLanguage) {
-  if (!process.browser) {
-    return;
-  }
-
   clearInterval(searchTimer);
   searchTimer = setInterval(() => {
     const docsearchInput = document.querySelector('#docsearch-input');
@@ -47,18 +40,21 @@ function initDocsearch(userLanguage) {
       return;
     }
 
+    clearInterval(searchTimer);
+
     if (initialized === docsearchInput) {
-      clearInterval(searchTimer);
       return;
     }
 
     initialized = docsearchInput;
-    clearInterval(searchTimer);
+    const ariaLabel = docsearchInput.getAttribute('aria-label');
     window.docsearch({
       apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
       indexName: 'material-ui',
       inputSelector: '#docsearch-input',
-      algoliaOptions: { facetFilters: ['version:next', `language:${userLanguage}`] },
+      algoliaOptions: {
+        facetFilters: ['version:next', `language:${userLanguage}`],
+      },
       handleSelected: (input, event, suggestion) => {
         event.button = 0;
         const parseUrl = url.parse(suggestion.url);
@@ -67,10 +63,12 @@ function initDocsearch(userLanguage) {
       },
       // debug: true, // Set debug to true if you want to inspect the dropdown.
     });
+    // https://github.com/algolia/docsearch/issues/418
+    docsearchInput.setAttribute('aria-label', ariaLabel);
   }, 100);
 }
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   '@global': {
     '.algolia-autocomplete': {
       '& .ds-dropdown-menu': {
@@ -157,68 +155,71 @@ const styles = theme => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 9),
   },
-});
+}));
 
-class AppSearch extends React.Component {
-  componentDidMount() {
-    loadDependencies();
-  }
+function AppSearch(props) {
+  const { userLanguage } = props;
+  const classes = useStyles();
+  const inputRef = React.useRef();
+  const theme = useTheme();
 
-  handleKeyDown = event => {
-    // Use event.keyCode to support IE 11
-    if (
-      [
-        191, // '/'
-        83, // 's'
-      ].indexOf(event.keyCode) !== -1 &&
-      document.activeElement.nodeName === 'BODY' &&
-      document.activeElement !== this.inputRef
-    ) {
-      event.preventDefault();
-      this.inputRef.focus();
-    }
-  };
+  React.useEffect(() => {
+    const handleKeyDown = event => {
+      // Use event.keyCode to support IE 11
+      if (
+        [
+          191, // '/'
+          83, // 's'
+        ].indexOf(event.keyCode) !== -1 &&
+        document.activeElement.nodeName === 'BODY' &&
+        document.activeElement !== inputRef.current
+      ) {
+        event.preventDefault();
+        inputRef.current.focus();
+      }
+    };
 
-  render() {
-    const { classes, userLanguage, width } = this.props;
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
-    if (isWidthUp('sm', width)) {
+  const desktop = useMediaQuery(theme.breakpoints.up('sm'));
+
+  React.useEffect(() => {
+    if (desktop) {
+      loadDependencies();
       initDocsearch(userLanguage);
     }
+  });
 
-    return (
-      <div className={classes.root} style={{ display: isWidthUp('sm', width) ? 'flex' : 'none' }}>
-        <EventListener target="window" onKeyDown={this.handleKeyDown} />
-        <div className={classes.search}>
-          <SearchIcon />
-        </div>
-        <Input
-          disableUnderline
-          placeholder="Search…"
-          id="docsearch-input"
-          inputRef={ref => {
-            this.inputRef = ref;
-          }}
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-        />
+  return (
+    <div className={classes.root} style={{ display: desktop ? 'flex' : 'none' }}>
+      <div className={classes.search}>
+        <SearchIcon />
       </div>
-    );
-  }
+      <Input
+        disableUnderline
+        placeholder="Search…"
+        inputProps={{
+          'aria-label': 'Search',
+        }}
+        id="docsearch-input"
+        inputRef={inputRef}
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+      />
+    </div>
+  );
 }
 
 AppSearch.propTypes = {
-  classes: PropTypes.object.isRequired,
   userLanguage: PropTypes.string.isRequired,
-  width: PropTypes.string.isRequired,
 };
 
-export default compose(
-  withWidth(),
-  connect(state => ({
-    userLanguage: state.options.userLanguage,
-  })),
-  withStyles(styles),
-)(AppSearch);
+export default connect(state => ({
+  userLanguage: state.options.userLanguage,
+}))(AppSearch);

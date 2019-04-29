@@ -96,7 +96,7 @@ function MyComponent() {
   - `options.ssrMatchMedia` (*Function* [optional]) You might want to use an heuristic to approximate
   the screen of the client browser.
   For instance, you could be using the user-agent or the client-hint https://caniuse.com/#search=client%20hint.
-  You can provide a global ponyfill using [`custom properties`](/customization/themes/#properties) on the theme. Check the [server-side rendering example](#server-side-rendering).
+  You can provide a global ponyfill using [`custom properties`](/customization/themes/#default-props) on the theme. Check the [server-side rendering example](#server-side-rendering).
 
 #### Returns
 

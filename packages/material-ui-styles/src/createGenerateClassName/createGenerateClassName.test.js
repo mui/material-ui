@@ -1,62 +1,17 @@
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createGenerateClassName from './createGenerateClassName';
+import nested from '../ThemeProvider/nested';
 
 describe('createGenerateClassName', () => {
-  const generateClassName = createGenerateClassName();
-  const generateClassNameGlobal = createGenerateClassName({ dangerouslyUseGlobalCSS: true });
-
-  describe('dangerouslyUseGlobalCSS', () => {
-    it('should have a stable classname', () => {
-      assert.strictEqual(
-        generateClassNameGlobal(
-          {
-            key: 'key',
-          },
-          {
-            options: {
-              name: 'MuiGrid',
-            },
-          },
-        ),
-        'MuiGrid-key',
-      );
-      assert.strictEqual(
-        generateClassNameGlobal(
-          {
-            key: 'key',
-          },
-          {
-            rules: {
-              raw: {
-                key: () => ({}),
-              },
-            },
-            options: {
-              link: true,
-              classNamePrefix: 'classNamePrefix',
-            },
-          },
-        ),
-        'classNamePrefix-key-1',
-      );
-    });
-  });
-
   it('should generate a class name', () => {
+    const generateClassName = createGenerateClassName();
     assert.strictEqual(
       generateClassName(
         {
           key: 'key',
         },
         {
-          rules: {
-            raw: {
-              key: {
-                flex: 1,
-              },
-            },
-          },
           options: {
             theme: {},
             classNamePrefix: 'classNamePrefix',
@@ -67,167 +22,77 @@ describe('createGenerateClassName', () => {
     );
   });
 
-  it('should increase the counter only when needed', () => {
+  it('should increase the counter', () => {
+    const generateClassName = createGenerateClassName();
     assert.strictEqual(
       generateClassName(
         {
           key: 'key',
         },
         {
-          rules: {
-            raw: {
-              key: {
-                flex: 1,
-              },
-            },
-          },
           options: {
-            theme: {},
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key-1',
+    );
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key',
+        },
+        {
+          options: {
             classNamePrefix: 'classNamePrefix',
           },
         },
       ),
       'classNamePrefix-key-2',
     );
+  });
+
+  it('should work without a classNamePrefix', () => {
+    const generateClassName = createGenerateClassName();
     assert.strictEqual(
       generateClassName(
+        { key: 'root' },
         {
-          key: 'key',
-        },
-        {
-          rules: {
-            raw: {
-              key: () => ({}),
-            },
-          },
-          options: {
-            link: true,
-            classNamePrefix: 'classNamePrefix',
-          },
+          options: {},
         },
       ),
-      'classNamePrefix-key-3',
-    );
-    assert.strictEqual(
-      generateClassName(
-        {
-          key: 'key',
-        },
-        {
-          rules: {
-            raw: {
-              key: () => ({}),
-            },
-          },
-          options: {
-            link: true,
-            classNamePrefix: 'classNamePrefix',
-          },
-        },
-      ),
-      'classNamePrefix-key-4',
+      'root-1',
     );
   });
 
-  it('should use the theme object, rule key and the style raw', () => {
+  it('should generate global class names', () => {
+    const generateClassName = createGenerateClassName();
     assert.strictEqual(
       generateClassName(
+        { key: 'root' },
         {
-          key: 'key1',
-        },
-        {
-          rules: {
-            raw: {
-              key1: {
-                flex: 1,
-              },
-            },
-          },
           options: {
+            name: 'MuiButton',
             theme: {},
-            classNamePrefix: 'classNamePrefix',
           },
         },
       ),
-      'classNamePrefix-key1-5',
+      'MuiButton-root',
     );
     assert.strictEqual(
       generateClassName(
+        { key: 'root' },
         {
-          key: 'key2',
-        },
-        {
-          rules: {
-            raw: {
-              key2: {
-                flex: 1,
-              },
-            },
-          },
           options: {
-            theme: {},
-            classNamePrefix: 'classNamePrefix',
-          },
-        },
-      ),
-      'classNamePrefix-key2-6',
-    );
-    assert.strictEqual(
-      generateClassName(
-        {
-          key: 'key2',
-        },
-        {
-          rules: {
-            raw: {
-              key2: {
-                flex: 2,
-              },
-            },
-          },
-          options: {
-            theme: {},
-            classNamePrefix: 'classNamePrefix',
-          },
-        },
-      ),
-      'classNamePrefix-key2-7',
-    );
-    assert.strictEqual(
-      generateClassName(
-        {
-          key: 'key2',
-        },
-        {
-          rules: {
-            raw: {
-              key2: {
-                flex: 2,
-              },
-            },
-          },
-          options: {
+            name: 'MuiButton',
             theme: {
-              spacing: 4,
+              [nested]: true,
             },
-            classNamePrefix: 'classNamePrefix',
           },
         },
       ),
-      'classNamePrefix-key2-8',
+      'MuiButton-root-2',
     );
-  });
-
-  describe('classNamePrefix', () => {
-    it('should work without a classNamePrefix', () => {
-      const rule = { key: 'root' };
-      const styleSheet = {
-        rules: { raw: {} },
-        options: {},
-      };
-      const generateClassName2 = createGenerateClassName();
-      assert.strictEqual(generateClassName2(rule, styleSheet), 'root-1');
-    });
   });
 
   describe('production', () => {
@@ -251,13 +116,31 @@ describe('createGenerateClassName', () => {
     });
 
     it('should output a short representation', () => {
-      const rule = { key: 'root' };
-      const styleSheet = {
-        rules: { raw: {} },
-        options: {},
-      };
-      const generateClassName2 = createGenerateClassName();
-      assert.strictEqual(generateClassName2(rule, styleSheet), 'jss1');
+      const generateClassName = createGenerateClassName();
+      assert.strictEqual(
+        generateClassName(
+          { key: 'root' },
+          {
+            options: {},
+          },
+        ),
+        'jss1',
+      );
+    });
+
+    it('should use the seed', () => {
+      const generateClassName = createGenerateClassName({
+        seed: 'dark',
+      });
+      assert.strictEqual(
+        generateClassName(
+          { key: 'root' },
+          {
+            options: {},
+          },
+        ),
+        'dark-jss1',
+      );
     });
   });
 });

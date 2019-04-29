@@ -226,7 +226,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
   the screen width of the client browser screen width.
   For instance, you could be using the user-agent or the client-hints.
   https://caniuse.com/#search=client%20hint, we also can set the initial width
-  globally using [`custom properties`](/customization/themes/#properties) on the theme.
+  globally using [`custom properties`](/customization/themes/#default-props) on the theme.
   In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js

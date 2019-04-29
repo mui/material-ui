@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/utils",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0-beta.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Utils - Utility functions for Material-UI.",

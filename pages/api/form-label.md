@@ -56,5 +56,7 @@ you need to use the following style sheet name: `MuiFormLabel`.
 
 ## Demos
 
-- [Selection Controls](/demos/selection-controls/)
+- [Checkboxes](/demos/checkboxes/)
+- [Radio Buttons](/demos/radio-buttons/)
+- [Switches](/demos/switches/)
 

@@ -158,9 +158,8 @@ in TypeScript.
 
 Changing demos in JavaScript requires a manual update of the TypeScript
 version. If you are not familiar with this language you can add the filepath
-of the TS demo to `docs/ts-demo-ignore.json`. See `docs/babel.config.ts.js` for more
-information. Otherwise our CI will fail the `test_build` job.
-A contributor can later update the TypeScript version of that demo.
+of the TS demo to `docs/scripts/formattedTSDemos.js`. Otherwise our CI will fail the 
+`test_build` job. A contributor can later update the TypeScript version of that demo.
 
 If you are already familiar with TypeScript you can simply write the demo in TypeScript.
 `yarn docs:typescript:formatted` will transpile it down to JavaScript.
