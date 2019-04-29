@@ -89,7 +89,7 @@ class ButtonBase extends React.Component {
     if (this.props.action) {
       this.props.action({
         focusVisible: () => {
-          this.setState({ focusVisible: true }); // TODO needed?
+          this.setState({ focusVisible: true });
           this.getButtonNode().focus();
         },
       });
