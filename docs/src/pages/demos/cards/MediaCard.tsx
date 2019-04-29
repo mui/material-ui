@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,19 +8,20 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const styles = createStyles({
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-});
+const useStyles = makeStyles(
+  createStyles({
+    card: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 140,
+    },
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
+function MediaCard() {
+  const classes = useStyles();
 
-function MediaCard(props: Props) {
-  const { classes } = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -52,8 +52,4 @@ function MediaCard(props: Props) {
   );
 }
 
-MediaCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(MediaCard);
+export default MediaCard;
