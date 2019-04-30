@@ -202,7 +202,12 @@ function Tooltip(props) {
     }
   };
 
-  const getOwnerDocument = React.useCallback(() => childNode, [childNode]);
+  const getOwnerDocument = React.useCallback(() => {
+    if (childNode == null) {
+      return null;
+    }
+    return childNode.ownerDocument;
+  }, [childNode]);
   const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
   const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
   function handleBlur() {
