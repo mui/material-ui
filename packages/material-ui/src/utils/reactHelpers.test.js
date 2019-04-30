@@ -131,5 +131,52 @@ describe('utils/reactHelpers.js', () => {
       );
       assert.strictEqual(consoleErrorMock.callCount(), 0);
     });
+
+    describe('changing refs', () => {
+      // use named props rather than ref attribute because enzyme ignores
+      // ref attributes on the root component
+      function Div(props) {
+        const { leftRef, rightRef, ...other } = props;
+        const handleRef = useForkRef(leftRef, rightRef);
+
+        return <div {...other} ref={handleRef} />;
+      }
+
+      Div.propTypes = {
+        leftRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        rightRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      };
+
+      it('handles changing from no ref to some ref', () => {
+        const wrapper = mount(<Div id="test" />);
+
+        assert.strictEqual(consoleErrorMock.callCount(), 0);
+
+        const ref = React.createRef();
+        wrapper.setProps({ leftRef: ref });
+
+        assert.strictEqual(ref.current.id, 'test');
+        assert.strictEqual(consoleErrorMock.callCount(), 0);
+      });
+
+      it('cleans up detached refs', () => {
+        const firstLeftRef = React.createRef();
+        const firstRightRef = { current: null, _id: 'first-inner' };
+        const secondRightRef = { current: null, _id: 'second-inner' };
+
+        const wrapper = mount(<Div leftRef={firstLeftRef} rightRef={firstRightRef} id="test" />);
+
+        assert.strictEqual(consoleErrorMock.callCount(), 0);
+        assert.strictEqual(firstLeftRef.current.id, 'test');
+        assert.strictEqual(firstRightRef.current.id, 'test');
+        assert.strictEqual(secondRightRef.current, null);
+
+        wrapper.setProps({ rightRef: secondRightRef });
+
+        assert.strictEqual(firstLeftRef.current.id, 'test');
+        assert.strictEqual(firstRightRef.current, null);
+        assert.strictEqual(secondRightRef.current.id, 'test');
+      });
+    });
   });
 });
