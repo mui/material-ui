@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function MediaControlCard() {
   const classes = useStyles();
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
 
   return (
     <Card className={classes.card}>
