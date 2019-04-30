@@ -100,7 +100,7 @@ yarn add @material-ui/styles@next
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
-- Scope the keyframes API. You should apply the following changes in your codebase.
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
   It helps isolating the animation logic:
 
   ```diff
