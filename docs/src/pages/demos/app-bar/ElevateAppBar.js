@@ -10,7 +10,7 @@ import Container from '@material-ui/core/Container';
 import PropTypes from 'prop-types';
 
 // Create the transition class for the associated elevation
-// Since ElevationScroll overrides the className property, we need to include root and positionFixed here as well
+// Since ElevationScroll overrides the className property, include root and positionFixed here as well
 const useElevationStyles = makeStyles(theme => {
   const classes = styles(theme);
   return {
@@ -47,8 +47,8 @@ function ElevateAppBar(props) {
   const classes = useStyles();
   const [trigger, setRef] = useScrollTrigger({ directional: false, threshold: 100 });
 
-  // Note that you normally won't need to set the window ref as useScrollTrigger will default to window.
-  // This is only being set here because the demo is in an iframe
+  // Note that normally setRef(window) won't be needed as useScrollTrigger defaults to window.
+  // It is included here because the demo is in an iframe
   const { window } = props;
   React.useEffect(() => {
     setRef(window);
