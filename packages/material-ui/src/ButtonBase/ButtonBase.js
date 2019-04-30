@@ -7,7 +7,11 @@ import withForwardedRef from '../utils/withForwardedRef';
 import { setRef } from '../utils/reactHelpers';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
-import { handleBlurVisible, isFocusVisible, prepare as prepareFocusVisible } from './focusVisible';
+import {
+  handleBlurVisible,
+  isFocusVisible,
+  prepare as prepareFocusVisible,
+} from '../utils/focusVisible';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
