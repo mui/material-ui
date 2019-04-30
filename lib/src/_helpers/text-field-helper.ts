@@ -104,6 +104,10 @@ export function makeMaskFromFormat(format: string, numberMaskChar: string) {
 export const maskedDateFormatter = (mask: string, numberMaskChar: string, refuse: RegExp) => (
   value: string
 ) => {
+  if (value === '') {
+    return value;
+  }
+
   let result = '';
   const parsed = value.replace(refuse, '');
 
