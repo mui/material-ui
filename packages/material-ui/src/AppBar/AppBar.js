@@ -69,7 +69,7 @@ export const styles = theme => {
 };
 
 const AppBar = React.forwardRef(function AppBar(props, ref) {
-  const { classes, className, color, position, ...other } = props;
+  const { classes, className, color, PaperProps, position, ...other } = props;
 
   return (
     <Paper
@@ -87,6 +87,7 @@ const AppBar = React.forwardRef(function AppBar(props, ref) {
       )}
       ref={ref}
       {...other}
+      {...PaperProps}
     />
   );
 });
@@ -109,6 +110,10 @@ AppBar.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'default']),
+  /**
+   * Properties applied to the [`Paper`](/api/paper/) element.
+   */
+  PaperProps: PropTypes.object,
   /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
