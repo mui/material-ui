@@ -51,7 +51,7 @@ An App Bar that hides on scroll.
 
 ## Elevate App Bar on sroll
 
-An App Bar that elevates on scroll
+An App Bar that elevates on scroll.
 
 {{"demo": "pages/demos/app-bar/ElevateAppBar.js", "iframe": "true", "maxWidth": 500}}
 
