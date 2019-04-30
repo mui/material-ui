@@ -6,7 +6,7 @@ import useScrollTrigger from './useScrollTrigger';
 
 describe('useScrollTrigger', () => {
   let mount;
-  let values;  
+  let values;
 
   before(() => {
     mount = createMount({ strict: true });
@@ -30,7 +30,7 @@ describe('useScrollTrigger', () => {
         return <span ref={ref}>{`${trigger}`}</span>;
       };
 
-      mount(<Test />);      
+      mount(<Test />);
       assert.strictEqual(text(), 'false');
       assert.strictEqual(values.callCount, 1);
     });
