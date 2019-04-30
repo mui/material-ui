@@ -59,7 +59,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     ...other
   } = props;
   const timer = React.useRef();
-  const wrapperRef = React.useRef();
+  const wrapperRef = React.useRef(null);
   const autoTransitionDuration = React.useRef();
 
   React.useEffect(() => {

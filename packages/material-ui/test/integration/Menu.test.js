@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import TestUtils from 'react-dom/test-utils';
 import { createMount } from 'packages/material-ui/src/test-utils';
 import Popover from 'packages/material-ui/src/Popover';
-import Portal from 'packages/material-ui/src/Portal';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
 import Menu from 'packages/material-ui/src/Menu';
 import MenuItem from 'packages/material-ui/src/MenuItem';
@@ -41,10 +40,7 @@ describe('<Menu> integration', () => {
 
     it('should focus the list as nothing has been selected', () => {
       wrapper.find('button').simulate('click');
-      portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      portalLayer = document.querySelector('[data-mui-test="Modal"]');
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('ul')[0]);
     });
 
@@ -133,18 +129,12 @@ describe('<Menu> integration', () => {
 
     it('should focus the 3rd selected item', () => {
       wrapper.find('button').simulate('click');
-      const portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should select the 2nd item and close the menu', () => {
-      const portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
       const item = portalLayer.querySelector('ul').children[1];
       item.click();
       assert.strictEqual(wrapper.text(), 'selectedIndex: 1, open: false');
@@ -152,10 +142,7 @@ describe('<Menu> integration', () => {
 
     it('should focus the 2nd selected item', () => {
       wrapper.find('button').simulate('click');
-      const portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
     });
   });
@@ -355,10 +342,7 @@ describe('<Menu> integration', () => {
     beforeEach(() => {
       wrapper = mount(<SimpleMenu transitionDuration={0} />);
       wrapper.find('button').simulate('click');
-      portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      portalLayer = document.querySelector('[data-mui-test="Modal"]');
     });
 
     it('should close the menu with tab', done => {

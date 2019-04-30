@@ -160,7 +160,7 @@ const useStyles = makeStyles(theme => ({
 function AppSearch(props) {
   const { userLanguage } = props;
   const classes = useStyles();
-  const inputRef = React.useRef();
+  const inputRef = React.useRef(null);
   const theme = useTheme();
 
   React.useEffect(() => {

@@ -18,10 +18,10 @@ function TrapFocus(props) {
     open,
   } = props;
   const ignoreNextEnforceFocus = React.useRef();
-  const sentinelStart = React.useRef();
-  const sentinelEnd = React.useRef();
+  const sentinelStart = React.useRef(null);
+  const sentinelEnd = React.useRef(null);
   const lastFocus = React.useRef();
-  const rootRef = React.useRef();
+  const rootRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback(instance => {
     // #StrictMode ready

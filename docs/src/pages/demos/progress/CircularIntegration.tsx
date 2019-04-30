@@ -44,7 +44,7 @@ function CircularIntegration() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
-  const timer = React.useRef<number | undefined>(undefined);
+  const timer = React.useRef<number>();
 
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,

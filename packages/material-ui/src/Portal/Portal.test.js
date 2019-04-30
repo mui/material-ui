@@ -4,6 +4,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount, createRender } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Portal from './Portal';
 import Select from '../Select';
 import MenuItem from '../MenuItem';
@@ -86,6 +87,14 @@ describe('<Portal />', () => {
         return;
       }
 
+      beforeEach(() => {
+        consoleErrorMock.spy();
+      });
+
+      afterEach(() => {
+        consoleErrorMock.reset();
+      });
+
       it('render nothing on the server', () => {
         const markup1 = render(<div>Bar</div>);
         assert.strictEqual(markup1.text(), 'Bar');
@@ -109,24 +118,39 @@ describe('<Portal />', () => {
     });
 
     it('should have access to the mountNode', () => {
-      const wrapper = mount(
-        <Portal>
+      const refSpy1 = spy();
+      mount(
+        <Portal ref={refSpy1}>
           <h1>Foo</h1>
         </Portal>,
       );
-      const instance = wrapper.find('Portal').instance();
-      assert.strictEqual(instance.getMountNode(), instance.mountNode);
+      assert.deepEqual(refSpy1.args, [[null], [null], [document.body]]);
+      const refSpy2 = spy();
+      mount(
+        <Portal disablePortal ref={refSpy2}>
+          <h1 className="woofPortal">Foo</h1>
+        </Portal>,
+      );
+      assert.deepEqual(refSpy2.args, [[document.querySelector('.woofPortal')]]);
     });
 
     it('should render in a different node', () => {
       const wrapper = mount(
-        <Portal>
-          <h1 className="woofPortal">Foo</h1>
-        </Portal>,
+        <div>
+          <h1 className="woofPortal1">Foo</h1>
+          <Portal>
+            <h1 className="woofPortal2">Foo</h1>
+          </Portal>
+        </div>,
       );
-      const instance = wrapper.find('Portal').instance();
-      assert.notStrictEqual(instance.mountNode, null, 'should have a mountNode');
-      assert.strictEqual(document.querySelectorAll('.woofPortal').length, 1);
+      assert.strictEqual(
+        wrapper.getDOMNode().contains(document.querySelector('.woofPortal1')),
+        true,
+      );
+      assert.strictEqual(
+        wrapper.getDOMNode().contains(document.querySelector('.woofPortal2')),
+        false,
+      );
     });
 
     it('should unmount when parent unmounts', () => {
@@ -270,7 +294,15 @@ describe('<Portal />', () => {
     wrapper.setProps({ container: null });
 
     setTimeout(() => {
-      assert.deepEqual(callOrder, ['onRendered', 'cDU', 'cDU', 'cDU', 'onRendered']);
+      assert.deepEqual(callOrder, [
+        'onRendered',
+        'cDU',
+        'onRendered',
+        'cDU',
+        'onRendered',
+        'cDU',
+        'onRendered',
+      ]);
       done();
     });
   });

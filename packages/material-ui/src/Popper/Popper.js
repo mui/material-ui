@@ -48,7 +48,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     transition,
     ...other
   } = props;
-  const tooltipRef = React.useRef();
+  const tooltipRef = React.useRef(null);
   const popperRef = React.useRef();
   const [exited, setExited] = React.useState(!props.open);
   const [placement, setPlacement] = React.useState();

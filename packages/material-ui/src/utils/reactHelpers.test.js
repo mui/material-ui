@@ -75,7 +75,7 @@ describe('utils/reactHelpers.js', () => {
     it('returns a single ref-setter function that forks the ref to its inputs', () => {
       function Component(props) {
         const { innerRef } = props;
-        const ownRef = React.useRef();
+        const ownRef = React.useRef(null);
         const [, forceUpdate] = React.useState(0);
         React.useEffect(() => forceUpdate(n => !n), []);
 

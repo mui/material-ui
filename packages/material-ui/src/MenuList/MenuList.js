@@ -79,7 +79,7 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
 
 const MenuList = React.forwardRef(function MenuList(props, ref) {
   const { actions, autoFocus, className, onKeyDown, disableListWrap, ...other } = props;
-  const listRef = React.useRef();
+  const listRef = React.useRef(null);
   const textCriteriaRef = React.useRef({
     keys: [],
     repeating: true,

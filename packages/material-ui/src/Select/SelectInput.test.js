@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Menu from '../Menu';
-import Portal from '../Portal';
 import MenuItem from '../MenuItem';
 import SelectInput from './SelectInput';
 
@@ -386,10 +385,7 @@ describe('<SelectInput />', () => {
       it('should call onChange when clicking an item', () => {
         wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.find(MenuItem).exists(), true);
-        const portalLayer = wrapper
-          .find(Portal)
-          .instance()
-          .getMountNode();
+        const portalLayer = document.querySelector('[data-mui-test="Modal"]');
 
         portalLayer.querySelectorAll('li')[1].click();
         assert.strictEqual(wrapper.find(MenuItem).exists(), true);
@@ -410,10 +406,7 @@ describe('<SelectInput />', () => {
         const wrapper = mount(<SelectInput {...defaultProps} value="" autoFocus />);
         wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.find(MenuItem).exists(), true);
-        const portalLayer = wrapper
-          .find(Portal)
-          .instance()
-          .getMountNode();
+        const portalLayer = document.querySelector('[data-mui-test="Modal"]');
         assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('ul')[0]);
       });
     });
