@@ -10,7 +10,7 @@ import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import { useForkRef } from '../utils/reactHelpers';
-import useKeyboardFocus from './useKeyboardFocus';
+import { useIsFocusVisible } from '../utils/focusVisible';
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
@@ -202,7 +202,15 @@ function Tooltip(props) {
     }
   };
 
-  const isKeyboardFocus = useKeyboardFocus();
+  const getOwnerDocument = React.useCallback(() => childNode, [childNode]);
+  const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
+  const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
+  function handleBlur() {
+    if (childIsFocusVisible) {
+      setChildIsFocusVisible(false);
+      onBlurVisible();
+    }
+  }
 
   const handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769
@@ -212,7 +220,8 @@ function Tooltip(props) {
       setChildNode(event.currentTarget);
     }
 
-    if (isKeyboardFocus(event)) {
+    if (isFocusVisible(event)) {
+      setChildIsFocusVisible(true);
       handleEnter(event);
     }
 
@@ -240,8 +249,11 @@ function Tooltip(props) {
   const handleLeave = event => {
     const childrenProps = children.props;
 
-    if (event.type === 'blur' && childrenProps.onBlur) {
-      childrenProps.onBlur(event);
+    if (event.type === 'blur') {
+      if (childrenProps.onBlur) {
+        childrenProps.onBlur(event);
+      }
+      handleBlur(event);
     }
 
     if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
