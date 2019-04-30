@@ -20,7 +20,7 @@ const styles = {
 function ScrollbarSize(props) {
   const { onChange } = props;
   const scrollbarHeight = React.useRef();
-  const nodeRef = React.useRef();
+  const nodeRef = React.useRef(null);
 
   const setMeasurements = () => {
     scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;

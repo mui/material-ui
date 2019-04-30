@@ -111,7 +111,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     dense: dense || context.dense || false,
     alignItems,
   };
-  const listItemRef = React.useRef();
+  const listItemRef = React.useRef(null);
   useEnhancedEffect(() => {
     if (autoFocus) {
       if (listItemRef.current) {

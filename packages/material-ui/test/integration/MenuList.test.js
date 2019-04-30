@@ -8,7 +8,7 @@ import { createMount } from 'packages/material-ui/src/test-utils';
 import PropTypes from 'prop-types';
 
 function FocusOnMountMenuItem(props) {
-  const listItemRef = React.useRef();
+  const listItemRef = React.useRef(null);
   React.useLayoutEffect(() => {
     listItemRef.current.focus();
   }, []);

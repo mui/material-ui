@@ -86,7 +86,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     ...other
   } = props;
 
-  const childrenRef = React.useRef();
+  const childrenRef = React.useRef(null);
   /**
    * used in cloneElement(children, { ref: handleRef })
    */
