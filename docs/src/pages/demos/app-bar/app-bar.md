@@ -45,7 +45,7 @@ A side searchbar.
 
 ## Hide App Bar on scroll
 
-An App Bar that hides on scroll
+An App Bar that hides on scroll.
 
 {{"demo": "pages/demos/app-bar/HideAppBar.js", "iframe": "true", "maxWidth": 500}}
 
