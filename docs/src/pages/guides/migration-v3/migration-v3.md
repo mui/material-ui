@@ -100,14 +100,14 @@ yarn add @material-ui/styles@next
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
-- Scope the keyframes API. You should apply the following changes in your codebase.
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
   It helps isolating the animation logic:
 
   ```diff
     rippleVisible: {
       opacity: 0.3,
   -   animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
-  +   animation: `$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)`,
+  +   animation: '$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
     },
     '@keyframes mui-ripple-enter': {
       '0%': {
