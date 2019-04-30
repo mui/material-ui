@@ -5,9 +5,7 @@ import pink from '../colors/pink';
 import grey from '../colors/grey';
 import red from '../colors/red';
 import common from '../colors/common';
-import { darken, lighten } from 'polished';
-
-const getContrastRatio = () => 3;
+import { getContrastRatio, darken, lighten } from './colorManipulator';
 
 export const light = {
   // The colors used to style the text.
@@ -73,9 +71,9 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
     if (intent.hasOwnProperty(shade)) {
       intent[direction] = intent[shade];
     } else if (direction === 'light') {
-      intent.light = lighten(tonalOffset, intent.main);
+      intent.light = lighten(intent.main, tonalOffset);
     } else if (direction === 'dark') {
-      intent.dark = darken(tonalOffset * 1.5, intent.main);
+      intent.dark = darken(intent.main, tonalOffset * 1.5);
     }
   }
 }

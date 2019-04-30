@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
-import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
+// import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
 import { capitalize } from '@material-ui/core/utils/helpers';
 import ColorDemo from './ColorDemo';
 import themeInitialState from 'docs/src/modules/styles/themeInitialState';
@@ -171,7 +171,7 @@ class ColorTool extends React.Component {
                 variant="caption"
                 style={{ color: theme.palette.getContrastText(background[key]) }}
               >
-                {rgbToHex(background[key])}
+                {background[key]}
               </Typography>
             </div>
           ))}
