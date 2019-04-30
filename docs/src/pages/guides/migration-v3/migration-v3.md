@@ -107,7 +107,7 @@ yarn add @material-ui/styles@next
     rippleVisible: {
       opacity: 0.3,
   -   animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
-  +   animation: `${mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)}`,
+  +   animation: '$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
     },
     '@keyframes mui-ripple-enter': {
       '0%': {
