@@ -110,7 +110,7 @@ describe('useScrollTrigger', () => {
         { offset: 102, result: 'false' },
       ].forEach(test => {
         dispatchScroll(test.offset);
-        assert.strictEqual(text(), test.result);
+        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
       });
     });
 
@@ -142,7 +142,7 @@ describe('useScrollTrigger', () => {
         { offset: 31, result: 'true' },
       ].forEach(test => {
         dispatchScroll(test.offset);
-        assert.strictEqual(text(), test.result);
+        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
       });
     });
 
@@ -205,7 +205,7 @@ describe('useScrollTrigger', () => {
         { offset: 102, result: 'false' },
       ].forEach(test => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result);
+        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
       });
     });
 
@@ -230,7 +230,7 @@ describe('useScrollTrigger', () => {
         { offset: 103, result: 'true' },
       ].forEach(test => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result);
+        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
       });
     });
 
@@ -253,7 +253,7 @@ describe('useScrollTrigger', () => {
         { offset: 51, result: 'true' },
       ].forEach(test => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result);
+        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
       });
     });
   });
