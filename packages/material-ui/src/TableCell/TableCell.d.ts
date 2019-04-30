@@ -34,8 +34,11 @@ export type TableCellClassKey =
   | 'head'
   | 'body'
   | 'footer'
-  | 'numeric'
-  | 'paddingDense'
+  | 'alignLeft'
+  | 'alignCenter'
+  | 'alignRight'
+  | 'alignJustify'
+  | 'sizeSmall'
   | 'paddingCheckbox'
   | 'paddingNone';
 
