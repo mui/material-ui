@@ -6,13 +6,7 @@ import useScrollTrigger from './useScrollTrigger';
 
 describe('useScrollTrigger', () => {
   let mount;
-  let values;
-
-  // Only run the test on node.
-  // Waiting for https://github.com/facebook/react/issues/14050
-  if (!/jsdom/.test(window.navigator.userAgent)) {
-    return;
-  }
+  let values;  
 
   before(() => {
     mount = createMount({ strict: true });
@@ -31,12 +25,12 @@ describe('useScrollTrigger', () => {
       const ref = React.createRef();
       const text = () => ref.current.textContent;
       const Test = () => {
-        const trigger = useScrollTrigger();
+        const [trigger] = useScrollTrigger();
         React.useEffect(() => values(trigger));
         return <span ref={ref}>{`${trigger}`}</span>;
       };
 
-      mount(<Test />);
+      mount(<Test />);      
       assert.strictEqual(text(), 'false');
       assert.strictEqual(values.callCount, 1);
     });
