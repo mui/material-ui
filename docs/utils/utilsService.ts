@@ -11,20 +11,22 @@ export const utilsMap = {
 };
 
 export type UtilsLib = keyof typeof utilsMap;
-export type FormatsMap = Record<UtilsLib, string>;
+export type FormatsMap = Record<UtilsLib | 'dateFns', string>;
 
 function cascadeFormats(lib: UtilsLib, formatsMap: FormatsMap) {
+  const dateFnsFormat = formatsMap['date-fns'] || formatsMap.dateFns;
+
   switch (lib) {
     case 'date-fns':
-      return formatsMap['date-fns'];
+      return dateFnsFormat;
     case 'luxon':
-      return formatsMap.luxon || formatsMap['date-fns'];
+      return formatsMap.luxon || dateFnsFormat;
     case 'moment':
       return formatsMap.moment;
     case 'dayjs':
       return formatsMap.dayjs || formatsMap.moment;
     default:
-      return formatsMap['date-fns'];
+      return dateFnsFormat;
   }
 }
 
