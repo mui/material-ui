@@ -82,6 +82,8 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
         rightArrowIcon={rightArrowIcon}
         rightArrowButtonProps={rightArrowButtonProps}
         shouldDisableDate={shouldDisableDate}
+        onMonthChange={onMonthChange}
+        onYearChange={onYearChange}
         views={views}
       />
     </Wrapper>

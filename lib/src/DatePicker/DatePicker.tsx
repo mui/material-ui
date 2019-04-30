@@ -79,6 +79,8 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
         rightArrowIcon={rightArrowIcon}
         rightArrowButtonProps={rightArrowButtonProps}
         shouldDisableDate={shouldDisableDate}
+        onMonthChange={onMonthChange}
+        onYearChange={onYearChange}
         views={views}
         openTo={openTo}
       />

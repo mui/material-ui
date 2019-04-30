@@ -42,6 +42,7 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
 
   function handleChange(date: MaterialUiPickersDate) {
     const dateString = utils.format(date, format);
+
     props.onChange(date, dateString);
   }
 

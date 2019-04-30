@@ -27,13 +27,13 @@ function InlineDatePickerDemo(props) {
         variant="inline"
         inputVariant="outlined"
         label="With keyboard"
-        value={selectedDate}
-        onChange={handleDateChange}
-        InputAdornmentProps={{ position: 'start' }}
         format={props.__willBeReplacedGetFormatString({
           moment: 'MM/DD/YYYY',
-          'date-fns': 'MM/dd/yyyy',
+          dateFns: 'MM/dd/yyyy',
         })}
+        value={selectedDate}
+        InputAdornmentProps={{ position: 'start' }}
+        onChange={date => handleDateChange(date)}
       />
     </Fragment>
   );
