@@ -1721,12 +1721,12 @@
     write-file-atomic "^2.3.0"
 
 "@material-ui/core@^3.9.3":
-  version "4.0.0-alpha.8"
+  version "4.0.0-beta.0"
   dependencies:
     "@babel/runtime" "^7.2.0"
-    "@material-ui/styles" "^4.0.0-alpha.8"
-    "@material-ui/system" "^4.0.0-alpha.8"
-    "@material-ui/utils" "^4.0.0-alpha.8"
+    "@material-ui/styles" "^4.0.0-beta.0"
+    "@material-ui/system" "^4.0.0-beta.0"
+    "@material-ui/utils" "^4.0.0-beta.0"
     "@types/react-transition-group" "^2.0.16"
     clsx "^1.0.2"
     csstype "^2.5.2"
@@ -1735,6 +1735,7 @@
     hoist-non-react-statics "^3.2.1"
     is-plain-object "^2.0.4"
     normalize-scroll-left "^0.1.2"
+    polished "^3.2.0"
     popper.js "^1.14.1"
     prop-types "^15.7.2"
     react-event-listener "^0.6.6"
@@ -10396,6 +10397,13 @@ pngjs@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-2.3.1.tgz#11d1e12b9cb64d63e30c143a330f4c1f567da85f"
   integrity sha1-EdHhK5y2TWPjDBQ6Mw9MH1Z9qF8=
+
+polished@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-3.2.0.tgz#65045e080704a6ba524fb3f32eb99d4ed2e46c91"
+  integrity sha512-uXIr2Nu5SU5khDa4JwWh8q5czi4GoJf+U1za5LN59Tk0mL/W3egZrPL0H0ADXeompCp0QhmiK9zs06gw0J5m4Q==
+  dependencies:
+    "@babel/runtime" "^7.4.2"
 
 popper.js@^1.14.1:
   version "1.14.7"

@@ -3,7 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { emphasize, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withForwardedRef } from '@material-ui/core/utils';

@@ -48,6 +48,7 @@
     "hoist-non-react-statics": "^3.2.1",
     "is-plain-object": "^2.0.4",
     "normalize-scroll-left": "^0.1.2",
+    "polished": "^3.2.0",
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
     "react-event-listener": "^0.6.6",

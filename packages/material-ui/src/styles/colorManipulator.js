@@ -1,29 +1,6 @@
 /* eslint-disable no-use-before-define */
 
-import warning from 'warning';
-
-/**
- * Returns a number whose value is limited to the given range.
- *
- * @param {number} value The value to be clamped
- * @param {number} min The lower boundary of the output range
- * @param {number} max The upper boundary of the output range
- * @returns {number} A number in the range [min, max]
- */
-function clamp(value, min = 0, max = 1) {
-  warning(
-    value >= min && value <= max,
-    `Material-UI: the value provided ${value} is out of range [${min}, ${max}].`,
-  );
-
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
-}
+import { lighten as lighten2, darken as darken2, rgba } from 'polished';
 
 /**
  * Converts a color from CSS hex format to CSS rgb format.
@@ -208,15 +185,7 @@ export function emphasize(color, coefficient = 0.15) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function fade(color, value) {
-  color = decomposeColor(color);
-  value = clamp(value);
-
-  if (color.type === 'rgb' || color.type === 'hsl') {
-    color.type += 'a';
-  }
-  color.values[3] = value;
-
-  return recomposeColor(color);
+  return rgba(color, value);
 }
 
 /**
@@ -227,17 +196,7 @@ export function fade(color, value) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color, coefficient) {
-  color = decomposeColor(color);
-  coefficient = clamp(coefficient);
-
-  if (color.type.indexOf('hsl') !== -1) {
-    color.values[2] *= 1 - coefficient;
-  } else if (color.type.indexOf('rgb') !== -1) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] *= 1 - coefficient;
-    }
-  }
-  return recomposeColor(color);
+  return darken2(coefficient, color);
 }
 
 /**
@@ -248,16 +207,5 @@ export function darken(color, coefficient) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function lighten(color, coefficient) {
-  color = decomposeColor(color);
-  coefficient = clamp(coefficient);
-
-  if (color.type.indexOf('hsl') !== -1) {
-    color.values[2] += (100 - color.values[2]) * coefficient;
-  } else if (color.type.indexOf('rgb') !== -1) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] += (255 - color.values[i]) * coefficient;
-    }
-  }
-
-  return recomposeColor(color);
+  return lighten2(coefficient, color);
 }
