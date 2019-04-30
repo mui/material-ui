@@ -1,4 +1,4 @@
-## Supporting Material-UI
+<h2 align="center">Supporting Material-UI</h2>
 
 Material-UI is an MIT-licensed open source project.
 It's an independent project with ongoing development made possible entirely
