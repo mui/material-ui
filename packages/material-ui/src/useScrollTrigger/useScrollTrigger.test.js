@@ -3,21 +3,19 @@ import { createMount } from '@material-ui/core/test-utils';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import useScrollTrigger from './useScrollTrigger';
 import PropTypes from 'prop-types';
-
-const dispatchScroll = (offset, ref = window) => {
-  ref.pageYOffset = offset;
-  ref.dispatchEvent(new window.Event('scroll', {}));
-};
 
 describe('useScrollTrigger', () => {
   let mount;
   let values;
+  let clock;
+  const dispatchheckTime = 1000;
 
   before(() => {
     mount = createMount({ strict: true });
+    clock = useFakeTimers();
   });
 
   beforeEach(() => {
@@ -26,7 +24,14 @@ describe('useScrollTrigger', () => {
 
   after(() => {
     mount.cleanUp();
+    clock.restore();
   });
+
+  const dispatchScroll = (offset, ref = window) => {
+    ref.pageYOffset = offset;
+    ref.dispatchEvent(new window.Event('scroll', {}));
+    clock.tick(dispatchheckTime);
+  };
 
   const ref = React.createRef();
   const containerParent = React.createRef(); // Get the scroll container's parent
@@ -108,9 +113,9 @@ describe('useScrollTrigger', () => {
         { offset: 3, result: 'false' },
         { offset: 103, result: 'true' },
         { offset: 102, result: 'false' },
-      ].forEach(test => {
+      ].forEach((test, i) => {
         dispatchScroll(test.offset);
-        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
+        assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
       });
     });
 
@@ -140,9 +145,9 @@ describe('useScrollTrigger', () => {
         { offset: 30, result: 'false' },
         { offset: 28, result: 'false' },
         { offset: 31, result: 'true' },
-      ].forEach(test => {
+      ].forEach((test, i) => {
         dispatchScroll(test.offset);
-        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
+        assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
       });
     });
 
@@ -173,9 +178,9 @@ describe('useScrollTrigger', () => {
     });
     it('should not trigger from window scroll events', () => {
       mountWrapperWithRef();
-      [101, 200, 300, -10, 100, 101, 99, 200, 199, 0, 1, -1, 150].forEach(offset => {
+      [101, 200, 300, -10, 100, 101, 99, 200, 199, 0, 1, -1, 150].forEach((offset, i) => {
         dispatchScroll(offset);
-        assert.strictEqual(text(), 'false');
+        assert.strictEqual(text(), 'false', `Index: ${i} Offset: ${offset}`);
       });
     });
     it('should trigger above default threshold', () => {
@@ -203,9 +208,9 @@ describe('useScrollTrigger', () => {
         { offset: 3, result: 'false' },
         { offset: 103, result: 'true' },
         { offset: 102, result: 'false' },
-      ].forEach(test => {
+      ].forEach((test, i) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
+        assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
       });
     });
 
@@ -228,9 +233,9 @@ describe('useScrollTrigger', () => {
         { offset: -3, result: 'false' },
         { offset: 3, result: 'false' },
         { offset: 103, result: 'true' },
-      ].forEach(test => {
+      ].forEach((test, i) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
+        assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
       });
     });
 
@@ -251,9 +256,9 @@ describe('useScrollTrigger', () => {
         { offset: -50, result: 'false' },
         { offset: 50, result: 'false' },
         { offset: 51, result: 'true' },
-      ].forEach(test => {
+      ].forEach((test, i) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Offset: ${test.offset}`);
+        assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
       });
     });
   });
