@@ -1,6 +1,6 @@
 import React from 'react';
 
-function getScrollY(ref) {
+function getScrollY(ref = window) {
   if (ref && ref.pageYOffset !== undefined) {
     return ref.pageYOffset;
   }
@@ -23,7 +23,7 @@ function defaultTrigger(next, current, props = {}) {
 const useScrollTrigger = (options = {}) => {
   const { triggerFunc = defaultTrigger, ...props } = options;
   const [ref, setRef] = React.useState();
-  const yRef = React.useRef();
+  const yRef = React.useRef(0);
   const [trigger, setTrigger] = React.useState(false);
 
   const handleScroll = React.useCallback(() => {
