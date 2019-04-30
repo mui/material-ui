@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import { Transition } from 'react-transition-group';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { useForkRef } from '../utils/reactHelpers';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
@@ -226,10 +227,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 Slide.propTypes = {
   /**
    * A single child content element.
-   *
-   * ⚠️The component used as a child [must be able to hold a ref](/guides/composition/#children).
    */
-  children: PropTypes.element,
+  children: elementAcceptingRef,
   /**
    * Direction the child node will enter from.
    */

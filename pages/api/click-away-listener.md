@@ -19,7 +19,7 @@ For instance, if you need to hide a menu when people click anywhere else on your
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The wrapped element.<br>⚠️The component used as a child [must be able to hold a ref](/guides/composition/#children). |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The wrapped element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">mouseEvent</span> | <span class="prop-type">enum:&nbsp;'onClick'&nbsp;&#124;<br>&nbsp;'onMouseDown'&nbsp;&#124;<br>&nbsp;'onMouseUp'&nbsp;&#124;<br>&nbsp;false<br></span> | <span class="prop-default">'onMouseUp'</span> | The mouse event to listen to. You can disable the listener by providing `false`. |
 | <span class="prop-name required">onClickAway&nbsp;*</span> | <span class="prop-type">func</span> |  | Callback fired when a "click away" event is detected. |
 | <span class="prop-name">touchEvent</span> | <span class="prop-type">enum:&nbsp;'onTouchStart'&nbsp;&#124;<br>&nbsp;'onTouchEnd'&nbsp;&#124;<br>&nbsp;false<br></span> | <span class="prop-default">'onTouchEnd'</span> | The touch event to listen to. You can disable the listener by providing `false`. |

@@ -7,6 +7,7 @@ import { createChainedFunction } from '../utils/helpers';
 import { setRef } from '../utils/reactHelpers';
 import withForwardedRef from '../utils/withForwardedRef';
 import { withTheme } from '@material-ui/styles';
+import { elementAcceptingRef } from '@material-ui/utils';
 import zIndex from '../styles/zIndex';
 import ModalManager from './ModalManager';
 import TrapFocus from './TrapFocus';
@@ -288,7 +289,7 @@ Modal.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element.isRequired,
+  children: elementAcceptingRef.isRequired,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    */
