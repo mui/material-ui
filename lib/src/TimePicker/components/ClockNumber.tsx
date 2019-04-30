@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { Theme, makeStyles } from '@material-ui/core/styles';
 
-const positions: Record<number, number[]> = {
+const positions: Record<number, [number, number]> = {
   0: [0, 40],
   1: [55, 19.6],
   2: [94.4, 59.5],

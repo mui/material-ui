@@ -6,6 +6,7 @@ import CalendarHeader from './CalendarHeader';
 import EventListener from 'react-event-listener';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import { Theme } from '@material-ui/core';
+import { handleKeydown } from '../../_helpers/utils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
@@ -192,30 +193,12 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   public handleKeyDown = (event: KeyboardEvent) => {
     const { theme, date, utils } = this.props;
 
-    switch (event.key) {
-      case 'ArrowUp':
-        this.moveToDay(utils.addDays(date, -7));
-        break;
-      case 'ArrowDown':
-        this.moveToDay(utils.addDays(date, 7));
-        break;
-      case 'ArrowLeft':
-        theme.direction === 'ltr'
-          ? this.moveToDay(utils.addDays(date, -1))
-          : this.moveToDay(utils.addDays(date, 1));
-        break;
-      case 'ArrowRight':
-        theme.direction === 'ltr'
-          ? this.moveToDay(utils.addDays(date, 1))
-          : this.moveToDay(utils.addDays(date, -1));
-        break;
-      default:
-        // if key is not handled, stop execution
-        return;
-    }
-
-    // if event was handled prevent other side effects (e.g. page scroll)
-    event.preventDefault();
+    handleKeydown(event, {
+      ArrowUp: () => this.moveToDay(utils.addDays(date, -7)),
+      ArrowDown: () => this.moveToDay(utils.addDays(date, 7)),
+      ArrowLeft: () => this.moveToDay(utils.addDays(date, theme.direction === 'ltr' ? -1 : 1)),
+      ArrowRight: () => this.moveToDay(utils.addDays(date, theme.direction === 'ltr' ? 1 : -1)),
+    });
   };
 
   public renderWeeks = () => {

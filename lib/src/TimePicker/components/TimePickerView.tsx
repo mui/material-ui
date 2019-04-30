@@ -33,7 +33,7 @@ export const TimePickerView: React.FC<TimePickerViewProps> = ({
   minutesStep,
 }) => {
   const utils = useUtils();
-  const getViewProps = () => {
+  const viewProps = React.useMemo(() => {
     switch (type) {
       case ClockType.HOURS:
         return {
@@ -73,9 +73,8 @@ export const TimePickerView: React.FC<TimePickerViewProps> = ({
       default:
         throw new Error('You must provide the type for TimePickerView');
     }
-  };
+  }, [ampm, date, onHourChange, onMinutesChange, onSecondsChange, type, utils]);
 
-  const viewProps = React.useMemo(getViewProps, [date, type, utils]);
   return <Clock type={type} ampm={ampm} minutesStep={minutesStep} {...viewProps} />;
 };
 
