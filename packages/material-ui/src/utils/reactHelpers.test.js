@@ -161,8 +161,8 @@ describe('utils/reactHelpers.js', () => {
 
       it('cleans up detached refs', () => {
         const firstLeftRef = React.createRef();
-        const firstRightRef = { current: null, _id: 'first-inner' };
-        const secondRightRef = { current: null, _id: 'second-inner' };
+        const firstRightRef = React.createRef();
+        const secondRightRef = React.createRef();
 
         const wrapper = mount(<Div leftRef={firstLeftRef} rightRef={firstRightRef} id="test" />);
 
