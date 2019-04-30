@@ -22,8 +22,8 @@ They don’t have directional arrows; instead, they rely on motion emanating fro
 
 ## Customized tooltips
 
-If you have read the [overrides documentation page](/customization/overrides/)
-and you are still not confident jumping in, here are some examples of how you can customize the component.
+Here are some examples of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/overrides/).
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 

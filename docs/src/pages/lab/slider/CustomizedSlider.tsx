@@ -12,12 +12,9 @@ const useStyles = makeStyles({
 });
 
 const StyledSlider = withStyles({
-  container: {
-    overflow: 'visible',
-  },
   thumb: {
-    height: 32,
-    width: 32,
+    height: 24,
+    width: 24,
     backgroundColor: '#fff',
     border: '2px solid #de235b',
     '&$focused, &:hover': {
