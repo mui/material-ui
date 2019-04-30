@@ -55,8 +55,3 @@ An App Bar that elevates on scroll.
 
 {{"demo": "pages/demos/app-bar/ElevateAppBar.js", "iframe": "true", "maxWidth": 500}}
 
-## Elevate App Bar on container sroll
-
-An App Bar that elevates on scroll of a container
-
-{{"demo": "pages/demos/app-bar/ElevateAppBarScrollContainer.js", "iframe": "true", "maxWidth": 500}}
