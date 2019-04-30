@@ -1,6 +1,9 @@
 /* eslint-disable no-use-before-define */
 
-import { lighten as lighten2, darken as darken2, rgba, getLuminance } from 'polished';
+import lighten2 from 'polished/lib/color/lighten';
+import darken2 from 'polished/lib/color/darken';
+import rgba from 'polished/lib/color/rgba';
+import getLuminance from 'polished/lib/color/getLuminance';
 
 /**
  * Calculates the contrast ratio between two colors.
