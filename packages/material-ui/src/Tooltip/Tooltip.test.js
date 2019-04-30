@@ -11,6 +11,17 @@ import createMuiTheme from '../styles/createMuiTheme';
 
 const theme = createMuiTheme();
 
+function focusVisible(wrapper) {
+  document.dispatchEvent(new window.Event('keydown'));
+  wrapper.simulate('focus');
+}
+
+function simulatePointerDevice() {
+  // first focus on a page triggers focus visible until a pointer event
+  // has been dispatched
+  document.dispatchEvent(new window.Event('pointerdown'));
+}
+
 describe('<Tooltip />', () => {
   let mount;
   let classes;
@@ -170,8 +181,9 @@ describe('<Tooltip />', () => {
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
       const wrapper = mount(<Tooltip enterDelay={111} {...defaultProps} />);
+      simulatePointerDevice();
       const children = wrapper.find('#testChild');
-      children.simulate('focus');
+      focusVisible(children);
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       clock.tick(111);
       wrapper.update();
@@ -179,10 +191,15 @@ describe('<Tooltip />', () => {
     });
 
     it('should take the leaveDelay into account', () => {
-      const wrapper = mount(<Tooltip leaveDelay={111} {...defaultProps} />);
+      const childRef = React.createRef();
+      const wrapper = mount(
+        <Tooltip leaveDelay={111} enterDelay={0} title="tooltip">
+          <span id="testChild" ref={childRef} />
+        </Tooltip>,
+      );
+      simulatePointerDevice();
       const children = wrapper.find('#testChild');
-      children.simulate('focus');
-      clock.tick(0);
+      focusVisible(children);
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
       children.simulate('blur');
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
