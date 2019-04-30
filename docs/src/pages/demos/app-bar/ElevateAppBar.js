@@ -56,9 +56,9 @@ function ElevateAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <ElevationScroll trigger={trigger} color="default">
-        <AppBar color="default">
-          <Toolbar color="inherit">
+      <ElevationScroll trigger={trigger}>
+        <AppBar>
+          <Toolbar>
             <Typography variant="h6">Scroll to Elevate App Bar</Typography>
           </Toolbar>
         </AppBar>
