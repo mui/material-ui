@@ -3,7 +3,6 @@ import { PaperProps } from '../Paper';
 
 export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
   color?: PropTypes.Color;
-  PaperProps?: Partial<PaperProps>;
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
 }
 
