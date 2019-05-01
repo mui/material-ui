@@ -13,7 +13,6 @@ export interface TableCellProps
   extends StandardProps<TableCellBaseProps, TableCellClassKey, 'align'> {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
   component?: React.ElementType<TableCellBaseProps>;
-  numeric?: boolean;
   padding?: Padding;
   size?: Size;
   sortDirection?: SortDirection;
@@ -34,8 +33,11 @@ export type TableCellClassKey =
   | 'head'
   | 'body'
   | 'footer'
-  | 'numeric'
-  | 'paddingDense'
+  | 'alignLeft'
+  | 'alignCenter'
+  | 'alignRight'
+  | 'alignJustify'
+  | 'sizeSmall'
   | 'paddingCheckbox'
   | 'paddingNone';
 

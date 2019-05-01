@@ -827,10 +827,10 @@ const TableTest = () => {
           <TableHead classes={{ root: 'foo' }}>
             <TableRow>
               <TableCell colSpan={2}>Dessert (100g serving)</TableCell>
-              <TableCell numeric>Calories</TableCell>
-              <TableCell numeric>Fat (g)</TableCell>
-              <TableCell numeric>Carbs (g)</TableCell>
-              <TableCell numeric>Protein (g)</TableCell>
+              <TableCell align="right">Calories</TableCell>
+              <TableCell align="right">Fat (g)</TableCell>
+              <TableCell align="right">Carbs (g)</TableCell>
+              <TableCell align="right">Protein (g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -838,10 +838,10 @@ const TableTest = () => {
               return (
                 <TableRow key={n.id}>
                   <TableCell>{n.name}</TableCell>
-                  <TableCell numeric>{n.calories}</TableCell>
-                  <TableCell numeric>{n.fat}</TableCell>
-                  <TableCell numeric>{n.carbs}</TableCell>
-                  <TableCell numeric>{n.protein}</TableCell>
+                  <TableCell align="right">{n.calories}</TableCell>
+                  <TableCell align="right">{n.fat}</TableCell>
+                  <TableCell align="right">{n.carbs}</TableCell>
+                  <TableCell align="right">{n.protein}</TableCell>
                 </TableRow>
               );
             })}
