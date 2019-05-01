@@ -8,35 +8,11 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import PropTypes from 'prop-types';
 
-const appBarStyles = theme => {
-  return {
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
-      zIndex: theme.zIndex.appBar,
-      flexShrink: 0,
-    },
-    positionFixed: {
-      position: 'fixed',
-      top: 0,
-      left: 'auto',
-      right: 0,
-    },
-  };
-};
-
 // Create the transition class for the associated elevation
-// Since ElevationScroll overrides the className property, include root and positionFixed here as well
 const useElevationStyles = makeStyles(theme => {
-  const classes = appBarStyles(theme);
   return {
     elevationX: {
-      ...classes.root,
-      ...classes.positionFixed,
       boxShadow: props => theme.shadows[props.elevation],
-      background: theme.palette.background.default,
       transition: theme.transitions.create('box-shadow', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -48,10 +24,8 @@ const useElevationStyles = makeStyles(theme => {
 function ElevationScroll(props) {
   const { children, elevation = 4, trigger } = props;
   return React.cloneElement(children, {
-    PaperProps: {
-      elevation: trigger ? elevation : 0,
-      className: useElevationStyles().elevationX,
-    },
+    className: useElevationStyles().elevationX,
+    elevation: trigger ? elevation : 0,
   });
 }
 
@@ -65,7 +39,7 @@ function ElevateAppBar(props) {
   const classes = useStyles();
   const [trigger, setRef] = useScrollTrigger({ directional: false, threshold: 100 });
 
-  // Note that normally setRef(window) won't be needed as useScrollTrigger defaults to window.
+  // Normally setRef(window) won't be needed as useScrollTrigger defaults to window.
   // It is included here because the demo is in an iframe
   const { window } = props;
   React.useEffect(() => {

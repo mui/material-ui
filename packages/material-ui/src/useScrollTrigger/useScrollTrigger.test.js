@@ -3,19 +3,16 @@ import { createMount } from '@material-ui/core/test-utils';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import { assert } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import useScrollTrigger from './useScrollTrigger';
 import PropTypes from 'prop-types';
 
 describe('useScrollTrigger', () => {
   let mount;
   let values;
-  let clock;
-  const dispatchheckTime = 1000;
 
   before(() => {
     mount = createMount({ strict: true });
-    clock = useFakeTimers();
   });
 
   beforeEach(() => {
@@ -24,13 +21,11 @@ describe('useScrollTrigger', () => {
 
   after(() => {
     mount.cleanUp();
-    clock.restore();
   });
 
   const dispatchScroll = (offset, ref = window) => {
     ref.pageYOffset = offset;
     ref.dispatchEvent(new window.Event('scroll', {}));
-    clock.tick(dispatchheckTime);
   };
 
   const ref = React.createRef();
@@ -97,7 +92,7 @@ describe('useScrollTrigger', () => {
       mountWrapper();
       [
         { offset: 100, result: 'false' },
-        { offset: 101, result: 'true' },
+        { offset: 201, result: 'true' },
         { offset: 100, result: 'false' },
         { offset: 99, result: 'false' },
         { offset: 100, result: 'false' },
