@@ -23,16 +23,16 @@ function defaultTrigger(event, value, props = {}) {
 }
 
 const useScrollTrigger = (props = {}) => {
-  const { onTrigger = defaultTrigger, ...triggerProps } = props;
+  const { onTriggerEval = defaultTrigger, ...triggerProps } = props;
   const [target, setTarget] = React.useState();
   const value = React.useRef(0);
   const [trigger, setTrigger] = React.useState(false);
 
   const handleScroll = React.useCallback(
     event => {
-      setTrigger(onTrigger(event, value, triggerProps));
+      setTrigger(onTriggerEval(event, value, triggerProps));
     },
-    [triggerProps, onTrigger],
+    [triggerProps, onTriggerEval],
   );
 
   React.useEffect(() => {

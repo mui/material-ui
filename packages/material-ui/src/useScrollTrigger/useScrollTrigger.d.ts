@@ -5,16 +5,16 @@ export interface DefaultTriggerProps {
 
 export type TriggerProps = DefaultTriggerProps & any;
 
-export type OnTrigger = (
+export type OnTriggerEval = (
   event: Event,
   value: React.MutableRefObject<any>,
   props?: TriggerProps,
 ) => boolean;
 
 export type UseScrollTriggerProps = {
-  onTrigger?: OnTrigger;
+  onTriggerEval?: OnTriggerEval;
 } & TriggerProps;
 
 export default function useScrollTrigger(
   props?: UseScrollTriggerProps,
-): [boolean, (ref: any) => void];
+): [boolean, React.Dispatch<any>];
