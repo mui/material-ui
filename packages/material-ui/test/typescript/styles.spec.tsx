@@ -10,6 +10,7 @@ import {
   StyledComponentProps,
   WithStyles,
   WithTheme,
+  makeStyles,
 } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
@@ -462,4 +463,17 @@ withStyles(theme =>
   const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
   // Property 'nonDefaulted' is missing in type '{}'
   const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
+}
+
+{
+  // theme is defaulted to type of Theme
+  const useStyles = makeStyles(theme => {
+    // $ExpectType Theme
+    const t = theme;
+    return {
+      root: {
+        margin: t.spacing(1),
+      },
+    };
+  });
 }
