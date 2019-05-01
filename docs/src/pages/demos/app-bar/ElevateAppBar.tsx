@@ -1,14 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import PropTypes from 'prop-types';
 
-const appBarStyles = theme => {
+const appBarStyles = (theme: Theme) => {
   return {
     root: {
       display: 'flex',
@@ -29,13 +28,13 @@ const appBarStyles = theme => {
 
 // Create the transition class for the associated elevation
 // Since ElevationScroll overrides the className property, include root and positionFixed here as well
-const useElevationStyles = makeStyles(theme => {
+const useElevationStyles = makeStyles((theme: Theme) => {
   const classes = appBarStyles(theme);
   return {
     elevationX: {
       ...classes.root,
       ...classes.positionFixed,
-      boxShadow: props => theme.shadows[props.elevation],
+      boxShadow: (props: ElevationScrollProps) => theme.shadows[props.elevation as number],
       background: theme.palette.background.default,
       transition: theme.transitions.create('box-shadow', {
         easing: theme.transitions.easing.sharp,
@@ -45,7 +44,7 @@ const useElevationStyles = makeStyles(theme => {
   };
 });
 
-function ElevationScroll(props) {
+function ElevationScroll(props: ElevationScrollProps) {
   const { children, elevation = 4, trigger } = props;
   return React.cloneElement(children, {
     PaperProps: {
@@ -55,13 +54,19 @@ function ElevationScroll(props) {
   });
 }
 
+interface ElevationScrollProps {
+  elevation?: number;
+  trigger: boolean;
+  children?: any;
+}
+
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
 });
 
-function ElevateAppBar(props) {
+function ElevateAppBar(props: any) {
   const classes = useStyles();
   const [trigger, setRef] = useScrollTrigger({ directional: false, threshold: 100 });
 
@@ -151,9 +156,5 @@ function ElevateAppBar(props) {
     </div>
   );
 }
-
-ElevateAppBar.propTypes = {
-  window: PropTypes.func,
-};
 
 export default ElevateAppBar;

@@ -1,72 +1,43 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import PropTypes from 'prop-types';
+import { Slide, Theme } from '@material-ui/core';
+import { SlideProps } from '@material-ui/core/Slide';
 
-const appBarStyles = theme => {
-  return {
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
-      zIndex: theme.zIndex.appBar,
-      flexShrink: 0,
-    },
-    positionFixed: {
-      position: 'fixed',
-      top: 0,
-      left: 'auto',
-      right: 0,
-    },
-  };
-};
-
-// Create the transition class for the associated elevation
-// Since ElevationScroll overrides the className property, include root and positionFixed here as well
-const useElevationStyles = makeStyles(theme => {
-  const classes = appBarStyles(theme);
-  return {
-    elevationX: {
-      ...classes.root,
-      ...classes.positionFixed,
-      boxShadow: props => theme.shadows[props.elevation],
-      background: theme.palette.background.default,
-      transition: theme.transitions.create('box-shadow', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-  };
-});
-
-function ElevationScroll(props) {
-  const { children, elevation = 4, trigger } = props;
-  return React.cloneElement(children, {
-    PaperProps: {
-      elevation: trigger ? elevation : 0,
-      className: useElevationStyles().elevationX,
-    },
-  });
+function HideOnScroll(props: HideOnScrollProps) {
+  const { children, trigger, ...other } = props;
+  return (
+    <Slide appear={false} direction="down" in={!trigger} {...other}>
+      {children}
+    </Slide>
+  );
 }
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
+interface HideOnScrollProps {
+  trigger: boolean;
+  other?: SlideProps;
+  children?: any;
+}
 
-function ElevateAppBar(props) {
-  const classes = useStyles();
-  const [trigger, setRef] = useScrollTrigger({ directional: false, threshold: 100 });
+const useStyles = makeStyles(
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+  }),
+);
 
-  // Note that normally setRef(window) won't be needed as useScrollTrigger defaults to window.
-  // It is included here because the demo is in an iframe
+function HideAppBar(props: any) {
+  const [trigger, setRef] = useScrollTrigger({ directional: true, threshold: 400 });
+  const classes = useStyles(trigger);
+
+  // Note that you normally won't need to set the window ref as useScrollTrigger will default to window.
+  // This is only being set here because the demo is in an iframe
   const { window } = props;
   React.useEffect(() => {
     setRef(window);
@@ -74,13 +45,13 @@ function ElevateAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <ElevationScroll trigger={trigger}>
+      <HideOnScroll trigger={trigger}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6">Scroll to Elevate App Bar</Typography>
+            <Typography variant="h6">Scroll to Hide App Bar</Typography>
           </Toolbar>
         </AppBar>
-      </ElevationScroll>
+      </HideOnScroll>
       <Toolbar />
       <Container>
         <Box my={2}>
@@ -152,8 +123,4 @@ function ElevateAppBar(props) {
   );
 }
 
-ElevateAppBar.propTypes = {
-  window: PropTypes.func,
-};
-
-export default ElevateAppBar;
+export default HideAppBar;

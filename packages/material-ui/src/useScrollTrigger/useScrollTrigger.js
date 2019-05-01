@@ -20,17 +20,17 @@ function defaultTrigger(next, current, props = {}) {
   return next > threshold;
 }
 
-const useScrollTrigger = (options = {}) => {
-  const { triggerFunc = defaultTrigger, ...props } = options;
+const useScrollTrigger = (props = {}) => {
+  const { triggerFunc = defaultTrigger, ...triggerProps } = props;
   const [ref, setRef] = React.useState();
   const yRef = React.useRef(0);
   const [trigger, setTrigger] = React.useState(false);
 
   const handleScroll = React.useCallback(() => {
     const scrollY = getScrollY(ref);
-    setTrigger(triggerFunc(scrollY, yRef.current, props));
+    setTrigger(triggerFunc(scrollY, yRef.current, triggerProps));
     yRef.current = scrollY;
-  }, [props, ref, triggerFunc]);
+  }, [triggerProps, ref, triggerFunc]);
 
   React.useEffect(() => {
     (ref || window).addEventListener('scroll', handleScroll);

@@ -1,13 +1,16 @@
-export interface defaultTriggerProps {
+export interface DefaultTriggerProps {
   directional?: boolean;
   threshhold?: number;
 }
 
-export type TriggerFunc = (next: number, current: number, props?: any) => boolean;
+export type TriggerProps = DefaultTriggerProps & any;
 
-export interface Options {
+export type TriggerFunc = (next: number, current: number, props?: TriggerProps) => boolean;
+
+export type UseScrollTriggerProps = {
   triggerFunc?: TriggerFunc;
-  props?: any;
-}
+} & TriggerProps;
 
-export default function useScrollTrigger(options?: Options): boolean;
+export default function useScrollTrigger(
+  props?: UseScrollTriggerProps,
+): [boolean, (ref: any) => void];
