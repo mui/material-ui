@@ -10,7 +10,12 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 
-function ElevationScroll(props) {
+interface Props {
+  window: Window;
+  children: React.ReactElement;
+}
+
+function ElevationScroll(props: Props) {
   const { children, window } = props;
   const [trigger, setTarget] = useScrollTrigger({ directional: false, threshold: 0 });
 
@@ -33,7 +38,7 @@ ElevationScroll.propTypes = {
   window: PropTypes.func,
 };
 
-export default function ElevateAppBar(props) {
+export default function ElevateAppBar(props: Props) {
   return (
     <React.Fragment>
       <CssBaseline />

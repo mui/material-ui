@@ -9,10 +9,16 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import Slide from '@material-ui/core/Slide';
 
-function ElevationScroll(props) {
+interface Props {
+  window: Window;
+  children: React.ReactElement;
+}
+
+function HideOnScroll(props: Props) {
   const { children, window } = props;
-  const [trigger, setTarget] = useScrollTrigger({ directional: false, threshold: 0 });
+  const [trigger, setTarget] = useScrollTrigger({ directional: true, threshold: 100 });
 
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
@@ -21,29 +27,31 @@ function ElevationScroll(props) {
     setTarget(window);
   }, [setTarget, window]);
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
 }
 
-ElevationScroll.propTypes = {
+HideOnScroll.propTypes = {
   children: PropTypes.node.isRequired,
   // Injected by the documentation to work in an iframe.
   // You won't need it on your project.
   window: PropTypes.func,
 };
 
-export default function ElevateAppBar(props) {
+export default function HideAppBar(props: Props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <ElevationScroll {...props}>
+      <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6">Scroll to Elevate App Bar</Typography>
+            <Typography variant="h6">Scroll to Hide App Bar</Typography>
           </Toolbar>
         </AppBar>
-      </ElevationScroll>
+      </HideOnScroll>
       <Toolbar />
       <Container>
         <Box my={2}>

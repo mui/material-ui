@@ -17,6 +17,7 @@ export const styles = theme => {
     root: {
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.primary,
+      transition: theme.transitions.create('box-shadow'),
     },
     /* Styles applied to the root element if `square={false}`. */
     rounded: {

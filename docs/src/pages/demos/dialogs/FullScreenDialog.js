@@ -50,7 +50,7 @@ function FullScreenDialog() {
             <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="Close">
               <CloseIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.title}>
+            <Typography variant="h6" className={classes.title}>
               Sound
             </Typography>
             <Button color="inherit" onClick={handleClose}>

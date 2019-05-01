@@ -26,7 +26,7 @@ function defaultTrigger(event, value, props = {}) {
   return trigger;
 }
 
-const useScrollTrigger = (props = {}) => {
+export default function useScrollTrigger(props = {}) {
   const { onTriggerEval = defaultTrigger, ...initialOptions } = props;
   const [target, setTarget] = React.useState();
   const value = React.useRef(0);
@@ -48,6 +48,4 @@ const useScrollTrigger = (props = {}) => {
   }, [handleScroll, target]);
 
   return [trigger, setTarget, setOptions];
-};
-
-export default useScrollTrigger;
+}
