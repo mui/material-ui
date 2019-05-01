@@ -3,17 +3,18 @@ export interface DefaultTriggerProps {
   threshhold?: number;
 }
 
-export type TriggerProps = DefaultTriggerProps & any;
+export type TriggerOptions = DefaultTriggerProps & any;
 
 export type OnTriggerEval = (
   event: Event,
   value: React.MutableRefObject<any>,
-  props?: TriggerProps,
+  options?: TriggerOptions,
 ) => boolean;
 
 export type UseScrollTriggerProps = {
   onTriggerEval?: OnTriggerEval;
-} & TriggerProps;
+  initialOptions?: TriggerOptions;
+};
 
 export default function useScrollTrigger(
   props?: UseScrollTriggerProps,

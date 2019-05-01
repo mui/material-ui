@@ -15,24 +15,29 @@ function getScrollY(ref = window) {
 function defaultTrigger(event, value, props = {}) {
   const { directional = true, threshold = 100 } = props;
   const scrollY = getScrollY(event.currentTarget);
-  if (directional) {
-    return scrollY < value.current ? false : !!(scrollY > value.current && scrollY > threshold);
-  }
+  // eslint-disable-next-line no-nested-ternary
+  const trigger = directional
+    ? scrollY < value.current
+      ? false
+      : !!(scrollY > value.current && scrollY > threshold)
+    : scrollY > threshold;
+
   value.current = scrollY;
-  return scrollY > threshold;
+  return trigger;
 }
 
 const useScrollTrigger = (props = {}) => {
-  const { onTriggerEval = defaultTrigger, ...triggerProps } = props;
+  const { onTriggerEval = defaultTrigger, ...initialOptions } = props;
   const [target, setTarget] = React.useState();
   const value = React.useRef(0);
   const [trigger, setTrigger] = React.useState(false);
+  const [options, setOptions] = React.useState(initialOptions);
 
   const handleScroll = React.useCallback(
     event => {
-      setTrigger(onTriggerEval(event, value, triggerProps));
+      setTrigger(onTriggerEval(event, value, options));
     },
-    [triggerProps, onTriggerEval],
+    [onTriggerEval, options],
   );
 
   React.useEffect(() => {
@@ -42,7 +47,7 @@ const useScrollTrigger = (props = {}) => {
     };
   }, [handleScroll, target]);
 
-  return [trigger, setTarget];
+  return [trigger, setTarget, setOptions];
 };
 
 export default useScrollTrigger;
