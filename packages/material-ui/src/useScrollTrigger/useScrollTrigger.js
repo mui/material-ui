@@ -1,10 +1,10 @@
 import React from 'react';
 
 function getScrollY(ref = window) {
-  if (ref && ref.pageYOffset !== undefined && ref.pageYOffset !== null) {
+  if (ref && ref.pageYOffset !== undefined) {
     return ref.pageYOffset;
   }
-  if (ref && ref.scrollTop !== undefined && ref.pageYOffset !== null) {
+  if (ref && ref.scrollTop !== undefined) {
     return ref.scrollTop;
   }
   return document
