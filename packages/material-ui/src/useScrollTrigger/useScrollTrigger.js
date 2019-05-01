@@ -12,34 +12,37 @@ function getScrollY(ref = window) {
     : 0;
 }
 
-function defaultTrigger(next, current, props = {}) {
+function defaultTrigger(event, value, props = {}) {
   const { directional = true, threshold = 100 } = props;
+  const scrollY = getScrollY(event.currentTarget);
   if (directional) {
-    return next < current ? false : !!(next > current && next > threshold);
+    return scrollY < value.current ? false : !!(scrollY > value.current && scrollY > threshold);
   }
-  return next > threshold;
+  value.current = scrollY;
+  return scrollY > threshold;
 }
 
 const useScrollTrigger = (props = {}) => {
-  const { triggerFunc = defaultTrigger, ...triggerProps } = props;
-  const [ref, setRef] = React.useState();
-  const yRef = React.useRef(0);
+  const { onTrigger = defaultTrigger, ...triggerProps } = props;
+  const [target, setTarget] = React.useState();
+  const value = React.useRef(0);
   const [trigger, setTrigger] = React.useState(false);
 
-  const handleScroll = React.useCallback(() => {
-    const scrollY = getScrollY(ref);
-    setTrigger(triggerFunc(scrollY, yRef.current, triggerProps));
-    yRef.current = scrollY;
-  }, [triggerProps, ref, triggerFunc]);
+  const handleScroll = React.useCallback(
+    event => {
+      setTrigger(onTrigger(event, value, triggerProps));
+    },
+    [triggerProps, onTrigger],
+  );
 
   React.useEffect(() => {
-    (ref || window).addEventListener('scroll', handleScroll);
+    (target || window).addEventListener('scroll', handleScroll);
     return () => {
-      (ref || window).removeEventListener('scroll', handleScroll);
+      (target || window).removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll, ref, setRef]);
+  }, [handleScroll, target, setTarget]);
 
-  return [trigger, setRef];
+  return [trigger, setTarget];
 };
 
 export default useScrollTrigger;

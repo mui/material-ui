@@ -30,15 +30,15 @@ const useStyles = makeStyles({
 });
 
 function HideAppBar(props) {
-  const [trigger, setRef] = useScrollTrigger({ directional: true, threshold: 400 });
+  const [trigger, setTarget] = useScrollTrigger({ directional: true, threshold: 400 });
   const classes = useStyles(trigger);
 
   // Note that you normally won't need to set the window ref as useScrollTrigger will default to window.
   // This is only being set here because the demo is in an iframe
   const { window } = props;
   React.useEffect(() => {
-    setRef(window);
-  }, [setRef, window]);
+    setTarget(window);
+  }, [setTarget, window]);
 
   return (
     <div className={classes.root}>

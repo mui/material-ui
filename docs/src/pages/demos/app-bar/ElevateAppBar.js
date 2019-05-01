@@ -37,14 +37,14 @@ const useStyles = makeStyles({
 
 function ElevateAppBar(props) {
   const classes = useStyles();
-  const [trigger, setRef] = useScrollTrigger({ directional: false, threshold: 100 });
+  const [trigger, setTarget] = useScrollTrigger({ directional: false, threshold: 100 });
 
-  // Normally setRef(window) won't be needed as useScrollTrigger defaults to window.
+  // Normally setTarget(window) won't be needed as useScrollTrigger defaults to window.
   // It is included here because the demo is in an iframe
   const { window } = props;
   React.useEffect(() => {
-    setRef(window);
-  }, [setRef, window]);
+    setTarget(window);
+  }, [setTarget, window]);
 
   return (
     <div className={classes.root}>
