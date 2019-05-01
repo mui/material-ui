@@ -8,8 +8,7 @@
  *
  * See https://github.com/Microsoft/TypeScript/issues/28339 for in-depth discussion
  */
-import { createStyles, ThemeProvider } from '@material-ui/styles';
-import { Button, withStyles } from '@material-ui/core';
+import { Button, withStyles, createStyles } from '@material-ui/core';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import emotionStyled from '@emotion/styled';
 import * as React from 'react';
