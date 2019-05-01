@@ -48,7 +48,7 @@ export default function createGenerateClassName(options = {}) {
     if (name && name.indexOf('Mui') === 0 && !styleSheet.options.link && !disableGlobal) {
       // We can use a shorthand class name, we never use the keys to style the components.
       if (pseudoClasses.indexOf(rule.key) !== -1) {
-        return rule.key;
+        return `Mui-${rule.key}`;
       }
 
       const prefix = `${seedPrefix}${name}-${rule.key}`;

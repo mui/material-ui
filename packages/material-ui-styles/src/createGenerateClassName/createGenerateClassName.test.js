@@ -93,6 +93,18 @@ describe('createGenerateClassName', () => {
       ),
       'MuiButton-root-2',
     );
+    assert.strictEqual(
+      generateClassName(
+        { key: 'disabled' },
+        {
+          options: {
+            name: 'MuiButton',
+            theme: {},
+          },
+        },
+      ),
+      'Mui-disabled',
+    );
   });
 
   describe('production', () => {

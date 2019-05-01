@@ -22,8 +22,14 @@ export const styles = theme => ({
     textAlign: 'left',
     paddingTop: 8,
     paddingBottom: 8,
+    '&$focusVisible': {
+      backgroundColor: theme.palette.action.selected,
+    },
     '&$selected, &$selected:hover': {
       backgroundColor: theme.palette.action.selected,
+    },
+    '&$disabled': {
+      opacity: 0.5,
     },
   },
   /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
@@ -31,9 +37,7 @@ export const styles = theme => ({
     position: 'relative',
   },
   /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
-  focusVisible: {
-    backgroundColor: theme.palette.action.selected,
-  },
+  focusVisible: {},
   /* Styles applied to the `component` element if dense. */
   dense: {
     paddingTop: 4,
@@ -44,9 +48,7 @@ export const styles = theme => ({
     alignItems: 'flex-start',
   },
   /* Styles applied to the inner `component` element if `disabled={true}`. */
-  disabled: {
-    opacity: 0.5,
-  },
+  disabled: {},
   /* Styles applied to the inner `component` element if `divider={true}`. */
   divider: {
     borderBottom: `1px solid ${theme.palette.divider}`,

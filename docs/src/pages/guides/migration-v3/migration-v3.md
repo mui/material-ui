@@ -265,6 +265,8 @@ You should be able to move the custom styles to the root class key.
   - The usage of the `ListItemIcon` component is required when using a left checkbox
   - The `edge` property should be set on the icon buttons.
 
+- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
+
 ### Paper
 
 - [Paper] Reduce the default elevation.
@@ -308,6 +310,7 @@ You should be able to move the custom styles to the root class key.
 ### ExpansionPanel
 
 - [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
+- [ExpansionPanel] Increase the CSS specificity of the `disabled` style rule.
 
 ### Switch
 
