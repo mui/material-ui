@@ -40,7 +40,7 @@ const useScrollTrigger = (props = {}) => {
     return () => {
       (target || window).removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll, target, setTarget]);
+  }, [handleScroll, target]);
 
   return [trigger, setTarget];
 };
