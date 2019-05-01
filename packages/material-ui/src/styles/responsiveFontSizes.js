@@ -1,46 +1,55 @@
 import convertLength from 'convert-css-length';
-import { responsiveProperty, alignProperty, fontGrid } from '@material-ui/css-utils';
+import { responsiveProperty, alignProperty, fontGrid } from './cssUtils';
 
 function isUnitless(value) {
   return String(parseFloat(value)).length === String(value).length;
 }
 
-export default function responsiveTypography(typography, options = {}) {
+export default function responsiveFontSizes(themeInput, options = {}) {
   const {
-    maxScale,
-    breakpointSettings,
-    breakpoints = ['sm', 'md', 'lg', 'xl'],
-    align = true,
+    breakpoints = ['sm', 'md', 'lg'],
+    disableAlign = false,
+    factor = 2,
+    variants = [
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'subtitle1',
+      'subtitle2',
+      'body1',
+      'body2',
+      'caption',
+      'button',
+      'overline',
+    ],
   } = options;
+
+  const theme = { ...themeInput };
+  theme.typography = { ...theme.typography };
+  const typography = theme.typography;
+
   // Convert between css lengths e.g. em->px or px->rem
   // Set the baseFontSize for your project. Defaults to 16px (also the browser default).
   const convert = convertLength(typography.htmlFontSize);
-  const output = { ...typography };
-  const breakpointValues = breakpoints.map(x => breakpointSettings.values[x]);
+  const breakpointValues = breakpoints.map(x => theme.breakpoints.values[x]);
 
-  [
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'subtitle1',
-    'subtitle2',
-    'body1',
-    'body2',
-    'caption',
-    'button',
-    'overline',
-  ].forEach(variant => {
-    const style = output[variant];
+  variants.forEach(variant => {
+    const style = typography[variant];
+    const remFontSize = parseFloat(convert(style.fontSize, 'rem'));
 
-    const remFontSize = convert(style.fontSize, 'rem');
-    const minFontSize = parseFloat(remFontSize);
-    const maxFontSize = Math.round(minFontSize * maxScale * 10) / 10;
+    if (remFontSize <= 1) {
+      return;
+    }
+
+    const maxFontSize = remFontSize;
+    const minFontSize = 1 + (maxFontSize - 1) / factor;
+
     let { lineHeight } = style;
 
-    if (!isUnitless(lineHeight) && align) {
+    if (!isUnitless(lineHeight) && !disableAlign) {
       throw new Error(
         [
           `Material-UI: unsupported non-unitless line height with grid alignment.`,
@@ -56,7 +65,7 @@ export default function responsiveTypography(typography, options = {}) {
 
     let transform = null;
 
-    if (align) {
+    if (!disableAlign) {
       transform = value =>
         alignProperty({
           size: value,
@@ -64,18 +73,18 @@ export default function responsiveTypography(typography, options = {}) {
         });
     }
 
-    output[variant] = {
+    typography[variant] = {
       ...style,
       ...responsiveProperty({
         cssProperty: 'fontSize',
         min: minFontSize,
         max: maxFontSize,
         unit: 'rem',
-        range: breakpointValues,
+        breakpoints: breakpointValues,
         transform,
       }),
     };
   });
 
-  return output;
+  return theme;
 }

@@ -345,15 +345,34 @@ html {
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
-### Responsive fonts
+### Responsive font sizes
 
-To define different font sizes for different devices of varying screen widths (with larger font sizes for larger screens), we can use [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to wrap the `font-size` property.
+The typography variants properties map directly to the generated CSS.
+You can use [media queries](/layout/breakpoints/#api) inside them:
 
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the `sm` and `lg` [breakpoints](/layout/breakpoints).
+```js
+const theme = createMuiTheme();
 
-{{"demo": "pages/customization/themes/ResponsiveFonts.js"}}
+theme.typography.h1 = {
+  fontSize: '3rem',
+  '@media (min-width:600px)': {
+    fontSize: '4.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '6rem',
+  },
+};
+```
 
-To automate this setup, you can use the `responsiveTypography` helper in `@material-ui/core/styles` to make Typography font sizes in the theme responsive.
+To automate this setup, you can use the [`responsiveFontSizes()`](#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+
+You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/layout/breakpoints/):
+
+{{"demo": "pages/customization/themes/ResponsiveFontSizes.js"}}
+
+### Fluid font sizes
+
+To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 ## Spacing
 
@@ -523,23 +542,32 @@ const theme = createMuiTheme({
 });
 ```
 
-
-### `responsiveTypography(typographySettings, options) => theme`
+### `responsiveFontSizes(theme, options) => theme`
 
 Generate responsive typography settings based on the options received.
 
 #### Arguments
 
-1. `typography` (*Object*): Typography settings as found in a material-ui theme
-2. `options` (*Object*):
+1. `theme` (*Object*): The theme object to enhance.
+2. `options` (*Object* [optional]):
 
-  * `maxScale` (*number*): The scale that applies to the highest breakpoint
-  * `breakpointSettings` (*Object*): The breakpoint settings as found in a material-ui theme
-  * `breakpoints` (*Array<string>*) (optional): Array of [breakpoints](/layout/breakpoints/) (identifiers as defined by material-ui)
-  * `align` (*boolean*) (optional): Whether font sizes change slightly so line
+  - `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/layout/breakpoints/) (identifiers).
+  - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line
     heights are preserved and align to Material Design's 4px line height grid.
     This requires a unitless line height in the theme's styles.
+  - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens.
+  The lower the value, the bigger font sizes for small screens. The value must me greater than 1.
+  - `variants` (*Array<String>* [optional]): Default to all. The typography variants to handle.
 
 #### Returns
 
-`typography` (*Object*): Responsive typography settings to be used in a material-ui theme.
+`theme` (*Object*): The new theme with a responsive typography.
+
+#### Examples
+
+```js
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
+```

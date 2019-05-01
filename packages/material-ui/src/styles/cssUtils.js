@@ -1,3 +1,17 @@
+export function alignProperty({ size, grid }) {
+  const sizeBelow = size - (size % grid);
+  const sizeAbove = sizeBelow + grid;
+
+  return size - sizeBelow < sizeAbove - size ? sizeBelow : sizeAbove;
+}
+
+// fontGrid finds a minimal grid (in rem) for the fontSize values so that the
+// lineHeight falls under a x pixels grid, 4px in the case of Material Design,
+// without changing the relative line height
+export function fontGrid({ lineHeight, pixels, htmlFontSize }) {
+  return pixels / (lineHeight * htmlFontSize);
+}
+
 /**
  * generate a responsive version of a given CSS property
  * @example
@@ -30,12 +44,12 @@
  * @param {number} [params.alignStep] - Round scaled value to fall under this grid
  * @returns {Object} responsive styles for {params.cssProperty}
  */
-function responsiveProperty({
+export function responsiveProperty({
   cssProperty,
   min,
   max,
   unit = 'rem',
-  breakpoints = [400, 960],
+  breakpoints = [600, 960, 1280],
   transform = null,
 }) {
   const output = {
@@ -57,5 +71,3 @@ function responsiveProperty({
 
   return output;
 }
-
-export default responsiveProperty;
