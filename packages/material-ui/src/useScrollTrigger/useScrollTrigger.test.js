@@ -25,6 +25,7 @@ describe('useScrollTrigger', () => {
 
   const dispatchScroll = (offset, ref = window) => {
     ref.pageYOffset = offset;
+    assert.strictEqual(ref.pageYOffset, offset, 'Failed to set ref.pageYOffset');
     ref.dispatchEvent(new window.Event('scroll', {}));
   };
 
