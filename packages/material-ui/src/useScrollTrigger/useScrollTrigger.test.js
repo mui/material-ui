@@ -38,7 +38,8 @@ describe('useScrollTrigger', () => {
 
   const Test = props => {
     const { useContainerRef, ...other } = props;
-    const [trigger, setRef] = useScrollTrigger(other);
+    const [container, setContainer] = React.useState();
+    const trigger = useScrollTrigger({ ...other, target: container });
     React.useEffect(() => {
       values(trigger);
     });
@@ -46,7 +47,7 @@ describe('useScrollTrigger', () => {
       <React.Fragment>
         <span ref={ref}>{`${trigger}`}</span>
         <div ref={containerParent}>
-          <Container ref={useContainerRef && setRef}>
+          <Container ref={useContainerRef && setContainer}>
             <Box my={2}>some text here</Box>
           </Container>
         </div>
@@ -60,7 +61,7 @@ describe('useScrollTrigger', () => {
   describe('defaultTrigger', () => {
     it('should be false by default', () => {
       const TestDefault = () => {
-        const [trigger] = useScrollTrigger();
+        const trigger = useScrollTrigger();
         React.useEffect(() => values(trigger));
         return <span ref={ref}>{`${trigger}`}</span>;
       };
@@ -72,14 +73,17 @@ describe('useScrollTrigger', () => {
 
     it('should be false by default when using setRef', () => {
       const TestDefaultWithRef = () => {
-        const [trigger, setRef] = useScrollTrigger();
+        const [container, setContainer] = React.useState();
+        const trigger = useScrollTrigger({
+          target: container,
+        });
         React.useEffect(() => {
           values(trigger);
         });
         return (
           <React.Fragment>
             <span ref={ref}>{`${trigger}`}</span>
-            <span ref={setRef} />
+            <span ref={setContainer} />
           </React.Fragment>
         );
       };

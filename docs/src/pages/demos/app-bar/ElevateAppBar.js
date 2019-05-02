@@ -12,14 +12,14 @@ import Container from '@material-ui/core/Container';
 
 function ElevationScroll(props) {
   const { children, window } = props;
-  const [trigger, setTarget] = useScrollTrigger({ directional: false, threshold: 0 });
-
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
-  React.useEffect(() => {
-    setTarget(window);
-  }, [setTarget, window]);
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
 
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0,

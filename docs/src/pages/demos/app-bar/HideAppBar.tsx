@@ -12,20 +12,16 @@ import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
 
 interface Props {
-  window: Window;
+  window?: () => Window;
   children: React.ReactElement;
 }
 
 function HideOnScroll(props: Props) {
   const { children, window } = props;
-  const [trigger, setTarget] = useScrollTrigger({ directional: true, threshold: 100 });
-
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
-  React.useEffect(() => {
-    setTarget(window);
-  }, [setTarget, window]);
+  const trigger = useScrollTrigger({ target: window ? window() : undefined });
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>

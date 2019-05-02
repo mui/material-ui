@@ -1,44 +1,43 @@
 import React from 'react';
 
 function getScrollY(ref) {
-  if (ref && ref.pageYOffset !== undefined) return ref.pageYOffset;
-  if (ref && ref.scrollTop !== undefined) return ref.scrollTop;
-  return 0;
+  return (ref ? ref.pageYOffset || ref.scrollTop : null) || 0;
 }
 
-function defaultTrigger(props = {}) {
-  const { event, store, directional = true, threshold = 100 } = props;
-  const previous = store.current || 0;
-  store.current = getScrollY(event.currentTarget);
-  if (directional) {
-    return store.current < previous
-      ? false
-      : !!(store.current > previous && store.current > threshold);
+function defaultTrigger(event, store, options) {
+  const { disableHysteresis = true, threshold = 100 } = options;
+  const previous = store.current;
+  store.current = getScrollY(event && event.currentTarget);
+
+  if (disableHysteresis) {
+    if (store.current < previous) {
+      return false;
+    }
+    return store.current > previous && store.current > threshold;
   }
+
   return store.current > threshold;
 }
 
-export default function useScrollTrigger(props = {}) {
-  const { onEval = defaultTrigger, ...remaining } = props;
-  const [target, setTarget] = React.useState();
-  const store = React.useRef();
-  const [trigger, setTrigger] = React.useState(false);
+const defaultTarget = typeof window !== 'undefined' ? window : null;
 
-  const handleScroll = React.useCallback(
-    event => {
-      setTrigger(onEval({ event, store, ...remaining }));
-    },
-    // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [onEval, JSON.stringify(remaining)],
-  );
+export default function useScrollTrigger(options = {}) {
+  const { getTrigger = defaultTrigger, target = defaultTarget, ...other } = options;
+  const store = React.useRef();
+  const [trigger, setTrigger] = React.useState(() => getTrigger(null, store, other));
 
   React.useEffect(() => {
-    (target || window).addEventListener('scroll', handleScroll);
-    return () => {
-      (target || window).removeEventListener('scroll', handleScroll);
+    const handleScroll = event => {
+      setTrigger(getTrigger(event, store, other));
     };
-  }, [handleScroll, target]);
 
-  return [trigger, setTarget];
+    target.addEventListener('scroll', handleScroll);
+    return () => {
+      target.removeEventListener('scroll', handleScroll);
+    };
+    // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target, getTrigger, JSON.stringify(other)]);
+
+  return trigger;
 }

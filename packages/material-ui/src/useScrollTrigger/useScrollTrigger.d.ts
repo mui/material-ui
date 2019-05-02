@@ -1,21 +1,7 @@
-export interface DefaultEvalOptions {
-  directional?: boolean;
-  threshhold?: number;
+export interface UseScrollTriggerOptions {
+  disableHysteresis?: boolean;
+  target?: Node | Window;
+  threshold?: number;
 }
 
-export type EvalOptions = DefaultEvalOptions & any;
-
-export interface OnEvalProps extends EvalOptions {
-  event: Event;
-  store: React.MutableRefObject<any>;
-}
-
-export type OnEval = (props: OnEvalProps) => boolean;
-
-export interface UseScrollTriggerProps extends EvalOptions {
-  onEval?: OnEval;
-}
-
-export default function useScrollTrigger(
-  props?: UseScrollTriggerProps,
-): [boolean, React.Dispatch<any>];
+export default function useScrollTrigger(options?: UseScrollTriggerOptions): boolean;

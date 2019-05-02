@@ -45,14 +45,43 @@ A side searchbar.
 
 ## Scrolling
 
-### Hide App Bar on scroll
+### Hide App Bar
 
 An App Bar that hides on scroll.
 
 {{"demo": "pages/demos/app-bar/HideAppBar.js", "iframe": "true", "maxWidth": 500}}
 
-### Elevate App Bar on sroll
+### Elevate App Bar
 
 An App Bar that elevates on scroll.
 
 {{"demo": "pages/demos/app-bar/ElevateAppBar.js", "iframe": "true", "maxWidth": 500}}
+
+### `useScrollTrigger([options]) => trigger`
+
+#### Arguments
+
+1. `options` (*Object* [optional]):
+
+  - `options.disableHysteresis` (*Boolan* [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction to determine the `trigger` value.
+  - `options.target` (*Node* [optional]): Defaults to window.
+  - `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll crosses this threshold.
+
+#### Returns
+
+`trigger`: Does the scroll position match the criterions?
+
+#### Examples
+
+```jsx
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+
+function HideOnScroll(props) {
+  const trigger = useScrollTrigger();
+  return (
+    <Slide in={!trigger}>
+      <div>Hello</div>
+    </Slide>
+  );
+}
+```
