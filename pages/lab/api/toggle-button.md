@@ -28,7 +28,7 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 
 The component cannot hold a ref.
 
-Any other properties supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
+Any other properties supplied will be provided to the root element (native element).
 
 ## CSS
 
@@ -49,11 +49,6 @@ for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiToggleButton`.
-
-## Inheritance
-
-The properties of the [ButtonBase](/api/button-base/) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

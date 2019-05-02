@@ -1,5 +1,3 @@
-// @inheritedComponent FormControl
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import warning from 'warning';

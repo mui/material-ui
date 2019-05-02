@@ -44,28 +44,27 @@ const theme = createMuiTheme();
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
-function getInheritance(src) {
-  const inheritedComponent = src.match(inheritedComponentRegexp);
+function getInheritance(testInfo, src) {
+  const inheritedComponent = testInfo.inheritComponent; // src.match(inheritedComponentRegexp);
 
-  if (!inheritedComponent) {
+  if (inheritedComponent == null) {
     return null;
   }
 
-  const component = inheritedComponent[1];
   let pathname;
 
-  switch (component) {
+  switch (inheritedComponent) {
     case 'Transition':
       pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
       break;
 
     default:
-      pathname = `/api/${kebabCase(component)}`;
+      pathname = `/api/${kebabCase(inheritedComponent)}`;
       break;
   }
 
   return {
-    component,
+    component: inheritedComponent,
     pathname,
   };
 }
@@ -150,7 +149,7 @@ async function buildDocs(options) {
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
-  reactAPI.inheritance = getInheritance(src);
+  reactAPI.inheritance = getInheritance(testInfo, src);
 
   let markdown;
   try {
