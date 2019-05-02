@@ -78,6 +78,7 @@ module.exports = {
         eventHandlerPropPrefix: 'on',
       },
     ],
+    'no-plusplus': ["error", { "allowForLoopAfterthoughts": true }], // maintain no-plusplus but make exceptions in "for" loops
     'react/jsx-curly-brace-presence': 'off', // airbnb use error, it's buggy
     'react/forbid-prop-types': 'off', // airbnb use error
     'react/require-default-props': 'off', // airbnb use error, it's buggy

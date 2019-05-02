@@ -94,7 +94,6 @@ export function decomposeColor(color) {
       );
     }
   }
-
   return { type, values };
 }
 

@@ -137,15 +137,15 @@ const withWidth = (options = {}) => Component => {
      *
      * For instance, you could be using the user-agent or the client-hints.
      * https://caniuse.com/#search=client%20hint
-     */
+    */
     initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     /**
      * @ignore
-     */
+    */
     theme: PropTypes.object.isRequired,
     /**
      * Bypass the width calculation logic.
-     */
+    */
     width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   };
 
