@@ -1,16 +1,4 @@
 {
   "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "noUnusedLocals": true,
-    "baseUrl": "../",
-    "paths": {
-      "@material-ui/core": ["packages/material-ui/src"],
-      "@material-ui/core/*": ["packages/material-ui/src/*"],
-      "@material-ui/styles": ["packages/material-ui-styles/src"],
-      "@material-ui/styles/*": ["packages/material-ui-styles/src/*"],
-      "@material-ui/lab": ["packages/material-ui-lab/src"],
-      "@material-ui/lab/*": ["packages/material-ui-lab/src/*"]
-    }
-  },
   "include": ["types", "src/pages/**/*"]
 }

@@ -17,6 +17,8 @@
       "@material-ui/core/*": ["./material-ui/src/*"],
       "@material-ui/lab": ["./material-ui-lab/src"],
       "@material-ui/lab/*": ["./material-ui-lab/src/*"],
+      "@material-ui/styles": ["./material-ui-styles/src"],
+      "@material-ui/styles/*": ["./material-ui-styles/src/*"],
       "@material-ui/system": ["./material-ui-system/src"]
     }
   },
