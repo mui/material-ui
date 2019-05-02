@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Popper from '@material-ui/core/Popper';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 interface OptionType {
   label: string;
@@ -113,33 +113,35 @@ function getSuggestionValue(suggestion: OptionType) {
   return suggestion.label;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    height: 250,
-    flexGrow: 1,
-  },
-  container: {
-    position: 'relative',
-  },
-  suggestionsContainerOpen: {
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: theme.spacing(1),
-    left: 0,
-    right: 0,
-  },
-  suggestion: {
-    display: 'block',
-  },
-  suggestionsList: {
-    margin: 0,
-    padding: 0,
-    listStyleType: 'none',
-  },
-  divider: {
-    height: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      height: 250,
+      flexGrow: 1,
+    },
+    container: {
+      position: 'relative',
+    },
+    suggestionsContainerOpen: {
+      position: 'absolute',
+      zIndex: 1,
+      marginTop: theme.spacing(1),
+      left: 0,
+      right: 0,
+    },
+    suggestion: {
+      display: 'block',
+    },
+    suggestionsList: {
+      margin: 0,
+      padding: 0,
+      listStyleType: 'none',
+    },
+    divider: {
+      height: theme.spacing(2),
+    },
+  }),
+);
 
 function IntegrationAutosuggest() {
   const classes = useStyles();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,15 +14,17 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  appBar: {
-    position: 'relative',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    appBar: {
+      position: 'relative',
+    },
+    title: {
+      marginLeft: theme.spacing(2),
+      flex: 1,
+    },
+  }),
+);
 
 const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
