@@ -47,13 +47,19 @@ function StylesProvider(props) {
     'Material-UI: you cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
   );
 
+  warning(
+    !context.jss.options.insertionPoint || !localOptions.jss,
+    'Material-UI: you cannot use the jss and injectFirst props at the same time.',
+  );
+
   if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
     if (!injectFirstNode) {
       const head = document.head;
       injectFirstNode = document.createComment('mui-inject-first');
       head.insertBefore(injectFirstNode, head.firstChild);
     }
-    context.jss.options.insertionPoint = injectFirstNode;
+
+    context.jss = create({ plugins: jssPreset().plugins, insertionPoint: injectFirstNode });
   }
 
   return <StylesContext.Provider value={context}>{children}</StylesContext.Provider>;
