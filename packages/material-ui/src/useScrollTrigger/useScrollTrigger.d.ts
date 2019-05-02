@@ -18,4 +18,4 @@ export interface UseScrollTriggerProps extends EvalOptions {
 
 export default function useScrollTrigger(
   props?: UseScrollTriggerProps,
-): [boolean, React.Dispatch<any>, React.Dispatch<React.SetStateAction<{}>>];
+): [boolean, React.Dispatch<any>];
