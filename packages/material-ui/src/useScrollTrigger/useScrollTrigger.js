@@ -1,7 +1,9 @@
 import React from 'react';
 
 function getScrollY(ref) {
-  return ref && ref.pageYOffset !== undefined ? ref.pageYOffset : 0;
+  if (ref && ref.pageYOffset !== undefined) return ref.pageYOffset;
+  if (ref && ref.scrollTop !== undefined) return ref.scrollTop;
+  return 0;
 }
 
 function defaultTrigger(props = {}) {
