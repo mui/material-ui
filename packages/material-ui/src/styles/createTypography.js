@@ -65,6 +65,7 @@ export default function createTypography(palette, typography) {
 
   return deepmerge(
     {
+      htmlFontSize,
       pxToRem,
       round,
       fontFamily,

@@ -345,6 +345,35 @@ html {
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
+### Responsive font sizes
+
+The typography variants properties map directly to the generated CSS.
+You can use [media queries](/layout/breakpoints/#api) inside them:
+
+```js
+const theme = createMuiTheme();
+
+theme.typography.h1 = {
+  fontSize: '3rem',
+  '@media (min-width:600px)': {
+    fontSize: '4.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '6rem',
+  },
+};
+```
+
+To automate this setup, you can use the [`responsiveFontSizes()`](#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+
+You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/layout/breakpoints/):
+
+{{"demo": "pages/customization/themes/ResponsiveFontSizes.js"}}
+
+### Fluid font sizes
+
+To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+
 ## Spacing
 
 We encourage you to use the `theme.spacing()` helper to create consistent spacing between the elements of your UI.
@@ -511,4 +540,34 @@ const theme = createMuiTheme({
     danger: 'orange',
   },
 });
+```
+
+### `responsiveFontSizes(theme, options) => theme`
+
+Generate responsive typography settings based on the options received.
+
+#### Arguments
+
+1. `theme` (*Object*): The theme object to enhance.
+2. `options` (*Object* [optional]):
+
+  - `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/layout/breakpoints/) (identifiers).
+  - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line
+    heights are preserved and align to Material Design's 4px line height grid.
+    This requires a unitless line height in the theme's styles.
+  - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens.
+  The lower the value, the bigger font sizes for small screens. The value must me greater than 1.
+  - `variants` (*Array<String>* [optional]): Default to all. The typography variants to handle.
+
+#### Returns
+
+`theme` (*Object*): The new theme with a responsive typography.
+
+#### Examples
+
+```js
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
 ```

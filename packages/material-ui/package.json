@@ -43,6 +43,7 @@
     "@types/react-transition-group": "^2.0.16",
     "clsx": "^1.0.2",
     "csstype": "^2.5.2",
+    "convert-css-length": "^1.0.2",
     "debounce": "^1.1.0",
     "deepmerge": "^3.0.0",
     "hoist-non-react-statics": "^3.2.1",
