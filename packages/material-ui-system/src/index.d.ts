@@ -57,7 +57,7 @@ export function compose<T extends StyleFunction<any>[]>(...args: T): Composed<T>
 // css.js
 export function css<Props>(
   styleFunction: StyleFunction<Props>,
-): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
+): StyleFunction<Props | { css: Omit<Props, 'theme'> }>;
 
 // default display.js TODO
 
