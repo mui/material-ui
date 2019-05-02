@@ -29,7 +29,7 @@ function MyButton(props) {
 }
 
 MyButton.propTypes = {
-  color: PropTypes.string.isRequired,
+  color: PropTypes.oneOf(['red', 'blue']).isRequired,
 };
 
 function AdaptingHook() {

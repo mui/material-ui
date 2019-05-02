@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import Button, { ButtonProps } from '@material-ui/core/Button';
+import Button, { ButtonProps as MuiButtonProps } from '@material-ui/core/Button';
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
 interface Props {
-  color: string;
+  color: 'red' | 'blue';
 }
+
+type MyButtonProps = Props & Omit<MuiButtonProps, keyof Props>;
 
 const useStyles = makeStyles({
   root: {
@@ -27,14 +30,14 @@ const useStyles = makeStyles({
   },
 });
 
-function MyButton(props: Props & Omit<ButtonProps, 'color'>) {
+function MyButton(props: MyButtonProps) {
   const { color, ...other } = props;
   const classes = useStyles(props);
   return <Button className={classes.root} {...other} />;
 }
 
 (MyButton as any).propTypes = {
-  color: PropTypes.string.isRequired,
+  color: PropTypes.oneOf(['red', 'blue']).isRequired,
 };
 
 function AdaptingHook() {
