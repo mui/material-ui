@@ -47,8 +47,8 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 ## Customized tables
 
-If you have read the [overrides documentation page](/customization/overrides/)
-and you are still not confident jumping in, here are some examples of how you can customize the component.
+Here is an example of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/overrides/).
 
 {{"demo": "pages/demos/tables/CustomizedTables.js"}}
 
