@@ -20,7 +20,7 @@ Accessible, customizable, delightful date & time pickers for [@material-ui/core]
 
 ### Installation
 
-Stable channel (v2). [Docs site](https://material-ui-pickers.dev/).
+Please read the [migration guide](https://next.material-ui-pickers.dev/guides/upgrading-to-v3) if you are updating from v2
 
 ```sh
 // via npm
@@ -28,16 +28,6 @@ npm i @material-ui/pickers
 
 // via yarn
 yarn add @material-ui/pickers
-```
-
-Next channel (v3-alpha). [Docs site](https://next.material-ui-pickers.dev/). [Migration guide](https://next.material-ui-pickers.dev/guides/upgrading-to-v3)
-
-```sh
-// via npm
-npm i @material-ui/pickers@next
-
-// via yarn
-yarn add @material-ui/pickers@next
 ```
 
 Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs) and [date-fns v2](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns or luxon, because they are much lighter and will be correctly tree-shaked from the bundle. Note, that we are fully relying on [date-io](https://github.com/mui-org/date-io) for supporting different libraries.
