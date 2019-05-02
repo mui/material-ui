@@ -3,9 +3,15 @@ import { PropInjector } from '@material-ui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 
-export interface CSSProperties extends CSS.Properties<number | string> {
+export type BaseCSSProperties<Props extends {} = {}> = {
+  [P in keyof CSS.Properties<number | string>]:
+    | CSS.Properties<number | string>[P]
+    | ((props: Props) => CSS.Properties<number | string>[P])
+};
+
+export interface CSSProperties<Props extends {} = {}> extends BaseCSSProperties<Props> {
   // Allow pseudo selectors and media queries
-  [k: string]: CSS.Properties<number | string>[keyof CSS.Properties] | CSSProperties;
+  [k: string]: BaseCSSProperties<Props>[keyof BaseCSSProperties<Props>] | CSSProperties<Props>;
 }
 
 /**
@@ -18,7 +24,7 @@ export interface CSSProperties extends CSS.Properties<number | string> {
  */
 export type StyleRules<Props extends object, ClassKey extends string = string> = Record<
   ClassKey,
-  CSSProperties | ((props: Props) => CSSProperties)
+  CSSProperties<Props> | ((props: Props) => CSSProperties<Props>)
 >;
 
 /**
