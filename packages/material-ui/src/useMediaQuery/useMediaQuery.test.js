@@ -8,25 +8,33 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import useMediaQuery, { testReset } from './useMediaQuery';
 
-function createMatchMedia(width, listeners) {
-  return query => ({
-    matches: mediaQuery.match(query, {
-      width,
-    }),
-    addListener: listener => {
-      listeners.push(listener);
-    },
-    removeListener: listener => {
-      const index = listeners.indexOf(listener);
-      if (index > -1) {
-        listeners.splice(index, 1);
-      }
-    },
-  });
+function createMatchMedia(width, ref) {
+  const listeners = [];
+  return query => {
+    const instance = {
+      matches: mediaQuery.match(query, {
+        width,
+      }),
+      addListener: listener => {
+        listeners.push(listener);
+      },
+      removeListener: listener => {
+        const index = listeners.indexOf(listener);
+        if (index > -1) {
+          listeners.splice(index, 1);
+        }
+      },
+    };
+    ref.push({
+      instance,
+      listeners,
+    });
+    return instance;
+  };
 }
 
 describe('useMediaQuery', () => {
-  const listeners = [];
+  let matchMediaInstances;
   let mount;
   let values;
 
@@ -43,7 +51,8 @@ describe('useMediaQuery', () => {
   beforeEach(() => {
     testReset();
     values = spy();
-    window.matchMedia = createMatchMedia(1200, listeners);
+    matchMediaInstances = [];
+    window.matchMedia = createMatchMedia(1200, matchMediaInstances);
   });
 
   after(() => {
@@ -193,11 +202,9 @@ describe('useMediaQuery', () => {
     assert.strictEqual(values.callCount, 1);
     assert.strictEqual(text(), 'false');
 
-    window.matchMedia = createMatchMedia(30000, listeners);
     act(() => {
-      listeners[0]({
-        matches: true,
-      });
+      matchMediaInstances[0].instance.matches = true;
+      matchMediaInstances[0].listeners[0]();
     });
     assert.strictEqual(text(), 'true');
     assert.strictEqual(values.callCount, 2);

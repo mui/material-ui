@@ -1,25 +1,52 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { assert } from 'chai';
-import { useFakeTimers } from 'sinon';
-import EventListener from 'react-event-listener';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
+import mediaQuery from 'css-mediaquery';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
-import createBreakpoints from '../styles/createBreakpoints';
 import createMuiTheme from '../styles/createMuiTheme';
+
+function createMatchMedia(width, ref) {
+  return query => {
+    const listeners = [];
+    const instance = {
+      matches: mediaQuery.match(query, {
+        width,
+      }),
+      addListener: listener => {
+        listeners.push(listener);
+      },
+      removeListener: listener => {
+        const index = listeners.indexOf(listener);
+        if (index > -1) {
+          listeners.splice(index, 1);
+        }
+      },
+    };
+    ref.push({
+      instance,
+      listeners,
+    });
+    return instance;
+  };
+}
 
 const Empty = () => <div />;
 const EmptyWithWidth = withWidth()(Empty);
 
-const breakpoints = createBreakpoints({});
-const TEST_ENV_WIDTH = window.innerWidth > breakpoints.values.md ? 'md' : 'sm';
-
 describe('withWidth', () => {
+  let matchMediaInstances;
   let shallow;
   let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
+    shallow = createShallow({ disableLifecycleMethods: true });
     mount = createMount({ strict: true });
+  });
+
+  beforeEach(() => {
+    matchMediaInstances = [];
+    window.matchMedia = createMatchMedia(1200, matchMediaInstances);
   });
 
   after(() => {
@@ -43,7 +70,7 @@ describe('withWidth', () => {
   describe('browser', () => {
     it('should provide the right width to the child element', () => {
       const wrapper = mount(<EmptyWithWidth />);
-      assert.strictEqual(wrapper.find(Empty).props().width, TEST_ENV_WIDTH);
+      assert.strictEqual(wrapper.find(Empty).props().width, 'md');
     });
   });
 
@@ -73,40 +100,16 @@ describe('withWidth', () => {
     });
   });
 
-  describe('width computation', () => {
-    it('should work as expected', () => {
-      const wrapper = shallow(<EmptyWithWidth />);
-      const instance = wrapper.instance();
-      const getWidth = instance.getWidth.bind(instance);
-
-      breakpoints.keys.forEach(key => {
-        assert.strictEqual(
-          getWidth(breakpoints.values[key]),
-          key,
-          'should return the matching width',
-        );
-      });
+  it('should observe the media queries', () => {
+    const wrapper = mount(<EmptyWithWidth />);
+    assert.strictEqual(wrapper.find(Empty).props().width, 'md');
+    act(() => {
+      matchMediaInstances[2].instance.matches = false;
+      matchMediaInstances[0].instance.matches = true;
+      matchMediaInstances[0].listeners[0]();
     });
-  });
-
-  describe('handle resize', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
-    it('should handle resize event', () => {
-      const wrapper = shallow(<EmptyWithWidth width="sm" />);
-      assert.strictEqual(wrapper.state().width, undefined);
-      wrapper.find(EventListener).simulate('resize');
-      clock.tick(166);
-      assert.strictEqual(wrapper.state().width, TEST_ENV_WIDTH);
-    });
+    wrapper.update();
+    assert.strictEqual(wrapper.find(Empty).props().width, 'xl');
   });
 
   describe('prop: initialWidth', () => {
@@ -119,7 +122,7 @@ describe('withWidth', () => {
 
       // Second mount on the client
       const wrapper2 = mount(element);
-      assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
+      assert.strictEqual(wrapper2.find(Empty).props().width, 'md');
     });
   });
 
@@ -134,22 +137,21 @@ describe('withWidth', () => {
 
       // Second mount on the client
       const wrapper2 = mount(element);
-      assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
+      assert.strictEqual(wrapper2.find(Empty).props().width, 'md');
     });
   });
 
   describe('theme prop: MuiWithWidth.initialWidth', () => {
     it('should use theme prop', () => {
-      const EmptyWithWidth2 = withWidth()(Empty);
       const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } });
-      const element = <EmptyWithWidth2 theme={theme} />;
+      const element = <EmptyWithWidth theme={theme} />;
       // First mount on the server
       const wrapper1 = shallow(element);
       assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
 
       // Second mount on the client
       const wrapper2 = mount(element);
-      assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
+      assert.strictEqual(wrapper2.find(Empty).props().width, 'md');
     });
   });
 
@@ -172,7 +174,7 @@ describe('withWidth', () => {
     it('should work as expected', () => {
       const EmptyWithWidth2 = withWidth({ noSSR: true })(Empty);
       const wrapper = shallow(<EmptyWithWidth2 />);
-      assert.strictEqual(wrapper.find(Empty).props().width, TEST_ENV_WIDTH);
+      assert.strictEqual(wrapper.find(Empty).props().width, 'md');
     });
   });
 });

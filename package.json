@@ -125,6 +125,7 @@
     "gm": "^1.23.0",
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "^15.0.0",
+    "json2mq": "^0.2.0",
     "jsonlint": "^1.6.3",
     "jss-plugin-template": "^10.0.0-alpha.12",
     "jss-rtl": "^0.2.1",
