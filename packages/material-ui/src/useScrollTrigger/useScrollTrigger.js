@@ -12,32 +12,31 @@ function getScrollY(ref = window) {
     : 0;
 }
 
-function defaultTrigger(event, value, props = {}) {
-  const { directional = true, threshold = 100 } = props;
-  const scrollY = getScrollY(event.currentTarget);
-  // eslint-disable-next-line no-nested-ternary
-  const trigger = directional
-    ? scrollY < value.current
+function defaultTrigger(props = {}) {
+  const { event, store, directional = true, threshold = 100 } = props;
+  const previous = store.current || 0;
+  store.current = getScrollY(event.currentTarget);
+  if (directional) {
+    return store.current < previous
       ? false
-      : !!(scrollY > value.current && scrollY > threshold)
-    : scrollY > threshold;
-
-  value.current = scrollY;
-  return trigger;
+      : !!(store.current > previous && store.current > threshold);
+  }
+  return store.current > threshold;
 }
 
 export default function useScrollTrigger(props = {}) {
-  const { onTriggerEval = defaultTrigger, ...initialOptions } = props;
+  const { onEval = defaultTrigger, ...remaining } = props;
   const [target, setTarget] = React.useState();
-  const value = React.useRef(0);
+  const store = React.useRef();
   const [trigger, setTrigger] = React.useState(false);
-  const [options, setOptions] = React.useState(initialOptions);
 
   const handleScroll = React.useCallback(
     event => {
-      setTrigger(onTriggerEval(event, value, options));
+      setTrigger(onEval({ event, store, ...remaining }));
     },
-    [onTriggerEval, options],
+    // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [onEval, JSON.stringify(remaining)],
   );
 
   React.useEffect(() => {
@@ -47,5 +46,5 @@ export default function useScrollTrigger(props = {}) {
     };
   }, [handleScroll, target]);
 
-  return [trigger, setTarget, setOptions];
+  return [trigger, setTarget];
 }
