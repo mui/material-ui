@@ -22,7 +22,7 @@ export default function App() {
     <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Server Rendering v4-alpha example
+          Server Rendering v4-beta example
         </Typography>
         <ProTip />
         <MadeWithLove />

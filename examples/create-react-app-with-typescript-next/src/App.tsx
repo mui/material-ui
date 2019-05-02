@@ -26,7 +26,7 @@ export default function App() {
     <Container maxWidth="sm">
       <MyBox my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Create React App v4-alpha example with TypeScript
+          Create React App v4-beta example with TypeScript
         </Typography>
         <ProTip />
         <MadeWithLove />

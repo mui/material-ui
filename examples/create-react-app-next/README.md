@@ -1,4 +1,4 @@
-# Create React App v4-alpha example
+# Create React App v4-beta example
 
 ## How to use
 

@@ -23,7 +23,7 @@ export default function App() {
     <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Gatsby v4-alpha example
+          Gatsby v4-beta example
         </Typography>
         <Link to="/">Go to the main page</Link>
         <ProTip />
