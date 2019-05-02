@@ -45,26 +45,33 @@ const theme = createMuiTheme();
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
 function getInheritance(testInfo, src) {
-  const inheritedComponent = testInfo.inheritComponent; // src.match(inheritedComponentRegexp);
+  let inheritedComponentName = testInfo.inheritComponent;
 
-  if (inheritedComponent == null) {
+  if (inheritedComponentName == null) {
+    const match = src.match(inheritedComponentRegexp);
+    if (match !== null) {
+      inheritedComponentName = match[1];
+    }
+  }
+
+  if (inheritedComponentName == null) {
     return null;
   }
 
   let pathname;
 
-  switch (inheritedComponent) {
+  switch (inheritedComponentName) {
     case 'Transition':
       pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
       break;
 
     default:
-      pathname = `/api/${kebabCase(inheritedComponent)}`;
+      pathname = `/api/${kebabCase(inheritedComponentName)}`;
       break;
   }
 
   return {
-    component: inheritedComponent,
+    component: inheritedComponentName,
     pathname,
   };
 }

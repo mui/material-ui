@@ -35,7 +35,7 @@ import Switch from '@material-ui/core/Switch';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other properties supplied will be provided to the root element ([IconButton](/api/icon-button/)).
 
 ## CSS
 
@@ -63,6 +63,11 @@ for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiSwitch`.
+
+## Inheritance
+
+The properties of the [IconButton](/api/icon-button/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

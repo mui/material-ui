@@ -29,7 +29,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
 The component cannot hold a ref.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other properties supplied will be provided to the root element ([Tooltip](/api/tooltip/)).
 
 ## CSS
 
@@ -48,6 +48,11 @@ for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiSpeedDialAction`.
+
+## Inheritance
+
+The properties of the [Tooltip](/api/tooltip/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
