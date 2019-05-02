@@ -38,7 +38,7 @@ function FabIntegrationSnackbar() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className={classes.appFrame}>
+      <div>
         <AppBar position="static" color="primary">
           <Toolbar>
             <IconButton
