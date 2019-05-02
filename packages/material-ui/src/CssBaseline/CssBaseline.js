@@ -34,7 +34,8 @@ const useStyles = makeStyles(
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
-function CssBaseline({ children = null }) {
+function CssBaseline(props) {
+  const { children = null } = props;
   useStyles();
   return <React.Fragment>{children}</React.Fragment>;
 }
