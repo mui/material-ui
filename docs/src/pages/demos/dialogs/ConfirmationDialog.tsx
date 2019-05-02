@@ -31,7 +31,7 @@ const options = [
 ];
 
 export interface ConfirmationDialogRawProps {
-  classes: Record<'paper', 'string'>;
+  classes: Record<'paper', string>;
   value: string;
   open: boolean;
   onClose: (value: string) => void;

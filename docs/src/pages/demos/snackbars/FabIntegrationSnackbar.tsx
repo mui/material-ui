@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,26 +11,28 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Snackbar from '@material-ui/core/Snackbar';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  '@global': {
-    body: {
-      backgroundColor: theme.palette.background.paper,
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    '@global': {
+      body: {
+        backgroundColor: theme.palette.background.paper,
+      },
     },
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  fab: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-  snackbar: {
-    [theme.breakpoints.down('xs')]: {
-      bottom: 90,
+    menuButton: {
+      marginRight: theme.spacing(2),
     },
-  },
-}));
+    fab: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      right: theme.spacing(2),
+    },
+    snackbar: {
+      [theme.breakpoints.down('xs')]: {
+        bottom: 90,
+      },
+    },
+  }),
+);
 
 function FabIntegrationSnackbar() {
   const classes = useStyles();
@@ -38,7 +40,7 @@ function FabIntegrationSnackbar() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className={classes.appFrame}>
+      <div>
         <AppBar position="static" color="primary">
           <Toolbar>
             <IconButton

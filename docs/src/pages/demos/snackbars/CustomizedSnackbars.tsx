@@ -70,13 +70,7 @@ function MySnackbarContentWrapper(props: Props) {
         </span>
       }
       action={[
-        <IconButton
-          key="close"
-          aria-label="Close"
-          color="inherit"
-          className={classes.close}
-          onClick={onClose}
-        >
+        <IconButton key="close" aria-label="Close" color="inherit" onClick={onClose}>
           <CloseIcon className={classes.icon} />
         </IconButton>,
       ]}
