@@ -2,22 +2,22 @@ import PageMeta from '../../_shared/PageMeta'
 
 <PageMeta
   title="Installation"
-  description="Step-by-step guide how to install material-ui-pickers"
+  description="Step-by-step guide how to install @material-ui/pickers"
 />
 
 ## Installation
 
-Available as [npm package](https://www.npmjs.com/package/material-ui-pickers)
+Available as [npm package](https://www.npmjs.com/package/@material-ui/pickers)
 
 ```
-npm i material-ui-pickers
+npm i @material-ui/pickers
 
-yarn add material-ui-pickers
+yarn add @material-ui/pickers
 ```
 
 #### Peer Library
 
-Material-ui-pickers was designed to use that date management library that you need.
+@material-ui/pickers was designed to use that date management library that you need.
 We are providing interfaces for [moment](https://momentjs.com/), [date-fns 2](https://date-fns.org/), [luxon](https://moment.github.io/luxon/) and [dayjs](https://github.com/iamkun/dayjs).
 
 Note that we support only `v2` versions of date-fns.
@@ -37,7 +37,7 @@ property, and makes it available down the React tree thanks to React context. It
 preferably be used at the root of your component tree.
 
 ```jsx
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 // pick utils
 import MomentUtils from '@date-io/moment';

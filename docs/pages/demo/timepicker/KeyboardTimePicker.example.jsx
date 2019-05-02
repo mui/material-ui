@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardTimePicker } from 'material-ui-pickers';
+import { KeyboardTimePicker } from '@material-ui/pickers';
 
 function KeyboardTimePickerExample() {
   const [selectedDate, handleDateChange] = useState(new Date());

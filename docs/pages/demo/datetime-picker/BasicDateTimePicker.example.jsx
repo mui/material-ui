@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { DateTimePicker } from 'material-ui-pickers';
+import { DateTimePicker } from '@material-ui/pickers';
 
 function BasicDateTimePicker() {
   const [selectedDate, handleDateChange] = useState(new Date());

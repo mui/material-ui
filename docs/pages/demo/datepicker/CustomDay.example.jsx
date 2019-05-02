@@ -8,7 +8,7 @@ import startOfWeek from 'date-fns/startOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
 // @ts-ignore this guy required only on the docs site to work with dynamic date library
 import { cloneCrossUtils } from 'utils/helpers';
-import { DatePicker } from 'material-ui-pickers';
+import { DatePicker } from '@material-ui/pickers';
 import { createStyles } from '@material-ui/styles';
 import { IconButton, withStyles } from '@material-ui/core';
 

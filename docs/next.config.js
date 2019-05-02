@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const withCSS = require('@zeit/next-css');
 const withImages = require('next-images');
@@ -36,7 +35,7 @@ module.exports = withBundleAnalyzer(
                 config.optimization.splitChunks.cacheGroups.pickers = {
                   name: 'pickers',
                   chunks: 'all',
-                  test: /[\\\/]node_modules[\\\/]material-ui-pickers[\\\/]/,
+                  test: /[\\\/]node_modules[\\\/]@material-ui\/pickers[\\\/]/,
                 };
               }
 
@@ -60,7 +59,7 @@ module.exports = withBundleAnalyzer(
             },
             target: process.env.IS_NOW ? 'serverless' : 'server',
             pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
-            transpileModules: ['material-ui-pickers'],
+            transpileModules: ['@material-ui/pickers'],
             analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
             analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
             bundleAnalyzerConfig: {

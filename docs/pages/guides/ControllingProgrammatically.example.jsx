@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePicker } from 'material-ui-pickers';
+import { DatePicker } from '@material-ui/pickers';
 import { Button, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({

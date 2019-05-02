@@ -7,6 +7,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import LightbulbOutlineIcon from '../_shared/svgIcons/LightbulbIcon';
 import TextDirectionRtLIcon from '@material-ui/icons/FormatTextdirectionRToL';
 import TextDirectionLtrIcon from '@material-ui/icons/FormatTextdirectionLToR';
+import { GITHUB_URL } from '_constants';
 import { createOverrides } from './styleOverrides';
 import { withRouter, WithRouterProps } from 'next/router';
 import { utilsMap, UtilsLib } from '../utils/utilsService';
@@ -171,11 +172,7 @@ class Layout extends Component<LayoutProps> {
             </Tooltip>
 
             <Tooltip title="Github" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                component="a"
-                href="https://github.com/dmtrKovalenko/material-ui-pickers"
-              >
+              <IconButton color="inherit" component="a" href={GITHUB_URL}>
                 <Github color="inherit" />
               </IconButton>
             </Tooltip>

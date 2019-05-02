@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Paper } from '@material-ui/core/';
-import { usePickerState, TimePickerView, Calendar } from 'material-ui-pickers';
+import { usePickerState, TimePickerView, Calendar } from '@material-ui/pickers';
 
 function StaticPickers() {
   const [value, handleDateChange] = useState(new Date());

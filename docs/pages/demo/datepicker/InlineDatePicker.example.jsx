@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { DatePicker, KeyboardDatePicker } from 'material-ui-pickers';
+import { DatePicker, KeyboardDatePicker } from '@material-ui/pickers';
 
 function InlineDatePickerDemo(props) {
   const [selectedDate, handleDateChange] = useState(new Date());

@@ -54,7 +54,7 @@ jobs:
           command: yarn prettier --check './**/*.ts*' './**/*.js*'
       - run:
           name: Build and analyze bundlesize
-          command: yarn workspace material-ui-pickers build:analyze
+          command: yarn workspace @material-ui/pickers build:analyze
 
       - persist_to_workspace:
           root: .

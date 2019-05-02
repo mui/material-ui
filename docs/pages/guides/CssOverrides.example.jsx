@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from 'react';
 import lightBlue from '@material-ui/core/colors/lightBlue';
-import { DatePicker } from 'material-ui-pickers';
+import { DatePicker } from '@material-ui/pickers';
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 

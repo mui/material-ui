@@ -1,10 +1,9 @@
-process.env.NODE_ENV = 'production';
-require('react-scripts/config/env');
+// @ts-check
+require('dotenv').config();
 
 const fse = require('fs-extra');
 const path = require('path');
 const patreonApi = require('patreon').patreon;
-
 const patreonAPIClient = patreonApi(process.env.CREATOR_TOKEN);
 
 patreonAPIClient('/campaigns/1559688/pledges')
@@ -21,5 +20,6 @@ patreonAPIClient('/campaigns/1559688/pledges')
       })
   )
   .then(users =>
-    fse.writeFile(path.resolve(__dirname, '..', 'src', 'patrons.json'), JSON.stringify(users))
-  );
+    fse.writeFile(path.resolve(__dirname, '..', 'patrons.json'), JSON.stringify(users))
+  )
+  .catch(console.error);

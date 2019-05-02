@@ -5,7 +5,7 @@ import enLocale from 'date-fns/locale/en-US';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import React, { useState, useCallback } from 'react';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 const localeMap = {
   en: enLocale,

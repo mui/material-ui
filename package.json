@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-pickers",
+  "name": "@material-ui/pickers",
   "version": "2.0.0",
   "description": "Material-ui pickers root package",
   "main": "index.js",
@@ -15,22 +15,15 @@
   "scripts": {
     "start": "yarn dev",
     "dev": "yarn workspace docs dev",
-    "release": "yarn workspace material-ui-pickers release && yarn workspace docs deploy",
+    "release": "yarn workspace @material-ui/pickers release && yarn workspace docs deploy",
     "e2e:open": "cypress open",
     "e2e:run": "cypress run",
     "lint": "eslint './**/*.ts*' './**/*.js' './**/*.jsx'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dmtrKovalenko/material-ui-pickers.git"
+    "url": "git+https://github.com/mui-org/material-ui-pickers.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dmtrKovalenko/material-ui-pickers/issues"
-  },
-  "homepage": "https://github.com/dmtrKovalenko/material-ui-pickers#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",

@@ -2,8 +2,8 @@ import format from 'date-fns/format';
 import React, { useState } from 'react';
 import frLocale from 'date-fns/locale/fr';
 import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker } from 'material-ui-pickers';
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import { DatePicker } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 class LocalizedUtils extends DateFnsUtils {
   getDatePickerHeaderText(date) {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import lime from '@material-ui/core/colors/lime';
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
-import { DateTimePicker } from 'material-ui-pickers';
+import { DateTimePicker } from '@material-ui/pickers';
 
 const defaultMaterialTheme = createMuiTheme({
   palette: {

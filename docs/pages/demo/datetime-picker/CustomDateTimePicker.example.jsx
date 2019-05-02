@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SnoozeIcon from '@material-ui/icons/Snooze';
 import AlarmIcon from '@material-ui/icons/AddAlarm';
 import { IconButton, InputAdornment } from '@material-ui/core';
-import { DateTimePicker, KeyboardDateTimePicker } from 'material-ui-pickers';
+import { DateTimePicker, KeyboardDateTimePicker } from '@material-ui/pickers';
 
 function CustomDateTimePicker(props) {
   const [clearedDate, handleClearedDateChange] = useState(null);

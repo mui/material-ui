@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { TimePicker } from 'material-ui-pickers';
+import { TimePicker } from '@material-ui/pickers';
 
 function SecondsTimePicker() {
   const [selectedDate, handleDateChange] = useState(new Date());

@@ -3,11 +3,11 @@ import PageMeta from '_shared/PageMeta';
 import { NoSsr } from '@material-ui/core';
 import { CODESANDBOX_EXAMPLE_ID } from '_constants';
 
-<PageMeta title="Usage" description="Simple usage example of material-ui-pickers" />
+<PageMeta title="Usage" description="Simple usage example of @material-ui/pickers" />
 
 ## Usage
 
-Material-UI-pickers rely only on material-ui controls and the date-management lib you have
+@material-ui/pickers rely only on material-ui controls and the date-management lib you have
 choose. Please note that all components are controlled, thats means that its required to pass `value` and `onChange` props.
 
 <Ad />
@@ -22,7 +22,7 @@ import {
   TimePicker,
   DateTimePicker,
   MuiPickersUtilsProvider,
-} from "material-ui-pickers";
+} from "@material-ui/pickers";
 
 function App() {
   const [selectedDate, handleDateChange] = useState(new Date());

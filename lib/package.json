@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-pickers",
+  "name": "@material-ui/pickers",
   "version": "3.0.0-alpha.3",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
@@ -8,7 +8,7 @@
   "keywords": [
     "material-ui",
     "pickers",
-    "material-ui-pickers",
+    "@material-ui/pickers",
     "datepicker",
     "timepicker",
     "date-picker",
@@ -20,12 +20,12 @@
   "sideEffects": false,
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dmtrKovalenko/material-ui-pickers/issues"
+    "url": "https://github.com/mui-org/material-ui-pickers/issues"
   },
   "homepage": "https://material-ui-pickers.dev/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmtrKovalenko/material-ui-pickers"
+    "url": "https://github.com/mui-org/material-ui-pickers"
   },
   "author": {
     "name": "Dmitriy Kovalenko",
@@ -48,7 +48,7 @@
   },
   "size-limit": [
     {
-      "path": "build/dist/material-ui-pickers.esm.js",
+      "path": "build/dist/@material-ui/pickers.esm.js",
       "limit": "30 KB"
     }
   ],
