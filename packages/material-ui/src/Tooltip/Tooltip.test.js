@@ -99,11 +99,9 @@ describe('<Tooltip />', () => {
     const children = wrapper.find('#testChild');
     assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     children.simulate('mouseOver');
-    children.simulate('focus');
     assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     children.simulate('mouseLeave');
     assert.strictEqual(wrapper.find(Popper).props().open, false);
-    children.simulate('blur');
     assert.strictEqual(wrapper.find(Popper).props().open, false);
   });
 
@@ -131,7 +129,6 @@ describe('<Tooltip />', () => {
       const children = wrapper.find('#testChild');
       children.simulate('touchStart');
       children.simulate('touchEnd');
-      children.simulate('focus');
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     });
 
@@ -139,7 +136,6 @@ describe('<Tooltip />', () => {
       const wrapper = mount(<Tooltip {...defaultProps} />);
       const children = wrapper.find('#testChild');
       children.simulate('touchStart');
-      children.simulate('focus');
       clock.tick(1000);
       wrapper.update();
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
@@ -324,6 +320,40 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       assert.strictEqual(wrapper.find('h1').props().hidden, false);
+    });
+  });
+
+  describe('focus', () => {
+    function Test() {
+      return (
+        <Tooltip enterDelay={0} leaveDelay={0} title="Some information">
+          <button id="target" type="button">
+            Do something
+          </button>
+        </Tooltip>
+      );
+    }
+
+    it('ignores base focus', () => {
+      const wrapper = mount(<Test />);
+      simulatePointerDevice();
+
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+
+      wrapper.find('#target').simulate('focus');
+
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+    });
+
+    it('opens on focus-visible', () => {
+      const wrapper = mount(<Test />);
+      simulatePointerDevice();
+
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+
+      focusVisible(wrapper.find('#target'));
+
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
   });
 });
