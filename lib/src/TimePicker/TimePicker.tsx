@@ -6,7 +6,7 @@ import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { timePickerDefaultProps } from '../constants/prop-types';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { BaseValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
+import { BaseValidationProps, validate, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 
 export type TimePickerProps = BasePickerProps &
   BaseValidationProps &
@@ -33,7 +33,7 @@ export const TimePicker: React.FC<TimePickerProps> = props => {
 
   const utils = useUtils();
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
-    getValidationError: () => getError(value, utils, props),
+    getValidationError: () => validate(value, utils, props),
     getDefaultFormat: () =>
       pick12hOr24hFormat(format, ampm, {
         '12h': utils.time12hFormat,

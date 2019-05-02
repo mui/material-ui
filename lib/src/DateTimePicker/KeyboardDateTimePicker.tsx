@@ -5,7 +5,7 @@ import { useUtils } from '../_shared/hooks/useUtils';
 import { toShowDateTimePickerTabs } from '../_helpers/utils';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import { dateTimePickerDefaultProps } from '../constants/prop-types';
-import { DateValidationProps, getError, pick12hOr24hFormat } from '../_helpers/text-field-helper';
+import { DateValidationProps, validate, pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import {
   BaseKeyboardPickerProps,
   useKeyboardPickerState,
@@ -59,7 +59,7 @@ export function KeyboardDateTimePicker(props: KeyboardDateTimePickerProps) {
   const utils = useUtils();
   const toShowTabs = toShowDateTimePickerTabs(showTabs);
   const { pickerProps, inputProps, wrapperProps } = useKeyboardPickerState(props, {
-    getValidationError: () => getError(value, utils, props as any),
+    getValidationError: () => validate(value, utils, props as any),
     getDefaultFormat: () =>
       pick12hOr24hFormat(format, ampm, {
         '12h': utils.dateTime12hFormat,

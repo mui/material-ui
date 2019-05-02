@@ -37,6 +37,8 @@ export { default as TimePickerView } from './TimePicker/components/TimePickerVie
 
 export { default as Clock } from './TimePicker/components/Clock';
 
+export { validate } from './_helpers/text-field-helper';
+
 export { useUtils } from './_shared/hooks/useUtils';
 
 export { usePickerState } from './_shared/hooks/usePickerState';

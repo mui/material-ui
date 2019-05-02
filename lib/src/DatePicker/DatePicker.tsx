@@ -7,7 +7,7 @@ import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { datePickerDefaultProps } from '../constants/prop-types';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { DateValidationProps, getError } from '../_helpers/text-field-helper';
+import { DateValidationProps, validate } from '../_helpers/text-field-helper';
 
 export type DatePickerProps = BasePickerProps &
   DateValidationProps &
@@ -53,7 +53,7 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
   const utils = useUtils();
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
     getDefaultFormat: () => getFormatByViews(views!, utils),
-    getValidationError: () => getError(value, utils, props),
+    getValidationError: () => validate(value, utils, props),
   });
 
   return (

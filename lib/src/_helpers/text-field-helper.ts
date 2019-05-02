@@ -44,7 +44,7 @@ export interface DateValidationProps extends BaseValidationProps {
   maxDateMessage?: React.ReactNode;
 }
 
-export const getError = (
+export const validate = (
   value: ParsableDate,
   utils: IUtils<any>,
   {
@@ -55,7 +55,7 @@ export const getError = (
     maxDateMessage,
     minDateMessage,
     invalidDateMessage,
-  }: Omit<DatePickerProps, 'openTo'> // DateTimePicker doesn't support month in openTo
+  }: Omit<DatePickerProps, 'views' | 'openTo'> // DateTimePicker doesn't support
 ): React.ReactNode => {
   const parsedValue = utils.date(value);
 

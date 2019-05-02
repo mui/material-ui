@@ -5,7 +5,7 @@ import { useUtils } from '../_shared/hooks/useUtils';
 import { getFormatByViews } from '../_helpers/date-utils';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import { datePickerDefaultProps } from '../constants/prop-types';
-import { DateValidationProps, getError } from '../_helpers/text-field-helper';
+import { DateValidationProps, validate } from '../_helpers/text-field-helper';
 import {
   BaseKeyboardPickerProps,
   useKeyboardPickerState,
@@ -55,7 +55,7 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
   const utils = useUtils();
   const { pickerProps, inputProps, wrapperProps } = useKeyboardPickerState(props, {
     getDefaultFormat: () => getFormatByViews(views!, utils),
-    getValidationError: () => getError(value, utils, props as any),
+    getValidationError: () => validate(value, utils, props as any),
   });
 
   return (
