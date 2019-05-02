@@ -31,7 +31,7 @@ const SimpleBackdrop = React.forwardRef(function SimpleBackdrop(props, ref) {
   return open ? (
     <div
       data-mui-test="Backdrop"
-      aria-hidden="true"
+      aria-hidden
       ref={ref}
       {...other}
       style={{

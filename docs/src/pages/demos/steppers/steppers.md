@@ -66,15 +66,12 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 
 ## Customized Stepper
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in,
-here are examples of how you can change the look of a stepper.
+Here is an example of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/overrides/).
 
 This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
-
-{{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
+{{"demo": "pages/demos/steppers/CustomizedSteppers.js"}}
 
 ## Mobile Stepper
 

@@ -63,7 +63,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
         },
         className,
       )}
-      aria-hidden="true"
+      aria-hidden
       ref={ref}
       {...other}
     />

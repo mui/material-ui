@@ -54,15 +54,14 @@ For example, if your site prompts for potential subscribers to fill in their ema
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
-## Customized dialog
+## Customized dialogs
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in,
-here is one example of how you can customize the `DialogTitle` to support a close button.
+Here is example of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/overrides/).
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+The dialog has a close button added to aide usability.
 
-{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+{{"demo": "pages/demos/dialogs/CustomizedDialogs.js"}}
 
 ## Full-screen dialogs
 

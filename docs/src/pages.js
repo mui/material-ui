@@ -110,7 +110,7 @@ const pages = [
   },
   {
     ...findPages[1],
-    title: 'Component Demos',
+    title: 'Components',
   },
   {
     ...findPages[0],

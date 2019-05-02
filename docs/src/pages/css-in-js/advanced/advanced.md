@@ -484,7 +484,7 @@ generates the following class names you that can override:
 .MuiButton-root { /* … */ }
 .MuiButton-label { /* … */ }
 .MuiButton-outlined { /* … */ }
-.MuiButton-outlined.disabled { /* … */ }
+.MuiButton-outlined.Mui-disabled { /* … */ }
 .MuiButton-outlinedPrimary: { /* … */ }
 .MuiButton-outlinedPrimary:hover { /* … */ }
 ```

@@ -8,7 +8,7 @@ import Popover from '../Popover';
 import MenuList from '../MenuList';
 import warning from 'warning';
 import ReactDOM from 'react-dom';
-import { setRef } from '@material-ui/core/utils/reactHelpers';
+import { setRef } from '../utils/reactHelpers';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -56,9 +56,9 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 
   const autoFocus = autoFocusProp !== undefined ? autoFocusProp : !disableAutoFocusItem;
 
-  const menuListActionsRef = React.useRef();
-  const firstValidItemRef = React.useRef();
-  const firstSelectedItemRef = React.useRef();
+  const menuListActionsRef = React.useRef(null);
+  const firstValidItemRef = React.useRef(null);
+  const firstSelectedItemRef = React.useRef(null);
 
   const getContentAnchorEl = () => firstSelectedItemRef.current || firstValidItemRef.current;
 

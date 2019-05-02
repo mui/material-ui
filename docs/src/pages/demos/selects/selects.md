@@ -22,13 +22,11 @@ we allow such pattern.
 
 ## Customized selects
 
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+Here are some examples of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/overrides/).
 
 The first step is to style the `InputBase` component.
 Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a select field.
-
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
 {{"demo": "pages/demos/selects/CustomizedSelects.js"}}
 

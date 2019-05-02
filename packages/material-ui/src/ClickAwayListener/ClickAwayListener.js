@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
-import { exactProp } from '@material-ui/utils';
+import { elementAcceptingRef, exactProp } from '@material-ui/utils';
 
 function useMountedRef() {
   const mountedRef = React.useRef(false);
@@ -27,7 +27,7 @@ function ClickAwayListener(props) {
   const mountedRef = useMountedRef();
   const movedRef = React.useRef(false);
 
-  const nodeRef = React.useRef();
+  const nodeRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback(instance => {
     // #StrictMode ready
@@ -96,10 +96,8 @@ function ClickAwayListener(props) {
 ClickAwayListener.propTypes = {
   /**
    * The wrapped element.
-   *
-   * ⚠️The component used as a child [must be able to hold a ref](/guides/composition/#children).
    */
-  children: PropTypes.element.isRequired,
+  children: elementAcceptingRef.isRequired,
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    */

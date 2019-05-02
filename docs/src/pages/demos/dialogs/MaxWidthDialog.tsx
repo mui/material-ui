@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -14,7 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     form: {
       display: 'flex',
@@ -29,104 +28,84 @@ const styles = (theme: Theme) =>
     formControlLabel: {
       marginTop: theme.spacing(1),
     },
-  });
+  }),
+);
 
-export type MaxWidthDialogProps = WithStyles<typeof styles>;
+function MaxWidthDialog() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [fullWidth, setFullWidth] = React.useState(true);
+  const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('sm');
 
-export interface MaxWidthDialogState {
-  open: boolean;
-  fullWidth: boolean;
-  maxWidth: DialogProps['maxWidth'];
-}
-
-class MaxWidthDialog extends React.Component<MaxWidthDialogProps, MaxWidthDialogState> {
-  state: MaxWidthDialogState = {
-    open: false,
-    fullWidth: true,
-    maxWidth: 'sm',
-  };
-
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  handleMaxWidthChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    this.setState({ maxWidth: event.target.value as MaxWidthDialogState['maxWidth'] });
-  };
-
-  handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ fullWidth: event.target.checked });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <React.Fragment>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Open max-width dialog
-        </Button>
-        <Dialog
-          fullWidth={this.state.fullWidth}
-          maxWidth={this.state.maxWidth}
-          open={this.state.open}
-          onClose={this.handleClose}
-          aria-labelledby="max-width-dialog-title"
-        >
-          <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              You can set my maximum width and whether to adapt or not.
-            </DialogContentText>
-            <form className={classes.form} noValidate>
-              <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="max-width">maxWidth</InputLabel>
-                <Select
-                  value={this.state.maxWidth}
-                  onChange={this.handleMaxWidthChange}
-                  inputProps={{
-                    name: 'max-width',
-                    id: 'max-width',
-                  }}
-                >
-                  <MenuItem value={false as any}>false</MenuItem>
-                  <MenuItem value="xs">xs</MenuItem>
-                  <MenuItem value="sm">sm</MenuItem>
-                  <MenuItem value="md">md</MenuItem>
-                  <MenuItem value="lg">lg</MenuItem>
-                  <MenuItem value="xl">xl</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControlLabel
-                className={classes.formControlLabel}
-                control={
-                  <Switch
-                    checked={this.state.fullWidth}
-                    onChange={this.handleFullWidthChange}
-                    value="fullWidth"
-                  />
-                }
-                label="Full width"
-              />
-            </form>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </React.Fragment>
-    );
+  function handleClickOpen() {
+    setOpen(true);
   }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  function handleMaxWidthChange(event: React.ChangeEvent<{ value: unknown }>) {
+    setMaxWidth(event.target.value as DialogProps['maxWidth']);
+  }
+
+  function handleFullWidthChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setFullWidth(event.target.checked);
+  }
+
+  return (
+    <React.Fragment>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open max-width dialog
+      </Button>
+      <Dialog
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="max-width-dialog-title"
+      >
+        <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You can set my maximum width and whether to adapt or not.
+          </DialogContentText>
+          <form className={classes.form} noValidate>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="max-width">maxWidth</InputLabel>
+              <Select
+                value={maxWidth}
+                onChange={handleMaxWidthChange}
+                inputProps={{
+                  name: 'max-width',
+                  id: 'max-width',
+                }}
+              >
+                <MenuItem value={false as any}>false</MenuItem>
+                <MenuItem value="xs">xs</MenuItem>
+                <MenuItem value="sm">sm</MenuItem>
+                <MenuItem value="md">md</MenuItem>
+                <MenuItem value="lg">lg</MenuItem>
+                <MenuItem value="xl">xl</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControlLabel
+              className={classes.formControlLabel}
+              control={
+                <Switch checked={fullWidth} onChange={handleFullWidthChange} value="fullWidth" />
+              }
+              label="Full width"
+            />
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  );
 }
 
-(MaxWidthDialog as React.ComponentClass<MaxWidthDialogProps, MaxWidthDialogState>).propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(MaxWidthDialog);
+export default MaxWidthDialog;

@@ -31,9 +31,9 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
   const { onChange, rows, rowsMax, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
-  const inputRef = React.useRef();
+  const inputRef = React.useRef(null);
   const [state, setState] = React.useState({});
-  const shadowRef = React.useRef();
+  const shadowRef = React.useRef(null);
   const handleRef = useForkRef(ref, inputRef);
 
   const syncHeight = React.useCallback(() => {
@@ -127,7 +127,7 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
         {...other}
       />
       <textarea
-        aria-hidden="true"
+        aria-hidden
         className={props.className}
         readOnly
         ref={shadowRef}

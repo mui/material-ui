@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/system",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0-beta.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI System - Design system for Material-UI.",

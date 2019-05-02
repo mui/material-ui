@@ -23,7 +23,7 @@ function MenuListComposition() {
   const anchorRef = React.useRef(null);
 
   function handleToggle() {
-    setOpen(!open);
+    setOpen(prevOpen => !prevOpen);
   }
 
   function handleClose(event) {

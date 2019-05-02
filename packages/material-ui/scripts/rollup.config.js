@@ -3,7 +3,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import nodeGlobals from 'rollup-plugin-node-globals';
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 const input = './src/index.js';
@@ -38,9 +38,14 @@ const commonjsOptions = {
   },
 };
 
+function onwarn(warning) {
+  throw Error(warning.message);
+}
+
 export default [
   {
     input,
+    onwarn,
     output: {
       file: 'build/umd/material-ui.development.js',
       format: 'umd',
@@ -58,6 +63,7 @@ export default [
   },
   {
     input,
+    onwarn,
     output: {
       file: 'build/umd/material-ui.production.min.js',
       format: 'umd',
@@ -72,7 +78,7 @@ export default [
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
-      uglify(),
+      terser(),
     ],
   },
 ];

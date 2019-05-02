@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -7,7 +7,7 @@ import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '90%',
   },
@@ -42,7 +42,7 @@ function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step) {
+function getStepContent(step: number) {
   switch (step) {
     case 0:
       return 'Select campaign settings...';
@@ -55,7 +55,7 @@ function getStepContent(step) {
   }
 }
 
-function CustomizedStepper() {
+function CustomizedSteppers() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -132,4 +132,4 @@ function CustomizedStepper() {
   );
 }
 
-export default CustomizedStepper;
+export default CustomizedSteppers;

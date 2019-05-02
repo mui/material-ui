@@ -49,7 +49,7 @@ const DialogActions = withStyles(theme => ({
   },
 }))(MuiDialogActions);
 
-class CustomizedDialogDemo extends React.Component {
+class CustomizedDialogs extends React.Component {
   state = {
     open: false,
   };
@@ -105,4 +105,4 @@ class CustomizedDialogDemo extends React.Component {
   }
 }
 
-export default CustomizedDialogDemo;
+export default CustomizedDialogs;

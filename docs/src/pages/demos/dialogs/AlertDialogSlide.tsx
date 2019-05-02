@@ -8,9 +8,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 
-function Transition(props: TransitionProps) {
-  return <Slide direction="up" {...props} />;
-}
+const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function AlertDialogSlide() {
   const [open, setOpen] = React.useState(false);

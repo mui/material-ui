@@ -7,9 +7,7 @@ import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 const GreenRadio = withStyles({
   root: {
-    '&:not($checked)': {
-      color: green[400],
-    },
+    color: green[400],
     '&$checked': {
       color: green[600],
     },

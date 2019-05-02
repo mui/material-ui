@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -380,7 +381,7 @@ Tooltip.propTypes = {
   /**
    * Tooltip reference element.
    */
-  children: PropTypes.element.isRequired,
+  children: elementAcceptingRef.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

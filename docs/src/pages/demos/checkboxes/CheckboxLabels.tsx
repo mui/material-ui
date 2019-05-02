@@ -11,9 +11,7 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 const GreenCheckbox = withStyles({
   root: {
-    '&:not($checked)': {
-      color: green[400],
-    },
+    color: green[400],
     '&$checked': {
       color: green[600],
     },

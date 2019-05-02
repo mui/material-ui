@@ -78,6 +78,10 @@ function isElementTypeAcceptingRefProp(type) {
   return type.raw === 'elementTypeAcceptingRef';
 }
 
+function isElementAcceptingRefProp(type) {
+  return /^elementAcceptingRef/.test(type.raw);
+}
+
 function generatePropDescription(prop) {
   const { description } = prop;
   const type = prop.flowType || prop.type;
@@ -151,7 +155,7 @@ function generatePropDescription(prop) {
   }
 
   let notes = '';
-  if (isElementTypeAcceptingRefProp(type)) {
+  if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
     notes += '<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs).';
   }
 
@@ -163,6 +167,9 @@ function generatePropType(type) {
     case 'custom': {
       if (isElementTypeAcceptingRefProp(type)) {
         return `element type`;
+      }
+      if (isElementAcceptingRefProp(type)) {
+        return `element`;
       }
 
       const deprecatedInfo = getDeprecatedInfo(type);
@@ -254,7 +261,11 @@ function generateProps(reactAPI) {
 
     const chainedPropType = getChained(prop.type);
 
-    if (prop.required || (chainedPropType !== false && chainedPropType.required)) {
+    if (
+      prop.required ||
+      /\.isRequired/.test(prop.type.raw) ||
+      (chainedPropType !== false && chainedPropType.required)
+    ) {
       propRaw = `<span class="prop-name required">${propRaw}&nbsp;*</span>`;
     } else {
       propRaw = `<span class="prop-name">${propRaw}</span>`;

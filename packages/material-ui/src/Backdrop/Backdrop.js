@@ -39,7 +39,7 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
           },
           className,
         )}
-        aria-hidden="true"
+        aria-hidden
         ref={ref}
       />
     </Fade>

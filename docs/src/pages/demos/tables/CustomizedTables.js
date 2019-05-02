@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CustomizedTable() {
+function CustomizedTables() {
   const classes = useStyles();
 
   return (
@@ -81,4 +81,4 @@ function CustomizedTable() {
   );
 }
 
-export default CustomizedTable;
+export default CustomizedTables;

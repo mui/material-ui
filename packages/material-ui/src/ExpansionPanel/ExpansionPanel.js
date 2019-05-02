@@ -51,6 +51,9 @@ export const styles = theme => {
           display: 'none',
         },
       },
+      '&$disabled': {
+        backgroundColor: theme.palette.action.disabledBackground,
+      },
     },
     /* Styles applied to the root element if `square={false}`. */
     rounded: {
@@ -72,9 +75,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `expanded={true}`. */
     expanded: {},
     /* Styles applied to the root element if `disabled={true}`. */
-    disabled: {
-      backgroundColor: theme.palette.action.disabledBackground,
-    },
+    disabled: {},
   };
 };
 

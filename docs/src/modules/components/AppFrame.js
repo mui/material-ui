@@ -89,8 +89,8 @@ const styles = theme => ({
     display: 'block',
     padding: 4,
     textAlign: 'center',
-    backgroundColor: '#0a6fc2',
-    color: 'white',
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
   },
   grow: {
     flex: '1 1 auto',
@@ -108,7 +108,7 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     left: theme.spacing(2),
-    top: theme.spacing(-6),
+    top: theme.spacing(-10),
     zIndex: theme.zIndex.tooltip + 1,
     '&:focus': {
       top: theme.spacing(2),

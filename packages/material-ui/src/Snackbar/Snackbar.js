@@ -6,7 +6,6 @@ import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
 import { capitalize, createChainedFunction } from '../utils/helpers';
-import withForwardedRef from '../utils/withForwardedRef';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 
@@ -95,181 +94,157 @@ export const styles = theme => {
   };
 };
 
-class Snackbar extends React.Component {
-  state = {};
+const Snackbar = React.forwardRef(function Snackbar(props, ref) {
+  const {
+    action,
+    anchorOrigin: { vertical, horizontal },
+    autoHideDuration,
+    children,
+    classes,
+    className,
+    ClickAwayListenerProps,
+    ContentProps,
+    disableWindowBlurListener,
+    message,
+    onClose,
+    onEnter,
+    onEntered,
+    onEntering,
+    onExit,
+    onExited,
+    onExiting,
+    onMouseEnter,
+    onMouseLeave,
+    open,
+    resumeHideDuration,
+    TransitionComponent,
+    transitionDuration,
+    TransitionProps,
+    ...other
+  } = props;
 
-  componentDidMount() {
-    if (this.props.open) {
-      this.setAutoHideTimer();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.open !== this.props.open) {
-      if (this.props.open) {
-        this.setAutoHideTimer();
-      } else {
-        clearTimeout(this.timerAutoHide);
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timerAutoHide);
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.exited === 'undefined') {
-      return {
-        exited: !nextProps.open,
-      };
-    }
-
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    return null;
-  }
+  const timerAutoHide = React.useRef();
+  const [exited, setExited] = React.useState(!open);
 
   // Timer that controls delay before snackbar auto hides
-  setAutoHideTimer(autoHideDuration) {
-    const autoHideDurationBefore =
-      autoHideDuration != null ? autoHideDuration : this.props.autoHideDuration;
+  const setAutoHideTimer = React.useCallback(
+    autoHideDurationParam => {
+      const autoHideDurationBefore =
+        autoHideDurationParam != null ? autoHideDurationParam : autoHideDuration;
 
-    if (!this.props.onClose || autoHideDurationBefore == null) {
-      return;
-    }
-
-    clearTimeout(this.timerAutoHide);
-    this.timerAutoHide = setTimeout(() => {
-      const autoHideDurationAfter =
-        autoHideDuration != null ? autoHideDuration : this.props.autoHideDuration;
-      if (!this.props.onClose || autoHideDurationAfter == null) {
+      if (!onClose || autoHideDurationBefore == null) {
         return;
       }
 
-      this.props.onClose(null, 'timeout');
-    }, autoHideDurationBefore);
-  }
+      clearTimeout(timerAutoHide.current);
+      timerAutoHide.current = setTimeout(() => {
+        const autoHideDurationAfter =
+          autoHideDurationParam != null ? autoHideDurationParam : autoHideDuration;
+        if (!onClose || autoHideDurationAfter == null) {
+          return;
+        }
+        onClose(null, 'timeout');
+      }, autoHideDurationBefore);
+    },
+    [autoHideDuration, onClose],
+  );
 
-  handleMouseEnter = event => {
-    if (this.props.onMouseEnter) {
-      this.props.onMouseEnter(event);
-    }
-    this.handlePause();
-  };
+  React.useEffect(() => {
+    if (open) setAutoHideTimer();
 
-  handleMouseLeave = event => {
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(event);
-    }
-    this.handleResume();
-  };
-
-  handleClickAway = event => {
-    if (this.props.onClose) {
-      this.props.onClose(event, 'clickaway');
-    }
-  };
+    return () => {
+      clearTimeout(timerAutoHide.current);
+    };
+  }, [open, setAutoHideTimer]);
 
   // Pause the timer when the user is interacting with the Snackbar
   // or when the user hide the window.
-  handlePause = () => {
-    clearTimeout(this.timerAutoHide);
+  const handlePause = () => {
+    clearTimeout(timerAutoHide.current);
   };
 
   // Restart the timer when the user is no longer interacting with the Snackbar
   // or when the window is shown back.
-  handleResume = () => {
-    if (this.props.autoHideDuration != null) {
-      if (this.props.resumeHideDuration != null) {
-        this.setAutoHideTimer(this.props.resumeHideDuration);
+  const handleResume = () => {
+    if (autoHideDuration != null) {
+      if (resumeHideDuration != null) {
+        setAutoHideTimer(resumeHideDuration);
         return;
       }
-      this.setAutoHideTimer(this.props.autoHideDuration * 0.5);
+      setAutoHideTimer(autoHideDuration * 0.5);
     }
   };
 
-  handleExited = () => {
-    this.setState({ exited: true });
+  const handleMouseEnter = event => {
+    if (onMouseEnter) {
+      onMouseEnter(event);
+    }
+    handlePause();
   };
 
-  render() {
-    const {
-      action,
-      anchorOrigin: { vertical, horizontal },
-      autoHideDuration,
-      children,
-      classes,
-      className,
-      ClickAwayListenerProps,
-      ContentProps,
-      disableWindowBlurListener,
-      innerRef,
-      message,
-      onClose,
-      onEnter,
-      onEntered,
-      onEntering,
-      onExit,
-      onExited,
-      onExiting,
-      onMouseEnter,
-      onMouseLeave,
-      open,
-      resumeHideDuration,
-      TransitionComponent,
-      transitionDuration,
-      TransitionProps,
-      ...other
-    } = this.props;
-
-    // So we only render active snackbars.
-    if (!open && this.state.exited) {
-      return null;
+  const handleMouseLeave = event => {
+    if (onMouseLeave) {
+      onMouseLeave(event);
     }
+    handleResume();
+  };
 
-    return (
-      <ClickAwayListener onClickAway={this.handleClickAway} {...ClickAwayListenerProps}>
-        <div
-          className={clsx(
-            classes.root,
-            classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
-            className,
-          )}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
-          ref={innerRef}
-          {...other}
-        >
-          <EventListener
-            target="window"
-            onFocus={disableWindowBlurListener ? undefined : this.handleResume}
-            onBlur={disableWindowBlurListener ? undefined : this.handlePause}
-          />
-          <TransitionComponent
-            appear
-            in={open}
-            onEnter={onEnter}
-            onEntered={onEntered}
-            onEntering={onEntering}
-            onExit={onExit}
-            onExited={createChainedFunction(this.handleExited, onExited)}
-            onExiting={onExiting}
-            timeout={transitionDuration}
-            direction={vertical === 'top' ? 'down' : 'up'}
-            {...TransitionProps}
-          >
-            {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
-          </TransitionComponent>
-        </div>
-      </ClickAwayListener>
-    );
+  const handleClickAway = event => {
+    if (onClose) {
+      onClose(event, 'clickaway');
+    }
+  };
+
+  const handleExited = () => {
+    setExited(true);
+  };
+
+  const handleEnter = () => {
+    setExited(false);
+  };
+
+  // So we only render active snackbars.
+  if (!open && exited) {
+    return null;
   }
-}
+
+  return (
+    <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
+      <div
+        className={clsx(
+          classes.root,
+          classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
+          className,
+        )}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        ref={ref}
+        {...other}
+      >
+        <EventListener
+          target="window"
+          onFocus={disableWindowBlurListener ? undefined : handleResume}
+          onBlur={disableWindowBlurListener ? undefined : handlePause}
+        />
+        <TransitionComponent
+          appear
+          in={open}
+          onEnter={createChainedFunction(handleEnter, onEnter)}
+          onEntered={onEntered}
+          onEntering={onEntering}
+          onExit={onExit}
+          onExited={createChainedFunction(handleExited, onExited)}
+          onExiting={onExiting}
+          timeout={transitionDuration}
+          direction={vertical === 'top' ? 'down' : 'up'}
+          {...TransitionProps}
+        >
+          {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
+        </TransitionComponent>
+      </div>
+    </ClickAwayListener>
+  );
+});
 
 Snackbar.propTypes = {
   /**
@@ -315,11 +290,6 @@ Snackbar.propTypes = {
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    */
   disableWindowBlurListener: PropTypes.bool,
-  /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * When displaying multiple consecutive Snackbars from a parent rendering a single
    * <Snackbar/>, add the key property to ensure independent treatment of each message.
@@ -416,4 +386,4 @@ Snackbar.defaultProps = {
   },
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(withForwardedRef(Snackbar));
+export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);

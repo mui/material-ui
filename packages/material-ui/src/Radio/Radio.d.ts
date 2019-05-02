@@ -9,7 +9,7 @@ export interface RadioProps
   icon?: React.ReactNode;
 }
 
-export type RadioClassKey = SwitchBaseClassKey;
+export type RadioClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondary';
 
 declare const Radio: React.ComponentType<RadioProps>;
 

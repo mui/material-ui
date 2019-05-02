@@ -23,11 +23,11 @@ function DelayingAppearance() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
-  let timer = null;
+  const timerRef = React.useRef();
 
-  React.useState(
+  React.useEffect(
     () => () => {
-      clearTimeout(timer);
+      clearTimeout(timerRef.current);
     },
     [],
   );
@@ -37,7 +37,7 @@ function DelayingAppearance() {
   }
 
   function handleClickQuery() {
-    clearTimeout(timer);
+    clearTimeout(timerRef.current);
 
     if (query !== 'idle') {
       setQuery('idle');
@@ -45,7 +45,7 @@ function DelayingAppearance() {
     }
 
     setQuery('progress');
-    timer = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setQuery('success');
     }, 2000);
   }

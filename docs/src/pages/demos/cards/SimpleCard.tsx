@@ -1,33 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const styles = createStyles({
-  card: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+const useStyles = makeStyles(
+  createStyles({
+    card: {
+      minWidth: 275,
+    },
+    bullet: {
+      display: 'inline-block',
+      margin: '0 2px',
+      transform: 'scale(0.8)',
+    },
+    title: {
+      fontSize: 14,
+    },
+    pos: {
+      marginBottom: 12,
+    },
+  }),
+);
 
-export interface Props extends WithStyles<typeof styles> {}
-
-function SimpleCard(props: Props) {
-  const { classes } = props;
+function SimpleCard() {
+  const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
@@ -59,8 +58,4 @@ function SimpleCard(props: Props) {
   );
 }
 
-SimpleCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(SimpleCard);
+export default SimpleCard;

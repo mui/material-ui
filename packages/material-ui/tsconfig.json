@@ -7,6 +7,8 @@
       "@material-ui/core/*": ["packages/material-ui/src/*"],
       "@material-ui/lab": ["packages/material-ui-lab/src"],
       "@material-ui/lab/*": ["packages/material-ui-lab/src/*"],
+      "@material-ui/styles": ["packages/material-ui-styles/src"],
+      "@material-ui/styles/*": ["packages/material-ui-styles/src/*"],
       "jss": ["node_modules/@types/jss"]
     }
   },
