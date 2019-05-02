@@ -10,7 +10,7 @@ export interface OnEvalProps extends EvalOptions {
   store: React.MutableRefObject<any>;
 }
 
-export type OnEval = (event: Event, store: React.MutableRefObject<any>) => boolean;
+export type OnEval = (props: OnEvalProps) => boolean;
 
 export interface UseScrollTriggerProps extends EvalOptions {
   onEval?: OnEval;
