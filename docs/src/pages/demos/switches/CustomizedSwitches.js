@@ -79,6 +79,7 @@ const AntSwitch = withStyles(theme => ({
     width: 28,
     height: 16,
     padding: 0,
+    display: 'flex',
   },
   switchBase: {
     padding: 2,
@@ -143,7 +144,7 @@ function CustomizedSwitches() {
       <Typography component="div">
         <Grid component="label" container alignItems="center" spacing={1}>
           <Grid item>Off</Grid>
-          <Grid item>
+          <Grid item alignItems="center">
             <AntSwitch
               checked={state.checkedC}
               onChange={handleChange('checkedC')}

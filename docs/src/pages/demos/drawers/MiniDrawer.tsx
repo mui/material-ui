@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function MiniDrawer() {
   const classes = useStyles();
-  const theme: Theme = useTheme();
+  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   function handleDrawerOpen() {
