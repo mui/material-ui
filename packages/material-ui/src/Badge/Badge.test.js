@@ -92,12 +92,14 @@ describe('<Badge />', () => {
       assert.strictEqual(findBadge(wrapper).hasClass(classes.invisible), true);
     });
 
-    it('should render with the invisible class when empty', () => {
+    it('should render with the invisible class when empty and not dot', () => {
       let wrapper;
       wrapper = mount(<Badge {...defaultProps} badgeContent={null} />);
       assert.strictEqual(findBadge(wrapper).hasClass(classes.invisible), true);
       wrapper = mount(<Badge {...defaultProps} badgeContent={undefined} />);
       assert.strictEqual(findBadge(wrapper).hasClass(classes.invisible), true);
+      wrapper = mount(<Badge {...defaultProps} badgeContent={undefined} variant="dot" />);
+      assert.strictEqual(findBadge(wrapper).hasClass(classes.invisible), false);
     });
   });
 
