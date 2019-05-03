@@ -10,6 +10,7 @@ import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import { useForkRef } from '../utils/reactHelpers';
+import { useIsFocusVisible } from '../utils/focusVisible';
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
@@ -201,6 +202,21 @@ function Tooltip(props) {
     }
   };
 
+  const getOwnerDocument = React.useCallback(() => {
+    if (childNode == null) {
+      return null;
+    }
+    return childNode.ownerDocument;
+  }, [childNode]);
+  const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
+  const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
+  function handleBlur() {
+    if (childIsFocusVisible) {
+      setChildIsFocusVisible(false);
+      onBlurVisible();
+    }
+  }
+
   const handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
@@ -209,7 +225,10 @@ function Tooltip(props) {
       setChildNode(event.currentTarget);
     }
 
-    handleEnter(event);
+    if (isFocusVisible(event)) {
+      setChildIsFocusVisible(true);
+      handleEnter(event);
+    }
 
     const childrenProps = children.props;
     if (childrenProps.onFocus) {
@@ -235,8 +254,11 @@ function Tooltip(props) {
   const handleLeave = event => {
     const childrenProps = children.props;
 
-    if (event.type === 'blur' && childrenProps.onBlur) {
-      childrenProps.onBlur(event);
+    if (event.type === 'blur') {
+      if (childrenProps.onBlur) {
+        childrenProps.onBlur(event);
+      }
+      handleBlur(event);
     }
 
     if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
