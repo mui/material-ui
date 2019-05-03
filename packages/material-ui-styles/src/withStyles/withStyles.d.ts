@@ -3,13 +3,13 @@ import { PropInjector } from '@material-ui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 
-export type BaseCSSProperties<Props extends {} = {}> = {
+export type BaseCSSProperties<Props extends object = {}> = {
   [P in keyof CSS.Properties<number | string>]:
     | CSS.Properties<number | string>[P]
     | ((props: Props) => CSS.Properties<number | string>[P])
 };
 
-export interface CSSProperties<Props extends {} = {}> extends BaseCSSProperties<Props> {
+export interface CSSProperties<Props extends object = {}> extends BaseCSSProperties<Props> {
   // Allow pseudo selectors and media queries
   [k: string]: BaseCSSProperties<Props>[keyof BaseCSSProperties<Props>] | CSSProperties<Props>;
 }
@@ -34,7 +34,7 @@ export type StyleRulesCallback<Theme, Props extends object, ClassKey extends str
   theme: Theme,
 ) => StyleRules<Props, ClassKey>;
 
-export type Styles<Theme, Props extends {}, ClassKey extends string = string> =
+export type Styles<Theme, Props extends object, ClassKey extends string = string> =
   | StyleRules<Props, ClassKey>
   | StyleRulesCallback<Theme, Props, ClassKey>;
 
@@ -50,7 +50,7 @@ export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, st
 /**
  * @internal
  */
-export type ClassKeyInferable<Theme, Props extends {}> = string | Styles<Theme, Props>;
+export type ClassKeyInferable<Theme, Props extends object> = string | Styles<Theme, Props>;
 export type ClassKeyOfStyles<S> = S extends string
   ? S
   : S extends StyleRulesCallback<any, any, infer K>
