@@ -3,6 +3,14 @@ import { useState, useEffect } from 'react';
 export default function useWidth(theme) {
     const [width, setWidth] = useState('');
 
+    // if you are not in a browser environment you need to provide an "mediaQueryMatcher"
+    //    in theme.props.MuiUseMediaQuery.ssrMatchMedia
+    const { props: { MuiUseMediaQuery: { ssrMatchMedia } } } = theme;
+    const matchMedia = typeof window !== 'undefined' ? window.matchMedia : ssrMatchMedia;
+    if (matchMedia === undefined) {
+        throw new Error('No global "window.matchMedia" or "ssrMatchMedia" found');
+    }
+
     // differs from use
     // always run on when media match fires, not only on mount unmount
     useEffect(() => {
@@ -20,7 +28,7 @@ export default function useWidth(theme) {
             state[propName] = obj;
             obj.name = propName;
             obj.only = theme.breakpoints.only(propName).replace(/^@media\s+(.*)$/, '$1');
-            obj.mql = window.matchMedia(obj.only);
+            obj.mql = matchMedia(obj.only);
             obj.listener = listener; // because of "this"
             obj.mql.addListener(listener);
             // kickoff

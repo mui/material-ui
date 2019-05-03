@@ -5,30 +5,43 @@ import useTheme from './useTheme';
 import useWidth from './useWidth';
 import ThemeProvider from './ThemeProvider';
 
-describe('useTheme', () => {
-  let mount;
+function createSSRMatchMedia() {
 
-  before(() => {
-    mount = createMount();
-  });
+    return {
+        ssrMatchMedia(query) {
 
-  after(() => {
-    mount.cleanUp();
-  });
+            // returns eventTarget
+        },
+        changeScreenWidth(width) {
 
-  it('should use the theme', () => {
-    function Test() {
-      const theme = useTheme();
-      const size = useWidth(theme);
+        }
+    };
+}
 
-      return <span>{size}</span>;
-    }
+describe('useWidth', () => {
+    let mount;
 
-    const wrapper = mount(
-      <ThemeProvider theme={{ foo: 'foo' }}>
-        <Test />
-      </ThemeProvider>,
-    );
-    assert.strictEqual(wrapper.text(), 'foo');
-  });
+    before(() => {
+        mount = createMount();
+    });
+
+    after(() => {
+        mount.cleanUp();
+    });
+
+    it('should use the theme', () => {
+        function Test() {
+            const theme = useTheme();
+            const size = useWidth(theme);
+
+            return <span>{size}</span>;
+        }
+
+        const wrapper = mount(
+            <ThemeProvider theme={{ foo: 'foo' }}>
+                <Test />
+            </ThemeProvider>,
+        );
+        assert.strictEqual(wrapper.text(), 'foo');
+    });
 });

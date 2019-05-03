@@ -42,6 +42,24 @@ nothing happens if the query is true and the matched was already made
 or when the query is false and there and it never matched.
 
 
+```javascript
+export default function ServerSide() {
+  // Use https://github.com/ericf/css-mediaquery as ponyfill.
+  const ssrMatchMedia = query => ({
+    matches: mediaQuery.match(query, {
+      // The estimated CSS width of the browser.
+      // For the sake of this demo, we are using a fixed value.
+      // In production, you can look into client-hint https://caniuse.com/#search=client%20hint
+      // or user-agent resolution.
+      width: 800,
+    }),
+  });
 
-
+  return (
+    <ThemeProvider theme={{ props: { MuiUseMediaQuery: { ssrMatchMedia } } }}>
+      <MyComponent />
+    </ThemeProvider>
+  );
+}
+```
 
