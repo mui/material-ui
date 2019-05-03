@@ -1,6 +1,9 @@
 import { CSSProperties } from '@material-ui/styles';
 import * as CSS from 'csstype';
 
+// disable automatic export
+export {};
+
 type ThemeOf<Props> = Props extends WithTheme<infer Theme> ? Theme : never;
 type WithThemeOfProps<Props> = WithTheme<ThemeOf<Props>>;
 interface WithTheme<Theme extends object> {
@@ -9,7 +12,7 @@ interface WithTheme<Theme extends object> {
 export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
   ? Props
   : never;
-type StyleFunction<Props> = (props: Props) => any;
+export type StyleFunction<Props> = (props: Props) => any;
 type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Record<PropKey, any>>>;
 
 // borders.js
@@ -34,7 +37,6 @@ export type BordersProps = PropsFor<typeof borders>;
 // breakpoints.js
 /**
  *
- * @param styleFunction
  * @returns An enhanced stylefunction that considers breakpoints
  */
 export function breakpoints<Props extends { theme: { breakpoints?: unknown } }>(
@@ -49,10 +51,10 @@ export function breakpoints<Props extends { theme: { breakpoints?: unknown } }>(
  * If `firstFn` requires { color: string } and `secondFn` requires { spacing: number }
  * their composed function requires { color: string, spacing: number }
  */
-type ComposedArg<T> = T extends ((arg: infer P) => any)[] ? P : never;
+type ComposedArg<T> = T extends Array<(arg: infer P) => any> ? P : never;
 type ComposedStyleProps<T> = ComposedArg<T>;
-type Composed<T extends StyleFunction<any>[]> = StyleFunction<ComposedStyleProps<T>>;
-export function compose<T extends StyleFunction<any>[]>(...args: T): Composed<T>;
+type Composed<T extends Array<StyleFunction<any>>> = StyleFunction<ComposedStyleProps<T>>;
+export function compose<T extends Array<StyleFunction<any>>>(...args: T): Composed<T>;
 
 // css.js
 export function css<Props>(
