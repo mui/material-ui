@@ -49,6 +49,14 @@ const themes = [
     href: 'https://www.creative-tim.com/product/material-dashboard-react?partner=104080',
   },
   {
+    name: 'React Material Admin',
+    description: 'React Material Admin is a react dashboard template. No jQuery and Bootstrap!',
+    src: '/static/themes/react-material-admin.png',
+    price: 'FREE',
+    category: 'Admin & Dashboard',
+    href: 'https://flatlogic.com/admin-dashboards/react-material-admin',
+  },
+  {
     name: 'Material Kit',
     description: 'A Badass Material-UI Kit based on Material Design.',
     src: '/static/themes/creative-tim-kit.jpg',
