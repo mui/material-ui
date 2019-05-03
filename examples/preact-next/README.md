@@ -1,4 +1,4 @@
-# Preact v4-alpha example
+# Preact v4-beta example
 
 ## How to use
 

@@ -1,4 +1,4 @@
-# Server Rendering v4-alpha example
+# Server Rendering v4-beta example
 
 ## How to use
 

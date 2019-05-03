@@ -1,4 +1,4 @@
-# Create React App v4-alpha example with TypeScript
+# Create React App v4-beta example with TypeScript
 
 ## How to use
 
