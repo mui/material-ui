@@ -5,6 +5,9 @@
   "author": "Material-UI Team",
   "description": "Material-UI Types - Utility types for Material-UI.",
   "types": "./index.d.ts",
+  "files": [
+    "./index.d.ts"
+  ],
   "keywords": [
     "react",
     "react-component",
