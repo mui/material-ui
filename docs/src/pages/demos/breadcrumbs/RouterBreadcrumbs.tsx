@@ -14,7 +14,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
-import { Omit } from '@material-ui/core';
+import { Omit } from '@material-ui/types';
 
 interface RouterBreadcrumbsState {
   readonly open: boolean;
