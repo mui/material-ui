@@ -92,7 +92,7 @@ const Badge = React.forwardRef(function Badge(props, ref) {
 
   let invisible = invisibleProp;
 
-  if (invisibleProp == null && Number(badgeContent) === 0 && !showZero) {
+  if (invisibleProp == null && ((Number(badgeContent) === 0 && !showZero) || badgeContent == null)) {
     invisible = true;
   }
 
