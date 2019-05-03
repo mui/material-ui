@@ -37,7 +37,7 @@ Old versions documentation:
 | Stable v2 | https://material-ui-pickers-v2.dmtr-kovalenko.now.sh/ |
 | Alpha v3  | https://material-ui-pickers-v3.dmtr-kovalenko.now.sh/ |
 
-Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs) and [date-fns v2](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns or luxon, because they are much lighter and will be correctly tree-shaked from the bundle. Note, that we are fully relying on [date-io](https://github.com/mui-org/date-io) for supporting different libraries.
+Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs) and [date-fns v2](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns or luxon, because they are much lighter and will be correctly tree-shaked from the bundle. Note, that we are fully relying on [date-io](https://github.com/dmtrKovalenko/date-io) for supporting different libraries.
 
 ```sh
 npm i date-fns@next @date-io/date-fns
