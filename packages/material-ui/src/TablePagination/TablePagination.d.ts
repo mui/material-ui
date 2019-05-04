@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
-import { Omit } from '..';
+import { Omit } from '@material-ui/types';
 import { TablePaginationActionsProps } from './TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';

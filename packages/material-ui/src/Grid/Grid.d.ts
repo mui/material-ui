@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StandardProps, Omit } from '..';
+import { Omit } from '@material-ui/types';
+import { StandardProps } from '..';
 import { Breakpoint } from '../styles/createBreakpoints';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
