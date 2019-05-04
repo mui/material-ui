@@ -5,7 +5,6 @@
   "dependencies": {
     "@material-ui/core": "next",
     "@material-ui/styles": "next",
-    "@zeit/next-typescript": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
@@ -18,8 +17,6 @@
   "devDependencies": {
     "@types/next": "latest",
     "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "@types/styled-jsx": "latest",
-    "typescript": "latest"
+    "@types/react-dom": "latest"
   }
 }
