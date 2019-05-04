@@ -36,6 +36,7 @@ class DemoFrame extends React.Component {
       }),
       sheetsManager: new Map(),
       container: this.contentDocument.body,
+      window: () => this.contentWindow,
     });
   };
 
@@ -60,6 +61,7 @@ class DemoFrame extends React.Component {
             <StylesProvider jss={this.state.jss} sheetsManager={this.state.sheetsManager}>
               {React.cloneElement(children, {
                 container: this.state.container,
+                window: this.state.window,
               })}
             </StylesProvider>
           ) : null}

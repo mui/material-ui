@@ -99,7 +99,7 @@ function PersistentDrawerRight() {
         })}
       >
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography variant="h6" noWrap className={classes.title}>
             Persistent drawer
           </Typography>
           <IconButton
