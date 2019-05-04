@@ -109,6 +109,7 @@
     "classnames": "^2.2.6",
     "clean-css": "^4.1.11",
     "clipboard-copy": "^3.0.0",
+    "compression-webpack-plugin": "^2.0.0",
     "cross-env": "^5.1.1",
     "css-loader": "^2.0.0",
     "css-mediaquery": "^0.1.2",

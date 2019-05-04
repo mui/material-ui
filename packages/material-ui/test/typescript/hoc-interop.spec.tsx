@@ -45,10 +45,10 @@ const filledProps = {
 {
   type RouterTextFieldProps = TextFieldProps & RouteComponentProps;
   const RouterTextField: React.FunctionComponent<RouterTextFieldProps> = () => null;
-  const TextFieldWithRouter = withRouter(RouterTextField);
-  <TextFieldWithRouter variant="filled" {...filledProps} />;
   // $ExpectError
-  <TextFieldWithRouter {...filledProps} />; // desired
+  const TextFieldWithRouter = withRouter(RouterTextField); // undesired
+  <TextFieldWithRouter variant="filled" {...filledProps} />;
+  <TextFieldWithRouter {...filledProps} />;
 }
 
 // https://github.com/mui-org/material-ui/issues/14586
