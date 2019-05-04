@@ -38,6 +38,7 @@ const defaultAlias = {
 };
 
 const productionPlugins = [
+  'babel-plugin-optimize-clsx',
   'babel-plugin-transform-react-constant-elements',
   'babel-plugin-transform-dev-warning',
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
