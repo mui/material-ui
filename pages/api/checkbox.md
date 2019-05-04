@@ -67,6 +67,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Checkboxes](/demos/checkboxes/)
-- [Transfer List](/demos/transfer-list/)
+- [Checkboxes](/components/checkboxes/)
+- [Transfer List](/components/transfer-list/)
 

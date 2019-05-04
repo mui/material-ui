@@ -53,5 +53,5 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## Demos
 
-- [Modal](/utils/modal/)
+- [Modal](/components/modal/)
 

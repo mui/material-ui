@@ -84,5 +84,5 @@ you need to use the following style sheet name: `MuiInputBase`.
 
 ## Demos
 
-- [Text Fields](/demos/text-fields/)
+- [Text Fields](/components/text-fields/)
 

@@ -304,7 +304,7 @@ class AppFrame extends React.Component {
                       aria-label={t('editWebsiteColors')}
                       component={Link}
                       naked
-                      href="/style/color/#color-tool"
+                      href="/customization/color/#color-tool"
                       data-ga-event-category="AppBar"
                       data-ga-event-action="colors"
                     >

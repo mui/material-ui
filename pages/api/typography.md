@@ -82,6 +82,6 @@ you need to use the following style sheet name: `MuiTypography`.
 
 ## Demos
 
-- [Breadcrumbs](/demos/breadcrumbs/)
-- [Typography](/style/typography/)
+- [Breadcrumbs](/components/breadcrumbs/)
+- [Typography](/components/typography/)
 

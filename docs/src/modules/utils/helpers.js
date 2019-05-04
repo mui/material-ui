@@ -24,9 +24,10 @@ export function pageToTitle(page) {
     return page.title;
   }
 
-  const name = page.pathname.replace(/.*\//, '');
+  const path = page.subheader || page.pathname;
+  const name = path.replace(/.*\//, '');
 
-  if (page.pathname.indexOf('/api/') !== -1) {
+  if (path.indexOf('/api/') !== -1) {
     return upperFirst(camelCase(name));
   }
 
@@ -34,7 +35,8 @@ export function pageToTitle(page) {
 }
 
 export function pageToTitleI18n(page, t) {
-  return t(`pages.${page.pathname}`, { ignoreWarning: true }) || pageToTitle(page);
+  const path = page.subheader || page.pathname;
+  return t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
 }
 
 /**

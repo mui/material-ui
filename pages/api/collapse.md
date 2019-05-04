@@ -59,7 +59,7 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Cards](/demos/cards/)
-- [Lists](/demos/lists/)
-- [Transitions](/utils/transitions/)
+- [Cards](/components/cards/)
+- [Lists](/components/lists/)
+- [Transitions](/components/transitions/)
 

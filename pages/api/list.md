@@ -51,6 +51,6 @@ you need to use the following style sheet name: `MuiList`.
 
 ## Demos
 
-- [Lists](/demos/lists/)
-- [Transfer List](/demos/transfer-list/)
+- [Lists](/components/lists/)
+- [Transfer List](/components/transfer-list/)
 

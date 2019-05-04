@@ -47,5 +47,5 @@ you need to use the following style sheet name: `MuiTable`.
 
 ## Demos
 
-- [Tables](/demos/tables/)
+- [Tables](/components/tables/)
 

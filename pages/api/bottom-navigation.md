@@ -48,5 +48,5 @@ you need to use the following style sheet name: `MuiBottomNavigation`.
 
 ## Demos
 
-- [Bottom Navigation](/demos/bottom-navigation/)
+- [Bottom Navigation](/components/bottom-navigation/)
 

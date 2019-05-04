@@ -65,6 +65,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [App Bar](/demos/app-bar/)
-- [Menus](/demos/menus/)
+- [App Bar](/components/app-bar/)
+- [Menus](/components/menus/)
 

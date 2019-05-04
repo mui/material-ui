@@ -57,5 +57,5 @@ you need to use the following style sheet name: `MuiBadge`.
 
 ## Demos
 
-- [Badges](/demos/badges/)
+- [Badges](/components/badges/)
 

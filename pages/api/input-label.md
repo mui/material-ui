@@ -68,5 +68,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Text Fields](/demos/text-fields/)
+- [Text Fields](/components/text-fields/)
 

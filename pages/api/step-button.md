@@ -54,5 +54,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Steppers](/demos/steppers/)
+- [Steppers](/components/steppers/)
 

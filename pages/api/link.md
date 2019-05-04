@@ -58,6 +58,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Breadcrumbs](/demos/breadcrumbs/)
-- [Links](/style/links/)
+- [Breadcrumbs](/components/breadcrumbs/)
+- [Links](/components/links/)
 

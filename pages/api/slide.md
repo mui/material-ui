@@ -35,6 +35,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Dialogs](/demos/dialogs/)
-- [Transitions](/utils/transitions/)
+- [Dialogs](/components/dialogs/)
+- [Transitions](/components/transitions/)
 

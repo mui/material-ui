@@ -59,5 +59,5 @@ you need to use the following style sheet name: `MuiSvgIcon`.
 
 ## Demos
 
-- [Icons](/style/icons/)
+- [Icons](/components/icons/)
 

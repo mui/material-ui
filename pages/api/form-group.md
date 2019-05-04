@@ -48,6 +48,6 @@ you need to use the following style sheet name: `MuiFormGroup`.
 
 ## Demos
 
-- [Checkboxes](/demos/checkboxes/)
-- [Switches](/demos/switches/)
+- [Checkboxes](/components/checkboxes/)
+- [Switches](/components/switches/)
 

@@ -71,7 +71,7 @@ function HomeFooter(props) {
                   </Link>
                 </li>
                 <li className={classes.listItem}>
-                  <Link color="inherit" href="/style/color">
+                  <Link color="inherit" href="/customization/color">
                     {t('color')}
                   </Link>
                 </li>

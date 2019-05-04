@@ -62,6 +62,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Buttons](/demos/buttons/)
-- [Grid List](/demos/grid-list/)
+- [Buttons](/components/buttons/)
+- [Grid List](/components/grid-list/)
 

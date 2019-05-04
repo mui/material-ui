@@ -21,9 +21,7 @@
   "homepage": "https://material-ui.com/",
   "scripts": {
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
-    "docs:api": "yarn docs:api:core && yarn docs:api:lab",
-    "docs:api:core": "rimraf ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./pages/api",
-    "docs:api:lab": "rimraf ./pages/lab/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/lab/api",
+    "docs:api": "rimraf ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/api",
     "docs:build": "rimraf .next && cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
     "docs:deploy": "git push material-ui-docs next:next",

@@ -51,23 +51,29 @@ Tip: you can access the documentation \`theme\` object directly in the console.
   );
 }
 
-function findActivePage(currentPages, router) {
-  const activePage = find(currentPages, page => {
-    if (page.children) {
-      return router.pathname.indexOf(`${page.pathname}/`) === 0;
-    }
+function findActivePage(currentPages, pathname) {
+  const activePage = find(
+    currentPages,
+    page => {
+      if (page.children) {
+        if (pathname.indexOf(`${page.pathname}/`) === 0) {
+          // Check if one of the children matches (for /components)
+          return findActivePage(page.children, pathname);
+        }
+      }
 
-    // Should be an exact match if no children
-    return router.pathname === page.pathname;
-  });
+      // Should be an exact match if no children
+      return pathname === page.pathname;
+    },
+  );
 
   if (!activePage) {
     return null;
   }
 
   // We need to drill down
-  if (activePage.pathname !== router.pathname) {
-    return findActivePage(activePage.children, router);
+  if (activePage.pathname !== pathname) {
+    return findActivePage(activePage.children, pathname);
   }
 
   return activePage;
@@ -94,7 +100,8 @@ class MyApp extends App {
       // See `_rewriteUrlForNextExport` on Next.js side.
       pathname = pathname.replace(/\/$/, '');
     }
-    const activePage = findActivePage(pages, { ...router, pathname });
+    // console.log(pages, { ...router, pathname })
+    const activePage = findActivePage(pages, pathname );
 
     return (
       <ReactMode>

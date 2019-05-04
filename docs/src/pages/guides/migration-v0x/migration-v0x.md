@@ -82,7 +82,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
 ### Autocomplete
 
 Material-UI doesn't provide a high-level API for solving this problem.
-You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
+You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
 

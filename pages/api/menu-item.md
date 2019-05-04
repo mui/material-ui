@@ -53,6 +53,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Autocomplete](/demos/autocomplete/)
-- [Menus](/demos/menus/)
+- [Autocomplete](/components/autocomplete/)
+- [Menus](/components/menus/)
 

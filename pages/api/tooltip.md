@@ -68,5 +68,5 @@ you need to use the following style sheet name: `MuiTooltip`.
 
 ## Demos
 
-- [Tooltips](/demos/tooltips/)
+- [Tooltips](/components/tooltips/)
 

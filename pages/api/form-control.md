@@ -63,8 +63,8 @@ you need to use the following style sheet name: `MuiFormControl`.
 
 ## Demos
 
-- [Checkboxes](/demos/checkboxes/)
-- [Radio Buttons](/demos/radio-buttons/)
-- [Switches](/demos/switches/)
-- [Text Fields](/demos/text-fields/)
+- [Checkboxes](/components/checkboxes/)
+- [Radio Buttons](/components/radio-buttons/)
+- [Switches](/components/switches/)
+- [Text Fields](/components/text-fields/)
 

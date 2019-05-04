@@ -35,7 +35,7 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## Demos
 
-- [Autocomplete](/demos/autocomplete/)
-- [Menus](/demos/menus/)
-- [Popper](/utils/popper/)
+- [Autocomplete](/components/autocomplete/)
+- [Menus](/components/menus/)
+- [Popper](/components/popper/)
 

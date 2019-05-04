@@ -65,5 +65,5 @@ you need to use the following style sheet name: `MuiDrawer`.
 
 ## Demos
 
-- [Drawers](/demos/drawers/)
+- [Drawers](/components/drawers/)
 

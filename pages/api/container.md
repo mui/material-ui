@@ -50,5 +50,5 @@ you need to use the following style sheet name: `MuiContainer`.
 
 ## Demos
 
-- [Container](/layout/container/)
+- [Container](/components/container/)
 

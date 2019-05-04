@@ -39,5 +39,5 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## Demos
 
-- [Hidden](/layout/hidden/)
+- [Hidden](/components/hidden/)
 
