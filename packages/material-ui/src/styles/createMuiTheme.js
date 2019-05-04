@@ -50,7 +50,16 @@ function createMuiTheme(options = {}) {
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    const statesWarning = ['disabled', 'focused', 'selected', 'checked'];
+    const pseudoClasses = [
+      'checked',
+      'disabled',
+      'error',
+      'focused',
+      'focusVisible',
+      'required',
+      'expanded',
+      'selected',
+    ];
     const traverse = (node, parentKey, depth = 1) => {
       let key;
 
@@ -61,7 +70,7 @@ function createMuiTheme(options = {}) {
           if (key.indexOf('Mui') === 0 && child) {
             traverse(child, key, depth + 1);
           }
-        } else if (statesWarning.indexOf(key) !== -1 && Object.keys(child).length > 0) {
+        } else if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
           warning(
             false,
             [
@@ -81,14 +90,16 @@ function createMuiTheme(options = {}) {
                 2,
               ),
               '',
-              'https://material-ui.com/customization/overrides#internal-states',
+              'https://next.material-ui.com/customization/overrides/#pseudo-classes',
             ].join('\n'),
           );
+          // Remove the style to prevent global conflicts.
+          node[key] = {};
         }
       }
     };
 
-    traverse(other.overrides);
+    traverse(muiTheme.overrides);
   }
 
   warning(
