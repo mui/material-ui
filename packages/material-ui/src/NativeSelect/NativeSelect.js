@@ -1,5 +1,3 @@
-// @inheritedComponent Input
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import NativeSelectInput from './NativeSelectInput';

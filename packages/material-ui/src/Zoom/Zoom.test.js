@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
+import { Transition } from 'react-transition-group';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
@@ -22,7 +23,7 @@ describe('<Zoom />', () => {
     </Zoom>,
     () => ({
       classes: {},
-      inheritComponent: 'Transition',
+      inheritComponent: Transition,
       mount,
       skip: ['componentProp', 'refForwarding'],
     }),
