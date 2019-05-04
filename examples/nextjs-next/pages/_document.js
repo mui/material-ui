@@ -56,23 +56,18 @@ MyDocument.getInitialProps = async ctx => {
   // Render app and page and get the context of the page with collected side effects.
   const sheets = new ServerStyleSheets();
 
-  const {
-    styles,
-    ...initialProps
-  } = await Document.getInitialProps({
+  const { styles, ...initialProps } = await Document.getInitialProps({
     ...ctx,
-    renderPage: () => ctx.renderPage({
-      enhanceApp: App => props => sheets.collect(<App {...props} />),
-    })
+    renderPage: () =>
+      ctx.renderPage({
+        enhanceApp: App => props => sheets.collect(<App {...props} />),
+      }),
   });
 
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: [
-      sheets.getStyleElement(),
-      ...(styles || [])
-    ],
+    styles: [sheets.getStyleElement(), ...(styles || [])],
   };
 };
 
