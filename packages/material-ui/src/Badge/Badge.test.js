@@ -38,8 +38,8 @@ describe('<Badge />', () => {
   );
 
   it('renders children and badgeContent', () => {
-    const children = <div />;
-    const badge = <div />;
+    const children = <div id="child" />;
+    const badge = <div id="badge" />;
     const wrapper = mount(<Badge badgeContent={badge}>{children}</Badge>);
     assert.strictEqual(wrapper.contains(children), true);
     assert.strictEqual(wrapper.contains(badge), true);
@@ -58,17 +58,17 @@ describe('<Badge />', () => {
   });
 
   describe('prop: color', () => {
-    it('should have primary class', () => {
+    it('should have the colorPrimary class when color="primary"', () => {
       const wrapper = mount(<Badge {...defaultProps} color="primary" />);
       assert.strictEqual(findBadge(wrapper).hasClass(classes.colorPrimary), true);
     });
 
-    it('should have secondary class', () => {
+    it('should have the colorSecondary class when color="secondary"', () => {
       const wrapper = mount(<Badge {...defaultProps} color="secondary" />);
       assert.strictEqual(findBadge(wrapper).hasClass(classes.colorSecondary), true);
     });
 
-    it('should have error class', () => {
+    it('should have the colorError class when color="error"', () => {
       const wrapper = mount(<Badge {...defaultProps} color="error" />);
       assert.strictEqual(findBadge(wrapper).hasClass(classes.colorError), true);
     });
@@ -131,7 +131,7 @@ describe('<Badge />', () => {
       assert.strictEqual(findBadge(wrapper).hasClass(classes.dot), false);
     });
 
-    it('should render without the standard class when variant="standard"', () => {
+    it('should render with the standard class when variant="standard"', () => {
       const wrapper = mount(<Badge {...defaultProps} variant="standard" />);
       assert.strictEqual(findBadge(wrapper).hasClass(classes.badge), true);
       assert.strictEqual(findBadge(wrapper).hasClass(classes.dot), false);
