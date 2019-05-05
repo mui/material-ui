@@ -45,13 +45,13 @@ export interface BaseDatePickerProps extends OutterCalendarProps {
    */
   animateYearScrolling?: boolean;
   /**
-   * Array of views to show. Order year -> month -> day
-   * @default ["day", "year"]
+   * Array of views to show. Order of views will follow passed array.
+   * @default ['year', 'day']
    */
   views?: ('year' | 'month' | 'day')[];
   /**
    * Initial view to show when date picker is open
-   * @default props.views[0]
+   * @default 'day'
    */
   openTo?: 'year' | 'month' | 'day';
   /** Callback firing on year change */
