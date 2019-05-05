@@ -30,22 +30,31 @@ Here are some highlights ✨:
 - [Menu] Add 'variant' prop TypeScript declaration (#15556) @kunimart
 - [MenuList] Ignore disableListWrap for text focus navigation (#15555) @ryancogswell
 - [Portal] Migrate to React hooks (#15399) @gautam-pahuja
-- [styles] Create a new JSS instance with injectFirst (#15560) @oliviertassinari
-- [system] Test types (#15575) @eps1lon
 - [TableCell] Fix TypeScript declaration of the 'padding' prop (#15516) @kunimart
 - [TableCell] Update TypeScript definitions (#15541) @ljvanschie
 - [TablePagination] Use OverridableComponent in TypeScript declarations (#15517) @kunimart
 - [Tabs] Fix aria-label issue on the demos (#15507) @amangalvedhekar
 - [theme] Responsive font sizes (#14573) @n-batalha
 - [Transition] Fix false-positive ref warning (#15526) @eps1lon
+- [Badge] Handle undefined badgeContent rendering empty bubble (#15581) @Naismith
+
+### `@material-ui/styles@v4.0.0-beta.1`
+
+- [styles] Create a new JSS instance with injectFirst (#15560) @oliviertassinari
+- [core] Set default theme type for makeStyles (#15549) @merceyz
+- [core] Set default theme type for useTheme (#15538) @merceyz
+
+### `@material-ui/types@v4.0.0-beta.2`
+
+- [types] Add @material-ui/types package (#15577) @eps1lon
+
+### `@material-ui/system@v4.0.0-beta.1`
+
+- [system] Test types (#15575) @eps1lon
 
 ### `@material-ui/lab@v4.0.0-alpha.10`
 
 - [Slider] Save focus after click (#15439) @jztang
-
-### `@material-ui/types@v4.0.0-beta.1`
-
-- [types] Add @material-ui/types package (#15577) @eps1lon
 
 ### Docs
 
@@ -71,9 +80,6 @@ Here are some highlights ✨:
 - [core] Add ref prop to transition components (#15520) @eps1lon
 - [core] Better handle theme.overrides pseudo-classes (#15578) @oliviertassinari
 - [core] Fix createStyles not being defined (#15547) @pvdstel
-- [core] Handle undefined badgeContent rendering empty bubble (#15581) @Naismith
-- [core] Set default theme type for makeStyles (#15549) @merceyz
-- [core] Set default theme type for useTheme (#15538) @merceyz
 
 ## 4.0.0-beta.0
 ###### *Apr 28, 2019*

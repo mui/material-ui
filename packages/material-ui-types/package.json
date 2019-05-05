@@ -1,12 +1,12 @@
 {
   "name": "@material-ui/types",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Types - Utility types for Material-UI.",
   "types": "./index.d.ts",
   "files": [
-    "./index.d.ts"
+    "index.d.ts"
   ],
   "keywords": [
     "react",
