@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     ...theme.typography.button,
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(1),
   },
 });
