@@ -48,7 +48,7 @@ const filledProps = {
   const TextFieldWithRouter = withRouter(RouterTextField);
   <TextFieldWithRouter variant="filled" {...filledProps} />;
   // $ExpectError
-  <TextFieldWithRouter {...filledProps} />; // undesired
+  <TextFieldWithRouter {...filledProps} />; // desired
 }
 
 // https://github.com/mui-org/material-ui/issues/14586
