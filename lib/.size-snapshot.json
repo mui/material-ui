@@ -12,5 +12,15 @@
         "code": 54436
       }
     }
+  },
+  "build/dist/material-ui-pickers.umd.js": {
+    "bundled": 1094102,
+    "minified": 355138,
+    "gzipped": 95738
+  },
+  "build/dist/material-ui-pickers.umd.min.js": {
+    "bundled": 847253,
+    "minified": 301273,
+    "gzipped": 82640
   }
 }

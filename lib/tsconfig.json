@@ -13,7 +13,8 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "resolveJsonModule": true
   },
   "include": ["src/**/*.ts*", "typings.d.ts"],
   "exclude": ["./src/__tests__/**/*", "build"]

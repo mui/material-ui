@@ -11,7 +11,6 @@ function YearMonthPicker() {
         label="Year only"
         value={selectedDate}
         onChange={handleDateChange}
-        animateYearScrolling
       />
 
       <DatePicker
