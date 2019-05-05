@@ -108,7 +108,7 @@ function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
         </Toolbar>

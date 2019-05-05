@@ -1,4 +1,4 @@
-import { Omit } from '@material-ui/core';
+import { Omit } from '@material-ui/types';
 import {
   CSSProperties,
   StyledComponentProps,

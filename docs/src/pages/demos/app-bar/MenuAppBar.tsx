@@ -57,7 +57,7 @@ function MenuAppBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             Photos
           </Typography>
           {auth && (

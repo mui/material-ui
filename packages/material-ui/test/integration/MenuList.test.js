@@ -51,7 +51,14 @@ function assertMenuItemTabIndexed(wrapper, tabIndexed) {
   });
 }
 
-function assertMenuItemFocused(wrapper, focusedIndex, expectedNumMenuItems = 4, expectedInnerText) {
+function assertMenuItemFocused(
+  wrapper,
+  focusedIndex,
+  expectedNumMenuItems = 4,
+  expectedInnerText,
+  checkedClassName,
+  classNameIsExpected,
+) {
   const items = wrapper.find('li[role="menuitem"]');
   assert.strictEqual(items.length, expectedNumMenuItems);
 
@@ -59,6 +66,9 @@ function assertMenuItemFocused(wrapper, focusedIndex, expectedNumMenuItems = 4, 
     const instance = item.find('li').instance();
     if (index === focusedIndex) {
       assert.strictEqual(instance, document.activeElement);
+      if (checkedClassName) {
+        assert.strictEqual(classNameIsExpected, instance.classList.contains(checkedClassName));
+      }
       if (expectedInnerText) {
         let innerText = instance.innerText;
         if (innerText === undefined) {
@@ -73,9 +83,21 @@ function assertMenuItemFocused(wrapper, focusedIndex, expectedNumMenuItems = 4, 
   });
 }
 
-function getAssertMenuItemFocused(wrapper, expectedNumMenuItems) {
+function getAssertMenuItemFocused(
+  wrapper,
+  expectedNumMenuItems,
+  checkedClassName,
+  classNameIsExpected,
+) {
   return (focusedIndex, expectedInnerText) => {
-    return assertMenuItemFocused(wrapper, focusedIndex, expectedNumMenuItems, expectedInnerText);
+    return assertMenuItemFocused(
+      wrapper,
+      focusedIndex,
+      expectedNumMenuItems,
+      expectedInnerText,
+      checkedClassName,
+      classNameIsExpected,
+    );
   };
 }
 
@@ -464,29 +486,54 @@ describe('<MenuList> integration', () => {
   describe('MenuList text-based keyboard controls', () => {
     let wrapper;
     let assertFocused;
+    let assertFocusedNoFocusVisible;
     let innerTextSupported;
+    const firstItemRef = React.createRef();
+    const itemProps = { focusVisibleClassName: 'test-focus-visible' };
     const resetWrapper = () => {
+      const keyDownEvent = new window.KeyboardEvent('keydown', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
+      // Resets hadKeyboardEvent in focusVisible.js back to true. Simulated events don't
+      // propagate to the document.
+      document.dispatchEvent(keyDownEvent);
       wrapper = mount(
-        <MenuList>
-          <MenuItem>Arizona</MenuItem>
-          <MenuItem>aardvark</MenuItem>
-          <MenuItem>Colorado</MenuItem>
-          <MenuItem>Argentina</MenuItem>
-          <MenuItem>
+        <MenuList disableListWrap>
+          <MenuItem
+            {...itemProps}
+            ref={firstItemRef}
+            onClick={() => {
+              firstItemRef.current.focus();
+            }}
+          >
+            Arizona
+          </MenuItem>
+          <MenuItem {...itemProps}>aardvark</MenuItem>
+          <MenuItem {...itemProps}>Colorado</MenuItem>
+          <MenuItem {...itemProps}>Argentina</MenuItem>
+          <MenuItem {...itemProps}>
             color{' '}
             <a href="/" id="focusableDescendant">
               Focusable Descendant
             </a>
           </MenuItem>
-          <MenuItem />
-          <MenuItem>Hello Worm</MenuItem>
-          <MenuItem>
+          <MenuItem {...itemProps} />
+          <MenuItem {...itemProps}>Hello Worm</MenuItem>
+          <MenuItem {...itemProps}>
             Hello <span style={{ display: 'none' }}>Test innerText</span> World
           </MenuItem>
         </MenuList>,
       );
       innerTextSupported = wrapper.find('ul').instance().innerText !== undefined;
-      assertFocused = getAssertMenuItemFocused(wrapper, 8);
+      assertFocused = getAssertMenuItemFocused(wrapper, 8, 'test-focus-visible', true);
+      assertFocusedNoFocusVisible = getAssertMenuItemFocused(
+        wrapper,
+        8,
+        'test-focus-visible',
+        false,
+      );
     };
 
     beforeEach(resetWrapper);
@@ -500,6 +547,20 @@ describe('<MenuList> integration', () => {
       assertFocused(3, 'Argentina');
       wrapper.simulate('keyDown', { key: 'r' });
       assertFocused(1, 'aardvark');
+    });
+
+    it('should not get focusVisible class on click', () => {
+      wrapper.simulate('keyDown', { key: 'End' });
+      assertFocused(7);
+      const firstMenuItem = wrapper.find('li[role="menuitem"]').first();
+      const event = new window.MouseEvent('mousedown', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
+      firstMenuItem.instance().dispatchEvent(event);
+      firstMenuItem.simulate('click');
+      assertFocusedNoFocusVisible(0, 'Arizona');
     });
 
     it('should not move focus when no match', () => {

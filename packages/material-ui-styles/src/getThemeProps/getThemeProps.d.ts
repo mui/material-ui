@@ -1,11 +1,15 @@
-import { ComponentsPropsList } from '@material-ui/core/styles';
-import { Theme as MuiTheme } from '@material-ui/core';
+export {};
 
-export interface NamedParams<K extends keyof ComponentsPropsList, Theme> {
-  name: K;
-  props: ComponentsPropsList[K];
-  theme?: Theme;
+interface ThemeWithProps<Components> {
+  props?: { [K in keyof Components]: Partial<Components[K]> };
 }
-export default function getThemeProps<Name extends keyof ComponentsPropsList, Theme = MuiTheme>(
-  params: NamedParams<Name, Theme>,
-): ComponentsPropsList[Name];
+
+type ThemedProps<Theme, Name extends keyof any> = Theme extends { props: Record<Name, infer Props> }
+  ? Props
+  : {};
+
+export default function getThemeProps<
+  Theme extends ThemeWithProps<any>,
+  Props,
+  Name extends keyof any
+>(params: { props: Props; name: Name; theme?: Theme }): Props & ThemedProps<Theme, Name>;

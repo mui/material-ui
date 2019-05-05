@@ -67,6 +67,14 @@ function getRefInstance(valueNode) {
 }
 
 /**
+ *
+ * @param {import('@babel/core').Node} valueNode - An Identifier
+ */
+function getInheritComponentName(valueNode) {
+  return valueNode.name;
+}
+
+/**
  * @typedef {Object} ParseResult
  * @property {string?} forwardsRefTo
  */
@@ -83,6 +91,7 @@ export default async function parseTest(componentFilename) {
 
   const result = {
     forwardsRefTo: undefined,
+    inheritComponent: undefined,
   };
 
   const { properties = [] } = descriptor;
@@ -92,6 +101,9 @@ export default async function parseTest(componentFilename) {
     switch (key) {
       case 'refInstanceof':
         result.forwardsRefTo = getRefInstance(property.value);
+        break;
+      case 'inheritComponent':
+        result.inheritComponent = getInheritComponentName(property.value);
         break;
       default:
         break;

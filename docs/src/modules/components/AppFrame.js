@@ -252,7 +252,7 @@ class AppFrame extends React.Component {
                     <MenuIcon />
                   </IconButton>
                   {title !== null && (
-                    <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                    <Typography className={classes.title} variant="h6" noWrap>
                       {title}
                     </Typography>
                   )}

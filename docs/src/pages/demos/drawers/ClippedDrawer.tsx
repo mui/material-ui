@@ -46,7 +46,7 @@ function ClippedDrawer() {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" noWrap>
             Clipped drawer
           </Typography>
         </Toolbar>

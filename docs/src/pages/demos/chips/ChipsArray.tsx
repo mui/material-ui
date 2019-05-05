@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
@@ -9,17 +9,19 @@ interface ChipData {
   label: string;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    padding: theme.spacing(0.5),
-  },
-  chip: {
-    margin: theme.spacing(0.5),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+      padding: theme.spacing(0.5),
+    },
+    chip: {
+      margin: theme.spacing(0.5),
+    },
+  }),
+);
 
 function ChipsArray() {
   const classes = useStyles();

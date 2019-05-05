@@ -36,7 +36,7 @@ describe('<Drawer />', () => {
     </Drawer>,
     () => ({
       classes,
-      inheritComponent: Modal,
+      inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
       skip: ['componentProp'],

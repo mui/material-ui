@@ -84,23 +84,21 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     color,
     component: ComponentProp,
     invisible: invisibleProp,
-    showZero,
     max,
+    showZero,
     variant,
     ...other
   } = props;
 
   let invisible = invisibleProp;
 
-  if (invisibleProp == null && Number(badgeContent) === 0 && !showZero) {
+  if (
+    invisibleProp == null &&
+    ((badgeContent === 0 && !showZero) || (badgeContent == null && variant !== 'dot'))
+  ) {
     invisible = true;
   }
 
-  const badgeClassName = clsx(classes.badge, {
-    [classes[`color${capitalize(color)}`]]: color !== 'default',
-    [classes.invisible]: invisible,
-    [classes.dot]: variant === 'dot',
-  });
   let displayValue = '';
 
   if (variant !== 'dot') {
@@ -110,7 +108,15 @@ const Badge = React.forwardRef(function Badge(props, ref) {
   return (
     <ComponentProp className={clsx(classes.root, className)} ref={ref} {...other}>
       {children}
-      <span className={badgeClassName}>{displayValue}</span>
+      <span
+        className={clsx(classes.badge, {
+          [classes[`color${capitalize(color)}`]]: color !== 'default',
+          [classes.invisible]: invisible,
+          [classes.dot]: variant === 'dot',
+        })}
+      >
+        {displayValue}
+      </span>
     </ComponentProp>
   );
 });

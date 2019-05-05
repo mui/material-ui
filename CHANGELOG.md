@@ -484,6 +484,35 @@ Here are some highlights ✨:
 - [test] Update enzyme (#14987) @eps1lon
 - [core] Batch of fixes (#15115) @oliviertassinari
 
+## 3.9.3
+###### *Mar 28, 2019*
+
+Big thanks to the 11 contributors who made this release possible!
+
+This release fixes an important regression with TypeScript: https://github.com/mui-org/material-ui/issues/15076.
+
+### `@material-ui/core@v3.9.3`
+
+- [Select] Open select when focused with enter (#14452) @oknechirik
+- [Tooltip] Fix children focus detection (#14496) @codeheroics
+- [SwipeableDrawer] Ignore open swipe if it didn't start on the swipe area (#15038) @leMaik
+- [Button] Narrow type for `type` prop (#15096) @karlbohlmark
+
+### Docs
+
+- [docs] Fix hooks codesandbox broken (#14553) @Abbo44
+- [docs] Fix typo in simple breadcrumbs example (#14575) @AndrewUsher
+- [blog] Material-UI Developer Survey 2019 (#14614) @oliviertassinari
+- [docs] Change Gitter to Spectrum (#14668) @mbrookes
+- [docs] Update link to http://cssinjs.org/jss-api/ (#14788) @monicatie
+- [docs] Add Algolia metadata (#14835) @oliviertassinari
+- [docs] Improve overrides.md wording (#14403) @i0
+- [docs] Grammar fix (#14960) @nateq314
+
+### Core
+
+N/A
+
 ## 4.0.0-alpha.5
 ###### *Mar 23, 2019*
 
