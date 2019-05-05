@@ -1,5 +1,80 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-beta.1
+###### *May 5, 2019*
+
+A big thanks to the 19 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🐛 Many bug fixes based on people migrating from v3 to v4.
+- 💄 Responsive font sizes (#14573) @n-batalha.
+- 💄 AppBar scroll behavior (#15522) @cvanem.
+- ♿️ Better Button and Tooltip keyboard behavior (#15398, #15484) @eps1lon.
+- And many more 🔍 TypeScript fixes and 📚 documentation improvements.
+
+### `@material-ui/core@v4.0.0-beta.1`
+
+### Bug fixes / Breaking changes
+
+- [ListItem][ExpansionPanel] Follow the style convention (#15534) @oliviertassinari
+  Fix a CSS override issue.
+- [Tooltip] Display only on keyboard focus (#15398) @eps1lon
+  Fix an accessibility issue.
+
+### Changes
+
+- [AppBar] Hide and Elevate on Scroll (#15522) @cvanem
+- [Box] Add to core index TypeScript definitions (#15576) @ljvanschie
+- [ButtonBase] Use fork of focus-visible polyfill (#15484) @eps1lon
+- [Menu] Add 'variant' prop TypeScript declaration (#15556) @kunimart
+- [MenuList] Ignore disableListWrap for text focus navigation (#15555) @ryancogswell
+- [Portal] Migrate to React hooks (#15399) @gautam-pahuja
+- [styles] Create a new JSS instance with injectFirst (#15560) @oliviertassinari
+- [system] Test types (#15575) @eps1lon
+- [TableCell] Fix TypeScript declaration of the 'padding' prop (#15516) @kunimart
+- [TableCell] Update TypeScript definitions (#15541) @ljvanschie
+- [TablePagination] Use OverridableComponent in TypeScript declarations (#15517) @kunimart
+- [Tabs] Fix aria-label issue on the demos (#15507) @amangalvedhekar
+- [theme] Responsive font sizes (#14573) @n-batalha
+- [Transition] Fix false-positive ref warning (#15526) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.10`
+
+- [Slider] Save focus after click (#15439) @jztang
+
+### `@material-ui/types@v4.0.0-beta.1`
+
+- [types] Add @material-ui/types package (#15577) @eps1lon
+
+### Docs
+
+- [example] Fix TypeScript compilation error (#15550) @emmtqg
+- [docs] Add DelayingApperance TypeScript demo (#15551) @merceyz
+- [docs] Convert react-autosuggest demo to TypeScript (#15485) @nareshbhatia
+- [docs] Document v4 theme.spacing.unit deprecation (#15571) @cvanem
+- [docs] Extract inherited component from test (#15562) @eps1lon
+- [docs] Fix Draggable Dialog interactions with the content (#15552) @devdanco
+- [docs] Fix outdated links & demos (#15521) @oliviertassinari
+- [docs] Fix typechecking (#15501) @merceyz
+- [docs] Fix typography demo in dark mode (#15591) @jztang
+- [docs] Improve v3 migration guide (#15527) @janhesters
+- [docs] Migrate more demos to hooks (#15494) @merceyz
+- [docs] Remove NoSsr where possible (#15510) @oliviertassinari
+- [docs] Simplify wording for customization demo descriptions (#15539) @mbrookes
+- [docs] Update Changelog (#15567) @oliviertassinari
+- [docs] Updated v3 Migration guide (#15518) @vkasraj
+
+### Core
+
+- [core] Add additional warnings when attaching ref to function elements (#15519) @eps1lon
+- [core] Add ref prop to transition components (#15520) @eps1lon
+- [core] Better handle theme.overrides pseudo-classes (#15578) @oliviertassinari
+- [core] Fix createStyles not being defined (#15547) @pvdstel
+- [core] Handle undefined badgeContent rendering empty bubble (#15581) @Naismith
+- [core] Set default theme type for makeStyles (#15549) @merceyz
+- [core] Set default theme type for useTheme (#15538) @merceyz
+
 ## 4.0.0-beta.0
 ###### *Apr 28, 2019*
 
