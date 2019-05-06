@@ -6,7 +6,8 @@
     "noEmit": true,
     "strict": true,
     "baseUrl": ".",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "resolveJsonModule": true
   },
   "include": ["./typings.d.ts", "./pages/**/*.jsx"]
 }
