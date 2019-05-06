@@ -13,7 +13,7 @@ const theme = createMuiTheme({
   },
 });
 
-function OverridesProps() {
+function DefaultProps() {
   return (
     <ThemeProvider theme={theme}>
       <Button>Change default props</Button>
@@ -21,4 +21,4 @@ function OverridesProps() {
   );
 }
 
-export default OverridesProps;
+export default DefaultProps;

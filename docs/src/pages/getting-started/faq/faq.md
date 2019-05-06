@@ -337,7 +337,7 @@ All funds raised are managed transparently, and Sponsors receive recognition in 
 
 ## Why does component X require a DOM node in a prop instead of a ref object?
 
-Components like the [Portal](/api/Portal/#props) or [Popper](/api/Popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively.
+Components like the [Portal](/api/portal/#props) or [Popper](/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively.
 It seems convenient to simply pass a ref object in those props and let Material-UI access the current value.
 This works in a simple scenario:
 
@@ -357,7 +357,7 @@ function App() {
 ```
 
 where `Portal` would only mount the children into the container when `container.current` is available.
-Here is a naive implementation of Portal: 
+Here is a naive implementation of Portal:
 
 ```jsx
 function Portal({ children, container }) {

@@ -155,3 +155,25 @@ Note that `contrastThreshold` follows a non-linear curve.
 ## Color tool
 
 Need inspiration? The Material Design team has built an awesome [palette configuration tool](/customization/color/#color-tool) to help you.
+
+## Type (light /dark theme)
+
+Material-UI comes with two theme variants, light (the default) and dark.
+
+You can make the theme dark by setting `type` to `dark`.
+While it's only a single property value change, internally it modifies the value of the following keys:
+
+- `palette.text`
+- `palette.divider`
+- `palette.background`
+- `palette.action`
+
+```js
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
+```
+
+{{"demo": "pages/customization/palette/DarkTheme.js", "hideEditButton": true}}

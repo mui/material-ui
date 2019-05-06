@@ -45,7 +45,7 @@ Alternatively, if you are using JSX over HTML to render the head:
 
 ## SVG Icons
 
-In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/)
+In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/)
 you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
 
 ```sh

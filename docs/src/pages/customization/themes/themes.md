@@ -22,17 +22,13 @@ You can learn more about this in [the API section](/styles/api/#themeprovider).
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs.
 The following sections cover the most important theme variables:
 
-- [Palette](/customization/palette)
-- [Type (light / dark theme)](/customization/type)
-- [Typography](/customization/typography)
-- [Spacing](/customization/spacing)
-- [Component overrides](/customization/component-overrides)
-- [z-index](/customization/z-index)
-- [Component overrides](/customization/component-overrides)
+- [Palette](/customization/palette/)
+- [Typography](/customization/typography/)
+- [Spacing](/customization/spacing/)
+- [Breakpoints](/customization/breakpoints/)
+- [z-index](/customization/z-index/)
+- [Globals](/customization/globals/)
 
-### Other variables
-
-In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc.
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
 ### Custom variables
@@ -107,7 +103,7 @@ Generate responsive typography settings based on the options received.
 1. `theme` (*Object*): The theme object to enhance.
 2. `options` (*Object* [optional]):
 
-  - `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/layout/breakpoints/) (identifiers).
+  - `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
   - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line
     heights are preserved and align to Material Design's 4px line height grid.
     This requires a unitless line height in the theme's styles.

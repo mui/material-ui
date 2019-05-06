@@ -3,13 +3,13 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('docs/src/pages/customization/type', false, /\.(md|js|tsx)$/);
+const req = require.context('docs/src/pages/customization/globals', false, /\.(md|js|tsx)$/);
 const reqSource = require.context(
-  '!raw-loader!../../docs/src/pages/customization/type',
+  '!raw-loader!../../docs/src/pages/customization/globals',
   false,
   /\.(js|tsx)$/,
 );
-const reqPrefix = 'pages/customization/type';
+const reqPrefix = 'pages/customization/globals';
 
 function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;

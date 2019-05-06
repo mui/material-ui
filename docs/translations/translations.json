@@ -132,7 +132,7 @@
     "/components/popper": "Popper",
     "/components/portal": "Portal",
     "/components/progress": "Progress",
-    "/components/progress-validation": "Progress & validation",
+    "/components/progress-validation": "Feedback",
     "/components/selection-controls": "Selection Controls",
     "/components/selects": "Selects",
     "/components/slider": "Slider",
@@ -173,7 +173,7 @@
     "/customization/typography": "Typography",
     "/customization/spacing": "Spacing",
     "/customization/z-index": "z-index",
-    "/customization/component-overrides": "Component Overrides",
+    "/customization/component-overrides": "Component overides",
     "/customization/overrides": "Overrides",
     "/customization/default-theme": "Default Theme",
     "/guides": "Guides",
@@ -209,6 +209,8 @@
     "/styles/basics": "Basics",
     "/styles/advanced": "Advanced",
     "/components/lab": "Lab",
-    "/customization/theme": "Theme"
+    "/customization/theme": "Theme",
+    "/components/inputs": "Inputs",
+    "/components/data-display": "Data Display"
   }
 }
