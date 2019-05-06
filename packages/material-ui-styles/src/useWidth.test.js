@@ -6,10 +6,27 @@ import useWidth from './useWidth';
 import ThemeProvider from './ThemeProvider';
 
 function createSSRMatchMedia() {
-
+    const state = { screenWidth: 640 };
+    const mqlists = new Map();
     return {
+        //create mediaQL
         ssrMatchMedia(query) {
+           const mql = mqlists.get(query) || {
+              matches: false,
+              media: query,
+              onchange: undefined,
+              addListener(fn){
 
+              },
+              removeListener(fn){
+
+              },
+              dispatchEvent(event){
+
+              }
+           };
+           mqlists.set(query, mql);
+           return mql;
             // returns eventTarget
         },
         changeScreenWidth(width) {
