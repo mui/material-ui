@@ -416,7 +416,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
         }}
         anchor={anchor}
         transitionDuration={transitionDuration}
-        hideBackdrop={hideBackdrop}
         onClose={onClose}
         ref={ref}
         {...other}
