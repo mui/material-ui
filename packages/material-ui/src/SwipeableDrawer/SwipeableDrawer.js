@@ -78,6 +78,12 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   const paperRef = React.useRef();
   const handleBodyTouchMoveRef = React.useRef();
   const handleBodyTouchEndRef = React.useRef();
+  const openRef = React.useRef(open);
+
+  // Use a ref so the open value used is always up to date inside useCallback.
+  React.useEffect(() => {
+    openRef.current = open;
+  }, [open]);
 
   const removeBodyTouchListeners = React.useCallback(() => {
     document.body.removeEventListener('touchmove', handleBodyTouchMoveRef.current);
@@ -161,10 +167,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
         ? swipeInstance.current.startX
         : swipeInstance.current.startY;
       const maxTranslate = getMaxTranslate(horizontal, paperRef.current);
-      const currentTranslate = getTranslate(current, startLocation, open, maxTranslate);
+      const currentTranslate = getTranslate(current, startLocation, openRef.current, maxTranslate);
       const translateRatio = currentTranslate / maxTranslate;
 
-      if (open) {
+      if (openRef.current) {
         if (swipeInstance.current.velocity > minFlingVelocity || translateRatio > hysteresis) {
           onClose();
         } else {
@@ -192,7 +198,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       minFlingVelocity,
       onClose,
       onOpen,
-      open,
       removeBodyTouchListeners,
       setPosition,
       theme,
@@ -241,7 +246,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
           swipeInstance.current.startY = currentY;
 
           // Compensate for the part of the drawer displayed on touch start.
-          if (!disableDiscovery && !open) {
+          if (!disableDiscovery && !openRef.current) {
             if (horizontalSwipe) {
               swipeInstance.current.startX -= swipeAreaWidth;
             } else {
@@ -262,7 +267,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       const translate = getTranslate(
         horizontalSwipe ? currentX : currentY,
         startLocation,
-        open,
+        openRef.current,
         maxTranslate,
       );
 
@@ -288,7 +293,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       }
       setPosition(translate);
     },
-    [setPosition, handleBodyTouchEnd, anchor, disableDiscovery, open, swipeAreaWidth, theme],
+    [setPosition, handleBodyTouchEnd, anchor, disableDiscovery, swipeAreaWidth, theme],
   );
 
   const handleBodyTouchStart = React.useCallback(
@@ -304,7 +309,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       const currentX = calculateCurrentX(anchorRtl, event.touches);
       const currentY = calculateCurrentY(anchorRtl, event.touches);
 
-      if (!open) {
+      if (!openRef.current) {
         if (disableSwipeToOpen || event.target !== swipeAreaRef.current) {
           return;
         }
@@ -322,7 +327,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       swipeInstance.current.startY = currentY;
 
       setMaybeSwiping(true);
-      if (!open && paperRef.current) {
+      if (!openRef.current && paperRef.current) {
         // The ref may be null when a parent component updates while swiping.
         setPosition(
           getMaxTranslate(horizontalSwipe, paperRef.current) +
@@ -351,7 +356,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       anchor,
       disableDiscovery,
       disableSwipeToOpen,
-      open,
       swipeAreaWidth,
       theme,
     ],
