@@ -46,6 +46,28 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   return <div tabIndex={-1} ref={handleRef} />;
 });
 
+const NullPaper = React.forwardRef(function NullPaper(props, ref) {
+  const [hidden, setHidden] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleTouchStart = () => {
+      setHidden(true);
+    };
+
+    document.addEventListener('touchstart', handleTouchStart);
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, []);
+
+  if (hidden) {
+    return null;
+  }
+
+  return <div tabIndex={-1} ref={ref} />;
+});
+
 describe('<SwipeableDrawer />', () => {
   let mount;
 
@@ -250,7 +272,7 @@ describe('<SwipeableDrawer />', () => {
               ],
             });
           }
-          assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
+          assert.strictEqual(wrapper.find('[role="presentation"]').exists(), false);
         });
 
         it('should slide in a bit when touching near the edge', () => {
@@ -421,16 +443,17 @@ describe('<SwipeableDrawer />', () => {
 
   it('does not crash when updating the parent component while swiping', () => {
     const wrapper = mount(
-      <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false}>
+      <SwipeableDrawer
+        onOpen={() => {}}
+        onClose={() => {}}
+        open={false}
+        PaperProps={{ component: NullPaper }}
+      >
         <h1>Hello</h1>
       </SwipeableDrawer>,
     );
     fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
     // simulate paper ref being null because of the drawer being updated
-    wrapper
-      .find('SwipeableDrawer')
-      .instance()
-      .handlePaperRef(null);
     fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
   });
 
