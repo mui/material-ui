@@ -52,20 +52,17 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 }
 
 function findActivePage(currentPages, pathname) {
-  const activePage = find(
-    currentPages,
-    page => {
-      if (page.children) {
-        if (pathname.indexOf(`${page.pathname}/`) === 0) {
-          // Check if one of the children matches (for /components)
-          return findActivePage(page.children, pathname);
-        }
+  const activePage = find(currentPages, page => {
+    if (page.children) {
+      if (pathname.indexOf(`${page.pathname}/`) === 0) {
+        // Check if one of the children matches (for /components)
+        return findActivePage(page.children, pathname);
       }
+    }
 
-      // Should be an exact match if no children
-      return pathname === page.pathname;
-    },
-  );
+    // Should be an exact match if no children
+    return pathname === page.pathname;
+  });
 
   if (!activePage) {
     return null;
@@ -101,7 +98,7 @@ class MyApp extends App {
       pathname = pathname.replace(/\/$/, '');
     }
     // console.log(pages, { ...router, pathname })
-    const activePage = findActivePage(pages, pathname );
+    const activePage = findActivePage(pages, pathname);
 
     return (
       <ReactMode>

@@ -67,12 +67,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
       page.subheader || activePage.pathname.indexOf(`${page.pathname}/`) === 0;
 
     items.push(
-      <AppDrawerNavItem
-        depth={depth}
-        key={title}
-        openImmediately={openImmediately}
-        title={title}
-      >
+      <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>
         {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1, t })}
       </AppDrawerNavItem>,
     );
