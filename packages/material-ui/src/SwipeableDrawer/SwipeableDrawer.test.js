@@ -1,12 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
+import { useForkRef } from '../utils/reactHelpers';
 
 function fireBodyMouseEvent(name, properties = {}) {
   const event = document.createEvent('MouseEvents');
@@ -32,23 +33,20 @@ function fireSwipeAreaMouseEvent(wrapper, name, properties = {}) {
   return event;
 }
 
+const FakeWidthPaper = React.forwardRef(function FakeWidthPaper(props, ref) {
+  const paperRef = React.useRef(null);
+  const handleRef = useForkRef(ref, paperRef);
+
+  React.useEffect(() => {
+    // stub clientWidth
+    Object.defineProperty(paperRef.current, 'clientWidth', { value: 250 });
+  });
+
+  return <div tabIndex={-1} ref={handleRef} />;
+});
+
 describe('<SwipeableDrawer />', () => {
   let mount;
-
-  function mockDrawerDOMNode(wrapper) {
-    wrapper.find('SwipeableDrawer').forEach(drawer => {
-      // like .value() but prevent reassignment
-      stub(drawer.instance(), 'paperRef')
-        .set(() => {})
-        .get(() => {
-          return {
-            clientWidth: 250,
-            clientHeight: 250,
-            style: {},
-          };
-        });
-    });
-  }
 
   before(() => {
     // test are mostly asserting on implementation details
@@ -100,12 +98,15 @@ describe('<SwipeableDrawer />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false}>
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          PaperProps={{ component: FakeWidthPaper }}
+        >
           <h1>Hello</h1>
         </SwipeableDrawer>,
       );
-      instance = wrapper.find('SwipeableDrawer').instance();
-      mockDrawerDOMNode(wrapper);
     });
 
     afterEach(() => {
@@ -188,44 +189,45 @@ describe('<SwipeableDrawer />', () => {
 
         it('should open and close when swiping', () => {
           // mock the internal setPosition function that moves the drawer while swiping
-          instance.setPosition = spy();
-
           // simulate open swipe
           const handleOpen = spy();
           wrapper.setProps({ onOpen: handleOpen });
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
           fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [params.openTouches[0]] });
-          assert.strictEqual(instance.state.maybeSwiping, true);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[1]] });
-          assert.strictEqual(instance.isSwiping, true);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[2]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.openTouches[2]] });
           assert.strictEqual(handleOpen.callCount, 1);
-          assert.strictEqual(instance.setPosition.callCount, 3);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
 
           // simulate close swipe
           instance.setPosition.resetHistory();
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
           fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [params.closeTouches[0]] });
-          assert.strictEqual(instance.state.maybeSwiping, true);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
-          assert.strictEqual(instance.isSwiping, true);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[2]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[2]] });
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
           assert.strictEqual(handleClose.callCount, 1);
-          assert.strictEqual(instance.setPosition.callCount, 2);
         });
 
         it('should stay closed when not swiping far enough', () => {
           // simulate open swipe that doesn't swipe far enough
           const handleOpen = spy();
           wrapper.setProps({ onOpen: handleOpen });
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
           fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [params.openTouches[0]] });
-          assert.strictEqual(instance.state.maybeSwiping, true);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[1]] });
-          assert.strictEqual(instance.isSwiping, true);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
           fireBodyMouseEvent('touchend', { changedTouches: [params.openTouches[1]] });
           assert.strictEqual(handleOpen.callCount, 0);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
         });
 
         it('should stay opened when not swiping far enough', () => {
@@ -233,11 +235,12 @@ describe('<SwipeableDrawer />', () => {
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
           fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [params.closeTouches[0]] });
-          assert.strictEqual(instance.state.maybeSwiping, true);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
-          assert.strictEqual(instance.isSwiping, true);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[1]] });
           assert.strictEqual(handleClose.callCount, 0);
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
         });
 
         it('should ignore swiping in the wrong direction if discovery is disabled', () => {
@@ -263,7 +266,7 @@ describe('<SwipeableDrawer />', () => {
               ],
             });
           }
-          assert.strictEqual(instance.isSwiping, null, 'should not be swiping');
+          assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
         });
 
         it('should slide in a bit when touching near the edge', () => {
@@ -371,31 +374,49 @@ describe('<SwipeableDrawer />', () => {
 
   describe('disableSwipeToOpen', () => {
     it('should not support swipe to open if disableSwipeToOpen is set', () => {
+      const handleOpen = spy();
       const wrapper = mount(
-        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false}>
+        <SwipeableDrawer
+          onOpen={handleOpen}
+          onClose={() => {}}
+          open={false}
+          PaperProps={{ component: FakeWidthPaper }}
+        >
           <h1>Hello</h1>
         </SwipeableDrawer>,
       );
 
       // simulate open swipe
       wrapper.setProps({ disableSwipeToOpen: true });
-      fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
-      assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
+      assert.strictEqual(wrapper.find('[role="presentation"]').exists(), false);
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 10, clientY: 0 }] });
+      fireBodyMouseEvent('touchmove', { touches: [{ pageX: 150, clientY: 0 }] });
+      fireBodyMouseEvent('touchend', { changedTouches: [{ pageX: 250, clientY: 0 }] });
+      assert.strictEqual(handleOpen.callCount, 0);
+      assert.strictEqual(wrapper.find('[role="presentation"]').exists(), false);
       wrapper.unmount();
     });
 
     it('should support swipe to close if disableSwipeToOpen is set', () => {
+      const handleClose = spy();
       const wrapper = mount(
-        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open>
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={handleClose}
+          open
+          PaperProps={{ component: FakeWidthPaper }}
+        >
           <h1>Hello</h1>
         </SwipeableDrawer>,
       );
 
       // simulate close swipe
       wrapper.setProps({ disableSwipeToOpen: true });
-      assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
-      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
-      assert.strictEqual(wrapper.find(SwipeArea).exists(), false);
+      assert.strictEqual(wrapper.find('[role="presentation"]').exists(), true);
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 250, clientY: 0 }] });
+      fireBodyMouseEvent('touchmove', { touches: [{ pageX: 150, clientY: 0 }] });
+      fireBodyMouseEvent('touchend', { changedTouches: [{ pageX: 10, clientY: 0 }] });
+      assert.strictEqual(handleClose.callCount, 1);
       wrapper.unmount();
     });
   });
@@ -405,15 +426,24 @@ describe('<SwipeableDrawer />', () => {
       const handleOpen = spy();
       const wrapper = mount(
         <div>
-          <SwipeableDrawer onOpen={handleOpen} onClose={() => {}} open={false}>
+          <SwipeableDrawer
+            onOpen={handleOpen}
+            onClose={() => {}}
+            open={false}
+            PaperProps={{ component: FakeWidthPaper }}
+          >
             <h1>Hello1</h1>
           </SwipeableDrawer>
-          <SwipeableDrawer onOpen={handleOpen} onClose={() => {}} open={false}>
+          <SwipeableDrawer
+            onOpen={handleOpen}
+            onClose={() => {}}
+            open={false}
+            PaperProps={{ component: FakeWidthPaper }}
+          >
             <h1>Hello2</h1>
           </SwipeableDrawer>
         </div>,
       );
-      mockDrawerDOMNode(wrapper);
 
       fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawer).at(0), 'touchstart', {
         touches: [{ pageX: 0, clientY: 0 }],
