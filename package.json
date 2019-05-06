@@ -71,7 +71,7 @@
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^7.4.4",
     "@date-io/date-fns": "^1.0.0",
     "@emotion/core": "^10.0.0",
     "@emotion/styled": "^10.0.0",

@@ -66,6 +66,18 @@ export const styles = theme => ({
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    padding: '4px 8px',
+    minWidth: 64,
+    fontSize: theme.typography.pxToRem(13),
+  },
+  
+  /* Styles applied to the root element if `size="large"`. */
+  sizeLarge: {
+    padding: '8px 24px',
+    fontSize: theme.typography.pxToRem(15),
+  },
 });
 
 const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
@@ -78,6 +90,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
     onChange,
     onClick,
     selected,
+    size,
     value,
     ...other
   } = props;
@@ -102,6 +115,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
         {
           [classes.disabled]: disabled,
           [classes.selected]: selected,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
         className,
       )}
@@ -158,6 +172,10 @@ ToggleButton.propTypes = {
    */
   selected: PropTypes.bool,
   /**
+   * The size of the buttonGroup.
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
    * The value to associate with the button when selected in a
    * ToggleButtonGroup.
    */
@@ -168,6 +186,7 @@ ToggleButton.defaultProps = {
   disabled: false,
   disableFocusRipple: false,
   disableRipple: false,
+  size: 'medium',
 };
 
 ToggleButton.muiName = 'ToggleButton';

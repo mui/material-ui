@@ -65,6 +65,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
         return React.cloneElement(child, {
           selected,
           onChange: exclusive ? handleExclusiveChange : handleChange,
+          size: size ? size : 'medium'
         });
       })}
     </div>

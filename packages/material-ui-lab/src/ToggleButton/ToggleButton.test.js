@@ -67,6 +67,16 @@ describe('<ToggleButton />', () => {
     assert.strictEqual(root.is('button[disabled]'), true);
   });
 
+  it('should render a large button', () => {
+    const wrapper = mount(
+      <ToggleButton size='large' value="hello">
+        Hello World
+      </ToggleButton>,
+    );
+    const root = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(root.is('button[size]'), 'large');
+  });
+
   describe('prop: onChange', () => {
     it('should be called when clicked', () => {
       const handleChange = spy();
