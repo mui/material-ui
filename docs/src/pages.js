@@ -69,6 +69,7 @@ const pages = [
       {
         pathname: '/components',
         subheader: '/components/progress-validation',
+        title: 'Progress & validation',
         children: [
           { pathname: '/components/progress' },
           { pathname: '/components/snackbars' },
@@ -93,7 +94,7 @@ const pages = [
         subheader: '/components/utils',
         children: [
           { pathname: '/components/click-away-listener' },
-          { pathname: '/components/css-baseline' },
+          { pathname: '/components/css-baseline', title: 'CSS Baseline' },
           { pathname: '/components/modal' },
           { pathname: '/components/no-ssr', title: 'No SSR' },
           { pathname: '/components/popover' },
@@ -154,11 +155,11 @@ const pages = [
         children: [
           { pathname: '/customization/themes', title: 'Overview' },
           { pathname: '/customization/palette' },
-          { pathname: '/customization/type' },
+          { pathname: '/customization/type', title: 'Type (light / dark theme)' },
           { pathname: '/customization/typography' },
           { pathname: '/customization/spacing' },
           { pathname: '/customization/breakpoints' },
-          { pathname: '/customization/z-index' },
+          { pathname: '/customization/z-index', title: 'z-index' },
           { pathname: '/customization/component-overrides' },
         ],
       },
