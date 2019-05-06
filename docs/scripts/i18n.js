@@ -17,7 +17,7 @@ async function run() {
           const title = pageToTitle(page);
 
           if (title) {
-            const path = page.subheader || page.pathname
+            const path = page.subheader || page.pathname;
             output.pages[path] = title;
           }
         }
