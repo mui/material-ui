@@ -5,11 +5,11 @@ function getScrollY(ref) {
 }
 
 function defaultTrigger(event, store, options) {
-  const { disableHysteresis = true, threshold = 100 } = options;
+  const { disableHysteresis = false, threshold = 100 } = options;
   const previous = store.current;
   store.current = getScrollY(event && event.currentTarget);
 
-  if (disableHysteresis) {
+  if (!disableHysteresis) {
     if (store.current < previous) {
       return false;
     }
