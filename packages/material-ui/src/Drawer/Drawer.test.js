@@ -271,18 +271,19 @@ describe('<Drawer />', () => {
 
   describe('getAnchor', () => {
     it('should return the anchor', () => {
-      const direction = 'ltr';
-      assert.strictEqual(getAnchor(direction, 'left'), 'left');
-      assert.strictEqual(getAnchor(direction, 'right'), 'right');
-      assert.strictEqual(getAnchor(direction, 'top'), 'top');
-      assert.strictEqual(getAnchor(direction, 'bottom'), 'bottom');
+      const theme = { direction: 'ltr' };
+
+      assert.strictEqual(getAnchor(theme, 'left'), 'left');
+      assert.strictEqual(getAnchor(theme, 'right'), 'right');
+      assert.strictEqual(getAnchor(theme, 'top'), 'top');
+      assert.strictEqual(getAnchor(theme, 'bottom'), 'bottom');
     });
 
     it('should switch left/right if RTL is enabled', () => {
-      const direction = 'rtl';
+      const theme = { direction: 'rtl' };
 
-      assert.strictEqual(getAnchor(direction, 'left'), 'right');
-      assert.strictEqual(getAnchor(direction, 'right'), 'left');
+      assert.strictEqual(getAnchor(theme, 'left'), 'right');
+      assert.strictEqual(getAnchor(theme, 'right'), 'left');
     });
   });
 });
