@@ -65,6 +65,7 @@ module.exports = {
     },
     coverage: {
       plugins: [
+        'babel-plugin-optimize-clsx',
         'babel-plugin-istanbul',
         [
           'babel-plugin-module-resolver',
@@ -146,6 +147,7 @@ module.exports = {
     test: {
       sourceMaps: 'both',
       plugins: [
+        'babel-plugin-optimize-clsx',
         [
           'babel-plugin-module-resolver',
           {
