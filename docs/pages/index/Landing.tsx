@@ -5,6 +5,7 @@ import Logo from '_shared/svgIcons/Logo';
 import Code from '@material-ui/icons/Code';
 import Alarm from '@material-ui/icons/Alarm';
 import GitHub from '_shared/svgIcons/GithubIcon';
+import KawaiiIcon from '_shared/svgIcons/KawaiiIcon';
 import Devices from '@material-ui/icons/DevicesOther';
 import PatreonSponsors from '_shared/PatreonSponsors';
 import { GITHUB_URL } from '_constants';
@@ -37,7 +38,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     alignItems: 'center',
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.getContrastText(theme.palette.primary.main),
-    padding: '160px 20px 100px',
+    padding: '160px 20px 60px',
     [theme.breakpoints.down('sm')]: {
       paddingTop: 100,
     },
@@ -74,6 +75,9 @@ const useStyles = makeStyles<Theme>(theme => ({
     backgroundColor: theme.palette.background.default,
     marginBottom: -50,
   },
+  kawaiiIcon: {
+    marginBottom: 32,
+  },
   content: {
     padding: '80px 16px 0',
     backgroundColor: theme.palette.background.default,
@@ -81,6 +85,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     maxWidth: 1100,
     margin: '0 auto',
     display: 'flex',
+    alignItems: 'center',
     flexDirection: 'column',
     '@media(max-width: 600px)': {
       minHeight: 'calc(100vh - 55px)',
@@ -168,6 +173,8 @@ const Landing = () => {
       </Toolbar>
 
       <div className={classes.content}>
+        <KawaiiIcon className={classes.kawaiiIcon} />
+
         <Typography gutterBottom variant="h4" align="center">
           Support @material-ui/pickers
         </Typography>

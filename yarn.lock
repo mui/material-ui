@@ -1073,7 +1073,7 @@
     refractor "^2.3.0"
     unist-util-visit "^1.1.3"
 
-"@material-ui/core@^4.0.0-alpha.7", "@material-ui/core@^4.0.0-beta.0":
+"@material-ui/core@^4.0.0-beta.0", "@material-ui/core@^4.0.0-beta.1":
   version "4.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.0.0-beta.1.tgz#5f8f47b66e92f266abbad6cfcc9efa6e5d87e54c"
   integrity sha512-QuUKg7+myF+UdBs1MrCNo5N02sbXgfji7OQ8ImWzQRcwhB0uVqmGhB7rPiQnq8yb32e1X37btCinjE+gxdY1XA==
@@ -1420,6 +1420,13 @@
     "@types/react" "*"
     "@types/theming" "*"
     csstype "^2.0.0"
+
+"@types/react-kawaii@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@types/react-kawaii/-/react-kawaii-0.11.0.tgz#99e8454c006f9e163f2910d44d15c0f3908ffcaf"
+  integrity sha512-SgasNJZL2DaHt//sxWWDHv1j4HAznkUpHfYh9BGOsDku/DDu6dDATUQSkTYan6883YYSEP+nJM8F0FGxhrCUSg==
+  dependencies:
+    "@types/react" "*"
 
 "@types/react-loadable@*":
   version "5.5.1"
@@ -9199,6 +9206,13 @@ react-jss@^8.6.1:
     jss-preset-default "^4.3.0"
     prop-types "^15.6.0"
     theming "^1.3.0"
+
+react-kawaii@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/react-kawaii/-/react-kawaii-0.12.0.tgz#e1eeb5bc3818d91bb609f5bf2992ce9bbea738ed"
+  integrity sha512-qcRhCy8+8CFWw9VZu2pY9eMsjcaB83ZmJ6sH+BqyeaZnA0YlEzB3oPGVBJEX4KYd7/Dj/dB/7R98OnSixIY5Wg==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-lifecycles-compat@^3.0.2:
   version "3.0.4"

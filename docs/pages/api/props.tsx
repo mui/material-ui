@@ -2,12 +2,25 @@ import * as React from 'react';
 import Ad from '_shared/Ad';
 import Code from '_shared/Code';
 import PropTypesTable from '_shared/PropTypesTable';
+import KawaiiIcon from '_shared/svgIcons/KawaiiIcon';
 import { PageMeta } from '_shared/PageMeta';
-import { Typography } from '@material-ui/core';
 import { WithRouterProps, withRouter } from 'next/router';
+import { Typography, Grid, makeStyles } from '@material-ui/core';
 
 const internalComponents = ['Calendar', 'TimePickerView'];
+const useStyles = makeStyles(theme => ({
+  kawaiiIcon: {
+    marginTop: 48,
+  },
+  title: {
+    [theme.breakpoints.down('xs')]: {
+      order: 2,
+    },
+  },
+}));
+
 const Docs: React.FC<WithRouterProps> = ({ router }) => {
+  const classes = useStyles();
   const componentName = router!.query!.component! as any; // just crash if name is invalid
 
   const title = `${componentName} API`;
@@ -17,10 +30,16 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
     <>
       <PageMeta title={title} description={description} />
 
-      <h2>{title}</h2>
-      <p>{description}</p>
-
-      <Ad />
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item md={6} className={classes.title}>
+          <h3>{title}</h3>
+          <p>{description}</p>
+          <Ad />
+        </Grid>
+        <Grid item md={6} container alignItems="flex-end" justify="center">
+          <KawaiiIcon className={classes.kawaiiIcon} size={220} />
+        </Grid>
+      </Grid>
 
       <h4> Import </h4>
       <Code language="jsx">{`import { ${componentName} } from '@material-ui/pickers'`}</Code>
