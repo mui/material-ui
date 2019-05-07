@@ -38,6 +38,26 @@ function cssTest() {
 }
 
 /**
+ * marking a prop as required requires it in props object and `css` object
+ *
+ * This is not equivalent to the implementation. Ideally `css` would be optional
+ * but that breaks system/basics/#css-property
+ */
+function cssRequiredTest() {
+  function styleRequiredFunction(props: { color: string }) {
+    return {};
+  }
+
+  const style = css(styleRequiredFunction);
+  style({
+    color: 'red',
+    css: {}, // $ExpectError
+  });
+  style({ css: { color: 'red' } }); // $ExpectError
+  style({ color: 'blue', css: { color: 'red' } });
+}
+
+/**
  * Testing inference of TypeScript + styled-components + @material-ui/system
  */
 function interopTest() {
