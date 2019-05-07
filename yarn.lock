@@ -964,15 +964,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@babel/types@^7.4.4":
-  version "7.4.4"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.4.4.tgz#8db9e9a629bb7c29370009b4b779ed93fe57d5f0"
-  integrity sha512-dOllgYdnEFOebhkKCjzSVFqw/PmmB8pH6RGOWkY4GsboQNd47b1fBThBSwlHAq9alF9vc1M3+6oqR47R50L0tQ==
-  dependencies:
-    esutils "^2.0.2"
-    lodash "^4.17.11"
-    to-fast-properties "^2.0.0"
-
 "@date-io/core@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.2.0.tgz#da3a46999b8f58dc1d471c4f5373c5bff44b5794"
@@ -3067,12 +3058,14 @@ babel-plugin-module-resolver@^3.0.0:
     reselect "^3.0.1"
     resolve "^1.4.0"
 
-babel-plugin-optimize-clsx@^1.0.1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-clsx/-/babel-plugin-optimize-clsx-1.1.0.tgz#8a3ea1f0a516d1baa8824d1583d6ad602da5b358"
-  integrity sha512-oVO3MXQWalFPP8EVB+55qzPJXUGgtc8wLEN1oUwwAq6jMz8Bhv8gS28b+tMc6ihayUGjbY4Y8Gc0aTXBfICF3A==
+babel-plugin-optimize-clsx@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-clsx/-/babel-plugin-optimize-clsx-1.1.1.tgz#f0d435f8af41ce51ea6491d9ab0c1e5808d1cfb6"
+  integrity sha512-bQBK1S7BHMeBp28tj+YOW4YJjpUN3T0HXqaYV2kyec9u6GCk/KypFxT8R7biezLxucWK/YFR6l34cDeBo/IG3A==
   dependencies:
+    "@babel/generator" "^7.4.4"
     "@babel/types" "^7.4.4"
+    lodash "^4.17.11"
 
 babel-plugin-preval@^2.0.0:
   version "2.0.1"
