@@ -51,7 +51,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      const root = wrapper.find('Popover > [data-root-node]').first();
+      const root = wrapper.find('ForwardRef(Popover) > [data-root-node]').first();
       assert.strictEqual(root.type(), Modal);
       assert.strictEqual(root.props().BackdropProps.invisible, true);
     });
@@ -247,17 +247,6 @@ describe('<Popover />', () => {
   });
 
   describe('transition lifecycle', () => {
-    const element = {
-      style: {
-        offsetTop: 'auto',
-        left: 'auto',
-        opacity: 1,
-        transform: undefined,
-        transformOrigin: undefined,
-        transition: undefined,
-      },
-    };
-
     describe('handleEntering(element)', () => {
       it('should set the inline styles for the enter phase', () => {
         const handleEntering = spy();
@@ -266,8 +255,12 @@ describe('<Popover />', () => {
             <div />
           </Popover>,
         );
-        const instance = wrapper.find('Popover').instance();
-        instance.handleEntering(element);
+
+        wrapper.setProps({
+          open: true,
+        });
+
+        const element = handleEntering.args[0][0];
 
         assert.strictEqual(
           element.style.top === '16px' && element.style.left === '16px',
@@ -276,7 +269,7 @@ describe('<Popover />', () => {
         );
         assert.strictEqual(
           element.style.transformOrigin,
-          instance.getPositioningStyle(element).transformOrigin,
+          '-16px -16px',
           'should have a transformOrigin',
         );
       });
@@ -455,7 +448,7 @@ describe('<Popover />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `Popover`. Expected an element type that can hold a ref.',
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `ForwardRef(Popover)`. Expected an element type that can hold a ref.',
       );
     });
 
