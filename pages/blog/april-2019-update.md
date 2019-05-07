@@ -26,7 +26,7 @@ Here are the most significant changes in April:
 - 💅 We have changed the class name generation to output global class names.
   We have seen many people struggling with our `classes` API.
   This API targets plain CSS and styled-components users.
-  It can be challenging to apply your class name on the right element with the `classes` API. It can also be cumbersome. ⚠️ Using global class names provide more power bug comes with a responsibility. We encourage any pattern that increases your **custom style isolation**.
+  It can be challenging to apply your class name on the right element with the `classes` API. It can also be cumbersome. ⚠️ Using global class names provide more power but comes with a responsibility. We encourage any pattern that increases your **custom style isolation**.
 
   [![Global class names](/static/blog/april-2019-update/global-class-names.png)](https://next.material-ui.com/css-in-js/advanced/#with-material-ui-core)
 
