@@ -150,7 +150,26 @@ yarn add @material-ui/styles@next
 
   *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
 
-### Typography
+
+
+
+
+### Layout
+
+- [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
+
+  ```diff
+    /**
+     * Defines the space between the type `item` component.
+     * It can only be used on a type `container` component.
+     */
+  -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
+  +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+  ```
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
+
+### Components 
+#### Typography
 
 - [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements:
   - display4 => h1
@@ -180,7 +199,7 @@ yarn add @material-ui/styles@next
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028.
   The usage of *default* should be avoided, it lakes semantic.
 
-### Button
+#### Button
 
 - [Button] Remove the deprecated button variants (flat, raised and fab):
 
@@ -201,7 +220,7 @@ yarn add @material-ui/styles@next
   +<Fab />
   ```
 
-### TextField
+#### TextField
 
 - [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
   The `FormLabelClasses` property has been removed.
@@ -223,21 +242,8 @@ yarn add @material-ui/styles@next
   It solves issues with the `fullWidth` prop.
 - [InputBase] Remove the `inputType` class from `InputBase`.
 
-### Layout
 
-- [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
-
-  ```diff
-    /**
-     * Defines the space between the type `item` component.
-     * It can only be used on a type `container` component.
-     */
-  -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
-  +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
-  ```
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
-
-### Table
+#### Table
 
 - [TableCell] Remove the deprecated `numeric` property.
 
@@ -255,7 +261,7 @@ yarn add @material-ui/styles@next
   ```
 - [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
 
-### Tabs
+#### Tabs
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
 This has allowed us to removed 2 intermediary DOM elements.
@@ -263,12 +269,12 @@ You should be able to move the custom styles to the root class key.
 
   ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
-### Menu
+#### Menu
 
 - [MenuItem] Remove the fixed height of the MenuItem.
   The padding and line-height are used by the browser to compute the height.
 
-### List
+#### List
 
 - [List] Rework the list components to match the specification:
 
@@ -278,7 +284,7 @@ You should be able to move the custom styles to the root class key.
 
 - [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
-### Paper
+#### Paper
 
 - [Paper] Reduce the default elevation.
   Change the default Paper elevation to match the Card and the Expansion Panel:
@@ -288,7 +294,7 @@ You should be able to move the custom styles to the root class key.
   +<Paper elevation={2} />
   ```
 
-### Dialog
+#### Dialog
 
 - [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
 - [DialogActions] Rename the `action` CSS class `spacing`.
@@ -308,22 +314,22 @@ You should be able to move the custom styles to the root class key.
   <Dialog><div /></Dialog>
   ```
 
-### Card
+#### Card
 
 - [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
 - [CardActions] Remove the `disableActionSpacing` CSS class.
 - [CardActions] Rename the `action` CSS class `spacing`.
 
-### ClickAwayListener
+#### ClickAwayListener
 
 - [ClickAwayListener] Hide react-event-listener.
 
-### ExpansionPanel
+#### ExpansionPanel
 
 - [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
 - [ExpansionPanel] Increase the CSS specificity of the `disabled` style rule.
 
-### Switch
+#### Switch
 
 - [Switch] Refactor the implementation to make it easier to override the styles.
   Rename the class names to match the specification wording:
@@ -335,7 +341,7 @@ You should be able to move the custom styles to the root class key.
   +track
   ```
 
-### Divider
+#### Divider
 
 - [Divider] Remove the deprecated inset prop.
 
@@ -344,14 +350,14 @@ You should be able to move the custom styles to the root class key.
   +<Divider variant="inset" />
   ```
 
-### Snackbar
+#### Snackbar
 
 - [Snackbar] Match the new specification.
 
   - Change the dimensions
   - Change the default transition to from `Slide` to `Grow`.
 
-### SvgIcon
+#### SvgIcon
 
 - [SvgIcon] Rename nativeColor -> htmlColor.
   React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
@@ -361,29 +367,8 @@ You should be able to move the custom styles to the root class key.
   +<AddIcon htmlColor="#fff" />
   ```
 
-### Node
 
-- [Drop official node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
-
-### UMD
-
-- This change eases the use of Material-UI with a CDN:
-
-  ```diff
-  const {
-    Button,
-    TextField,
-  -} = window['material-ui'];
-  +} = MaterialUI;
-  ```
-
-  It's consistent with the other React projects:
-
-  - material-ui => MaterialUI
-  - react-dom => ReactDOM
-  - prop-types => PropTypes
-
-### Modal
+#### Modal
 
 - [Modal] The child needs to be able to hold a ref.
 
@@ -408,7 +393,7 @@ You should be able to move the custom styles to the root class key.
   Only special HTML elements have these default behaviors.
   People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
 
-### Portal
+#### Portal
 
 - [Portal] The child needs to be able to hold a ref when `disablePortal` is used.
 
@@ -425,7 +410,7 @@ You should be able to move the custom styles to the root class key.
   <Portal><div /></Portal>
   ```
 
-### Slide
+#### Slide
 
 - [Slide] The child needs to be able to hold a ref.
 
@@ -442,7 +427,7 @@ You should be able to move the custom styles to the root class key.
   <Slide><div /></Slide>
   ```
 
-### Tooltip
+#### Tooltip
 
 - [Tooltip] The child needs to be able to hold a ref.
 
@@ -458,3 +443,26 @@ You should be able to move the custom styles to the root class key.
   <Tooltip><MyComponent /></Tooltip>
   <Tooltip><div /></Tooltip>
   ```
+
+### Node
+
+- [Drop official node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
+
+
+### UMD
+
+- This change eases the use of Material-UI with a CDN:
+
+  ```diff
+  const {
+    Button,
+    TextField,
+  -} = window['material-ui'];
+  +} = MaterialUI;
+  ```
+
+  It's consistent with the other React projects:
+
+  - material-ui => MaterialUI
+  - react-dom => ReactDOM
+  - prop-types => PropTypes
