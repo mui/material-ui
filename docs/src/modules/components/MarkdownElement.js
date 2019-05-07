@@ -71,7 +71,7 @@ const markedOptions = {
   tables: true,
   breaks: false,
   pedantic: false,
-  sanitize: true,
+  sanitize: false,
   smartLists: true,
   smartypants: false,
   highlight(code, language) {
@@ -84,6 +84,14 @@ const markedOptions = {
       case 'js':
       case 'sh':
         prismLanguage = prism.languages.jsx;
+        break;
+
+      case 'diff':
+        prismLanguage = { ...prism.languages.diff };
+        // original `/^[-<].*$/m` matches lines starting with `<` which matches
+        // <SomeComponent />
+        // we will only use `-` as the deleted marker
+        prismLanguage.deleted = /^[-].*$/m;
         break;
 
       default:
