@@ -150,10 +150,6 @@ yarn add @material-ui/styles@next
 
   *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
 
-
-
-
-
 ### Layout
 
 - [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
@@ -168,9 +164,7 @@ yarn add @material-ui/styles@next
   ```
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
 
-### Components 
-
-#### Button
+### Button
 
 - [Button] Remove the deprecated button variants (flat, raised and fab):
 
@@ -192,17 +186,17 @@ yarn add @material-ui/styles@next
   ```
 
 
-#### Card
+### Card
 
 - [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
 - [CardActions] Remove the `disableActionSpacing` CSS class.
 - [CardActions] Rename the `action` CSS class `spacing`.
 
-#### ClickAwayListener
+### ClickAwayListener
 
 - [ClickAwayListener] Hide react-event-listener.
 
-#### Dialog
+### Dialog
 
 - [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
 - [DialogActions] Rename the `action` CSS class `spacing`.
@@ -210,7 +204,7 @@ yarn add @material-ui/styles@next
 - [Dialog] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 
-#### Divider
+### Divider
 
 - [Divider] Remove the deprecated inset prop.
 
@@ -219,12 +213,12 @@ yarn add @material-ui/styles@next
   +<Divider variant="inset" />
   ```
 
-#### ExpansionPanel
+### ExpansionPanel
 
 - [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
 - [ExpansionPanel] Increase the CSS specificity of the `disabled` style rule.
 
-#### List
+### List
 
 - [List] Rework the list components to match the specification:
 
@@ -234,12 +228,12 @@ yarn add @material-ui/styles@next
 
 - [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
-#### Menu
+### Menu
 
 - [MenuItem] Remove the fixed height of the MenuItem.
   The padding and line-height are used by the browser to compute the height.
 
-#### Modal
+### Modal
 
 - [Modal] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
   the migration strategy.
@@ -251,7 +245,7 @@ yarn add @material-ui/styles@next
   Only special HTML elements have these default behaviors.
   People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
 
-#### Paper
+### Paper
 
 - [Paper] Reduce the default elevation.
   Change the default Paper elevation to match the Card and the Expansion Panel:
@@ -262,17 +256,17 @@ yarn add @material-ui/styles@next
   ```
 
 
-#### Portal
+### Portal
 
 - [Portal] The child needs to be able to hold a ref when `disablePortal` is used. The [composition guide](/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 
-#### Slide
+### Slide
 
 - [Slide] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 
-#### Switch
+### Switch
 
 - [Switch] Refactor the implementation to make it easier to override the styles.
   Rename the class names to match the specification wording:
@@ -285,14 +279,14 @@ yarn add @material-ui/styles@next
   ```
 
 
-#### Snackbar
+### Snackbar
 
 - [Snackbar] Match the new specification.
 
   - Change the dimensions
   - Change the default transition to from `Slide` to `Grow`.
 
-#### SvgIcon
+### SvgIcon
 
 - [SvgIcon] Rename nativeColor -> htmlColor.
   React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
@@ -303,7 +297,7 @@ yarn add @material-ui/styles@next
   ```
 
 
-#### Tabs
+### Tabs
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
 This has allowed us to removed 2 intermediary DOM elements.
@@ -311,7 +305,7 @@ You should be able to move the custom styles to the root class key.
 
   ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
-#### Table
+### Table
 
 - [TableCell] Remove the deprecated `numeric` property.
 
@@ -329,7 +323,7 @@ You should be able to move the custom styles to the root class key.
   ```
 - [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
 
-#### TextField
+### TextField
 
 - [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
   The `FormLabelClasses` property has been removed.
@@ -351,12 +345,12 @@ You should be able to move the custom styles to the root class key.
   It solves issues with the `fullWidth` prop.
 - [InputBase] Remove the `inputType` class from `InputBase`.
 
-#### Tooltip
+### Tooltip
 
 - [Tooltip] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 
-#### Typography
+### Typography
 
 - [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements:
   - display4 => h1
