@@ -169,35 +169,6 @@ yarn add @material-ui/styles@next
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
 
 ### Components 
-#### Typography
-
-- [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements:
-  - display4 => h1
-  - display3 => h2
-  - display2 => h3
-  - display1 => h4
-  - headline => h5
-  - title => h6
-  - subheading => subtitle1
-  - body2 => body1
-  - body1 (default) => body2 (default)
-- [Typography] Remove the opinionated `display: block` default typography style.
-  You can use the new `display?: 'initial' | 'inline' | 'block';` property.
-- [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
-
-  ```diff
-  -<Typography headlineMapping={headlineMapping}>
-  +<Typography variantMapping={variantMapping}>
-  ```
-- [Typography] Change the default variant from `body2` to `body1`.
-  A font size of 16px is a better default than 14px.
-  Bootstrap, material.io or even our documentation use 16px as a default font size.
-  14px like Ant Design is understandable as Chinese users have a different alphabet.
-  We document 12px as the default font size for Japanese.
-- [Typography] Remove the default color from the typography variants.
-  The color should inherit most of the time. It's the default behavior of the web.
-- [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028.
-  The usage of *default* should be avoided, it lakes semantic.
 
 #### Button
 
@@ -220,79 +191,16 @@ yarn add @material-ui/styles@next
   +<Fab />
   ```
 
-#### TextField
 
-- [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
-  The `FormLabelClasses` property has been removed.
+#### Card
 
-  ```diff
-  <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' } }
-  + classes={{ asterisk: 'bar' } }
-  >
-    Foo
-  </InputLabel>
-  ```
-- [InputBase] Change the default box sizing model.
-  It uses the following CSS now:
+- [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+- [CardActions] Remove the `disableActionSpacing` CSS class.
+- [CardActions] Rename the `action` CSS class `spacing`.
 
-  ```css
-  box-sizing: border-box;
-  ```
-  It solves issues with the `fullWidth` prop.
-- [InputBase] Remove the `inputType` class from `InputBase`.
+#### ClickAwayListener
 
-
-#### Table
-
-- [TableCell] Remove the deprecated `numeric` property.
-
-  ```diff
-  -<TableCell numeric>{row.calories}</TableCell>
-  +<TableCell align="right">{row.calories}</TableCell>
-  ```
-- [TableRow] Remove the fixed height CSS property.
-  The cell height is computed by the browser using the padding and line-height.
-- [TableCell] Move the `dense` mode to a different property:
-
-  ```diff
-  -<TableCell padding="dense" />
-  +<TableCell size="small" />
-  ```
-- [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
-
-#### Tabs
-
-- [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
-This has allowed us to removed 2 intermediary DOM elements.
-You should be able to move the custom styles to the root class key.
-
-  ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
-
-#### Menu
-
-- [MenuItem] Remove the fixed height of the MenuItem.
-  The padding and line-height are used by the browser to compute the height.
-
-#### List
-
-- [List] Rework the list components to match the specification:
-
-  - The usage of the `ListItemAvatar` component is required when using an avatar
-  - The usage of the `ListItemIcon` component is required when using a left checkbox
-  - The `edge` property should be set on the icon buttons.
-
-- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
-
-#### Paper
-
-- [Paper] Reduce the default elevation.
-  Change the default Paper elevation to match the Card and the Expansion Panel:
-
-  ```diff
-  -<Paper />
-  +<Paper elevation={2} />
-  ```
+- [ClickAwayListener] Hide react-event-listener.
 
 #### Dialog
 
@@ -314,33 +222,6 @@ You should be able to move the custom styles to the root class key.
   <Dialog><div /></Dialog>
   ```
 
-#### Card
-
-- [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
-- [CardActions] Remove the `disableActionSpacing` CSS class.
-- [CardActions] Rename the `action` CSS class `spacing`.
-
-#### ClickAwayListener
-
-- [ClickAwayListener] Hide react-event-listener.
-
-#### ExpansionPanel
-
-- [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
-- [ExpansionPanel] Increase the CSS specificity of the `disabled` style rule.
-
-#### Switch
-
-- [Switch] Refactor the implementation to make it easier to override the styles.
-  Rename the class names to match the specification wording:
-
-  ```diff
-  -icon
-  -bar
-  +thumb
-  +track
-  ```
-
 #### Divider
 
 - [Divider] Remove the deprecated inset prop.
@@ -350,23 +231,25 @@ You should be able to move the custom styles to the root class key.
   +<Divider variant="inset" />
   ```
 
-#### Snackbar
+#### ExpansionPanel
 
-- [Snackbar] Match the new specification.
+- [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
+- [ExpansionPanel] Increase the CSS specificity of the `disabled` style rule.
 
-  - Change the dimensions
-  - Change the default transition to from `Slide` to `Grow`.
+#### List
 
-#### SvgIcon
+- [List] Rework the list components to match the specification:
 
-- [SvgIcon] Rename nativeColor -> htmlColor.
-  React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
+  - The usage of the `ListItemAvatar` component is required when using an avatar
+  - The usage of the `ListItemIcon` component is required when using a left checkbox
+  - The `edge` property should be set on the icon buttons.
 
-  ```diff
-  -<AddIcon nativeColor="#fff" />
-  +<AddIcon htmlColor="#fff" />
-  ```
+- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
+#### Menu
+
+- [MenuItem] Remove the fixed height of the MenuItem.
+  The padding and line-height are used by the browser to compute the height.
 
 #### Modal
 
@@ -392,6 +275,17 @@ You should be able to move the custom styles to the root class key.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
   Only special HTML elements have these default behaviors.
   People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
+
+#### Paper
+
+- [Paper] Reduce the default elevation.
+  Change the default Paper elevation to match the Card and the Expansion Panel:
+
+  ```diff
+  -<Paper />
+  +<Paper elevation={2} />
+  ```
+
 
 #### Portal
 
@@ -427,6 +321,85 @@ You should be able to move the custom styles to the root class key.
   <Slide><div /></Slide>
   ```
 
+#### Switch
+
+- [Switch] Refactor the implementation to make it easier to override the styles.
+  Rename the class names to match the specification wording:
+
+  ```diff
+  -icon
+  -bar
+  +thumb
+  +track
+  ```
+
+
+#### Snackbar
+
+- [Snackbar] Match the new specification.
+
+  - Change the dimensions
+  - Change the default transition to from `Slide` to `Grow`.
+
+#### SvgIcon
+
+- [SvgIcon] Rename nativeColor -> htmlColor.
+  React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
+
+  ```diff
+  -<AddIcon nativeColor="#fff" />
+  +<AddIcon htmlColor="#fff" />
+  ```
+
+
+#### Tabs
+
+- [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
+This has allowed us to removed 2 intermediary DOM elements.
+You should be able to move the custom styles to the root class key.
+
+  ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+
+#### Table
+
+- [TableCell] Remove the deprecated `numeric` property.
+
+  ```diff
+  -<TableCell numeric>{row.calories}</TableCell>
+  +<TableCell align="right">{row.calories}</TableCell>
+  ```
+- [TableRow] Remove the fixed height CSS property.
+  The cell height is computed by the browser using the padding and line-height.
+- [TableCell] Move the `dense` mode to a different property:
+
+  ```diff
+  -<TableCell padding="dense" />
+  +<TableCell size="small" />
+  ```
+- [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
+
+#### TextField
+
+- [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
+  The `FormLabelClasses` property has been removed.
+
+  ```diff
+  <InputLabel
+  - FormLabelClasses={{ asterisk: 'bar' } }
+  + classes={{ asterisk: 'bar' } }
+  >
+    Foo
+  </InputLabel>
+  ```
+- [InputBase] Change the default box sizing model.
+  It uses the following CSS now:
+
+  ```css
+  box-sizing: border-box;
+  ```
+  It solves issues with the `fullWidth` prop.
+- [InputBase] Remove the `inputType` class from `InputBase`.
+
 #### Tooltip
 
 - [Tooltip] The child needs to be able to hold a ref.
@@ -443,6 +416,36 @@ You should be able to move the custom styles to the root class key.
   <Tooltip><MyComponent /></Tooltip>
   <Tooltip><div /></Tooltip>
   ```
+
+#### Typography
+
+- [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements:
+  - display4 => h1
+  - display3 => h2
+  - display2 => h3
+  - display1 => h4
+  - headline => h5
+  - title => h6
+  - subheading => subtitle1
+  - body2 => body1
+  - body1 (default) => body2 (default)
+- [Typography] Remove the opinionated `display: block` default typography style.
+  You can use the new `display?: 'initial' | 'inline' | 'block';` property.
+- [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
+
+  ```diff
+  -<Typography headlineMapping={headlineMapping}>
+  +<Typography variantMapping={variantMapping}>
+  ```
+- [Typography] Change the default variant from `body2` to `body1`.
+  A font size of 16px is a better default than 14px.
+  Bootstrap, material.io or even our documentation use 16px as a default font size.
+  14px like Ant Design is understandable as Chinese users have a different alphabet.
+  We document 12px as the default font size for Japanese.
+- [Typography] Remove the default color from the typography variants.
+  The color should inherit most of the time. It's the default behavior of the web.
+- [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028.
+  The usage of *default* should be avoided, it lakes semantic.
 
 ### Node
 
