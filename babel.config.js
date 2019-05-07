@@ -38,7 +38,6 @@ const defaultAlias = {
 };
 
 const productionPlugins = [
-  'babel-plugin-optimize-clsx',
   'babel-plugin-transform-react-constant-elements',
   'babel-plugin-transform-dev-warning',
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
@@ -53,6 +52,7 @@ const productionPlugins = [
 module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
+    'babel-plugin-optimize-clsx',
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     '@babel/plugin-transform-object-assign',
@@ -65,7 +65,6 @@ module.exports = {
     },
     coverage: {
       plugins: [
-        'babel-plugin-optimize-clsx',
         'babel-plugin-istanbul',
         [
           'babel-plugin-module-resolver',
@@ -147,7 +146,6 @@ module.exports = {
     test: {
       sourceMaps: 'both',
       plugins: [
-        'babel-plugin-optimize-clsx',
         [
           'babel-plugin-module-resolver',
           {
