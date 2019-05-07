@@ -85,7 +85,7 @@ Select.propTypes = {
    */
   autoWidth: PropTypes.bool,
   /**
-   * The option elements to populate the select with.
+   * The option elements to populate the select with (they **must** be direct descendants).
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
    */
   children: PropTypes.node,
