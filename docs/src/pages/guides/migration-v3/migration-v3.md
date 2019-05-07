@@ -207,20 +207,8 @@ yarn add @material-ui/styles@next
 - [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
 - [DialogActions] Rename the `action` CSS class `spacing`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
-- [Dialog] The child needs to be able to hold a ref.
-
-  ```diff
-  class Component extends React.Component {
-    render() {
-      return <div />
-    }
-  }
-  -const MyComponent = props => <div {...props} />
-  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
-  <Dialog><Component /></Dialog>
-  <Dialog><MyComponent /></Dialog>
-  <Dialog><div /></Dialog>
-  ```
+- [Dialog] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
 
 #### Divider
 
@@ -253,21 +241,8 @@ yarn add @material-ui/styles@next
 
 #### Modal
 
-- [Modal] The child needs to be able to hold a ref.
-
-  ```diff
-  class Component extends React.Component {
-    render() {
-      return <div />
-    }
-  }
-  -const MyComponent = props => <div {...props} />
-  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
-  <Modal><Component /></Modal>
-  <Modal><MyComponent /></Modal>
-  <Modal><div /></Modal>
-  ```
-
+- [Modal] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
 - [Modal] Remove the classes customization API for the Modal component.
   (-74% bundle size reduction when used standalone)
 - [Modal] event.defaultPrevented is now ignored.
@@ -289,37 +264,13 @@ yarn add @material-ui/styles@next
 
 #### Portal
 
-- [Portal] The child needs to be able to hold a ref when `disablePortal` is used.
-
-  ```diff
-  class Component extends React.Component {
-    render() {
-      return <div />
-    }
-  }
-  -const MyComponent = props => <div {...props} />
-  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
-  <Portal><Component /></Portal>
-  <Portal><MyComponent /></Portal>
-  <Portal><div /></Portal>
-  ```
+- [Portal] The child needs to be able to hold a ref when `disablePortal` is used. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
 
 #### Slide
 
-- [Slide] The child needs to be able to hold a ref.
-
-  ```diff
-  class Component extends React.Component {
-    render() {
-      return <div />
-    }
-  }
-  -const MyComponent = props => <div {...props} />
-  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
-  <Slide><Component /></Slide>
-  <Slide><MyComponent /></Slide>
-  <Slide><div /></Slide>
-  ```
+- [Slide] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
 
 #### Switch
 
@@ -402,20 +353,8 @@ You should be able to move the custom styles to the root class key.
 
 #### Tooltip
 
-- [Tooltip] The child needs to be able to hold a ref.
-
-  ```diff
-  class Component extends React.Component {
-    render() {
-      return <div />
-    }
-  }
-  -const MyComponent = props => <div {...props} />
-  +const MyComponent = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
-  <Tooltip><Component /></Tooltip>
-  <Tooltip><MyComponent /></Tooltip>
-  <Tooltip><div /></Tooltip>
-  ```
+- [Tooltip] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
 
 #### Typography
 
