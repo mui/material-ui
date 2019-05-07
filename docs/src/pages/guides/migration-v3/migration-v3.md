@@ -185,6 +185,8 @@ yarn add @material-ui/styles@next
   +<Fab />
   ```
 
+- [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref. 
+  The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
 ### Card
 
