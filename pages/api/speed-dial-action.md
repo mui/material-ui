@@ -42,7 +42,7 @@ This property accepts the following keys:
 | <span class="prop-name">button</span> | Styles applied to the `Button` component.
 | <span class="prop-name">buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js)
 for more detail.
 

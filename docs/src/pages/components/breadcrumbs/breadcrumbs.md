@@ -28,7 +28,7 @@ In the following examples, we are using two string separators, and an SVG icon.
 ## Customized breadcrumbs
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/overrides/).
+[overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

@@ -25,7 +25,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 ## Customized snackbars
 
 Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/overrides/).
+[overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 

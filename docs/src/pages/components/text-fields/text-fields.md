@@ -53,7 +53,7 @@ The component takes care of the most used properties, then it's up to the user t
 ## Customized inputs
 
 Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/overrides/).
+[overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 

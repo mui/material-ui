@@ -1,6 +1,8 @@
-# Overrides
+# Customizing components
 
-<p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
+<p class="description">You can easily customize the appearance of a Material-UI component.</p>
+
+As components can be used in different contexts, the are several approaches to this. Going from the narrowest use-case to the broadest, these are:
 
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
 1. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
@@ -12,7 +14,7 @@
 
 You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
 
-### Overriding with class names
+### Overriding styles with class names
 
 The first way to override the style of a component is to use **class names**.
 Every component provides a `className` property which is always applied to the root element.
@@ -24,9 +26,9 @@ consider the [CSS injection order](/styles/advanced/#css-injection-order), as th
 by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom
 of the `<head />` to ensure the components always render correctly.
 
-{{"demo": "pages/customization/overrides/ClassNames.js"}}
+{{"demo": "pages/customization/components/ClassNames.js"}}
 
-### Overriding with classes
+### Overriding styles with classes
 
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component.
 The list of  classes for each
@@ -41,7 +43,7 @@ you wish to add or override.
 
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
-{{"demo": "pages/customization/overrides/ClassesNesting.js"}}
+{{"demo": "pages/customization/components/ClassesNesting.js"}}
 
 ### Using the dev tools
 
@@ -81,7 +83,7 @@ const StyledButton = withStyles({
 })(Button);
 ```
 
-{{"demo": "pages/customization/overrides/ClassesShorthand.js"}}
+{{"demo": "pages/customization/components/ClassesShorthand.js"}}
 
 ### Pseudo-classes
 
@@ -192,9 +194,9 @@ compiles to:
 >
 ```
 
-{{"demo": "pages/customization/overrides/ClassesState.js"}}
+{{"demo": "pages/customization/components/ClassesState.js"}}
 
-### Overriding with inline-style
+### Overriding with inline-styles
 
 The second way to override the style of a component is to use the **inline-style** approach.
 Every component provides a `style` property.
@@ -202,35 +204,35 @@ These properties are always applied to the root element.
 
 You don't have to worry about CSS specificity as the inline-style takes precedence over the regular CSS.
 
-{{"demo": "pages/customization/overrides/InlineStyle.js"}}
+{{"demo": "pages/customization/components/InlineStyle.js"}}
 
 [When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
 
 ## 2. Dynamic variation for a one-time situation
 
-You have learned how to override the style of the Material-UI components in the previous sections.
+You have learned how to override the style of a Material-UI component in the previous section.
 Now, let's see how we can make these overrides dynamic.
-We demonstrate 5 alternatives, each has it's pros and cons.
+Here are five alternatives; each has it's pros and cons.
 
 ### Dynamic CSS
 
-{{"demo": "pages/customization/overrides/DynamicCSS.js"}}
+{{"demo": "pages/customization/components/DynamicCSS.js"}}
 
 ### Class name branch
 
-{{"demo": "pages/customization/overrides/DynamicClassName.js"}}
+{{"demo": "pages/customization/components/DynamicClassName.js"}}
 
 ### CSS variables
 
-{{"demo": "pages/customization/overrides/DynamicCSSVariables.js"}}
+{{"demo": "pages/customization/components/DynamicCSSVariables.js"}}
 
-### Inline-style
+### Inline-styles
 
-{{"demo": "pages/customization/overrides/DynamicInlineStyle.js"}}
+{{"demo": "pages/customization/components/DynamicInlineStyle.js"}}
 
 ### Theme nesting
 
-{{"demo": "pages/customization/overrides/DynamicThemeNesting.js"}}
+{{"demo": "pages/customization/components/DynamicThemeNesting.js"}}
 
 ## 3. Specific variation of a component
 
@@ -238,7 +240,7 @@ You might need to create a variation of a component and use it in different cont
 
 The best approach is to follow option 1 and then take advantage of the composition power of React by exporting your customized component to use wherever you need it.
 
-{{"demo": "pages/customization/overrides/Component.js", "hideEditButton": true}}
+{{"demo": "pages/customization/components/Component.js", "hideEditButton": true}}
 
 ## 4. Material Design variations
 

@@ -38,7 +38,7 @@ Sliders reflect the current state of the settings they control.
 ## Customized sliders
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/overrides/).
+[overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

@@ -67,7 +67,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 ## Customized Stepper
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/overrides/).
+[overrides documentation page](/customization/components/).
 
 This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
 

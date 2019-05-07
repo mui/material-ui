@@ -155,7 +155,7 @@
     "/system/typography": "Typography（文字铸排）",
     "/customization": "个性化",
     "/customization/themes": "主题",
-    "/customization/overrides": "文本覆盖",
+    "/customization/components": "文本覆盖",
     "/customization/default-theme": "默认主题",
     "/guides": "指南",
     "/guides/typescript": "TypeScript",

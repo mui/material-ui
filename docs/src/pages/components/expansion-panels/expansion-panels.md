@@ -46,6 +46,6 @@ bottlenecks first and then try out these optimization strategies.
 ## Customized expansion panels
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/overrides/).
+[overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}

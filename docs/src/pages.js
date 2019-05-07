@@ -158,7 +158,7 @@ const pages = [
           { pathname: '/customization/globals' },
         ],
       },
-      { pathname: '/customization/overrides' },
+      { pathname: '/customization/components' },
       { pathname: '/customization/color' },
       { pathname: '/customization/default-theme', title: 'Default Theme' },
     ],
