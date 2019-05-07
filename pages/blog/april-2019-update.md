@@ -30,7 +30,7 @@ Here are the most significant changes in April:
 
   [![Global class names](/static/blog/april-2019-update/global-class-names.png)](https://next.material-ui.com/css-in-js/advanced/#with-material-ui-core)
 
-- 📅 We have moved material-ui-pickers to our organization: [@material-ui/pickers](https://material-ui-pickers.dev/). A big thanks to **@dmtrKovalenko** for creating an owning these date/time components.
+- 📅 We have moved material-ui-pickers to our organization: [@material-ui/pickers](https://material-ui-pickers.dev/). A big thanks to **@dmtrKovalenko** for creating and owning these date/time components.
 - 🔥 We have fixed more Strict Mode warnings, getting us closer to [Concurrent React](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) support.
 - ♿️ We have significantly improved the keyboard behavior on the Select, Menu, Button and Tooltip components. The arrow key changes feel instantaneous. The select items can be selected with the alphabetical keys. The focus visible state is better detected.
 - 💄 We have added support for responsive font sizes. You can wrap your theme with [`responsiveFontSizes()`](https://next.material-ui.com/customization/themes/#responsive-font-sizes):
