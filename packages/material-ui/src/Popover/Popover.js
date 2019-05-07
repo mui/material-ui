@@ -15,7 +15,7 @@ import Modal from '../Modal';
 import Grow from '../Grow';
 import Paper from '../Paper';
 
-function getOffsetTop(rect, vertical) {
+export function getOffsetTop(rect, vertical) {
   let offset = 0;
 
   if (typeof vertical === 'number') {
@@ -29,7 +29,7 @@ function getOffsetTop(rect, vertical) {
   return offset;
 }
 
-function getOffsetLeft(rect, horizontal) {
+export function getOffsetLeft(rect, horizontal) {
   let offset = 0;
 
   if (typeof horizontal === 'number') {
@@ -83,10 +83,6 @@ export const styles = {
 };
 
 class Popover extends React.Component {
-  handleGetOffsetTop = getOffsetTop;
-
-  handleGetOffsetLeft = getOffsetLeft;
-
   constructor() {
     super();
 
@@ -224,8 +220,8 @@ class Popover extends React.Component {
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
     return {
-      top: anchorRect.top + this.handleGetOffsetTop(anchorRect, anchorVertical),
-      left: anchorRect.left + this.handleGetOffsetLeft(anchorRect, anchorOrigin.horizontal),
+      top: anchorRect.top + getOffsetTop(anchorRect, anchorVertical),
+      left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
     };
   }
 
@@ -264,8 +260,8 @@ class Popover extends React.Component {
   getTransformOrigin(elemRect, contentAnchorOffset = 0) {
     const { transformOrigin } = this.props;
     return {
-      vertical: this.handleGetOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
-      horizontal: this.handleGetOffsetLeft(elemRect, transformOrigin.horizontal),
+      vertical: getOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
+      horizontal: getOffsetLeft(elemRect, transformOrigin.horizontal),
     };
   }
 
