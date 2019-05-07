@@ -71,35 +71,35 @@ const markedOptions = {
   tables: true,
   breaks: false,
   pedantic: false,
-  sanitize: false,
+  sanitize: true,
   smartLists: true,
   smartypants: false,
-  highlight(code, lang) {
-    let language;
-    switch (lang) {
+  highlight(code, language) {
+    let prismLanguage;
+    switch (language) {
       case 'ts':
-        language = prism.languages.tsx;
+        prismLanguage = prism.languages.tsx;
         break;
 
       case 'js':
       case 'sh':
-        language = prism.languages.jsx;
+        prismLanguage = prism.languages.jsx;
         break;
 
       default:
-        language = prism.languages[lang];
+        prismLanguage = prism.languages[language];
         break;
     }
 
-    if (!language) {
-      if (lang) {
-        throw new Error(`unsuppored language: "${lang}", "${code}"`);
+    if (!prismLanguage) {
+      if (language) {
+        throw new Error(`unsuppored language: "${language}", "${code}"`);
       } else {
-        language = prism.languages.jsx;
+        prismLanguage = prism.languages.jsx;
       }
     }
 
-    return prism.highlight(code, language);
+    return prism.highlight(code, prismLanguage);
   },
   renderer,
 };
