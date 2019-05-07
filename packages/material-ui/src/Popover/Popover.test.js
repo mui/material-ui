@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import {
-  createShallow,
   createMount,
   describeConformance,
   findOutermostIntrinsic,
@@ -16,7 +15,6 @@ import Paper from '../Paper';
 import Popover from './Popover';
 
 describe('<Popover />', () => {
-  let shallow;
   let mount;
   let classes;
   const defaultProps = {
@@ -25,7 +23,6 @@ describe('<Popover />', () => {
   };
 
   before(() => {
-    shallow = createShallow({ dive: true });
     // StrictModeViolation: uses Grow
     mount = createMount({ strict: false });
     classes = getClasses(
@@ -436,12 +433,11 @@ describe('<Popover />', () => {
     });
 
     it('should pass through container prop if container and anchorEl props are provided', () => {
-      const container = {};
-      const shallowWrapper = shallow(<Popover anchorEl={anchorEl} container={container} open />);
+      const container = document.createElement('div');
+      const wrapper2 = mount(<Popover anchorEl={anchorEl} container={container} open />);
 
       assert.strictEqual(
-        shallowWrapper
-          .dive()
+        wrapper2
           .find(Modal)
           .props().container,
         container,
