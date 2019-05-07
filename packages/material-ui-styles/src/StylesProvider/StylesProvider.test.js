@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { assert } from 'chai';
-import { SheetsRegistry } from 'jss';
+import { create, SheetsRegistry } from 'jss';
 import { createMount } from '@material-ui/core/test-utils';
 import StylesProvider, { StylesContext } from './StylesProvider';
 import makeStyles from '../makeStyles';
 import createGenerateClassName from '../createGenerateClassName';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 function Test() {
   const options = React.useContext(StylesContext);
@@ -129,6 +130,40 @@ describe('StylesProvider', () => {
 
       // The most important check:
       assert.strictEqual(sheetsRegistry1.registry[0], sheetsRegistry2.registry[0]);
+    });
+  });
+
+  it('should accept a custom JSS instance', () => {
+    const jss = create();
+    const wrapper = mount(
+      <StylesProvider jss={jss}>
+        <Test />
+      </StylesProvider>,
+    );
+    assert.strictEqual(getOptions(wrapper).jss, jss);
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should support invalid input', () => {
+      const jss = create();
+      mount(
+        <StylesProvider injectFirst jss={jss}>
+          <Test />
+        </StylesProvider>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'you cannot use the jss and injectFirst props at the same time',
+      );
     });
   });
 });
