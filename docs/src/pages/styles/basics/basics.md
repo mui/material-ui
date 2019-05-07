@@ -161,7 +161,7 @@ const useStyles = makeStyles({
   // style rule
   foo: props => ({
     backgroundColor: props.backgroundColor,
-  },
+  }),
   bar: {
     // CSS property
     color: props => props.color,
