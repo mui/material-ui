@@ -1,16 +1,12 @@
-import recast from 'recast';
+import astTypes from 'ast-types';
 import { utils as docgenUtils } from 'react-docgen';
-// https://github.com/reactjs/react-docgen/pull/351
-import isReactForwardRefCall from 'react-docgen/dist/utils/isReactForwardRefCall';
 
-const { getPropertyName, printValue, resolveToValue } = docgenUtils;
+const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
 // based on https://github.com/reactjs/react-docgen/blob/735f39ef784312f4c0e740d4bfb812f0a7acd3d5/src/handlers/defaultPropsHandler.js#L1-L112
 // adjusted for material-ui getThemedProps
 
-const {
-  types: { namedTypes: types },
-} = recast;
+const { namedTypes: types } = astTypes;
 
 function getDefaultValue(path) {
   let node = path.node;
@@ -63,26 +59,24 @@ function getDefaultValuesFromProps(properties, documentation) {
 function getRenderBody(componentDefinition) {
   const value = resolveToValue(componentDefinition);
   if (isReactForwardRefCall(value)) {
-    return value.get('arguments', 0, 'body');
+    return value.get('arguments', 0, 'body', 'body');
   }
-  return value.get('body');
+  return value.get('body', 'body');
 }
 
 function getPropsPath(functionBody) {
   let propsPath;
-
-  recast.visit(functionBody, {
-    visitVariableDeclarator(path) {
-      if (path.get('init', 'name').value === 'props') {
-        if (propsPath !== undefined) {
-          throw new Error('found duplicate props destructuring');
-        }
-
-        propsPath = path.get('id');
+  // visitVariableDeclarator, can't use visit body.node since it looses scope information
+  functionBody
+    .filter(path => {
+      return types.VariableDeclaration.check(path.node);
+    })
+    .forEach(path => {
+      const declaratorPath = path.get('declarations', 0);
+      if (declaratorPath.get('init', 'name').value === 'props') {
+        propsPath = declaratorPath.get('id');
       }
-      return false;
-    },
-  });
+    });
 
   return propsPath;
 }
