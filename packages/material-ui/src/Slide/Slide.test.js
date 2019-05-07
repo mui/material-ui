@@ -4,6 +4,7 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Slide, { setTranslateValue } from './Slide';
 import createMuiTheme from '../styles/createMuiTheme';
+import { Transition } from 'react-transition-group';
 
 describe('<Slide />', () => {
   let mount;
@@ -28,7 +29,7 @@ describe('<Slide />', () => {
     </Slide>,
     () => ({
       classes: {},
-      inheritComponent: 'Transition',
+      inheritComponent: Transition,
       mount,
       refInstanceof: React.Component,
       skip: ['componentProp', 'refForwarding'],

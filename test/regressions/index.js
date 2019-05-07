@@ -62,6 +62,7 @@ const blacklistFilename = [
   'docs-demos-steppers/SwipeableTextMobileStepper.png', // external img
   'docs-demos-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
+  'docs-customization-themes/ResponsiveFontSizesChart.png', // Chart
 
   // Already tested once assembled
   'docs-getting-started-page-layout-examples-dashboard/Chart.png',

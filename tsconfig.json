@@ -19,7 +19,8 @@
       "@material-ui/lab/*": ["./material-ui-lab/src/*"],
       "@material-ui/styles": ["./material-ui-styles/src"],
       "@material-ui/styles/*": ["./material-ui-styles/src/*"],
-      "@material-ui/system": ["./material-ui-system/src"]
+      "@material-ui/system": ["./material-ui-system/src"],
+      "@material-ui/types": ["./material-ui-types"]
     }
   },
   "exclude": ["**/build/"]

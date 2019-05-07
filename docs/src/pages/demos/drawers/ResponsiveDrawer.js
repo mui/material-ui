@@ -99,7 +99,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" noWrap>
             Responsive drawer
           </Typography>
         </Toolbar>

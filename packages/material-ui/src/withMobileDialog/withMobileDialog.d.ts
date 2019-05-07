@@ -1,6 +1,6 @@
 import { Breakpoint } from '../styles/createBreakpoints';
 import { WithWidth } from '../withWidth';
-import { PropInjector } from '..';
+import { PropInjector } from '@material-ui/types';
 
 export interface WithMobileDialogOptions {
   breakpoint: Breakpoint;

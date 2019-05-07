@@ -35,14 +35,9 @@ const backers = [
     title: 'Localize — Application translation & localization platform',
   },
   {
-    href: 'https://yakaz.com',
-    alt: 'yakaz',
-    title: 'Yakaz — Search classified ads',
-  },
-  {
-    href: 'https://www.zinggrid.com/',
-    alt: 'zinggrid',
-    title: 'Zinggrid — Makes powerful grids easy',
+    href: 'https://blokt.com',
+    alt: 'blokt',
+    title: 'Leading Cryptocurrency News',
   },
 ];
 

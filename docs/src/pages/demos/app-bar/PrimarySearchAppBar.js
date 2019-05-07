@@ -161,7 +161,7 @@ function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+          <Typography className={classes.title} variant="h6" noWrap>
             Material-UI
           </Typography>
           <div className={classes.search}>

@@ -1,5 +1,3 @@
-// @inheritedComponent List
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -155,7 +153,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
       if (
         criteria.previousKeyMatched &&
-        (keepFocusOnCurrent || moveFocus(list, currentFocus, disableListWrap, nextItem, criteria))
+        (keepFocusOnCurrent || moveFocus(list, currentFocus, false, nextItem, criteria))
       ) {
         event.preventDefault();
       } else {

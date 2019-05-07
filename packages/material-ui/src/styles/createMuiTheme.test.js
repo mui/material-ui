@@ -101,11 +101,15 @@ describe('createMuiTheme', () => {
     });
 
     it('should warn when trying to override an internal state the wrong way', () => {
-      createMuiTheme({ overrides: { Button: { disabled: { color: 'blue' } } } });
+      let theme;
+
+      theme = createMuiTheme({ overrides: { Button: { disabled: { color: 'blue' } } } });
+      assert.strictEqual(Object.keys(theme.overrides.Button.disabled).length, 1);
       assert.strictEqual(consoleErrorMock.args().length, 0);
-      createMuiTheme({ overrides: { MuiButton: { root: { color: 'blue' } } } });
+      theme = createMuiTheme({ overrides: { MuiButton: { root: { color: 'blue' } } } });
       assert.strictEqual(consoleErrorMock.args().length, 0);
-      createMuiTheme({ overrides: { MuiButton: { disabled: { color: 'blue' } } } });
+      theme = createMuiTheme({ overrides: { MuiButton: { disabled: { color: 'blue' } } } });
+      assert.strictEqual(Object.keys(theme.overrides.MuiButton.disabled).length, 0);
       assert.strictEqual(consoleErrorMock.args().length, 1);
       assert.match(
         consoleErrorMock.args()[0][0],

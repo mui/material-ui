@@ -48,7 +48,7 @@ function StylesProvider(props) {
   );
 
   warning(
-    !context.jss.options.insertionPoint || !localOptions.jss,
+    !injectFirst || !localOptions.jss,
     'Material-UI: you cannot use the jss and injectFirst props at the same time.',
   );
 

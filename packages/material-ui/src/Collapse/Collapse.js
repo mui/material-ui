@@ -1,5 +1,3 @@
-// @inheritedComponent Transition
-
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
