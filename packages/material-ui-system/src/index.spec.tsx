@@ -23,7 +23,7 @@ function composeTest() {
 }
 
 function cssTest() {
-  function styleFunction(props: { color: string; spacing: number; theme: object }) {
+  function styleFunction(props: { color?: string; spacing?: number; theme?: object }) {
     return {};
   }
 
@@ -31,8 +31,8 @@ function cssTest() {
 
   // narrow
   wideOrNarrowStyleFunction({ theme: {}, css: { color: 'blue', spacing: 2 } });
-  // wide
-  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2 });
+  // wide, undesire: `css` is required, marking it as optional breaks system/basics/#css-property
+  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2, css: {} });
   // wide and narrow
   wideOrNarrowStyleFunction({ theme: {}, css: { color: 'blue', spacing: 2 }, color: 'red' });
 }
