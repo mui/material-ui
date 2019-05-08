@@ -87,6 +87,8 @@ Select.propTypes = {
   /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
+   *
+   * ⚠️The `MenuItem` elements **must** be direct descendants when `native` is false.
    */
   children: PropTypes.node,
   /**
