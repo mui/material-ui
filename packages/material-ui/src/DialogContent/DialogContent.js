@@ -19,7 +19,7 @@ export const styles = theme => ({
 });
 
 const DialogContent = React.forwardRef(function DialogContent(props, ref) {
-  const { classes, className, dividers, ...other } = props;
+  const { classes, className, dividers = false, ...other } = props;
 
   return (
     <div
@@ -54,10 +54,6 @@ DialogContent.propTypes = {
    * Display the top and bottom dividers.
    */
   dividers: PropTypes.bool,
-};
-
-DialogContent.defaultProps = {
-  dividers: false,
 };
 
 export default withStyles(styles, { name: 'MuiDialogContent' })(DialogContent);

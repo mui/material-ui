@@ -57,7 +57,7 @@ This property accepts the following keys:
 | <span class="prop-name">thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
 | <span class="prop-name">track</span> | Styles applied to the track element.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Switch/Switch.js)
 for more detail.
 
@@ -71,6 +71,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Switches](/demos/switches/)
-- [Transfer List](/demos/transfer-list/)
+- [Switches](/components/switches/)
+- [Transfer List](/components/transfer-list/)
 

@@ -76,7 +76,7 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 const MenuList = React.forwardRef(function MenuList(props, ref) {
-  const { actions, autoFocus, className, onKeyDown, disableListWrap, ...other } = props;
+  const { actions, autoFocus, className, onKeyDown, disableListWrap = false, ...other } = props;
   const listRef = React.useRef(null);
   const textCriteriaRef = React.useRef({
     keys: [],
@@ -210,10 +210,6 @@ MenuList.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
-};
-
-MenuList.defaultProps = {
-  disableListWrap: false,
 };
 
 export default MenuList;

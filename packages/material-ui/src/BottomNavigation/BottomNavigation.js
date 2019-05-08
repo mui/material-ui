@@ -19,9 +19,9 @@ const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) 
     children,
     classes,
     className,
-    component: Component,
+    component: Component = 'div',
     onChange,
-    showLabels,
+    showLabels = false,
     value,
     ...other
   } = props;
@@ -89,11 +89,6 @@ BottomNavigation.propTypes = {
    * The value of the currently selected `BottomNavigationAction`.
    */
   value: PropTypes.any,
-};
-
-BottomNavigation.defaultProps = {
-  component: 'div',
-  showLabels: false,
 };
 
 export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);

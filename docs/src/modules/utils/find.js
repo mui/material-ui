@@ -100,9 +100,8 @@ function findPages(
 
     if (
       options.front &&
-      pathname.indexOf('/demos') === -1 &&
-      pathname.indexOf('/api') === -1 &&
-      pathname.indexOf('/lab') === -1
+      pathname.indexOf('/components') === -1 &&
+      pathname.indexOf('/api') === -1
     ) {
       return;
     }

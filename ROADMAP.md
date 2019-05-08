@@ -31,7 +31,7 @@ Everybody underestimates it. As we have a relatively small core team, we are goi
 - 0.3 - **TypeScript.** 📏 There are two dimensions to this problem:
   - The documentation. We want to provide a TypeScript variant to most of our demos,
     which should make it straightforward to use Material-UI with TypeScript. You can help us out in [#14897](https://github.com/mui-org/material-ui/issues/14897).
-  - The definitions. We are **continuously** improving them. We are aware that correctly typing withStyles() is cumbersome, so we encourage you to use [makeStyles()](/css-in-js/basics/#hook-api) instead. It should be much better with this Hook API.
+  - The definitions. We are **continuously** improving them. We are aware that correctly typing withStyles() is cumbersome, so we encourage you to use [makeStyles()](/styles/basics/#hook-api) instead. It should be much better with this Hook API.
   The codebase is written in JavaScript, we don't plan on migrating it to TypeScript in the near future. Maybe for v5, we will see.
 - 0.2 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
 Performance is all about doing less work. We can leverage the following:
@@ -51,7 +51,7 @@ Performance is all about doing less work. We can leverage the following:
   - Avoid re-rendering. It's the responsibility of the user to prune the React rendering tree efficiently,
     as most of our APIs are too low level to implement efficient memoization (React.useMemo, React.PureComponent, React.memo).
     If you find a good opportunity for it, let us know, and we will be happy to work with you on the problem.
-  - Avoid rendering. We are documenting [how to implement virtualization](/demos/tables/#virtualized-table) for the Table components. It's important to consider it above 100 items.
+  - Avoid rendering. We are documenting [how to implement virtualization](/components/tables/#virtualized-table) for the Table components. It's important to consider it above 100 items.
 - 0.2 - **Bundle size.** 📦 You can keep track of our progress [following bundlephobia.com report](https://bundlephobia.com/result?p=@material-ui/core@4.0.0-alpha.4).
 It's a continuous effort – v4 is 15% smaller so far, while adding new features.
 We are eager to find new bundle size reduction opportunities.

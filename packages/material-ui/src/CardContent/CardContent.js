@@ -14,7 +14,7 @@ export const styles = {
 };
 
 const CardContent = React.forwardRef(function CardContent(props, ref) {
-  const { classes, className, component: Component, ...other } = props;
+  const { classes, className, component: Component = 'div', ...other } = props;
 
   return <Component className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
@@ -34,10 +34,6 @@ CardContent.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
-};
-
-CardContent.defaultProps = {
-  component: 'div',
 };
 
 export default withStyles(styles, { name: 'MuiCardContent' })(CardContent);

@@ -36,7 +36,7 @@ export const styles = theme => ({
 });
 
 const StepIcon = React.forwardRef(function StepIcon(props, ref) {
-  const { completed, icon, active, error, classes } = props;
+  const { completed = false, icon, active = false, error = false, classes } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
     if (error) {
@@ -85,12 +85,6 @@ StepIcon.propTypes = {
    * The icon displayed by the step label.
    */
   icon: PropTypes.node.isRequired,
-};
-
-StepIcon.defaultProps = {
-  active: false,
-  completed: false,
-  error: false,
 };
 
 export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);

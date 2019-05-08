@@ -75,7 +75,7 @@ This property accepts the following keys:
 | <span class="prop-name">inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
 | <span class="prop-name">inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/InputBase/InputBase.js)
 for more detail.
 
@@ -84,5 +84,5 @@ you need to use the following style sheet name: `MuiInputBase`.
 
 ## Demos
 
-- [Text Fields](/demos/text-fields/)
+- [Text Fields](/components/text-fields/)
 

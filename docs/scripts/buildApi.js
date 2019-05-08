@@ -3,7 +3,8 @@
 import { mkdir, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import { parse as docgenParse } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
@@ -132,7 +133,7 @@ async function buildDocs(options) {
 
   let reactAPI;
   try {
-    reactAPI = docgenParse(src, null, null, {
+    reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
       filename: componentObject.filename,
     });
   } catch (err) {

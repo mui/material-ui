@@ -59,7 +59,7 @@ export function compose<T extends Array<StyleFunction<any>>>(...args: T): Compos
 // css.js
 export function css<Props>(
   styleFunction: StyleFunction<Props>,
-): StyleFunction<Props | { css: Omit<Props, 'theme'> }>;
+): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
 
 // default display.js TODO
 

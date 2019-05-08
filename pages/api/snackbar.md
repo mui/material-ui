@@ -61,7 +61,7 @@ This property accepts the following keys:
 | <span class="prop-name">anchorOriginTopLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.
 | <span class="prop-name">anchorOriginBottomLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Snackbar/Snackbar.js)
 for more detail.
 
@@ -70,5 +70,5 @@ you need to use the following style sheet name: `MuiSnackbar`.
 
 ## Demos
 
-- [Snackbars](/demos/snackbars/)
+- [Snackbars](/components/snackbars/)
 

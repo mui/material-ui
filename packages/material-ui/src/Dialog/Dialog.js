@@ -132,6 +132,7 @@ export const styles = theme => ({
   },
 });
 
+const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
@@ -141,11 +142,11 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     children,
     classes,
     className,
-    disableBackdropClick,
-    disableEscapeKeyDown,
-    fullScreen,
-    fullWidth,
-    maxWidth,
+    disableBackdropClick = false,
+    disableEscapeKeyDown = false,
+    fullScreen = false,
+    fullWidth = false,
+    maxWidth = 'sm',
     onBackdropClick,
     onClose,
     onEnter,
@@ -156,11 +157,11 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     onExited,
     onExiting,
     open,
-    PaperComponent,
+    PaperComponent = Paper,
     PaperProps = {},
-    scroll,
-    TransitionComponent,
-    transitionDuration,
+    scroll = 'paper',
+    TransitionComponent = Fade,
+    transitionDuration = defaultTransitionDuration,
     TransitionProps,
     ...other
   } = props;
@@ -363,18 +364,6 @@ Dialog.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-Dialog.defaultProps = {
-  disableBackdropClick: false,
-  disableEscapeKeyDown: false,
-  fullScreen: false,
-  fullWidth: false,
-  maxWidth: 'sm',
-  PaperComponent: Paper,
-  scroll: 'paper',
-  TransitionComponent: Fade,
-  transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 
 export default withStyles(styles, { name: 'MuiDialog' })(Dialog);

@@ -31,14 +31,14 @@ export const styles = {
 
 const Step = React.forwardRef(function Step(props, ref) {
   const {
-    active,
+    active = false,
     alternativeLabel,
     children,
     classes,
     className: classNameProp,
-    completed,
+    completed = false,
     connector,
-    disabled,
+    disabled = false,
     index,
     last,
     orientation,
@@ -146,12 +146,6 @@ Step.propTypes = {
    * @ignore
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-};
-
-Step.defaultProps = {
-  active: false,
-  completed: false,
-  disabled: false,
 };
 
 export default withStyles(styles, { name: 'MuiStep' })(Step);

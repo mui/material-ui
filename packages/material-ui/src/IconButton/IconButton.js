@@ -89,11 +89,20 @@ export const styles = theme => ({
 });
 
 /**
- * Refer to the [Icons](/style/icons/) section of the documentation
+ * Refer to the [Icons](/components/icons/) section of the documentation
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(props, ref) {
-  const { edge, children, classes, className, color, disabled, size, ...other } = props;
+  const {
+    edge = false,
+    children,
+    classes,
+    className,
+    color = 'default',
+    disabled = false,
+    size = 'medium',
+    ...other
+  } = props;
 
   return (
     <ButtonBase
@@ -171,13 +180,6 @@ IconButton.propTypes = {
    * `small` is equivalent to the dense button styling.
    */
   size: PropTypes.oneOf(['small', 'medium']),
-};
-
-IconButton.defaultProps = {
-  color: 'default',
-  disabled: false,
-  edge: false,
-  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

@@ -188,13 +188,15 @@ const Button = React.forwardRef(function Button(props, ref) {
     children,
     classes,
     className: classNameProp,
-    color,
-    disabled,
-    disableFocusRipple,
+    color = 'default',
+    component = 'button',
+    disabled = false,
+    disableFocusRipple = false,
     focusVisibleClassName,
-    fullWidth,
-    size,
-    variant,
+    fullWidth = false,
+    size = 'medium',
+    type = 'button',
+    variant = 'text',
     ...other
   } = props;
 
@@ -223,10 +225,12 @@ const Button = React.forwardRef(function Button(props, ref) {
   return (
     <ButtonBase
       className={className}
+      component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
+      type={type}
       {...other}
     >
       <span className={classes.label}>{children}</span>
@@ -296,17 +300,6 @@ Button.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
-};
-
-Button.defaultProps = {
-  color: 'default',
-  component: 'button',
-  disabled: false,
-  disableFocusRipple: false,
-  fullWidth: false,
-  size: 'medium',
-  type: 'button',
-  variant: 'text',
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

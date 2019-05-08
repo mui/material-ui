@@ -65,25 +65,28 @@ export const styles = theme => ({
   },
 });
 
+const defaultLabelDisplayedRows = ({ from, to, count }) => `${from}-${to} of ${count}`;
+const defaultRowsPerPageOptions = [10, 25, 50, 100];
+
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
 const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const {
-    ActionsComponent,
+    ActionsComponent = TablePaginationActions,
     backIconButtonProps,
     classes,
     colSpan: colSpanProp,
-    component: Component,
+    component: Component = TableCell,
     count,
-    labelDisplayedRows,
-    labelRowsPerPage,
+    labelDisplayedRows = defaultLabelDisplayedRows,
+    labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
     onChangePage,
     onChangeRowsPerPage,
     page,
     rowsPerPage,
-    rowsPerPageOptions,
+    rowsPerPageOptions = defaultRowsPerPageOptions,
     SelectProps = {},
     ...other
   } = props;
@@ -231,14 +234,6 @@ TablePagination.propTypes = {
    * Properties applied to the rows per page [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
-};
-
-TablePagination.defaultProps = {
-  ActionsComponent: TablePaginationActions,
-  component: TableCell,
-  labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
-  labelRowsPerPage: 'Rows per page:',
-  rowsPerPageOptions: [10, 25, 50, 100],
 };
 
 export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);

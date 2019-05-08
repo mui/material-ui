@@ -30,9 +30,9 @@ const List = React.forwardRef(function List(props, ref) {
     children,
     classes,
     className,
-    component: Component,
-    dense,
-    disablePadding,
+    component: Component = 'ul',
+    dense = false,
+    disablePadding = false,
     subheader,
     ...other
   } = props;
@@ -94,12 +94,6 @@ List.propTypes = {
    * The content of the subheader, normally `ListSubheader`.
    */
   subheader: PropTypes.node,
-};
-
-List.defaultProps = {
-  component: 'ul',
-  dense: false,
-  disablePadding: false,
 };
 
 export default withStyles(styles, { name: 'MuiList' })(List);

@@ -61,7 +61,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
     disabled: disabledProp,
     inputRef,
     label,
-    labelPlacement,
+    labelPlacement = 'end',
     muiFormControl,
     name,
     onChange,
@@ -164,10 +164,6 @@ FormControlLabel.propTypes = {
    * The value of the component.
    */
   value: PropTypes.any,
-};
-
-FormControlLabel.defaultProps = {
-  labelPlacement: 'end',
 };
 
 export default withStyles(styles, { name: 'MuiFormControlLabel' })(

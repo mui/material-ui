@@ -12,19 +12,21 @@ import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 
 export const styles = nativeSelectStyles;
 
+const defaultInput = <Input />;
+
 const Select = React.forwardRef(function Select(props, ref) {
   const {
-    autoWidth,
+    autoWidth = false,
     children,
     classes,
-    displayEmpty,
-    IconComponent,
-    input,
+    displayEmpty = false,
+    IconComponent = ArrowDropDownIcon,
+    input = defaultInput,
     inputProps,
     MenuProps,
     muiFormControl,
-    multiple,
-    native,
+    multiple = false,
+    native = false,
     onClose,
     onOpen,
     open,
@@ -87,6 +89,8 @@ Select.propTypes = {
   /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
+   *
+   * ⚠️The `MenuItem` elements **must** be direct descendants when `native` is false.
    */
   children: PropTypes.node,
   /**
@@ -177,15 +181,6 @@ Select.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-Select.defaultProps = {
-  autoWidth: false,
-  displayEmpty: false,
-  IconComponent: ArrowDropDownIcon,
-  input: <Input />,
-  multiple: false,
-  native: false,
 };
 
 Select.muiName = 'Select';

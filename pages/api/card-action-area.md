@@ -37,7 +37,7 @@ This property accepts the following keys:
 | <span class="prop-name">focusVisible</span> | Styles applied to the ButtonBase root element if the action area is keyboard focused.
 | <span class="prop-name">focusHighlight</span> | Styles applied to the overlay that covers the action area when it is keyboard focused.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/CardActionArea/CardActionArea.js)
 for more detail.
 
@@ -51,5 +51,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Cards](/demos/cards/)
+- [Cards](/components/cards/)
 

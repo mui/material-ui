@@ -16,7 +16,7 @@ const tablelvl2 = {
 };
 
 const TableFooter = React.forwardRef(function TableFooter(props, ref) {
-  const { classes, className, component: Component, ...other } = props;
+  const { classes, className, component: Component = 'tfoot', ...other } = props;
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
@@ -44,10 +44,6 @@ TableFooter.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
-};
-
-TableFooter.defaultProps = {
-  component: 'tfoot',
 };
 
 export default withStyles(styles, { name: 'MuiTableFooter' })(TableFooter);

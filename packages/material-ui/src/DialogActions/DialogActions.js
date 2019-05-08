@@ -21,7 +21,7 @@ export const styles = {
 };
 
 const DialogActions = React.forwardRef(function DialogActions(props, ref) {
-  const { disableSpacing, classes, className, ...other } = props;
+  const { disableSpacing = false, classes, className, ...other } = props;
 
   return (
     <div
@@ -50,10 +50,6 @@ DialogActions.propTypes = {
    * If `true`, the actions do not have additional margin.
    */
   disableSpacing: PropTypes.bool,
-};
-
-DialogActions.defaultProps = {
-  disableSpacing: false,
 };
 
 export default withStyles(styles, { name: 'MuiDialogActions' })(DialogActions);

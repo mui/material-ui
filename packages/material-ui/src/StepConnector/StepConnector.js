@@ -49,13 +49,13 @@ export const styles = theme => ({
 const StepConnector = React.forwardRef(function StepConnector(props, ref) {
   const {
     active,
-    alternativeLabel,
+    alternativeLabel = false,
     classes,
     className: classNameProp,
     completed,
     disabled,
     index,
-    orientation,
+    orientation = 'horizontal',
     ...other
   } = props;
 
@@ -120,11 +120,6 @@ StepConnector.propTypes = {
    * @ignore
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-};
-
-StepConnector.defaultProps = {
-  alternativeLabel: false,
-  orientation: 'horizontal',
 };
 
 export default withStyles(styles, { name: 'MuiStepConnector' })(StepConnector);

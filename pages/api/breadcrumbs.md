@@ -32,5 +32,5 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## Demos
 
-- [Breadcrumbs](/demos/breadcrumbs/)
+- [Breadcrumbs](/components/breadcrumbs/)
 

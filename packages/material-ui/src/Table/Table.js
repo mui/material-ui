@@ -15,7 +15,14 @@ export const styles = {
 };
 
 const Table = React.forwardRef(function Table(props, ref) {
-  const { classes, className, component: Component, padding, size, ...other } = props;
+  const {
+    classes,
+    className,
+    component: Component = 'table',
+    padding = 'default',
+    size = 'medium',
+    ...other
+  } = props;
   const table = React.useMemo(() => ({ padding, size }), [padding, size]);
 
   return (
@@ -52,12 +59,6 @@ Table.propTypes = {
    * Allows TableCells to inherit size of the Table.
    */
   size: PropTypes.oneOf(['small', 'medium']),
-};
-
-Table.defaultProps = {
-  component: 'table',
-  padding: 'default',
-  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiTable' })(Table);

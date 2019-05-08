@@ -9,12 +9,12 @@ we need a way to know the nature of the child elements a component receives.
 To solve this problem we tag some of our components when needed
 with a `muiName` static property.
 
-You may, however, need to wrap a component in order to enhance it, 
+You may, however, need to wrap a component in order to enhance it,
 which can conflict with the `muiName` solution. If you wrap a component verify if
 that component has this static property set.
 
-If you encounter this issue, you need to use the same tag for your wrapping component 
-that is used with the wrapped component. In addition, you should forward the properties, 
+If you encounter this issue, you need to use the same tag for your wrapping component
+that is used with the wrapped component. In addition, you should forward the properties,
 as the parent component may need to control the wrapped components props.
 
 Let's see an example:
@@ -125,11 +125,11 @@ Here is a demo with [React Router DOM](https://github.com/ReactTraining/react-ro
 
 ### With TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript#usage-of-component-property).
+You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-property).
 
 ## Caveat with refs
 
-This section covers caveats when using a custom component as `children` or for the 
+This section covers caveats when using a custom component as `children` or for the
 `component` prop.
 
 Some of the components need access to the DOM node. This was previously possible
@@ -137,11 +137,11 @@ by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` a
 ref forwarding. However, only the following component types can be given a `ref`:
 
 - Any Material-UI component
-* class components i.e. `React.Component` or `React.PureComponent`
-* DOM (or host) components e.g. `div` or `button`
-* [React.forwardRef components](https://reactjs.org/docs/react-api.html#reactforwardref)
-* [React.lazy components](https://reactjs.org/docs/react-api.html#reactlazy)
-* [React.memo components](https://reactjs.org/docs/react-api.html#reactmemo)
+- class components i.e. `React.Component` or `React.PureComponent`
+- DOM (or host) components e.g. `div` or `button`
+- [React.forwardRef components](https://reactjs.org/docs/react-api.html#reactforwardref)
+- [React.lazy components](https://reactjs.org/docs/react-api.html#reactlazy)
+- [React.memo components](https://reactjs.org/docs/react-api.html#reactmemo)
 
 If you don't use one of the above types when using your components in conjunction with Material-UI, you might see a warning from
 React in your console similar to:
@@ -150,7 +150,7 @@ React in your console similar to:
 Be aware that you will still get this warning for `lazy` and `memo` components if their
 wrapped component can't hold a ref.
 
-In some instances we issue an additional warning to help debugging, similar to: 
+In some instances we issue an additional warning to help debugging, similar to:
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 

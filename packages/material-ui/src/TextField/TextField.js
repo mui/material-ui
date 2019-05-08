@@ -79,14 +79,14 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     onChange,
     onFocus,
     placeholder,
-    required,
+    required = false,
     rows,
     rowsMax,
-    select,
+    select = false,
     SelectProps,
     type,
     value,
-    variant,
+    variant = 'standard',
     ...other
   } = props;
 
@@ -313,12 +313,6 @@ TextField.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-TextField.defaultProps = {
-  required: false,
-  select: false,
-  variant: 'standard',
 };
 
 export default withStyles(styles, { name: 'MuiTextField' })(TextField);

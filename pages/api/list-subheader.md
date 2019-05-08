@@ -45,7 +45,7 @@ This property accepts the following keys:
 | <span class="prop-name">inset</span> | Styles applied to the root element if `inset={true}`.
 | <span class="prop-name">sticky</span> | Styles applied to the root element if `disableSticky={false}`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ListSubheader/ListSubheader.js)
 for more detail.
 
@@ -54,6 +54,6 @@ you need to use the following style sheet name: `MuiListSubheader`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list/)
-- [Lists](/demos/lists/)
+- [Grid List](/components/grid-list/)
+- [Lists](/components/lists/)
 

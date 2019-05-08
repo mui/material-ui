@@ -62,13 +62,13 @@ export const styles = theme => ({
  */
 const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
   const {
-    active,
+    active = false,
     children,
     classes,
     className,
-    direction,
-    hideSortIcon,
-    IconComponent,
+    direction = 'desc',
+    hideSortIcon = false,
+    IconComponent = ArrowDownwardIcon,
     ...other
   } = props;
 
@@ -120,13 +120,6 @@ TableSortLabel.propTypes = {
    * Sort icon to use.
    */
   IconComponent: PropTypes.elementType,
-};
-
-TableSortLabel.defaultProps = {
-  active: false,
-  direction: 'desc',
-  hideSortIcon: false,
-  IconComponent: ArrowDownwardIcon,
 };
 
 export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);
