@@ -194,6 +194,9 @@ yarn add @material-ui/styles@next
 - [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref. 
   The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
+  This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop
+  is true
+
 ### Card
 
 - [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
