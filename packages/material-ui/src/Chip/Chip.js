@@ -310,12 +310,12 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   let deleteIcon = null;
   if (onDelete) {
-    const customClasses = {
+    const customClasses = clsx({
       [classes[`deleteIconColor${capitalize(color)}`]]:
         color !== 'default' && variant !== 'outlined',
       [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
         color !== 'default' && variant === 'outlined',
-    };
+    });
 
     deleteIcon =
       deleteIconProp && React.isValidElement(deleteIconProp) ? (

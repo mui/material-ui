@@ -3058,6 +3058,15 @@ babel-plugin-module-resolver@^3.0.0:
     reselect "^3.0.1"
     resolve "^1.4.0"
 
+babel-plugin-optimize-clsx@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-clsx/-/babel-plugin-optimize-clsx-1.1.2.tgz#b9489379c76b447b6e4bf3a41f0a319dd717aaf0"
+  integrity sha512-FzzAIg6yYGm3eAOsDtADA3weQbOcDMCpkATyPMOYL2EJglg9Bb1Ez+Ju9YQ/dL8YPJ4yW5MnrtOujG25qdIIJQ==
+  dependencies:
+    "@babel/generator" "^7.4.4"
+    "@babel/types" "^7.4.4"
+    lodash "^4.17.11"
+
 babel-plugin-preval@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-preval/-/babel-plugin-preval-2.0.1.tgz#76a552a1670bb21307f80b927b89fbeb37cf205c"
