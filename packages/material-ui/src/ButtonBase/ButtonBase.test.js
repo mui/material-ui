@@ -703,7 +703,7 @@ describe('<ButtonBase />', () => {
       const customErrorIndex = consoleErrorMock.callCount() === 3 ? 1 : 2;
       assert.include(
         consoleErrorMock.args()[customErrorIndex][0],
-        'Error: Expected an Element but found null. Please check your console for additional warnings and try fixing those.',
+        'Error: Material-UI: expected an Element but found null. Please check your console for additional warnings and try fixing those.',
       );
     });
   });
