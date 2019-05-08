@@ -268,6 +268,7 @@ yarn add @material-ui/styles@next
   +<Paper elevation={2} />
   ```
 
+  This affects the `ExpansionPanel` as well.
 
 ### Portal
 
