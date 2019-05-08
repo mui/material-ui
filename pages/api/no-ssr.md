@@ -33,5 +33,5 @@ The component cannot hold a ref.
 
 ## Demos
 
-- [No Ssr](/utils/no-ssr/)
+- [No Ssr](/components/no-ssr/)
 

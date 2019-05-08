@@ -341,7 +341,7 @@ This property accepts the following keys:
 
 ${text}
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
     reactAPI.filename,
   )})

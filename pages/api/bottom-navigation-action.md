@@ -43,7 +43,7 @@ This property accepts the following keys:
 | <span class="prop-name">wrapper</span> | Styles applied to the span element that wraps the icon and label.
 | <span class="prop-name">label</span> | Styles applied to the label's span element.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js)
 for more detail.
 
@@ -57,5 +57,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Bottom Navigation](/demos/bottom-navigation/)
+- [Bottom Navigation](/components/bottom-navigation/)
 

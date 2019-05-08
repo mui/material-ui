@@ -118,7 +118,7 @@ For example, let say you want to add new demos for buttons component, then you h
 
 In this case, I'm going to add the new file to the following directory:
 ```
-docs/src/pages/demos/buttons/
+docs/src/pages/components/buttons/
 ```
 And let's give it a name: `SuperButtons.js`.
 
@@ -133,7 +133,7 @@ declarations.
 #### 2. Edit the page Markdown file.
 
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
-In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
+In this case, the file you need to edit is `docs/src/pages/components/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
 
 Changes should only be applied to the english version e.g. only `app-bar.md` and
 not `app-bar-de.md`. For contributions concerning translations please read the [section
@@ -144,7 +144,7 @@ about translations](#Translations).
 +
 + Sometimes, you need a super button to make your app looks **superb**. Yea ...
 +
-+ {{"demo": "pages/demos/buttons/SuperButtons.js"}}
++ {{"demo": "pages/components/buttons/SuperButtons.js"}}
 ```
 
 #### 3. You are done 🎉!
@@ -158,7 +158,7 @@ in TypeScript.
 
 Changing demos in JavaScript requires a manual update of the TypeScript
 version. If you are not familiar with this language you can add the filepath
-of the TS demo to `docs/scripts/formattedTSDemos.js`. Otherwise our CI will fail the 
+of the TS demo to `docs/scripts/formattedTSDemos.js`. Otherwise our CI will fail the
 `test_build` job. A contributor can later update the TypeScript version of that demo.
 
 If you are already familiar with TypeScript you can simply write the demo in TypeScript.
@@ -195,8 +195,8 @@ Now, every time you import `material-ui` in your project, it is going to use you
 ## Translations
 
 Translations are handled via [Crowdin](https://translate.material-ui.com).
-You don't need to apply any changes to localized versions of our markdown files  
-i.e. files having a `-someLocale` suffix. Crowdin automatically takes care of syncing 
+You don't need to apply any changes to localized versions of our markdown files
+i.e. files having a `-someLocale` suffix. Crowdin automatically takes care of syncing
 these changes across the localized versions.
 
 ## Roadmap

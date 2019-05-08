@@ -35,5 +35,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Radio Buttons](/demos/radio-buttons/)
+- [Radio Buttons](/components/radio-buttons/)
 

@@ -155,7 +155,7 @@
     "/system/typography": "Typography",
     "/customization": "Personnalisation",
     "/customization/themes": "Thèmes",
-    "/customization/overrides": "Surcharges",
+    "/customization/components": "Surcharges",
     "/customization/default-theme": "Thèmes par défaut",
     "/guides": "Guides",
     "/guides/typescript": "TypeScript",

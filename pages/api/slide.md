@@ -12,7 +12,7 @@ filename: /packages/material-ui/src/Slide/Slide.js
 import Slide from '@material-ui/core/Slide';
 ```
 
-The Slide transition is used by the [Drawer](/demos/drawers/) component.
+The Slide transition is used by the [Drawer](/components/drawers/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
@@ -35,6 +35,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Dialogs](/demos/dialogs/)
-- [Transitions](/utils/transitions/)
+- [Dialogs](/components/dialogs/)
+- [Transitions](/components/transitions/)
 

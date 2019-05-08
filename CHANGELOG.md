@@ -4246,7 +4246,7 @@ Here are some highlights ✨:
 
 - [Grid] Change the default spacing value: 0 (#10768) @oliviertassinari
 
-The negative margin implementation solution currently used comes with [serious limitations](https://material-ui.com/layout/grid/#negative-margin).
+The negative margin implementation solution currently used comes with [serious limitations](https://material-ui.com/components/grid/#negative-margin).
 Material-UI is the only library with a non-zero default spacing between the items.
 Having zero spacing by default will ease the usage of the component.
 

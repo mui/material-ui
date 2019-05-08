@@ -29,5 +29,5 @@ The component cannot hold a ref.
 
 ## Demos
 
-- [Portal](/utils/portal/)
+- [Portal](/components/portal/)
 

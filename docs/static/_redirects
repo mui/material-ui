@@ -4,16 +4,26 @@
 /trash / 301
 /spam / 301
 
-/demos/selection-controls/ /demos/radio-buttons/ 301
-/page-layout-examples/* /getting-started/page-layout-examples/:splat 301
-/guides/csp/ /css-in-js/advanced/#what-is-csp-and-why-is-it-useful 301
-/utils/modals/ /utils/modal/ 301
-/utils/modals /utils/modal/ 301
-/utils/popovers/ /utils/popover/ 301
-/utils/popovers /utils/popover/ 301
-/guides/migration-v0.x /guides/migration-v0x/ 301
 /size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/next/latest/size-snapshot.json 200
-/customization/css-in-js/ /css-in-js/basics/ 301
+
+# To remove at some point (2020).
+/demos/selection-controls/ /components/radio-buttons/ 301
+/page-layout-examples/* /getting-started/page-layout-examples/:splat 301
+/guides/csp/ /styles/advanced/#what-is-csp-and-why-is-it-useful 301
+/utils/modals/ /components/modal/ 301
+/utils/popovers/ /components/popover/ 301
+/guides/migration-v0.x /guides/migration-v0x/ 301
+/customization/css-in-js/ /styles/basics/ 301
+/demos/* /components/:splat 301
+/style/color/ /customization/color/ 301
+/style/* /components/:splat 301
+/layout/basics/ /guides/responsive-ui/ 301
+/layout/* /components/:splat 301
+/utils/* /components/:splat 301
+/lab/api/* /api/:splat 301
+/lab/about/ /components/about-the-lab/ 301
+/lab/* /components/:splat 301
+/css-in-js/* /styles/:splat 301
 
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0

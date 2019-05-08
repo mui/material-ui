@@ -51,7 +51,7 @@ This property accepts the following keys:
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 | <span class="prop-name">list</span> | Styles applied to the `List` component via `MenuList`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Menu/Menu.js)
 for more detail.
 
@@ -65,6 +65,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [App Bar](/demos/app-bar/)
-- [Menus](/demos/menus/)
+- [App Bar](/components/app-bar/)
+- [Menus](/components/menus/)
 

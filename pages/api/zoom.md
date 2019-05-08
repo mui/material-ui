@@ -13,7 +13,7 @@ import Zoom from '@material-ui/core/Zoom';
 ```
 
 The Zoom transition can be used for the floating variant of the
-[Button](https://material-ui.com/demos/buttons/#floating-action-buttons) component.
+[Button](/components/buttons/#floating-action-buttons) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
@@ -35,6 +35,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Buttons](/demos/buttons/)
-- [Transitions](/utils/transitions/)
+- [Buttons](/components/buttons/)
+- [Transitions](/components/transitions/)
 

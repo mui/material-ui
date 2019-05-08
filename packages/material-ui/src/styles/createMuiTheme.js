@@ -90,7 +90,7 @@ function createMuiTheme(options = {}) {
                 2,
               ),
               '',
-              'https://next.material-ui.com/customization/overrides/#pseudo-classes',
+              'https://next.material-ui.com/customization/components/#pseudo-classes',
             ].join('\n'),
           );
           // Remove the style to prevent global conflicts.

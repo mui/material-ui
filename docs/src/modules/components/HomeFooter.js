@@ -66,12 +66,12 @@ function HomeFooter(props) {
             <Grid item xs={12} sm={6}>
               <ul className={classes.list}>
                 <li className={classes.listItem}>
-                  <Link color="inherit" href="/style/icons">
+                  <Link color="inherit" href="/components/icons">
                     {t('icons')}
                   </Link>
                 </li>
                 <li className={classes.listItem}>
-                  <Link color="inherit" href="/style/color">
+                  <Link color="inherit" href="/customization/color">
                     {t('color')}
                   </Link>
                 </li>

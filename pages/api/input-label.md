@@ -54,7 +54,7 @@ This property accepts the following keys:
 | <span class="prop-name">filled</span> | Styles applied to the root element if `variant="filled"`.
 | <span class="prop-name">outlined</span> | Styles applied to the root element if `variant="outlined"`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/InputLabel/InputLabel.js)
 for more detail.
 
@@ -68,5 +68,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Text Fields](/demos/text-fields/)
+- [Text Fields](/components/text-fields/)
 

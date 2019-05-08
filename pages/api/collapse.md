@@ -13,7 +13,7 @@ import Collapse from '@material-ui/core/Collapse';
 ```
 
 The Collapse transition is used by the
-[Vertical Stepper](/demos/steppers/#vertical-stepper) StepContent component.
+[Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
@@ -45,7 +45,7 @@ This property accepts the following keys:
 | <span class="prop-name">wrapper</span> | Styles applied to the outer wrapper element.
 | <span class="prop-name">wrapperInner</span> | Styles applied to the inner wrapper element.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Collapse/Collapse.js)
 for more detail.
 
@@ -59,7 +59,7 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Cards](/demos/cards/)
-- [Lists](/demos/lists/)
-- [Transitions](/utils/transitions/)
+- [Cards](/components/cards/)
+- [Lists](/components/lists/)
+- [Transitions](/components/transitions/)
 

@@ -155,7 +155,7 @@
     "/system/typography": "Оформление текста",
     "/customization": "Customization",
     "/customization/themes": "Themes",
-    "/customization/overrides": "Overrides",
+    "/customization/components": "Overrides",
     "/customization/default-theme": "Тема по умолчанию",
     "/guides": "Guides",
     "/guides/typescript": "TypeScript",

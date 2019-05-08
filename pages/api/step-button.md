@@ -40,7 +40,7 @@ This property accepts the following keys:
 | <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical"`.
 | <span class="prop-name">touchRipple</span> | Styles applied to the `ButtonBase` touch-ripple.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/StepButton/StepButton.js)
 for more detail.
 
@@ -54,5 +54,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Steppers](/demos/steppers/)
+- [Steppers](/components/steppers/)
 

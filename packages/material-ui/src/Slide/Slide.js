@@ -71,7 +71,7 @@ const defaultTimeout = {
 };
 
 /**
- * The Slide transition is used by the [Drawer](/demos/drawers/) component.
+ * The Slide transition is used by the [Drawer](/components/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Slide = React.forwardRef(function Slide(props, ref) {

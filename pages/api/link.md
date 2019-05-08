@@ -44,7 +44,7 @@ This property accepts the following keys:
 | <span class="prop-name">underlineAlways</span> | Styles applied to the root element if `underline="always"`.
 | <span class="prop-name">button</span> | Styles applied to the root element if `component="button"`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Link/Link.js)
 for more detail.
 
@@ -58,6 +58,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Breadcrumbs](/demos/breadcrumbs/)
-- [Links](/style/links/)
+- [Breadcrumbs](/components/breadcrumbs/)
+- [Links](/components/links/)
 

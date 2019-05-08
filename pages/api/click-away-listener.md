@@ -29,6 +29,6 @@ The component cannot hold a ref.
 
 ## Demos
 
-- [Menus](/demos/menus/)
-- [Click Away Listener](/utils/click-away-listener/)
+- [Click Away Listener](/components/click-away-listener/)
+- [Menus](/components/menus/)
 

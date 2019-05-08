@@ -56,7 +56,7 @@ This property accepts the following keys:
 | <span class="prop-name">paperAnchorDockedBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"` & `variant` is not "temporary".
 | <span class="prop-name">modal</span> | Styles applied to the `Modal` component.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Drawer/Drawer.js)
 for more detail.
 
@@ -65,5 +65,5 @@ you need to use the following style sheet name: `MuiDrawer`.
 
 ## Demos
 
-- [Drawers](/demos/drawers/)
+- [Drawers](/components/drawers/)
 
