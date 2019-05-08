@@ -18,13 +18,13 @@ export const styles = {
 
 const GridList = React.forwardRef(function GridList(props, ref) {
   const {
-    cellHeight,
+    cellHeight = 180,
     children,
     classes,
     className: classNameProp,
-    cols,
-    component: Component,
-    spacing,
+    cols = 2,
+    component: Component = 'ul',
+    spacing = 4,
     style,
     ...other
   } = props;
@@ -103,13 +103,6 @@ GridList.propTypes = {
    * @ignore
    */
   style: PropTypes.object,
-};
-
-GridList.defaultProps = {
-  cellHeight: 180,
-  cols: 2,
-  component: 'ul',
-  spacing: 4,
 };
 
 export default withStyles(styles, { name: 'MuiGridList' })(GridList);

@@ -45,7 +45,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     children,
     classes,
     className: classNameProp,
-    component: Component,
+    component: Component = 'label',
     disabled,
     error,
     filled,
@@ -135,10 +135,6 @@ FormLabel.propTypes = {
    * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
-};
-
-FormLabel.defaultProps = {
-  component: 'label',
 };
 
 export default withStyles(styles, { name: 'MuiFormLabel' })(withFormControlContext(FormLabel));

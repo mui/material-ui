@@ -53,13 +53,13 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     children,
     classes,
     className,
-    component: Component,
-    disabled,
-    error,
-    fullWidth,
-    margin,
-    required,
-    variant,
+    component: Component = 'div',
+    disabled = false,
+    error = false,
+    fullWidth = false,
+    margin = 'none',
+    required = false,
+    variant = 'standard',
     ...other
   } = props;
   const [adornedStart] = React.useState(() => {
@@ -207,16 +207,6 @@ FormControl.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-FormControl.defaultProps = {
-  component: 'div',
-  disabled: false,
-  error: false,
-  fullWidth: false,
-  margin: 'none',
-  required: false,
-  variant: 'standard',
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

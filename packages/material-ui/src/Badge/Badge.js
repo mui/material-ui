@@ -81,12 +81,12 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     children,
     classes,
     className,
-    color,
-    component: ComponentProp,
+    color = 'default',
+    component: ComponentProp = 'span',
     invisible: invisibleProp,
-    max,
-    showZero,
-    variant,
+    max = 99,
+    showZero = false,
+    variant = 'standard',
     ...other
   } = props;
 
@@ -164,14 +164,6 @@ Badge.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'dot']),
-};
-
-Badge.defaultProps = {
-  color: 'default',
-  component: 'span',
-  max: 99,
-  showZero: false,
-  variant: 'standard',
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

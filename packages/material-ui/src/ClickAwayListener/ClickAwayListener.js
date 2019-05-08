@@ -23,7 +23,7 @@ function useMountedRef() {
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 function ClickAwayListener(props) {
-  const { children, mouseEvent, touchEvent, onClickAway } = props;
+  const { children, mouseEvent = 'onMouseUp', touchEvent = 'onTouchEnd', onClickAway } = props;
   const mountedRef = useMountedRef();
   const movedRef = React.useRef(false);
 
@@ -116,10 +116,5 @@ if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   ClickAwayListener['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
 }
-
-ClickAwayListener.defaultProps = {
-  mouseEvent: 'onMouseUp',
-  touchEvent: 'onTouchEnd',
-};
 
 export default ClickAwayListener;

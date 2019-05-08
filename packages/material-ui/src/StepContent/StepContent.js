@@ -35,8 +35,8 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
     last,
     optional,
     orientation,
-    TransitionComponent,
-    transitionDuration: transitionDurationProp,
+    TransitionComponent = Collapse,
+    transitionDuration: transitionDurationProp = 'auto',
     TransitionProps,
     ...other
   } = props;
@@ -127,11 +127,6 @@ StepContent.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-StepContent.defaultProps = {
-  TransitionComponent: Collapse,
-  transitionDuration: 'auto',
 };
 
 export default withStyles(styles, { name: 'MuiStepContent' })(StepContent);

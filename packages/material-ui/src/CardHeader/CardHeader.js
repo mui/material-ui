@@ -39,8 +39,8 @@ const CardHeader = React.forwardRef(function CardHeader(props, ref) {
     avatar,
     classes,
     className: classNameProp,
-    component: Component,
-    disableTypography,
+    component: Component = 'div',
+    disableTypography = false,
     subheader: subheaderProp,
     subheaderTypographyProps,
     title: titleProp,
@@ -139,11 +139,6 @@ CardHeader.propTypes = {
    * (as long as disableTypography is not `true`).
    */
   titleTypographyProps: PropTypes.object,
-};
-
-CardHeader.defaultProps = {
-  component: 'div',
-  disableTypography: false,
 };
 
 export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);

@@ -106,13 +106,13 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
   const {
     classes,
     className,
-    color,
-    disableShrink,
-    size,
+    color = 'primary',
+    disableShrink = false,
+    size = 40,
     style,
-    thickness,
-    value,
-    variant,
+    thickness = 3.6,
+    value = 0,
+    variant = 'indeterminate',
     ...other
   } = props;
 
@@ -222,15 +222,6 @@ CircularProgress.propTypes = {
    * Use indeterminate when there is no progress value.
    */
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
-};
-
-CircularProgress.defaultProps = {
-  color: 'primary',
-  disableShrink: false,
-  size: 40,
-  thickness: 3.6,
-  value: 0,
-  variant: 'indeterminate',
 };
 
 export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);

@@ -38,11 +38,11 @@ export const styles = {
 const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
   const {
     children,
-    component: Component,
+    component: Component = 'div',
     classes,
     className,
-    disablePointerEvents,
-    disableTypography,
+    disablePointerEvents = false,
+    disableTypography = false,
     muiFormControl,
     position,
     variant: variantProp,
@@ -131,12 +131,6 @@ InputAdornment.propTypes = {
    * you do not have to set this manually.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-InputAdornment.defaultProps = {
-  component: 'div',
-  disablePointerEvents: false,
-  disableTypography: false,
 };
 
 export default withStyles(styles, { name: 'MuiInputAdornment' })(

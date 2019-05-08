@@ -67,18 +67,18 @@ export const styles = theme => ({
 
 const StepLabel = React.forwardRef(function StepLabel(props, ref) {
   const {
-    active,
-    alternativeLabel,
+    active = false,
+    alternativeLabel = false,
     children,
     classes,
     className: classNameProp,
-    completed,
-    disabled,
-    error,
+    completed = false,
+    disabled = false,
+    error = false,
     icon,
     last,
     optional,
-    orientation,
+    orientation = 'horizontal',
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
     ...other
@@ -202,16 +202,6 @@ StepLabel.propTypes = {
    * Properties applied to the [`StepIcon`](/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
-};
-
-StepLabel.defaultProps = {
-  active: false,
-  alternativeLabel: false,
-  completed: false,
-  disabled: false,
-  error: false,
-  last: false,
-  orientation: 'horizontal',
 };
 
 StepLabel.muiName = 'StepLabel';

@@ -25,7 +25,7 @@ Uses an additional container component if `ListItemSecondaryAction` is the last 
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`. |
 | <span class="prop-name">ContainerComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is the last child. |
-| <span class="prop-name">ContainerProps</span> | <span class="prop-type">object</span> |  | Properties applied to the container component if used. |
+| <span class="prop-name">ContainerProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Properties applied to the container component if used. |
 | <span class="prop-name">dense</span> | <span class="prop-type">bool</span> |  | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be disabled. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |

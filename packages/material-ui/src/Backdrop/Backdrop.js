@@ -26,7 +26,7 @@ export const styles = {
 };
 
 const Backdrop = React.forwardRef(function Backdrop(props, ref) {
-  const { classes, className, invisible, open, transitionDuration, ...other } = props;
+  const { classes, className, invisible = false, open, transitionDuration, ...other } = props;
 
   return (
     <Fade in={open} timeout={transitionDuration} {...other}>
@@ -73,10 +73,6 @@ Backdrop.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
-};
-
-Backdrop.defaultProps = {
-  invisible: false,
 };
 
 export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

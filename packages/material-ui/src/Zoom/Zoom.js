@@ -15,21 +15,38 @@ const styles = {
   },
 };
 
+const defaultTimeout = {
+  enter: duration.enteringScreen,
+  exit: duration.leavingScreen,
+};
+
 /**
  * The Zoom transition can be used for the floating variant of the
  * [Button](https://material-ui.com/demos/buttons/#floating-action-buttons) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Zoom = React.forwardRef(function Zoom(props, ref) {
-  const { children, in: inProp, onEnter, onExit, style, theme, ...other } = props;
+  const {
+    children,
+    in: inProp,
+    onEnter,
+    onExit,
+    style,
+    theme,
+    timeout = defaultTimeout,
+    ...other
+  } = props;
   const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
 
-    const transitionProps = getTransitionProps(props, {
-      mode: 'enter',
-    });
+    const transitionProps = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'enter',
+      },
+    );
     node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
     node.style.transition = theme.transitions.create('transform', transitionProps);
 
@@ -39,9 +56,12 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   };
 
   const handleExit = node => {
-    const transitionProps = getTransitionProps(props, {
-      mode: 'exit',
-    });
+    const transitionProps = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'exit',
+      },
+    );
     node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
     node.style.transition = theme.transitions.create('transform', transitionProps);
 
@@ -51,7 +71,14 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   };
 
   return (
-    <Transition appear in={inProp} onEnter={handleEnter} onExit={handleExit} {...other}>
+    <Transition
+      appear
+      in={inProp}
+      onEnter={handleEnter}
+      onExit={handleExit}
+      timeout={timeout}
+      {...other}
+    >
       {(state, childProps) => {
         return React.cloneElement(children, {
           style: {
@@ -102,13 +129,6 @@ Zoom.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
-};
-
-Zoom.defaultProps = {
-  timeout: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withTheme(Zoom);

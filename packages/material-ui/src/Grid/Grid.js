@@ -197,23 +197,23 @@ export const styles = theme => ({
 
 const Grid = React.forwardRef((props, ref) => {
   const {
-    alignContent,
-    alignItems,
+    alignContent = 'stretch',
+    alignItems = 'stretch',
     classes,
     className: classNameProp,
-    component: Component,
-    container,
-    direction,
-    item,
-    justify,
-    lg,
-    md,
-    sm,
-    spacing,
-    wrap,
-    xl,
-    xs,
-    zeroMinWidth,
+    component: Component = 'div',
+    container = false,
+    direction = 'row',
+    item = false,
+    justify = 'flex-start',
+    lg = false,
+    md = false,
+    sm = false,
+    spacing = 0,
+    wrap = 'wrap',
+    xl = false,
+    xs = false,
+    zeroMinWidth = false,
     ...other
   } = props;
 
@@ -224,13 +224,11 @@ const Grid = React.forwardRef((props, ref) => {
       [classes.item]: item,
       [classes.zeroMinWidth]: zeroMinWidth,
       [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
-      [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
-      [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
-      [classes[`align-items-xs-${String(alignItems)}`]]:
-        alignItems !== Grid.defaultProps.alignItems,
-      [classes[`align-content-xs-${String(alignContent)}`]]:
-        alignContent !== Grid.defaultProps.alignContent,
-      [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
+      [classes[`direction-xs-${String(direction)}`]]: direction !== 'row',
+      [classes[`wrap-xs-${String(wrap)}`]]: wrap !== 'wrap',
+      [classes[`align-items-xs-${String(alignItems)}`]]: alignItems !== 'stretch',
+      [classes[`align-content-xs-${String(alignContent)}`]]: alignContent !== 'stretch',
+      [classes[`justify-xs-${String(justify)}`]]: justify !== 'flex-start',
       [classes[`grid-xs-${String(xs)}`]]: xs !== false,
       [classes[`grid-sm-${String(sm)}`]]: sm !== false,
       [classes[`grid-md-${String(md)}`]]: md !== false,
@@ -352,24 +350,6 @@ Grid.propTypes = {
    * Refer to the limitations section of the documentation to better understand the use case.
    */
   zeroMinWidth: PropTypes.bool,
-};
-
-Grid.defaultProps = {
-  alignContent: 'stretch',
-  alignItems: 'stretch',
-  component: 'div',
-  container: false,
-  direction: 'row',
-  item: false,
-  justify: 'flex-start',
-  lg: false,
-  md: false,
-  sm: false,
-  spacing: 0,
-  wrap: 'wrap',
-  xl: false,
-  xs: false,
-  zeroMinWidth: false,
 };
 
 const StyledGrid = withStyles(styles, { name: 'MuiGrid' })(Grid);

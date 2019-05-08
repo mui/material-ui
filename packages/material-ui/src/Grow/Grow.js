@@ -27,7 +27,7 @@ const styles = {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
-  const { children, in: inProp, onEnter, onExit, style, theme, timeout, ...other } = props;
+  const { children, in: inProp, onEnter, onExit, style, theme, timeout = 'auto', ...other } = props;
   const timer = React.useRef();
   const autoTimeout = React.useRef();
   const handleRef = useForkRef(children.ref, ref);
@@ -35,9 +35,12 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
 
-    const { duration: transitionDuration, delay } = getTransitionProps(props, {
-      mode: 'enter',
-    });
+    const { duration: transitionDuration, delay } = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'enter',
+      },
+    );
     let duration = 0;
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
@@ -65,9 +68,12 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const handleExit = node => {
     let duration = 0;
 
-    const { duration: transitionDuration, delay } = getTransitionProps(props, {
-      mode: 'exit',
-    });
+    const { duration: transitionDuration, delay } = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'exit',
+      },
+    );
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
       autoTimeout.current = duration;
@@ -170,10 +176,6 @@ Grow.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
-};
-
-Grow.defaultProps = {
-  timeout: 'auto',
 };
 
 Grow.muiSupportAuto = true;

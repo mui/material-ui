@@ -14,7 +14,7 @@ export const styles = {
 };
 
 const DialogTitle = React.forwardRef(function DialogTitle(props, ref) {
-  const { children, classes, className, disableTypography, ...other } = props;
+  const { children, classes, className, disableTypography = false, ...other } = props;
 
   return (
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
@@ -42,10 +42,6 @@ DialogTitle.propTypes = {
    * For instance, this can be useful to render an h4 instead of the default h2.
    */
   disableTypography: PropTypes.bool,
-};
-
-DialogTitle.defaultProps = {
-  disableTypography: false,
 };
 
 export default withStyles(styles, { name: 'MuiDialogTitle' })(DialogTitle);
