@@ -38,7 +38,7 @@ Here are the most significant changes in April:
   [![Responsive font sizes](/static/blog/april-2019-update/responsive.png)](https://next.material-ui.com/customization/themes/#responsive-font-sizes)
 - We have added support for custom [header scroll behaviors](https://next.material-ui.com/demos/app-bar/#scrolling):
 
-  <video src="/static/blog/april-2019-update/scroll-trigger.mp4" loop autoplay></video>
+  <video src="/static/blog/april-2019-update/scroll-trigger.mp4" controls loop autoplay></video>
 
 But this summary is just scratching the surface. We have accepted 243 commits from 69 different contributors. We have changed 1,545 files with 36,461 additions and 20,237 deletions.
 
