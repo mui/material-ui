@@ -35,7 +35,7 @@ export const styles = theme => ({
 
 /**
  * The Collapse transition is used by the
- * [Vertical Stepper](/demos/steppers/#vertical-stepper) StepContent component.
+ * [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Collapse = React.forwardRef(function Collapse(props, ref) {

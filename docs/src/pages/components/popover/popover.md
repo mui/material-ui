@@ -9,8 +9,8 @@ components: Grow, Popover
 
 Things to know when using the `Popover` component:
 
-- The component is built on top of the [`Modal`](/utils/modal/) component.
-- The scroll and click away are blocked unlike with the [`Popper`](/utils/popper/) component.
+- The component is built on top of the [`Modal`](/components/modal/) component.
+- The scroll and click away are blocked unlike with the [`Popper`](/components/popper/) component.
 
 ## Simple Popover
 

@@ -22,7 +22,7 @@ const styles = {
 };
 
 /**
- * The Grow transition is used by the [Tooltip](/demos/tooltips/) and
+ * The Grow transition is used by the [Tooltip](/components/tooltips/) and
  * [Popover](/components/popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */

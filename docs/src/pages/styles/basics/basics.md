@@ -69,8 +69,8 @@ export default function Hook() {
 
 ### Styled components API
 
-Note: this only applies to the calling syntax – style definitions still use a JSS object. 
-You can also [change this behavior](/styles/advanced#string-templates), with some limitations.
+Note: this only applies to the calling syntax – style definitions still use a JSS object.
+You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
 
 ```jsx
 import React from 'react';

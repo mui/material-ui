@@ -125,7 +125,7 @@ Here is a demo with [React Router DOM](https://github.com/ReactTraining/react-ro
 
 ### With TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript#usage-of-component-property).
+You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-property).
 
 ## Caveat with refs
 

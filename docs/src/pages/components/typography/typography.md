@@ -14,7 +14,7 @@ A [typographic scale](https://material.io/design/typography/#type-scale) has a l
 The *Roboto* font will **not** be automatically loaded by Material-UI.
 The developer is responsible for loading all fonts used in their application.
 Roboto Font has a few easy ways to get started. For more advanced configuration, check out
-[the theme customization section](/customization/typography).
+[the theme customization section](/customization/typography/).
 
 ## Roboto Font CDN
 

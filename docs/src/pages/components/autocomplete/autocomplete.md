@@ -15,7 +15,7 @@ We encourage people relying on the solutions the React community has built.
 ![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars)
 ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-In the following example, we demonstrate how to use [downshift](https://github.com/paypal/downshift).
+In the following example, we demonstrate how to use [downshift](https://github.com/downshift-js/downshift).
 
 The last demo allow to clear the input and show a number of options on focus.
 
