@@ -21,6 +21,7 @@
   "homepage": "https://material-ui.com/",
   "scripts": {
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
+    "dev:what-changes": "BABEL_ENV=test yarn babel-node docs/scripts/componentsAffected.js",
     "docs:api": "rimraf ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/api",
     "docs:build": "rimraf .next && cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
@@ -139,6 +140,7 @@
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
     "gm": "^1.23.0",
+    "inquirer": "^6.3.1",
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "^15.0.0",
     "jsonlint": "^1.6.3",

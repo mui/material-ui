@@ -1746,13 +1746,13 @@
     write-file-atomic "^2.3.0"
 
 "@material-ui/core@^3.9.3":
-  version "4.0.0-beta.0"
+  version "4.0.0-beta.1"
   dependencies:
     "@babel/runtime" "^7.2.0"
-    "@material-ui/styles" "^4.0.0-beta.0"
-    "@material-ui/system" "^4.0.0-beta.0"
-    "@material-ui/types" "^1.0.0"
-    "@material-ui/utils" "^4.0.0-beta.0"
+    "@material-ui/styles" "^4.0.0-beta.1"
+    "@material-ui/system" "^4.0.0-beta.1"
+    "@material-ui/types" "^4.0.0-beta.2"
+    "@material-ui/utils" "^4.0.0-beta.1"
     "@types/react-transition-group" "^2.0.16"
     clsx "^1.0.2"
     convert-css-length "^1.0.2"
@@ -7348,7 +7348,7 @@ init-package-json@^1.10.3:
     validate-npm-package-license "^3.0.1"
     validate-npm-package-name "^3.0.0"
 
-inquirer@^6.2.0, inquirer@^6.2.2:
+inquirer@^6.2.0, inquirer@^6.2.2, inquirer@^6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.3.1.tgz#7a413b5e7950811013a3db491c61d1f3b776e8e7"
   integrity sha512-MmL624rfkFt4TG9y/Jvmt8vdmOo836U7Y0Hxr2aFk3RelZEGX4Igk0KabWrcaaZaTv9uzglOqWh1Vly+FAWAXA==
