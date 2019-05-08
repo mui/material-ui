@@ -13,6 +13,8 @@ export interface BasePickerProps {
   autoOk?: boolean;
   /** Format string */
   format?: string;
+  /** Disable datepicker and text field */
+  disabled?: boolean;
   /** Dynamic formatter of text field label */
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
   /** Date that will be initially highlighted */

@@ -79,7 +79,7 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
   const inputProps = useMemo(
     () => ({
       validationError,
-      onClick: () => setIsOpen(true),
+      onClick: () => !props.disabled && setIsOpen(true),
       inputValue: getDisplayDate(date, format, utils, props.value === null, props),
     }),
     [date, format, props, setIsOpen, utils, validationError]

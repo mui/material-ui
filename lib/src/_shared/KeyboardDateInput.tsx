@@ -55,6 +55,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   mask,
   maskChar = '_',
   format,
+  disabled,
   ...other
 }) => {
   const inputMask = mask || makeMaskFromFormat(format, maskChar);
@@ -71,6 +72,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
     <Rifm value={inputValue} onChange={onChange} refuse={refuse} format={formatter}>
       {({ onChange, value }) => (
         <TextField
+          disabled={disabled}
           error={Boolean(validationError)}
           helperText={validationError}
           {...other}
@@ -80,7 +82,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
           InputProps={{
             [`${position}Adornment`]: (
               <InputAdornment position={position} {...InputAdornmentProps}>
-                <IconButton {...KeyboardButtonProps} onClick={onClick}>
+                <IconButton disabled={disabled} {...KeyboardButtonProps} onClick={onClick}>
                   <KeyboardIcon />
                 </IconButton>
               </InputAdornment>
