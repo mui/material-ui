@@ -1,19 +1,19 @@
 import React from 'react';
 
 function getScrollY(ref) {
-  return (ref ? ref.pageYOffset || ref.scrollTop : null) || 0;
+  return ref.pageYOffset || ref.scrollTop;
 }
 
 function defaultTrigger(event, store, options) {
   const { disableHysteresis = false, threshold = 100 } = options;
-  const previous = store.current;
-  store.current = getScrollY(event && event.currentTarget);
+  const previous = store.current || 0;
+  store.current = event && event.currentTarget ? getScrollY(event.currentTarget) : previous;
 
   if (!disableHysteresis) {
     if (store.current < previous) {
       return false;
     }
-    return store.current > previous && store.current > threshold;
+    return store.current >= previous && store.current > threshold;
   }
 
   return store.current > threshold;
@@ -31,6 +31,7 @@ export default function useScrollTrigger(options = {}) {
       setTrigger(getTrigger(event, store, other));
     };
 
+    handleScroll(null); // Re-evaluate trigger when dependencies change
     target.addEventListener('scroll', handleScroll);
     return () => {
       target.removeEventListener('scroll', handleScroll);

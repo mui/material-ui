@@ -26,7 +26,7 @@ describe('useScrollTrigger', () => {
   const dispatchScroll = (offset, ref = window) => {
     ref.pageYOffset = offset;
     ref.dispatchEvent(new window.Event('scroll', {}));
-    return ref.pageYoffset === offset; // The Chrome Browser on Mac OS X fails to set pageYOffset, so do not test the result if pageYoffset was not set
+    return ref.pageYOffset === offset; // The Chrome Browser on Mac OS X fails to set pageYOffset, so do not test the result if pageYoffset was not set
   };
 
   const ref = React.createRef();
@@ -182,7 +182,7 @@ describe('useScrollTrigger', () => {
       mountWrapperWithRef();
       if (dispatchScroll(300, getContainer())) assert.strictEqual(text(), 'true');
     });
-    it('should have correct directional triggering threshold', () => {
+    it('should have correct hysteresis triggering threshold', () => {
       mountWrapperWithRef();
       [
         { offset: 100, result: 'false' },
@@ -208,8 +208,8 @@ describe('useScrollTrigger', () => {
       });
     });
 
-    it('should have correct non-directional triggering with default threshold', () => {
-      mountWrapperWithRef({ directional: false });
+    it('should have correct hysteresis triggering with default threshold', () => {
+      mountWrapperWithRef({ disableHysteresis: true });
       [
         { offset: 100, result: 'false' },
         { offset: 101, result: 'true' },
@@ -233,8 +233,8 @@ describe('useScrollTrigger', () => {
       });
     });
 
-    it('should have correct non-directional triggering with custom threshold', () => {
-      mountWrapperWithRef({ directional: false, threshold: 50 });
+    it('should have correct hysteresis triggering with custom threshold', () => {
+      mountWrapperWithRef({ disableHysteresis: true, threshold: 50 });
       [
         { offset: 100, result: 'true' },
         { offset: 101, result: 'true' },
@@ -250,6 +250,71 @@ describe('useScrollTrigger', () => {
         { offset: -50, result: 'false' },
         { offset: 50, result: 'false' },
         { offset: 51, result: 'true' },
+      ].forEach((test, i) => {
+        if (dispatchScroll(test.offset, getContainer()))
+          assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
+      });
+    });
+
+    it('should not trigger at exact threshold value', () => {
+      mountWrapperWithRef({ threshold: 100 });
+      [
+        { offset: 100, result: 'false' },
+        { offset: 99, result: 'false' },
+        { offset: 100, result: 'false' },
+        { offset: 101, result: 'true' },
+        { offset: 100, result: 'false' },
+        { offset: 99, result: 'false' },
+        { offset: 100, result: 'false' },
+      ].forEach((test, i) => {
+        if (dispatchScroll(test.offset, getContainer()))
+          assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
+      });
+    });
+
+    it('should not trigger at exact threshold value with hysteresis disabled', () => {
+      mountWrapperWithRef({ disableHysteresis: true, threshold: 100 });
+      [
+        { offset: 100, result: 'false' },
+        { offset: 99, result: 'false' },
+        { offset: 100, result: 'false' },
+        { offset: 101, result: 'true' },
+        { offset: 100, result: 'false' },
+        { offset: 99, result: 'false' },
+      ].forEach((test, i) => {
+        if (dispatchScroll(test.offset, getContainer()))
+          assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
+      });
+    });
+
+    it('should correctly evaluate sequential scroll events with identical scrollY offsets', () => {
+      mountWrapperWithRef({ threshold: 199 });
+      [
+        { offset: 200, result: 'true' },
+        { offset: 200, result: 'true' },
+        { offset: 200, result: 'true' },
+        { offset: 199, result: 'false' },
+        { offset: 199, result: 'false' },
+        { offset: 199, result: 'false' },
+        { offset: 200, result: 'true' },
+        { offset: 200, result: 'true' },
+      ].forEach((test, i) => {
+        if (dispatchScroll(test.offset, getContainer()))
+          assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
+      });
+    });
+
+    it('should correctly evaluate sequential scroll events with identical scrollY offsets and hysteresis disabled', () => {
+      mountWrapperWithRef({ disableHysteresis: true, threshold: 199 });
+      [
+        { offset: 200, result: 'true' },
+        { offset: 200, result: 'true' },
+        { offset: 200, result: 'true' },
+        { offset: 199, result: 'false' },
+        { offset: 199, result: 'false' },
+        { offset: 199, result: 'false' },
+        { offset: 200, result: 'true' },
+        { offset: 200, result: 'true' },
       ].forEach((test, i) => {
         if (dispatchScroll(test.offset, getContainer()))
           assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
