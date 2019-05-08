@@ -163,6 +163,12 @@ yarn add @material-ui/styles@next
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
+- [Container] Moved from `@material-ui/lab` to `@material-ui/core`
+
+  ```diff
+  -import Container from '@material-ui/lab/Container';
+  +import Container from '@material-ui/core/Container';
+  ```
 
 ### Button
 
