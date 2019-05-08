@@ -248,6 +248,8 @@ yarn add @material-ui/styles@next
 
 - [Modal] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
   the migration strategy.
+
+  This also applies to `Dialog` and `Popover`.
 - [Modal] Remove the classes customization API for the Modal component.
   (-74% bundle size reduction when used standalone)
 - [Modal] event.defaultPrevented is now ignored.
