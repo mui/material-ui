@@ -116,7 +116,7 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
 
 NativeSelect.propTypes = {
   /**
-   * The option elements to populate the select with (they **must** be direct descendants).
+   * The option elements to populate the select with.
    * Can be some `<option>` elements.
    */
   children: PropTypes.node,
