@@ -95,7 +95,7 @@ class ButtonBase extends React.Component {
         [
           `Material-UI: expected an Element but found ${button}.`,
           'Please check your console for additional warnings and try fixing those.',
-          'If the error persists please file an issue: https://next.material-ui.com/bug',
+          'If the error persists please file an issue.',
         ].join(' '),
       );
     }

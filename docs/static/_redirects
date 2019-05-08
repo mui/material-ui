@@ -5,7 +5,6 @@
 /spam / 301
 
 /size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/next/latest/size-snapshot.json 200
-/bug https://github.com/mui-org/material-ui/issues/new/choose 301
 
 # To remove at some point (2020).
 /demos/selection-controls/ /components/radio-buttons/ 301
