@@ -11,11 +11,26 @@ function resolvePath(sourcePath, currentFile, opts) {
 
 let defaultPresets;
 
-// We release a ES version of Material-UI.
-// It's something that matches the latest official supported features of JavaScript.
-// Nothing more (stage-1, etc), nothing less (require, etc).
+// evergreen build
+// see https://next.material-ui.com/guides/minimizing-bundle-size/#evergreen-build
+// TODO rename `es` to something more appropriate
 if (process.env.BABEL_ENV === 'es') {
-  defaultPresets = [];
+  defaultPresets = [
+    [
+      '@babel/preset-env',
+      {
+        modules: false,
+        // snapshot of the latest version of evergreen browsers
+        targets: {
+          chrome: 73,
+          edge: 18,
+          firefox: 66,
+          node: 8,
+          safari: '12.1',
+        },
+      },
+    ],
+  ];
 } else {
   defaultPresets = [
     [
