@@ -351,6 +351,7 @@ You should be able to move the custom styles to the root class key.
 
 - [Tooltip] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
   the migration strategy.
+- [Tooltip] Appears only after focus-visible focus instead of any focus.
 
 ### Typography
 
