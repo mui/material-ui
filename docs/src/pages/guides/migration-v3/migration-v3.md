@@ -298,7 +298,7 @@ yarn add @material-ui/styles@next
 - [Snackbar] Match the new specification.
 
   - Change the dimensions
-  - Change the default transition to from `Slide` to `Grow`.
+  - Change the default transition from `Slide` to `Grow`.
 
 ### SvgIcon
 
