@@ -163,6 +163,17 @@
       "required": true,
       "type": { "name": "ParsableDate" }
     },
+    "disabled": {
+      "defaultValue": null,
+      "description": "Disable datepicker and text field",
+      "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
     "inputVariant": {
       "defaultValue": null,
       "description": "Pass material-ui text field variant down, bypass internal variant prop",
@@ -528,7 +539,7 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any, value: string) => void" }
+      "type": { "name": "(date: any, value?: string) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -580,6 +591,17 @@
       },
       "required": false,
       "type": { "name": "string" }
+    },
+    "disabled": {
+      "defaultValue": null,
+      "description": "Disable datepicker and text field",
+      "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -1021,6 +1043,17 @@
       "required": true,
       "type": { "name": "ParsableDate" }
     },
+    "disabled": {
+      "defaultValue": null,
+      "description": "Disable datepicker and text field",
+      "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
     "inputVariant": {
       "defaultValue": null,
       "description": "Pass material-ui text field variant down, bypass internal variant prop",
@@ -1208,7 +1241,7 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any, value: string) => void" }
+      "type": { "name": "(date: any, value?: string) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -1260,6 +1293,17 @@
       },
       "required": false,
       "type": { "name": "string" }
+    },
+    "disabled": {
+      "defaultValue": null,
+      "description": "Disable datepicker and text field",
+      "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -1715,6 +1759,17 @@
       "required": true,
       "type": { "name": "ParsableDate" }
     },
+    "disabled": {
+      "defaultValue": null,
+      "description": "Disable datepicker and text field",
+      "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
     "inputVariant": {
       "defaultValue": null,
       "description": "Pass material-ui text field variant down, bypass internal variant prop",
@@ -2104,7 +2159,7 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any, value: string) => void" }
+      "type": { "name": "(date: any, value?: string) => void" }
     },
     "format": {
       "defaultValue": null,
@@ -2156,6 +2211,17 @@
       },
       "required": false,
       "type": { "name": "string" }
+    },
+    "disabled": {
+      "defaultValue": null,
+      "description": "Disable datepicker and text field",
+      "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
     },
     "inputVariant": {
       "defaultValue": null,
