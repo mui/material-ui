@@ -1,0 +1,17 @@
+{
+  "cSpell.words": ["Formik", "Notistack", "Sourcable", "patreon"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "javascript.implicitProjectConfig.checkJs": true
+}

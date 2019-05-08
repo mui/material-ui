@@ -35,5 +35,4 @@ cypress
 
 # editors
 .vs
-.vscode
 .DS_Store
