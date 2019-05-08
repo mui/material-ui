@@ -29,7 +29,7 @@ Material Design margins and columns follow an **8px** square baseline grid.
 The spacing property is an integer between 0 and 10 inclusive.
 By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
 
-This output transformation function can be customized [using the theme](/customization/spacing).
+This output transformation function can be customized [using the theme](/customization/spacing/).
 
 {{"demo": "pages/components/grid/SpacingGrid.js"}}
 

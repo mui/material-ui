@@ -29,7 +29,7 @@ Modal is a lower-level construct that is leveraged by the following components:
 - [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
 - [Menu](/components/menus/)
-- [Popover](/utils/popover/)
+- [Popover](/components/popover/)
 
 ## Simple modal
 
