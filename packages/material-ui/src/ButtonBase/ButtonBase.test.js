@@ -686,8 +686,30 @@ describe('<ButtonBase />', () => {
         return <button type="button" {...props} />;
       }
 
+      class Test extends React.Component {
+        static getDerivedStateFromError() {
+          return { hasError: true };
+        }
+
+        state = {
+          hasError: false,
+        };
+
+        render() {
+          const { hasError } = this.state;
+
+          if (hasError) {
+            return null;
+          }
+
+          return <ButtonBase component={Component} />;
+        }
+      }
+
+      // assert.throws or try-catch still throws in test:karma
+      const wrapper = mount(<Test />);
       // cant match the error message here because flakiness with mocha watchmode
-      assert.throws(() => mount(<ButtonBase component={Component} />));
+      assert.strictEqual(wrapper.find('Test').instance().state.hasError, true);
 
       // order of errors changes between node and browser env and subsequent runs
       // in watchmode
