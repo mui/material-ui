@@ -682,58 +682,28 @@ describe('<ButtonBase />', () => {
     });
 
     it('throws with additional warnings on invalid `component` prop', () => {
+      // Only run the test on node. On the browser the thrown error is not caught
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        return;
+      }
+
       function Component(props) {
         return <button type="button" {...props} />;
       }
 
-      class Test extends React.Component {
-        static getDerivedStateFromError() {
-          return { hasError: true };
-        }
-
-        state = {
-          hasError: false,
-        };
-
-        render() {
-          const { hasError } = this.state;
-
-          if (hasError) {
-            return null;
-          }
-
-          return <ButtonBase component={Component} />;
-        }
-      }
-
-      // assert.throws or try-catch still throws in test:karma
-      const wrapper = mount(<Test />);
       // cant match the error message here because flakiness with mocha watchmode
-      assert.strictEqual(wrapper.find('Test').instance().state.hasError, true);
+      assert.throws(() => mount(<ButtonBase component={Component} />));
 
-      // order of errors changes between node and browser env and subsequent runs
-      // in watchmode
-      assert.strictEqual(
-        consoleErrorMock
-          .args()
-          .some(args =>
-            /Invalid prop `component` supplied to `ButtonBase`. Expected an element type that can hold a ref/.test(
-              args[0],
-            ),
-          ),
-        true,
-        'has invalid component prop-types warnings',
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Invalid prop `component` supplied to `ButtonBase`. Expected an element type that can hold a ref',
       );
-      assert.strictEqual(
-        consoleErrorMock
-          .args()
-          .some(args =>
-            /Error: Expected an Element but found null. Please check your console for additional warnings and try fixing those./.test(
-              args[0],
-            ),
-          ),
-        true,
-        'has custom error message',
+      // first mount includes React warning that isn't logged on subsequent calls
+      // in watchmode because it's cached
+      const customErrorIndex = consoleErrorMock.callCount() === 3 ? 1 : 2;
+      assert.include(
+        consoleErrorMock.args()[customErrorIndex][0],
+        'Error: Expected an Element but found null. Please check your console for additional warnings and try fixing those.',
       );
     });
   });
