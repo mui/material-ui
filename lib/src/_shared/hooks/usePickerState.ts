@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useUtils } from './useUtils';
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../..';
@@ -56,8 +57,8 @@ function useOpenState(props: BasePickerProps) {
 
   return { isOpen, setIsOpen };
 }
-
 /* eslint-enable react-hooks/rules-of-hooks */
+
 export function usePickerState(props: BasePickerProps, options: HookOptions) {
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
@@ -75,11 +76,14 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
     props.onError(validationError, props.value);
   }
 
-  const inputProps = {
-    validationError,
-    onClick: () => setIsOpen(true),
-    inputValue: getDisplayDate(date, format, utils, props.value === null, props),
-  };
+  const inputProps = useMemo(
+    () => ({
+      validationError,
+      onClick: () => setIsOpen(true),
+      inputValue: getDisplayDate(date, format, utils, props.value === null, props),
+    }),
+    [date, format, props, setIsOpen, utils, validationError]
+  );
 
   // prettier-ignore
   const acceptDate = useCallback((acceptedDate: MaterialUiPickersDate) => {
@@ -93,31 +97,34 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
     }
   }, [acceptedDateRef, setIsOpen, props]);
 
-  const wrapperProps = {
-    format,
-    open: isOpen,
-    onAccept: () => acceptDate(date),
-    onClear: () => acceptDate(null),
-    onSetToday: useCallback(() => props.onChange(utils.date()), [props, utils]),
-    onDismiss: useCallback(() => {
-      setIsOpen(false);
-      props.onChange(acceptedDateRef.current);
-    }, [setIsOpen, props, acceptedDateRef]),
-  };
+  const wrapperProps = useMemo(
+    () => ({
+      format,
+      open: isOpen,
+      onAccept: () => acceptDate(date),
+      onClear: () => acceptDate(null),
+      onSetToday: () => props.onChange(utils.date()),
+      onDismiss: () => {
+        setIsOpen(false);
+        props.onChange(acceptedDateRef.current);
+      },
+    }),
+    [acceptDate, acceptedDateRef, date, format, isOpen, props, setIsOpen, utils]
+  );
 
-  const pickerProps = {
-    date,
-    onChange: useCallback(
-      (newDate: MaterialUiPickersDate, isFinish = true) => {
+  const pickerProps = useMemo(
+    () => ({
+      date,
+      onChange: (newDate: MaterialUiPickersDate, isFinish = true) => {
         props.onChange(newDate);
 
         if (isFinish && props.autoOk) {
           acceptDate(newDate);
         }
       },
-      [props, acceptDate]
-    ),
-  };
+    }),
+    [acceptDate, date, props]
+  );
 
   const pickerState = { pickerProps, inputProps, wrapperProps };
 
