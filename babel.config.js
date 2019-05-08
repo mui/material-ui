@@ -13,7 +13,6 @@ let defaultPresets;
 
 // evergreen build
 // see https://next.material-ui.com/guides/minimizing-bundle-size/#evergreen-build
-// TODO rename `es` to something more appropriate
 if (process.env.BABEL_ENV === 'es') {
   defaultPresets = [
     [
@@ -68,8 +67,7 @@ module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
     'babel-plugin-optimize-clsx',
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
+    '@babel/plugin-proposal-class-properties',
     '@babel/plugin-transform-runtime',
   ],
   ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
