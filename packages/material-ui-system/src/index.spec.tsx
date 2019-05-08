@@ -23,7 +23,7 @@ function composeTest() {
 }
 
 function cssTest() {
-  function styleFunction(props: { color: string; spacing: number; theme: object }) {
+  function styleFunction(props: { color?: string; spacing?: number; theme?: object }) {
     return {};
   }
 
@@ -31,10 +31,30 @@ function cssTest() {
 
   // narrow
   wideOrNarrowStyleFunction({ theme: {}, css: { color: 'blue', spacing: 2 } });
-  // wide
-  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2 });
+  // wide, undesire: `css` is required, marking it as optional breaks system/basics/#css-property
+  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2, css: {} });
   // wide and narrow
   wideOrNarrowStyleFunction({ theme: {}, css: { color: 'blue', spacing: 2 }, color: 'red' });
+}
+
+/**
+ * marking a prop as required requires it in props object and `css` object
+ *
+ * This is not equivalent to the implementation. Ideally `css` would be optional
+ * but that breaks system/basics/#css-property
+ */
+function cssRequiredTest() {
+  function styleRequiredFunction(props: { color: string }) {
+    return {};
+  }
+
+  const style = css(styleRequiredFunction);
+  style({
+    color: 'red',
+    css: {}, // $ExpectError
+  });
+  style({ css: { color: 'red' } }); // $ExpectError
+  style({ color: 'blue', css: { color: 'red' } });
 }
 
 /**
