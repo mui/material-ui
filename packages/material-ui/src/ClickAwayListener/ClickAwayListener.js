@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
@@ -16,6 +15,13 @@ function useMountedRef() {
   }, []);
 
   return mountedRef;
+}
+
+function mapEventPropToEvent(eventProp) {
+  if (typeof eventProp === 'string' && eventProp.startsWith('on')) {
+    return eventProp.substring(2).toLowerCase();
+  }
+  return eventProp;
 }
 
 /**
@@ -76,21 +82,30 @@ function ClickAwayListener(props) {
     movedRef.current = true;
   }, []);
 
-  const listenerProps = {};
-  if (mouseEvent !== false) {
-    listenerProps[mouseEvent] = handleClickAway;
-  }
-  if (touchEvent !== false) {
-    listenerProps[touchEvent] = handleClickAway;
-    listenerProps.onTouchMove = handleTouchMove;
-  }
+  React.useEffect(() => {
+    const mappedMouseEvent = mapEventPropToEvent(mouseEvent);
+    const mappedTouchEvent = mapEventPropToEvent(touchEvent);
 
-  return (
-    <React.Fragment>
-      {React.cloneElement(children, { ref: handleRef })}
-      <EventListener target="document" {...listenerProps} />
-    </React.Fragment>
-  );
+    if (mouseEvent !== false) {
+      document.addEventListener(mappedMouseEvent, handleClickAway);
+    }
+    if (touchEvent !== false) {
+      document.addEventListener(mappedTouchEvent, handleClickAway);
+      document.addEventListener('touchmove', handleTouchMove);
+    }
+
+    return () => {
+      if (mouseEvent !== false) {
+        document.removeEventListener(mouseEvent, handleClickAway);
+      }
+      if (touchEvent !== false) {
+        document.removeEventListener(touchEvent, handleClickAway);
+        document.removeEventListener('touchmove', handleTouchMove);
+      }
+    };
+  }, [handleClickAway, handleTouchMove, mouseEvent, touchEvent]);
+
+  return <React.Fragment>{React.cloneElement(children, { ref: handleRef })}</React.Fragment>;
 }
 
 ClickAwayListener.propTypes = {
@@ -101,7 +116,15 @@ ClickAwayListener.propTypes = {
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    */
-  mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', false]),
+  mouseEvent: PropTypes.oneOf([
+    'click',
+    'onClick',
+    'mousedown',
+    'onMouseDown',
+    'mouseup',
+    'onMouseUp',
+    false,
+  ]),
   /**
    * Callback fired when a "click away" event is detected.
    */
@@ -109,7 +132,7 @@ ClickAwayListener.propTypes = {
   /**
    * The touch event to listen to. You can disable the listener by providing `false`.
    */
-  touchEvent: PropTypes.oneOf(['onTouchStart', 'onTouchEnd', false]),
+  touchEvent: PropTypes.oneOf(['touchstart', 'onTouchStart', 'touchend', 'onTouchEnd', false]),
 };
 
 if (process.env.NODE_ENV !== 'production') {
