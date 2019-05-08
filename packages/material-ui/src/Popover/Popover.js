@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
-import EventListener from 'react-event-listener';
 import clsx from 'clsx';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
@@ -315,11 +314,10 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
       setPositioningStyles(paperRef.current);
     }, 166); // Corresponds to 10 frames at 60 Hz.
-
+    window.addEventListener('resize', handleResizeRef.current);
     return () => {
-      if (handleResizeRef.clear) {
-        handleResizeRef.clear();
-      }
+      handleResizeRef.current.clear();
+      window.removeEventListener('resize', handleResizeRef.current);
     };
   }, [open, setPositioningStyles]);
 
@@ -363,7 +361,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           {...PaperProps}
           className={clsx(classes.paper, PaperProps.className)}
         >
-          <EventListener target="window" onResize={handleResizeRef.current} />
           {children}
         </Paper>
       </TransitionComponent>
