@@ -1,1 +1,1 @@
-export { default, defaultValueReducer } from './Slider';
+export { default } from './Slider';

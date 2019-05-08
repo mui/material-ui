@@ -8,7 +8,16 @@ import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import { isMuiElement, useForkRef } from '@material-ui/core/utils';
 import * as utils from './utils';
-import { clamp } from '../utils';
+
+function clamp(value, min, max) {
+  if (value < min) {
+    return min;
+  }
+  if (value > max) {
+    return max;
+  }
+  return value;
+}
 
 const dialRadius = 32;
 const spacingActions = 16;

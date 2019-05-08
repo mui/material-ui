@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   },
 });
 
-function valuetext(value) {
+function valuetext(value: number) {
   return `${value}°C`;
 }
 
