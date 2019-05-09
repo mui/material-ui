@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import { capitalize } from '../utils/helpers';
+
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -68,14 +70,15 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    padding: '4px 8px',
-    minWidth: 64,
+    minWidth: 32,
+    height: 42,
     fontSize: theme.typography.pxToRem(13),
   },
   
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
-    padding: '8px 24px',
+    minWidth: 64,
+    height: 54,
     fontSize: theme.typography.pxToRem(15),
   },
 });
@@ -120,6 +123,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
         className,
       )}
       disabled={disabled}
+
       focusRipple={!disableFocusRipple}
       ref={ref}
       onClick={handleChange}
@@ -172,7 +176,7 @@ ToggleButton.propTypes = {
    */
   selected: PropTypes.bool,
   /**
-   * The size of the buttonGroup.
+   * The size of the toggleButton.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
