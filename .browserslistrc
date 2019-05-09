@@ -1,6 +1,14 @@
+[production]
 ie 11
 edge >= 14
 firefox >= 52
 chrome >= 49
 safari >= 10
 node 8.0
+
+[es]
+edge >= 18
+firefox >= 66
+chrome >= 73
+safari >= 12.1
+node >= 8.16

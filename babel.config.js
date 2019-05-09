@@ -9,37 +9,15 @@ function resolvePath(sourcePath, currentFile, opts) {
   return bpmr.resolvePath(sourcePath, currentFile, opts);
 }
 
-let defaultPresets;
-
-// evergreen build
-// see https://next.material-ui.com/guides/minimizing-bundle-size/#evergreen-build
-if (process.env.BABEL_ENV === 'es') {
-  defaultPresets = [
-    [
-      '@babel/preset-env',
-      {
-        modules: false,
-        // snapshot of the latest version of evergreen browsers
-        targets: {
-          chrome: 73,
-          edge: 18,
-          firefox: 66,
-          node: 8,
-          safari: '12.1',
-        },
-      },
-    ],
-  ];
-} else {
-  defaultPresets = [
-    [
-      '@babel/preset-env',
-      {
-        modules: ['esm', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
-      },
-    ],
-  ];
-}
+const defaultPresets = [
+  [
+    '@babel/preset-env',
+    {
+      debug: process.env.NODE_ENV === 'production',
+      modules: ['es', 'esm', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
+    },
+  ],
+];
 
 const defaultAlias = {
   '@material-ui/core': './packages/material-ui/src',
