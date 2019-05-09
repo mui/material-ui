@@ -65,7 +65,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
         return React.cloneElement(child, {
           selected,
           onChange: exclusive ? handleExclusiveChange : handleChange,
-          size: props.size ? props.size : 'medium'
+          size: props.size ? props.size : 'medium',
         });
       })}
     </div>
@@ -104,7 +104,7 @@ ToggleButtonGroup.propTypes = {
    * values when `exclusive` is false.
    */
   value: PropTypes.any,
-    /**
+  /**
    * The size of the toggleButton.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),

@@ -7,7 +7,6 @@ import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { capitalize } from '../utils/helpers';
 
-
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
@@ -74,7 +73,7 @@ export const styles = theme => ({
     height: 42,
     fontSize: theme.typography.pxToRem(13),
   },
-  
+
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     minWidth: 64,
@@ -123,7 +122,6 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
         className,
       )}
       disabled={disabled}
-
       focusRipple={!disableFocusRipple}
       ref={ref}
       onClick={handleChange}

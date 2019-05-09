@@ -71,14 +71,22 @@ describe('<ToggleButton />', () => {
   });
 
   it('should render a small button', () => {
-    const wrapper = shallow(<ToggleButton size="small" value="hello">Hello World</ToggleButton>);
+    const wrapper = shallow(
+      <ToggleButton size="small" value="hello">
+        Hello World
+      </ToggleButton>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
     assert.strictEqual(wrapper.hasClass(classes.sizeLarge), false);
   });
 
   it('should render a large button', () => {
-    const wrapper = shallow(<ToggleButton size="large" value="hello">Hello World</ToggleButton>);
+    const wrapper = shallow(
+      <ToggleButton size="large" value="hello">
+        Hello World
+      </ToggleButton>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
     assert.strictEqual(wrapper.hasClass(classes.sizeLarge), true);
