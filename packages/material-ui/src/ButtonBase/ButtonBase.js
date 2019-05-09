@@ -89,7 +89,18 @@ class ButtonBase extends React.Component {
   });
 
   componentDidMount() {
-    prepareFocusVisible(this.getButtonNode().ownerDocument);
+    const button = this.getButtonNode();
+    if (button == null) {
+      throw new Error(
+        [
+          `Material-UI: expected an Element but found ${button}.`,
+          'Please check your console for additional warnings and try fixing those.',
+          'If the error persists please file an issue.',
+        ].join(' '),
+      );
+    }
+    prepareFocusVisible(button.ownerDocument);
+
     if (this.props.action) {
       this.props.action({
         focusVisible: () => {

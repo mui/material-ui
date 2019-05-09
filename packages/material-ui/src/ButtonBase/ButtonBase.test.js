@@ -12,6 +12,8 @@ import {
 } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import * as PropTypes from 'prop-types';
 
 const ButtonBaseNaked = unwrap(ButtonBase);
 
@@ -665,6 +667,43 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(
         rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
         3,
+      );
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('throws with additional warnings on invalid `component` prop', () => {
+      // Only run the test on node. On the browser the thrown error is not caught
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        return;
+      }
+
+      function Component(props) {
+        return <button type="button" {...props} />;
+      }
+
+      // cant match the error message here because flakiness with mocha watchmode
+      assert.throws(() => mount(<ButtonBase component={Component} />));
+
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Invalid prop `component` supplied to `ButtonBase`. Expected an element type that can hold a ref',
+      );
+      // first mount includes React warning that isn't logged on subsequent calls
+      // in watchmode because it's cached
+      const customErrorIndex = consoleErrorMock.callCount() === 3 ? 1 : 2;
+      assert.include(
+        consoleErrorMock.args()[customErrorIndex][0],
+        'Error: Material-UI: expected an Element but found null. Please check your console for additional warnings and try fixing those.',
       );
     });
   });
