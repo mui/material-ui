@@ -11,6 +11,8 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import { getCookie } from 'docs/src/modules/utils/helpers';
+import themeInitialState from 'docs/src/modules/styles/themeInitialState';
 
 // Add the strict mode back once the number of warnings is manageable.
 // We might miss important warnings by keeping the strict mode 🌊🌊🌊.
@@ -121,9 +123,18 @@ MyApp.getInitialProps = ({ ctx }) => {
   let pageProps = {};
 
   if (!process.browser) {
+    const cookie = ctx.req.headers.cookie || '';
+    const paletteType = getCookie('paletteType', cookie);
+    const paletteColors = getCookie('paletteColors', cookie);
+
     const redux = initRedux({
       options: {
         userLanguage: ctx.query.userLanguage,
+      },
+      theme: {
+        ...themeInitialState,
+        paletteType: paletteType || themeInitialState.paletteType,
+        paletteColors: paletteColors ? JSON.parse(paletteColors) : themeInitialState.paletteColors,
       },
     });
     pageProps = {

@@ -121,24 +121,6 @@ class AppWrapper extends React.Component {
       jssStyles.parentNode.removeChild(jssStyles);
     }
 
-    const { reduxTheme } = this.props;
-
-    const paletteType = getCookie('paletteType');
-    const paletteColors = getCookie('paletteColors');
-
-    if (
-      (paletteType && reduxTheme.paletteType !== paletteType) ||
-      (paletteColors && JSON.stringify(reduxTheme.paletteColors) !== paletteColors)
-    ) {
-      this.props.dispatch({
-        type: ACTION_TYPES.THEME_CHANGE,
-        payload: {
-          paletteType,
-          paletteColors: paletteColors ? JSON.parse(paletteColors) : null,
-        },
-      });
-    }
-
     registerServiceWorker();
   }
 
@@ -185,7 +167,6 @@ class AppWrapper extends React.Component {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  dispatch: PropTypes.func.isRequired,
   reduxTheme: PropTypes.object.isRequired,
 };
 

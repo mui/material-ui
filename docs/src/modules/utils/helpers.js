@@ -125,9 +125,9 @@ export function getDependencies(raw, options = {}) {
   return deps;
 }
 
-export function getCookie(name) {
+export function getCookie(name, cookie = document.cookie) {
   const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
-  return document.cookie.replace(regex, '$1');
+  return cookie.replace(regex, '$1');
 }
 
 export function pathnameToLanguage(pathname) {
