@@ -317,7 +317,7 @@ yarn add @material-ui/styles@next
 This has allowed us to remove 2 intermediary DOM elements.
 You should be able to move the custom styles to the `root` class key.
 
-  ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+  ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 ### Table
 
