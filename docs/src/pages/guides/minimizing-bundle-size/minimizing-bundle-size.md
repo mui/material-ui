@@ -52,18 +52,36 @@ Pick one of the following plugins:
 
 **Important note**: Both of these options *should be temporary* until you add tree shaking capabilities to your project.
 
-## ECMAScript
+## evergreen build
 
 The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
-We also publish a second version of the components to target **evergreen browsers**.
+We also publish a second version of the components to target **evergreen browsers** and
+the [active node version](https://nodejs.org/en/about/releases/#releases). This allows us to apply fewer code transformations
+which results in around 8% less bundle size for `@material-ui/core`.
 You can find this version under the [`/es` folder](https://unpkg.com/@material-ui/core@next/es/).
-All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more.
-This can be used to make separate bundles targeting different browsers.
-Older browsers will require more JavaScript features to be transpiled,
-which increases the size of the bundle.
-No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the
-necessary features. If you need support for other browsers, consider using
-[`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+
+This build is currently targetting the following versions:
+| Edge   | Firefox | Chrome | Safari  | Node | Googlebot |
+|:-------|:--------|:-------|:--------|:-----|:----------|
+| >= 18  | >= 66   | >= 73  | >= 12.1 | 12.2 | ✅         |
+
+We update these versions in minor releases.
+
+### Usage
+
+You should **not** explicitly import from this build with e.g. `import Button from '@material-ui/core/es/Button'`.
+Rather use some form of aliasing in your build setup. You can apply
+
+```diff
+resolve: {
+  alias: {
++   '@material-ui/core$': '@material-ui/core/es',
+  }
+}
+```
+
+to your webpack config to use the evergreen build for `import { Button } from '@material-ui/core'` as well as
+`import Button from '@material-ui/core/Button'`.
 
 ⚠️ In order to minimize duplication of code in users' bundles, we **strongly discourage** library authors from using the `/es` folder.
