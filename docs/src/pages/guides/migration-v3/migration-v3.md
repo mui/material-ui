@@ -140,12 +140,14 @@ yarn add @material-ui/styles@next
   ```
 
 - `theme.spacing.unit` usage is deprecated, you can use the new API:
-  
-  ```diff    
-  [theme.breakpoints.up('sm')]: {     
-  - paddingTop: theme.spacing.unit * 12,  
-  + paddingTop: theme.spacing(12),
-  },
+
+  ```diff
+  label: {
+    [theme.breakpoints.up('sm')]: {
+  -   paddingTop: theme.spacing.unit * 12,
+  +   paddingTop: theme.spacing(12),
+    },
+  }
   ```
 
   *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
@@ -205,7 +207,7 @@ yarn add @material-ui/styles@next
 
 ### ClickAwayListener
 
-- [ClickAwayListener] Hide react-event-listener.
+- [ClickAwayListener] Hide react-event-listener props.
 
 ### Dialog
 
