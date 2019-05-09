@@ -256,7 +256,7 @@ yarn add @material-ui/styles@next
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
   Only special HTML elements have these default behaviors.
-  People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
+  You should use `event.stopPropagation()` if you don't want to trigger an `onClose` event on the modal.
 
 ### Paper
 
@@ -356,7 +356,7 @@ You should be able to move the custom styles to the `root` class key.
   ```css
   box-sizing: border-box;
   ```
-  It solves issues with the `fullWidth` prop.
+  This solves issues with the `fullWidth` prop.
 - [InputBase] Remove the `inputType` class from `InputBase`.
 
 ### Tooltip
@@ -387,9 +387,9 @@ You should be able to move the custom styles to the `root` class key.
   ```
 - [Typography] Change the default variant from `body2` to `body1`.
   A font size of 16px is a better default than 14px.
-  Bootstrap, material.io or even our documentation use 16px as a default font size.
-  14px like Ant Design is understandable as Chinese users have a different alphabet.
-  We document 12px as the default font size for Japanese.
+  Bootstrap, material.io, and even our documentation use 16px as a default font size.
+  14px like Ant Design uses is understandable, as Chinese users have a different alphabet.
+  We recommend 12px as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants.
   The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028.
@@ -397,7 +397,7 @@ You should be able to move the custom styles to the `root` class key.
 
 ### Node
 
-- [Drop official node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
+- [Drop node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
 
 
 ### UMD
@@ -412,7 +412,7 @@ You should be able to move the custom styles to the `root` class key.
   +} = MaterialUI;
   ```
 
-  It's consistent with the other React projects:
+  It's consistent with other React projects:
 
   - material-ui => MaterialUI
   - react-dom => ReactDOM
