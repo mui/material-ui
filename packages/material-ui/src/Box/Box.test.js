@@ -32,4 +32,24 @@ describe('<Box />', () => {
     assert.strictEqual(wrapper.contains(testChildren), true);
     assert.strictEqual(wrapper.find('span').length, 1);
   });
+
+  it('does not forward style props as DOM attributes', () => {
+    const elementRef = React.createRef();
+    // need fragment so that enzyme doesn't add a wrapper component
+    mount(
+      <React.Fragment>
+        <Box
+          color="primary.main"
+          fontFamily="Comic Sans"
+          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+          ref={elementRef}
+        />
+      </React.Fragment>,
+    );
+
+    const { current: element } = elementRef;
+    assert.strictEqual(element.getAttribute('color'), null);
+    assert.strictEqual(element.getAttribute('font-family'), null);
+    assert.strictEqual(element.getAttribute('font-size'), null);
+  });
 });

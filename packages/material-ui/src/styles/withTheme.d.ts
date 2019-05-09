@@ -1,5 +1,5 @@
 import { Theme } from './createMuiTheme';
-import { PropInjector } from '..';
+import { PropInjector } from '@material-ui/types';
 
 export interface WithTheme {
   theme: Theme;

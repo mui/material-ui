@@ -1,5 +1,3 @@
-// @inheritedComponent InputBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -81,7 +79,16 @@ export const styles = theme => {
 };
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
-  const { classes, labelWidth, notched, ...other } = props;
+  const {
+    classes,
+    fullWidth = false,
+    inputComponent = 'input',
+    labelWidth = 0,
+    multiline = false,
+    notched,
+    type = 'text',
+    ...other
+  } = props;
 
   return (
     <InputBase
@@ -101,7 +108,11 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
         root: clsx(classes.root, classes.underline),
         notchedOutline: null,
       }}
+      fullWidth={fullWidth}
+      inputComponent={inputComponent}
+      multiline={multiline}
       ref={ref}
+      type={type}
       {...other}
     />
   );
@@ -166,9 +177,9 @@ OutlinedInput.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * The width of the legend.
+   * The width of the label.
    */
-  labelWidth: PropTypes.number.isRequired,
+  labelWidth: PropTypes.number,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
@@ -226,13 +237,6 @@ OutlinedInput.propTypes = {
    * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.any,
-};
-
-InputBase.defaultProps = {
-  fullWidth: false,
-  inputComponent: 'input',
-  multiline: false,
-  type: 'text',
 };
 
 OutlinedInput.muiName = 'Input';

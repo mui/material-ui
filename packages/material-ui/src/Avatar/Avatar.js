@@ -42,7 +42,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     childrenClassName: childrenClassNameProp,
     classes,
     className: classNameProp,
-    component: Component,
+    component: Component = 'div',
     imgProps,
     sizes,
     src,
@@ -141,10 +141,6 @@ Avatar.propTypes = {
    * The `srcSet` attribute for the `img` element.
    */
   srcSet: PropTypes.string,
-};
-
-Avatar.defaultProps = {
-  component: 'div',
 };
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

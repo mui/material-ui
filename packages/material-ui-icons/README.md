@@ -63,3 +63,7 @@ If you are upgrading an existing project from Material-UI 0.x.x, you will need t
 from `material-ui/svg-icons/<category>/<icon-name>` to `@material-ui/icons/<IconName>`.
 
 We have built a `jscodeshift` [codemod](https://github.com/facebook/codemod) to help you [upgrade](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#svg-icon-imports)
+
+## Documentation
+
+[The documentation](https://next.material-ui.com/components/icons/)

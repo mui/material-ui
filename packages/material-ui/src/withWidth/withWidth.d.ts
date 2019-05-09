@@ -1,5 +1,5 @@
 import { Breakpoint } from '../styles/createBreakpoints';
-import { PropInjector } from '..';
+import { PropInjector } from '@material-ui/types';
 
 export interface WithWidthOptions {
   withTheme?: boolean;

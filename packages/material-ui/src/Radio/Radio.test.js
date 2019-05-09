@@ -4,6 +4,7 @@ import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import { getClasses, createMount, describeConformance } from '@material-ui/core/test-utils';
 import Radio from './Radio';
+import IconButton from '../IconButton';
 
 describe('<Radio />', () => {
   let classes;
@@ -21,7 +22,7 @@ describe('<Radio />', () => {
 
   describeConformance(<Radio />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: IconButton,
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],

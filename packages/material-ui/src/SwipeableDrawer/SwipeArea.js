@@ -43,7 +43,7 @@ const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
       className={clsx(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
       ref={ref}
       style={{
-        [isHorizontal(props) ? 'width' : 'height']: width,
+        [isHorizontal(anchor) ? 'width' : 'height']: width,
       }}
       {...other}
     />
@@ -70,4 +70,4 @@ SwipeArea.propTypes = {
   width: PropTypes.number.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateSwipeArea' })(SwipeArea);
+export default withStyles(styles, { name: 'PrivateSwipeArea' })(SwipeArea);

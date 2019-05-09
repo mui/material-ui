@@ -1,5 +1,3 @@
-// @inheritedComponent Input
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mergeClasses } from '@material-ui/styles';
@@ -8,26 +6,27 @@ import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-// To replace with InputBase in v4
 import Input from '../Input';
 import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 
 export const styles = nativeSelectStyles;
 
+const defaultInput = <Input />;
+
 const Select = React.forwardRef(function Select(props, ref) {
   const {
-    autoWidth,
+    autoWidth = false,
     children,
     classes,
-    displayEmpty,
-    IconComponent,
-    input,
+    displayEmpty = false,
+    IconComponent = ArrowDropDownIcon,
+    input = defaultInput,
     inputProps,
     MenuProps,
     muiFormControl,
-    multiple,
-    native,
+    multiple = false,
+    native = false,
     onClose,
     onOpen,
     open,
@@ -90,6 +89,8 @@ Select.propTypes = {
   /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
+   *
+   * ⚠️The `MenuItem` elements **must** be direct descendants when `native` is false.
    */
   children: PropTypes.node,
   /**
@@ -180,15 +181,6 @@ Select.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-Select.defaultProps = {
-  autoWidth: false,
-  displayEmpty: false,
-  IconComponent: ArrowDropDownIcon,
-  input: <Input />,
-  multiple: false,
-  native: false,
 };
 
 Select.muiName = 'Select';

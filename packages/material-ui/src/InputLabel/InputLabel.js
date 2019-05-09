@@ -1,5 +1,3 @@
-// @inheritedComponent FormLabel
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -85,10 +83,9 @@ export const styles = theme => ({
 
 const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   const {
-    children,
     classes,
     className,
-    disableAnimation,
+    disableAnimation = false,
     margin,
     muiFormControl,
     shrink: shrinkProp,
@@ -131,9 +128,7 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
       }}
       ref={ref}
       {...other}
-    >
-      {children}
-    </FormLabel>
+    />
   );
 });
 
@@ -188,10 +183,6 @@ InputLabel.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-InputLabel.defaultProps = {
-  disableAnimation: false,
 };
 
 export default withStyles(styles, { name: 'MuiInputLabel' })(withFormControlContext(InputLabel));

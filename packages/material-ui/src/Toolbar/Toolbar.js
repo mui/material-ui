@@ -29,12 +29,11 @@ export const styles = theme => ({
 
 const Toolbar = React.forwardRef(function Toolbar(props, ref) {
   const {
-    children,
     classes,
     className: classNameProp,
-    component: Component,
-    disableGutters,
-    variant,
+    component: Component = 'div',
+    disableGutters = false,
+    variant = 'regular',
     ...other
   } = props;
 
@@ -47,11 +46,7 @@ const Toolbar = React.forwardRef(function Toolbar(props, ref) {
     classNameProp,
   );
 
-  return (
-    <Component className={className} ref={ref} {...other}>
-      {children}
-    </Component>
-  );
+  return <Component className={className} ref={ref} {...other} />;
 });
 
 Toolbar.propTypes = {
@@ -81,12 +76,6 @@ Toolbar.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['regular', 'dense']),
-};
-
-Toolbar.defaultProps = {
-  component: 'div',
-  disableGutters: false,
-  variant: 'regular',
 };
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

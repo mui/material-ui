@@ -47,7 +47,7 @@ This property accepts the following keys:
 | <span class="prop-name">disabled</span> | Styles applied to the `Input` component `disabled` class.
 | <span class="prop-name">icon</span> | Styles applied to the `Input` component `icon` class.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/NativeSelect/NativeSelect.js)
 for more detail.
 
@@ -61,5 +61,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Selects](/demos/selects/)
+- [Selects](/components/selects/)
 

@@ -13,6 +13,16 @@
  */
 const appList = [
   {
+    title: 'QuintoAndar',
+    description:
+      'QuintoAndar is a company that uses technology and ' +
+      'design to simplify the rental of residential real estate.',
+    image: 'quintoandar.png',
+    link: 'https://www.quintoandar.com.br/',
+    similarWebVisits: 3000,
+    dateAdded: '2019-05-08',
+  },
+  {
     title: 'Bethesda.net',
     description:
       'The official site for Bethesda, publisher of Fallout, DOOM, Dishonored, ' +
@@ -102,13 +112,6 @@ const appList = [
     link: 'https://downloads.aospextended.com/',
     similarWebVisits: 730,
     dateAdded: '2000-01-28',
-  },
-  {
-    title: 'Onepixel',
-    description: 'Beautiful Stock Photos for $1.',
-    image: 'onepixel.jpg',
-    link: 'https://www.onepixel.com/',
-    dateAdded: '2000-01-26',
   },
   {
     title: 'Sweek',

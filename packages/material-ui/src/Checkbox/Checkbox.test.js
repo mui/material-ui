@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { describeConformance, getClasses, createMount } from '@material-ui/core/test-utils';
 import Checkbox from './Checkbox';
+import IconButton from '../IconButton';
 
 describe('<Checkbox />', () => {
   let classes;
@@ -20,7 +21,7 @@ describe('<Checkbox />', () => {
 
   describeConformance(<Checkbox checked />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: IconButton,
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],

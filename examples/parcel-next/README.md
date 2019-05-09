@@ -1,4 +1,4 @@
-# Parcel v4-alpha example
+# Parcel v4-beta example
 
 ## How to use
 

@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import { setRef } from '../utils/reactHelpers';
 import withForwardedRef from '../utils/withForwardedRef';
-import withStyles from '../styles/withStyles';
+import { withTheme } from '@material-ui/styles';
+import { elementAcceptingRef } from '@material-ui/utils';
+import zIndex from '../styles/zIndex';
 import ModalManager from './ModalManager';
 import TrapFocus from './TrapFocus';
-import Backdrop from '../Backdrop';
+import SimpleBackdrop from './SimpleBackdrop';
 import { ariaHidden } from './manageAriaHidden';
 
 function getContainer(container) {
@@ -166,7 +167,7 @@ class Modal extends React.Component {
   };
 
   handlePortalRef = ref => {
-    this.mountNode = ref ? ref.getMountNode() : ref;
+    this.mountNode = ref;
   };
 
   handleModalRef = ref => {
@@ -187,8 +188,6 @@ class Modal extends React.Component {
       BackdropComponent,
       BackdropProps,
       children,
-      classes,
-      className,
       closeAfterTransition,
       container,
       disableAutoFocus,
@@ -206,6 +205,7 @@ class Modal extends React.Component {
       onEscapeKeyDown,
       onRendered,
       open,
+      theme,
       ...other
     } = this.props;
     const { exited } = this.state;
@@ -231,6 +231,8 @@ class Modal extends React.Component {
       childProps.tabIndex = children.props.tabIndex || '-1';
     }
 
+    const stylesRender = styles(theme || { zIndex });
+
     return (
       <Portal
         ref={this.handlePortalRef}
@@ -249,10 +251,12 @@ class Modal extends React.Component {
           ref={this.handleModalRef}
           onKeyDown={this.handleKeyDown}
           role="presentation"
-          className={clsx(classes.root, className, {
-            [classes.hidden]: !open && exited,
-          })}
           {...other}
+          style={{
+            ...stylesRender.root,
+            ...(!open && exited ? stylesRender.hidden : {}),
+            ...other.style,
+          }}
         >
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
@@ -285,16 +289,7 @@ Modal.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element.isRequired,
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
+  children: elementAcceptingRef.isRequired,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    */
@@ -386,10 +381,14 @@ Modal.propTypes = {
    * If `true`, the modal is open.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object,
 };
 
 Modal.defaultProps = {
-  BackdropComponent: Backdrop,
+  BackdropComponent: SimpleBackdrop,
   closeAfterTransition: false,
   disableAutoFocus: false,
   disableBackdropClick: false,
@@ -403,4 +402,4 @@ Modal.defaultProps = {
   manager: new ModalManager(),
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiModal' })(withForwardedRef(Modal));
+export default withTheme(withForwardedRef(Modal));

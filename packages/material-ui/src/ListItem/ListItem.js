@@ -4,8 +4,10 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { isMuiElement } from '../utils/reactHelpers';
+import { isMuiElement, useForkRef } from '../utils/reactHelpers';
 import ListContext from '../List/ListContext';
+import ReactDOM from 'react-dom';
+import warning from 'warning';
 
 export const styles = theme => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -20,19 +22,22 @@ export const styles = theme => ({
     textAlign: 'left',
     paddingTop: 8,
     paddingBottom: 8,
+    '&$focusVisible': {
+      backgroundColor: theme.palette.action.selected,
+    },
     '&$selected, &$selected:hover': {
       backgroundColor: theme.palette.action.selected,
+    },
+    '&$disabled': {
+      opacity: 0.5,
     },
   },
   /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
   container: {
     position: 'relative',
   },
-  // To remove in v4
   /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
-  focusVisible: {
-    backgroundColor: theme.palette.action.selected,
-  },
+  focusVisible: {},
   /* Styles applied to the `component` element if dense. */
   dense: {
     paddingTop: 4,
@@ -43,9 +48,7 @@ export const styles = theme => ({
     alignItems: 'flex-start',
   },
   /* Styles applied to the inner `component` element if `disabled={true}`. */
-  disabled: {
-    opacity: 0.5,
-  },
+  disabled: {},
   /* Styles applied to the inner `component` element if `divider={true}`. */
   divider: {
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -80,25 +83,28 @@ export const styles = theme => ({
   selected: {},
 });
 
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
 const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
-    alignItems,
-    button,
+    alignItems = 'center',
+    autoFocus,
+    button = false,
     children: childrenProp,
     classes,
     className,
     component: componentProp,
-    ContainerComponent,
+    ContainerComponent = 'li',
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
     dense,
-    disabled,
-    disableGutters,
-    divider,
+    disabled = false,
+    disableGutters = false,
+    divider = false,
     focusVisibleClassName,
-    selected,
+    selected = false,
     ...other
   } = props;
 
@@ -107,10 +113,29 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     dense: dense || context.dense || false,
     alignItems,
   };
+  const listItemRef = React.useRef(null);
+  useEnhancedEffect(() => {
+    if (autoFocus) {
+      if (listItemRef.current) {
+        listItemRef.current.focus();
+      } else {
+        warning(
+          false,
+          'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
+        );
+      }
+    }
+  }, [autoFocus]);
 
   const children = React.Children.toArray(childrenProp);
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
+
+  const handleOwnRef = React.useCallback(instance => {
+    // #StrictMode ready
+    listItemRef.current = ReactDOM.findDOMNode(instance);
+  }, []);
+  const handleRef = useForkRef(handleOwnRef, ref);
 
   const componentProps = {
     className: clsx(
@@ -155,7 +180,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
       <ListContext.Provider value={childContext}>
         <ContainerComponent
           className={clsx(classes.container, ContainerClassName)}
-          ref={ref}
+          ref={handleRef}
           {...ContainerProps}
         >
           <Component {...componentProps}>{children}</Component>
@@ -167,7 +192,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 
   return (
     <ListContext.Provider value={childContext}>
-      <Component ref={ref} {...componentProps}>
+      <Component ref={handleRef} {...componentProps}>
         {children}
       </Component>
     </ListContext.Provider>
@@ -179,6 +204,11 @@ ListItem.propTypes = {
    * Defines the `align-items` style property.
    */
   alignItems: PropTypes.oneOf(['flex-start', 'center']),
+  /**
+   * If `true`, the list item will be focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   */
+  autoFocus: PropTypes.bool,
   /**
    * If `true`, the list item will be a button (using `ButtonBase`).
    */
@@ -258,16 +288,6 @@ ListItem.propTypes = {
    * Use to apply selected styling.
    */
   selected: PropTypes.bool,
-};
-
-ListItem.defaultProps = {
-  alignItems: 'center',
-  button: false,
-  ContainerComponent: 'li',
-  disabled: false,
-  disableGutters: false,
-  divider: false,
-  selected: false,
 };
 
 export default withStyles(styles, { name: 'MuiListItem' })(ListItem);

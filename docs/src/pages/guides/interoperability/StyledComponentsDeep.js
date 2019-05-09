@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import NoSsr from '@material-ui/core/NoSsr';
 
-const StyledButton = styled(({ color, ...other }) => (
-  <Button classes={{ label: 'label' }} {...other} />
-))`
+const StyledButton = styled(({ color, ...other }) => <Button {...other} />)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
   border: 0;
   color: white;
@@ -13,7 +11,7 @@ const StyledButton = styled(({ color, ...other }) => (
   padding: 0 30px;
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
 
-  & .label {
+  & .MuiButton-label {
     color: ${props => props.color};
   }
 `;

@@ -19,7 +19,7 @@ export const styles = {
  * @ignore - internal component.
  */
 const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
-  const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
+  const { classes, className: classNameProp, direction, onClick, visible = true, ...other } = props;
 
   const className = clsx(classes.root, classNameProp);
 
@@ -58,8 +58,4 @@ TabScrollButton.propTypes = {
   visible: PropTypes.bool,
 };
 
-TabScrollButton.defaultProps = {
-  visible: true,
-};
-
-export default withStyles(styles, { name: 'MuiPrivateTabScrollButton' })(TabScrollButton);
+export default withStyles(styles, { name: 'PrivateTabScrollButton' })(TabScrollButton);

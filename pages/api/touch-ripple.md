@@ -41,7 +41,7 @@ This property accepts the following keys:
 | <span class="prop-name">childLeaving</span> | Styles applied to the internal `Ripple` components `childLeaving` class.
 | <span class="prop-name">childPulsate</span> | Styles applied to the internal `Ripple` components `childPulsate` class.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ButtonBase/TouchRipple.js)
 for more detail.
 

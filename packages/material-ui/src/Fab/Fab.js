@@ -1,5 +1,3 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -126,12 +124,13 @@ const Fab = React.forwardRef(function Fab(props, ref) {
     children,
     classes,
     className,
-    color,
-    disabled,
-    disableFocusRipple,
+    color = 'default',
+    component = 'button',
+    disabled = false,
+    disableFocusRipple = false,
     focusVisibleClassName,
-    size,
-    variant,
+    size = 'large',
+    variant = 'round',
     ...other
   } = props;
 
@@ -149,6 +148,7 @@ const Fab = React.forwardRef(function Fab(props, ref) {
         },
         className,
       )}
+      component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
@@ -218,16 +218,6 @@ Fab.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['round', 'extended']),
-};
-
-Fab.defaultProps = {
-  color: 'default',
-  component: 'button',
-  disabled: false,
-  disableFocusRipple: false,
-  size: 'large',
-  type: 'button',
-  variant: 'round',
 };
 
 export default withStyles(styles, { name: 'MuiFab' })(Fab);

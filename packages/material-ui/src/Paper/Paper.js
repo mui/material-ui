@@ -16,6 +16,8 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.primary,
+      transition: theme.transitions.create('box-shadow'),
     },
     /* Styles applied to the root element if `square={false}`. */
     rounded: {
@@ -29,9 +31,9 @@ const Paper = React.forwardRef(function Paper(props, ref) {
   const {
     classes,
     className: classNameProp,
-    component: Component,
-    square,
-    elevation,
+    component: Component = 'div',
+    square = false,
+    elevation = 1,
     ...other
   } = props;
 
@@ -80,12 +82,6 @@ Paper.propTypes = {
    * If `true`, rounded corners are disabled.
    */
   square: PropTypes.bool,
-};
-
-Paper.defaultProps = {
-  component: 'div',
-  elevation: 1,
-  square: false,
 };
 
 export default withStyles(styles, { name: 'MuiPaper' })(Paper);

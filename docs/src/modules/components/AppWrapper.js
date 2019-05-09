@@ -1,12 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  StylesProvider,
-  ThemeProvider,
-  jssPreset,
-  createGenerateClassName,
-} from '@material-ui/styles';
+import { StylesProvider, ThemeProvider, jssPreset } from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
 import getTheme from 'docs/src/modules/styles/getTheme';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -19,8 +14,6 @@ const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
   insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
 });
-
-const generateClassName = createGenerateClassName();
 
 function themeSideEffect(reduxTheme) {
   setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);
@@ -182,7 +175,7 @@ class AppWrapper extends React.Component {
     const { theme } = this.state;
 
     return (
-      <StylesProvider generateClassName={generateClassName} jss={jss}>
+      <StylesProvider jss={jss}>
         <ThemeProvider theme={theme}>{children}</ThemeProvider>
         <SideEffects />
       </StylesProvider>

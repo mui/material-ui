@@ -12,8 +12,21 @@ import {
 } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import * as PropTypes from 'prop-types';
 
 const ButtonBaseNaked = unwrap(ButtonBase);
+
+function focusVisible(element) {
+  element.ownerDocument.dispatchEvent(new window.Event('keydown'));
+  element.focus();
+}
+
+function simulatePointerDevice() {
+  // first focus on a page triggers focus visible until a pointer event
+  // has been dispatched
+  document.dispatchEvent(new window.Event('pointerdown'));
+}
 
 describe('<ButtonBase />', () => {
   let mount;
@@ -50,7 +63,7 @@ describe('<ButtonBase />', () => {
     it('should change the button component and add accessibility requirements', () => {
       const wrapper = mount(<ButtonBase component="span" role="checkbox" aria-checked={false} />);
       const checkbox = wrapper.find('span[role="checkbox"]');
-      assert.strictEqual(checkbox.props().tabIndex, '0');
+      assert.strictEqual(checkbox.props().tabIndex, 0);
     });
 
     it('should not apply role="button" if type="button"', () => {
@@ -270,55 +283,36 @@ describe('<ButtonBase />', () => {
       return;
     }
 
-    let wrapper;
-    let instance;
-    let button;
-    let clock;
     let rootElement;
 
     beforeEach(() => {
-      clock = useFakeTimers();
       rootElement = document.createElement('div');
       rootElement.tabIndex = 0;
       document.body.appendChild(rootElement);
       rootElement.attachShadow({ mode: 'open' });
-      wrapper = mount(<ButtonBase id="test-button">Hello</ButtonBase>, {
-        attachTo: rootElement.shadowRoot,
-      });
-      instance = wrapper.find('ButtonBase').instance();
-      button = rootElement.shadowRoot.getElementById('test-button');
-      if (!button) {
-        throw new Error('missing button');
-      }
-
-      button.focus();
-
-      if (document.activeElement !== rootElement) {
-        // Mock activeElement value and simulate host-retargeting in shadow root for
-        // jsdom@12.0.0 (https://github.com/jsdom/jsdom/issues/2343)
-        rootElement.focus();
-        rootElement.shadowRoot.activeElement = button;
-        wrapper.simulate('focus');
-      }
-
-      const event = new window.Event('keyup');
-      event.keyCode = 9; // Tab
-      window.dispatchEvent(event);
     });
 
     afterEach(() => {
-      clock.restore();
       ReactDOM.unmountComponentAtNode(rootElement.shadowRoot);
       document.body.removeChild(rootElement);
     });
 
     it('should set focus state for shadowRoot children', () => {
-      assert.strictEqual(wrapper.find(`.${classes.focusVisible}`).exists(), false);
+      mount(<ButtonBase id="test-button">Hello</ButtonBase>, {
+        attachTo: rootElement.shadowRoot,
+      });
+      simulatePointerDevice();
 
-      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
-      wrapper.update();
+      const button = rootElement.shadowRoot.getElementById('test-button');
+      if (!button) {
+        throw new Error('missing button');
+      }
 
-      assert.strictEqual(wrapper.find(`.${classes.focusVisible}`).exists(), true);
+      assert.strictEqual(button.classList.contains(classes.focusVisible), false);
+
+      focusVisible(button);
+
+      assert.strictEqual(button.classList.contains(classes.focusVisible), true);
     });
   });
 
@@ -338,17 +332,20 @@ describe('<ButtonBase />', () => {
 
     beforeEach(() => {
       clock = useFakeTimers();
-      wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+      wrapper = mount(
+        <ButtonBase
+          ref={element => {
+            button = element;
+          }}
+        >
+          Hello
+        </ButtonBase>,
+      );
+      simulatePointerDevice();
       instance = wrapper.find('ButtonBase').instance();
-      button = wrapper.find('button').getDOMNode();
       if (!button) {
         throw new Error('missing button');
       }
-      button.focus();
-
-      const event = new window.Event('keyup');
-      event.keyCode = 9; // Tab
-      window.dispatchEvent(event);
     });
 
     afterEach(() => {
@@ -357,31 +354,15 @@ describe('<ButtonBase />', () => {
 
     it('should detect the keyboard', () => {
       assert.strictEqual(getState().focusVisible, false);
-      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
+      focusVisible(button);
       assert.strictEqual(getState().focusVisible, true);
-    });
-
-    it('should ignore the keyboard after 1s', () => {
-      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
-      assert.strictEqual(getState().focusVisible, true);
-      button.blur();
-      assert.strictEqual(getState().focusVisible, false);
-      button.focus();
-      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
-      assert.strictEqual(getState().focusVisible, true);
-      clock.tick(1e3);
-      button.blur();
-      assert.strictEqual(getState().focusVisible, false);
-      button.focus();
-      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
-      assert.strictEqual(getState().focusVisible, false);
     });
   });
 
   describe('prop: disabled', () => {
     it('should not receive the focus', () => {
       const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
-      assert.strictEqual(wrapper.find('button').props().tabIndex, '-1');
+      assert.strictEqual(wrapper.find('button').props().tabIndex, -1);
     });
 
     it('should also apply it when using component', () => {
@@ -450,17 +431,19 @@ describe('<ButtonBase />', () => {
     });
 
     it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
-      const eventMock = 'woofButtonBase';
       const onFocusVisibleSpy = spy();
-      const wrapper = mount(
-        <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy}>
+      const buttonRef = React.createRef();
+      mount(
+        <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy} ref={buttonRef}>
           Hello
         </ButtonBase>,
       );
-      const instance = wrapper.find('ButtonBase').instance();
-      instance.onFocusVisibleHandler(eventMock);
+      simulatePointerDevice();
+
+      focusVisible(buttonRef.current);
+
       assert.strictEqual(onFocusVisibleSpy.callCount, 1);
-      assert.strictEqual(onFocusVisibleSpy.calledWith(eventMock), true);
+      assert.strictEqual(onFocusVisibleSpy.firstCall.args.length, 1);
     });
 
     it('should work with a functional component', () => {
@@ -683,7 +666,44 @@ describe('<ButtonBase />', () => {
 
       assert.strictEqual(
         rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
-        2,
+        3,
+      );
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('throws with additional warnings on invalid `component` prop', () => {
+      // Only run the test on node. On the browser the thrown error is not caught
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        return;
+      }
+
+      function Component(props) {
+        return <button type="button" {...props} />;
+      }
+
+      // cant match the error message here because flakiness with mocha watchmode
+      assert.throws(() => mount(<ButtonBase component={Component} />));
+
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Invalid prop `component` supplied to `ButtonBase`. Expected an element type that can hold a ref',
+      );
+      // first mount includes React warning that isn't logged on subsequent calls
+      // in watchmode because it's cached
+      const customErrorIndex = consoleErrorMock.callCount() === 3 ? 1 : 2;
+      assert.include(
+        consoleErrorMock.args()[customErrorIndex][0],
+        'Error: Material-UI: expected an Element but found null. Please check your console for additional warnings and try fixing those.',
       );
     });
   });

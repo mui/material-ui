@@ -50,6 +50,7 @@ const styles = theme => ({
     },
   },
   demo: {
+    outline: 'none',
     margin: 'auto',
     borderRadius: theme.shape.borderRadius,
     backgroundColor:
@@ -99,7 +100,7 @@ const styles = theme => ({
 class Demo extends React.Component {
   state = {
     anchorEl: null,
-    codeOpen: false,
+    codeOpen: Boolean(this.props.demoOptions.defaultCodeOpen),
     demoHovered: false,
     sourceHintSeen: false,
   };
@@ -258,6 +259,7 @@ class Demo extends React.Component {
                   placement="top"
                 >
                   <IconButton
+                    aria-label={codeOpen ? t('hideSource') : t('showSource')}
                     data-ga-event-category={gaCategory}
                     data-ga-event-action="expand"
                     onClick={this.handleClickCodeOpen}
@@ -272,6 +274,7 @@ class Demo extends React.Component {
                   placement="top"
                 >
                   <IconButton
+                    aria-label={t('viewGitHub')}
                     data-ga-event-category={gaCategory}
                     data-ga-event-action="github"
                     href={demoData.githubLocation}
@@ -288,6 +291,7 @@ class Demo extends React.Component {
                     placement="top"
                   >
                     <IconButton
+                      aria-label={t('codesandbox')}
                       data-ga-event-category={gaCategory}
                       data-ga-event-action="codesandbox"
                       onClick={this.handleClickCodeSandbox}
@@ -351,6 +355,7 @@ class Demo extends React.Component {
           className={clsx(classes.demo, {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
+          tabIndex={-1}
           onMouseEnter={this.handleDemoHover}
           onMouseLeave={this.handleDemoHover}
           style={{

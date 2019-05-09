@@ -364,7 +364,6 @@ class Slider extends React.Component {
   };
 
   handleMouseDown = event => {
-    event.preventDefault();
     this.setState({ currentState: 'activated' });
 
     const { onDragStart, valueReducer } = this.props;

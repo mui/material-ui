@@ -69,28 +69,19 @@ export const styles = {
 };
 
 class SpeedDial extends React.Component {
-  static initialNavigationState = {
-    /**
-     * an index in this.actions
-     */
-    focusedAction: 0,
-    /**
-     * pressing this key while the focus is on a child SpeedDialAction focuses
-     * the next SpeedDialAction.
-     * It is equal to the first arrow key pressed while focus is on the SpeedDial
-     * that is not orthogonal to the direction.
-     * @type {utils.ArrowKey?}
-     */
-    nextItemArrowKey: undefined,
-  };
+  /**
+   * an index in this.actions
+   */
+  focusedAction = 0;
 
-  static getDerivedStateFromProps(props, state) {
-    // actions were closed while navigation state was not reset
-    if (!props.open && state.nextItemArrowKey !== undefined) {
-      return SpeedDial.initialNavigationState;
-    }
-    return null;
-  }
+  /**
+   * pressing this key while the focus is on a child SpeedDialAction focuses
+   * the next SpeedDialAction.
+   * It is equal to the first arrow key pressed while focus is on the SpeedDial
+   * that is not orthogonal to the direction.
+   * @type {utils.ArrowKey?}
+   */
+  nextItemArrowKey = undefined;
 
   /**
    * refs to the Button that have an action associated to them in this SpeedDial
@@ -99,12 +90,10 @@ class SpeedDial extends React.Component {
    */
   actions = [];
 
-  state = SpeedDial.initialNavigationState;
-
   handleKeyboardNavigation = event => {
     const key = keycode(event);
     const { direction, onKeyDown } = this.props;
-    const { focusedAction, nextItemArrowKey = key } = this.state;
+    const { focusedAction, nextItemArrowKey = key } = this;
 
     if (key === 'esc') {
       this.closeActions(event, key);
@@ -117,7 +106,8 @@ class SpeedDial extends React.Component {
       const nextAction = clamp(focusedAction + actionStep, 0, this.actions.length - 1);
       const nextActionRef = this.actions[nextAction];
       nextActionRef.focus();
-      this.setState({ focusedAction: nextAction, nextItemArrowKey });
+      this.focusedAction = nextAction;
+      this.nextItemArrowKey = nextItemArrowKey;
     }
 
     if (onKeyDown) {
@@ -173,6 +163,12 @@ class SpeedDial extends React.Component {
       TransitionProps,
       ...other
     } = this.props;
+
+    // actions were closed while navigation state was not reset
+    if (!open && this.nextItemArrowKey !== undefined) {
+      this.focusedAction = 0;
+      this.nextItemArrowKey = undefined;
+    }
 
     // Filter the label for valid id characters.
     const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');

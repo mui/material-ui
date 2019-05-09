@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Fade from './Fade';
+import { Transition } from 'react-transition-group';
 
 describe('<Fade />', () => {
   let mount;
@@ -23,7 +24,7 @@ describe('<Fade />', () => {
 
   describeConformance(<Fade {...defaultProps} />, () => ({
     classes: {},
-    inheritComponent: 'Transition',
+    inheritComponent: Transition,
     mount,
     skip: ['componentProp', 'refForwarding'],
   }));

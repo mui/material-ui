@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
-import ownerWindow from '../utils/ownerWindow';
 import withForwardedRef from '../utils/withForwardedRef';
 import { setRef } from '../utils/reactHelpers';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
-import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
+import {
+  handleBlurVisible,
+  isFocusVisible,
+  prepare as prepareFocusVisible,
+} from '../utils/focusVisible';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
@@ -60,18 +63,7 @@ class ButtonBase extends React.Component {
 
   buttonRef = React.createRef();
 
-  keyDown = false; // Used to help track keyboard activation keyDown
-
-  focusVisibleCheckTime = 50;
-
-  focusVisibleMaxCheckTimes = 5;
-
-  handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
-    clearTimeout(this.focusVisibleTimeout);
-    if (this.state.focusVisible) {
-      this.setState({ focusVisible: false });
-    }
-  });
+  handleMouseDown = createRippleHandler(this, 'MouseDown', 'start');
 
   handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
 
@@ -89,15 +81,25 @@ class ButtonBase extends React.Component {
 
   handleContextMenu = createRippleHandler(this, 'ContextMenu', 'stop');
 
-  handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
-    clearTimeout(this.focusVisibleTimeout);
+  handleBlur = createRippleHandler(this, 'Blur', 'stop', event => {
     if (this.state.focusVisible) {
+      handleBlurVisible(event);
       this.setState({ focusVisible: false });
     }
   });
 
   componentDidMount() {
-    listenForFocusKeys(ownerWindow(this.getButtonNode()));
+    const button = this.getButtonNode();
+    if (button == null) {
+      throw new Error(
+        [
+          `Material-UI: expected an Element but found ${button}.`,
+          'Please check your console for additional warnings and try fixing those.',
+          'If the error persists please file an issue.',
+        ].join(' '),
+      );
+    }
+    prepareFocusVisible(button.ownerDocument);
 
     if (this.props.action) {
       this.props.action({
@@ -120,25 +122,12 @@ class ButtonBase extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.focusVisibleTimeout);
-  }
-
   getButtonNode() {
     return ReactDOM.findDOMNode(this.buttonRef.current);
   }
 
   onRippleRef = node => {
     this.ripple = node;
-  };
-
-  onFocusVisibleHandler = event => {
-    this.keyDown = false;
-    this.setState({ focusVisible: true });
-
-    if (this.props.onFocusVisible) {
-      this.props.onFocusVisible(event);
-    }
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -224,10 +213,13 @@ class ButtonBase extends React.Component {
       this.buttonRef.current = event.currentTarget;
     }
 
-    event.persist();
-    detectFocusVisible(this, this.getButtonNode(), () => {
-      this.onFocusVisibleHandler(event);
-    });
+    if (isFocusVisible(event)) {
+      this.setState({ focusVisible: true });
+
+      if (this.props.onFocusVisible) {
+        this.props.onFocusVisible(event);
+      }
+    }
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
@@ -309,7 +301,7 @@ class ButtonBase extends React.Component {
           setRef(buttonRef, ref);
           setRef(innerRef, ref);
         }}
-        tabIndex={disabled ? '-1' : tabIndex}
+        tabIndex={disabled ? -1 : tabIndex}
         {...buttonProps}
         {...other}
       >
@@ -468,7 +460,7 @@ ButtonBase.defaultProps = {
   disableRipple: false,
   disableTouchRipple: false,
   focusRipple: false,
-  tabIndex: '0',
+  tabIndex: 0,
   type: 'button',
 };
 

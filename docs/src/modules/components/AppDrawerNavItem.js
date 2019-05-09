@@ -55,6 +55,8 @@ class AppDrawerNavItem extends React.Component {
     const activeElement = document.querySelector(`.${this.props.classes.active}`);
     if (activeElement && activeElement.scrollIntoView) {
       activeElement.scrollIntoView({});
+      // Fix a Chrome issue, reset the tabbable ring back to the top of the document.
+      document.body.scrollIntoView({});
     }
   }
 

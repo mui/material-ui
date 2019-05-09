@@ -42,7 +42,7 @@ This property accepts the following keys:
 | <span class="prop-name">content</span> | Styles applied to the children wrapper element.
 | <span class="prop-name">expandIcon</span> | Styles applied to the `IconButton` component when `expandIcon` is supplied.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ExpansionPanelSummary/ExpansionPanelSummary.js)
 for more detail.
 
@@ -56,5 +56,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Expansion Panels](/demos/expansion-panels/)
+- [Expansion Panels](/components/expansion-panels/)
 

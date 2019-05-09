@@ -29,7 +29,7 @@ You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^4.0.0-alpha.0"
+  "@material-ui/core": "^4.0.0-beta.0"
 }
 ```
 
@@ -46,9 +46,29 @@ yarn add @material-ui/core@next
 ### Update React version
 
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
-This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
+This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
-## Handling Breaking Changes
+### Update Material-UI Styles version
+
+If you are previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles
+
+```json
+"dependencies": {
+  "@material-ui/styles": "^4.0.0-beta.0"
+}
+```
+
+Or run
+
+```sh
+npm install @material-ui/styles@next
+
+or
+
+yarn add @material-ui/styles@next
+```
+
+## Handling breaking changes
 
 ### Core
 
@@ -60,6 +80,9 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
 ### Styles
 
+- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9.
+  Make sure JSS v9 is not installed in your environment.
+  Removing `react-jss` from your package.json can help.
 - Isolation of the styling solution of the core components in a dedicated package.
   Remove the `MuiThemeProvider` component:
 
@@ -77,23 +100,23 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
-- Scope the keyframes API. You should apply the following changes in your codebase.
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
   It helps isolating the animation logic:
 
   ```diff
-  rippleVisible: {
-    opacity: 0.3,
--   animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
-+   animation: `$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)`,
-  },
-  '@keyframes mui-ripple-enter': {
-    '0%': {
-      opacity: 0.1,
-    },
-    '100%': {
+    rippleVisible: {
       opacity: 0.3,
+  -   animation: 'mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
+  +   animation: '$mui-ripple-enter 100ms cubic-bezier(0.4, 0, 0.2, 1)',
     },
-  },
+    '@keyframes mui-ripple-enter': {
+      '0%': {
+        opacity: 0.1,
+      },
+      '100%': {
+        opacity: 0.3,
+      },
+    },
   ```
 
 ### Theme
@@ -115,6 +138,234 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
     useNextVariants: true,
   },
   ```
+
+- `theme.spacing.unit` usage is deprecated, you can use the new API:
+
+  ```diff
+  label: {
+    [theme.breakpoints.up('sm')]: {
+  -   paddingTop: theme.spacing.unit * 12,
+  +   paddingTop: theme.spacing(12),
+    },
+  }
+  ```
+
+  *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
+
+### Layout
+
+- [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
+
+  ```diff
+    /**
+     * Defines the space between the type `item` component.
+     * It can only be used on a type `container` component.
+     */
+  -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
+  +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+  ```
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
+- [Container] Moved from `@material-ui/lab` to `@material-ui/core`
+
+  ```diff
+  -import Container from '@material-ui/lab/Container';
+  +import Container from '@material-ui/core/Container';
+  ```
+
+### Button
+
+- [Button] Remove the deprecated button variants (flat, raised and fab):
+
+  ```diff
+  -<Button variant="raised" />
+  +<Button variant="contained" />
+  ```
+
+  ```diff
+  -<Button variant="flat" />
+  +<Button variant="text" />
+  ```
+
+  ```diff
+  -import Button from '@material-ui/core/Button';
+  -<Button variant="fab" />
+  +import Fab from '@material-ui/core/Fab';
+  +<Fab />
+  ```
+
+- [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref. 
+  The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
+
+  This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop
+  is true
+
+### Card
+
+- [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+- [CardActions] Remove the `disableActionSpacing` CSS class.
+- [CardActions] Rename the `action` CSS class `spacing`.
+
+### ClickAwayListener
+
+- [ClickAwayListener] Hide react-event-listener props.
+
+### Dialog
+
+- [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+- [DialogActions] Rename the `action` CSS class `spacing`.
+- [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
+- [Dialog] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
+
+### Divider
+
+- [Divider] Remove the deprecated inset prop.
+
+  ```diff
+  -<Divider inset />
+  +<Divider variant="inset" />
+  ```
+
+### ExpansionPanel
+
+- [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
+- [ExpansionPanel] Increase the CSS specificity of the `disabled` style rule.
+
+### List
+
+- [List] Rework the list components to match the specification:
+
+  - The usage of the `ListItemAvatar` component is required when using an avatar
+  - The usage of the `ListItemIcon` component is required when using a left checkbox
+  - The `edge` property should be set on the icon buttons.
+
+- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
+
+### Menu
+
+- [MenuItem] Remove the fixed height of the MenuItem.
+  The padding and line-height are used by the browser to compute the height.
+
+### Modal
+
+- [Modal] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
+
+  This also applies to `Dialog` and `Popover`.
+- [Modal] Remove the classes customization API for the Modal component.
+  (-74% bundle size reduction when used standalone)
+- [Modal] event.defaultPrevented is now ignored.
+  The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
+  `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
+  Only special HTML elements have these default behaviors.
+  You should use `event.stopPropagation()` if you don't want to trigger an `onClose` event on the modal.
+
+### Paper
+
+- [Paper] Reduce the default elevation.
+  Change the default Paper elevation to match the Card and the Expansion Panel:
+
+  ```diff
+  -<Paper />
+  +<Paper elevation={2} />
+  ```
+
+  This affects the `ExpansionPanel` as well.
+
+### Portal
+
+- [Portal] The child needs to be able to hold a ref when `disablePortal` is used. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
+
+### Slide
+
+- [Slide] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
+
+### Switch
+
+- [Switch] Refactor the implementation to make it easier to override the styles.
+  Rename the class names to match the specification wording:
+
+  ```diff
+  -icon
+  -bar
+  +thumb
+  +track
+  ```
+
+
+### Snackbar
+
+- [Snackbar] Match the new specification.
+
+  - Change the dimensions
+  - Change the default transition from `Slide` to `Grow`.
+
+### SvgIcon
+
+- [SvgIcon] Rename nativeColor -> htmlColor.
+  React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
+
+  ```diff
+  -<AddIcon nativeColor="#fff" />
+  +<AddIcon htmlColor="#fff" />
+  ```
+
+
+### Tabs
+
+- [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
+This has allowed us to remove 2 intermediary DOM elements.
+You should be able to move the custom styles to the `root` class key.
+
+  ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+
+### Table
+
+- [TableCell] Remove the deprecated `numeric` property.
+
+  ```diff
+  -<TableCell numeric>{row.calories}</TableCell>
+  +<TableCell align="right">{row.calories}</TableCell>
+  ```
+- [TableRow] Remove the fixed height CSS property.
+  The cell height is computed by the browser using the padding and line-height.
+- [TableCell] Move the `dense` mode to a different property:
+
+  ```diff
+  -<TableCell padding="dense" />
+  +<TableCell size="small" />
+  ```
+- [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
+
+### TextField
+
+- [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
+  The `FormLabelClasses` property has been removed.
+
+  ```diff
+  <InputLabel
+  - FormLabelClasses={{ asterisk: 'bar' } }
+  + classes={{ asterisk: 'bar' } }
+  >
+    Foo
+  </InputLabel>
+  ```
+- [InputBase] Change the default box sizing model.
+  It uses the following CSS now:
+
+  ```css
+  box-sizing: border-box;
+  ```
+  This solves issues with the `fullWidth` prop.
+- [InputBase] Remove the `inputType` class from `InputBase`.
+
+### Tooltip
+
+- [Tooltip] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
+  the migration strategy.
+- [Tooltip] Appears only after focus-visible focus instead of any focus.
 
 ### Typography
 
@@ -138,152 +389,18 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   ```
 - [Typography] Change the default variant from `body2` to `body1`.
   A font size of 16px is a better default than 14px.
-  Bootstrap, material.io or even our documentation use 16px as a default font size.
-  14px like Ant Design is understandable as Chinese users have a different alphabet.
-  We document 12px as the default font size for Japanese.
+  Bootstrap, material.io, and even our documentation use 16px as a default font size.
+  14px like Ant Design uses is understandable, as Chinese users have a different alphabet.
+  We recommend 12px as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants.
   The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028.
   The usage of *default* should be avoided, it lakes semantic.
 
-### Button
-
-- [Button] Remove the deprecated button variants (flat, raised and fab):
-
-  ```diff
-  -<Button variant="raised" />
-  +<Button variant="contained" />
-  ```
-
-  ```diff
-  -<Button variant="flat" />
-  +<Button variant="text" />
-  ```
-
-  ```diff
-  -import Button from '@material-ui/core/Button';
-  -<Button variant="fab" />
-  +import Fab from '@material-ui/core/Fab';
-  +<Fab />
-  ```
-
-### TextField
-
-- [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
-  The `FormLabelClasses` property has been removed.
-
-  ```diff
-  <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' } }
-  + classes={{ asterisk: 'bar' } }
-  >
-    Foo
-  </InputLabel>
-  ```
-- [InputBase] Change the default box sizing model.
-  It uses the following CSS now:
-
-  ```css
-  box-sizing: border-box;
-  ```
-  It solves issues with the `fullWidth` prop.
-- [InputBase] Remove the `inputType` class from `InputBase`.
-
-### Layout
-
-- [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
-
-  ```diff
-    /**
-     * Defines the space between the type `item` component.
-     * It can only be used on a type `container` component.
-     */
-  -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
-  +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
-  ```
-
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
-
-### Table
-
-- [TableCell] Remove the deprecated `numeric` property.
-
-  ```diff
-  -<TableCell numeric>{row.calories}</TableCell>
-  +<TableCell align="right">{row.calories}</TableCell>
-  ```
-- [TableRow] Remove the fixed height CSS property.
-  The cell height is computed by the browser using the padding and line-height.
-- [TableCell] Move the `dense` mode to a different property:
-
-  ```diff
-  -<TableCell padding="dense" />
-  +<TableCell size="small" />
-  ```
-- [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
-
-### Tabs
-
-- [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
-This has allowed us to removed 2 intermediary DOM elements.
-You should be able to move the custom styles to the root class key.
-
-  ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
-
-### Menu
-
-- [MenuItem] Remove the fixed height of the MenuItem.
-  The padding and line-height are used by the browser to compute the height.
-
-### Dialog
-
-- [DialogActions] `action` CSS class is applied to root element instead of children if `disableActionSpacing={false}`.
-- [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
-
-### Selection controls
-
-- [Switch][Radio][Checkbox] Improve specification compliance.
-
-  Refactore the implementation to make it easier to override the styles.
-  Rename the class names to match the specification wording:
-
-  ```diff
-  -icon
-  -bar
-  +thumb
-  +track
-  ```
-
-### Divider
-
-- [Divider] Remove the deprecated inset prop.
-
-  ```diff
-  -<Divider inset />
-  +<Divider variant="inset" />
-  ```
-
-### Snackbar
-
-- [Snackbar] Match the new specification.
-
-  - Change the dimensions
-  - Change the default transition to from `Slide` to `Grow`.
-
-### SvgIcon
-
-- [SvgIcon] Rename nativeColor -> htmlColor.
-
-  React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
-
-  ```diff
-  -<AddIcon nativeColor="#fff" />
-  +<AddIcon htmlColor="#fff" />
-  ```
-
 ### Node
 
-- [Drop official node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
+- [Drop node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
+
 
 ### UMD
 
@@ -297,17 +414,8 @@ You should be able to move the custom styles to the root class key.
   +} = MaterialUI;
   ```
 
-  It's consistent with the other React projects:
+  It's consistent with other React projects:
 
   - material-ui => MaterialUI
   - react-dom => ReactDOM
   - prop-types => PropTypes
-
-### Modal
-
-- [Modal] Ignore event.defaultPrevented (#14991) @oliviertassinari
-
-  The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
-  `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
-  Only special HTML elements have these default behaviors.
-  People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.

@@ -101,10 +101,12 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={clsx(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
-          <Typography variant="h6">{t('installation')}</Typography>
+          <Typography variant="h6" component="h3">
+            {t('installation')}
+          </Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subtitle1" gutterBottom>
+          <Typography variant="subtitle1" component="div" gutterBottom>
             {t('installDescr')}
           </Typography>
           <MarkdownElement
@@ -117,13 +119,14 @@ function HomeSteps(props) {
           />
           <Link
             variant="subtitle1"
+            component="div"
             color="inherit"
             href="https://github.com/mui-org/material-ui/tree/next/examples/cdn-next"
             gutterBottom
           >
             {t('cdn')}
           </Link>
-          <Typography variant="subtitle1" gutterBottom>
+          <Typography variant="subtitle1" component="div" gutterBottom>
             {t('loadFont')}
           </Typography>
           <MarkdownElement
@@ -141,10 +144,12 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classes.step}>
         <div className={classes.stepTitle}>
           <BuildIcon className={classes.stepIcon} />
-          <Typography variant="h6">{t('usage')}</Typography>
+          <Typography variant="h6" component="h3">
+            {t('usage')}
+          </Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subtitle1" gutterBottom>
+          <Typography variant="subtitle1" component="div" gutterBottom>
             {t('usageDescr')}
           </Typography>
           <MarkdownElement
@@ -169,10 +174,12 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={clsx(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
-          <Typography variant="h6">{t('themes')}</Typography>
+          <Typography variant="h6" component="h3">
+            {t('themes')}
+          </Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subtitle1" gutterBottom>
+          <Typography variant="subtitle1" component="div" gutterBottom>
             {t('themesDescr')}
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>

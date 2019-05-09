@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '..';
+import { Omit } from '@material-ui/types';
 import { DrawerProps } from '../Drawer';
 
 export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {

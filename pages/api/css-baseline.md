@@ -25,5 +25,5 @@ The component cannot hold a ref.
 
 ## Demos
 
-- [Css Baseline](/style/css-baseline/)
+- [Css Baseline](/components/css-baseline/)
 

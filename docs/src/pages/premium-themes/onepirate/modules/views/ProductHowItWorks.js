@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import LayoutBody from '../components/LayoutBody';
+import Container from '@material-ui/core/Container';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 
@@ -13,7 +12,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.light,
     overflow: 'hidden',
   },
-  layoutBody: {
+  container: {
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(15),
     position: 'relative',
@@ -57,7 +56,7 @@ function ProductHowItWorks(props) {
 
   return (
     <section className={classes.root}>
-      <LayoutBody className={classes.layoutBody} width="large">
+      <Container className={classes.container}>
         <img
           src="/static/themes/onepirate/productCurvyLines.png"
           className={classes.curvyLines}
@@ -115,13 +114,12 @@ function ProductHowItWorks(props) {
           size="large"
           variant="contained"
           className={classes.button}
-          component={linkProps => (
-            <Link {...linkProps} href="/premium-themes/onepirate/sign-up" variant="button" />
-          )}
+          component="a"
+          href="/premium-themes/onepirate/sign-up"
         >
           Get started
         </Button>
-      </LayoutBody>
+      </Container>
     </section>
   );
 }

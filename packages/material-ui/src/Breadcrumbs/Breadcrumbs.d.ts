@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface BreadcrumbsProps
-  extends StandardProps<React.HTMLAttributes<HTMLElement>, BreadcrumbsClassKey> {
-  itemsAfterCollapse?: boolean;
-  itemsBeforeCollapse?: boolean;
-  maxItems?: number;
-  separator?: React.ReactNode;
-}
+declare const Breadcrumbs: OverridableComponent<{
+  props: {
+    itemsAfterCollapse?: number;
+    itemsBeforeCollapse?: number;
+    maxItems?: number;
+    separator?: React.ReactNode;
+  };
+  defaultComponent: 'nav';
+  classKey: BreadcrumbsClassKey;
+}>;
 
 export type BreadcrumbsClassKey = 'root' | 'ol' | 'separator';
 
-declare const Breadcrumbs: React.ComponentType<BreadcrumbsProps>;
+export type BreadcrumbsProps = SimplifiedPropsOf<typeof Breadcrumbs>;
 
 export default Breadcrumbs;

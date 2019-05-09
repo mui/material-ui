@@ -63,7 +63,9 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
-    const openImmediately = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
+    const openImmediately = Boolean(
+      page.subheader || activePage.pathname.indexOf(`${page.pathname}/`) === 0,
+    );
 
     items.push(
       <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>
@@ -118,7 +120,7 @@ function AppDrawer(props) {
   );
 
   return (
-    <nav className={className}>
+    <nav className={className} role="navigation" aria-label="Main navigation">
       <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{

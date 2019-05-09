@@ -4,6 +4,7 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Collapse from './Collapse';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { Transition } from 'react-transition-group';
 
 describe('<Collapse />', () => {
   let mount;
@@ -24,7 +25,7 @@ describe('<Collapse />', () => {
 
   describeConformance(<Collapse {...defaultProps} />, () => ({
     classes,
-    inheritComponent: 'Transition',
+    inheritComponent: Transition,
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',

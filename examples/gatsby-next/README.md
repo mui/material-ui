@@ -1,4 +1,4 @@
-# Gatsby v4-alpha example
+# Gatsby v4-beta example
 
 ## How to use
 

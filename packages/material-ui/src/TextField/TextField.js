@@ -1,5 +1,3 @@
-// @inheritedComponent FormControl
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
@@ -81,26 +79,26 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     onChange,
     onFocus,
     placeholder,
-    required,
+    required = false,
     rows,
     rowsMax,
-    select,
+    select = false,
     SelectProps,
     type,
     value,
-    variant,
+    variant = 'standard',
     ...other
   } = props;
 
   const [labelWidth, setLabelWidth] = React.useState(0);
-  const labelRef = React.useRef();
+  const labelRef = React.useRef(null);
   React.useEffect(() => {
     if (variant === 'outlined') {
       // #StrictMode ready
       const labelNode = ReactDOM.findDOMNode(labelRef.current);
       setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
     }
-  }, [variant]);
+  }, [variant, required]);
 
   warning(
     !select || Boolean(children),
@@ -315,12 +313,6 @@ TextField.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-TextField.defaultProps = {
-  required: false,
-  select: false,
-  variant: 'standard',
 };
 
 export default withStyles(styles, { name: 'MuiTextField' })(TextField);
