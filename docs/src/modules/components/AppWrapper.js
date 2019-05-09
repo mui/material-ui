@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StylesProvider, ThemeProvider, jssPreset } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
-import getTheme from 'docs/src/modules/styles/getTheme';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 import { create } from 'jss';
@@ -14,11 +14,6 @@ const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
   insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
 });
-
-function themeSideEffect(reduxTheme) {
-  setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);
-  document.body.dir = reduxTheme.direction;
-}
 
 class SideEffectsRaw extends React.Component {
   componentDidMount() {
@@ -109,86 +104,83 @@ async function registerServiceWorker() {
   }
 }
 
-class AppWrapper extends React.Component {
-  state = {};
+function useIsFirstClientRender() {
+  const isFirstRenderRef = React.useRef(true);
+  React.useEffect(() => {
+    isFirstRenderRef.current = false;
+  }, []);
 
-  componentDidMount() {
-    themeSideEffect(this.props.reduxTheme);
+  return () => process.browser && isFirstRenderRef.current;
+}
 
+function AppWrapper(props) {
+  const {
+    children,
+    dispatch,
+    themeOptions: { direction, ...themeOptions },
+  } = props;
+  let { paletteColors, paletteType } = themeOptions;
+
+  const isFirstClientRender = useIsFirstClientRender();
+  if (isFirstClientRender()) {
+    paletteColors = JSON.parse(getCookie('paletteColors') || 'null') || paletteColors;
+    paletteType = getCookie('paletteType') || paletteType;
+
+    dispatch({
+      type: ACTION_TYPES.THEME_CHANGE,
+      payload: { paletteColors, paletteType },
+    });
+  }
+
+  React.useLayoutEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
+  }, []);
 
-    const { reduxTheme } = this.props;
+  React.useEffect(() => {
+    document.body.dir = direction;
+  }, [direction]);
 
-    const paletteType = getCookie('paletteType');
-    const paletteColors = getCookie('paletteColors');
+  React.useEffect(() => {
+    setPrismTheme(paletteType === 'light' ? lightTheme : darkTheme);
+  }, [paletteType]);
 
-    if (
-      (paletteType && reduxTheme.paletteType !== paletteType) ||
-      (paletteColors && JSON.stringify(reduxTheme.paletteColors) !== paletteColors)
-    ) {
-      this.props.dispatch({
-        type: ACTION_TYPES.THEME_CHANGE,
-        payload: {
-          paletteType,
-          paletteColors: paletteColors ? JSON.parse(paletteColors) : null,
-        },
-      });
-    }
-
+  React.useEffect(() => {
     registerServiceWorker();
-  }
+  }, []);
 
-  componentDidUpdate() {
-    themeSideEffect(this.props.reduxTheme);
-  }
+  const theme = React.useMemo(() => {
+    return createMuiTheme({
+      direction,
+      nprogress: { color: paletteType === 'light' ? '#000' : '#fff' },
+      palette: { ...paletteColors, type: paletteType },
+    });
+  }, [direction, paletteColors, paletteType]);
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.theme === 'undefined') {
-      return {
-        prevProps: nextProps,
-        theme: getTheme(nextProps.reduxTheme),
-      };
+  React.useEffect(() => {
+    // Expose the theme as a global variable so people can play with it.
+    if (process.browser) {
+      window.theme = theme;
     }
+  }, [theme]);
 
-    const { prevProps } = prevState;
-
-    if (
-      nextProps.reduxTheme.paletteType !== prevProps.reduxTheme.paletteType ||
-      nextProps.reduxTheme.paletteColors !== prevProps.reduxTheme.paletteColors ||
-      nextProps.reduxTheme.direction !== prevProps.reduxTheme.direction
-    ) {
-      return {
-        prevProps: nextProps,
-        theme: getTheme(nextProps.reduxTheme),
-      };
-    }
-
-    return null;
-  }
-
-  render() {
-    const { children } = this.props;
-    const { theme } = this.state;
-
-    return (
-      <StylesProvider jss={jss}>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        <SideEffects />
-      </StylesProvider>
-    );
-  }
+  return (
+    <StylesProvider jss={jss}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <SideEffects />
+    </StylesProvider>
+  );
 }
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   dispatch: PropTypes.func.isRequired,
-  reduxTheme: PropTypes.object.isRequired,
+  themeOptions: PropTypes.object.isRequired,
 };
 
 export default connect(state => ({
-  reduxTheme: state.theme,
+  themeOptions: state.theme,
 }))(AppWrapper);

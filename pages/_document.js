@@ -6,10 +6,9 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { Router } from 'next/router';
 import { LANGUAGES } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import getTheme from 'docs/src/modules/styles/getTheme';
 import themeInitialState from 'docs/src/modules/styles/themeInitialState';
 
-const theme = getTheme(themeInitialState);
+const themeColor = themeInitialState.paletteColors.primary.main;
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -57,7 +56,7 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" content={themeColor} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* SEO */}
           <link
