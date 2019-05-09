@@ -1,12 +1,12 @@
 import React from 'react';
 
 function getScrollY(ref) {
-  return ref.pageYOffset || ref.scrollTop;
+  return ref.pageYOffset || ref.scrollTop || null;
 }
 
 function defaultTrigger(event, store, options) {
   const { disableHysteresis = false, threshold = 100 } = options;
-  const previous = store.current || 0;
+  const previous = store.current || null;
   store.current = event && event.currentTarget ? getScrollY(event.currentTarget) : previous;
 
   if (!disableHysteresis) {
