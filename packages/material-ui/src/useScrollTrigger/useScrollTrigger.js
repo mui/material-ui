@@ -13,7 +13,6 @@ function defaultTrigger(event, store, options) {
     if (store.current < previous) {
       return false;
     }
-    return store.current >= previous && store.current > threshold;
   }
 
   return store.current > threshold;

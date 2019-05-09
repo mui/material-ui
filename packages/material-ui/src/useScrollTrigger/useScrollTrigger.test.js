@@ -29,6 +29,13 @@ describe('useScrollTrigger', () => {
     return ref.pageYOffset === offset; // The Chrome Browser on Mac OS X fails to set pageYOffset, so do not test the result if pageYoffset was not set
   };
 
+  const dispatchScrollTest = (pageYOffset, scrollTop, ref = window) => {
+    ref.pageYOffset = pageYOffset;
+    ref.scrollTop = scrollTop;
+    ref.dispatchEvent(new window.Event('scroll', {}));
+    return ref.scrollTop === scrollTop && ref.pageYOffset === pageYOffset; // The Chrome Browser on Mac OS X fails to set pageYOffset, so do not test the result if pageYoffset was not set
+  };
+
   const ref = React.createRef();
   const containerParent = React.createRef(); // Get the scroll container's parent
   const getContainer = () => containerParent.current.children[0]; // Get the scroll container
@@ -318,6 +325,73 @@ describe('useScrollTrigger', () => {
       ].forEach((test, i) => {
         if (dispatchScroll(test.offset, getContainer()))
           assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
+      });
+    });
+
+    describe('Current and Previous Scroll Positions', () => {
+      function getExpectedResult(previous, current, disableHysteresis) {
+        if (
+          current === undefined ||
+          current === null ||
+          current === 0 ||
+          current === 99 ||
+          current === 100
+        ) {
+          return 'false'; // Should always returns false if the threshold has not been crossed
+        }
+
+        if (current === 101) {
+          if (previous === null || previous === undefined) {
+            // Scroll direction is unknown, assumed postiive
+            return 'true';
+          }
+          if (previous === current) {
+            // No change in scroll position
+            return 'true';
+          }
+          if (previous > current) {
+            // Scroll direction is negative
+            if (disableHysteresis) {
+              return 'false';
+            }
+            return 'true';
+          }
+          if (previous < current) {
+            // Scroll direction is positive
+            return 'true';
+          }
+        }
+        return 'unknown';
+      }
+      const testAllCombinations = disableHysteresis =>
+        [undefined, null, 0, 99, 100, 101].forEach(current => {
+          [undefined, null, 0, 99, 100, 101].forEach(previous => {
+            [
+              { offset: undefined, scrollTop: undefined, result: 'false' }, // Baseline
+              { offset: previous, scrollTop: previous, result: 'false' }, // Set previous value
+              { offset: current, scrollTop: current, result: 'false' }, // Test current with previous value
+            ].forEach((test, i) => {
+              if (dispatchScrollTest(test.offset, test.scrollTop))
+                if (i === 2) {
+                  // Only test the resulting value
+                  assert.strictEqual(
+                    text(),
+                    getExpectedResult(previous, current, disableHysteresis),
+                    `Current: ${current} Previous: ${previous} Index: ${i} ${JSON.stringify(test)}`,
+                  );
+                }
+            });
+          });
+        });
+      it('should evaluate all combinations for previous and current scroll values with hysteresis', () => {
+        const disableHysteresis = false;
+        mountWrapper({ disableHysteresis });
+        testAllCombinations(disableHysteresis);
+      });
+      it('should evaluate all combinations for previous and current scroll values without hysteresis', () => {
+        const disableHysteresis = true;
+        mountWrapper({ disableHysteresis });
+        testAllCombinations(disableHysteresis);
       });
     });
   });
