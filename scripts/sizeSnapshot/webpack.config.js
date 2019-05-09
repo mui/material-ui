@@ -48,14 +48,29 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui-lab/build/esm/index.js',
     },
     {
+      name: '@material-ui/lab-es',
+      webpack: true,
+      path: 'packages/material-ui-lab/build/es/index.js',
+    },
+    {
       name: '@material-ui/styles',
       webpack: true,
       path: 'packages/material-ui-styles/build/esm/index.js',
     },
     {
+      name: '@material-ui/styles-es',
+      webpack: true,
+      path: 'packages/material-ui-styles/build/es/index.js',
+    },
+    {
       name: '@material-ui/system',
       webpack: true,
       path: 'packages/material-ui-system/build/esm/index.js',
+    },
+    {
+      name: '@material-ui/system-es',
+      webpack: true,
+      path: 'packages/material-ui-system/build/es/index.js',
     },
     {
       name: 'colorManipulator',

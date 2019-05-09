@@ -77,6 +77,10 @@ Rather use some form of aliasing in your build setup. You can apply
 resolve: {
   alias: {
 +   '@material-ui/core$': '@material-ui/core/es',
++   '@material-ui/lab$': '@material-ui/lab/es',
++   '@material-ui/styles$': '@material-ui/styles/es',
++   '@material-ui/system$': '@material-ui/system/es',
++   '@material-ui/utils$': '@material-ui/utils/es',
   }
 }
 ```
