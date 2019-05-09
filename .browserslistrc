@@ -11,4 +11,4 @@ edge >= 18
 firefox >= 66
 chrome >= 73
 safari >= 12.1
-node >= 8.16
+node >= 12.2
