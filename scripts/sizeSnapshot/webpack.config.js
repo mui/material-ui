@@ -33,7 +33,7 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/esm/index.js',
     },
     {
-      name: '@material-ui/core-es',
+      name: '@material-ui/core/es',
       webpack: true,
       path: 'packages/material-ui/build/es/index.js',
     },
@@ -48,7 +48,7 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui-lab/build/esm/index.js',
     },
     {
-      name: '@material-ui/lab-es',
+      name: '@material-ui/lab/es',
       webpack: true,
       path: 'packages/material-ui-lab/build/es/index.js',
     },
@@ -58,7 +58,7 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui-styles/build/esm/index.js',
     },
     {
-      name: '@material-ui/styles-es',
+      name: '@material-ui/styles/es',
       webpack: true,
       path: 'packages/material-ui-styles/build/es/index.js',
     },
@@ -68,7 +68,7 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui-system/build/esm/index.js',
     },
     {
-      name: '@material-ui/system-es',
+      name: '@material-ui/system/es',
       webpack: true,
       path: 'packages/material-ui-system/build/es/index.js',
     },
