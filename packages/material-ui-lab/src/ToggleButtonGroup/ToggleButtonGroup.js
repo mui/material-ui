@@ -100,14 +100,14 @@ ToggleButtonGroup.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * The size of the toggleButton.
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.
    */
   value: PropTypes.any,
-  /**
-   * The size of the toggleButton.
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 ToggleButtonGroup.defaultProps = {
