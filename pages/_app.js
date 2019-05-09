@@ -123,7 +123,7 @@ MyApp.getInitialProps = ({ ctx }) => {
   let pageProps = {};
 
   if (!process.browser) {
-    const cookie = ctx.req.headers.cookie || '';
+    const { headers: { cookie = '' } = {} } = ctx.req;
     const paletteType = getCookie('paletteType', cookie);
     const paletteColors = getCookie('paletteColors', cookie);
 
