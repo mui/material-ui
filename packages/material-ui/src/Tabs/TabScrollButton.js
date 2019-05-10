@@ -28,7 +28,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
   }
 
   return (
-    <ButtonBase className={className} onClick={onClick} ref={ref} tabIndex={-1} {...other}>
+    <ButtonBase aria-label={direction} className={className} onClick={onClick} ref={ref} tabIndex={-1} {...other}>
       {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
     </ButtonBase>
   );
