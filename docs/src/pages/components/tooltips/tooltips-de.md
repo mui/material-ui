@@ -2,6 +2,7 @@
 title: Tooltip React-Komponente
 components: Tooltip
 ---
+
 # Tooltip
 
 <p class="description">Tooltips zeigen informativen Text an, wenn Benutzer auf ein Element zeigen, darauf fokussieren oder tippen.</p>
@@ -10,21 +11,19 @@ Wenn aktiviert, zeigen [Tooltips](https://material.io/design/components/tooltips
 
 ## Einfache Tooltips
 
-{{"demo": "pages/demos/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
 ## Positionierte Tooltips
 
 Der `Tooltip` hat 12 mögliche **Platzierungen**. Sie haben keine Richtungspfeile; Stattdessen verlassen sie sich auf Bewegungen, die von der Quelle ausgehen, um die Richtung zu vermitteln.
 
-{{"demo": "pages/demos/tooltips/PositionedTooltips.js"}}
+{{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Benutzerdefinierte Tooltips
+## Customized tooltips
 
-Wenn du die [Überschreibungs Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du das Theme des Tooltips verändern kannst.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
-
-{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
+{{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
 ## Benutzerdefiniertes untergeordnetes Element
 
@@ -49,37 +48,37 @@ Sie können ein ähnliches Konzept in der [Verpackungskomponenten](/guides/compo
 
 Sie können die Ereignistypen definieren, bei denen ein Tooltip angezeigt wird.
 
-{{"demo": "pages/demos/tooltips/TriggersTooltips.js"}}
+{{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
 ## Kontrollierte Tooltips
 
 Sie können die Eigenschaften `onOpen`, `onClose` und `open`, verwenden, um das Verhalten des Tooltips zu steuern.
 
-{{"demo": "pages/demos/tooltips/ControlledTooltips.js"}}
+{{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
 ## Variable Breite
 
 Der `Tooltip` umhüllt standardmäßig lange Texte, um diese lesbar zu machen.
 
-{{"demo": "pages/demos/tooltips/VariableWidth.js"}}
+{{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
 ## Interaktiv
 
 Ein Tooltip kann interaktiv sein. Er wird nicht geschlossen, wenn sich der Benutzer über dem Tooltip befindet, bevor die `leaveDelay` abgelaufen ist.
 
-{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
 ## Deaktivierte Elemente
 
 Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerinteraktionen aus, sodass ein `Tooltip` bei normalen Ereignissen wie Hover nicht aktiviert wird. Fügen Sie ein einfaches Wrapper-Element wie eine `span` hinzu, um deaktivierte Elemente aufzunehmen.
 
-{{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
+{{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
 ## Übergänge
 
 Verwenden Sie einen anderen Übergang.
 
-{{"demo": "pages/demos/tooltips/TransitionsTooltips.js"}}
+{{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
 ## Ein-und ausblenden
 
@@ -87,4 +86,4 @@ Der Tooltip wird normalerweise sofort angezeigt, wenn sich die Maus des Benutzer
 
 Bei mobilen Geräten wird der Tooltip angezeigt, wenn der Benutzer das Element lange gedrückt hält und versteckt sich nach einer Verzögerung von 1500 ms. Sie können diese Funktion mit der `disableTouchListener` Eigenschaft deaktivieren.
 
-{{"demo": "pages/demos/tooltips/DelayTooltips.js"}}
+{{"demo": "pages/components/tooltips/DelayTooltips.js"}}

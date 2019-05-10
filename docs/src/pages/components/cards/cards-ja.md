@@ -2,6 +2,7 @@
 title: Card React component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
+
 # Card
 
 <p class="description">Cardはコンテンツと一つの主題に関するアクションを含みます。</p>
@@ -14,23 +15,23 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 Cardは複数のアクション、UIコントロール、およびオーバーフローメニューをサポートできますが制限してください。Cardがより複雑で詳細な情報への入り口であることを忘れてはいけません。
 
-{{"demo": "pages/demos/cards/SimpleCard.js"}}
+{{"demo": "pages/components/cards/SimpleCard.js"}}
 
 ## 複雑な相互作用
 
 デスクトップでは、Cardの内容が展開できる可能性があります。
 
-{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
+{{"demo": "pages/components/cards/RecipeReviewCard.js"}}
 
 ## メディア
 
 内容を補助する為に画像を用いたCardの例。
 
-{{"demo": "pages/demos/cards/MediaCard.js"}}
+{{"demo": "pages/components/cards/MediaCard.js"}}
 
 デフォルトでは、メディアを表示する為に `<div>` 要素と *背景画像* の組み合わせを使用します。 状況によってこれは問題になることがあります。 例えば、動画やレスポンシブ画像を表示したいとします。 そのような場合は `component` プロパティを使用します。
 
-{{"demo": "pages/demos/cards/ImgMediaCard.js"}}
+{{"demo": "pages/components/cards/ImgMediaCard.js"}}
 
 > ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
 
@@ -40,4 +41,4 @@ Card内の補足的なアクションは、通常はカードの下部に配置�
 
 これはメディアコントロール付きCardの例です。
 
-{{"demo": "pages/demos/cards/MediaControlCard.js"}}
+{{"demo": "pages/components/cards/MediaControlCard.js"}}

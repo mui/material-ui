@@ -4,7 +4,7 @@
 
 Material-UI 组件是独立工作的。 **它们是自我支持**的，并只要注入它们需要显示的样式。 他们不依赖任何全局的样式表, 如 [normalize.css](https://github.com/necolas/normalize.css/).
 
-您可以使用文档中演示的任何组件。 请参阅每个组件的 [demo页](/demos/buttons/), 以了解应如何导入它们。
+您可以使用文档中演示的任何组件。 请参阅每个组件的 [demo页](/components/buttons/), 以了解应如何导入它们。
 
 ## 快速开始
 
@@ -41,12 +41,13 @@ Material-UI 是先在移动设备上开发的，我们采用了首先为移动�
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
+  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+/>
 ```
 
 ### CssBaseline
 
-Material-UI 提供了可选的 [CssBaseline](/style/css-baseline/) 组件。 它修复了浏览器和设备之间的一些不一致性，同时为常见的HTML元素提供了更多不同方式的的重置。
+Material-UI provides an optional [CssBaseline]/components/css-baseline/) component. 它修复了浏览器和设备之间的一些不一致性，同时为常见的HTML元素提供了更多不同方式的的重置。
 
 ## 不同版本的文档
 
@@ -56,6 +57,6 @@ Material-UI 提供了可选的 [CssBaseline](/style/css-baseline/) 组件。 它
 
 现在您已经了解了基本设置，现在是时候了解更多关于：
 
-- 如何提供 [Material Design字体和排版](/style/typography/)。
+- How to provide [the Material Design font and typography]/components/typography/).
 - 如何利用 [主题解决方案](/customization/themes/)。
-- 如何 [覆盖](/customization/overrides/) 组件的呈现和观感。
+- 如何 [覆盖](/customization/components/) 组件的呈现和观感。

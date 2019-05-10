@@ -1,4 +1,4 @@
-# 间距
+# Spacing（间距）
 
 <p class="description">各种简写响应边距和填充实用程序类，用于修改元素的外观。</p>
 

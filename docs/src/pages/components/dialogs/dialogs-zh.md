@@ -1,107 +1,108 @@
 ---
-title: React对话框组件
+title: React Dialog（对话框）组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
-# 对话框
 
-<p class="description">对话框用来给用户一个任务，可以提示关键信息、可以让用户进行确认、或者包含多个任务。</p>
+# Dialogs（对话框组件）
 
-[对话框](https://material.io/design/components/dialogs.html) 是 [模态](/utils/modal/) 窗体的一种类型, 通过显示在应用程序内容的前面，来提供关键信息的显示，或者要求用户进行确认和判断。 对话框在出现时会禁用应用程序的所有功能, 并在屏幕上保持固定, 直到被确认、被取消或已采取其他必要的操作。
+<p class="description">对话框将一个任务告知给用户，它包含了一些关键信息，需要用户进行确认，或者包含了多个任务。</p>
 
-对话框会带有目的性地中断用户体验，请谨慎使用。
+[对话框](https://material.io/design/components/dialogs.html)是[模态](/components/modal/) 窗体的一种类型，通过显示在应用程序内容之前，来显示关键信息，或者要求用户的决策。 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框才不会留在屏幕上。
 
-## 最基础的对话框
+对话框会带有目的性地中断用户体验，所以请您谨慎使用。
 
-基本对话框可以提供有关列表项的详细信息或操作。 例如, 它们可以显示头像、图标、解释或交互操作 (如添加帐户)。
+## 简单的对话框
 
-触摸操作机制:
+简单的对话框可以提供有关一个列表项的额外信息或操作。例如, 它们可以显示头像、图标、解释或交互操作 (如添加帐户)。
 
-- 选择一个选项，立即提交选项并关闭菜单
+触摸操作机制：
+
+- 选择一项将立刻触发提交选项，并关闭菜单
 - 在对话框外触摸或按下“返回”，将取消操作并关闭对话框。
 
-{{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
+{{"demo": "pages/components/dialogs/SimpleDialog.js"}}
 
 ## 警告框
 
-警报是一种紧急中断的行为，用以通知用户某一情况并需要确认,。
+警告框是一种紧急中断的行为，用以将某一情况通知用户，并需要确认。
 
-大多数警告不需要标题。 大多数警告不需要标题。 他们通过以下其中一种方式的一两句话来得出一个决定：
+大多数警告不需要标题。他们简要地通过以下其中一种方式，用一两句话列出了选项：
 
-- 问一个问题 (例如 "是否删除此对话？")
+- 问一个问题（例如："是否删除此对话？”）
 - 发表一个和动作按钮相关的声明
 
-仅对高风险情况使用带标题栏警报,，例如连接可能丢失。 用户应该仅根据标题和按钮文本，就能理解要做出的选择。
+仅对高风险情况使用带标题栏地警告框，而如此一来可能会导致连接地丢失。用户应该仅根据标题和按钮文本，就能理解所提供的选择项。
 
-如果需要标题请:
+如果需要加上标题请:
 
-- 使用明确的问题或声明，并在内容区域对其做出解释, 例如 "是否要清除 USB 上的内容？"。
-- 避免道歉、模棱两可或问题, 例如 "警告！" 或 "你确定吗？“
+- 使用明确的问题或声明，并在内容区域对其做出解释，例如：“是否要清除 USB 上的内容？”。
+- 避免道歉、模棱两可或问一些问题，例如：“警告！” 或 “你确定吗?”
 
-{{"demo": "pages/demos/dialogs/AlertDialog.js"}}
+{{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
-当然你也可以换掉过渡效果, 下面的示例使用了 `幻灯片`。
+当然你也可以换掉过渡效果，下面的示例使用了 ` Slide（幻灯片）`。
 
-{{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
+{{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
 
 ## 表单对话框
 
-表单对话框允许用户通过一个弹出的对话框，对表单进行填写。 比如说，如果您的网站提示潜在订阅者填写他们的电子邮件地址，他们可以填写电子邮件字段然后点击“提交”。
+表单对话框允许用户在对话框内填写表单。 比如说，如果您的网站提示潜在订阅者填写他们的电子邮件地址，他们可以填写电子邮件字段然后点击“提交”。
 
-{{"demo": "pages/demos/dialogs/FormDialog.js"}}
+{{"demo": "pages/components/dialogs/FormDialog.js"}}
 
 ## 自定义对话框
 
-如果您已经阅读了 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个如何自定义 `DialogTitle` 以支持关闭按钮的示例。
+以下是自定义组件的一个示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
 
-⚠️虽然 Material Design 规范鼓励主题，但这个例子是不合适的。
+该对话框加上了一个关闭按钮来辅助可用性。
 
-{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+{{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
 ## 全屏对话框
 
-{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
+{{"demo": "pages/components/dialogs/FullScreenDialog.js"}}
 
-## 可选尺码
+## 大小选择项
 
-您可以使用 `maxWidth` enumerable和 `fullWidth` boolean来设置对话框的最大宽度。 当 `fullWidth` 属性为true时，对话框将根据 `maxWidth` 值进行调整。
+您可以使用 `maxWidth`的 enumerable 和 `fullWidth`的 boolean 来设定对话框的最大宽度。 当 `fullWidth` 属性为true时，对话框将根据 `maxWidth` 的值进行自我调整。
 
-{{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
+{{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
 ## 响应式全屏
 
-您可以使用 `withMobileDialog`以对话方式全屏显示对话框。 默认情况下, `withMobileDialog() (Dialog)` 在 [屏幕大小](/layout/basics/)*小于等于* `sm`时响应式全屏。 你可以通过传递 `breakpoint`参数来选择你自己的全屏切换点，比如 `xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
+You may make a dialog responsively full screen using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/customization/breakpoints/). 通过传递 `breakpoint`参数，您可以自主选择全屏切换点，比如使用`xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
 
-{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
+{{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
-## 确认对话框
+## 确认型对话框
 
-确认对话框要求用户在提交选项之前显式确认他们的选择。 比如说，用户可以听到多种铃声，但只有在点击 “OK” 后才进行最终确定。
+确认型对话框明确要求用户在提交选项之前确认他们的选择。 比如说，用户可以听到多种铃声，但只有在点击 “OK” 后才意味着做出了选择。
 
-在确认对话框中触摸 "取消", 或按后退, 将会取消当前操作, 放弃任何更改, 并关闭对话框。
+在确认对话框中触摸 "取消"，或按后退，将会导致当前操作的取消，放弃任何更改， 并关闭对话框。
 
-{{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
+{{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## 可访问性
+## 可及性
 
-参考 [模态框可访问性部分](/utils/modal/#accessibility)
+参考 [模态框可及性的部分](/components/modal/#accessibility)。
 
-## 长内容滚动
+## 冗长内容的滚动
 
-当对话框根据用户不同的设备和视图大小变得很长时，可以让他们进行滚动。
+由于用户设备的不同或视图的大小，对话框会变得很长，此时对话框是可以滚动的。
 
-- - `scroll=paper` 可以使对话框的内容在paper元素中滚动。
-- - `scroll=body`可以使对话框的内容在body元素内滚动。
+- `scroll=paper` 可以使对话框的内容在 paper 元素中滚动。
+- `scroll=body` 可以使对话框的内容在 body 元素内滚动。
 
 请尝试下面的例子来加深理解：
 
-{{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
+{{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
 ## 可拖动的对话框
 
-您可以使用 [react-draggable](https://github.com/mzabriskie/react-draggable)创建可拖动的对话框。 为此，您可以将导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 传递。 这将使整个对话框可拖动。
+您可以使用 [react-draggable](https://github.com/mzabriskie/react-draggable) 创建可拖动的对话框。 为此，您可以将导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 传递。 这将使整个对话框变成可拖动的。
 
-{{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## 性能
 
-按照 [模态性能部分](/utils/modal/#performance)。
+参考[模态性能部分](/components/modal/#performance)。

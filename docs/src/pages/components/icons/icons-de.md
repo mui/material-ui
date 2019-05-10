@@ -1,6 +1,7 @@
 ---
 components: Icon, SvgIcon
 ---
+
 # Icons
 
 <p class="description">Anleitungen und Vorschläge für die Verwendung von Symbolen mit der Material-UI.</p>
@@ -15,7 +16,7 @@ Die `SvgIcon` Komponente nimmt ein SVG-`Pfad`-Element als untergeordnetes Elemen
 
 Das resultierende Symbol kann so wie es ist, oder als untergeordnetes Element für andere Material-UI-Komponenten, die Symbole verwenden, verwendet werden. Standardmäßig erbt ein Symbol die aktuelle Textfarbe. Optional können Sie die Farbe des Symbols mithilfe einer der Designfarbeneigenschaften festlegen: `primary`, `secondary`, `action`, `error` & `disabled`.
 
-{{"demo": "pages/style/icons/SvgIcons.js"}}
+{{"demo": "pages/components/icons/SvgIcons.js"}}
 
 ### SVG Material Symbole
 
@@ -45,7 +46,7 @@ Hier gibt es drei Ausnahmen:
 - [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) ist unter `@material-ui/icons/FourK` bereitgestellt
 - [`360`](https://material.io/tools/icons/?icon=360&style=baseline) ist unter `@material-ui/icons/ThreeSixty` bereitgestellt
 
-{{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
+{{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 #### Importe
 
@@ -73,7 +74,7 @@ Auf der Suche nach noch mehr SVG-Icons? Es gibt eine Menge Projekte, aber [https
 Die `Symbol-` Komponente zeigt ein Symbol aus einer beliebigen Symbolschriftart an, die Ligaturen unterstützt. Voraussetzung ist, dass Sie eine, beispielsweise die [Material Icon-Schriftart](http://google.github.io/material-design-icons/#icon-font-for-the-web) in Ihr Projekt einfügen, beispielsweise über Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Symbol` legt den korrekten Klassennamen für die Material-Symbolschriftart fest. Bei anderen Schriftarten müssen Sie den Klassennamen mit der Eigenschaft `className` der Icon-Komponente angeben.
@@ -90,13 +91,13 @@ Standardmäßig erbt ein Symbol die aktuelle Textfarbe. Optional können Sie die
 
 ### Schriftart Material icons
 
-{{"demo": "pages/style/icons/Icons.js"}}
+{{"demo": "pages/components/icons/Icons.js"}}
 
 ### Font Awesome
 
 [Font Awesome](https://fontawesome.com/icons) kann wie folgt mit der Komponente `Icon` werden:
 
-{{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
 ## Schriftart vs SVG. Welchen Ansatz verwenden?
 

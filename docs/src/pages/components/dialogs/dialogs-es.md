@@ -2,11 +2,12 @@
 title: Componente React Dialog
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
+
 # Diálogos
 
 <p class="description">Los diálogos informan a los usuarios sobre una tarea y pueden contener información importante, requerir decisiones, o involucrar múltiples tareas.</p>
 
-Un [Diálogo](https://material.io/design/components/dialogs.html)es una clase de [ventana modal](/utils/modal/) que aparece encima del contenido para proveer información importante o pedir que el usuario tome una decision. Los diálogos deshabilitan todas las funcciones de la aplicación cuando aparecen, y se quedan visibles hasta que se confirman, se descartan, o se toma alguna acción necesaria.
+Un [Diálogo](https://material.io/design/components/dialogs.html)es una clase de [ventana modal](/components/modal/) que aparece encima del contenido para proveer información importante o pedir que el usuario tome una decision. Los diálogos deshabilitan todas las funcciones de la aplicación cuando aparecen, y se quedan visibles hasta que se confirman, se descartan, o se toma alguna acción necesaria.
 
 Los diálogos están diseñados para interrumpir el usuario, por eso deben usarse sólo cuando sean necesarios.
 
@@ -19,7 +20,7 @@ Mecánica táctil:
 - Elegir una opción confirma inmediatamente la opción y cierra el menú
 - Tocar fuera del diálogo, o presionar Atrás, cancela la acción y cierra el cuadro de diálogo
 
-{{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
+{{"demo": "pages/components/dialogs/SimpleDialog.js"}}
 
 ## Alertas
 
@@ -37,41 +38,41 @@ Si se necesita un título:
 - Use una pregunta o afirmación clara con una explicación en el área de contenido, tal como "¿Borrar el almacenamiento USB?".
 - Evite disculpas, ambigüedades o preguntas, como "¡Advertencia!" O "¿Está seguro?"
 
-{{"demo": "pages/demos/dialogs/AlertDialog.js"}}
+{{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
 También puede intercambiar la transición, el siguiente ejemplo utiliza `Slide`.
 
-{{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
+{{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
 
 ## Diálogos de formularios
 
 Los diálogos de formulario permiten a los usuarios llenar campos dentro de un cuadro de diálogo. Por ejemplo, si su sitio solicita a los potenciales suscriptores completar su dirección de correo electrónico, pueden completar el campo y tocar 'Enviar'.
 
-{{"demo": "pages/demos/dialogs/FormDialog.js"}}
+{{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Diálogo personalizado
+## Customized dialogs
 
-Si ha estado leyendo la [página de documentación de anulaciones](/customization/overrides/) pero no se siente seguro de cómo hacerlo, aquí hay un ejemplo de cómo puede personalizar el componente `DialogTitle` para soportar un botón de cerrado.
+Here is example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, este ejemplo no es común.
+The dialog has a close button added to aide usability.
 
-{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+{{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
 ## Diálogos de pantalla completa
 
-{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
+{{"demo": "pages/components/dialogs/FullScreenDialog.js"}}
 
 ## Tamaños opcionales
 
 Puede establecer un ancho máximo de diálogo utilizando el enumerable `maxWidth` en combinación con el boleano `fullWidth`. Cuando la propiedad `fullWidth` es verdadera, el diálogo se adaptará según el valor de `maxWidth`.
 
-{{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
+{{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
 ## Pantalla completa responsiva
 
-Puede hacer un cuadro de diálogo responsivo a pantalla completa utilizando `withMobileDialog`. Por defecto, `withMobileDialog()(Dialog)` para pantallas completas responsivas cuyo [tamaño de pantalla](/layout/basics/) sea *menor o igual* al tamaño `sm`. Puede elegir su propio punto de quiebre por ejemplo `xs` pasando el argumento `breakpoint`, de la siguiente forma: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+You may make a dialog responsively full screen using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/customization/breakpoints/). Puede elegir su propio punto de quiebre por ejemplo `xs` pasando el argumento `breakpoint`, de la siguiente forma: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
 
-{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
+{{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
 ## Diálogos de confirmación
 
@@ -79,11 +80,11 @@ Los diálogos de confirmación requieren que los usuarios confirmen explícitame
 
 Al tocar "Cancelar" en un cuadro de diálogo de confirmación, o al presionar Atrás, se cancela la acción, se descartan los cambios y se cierra el cuadro de diálogo.
 
-{{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
+{{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## Accesibilidad
 
-Sigue la [Sección de accesibilidad de Modal](/utils/modal/#accessibility).
+Sigue la [Sección de accesibilidad de Modal](/components/modal/#accessibility).
 
 ## Desplazando contenido largo
 
@@ -94,14 +95,14 @@ Cuando los diálogos se vuelven demasiado largos para la ventana o el dispositiv
 
 Prueba la demostración de abajo para ver lo que queremos decir:
 
-{{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
+{{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
 ## Diálogo arrastrable
 
 Puede crear un cuadro de diálogo arrastrable utilizando [react-draggable](https://github.com/mzabriskie/react-draggable). Para hacerlo, puede pasar el componente importado `Draggable` como `PaperComponent` del componente `Dialog`. Esto hará que todo el diálogo se pueda arrastrar.
 
-{{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Rendimiento
 
-Sigue la [Sección de rendimiento de Modal](/utils/modal/#performance).
+Sigue la [Sección de rendimiento de Modal](/components/modal/#performance).

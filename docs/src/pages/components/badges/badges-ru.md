@@ -2,6 +2,7 @@
 title: React-компонент Значок
 components: Badge
 ---
+
 # Значки
 
 <p class="description">Значок генерирует маленький значок в правом верхнем углу своего дочернего(их) элемента(ов).</p>
@@ -10,19 +11,19 @@ components: Badge
 
 Примеры значков, содержащих текст, с использованием основного и дополнительного цветов. Значок применяется к дочерним элементам.
 
-{{"demo": "pages/demos/badges/SimpleBadge.js"}}
+{{"demo": "pages/components/badges/SimpleBadge.js"}}
 
 ## Максимальное значение
 
 Вы можете использовать свойство `max` чтобы ограничить значение содержимого значка.
 
-{{"demo": "pages/demos/badges/BadgeMax.js"}}
+{{"demo": "pages/components/badges/BadgeMax.js"}}
 
 ## Точечный значок
 
 Свойство `dot` превращает значок в маленькую точку. Это можно использовать как уведомление о том, что что-то изменилось без счетчика.
 
-{{"demo": "pages/demos/badges/DotBadge.js"}}
+{{"demo": "pages/components/badges/DotBadge.js"}}
 
 ## Видимость значка
 
@@ -30,12 +31,10 @@ components: Badge
 
 Значок автоматически скрывается, если badgeContent равен нулю. Вы можете переопределить это с помощью свойства `showZero`.
 
-{{"demo": "pages/demos/badges/BadgeVisibility.js"}}
+{{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Кастомизированный значок
+## Customized badges
 
-Если вы читали [страницу документации о переопределениях](/customization/overrides/) но не уверены, что можете войти в курс этого, вот один из примеров того, как вы можете изменить положение значка.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
-
-{{"demo": "pages/demos/badges/CustomizedBadge.js"}}
+{{"demo": "pages/components/badges/CustomizedBadges.js"}}

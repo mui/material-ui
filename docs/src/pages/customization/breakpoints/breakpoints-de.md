@@ -23,7 +23,7 @@ Bereich       |   xs   |   sm   |   md   |   lg   |   xl
 
 Diese Werte können immer angepasst werden. Sie finden sie im Theme unter dem [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) Schlüssel.
 
-Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/layout/grid/) zu steuern und für [Hidden](/layout/hidden/) Komponenten.
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden]/components/hidden/) components.
 
 ## CSS-Medienabfragen
 
@@ -53,7 +53,7 @@ const styles = theme => ({
 });
 ```
 
-{{"demo": "pages/layout/breakpoints/MediaQuery.js"}}
+{{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
 
 ## JavaScript-Medienabfragen
 
@@ -61,11 +61,11 @@ Manchmal reicht die Verwendung von CSS nicht aus. Möglicherweise möchten Sie d
 
 ### useMediaQuery hook
 
-Weitere Informationen finden Sie auf der [ useMediaQuery](/layout/use-media-query/) Seite.
+You can learn more on the [useMediaQuery]/components/use-media-query/) page.
 
 ### withWidth()
 
-> ⚠️ Diese Komponente höherer Ordnung wird ist veraltet und wird durch den [useMediaQuery](/layout/use-media-query/) hook ersetzt, wenn die React hooks als stabil freigegeben werden.
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery]/components/use-media-query/) hook when the React's hooks are released as stable.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -79,7 +79,7 @@ export default withWidth()(MyComponent);
 
 In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, ~~ del ~~ & span) basierend auf der Bildschirmbreite.
 
-{{"demo": "pages/layout/breakpoints/WithWidth.js"}}
+{{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
 ## API
 
@@ -204,15 +204,15 @@ Einige Implementierungsdetails, die interessant sein könnten:
 1. `Optionen` (*Object* [optional]): 
     - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
     - `options.noSSR ` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf ` true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
-    - ` options.initialWidth ` (*Breakpoint* [optional]): Da ` window.innerWidth ` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/themes/#properties) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:
+    - ` options.initialWidth ` (*Breakpoint* [optional]): Da ` window.innerWidth ` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/globals/#default-props) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:
 
 ```js
 const theme = createMuiTheme({
   props: {
-    // withWidth component ⚛️
+    // withWidth Komponente ⚛️
     MuiWithWidth: {
-      // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 
+      // Initiale Breite
+      initialWidth: 'lg', // Haltepunkte ist global gesetzt 🌎!
     },
   },
 });

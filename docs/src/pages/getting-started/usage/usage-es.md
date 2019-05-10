@@ -4,7 +4,7 @@
 
 Los componentes de Material-UI funcionan aisladamente. **Son autosuficientes**, y sólo inyectarán los estilos necesarios para su presentación. No dependen de ninguna hoja de estilos global como [normalize.css](https://github.com/necolas/normalize.css/).
 
-Puedes utilizar cualquiera de los componentes como son demostrados en la documentación. Por favor, consulta la [página de demostración](/demos/buttons/) de cada componente para ver cómo deben ser importados.
+Puedes utilizar cualquiera de los componentes como son demostrados en la documentación. Por favor, consulta la [página de demostración](/components/buttons/) de cada componente para ver cómo deben ser importados.
 
 ## Inicio rápido
 
@@ -41,12 +41,13 @@ Material-UI es desarrollado primero móvil: una estrategia mediante la cual prim
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
+  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+/>
 ```
 
 ### CssBaseline
 
-Material-UI proporciona un componente opcional llamado [CssBaseline](/style/css-baseline/). Éste soluciona algunas inconsistencias entre navegadores y dispositivos, y al mismo tiempo proporciona resets ligeramente más dogmáticos para los elementos comunes de HTML.
+Material-UI provides an optional [CssBaseline]/components/css-baseline/) component. Éste soluciona algunas inconsistencias entre navegadores y dispositivos, y al mismo tiempo proporciona resets ligeramente más dogmáticos para los elementos comunes de HTML.
 
 ## Documentación versionada
 
@@ -56,6 +57,6 @@ Material-UI proporciona un componente opcional llamado [CssBaseline](/style/css-
 
 Ahora que tienes una idea de la organización básica, es hora de aprender más acerca de:
 
-- Cómo proporcionar [la fuente y tipografía de Material Design](/style/typography/).
+- How to provide [the Material Design font and typography]/components/typography/).
 - Cómo aprovechar la [solución de plantilla](/customization/themes/).
-- Cómo [reemplazar](/customization/overrides/) el aspecto de los componentes.
+- Cómo [reemplazar](/customization/components/) el aspecto de los componentes.

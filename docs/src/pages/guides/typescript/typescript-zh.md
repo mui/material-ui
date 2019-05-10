@@ -2,7 +2,7 @@
 
 <p class="description">使用TypeScript，你可以为JavaScript添加类型接口，从而提高代码质量及工作效率</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example. TypeScript版本大于2.8
+查看 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) 样例， 要求 TypeScript 版本大于 2.8。
 
 Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json). 使用不太严格的 `tsconfig.json` 或省略某些库可能会导致错误。
 
@@ -249,61 +249,6 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 ## `组件的用法`属性
 
-Material-UI允许您通过`组件替换组件的根节点`属性。 例如，一个`按钮`的根节点可以用React Router ` Link替换` ，以及传递给` Button的任何其他道具` ，例如`到` ，将传播到`链接`组件，意味着你可以这样做：
+Material-UI允许您通过`组件替换组件的根节点`属性。 For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component. For a code example concerning `Button` and `react-router-dom` checkout [this Button demo](/components/buttons/#third-party-routing-library)
 
-```jsx
-import { Link } from 'react-router-dom';
-
-<Button component={Link} to="/">Go Home</Button>
-```
-
-但是，TypeScript会抱怨它，因为`到`不属于` ButtonProps `接口，并且使用当前类型声明，它无法推断哪些道具可以传递给`组件` 。
-
-当前的解决方法是将链接转换为` any ` ：
-
-```tsx
-import { Link } from 'react-router-dom';
-import Button, { ButtonProps } from '@material-ui/core/Button';
-
-interface LinkButtonProps extends ButtonProps {
-  to: string;
-  replace?: boolean;
-}
-
-const LinkButton = (props: LinkButtonProps) => (
-  <Button {...props} component={Link as any} />
-)
-
-// usage:
-<LinkButton color="primary" to="/">Go Home</LinkButton>
-```
-
-Material-UI组件传递一些基本的事件处理程序道具（` onClick ` ，` onDoubleClick `等）到他们的根节点。 这些处理程序具有以下特征：
-
-```ts
-(event: MouseEvent<HTMLElement, MouseEvent>) => void
-```
-
-这与`链接的事件处理程序签名不兼容`期望，这是：
-
-```ts
-(event: MouseEvent<AnchorElement>) => void
-```
-
-传递到`组件的任何元素或组件`如果他们的事件处理程序道具的签名不匹配将会有这个问题。
-
-通过使组件道具具有通用性，一直在努力解决这个问题。
-
-### 避免属性冲突
-
-之前的策略受到一些限制：属性冲突。 提供`组件的组件`属性可能不会将其所有属性转发到根元素。 要解决此问题，您可以创建自定义组件：
-
-```tsx
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-
-const MyLink = (props: any) => <Link to="/" {...props} />;
-
-// usage:
-<Button color="primary" component={MyLink}>Go Home</Button>
-```
+Not every component fully supports any component type you pass in. If you encounter a component that rejects its `component` props in TypeScript please open an issue. 通过使组件道具具有通用性，一直在努力解决这个问题。

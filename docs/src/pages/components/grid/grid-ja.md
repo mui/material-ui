@@ -2,6 +2,7 @@
 title: Grid React component
 components: Grid
 ---
+
 # Grid
 
 <p class="description">The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
@@ -24,9 +25,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 The responsive grid focuses on consistent spacing widths, rather than column width. Material Design margins and columns follow an **8px** square baseline grid. The spacing property is an integer between 0 and 10 inclusive. By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
 
-This output transformation function can be customized [using the theme](/customization/themes/#spacing).
+This output transformation function can be customized [using the theme](/customization/spacing/).
 
-{{"demo": "pages/layout/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js"}}
 
 ## Fluid grids
 
@@ -36,39 +37,31 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 The column widths apply at all breakpoints (i.e. `xs` and up).
 
-{{"demo": "pages/layout/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js"}}
 
 ### Grid with breakpoints
 
 Some columns have multiple widths defined, causing the layout to change at the defined breakpoint.
 
-{{"demo": "pages/layout/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js"}}
 
 ## Interactive
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
 
 ## Auto-layout
 
 The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
-{{"demo": "pages/layout/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js"}}
 
 ## Complex Grid
 
 The following demo doesn't follow the Material Design specification, but illustrates how the grid can be used to build complex layouts.
 
-{{"demo": "pages/layout/grid/ComplexGrid.js"}}
-
-## CSS Grid Layout
-
-**CSS Grid Layout** excels at dividing a page into major regions, or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
-
-⚠️ Unfortunately, CSS grid is only supported by the most recent browsers.
-
-{{"demo": "pages/layout/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js"}}
 
 ## Nested Grid
 
@@ -78,7 +71,7 @@ The `container` and `item` properties are two independent booleans. They can be 
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/layout/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js"}}
 
 ## Limitations
 
@@ -114,8 +107,14 @@ In order for the item to stay within the container you need to set `min-width: 0
   <Typography noWrap>
 ```
 
-{{"demo": "pages/layout/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
 
 ### direction: column | column-reverse
 
 Though the `Grid` component has a `direction` property that allows values of `row`, `row-reverse`, `column`, and `column-reverse`, there are some features that are not supported within `column` and `column-reverse` containers. The properties which define the number of grids the component will use for a given breakpoint (`xs`, `sm`, `md`, `lg`, and `xl`) are focused on controlling width and do **not** have similar effects on height within `column` and `column-reverse` containers. If used within `column` or `column-reverse` containers, these properties may have undesirable effects on the width of the `Grid` elements.
+
+## CSS Grid Layout
+
+Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
+
+{{"demo": "pages/components/grid/CSSGrid.js"}}

@@ -2,33 +2,34 @@
 title: Breadcrumbs React component
 components: Breadcrumbs, Link, Typography
 ---
+
 # Breadcrumbs
 
 <p class="description">Breadcrumbs allow users to make selections from a range of values.</p>
 
 ## Simple breadcrumbs
 
-{{"demo": "pages/demos/breadcrumbs/SimpleBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
 ## Custom separator
 
 In the following examples, we are using two string separators, and an SVG icon.
 
-{{"demo": "pages/demos/breadcrumbs/CustomSeparator.js"}}
+{{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
 ## Breadcrumbs with icons
 
-{{"demo": "pages/demos/breadcrumbs/IconBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
 ## Collapsed breadcrumbs
 
-{{"demo": "pages/demos/breadcrumbs/CollapsedBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
 ## Customized breadcrumbs
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the breadcrumb link design.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/demos/breadcrumbs/CustomizedBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
 ## Accessibility
 
@@ -42,4 +43,4 @@ The accessibility of this component relies on:
 
 ## Integration with react-router
 
-{{"demo": "pages/demos/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}

@@ -1,8 +1,8 @@
-# Palette
+# パレット
 
 <p class="description">Convey meaning through color with a handful of color utility classes. Includes support for styling links with hover states, too.</p>
 
-## Color
+## カラー
 
 ```jsx
 <Box color="primary.main">…

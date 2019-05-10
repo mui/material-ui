@@ -2,6 +2,7 @@
 title: Bottom Navigation React-Komponente
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation (Untere Navigation)
 
 <p class="description">Die unteren Navigationsleisten ermöglichen die Bewegung zwischen primären Zielen in einer App.</p>
@@ -12,10 +13,10 @@ Die [unteren Navigationsleiste](https://material.io/design/components/bottom-nav
 
 Wenn es nur **3** Aktionen gibt, werden immer sowohl Symbole als auch Beschriftungen angezeigt.
 
-{{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
 
 ## Untere Navigation ohne Beschriftung
 
 Bei **4** oder **5** Aktionen werden inaktive Ansichten nur als Symbole angezeigt.
 
-{{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}

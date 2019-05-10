@@ -9,9 +9,9 @@ Eine Funktion, die eine [Klassennamengeneratorfunktion](http://cssinjs.org/jss-a
 #### Argumente
 
 1. `Optionen` (*Object* [optional]): 
-    - `options.dangerouslyUseGlobalCSS ` (*Boolean* [optional]): Standardeinstellung ist `false`. Macht die Klassennamen der Material-UI deterministisch.
+    - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
     - `options.productionPrefix` (*String* [optional]): Standardeinstellung ist ` 'jss' `. Ein String, der den Klassennamen in der Produktion vorangestellt wird.
-    - `options.seed` (*String* [optional]): Standardeinstellung ist `''`. Der String, mit der der Generator eindeutig identifiziert wird. Dies kann verwendet werden, um Klassennamenskollisionen bei Verwendung mehrerer Generatoren zu vermeiden.
+    - `options.seed` (*String* [optional]): Standardeinstellung ist `''`. Der String, mit der der Generator eindeutig identifiziert wird. It can be used to avoid class name collisions when using multiple generators in the same document.
 
 #### Rückgabewerte
 
@@ -24,7 +24,6 @@ import React from 'react';
 import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
 
 const generateClassName = createGenerateClassName({
-  dangerouslyUseGlobalCSS: true,
   productionPrefix: 'c',
 });
 
@@ -104,62 +103,48 @@ export default function MyComponent() {
 
 ## `ServerStyleSheets`
 
-Dies ist ein Klassenhelfer für das serverseitige Rendering. Die Instanz bietet die folgende API.
-
-```js
-import { ServerStyleSheets } from '@material-ui/styles';
-
-const sheets = new ServerStyleSheets();
-```
-
-### `sheets.collect(node) => void`
-
-Die Methode schließt Ihren Knoten in ein Provider-Element ein.
+Dies ist ein Klassenhelfer für das serverseitige Rendering. [ Sie können unserem Leitfaden für einen praktischen Ansatz folgen](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheets } from '@material-ui/styles';
 
+const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
-```
-
-### `sheets.toString() => CSS string`
-
-Die Methode gibt die gesammelten Stile zurück. Es ist ein CSS-String.
-
-```js
-const css = sheets.toString();
+const cssString = sheets.toString();
 
 const response = `
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <style id="jss-server-side">${css}</style>
+    <style id="jss-server-side">${cssString}</style>
   </head>
-  <body>
-    ...
-  </body>
+  <body>${html}</body>
 </html>
 `;
 ```
 
-### `sheets.getStyleElement() => CSS React node`
+### `neue ServerStyleSheets ([options])`
 
-Die Methode ist eine Alternative zu `toString()`, wenn Sie die gesamte Seite mit React rendern.
+Die Instantiierung akzeptiert ein Optionsobjekt als erstes Argument.
 
-```jsx
-const style = sheets.getStyleElement();
+1. `options` (*Objekt * [optional]): Die Optionen werden als Eigenschaften an die [`StylesProvider`](#stylesprovider) Komponente verteilt.
 
-const response = (
-  <html lang="en" dir="ltr">
-    <Head>
-      {style}
-    </Head>
-    <body>
-      <Main />
-    </body>
-  </html>
-);
-```
+### `sheets.collect(node) => React element`
+
+Die Methode schließt Ihre React Knoten in ein Provider-Element ein. Es sammelt die Stylesheets während des Renderns, um sie später an den Client zu senden.
+
+### `sheets.toString() => CSS string`
+
+Die Methode gibt die gesammelten Stile zurück.
+
+⚠️ Sie müssen `.collect()` aufrufen, bevor Sie diese Methode verwenden.
+
+### `sheets.getStyleElement() => CSS React element`
+
+Die Methode ist eine Alternative zu `.toString()`, wenn Sie die gesamte Seite mit React rendern.
+
+⚠️ Sie müssen `.collect()` aufrufen, bevor Sie diese Methode verwenden.
 
 ## `styled(Component)(styles, [options]) => Component`
 
@@ -168,7 +153,7 @@ Verknüpfen Sie ein Stylesheet mit einer Funktionskomponente mit dem **styled co
 #### Argumente
 
 1. `Component`: Die Komponente, die verpackt wird.
-2. `styles` (* Function | Object *): Eine Funktion, die die Stile oder ein Stilobjekt generiert. Es wird mit der Komponente verknüpft. Verwenden Sie die Funktionssignatur, wenn Sie Zugriff auf das Theme benötigen. It's provided as property of the first argument.
+2. `styles` (* Function | Object *): Eine Funktion, die die Stile oder ein Stilobjekt generiert. Es wird mit der Komponente verknüpft. Verwenden Sie die Funktionssignatur, wenn Sie Zugriff auf das Theme benötigen. Es wird als Eigenschaft des ersten Arguments bereitgestellt.
 3. `Optionen` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): Das Standarddesign, das verwendet werden soll, wenn ein Theme nicht über einen Theme Provider bereitgestellt wird.
     - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
@@ -214,15 +199,15 @@ Es sollte vorzugsweise an der **Wurzel Ihres Komponentenbaums** verwendet werden
 #### EigenschaftenStandardmäßig werden die Stile zuletzt eingefügt 
 
 <head>
-  element of your page. Sie erhalten mehr Details als jedes andere Stylesheet auf Ihrer Seite, z.B. CSS-Module oder StilKomponenten. Wenn Sie die Stile der Material-UI überschreiben möchten, setzen Sie diese Option.</td> </tr> 
+  element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.</td> </tr> 
   
   <tr>
     <td align="left">
-      <span class="prop-name">jss</span>
+      jss
     </td>
     
     <td align="left">
-      <span class="prop-type">object</span>
+      object
     </td>
     
     <td align="left">
@@ -284,11 +269,11 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
     
     <tr>
       <td align="left">
-        <span class="prop-name required">children&nbsp;*</span>
+        children&nbsp;*
       </td>
       
       <td align="left">
-        <span class="prop-type">node</span>
+        node
       </td>
       
       <td align="left">
@@ -302,11 +287,11 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
     
     <tr>
       <td align="left">
-        <span class="prop-name required">theme&nbsp;*</span>
+        theme&nbsp;*
       </td>
       
       <td align="left">
-        <span class="prop-type">union:&nbsp;object&nbsp;&#124;&nbsp;func</span>
+        union:&nbsp;object&nbsp;&#124;&nbsp;func
       </td>
       
       <td align="left">

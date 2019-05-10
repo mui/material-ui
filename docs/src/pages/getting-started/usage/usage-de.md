@@ -4,7 +4,7 @@
 
 Material-UI-Komponenten arbeiten isoliert. **Sie sind selbst unterstützend** und injizieren, nur die Stile, die zum Anzeigen benötigt werden. Sie beruhen nicht auf einem globalen Stylesheet wie [normalize.css](https://github.com/necolas/normalize.css/).
 
-Sie können jede Komponente, wie in der Dokumentation beschrieben, verwenden. Bitte beachten Sie die [Demoseite jeder Komponente](/demos/buttons/), um zu sehen, wie sie importiert werden sollten.
+Sie können jede Komponente, wie in der Dokumentation beschrieben, verwenden. Bitte beachten Sie die [Demoseite jeder Komponente](/components/buttons/), um zu sehen, wie sie importiert werden sollten.
 
 ## Direkt einsteigen
 
@@ -41,12 +41,13 @@ Material-UI wurde zuerst für Mobilgeräte entwickelt. Bei dieser Strategie schr
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
+  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+/>
 ```
 
 ### CssBaseline
 
-Material-UI bietet eine optionale [CssBaseline](/style/css-baseline/)-Komponente an. Mit dieser Komponente werden einige Inkonsistenzen zwischen Browsern und Geräten behoben, während sie bewährte Eigenschaften für häufig auftretende HTML-Elemente bereitstellt.
+Material-UI provides an optional [CssBaseline]/components/css-baseline/) component. Mit dieser Komponente werden einige Inkonsistenzen zwischen Browsern und Geräten behoben, während sie bewährte Eigenschaften für häufig auftretende HTML-Elemente bereitstellt.
 
 ## Versionierte Dokumentation
 
@@ -56,6 +57,6 @@ Diese Dokumentation benutzt immer die neueste stabile Version von Material-UI. �
 
 Nun, da Sie eine Vorstellung von den grundlegenden Schritten haben, ist es an der Zeit, mehr darüber zu erfahren:
 
-- Wie man [die Material Design Schriftart und Typografie](/style/typography/) bereitstellt.
+- How to provide [the Material Design font and typography]/components/typography/).
 - Wie man die [theming-Lösung nutzen kann](/customization/themes/).
-- Wie man das Aussehen und das Verhalten der Komponenten [überschreibt](/customization/overrides/).
+- Wie man das Aussehen und das Verhalten der Komponenten [überschreibt](/customization/components/).

@@ -2,6 +2,7 @@
 title: Нижняя панель навигации, компонент React
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation (Нижняя панель навигации)
 
 <p class="description">Нижние панели навигации позволяют перемещаться между основными пунктами назначения в приложении.</p>
@@ -12,10 +13,10 @@ components: BottomNavigation, BottomNavigationAction
 
 Если есть только **три действия**, стоит всегда отображать и значки и текстовые метки.
 
-{{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
 
 ## Нижняя навигация без текста
 
 Если существует **четыре** или **пять** действий, стоит отображать неактивные элементы только в виде значков.
 
-{{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}

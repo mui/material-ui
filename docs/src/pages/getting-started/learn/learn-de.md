@@ -34,5 +34,7 @@ Wenn Sie das erste Mal die Material-UI lernen, finden Sie möglicherweise Blogbe
 
 ### Kostenpflichtig
 
+- **React Material-UI Cookbook**: Erstellen Sie eine moderne Anwendung, indem Sie Material Design-Prinzipien in React-Anwendungen mithilfe der Material-UI implementieren. 
+  - 📘 [Das Buch](https://www.packtpub.com/application-development/react-material-ui-cookbook)
 - **Builder Book**: Erfahren Sie, wie Sie eine vollständig full-stack JavaScript-Webanwendung mit einem modernen JavaScript-Stack und einer Material-UI von Grund auf erstellen. 
   - 📘 [ Das Buch ](https://builderbook.org/book)

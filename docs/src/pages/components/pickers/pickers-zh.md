@@ -1,8 +1,9 @@
 ---
-title: 日期选择器，时间选择器反应组件
+title: React Date Picker（日期选择器）和 Time Picker（时间选择器）组件
 components: TextField
 ---
-# 选择器
+
+# Pickers（选择器）
 
 <p class="description">选择器提供了一种从预先设定的集合中选取单个值的简单方法。</p>
 
@@ -11,39 +12,34 @@ components: TextField
 
 ## 原生的选择器
 
-⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。 看看 [补充项目](#complementary-projects) 以获得更丰富的解决方案。
+⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。 请参考[补充项目](#complementary-projects)来获得更丰富的解决方案。
 
-### 日期选择器
+### Date pickers（日期选择器）
 
-一个原生的 `type="time"` 时间选择器示例 。
+这个例子通过 `type="time"` 而实现了原生的时间选择器。
 
-{{"demo": "pages/demos/pickers/DatePickers.js"}}
+{{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### 日期和时间选择器
+### Date & Time pickers（日期和时间选择器）
 
-一个原生的 `type="datetime-local"` 日期和时间选择器示例。
+这个例子通过 `type="datetime-local"` 实现了原生的日期和时间选择器。
 
-{{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
+{{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### 时间选择器
+### Time pickers（时间选择器）
 
-一个原生的 `type="time"` 时间选择器示例 。
+这个例子通过 `type="time"` 实现了原生的时间选择器。
 
-{{"demo": "pages/demos/pickers/TimePickers.js"}}
+{{"demo": "pages/components/pickers/TimePickers.js"}}
 
 ## 补充项目
 
-对于更高级的用例，您可以利用：
+对于更高级的用例，您可以使用这些：
 
-### material-ui-pickers
+### @material-ui/pickers
 
-![stars](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
+![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) 提供遵循Material Design规范的日期和时间控件。
+[@material-ui/pickers](https://material-ui-pickers.dev/) provides date and time controls that follow the Material Design spec.
 
-{{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
-
-### 其他
-
-- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker)：时间选择器。
-- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers)：日期和时间选择器。
+{{"demo": "pages/components/pickers/MaterialUIPickers.js"}}

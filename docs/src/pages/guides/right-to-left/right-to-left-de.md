@@ -1,12 +1,12 @@
-# Right-to-left
+# Rechts nach links
 
-<p class="description">To change the direction of Material-UI components you must follow the following steps. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
+<p class="description">Um die Richtung der Material-UI-Komponenten zu ändern, müssen Sie die folgenden Schritte ausführen. Benutzeroberflächen für Sprachen, die von rechts nach links (RTL) gelesen werden, wie Arabisch und Hebräisch, sollten gespiegelt werden.</p>
 
 ## Schritte
 
 ### 1. HTML
 
-Make sure the `dir` attribute is set on the body, otherwise native components will break:
+Stellen Sie sicher, dass das `dir` Attribut in body gesetzt wird, sonst werden native Komponenten beschädigt:
 
 ```html
 <body dir="rtl">
@@ -14,7 +14,7 @@ Make sure the `dir` attribute is set on the body, otherwise native components wi
 
 ### 2. Theme
 
-Set the direction in your custom theme:
+Legen Sie die Richtung in Ihrem benutzerdefinierten Theme fest:
 
 ```js
 const theme = createMuiTheme({
@@ -24,22 +24,22 @@ const theme = createMuiTheme({
 
 ### 3. jss-rtl
 
-You need this JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+Sie benötigen dieses JSS-Plugin, um die Styles umzudrehen: [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
 ```sh
 npm install jss-rtl
 ```
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below. Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
+Nachdem Sie das Plugin in Ihrem Projekt installiert haben, müssen die Komponenten der Material-UI weiterhin von der jss-Instanz geladen werden, wie im Folgenden beschrieben. Intern verwendet withStyles dieses JSS-Plugin wenn `direction: 'rtl'` im Theme gesetzt ist. Schaue in die [plugin README](https://github.com/alitaheri/jss-rtl), um mehr zu erfahren.
 
-Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. We have a [`StylesProvider`](/css-in-js/api/#stylesprovider) component for this:
+Nachdem Sie eine neue JSS-Instanz mit dem Plugin erstellt haben, müssen Sie diese für alle Komponenten in der Komponentenstruktur verfügbar machen. Wir haben eine [`StylesProvider`](/styles/api/#stylesprovider) Komponente dafür:
 
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 
-// Configure JSS
+// Konfiguriere JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function RTL(props) {
@@ -53,14 +53,14 @@ function RTL(props) {
 
 ## Demo
 
-*Use the direction toggle button on the top right corner to flip the whole documentation*
+*Verwenden Sie den Richtungsumschaltknopf in der oberen rechten Ecke, um die gesamte Dokumentation zu spiegeln*
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
-## Opting out of rtl transformation
+## RTL-Umwandlung deaktivieren
 
-If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning:
+Wenn Sie verhindern möchten, dass ein bestimmter Regelsatz von der `Rtl` Transformation beeinflusst wird, können Sie `flip: false` am Anfang hinzufügen:
 
-*Use the direction toggle button on the top right corner to see the effect*
+*Verwenden Sie den Richtungsumschaltknopf in der oberen rechten Ecke, um den Effekt zu sehen*
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

@@ -23,7 +23,7 @@ For optimal user experience, material design interfaces need to be able to adapt
 
 Эти значения всегда можно изменить. Вы найдете их в теме, в объекте [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values).
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/layout/grid/) and [Hidden](/layout/hidden/) components.
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden]/components/hidden/) components.
 
 ## CSS Media Queries
 
@@ -53,7 +53,7 @@ const styles = theme => ({
 });
 ```
 
-{{"demo": "pages/layout/breakpoints/MediaQuery.js"}}
+{{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
 
 ## JavaScript Media Queries
 
@@ -61,11 +61,11 @@ const styles = theme => ({
 
 ### useMediaQuery hook
 
-You can learn more on the [useMediaQuery](/layout/use-media-query/) page.
+You can learn more on the [useMediaQuery]/components/use-media-query/) page.
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/layout/use-media-query/) hook when the React's hooks are released as stable.
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery]/components/use-media-query/) hook when the React's hooks are released as stable.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -79,7 +79,7 @@ export default withWidth()(MyComponent);
 
 In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
 
-{{"demo": "pages/layout/breakpoints/WithWidth.js"}}
+{{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
 ## API
 
@@ -204,7 +204,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 1. `options` (*Object* [optional]): 
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.noSSR` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
-    - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/themes/#properties) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
+    - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js
 const theme = createMuiTheme({
@@ -212,7 +212,7 @@ const theme = createMuiTheme({
     // withWidth component ⚛️
     MuiWithWidth: {
       // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 
+      initialWidth: 'lg', // Breakpoint being globally set 🌎!
     },
   },
 });

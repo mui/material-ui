@@ -2,6 +2,7 @@
 title: 滑块反应组件
 components: Slider
 ---
+
 # 滑条
 
 <p class="description">滑块允许用户从一系列值中进行选择。</p>
@@ -20,24 +21,30 @@ components: Slider
 
 ## 简单的滑块
 
-{{"demo": "pages/lab/slider/SimpleSlider.js"}}
+{{"demo": "pages/components/slider/SimpleSlider.js"}}
 
 ## 滑块与步骤
 
-{{"demo": "pages/lab/slider/StepSlider.js"}}
+{{"demo": "pages/components/slider/StepSlider.js"}}
 
 ## 禁用滑块
 
-{{"demo": "pages/lab/slider/DisabledSlider.js"}}
+{{"demo": "pages/components/slider/DisabledSlider.js"}}
 
 ## 垂直滑块
 
-{{"demo": "pages/lab/slider/VerticalSlider.js"}}
+{{"demo": "pages/components/slider/VerticalSlider.js"}}
 
-## 自定义拇指
+## Customized sliders
 
-{{"demo": "pages/lab/slider/CustomIconSlider.js"}}
+以下是自定义组件的一个示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+
+{{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+## Custom thumb
+
+{{"demo": "pages/components/slider/CustomIconSlider.js"}}
 
 ## 定制减价机
 
-{{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}
+{{"demo": "pages/components/slider/CustomValueReducerSlider.js"}}

@@ -2,6 +2,7 @@
 title: Composant React Table
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
+
 # Table (Tableaux)
 
 <p class="description">Les tableaux de données affichent des ensembles de données. Ils peuvent être entièrement personnalisés.</p>
@@ -28,13 +29,13 @@ Pour l'accessibilité, la première colonne est définie comme un élément `<th
 
 Un exemple simple et sans fioritures.
 
-{{"demo": "pages/demos/tables/SimpleTable.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js"}}
 
 ## Tableau dense
 
 Un exemple simple de tableau dense sans fioritures.
 
-{{"demo": "pages/demos/tables/DenseTable.js"}}
+{{"demo": "pages/components/tables/DenseTable.js"}}
 
 ## Tri & Sélection
 
@@ -42,40 +43,45 @@ Cet exemple illustre l'utilisation de `Checkbox` et des lignes cliquables pour l
 
 La table a reçu une largeur fixe pour illustrer le défilement horizontal. Afin d'éviter le défilement des contrôles de pagination, le composant TablePagination est utilisé en dehors du tableau. (L'exemple ['Action de pagination de table personnalisée' ](#custom-table-pagination-action) ci-dessous montre la pagination dans TableFooter.)
 
-{{"demo": "pages/demos/tables/EnhancedTable.js"}}
+{{"demo": "pages/components/tables/EnhancedTable.js"}}
 
-## Tableaux Personnalisés
+## Customized tables
 
-Si vous avez lu [la page de documentation sur la personnalisation](/customization/overrides/) mais que vous n'êtes pas prêt pour vous lancer, voici un exemple de la façon dont vous pouvez changer l'interface d'un `TableCell`.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Bien que la spécification material encouragent la thématisation, cet exemple sort des sentiers battus.
-
-{{"demo": "pages/demos/tables/CustomizedTable.js"}}
+{{"demo": "pages/components/tables/CustomizedTables.js"}}
 
 ## Action de pagination de table personnalisée
 
 La propriété `Action` du composant `TablePagination` permet l'implémentation d'actions personnalisées.
 
-{{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
+{{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
 ## Spanning Table
 
 Un exemple simple avec des colonnes couvrant & lignes.
 
-{{"demo": "pages/demos/tables/SpanningTable.js"}}
+{{"demo": "pages/components/tables/SpanningTable.js"}}
 
 ## Table virtualisée
 
-Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https://github.com/bvaughn/react-virtualized) avec le composant `Table`. Il affiche 200 lignes et peut facilement gérer plus. Virtualization helps with performance issues.
+Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https://github.com/bvaughn/react-virtualized) avec le composant `Table`. Il affiche 200 lignes et peut facilement gérer plus. La virtualisation aide à résoudre les problèmes de performances.
 
-{{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
+{{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
 ## Projets complémentaires
 
-Pour un usage plus avancé cas, vous pourriez être en mesure de prendre avantage de:
+Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des avantages suivants:
+
+### material-table
+
+![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
+
+[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+
+{{"demo": "pages/components/tables/MaterialTableDemo.js"}}
+
+### Autres
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
-- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI table.
-- [mui-tables](https://parkerself.gitbook.io/mui-table/) Customizable table for managing complex data. Features a summary row, de-duplication & merging, as well as filtering, search, etc.

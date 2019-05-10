@@ -2,6 +2,7 @@
 title: Date Picker, Time Picker React-Komponenten
 components: TextField
 ---
+
 # Auswähler (Picker)
 
 <p class="description">Pickers bieten eine einfache Möglichkeit, um einen einzelnen Wert aus einem vorher festgelegten Satz auszuwählen.</p>
@@ -15,35 +16,30 @@ components: TextField
 
 ### Datums-Auswahl
 
-A native date picker example with `type="date"`.
+Ein natives Datumsauswahlbeispiel mit `type="date"`.
 
-{{"demo": "pages/demos/pickers/DatePickers.js"}}
+{{"demo": "pages/components/pickers/DatePickers.js"}}
 
 ### Datum & Zeitauswahl
 
 Ein natives Datum & Zeitauswahlbeispiel mit `type="datetime-local"`.
 
-{{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
+{{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
 ### Zeitauswahl
 
 Ein natives Datum Zeitauswahlbeispiel mit `type="time"`.
 
-{{"demo": "pages/demos/pickers/TimePickers.js"}}
+{{"demo": "pages/components/pickers/TimePickers.js"}}
 
 ## Ergänzende Projekte
 
 Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen.
 
-### material-ui-pickers
+### @material-ui/pickers
 
-![stars](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
+![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) enthält Steuerelemente für Datum und Uhrzeit, die der Material Design-Spezifikation entsprechen.
+[@material-ui/pickers](https://material-ui-pickers.dev/) provides date and time controls that follow the Material Design spec.
 
-{{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
-
-### Sonstiges
-
-- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): Zeitauswahl.
-- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): Datums- und Zeitauswahl.
+{{"demo": "pages/components/pickers/MaterialUIPickers.js"}}

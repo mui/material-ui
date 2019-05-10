@@ -2,6 +2,7 @@
 title: Composant React Puce
 components: Chip
 ---
+
 # Chips (Puces)
 
 <p class="description">Les puces sont des éléments compacts qui représentent une entrée, un attribut ou une action.</p>
@@ -17,20 +18,20 @@ Exemples de puces, utilisant une image Avatar, icône SVG Avatar, "Lettre" et (c
 - Les puces avec la propriété `onClick` définie changent l’apparence sur le focus, survolent, puis cliquent sur.
 - Les puces avec la propriété `onDelete` définie afficheront une icône de suppression qui change d’apparence en survol.
 
-{{"demo": "pages/demos/chips/Chips.js"}}
+{{"demo": "pages/components/chips/Chips.js"}}
 
 ### Outlined Chips
 
 Outlined chips offer an alternative style.
 
-{{"demo": "pages/demos/chips/OutlinedChips.js"}}
+{{"demo": "pages/components/chips/OutlinedChips.js"}}
 
 ## Tableau de puce
 
 Un exemple de rendu de plusieurs puces à partir d'un tableau de valeurs. Supprimer une puce la supprime du tablea. Notez que puisqu'aucun `onClick` propriété est définie, la puce peut être concentré, mais ne pas profondeur de gain tandis que vous cliquez dessus ou touché.
 
-{{"demo": "pages/demos/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js"}}
 
 ## Terrain de jeu de puce
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

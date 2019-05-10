@@ -2,6 +2,7 @@
 title: Componente Badge
 components: Badge
 ---
+
 # Placas
 
 <p class="description">El componente Badge genera un pequeño badge en la esquina superior derecha de su(s) hijo(s).</p>
@@ -10,19 +11,19 @@ components: Badge
 
 Ejemplos de badges que contienen texto, usando los colores primarios y secundarios de la paleta de colores.
 
-{{"demo": "pages/demos/badges/SimpleBadge.js"}}
+{{"demo": "pages/components/badges/SimpleBadge.js"}}
 
 ## Valor Máximo
 
 Puedes usar la propiedad `max` para limitar el valor máximo del contenido del badge.
 
-{{"demo": "pages/demos/badges/BadgeMax.js"}}
+{{"demo": "pages/components/badges/BadgeMax.js"}}
 
 ## Badge de punto
 
 La propiedad `dot` cambia el aspecto del badge a un punto pequeño y puede ser usado como notificación de que algo a cambiado sin mostrar más información.
 
-{{"demo": "pages/demos/badges/DotBadge.js"}}
+{{"demo": "pages/components/badges/DotBadge.js"}}
 
 ## Visibilidad del Badge
 
@@ -30,12 +31,10 @@ La visibilidad del badge puede ser controlada usando la propiedad `invisible`.
 
 El badge se auto oculta usando la propiedad `badgeContent={0}`. Puedes sobreescribir este comportamiento usando la propiedad `showZero`.
 
-{{"demo": "pages/demos/badges/BadgeVisibility.js"}}
+{{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Badge Personalizado
+## Customized badges
 
-Si has leído la [documentación sobre cómo sobreescribir](/customization/overrides/) pero no te sientes seguro de como hacerlo, aquí hay un ejemplo de como cambiar la posición del badge.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, este ejemplo no es común.
-
-{{"demo": "pages/demos/badges/CustomizedBadge.js"}}
+{{"demo": "pages/components/badges/CustomizedBadges.js"}}

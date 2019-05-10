@@ -1,23 +1,23 @@
 # @material-ui/styles
 
-<p class="description">即使您没有使用我们的组件, 您也可以利用我们的样式解决方案。</p>
+<p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
 
-Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见, **我们向用户公开我们的样式解决方案 **。 你可以使用它，但是你不需要这样做。 该样式解决方案可[与所有其他主要解决方案](/guides/interoperability/)互操作
+Material-UI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
 
-## Material-UI 的样式解决方案
+## Why use Material-UI's styling solution?
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited. We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style). 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
 
 - [统一的样式语言](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [将 SCSS（Sass）转换为 CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-Material-UI's styling solution is inspired by many other styling libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
 - 💅你可以期待 [与样式组件相同的优势](https://www.styled-components.com/docs/basics#motivation)。
 - 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
-- 🧩 It's extensible via a [plugins](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
-- ⚡️它的核心使用 [JSS](https://github.com/cssinjs/jss)。 It's a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦小于 [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles)。
+- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
+- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
+- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
 
 ## 安装
 
@@ -33,7 +33,7 @@ yarn add @material-ui/styles
 
 ## 入门
 
-我们实现了3中不同的API。 它们都具有相同的底层逻辑。
+We provide 3 different APIs to generate and apply styles, however they all share the same underlying logic.
 
 ### Hook API
 
@@ -60,9 +60,11 @@ export default function Hook() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/Hook.js"}}
+{{"demo": "pages/styles/basics/Hook.js"}}
 
 ### Styled components API
+
+Note: this only applies to the calling syntax – style definitions still use a JSS object. You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
 
 ```jsx
 import React from 'react';
@@ -84,7 +86,7 @@ export default function StyledComponents() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/StyledComponents.js"}}
+{{"demo": "pages/styles/basics/StyledComponents.js"}}
 
 ### Higher-order component API
 
@@ -118,11 +120,11 @@ HigherOrderComponent.propTypes = {
 export default withStyles(styles)(HigherOrderComponent);
 ```
 
-{{"demo": "pages/css-in-js/basics/HigherOrderComponent.js"}}
+{{"demo": "pages/styles/basics/HigherOrderComponent.js"}}
 
 ## Nesting selectors
 
-You can nest selectors to target elements inside the current class or component. The following example is powered by the Hook API, it works the same way with the other APIs.
+You can nest selectors to target elements inside the current class or component. The following example uses the Hook API, but it works the same way with the other APIs.
 
 ```js
 const useStyles = makeStyles({
@@ -139,18 +141,18 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/css-in-js/basics/NestedStylesHook.js"}}
+{{"demo": "pages/styles/basics/NestedStylesHook.js"}}
 
 ## 适应基于道具
 
-您可以将函数（“插值”）传递给样式属性，以根据其道具对其进行调整。 The function can be provided at the style rule level or at the CSS property level:
+You can pass a function to `makeStyles` ("interpolation") in order to adapt the generated value based on the component's props. The function can be provided at the style rule level, or at the CSS property level:
 
 ```jsx
 const useStyles = makeStyles({
   // style rule
   foo: props => ({
     backgroundColor: props.backgroundColor,
-  },
+  }),
   bar: {
     // CSS property
     color: props => props.color,
@@ -158,8 +160,9 @@ const useStyles = makeStyles({
 });
 
 function MyComponent() {
+  // Simulated props for the purpose of the example
   const props = { backgroundColor: 'black', color: 'white' };
-  // It injects the props as the first argument of useStyles();
+  // Pass the props as the first argument of useStyles()
   const classes = useStyles(props);
 
   return <div className={`${classes.foo} ${classes.bar}`} />
@@ -168,17 +171,17 @@ function MyComponent() {
 
 此按钮组件具有更改其颜色的颜色属性：
 
-### 适应 hook API
+### Adapting the hook API
 
-{{"demo": "pages/css-in-js/basics/AdaptingHook.js", "react":"next"}}
+{{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
 
-### 适应 styled components API
+### Adapting the styled components API
 
-{{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js"}}
+{{"demo": "pages/styles/basics/AdaptingStyledComponents.js"}}
 
-### 适应 higher-order component API
+### Adapting the higher-order component API
 
-{{"demo": "pages/css-in-js/basics/AdaptingHOC.js"}}
+{{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
 ## Stress test
 
@@ -193,4 +196,4 @@ const useStyles = makeStyles(theme => ({
 }));
 ```
 
-{{"demo": "pages/css-in-js/basics/StressTest.js"}}
+{{"demo": "pages/styles/basics/StressTest.js"}}

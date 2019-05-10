@@ -2,6 +2,7 @@
 title: Portal React-Komponente
 components: Portal
 ---
+
 # Portal
 
 <p class="description">Die Portalkomponente rendert ihre untergeordneten Elemente in eine neue "Unterstruktur" außerhalb der aktuellen Komponentenhierarchie.</p>
@@ -12,4 +13,4 @@ Die Komponente wird intern von den Komponenten [`Modal`](/utils/modal/) und [`Po
 
 ## Einfaches Portal
 
-{{"demo": "pages/utils/portal/SimplePortal.js"}}
+{{"demo": "pages/components/portal/SimplePortal.js"}}

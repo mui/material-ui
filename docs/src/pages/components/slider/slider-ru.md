@@ -2,6 +2,7 @@
 title: Slider React component
 components: Slider
 ---
+
 # Slider
 
 <p class="description">Sliders allow users to make selections from a range of values.</p>
@@ -20,24 +21,30 @@ Sliders reflect the current state of the settings they control.
 
 ## Simple slider
 
-{{"demo": "pages/lab/slider/SimpleSlider.js"}}
+{{"demo": "pages/components/slider/SimpleSlider.js"}}
 
 ## Slider with steps
 
-{{"demo": "pages/lab/slider/StepSlider.js"}}
+{{"demo": "pages/components/slider/StepSlider.js"}}
 
 ## Disabled slider
 
-{{"demo": "pages/lab/slider/DisabledSlider.js"}}
+{{"demo": "pages/components/slider/DisabledSlider.js"}}
 
 ## Vertical slider
 
-{{"demo": "pages/lab/slider/VerticalSlider.js"}}
+{{"demo": "pages/components/slider/VerticalSlider.js"}}
+
+## Customized sliders
+
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## Custom thumb
 
-{{"demo": "pages/lab/slider/CustomIconSlider.js"}}
+{{"demo": "pages/components/slider/CustomIconSlider.js"}}
 
 ## Пользовательский reducer значения
 
-{{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}
+{{"demo": "pages/components/slider/CustomValueReducerSlider.js"}}

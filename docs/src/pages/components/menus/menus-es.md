@@ -2,11 +2,12 @@
 title: Componente React Menú
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
+
 # Menús
 
 <p class="description">Los menús despliegan una lista de opciones en superficies temporales.</p>
 
-Un [Menú](https://material.io/design/components/menus.html) despliega una lista de opciones en una superficie temporal. Aparecen cuando los usuarios interactúan con un botón, acción u otro control.
+A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
 ## Menú Simple
 
@@ -16,13 +17,13 @@ Elegir una opción debiera inmediatamente confirmar la opción y cerrar el menú
 
 **Desambiguación**: En contraste con los menús simples, los diálogos simples pueden presentar detalles adicionales a las opciones disponibles para un ítem de lista o proveer acciones de navegación u ortogonales relacionadas a la tarea primaria. Aunque pueden desplegar el mismo contenido, los menús simples son preferidos sobre los diálogos simples porque los menú simples son menos perjudiciales para el contexto actual del usuario.
 
-{{"demo": "pages/demos/menus/SimpleMenu.js"}}
+{{"demo": "pages/components/menus/SimpleMenu.js"}}
 
 ## Menús seleccionados
 
-Si son usados para selección de elementos, cuando se abren, los menús simples intentan alinear verticalmente el elemento de menú seleccionado actualmente con el elemento ancla. El elemento de menú actualmente seleccionado se establece usando la propiedad `selected` (de [ListItem](/api/list-item/)).
+If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element, and the initial focus will be placed on the selected menu item. El elemento de menú actualmente seleccionado se establece usando la propiedad `selected` (de [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus or the vertical positioning of the menu, set the `variant` property to `menu`.
 
-{{"demo": "pages/demos/menus/SimpleListMenu.js"}}
+{{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
 ## Composición de MenuList
 
@@ -30,15 +31,13 @@ El componente `Menu` usa el componente `Popover` internamente. Sin embargo, es p
 
 La responsabilidad principal del componente `MenuList` es manejar el foco.
 
-{{"demo": "pages/demos/menus/MenuListComposition.js"}}
+{{"demo": "pages/components/menus/MenuListComposition.js"}}
 
-## MenuItem personalizado
+## Customized menus
 
-Si has estado leyendo la [página de documentación de sobreescritura](/customization/overrides/) pero aún no te sientes seguro, aquí hay un ejemplo de cómo puedes personalizar el `MenuItem`.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, este ejemplo no es común.
-
-{{"demo": "pages/demos/menus/ListItemComposition.js"}}
+{{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
 El `MenuItem` es una envoltura alrededor de `ListItem` con algunos estilos adicionales. Puedes usar las mismas características de composición con el componente `MenuItem`:
 
@@ -46,19 +45,19 @@ El `MenuItem` es una envoltura alrededor de `ListItem` con algunos estilos adici
 
 Si el alto de un menú previene que todos los elementos sean mostrados, puede hacer desplazamiento internamente.
 
-{{"demo": "pages/demos/menus/LongMenu.js"}}
+{{"demo": "pages/components/menus/LongMenu.js"}}
 
 ## Limitaciones
 
 Existe un [bug de flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) que previene el funcionamiento de `text-overflow: ellipsis` en un diseño de flexbox. Puede usar el componente `Typography` con `noWrap` para solucionar este problema:
 
-{{"demo": "pages/demos/menus/TypographyMenu.js"}}
+{{"demo": "pages/components/menus/TypographyMenu.js"}}
 
-## Cambiar transición
+## Change transition
 
 Usar una transición diferente.
 
-{{"demo": "pages/demos/menus/FadeMenu.js"}}
+{{"demo": "pages/components/menus/FadeMenu.js"}}
 
 ## Proyectos relacionados
 
@@ -68,4 +67,4 @@ Para usos más avanzados tal vez puedas aprovercharte de:
 
 Existe un paquete de terceros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que se encarga del estado del menú en la mayoría de los casos.
 
-{{"demo": "pages/demos/menus/MenuPopupState.js"}}
+{{"demo": "pages/components/menus/MenuPopupState.js"}}

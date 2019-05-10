@@ -2,6 +2,7 @@
 title: Фишки, компонент React
 components: Chip
 ---
+
 # Фишки
 
 <p class="description">Фишки - это компактные элементы, представляющие входные данные, атрибут или действие.</p>
@@ -17,20 +18,20 @@ components: Chip
 - Фишки с заданным свойством `onClick` могут изменять внешний вид при фокусировке, наведении курсора и клике.
 - Фишки с определенным свойством `onDelete` будут отображать значок удаления который меняет внешний вид при наведении курсора.
 
-{{"demo": "pages/demos/chips/Chips.js"}}
+{{"demo": "pages/components/chips/Chips.js"}}
 
 ### Контурные фишки
 
 Контурные фишки предлагают альтернативный стиль.
 
-{{"demo": "pages/demos/chips/OutlinedChips.js"}}
+{{"demo": "pages/components/chips/OutlinedChips.js"}}
 
 ## Массив фишек
 
 Пример рендеринга нескольких фишек из массива значений. Удаление фишки удаляет ее из массива. Обратите внимание, что поскольку свойство `onClick` не определено, фишка может быть сфокусирована, но не получает глубины при щелчке или касании.
 
-{{"demo": "pages/demos/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js"}}
 
 ## Песочница
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

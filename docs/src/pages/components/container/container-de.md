@@ -1,7 +1,8 @@
 ---
-title: Container React component
+title: Container React Komponente
 components: Container
 ---
+
 # Container
 
 <p class="description">Der Container zentriert Ihren Inhalt horizontal. Es ist das grundlegendste Layoutelement.</p>
@@ -16,7 +17,7 @@ Eine Breite des Fluidcontainers wird durch den Wert `maxWidth` begrenzt.
 <Container maxWidth="sm">
 ```
 
-{{"demo": "pages/layout/container/SimpleContainer.js", "iframe": true}}
+{{"demo": "pages/components/container/SimpleContainer.js", "iframe": true}}
 
 ## Fixiert
 
@@ -26,4 +27,4 @@ Wenn Sie es vorziehen, für einen festen Satz von Größen zu entwerfen, anstatt
 <Container fixed>
 ```
 
-{{"demo": "pages/layout/container/FixedContainer.js", "iframe": true}}
+{{"demo": "pages/components/container/FixedContainer.js", "iframe": true}}

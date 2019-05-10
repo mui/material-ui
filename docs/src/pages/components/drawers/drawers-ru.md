@@ -2,6 +2,7 @@
 title: Панель, компонент React
 components: Drawer, SwipeableDrawer
 ---
+
 # Панель
 
 <p class="description">Навигационные панели предназначены для предоставления ссылок на различные части вашего приложения. Боковые панели содержат дополнительную информацию и закрепляются по левую или правую сторону окна браузера.</p>
@@ -16,7 +17,7 @@ components: Drawer, SwipeableDrawer
 
 Также, панель может быть скрыта нажатем на фон или на клавишу Esc. При выборе пункта меню панель закрывается меняя значение свойства `open`.
 
-{{"demo": "pages/demos/drawers/TemporaryDrawer.js"}}
+{{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
 ## Скользящая скрытая панель
 
@@ -24,7 +25,7 @@ components: Drawer, SwipeableDrawer
 
 Этот комонент в сжатом виде добавляет 2 kB к загрузке. Некоторые бюджетные мобильные устройства не смогут отвечать на прикосновения с частотой 60 кадров в секунду. Используйте свойство `disableBackdropTransition` чтобы исправить ситуацию.
 
-{{"demo": "pages/demos/drawers/SwipeableTemporaryDrawer.js"}}
+{{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
 Данный вебсайт использует следующие приемы для улучшения качества взаимодействия с пользователем данного компонента: - iOS является мощным устройством. Поэтому использование backdrop transition не вызывает пропуска кадров. Производительность достаточно хороша. - iOS предоставляет скользящий жест для возврата, который мешает использованию панелей. Данный жест должен быть отключен.
 
@@ -38,7 +39,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 Адапивный дизайн может быть достигнут использованием компонента `Hidden`. `cкрытая` панель может быть показана для экранов с небольшим разрешением, тогда как `вполне видимая` панель будет показана на широких экранах.
 
-{{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}
+{{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 
 ## Стойкая панель
 
@@ -48,9 +49,9 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 Исползование стойких панелей имеет смысл на разрешениях больше чем на мобильных устройствах. Не рекомендуется их использоватся в приложениях с элементами расположенными на нескольких уровнях, где необходимо перемещатся между ними.
 
-{{"demo": "pages/demos/drawers/PersistentDrawerLeft.js", "iframe": true}}
+{{"demo": "pages/components/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
-{{"demo": "pages/demos/drawers/PersistentDrawerRight.js", "iframe": true}}
+{{"demo": "pages/components/drawers/PersistentDrawerRight.js", "iframe": true}}
 
 ## Панель с состоянием минимизации
 
@@ -58,7 +59,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 Панель с состоянием минимизации рекомендуется использовать в приложениях, где необходимо предоставить быстрый способ обхода вместе с содержимым.
 
-{{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}
+{{"demo": "pages/components/drawers/MiniDrawer.js", "iframe": true}}
 
 ## Вполне видимая панель
 
@@ -70,12 +71,12 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 Исползуется в приложениях, которые сфокусированны на предоставлении информации и используют иерархию элементов слева направо.
 
-{{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
+{{"demo": "pages/components/drawers/PermanentDrawerLeft.js", "iframe": true}}
 
-{{"demo": "pages/demos/drawers/PermanentDrawerRight.js", "iframe": true}}
+{{"demo": "pages/components/drawers/PermanentDrawerRight.js", "iframe": true}}
 
 ### Панель, скрытая за основной полосой
 
 Используется в приложениях сфокусированных на эффективной работе и требуют сбалансированного заполнения экрана.
 
-{{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}
+{{"demo": "pages/components/drawers/ClippedDrawer.js", "iframe": true}}

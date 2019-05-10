@@ -14,7 +14,7 @@ Wenn Sie mehr darüber erfahren möchten, wie das Theme zusammengestellt wird, w
 
 ## @material-ui/core/styles vs @material-ui/styles
 
-Material-UI-Stile werden von dem npm paket [ @ material-ui/styles ](/css-in-js/basics/)unterstützt. Es ist eine Styling-Lösung für React. Diese Lösung ist [ isoliert ](https://bundlephobia.com/result?p=@material-ui/styles) und hat keine Kenntnis des Standard-Designs der Material-UI. Um die Notwendigkeit, ein Theme **systematisch** in den React-Kontext einzufügen, nicht mehr zu benötigen, wickeln wir die Stilmodule(`makeStyles`, `withStyles` und `styled`) mit dem Standard-Material-UI-Design:
+Material-UI-Stile werden von dem npm paket [ @ material-ui/styles ](/styles/basics/)unterstützt. Es ist eine Styling-Lösung für React. Diese Lösung ist [ isoliert ](https://bundlephobia.com/result?p=@material-ui/styles) und hat keine Kenntnis des Standard-Designs der Material-UI. Um die Notwendigkeit, ein Theme **systematisch** in den React-Kontext einzufügen, nicht mehr zu benötigen, wickeln wir die Stilmodule(`makeStyles`, `withStyles` und `styled`) mit dem Standard-Material-UI-Design:
 
 - `@material-ui/core/styles/makeStyles` wickelt `@material-ui/styles/makeStyles`.
 - `@material-ui/core/styles/withStyles` wickelt `@material-ui/styles/withStyles`.

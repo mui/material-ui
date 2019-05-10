@@ -1,6 +1,7 @@
 ---
 components: Icon, SvgIcon
 ---
+
 # Иконки
 
 <p class="description">Руководство и рекомендации по использованию иконок в Material-UI.</p>
@@ -15,9 +16,9 @@ Material-UI предоставляет два компонента для ото
 
 Полученный значок можно либо использовать сразу, либо включить его в качестве дочернего в другие компоненты Material-UI, которые используют иконки. По умолчанию иконка наследует текущий цвет текста. При желании вы можете установить цвет иконки с помощью одного из свойств цвета темы: `primary`, `secondary`, `action`, `error` или `disabled`.
 
-{{"demo": "pages/style/icons/SvgIcons.js"}}
+{{"demo": "pages/components/icons/SvgIcons.js"}}
 
-### SVG Material icons
+### SVG-иконки Material
 
 Составные части для создания собственных иконок – это интересно, но как насчет готовых вариантов? Мы предоставляем отдельный npm-пакет [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), который содержит более 1000 официальных [иконок Material](https://material.io/tools/icons/?style=baseline), преобразованных в компоненты `SvgIcon`.
 
@@ -45,7 +46,7 @@ Material-UI предоставляет два компонента для ото
 - [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) представлена как `@material-ui/icons/FourK`
 - [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) представлена как `@material-ui/icons/FourK`
 
-{{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
+{{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 #### Импорт
 
@@ -73,7 +74,7 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 Компонент `Icon` отображает иконку из любого иконочного шрифта с поддержкой лигатур. Предварительно необходимо включить в проект шрифт, такой как [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web), с помощью, например, Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Icon` корректно установит имя класса для иконочного шрифта Material. Для прочих шрифтов необходимо предоставить имя класса с помощью свойства `className` компонента Icon.
@@ -88,15 +89,15 @@ import Icon from '@material-ui/core/Icon';
 
 По умолчанию иконка наследует текущий цвет текста. При желании вы можете установить цвет иконки с помощью одного из свойств цвета темы: `primary`, `secondary`, `action`, `error` или `disabled`.
 
-### Font Material icons
+### Шрифтовые иконки Material
 
-{{"demo": "pages/style/icons/Icons.js"}}
+{{"demo": "pages/components/icons/Icons.js"}}
 
 ### Font Awesome
 
 [Font Awesome](https://fontawesome.com/icons) можно использовать с компонентом `Icon` следующим образом:
 
-{{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
 ## Шрифт или SVG. Какой подход использовать?
 
@@ -106,7 +107,7 @@ Both approaches work fine, however, there are some subtle differences, especiall
 
 ## Доступность
 
-Icons can convey all sorts of meaningful information, so it’s important that they reach the largest amount of people possible. Существует два варианта использования, которые необходимо учесть: - **Декоративные иконки** используются только для визуального подкрепления или брендинга. Если удалить их со страницы, пользователи всё равно смогут её использовать, им всё будет понятно. - **Семантические иконки** – это те, которые используются для передачи смысла, а не только для украшения. В данную группу входят иконки без текста, используемые в качестве интерактивных элементов управления – кнопки, элементы форм, переключатели, и так далее.
+Иконки могут передавать всевозможную значимую информацию, поэтому важно, чтобы они охватывали максимально возможное количество людей. Существует два варианта использования, которые необходимо учесть: - **Декоративные иконки** используются только для визуального подкрепления или брендинга. Если удалить их со страницы, пользователи всё равно смогут её использовать, им всё будет понятно. - **Семантические иконки** – это те, которые используются для передачи смысла, а не только для украшения. В данную группу входят иконки без текста, используемые в качестве интерактивных элементов управления – кнопки, элементы форм, переключатели, и так далее.
 
 ### Декоративные SVG-иконки
 

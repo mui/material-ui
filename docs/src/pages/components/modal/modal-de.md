@@ -2,6 +2,7 @@
 title: Modal React-Komponente
 components: Modal
 ---
+
 # Modal
 
 <p class="description">Die modale Komponente bietet eine solide Grundlage für das Erstellen von Dialogen, Popovers, Leuchtkästen oder anderen Elementen.</p>
@@ -13,19 +14,20 @@ Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponen
 - Es deaktiviert das Blättern des Seiteninhalts, während es geöffnet ist.
 - ♿️ Der Fokus wird richtig verwaltet. Wechseln des Fokus zum modalen Inhalt und diesen halten belassen, bis der Modal geschlossen ist.
 - ♿️ Fügt die entsprechenden ARIA-Rollen automatisch hinzu.
+- 
 
 > **Terminologieanmerkung**. Der Begriff "modal" bedeutet manchmal "Dialog", aber das ist eine Fehlbezeichnung. Ein modales Fenster beschreibt Teile einer Benutzeroberfläche. Ein Element wird als modal betrachtet, wenn es [die Interaktion mit dem Rest der Anwendung blockiert](https://en.wikipedia.org/wiki/Modal_window).
 
-Wenn Sie ein modales Dialogfeld erstellen, möchten Sie wahrscheinlich die [Dialog-](/demos/dialogs/) Komponente verwenden, anstatt direkt ein Modal zu verwenden. Modal ist ein untergeordnetes Konstrukt, das von den folgenden Komponenten genutzt wird:
+Wenn Sie ein modales Dialogfeld erstellen, möchten Sie wahrscheinlich die [Dialog-](/components/dialogs/) Komponente verwenden, anstatt direkt ein Modal zu verwenden. Modal ist ein untergeordnetes Konstrukt, das von den folgenden Komponenten genutzt wird:
 
-- [Dialog](/demos/dialogs/)
-- [Drawer](/demos/drawers/)
-- [Menu](/demos/menus/)
-- [Popover](/utils/popover/)
+- [Dialog](/components/dialogs/)
+- [Drawer](/components/drawers/)
+- [Menu](/components/menus/)
+- [Popover](/components/popover/)
 
 ## Einfaches Modal
 
-{{"demo": "pages/utils/modal/SimpleModal.js"}}
+{{"demo": "pages/components/modal/SimpleModal.js"}}
 
 ## Performance
 
@@ -38,9 +40,9 @@ Das Erstellen von React-Elementen ist jedoch ebenfalls mit Kosten verbunden. Bet
   <Table>
     <TableHead>
       <TableRow>
-        <TableCell>Dessert (100g serving)</TableCell>
-        <TableCell align="right">Calories</TableCell>
-        <TableCell align="right">Fat&nbsp;(g)</TableCell>
+        <TableCell>Nachtisch (100g Portion)</TableCell>
+        <TableCell align="right">Kalorien</TableCell>
+        <TableCell align="right">Fettt&nbsp;(g)</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>

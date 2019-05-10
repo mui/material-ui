@@ -16,28 +16,22 @@ npm install @material-ui/core@next
 yarn add @material-ui/core@next
 ```
 
-Beachten Sie, dass [react](https://www.npmjs.com/package/react) >= 16.3.0 und [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 Abhängigkeiten in Ihrem Projekt sein müssen.
+Beachten Sie, dass [react](https://www.npmjs.com/package/react) >= 16.8.0 und [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 Abhängigkeiten in Ihrem Projekt sein müssen.
 
 ## Die Roboto Schrift
 
-Material-UI wurde mit Blick auf die [Roboto](https://fonts.google.com/specimen/Roboto)-Schrift designed. Bitte folgen Sie daher [diesen Anweisungen](/style/typography/#general). Zum Beispiel über Google Web Fonts:
+Material-UI wurde mit Blick auf die [Roboto](https://fonts.google.com/specimen/Roboto)-Schrift designed. So be sure to follow [these instructions]/components/typography/#general). Zum Beispiel über Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-```
-
-Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
-
-```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
 ## Schriftarten-Icons
 
-Um die Font `Symbol` Komponente zu verwenden, müssen Sie zuerst die [Material Symbole Schriftart](https://material.io/tools/icons/) hinzufügen. Hier sind einige [Anweisungen](/style/icons/#font-icons) wie das geht. Zum Beispiel über Google Web Fonts:
+Um die Font `Symbol` Komponente zu verwenden, müssen Sie zuerst die [Material Symbole Schriftart](https://material.io/tools/icons/) hinzufügen. Here are [some instructions]/components/icons/#font-icons) on how to do so. Zum Beispiel über Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
@@ -48,7 +42,7 @@ Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
 
 ## SVG Symbole
 
-Um vorgefertigte SVG-Materialsymbole zu verwenden, wie sie in den [Demos der Komponente](/demos/app-bar/) enthalten sind, müssen Sie zuerst die Symbole [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) Paket installieren:
+In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
 
 ```sh
 // mit npm

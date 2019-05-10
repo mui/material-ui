@@ -2,6 +2,7 @@
 title: Text Field React-Komponente
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
+
 # Text Felder (Text Fields)
 
 <p class="description">Text Felder lassen Nutzer Text eingeben und bearbeiten.</p>
@@ -12,7 +13,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält.
 
-{{"demo": "pages/demos/text-fields/TextFields.js"}}
+{{"demo": "pages/components/text-fields/TextFields.js"}}
 
 > **Hinweis:** Diese Version des Textfelds ist nicht mehr in der Material Design-Dokumentation dokumentiert.
 
@@ -20,13 +21,13 @@ Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement,
 
 `TextField` unterstützt Umrandungen.
 
-{{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
+{{"demo": "pages/components/text-fields/OutlinedTextFields.js"}}
 
 ## Gefüllt
 
 `TextField` unterstützt Füllung.
 
-{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
+{{"demo": "pages/components/text-fields/FilledTextFields.js"}}
 
 ## Komponenten
 
@@ -34,49 +35,47 @@ Das `Textfeld` besteht aus kleineren Komponenten ( [`FormControl`](/api/form-con
 
 Möglicherweise haben Sie auch festgestellt, dass einige native HTML-Eingabeeigenschaften in der Komponente `TextField` fehlen. Das war Absicht. Die Komponente kümmert sich um die am häufigsten verwendeten Eigenschaften. Anschließend muss der Benutzer die darunter liegende Komponente verwenden, die in der folgenden Demo gezeigt wird. Sie können jedoch `inputProps` (und `InputProps`, `InputLabelProps` Eigenschaften) verwenden, wenn Sie einiges an Boilerplate vermeiden möchten.
 
-{{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
+{{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
 ## Eingaben
 
-{{"demo": "pages/demos/text-fields/Inputs.js"}}
+{{"demo": "pages/components/text-fields/Inputs.js"}}
 
 ## Benutzerdefinierte Eingabe
 
-Wenn du die [Überschreibungs Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du die Farbe der Eingabe ändern kannst.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
-
-{{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
+{{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
 Die Anpassung endet nicht bei CSS. Sie können Komposition verwenden, um benutzerdefinierte Komponenten zu erstellen und Ihrer App ein einzigartiges Gefühl zu verleihen. Nachfolgend ein Beispiel mit der [`InputBase`](/api/input-base/) Komponente, die von Google Maps inspiriert wurde.
 
-{{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
+{{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
 
 ## Eingabeverzierungen
 
 `Input` ermöglicht die Bereitstellung von `InputAdornment`. Diese können verwendet werden, um einer Eingabe ein Präfix, ein Suffix oder eine Aktion hinzuzufügen. Sie können beispielsweise eine Symbolschaltfläche verwenden, um das Kennwort ein- oder auszublenden.
 
-{{"demo": "pages/demos/text-fields/InputAdornments.js"}}
+{{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
 ### Mit Symbol
 
 Symbole können vorangestellt oder angehängt werden.
 
-{{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
+{{"demo": "pages/components/text-fields/InputWithIcon.js"}}
 
 ### Ausgefüllte Eingabeverzierungen
 
-{{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
+{{"demo": "pages/components/text-fields/FilledInputAdornments.js"}}
 
 ### Umrahmte Eingabeverzierungen
 
-{{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
+{{"demo": "pages/components/text-fields/OutlinedInputAdornments.js"}}
 
 ## Layout
 
 `TextField`, `FormControl` ermöglicht die Angabe von `Abständen (Margin)`, um den vertikalen Abstand der Eingaben zu ändern. Bei Verwendung von `none` (Standard) werden keine Ränder für das `FormControl` angewendet, wohingegen `dense (dicht)` und `normal` sowie andere Stile angegeben werden können, um die Spezifikation zu erfüllen.
 
-{{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
+{{"demo": "pages/components/text-fields/TextFieldMargins.js"}}
 
 ## Einschränkungen
 
@@ -102,7 +101,7 @@ Sie können Bibliotheken von Drittanbietern verwenden, um eine Eingabe zu format
 
 Die folgende Demo verwendet die Bibliotheken [react-text-mask](https://github.com/text-mask/text-mask) und [react-number-format](https://github.com/s-yadav/react-number-format).
 
-{{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
+{{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
 ## Barrierefreiheit
 
@@ -134,4 +133,3 @@ Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Eine Reihe von Wrapper-Komponenten, die die Verwendung der Material-Benutzeroberfläche mit Redux-Formular erleichtern.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindungen zur Verwendung von Material-UI mit formik.
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Eine Reihe von Wrapper-Komponenten, die die Verwendung der Material-Benutzeroberfläche mit Final Form erleichtern.
-- [Uniformen-Material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Material-UI-Wrapper-Komponenten für Uniformen, eine Reihe von React-Bibliotheken zum Erstellen von Formularen.

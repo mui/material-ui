@@ -1,7 +1,8 @@
 ---
-components: Typography
+components: Оформление текста
 ---
-# Typography
+
+# Оформление текста
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
@@ -9,21 +10,13 @@ Too many type sizes and styles at once can spoil any layout. A [typographic scal
 
 ## General
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/themes/#typography).
+The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/typography/).
 
 ## Roboto Font CDN
 
-Shown below is a sample link markup used to load the Roboto font from a CDN.
-
-*HTML*
+Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-```
-
-*JSX*
-
-```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
@@ -45,13 +38,13 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 
 ## Component
 
-{{"demo": "pages/style/typography/Types.js"}}
+{{"demo": "pages/components/typography/Types.js"}}
 
 ## Theme
 
 В некоторых ситуациях вы не сможете использовать компонент `Typography`. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
 
-{{"demo": "pages/style/typography/TypographyTheme.js"}}
+{{"demo": "pages/components/typography/TypographyTheme.js"}}
 
 ## Изменение семантического элемента
 
@@ -66,7 +59,7 @@ The Typography component uses the `variantMapping` property to associate a UI va
 </Typography>
 ```
 
-- You can change the mapping [globally using the theme](/customization/themes/#properties):
+- You can change the mapping [globally using the theme](/customization/globals/#default-props):
 
 ```js
 const theme = createMuiTheme({

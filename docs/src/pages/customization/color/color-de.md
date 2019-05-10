@@ -10,7 +10,7 @@ Das Material Design [Farbsystem](https://material.io/design/color/) kann verwend
 
 #### "Palette"
 
-Eine Palette ist eine Sammlung von Farben, d.h. Farbtönen und deren Nuancen. Die Material-UI stellt alle Farben aus den Richtlinien für Material Design zur Verfügung. [Diese Farbpalette](#color-palette) wurden entwickelt, um harmonisch miteinander zu arbeiten.
+Eine Palette ist eine Sammlung von Farben, d.h. Farbtönen und deren Nuancen. Die Material-UI stellt alle Farben aus den Richtlinien für Material Design zur Verfügung. [ Diese Farbpalette ](#color-palette) wurde mit Farben gestaltet, die harmonisch zusammenarbeiten.
 
 #### "Farbton" & "Schatten"
 
@@ -41,13 +41,13 @@ import HUE from '@material-ui/core/colors/HUE';
 const color = HUE[SHADE];
 ```
 
-{{"demo": "pages/style/color/Color.js", "hideHeader": true}}
+{{"demo": "pages/customization/color/Color.js", "hideHeader": true}}
 
 ## Farbwerkzeug
 
 Um ein [ material.io/design/color ](https://material.io/design/color/) Farbschema mittels der Material-UI Dokumentation zu testen, wählen Sie die Farben mittels der Palette und der Regler weiter unten aus. Alternativ können Sie Hex-Werte in die Felder Primärer und Sekundärer Text eingeben.
 
-{{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
+{{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
 Die im Farbmuster angezeigte Ausgabe kann direkt in eine [`createMuiTheme()`](/customization/themes/#createmuitheme-options-theme) Funktion (zur Verwendung mit [` MuiThemeProvider`](/customization/themes/#theme-provider)) eingefügt werden:
 
@@ -65,7 +65,7 @@ const theme = createMuiTheme({
 });
 ```
 
-Nur die `Haupttöne` müssen bereitgestellt werden (es sei denn, Sie möchten `light`, `dark` oder `contrastText` weiter anpassen), da die anderen Farben von `createMuiTheme()` berechnet werden, wie in der Sektion [ Designanpassung ](/customization/themes/#palette) beschrieben.
+Nur die `Haupttöne` müssen bereitgestellt werden (es sei denn, Sie möchten `light`, `dark` oder `contrastText` weiter anpassen), da die anderen Farben von `createMuiTheme()` berechnet werden, wie in der Sektion [ Designanpassung ](/customization/palette/) beschrieben.
 
 Wenn Sie die standardmäßigen primären und / oder sekundären Farbtöne verwenden, wird durch das Bereitstellen von dem Farbobjekt die entsprechenden Farbtöne der Materialfarbe für main, light und dark von `createMuiTheme()` berechnet.
 

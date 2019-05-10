@@ -2,6 +2,7 @@
 title: Snackbar React-Komponente
 components: Snackbar, SnackbarContent
 ---
+
 # Snackbars
 
 <p class="description">Snackbars liefern kurze Nachrichten zu App-Prozessen - normalerweise am unteren Bildschirmrand</p>
@@ -18,53 +19,51 @@ Es kann immer nur eine Snackbar angezeigt werden.
 
 Eine einfache Snackbar, die das Verhalten der Snackbar von Google Keep reproduzieren soll.
 
-{{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
+{{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Benutzerdefinierte Snackbars
+## Customized snackbars
 
-Wenn du die [Überschreibungs Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du das Design der Snackbar anpassen könntest.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
-
-{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
+{{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
 ## Positioniert
 
 Es kann Situationen geben, in denen die Anordnung der Snackbar flexibler sein muss.
 
-{{"demo": "pages/demos/snackbars/PositionedSnackbar.js"}}
+{{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 
 ## Nachrichtenlänge
 
 Einige Snackbars mit unterschiedlicher Nachrichtenlänge.
 
-{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
+{{"demo": "pages/components/snackbars/LongTextSnackbar.js"}}
 
 ## Übergänge
 
 ### Aufeinanderfolgende Snackbars
 
-When multiple snackbar updates are necessary, they should appear one at a time.
+Wenn mehrere Snackbar-Aktualisierungen erforderlich sind, sollten diese einzeln und nacheinander angezeigt werden.
 
-{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
+{{"demo": "pages/components/snackbars/ConsecutiveSnackbars.js"}}
 
-### Snackbars and floating action buttons (FABs)
+### Snackbars und schwebende Aktionsschaltflächen (FABs)
 
-Snackbars should appear above FABs (on mobile).
+Snackbars sollten (auf dem Handy) über FABs angezeigt werden.
 
-{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
 
 ### Übergang ändern
 
-[Grow](/utils/transitions/#grow) is the default transition but you can use a different one.
+[Grow](/components/transitions/#grow) ist der Standardübergang, Sie können jedoch einen anderen verwenden.
 
-{{"demo": "pages/demos/snackbars/TransitionsSnackbar.js"}}
+{{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
 
-### Control Slide direction
+### Schieberegler Richtung
 
-You can change the direction of the [Slide](/utils/transitions/#slide) transition.
+Sie können die Richtung des [Gleiten](/components/transitions/#slide) Übergangs ändern.
 
-{{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
+{{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
 ## Ergänzende Projekte
 
@@ -74,6 +73,6 @@ Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-Im folgenden Beispiel demonstrieren wir, wie man [notistack](https://github.com/iamhosseindhv/notistack) benutzt. Notistack macht es einfach, Snackbars anzuzeigen (damit Sie sich nicht mit dem Öffnen / Schließen-Status befassen müssen). It also enables you to stack them on top of one another (but discouraged by the specification).
+Im folgenden Beispiel demonstrieren wir, wie man [notistack](https://github.com/iamhosseindhv/notistack) benutzt. Notistack macht es einfach, Snackbars anzuzeigen (damit Sie sich nicht mit dem Öffnen / Schließen-Status befassen müssen). Außerdem können Sie sie übereinander stapeln (wird jedoch von der Spezifikation nicht empfohlen).
 
-{{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}

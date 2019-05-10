@@ -2,6 +2,7 @@
 title: Composant React pour les sélecteurs de date ou d'heure
 components: TextField
 ---
+
 # Les sélecteurs
 
 <p class="description">Les sélecteurs constituent un moyen simple de sélectionner une valeur unique dans un ensemble prédéterminé.</p>
@@ -17,33 +18,28 @@ components: TextField
 
 A native date picker example with `type="date"`.
 
-{{"demo": "pages/demos/pickers/DatePickers.js"}}
+{{"demo": "pages/components/pickers/DatePickers.js"}}
 
 ### Sélecteurs de date & temps
 
 Exemple de sélecteur de date natif avec `type = "datetime-local"`.
 
-{{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
+{{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
 ### Sélecteurs de temps
 
 Exemple de sélecteur de temps natif avec `type = "time"`.
 
-{{"demo": "pages/demos/pickers/TimePickers.js"}}
+{{"demo": "pages/components/pickers/TimePickers.js"}}
 
 ## Projets complémentaires
 
 Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des avantages suivants.
 
-### material-ui-pickers
+### @material-ui/pickers
 
-![stars](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
+![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-[Material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) fournit des sélecteurs de date et d'heure conformes à la spécification Material Design.
+[@material-ui/pickers](https://material-ui-pickers.dev/) provides date and time controls that follow the Material Design spec.
 
-{{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
-
-### Autres
-
-- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): time pickers.
-- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): date pickers and time pickers.
+{{"demo": "pages/components/pickers/MaterialUIPickers.js"}}

@@ -1,6 +1,7 @@
 ---
 components: CssBaseline
 ---
+
 # CSS 基线
 
 <p class="description">Material-UI 提供了一个 CssBaseline 组件, 用于启动一个优雅、一致且简单的基线。</p>
@@ -32,11 +33,11 @@ export default MyApp;
 - 删除所有浏览器中的边距。
 - 默认使用Material Design的背景颜色。 它使用 [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) 在标准设备上而在打印设备上使用白色背景。
 
-### Layout
+### 布局
 
 - `box-sizing` 在 `<html>` 元素上全局设置为 `border-box`。 每个元素 包括 `*:: before` 和 `*:: after` 被声明去继承这个属性，它确保元素的声明宽度永远不会超过padding或者border。
 
 ### 活版印刷
 
 - 字体抗锯齿功能可以更好地显示Roboto字体
-- 没有声明基础font-size在`<html>`上，但是假定是16px (浏览器的默认设置)。 您可以了解更多有关更改 `<html>` 默认字体大小的含义 [主题文档](/customization/themes/#typography-html-font-size) 页。
+- 没有声明基础font-size在`<html>`上，但是假定是16px (浏览器的默认设置)。 您可以了解更多有关更改 `<html>` 默认字体大小的含义 [主题文档](/customization/typography/#typography-html-font-size) 页。

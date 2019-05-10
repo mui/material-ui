@@ -19,7 +19,6 @@ Because the scope of problems Material-UI solves is limited, we try to play nice
 - [material-table](https://github.com/mbrn/material-table) Таблицы данных основанные на компоненте таблицы, с дополнительной функциональностью, такой как: поиск, фильтрация, сортировка и многое другое.
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and Material-UI.
 - [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers) A datepicker or timepicker in Material UI Next or can be imported as a clock or calendar component.
-- [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for Material-UI.
 - [material-ui-popup-state](https://github.com/jcoreio/material-ui-popup-state) Render props component that manages state for menus, popovers, and poppers, cutting down on boilerplate significantly.
 - [material-ui-rating](https://github.com/TeamWertarbyte/material-ui-rating) Rate something with style.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) Инструмент с функцией предварительного просмотра в реальном времени, который позволяет создавать темы для ваших Material-UI приложений, просто выбирая цвета.
@@ -37,7 +36,7 @@ Because the scope of problems Material-UI solves is limited, we try to play nice
 
 ## Complementary Projects
 
-- [downshift](https://github.com/paypal/downshift) Primitive to build simple, flexible, WAI-ARIA compliant enhanced input React components
+- [downshift](https://github.com/downshift-js/downshift) Primitive to build simple, flexible, WAI-ARIA compliant enhanced input React components
 - [react-admin](https://github.com/marmelab/react-admin) An admin framework combining material-ui with Redux, redux-form, redux-saga, and recompose
 - [react-autosuggest](https://github.com/moroshko/react-autosuggest) WAI-ARIA compliant React autosuggest component.
 - [react-final-form](https://github.com/final-form/react-final-form#material-ui-10) Subscription-based form state management for React.

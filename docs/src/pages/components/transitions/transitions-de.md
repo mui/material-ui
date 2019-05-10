@@ -2,6 +2,7 @@
 title: Übergang React Komponente
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
+
 # Übergänge
 
 <p class="description">Übergänge helfen, eine Oberfläche ausdrucksvoll und einfach zu benutzen zu gestalten.</p>
@@ -34,13 +35,13 @@ export default Main() {
 
 Klappt senkrecht vom oberen Rand des Kind-Elementes ausgehend auf. Das ` collapsedHeight` Property kann benutzt werden, um die minimale Höhe festzulegen, wenn nicht ausgeklappt.
 
-{{"demo": "pages/utils/transitions/SimpleCollapse.js"}}
+{{"demo": "pages/components/transitions/SimpleCollapse.js"}}
 
 ## Fade
 
 Blende von Transparent zu Undurchsichtig ein.
 
-{{"demo": "pages/utils/transitions/SimpleFade.js"}}
+{{"demo": "pages/components/transitions/SimpleFade.js"}}
 
 ## Grow
 
@@ -48,7 +49,7 @@ Erweitert sich von der Mitte des untergeordneten Elements nach außen, während 
 
 Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und bedingt die ` Timeout` Eigenschaft anpassen, um die Eintrittsgeschwindigkeit zu beeinflussen.
 
-{{"demo": "pages/utils/transitions/SimpleGrow.js"}}
+{{"demo": "pages/components/transitions/SimpleGrow.js"}}
 
 ## Slide
 
@@ -56,7 +57,7 @@ Gleitet vom Bildschirmrand ein. Die Eigenschaft `direction` steuert, von welchem
 
 Die `mountOnEnter` -Eigenschaft der Transition-Komponente verhindert, dass die untergeordnete Komponente gezeigt wird, bis `in` gleich `true` ist. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird. In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde.
 
-{{"demo": "pages/utils/transitions/SimpleSlide.js"}}
+{{"demo": "pages/components/transitions/SimpleSlide.js"}}
 
 ## Zoom
 
@@ -64,4 +65,4 @@ Erweitern sich von der Mitte des untergeordneten Elements nach außen.
 
 In diesem Beispiel veranschaulicht, wie der Eintritts animation verzögert wird.
 
-{{"demo": "pages/utils/transitions/SimpleZoom.js"}}
+{{"demo": "pages/components/transitions/SimpleZoom.js"}}

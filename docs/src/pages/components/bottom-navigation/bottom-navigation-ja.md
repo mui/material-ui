@@ -2,6 +2,7 @@
 title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation
 
 <p class="description">Bottom navigation bars allow movement between primary destinations in an app.</p>
@@ -12,10 +13,10 @@ components: BottomNavigation, BottomNavigationAction
 
 When there are only **three** actions, display both icons and text labels at all times.
 
-{{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
 
 ## Bottom Navigation with no label
 
 If there are **four** or **five** actions, display inactive views as icons only.
 
-{{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}

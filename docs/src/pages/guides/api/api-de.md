@@ -1,52 +1,52 @@
-# API Design Approach
+# API-Design-Ansatz
 
-<p class="description">Nós aprendemos bastante como o Material-UI é usado e o refatoramento da v1 permitiu-nos repensar completamente o componente de API.</p>
+<p class="description">Wir haben viel über die Verwendung von Material-UI gelernt, und durch das Umschreiben von Version 1 konnten wir die Komponenten-API vollständig überdenken.</p>
 
-> API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+> Das API-Design ist schwierig, weil man es einfach erscheinen lassen kann, aber es ist tatsächlich täuschend komplex ist, oder man macht die API einfach, aber die Umsetzung komplex.
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
-As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions. We are providing low-level components to maximize composition capabilities.
+Wie Sebastian Markbage [sagt](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html): Keine Abstraktion ist falschen Abstraktionen überlegen. Wir bieten Komponenten auf niedriger Ebene an, um die Kompositionsfähigkeiten zu maximieren.
 
 ## Komposition
 
-You may have noticed some inconsistency in the API regarding composing components. To provide some transparency, we have been using the following rules when designing the API:
+Möglicherweise haben Sie bei der Erstellung von Komponenten Inkonsistenzen in der API festgestellt. Um für mehr Transparenz zu sorgen, haben wir beim Entwurf der API die folgenden Regeln verwendet:
 
-1. Using the `children` property is the idiomatic way to do composition with React.
-2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations. In this case, providing explicit properties makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` property.
-3. API consistency matters.
+1. Verwenden der `children` Eigenschaft ist der idiomatische Weg, um mit React zu komponieren.
+2. Manchmal benötigen wir nur eine eingeschränkte Zusammensetzung von Kidnern, zum Beispiel, wenn wir keine Permutationen für untergeordnete Elemente zulassen müssen. In diesem Fall macht die Angabe expliziter Eigenschaften die Implementierung einfacher und performanter. Zum Beispiel nimmt ein `Tab` ein `icon` und `label` als Eigenschaft an.
+3. Die API-Konsistenz ist wichtig.
 
 ## Regeln
 
-Aside from the above composition trade-off, we enforce the following rules:
+Abgesehen von den oben genannten Kompensationsregeln setzen wir die folgenden Regeln durch:
 
 ### Verteilt
 
-Undocumented properties supplied are spread to the root element; for instance, the `className` property is applied to the root.
+Nicht dokumentierte Eigenschaften werden auf das Stammelement verteilt. zum Beispiel wird die `className`Eigenschaft auf die Wurzel angewendet.
 
-Now, let's say you want to disable the ripples on the `MenuItem`. You can take advantage of the spread behavior:
+Angenommen, Sie möchten die Wellen im `Menüelement` deaktivieren. Sie können das Ausbreitungsverhalten nutzen:
 
 ```jsx
 <MenuItem disableRipple />
 ```
 
-The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
+Die Eigenschaft `disableRipple` wird folgendermaßen weitergegeben: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
 
-### Native properties
+### Native Eigenschaften
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides/#overriding-with-class-names).
+Wir vermeiden, die vom DOM unterstützten nativen Eigenschaften wie [`className`](/customization/components/#overriding-styles-with-class-names) zu dokumentieren.
 
-### CSS Classes
+### CSS-Klassen
 
-All the components accept a [`classes`](/customization/overrides/#overriding-with-classes) property to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+Alle Komponenten akzeptieren die [`classes`](/customization/components/#overriding-styles-with-classes) Eigenschaft zum Anpassen der Stile. Das Design der classes beantwortet zwei Bedingungen: Die Klassenstruktur so einfach wie möglich zu gestalten, aber trotzdem ausreichend, um die Material Design-Spezifikation zu implementieren.
 
-- The class applied to the root element is always called `root`.
-- All the default styles are grouped in a single class.
-- The classes applied to non-root elements are prefixed with the name of the element, e.g. `paperWidthXs` in the Dialog component.
-- The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class applied by the `rounded` property.
-- The variants applied by an enum property **are** prefixed, e.g. the `colorPrimary` class applied by the `color="primary"` property.
-- A variant has **one level of specificity**. The `color` and `variant` properties are considered a variant. The lower the style specificity is, the simpler it is to override.
-- We increase the specificity for a variant modifier. We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of more boilerplate. Hopefully, it's also more intuitive.
+- Die auf das Wurzelelement angewendete Klasse wird immer als `root` bezeichnet.
+- Alle Standardstile sind in einer einzigen Klasse zusammengefasst.
+- Die auf Nicht-Root-Elemente angewendeten Klassen wird der Name des Elements vorangestellt, z. B. `paperWidthXs` in der Dialogkomponente.
+- Die von einer booleschen Eigenschaft angewendeten Varianten sind **nicht** vorangestellt, zB die `rounded` Klasse wird durch die `rounded` Eigenschaft angewendet.
+- Die von einer Enumeneigenschaft angewendeten Varianten **sind** vorangestellt, z. B. die `colorPrimary` Klasse wird von der Farbe `color= "primary" ` Eigenschaft angewendet.
+- Eine Variante hat **eine Spezifitätsebene**. Die `color` und `variant` Eigenscahft werden als Variant betrachtet. Je geringer die Stilspezifität ist, desto einfacher ist es, sie zu überschreiben.
+- Wir erhöhen die Spezifität für einen Variantenmodifikator. Wir ** müssen es schon ** für die Pseudoklassen (`:hover`, `:focus`, usw.) anwenden. Es ermöglicht viel mehr Kontrolle auf Kosten von mehr Boilerplate. Hoffentlich ist es auch intuitiver.
 
 ```js
 const styles = {
@@ -60,31 +60,31 @@ const styles = {
 };
 ```
 
-### Nested components
+### Verschachtelte Komponenten
 
-Nested components inside a component have:
+Verschachtelte Komponenten in einer Komponente haben:
 
-- their own flattened properties when these are key to the top level component abstraction, for instance and `id` property for the `Input` component.
-- their own `xxxProps` property when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
-- their own `xxxComponent` property for performing component injection.
-- their own `xxxRef` property when user might need to perform imperative actions, for instance, exposing a `inputRef` property to access the native `input` on the `Input` component. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- ihre eigenen abgeflachten Eigenschaften, wenn diese der Schlüssel für die Abstraktion der Komponenten der obersten Ebene sind, eine Instanz und eine `id` Eigenschaft für die `Input` Komponente.
+- ihre eigenen `xxxProps ` Eigenschaft, falls Benutzer möglicherweise die Unterkomponenten der internen Render-Methode anpassen müssen, z. B. die `inputProps` und `InputProps` Eigenschaften für Komponenten, die `Input` intern verwenden.
+- ihre eigene `xxxComponent` Eigenschaft zum Durchführen der Komponenteninjektion.
+- ihre eigene `xxxRef` Eigenschaft, falls der Benutzer möglicherweise zwingende Aktionen ausführen muss, z. B. eine `inputRef` Eigenschaft verfügbar machen, um auf ein natives `input` Element der `Input` Komponente zuzugreifen. Dies hilft bei der Beantwortung der Frage ["Wie kann ich auf das DOM-Element zugreifen?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
-### Property naming
+### Benennung der Eigenschaften
 
-The name of a boolean property should be chosen based on the **default value**. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`. This choice allows the shorthand notation:
+Der Name einer booleschen Eigenschaft sollte basierend auf dem **Standardwert** ausgewählt werden. Zum Beispiel ist das `disabled` Attribut für ein Eingabeelement, sofern angegeben, standardmäßig auf `true` gesetzt. Diese Wahl erlaubt die Kurzschreibweise:
 
 ```diff
 -<Input enabled={false} />
 +<Input disabled />
 ```
 
-### Controlled components
+### Kontrollierte Komponenten
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+Der überwiegende Teil der kontrollierten Komponente wird über die `value` und `onChange` Eigenschaften gesteuert, jedoch werden die `open` / `onClose` / `onOpen` Kombination wird für den Anzeigezustand verwendet.
 
 ### boolean vs enum
 
-There are two options to design the API for the variations of a component: with a *boolean*; or with an *enum*. For example, let's take a button that has different types. Each option has its pros and cons:
+Es gibt zwei Möglichkeiten, die API für die Variationen einer Komponente zu entwerfen: mit einem * Booleschen Wert*; oder mit einer *Aufzählung (enum)*. Nehmen wir zum Beispiel einen Button, die verschiedene Typen hat. Jede Option hat ihre Vor- und Nachteile:
 
 - Option 1 *boolean*:
     
@@ -95,7 +95,7 @@ There are two options to design the API for the variations of a component: with 
     };
     ```
     
-    This API enabled the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+    Diese API hat die Kurzschreibweise aktiviert: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Option 2 *enum*:
     
@@ -105,13 +105,25 @@ There are two options to design the API for the variations of a component: with 
     }
     ```
     
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+    Diese API ist ausführlicher: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
     
-    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
+    Es verhindert jedoch, dass eine ungültige Kombination verwendet wird, begrenzt die Anzahl der offengelegten Eigenschaften, und kann neue Werte in Zukunft leicht unterstützen.
 
-The Material-UI components use a combination of the two approaches according to the following rules:
+Die Komponenten der Material-UI verwenden eine Kombination der beiden Ansätze gemäß den folgenden Regeln:
 
-- A *boolean* is used when **2** degrees of freedom are required.
-- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
+- Ein *boolean* wird verwendet, wenn **2** Freiheitsgrade erforderlich sind.
+- Eine *Aufzählung* wird verwendet, wenn **> 2** Freiheitsgrade erforderlich sind, oder wenn die Möglichkeit besteht, dass in Zukunft zusätzliche Freiheitsgrade erforderlich sind.
 
-Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
+Zurück zum vorherigen Beispiel des Buttons; Da 3 Freiheitsgrade erforderlich sind, verwenden wir eine *Aufzählung*.
+
+### Ref
+
+Das `ref` Element wird an das Wurzelelement weitergeleitet. Das bedeutet, ohne das gerenderte Wurzelelement über die `component` Eigenschaft zu ändern, wird an das äußerste DOM-Element weitergeleitet, welche Komponente rendert. Wenn Sie eine andere Komponente über die `compnent` Eigenschaft wird der Ref stattdessen an diese Komponente angehängt.
+
+## Glossar
+
+- **host component**: ein DOM-Knotentype im Kontext von `react-dom`, z.B. ein `'div'`. Siehe auch [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: in DOM-Knoten im Kontext von `react-dom` z.B. eine Instanz von `window.HTMLDivElement`.
+- **outermost**: Die erste Komponente, wenn der Komponentenbaum von oben nach unten gelesen wird, dh die Breitensuche.
+- ** Wurzelkomponente**: Die äußerste Komponente, die eine Hostkomponente darstellt.
+- ** Wurzelelement**: Das äußerste Element, das eine Hostkomponente darstellt.

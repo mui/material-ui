@@ -8,7 +8,7 @@ La version la plus récente est recommandée en production.
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Latest versions
+## Versions les plus récentes
 
 Ici vous pouvez trouver la dernière documentation non publiée et le code. Vous pouvez l'utiliser pour voir les modifications à venir et fournir des retours aux contributeurs de Material-UI.
 
@@ -18,40 +18,40 @@ Ici vous pouvez trouver la dernière documentation non publiée et le code. Vous
 
 Nous sommes conscients que vous avez besoin de **stabilité** pour la librairie Material-UI. La stabilité garantit des composants réutilisables et les librairies, tutoriels, outils ainsi que les pratiques acquises ne deviennes pas soudainement obsolètes. La stabilité est essentielle au développement de l’écosystème Material-UI.
 
-This document contains **the practices that we follow** to provide you with a leading-edge UI library, balanced with stability. We strive to ensure that future changes are always introduced in a predictable way. We want everyone who depends on Material-UI to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
+Ce document contient ** les pratiques que nous suivons ** pour vous fournir une bibliothèque d'interface utilisateur de pointe, équilibrée avec stabilité. Nous nous efforçons de faire en sorte que les futurs changements soient toujours introduits de manière prévisible. Nous voulons que tous ceux qui dépendent de Material-UI sachent quand et comment les nouvelles fonctionnalités sont ajoutées, et bien préparés lorsque celles qui sont obsolètes sont supprimées.
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI version numbers have three parts: `major.minor.patch`. The version number is incremented based on the level of change included in the release.
+Matériel-UI suit strictement [la gestion sémantique des versions 2.0.0](https://semver.org/). Les numéros de version Material-UI ont trois parties : `majeur.mineur.correctifs`. Le numéro de version est incrémenté en fonction du niveau de changement inclus dans la version.
 
-- **Major releases** contain significant new features, some but minimal developer assistance is expected during the update. When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
-- **Minor releases** contain important new features. Minor releases are fully backward-compatible; no developer assistance is expected during update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
-- **Patch releases** are low risk, contain bug fixes and small new features. No developer assistance is expected during update.
+- Les ** Versions majeures ** contiennent de nouvelles fonctionnalités significatives, mais une aide minimale aux développeurs est attendue durant la mise à jour. Lors de la mise à jour vers une nouvelle version majeure, vous devrez peut-être exécuter des scripts de mise à jour, de la refactorisation du code, exécuter des tests supplémentaires et apprendre de nouvelles API.
+- Les ** Versions mineures ** contiennent d'importantes nouvelles fonctionnalités. Les versions mineures sont entièrement compatibles avec les versions antérieures. aucune aide aux développeurs n'est attendue lors de la mise à jour, mais vous pouvez éventuellement modifier vos applications et vos bibliothèques pour commencer à utiliser les nouvelles API, fonctionnalités et capacités ajoutées dans la version.
+- Les ** Versions de correctifs ** sont à faible risque, contiennent des corrections de bugs et de petites nouvelles fonctionnalités. Aucune assistance pour les développeurs n'est attendue lors de la mise à jour.
 
-## Release frequency
+## Fréquence de version
 
 We work toward a regular schedule of releases, so that you can plan and coordinate your updates with the continuing evolution of Material-UI.
 
 In general, you can expect the following release cycle:
 
-- A **major** release every 6 months.
-- 1-3 **minor** releases for each major release.
+- Une version **majeure** tous les 6 mois.
+- 1-3 **mineur** versions pour chaque version majeure.
 - A **patch** release every week (anytime for urgent bugfix).
 
-## Release schedule
+## Calendrier de version
 
 > Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
 
-| Date         | Version                    |
-|:------------ |:-------------------------- |
-| January 2019 | `@material-ui/core` v4.0.0 |
-| July 2019    | `@material-ui/core` v5.0.0 |
+| Date          | Version                    |
+|:------------- |:-------------------------- |
+| May 2019      | `@material-ui/core` v4.0.0 |
+| December 2019 | `@material-ui/core` v5.0.0 |
 
-You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+Vous pouvez suivre [ nos milestones ](https://github.com/mui-org/material-ui/milestones) pour un aperçu plus détaillé.
 
-## Support policy
+## Politique de support
 
 We only support the latest version of Material-UI. We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
 
-## Deprecation practices
+## Pratiques de l'obsolescence
 
 Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
 

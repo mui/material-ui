@@ -2,6 +2,7 @@
 title: React Bottom Navigation（底部导航栏）组件
 components: BottomNavigation,BottomNavigationAction
 ---
+
 # Bottom Navigation（底部导航栏）
 
 <p class="description">使用底部导航栏，您可以在应用程序的主要导航项之间跳转。</p>
@@ -12,10 +13,10 @@ components: BottomNavigation,BottomNavigationAction
 
 当只有 **三个** 导航项时，导航栏会始终显示图标和文本标签。
 
-{{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
 
 ## 无标签的底部导航栏
 
-如果有 **四个** 或 **五个** 导航项，那些未被选中的导航项会以图标的样式显示。
+如果有**四个**或**五个**导航项，那些未被选中的导航项会以图标的样式显示。
 
-{{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}
