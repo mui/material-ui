@@ -35,10 +35,10 @@ describe('<TabScrollButton />', () => {
   });
 
   describe('prop: !visible', () => {
-    it('should render as a div with root class', () => {
+    it('should render as a span with root class', () => {
       const wrapper = shallow(<TabScrollButton {...props} visible={false} />);
 
-      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });

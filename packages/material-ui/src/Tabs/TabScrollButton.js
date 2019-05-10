@@ -24,16 +24,16 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
   const className = clsx(classes.root, classNameProp);
 
   if (!visible) {
-    return <div className={className} />;
+    return <span className={className} />;
   }
 
   return (
     <ButtonBase
-      aria-label={direction}
+      component="span"
       className={className}
       onClick={onClick}
       ref={ref}
-      tabIndex={-1}
+      tabIndex={null}
       {...other}
     >
       {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}

@@ -21,7 +21,7 @@ AccessibleTabScrollButton.propTypes = {
   direction: PropTypes.string.isRequired,
 };
 
-const findScrollButton = (wrapper, direction) => wrapper.find(`button[aria-label="${direction}"]`);
+const findScrollButton = (wrapper, direction) => wrapper.find(`span[aria-label="${direction}"]`);
 const hasLeftScrollButton = wrapper => findScrollButton(wrapper, 'left').exists();
 const hasRightScrollButton = wrapper => findScrollButton(wrapper, 'right').exists();
 
