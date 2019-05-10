@@ -18,7 +18,7 @@ function useMountedRef() {
 }
 
 function mapEventPropToEvent(eventProp) {
-  if (typeof eventProp === 'string' && eventProp.startsWith('on')) {
+  if (typeof eventProp === 'string' && eventProp.indexOf('on') === 0) {
     return eventProp.substring(2).toLowerCase();
   }
   return eventProp;
