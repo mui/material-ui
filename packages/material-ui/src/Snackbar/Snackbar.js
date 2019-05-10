@@ -212,6 +212,8 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
         window.removeEventListener('blur', handlePause);
       };
     }
+
+    return () => {};
   }, [disableWindowBlurListener, handleResume]);
 
   // So we only render active snackbars.
