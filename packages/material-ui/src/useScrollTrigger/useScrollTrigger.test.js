@@ -33,7 +33,10 @@ describe('useScrollTrigger', () => {
     ref.pageYOffset = pageYOffset;
     ref.scrollTop = scrollTop;
     ref.dispatchEvent(new window.Event('scroll', {}));
-    return ref.scrollTop === scrollTop && ref.pageYOffset === pageYOffset; // The Chrome Browser on Mac OS X fails to set pageYOffset, so do not test the result if pageYoffset was not set
+
+    const isMacOSXChrome = /\bChrome\b.*\bMac OS X\b/g.test(window.navigator.userAgent);
+    // The Chrome Browser on Mac OS X fails to set pageYOffset, so do not test the result
+    return !isMacOSXChrome && ref.scrollTop === scrollTop && ref.pageYOffset === pageYOffset;
   };
 
   const ref = React.createRef();
