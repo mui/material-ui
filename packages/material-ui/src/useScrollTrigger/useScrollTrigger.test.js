@@ -316,18 +316,8 @@ describe('useScrollTrigger', () => {
         });
       });
 
-    function randomDataSet(dataSetSize, minValue, maxValue) {
-      return new Array(dataSetSize)
-        .fill(0)
-        .map(() => Math.random() * (maxValue - minValue) + minValue);
-    }
-
-    const scrollOffsets = [undefined, null, 0, 100, 101, -1, -100].concat(
-      randomDataSet(1, -100, 1000),
-    );
-
-    const thresholds = [null, -100, -1, 0, 1, 100, 300].concat(randomDataSet(1, -200, 500));
-
+    const scrollOffsets = [undefined, null, 0, 100, 101, -1, -100];
+    const thresholds = [null, -100, -1, 0, 1, 100, 300];
     const initialStates = [true, false];
     const DisableHysteresis = [true, false];
 
