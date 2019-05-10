@@ -26,7 +26,7 @@ Here are some examples of customizing the component. You can learn more about th
 [overrides documentation page](/customization/components/).
 
 The first step is to style the `InputBase` component.
-Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a select field.
+Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -39,7 +39,7 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled open Select
+## Controlled Open Select
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 

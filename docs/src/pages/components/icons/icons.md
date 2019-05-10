@@ -1,4 +1,5 @@
 ---
+title: React Icon Component
 components: Icon, SvgIcon
 ---
 
