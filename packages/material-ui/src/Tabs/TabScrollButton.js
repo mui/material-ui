@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/aria-role */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -24,15 +26,16 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
   const className = clsx(classes.root, classNameProp);
 
   if (!visible) {
-    return <span className={className} />;
+    return <div className={className} />;
   }
 
   return (
     <ButtonBase
-      component="span"
+      component="div"
       className={className}
       onClick={onClick}
       ref={ref}
+      role={null}
       tabIndex={null}
       {...other}
     >
