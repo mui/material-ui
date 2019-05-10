@@ -146,12 +146,6 @@ describe('<InputBase />', () => {
           );
         });
 
-        it('should check that the component is controlled', () => {
-          const inputEl = wrapper.find('input');
-          inputEl.simulate('change', { target: { value: 'stub' } });
-          assert.isNotTrue(inputEl.prop('value'), 'stub');
-        });
-
         // don't test number because zero is a empty state, whereas '' is not
         if (typeof value !== 'number') {
           it('should have called the handleEmpty callback', () => {
@@ -214,23 +208,6 @@ describe('<InputBase />', () => {
       );
       return { wrapper, handleEmpty, handleFilled };
     }
-
-    it('should check that the component is uncontrolled', () => {
-      const { wrapper } = setup();
-      wrapper.setProps({ defaultValue: 'stub' });
-      const handleChange = spy();
-      wrapper.setProps({
-        onChange: handleChange,
-      });
-      const event = {
-        target: {
-          value: 'foo',
-        },
-      };
-      wrapper.find('input').simulate('change', event);
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(wrapper.find('input').instance().value, 'stub');
-    });
 
     it('should fire the onFilled callback when dirtied', () => {
       const { wrapper, handleFilled } = setup();
