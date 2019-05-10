@@ -12,6 +12,15 @@
  * }
  */
 const appList = [
+    {
+    title: 'Boki.ai',
+    description:
+      'Boki basically allows you to compare multiple money transfer providers at once, kind of skyscanner for money transfers ',
+    image: 'bethesda.jpg',
+    link: 'https://boki.ai',
+    similarWebVisits: 600,
+    index: 30,
+  },
   {
     title: 'Bethesda.net',
     description:
