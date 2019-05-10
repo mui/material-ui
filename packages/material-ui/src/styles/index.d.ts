@@ -8,6 +8,7 @@ export {
 export { default as createStyles } from './createStyles';
 export { TypographyStyle } from './createTypography';
 export { default as makeStyles } from './makeStyles';
+export { default as MuiThemeProvider } from './MuiThemeProvider';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';
 export * from './transitions';

@@ -83,13 +83,6 @@ yarn add @material-ui/styles@next
 - ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9.
   Make sure JSS v9 is not installed in your environment.
   Removing `react-jss` from your package.json can help.
-- Isolation of the styling solution of the core components in a dedicated package.
-  Remove the `MuiThemeProvider` component:
-
-  ```diff
-  -import { MuiThemeProvider } from '@material-ui/core/styles';
-  +import { ThemeProvider } from '@material-ui/styles';
-  ```
 - Remove the first option argument of `withTheme()`.
   The first argument was a placeholder for a potential future option.
   We have never found a need for it.
@@ -193,7 +186,7 @@ yarn add @material-ui/styles@next
   +<Fab />
   ```
 
-- [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref. 
+- [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref.
   The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
   This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop
