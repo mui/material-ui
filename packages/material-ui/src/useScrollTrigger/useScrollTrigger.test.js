@@ -292,13 +292,21 @@ describe('useScrollTrigger', () => {
       return 'false';
     }
 
-    const testAllCombinations = (props, testValues) =>
+    const testAllCombinations = (props, testValues, testScrollTop) =>
       testValues.forEach(current => {
         testValues.forEach(previous => {
           [
             { offset: undefined, scrollTop: undefined, result: 'false' }, // Baseline
-            { offset: previous, scrollTop: previous, result: 'false' }, // Set previous value
-            { offset: current, scrollTop: current, result: 'false' }, // Test current with previous value
+            {
+              offset: testScrollTop ? undefined : previous,
+              scrollTop: testScrollTop ? previous : undefined,
+              result: 'false',
+            }, // Set previous value
+            {
+              offset: testScrollTop ? undefined : current,
+              scrollTop: testScrollTop ? current : undefined,
+              result: 'false',
+            }, // Test current with previous value
           ].forEach((test, i) => {
             if (dispatchScrollTest(test.offset, test.scrollTop))
               if (i === 2) {
@@ -332,9 +340,17 @@ describe('useScrollTrigger', () => {
             threshold,
             initialState,
           };
-          it(`should validate combinations with props: ${JSON.stringify(props)}`, () => {
+          it(`should validate combinations with props using pageYOffset: ${JSON.stringify(
+            props,
+          )}`, () => {
             mountWrapper(props);
-            testAllCombinations(props, scrollOffsets);
+            testAllCombinations(props, scrollOffsets, false);
+          });
+          it(`should validate combinations with props using scrollTop: ${JSON.stringify(
+            props,
+          )}`, () => {
+            mountWrapper(props);
+            testAllCombinations(props, scrollOffsets, true);
           });
         });
       });
