@@ -34,7 +34,7 @@ describe('useScrollTrigger', () => {
     ref.scrollTop = scrollTop;
     ref.dispatchEvent(new window.Event('scroll', {}));
 
-    const isMacOSXChrome = /\bChrome\b.*\bMac OS X\b/g.test(window.navigator.userAgent);
+    const isMacOSXChrome = /\bMac OS X\b.*\bChrome\b/g.test(window.navigator.userAgent);
     // The Chrome Browser on Mac OS X fails to set pageYOffset, so do not test the result
     return !isMacOSXChrome && ref.scrollTop === scrollTop && ref.pageYOffset === pageYOffset;
   };
