@@ -6,6 +6,8 @@ import warning from 'warning';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
@@ -22,7 +24,9 @@ import {
   demoRegexp,
 } from 'docs/src/modules/utils/parseMarkdown';
 import compose from 'docs/src/modules/utils/compose';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const styles = theme => ({
   root: {
@@ -38,9 +42,24 @@ const styles = theme => ({
     marginBottom: theme.spacing(2),
     padding: theme.spacing(0, 1),
   },
+  hr: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+  },
 });
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
+
+function flattenPages(pages, current = []) {
+  return pages.reduce((items, item) => {
+    if (item.children && item.children.length > 1) {
+      items = flattenPages(item.children, items);
+    } else {
+      items.push(item.children && item.children.length === 1 ? item.children[0] : item);
+    }
+    return items;
+  }, current);
+}
 
 function MarkdownDocs(props) {
   const {
@@ -52,6 +71,7 @@ function MarkdownDocs(props) {
     req,
     reqPrefix,
     reqSource,
+    t,
     userLanguage,
   } = props;
 
@@ -90,6 +110,11 @@ function MarkdownDocs(props) {
     });
     markdown = markdowns[userLanguage] || markdowns.en;
   }
+
+  const { activePage, pages } = React.useContext(PageContext);
+  const pageList = flattenPages(pages);
+  const currentPage = pageList.findIndex(page => page.pathname === activePage.pathname);
+  const nextPage = pageList[currentPage + 1];
 
   const headers = getHeaders(markdown);
   // eslint-disable-next-line no-underscore-dangle
@@ -165,6 +190,15 @@ function MarkdownDocs(props) {
                 <MarkdownElement className={classes.markdownElement} key={index} text={content} />
               );
             })}
+            {nextPage.displayNav === false ? null : (
+              <footer>
+                <hr className={classes.hr} />
+                <Typography align="right">
+                  Continue to the next page:{' '}
+                  <Link href={nextPage.pathname}>{pageToTitleI18n(nextPage, t)}</Link>
+                </Typography>
+              </footer>
+            )}
           </AppContent>
         </AppFrame>
       )}
@@ -183,6 +217,7 @@ MarkdownDocs.propTypes = {
   req: PropTypes.func,
   reqPrefix: PropTypes.string,
   reqSource: PropTypes.func,
+  t: PropTypes.func.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
 
@@ -193,6 +228,7 @@ MarkdownDocs.defaultProps = {
 
 export default compose(
   connect(state => ({
+    t: state.options.t,
     userLanguage: state.options.userLanguage,
   })),
   withStyles(styles),
