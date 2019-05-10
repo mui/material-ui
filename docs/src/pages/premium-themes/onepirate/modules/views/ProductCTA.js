@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
+import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
 import Snackbar from '../components/Snackbar';
-import LayoutBody from '../components/LayoutBody';
 import Button from '../components/Button';
 
 const styles = theme => ({
@@ -80,7 +80,7 @@ class ProductCTA extends React.Component {
     const { classes } = this.props;
 
     return (
-      <LayoutBody className={classes.root} component="section" width="large">
+      <Container className={classes.root} component="section">
         <Grid container>
           <Grid item xs={12} md={6} className={classes.cardWrapper}>
             <div className={classes.card}>
@@ -119,7 +119,7 @@ class ProductCTA extends React.Component {
           onClose={this.handleClose}
           message="We will send you our best offers, once a week."
         />
-      </LayoutBody>
+      </Container>
     );
   }
 }

@@ -52,11 +52,11 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
     children,
     classes,
     className,
-    component: Component,
-    itemsAfterCollapse,
-    itemsBeforeCollapse,
-    maxItems,
-    separator,
+    component: Component = 'nav',
+    itemsAfterCollapse = 1,
+    itemsBeforeCollapse = 1,
+    maxItems = 8,
+    separator = '/',
     ...other
   } = props;
 
@@ -155,14 +155,6 @@ Breadcrumbs.propTypes = {
    * Custom separator node.
    */
   separator: PropTypes.node,
-};
-
-Breadcrumbs.defaultProps = {
-  component: 'nav',
-  itemsAfterCollapse: 1,
-  itemsBeforeCollapse: 1,
-  maxItems: 8,
-  separator: '/',
 };
 
 export default withStyles(styles, { name: 'MuiBreadcrumbs' })(Breadcrumbs);

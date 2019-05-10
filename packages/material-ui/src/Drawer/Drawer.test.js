@@ -36,7 +36,7 @@ describe('<Drawer />', () => {
     </Drawer>,
     () => ({
       classes,
-      inheritComponent: Modal,
+      inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
       skip: ['componentProp'],
@@ -159,11 +159,11 @@ describe('<Drawer />', () => {
 
         wrapper.setProps({ open: true });
         wrapper.update();
-        assert.strictEqual(wrapper.find('Slide').props().in, true);
+        assert.strictEqual(wrapper.find(Slide).props().in, true);
 
         wrapper.setProps({ open: false });
         wrapper.update();
-        assert.strictEqual(wrapper.find('Slide').props().in, false);
+        assert.strictEqual(wrapper.find(Slide).props().in, false);
       });
     });
   });
@@ -226,16 +226,16 @@ describe('<Drawer />', () => {
       );
 
       wrapper.setProps({ anchor: 'left' });
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'right');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
 
       wrapper.setProps({ anchor: 'right' });
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'left');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
 
       wrapper.setProps({ anchor: 'top' });
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'down');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'down');
 
       wrapper.setProps({ anchor: 'bottom' });
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'up');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'up');
     });
   });
 
@@ -252,42 +252,38 @@ describe('<Drawer />', () => {
 
       wrapper.setProps({ anchor: 'left' });
       // slide direction for left is right, if left is switched to right, we should get left
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'left');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
 
       wrapper.setProps({ anchor: 'right' });
       // slide direction for right is left, if right is switched to left, we should get right
-      assert.strictEqual(wrapper.find('Slide').props().direction, 'right');
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
     });
   });
 
   describe('isHorizontal', () => {
     it('should recognize left and right as horizontal swiping directions', () => {
-      assert.strictEqual(isHorizontal({ anchor: 'left' }), true);
-      assert.strictEqual(isHorizontal({ anchor: 'right' }), true);
-      assert.strictEqual(isHorizontal({ anchor: 'top' }), false);
-      assert.strictEqual(isHorizontal({ anchor: 'bottom' }), false);
+      assert.strictEqual(isHorizontal('left'), true);
+      assert.strictEqual(isHorizontal('right'), true);
+      assert.strictEqual(isHorizontal('top'), false);
+      assert.strictEqual(isHorizontal('bottom'), false);
     });
   });
 
   describe('getAnchor', () => {
     it('should return the anchor', () => {
-      const theme = createMuiTheme({
-        direction: 'ltr',
-      });
+      const theme = { direction: 'ltr' };
 
-      assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'left');
-      assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'right');
-      assert.strictEqual(getAnchor({ anchor: 'top', theme }), 'top');
-      assert.strictEqual(getAnchor({ anchor: 'bottom', theme }), 'bottom');
+      assert.strictEqual(getAnchor(theme, 'left'), 'left');
+      assert.strictEqual(getAnchor(theme, 'right'), 'right');
+      assert.strictEqual(getAnchor(theme, 'top'), 'top');
+      assert.strictEqual(getAnchor(theme, 'bottom'), 'bottom');
     });
 
     it('should switch left/right if RTL is enabled', () => {
-      const theme = createMuiTheme({
-        direction: 'rtl',
-      });
+      const theme = { direction: 'rtl' };
 
-      assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'right');
-      assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'left');
+      assert.strictEqual(getAnchor(theme, 'left'), 'right');
+      assert.strictEqual(getAnchor(theme, 'right'), 'left');
     });
   });
 });

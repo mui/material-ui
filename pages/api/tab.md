@@ -49,7 +49,7 @@ This property accepts the following keys:
 | <span class="prop-name">wrapped</span> | Styles applied to the root element if `wrapped={true}`.
 | <span class="prop-name">wrapper</span> | Styles applied to the `icon` and `label`'s wrapper element.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Tab/Tab.js)
 for more detail.
 
@@ -63,5 +63,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Tabs](/demos/tabs/)
+- [Tabs](/components/tabs/)
 

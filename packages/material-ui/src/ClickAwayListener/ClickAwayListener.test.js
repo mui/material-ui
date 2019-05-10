@@ -162,7 +162,7 @@ describe('<ClickAwayListener />', () => {
     const Child = React.forwardRef(() => null);
     const handleClickAway = spy();
     wrapper = mount(
-      <ClickAwayListener getTargetEl={() => null} onClickAway={handleClickAway}>
+      <ClickAwayListener onClickAway={handleClickAway}>
         <Child />
       </ClickAwayListener>,
     );

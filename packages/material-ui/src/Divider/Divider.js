@@ -36,7 +36,15 @@ export const styles = theme => ({
 });
 
 const Divider = React.forwardRef(function Divider(props, ref) {
-  const { absolute, classes, className, component: Component, light, variant, ...other } = props;
+  const {
+    absolute = false,
+    classes,
+    className,
+    component: Component = 'hr',
+    light = false,
+    variant = 'fullWidth',
+    ...other
+  } = props;
 
   if (Component === 'li' && !other.role) {
     other.role = 'separator';
@@ -87,13 +95,6 @@ Divider.propTypes = {
    *  The variant to use.
    */
   variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
-};
-
-Divider.defaultProps = {
-  absolute: false,
-  component: 'hr',
-  light: false,
-  variant: 'fullWidth',
 };
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);

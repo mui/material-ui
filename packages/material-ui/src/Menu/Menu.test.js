@@ -147,13 +147,26 @@ describe('<Menu />', () => {
   it('should open during the initial mount', () => {
     const wrapper = mount(
       <Menu {...defaultProps} open>
-        <div />
+        <div tabIndex={-1} />
       </Menu>,
     );
     const popover = wrapper.find(Popover);
     assert.strictEqual(popover.props().open, true);
     const menuEl = document.querySelector('[data-mui-test="Menu"]');
-    assert.strictEqual(document.activeElement, menuEl && menuEl.firstChild);
+    assert.strictEqual(document.activeElement, menuEl);
+  });
+
+  it('should not focus list if autoFocus=false', () => {
+    const wrapper = mount(
+      <Menu {...defaultProps} autoFocus={false} open>
+        <div tabIndex={-1} />
+      </Menu>,
+    );
+    const popover = wrapper.find(Popover);
+    assert.strictEqual(popover.props().open, true);
+    const menuEl = document.querySelector('[data-mui-test="Menu"]');
+    assert.notStrictEqual(document.activeElement, menuEl);
+    assert.strictEqual(false, menuEl.contains(document.activeElement));
   });
 
   it('should call props.onEntering with element if exists', () => {

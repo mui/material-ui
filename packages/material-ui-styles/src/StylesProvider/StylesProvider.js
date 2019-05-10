@@ -47,13 +47,19 @@ function StylesProvider(props) {
     'Material-UI: you cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
   );
 
+  warning(
+    !injectFirst || !localOptions.jss,
+    'Material-UI: you cannot use the jss and injectFirst props at the same time.',
+  );
+
   if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
     if (!injectFirstNode) {
       const head = document.head;
       injectFirstNode = document.createComment('mui-inject-first');
       head.insertBefore(injectFirstNode, head.firstChild);
     }
-    context.jss.options.insertionPoint = injectFirstNode;
+
+    context.jss = create({ plugins: jssPreset().plugins, insertionPoint: injectFirstNode });
   }
 
   return <StylesContext.Provider value={context}>{children}</StylesContext.Provider>;
@@ -69,8 +75,7 @@ StylesProvider.propTypes = {
    * It can be useful when traversing the React tree outside of the HTML
    * rendering step on the server.
    * Let's say you are using react-apollo to extract all
-   * the queries made by the interface server-side.
-   * You can significantly speed up the traversal with this property.
+   * the queries made by the interface server-side - you can significantly speed up the traversal with this prop.
    */
   disableGeneration: PropTypes.bool,
   /**
@@ -78,9 +83,9 @@ StylesProvider.propTypes = {
    */
   generateClassName: PropTypes.func,
   /**
-   * By default, the styles are injected last in the <head> element of your page.
-   * They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components.
-   * If you want to override the Material-UI's styles, set this prop.
+   * By default, the styles are injected last in the <head> element of the page.
+   * As a result, they gain more specificity than any other style sheet.
+   * If you want to override Material-UI's styles, set this prop.
    */
   injectFirst: PropTypes.bool,
   /**

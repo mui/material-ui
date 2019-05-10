@@ -5,7 +5,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 function NestedMenu(props) {
-  const rootRef = React.useRef();
+  const rootRef = React.useRef(null);
 
   return (
     <div>

@@ -4,6 +4,7 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, describeConformance } from '@material-ui/core/test-utils';
 import Grow from './Grow';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { Transition } from 'react-transition-group';
 
 describe('<Grow />', () => {
   let mount;
@@ -26,7 +27,7 @@ describe('<Grow />', () => {
     </Grow>,
     () => ({
       classes: {},
-      inheritComponent: 'Transition',
+      inheritComponent: Transition,
       mount,
       skip: ['componentProp', 'refForwarding'],
     }),

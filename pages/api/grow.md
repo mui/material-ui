@@ -12,8 +12,8 @@ filename: /packages/material-ui/src/Grow/Grow.js
 import Grow from '@material-ui/core/Grow';
 ```
 
-The Grow transition is used by the [Tooltip](/demos/tooltips/) and
-[Popover](/utils/popover/) components.
+The Grow transition is used by the [Tooltip](/components/tooltips/) and
+[Popover](/components/popover/) components.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
@@ -35,6 +35,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Popover](/utils/popover/)
-- [Transitions](/utils/transitions/)
+- [Popover](/components/popover/)
+- [Transitions](/components/transitions/)
 

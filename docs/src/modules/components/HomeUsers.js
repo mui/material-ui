@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
+import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
@@ -42,7 +43,6 @@ const styles = theme => ({
   container: {
     paddingTop: theme.spacing(14),
     paddingBottom: theme.spacing(14),
-    borderTop: `1px solid ${theme.palette.divider}`,
   },
   grid: {
     marginTop: theme.spacing(5),
@@ -58,8 +58,9 @@ function HomeUsers(props) {
 
   return (
     <div className={classes.root}>
+      <Divider />
       <NoSsr>
-        <Container className={classes.container}>
+        <Container maxWidth="md" className={classes.container}>
           <Typography variant="h4" align="center" gutterBottom>
             {t('whosUsing')}
           </Typography>

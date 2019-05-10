@@ -1,3 +1,3 @@
-import { useTheme } from '@material-ui/styles';
+import { Theme } from './createMuiTheme';
 
-export default useTheme;
+export default function useTheme<T = Theme>(): T;

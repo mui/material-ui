@@ -1,33 +1,66 @@
-// @inheritedComponent IconButton
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { fade } from '../styles/colorManipulator';
+import clsx from 'clsx';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
-import { createChainedFunction } from '../utils/helpers';
+import { fade } from '../styles/colorManipulator';
+import { capitalize, createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    '&:not($checked)': {
-      color: theme.palette.text.secondary,
-      '&:hover': {
-        backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      },
-    },
+    color: theme.palette.text.secondary,
   },
   /* Styles applied to the root element if `checked={true}`. */
   checked: {},
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `color="primary"`. */
+  colorPrimary: {
+    '&$checked': {
+      color: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
+  },
+  /* Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: {
+    '&$checked': {
+      color: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
+  },
 });
 
 const Radio = React.forwardRef(function Radio(props, ref) {
-  const { checked: checkedProp, classes, name: nameProp, onChange: onChangeProp, ...other } = props;
+  const {
+    checked: checkedProp,
+    classes,
+    color = 'secondary',
+    name: nameProp,
+    onChange: onChangeProp,
+    ...other
+  } = props;
   const radioGroup = React.useContext(RadioGroupContext);
 
   let checked = checkedProp;
@@ -45,11 +78,12 @@ const Radio = React.forwardRef(function Radio(props, ref) {
 
   return (
     <SwitchBase
+      color={color}
       type="radio"
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={<RadioButtonCheckedIcon />}
       classes={{
-        root: classes.root,
+        root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
         disabled: classes.disabled,
       }}
@@ -124,10 +158,6 @@ Radio.propTypes = {
    * The value of the component.
    */
   value: PropTypes.any,
-};
-
-Radio.defaultProps = {
-  color: 'secondary',
 };
 
 export default withStyles(styles, { name: 'MuiRadio' })(Radio);

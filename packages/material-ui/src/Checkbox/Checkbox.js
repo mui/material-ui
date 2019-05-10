@@ -1,24 +1,18 @@
-// @inheritedComponent IconButton
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { fade } from '../styles/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
+import { fade } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
+import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    '&:not($checked)': {
-      color: theme.palette.text.secondary,
-      '&:hover': {
-        backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      },
-    },
+    color: theme.palette.text.secondary,
   },
   /* Styles applied to the root element if `checked={true}`. */
   checked: {},
@@ -26,16 +20,52 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the root element if `indeterminate={true}`. */
   indeterminate: {},
+  /* Styles applied to the root element if `color="primary"`. */
+  colorPrimary: {
+    '&$checked': {
+      color: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
+  },
+  /* Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: {
+    '&$checked': {
+      color: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
+  },
 });
+
+const defaultCheckedIcon = <CheckBoxIcon />;
+const defaultIcon = <CheckBoxOutlineBlankIcon />;
+const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = React.forwardRef(function Checkbox(props, ref) {
   const {
-    checkedIcon,
+    checkedIcon = defaultCheckedIcon,
     classes,
-    className,
-    icon,
-    indeterminate,
-    indeterminateIcon,
+    color = 'secondary',
+    icon = defaultIcon,
+    indeterminate = false,
+    indeterminateIcon = defaultIndeterminateIcon,
     inputProps,
     ...other
   } = props;
@@ -44,17 +74,14 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     <SwitchBase
       type="checkbox"
       checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-      className={clsx(
-        classes.root,
-        {
-          [classes.indeterminate]: indeterminate,
-        },
-        className,
-      )}
       classes={{
+        root: clsx(classes.root, classes[`color${capitalize(color)}`], {
+          [classes.indeterminate]: indeterminate,
+        }),
         checked: classes.checked,
         disabled: classes.disabled,
       }}
+      color={color}
       inputProps={{
         'data-indeterminate': indeterminate,
         ...inputProps,
@@ -80,10 +107,6 @@ Checkbox.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
@@ -116,7 +139,7 @@ Checkbox.propTypes = {
    */
   indeterminateIcon: PropTypes.node,
   /**
-   * Properties applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
@@ -139,14 +162,6 @@ Checkbox.propTypes = {
    * The value of the component. The DOM API casts this to a string.
    */
   value: PropTypes.any,
-};
-
-Checkbox.defaultProps = {
-  checkedIcon: <CheckBoxIcon />,
-  color: 'secondary',
-  icon: <CheckBoxOutlineBlankIcon />,
-  indeterminate: false,
-  indeterminateIcon: <IndeterminateCheckBoxIcon />,
 };
 
 export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

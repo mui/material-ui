@@ -26,16 +26,16 @@ const regressions = requireRegression.keys().reduce((res, path) => {
 
 const blacklistSuite = [
   // Flaky
-  'docs-demos-progress',
+  'docs-components-progress',
 
   // Internal dependencies
   'docs-discover-more-languages',
 
   // Needs interaction
-  'docs-demos-dialogs',
-  'docs-demos-menus',
-  'docs-demos-tooltips',
-  'docs-utils-transitions',
+  'docs-components-dialogs',
+  'docs-components-menus',
+  'docs-components-tooltips',
+  'docs-components-transitions',
 
   // Documentation extension
   'docs-getting-started-page-layout-examples',
@@ -53,15 +53,16 @@ const blacklistSuite = [
   'docs-guides',
   'docs-versions',
   'docs-layouts',
-  'docs-style-color',
+  'docs-customization-color',
 ];
 
 const blacklistFilename = [
-  'docs-demos-grid-list/tileData.png', // no component
+  'docs-components-grid-list/tileData.png', // no component
   'docs-css-in-js-basics/StressTest.png', // strange bug no time for it
-  'docs-demos-steppers/SwipeableTextMobileStepper.png', // external img
-  'docs-demos-steppers/TextMobileStepper.png', // external img
+  'docs-components-steppers/SwipeableTextMobileStepper.png', // external img
+  'docs-components-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
+  'docs-customization-themes/ResponsiveFontSizesChart.png', // Chart
 
   // Already tested once assembled
   'docs-getting-started-page-layout-examples-dashboard/Chart.png',
@@ -73,13 +74,13 @@ const blacklistFilename = [
   'docs-getting-started-page-layout-examples-checkout/Review.png',
 
   // Flaky
-  'docs-demos-grid-list/ImageGridList.png',
+  'docs-components-grid-list/ImageGridList.png',
 
   // Redux isolation
-  'docs-demos-chips/ChipsPlayground.png',
-  'docs-utils-popover/AnchorPlayground.png',
-  'docs-utils-popper/ScrollPlayground.png',
-  'docs-layout-grid/InteractiveGrid.png',
+  'docs-components-chips/ChipsPlayground.png',
+  'docs-components-popover/AnchorPlayground.png',
+  'docs-components-popper/ScrollPlayground.png',
+  'docs-components-grid/InteractiveGrid.png',
 ];
 
 // Also use some of the demos to avoid code duplication.
@@ -122,7 +123,7 @@ vrtest.before(() => {
     document.body.appendChild(rootEl);
   }
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     webfontloader.load({
       google: {
         families: ['Roboto:300,400,500', 'Material+Icons'],
@@ -133,10 +134,10 @@ vrtest.before(() => {
       },
       timeout: 20000,
       active: () => {
-        resolve('active');
+        resolve('webfontloader: active');
       },
       inactive: () => {
-        resolve('inactive');
+        reject(new Error('webfontloader: inactive'));
       },
     });
   });

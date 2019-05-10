@@ -3,7 +3,8 @@
 import { mkdir, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import { parse as docgenParse } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
@@ -44,32 +45,34 @@ const theme = createMuiTheme();
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
-function getInheritance(src) {
-  const inheritedComponent = src.match(inheritedComponentRegexp);
+function getInheritance(testInfo, src) {
+  let inheritedComponentName = testInfo.inheritComponent;
 
-  if (!inheritedComponent) {
+  if (inheritedComponentName == null) {
+    const match = src.match(inheritedComponentRegexp);
+    if (match !== null) {
+      inheritedComponentName = match[1];
+    }
+  }
+
+  if (inheritedComponentName == null) {
     return null;
   }
 
-  const component = inheritedComponent[1];
   let pathname;
 
-  switch (component) {
+  switch (inheritedComponentName) {
     case 'Transition':
       pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
       break;
 
-    case 'EventListener':
-      pathname = 'https://github.com/oliviertassinari/react-event-listener';
-      break;
-
     default:
-      pathname = `/api/${kebabCase(component)}`;
+      pathname = `/api/${kebabCase(inheritedComponentName)}`;
       break;
   }
 
   return {
-    component,
+    component: inheritedComponentName,
     pathname,
   };
 }
@@ -130,7 +133,7 @@ async function buildDocs(options) {
 
   let reactAPI;
   try {
-    reactAPI = docgenParse(src, null, null, {
+    reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
       filename: componentObject.filename,
     });
   } catch (err) {
@@ -154,7 +157,7 @@ async function buildDocs(options) {
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
-  reactAPI.inheritance = getInheritance(src);
+  reactAPI.inheritance = getInheritance(testInfo, src);
 
   let markdown;
   try {

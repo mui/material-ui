@@ -1,5 +1,3 @@
-// @inheritedComponent IconButton
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -236,6 +234,6 @@ SwitchBase.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateSwitchBase' })(
+export default withStyles(styles, { name: 'PrivateSwitchBase' })(
   withFormControlContext(SwitchBase),
 );

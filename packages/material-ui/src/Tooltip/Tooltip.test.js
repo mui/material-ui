@@ -11,6 +11,17 @@ import createMuiTheme from '../styles/createMuiTheme';
 
 const theme = createMuiTheme();
 
+function focusVisible(wrapper) {
+  document.dispatchEvent(new window.Event('keydown'));
+  wrapper.simulate('focus');
+}
+
+function simulatePointerDevice() {
+  // first focus on a page triggers focus visible until a pointer event
+  // has been dispatched
+  document.dispatchEvent(new window.Event('pointerdown'));
+}
+
 describe('<Tooltip />', () => {
   let mount;
   let classes;
@@ -88,11 +99,9 @@ describe('<Tooltip />', () => {
     const children = wrapper.find('#testChild');
     assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     children.simulate('mouseOver');
-    children.simulate('focus');
     assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     children.simulate('mouseLeave');
     assert.strictEqual(wrapper.find(Popper).props().open, false);
-    children.simulate('blur');
     assert.strictEqual(wrapper.find(Popper).props().open, false);
   });
 
@@ -120,7 +129,6 @@ describe('<Tooltip />', () => {
       const children = wrapper.find('#testChild');
       children.simulate('touchStart');
       children.simulate('touchEnd');
-      children.simulate('focus');
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     });
 
@@ -128,7 +136,6 @@ describe('<Tooltip />', () => {
       const wrapper = mount(<Tooltip {...defaultProps} />);
       const children = wrapper.find('#testChild');
       children.simulate('touchStart');
-      children.simulate('focus');
       clock.tick(1000);
       wrapper.update();
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
@@ -170,8 +177,9 @@ describe('<Tooltip />', () => {
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
       const wrapper = mount(<Tooltip enterDelay={111} {...defaultProps} />);
+      simulatePointerDevice();
       const children = wrapper.find('#testChild');
-      children.simulate('focus');
+      focusVisible(children);
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       clock.tick(111);
       wrapper.update();
@@ -179,10 +187,15 @@ describe('<Tooltip />', () => {
     });
 
     it('should take the leaveDelay into account', () => {
-      const wrapper = mount(<Tooltip leaveDelay={111} {...defaultProps} />);
+      const childRef = React.createRef();
+      const wrapper = mount(
+        <Tooltip leaveDelay={111} enterDelay={0} title="tooltip">
+          <span id="testChild" ref={childRef} />
+        </Tooltip>,
+      );
+      simulatePointerDevice();
       const children = wrapper.find('#testChild');
-      children.simulate('focus');
-      clock.tick(0);
+      focusVisible(children);
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
       children.simulate('blur');
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
@@ -307,6 +320,40 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       assert.strictEqual(wrapper.find('h1').props().hidden, false);
+    });
+  });
+
+  describe('focus', () => {
+    function Test() {
+      return (
+        <Tooltip enterDelay={0} leaveDelay={0} title="Some information">
+          <button id="target" type="button">
+            Do something
+          </button>
+        </Tooltip>
+      );
+    }
+
+    it('ignores base focus', () => {
+      const wrapper = mount(<Test />);
+      simulatePointerDevice();
+
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+
+      wrapper.find('#target').simulate('focus');
+
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+    });
+
+    it('opens on focus-visible', () => {
+      const wrapper = mount(<Test />);
+      simulatePointerDevice();
+
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+
+      focusVisible(wrapper.find('#target'));
+
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
   });
 });

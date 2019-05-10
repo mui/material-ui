@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createMount } from 'packages/material-ui/src/test-utils';
-import Portal from 'packages/material-ui/src/Portal';
 import SelectAndDialog from './fixtures/select/SelectAndDialog';
 
 describe('<Select> integration', () => {
@@ -19,10 +18,7 @@ describe('<Select> integration', () => {
   describe('with Dialog', () => {
     it('should focus the selected item', done => {
       const wrapper = mount(<SelectAndDialog />);
-      const portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
       const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
 
       wrapper.setProps({
@@ -57,10 +53,7 @@ describe('<Select> integration', () => {
 
     it('should be able to change the selected item', done => {
       const wrapper = mount(<SelectAndDialog />);
-      const portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
+      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
       const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
 
       wrapper.setProps({

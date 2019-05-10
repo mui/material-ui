@@ -49,7 +49,7 @@ This property accepts the following keys:
 | <span class="prop-name">actionIcon</span> | Styles applied to the actionIcon if supplied.
 | <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/GridListTileBar/GridListTileBar.js)
 for more detail.
 
@@ -58,5 +58,5 @@ you need to use the following style sheet name: `MuiGridListTileBar`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list/)
+- [Grid List](/components/grid-list/)
 

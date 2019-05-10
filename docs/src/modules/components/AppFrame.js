@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LanguageIcon from '@material-ui/icons/Language';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import MuiLink from '@material-ui/core/Link';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
 import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
@@ -88,8 +89,8 @@ const styles = theme => ({
     display: 'block',
     padding: 4,
     textAlign: 'center',
-    backgroundColor: '#0a6fc2',
-    color: 'white',
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
   },
   grow: {
     flex: '1 1 auto',
@@ -97,6 +98,25 @@ const styles = theme => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: '0 1 auto',
+  },
+  skipNav: {
+    position: 'fixed',
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.background.paper,
+    transition: theme.transitions.create('top', {
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    left: theme.spacing(2),
+    top: theme.spacing(-10),
+    zIndex: theme.zIndex.tooltip + 1,
+    '&:focus': {
+      top: theme.spacing(2),
+      transition: theme.transitions.create('top', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
   },
   appBar: {
     transition: theme.transitions.create('width'),
@@ -121,6 +141,11 @@ const styles = theme => ({
   navIconHide: {
     [theme.breakpoints.up('lg')]: {
       display: 'none',
+    },
+  },
+  '@global': {
+    '#main-content': {
+      outline: 'none',
     },
   },
 });
@@ -197,6 +222,9 @@ class AppFrame extends React.Component {
             <div className={classes.root}>
               <NProgressBar />
               <CssBaseline />
+              <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
+                Skip to content
+              </MuiLink>
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
@@ -224,7 +252,7 @@ class AppFrame extends React.Component {
                     <MenuIcon />
                   </IconButton>
                   {title !== null && (
-                    <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                    <Typography className={classes.title} variant="h6" noWrap>
                       {title}
                     </Typography>
                   )}
@@ -235,6 +263,7 @@ class AppFrame extends React.Component {
                       color="inherit"
                       aria-owns={languageMenu ? 'language-menu' : undefined}
                       aria-haspopup="true"
+                      aria-label="Change language"
                       onClick={this.handleLanguageIconClick}
                       data-ga-event-category="AppBar"
                       data-ga-event-action="language"
@@ -275,7 +304,7 @@ class AppFrame extends React.Component {
                       aria-label={t('editWebsiteColors')}
                       component={Link}
                       naked
-                      href="/style/color/#color-tool"
+                      href="/customization/color/#color-tool"
                       data-ga-event-category="AppBar"
                       data-ga-event-action="colors"
                     >

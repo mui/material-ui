@@ -101,7 +101,7 @@ NotchedOutline.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The width of the legend.
+   * The width of the label.
    */
   labelWidth: PropTypes.number.isRequired,
   /**
@@ -118,6 +118,6 @@ NotchedOutline.propTypes = {
   theme: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateNotchedOutline', withTheme: true })(
+export default withStyles(styles, { name: 'PrivateNotchedOutline', withTheme: true })(
   NotchedOutline,
 );

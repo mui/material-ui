@@ -70,12 +70,12 @@ export const styles = theme => ({
 const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
   const {
     actionIcon,
-    actionPosition,
+    actionPosition = 'right',
     classes,
     className: classNameProp,
     subtitle,
     title,
-    titlePosition,
+    titlePosition = 'bottom',
     ...other
   } = props;
 
@@ -146,11 +146,6 @@ GridListTileBar.propTypes = {
    * Position of the title bar.
    */
   titlePosition: PropTypes.oneOf(['top', 'bottom']),
-};
-
-GridListTileBar.defaultProps = {
-  actionPosition: 'right',
-  titlePosition: 'bottom',
 };
 
 export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);

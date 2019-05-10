@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import { useForkRef } from '../utils/reactHelpers';
+import { useIsFocusVisible } from '../utils/focusVisible';
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
@@ -77,23 +79,23 @@ function Tooltip(props) {
   const {
     children,
     classes,
-    disableFocusListener,
-    disableHoverListener,
-    disableTouchListener,
-    enterDelay,
-    enterTouchDelay,
+    disableFocusListener = false,
+    disableHoverListener = false,
+    disableTouchListener = false,
+    enterDelay = 0,
+    enterTouchDelay = 700,
     id,
-    interactive,
-    leaveDelay,
-    leaveTouchDelay,
+    interactive = false,
+    leaveDelay = 0,
+    leaveTouchDelay = 1500,
     onClose,
     onOpen,
     open: openProp,
-    placement,
+    placement = 'bottom',
     PopperProps,
     theme,
     title,
-    TransitionComponent,
+    TransitionComponent = Grow,
     TransitionProps,
     ...other
   } = props;
@@ -109,8 +111,9 @@ function Tooltip(props) {
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
   // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(ref => {
-    setChildNode(ReactDOM.findDOMNode(ref));
+  const handleOwnRef = React.useCallback(instance => {
+    // #StrictMode ready
+    setChildNode(ReactDOM.findDOMNode(instance));
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
@@ -199,6 +202,21 @@ function Tooltip(props) {
     }
   };
 
+  const getOwnerDocument = React.useCallback(() => {
+    if (childNode == null) {
+      return null;
+    }
+    return childNode.ownerDocument;
+  }, [childNode]);
+  const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
+  const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
+  function handleBlur() {
+    if (childIsFocusVisible) {
+      setChildIsFocusVisible(false);
+      onBlurVisible();
+    }
+  }
+
   const handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
@@ -207,7 +225,10 @@ function Tooltip(props) {
       setChildNode(event.currentTarget);
     }
 
-    handleEnter(event);
+    if (isFocusVisible(event)) {
+      setChildIsFocusVisible(true);
+      handleEnter(event);
+    }
 
     const childrenProps = children.props;
     if (childrenProps.onFocus) {
@@ -233,8 +254,11 @@ function Tooltip(props) {
   const handleLeave = event => {
     const childrenProps = children.props;
 
-    if (event.type === 'blur' && childrenProps.onBlur) {
-      childrenProps.onBlur(event);
+    if (event.type === 'blur') {
+      if (childrenProps.onBlur) {
+        childrenProps.onBlur(event);
+      }
+      handleBlur(event);
     }
 
     if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
@@ -379,7 +403,7 @@ Tooltip.propTypes = {
   /**
    * Tooltip reference element.
    */
-  children: PropTypes.element.isRequired,
+  children: elementAcceptingRef.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -479,19 +503,6 @@ Tooltip.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-Tooltip.defaultProps = {
-  disableFocusListener: false,
-  disableHoverListener: false,
-  disableTouchListener: false,
-  enterDelay: 0,
-  enterTouchDelay: 700,
-  interactive: false,
-  leaveDelay: 0,
-  leaveTouchDelay: 1500,
-  placement: 'bottom',
-  TransitionComponent: Grow,
 };
 
 export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);

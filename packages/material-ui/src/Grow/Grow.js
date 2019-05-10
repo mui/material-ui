@@ -1,10 +1,9 @@
-// @inheritedComponent Transition
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import Transition from 'react-transition-group/Transition';
+import { Transition } from 'react-transition-group';
 import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
+import { useForkRef } from '../utils/reactHelpers';
 
 function getScale(value) {
   return `scale(${value}, ${value ** 2})`;
@@ -23,21 +22,25 @@ const styles = {
 };
 
 /**
- * The Grow transition is used by the [Tooltip](/demos/tooltips/) and
- * [Popover](/utils/popover/) components.
+ * The Grow transition is used by the [Tooltip](/components/tooltips/) and
+ * [Popover](/components/popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-function Grow(props) {
-  const { children, in: inProp, onEnter, onExit, style, theme, timeout, ...other } = props;
+const Grow = React.forwardRef(function Grow(props, ref) {
+  const { children, in: inProp, onEnter, onExit, style, theme, timeout = 'auto', ...other } = props;
   const timer = React.useRef();
   const autoTimeout = React.useRef();
+  const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
 
-    const { duration: transitionDuration, delay } = getTransitionProps(props, {
-      mode: 'enter',
-    });
+    const { duration: transitionDuration, delay } = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'enter',
+      },
+    );
     let duration = 0;
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
@@ -65,9 +68,12 @@ function Grow(props) {
   const handleExit = node => {
     let duration = 0;
 
-    const { duration: transitionDuration, delay } = getTransitionProps(props, {
-      mode: 'exit',
-    });
+    const { duration: transitionDuration, delay } = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'exit',
+      },
+    );
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
       autoTimeout.current = duration;
@@ -126,12 +132,13 @@ function Grow(props) {
             ...style,
             ...children.props.style,
           },
+          ref: handleRef,
           ...childProps,
         });
       }}
     </Transition>
   );
-}
+});
 
 Grow.propTypes = {
   /**
@@ -169,10 +176,6 @@ Grow.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
-};
-
-Grow.defaultProps = {
-  timeout: 'auto',
 };
 
 Grow.muiSupportAuto = true;

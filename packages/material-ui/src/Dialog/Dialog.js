@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-// @inheritedComponent Modal
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -8,6 +7,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Modal from '../Modal';
+import Backdrop from '../Backdrop';
 import Fade from '../Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
@@ -132,6 +132,7 @@ export const styles = theme => ({
   },
 });
 
+const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
@@ -141,11 +142,11 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     children,
     classes,
     className,
-    disableBackdropClick,
-    disableEscapeKeyDown,
-    fullScreen,
-    fullWidth,
-    maxWidth,
+    disableBackdropClick = false,
+    disableEscapeKeyDown = false,
+    fullScreen = false,
+    fullWidth = false,
+    maxWidth = 'sm',
     onBackdropClick,
     onClose,
     onEnter,
@@ -156,16 +157,16 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     onExited,
     onExiting,
     open,
-    PaperComponent,
+    PaperComponent = Paper,
     PaperProps = {},
-    scroll,
-    TransitionComponent,
-    transitionDuration,
+    scroll = 'paper',
+    TransitionComponent = Fade,
+    transitionDuration = defaultTransitionDuration,
     TransitionProps,
     ...other
   } = props;
 
-  const mouseDownTarget = React.useRef(null);
+  const mouseDownTarget = React.useRef();
   const handleMouseDown = event => {
     mouseDownTarget.current = event.target;
   };
@@ -195,6 +196,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
   return (
     <Modal
       className={clsx(classes.root, className)}
+      BackdropComponent={Backdrop}
       BackdropProps={{
         transitionDuration,
         ...BackdropProps,
@@ -362,18 +364,6 @@ Dialog.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-Dialog.defaultProps = {
-  disableBackdropClick: false,
-  disableEscapeKeyDown: false,
-  fullScreen: false,
-  fullWidth: false,
-  maxWidth: 'sm',
-  PaperComponent: Paper,
-  scroll: 'paper',
-  TransitionComponent: Fade,
-  transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 
 export default withStyles(styles, { name: 'MuiDialog' })(Dialog);

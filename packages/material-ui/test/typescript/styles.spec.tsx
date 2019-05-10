@@ -10,11 +10,12 @@ import {
   StyledComponentProps,
   WithStyles,
   WithTheme,
+  makeStyles,
 } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { blue } from '@material-ui/core/colors';
-import { StandardProps, ButtonBase } from '@material-ui/core';
+import { StandardProps } from '@material-ui/core';
 
 // Shared types for examples
 interface ComponentProps extends WithStyles<typeof styles> {
@@ -464,16 +465,15 @@ withStyles(theme =>
   const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
 }
 
-// https://github.com/mui-org/material-ui/issues/14586
 {
-  const styles = createStyles({
-    root: {
-      color: 'red',
-    },
+  // theme is defaulted to type of Theme
+  const useStyles = makeStyles(theme => {
+    // $ExpectType Theme
+    const t = theme;
+    return {
+      root: {
+        margin: t.spacing(1),
+      },
+    };
   });
-
-  const StyledButton = withStyles(styles)(Button);
-
-  // undesired
-  <StyledButton component="a" />; // $ExpectError
 }

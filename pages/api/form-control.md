@@ -21,7 +21,7 @@ This context is used by the following components:
  - Input
  - InputLabel
 
-⚠️ Only one input can be used within a FormControl.
+⚠️Only one input can be used within a FormControl.
 
 ## Props
 
@@ -54,7 +54,7 @@ This property accepts the following keys:
 | <span class="prop-name">marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/FormControl/FormControl.js)
 for more detail.
 
@@ -63,6 +63,8 @@ you need to use the following style sheet name: `MuiFormControl`.
 
 ## Demos
 
-- [Selection Controls](/demos/selection-controls/)
-- [Text Fields](/demos/text-fields/)
+- [Checkboxes](/components/checkboxes/)
+- [Radio Buttons](/components/radio-buttons/)
+- [Switches](/components/switches/)
+- [Text Fields](/components/text-fields/)
 

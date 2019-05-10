@@ -48,7 +48,7 @@ describe('<Dialog />', () => {
   );
 
   it('should render a Modal with TransitionComponent', () => {
-    const Transition = () => <div tabIndex={-1} />;
+    const Transition = React.forwardRef(() => <div tabIndex={-1} />);
     const wrapper = mount(
       <Dialog {...defaultProps} open TransitionComponent={Transition}>
         foo

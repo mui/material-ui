@@ -1,4 +1,4 @@
-# CDN v4-alpha example
+# CDN v4-beta example
 
 ## How to use
 

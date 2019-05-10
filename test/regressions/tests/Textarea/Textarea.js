@@ -48,7 +48,7 @@ function Textarea() {
           input: classes.input2,
         }}
       />
-      <Input className={classes.input} multiline placeholder="rowsMin" rowsMin="3" />
+      <Input className={classes.input} multiline placeholder="rows" rows="3" />
       <Input
         className={classes.input}
         multiline

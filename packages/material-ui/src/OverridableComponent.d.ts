@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '.';
+import { Omit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
 
 /**

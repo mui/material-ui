@@ -109,9 +109,16 @@ function describeRef(element, getOptions) {
   describe('ref', () => {
     it(`attaches the ref`, () => {
       // type def in ConformanceOptions
-      const { mount, refInstanceof } = getOptions();
+      const { inheritComponent, mount, refInstanceof } = getOptions();
 
-      testRef(element, mount, current => assert.instanceOf(current, refInstanceof));
+      testRef(element, mount, (instance, wrapper) => {
+        assert.instanceOf(instance, refInstanceof);
+
+        if (inheritComponent && instance instanceof window.Element) {
+          const rootHost = findOutermostIntrinsic(wrapper);
+          assert.strictEqual(instance, rootHost.instance());
+        }
+      });
     });
   });
 }

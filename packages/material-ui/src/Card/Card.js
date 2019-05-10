@@ -1,5 +1,3 @@
-// @inheritedComponent Paper
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -14,7 +12,7 @@ export const styles = {
 };
 
 const Card = React.forwardRef(function Card(props, ref) {
-  const { classes, className, raised, ...other } = props;
+  const { classes, className, raised = false, ...other } = props;
 
   return (
     <Paper
@@ -40,10 +38,6 @@ Card.propTypes = {
    * If `true`, the card will use raised styling.
    */
   raised: PropTypes.bool,
-};
-
-Card.defaultProps = {
-  raised: false,
 };
 
 export default withStyles(styles, { name: 'MuiCard' })(Card);

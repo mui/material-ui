@@ -87,7 +87,7 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Autocomplete](/demos/autocomplete/)
-- [Pickers](/demos/pickers/)
-- [Text Fields](/demos/text-fields/)
+- [Autocomplete](/components/autocomplete/)
+- [Pickers](/components/pickers/)
+- [Text Fields](/components/text-fields/)
 

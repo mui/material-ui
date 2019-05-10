@@ -1,5 +1,3 @@
-// @inheritedComponent FormGroup
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
@@ -9,7 +7,7 @@ import RadioGroupContext from './RadioGroupContext';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const { actions, children, name, value: valueProp, onChange, ...other } = props;
-  const rootRef = React.useRef();
+  const rootRef = React.useRef(null);
   const { current: isControlled } = React.useRef(props.value != null);
   const [valueState, setValue] = React.useState(() => {
     if (!isControlled) {

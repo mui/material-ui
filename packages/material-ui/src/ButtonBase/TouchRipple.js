@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Ripple from './Ripple';
@@ -24,10 +24,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the internal `Ripple` components `ripple` class. */
   ripple: {
-    width: 50,
-    height: 50,
-    left: 0,
-    top: 0,
     opacity: 0,
     position: 'absolute',
   },

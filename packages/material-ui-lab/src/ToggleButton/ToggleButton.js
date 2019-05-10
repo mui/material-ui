@@ -191,6 +191,4 @@ ToggleButton.defaultProps = {
   size: 'medium',
 };
 
-ToggleButton.muiName = 'ToggleButton';
-
 export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);

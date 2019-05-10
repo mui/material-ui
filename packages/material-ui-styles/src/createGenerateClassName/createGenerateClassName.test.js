@@ -1,66 +1,158 @@
-import warning from 'warning';
-import hash from '@emotion/hash';
+import { assert } from 'chai';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import createGenerateClassName from './createGenerateClassName';
+import nested from '../ThemeProvider/nested';
 
-function safePrefix(classNamePrefix) {
-  const prefix = String(classNamePrefix);
-  warning(prefix.length < 256, `Material-UI: the class name prefix is too long: ${prefix}.`);
-  return prefix;
-}
+describe('createGenerateClassName', () => {
+  it('should generate a class name', () => {
+    const generateClassName = createGenerateClassName();
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key',
+        },
+        {
+          options: {
+            theme: {},
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key-1',
+    );
+  });
 
-const themeHashCache = {};
+  it('should increase the counter', () => {
+    const generateClassName = createGenerateClassName();
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key',
+        },
+        {
+          options: {
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key-1',
+    );
+    assert.strictEqual(
+      generateClassName(
+        {
+          key: 'key',
+        },
+        {
+          options: {
+            classNamePrefix: 'classNamePrefix',
+          },
+        },
+      ),
+      'classNamePrefix-key-2',
+    );
+  });
 
-// Returns a function which generates unique class names based on counters.
-// When new generator function is created, rule counter is reset.
-// We need to reset the rule counter for SSR for each request.
-//
-// It's inspired by
-// https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName(options = {}) {
-  const { dangerouslyUseGlobalCSS = false, productionPrefix = 'jss', seed = '' } = options;
-  let ruleCounter = 0;
+  it('should work without a classNamePrefix', () => {
+    const generateClassName = createGenerateClassName();
+    assert.strictEqual(
+      generateClassName(
+        { key: 'root' },
+        {
+          options: {},
+        },
+      ),
+      'root-1',
+    );
+  });
 
-  return (rule, styleSheet) => {
-    const isStatic = !styleSheet.options.link;
+  it('should generate global class names', () => {
+    const generateClassName = createGenerateClassName();
+    assert.strictEqual(
+      generateClassName(
+        { key: 'root' },
+        {
+          options: {
+            name: 'MuiButton',
+            theme: {},
+          },
+        },
+      ),
+      'MuiButton-root',
+    );
+    assert.strictEqual(
+      generateClassName(
+        { key: 'root' },
+        {
+          options: {
+            name: 'MuiButton',
+            theme: {
+              [nested]: true,
+            },
+          },
+        },
+      ),
+      'MuiButton-root-2',
+    );
+    assert.strictEqual(
+      generateClassName(
+        { key: 'disabled' },
+        {
+          options: {
+            name: 'MuiButton',
+            theme: {},
+          },
+        },
+      ),
+      'Mui-disabled',
+    );
+  });
 
-    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name && isStatic) {
-      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
+  describe('production', () => {
+    // Only run the test on node.
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      return;
     }
 
-    let suffix;
+    let nodeEnv;
+    const env = process.env;
 
-    // It's a static rule.
-    if (isStatic) {
-      let themeHash = themeHashCache[styleSheet.options.theme];
-      if (!themeHash) {
-        themeHash = hash(JSON.stringify(styleSheet.options.theme));
-        themeHashCache[styleSheet.theme] = themeHash;
-      }
-      const raw = styleSheet.rules.raw[rule.key];
-      suffix = hash(`${themeHash}${rule.key}${JSON.stringify(raw)}`);
-    }
+    before(() => {
+      nodeEnv = env.NODE_ENV;
+      env.NODE_ENV = 'production';
+      consoleErrorMock.spy();
+    });
 
-    if (!suffix) {
-      ruleCounter += 1;
-      warning(
-        ruleCounter < 1e10,
-        [
-          'Material-UI: you might have a memory leak.',
-          'The ruleCounter is not supposed to grow that much.',
-        ].join(''),
+    after(() => {
+      env.NODE_ENV = nodeEnv;
+      consoleErrorMock.reset();
+    });
+
+    it('should output a short representation', () => {
+      const generateClassName = createGenerateClassName();
+      assert.strictEqual(
+        generateClassName(
+          { key: 'root' },
+          {
+            options: {},
+          },
+        ),
+        'jss1',
       );
+    });
 
-      suffix = ruleCounter;
-    }
-
-    if (process.env.NODE_ENV === 'production') {
-      return `${productionPrefix}${seed}${suffix}`;
-    }
-
-    // Help with debuggability.
-    if (styleSheet.options.classNamePrefix) {
-      return `${safePrefix(styleSheet.options.classNamePrefix)}-${rule.key}-${seed}${suffix}`;
-    }
-
-    return `${rule.key}-${seed}${suffix}`;
-  };
-}
+    it('should use the seed', () => {
+      const generateClassName = createGenerateClassName({
+        seed: 'dark',
+      });
+      assert.strictEqual(
+        generateClassName(
+          { key: 'root' },
+          {
+            options: {},
+          },
+        ),
+        'dark-jss1',
+      );
+    });
+  });
+});

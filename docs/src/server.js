@@ -12,6 +12,14 @@ const nextApp = next({
 });
 const nextHandler = nextApp.getRequestHandler();
 
+// Uncatched promise bubbling up to the global scope.
+process.on('unhandledRejection', (reason, promise) => {
+  log.fatal({
+    name: 'unhandledRejection',
+    msg: { reason, promise },
+  });
+});
+
 addTeardown({
   callback: () => nextApp.close(),
   nice: 2,

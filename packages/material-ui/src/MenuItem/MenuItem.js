@@ -1,5 +1,3 @@
-// @inheritedComponent ListItem
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -28,13 +26,26 @@ export const styles = theme => ({
 });
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
-  const { classes, className, component, disableGutters, role, selected, ...other } = props;
+  const {
+    classes,
+    className,
+    component = 'li',
+    disableGutters = false,
+    role = 'menuitem',
+    selected,
+    tabIndex: tabIndexProp,
+    ...other
+  } = props;
 
+  let tabIndex;
+  if (!props.disabled) {
+    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
+  }
   return (
     <ListItem
       button
       role={role}
-      tabIndex={-1}
+      tabIndex={tabIndex}
       component={component}
       selected={selected}
       disableGutters={disableGutters}
@@ -72,6 +83,10 @@ MenuItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
    * If `true`, the left and right padding is removed.
    */
   disableGutters: PropTypes.bool,
@@ -83,12 +98,10 @@ MenuItem.propTypes = {
    * @ignore
    */
   selected: PropTypes.bool,
-};
-
-MenuItem.defaultProps = {
-  component: 'li',
-  disableGutters: false,
-  role: 'menuitem',
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.number,
 };
 
 export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);
