@@ -252,9 +252,9 @@ class SpeedDial extends React.Component {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
             aria-controls={`${id}-actions`}
-            className={classes.fab}
             {...clickProp}
             {...ButtonProps}
+            className={clsx(classes.fab, ButtonProps.className)}
             ref={ref => {
               this.actions[0] = ref;
               setRef(origDialButtonRef, ref);
