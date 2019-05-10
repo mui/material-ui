@@ -100,7 +100,7 @@ ToggleButtonGroup.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The size of the toggleButton.
+   * The size of the button.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
