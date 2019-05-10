@@ -112,6 +112,7 @@ ToggleButtonGroup.propTypes = {
 
 ToggleButtonGroup.defaultProps = {
   exclusive: false,
+  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);

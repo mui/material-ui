@@ -69,15 +69,15 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    minWidth: 32,
-    height: 42,
+    height: 40,
+    minWidth: 40,
     fontSize: theme.typography.pxToRem(13),
   },
 
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
-    minWidth: 64,
-    height: 54,
+    height: 56,
+    minWidth: 56,
     fontSize: theme.typography.pxToRem(15),
   },
 });
@@ -174,7 +174,7 @@ ToggleButton.propTypes = {
    */
   selected: PropTypes.bool,
   /**
-   * The size of the toggleButton.
+   * The size of the button.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
