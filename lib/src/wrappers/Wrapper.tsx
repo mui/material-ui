@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ModalWrapper, { ModalWrapperProps } from './ModalWrapper';
 import InlineWrapper, { InlineWrapperProps } from './InlineWrapper';
 import { Omit } from '@material-ui/core';
