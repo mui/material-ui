@@ -6,8 +6,9 @@ import warning from 'warning';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Link from 'docs/src/modules/components/Link';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
@@ -45,6 +46,23 @@ const styles = theme => ({
   hr: {
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
+  },
+  pagination: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  pageLink: {
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: theme.shape.borderRadius,
+    height: theme.spacing(6),
+    padding: theme.spacing(2, 3),
+    cursor: 'pointer',
+    maxWidth: '40%',
+    '&:hover': {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+    },
   },
 });
 
@@ -114,6 +132,7 @@ function MarkdownDocs(props) {
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
   const currentPage = pageList.findIndex(page => page.pathname === activePage.pathname);
+  const prevPage = pageList[currentPage + -1];
   const nextPage = pageList[currentPage + 1];
 
   const headers = getHeaders(markdown);
@@ -190,13 +209,31 @@ function MarkdownDocs(props) {
                 <MarkdownElement className={classes.markdownElement} key={index} text={content} />
               );
             })}
-            {nextPage.displayNav === false ? null : (
+            {nextPage.displayNav === false && !prevPage ? null : (
               <footer>
                 <hr className={classes.hr} />
-                <Typography align="right">
-                  Continue to the next page:{' '}
-                  <Link href={nextPage.pathname}>{pageToTitleI18n(nextPage, t)}</Link>
-                </Typography>
+                <div className={classes.pagination}>
+                  {prevPage ? (
+                    <Link
+                      href={prevPage.pathname}
+                      variant="body1"
+                      underline="none"
+                      className={classes.pageLink}
+                    >
+                      <ChevronLeftIcon fontSize="small" /> {pageToTitleI18n(prevPage, t)}
+                    </Link>
+                  ) : null}
+                  {nextPage.displayNav === false ? null : (
+                    <Link
+                      href={nextPage.pathname}
+                      variant="body1"
+                      underline="none"
+                      className={classes.pageLink}
+                    >
+                      {pageToTitleI18n(nextPage, t)} <ChevronRightIcon fontSize="small" />
+                    </Link>
+                  )}
+                </div>
               </footer>
             )}
           </AppContent>
