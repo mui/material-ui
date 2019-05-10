@@ -5,7 +5,7 @@ components: Snackbar, SnackbarContent
 
 # Snackbars
 
-<p class="description">Snackbars provide brief messages about app processes through a message - typically at the bottom of the screen</p>
+<p class="description">Snackbars provide brief messages about app processes - typically at the bottom of the screen.</p>
 
 [Snackbars](https://material.io/design/components/snackbars.html) inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn’t interrupt the user experience, and they don’t require user input to disappear.
 
@@ -16,7 +16,7 @@ They may contain a text action, but no icons. You can use them to display notifi
 
 Only one snackbar may be displayed at a time.
 
-## Simple
+## Simple snackbars
 
 A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
@@ -29,7 +29,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
-## Positioned
+## Positioned snackbars
 
 There may be circumstances when the placement of the snackbar needs to be more flexible.
 
