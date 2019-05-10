@@ -99,97 +99,24 @@ describe('useScrollTrigger', () => {
     });
   });
 
-  describe('scrollPositions', () => {
-    it('should trigger correctly with default threshold', () => {
-      mountWrapper();
-      [
-        { offset: 100, result: 'false' },
-        { offset: 201, result: 'true' },
-        { offset: 100, result: 'false' },
-        { offset: 99, result: 'false' },
-        { offset: 100, result: 'false' },
-        { offset: 101, result: 'true' },
-        { offset: 9999, result: 'true' },
-        { offset: 101, result: 'false' },
-        { offset: 99, result: 'false' },
-        { offset: 100, result: 'false' },
-        { offset: 101, result: 'true' },
-        { offset: 100, result: 'false' },
-        { offset: 102, result: 'true' },
-        { offset: -3, result: 'false' },
-        { offset: 3, result: 'false' },
-        { offset: 103, result: 'true' },
-        { offset: 102, result: 'false' },
-      ].forEach((test, i) => {
-        if (dispatchScroll(test.offset))
-          assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
-      });
-    });
-
-    it('should trigger correctly with custom threshold', () => {
-      mountWrapper({ threshold: 30 });
-      [
-        { offset: 100, result: 'true' },
-        { offset: 101, result: 'true' },
-        { offset: 100, result: 'false' },
-        { offset: 99, result: 'false' },
-        { offset: 100, result: 'true' },
-        { offset: 9999, result: 'true' },
-        { offset: 101, result: 'false' },
-        { offset: 99, result: 'false' },
-        { offset: 75, result: 'false' },
-        { offset: 45, result: 'false' },
-        { offset: 31, result: 'false' },
-        { offset: 30, result: 'false' },
-        { offset: 29, result: 'false' },
-        { offset: 30, result: 'false' },
-        { offset: 31, result: 'true' },
-        { offset: -5, result: 'false' },
-        { offset: 0, result: 'false' },
-        { offset: 1, result: 'false' },
-        { offset: 29, result: 'false' },
-        { offset: 28, result: 'false' },
-        { offset: 30, result: 'false' },
-        { offset: 28, result: 'false' },
-        { offset: 31, result: 'true' },
-      ].forEach((test, i) => {
-        if (dispatchScroll(test.offset))
-          assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
-      });
-    });
-
-    it('should not trigger with negative direction default threshold', () => {
-      mountWrapper();
-      if (dispatchScroll(300)) assert.strictEqual(text(), 'true');
-      if (dispatchScroll(299)) assert.strictEqual(text(), 'false');
-    });
-
-    it('should trigger with positive direction exceeding default threshold', () => {
-      mountWrapper();
-      if (dispatchScroll(300)) assert.strictEqual(text(), 'true');
-      if (dispatchScroll(299)) assert.strictEqual(text(), 'false');
-      if (dispatchScroll(300)) assert.strictEqual(text(), 'true');
-    });
-  });
-
   describe('scrollPositionsWithRef', () => {
-    it('scroll container should render', () => {
+    it('scroll container should render with ref', () => {
       const wrapper = mountWrapperWithRef();
       const container = wrapper.find(Container);
       assert.strictEqual(container.exists(), true);
     });
-    it('should not trigger from window scroll events', () => {
+    it('should not trigger from window scroll events with ref', () => {
       mountWrapperWithRef();
       [101, 200, 300, -10, 100, 101, 99, 200, 199, 0, 1, -1, 150].forEach((offset, i) => {
         if (dispatchScroll(offset))
           assert.strictEqual(text(), 'false', `Index: ${i} Offset: ${offset}`);
       });
     });
-    it('should trigger above default threshold', () => {
+    it('should trigger above default threshold with ref', () => {
       mountWrapperWithRef();
       if (dispatchScroll(300, getContainer())) assert.strictEqual(text(), 'true');
     });
-    it('should have correct hysteresis triggering threshold', () => {
+    it('should have correct hysteresis triggering threshold with ref', () => {
       mountWrapperWithRef();
       [
         { offset: 100, result: 'false' },
@@ -215,7 +142,7 @@ describe('useScrollTrigger', () => {
       });
     });
 
-    it('should have correct hysteresis triggering with default threshold', () => {
+    it('should have correct hysteresis triggering with default threshold with ref', () => {
       mountWrapperWithRef({ disableHysteresis: true });
       [
         { offset: 100, result: 'false' },
@@ -240,7 +167,7 @@ describe('useScrollTrigger', () => {
       });
     });
 
-    it('should have correct hysteresis triggering with custom threshold', () => {
+    it('should have correct hysteresis triggering with custom threshold with ref', () => {
       mountWrapperWithRef({ disableHysteresis: true, threshold: 50 });
       [
         { offset: 100, result: 'true' },
@@ -263,7 +190,7 @@ describe('useScrollTrigger', () => {
       });
     });
 
-    it('should not trigger at exact threshold value', () => {
+    it('should not trigger at exact threshold value with ref', () => {
       mountWrapperWithRef({ threshold: 100 });
       [
         { offset: 100, result: 'false' },
@@ -279,7 +206,7 @@ describe('useScrollTrigger', () => {
       });
     });
 
-    it('should not trigger at exact threshold value with hysteresis disabled', () => {
+    it('should not trigger at exact threshold value with hysteresis disabled with ref', () => {
       mountWrapperWithRef({ disableHysteresis: true, threshold: 100 });
       [
         { offset: 100, result: 'false' },
@@ -294,7 +221,7 @@ describe('useScrollTrigger', () => {
       });
     });
 
-    it('should correctly evaluate sequential scroll events with identical scrollY offsets', () => {
+    it('should correctly evaluate sequential scroll events with identical scrollY offsets with ref', () => {
       mountWrapperWithRef({ threshold: 199 });
       [
         { offset: 200, result: 'true' },
@@ -311,7 +238,7 @@ describe('useScrollTrigger', () => {
       });
     });
 
-    it('should correctly evaluate sequential scroll events with identical scrollY offsets and hysteresis disabled', () => {
+    it('should correctly evaluate sequential scroll events with identical scrollY offsets and hysteresis disabled with ref', () => {
       mountWrapperWithRef({ disableHysteresis: true, threshold: 199 });
       [
         { offset: 200, result: 'true' },
@@ -327,71 +254,96 @@ describe('useScrollTrigger', () => {
           assert.strictEqual(text(), test.result, `Index: ${i} ${JSON.stringify(test)}`);
       });
     });
+  });
 
-    describe('Current and Previous Scroll Positions', () => {
-      function getExpectedResult(previous, current, disableHysteresis) {
-        if (
-          current === undefined ||
-          current === null ||
-          current === 0 ||
-          current === 99 ||
-          current === 100
-        ) {
-          return 'false'; // Should always returns false if the threshold has not been crossed
-        }
-
-        if (current === 101) {
-          if (previous === null || previous === undefined) {
-            // Scroll direction is unknown, assumed postiive
-            return 'true';
-          }
-          if (previous === current) {
-            // No change in scroll position
-            return 'true';
-          }
-          if (previous > current) {
-            // Scroll direction is negative
-            if (disableHysteresis) {
-              return 'false';
-            }
-            return 'true';
-          }
-          if (previous < current) {
-            // Scroll direction is positive
-            return 'true';
-          }
-        }
-        return 'unknown';
+  describe('Current and Previous Scroll Positions', () => {
+    function getExpectedResult(previous, current, disableHysteresis, threshold, initialState) {
+      if (current === undefined) {
+        return initialState.toString();
       }
-      const testAllCombinations = disableHysteresis =>
-        [undefined, null, 0, 99, 100, 101].forEach(current => {
-          [undefined, null, 0, 99, 100, 101].forEach(previous => {
-            [
-              { offset: undefined, scrollTop: undefined, result: 'false' }, // Baseline
-              { offset: previous, scrollTop: previous, result: 'false' }, // Set previous value
-              { offset: current, scrollTop: current, result: 'false' }, // Test current with previous value
-            ].forEach((test, i) => {
-              if (dispatchScrollTest(test.offset, test.scrollTop))
-                if (i === 2) {
-                  // Only test the resulting value
-                  assert.strictEqual(
-                    text(),
-                    getExpectedResult(previous, current, disableHysteresis),
-                    `Current: ${current} Previous: ${previous} Index: ${i} ${JSON.stringify(test)}`,
-                  );
-                }
-            });
+      if (!disableHysteresis) {
+        // Using hysteresis logic
+        if (previous !== undefined) {
+          // A previous scroll exists
+          if (previous <= current) {
+            // Positive or neutral scolling direction
+            if (current > threshold) {
+              // Positive or neutral scrolling direction and threshold exceeded
+              return 'true';
+            }
+            return 'false'; // Positive scrolling direction and threshold is not exceeded
+          }
+          return 'false'; // Negative scrolling direction
+        }
+        // No previous scroll, unknown scrolling direction, use non hysteresis logic
+        if (current > threshold) {
+          return 'true'; // No previous scroll, unknown scrolling direction, threshold exceeded
+        }
+        return 'false'; // No previous scroll, unknown scrolling direction, threshold is not exceeded
+      }
+
+      // Default non hysteresis logic
+      if (current > threshold) {
+        return 'true';
+      }
+      return 'false';
+    }
+
+    const testAllCombinations = (props, testValues) =>
+      testValues.forEach(current => {
+        testValues.forEach(previous => {
+          [
+            { offset: undefined, scrollTop: undefined, result: 'false' }, // Baseline
+            { offset: previous, scrollTop: previous, result: 'false' }, // Set previous value
+            { offset: current, scrollTop: current, result: 'false' }, // Test current with previous value
+          ].forEach((test, i) => {
+            if (dispatchScrollTest(test.offset, test.scrollTop))
+              if (i === 2) {
+                // Validate the test
+                assert.strictEqual(
+                  text(),
+                  getExpectedResult(
+                    previous,
+                    current,
+                    props.disableHysteresis,
+                    props.threshold,
+                    props.initialState,
+                  ),
+                  `Current: ${current} Previous: ${previous} ${JSON.stringify(test)}`,
+                );
+              }
           });
         });
-      it('should evaluate all combinations for previous and current scroll values with hysteresis', () => {
-        const disableHysteresis = false;
-        mountWrapper({ disableHysteresis });
-        testAllCombinations(disableHysteresis);
       });
-      it('should evaluate all combinations for previous and current scroll values without hysteresis', () => {
-        const disableHysteresis = true;
-        mountWrapper({ disableHysteresis });
-        testAllCombinations(disableHysteresis);
+
+    function randomDataSet(dataSetSize, minValue, maxValue) {
+      return new Array(dataSetSize)
+        .fill(0)
+        .map(() => Math.random() * (maxValue - minValue) + minValue);
+    }
+
+    const scrollOffsets = [undefined, null, 0, 100, 101, -1, -100].concat(
+      randomDataSet(1, -100, 1000),
+    );
+
+    const thresholds = [null, -100, -1, 0, 1, 100, 300].concat(randomDataSet(1, -200, 500));
+
+    const initialStates = [true, false];
+    const DisableHysteresis = [true, false];
+
+    thresholds.forEach(threshold => {
+      initialStates.forEach(initialState => {
+        DisableHysteresis.forEach(disableHysteresis => {
+          const props = {
+            disableHysteresis,
+            threshold,
+            initialState,
+          };
+          it(`should validate combinations with props: ${JSON.stringify(props)}`, () => {
+            mountWrapper(props);
+            testAllCombinations(props, scrollOffsets);
+          });
+        });
       });
     });
   });
