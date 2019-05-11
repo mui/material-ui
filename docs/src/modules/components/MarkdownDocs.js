@@ -9,6 +9,7 @@ import Portal from '@material-ui/core/Portal';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
@@ -30,9 +31,6 @@ import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
 const styles = theme => ({
-  root: {
-    marginBottom: 100,
-  },
   header: {
     display: 'flex',
     flexDirection: 'column',
@@ -43,11 +41,11 @@ const styles = theme => ({
     marginBottom: theme.spacing(2),
     padding: theme.spacing(0, 1),
   },
-  hr: {
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2),
+  footer: {
+    marginTop: theme.spacing(16),
   },
   pagination: {
+    margin: theme.spacing(3, 0, 4),
     display: 'flex',
     justifyContent: 'space-between',
   },
@@ -207,36 +205,38 @@ function MarkdownDocs(props) {
                 <MarkdownElement className={classes.markdownElement} key={index} text={content} />
               );
             })}
-            {currentPage.displayNav === false ||
-            (nextPage.displayNav === false && !prevPage) ? null : (
-              <footer>
-                <hr className={classes.hr} />
-                <div className={classes.pagination}>
-                  {prevPage ? (
-                    <Button
-                      href={prevPage.pathname}
-                      size="large"
-                      className={classes.pageLinkButton}
-                    >
-                      <ChevronLeftIcon className={classes.chevronLeftIcon} />
-                      {pageToTitleI18n(prevPage, t)}
-                    </Button>
-                  ) : (
-                    <div />
-                  )}
-                  {nextPage.displayNav === false ? null : (
-                    <Button
-                      href={nextPage.pathname}
-                      size="large"
-                      className={classes.pageLinkButton}
-                    >
-                      {pageToTitleI18n(nextPage, t)}
-                      <ChevronRightIcon className={classes.chevronRightIcon} />
-                    </Button>
-                  )}
-                </div>
-              </footer>
-            )}
+            <footer className={classes.footer}>
+              {currentPage.displayNav === false ||
+              (nextPage.displayNav === false && !prevPage) ? null : (
+                <React.Fragment>
+                  <Divider />
+                  <div className={classes.pagination}>
+                    {prevPage ? (
+                      <Button
+                        href={prevPage.pathname}
+                        size="large"
+                        className={classes.pageLinkButton}
+                      >
+                        <ChevronLeftIcon fontSize="small" className={classes.chevronLeftIcon} />
+                        {pageToTitleI18n(prevPage, t)}
+                      </Button>
+                    ) : (
+                      <div />
+                    )}
+                    {nextPage.displayNav === false ? null : (
+                      <Button
+                        href={nextPage.pathname}
+                        size="large"
+                        className={classes.pageLinkButton}
+                      >
+                        {pageToTitleI18n(nextPage, t)}
+                        <ChevronRightIcon fontSize="small" className={classes.chevronRightIcon} />
+                      </Button>
+                    )}
+                  </div>
+                </React.Fragment>
+              )}
+            </footer>
           </AppContent>
         </AppFrame>
       )}
