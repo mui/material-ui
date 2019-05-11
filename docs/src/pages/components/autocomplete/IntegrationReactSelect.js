@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types, react/jsx-handler-names */
+/* eslint-disable react/jsx-handler-names */
 
 import React from 'react';
 import clsx from 'clsx';
@@ -12,6 +12,7 @@ import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import PropTypes from 'prop-types';
 
 const suggestions = [
   { label: 'Afghanistan' },
@@ -115,9 +116,19 @@ function NoOptionsMessage(props) {
   );
 }
 
+NoOptionsMessage.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  selectProps: PropTypes.object.isRequired,
+};
+
 function inputComponent({ inputRef, ...props }) {
   return <div ref={inputRef} {...props} />;
 }
+
+inputComponent.propTypes = {
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+};
 
 function Control(props) {
   return (
@@ -137,6 +148,13 @@ function Control(props) {
   );
 }
 
+Control.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  selectProps: PropTypes.object.isRequired,
+};
+
 function Option(props) {
   return (
     <MenuItem
@@ -153,6 +171,14 @@ function Option(props) {
   );
 }
 
+Option.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  isFocused: PropTypes.bool,
+  isSelected: PropTypes.bool,
+};
+
 function Placeholder(props) {
   return (
     <Typography
@@ -165,6 +191,12 @@ function Placeholder(props) {
   );
 }
 
+Placeholder.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  selectProps: PropTypes.object.isRequired,
+};
+
 function SingleValue(props) {
   return (
     <Typography className={props.selectProps.classes.singleValue} {...props.innerProps}>
@@ -173,9 +205,20 @@ function SingleValue(props) {
   );
 }
 
+SingleValue.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  selectProps: PropTypes.object.isRequired,
+};
+
 function ValueContainer(props) {
   return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 }
+
+ValueContainer.propTypes = {
+  children: PropTypes.node,
+  selectProps: PropTypes.object.isRequired,
+};
 
 function MultiValue(props) {
   return (
@@ -191,6 +234,13 @@ function MultiValue(props) {
   );
 }
 
+MultiValue.propTypes = {
+  children: PropTypes.node,
+  isFocused: PropTypes.bool,
+  removeProps: PropTypes.object.isRequired,
+  selectProps: PropTypes.object.isRequired,
+};
+
 function Menu(props) {
   return (
     <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
@@ -198,6 +248,12 @@ function Menu(props) {
     </Paper>
   );
 }
+
+Menu.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  selectProps: PropTypes.object,
+};
 
 const components = {
   Control,
