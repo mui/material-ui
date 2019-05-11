@@ -40,7 +40,7 @@ const styles = theme => ({
   },
 });
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next/docs/src';
 
 function MarkdownDocs(props) {
   const {
@@ -111,10 +111,7 @@ function MarkdownDocs(props) {
           )}
           <AppContent disableToc={disableToc} className={classes.root}>
             <div className={classes.header}>
-              <EditPage
-                markdownLocation={markdownLocation}
-                sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-              />
+              <EditPage markdownLocation={markdownLocation} />
             </div>
             {contents.map((content, index) => {
               if (demos && demoRegexp.test(content)) {
@@ -156,7 +153,7 @@ function MarkdownDocs(props) {
                     key={content}
                     demo={demos[name]}
                     demoOptions={demoOptions}
-                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                    githubLocation={`${SOURCE_CODE_ROOT_URL}/${name}`}
                   />
                 );
               }
