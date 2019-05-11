@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Link from 'docs/src/modules/components/Link';
+import Button from '@material-ui/core/Button';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
@@ -51,18 +51,15 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  pageLink: {
-    display: 'flex',
-    alignItems: 'center',
-    borderRadius: theme.shape.borderRadius,
-    height: theme.spacing(6),
-    padding: theme.spacing(2, 3),
-    cursor: 'pointer',
-    maxWidth: '40%',
-    '&:hover': {
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
-    },
+  pageLinkButton: {
+    textTransform: 'none',
+    color: theme.palette.primary.main,
+  },
+  chevronLeftIcon: {
+    marginRight: theme.spacing(1),
+  },
+  chevronRightIcon: {
+    marginLeft: theme.spacing(1),
   },
 });
 
@@ -216,26 +213,26 @@ function MarkdownDocs(props) {
                 <hr className={classes.hr} />
                 <div className={classes.pagination}>
                   {prevPage ? (
-                    <Link
+                    <Button
                       href={prevPage.pathname}
-                      variant="body1"
-                      underline="none"
-                      className={classes.pageLink}
+                      size="large"
+                      className={classes.pageLinkButton}
                     >
-                      <ChevronLeftIcon fontSize="small" /> {pageToTitleI18n(prevPage, t)}
-                    </Link>
+                      <ChevronLeftIcon className={classes.chevronLeftIcon} />
+                      {pageToTitleI18n(prevPage, t)}
+                    </Button>
                   ) : (
                     <div />
                   )}
                   {nextPage.displayNav === false ? null : (
-                    <Link
+                    <Button
                       href={nextPage.pathname}
-                      variant="body1"
-                      underline="none"
-                      className={classes.pageLink}
+                      size="large"
+                      className={classes.pageLinkButton}
                     >
-                      {pageToTitleI18n(nextPage, t)} <ChevronRightIcon fontSize="small" />
-                    </Link>
+                      {pageToTitleI18n(nextPage, t)}
+                      <ChevronRightIcon className={classes.chevronRightIcon} />
+                    </Button>
                   )}
                 </div>
               </footer>
