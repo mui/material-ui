@@ -46,7 +46,7 @@ class ToggleButtonSizes extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { alignment, formats, size } = this.state;
+    const { alignment, size } = this.state;
 
     return (
       <Grid container spacing={2}>
