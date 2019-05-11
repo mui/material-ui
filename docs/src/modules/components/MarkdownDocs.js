@@ -18,6 +18,7 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
+import PageContext from 'docs/src/modules/components/PageContext';
 import {
   getHeaders,
   getTitle,
@@ -27,7 +28,6 @@ import {
 import compose from 'docs/src/modules/utils/compose';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
-import PageContext from 'docs/src/modules/components/PageContext';
 
 const styles = theme => ({
   root: {
@@ -131,9 +131,10 @@ function MarkdownDocs(props) {
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
-  const currentPage = pageList.findIndex(page => page.pathname === activePage.pathname);
-  const prevPage = pageList[currentPage + -1];
-  const nextPage = pageList[currentPage + 1];
+  const currentPageNum = pageList.findIndex(page => page.pathname === activePage.pathname);
+  const currentPage = pageList[currentPageNum];
+  const prevPage = pageList[currentPageNum - 1];
+  const nextPage = pageList[currentPageNum + 1];
 
   const headers = getHeaders(markdown);
   // eslint-disable-next-line no-underscore-dangle
@@ -209,7 +210,8 @@ function MarkdownDocs(props) {
                 <MarkdownElement className={classes.markdownElement} key={index} text={content} />
               );
             })}
-            {nextPage.displayNav === false && !prevPage ? null : (
+            {currentPage.displayNav === false ||
+            (nextPage.displayNav === false && !prevPage) ? null : (
               <footer>
                 <hr className={classes.hr} />
                 <div className={classes.pagination}>
@@ -222,7 +224,9 @@ function MarkdownDocs(props) {
                     >
                       <ChevronLeftIcon fontSize="small" /> {pageToTitleI18n(prevPage, t)}
                     </Link>
-                  ) : null}
+                  ) : (
+                    <div />
+                  )}
                   {nextPage.displayNav === false ? null : (
                     <Link
                       href={nextPage.pathname}
