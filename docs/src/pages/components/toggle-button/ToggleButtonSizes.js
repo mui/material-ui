@@ -27,11 +27,6 @@ class ToggleButtonSizes extends React.Component {
   state = {
     alignment: 'left',
     size: 'medium',
-    formats: ['bold'],
-  };
-
-  handleFormat = (event, formats) => {
-    this.setState({ formats });
   };
 
   handleAlignment = (event, alignment) => {
