@@ -5,9 +5,10 @@ import Button from '@material-ui/core/Button';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BZ', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/edit/next';
 
 function EditPage(props) {
-  const { markdownLocation, sourceCodeRootUrl, t, userLanguage } = props;
+  const { markdownLocation, t, userLanguage } = props;
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const crowdInPath = markdownLocation.substring(0, markdownLocation.lastIndexOf('/'));
 
@@ -16,7 +17,7 @@ function EditPage(props) {
       component="a"
       href={
         userLanguage === 'en'
-          ? `${sourceCodeRootUrl}${markdownLocation}`
+          ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}`
           : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging${crowdInPath}`
       }
       target="_blank"
@@ -32,7 +33,6 @@ function EditPage(props) {
 
 EditPage.propTypes = {
   markdownLocation: PropTypes.string.isRequired,
-  sourceCodeRootUrl: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
