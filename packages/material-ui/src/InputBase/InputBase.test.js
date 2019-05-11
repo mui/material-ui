@@ -302,7 +302,7 @@ describe('<InputBase />', () => {
           target: { value: '' },
         });
         assert.strictEqual(handleEmpty.callCount, 1);
-        assert.strictEqual(muiFormControl.onEmpty.callCount, 1);
+        assert.strictEqual(muiFormControl.onEmpty.callCount, 2);
       });
 
       it('should fire the onFocus muiFormControl', () => {

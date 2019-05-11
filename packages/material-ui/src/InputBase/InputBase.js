@@ -197,8 +197,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const [focused, setFocused] = React.useState(false);
   const muiFormControl = React.useContext(FormControlContext);
-  const muiFormControlRef = React.useRef();
-  muiFormControlRef.current = muiFormControl;
 
   const fcs = formControlState({
     props,
@@ -221,8 +219,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const checkDirty = React.useCallback(
     obj => {
       if (isFilled(obj)) {
-        if (muiFormControlRef.current && muiFormControlRef.current.onFilled) {
-          muiFormControlRef.current.onFilled();
+        if (muiFormControl && muiFormControl.onFilled) {
+          muiFormControl.onFilled();
         }
         if (onFilled) {
           onFilled();
@@ -230,14 +228,14 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         return;
       }
 
-      if (muiFormControlRef.current && muiFormControlRef.current.onEmpty) {
-        muiFormControlRef.current.onEmpty();
+      if (muiFormControl && muiFormControl.onEmpty) {
+        muiFormControl.onEmpty();
       }
       if (onEmpty) {
         onEmpty();
       }
     },
-    [onEmpty, onFilled],
+    [muiFormControl, onEmpty, onFilled],
   );
 
   React.useEffect(() => {
