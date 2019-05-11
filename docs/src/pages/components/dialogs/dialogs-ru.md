@@ -2,11 +2,12 @@
 title: Диалог, компонент React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
+
 # Диалоги
 
 <p class="description">Диалоги информируют пользователей о задаче и могут содержать критическую информацию, требовать решения или включать несколько задач.</p>
 
-[Диалог](https://material.io/design/components/dialogs.html) представляет собой тип [модальных](/utils/modal/) окон, который появляется над приложением, чтобы предоставить важную информацию или для предоставления решения. Диалоги отключают все функции приложения, когда они появляются, и остаются на экране до тех пор, пока не будут подтверждены, отклонены или пока не будут предприняты необходимые действия.
+[Диалог](https://material.io/design/components/dialogs.html) представляет собой тип [модальных](/components/modal/) окон, который появляется над приложением, чтобы предоставить важную информацию или для предоставления решения. Диалоги отключают все функции приложения, когда они появляются, и остаются на экране до тех пор, пока не будут подтверждены, отклонены или пока не будут предприняты необходимые действия.
 
 Диалоги целенаправленно останавливают, поэтому их следует использовать с осторожностью.
 
@@ -19,7 +20,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 - Выбор опции немедленно фиксирует ее и закрывает меню
 - Касание за пределами диалога или нажатие Назад отменяет действие и закрывает диалоговое окно
 
-{{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
+{{"demo": "pages/components/dialogs/SimpleDialog.js"}}
 
 ## Оповещения
 
@@ -37,41 +38,41 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 - Используйте четкий вопрос или утверждение с пояснением в области содержимого, например «Очистить USB-накопитель?».
 - Избегайте извинений, двусмысленности или вопросов, таких как «Предупреждение!» Или «Вы уверены?»
 
-{{"demo": "pages/demos/dialogs/AlertDialog.js"}}
+{{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
 Вы также можете поменять анимацию, в следующем примере используется `Slide`.
 
-{{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
+{{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
 
 ## Диалоги с формой
 
 Диалоги с формой позволяют пользователям заполнять поля формы внутри диалога. Например, если ваш сайт предлагает потенциальным подписчикам заполнить свой адрес электронной почты, они могут заполнить поле электронной почты и нажать «Отправить».
 
-{{"demo": "pages/demos/dialogs/FormDialog.js"}}
+{{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Кастомизированные диалоги
+## Customized dialogs
 
-Если вы уже читали страницу документации [о переопределении](/customization/overrides/) но не уверены, что готовы это применить, вот один из примеров того, как можно настроить `DialogTitle` для поддержки кнопки закрытия.
+Here is example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
+The dialog has a close button added to aide usability.
 
-{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+{{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
 ## Полноэкранные диалоги
 
-{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
+{{"demo": "pages/components/dialogs/FullScreenDialog.js"}}
 
 ## Опциональные размеры
 
 Вы можете установить максимальную ширину диалога с помощью числового значения `maxWidth` в сочетании с булевым значением `fullWidth`. Когда свойство `fullWidth` имеет значение true, диалоговое окно будет адаптировано на основе значения `maxWidth`.
 
-{{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
+{{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
 ## Отзывчивый полноэкранный режим
 
-Вы можете сделать диалог в полноэкранном режиме, используя `withMobileDialog`. По умолчанию `withMobileDialog () (Dialog)` переходит в полноэкранный режим когда [размер экрана](/layout/basics/) *равен или ниже* значения `sm`. Вы можете выбрать собственную точку остановки, например `xs`, передав аргумент `breakpoint`: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+You may make a dialog responsively full screen using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/customization/breakpoints/). Вы можете выбрать собственную точку остановки, например `xs`, передав аргумент `breakpoint`: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
 
-{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
+{{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
 ## Диалоги подтверждения
 
@@ -79,11 +80,11 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 Нажатие кнопки «Отмена» в диалоговом окне подтверждения или нажатие «Назад» отменяет действие, отменяет любые изменения и закрывает диалоговое окно.
 
-{{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
+{{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## Доступность
 
-Смотри [раздел доступности модальных окон](/utils/modal/#accessibility).
+Смотри [раздел доступности модальных окон](/components/modal/#accessibility).
 
 ## Прокрутка длинного контента
 
@@ -94,14 +95,14 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 Попробуйте демо ниже, чтобы увидеть, что мы имеем в виду:
 
-{{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
+{{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
 ## Перетаскиваемый диалог
 
 Вы можете создать перетаскиваемый диалог, используя [react-draggable](https://github.com/mzabriskie/react-draggable). Для этого вы можете передать импортированный компонент `Draggable` как компонент `PaperComponent` компонента `Dialog`. Это сделает весь диалог перетаскиваемым.
 
-{{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Производительность
 
-Перейдите в раздел [Modal performance section](/utils/modal/#performance).
+Перейдите в раздел [Modal performance section](/components/modal/#performance).

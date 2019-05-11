@@ -2,6 +2,7 @@
 title: React-компонент Автозаполнение
 components: TextField, Paper, MenuItem, Popper
 ---
+
 # Автодополнение
 
 <p class="description">Автодополнение - это обычный ввод текста, дополненный панелью предлагаемых опций.</p>
@@ -12,11 +13,11 @@ Material-UI не предоставляет высокоуровневый API �
 
 ![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-В следующем примере мы демонстрируем как использовать библиотеку [downshift](https://github.com/paypal/downshift).
+В следующем примере мы демонстрируем как использовать библиотеку [downshift](https://github.com/downshift-js/downshift).
 
 The last demo allow to clear the input and show a number of options on focus.
 
-{{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
+{{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
 
 ## react-select
 
@@ -24,7 +25,7 @@ The last demo allow to clear the input and show a number of options on focus.
 
 В следующем примере мы демонстрируем как использовать библиотеку [react-select](https://github.com/JedWatson/react-select).
 
-{{"demo": "pages/demos/autocomplete/IntegrationReactSelect.js"}}
+{{"demo": "pages/components/autocomplete/IntegrationReactSelect.js"}}
 
 ## react-autosuggest
 
@@ -32,4 +33,4 @@ The last demo allow to clear the input and show a number of options on focus.
 
 В следующем примере мы демонстрируем как использовать библиотеку [react-autosuggest](https://github.com/moroshko/react-autosuggest). Она также использует [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) для подсветки значений.
 
-{{"demo": "pages/demos/autocomplete/IntegrationAutosuggest.js"}}
+{{"demo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}

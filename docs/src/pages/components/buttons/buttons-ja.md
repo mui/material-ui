@@ -2,6 +2,7 @@
 title: Button React component
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # ボタン
 
 <p class="description">Buttonを使用すると、ユーザーは1回のタップでアクションを実行したり選択したりできます。</p>
@@ -20,7 +21,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 一番最後のデモは、アップロード用のボタンの例になっています。
 
-{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
+{{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
 ## Text Buttons
 
@@ -31,7 +32,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Cardの中でText Buttonを用いることで、Cardの内容に重点を置くことができます。
 
-{{"demo": "pages/demos/buttons/TextButtons.js"}}
+{{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Outlined Buttons
 
@@ -41,7 +42,7 @@ Cardの中でText Buttonを用いることで、Cardの内容に重点を置く�
 
 Outlined buttonは、Contained buttonと比べると強調が弱く、 Text buttonと比べると強調の強いボタンです。
 
-{{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
+{{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
 ## Floating Action Buttons
 
@@ -51,7 +52,7 @@ Only use a FAB if it is the most suitable way to present a screen’s primary ac
 
 Only one floating action button is recommended per screen to represent the most common action.
 
-{{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtons.js"}}
 
 The floating action button animates onto the screen as an expanding piece of material, by default.
 
@@ -59,19 +60,19 @@ A floating action button that spans multiple lateral screens (such as tabbed scr
 
 The Zoom transition can be used to achieve this. Note that since both the exiting and entering animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's animation to finish before the new one enters.
 
-{{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
 
 ## Sizes
 
 Fancy larger or smaller buttons? Use the `size` property.
 
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
+{{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
 ## Buttons with icons and label
 
 Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
 
-{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
+{{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
 ## Icon Buttons
 
@@ -79,52 +80,26 @@ Icon buttons are commonly found in app bars and toolbars.
 
 Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
 
-{{"demo": "pages/demos/buttons/IconButtons.js"}}
+{{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized Buttons
+## Customized buttons
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the main color of a Button using classes, and using a theme; and of a Bootstrap style Button.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-{{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
+
 
 ## Complex Buttons
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
 
-{{"demo": "pages/demos/buttons/ButtonBases.js"}}
+{{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Third-party routing library
 
 One common use case is to use the button to trigger a navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that a lot of our interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere:
 
-```jsx
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
+{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-// required for react-router-dom < 5.0.0 
-// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
-const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
-
-<Button component={Link} to="/open-collective">
-  Link
-</Button>
-```
-
-or if you want to avoid properties collision:
-
-```jsx
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-
-// use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
-
-<Button component={MyLink}>
-  Link
-</Button>
-```
-
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*Note: Creating the Button components is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*

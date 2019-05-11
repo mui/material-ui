@@ -2,33 +2,34 @@
 title: Breadcrumbs
 components: Breadcrumbs, Link, Typography
 ---
+
 # Хлебные крошки
 
 <p class="description">Хлебные крошки позволяют пользователям выбирать из диапазона значений.</p>
 
 ## Простые хлебные крошки
 
-{{"demo": "pages/demos/breadcrumbs/SimpleBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
 ## Пользовательский разделитель
 
 В следующих примерах мы используем два строковых разделителя и SVG иконку.
 
-{{"demo": "pages/demos/breadcrumbs/CustomSeparator.js"}}
+{{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
 ## Хлебные крошки с иконками
 
-{{"demo": "pages/demos/breadcrumbs/IconBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
 ## Collapsed хлебные крошки
 
-{{"demo": "pages/demos/breadcrumbs/CollapsedBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
 ## Пользовательские хлебные крошки
 
-Если вы читали [страницу документации по переопределению стилей](/customization/overrides/), но все еще не до конца уверены как будет выглядеть компонент, вот пример того, как изменить дизайн хлебной крошки.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/demos/breadcrumbs/CustomizedBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
 ## Доступность
 
@@ -42,4 +43,4 @@ components: Breadcrumbs, Link, Typography
 
 ## Интеграция с react-router
 
-{{"demo": "pages/demos/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}

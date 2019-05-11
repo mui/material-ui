@@ -2,6 +2,7 @@
 title: 没有SSR React组件
 components: NoSsr
 ---
+
 # 没有SSR
 
 <p class="description">NoSsr故意从服务器端渲染（SSR）主题中删除组件。</p>
@@ -16,7 +17,7 @@ components: NoSsr
 
 ## 客户方推迟
 
-{{"demo": "pages/utils/no-ssr/SimpleNoSsr.js"}}
+{{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
 ## 帧推迟
 
@@ -24,4 +25,4 @@ components: NoSsr
 
 But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
 
-{{"demo": "pages/utils/no-ssr/FrameDeferring.js"}}
+{{"demo": "pages/components/no-ssr/FrameDeferring.js"}}

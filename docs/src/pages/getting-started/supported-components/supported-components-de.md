@@ -13,11 +13,11 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
 - **[Fußzeilennavigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓** 
   - **[ Text & enthaltene Schaltflächen (früher flach & angehoben)](https://material.io/design/components/buttons.html) ✓**
-  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/lab/about/))
+  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
   - Transições: 
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/lab/about/))
+    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/components/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -73,7 +73,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/lab/about/)) 
+- **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/components/about-the-lab/)) 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Veraltetes Material v1*)

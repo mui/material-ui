@@ -10,7 +10,7 @@
 
 #### "Палитра"
 
-Палитра - это набор цветов, то есть тонов и их оттенков. Материал-UI предоставляет все цвета из руководящих принципов Material Design. [Эта цветовая палитра](#color-palette) была разработана для гармоничной работы друг с другом.
+Палитра - это набор цветов, то есть тонов и их оттенков. Материал-UI предоставляет все цвета из руководящих принципов Material Design. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 
 #### "Оттенок" и "Тень"
 
@@ -41,13 +41,13 @@ import HUE from '@material-ui/core/colors/HUE';
 const color = HUE[SHADE];
 ```
 
-{{"demo": "pages/style/color/Color.js", "hideHeader": true}}
+{{"demo": "pages/customization/color/Color.js", "hideHeader": true}}
 
 ## Инструменты для работы с цветом
 
 Используйте палитру и слайдеры, расположенные ниже, чтобы опробовать цветовую схему [material.io/design/color](https://material.io/design/color/) на документации Material-UI. Либо можете ввести шестнадцатеричные значения в текстовые поля Primary и Secondary.
 
-{{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
+{{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
 The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/themes/#createmuitheme-options-theme) function (to be used with [`MuiThemeProvider`](/customization/themes/#theme-provider)):
 
@@ -65,7 +65,7 @@ const theme = createMuiTheme({
 });
 ```
 
-Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/themes/#palette) section.
+Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/palette/) section.
 
 If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
 

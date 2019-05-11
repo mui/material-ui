@@ -1,7 +1,8 @@
 ---
 components: Icon, SvgIcon
 ---
-# Icons
+
+# アイコン
 
 <p class="description">Guidance and suggestions for using icons with Material-UI.</p>
 
@@ -15,7 +16,7 @@ The `SvgIcon` component takes an SVG `path` element as its child and converts it
 
 The resulting icon can be used as is, or included as a child for other Material-UI components that use icons. By default, an Icon will inherit the current text color. Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
-{{"demo": "pages/style/icons/SvgIcons.js"}}
+{{"demo": "pages/components/icons/SvgIcons.js"}}
 
 ### SVG Material icons
 
@@ -45,7 +46,7 @@ There are three exceptions to this rule:
 - [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) is exposed as `@material-ui/icons/FourK`
 - [`360`](https://material.io/tools/icons/?icon=360&style=baseline) is exposed as `@material-ui/icons/ThreeSixty`
 
-{{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
+{{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 #### Imports
 
@@ -73,7 +74,7 @@ Looking for even more SVG icons? There are a lot of projects out there, but [htt
 The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
@@ -90,13 +91,13 @@ By default, an Icon will inherit the current text color. Optionally, you can set
 
 ### Font Material icons
 
-{{"demo": "pages/style/icons/Icons.js"}}
+{{"demo": "pages/components/icons/Icons.js"}}
 
 ### Font Awesome
 
 [Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follow:
 
-{{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
 ## Font vs SVG. Which approach to use?
 

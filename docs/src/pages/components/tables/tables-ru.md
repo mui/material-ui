@@ -2,6 +2,7 @@
 title: React-компонент Таблица
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
+
 # Таблицы
 
 <p class="description">Таблицы отображают массивы данных. Они могут быть полностью кастомизированны.</p>
@@ -28,13 +29,13 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 Простой пример без излишеств.
 
-{{"demo": "pages/demos/tables/SimpleTable.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js"}}
 
 ## Плотная компоновка таблицы
 
 Простой пример таблицы с плотной компоновкой и без излишеств.
 
-{{"demo": "pages/demos/tables/DenseTable.js"}}
+{{"demo": "pages/components/tables/DenseTable.js"}}
 
 ## Сортировка и выбор строк
 
@@ -42,40 +43,45 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 Таблица имеет фиксированную ширину для демонстрации горизонтальной прокрутки. Чтобы предотвратить прокрутку элементов управления нумерацией страниц, компонент TablePagination находится за пределами таблицы. (В [примерe «собственные действия элементов нумерации»](#custom-table-pagination-action) ниже показывается управление нумерацией таблиц с помощью TableFooter.)
 
-{{"demo": "pages/demos/tables/EnhancedTable.js"}}
+{{"demo": "pages/components/tables/EnhancedTable.js"}}
 
-## Индивидуальное изменение таблицы
+## Customized tables
 
-Если вы читали [страницу документации о переопределениях](/customization/overrides/), но все еще не до конца уверены как будет выглядеть компонент, вот примеры того, как вы можете изменить отображение `TableCell`.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
-
-{{"demo": "pages/demos/tables/CustomizedTable.js"}}
+{{"demo": "pages/components/tables/CustomizedTables.js"}}
 
 ## Настройка постраничной навигации
 
 Свойство `Action` компонента `TablePagination` позволяет реализовать собственную обработку пользовательский событий.
 
-{{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
+{{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
 ## Объединение таблиц
 
 Простой пример с объединением строк и столбцов.
 
-{{"demo": "pages/demos/tables/SpanningTable.js"}}
+{{"demo": "pages/components/tables/SpanningTable.js"}}
 
 ## Виртуализированная таблица
 
 В следующем примере мы покажем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
-{{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
+{{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
 ## Дополнительные проекты
 
 Для более сложных вариантов использования вы можете воспользоваться:
 
+### material-table
+
+![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
+
+[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+
+{{"demo": "pages/components/tables/MaterialTableDemo.js"}}
+
+### Прочее
+
 - [dx-react-grid-material-ui<](https://devexpress.github.io/devextreme-reactive/react/grid/) Сетка данных для Material-UI с функциями навигации, сортировки, фильтрации, группировки и редактирования ([пользовательское соглашение](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Адаптируемые таблицы данных для Material-UI с фильтрацией, сортировкой, поиском и многим другим.
-- [material-table](https://github.com/mbrn/material-table) Таблицы данных основанные на компоненте таблицы, с дополнительной функциональностью, такой как: поиск, фильтрация, сортировка и многое другое.
-- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Виртуализированная таблица для Material-UI.
-- [mui-tables](https://parkerself.gitbook.io/mui-table/) Настраиваемая таблица для управления сложными данными. Содержит строки для итогов, де-дупликацию & слияние одинаковых строк, также как фильтрацию, поиск, и многое другое.

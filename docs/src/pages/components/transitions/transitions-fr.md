@@ -2,6 +2,7 @@
 title: Composants React de transitions
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
+
 # Les transitions
 
 <p class="description">Les transitions contribue à rendre une interface utilisateur expressif et facile à utiliser.</p>
@@ -34,13 +35,13 @@ export default Main() {
 
 Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
 
-{{"demo": "pages/utils/transitions/SimpleCollapse.js"}}
+{{"demo": "pages/components/transitions/SimpleCollapse.js"}}
 
 ## Fade
 
 Fondu de transparent à opaque.
 
-{{"demo": "pages/utils/transitions/SimpleFade.js"}}
+{{"demo": "pages/components/transitions/SimpleFade.js"}}
 
 ## Grow
 
@@ -48,7 +49,7 @@ Expand outwards from the center of the child element, while also fading in from 
 
 The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` property to change the entry speed.
 
-{{"demo": "pages/utils/transitions/SimpleGrow.js"}}
+{{"demo": "pages/components/transitions/SimpleGrow.js"}}
 
 ## Slide
 
@@ -56,7 +57,7 @@ Slide in from the edge of the screen. The `direction` property controls which ed
 
 The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from it's off-screen position. Similarly the `unmountOnExit` property removes the component from the DOM after it has been transition off screen.
 
-{{"demo": "pages/utils/transitions/SimpleSlide.js"}}
+{{"demo": "pages/components/transitions/SimpleSlide.js"}}
 
 ## Zoom
 
@@ -64,4 +65,4 @@ Expand outwards from the center of the child element.
 
 Cet exemple montre également comment retarder la transition d'entrée.
 
-{{"demo": "pages/utils/transitions/SimpleZoom.js"}}
+{{"demo": "pages/components/transitions/SimpleZoom.js"}}

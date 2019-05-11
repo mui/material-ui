@@ -2,6 +2,7 @@
 title: 模态框 React 组件
 components: Modal
 ---
+
 # 模态
 
 <p class="description">模态框组件可以用来快速创建对话框、弹出窗口，灯箱等任何你所需的组件。</p>
@@ -13,19 +14,20 @@ components: Modal
 - 它会在打开时禁用页面内容的滚动。
 - ♿️它妥善管理焦点;移动到模态内容， 并保持它直到模态关闭。
 - ♿️自动添加适当的ARIA角色。
+- 
 
 > **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 模态框的窗口可以描述用户界面的一部分。 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
 
-当你创建一个模态对话框时，使用[对话框（Dialog）](/demos/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
+当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
-- [Dialog](/demos/dialogs/)
-- [Drawer](/demos/drawers/)
-- [Menu](/demos/menus/)
-- [Popover](/utils/popover/)
+- [Dialog](/components/dialogs/)
+- [Drawer](/components/drawers/)
+- [Menu](/components/menus/)
+- [Popover](/components/popover/)
 
 ## 简单的模态
 
-{{"demo": "pages/utils/modal/SimpleModal.js"}}
+{{"demo": "pages/components/modal/SimpleModal.js"}}
 
 ## 性能
 

@@ -2,6 +2,7 @@
 title: Button React Komponente
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # Buttons
 
 <p class="description">Mit den Schaltflächen können Benutzer mit einem einzigen Tastendruck Aktionen ausführen und Entscheidungen treffen.</p>
@@ -20,7 +21,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Das letzte Beispiel dieser Demo zeigt, wie Sie eine Schaltfläche zum Hochladen verwenden.
 
-{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
+{{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
 ## Text Buttons
 
@@ -31,7 +32,7 @@ Das letzte Beispiel dieser Demo zeigt, wie Sie eine Schaltfläche zum Hochladen 
 
 In Karten helfen Text Buttons dabei, den Karteninhalt hervorzuheben.
 
-{{"demo": "pages/demos/buttons/TextButtons.js"}}
+{{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Outlined Buttons
 
@@ -41,7 +42,7 @@ In Karten helfen Text Buttons dabei, den Karteninhalt hervorzuheben.
 
 Outlined Buttons sind auch eine Alternative mit geringerer Betonung als Contained Buttons, oder eine Alternative mit höherer Betonung als Text Buttons.
 
-{{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
+{{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
 ## Floating Action Buttons
 
@@ -51,7 +52,7 @@ Verwenden Sie eine FAB nur, wenn dies für die Darstellung der Hauptaktion eines
 
 Es wird nur eine Floating Action Button pro Bildschirm empfohlen, um die am häufigsten verwendete Aktion darzustellen.
 
-{{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtons.js"}}
 
 Der floating-action-button, wird standardmäßig als expandierendes Material auf dem Bildschirm animiert.
 
@@ -59,19 +60,19 @@ Ein floating-action-button, der sich über mehrere seitliche Bildschirme (wie ta
 
 Hierzu kann der Zoom-Übergang verwendet werden. Da sowohl die vorhandenen als auch die eingegebenen Animationen gleichzeitig ausgelöst werden, verwenden wir `enterDelay`, um die Animation der ausgehenden Floating Action Buttons zu beenden, bevor die neue Animation eintritt.
 
-{{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
 
 ## Größen
 
 Lust auf größere oder kleinere Schaltflächen? Verwenden Sie die Eigenschaft `size`.
 
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
+{{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
 ## Buttons mit Symbolen und Beschriftung
 
 Manchmal möchten Sie möglicherweise Symbole für bestimmte Schaltflächen, um die UX der Anwendung zu verbessern, da Logos leichter als einfacher Text erkannt werden. Wenn Sie beispielsweise eine Schaltfläche zum Löschen haben, können Sie sie mit einem Mülleimer-Symbol kennzeichnen.
 
-{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
+{{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
 ## Icon Buttons
 
@@ -79,52 +80,26 @@ Icon Buttons finden Sie häufig in App-Bars und Toolbars.
 
 Icons eignen sich auch für Umschaltflächen, mit denen eine einzelne Auswahl ausgewählt oder die Auswahl auf z. B. das Hinzufügen oder Entfernen eines Sterns zu einem Element.
 
-{{"demo": "pages/demos/buttons/IconButtons.js"}}
+{{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized Buttons
+## Customized buttons
 
-Wenn Sie die Seite [overrides documentation page](/customization/overrides/) gelesen haben, aber Sie sich nicht sicher sind, dann finden Sie hier Beispiele dafür wie Sie die Hauptfarbe eines Buttons mit Klassen ändern können und für die Verwendung eines Themes.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
+{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-{{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
+
 
 ## Complex Buttons
 
 Die Text Buttons, die Contained Buttons, die Floatin Action Buttons und die Icon Buttons basieren auf derselben Komponente: der `ButtonBase`. Sie können die Vorteile dieser grundlegenden Komponente zum erstellen von benutzerdefinierten Interaktionen nutzen.
 
-{{"demo": "pages/demos/buttons/ButtonBases.js"}}
+{{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Drittanbieter-Routing Bibliothek
 
 Ein häufiger Anwendungsfall ist die Verwendung eines Buttons, um eine Navigation zu einer neuen Seite auszulösen. Die `ButtonBase` Komponente stellt eine Eigenschaft für diesen Anwendungsfall bereit: `component`. Für bestimmte Fokus-Polyfills erfordert `ButtonBase` jedoch den DOM-Knoten der bereitgestellten Komponente. Dies wird erreicht, indem der Komponente ein Ref zugeordnet wird und erwartet wird, dass die Komponente diesen Ref an den zugrunde liegenden DOM-Knoten weiterleitet. Da eine Menge unserer interaktiven Komponenten auf der `ButtonBase` basieren, sollten Sie diese überall nutzen zu können:
 
-```jsx
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
+{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-// benötigt für react-router-dom < 5.0.0 
-// siehe https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
-const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
-
-<Button component={Link} to="/open-collective">
-  Link
-</Button>
-```
-
-oder wenn Sie die Kollision von Eigenschaften vermeiden möchten:
-
-```jsx
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-
-// benutze `ref` anstelle von `innerRef` mit react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
-
-<Button component={MyLink}>
-  Link
-</Button>
-```
-
-*Hinweis: Das Erstellen von `MyLink` ist erforderlich, um ein unerwartetes Aushängen zu verhindern. Weitere Informationen dazu finden Sie in unserem [Guide über Komponenten-Eigenschaften ](/guides/composition/#component-property).*
+*Hinweis: Das Erstellen von Button Komponenten ist erforderlich, um ein unerwartetes Aushängen zu verhindern. Weitere Informationen dazu finden Sie in unserem [Guide über Komponenten-Eigenschaften ](/guides/composition/#component-property).*

@@ -2,6 +2,7 @@
 title: Botão de Navegação React Componente
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation (Navegação Inferior)
 
 <p class="description">O botão de navegação permite movimento entre os principais destinos em um aplicativo.</p>
@@ -12,10 +13,10 @@ components: BottomNavigation, BottomNavigationAction
 
 Quando existem apenas **três** ações, exibir ambos os ícones e rótulos de texto em todos os momentos.
 
-{{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
 
 ## Botão de Navegação sem Legenda
 
 Se tem **quatro** ou **cinto** ações, exibição se torna inativa mostrando somente o ícone.
 
-{{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}

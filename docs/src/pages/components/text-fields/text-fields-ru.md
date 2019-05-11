@@ -2,6 +2,7 @@
 title: Текстовое Поле, компонент React
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
+
 # Текстовые поля
 
 <p class="description">Текстовые поля позволяют пользователям вводить и редактировать текст.</p>
@@ -12,7 +13,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 `TextField` представляет собой полноценный элемент управления формы, включая метку (label), само поле ввода и вспомогательный текст.
 
-{{"demo": "pages/demos/text-fields/TextFields.js"}}
+{{"demo": "pages/components/text-fields/TextFields.js"}}
 
 > **Примечание:** Эта версия текстового поля больше не документирована в спецификации Material Design.
 
@@ -20,13 +21,13 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 `TextField` поддерживает контурный стиль.
 
-{{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
+{{"demo": "pages/components/text-fields/OutlinedTextFields.js"}}
 
 ## Заполненный стиль
 
 `TextField` поддерживает заполненный стиль.
 
-{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
+{{"demo": "pages/components/text-fields/FilledTextFields.js"}}
 
 ## Компоненты
 
@@ -34,49 +35,47 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 Вы также могли заметить, что некоторые нативные свойства ввода HTML отсутствуют в компоненте `TextField`. Это сделано специально. Компонент включает в себя наиболее часто используемые свойства, а для расширенного использования можно использовать базовый компонент, показанный в следующей демонстрации. Вы все еще можете использовать `inputProps` (и `свойства InputProps`, `InputLabelProps`), если хотите избежать излишнего кода.
 
-{{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
+{{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
 ## Поля ввода
 
-{{"demo": "pages/demos/text-fields/Inputs.js"}}
+{{"demo": "pages/components/text-fields/Inputs.js"}}
 
 ## Кастомизированные поля ввода
 
-Если вы читали [переписанную страницу документации](/customization/overrides/), но все еще не до конца уверены как будет выглядеть компонент, вот пример того, как изменить основной цвет Input-а.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
-
-{{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
+{{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
 Настройка не ограничивается CSS, вы можете использовать композицию для создания пользовательских компонентов и придать вашему приложению уникальный стиль. Ниже приведен пример использования компонента [`InputBase`](/api/input-base/), вдохновленный Google Maps.
 
-{{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
+{{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
 
 ## Украшения поля ввода (Input)
 
 `Input` позволяет использовать `InputAdornment`. Их можно использовать для добавления префикса, суффикса или действия к полю ввода. Например, вы можете использовать кнопку-иконку, чтобы скрыть или показать пароль.
 
-{{"demo": "pages/demos/text-fields/InputAdornments.js"}}
+{{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
 ### С иконкой
 
 Иконки могут быть указаны как предварительно добавленные или добавленные.
 
-{{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
+{{"demo": "pages/components/text-fields/InputWithIcon.js"}}
 
 ### Украшение полей ввода с заполненным стилем
 
-{{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
+{{"demo": "pages/components/text-fields/FilledInputAdornments.js"}}
 
 ### Украшение полей ввода с контурным стилем
 
-{{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
+{{"demo": "pages/components/text-fields/OutlinedInputAdornments.js"}}
 
 ## Расположение
 
 `TextField`, `FormControl` позволяет спецификации `margin` изменять вертикальные отступы для полей ввода. Использование `none` (по умолчанию) не будет применять отступы для `FormControl`, тогда как `dense` и `normal` будут применять другие стили, которые соответствуют спецификации.
 
-{{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
+{{"demo": "pages/components/text-fields/TextFieldMargins.js"}}
 
 ## Ограничения
 
@@ -102,7 +101,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 В следующем примере используются библиотеки [response-text-mask](https://github.com/text-mask/text-mask) и [response-number-format](https://github.com/s-yadav/react-number-format).
 
-{{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
+{{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
 ## Доступность
 
@@ -129,9 +128,8 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## Дополнительные проекты
 
-Для более сложных решений вы можете применить следующие пакеты:
+Для более сложных вариантов использования вы можете воспользоваться:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Набор компонентов-оберток для облегчения работы с Material UI в связке с Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Привязки для использования Material-UI с formik.
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Набор компонентов-оберток для облегчения работы с Material UI в связке с Final Form.
-- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) компоненты оболочки Material-UI для Uniforms, набор библиотек React для создания форм.

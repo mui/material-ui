@@ -2,6 +2,7 @@
 title: Componente de React para navegación a pie de página
 components: BottomNavigation, BottomNavigationAction
 ---
+
 # Bottom Navigation (Navegação Inferior)
 
 <p class="description">Las barras de navegación inferiores permiten movimiento entre destinos primarios en una aplicación.</p>
@@ -12,10 +13,10 @@ components: BottomNavigation, BottomNavigationAction
 
 Cuando sólo hay **tres** acciones, muestra las dos cosas, iconos y etiquetas de texto en todo momento.
 
-{{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
 
 ## Botón de navegación sin texto
 
 Si hay **cuatro ** o **cinco** acciones, mostrar vistas inactivas solamente como iconos.
 
-{{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}

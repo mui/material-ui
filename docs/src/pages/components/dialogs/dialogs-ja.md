@@ -2,11 +2,12 @@
 title: Dialog React component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
+
 # Dialogs
 
 <p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
 
-A [Dialog](https://material.io/design/components/dialogs.html) is a type of [modal](/utils/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+A [Dialog](https://material.io/design/components/dialogs.html) is a type of [modal](/components/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
@@ -19,7 +20,7 @@ Touch mechanics:
 - Choosing an option immediately commits the option and closes the menu
 - Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
 
-{{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
+{{"demo": "pages/components/dialogs/SimpleDialog.js"}}
 
 ## Alerts
 
@@ -37,41 +38,41 @@ If a title is required:
 - Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
 - Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
 
-{{"demo": "pages/demos/dialogs/AlertDialog.js"}}
+{{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
 You can also swap out the transition, the next example uses `Slide`.
 
-{{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
+{{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
 
 ## Form dialogs
 
 Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
 
-{{"demo": "pages/demos/dialogs/FormDialog.js"}}
+{{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customized dialog
+## Customized dialogs
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `DialogTitle` to support a close button.
+Here is example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+The dialog has a close button added to aide usability.
 
-{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+{{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
 ## Full-screen dialogs
 
-{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
+{{"demo": "pages/components/dialogs/FullScreenDialog.js"}}
 
 ## Optional sizes
 
 You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean. When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
 
-{{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
+{{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
 ## Responsive full-screen
 
-You may make a dialog responsively full screen the dialog using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics/). You can choose your own breakpoint for example `xs` by passing the `breakpoint` argument: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+You may make a dialog responsively full screen using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/customization/breakpoints/). You can choose your own breakpoint for example `xs` by passing the `breakpoint` argument: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
 
-{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
+{{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
 ## Confirmation dialogs
 
@@ -79,11 +80,11 @@ Confirmation dialogs require users to explicitly confirm their choice before an 
 
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
-{{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
+{{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## Accessibility
 
-Follow the [Modal accessibility section](/utils/modal/#accessibility).
+Follow the [Modal accessibility section](/components/modal/#accessibility).
 
 ## Scrolling long content
 
@@ -94,14 +95,14 @@ When dialogs become too long for the user’s viewport or device, they scroll.
 
 Try the demo below to see what we mean:
 
-{{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
+{{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
 ## Draggable dialog
 
 You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
 
-{{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Performance
 
-Follow the [Modal performance section](/utils/modal/#performance).
+Follow the [Modal performance section](/components/modal/#performance).

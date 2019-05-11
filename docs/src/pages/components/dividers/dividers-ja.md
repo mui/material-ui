@@ -2,6 +2,7 @@
 title: Divider React component
 components: Divider
 ---
+
 # Dividers
 
 <p class="description">A divider is a thin line that groups content in lists and layouts.</p>
@@ -12,7 +13,7 @@ components: Divider
 
 The divider renders as a `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
-{{"demo": "pages/demos/dividers/ListDividers.js"}}
+{{"demo": "pages/components/dividers/ListDividers.js"}}
 
 ## HTML5 Specification
 
@@ -20,12 +21,12 @@ We need to make sure the `Divider` is rendered as a `li` to match the HTML5 spec
 
 ## Inset Dividers
 
-{{"demo": "pages/demos/dividers/InsetDividers.js"}}
+{{"demo": "pages/components/dividers/InsetDividers.js"}}
 
 ## Subheader Dividers
 
-{{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
+{{"demo": "pages/components/dividers/SubheaderDividers.js"}}
 
 ## Middle Dividers
 
-{{"demo": "pages/demos/dividers/MiddleDividers.js"}}
+{{"demo": "pages/components/dividers/MiddleDividers.js"}}

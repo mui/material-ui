@@ -2,6 +2,7 @@
 title: Composant React Téléportation
 components: Portal
 ---
+
 # Téléportation (Portal)
 
 <p class="description">Le composant de portail convertit ses enfants en un nouveau "sous-arbre" en dehors de la hiérarchie de composants actuelle.</p>
@@ -12,4 +13,4 @@ Ce composant est utilisé en interne par les composants [`Modal`](/utils/modal/)
 
 ## Téléportation simple
 
-{{"demo": "pages/utils/portal/SimplePortal.js"}}
+{{"demo": "pages/components/portal/SimplePortal.js"}}

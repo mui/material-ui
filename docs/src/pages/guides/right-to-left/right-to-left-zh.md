@@ -32,7 +32,7 @@ npm install jss-rtl
 
 在项目中安装了插件后，Material-UI组件仍然需要由jss实例加载，如下所述。 在内部，当withStyles使用该JSS插件 `direction: 'rtl'` 上设置的主题。 Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
 
-Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. We have a [`StylesProvider`](/css-in-js/api/#stylesprovider) component for this:
+Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. We have a [`StylesProvider`](/styles/api/#stylesprovider) component for this:
 
 ```jsx
 import { create } from 'jss';

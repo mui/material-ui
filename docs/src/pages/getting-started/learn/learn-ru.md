@@ -23,7 +23,7 @@ We have a [selection of basic page layouts](/getting-started/page-layout-example
 ### Free
 
 - **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
-  - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
+  - 📝 [Сообщение в блоге](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
 - **Изучить React & Material-UI**: серия видеороликов, охватывающих все важные компоненты Material-UI. 
   - 📹 [Видео](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
 - **Начало работы с Material-UI для React**: сообщение в блоге, которое поможет вам в создании простого списка карточек. 
@@ -34,5 +34,7 @@ We have a [selection of basic page layouts](/getting-started/page-layout-example
 
 ### Paid
 
+- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI. 
+  - 📘 [The book](https://www.packtpub.com/application-development/react-material-ui-cookbook)
 - **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
   - 📘 [The book](https://builderbook.org/book)

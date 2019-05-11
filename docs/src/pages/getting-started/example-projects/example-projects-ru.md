@@ -7,7 +7,9 @@ We host some example projects which you can find in the [GitHub repository](http
 - [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
+- [Parcel](https://github.com/mui-org/material-ui/tree/next/examples/parcel-next)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)
+- [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
 - E mais
 
 Create React App - отличный проект для изучения React. Посмотрите на [доступные альтернативы](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) чтобы увидеть, какой проект лучше всего соответствует вашим потребностям.

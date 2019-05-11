@@ -2,6 +2,7 @@
 title: Сеть изображений, компонент React
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
+
 # Сеть изображений
 
 <p class="description">Сеть изображений суть коллекция изображений на упорядоченной сетке.</p>
@@ -12,22 +13,22 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 Простой пример прокручиваемой `Сети изображений`.
 
-{{"demo": "pages/demos/grid-list/ImageGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/grid-list/ImageGridList.js", "hideEditButton": true}}
 
 ## Сеть изображений с заголовками
 
 Этот пример демонстрирует использование `Полосы заголовка сети изображений`, которую следует добавить в каждый `Заголовок сети изображений`. Мы можем указать `заголовок`, `подзаголовок` и дополнительное действие - в этом примере `кнопка-иконка`.
 
-{{"demo": "pages/demos/grid-list/TitlebarGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 
 ## Сеть изображений в одну строку
 
 Данный пример показывает сеть изображений в одну строку с горизонтальной прокруткой. Сети изображений с горизонтальнйо прокруткой не рекомендуется применять, так как это может вызвать дискомфорт у пользователей, ведь обычно при чтении используется вертикальная прокрутка. Исключением из этого правила являются сети с горизонтальной прокруткой в одну строку, например галерея.
 
-{{"demo": "pages/demos/grid-list/SingleLineGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/grid-list/SingleLineGridList.js", "hideEditButton": true}}
 
 ## Более сложный пример
 
 В этом примере демонстрирует «рекомендуемые» листы, в которых используются свойства `rows` и `cols` чтобы отрегулировать размер плитки, и свойство `padding` чтобы отрегулировать поля между плитками. На плитках можно видеть пользовательскую полосу расположенную вверху с даным значением градиента в свойстве `titleBackground`. Дополнительное действие в `Кнопке-иконке` распложенно по левую сторону.
 
-{{"demo": "pages/demos/grid-list/AdvancedGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true}}

@@ -8,7 +8,7 @@ In order to provide the maximum flexibility and performance, we need a way to kn
 
 You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component verify if that component has this static property set.
 
-Если вы столкнулись с этой проблемой, вам нужно использовать тот же тег для вашего компонента-обертки что и в оборачиваемом компоненте. In addition, you should forward the properties, as the parent component may need to control the wrapped components props.
+If you encounter this issue, you need to use the same tag for your wrapping component that is used with the wrapped component. In addition, you should forward the properties, as the parent component may need to control the wrapped components props.
 
 Давайте рассмотрим пример:
 
@@ -111,34 +111,60 @@ import { Link } from 'react-router-dom';
 
 ### With TypeScript
 
-Вы можете найти подробности в [ руководстве по TypeScript ](/guides/typescript#usage-of-component-property).
+Вы можете найти подробности в [ руководстве по TypeScript ](/guides/typescript/#usage-of-component-property).
 
-### Caveat with refs
+## Caveat with refs
 
-Some components such as `ButtonBase` (and therefore `Button`) require access to the underlying DOM node. This was previously done with `ReactDOM.findDOMNode(this)`. However `findDOMNode` was deprecated (which disqualifies its usage in React's concurrent mode) in favour of component refs and ref forwarding.
+This section covers caveats when using a custom component as `children` or for the `component` prop.
 
-It is therefore necessary that the component you pass to the `component` prop can hold a ref. This includes:
+Some of the components need access to the DOM node. This was previously possible by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` and ref forwarding. However, only the following component types can be given a `ref`:
 
-- class components
-- ref forwarding components (`React.forwardRef`)
-- built-in components e.g. `div` or `a`
+- Any Material-UI component
+- class components i.e. `React.Component` or `React.PureComponent`
+- DOM (or host) components e.g. `div` or `button`
+- [React.forwardRef components](https://reactjs.org/docs/react-api.html#reactforwardref)
+- [React.lazy components](https://reactjs.org/docs/react-api.html#reactlazy)
+- [React.memo components](https://reactjs.org/docs/react-api.html#reactmemo)
 
-If this is not the case we will issue a prop type warning similar to:
+If you don't use one of the above types when using your components in conjunction with Material-UI, you might see a warning from React in your console similar to:
+
+> Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
+
+In some instances we issue an additional warning to help debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-In addition React will issue a warning.
+We will only cover the two most common use cases. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
-You can fix this warning by using `React.forwardRef`. Learn more about it in [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+```diff
+- const MyButton = props => <div role="button" {...props} />
++ const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />)
+<Button component={MyButton} />
+```
+
+```diff
+- const SomeContent = props => <div {...props}>Hello, World!</div>
++ const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>)
+<Tooltip title="Hello, again.">
+```
 
 To find out if the Material-UI component you're using has this requirement, check out the the props API documentation for that component. If you need to forward refs the description will link to this section.
 
 ### Caveat with StrictMode or unstable_ConcurrentMode
 
-If you pass class components to the `component` prop and don't run in strict mode you won't have to change anything since we can safely use `ReactDOM.findDOMNode`. For function components, however, you have to wrap your component in `React.forwardRef`:
+If you use class components for the cases described above you will still see warnings in `React.StrictMode` and `React.unstable_ConcurrentMode`. We use `ReactDOM.findDOMNode` internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
-- const MyButton = props => <div {...props} />
-+ const MyButton = React.forwardRef((props, ref) => <div {...props} ref={ref} />)
-<Button component={MyButton} />
+class Component extends React.Component {
+  render() {
+-   const { props } = this;
++   const { forwardedRef, ...props } = this.props;
+    return <div {...props} ref={forwardedRef} />;
+  }
+}
+
+-export default Component;
++export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);
 ```

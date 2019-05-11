@@ -1,6 +1,7 @@
 ---
 components: Typografie
 ---
+
 # Typografie
 
 <p class="description">Verwenden Sie die Typografie, um Ihr Design und Ihren Inhalt so klar und effizient wie möglich darzustellen.</p>
@@ -9,21 +10,13 @@ Zu viele Schriftgrößen und -stile gleichzeitig können jedes Layout beeinträc
 
 ## Allgemein
 
-Die *Roboto* Schriftart wird **nicht** automatisch durch Material UI geladen werden. Der Entwickler ist dafür verantwortlich, alle, in seiner Anwendung verwendeten, Schriftarten zu laden. Roboto Font bietet einige einfache Einstiegsmöglichkeiten. Für anspruchsvollere Konfiguration, besuche [den Theme Anpassung Abschnitt](/customization/themes/#typography).
+Die *Roboto* Schriftart wird **nicht** automatisch durch Material UI geladen werden. Der Entwickler ist dafür verantwortlich, alle, in seiner Anwendung verwendeten, Schriftarten zu laden. Roboto Font bietet einige einfache Einstiegsmöglichkeiten. Für anspruchsvollere Konfiguration, besuche [den Theme Anpassung Abschnitt](/customization/typography/).
 
 ## Die Roboto Schrift
 
-Unten ist ein Beispiel für ein Link-Markup zum Laden der Roboto-Schriftart von einem CDN dargestellt.
-
-*HTML*
+Unten ist ein Beispiel für ein Link-Markup zum Laden der Roboto-Schriftart von einem CDN dargestellt:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-```
-
-*JSX*
-
-```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
@@ -45,13 +38,13 @@ Weitere Informationen finden Sie im [Schriftprojekt](https://github.com/KyleAMat
 
 ## Komponente
 
-{{"demo": "pages/style/typography/Types.js"}}
+{{"demo": "pages/components/typography/Types.js"}}
 
 ## Theme
 
 In einigen Situationen können Sie möglicherweise die Komponente `Typography` nicht benutzen. Hoffentlich können Sie die Hauptfunktionalitäten der [`Typografie`](/customization/default-theme/?expend-path=$.typography) des Themas nutzen.
 
-{{"demo": "pages/style/typography/TypographyTheme.js"}}
+{{"demo": "pages/components/typography/TypographyTheme.js"}}
 
 ## Ändern des semantischen Elements
 
@@ -66,7 +59,7 @@ Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-
 </Typography>
 ```
 
-- Sie können das Mapping [global mit dem Theme](/customization/themes/#properties) ändern:
+- Sie können das Mapping [global mit dem Theme](/customization/globals/#default-props) ändern:
 
 ```js
 const theme = createMuiTheme({

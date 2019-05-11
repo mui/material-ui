@@ -1,6 +1,7 @@
 ---
 components: CssBaseline
 ---
+
 # Principes CSS
 
 <p class="description">Material-UI fournit un composant CssBaseline pour relancer une base élégante, cohérente et simple sur laquelle s'appuyer.</p>
@@ -39,4 +40,4 @@ Les éléments `<html>` et `<body>` sont mis à jour pour fournir de meilleurs p
 ### Typographie
 
 - L'anticrénelage des polices est activé pour un meilleur affichage de la police Roboto.
-- Aucune taille de police de base n’est déclarée sur le `<html>`, mais 16px est utilisée (valeur par défaut du navigateur). Vous pouvez en apprendre davantage sur les implications de l' évolution du `<html>` taille de la police par défaut dans [la documentation abordant les thèmes](/customization/themes/#typography-html-font-size) page.
+- Aucune taille de police de base n’est déclarée sur le `<html>`, mais 16px est utilisée (valeur par défaut du navigateur). Vous pouvez en apprendre davantage sur les implications de l' évolution du `<html>` taille de la police par défaut dans [la documentation abordant les thèmes](/customization/typography/#typography-html-font-size) page.

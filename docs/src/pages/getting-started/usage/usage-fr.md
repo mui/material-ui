@@ -4,7 +4,7 @@
 
 Les composants Material-UI fonctionnent de manière isolée. **They are self-supporting**, and will only inject the styles they need to display. Ils ne s'appuient sur aucune feuille de style globale telle que [normalize.css](https://github.com/necolas/normalize.css/).
 
-Vous pouvez utiliser n'importe lequel des composants comme indiqué dans la documentation. Veuillez vous référer à chaque [page de démonstration](/demos/buttons/) pour voir comment les composants doivent être importés.
+Vous pouvez utiliser n'importe lequel des composants comme indiqué dans la documentation. Veuillez vous référer à chaque [page de démonstration](/components/buttons/) pour voir comment les composants doivent être importés.
 
 ## Démarrage rapide
 
@@ -41,12 +41,13 @@ Material-UI est d'abord développé sur mobile, stratégie dans laquelle nous é
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
+  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+/>
 ```
 
 ### CssBaseline
 
-Material-UI fournit un composant [CssBaseline](/style/css-baseline/) facultatif. Il corrige certaines incohérences entre les navigateurs et les appareils tout en fournissant des comportement par défaut à des éléments HTML communs.
+Material-UI provides an optional [CssBaseline]/components/css-baseline/) component. Il corrige certaines incohérences entre les navigateurs et les appareils tout en fournissant des comportement par défaut à des éléments HTML communs.
 
 ## Documentation versionnée
 
@@ -56,6 +57,6 @@ Cette documentation reflète toujours la dernière version stable de Material-UI
 
 Maintenant que vous avez une idée de la configuration de base, il est temps d'en apprendre d'avantage sur :
 
-- Comment fournir [la police et la typographie Material Design](/style/typography/) .
+- How to provide [the Material Design font and typography]/components/typography/).
 - Comment tirer parti de la [solution de thème](/customization/themes/).
-- Comment [modifier](/customization/overrides/), l'apparence des composants.
+- Comment [modifier](/customization/components/), l'apparence des composants.

@@ -2,6 +2,7 @@
 title: Список, компонент React
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
+
 # Списки
 
 <p class="description">Списки представляют собой непрерывные вертикальные массивы данных из текста или изображений.</p>
@@ -10,7 +11,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 ## Простой список
 
-{{"demo": "pages/demos/lists/SimpleList.js"}}
+{{"demo": "pages/components/lists/SimpleList.js"}}
 
 Последний элемент предыдущего примера показывает, как вы можете отрисовать ссылку:
 
@@ -30,27 +31,27 @@ function ListItemLink(props) {
 
 ## Вложенный список
 
-{{"demo": "pages/demos/lists/NestedList.js"}}
+{{"demo": "pages/components/lists/NestedList.js"}}
 
 ## Список папок
 
-{{"demo": "pages/demos/lists/FolderList.js"}}
+{{"demo": "pages/components/lists/FolderList.js"}}
 
 ## Интерактивность
 
 Ниже приведена интерактивная демонстрация, которая позволяет вам увидеть результаты различных настроек:
 
-{{"demo": "pages/demos/lists/InteractiveList.js"}}
+{{"demo": "pages/components/lists/InteractiveList.js"}}
 
 ## Выбранный ListItem
 
-{{"demo": "pages/demos/lists/SelectedListItem.js"}}
+{{"demo": "pages/components/lists/SelectedListItem.js"}}
 
 ## Выравнивание элементов списка
 
 Вы должны изменить выравнивание элементов списка при отображении 3 или более элементов. Для этого установите свойство `alignItems = "flex-start"`
 
-{{"demo": "pages/demos/lists/AlignItemsList.js"}}
+{{"demo": "pages/components/lists/AlignItemsList.js"}}
 
 ## Элементы управления списком
 
@@ -60,17 +61,17 @@ Checkbox может быть основным или второстепенны�
 
 В этом примере checkbox является основным действием и индикатором состояния для элемента списка. Кнопка комментария является второстепенным действием.
 
-{{"demo": "pages/demos/lists/CheckboxList.js"}}
+{{"demo": "pages/components/lists/CheckboxList.js"}}
 
 Тут checkbox является второстепенным действием для элемента списка.
 
-{{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
+{{"demo": "pages/components/lists/CheckboxListSecondary.js"}}
 
 ### Switch (переключатель)
 
 Switch является второстепенным действием.
 
-{{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
+{{"demo": "pages/components/lists/SwitchListSecondary.js"}}
 
 ## Закрепленный подзаголовок
 
@@ -78,14 +79,14 @@ Switch является второстепенным действием.
 
 Эта функция опирается на фиксированное позиционирование CSS. К сожалению эта функциональность, [не реализована](https://caniuse.com/#search=sticky) всеми браузерами, которые мы поддерживаем. Мы по умолчанию выключаем закрепление - `disableSticky` когда оно не поддерживается.
 
-{{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
+{{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
 ## Вставленный список
 
-{{"demo": "pages/demos/lists/InsetList.js"}}
+{{"demo": "pages/components/lists/InsetList.js"}}
 
 ## Virtualized List
 
 In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
-{{"demo": "pages/demos/lists/VirtualizedList.js"}}
+{{"demo": "pages/components/lists/VirtualizedList.js"}}

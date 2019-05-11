@@ -19,7 +19,6 @@ Da der Umfang der Probleme, die Material-UI löst, begrenzt ist, versuchen wir, 
 - [Material-Tabelle](https://github.com/mbrn/material-table) Auf Tabellenkomponenten basierende DataTable mit zusätzlichen Funktionen wie Suchen, Filtern, Sortieren und vieles mehr.
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) Eine Fuzzy-Suchkomponente für React und Material-UI.
 - [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers) Ein Datepicker oder Timepicker in Material UI Next, kann auch als Uhr- oder Kalenderkomponente importiert werden.
-- [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Komponenten, die Datums- und Zeitaufnehmer für Material Design für Material-UI implementieren.
 - [material-ui-popup-state](https://github.com/jcoreio/material-ui-popup-state) Rendern Sie die Eigenschaft-Komponente, die den Status für Menüs, Popovers und Poppers verwaltet, wodurch der Boilerplate erheblich reduziert wird.
 - [material-ui-rating](https://github.com/TeamWertarbyte/material-ui-rating) Bewerten Sie etwas mit Stil.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) Ein Tool zum Erstellen von Designs für Ihre Material-UI-Anwendungen, indem Sie einfach die Farben auswählen und eine Live-Vorschau angezeigt bekommen.
@@ -37,7 +36,7 @@ Da der Umfang der Probleme, die Material-UI löst, begrenzt ist, versuchen wir, 
 
 ## Ergänzende Projekte
 
-- [downshift](https://github.com/paypal/downshift) Grundlegend für den Bau einfacher, flexibler, mit WAI-ARIA kompatibler Komponenten für die Eingabe von React
+- [downshift](https://github.com/downshift-js/downshift) Grundlegend für den Bau einfacher, flexibler, mit WAI-ARIA kompatibler Komponenten für die Eingabe von React
 - [react-admin](https://github.com/marmelab/react-admin)Ein Admin-Framework, das Material-Ui mit Redux, Redux-Form, Redux-Saga undrecompose kombiniert
 - [react-autosuggest](https://github.com/moroshko/react-autosuggest)WAI-ARIA-konform React Autosuggest-Komponente.
 - [react-final-form](https://github.com/final-form/react-final-form#material-ui-10) Abonnementbasierte Verwaltung des Formularstatus für React.

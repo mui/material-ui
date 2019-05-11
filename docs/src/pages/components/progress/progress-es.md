@@ -2,6 +2,7 @@
 title: Componente React Progreso circular, Progreso lineal
 components: CircularProgress, LinearProgress
 ---
+
 # Progreso
 
 <p class="description">Los indicadores de progreso expresan un tiempo de espera indeterminado o despliegan la duración de un proceso.</p>
@@ -25,19 +26,19 @@ El [progreso circular](https://material.io/design/components/progress-indicators
 
 ### Circular indeterminado
 
-{{"demo": "pages/demos/progress/CircularIndeterminate.js"}}
+{{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
 ### Integración interactiva
 
-{{"demo": "pages/demos/progress/CircularIntegration.js"}}
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
 
 ### Circular determinado
 
-{{"demo": "pages/demos/progress/CircularDeterminate.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Circular estático
 
-{{"demo": "pages/demos/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularStatic.js"}}
 
 ## Lineal
 
@@ -45,19 +46,19 @@ Indicadores de [progreso lineal](https://material.io/design/components/progress-
 
 ### Lineal indeterminado
 
-{{"demo": "pages/demos/progress/LinearIndeterminate.js"}}
+{{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
 ### Lineal determinado
 
-{{"demo": "pages/demos/progress/LinearDeterminate.js"}}
+{{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
 ### Buffer lineal
 
-{{"demo": "pages/demos/progress/LinearBuffer.js"}}
+{{"demo": "pages/components/progress/LinearBuffer.js"}}
 
 ### Consulta lineal
 
-{{"demo": "pages/demos/progress/LinearQuery.js"}}
+{{"demo": "pages/components/progress/LinearQuery.js"}}
 
 ## Rangos no estándar
 
@@ -80,19 +81,17 @@ function Progress(props) {
 }
 ```
 
-## Progreso personalizado
+## Customized progress bars
 
-Si ha estado leyendo la [página de documentación de sobreescritura](/customization/overrides/) pero no te sientes seguro, aquí hay un ejemplo de cómo puedes personalizar los componentes. La última demostración muestra cómo puedes construir un spinner similar al de Facebook.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, estos ejemplos no son comunes.
-
-{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
+{{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 
 ## Demorando la aparición
 
 Hay [3 límites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) que conocer acerca del tiempo de respuesta. El efecto dominó del componente `ButtonBase` garantiza que el usuario sienta que el sistema está reaccionando instantáneamente. Normalmente, no se necesita una retroalimentación especial durante retrasos entre 0.1 y 1.0 segundo. Después de 1.0 segundo, puede desplegar un cargador para mantener el flujo de pensamiento del usuario sin interrupciones.
 
-{{"demo": "pages/demos/progress/DelayingAppearance.js"}}
+{{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
 ## Limitaciones
 
@@ -102,4 +101,4 @@ Bajo cargas pesadas, puede perder la animación del trazo o ver anchos de anillo
 
 Cuando no es posible, puede aprovechar la propiedad `disableShrink` para mitigar el problema. Ver https://github.com/mui-org/material-ui/issues/10327
 
-{{"demo": "pages/demos/progress/CircularUnderLoad.js"}}
+{{"demo": "pages/components/progress/CircularUnderLoad.js"}}

@@ -40,10 +40,10 @@ Material-UI 严格遵循 [Semantic Versioning 2.0.0](https://semver.org/) 语义
 
 > 免责声明: 日期作为一般指导提供, 我们可以在必要时调整, 以确保交付高质量的代码。
 
-| 日期      | 版本                         |
-|:------- |:-------------------------- |
-| 2019年1月 | `@material-ui/core` v4.0.0 |
-| 2019年7月 | `@material-ui/core` v5.0.0 |
+| 日期            | 版本                         |
+|:------------- |:-------------------------- |
+| May 2019      | `@material-ui/core` v4.0.0 |
+| December 2019 | `@material-ui/core` v5.0.0 |
 
 你可以在 [ 我们的里程碑 ](https://github.com/mui-org/material-ui/milestones) 中查看更详细的概述。
 

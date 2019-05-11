@@ -10,7 +10,7 @@ Material Design [颜色系统](https://material.io/design/color/) 可用于创�
 
 #### "调色板"
 
-调色板是颜色的集合, 即色调和它们的阴影. Material-UI 提供Material Design 指南中的所有颜色. [此调色板](#color-palette) 设计为彼此协调工作。
+调色板是颜色的集合, 即色调和它们的阴影. Material-UI 提供Material Design 指南中的所有颜色. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 
 #### “色彩”和“阴影”
 
@@ -41,13 +41,13 @@ import HUE from '@material-ui/core/colors/HUE';
 const color = HUE[SHADE];
 ```
 
-{{"demo": "pages/style/color/Color.js", "hideHeader": true}}
+{{"demo": "pages/customization/color/Color.js", "hideHeader": true}}
 
 ## 颜色工具
 
 使用Material-UI文档测试[material.io/design/color](https://material.io/design/color/)颜色方案,只需使用下面的调色板和滑块选择颜色. 或者，您可以在“Primary”和“Secondary”文本字段中输入十六进制值。
 
-{{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
+{{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
 颜色样本中显示的输出可以直接粘贴到[` createMuiTheme()`](/customization/themes/#createmuitheme-options-theme)函数中与([` MuiThemeProvider`](/customization/themes/#theme-provider)一起使用);
 
@@ -65,7 +65,7 @@ const theme = createMuiTheme({
 });
 ```
 
-只需要提供 `main` 阴影（除非您希望进一步自定义 `light` `dark` 或 `contrastText`），因为其他颜色将由 `createMuiTheme()`计算，如 [主题定制中所述](/customization/themes/#palette) 节。
+只需要提供 `main` 阴影（除非您希望进一步自定义 `light` `dark` 或 `contrastText`），因为其他颜色将由 `createMuiTheme()`计算，如 [主题定制中所述](/customization/palette/) 节。
 
 如果你通过提供 color object 的方式 使用默认的主要阴影 和/或 次要阴影，`createMuiTheme()` 将会根据 主、亮和暗 三种 material 颜色选择合适的阴影。
 

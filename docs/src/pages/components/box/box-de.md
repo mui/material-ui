@@ -1,11 +1,12 @@
 ---
 title: Box React Komponente
 ---
+
 # Box
 
 <p class="description">Die Box-Komponente dient als Wrapper-Komponente für die meisten Anforderungen des CSS-Dienstprogramms.</p>
 
-Die Box-Komponenten packt [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind. Es wurde mit der Funktion [`styled()`](/css-in-js/api/#styled-style-function-component) von `@material-ui/styles` erstellt.
+Die Box-Komponenten packt [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind. Es wurde mit der Funktion [`styled()`](/styles/api/#styled-style-function-component) von `@material-ui/styles` erstellt.
 
 ## Beispiel
 
@@ -56,7 +57,7 @@ import Box from '@material-ui/core/Box';
 | Name                                                    | Typ                                                                                                               | Standard                                | Beschreibung                                                                                                               |
 |:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:-------------------------------------------------------------------------------------------------------------------------- |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box Render-Funktion oder Knoten.                                                                                           |
-| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | Wenn `true`, werden die untergeordnete DOM-Elemente der Box recycelt. Es verwendet intern `React.cloneElement`.            |
+| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. Es verwendet intern `React.cloneElement`.                        |
 | <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | Die für den Wurzelknoten verwendete Komponente. Entweder ein String, um ein DOM-Element zu verwenden oder eine Komponente. |
 
 Alle anderen angegebenen Eigenschaften werden von [der Stilfunktionen](/system/basics/#all-inclusive) benutzt oder auf das Wurzelelement verteilt.

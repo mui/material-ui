@@ -2,43 +2,43 @@
 
 <p class="description">Nós aprendemos bastante como o Material-UI é usado e o refatoramento da v1 permitiu-nos repensar completamente o componente de API.</p>
 
-> API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+> Le design de l'API est difficile car vous pouvez le rendre simple mais il est en fait trompeur complexe, ou le rendre vraiment simple mais semble complexe.
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
-As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions. We are providing low-level components to maximize composition capabilities.
+Comme Sebastian Markbage [ l'a souligné ](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html) , aucune abstraction n'est supérieure aux mauvaises abstractions. Nous fournissons des composants de bas niveau pour optimiser les capacités de composition.
 
 ## Composition
 
-You may have noticed some inconsistency in the API regarding composing components. To provide some transparency, we have been using the following rules when designing the API:
+Vous avez peut-être remarqué des incohérences dans l'API par rapport à la composition des composants. Pour fournir une certaine transparence, nous avons utilisé les règles suivantes lors de la conception de l'API :
 
-1. Using the `children` property is the idiomatic way to do composition with React.
-2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations. In this case, providing explicit properties makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` property.
-3. API consistency matters.
+1. L'utilisation de la propriété `children` est le moyen idiomatique pour faire la composition avec React.
+2. Par fois, on a juste besoin d'une composition limite par enfants, par example lorsque qu'on n'a pas besoin d'autoriser la permutation d'ordre par enfant. Dans ce cas, fournir des propriétés explicites rend l'implémentation plus simple et plus performante; par example, `Tab` prend `icon` et une propriété `label`.
+3. La cohérence des API est importante.
 
 ## Règles
 
-Aside from the above composition trade-off, we enforce the following rules:
+Outre le compromis de composition ci-dessus, nous appliquons les règles suivantes:
 
-### Spread
+### La propagation
 
-Undocumented properties supplied are spread to the root element; for instance, the `className` property is applied to the root.
+Les propriétés non documentées fournies sont propagées à l'élément racine. par exemple, la propriété ` className ` est appliquée à la racine.
 
-Now, let's say you want to disable the ripples on the `MenuItem`. You can take advantage of the spread behavior:
+Maintenant, supposons que vous vouliez désactiver les ondulations sur le `MenuItem`. Vous pouvez tirer parti du comportement de propagation :
 
 ```jsx
 <MenuItem disableRipple />
 ```
 
-The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
+La propriété `disableRipple` va suivre de cette façon : [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
 
-### Native properties
+### Les Propriétés natives
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides/#overriding-with-class-names).
+Nous évitons de documenter les propriétés natives supportées par le DOM, comme [` className `](/customization/components/#overriding-styles-with-class-names) .
 
-### CSS Classes
+### Les Classes CSS
 
-All the components accept a [`classes`](/customization/overrides/#overriding-with-classes) property to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+Tous les composants acceptent une propriété [` classes `](/customization/components/#overriding-styles-with-classes) pour personnaliser les styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
@@ -115,3 +115,15 @@ The Material-UI components use a combination of the two approaches according to 
 - An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
 
 Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
+
+### Ref
+
+The `ref` is forwarded to the root element. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element that which component renders. If you pass a different component via the `component` prop the ref will be attached to that component instead.
+
+## Glossary
+
+- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
+- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
+- **root component**: the outermost component that renders a host component.
+- **root element**: the outermost element that renders a host component.

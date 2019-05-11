@@ -2,11 +2,12 @@
 title: React-компонент Скрыть
 components: Hidden
 ---
+
 # Скрыть
 
 <p class="description">Быстро и оперативно переключайте значения видимости компонентов и многое другое с помощью наших утилит для скрытия.</p>
 
-Все элементы видны, если **они явно не скрыты**. Чтобы упростить интеграцию с нашими [ точками остановки](/layout/basics/), этот компонент можно использовать для скрытия любого контента, или использовать его вместе с нашим компонентом [`Grid`](/layout/grid/).
+Все элементы видны, если **они явно не скрыты**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with our [`Grid`](/components/grid/) component.
 
 ## Как это работает
 
@@ -26,7 +27,7 @@ mdDown      |                     hide | show
 
 ### js
 
-По умолчанию используется реализация `js`, которая быстро скрывает контент, используя компонент высшего порядка [`withWidth()`](/layout/breakpoints/#withwidth), который следит за размером экрана. Преимущество этого заключается в том, что контент вообще не отображается, если не достигнута точка остановки.
+По умолчанию используется реализация `js`, которая быстро скрывает контент, используя компонент высшего порядка [`withWidth()`](/customization/breakpoints/#withwidth), который следит за размером экрана. Преимущество этого заключается в том, что контент вообще не отображается, если не достигнута точка остановки.
 
 ### css
 
@@ -36,13 +37,13 @@ mdDown      |                     hide | show
 
 Используя любое свойство точки остановки от `up`, данные *дочерних элементов* будут скрыты *на уровне или выше* точки остановки.
 
-{{"demo": "pages/layout/hidden/BreakpointUp.js"}}
+{{"demo": "pages/components/hidden/BreakpointUp.js"}}
 
 ## Точка остановки Вниз
 
 Используя любое свойство точки остановки от `down`, данные *дочерних элементов* будут скрыты *на уровне или ниже* точки остановки.
 
-{{"demo": "pages/layout/hidden/BreakpointDown.js"}}
+{{"demo": "pages/components/hidden/BreakpointDown.js"}}
 
 ## Точка остановки Только (only)
 
@@ -53,10 +54,10 @@ mdDown      |                     hide | show
 - указать одну точку остановки
 - перечислить массив точек остановки
 
-{{"demo": "pages/layout/hidden/BreakpointOnly.js"}}
+{{"demo": "pages/components/hidden/BreakpointOnly.js"}}
 
 ## Интеграция с Grid (Сеткой)
 
 Весьма обычным является изменение `Grid` в разных точках остановки, и во многих случаях вы хотите скрыть некоторые из этих элементов.
 
-{{"demo": "pages/layout/hidden/GridIntegration.js"}}
+{{"demo": "pages/components/hidden/GridIntegration.js"}}

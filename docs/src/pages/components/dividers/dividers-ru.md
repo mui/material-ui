@@ -2,6 +2,7 @@
 title: Разделитель, компонент React
 components: Divider
 ---
+
 # Разделитель
 
 <p class="description">Разделитель - это тонкая линия, которая группирует содержимое (контент) в списки и макеты (слои).</p>
@@ -12,7 +13,7 @@ components: Divider
 
 По умолчанию разделитель отображается как `<hr>`. Вместо этого Вы можете сформировать отображение этого DOM-элемента, используя свойство `divider` в компоненте `ListItem`.
 
-{{"demo": "pages/demos/dividers/ListDividers.js"}}
+{{"demo": "pages/components/dividers/ListDividers.js"}}
 
 ## Спецификации HTML5
 
@@ -20,12 +21,12 @@ components: Divider
 
 ## Вкладыш
 
-{{"demo": "pages/demos/dividers/InsetDividers.js"}}
+{{"demo": "pages/components/dividers/InsetDividers.js"}}
 
 ## Подтитульные разделлители
 
-{{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
+{{"demo": "pages/components/dividers/SubheaderDividers.js"}}
 
 ## Центральные разделители
 
-{{"demo": "pages/demos/dividers/MiddleDividers.js"}}
+{{"demo": "pages/components/dividers/MiddleDividers.js"}}

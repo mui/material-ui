@@ -9,11 +9,11 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 #### Argumentos
 
 1. `options` (*Object* [optional]): 
-    - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
+    - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
     - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
-    - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
+    - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
-#### Returns
+#### Retornos
 
 `class name generator`: The generator should be provided to JSS.
 
@@ -24,7 +24,6 @@ import React from 'react';
 import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
 
 const generateClassName = createGenerateClassName({
-  dangerouslyUseGlobalCSS: true,
   productionPrefix: 'c',
 });
 
@@ -43,7 +42,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos.
 
-#### Returns
+#### Retornos
 
 `styles`: A function generating the styles or a styles object.
 
@@ -80,7 +79,7 @@ Link a style sheet with a function component using the **hook** pattern.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Returns
+#### Retornos
 
 `hook`: A hook. This hook can be used in a function component. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
 
@@ -104,62 +103,48 @@ export default function MyComponent() {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle server-side rendering. The instance offers the following API.
-
-```js
-import { ServerStyleSheets } from '@material-ui/styles';
-
-const sheets = new ServerStyleSheets();
-```
-
-### `sheets.collect(node) => void`
-
-The method wraps your node in a provider element.
+This is a class helper to handle server-side rendering. [You can follow our guide for a practical approach](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheets } from '@material-ui/styles';
 
+const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
-```
-
-### `sheets.toString() => CSS string`
-
-The method returns the collected styles. It's a CSS string.
-
-```js
-const css = sheets.toString();
+const cssString = sheets.toString();
 
 const response = `
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <style id="jss-server-side">${css}</style>
+    <style id="jss-server-side">${cssString}</style>
   </head>
-  <body>
-    ...
-  </body>
+  <body>${html}</body>
 </html>
 `;
 ```
 
-### `sheets.getStyleElement() => CSS React node`
+### `new ServerStyleSheets([options])`
 
-The method is an alternative to `toString()` when you are rendering the whole page with React.
+The instantiation accepts an options object as a first argument.
 
-```jsx
-const style = sheets.getStyleElement();
+1. `options` (*Object* [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
 
-const response = (
-  <html lang="en" dir="ltr">
-    <Head>
-      {style}
-    </Head>
-    <body>
-      <Main />
-    </body>
-  </html>
-);
-```
+### `sheets.collect(node) => React element`
+
+The method wraps your React node in a provider element. It collects the style sheets during the rendering so they can be later sent to the client.
+
+### `sheets.toString() => CSS string`
+
+The method returns the collected styles.
+
+⚠️ You must call `.collect()` before using this method.
+
+### `sheets.getStyleElement() => CSS React element`
+
+The method is an alternative to `.toString()` when you are rendering the whole page with React.
+
+⚠️ You must call `.collect()` before using this method.
 
 ## `styled(Component)(styles, [options]) => Component`
 
@@ -176,7 +161,7 @@ Link a style sheet with a function component using the **styled components** pat
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Returns
+#### Retornos
 
 `Component`: The new component created.
 
@@ -214,15 +199,15 @@ It should preferably be used at **the root of your component tree**.
 #### PropsBy default, the styles are injected last in the 
 
 <head>
-  element of your page. Eles ganham mais especificidade que outras folhas de estilos na sua página como por exemplo: módulos CSS e componentes estilizados. If you want to override the Material-UI's styles, set this prop.</td> </tr> 
+  element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.</td> </tr> 
   
   <tr>
     <td align="left">
-      <span class="prop-name">jss</span>
+      jss
     </td>
     
     <td align="left">
-      <span class="prop-type">object</span>
+      object
     </td>
     
     <td align="left">
@@ -284,11 +269,11 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
     
     <tr>
       <td align="left">
-        <span class="prop-name required">children&nbsp;*</span>
+        children&nbsp;*
       </td>
       
       <td align="left">
-        <span class="prop-type">node</span>
+        node
       </td>
       
       <td align="left">
@@ -302,11 +287,11 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
     
     <tr>
       <td align="left">
-        <span class="prop-name required">theme&nbsp;*</span>
+        theme&nbsp;*
       </td>
       
       <td align="left">
-        <span class="prop-type">union:&nbsp;object&nbsp;&#124;&nbsp;func</span>
+        union:&nbsp;object&nbsp;&#124;&nbsp;func
       </td>
       
       <td align="left">
@@ -347,7 +332,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </p>
   
   <h4>
-    Returns
+    Retornos
   </h4>
   
   <p>
@@ -426,7 +411,7 @@ export default function MyComponent() {
   </ol>
   
   <h4>
-    Returns
+    Retornos
   </h4>
   
   <p>
@@ -497,7 +482,7 @@ export default MyComponent
   </ol>
   
   <h4>
-    Returns
+    Retornos
   </h4>
   
   <p>

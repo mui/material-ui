@@ -2,6 +2,7 @@
 title: "Los Chips son elementos compactos que representan una entrada, atributo, o acción.\nLos Chips le permiten a los usuarios introducir información, hacer selecciones, filtrar contenido, o activar acciones.\nAunque incluido como un componente individual, el uso más común será en algún tipo de entrada de formulario, por lo que parte del comportamiento demostrado aquí no se muestra en este contexto"
 components: Chip
 ---
+
 # Chips
 
 <p class="description">Los Chips son elementos compactos que representan una entrada, atributo o acción.</p>
@@ -17,20 +18,20 @@ Ejemplos de Chips, usando un Avatar de imagen, Avatar de icono SVG, Avatar con "
 - Los Chips con la propiedad `onClick` definida cambian su apariencia en el focus, el hover y el click.
 - Los Chips con la propiedad `onDelete` definida mostrarán un icono de eliminar, el cuál cambia de apariencia en el hover.
 
-{{"demo": "pages/demos/chips/Chips.js"}}
+{{"demo": "pages/components/chips/Chips.js"}}
 
 ### Chips con contorno
 
 Los chips con contorno ofrecen un estilo alternativo.
 
-{{"demo": "pages/demos/chips/OutlinedChips.js"}}
+{{"demo": "pages/components/chips/OutlinedChips.js"}}
 
 ## Array de Chips
 
 Un ejemplo de cómo renderizar múltiples Chips desde un array de valores. Eliminar un chip lo quita del array. Tened en cuenta que al no estar la propiedad `onClick` definida, al Chip se le puede hacer focus, pero no gana profundidad si se hace click en él o se toca.
 
-{{"demo": "pages/demos/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js"}}
 
 ## Chip Playground
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

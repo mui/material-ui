@@ -2,6 +2,7 @@
 title: React List（列表）组件
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
+
 # Lists（列表）
 
 <p class="description">列表是对文本或图像的连续、垂直的索引。</p>
@@ -10,7 +11,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 ## Simple List（简易列表）
 
-{{"demo": "pages/demos/lists/SimpleList.js"}}
+{{"demo": "pages/components/lists/SimpleList.js"}}
 
 上一个样例的最后一个子集展示了如何渲染一个链接：
 
@@ -26,31 +27,31 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-你可以从这里查看[React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)
+你可以从这里查看 [React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)。
 
 ## Nested List（嵌套列表）
 
-{{"demo": "pages/demos/lists/NestedList.js"}}
+{{"demo": "pages/components/lists/NestedList.js"}}
 
 ## Folder List（文件夹列表）
 
-{{"demo": "pages/demos/lists/FolderList.js"}}
+{{"demo": "pages/components/lists/FolderList.js"}}
 
 ## 交互
 
 您在以下的一个交互式演示可以探索不同设置的视觉效果：
 
-{{"demo": "pages/demos/lists/InteractiveList.js"}}
+{{"demo": "pages/components/lists/InteractiveList.js"}}
 
 ## 可选的 ListItem
 
-{{"demo": "pages/demos/lists/SelectedListItem.js"}}
+{{"demo": "pages/components/lists/SelectedListItem.js"}}
 
 ## 对齐列表项
 
 在显示3行或更多行时，您应该更改列表项的对齐，设置 `alignItems="flex-start"` 这样的属性。
 
-{{"demo": "pages/demos/lists/AlignItemsList.js"}}
+{{"demo": "pages/components/lists/AlignItemsList.js"}}
 
 ## 列表控件
 
@@ -60,17 +61,17 @@ function ListItemLink(props) {
 
 该复选框是列表项的主要操作和状态指示器。 注释按钮是辅助操作和单独的目标。
 
-{{"demo": "pages/demos/lists/CheckboxList.js"}}
+{{"demo": "pages/components/lists/CheckboxList.js"}}
 
 该复选框是列表项的辅助操作和单独的目标。
 
-{{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
+{{"demo": "pages/components/lists/CheckboxListSecondary.js"}}
 
 ### Switch （开关）
 
 该开关是辅助操作和单独的目标。
 
-{{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
+{{"demo": "pages/components/lists/SwitchListSecondary.js"}}
 
 ## 固定的 Subheader List（副标题列表）
 
@@ -78,14 +79,14 @@ function ListItemLink(props) {
 
 此功能依赖于 CSS sticky 定位。 可惜, 这一功能并未在我们支持的所有浏览器中 [实现](https://caniuse.com/#search=sticky) 。 如果不支持, 则默认为 `disableSticky`。
 
-{{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
+{{"demo": "pages/components/lists/PinnedSubheaderList.js"}
 
 ## Inset List（嵌入列表）
 
-{{"demo": "pages/demos/lists/InsetList.js"}}
+{{"demo": "pages/components/lists/InsetList.js"}}
 
-## Virtualized List
+## 大型列表渲染（Virtualized Table）
 
-In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. 它渲染了200行，可以轻松处理更多行。 Virtualization helps with performance issues.
+在下面的示例中，我们演示了如何将 [react-window](https://github.com/bvaughn/react-window) 与 `List` 组件一起使用 它渲染了200行，可以轻松处理更多行。 可视化优化了整体的性能。
 
-{{"demo": "pages/demos/lists/VirtualizedList.js"}}
+{{"demo": "pages/components/lists/VirtualizedList.js"}}

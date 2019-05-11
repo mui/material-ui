@@ -1,13 +1,15 @@
 ---
 title: Box React component
 ---
+
 # Box
 
-<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">O componente Box serve como um componente wrapper (invólucro) para a maioria das necessidades do utilitário CSS.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/css-in-js/api/#styled-style-function-component) function of `@material-ui/styles`.
+O componente Box empacota [ todas as funções de estilo](/system/basics/#all-inclusive) que estão expostas em `@material-ui/system</ code>.
+Ele é criado usando a função <a href="/styles/api/#styled-style-function-component"> <code>styled()`</a> de `@material-ui/styles `.
 
-## Example
+## Exemplo
 
 [The palette](/system/palette/) style function.
 
@@ -53,10 +55,10 @@ The Box children accepts a render props function. You can pull out the `classNam
 import Box from '@material-ui/core/Box';
 ```
 
-| Name                                                    | Type                                                                                                              | Default                                 | Description                                                                                            |
-|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------------------------------------------------------------------ |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box render function or node.                                                                           |
-| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle it's children DOM element. It's using `React.cloneElement` internally. |
-| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.             |
+| Name                                                    | Type                                                                                                              | Default                                 | Description                                                                                           |
+|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:----------------------------------------------------------------------------------------------------- |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box render function or node.                                                                          |
+| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. It's using `React.cloneElement` internally. |
+| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.            |
 
 Any other properties supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.

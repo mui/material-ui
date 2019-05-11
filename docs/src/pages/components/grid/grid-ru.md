@@ -2,6 +2,7 @@
 title: React-компонент Сетка
 components: Grid
 ---
+
 # Сетка
 
 <p class="description">Сетка адаптивного макета Material Design адаптируется к размеру экрана и ориентации, обеспечивая согласованность макетов.</p>
@@ -24,9 +25,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 Смысл адаптивной сетки не в равной ширине столбцов, а в равной ширине интервалов между ними. В Material Design величина отступов и ширина столбцов привязаны к базовой сетке с шагом в **8px**. Свойство `spacing` может принимать целочисленные значения от 0 до 10 включительно. По умолчанию расстояние между соседними элементами (GridItem) задано линейной функцией: `output(spacing) = spacing * 8px`, т.е. `spacing={2}` устанавливает значение интервала 16px.
 
-Поведение функции `output` можно изменить, [отредактировав тему](/customization/themes/#spacing).
+Поведение функции `output` можно изменить, [отредактировав тему](/customization/spacing/).
 
-{{"demo": "pages/layout/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js"}}
 
 ## Адаптивные сетки
 
@@ -36,39 +37,31 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 Ширина столбца меняется во всех точках прерывания (от `xs` и выше).
 
-{{"demo": "pages/layout/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js"}}
 
 ### Сетка с точками прерывания
 
 Некоторые столбцы имеют несколько значений ширины, что приводит к изменению макета в определенной точке прерывания.
 
-{{"demo": "pages/layout/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js"}}
 
 ## Интерактивность
 
 Ниже приведен интерактивный пример, который демонстрирует результаты различных настроек сетки:
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
 
 ## Авто-разметка
 
 Автоматическая разметка позволяет *элементам* равномерно распределять доступное пространство. Это также означает, что вы можете установить ширину одного *элемента*, а остальные будут автоматически изменять размер вокруг него.
 
-{{"demo": "pages/layout/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js"}}
 
 ## Сложная сетка
 
 Следующая демонстрация не соответствует спецификации Material Design, но иллюстрирует, как сетка может использоваться для создания сложных макетов.
 
-{{"demo": "pages/layout/grid/ComplexGrid.js"}}
-
-## CSS макет сетки
-
-**CSS Grid Layout** отлично подходит для разделения страницы на основные блоки или определяет взаимосвязь размера, позиционирования и уровня между частями управляемого элемента, состоящего из HTML примитивов.
-
-⚠️ К сожалению, CSS-сетка поддерживается только самыми современными браузерами.
-
-{{"demo": "pages/layout/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js"}}
 
 ## Вложенная сетка
 
@@ -78,7 +71,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/layout/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js"}}
 
 ## Ограничения
 
@@ -114,8 +107,14 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   <Typography noWrap>
 ```
 
-{{"demo": "pages/layout/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
 
 ### direction: column | column-reverse
 
 Though the `Grid` component has a `direction` property that allows values of `row`, `row-reverse`, `column`, and `column-reverse`, there are some features that are not supported within `column` and `column-reverse` containers. The properties which define the number of grids the component will use for a given breakpoint (`xs`, `sm`, `md`, `lg`, and `xl`) are focused on controlling width and do **not** have similar effects on height within `column` and `column-reverse` containers. If used within `column` or `column-reverse` containers, these properties may have undesirable effects on the width of the `Grid` elements.
+
+## CSS макет сетки
+
+Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
+
+{{"demo": "pages/components/grid/CSSGrid.js"}}

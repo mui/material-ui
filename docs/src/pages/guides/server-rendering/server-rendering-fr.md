@@ -8,7 +8,7 @@ When the server receives the request, it renders the required component(s) into 
 
 Material-UI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated. It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker (FOUC). To inject the style down to the client, we need to:
 
-1. Create a fresh, new [`ServerStyleSheets`](/css-in-js/api/#serverstylesheets) instance on every request.
+1. Create a fresh, new [`ServerStyleSheets`](/styles/api/#serverstylesheets) instance on every request.
 2. Render the React tree with the server-side collector.
 3. Pull the CSS out.
 4. Pass the CSS along to the client.
@@ -19,6 +19,37 @@ On the client side, the CSS will be injected a second time before removing the s
 
 In the following recipe, we are going to look at how to set up server-side rendering.
 
+### The theme
+
+We create a theme that will be shared between the client and the server.
+
+`theme.js`
+
+```js
+import { createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#556cd6',
+    },
+    secondary: {
+      main: '#19857b',
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      default: '#fff',
+    },
+  },
+});
+
+export default theme;
+```
+
 ### The server-side
 
 The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
@@ -27,8 +58,6 @@ The following is the outline for what our server-side is going to look like. We 
 
 ```js
 import express from 'express';
-import React from 'react';
-import App from './App';
 
 // We are going to fill these out in the sections to follow.
 function renderFullPage(html, css) {
@@ -52,26 +81,19 @@ app.listen(port);
 
 The first thing that we need to do on every request is create a new `ServerStyleSheets`.
 
-When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/css-in-js/api/#stylesprovider) and [`ThemeProvider`](/css-in-js/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
 We then get the CSS from our `sheets` using `sheets.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
 ```jsx
+import express from 'express';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
-
-// Create a theme object.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-  },
-});
+import App from './App';
+import theme from './theme';
 
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
@@ -91,6 +113,16 @@ function handleRender(req, res) {
   // Send the rendered page back to the client.
   res.send(renderFullPage(html, css));
 }
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
+app.use(handleRender);
+
+const port = 3000;
+app.listen(port);
 ```
 
 ### Inject Initial Component HTML and CSS
@@ -100,9 +132,10 @@ The final step on the server-side is to inject our initial component HTML and CS
 ```js
 function renderFullPage(html, css) {
   return `
-    <!doctype html>
+    <!DOCTYPE html>
     <html>
       <head>
+        <title>My page</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
@@ -122,11 +155,9 @@ The client side is straightforward. All we need to do is remove the server-side 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
 import App from './App';
+import theme from './theme';
 
 function Main() {
   React.useEffect(() => {
@@ -136,23 +167,14 @@ function Main() {
     }
   }, []);
 
-  return <App />;
+  return (
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  );
 }
 
-// Create a theme object.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-  },
-});
-
-ReactDOM.hydrate(
-  <ThemeProvider theme={theme}>
-    <Main />
-  </ThemeProvider>,
-  document.querySelector('#root'),
-);
+ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
 ## Implémentations de référence
@@ -165,74 +187,4 @@ We host different reference implementations which you can find in the [GitHub re
 
 ## Résolution de problèmes
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](#reference-implementations), bit by bit.
-
-### CSS works only on first load then is missing
-
-The CSS is only generated on the first load of the page. Then, the CSS is missing on the server for consecutive requests.
-
-#### Action to Take
-
-We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` for each request**.
-
-*example of fix:*
-
-```diff
--// Create a sheets instance.
--const sheets = new ServerStyleSheets();
-
-function handleRender(req, res) {
-
-+ // Create a sheets instance.
-+ const sheets = new ServerStyleSheets();
-
-  //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-```
-
-### React class name hydration mismatch
-
-There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
-
-#### Action to Take
-
-The class names value relies on the concept of [class name generator](/css-in-js/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
-
-- You need to provide a new class name generator for each request. But you might share a `createGenerateClassName()` between different requests:
-
-*example of fix:*
-
-```diff
--// Create a new class name generator.
--const generateClassName = createGenerateClassName();
-
-function handleRender(req, res) {
-
-+ // Create a new class name generator.
-+ const generateClassName = createGenerateClassName();
-
-  //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-```
-
-- You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
-    
-    You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
-
-*example of fix (package.json):*
-
-```diff
-  "dependencies": {
-    ...
-
--   "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
-    ...
-  },
-```
-
-- You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
+Check out our FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

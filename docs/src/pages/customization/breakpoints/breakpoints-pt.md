@@ -23,7 +23,7 @@ range         |   xs   |   sm   |   md   |   lg   |   xl
 
 These values can always be customized. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/layout/grid/) and [Hidden](/layout/hidden/) components.
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden]/components/hidden/) components.
 
 ## CSS Media Queries
 
@@ -53,7 +53,7 @@ const styles = theme => ({
 });
 ```
 
-{{"demo": "pages/layout/breakpoints/MediaQuery.js"}}
+{{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
 
 ## JavaScript Media Queries
 
@@ -61,11 +61,11 @@ Sometimes, using CSS isn't enough. You might want to change the React rendering 
 
 ### useMediaQuery hook
 
-You can learn more on the [useMediaQuery](/layout/use-media-query/) page.
+You can learn more on the [useMediaQuery]/components/use-media-query/) page.
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/layout/use-media-query/) hook when the React's hooks are released as stable.
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery]/components/use-media-query/) hook when the React's hooks are released as stable.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -79,7 +79,7 @@ export default withWidth()(MyComponent);
 
 In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
 
-{{"demo": "pages/layout/breakpoints/WithWidth.js"}}
+{{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
 ## API
 
@@ -89,7 +89,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### Retornos
 
 `media query`: A media query string ready to be used with JSS.
 
@@ -114,7 +114,7 @@ const styles = theme => ({
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### Retornos
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
 
@@ -140,7 +140,7 @@ const styles = theme => ({
 
 1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### Retornos
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
@@ -167,7 +167,7 @@ const styles = theme => ({
 1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### Retornos
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
@@ -197,14 +197,14 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 Alguns detalhes de implementação que podem ser interessantes para estar ciente:
 
-- Ele encaminha as propriedades *non React static* para que este HOC seja mais "transparente". Por exemplo, pode ser usado para definir um método estático (next.js) ` getInitialProps () `.
+- Ele encaminha as propriedades *non React static* para que este HOC seja mais "transparente". Por exemplo, pode ser usado para definir um método estático (next.js) `getInitialProps()`.
 
 #### Argumentos
 
 1. `options` (*Object* [optional]): 
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.noSSR` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
-    - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/themes/#properties) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
+    - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js
 const theme = createMuiTheme({
@@ -212,7 +212,7 @@ const theme = createMuiTheme({
     // withWidth component ⚛️
     MuiWithWidth: {
       // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 
+      initialWidth: 'lg', // Breakpoint being globally set 🌎!
     },
   },
 });
@@ -220,7 +220,7 @@ const theme = createMuiTheme({
 
 - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
-#### Returns
+#### Retornos
 
 `higher-order component`: Should be used to wrap a component.
 

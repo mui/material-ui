@@ -2,6 +2,7 @@
 title: Portal React component
 components: Portal
 ---
+
 # Portal
 
 <p class="description">Компонент Portal отображает свои дочерние элементы в новом «поддереве» вне текущей иерархии компонентов.</p>
@@ -12,4 +13,4 @@ components: Portal
 
 ## Simple Portal
 
-{{"demo": "pages/utils/portal/SimplePortal.js"}}
+{{"demo": "pages/components/portal/SimplePortal.js"}}

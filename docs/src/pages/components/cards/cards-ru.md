@@ -2,6 +2,7 @@
 title: Card компонент из React
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
+
 # Карточки
 
 <p class="description">Карточки содержат контент и действия, относящиеся к одной теме.</p>
@@ -14,25 +15,25 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 Несмотря на то, что на карточках можно располагать несколько действий, элементы управления и выпадающие меню, будьте сдержаны и помните, что карточки - это входные точки для более сложной и детальной информации.
 
-{{"demo": "pages/demos/cards/SimpleCard.js"}}
+{{"demo": "pages/components/cards/SimpleCard.js"}}
 
 ## Сложное взаимодействие
 
 В варианте для десктопа контент карточки может раздвигаться.
 
-{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
+{{"demo": "pages/components/cards/RecipeReviewCard.js"}}
 
 ## Медиа
 
 Пример карточки, использующей изображение, дополняющее контент.
 
-{{"demo": "pages/demos/cards/MediaCard.js"}}
+{{"demo": "pages/components/cards/MediaCard.js"}}
 
 По умолчанию мы используем комбинацию `<div>` элемента и *background image* для отображения медиа. Это может быть проблематично в некоторых ситуациях. Например, вам может понадобиться отобразить видео или адаптивное изображение. Используйте свойство `component` для этих случаев:
 
-{{"demo": "pages/demos/cards/ImgMediaCard.js"}}
+{{"demo": "pages/components/cards/ImgMediaCard.js"}}
 
-> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+> ⚠️ Когда `component="img"`, CardMedia использует свойство `object-fit` для центрирования изображения. Оно не поддерживается в IE 11.
 
 ## Элементы управления
 
@@ -40,4 +41,4 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 Вот пример карточки с элементами управления мультимедиа.
 
-{{"demo": "pages/demos/cards/MediaControlCard.js"}}
+{{"demo": "pages/components/cards/MediaControlCard.js"}}

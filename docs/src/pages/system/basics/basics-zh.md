@@ -14,41 +14,23 @@
 - 📦体积小 [4KB gzipped](https://bundlephobia.com/result?p=@material-ui/system)
 - 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
 
-值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： ``({ theme, ...style })=> style<、0>。</p>
+值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： `({ theme, ...style })=> style<、0>。</p>
 
 <h3>演示</h3>
 
 <p>在<em>开始</em>章节的余下部分，我们会配合<strong>styled-components</strong> 作为演示例子(因为这个库具有普遍性)。 或者，你也可以使用 <a href="#interoperability">JSS</a>。
 另外，以下的例子都直接使用了 Material-UI 的 <strong>默认</strong> <a href="/customization/default-theme/">主题对象</a>。</p>
 
-<pre><code class="jsx">import { palette, spacing, typography } from '@material-ui/system';
-import styled from 'styled-components';
+<p>{{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}</p>
 
-const Box = styled.div`${palette}${spacing}${typography}`;
-// or import Box from '@material-ui/core/Box';
+<h3>安装</h3>
 
-<Box
-  color="primary.main"
-  bgcolor="background.paper"
-  fontFamily="h6.fontFamily"
-  fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' } }
-  p={{ xs: 2, sm: 3, md: 4} }
->
-  @material-ui/system
-</Box>
-``</pre> 
-
-{{"demo": "pages/system/basics/Demo.js"}}
-
-### 安装
-
-```jsx
-// 使用 npm
+<pre><code class="jsx">// 使用 npm
 npm install @material-ui/system
 
 // 使用 yarn
 yarn add @material-ui/system
-```
+`</pre> 
 
 ### 创建组件
 
@@ -108,7 +90,7 @@ export default App
 同时你也可以使用主色(primary color)：
 
 ```jsx
-<Box color="primary">蓝</Box>
+<Box color="primary">blue</Box>
 ```
 
 ### 其他
@@ -125,7 +107,7 @@ export default App
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-如果你已经在使用 `@material-ui/core`，你可以用我们 [预写好的 Box ](/utils/box/)组件 (内部使用了 JSS)：
+如果你已经在使用 `@material-ui/core`，你可以用我们 [预写好的 Box ](/components/box/)组件 (内部使用了 JSS)：
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -139,36 +121,15 @@ import Box from '@material-ui/core/Box';
 
 ### JSS
 
-```jsx
-import { palette, spacing, compose } from '@material-ui/system';
-import { styled } from '@material-ui/styles';
-
-const Box = styled(compose(spacing, palette));
-```
-
-{{"demo": "pages/system/basics/JSS.js"}}
+{{"demo": "pages/system/basics/JSS.js", "defaultCodeOpen": true}}
 
 ### Styled components
 
-```jsx
-import { palette, spacing } from '@material-ui/system';
-import styled from 'styled-components';
-
-const Box = styled.div`${palette}${spacing}`;
-```
-
-{{"demo": "pages/system/basics/StyledComponents.js"}}
+{{"demo": "pages/system/basics/StyledComponents.js", "defaultCodeOpen": true}}
 
 ### Emotion
 
-```jsx
-import { spacing, palette } from '@material-ui/system';
-import styled from '@emotion/styled';
-
-const Box = styled.div`${palette}${spacing}`;
-```
-
-{{"demo": "pages/system/basics/Emotion.js"}}
+{{"demo": "pages/system/basics/Emotion.js", "defaultCodeOpen": true}}
 
 ## 响应式(Responsive)
 
@@ -327,67 +288,13 @@ const palette = compose(textColor, bgcolor);
 
 帮助函数 `style()` 也可用于根据主题来返回不同的属性给样式对象。 在在这个例子中， `variant` 属性可以是 `theme.typography` 对象的任意键(key)。
 
-```jsx
-import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { style, typography } from '@material-ui/system';
-
-const variant = style({
-  prop: 'variant',
-  cssProperty: false,
-  themeKey: 'typography',
-});
-
-// ⚠ 文本已在全局上下文中定义:
-// https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
-const Text = styled.span`
-  font-family: Helvetica;
-  ${variant}
-  ${typography}
-`;
-
-const theme = {
-  typography: {
-    h1: {
-      fontSize: 30,
-      lineHeight: 1.5,
-    },
-    h2: {
-      fontSize: 25,
-      lineHeight: 1.5,
-    },
-  },
-};
-
-// 渲染 theme.typography.h1 对应的样式对象
-<Text variant="h1">variant=h1</Text>
-```
-
-{{"demo": "pages/system/basics/Variant.js"}}
+{{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
 ## CSS 属性
 
 如果你想要自定义CSS值，可以使用`css()`， 它可以处理的 `css` 属性。
 
-```jsx
-import { compose, spacing, palette, css } from '@material-ui/system';
-import styled from 'styled-components';
-
-const Box = styled.div`
-  ${css(
-    compose(
-      spacing,
-      palette,
-    ),
-  )}
-`;
-
-<Box color="white" css={{ bgcolor: 'palevioletred', p: 1, textTransform: 'uppercase' }}>
-  CssProp
-</Box>
-```
-
-{{"demo": "pages/system/basics/CssProp.js"}}
+{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
 ## 它是如何工作的
 

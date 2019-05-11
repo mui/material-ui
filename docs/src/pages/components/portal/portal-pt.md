@@ -2,6 +2,7 @@
 title: Componente React Modal
 components: Portal
 ---
+
 # Portal
 
 <p class="description">O componente portal renderiza seu filho em uma nova sub-árvore fora da hierarquia do componente atual.</p>
@@ -12,4 +13,4 @@ O componente é usado internamente pelos componentes [`Modal`](/utils/modal/) e 
 
 ## Simples Portal
 
-{{"demo": "pages/utils/portal/SimplePortal.js"}}
+{{"demo": "pages/components/portal/SimplePortal.js"}}

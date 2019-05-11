@@ -2,6 +2,7 @@
 title: Table React component
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
+
 # Tables
 
 <p class="description">Data tables display sets of data. They can be fully customized.</p>
@@ -28,13 +29,13 @@ For accessibility, the first column is set to be a `<th>` element, with a `scope
 
 A simple example with no frills.
 
-{{"demo": "pages/demos/tables/SimpleTable.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js"}}
 
 ## Dense Table
 
 A simple example of a dense table with no frills.
 
-{{"demo": "pages/demos/tables/DenseTable.js"}}
+{{"demo": "pages/components/tables/DenseTable.js"}}
 
 ## Sorting & Selecting
 
@@ -42,40 +43,45 @@ This example demonstrates the use of `Checkbox` and clickable rows for selection
 
 The Table has been given a fixed width to demonstrate horizontal scrolling. In order to prevent the pagination controls from scrolling, the TablePagination component is used outside of the Table. (The ['Custom Table Pagination Action' example](#custom-table-pagination-action) below shows the pagination within the TableFooter.)
 
-{{"demo": "pages/demos/tables/EnhancedTable.js"}}
+{{"demo": "pages/components/tables/EnhancedTable.js"}}
 
-## Customized Tables
+## Customized tables
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a `TableCell`.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
-
-{{"demo": "pages/demos/tables/CustomizedTable.js"}}
+{{"demo": "pages/components/tables/CustomizedTables.js"}}
 
 ## Custom Table Pagination Action
 
 The `Action` property of the `TablePagination` component allows the implementation of custom actions.
 
-{{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
+{{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
 ## Spanning Table
 
 A simple example with spanning rows & columns.
 
-{{"demo": "pages/demos/tables/SpanningTable.js"}}
+{{"demo": "pages/components/tables/SpanningTable.js"}}
 
 ## Virtualized Table
 
 In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more. Virtualization helps with performance issues.
 
-{{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
+{{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
 
+### material-table
+
+![Stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/material-table.svg)
+
+[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+
+{{"demo": "pages/components/tables/MaterialTableDemo.js"}}
+
+### Other
+
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
-- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI table.
-- [mui-tables](https://parkerself.gitbook.io/mui-table/) Customizable table for managing complex data. Features a summary row, de-duplication & merging, as well as filtering, search, etc.

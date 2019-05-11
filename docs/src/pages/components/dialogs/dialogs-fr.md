@@ -2,11 +2,12 @@
 title: Composant React Dialogue
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
+
 # Dialogs (Dialogues)
 
 <p class="description">Les boîtes de dialogue informent les utilisateurs sur une tâche et peuvent contenir des informations critiques, nécessiter des décisions ou impliquer plusieurs tâches.</p>
 
-Un [Dialog](https://material.io/design/components/dialogs.html) est un type de fenêtre [modale](/utils/modal/) qui apparaît devant le contenu de l'application pour fournir des informations critiques ou demander une décision. Les boîtes de dialogue désactivent toutes les fonctionnalités des applications lorsqu'elles apparaissent et restent à l'écran jusqu'à confirmation, exclusion ou action requise.
+Un [Dialog](https://material.io/design/components/dialogs.html) est un type de fenêtre [modale](/components/modal/) qui apparaît devant le contenu de l'application pour fournir des informations critiques ou demander une décision. Les boîtes de dialogue désactivent toutes les fonctionnalités des applications lorsqu'elles apparaissent et restent à l'écran jusqu'à confirmation, exclusion ou action requise.
 
 Les dialogues sont délibérément interruptifs, ils doivent donc être utilisés avec parcimonie.
 
@@ -19,7 +20,7 @@ Mécanique tactile:
 - Choisir une option valide immédiatement l'option et ferme le menu
 - Toucher en dehors de la boîte de dialogue ou appuyer sur Retour annule l'action et ferme la boîte de dialogue
 
-{{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
+{{"demo": "pages/components/dialogs/SimpleDialog.js"}}
 
 ## Alertes
 
@@ -37,41 +38,41 @@ Si un titre est requis:
 - Utilisez une question ou une déclaration claire avec une explication dans la zone de contenu, telle que "Effacer le stockage USB?".
 - Évitez les excuses, les ambiguïtés ou les questions telles que "Attention"
 
-{{"demo": "pages/demos/dialogs/AlertDialog.js"}}
+{{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
 Vous pouvez également permuter la transition. L’exemple suivant utilise `Slide`.
 
-{{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
+{{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
 
 ## Dialogues de formulaire
 
 Les boîtes de dialogue de formulaire permettent aux utilisateurs de remplir des champs de formulaire dans une boîte de dialogue. Par exemple, si votre site invite les abonnés potentiels à saisir leur adresse e-mail, ils peuvent renseigner le champ e-mail et appuyer sur "Envoyer".
 
-{{"demo": "pages/demos/dialogs/FormDialog.js"}}
+{{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Dialogue personnalisé
+## Customized dialogs
 
-Si vous avez lu la page de documentation [sur les personnalisation](/customization/overrides/) mais que vous n'êtes pas prêt à vous lancer, voici un exemple de la façon dont vous pouvez personnaliser le `DialogTitle` pour ajouter un bouton de fermeture.
+Here is example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Bien que la spécification material encouragent la thématisation, cet exemple sort des sentiers battus.
+The dialog has a close button added to aide usability.
 
-{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+{{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
 ## Dialogues plein écran
 
-{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
+{{"demo": "pages/components/dialogs/FullScreenDialog.js"}}
 
 ## Tailles en option
 
 Vous pouvez définir une largeur maximale dans la boîte de dialogue à l’aide de la valeur `maxWidth`, associée à la valeur `fullWidth`. Lorsque la propriété `fullWidth` est définie sur true, la boîte de dialogue s'adapte en fonction de la valeur `maxWidth`.
 
-{{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
+{{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
 ## Responsive full-screen
 
-You may make a dialog responsively full screen the dialog using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics/). You can choose your own breakpoint for example `xs` by passing the `breakpoint` argument: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+You may make a dialog responsively full screen using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/customization/breakpoints/). You can choose your own breakpoint for example `xs` by passing the `breakpoint` argument: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
 
-{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
+{{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
 ## Dialogues de confirmation
 
@@ -79,11 +80,11 @@ Les dialogues de confirmation demandent aux utilisateurs de confirmer explicitem
 
 Appuyer sur “Annuler” dans une boîte de dialogue de confirmation ou appuyer sur Retour annule l'action, annule les modifications et ferme la boîte de dialogue.
 
-{{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
+{{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## Accessibilité
 
-Suivez la [section d'accessibilité de la Modal](/utils/modal/#accessibility).
+Suivez la [section d'accessibilité de la Modal](/components/modal/#accessibility).
 
 ## Défiler de longues contenu
 
@@ -94,14 +95,14 @@ Lorsque les boîtes de dialogue deviennent trop longues pour la fenêtre ou le p
 
 Essayez la démo ci-dessous pour voir ce que nous voulons dire:
 
-{{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
+{{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
 ## Dialogue glissable
 
 Vous pouvez créer une boîte de dialogue déplaçable à l’aide de [react-draggable](https://github.com/mzabriskie/react-draggable). Pour ce faire, vous pouvez passer le composant importé `Draggable` en tant que proprieté `PaperComponent` du composant `Dialog`. Cela rend la totalité de la boîte de dialogue déplaçable.
 
-{{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Performances
 
-Suivez la [section de performance de la Modal](/utils/modal/#performance).
+Suivez la [section de performance de la Modal](/components/modal/#performance).

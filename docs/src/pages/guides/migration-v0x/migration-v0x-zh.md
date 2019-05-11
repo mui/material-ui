@@ -12,7 +12,7 @@
 
 材料的UI开始 [3年前](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)。 从那时起，生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动一项雄心勃勃的任务，从重建材料的UI **地面行动** 采取这方面的知识优势，以解决长期存在的问题。 列举一些主要变化：
 
-- 使用CSS-在-JS新造型液（最好 [定制](/customization/overrides/) 功耗，性能越好）
+- New styling solution using CSS-in-JS (better [customization](/customization/components/) power, better performance)
 - 新 [主题处理](/customization/themes/) （嵌套，自支撑等）
 - 感谢 [Next.js](https://github.com/zeit/next.js)快速创建文档
 - 方式更好 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
@@ -80,7 +80,7 @@
 
 ### 自动补全
 
-Material-UI不提供用于解决此问题的高级API。 你鼓励你去探索 [的解决方案做出反应的社区已建成](/demos/autocomplete/)。
+Material-UI不提供用于解决此问题的高级API。 You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
 在未来，我们将研究提供一个简单的组件来解决简单的用例： [＃9997](https://github.com/mui-org/material-ui/issues/9997)。
 

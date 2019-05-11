@@ -1,64 +1,63 @@
 ---
-title: React 菜单组件
+title: React Menu（菜单）组件
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
-# 菜单
 
-<p class="description">菜单显示在临时出现的所点击位置上的选项列表。</p>
+# Menus（菜单）
 
-[菜单](https://material.io/design/components/menus.html)通过一个临时出现的界面来显示选项列表。通常当用户与按钮，操作或其他控件交互时出现。
+<p class="description">菜单在临时出现的位置上展示一系列的选项列表。</p>
 
-## 基本菜单
+一个[菜单](https://material.io/design/components/menus.html)在临时的界面上列出了一系列的选项。当用户和按钮，或其他控件交互的时候，菜单会再次出现。
 
-默认情况下，简单菜单在锚元素上打开（此选项可以通过props更改）。 当靠近屏幕边缘时，简单的菜单会垂直重新对齐，以确保所有菜单项都完全可见。
+## 简单菜单
 
-选择一个选项后, 最好立即提交该选项并关闭菜单。
+默认情况下，简单菜单在锚元素上打开（此选项可以通过 props 更改）。 当靠近屏幕边缘时，简单菜单会在垂直方向上重新对齐，以确保所有菜单子项都完全可见。
 
-**解疑**: 与基本菜单相比, 基本对话框可以显示与列表项可用选项相关的其他详细信息, 或者提供与主要任务相关的导航类的或垂直的操作。 虽然它们可以显示相同的内容, 但基本菜单比基本对话框更可取, 因为基本菜单对用户当前上下文的破坏性较小。
+理想状态下，选择一个选项会出发即刻提交该选项并且关闭整个菜单。
 
-{{"demo": "pages/demos/menus/SimpleMenu.js"}}
+**解疑**: 与简单菜单相比，基本对话框可以显示与一个列表项相关的其他选项的详细信息，或者提供与主要任务相关的导航类的或垂直的操作。 虽然它们可以显示相同的内容，但相对于基本对话框，我们更推荐简单菜单，因为它对用户的当前上下文干预更少。
+
+{{"demo": "pages/components/menus/SimpleMenu.js"}}
 
 ## 选择菜单
 
-如果用于项目选择, 则在打开时, 基本菜单会尝试将当前选定的菜单项与定位元素垂直对齐。 使用` selected `属性将菜单项设置为当前选中（从[ListItem](/api/list-item/))。
+若用于选项的选择，当打开简单菜单的时候，它会通过一个锚元素来尝试与当前被选择的菜单的选择项垂直对齐，而初始的焦点将放置于此被选项。 通过 `selected` 属性（在[ListItem](/api/list-item/)中），我们设置当前的被选项。 若想要使用一个被选菜单项且不影响初始的焦点或者菜单的垂直位置，您可以设置一下`菜单`的 `variant` 属性。
 
-{{"demo": "pages/demos/menus/SimpleListMenu.js"}}
+{{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## MenuList 组件
+## MenuList 组合
 
-`Menu`组件内部使用`Popver`组件 但是，您可能想药使用不同的定位策略，或者你不想禁止滚动。 为了满足这些需求，我们公开了一个`MenuList`组件，让你可以像下面例子中这样组合`Popper`来编写自己的菜单组件。
+`菜单`组件在其内部使用 `Popover` 组件。 但是，您可能想要使用不同的元素定位的方式，或者您不想禁止页面的滚动。 为了满足这些需求，我们公开了一个 `MenuList` 组件，您可以像下面例子中这样结合 `Popper` 来编写自己的菜单组件。
 
-`MenuList`组件的主要职责是处理焦点。
+`MenuList`组件的主要任务是处理焦点。
 
-{{"demo": "pages/demos/menus/MenuListComposition.js"}}
+{{"demo": "pages/components/menus/MenuListComposition.js"}}
 
-## 定制菜单项
+## 自定义菜单
 
-如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心跳入， 这里是一个如何自定义 `MenuItem`示例。
+以下是自定义组件的一个示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
 
-⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
+{{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
-{{"demo": "pages/demos/menus/ListItemComposition.js"}}
-
-`MenuItem`实际上是在`ListItem`之上增加了一些样式的封装。 所以你可以靠`MenuItem`来使用相同的列表组合特性：
+`MenuItem` 实际上是在 `ListItem` 之上增加了一些样式的封装。 因此你可以使用和 `MenuItem` 组件相同的列表组合特性：
 
 ## 限高菜单
 
 如果菜单的最大高度仍无法显示所有菜单项，则菜单可以在内部滚动。
 
-{{"demo": "pages/demos/menus/LongMenu.js"}}
+{{"demo": "pages/components/menus/LongMenu.js"}}
 
 ## 局限性
 
-有 [一个 flexbox 的 bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，使 `text-overflow: ellipsis` 在 Flexbox 布局中不工作。 您可以使用 `Typography` 组件和 `noWrap` 来解决此问题：
+有 [一个 flexbox 的 错误](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，使 `text-overflow: ellipsis` 在 Flexbox 布局中不工作。 您可以使用 `Typography` 组件和 `noWrap` 来解决此问题：
 
-{{"demo": "pages/demos/menus/TypographyMenu.js"}}
+{{"demo": "pages/components/menus/TypographyMenu.js"}}
 
 ## 更改过渡动画
 
 使用不同的过渡动画。
 
-{{"demo": "pages/demos/menus/FadeMenu.js"}}
+{{"demo": "pages/components/menus/FadeMenu.js"}}
 
 ## 补充项目
 
@@ -68,4 +67,4 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 这里有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 在大部分情况下，它都能帮你处理好菜单状态
 
-{{"demo": "pages/demos/menus/MenuPopupState.js"}}
+{{"demo": "pages/components/menus/MenuPopupState.js"}}

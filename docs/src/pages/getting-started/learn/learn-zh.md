@@ -34,5 +34,7 @@
 
 ### 付费的资源
 
+- **React Material-UI Cookbook**：根据Material设计原则在react项目中使用Material-UI创建现代化应用程序。 
+  - [点此阅读](https://www.packtpub.com/application-development/react-material-ui-cookbook)
 - **Builder Book**：学习如何使用 Modern JavaScript 堆栈和 Material-UI 来从头开始创建一个全栈 JavaScript Web 应用程序。 
-  - 📘 [书](https://builderbook.org/book)
+  - 📘 [点此阅读](https://builderbook.org/book)

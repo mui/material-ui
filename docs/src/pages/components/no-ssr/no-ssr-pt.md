@@ -1,22 +1,23 @@
 ---
-title: No SSR React component
+title: Componente React noSSR
 components: NoSsr
 ---
-# Sem SSR
 
-<p class="description">NoSsr purposely removes components from the subject of Server Side Rendering (SSR).</p>
+# NoSSR
 
-This component can be useful in a variety of situations:
+<p class="description">O NoSsr remove intencionalmente componentes do assunto do Server Side Rendering (SSR).</p>
 
-- Escape hatch for broken dependencies not supporting SSR.
+Esse componente pode ser útil em várias situações:
+
+- Escotilha de escape para dependências quebradas que não suportam SSR.
 - Improve the time-to-first paint on the client by only rendering above the fold.
-- Reduce the rendering time on the server.
-- Under too heavy server load, you can turn on service degradation.
-- Improve the time-to-interactive by only rendering what's important (with the `defer` property).
+- Reduza o tempo de renderização no servidor.
+- Sob carga de servidor muito pesada, você pode ativar a degradação do serviço.
+- Melhore o tempo de interação apenas processando o que é importante (com a propriedade `defer`).
 
 ## Client side deferring
 
-{{"demo": "pages/utils/no-ssr/SimpleNoSsr.js"}}
+{{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
 ## Frame deferring
 
@@ -24,4 +25,4 @@ In it's core, the NoSsr component purpose is to **defer rendering**. As it's ill
 
 But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
 
-{{"demo": "pages/utils/no-ssr/FrameDeferring.js"}}
+{{"demo": "pages/components/no-ssr/FrameDeferring.js"}}
