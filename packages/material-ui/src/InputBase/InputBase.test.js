@@ -15,7 +15,7 @@ import InputBase from './InputBase';
 import TextField from '../TextField';
 import Select from '../Select';
 
-describe.only('<InputBase />', () => {
+describe('<InputBase />', () => {
   let classes;
   let mount;
 
@@ -75,9 +75,7 @@ describe.only('<InputBase />', () => {
       const handleBlur = spy();
       const handleFocus = spy();
       const ref = React.createRef();
-      const wrapper = mount(
-        <InputBase inputRef={ref} muiFormControl={{ onBlur: handleBlur, onFocus: handleFocus }} />,
-      );
+      const wrapper = mount(<InputBase inputRef={ref} onBlur={handleBlur} onFocus={handleFocus} />);
 
       // We simulate a focused input that is getting disabled.'
       wrapper.find('input').simulate('focus');
@@ -124,6 +122,7 @@ describe.only('<InputBase />', () => {
       const stubValue = 'do not work';
       const wrapper = mount(<InputBase value={initialValue} />);
       const inputEl = wrapper.find('input');
+      inputEl.instance().value = stubValue;
       inputEl.simulate('change', { target: { value: stubValue } });
 
       assert.strictEqual(inputEl.props().value, initialValue);
@@ -196,11 +195,7 @@ describe.only('<InputBase />', () => {
       const handleEmpty = spy();
       const handleFilled = spy();
       const wrapper = mount(
-        <InputBase
-          onFilled={handleFilled}
-          defaultValue="hell"
-          onEmpty={handleEmpty}
-        />,
+        <InputBase onFilled={handleFilled} defaultValue="hell" onEmpty={handleEmpty} />,
       );
       return { wrapper, handleEmpty, handleFilled };
     }
@@ -217,7 +212,11 @@ describe.only('<InputBase />', () => {
       // Because of mount() this hasn't fired since there is no mounting
       assert.strictEqual(handleEmpty.callCount, 0);
       wrapper.find('input').instance().value = '';
-      wrapper.find('input').simulate('change');
+      wrapper.find('input').simulate('change', {
+        target: {
+          value: '',
+        },
+      });
       assert.strictEqual(handleEmpty.callCount, 1);
     });
   });
@@ -278,7 +277,7 @@ describe.only('<InputBase />', () => {
         });
 
         wrapper.find('input').instance().value = 'hello';
-        wrapper.find('input').simulate('change');
+        wrapper.find('input').simulate('change', { target: { value: 'hello' } });
         assert.strictEqual(handleFilled.callCount, 1);
         assert.strictEqual(muiFormControl.onFilled.callCount, 1);
       });
@@ -288,16 +287,20 @@ describe.only('<InputBase />', () => {
 
         // Set value to be cleared
         wrapper.find('input').instance().value = 'test';
-        wrapper.find('input').simulate('change');
-
+        wrapper.find('input').simulate('change', {
+          target: {
+            value: 'test',
+          },
+        });
         wrapper.setProps({
           onEmpty: handleEmpty,
         });
-
+        assert.strictEqual(handleEmpty.callCount, 0);
         // Clear value
         wrapper.find('input').instance().value = '';
-        wrapper.find('input').simulate('change');
-
+        wrapper.find('input').simulate('change', {
+          target: { value: '' },
+        });
         assert.strictEqual(handleEmpty.callCount, 1);
         assert.strictEqual(muiFormControl.onEmpty.callCount, 1);
       });
