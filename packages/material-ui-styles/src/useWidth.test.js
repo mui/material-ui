@@ -12,7 +12,7 @@ import useTheme from './useTheme';
 import useWidth from './useWidth';
 import ThemeProvider from './ThemeProvider';
 
-import ssrMatchMedia from 'css-mediaquery';
+import cssMatchMedia from 'css-mediaquery';
 // mediaQuerus 1 -> n mediaQueryList -> 1->n listeners
 
 function createScreen(){
@@ -114,7 +114,7 @@ function ssrMatchMedia(query){
   return ssrMediaQueryList(query, screen);
 }
 
-describe('useTheme', () => {
+describe('useWidth', () => {
   let mount;
 
   before(() => {
