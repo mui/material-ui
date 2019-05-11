@@ -205,10 +205,14 @@
   ],
   "dependencies": {
     "@material-ui/core": "^3.7.0",
+    "detect-browser": "^4.5.0",
+    "expect": "^24.8.0",
+    "expect.js": "^0.3.1",
     "jss": "^9.8.7",
     "jss-preset-default": "^10.0.0-alpha.3",
     "marked": "^0.5.2",
     "nprogress": "^0.2.0",
-    "prismjs": "^1.15.0"
+    "prismjs": "^1.15.0",
+    "zen-observable": "^0.8.14"
   }
 }

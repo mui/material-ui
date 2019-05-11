@@ -9,12 +9,12 @@ export default function createScreen() {
     },
     setWidth(w) {
       width = w;
-      mqls.forEach((mSet, k) => {
+      mqls.forEach((mSet, media) => {
         // for performance reasons we mut cssMatchMedia in the screen object
-        const current = cssMatchMedia(k, { width });
+        const current = cssMatchMedia(media, { width });
         // v is a set
         mSet.forEach(mql => {
-          mql.dipatchEvent({ type: 'change', matched: current, media: k, width });
+          mql.dipatchEvent({ type: 'change', matched: current, media, width });
         });
       });
     },
