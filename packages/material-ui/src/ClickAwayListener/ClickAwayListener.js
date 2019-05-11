@@ -92,7 +92,7 @@ function ClickAwayListener(props) {
       };
     }
 
-    return () => {};
+    return undefined;
   }, [handleClickAway, handleTouchMove, touchEvent]);
 
   React.useEffect(() => {
@@ -105,7 +105,7 @@ function ClickAwayListener(props) {
       };
     }
 
-    return () => {};
+    return undefined;
   }, [handleClickAway, mouseEvent]);
 
   return <React.Fragment>{React.cloneElement(children, { ref: handleRef })}</React.Fragment>;

@@ -190,7 +190,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       };
     }
 
-    return () => {};
+    return undefined;
   }, [direction, inProp]);
 
   React.useEffect(() => {
