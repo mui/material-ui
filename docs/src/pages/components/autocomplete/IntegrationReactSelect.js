@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-handler-names */
-
 import React from 'react';
 import clsx from 'clsx';
 import Select from 'react-select';
