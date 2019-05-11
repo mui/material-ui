@@ -51,7 +51,7 @@ const styles = theme => ({
   },
   pageLinkButton: {
     textTransform: 'none',
-    color: theme.palette.primary.main,
+    fontWeight: theme.typography.fontWeightRegular,
   },
   chevronLeftIcon: {
     marginRight: theme.spacing(1),

@@ -15,8 +15,9 @@ const styles = theme => ({
       maxWidth: 'calc(100% - 175px)',
     },
     [theme.breakpoints.up('lg')]: {
+      paddingLeft: theme.spacing(6),
       paddingRight: theme.spacing(5),
-      maxWidth: 'calc(100% - 240px - 175px)',
+      maxWidth: 'calc(100% - 175px - 240px)',
     },
   },
   disableToc: {

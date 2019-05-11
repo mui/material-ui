@@ -124,23 +124,22 @@ const styles = theme => ({
     '& pre, & pre[class*="language-"]': {
       margin: '24px 0',
       padding: '12px 18px',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.level1,
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     },
     '& code': {
       display: 'inline-block',
-      lineHeight: 1.6,
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-      padding: '3px 6px',
+      padding: '2px 6px',
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.level1,
       fontSize: 14,
+      borderRadius: 2,
     },
     '& p code, & ul code, & pre code': {
       fontSize: 14,
-      lineHeight: 1.6,
     },
     '& h1': {
       ...theme.typography.h2,
@@ -268,7 +267,7 @@ const styles = theme => ({
     },
     '& blockquote': {
       borderLeft: `5px solid ${theme.palette.text.hint}`,
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.level1,
       padding: '4px 24px',
       margin: '24px 0',
     },
