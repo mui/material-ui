@@ -42,7 +42,7 @@ const styles = theme => ({
     padding: theme.spacing(0, 1),
   },
   footer: {
-    marginTop: theme.spacing(16),
+    marginTop: theme.spacing(12),
   },
   pagination: {
     margin: theme.spacing(3, 0, 4),
