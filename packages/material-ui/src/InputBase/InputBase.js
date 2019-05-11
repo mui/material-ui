@@ -143,6 +143,7 @@ export const styles = theme => {
  */
 const InputBase = React.forwardRef(function InputBase(props, ref) {
   const {
+    'aria-describedby': ariaDescribedby,
     autoComplete,
     autoFocus,
     classes,
@@ -151,14 +152,14 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     disabled,
     endAdornment,
     error,
-    fullWidth,
+    fullWidth = false,
     id,
-    inputComponent,
+    inputComponent = 'input',
     inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
     inputRef: inputRefProp,
     margin,
     muiFormControl,
-    multiline,
+    multiline = false,
     name,
     onBlur,
     onChange,
@@ -175,7 +176,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     rowsMax,
     rowsMin,
     startAdornment,
-    type,
+    type = 'text',
     value,
     ...other
   } = props;
@@ -185,7 +186,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const [focused, setFocused] = React.useState(false);
   const muiFormControlRef = React.useRef({});
 
-  const handleInputRefWarning = instance => {
+  const handleInputRefWarning = React.useCallback(instance => {
     warning(
       !instance || instance instanceof HTMLInputElement || instance.focus,
       [
@@ -194,7 +195,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         'Make sure the `inputRef` property is called with a HTMLInputElement.',
       ].join('\n'),
     );
-  };
+  }, []);
   const handleInputPropsRefProp = useForkRef(inputPropsProp.ref, handleInputRefWarning);
   const handleInputRefProp = useForkRef(inputRefProp, handleInputPropsRefProp);
   const handleRef = useForkRef(inputRef, handleInputRefProp);
@@ -234,11 +235,15 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   React.useEffect(() => {
     // handle check in onChange after mount
-    if (!isControlled) checkDirty(inputRef.current);
+    if (!isControlled) {
+      checkDirty(inputRef.current);
+    }
   }, [checkDirty, isControlled]);
 
   React.useEffect(() => {
-    if (isControlled) checkDirty({ defaultValue, value });
+    if (isControlled) {
+      checkDirty({ defaultValue, value });
+    }
   }, [checkDirty, defaultValue, isControlled, value]);
 
   React.useEffect(() => {
@@ -299,9 +304,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       onClick(event);
     }
   };
-
-  const ariaDescribedby = other['aria-describedby'];
-  delete other['aria-describedby'];
 
   const fcs = formControlState({
     props,
@@ -414,6 +416,10 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 });
 
 InputBase.propTypes = {
+  /**
+   * @ignore
+   */
+  'aria-describedby': PropTypes.string,
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -564,13 +570,6 @@ InputBase.propTypes = {
    * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.any,
-};
-
-InputBase.defaultProps = {
-  fullWidth: false,
-  inputComponent: 'input',
-  multiline: false,
-  type: 'text',
 };
 
 export default withStyles(styles, { name: 'MuiInputBase' })(withFormControlContext(InputBase));

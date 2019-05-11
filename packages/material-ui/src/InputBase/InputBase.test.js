@@ -7,7 +7,6 @@ import {
   describeConformance,
   findOutermostIntrinsic,
   getClasses,
-  unwrap,
 } from '@material-ui/core/test-utils';
 import FormControlContext from '../FormControl/FormControlContext';
 import InputAdornment from '../InputAdornment';
@@ -16,10 +15,9 @@ import InputBase from './InputBase';
 import TextField from '../TextField';
 import Select from '../Select';
 
-describe('<InputBase />', () => {
+describe.only('<InputBase />', () => {
   let classes;
   let mount;
-  const NakedInputBase = unwrap(InputBase);
 
   before(() => {
     mount = createMount({ strict: true });
@@ -90,7 +88,7 @@ describe('<InputBase />', () => {
       // check if blur called
       assert.strictEqual(handleBlur.callCount, 1);
       // check if focus not initiated again
-      assert.isNotTrue(handleFocus.callCount, 2);
+      assert.strictEqual(handleFocus.callCount, 1);
     });
 
     // IE 11 bug
@@ -128,8 +126,7 @@ describe('<InputBase />', () => {
       const inputEl = wrapper.find('input');
       inputEl.simulate('change', { target: { value: stubValue } });
 
-      assert.strictEqual(inputEl.prop('value'), initialValue);
-      assert.isNotTrue(inputEl.prop('value'), stubValue);
+      assert.strictEqual(inputEl.props().value, initialValue);
     });
 
     ['', 0].forEach(value => {
@@ -199,8 +196,7 @@ describe('<InputBase />', () => {
       const handleEmpty = spy();
       const handleFilled = spy();
       const wrapper = mount(
-        <NakedInputBase
-          classes={{}}
+        <InputBase
           onFilled={handleFilled}
           defaultValue="hell"
           onEmpty={handleEmpty}
