@@ -174,7 +174,7 @@ ToggleButton.propTypes = {
    */
   selected: PropTypes.bool,
   /**
-   * The size of the button.
+   * @ignore
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**

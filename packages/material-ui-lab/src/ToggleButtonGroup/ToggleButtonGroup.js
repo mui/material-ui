@@ -15,7 +15,7 @@ export const styles = theme => ({
 });
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
-  const { children, className, classes, exclusive, onChange, value, ...other } = props;
+  const { children, className, classes, exclusive, onChange, size, value, ...other } = props;
 
   const handleChange = (event, buttonValue) => {
     if (!onChange) {
@@ -65,7 +65,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
         return React.cloneElement(child, {
           selected,
           onChange: exclusive ? handleExclusiveChange : handleChange,
-          size: props.size ? props.size : 'medium',
+          size,
         });
       })}
     </div>
@@ -100,7 +100,7 @@ ToggleButtonGroup.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The size of the button.
+   * The size of the buttons.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
