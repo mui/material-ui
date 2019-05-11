@@ -2,6 +2,7 @@
 title: Lista React Componente
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
+
 # Lists (Listas)
 
 <p class="description">As listas são índices verticais contínuos de texto ou imagens.</p>
@@ -10,7 +11,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 ## Lista simples
 
-{{"demo": "pages/demos/lists/SimpleList.js"}}
+{{"demo": "pages/components/lists/SimpleList.js"}}
 
 O último item da demonstração anterior mostra como você pode renderizar um link:
 
@@ -30,27 +31,27 @@ Você pode encontrar uma demonstração [com React Router seguindo esta seção]
 
 ## Lista aninhada
 
-{{"demo": "pages/demos/lists/NestedList.js"}}
+{{"demo": "pages/components/lists/NestedList.js"}}
 
 ## Lista de pastas
 
-{{"demo": "pages/demos/lists/FolderList.js"}}
+{{"demo": "pages/components/lists/FolderList.js"}}
 
 ## Interativo
 
 Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
 
-{{"demo": "pages/demos/lists/InteractiveList.js"}}
+{{"demo": "pages/components/lists/InteractiveList.js"}}
 
 ## ListItem Selecionado
 
-{{"demo": "pages/demos/lists/SelectedListItem.js"}}
+{{"demo": "pages/components/lists/SelectedListItem.js"}}
 
 ## Alinhar itens da lista
 
 Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, defina a propriedade `alignItems = "flex-start"`.
 
-{{"demo": "pages/demos/lists/AlignItemsList.js"}}
+{{"demo": "pages/components/lists/AlignItemsList.js"}}
 
 ## Controles de lista
 
@@ -60,17 +61,17 @@ Uma caixa de seleção que pode ser tanto uma ação principal ou uma ação sec
 
 O checkbox é a ação primária e o estado indicador para o item da lista. O botão comentário é a ação secundária e um destino separado.
 
-{{"demo": "pages/demos/lists/CheckboxList.js"}}
+{{"demo": "pages/components/lists/CheckboxList.js"}}
 
 O checkbox é a ação secundária para o item da lista e um destino separado.
 
-{{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
+{{"demo": "pages/components/lists/CheckboxListSecondary.js"}}
 
 ### Switch
 
 O comutador é a ação secundária e um destino separado.
 
-{{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
+{{"demo": "pages/components/lists/SwitchListSecondary.js"}}
 
 ## Lista de Subpastas Fixadas
 
@@ -78,14 +79,14 @@ Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até 
 
 Este recurso está dependendo do posicionamento de sticky CSS. Infelizmente, [não foi implementado](https://caniuse.com/#search=sticky) por todos os navegadores que suportamos. O padrão é `disableSticky` quando não é suportado.
 
-{{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
+{{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
 ## Lista de Inserção
 
-{{"demo": "pages/demos/lists/InsetList.js"}}
+{{"demo": "pages/components/lists/InsetList.js"}}
 
 ## Virtualized List
 
 In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. São renderizadas 200 linhas e pode facilmente lidar com mais. Virtualization helps with performance issues.
 
-{{"demo": "pages/demos/lists/VirtualizedList.js"}}
+{{"demo": "pages/components/lists/VirtualizedList.js"}}

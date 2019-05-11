@@ -1,13 +1,14 @@
 ---
 components: Icon, SvgIcon
 ---
-# Icons
 
-<p class="description">在Material-UI中使用图标的建议和指导。</p>
+# Icons（图标）
 
-一个[系统图标](https://material.io/design/iconography/system-icons.html)或UI图标，可以用来代表一个命令、文件、或者目录。 系统图标还常在app bar、工具栏、按钮、和列表中用来表示一些常见操作，如删除、打印、和保存。 Google在该规范下提供了一套[Material icons](https://material.io/tools/icons/?style=baseline)。
+<p class="description">一些在 Material-UI 中使用图标的建议和指导。</p>
 
-Material-UI提供了两个组件来渲染系统图标：`SvgIcon` 用SVG路径来渲染，`Icon` 用字体来渲染。
+一个[系统图标](https://material.io/design/iconography/system-icons.html)或 UI图标，用符号表示了一个命令、一份文件、一台设备或者一个目录。 系统图标也用于在应用栏、工具栏、按钮、和列表中用来表示一些常见操作，如删除、打印、和保存。 谷歌根据此规范提供了一套 [Material icons](https://material.io/tools/icons/style=baseline)。
+
+Material-UI 提供了两个组件来渲染系统图标：`SvgIcon` 来渲染 SVG 路径，而 `Icon` 来渲染字体。
 
 ## SVG 图标
 
@@ -15,7 +16,7 @@ Material-UI提供了两个组件来渲染系统图标：`SvgIcon` 用SVG路径�
 
 生成的图标可以当作另一个Material-UI组件的子组件来使用。 图标默认继承当前的文本颜色。 或者，你可以使用以下主题色之一来设置颜色属性：`primary`, `secondary`, `action`, `error` & `disabled`。
 
-{{"demo": "pages/style/icons/SvgIcons.js"}}
+{{"demo": "pages/components/icons/SvgIcons.js"}}
 
 ### SVG Material 图标
 
@@ -45,7 +46,7 @@ Material-UI提供了两个组件来渲染系统图标：`SvgIcon` 用SVG路径�
 - [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) 暴露为 `@material-ui/icons/FourK`
 - [`360`](https://material.io/tools/icons/?icon=360&style=baseline) 暴露为 `@material-ui/icons/ThreeSixty`
 
-{{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
+{{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 #### 导入
 
@@ -73,7 +74,7 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 `Icon` 组件通过任一支持连字的图标字体显示为一个图标。 作为先决条件, 您必须在项目中包括一个, 例如通过 Google Web Fonts 引入 [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) ：
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Icon` 将为 Material icon font 设置正确的类名。对于其他的字体，你必须通过 Icon 组件的 `className` 属性设置类名。
@@ -90,13 +91,13 @@ import Icon from '@material-ui/core/Icon';
 
 ### Font Material 图标
 
-{{"demo": "pages/style/icons/Icons.js"}}
+{{"demo": "pages/components/icons/Icons.js"}}
 
 ### Font Awesome
 
 [Font Awesome](https://fontawesome.com/icons) 与 `Icon` 一起使用的示例如下：
 
-{{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
 ## 字体 vs SVG 用哪个？
 

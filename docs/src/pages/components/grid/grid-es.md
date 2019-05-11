@@ -2,6 +2,7 @@
 title: Componente Grid React
 components: Grid
 ---
+
 # Grid
 
 <p class="description">El grid responsive de Material Design se adapta al tamaño y orientación de la pantalla, garantizando la consistencia en todos los diseños.</p>
@@ -24,9 +25,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 La cuadrícula responsive se centra en anchos de espaciado coherentes, en lugar de en el ancho de columna. Los márgenes y columnas de Material Design siguen una cuadrícula con línea-base cuadrada de **8dp**. La propiedad de espaciado es un número entero entre 0 y 10 inclusive. Por defecto, el espaciado entre dos elementos de la cuadrícula sigue una función lineal: `output(spacing)= spacing * 8px`, por ejemplo, `spacing={2}` crea un espacio de 16px.
 
-Esta función de transformación de la salida se puede personalizar [usando el tema](/customization/themes/#spacing).
+Esta función de transformación de la salida se puede personalizar [usando el tema](/customization/spacing/).
 
-{{"demo": "pages/layout/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js"}}
 
 ## Grids fluidos
 
@@ -36,39 +37,31 @@ Las cuadrículas fluidas usan columnas que escalan y redimensionan el contenido.
 
 Los anchos de columna se aplican en todos los breakepoints (ej. `xs` y superiores).
 
-{{"demo": "pages/layout/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js"}}
 
 ### Grid con breakpoints
 
 Algunas columnas tienen varios anchos definidos, causando que el layout cambie en el correspondiente breakpoint definido.
 
-{{"demo": "pages/layout/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js"}}
 
 ## Explora
 
 Debajo de esta línea hay una demostración interactiva que permite explorar el resultado visual de las distintas configuraciones:
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
 
 ## Auto-layout
 
 El Auto-layout (disposición del diseño automática) hace que los *items* compartan equitativamente el espacio disponible. Eso significa que también se puede asignar el ancho a un *item* y que el resto cambiarán de tamaño automáticamente alrededor de éste.
 
-{{"demo": "pages/layout/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js"}}
 
 ## Grid Compleja
 
 El siguiente ejemplo no sigue las directrices de Material Design, pero ilustra cómo el grid puede ser usado para dar forma a layouts complejas.
 
-{{"demo": "pages/layout/grid/ComplexGrid.js"}}
-
-## CSS Grid Layout
-
-**CSS Grid Layout** destaca al dividir una página en regiones principales, o al definir la relación entre las partes de un control creado con elementos primitivos HTML, en términos de tamaño, posición o capa.
-
-⚠️ Desafortunádamente, CSS grid layout sólo es compatible con los navegadores más recientes.
-
-{{"demo": "pages/layout/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js"}}
 
 ## Grid Anidada
 
@@ -78,7 +71,7 @@ Las propiedades `conatiner` e `item` son dos boleanos independientes. Se pueden 
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/layout/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js"}}
 
 ## Limitaciones
 
@@ -114,8 +107,14 @@ Para que el elemento permanezca dentro del contenedor, se debe establecer `min-w
   <Typography noWrap>
 ```
 
-{{"demo": "pages/layout/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
 
 ### direction: column | column-reverse
 
 Though the `Grid` component has a `direction` property that allows values of `row`, `row-reverse`, `column`, and `column-reverse`, there are some features that are not supported within `column` and `column-reverse` containers. The properties which define the number of grids the component will use for a given breakpoint (`xs`, `sm`, `md`, `lg`, and `xl`) are focused on controlling width and do **not** have similar effects on height within `column` and `column-reverse` containers. If used within `column` or `column-reverse` containers, these properties may have undesirable effects on the width of the `Grid` elements.
+
+## CSS Grid Layout
+
+Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
+
+{{"demo": "pages/components/grid/CSSGrid.js"}}

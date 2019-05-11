@@ -1,6 +1,7 @@
 ---
 components: Typography
 ---
+
 # 活版印刷
 
 <p class="description">使用活版印刷可以尽可能清晰、高效地呈现您的设计和内容。</p>
@@ -9,21 +10,13 @@ components: Typography
 
 ## 常规
 
-*Roboto*字体将**不** 由Material-UI 自动加载。 开发人员负责加载应用程序中使用的所有字体。 Roboto字体有几个简单的方法来开始。 For more advanced configuration, check out [the theme customization section](/customization/themes/#typography).
+*Roboto*字体将**不** 由Material-UI 自动加载。 开发人员负责加载应用程序中使用的所有字体。 Roboto字体有几个简单的方法来开始。 For more advanced configuration, check out [the theme customization section](/customization/typography/).
 
 ## Roboto 字体 CDN
 
-下面显示的是用于从 CDN 加载Roboto字体的示例链接标记。
-
-*HTML*
+Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-```
-
-*JSX*
-
-```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
@@ -45,13 +38,13 @@ import 'typeface-roboto';
 
 ## 组件
 
-{{"demo": "pages/style/typography/Types.js"}}
+{{"demo": "pages/components/typography/Types.js"}}
 
 ## 主题
 
 在某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用主题的 [`排版`](/customization/default-theme/?expend-path=$.typography) 键。
 
-{{"demo": "pages/style/typography/TypographyTheme.js"}}
+{{"demo": "pages/components/typography/TypographyTheme.js"}}
 
 ## 改变语义元素
 
@@ -66,7 +59,7 @@ The Typography component uses the `variantMapping` property to associate a UI va
 </Typography>
 ```
 
-- You can change the mapping [globally using the theme](/customization/themes/#properties):
+- You can change the mapping [globally using the theme](/customization/globals/#default-props):
 
 ```js
 const theme = createMuiTheme({

@@ -2,6 +2,7 @@
 title: Componente List React
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
+
 # Listas
 
 <p class="description">Las listas son índices contínuos y verticales de texto o imágenes.</p>
@@ -10,7 +11,7 @@ Las [listas](https://material.io/design/components/lists.html) son un grupo cont
 
 ## Lista Simple
 
-{{"demo": "pages/demos/lists/SimpleList.js"}}
+{{"demo": "pages/components/lists/SimpleList.js"}}
 
 El último elemento del demo anterior muestra cómo se puede representar un enlace:
 
@@ -30,27 +31,27 @@ Hay una demostración [usando React Router siguiendo esta sección](/guides/comp
 
 ## Lista Anidada
 
-{{"demo": "pages/demos/lists/NestedList.js"}}
+{{"demo": "pages/components/lists/NestedList.js"}}
 
 ## Lista de Carpetas
 
-{{"demo": "pages/demos/lists/FolderList.js"}}
+{{"demo": "pages/components/lists/FolderList.js"}}
 
 ## Explora
 
 Debajo de esta línea hay una demostración interactiva que permite explorar el resultado visual de las distintas configuraciones:
 
-{{"demo": "pages/demos/lists/InteractiveList.js"}}
+{{"demo": "pages/components/lists/InteractiveList.js"}}
 
 ## ListItem Seleccionado
 
-{{"demo": "pages/demos/lists/SelectedListItem.js"}}
+{{"demo": "pages/components/lists/SelectedListItem.js"}}
 
 ## Alineación de los elementos de la lista
 
 Debería cambiar la alineación del list item cuando se muestran 3 o más líneas, ajustando la propiedad `alignItems="flex-start"`.
 
-{{"demo": "pages/demos/lists/AlignItemsList.js"}}
+{{"demo": "pages/components/lists/AlignItemsList.js"}}
 
 ## Controles de Lista
 
@@ -60,17 +61,17 @@ Un checkbox puede ser una acción primaria o una acción secundaria.
 
 El checkbox es la acción principal y el indicador de estado para el elemento de la lista. El botón de comentario es una acción secundaria y un objetivo separado.
 
-{{"demo": "pages/demos/lists/CheckboxList.js"}}
+{{"demo": "pages/components/lists/CheckboxList.js"}}
 
 El checkbox es la acción secundaria para el elemento de la lista y un objetivo separado.
 
-{{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
+{{"demo": "pages/components/lists/CheckboxListSecondary.js"}}
 
 ### Switch
 
 El switch es la acción secundaria y un objetivo separado.
 
-{{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
+{{"demo": "pages/components/lists/SwitchListSecondary.js"}}
 
 ## Lista de Subencabezados Fijados
 
@@ -78,14 +79,14 @@ Al desplazarse, los subencabezados permanecen anclados en la parte superior de l
 
 Esta característica se basa en el posicionamiento adhesivo CSS. Desafortunadamente, [no está implementado](https://caniuse.com/#search=sticky) por todos los navegadores que soportamos. La propiedad `disableSticky` se aplicará por defecto cuando no sea soportado por el navegador.
 
-{{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
+{{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
 ## Lista con Margen
 
-{{"demo": "pages/demos/lists/InsetList.js"}}
+{{"demo": "pages/components/lists/InsetList.js"}}
 
 ## Virtualized List
 
 In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Renderiza 200 filas y fácilmente puede manejar más. La virtualización ayuda con problemas de rendimiento.
 
-{{"demo": "pages/demos/lists/VirtualizedList.js"}}
+{{"demo": "pages/components/lists/VirtualizedList.js"}}

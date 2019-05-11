@@ -2,6 +2,7 @@
 title: Modal React component
 components: Modal
 ---
+
 # Modal
 
 <p class="description">Le composant modal fournit une base solide pour la création de boîtes de dialogue, de popovers, de lightboxes ou autres.</p>
@@ -13,19 +14,20 @@ Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. 
 - It disables scrolling of the page content while open.
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
+- 
 
 > **Note de terminologie**. Le terme "modal" est parfois utilisé pour signifier "dialogue", mais c'est un terme impropre. Une fenêtre modale décrit des parties d'une interface utilisateur. Un élément est considéré modal si [il bloque l'interaction avec le reste de l'application](https://en.wikipedia.org/wiki/Modal_window).
 
-If you are creating a modal dialog, you probably want to use the [Dialog](/demos/dialogs/) component rather than directly using Modal. Modal est un élément de construction de niveau faible exploitée par les composants suivants :
+If you are creating a modal dialog, you probably want to use the [Dialog](/components/dialogs/) component rather than directly using Modal. Modal est un élément de construction de niveau faible exploitée par les composants suivants :
 
-- [Dialog](/demos/dialogs/)
-- [Drawer](/demos/drawers/)
-- [Menu](/demos/menus/)
-- [Popover](/utils/popover/)
+- [Dialog](/components/dialogs/)
+- [Drawer](/components/drawers/)
+- [Menu](/components/menus/)
+- [Popover](/components/popover/)
 
 ## Modal simple
 
-{{"demo": "pages/utils/modal/SimpleModal.js"}}
+{{"demo": "pages/components/modal/SimpleModal.js"}}
 
 ## Performances
 

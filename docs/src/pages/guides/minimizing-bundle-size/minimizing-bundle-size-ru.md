@@ -4,7 +4,7 @@
 
 ## Bundle size matters
 
-Размер пакета Material-UI достаточно внушителен. We take size snapshots on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). Combined with [dangerJS](https://danger.systems/js/) we can inspect [detailed bundle size changes]((https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459)) on every Pull Request.
+Размер пакета Material-UI достаточно внушителен. We take size snapshots on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). Combined with [dangerJS](https://danger.systems/js/) we can inspect [detailed bundle size changes](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## How to reduce the bundle size?
 

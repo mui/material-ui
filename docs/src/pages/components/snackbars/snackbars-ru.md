@@ -2,6 +2,7 @@
 title: Snackbar React component
 components: Snackbar, SnackbarContent
 ---
+
 # Snackbars
 
 <p class="description">Snackbars provide brief messages about app processes through a message - typically at the bottom of the screen</p>
@@ -18,27 +19,25 @@ Only one snackbar may be displayed at a time.
 
 A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
-{{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
+{{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Customized Snackbars
+## Customized snackbars
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a Snackbar.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
-
-{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
+{{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
 ## Positioned
 
 There may be circumstances when the placement of the snackbar needs to be more flexible.
 
-{{"demo": "pages/demos/snackbars/PositionedSnackbar.js"}}
+{{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 
 ## Message Length
 
 Some snackbars with varying message length.
 
-{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
+{{"demo": "pages/components/snackbars/LongTextSnackbar.js"}}
 
 ## Transições
 
@@ -46,25 +45,25 @@ Some snackbars with varying message length.
 
 When multiple snackbar updates are necessary, they should appear one at a time.
 
-{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
+{{"demo": "pages/components/snackbars/ConsecutiveSnackbars.js"}}
 
 ### Snackbars and floating action buttons (FABs)
 
 Snackbars should appear above FABs (on mobile).
 
-{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
 
 ### Изменить Transition
 
-[Grow](/utils/transitions/#grow) is the default transition but you can use a different one.
+[Grow](/components/transitions/#grow) is the default transition but you can use a different one.
 
-{{"demo": "pages/demos/snackbars/TransitionsSnackbar.js"}}
+{{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
 
 ### Control Slide direction
 
-You can change the direction of the [Slide](/utils/transitions/#slide) transition.
+You can change the direction of the [Slide](/components/transitions/#slide) transition.
 
-{{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
+{{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
 ## Дополнительные проекты
 
@@ -76,4 +75,4 @@ You can change the direction of the [Slide](/utils/transitions/#slide) transitio
 
 In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another (but discouraged by the specification).
 
-{{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}

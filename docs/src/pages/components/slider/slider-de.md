@@ -2,6 +2,7 @@
 title: Slider React Komponente
 components: Slider
 ---
+
 # Schieberegler
 
 <p class="description">Schieberegler erlauben es Nutzern, eine Auswahl aus einer Reihe von Werten zu treffen.</p>
@@ -20,24 +21,30 @@ Schieberegler zeigen den aktuellen Status der Einstellungen an, die sie steuern.
 
 ## Einfacher Schieberegler
 
-{{"demo": "pages/lab/slider/SimpleSlider.js"}}
+{{"demo": "pages/components/slider/SimpleSlider.js"}}
 
 ## Schieberegler mit Stufen
 
-{{"demo": "pages/lab/slider/StepSlider.js"}}
+{{"demo": "pages/components/slider/StepSlider.js"}}
 
 ## Deaktivierter Schieberegler
 
-{{"demo": "pages/lab/slider/DisabledSlider.js"}}
+{{"demo": "pages/components/slider/DisabledSlider.js"}}
 
 ## Vertikaler Schieberegler
 
-{{"demo": "pages/lab/slider/VerticalSlider.js"}}
+{{"demo": "pages/components/slider/VerticalSlider.js"}}
+
+## Customized sliders
+
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## Benutzerdefinierter Anzeigepunkte
 
-{{"demo": "pages/lab/slider/CustomIconSlider.js"}}
+{{"demo": "pages/components/slider/CustomIconSlider.js"}}
 
 ## Benutzerdefinierte Wertreduzierer
 
-{{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}
+{{"demo": "pages/components/slider/CustomValueReducerSlider.js"}}

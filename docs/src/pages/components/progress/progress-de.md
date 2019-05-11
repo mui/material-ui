@@ -2,6 +2,7 @@
 title: Circular Progress, Linear Progress React-Komponente
 components: CircularProgress, LinearProgress
 ---
+
 # Fortschritt (Progress)
 
 <p class="description">Fortschrittsanzeigen geben eine unbestimmte Wartezeit oder die Länge eines Prozesses an.</p>
@@ -25,19 +26,19 @@ Wenn Sie den Fortschritt für eine Folge von Prozessen anzeigen, geben Sie den G
 
 ### Zirkular Unbestimmt
 
-{{"demo": "pages/demos/progress/CircularIndeterminate.js"}}
+{{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
 ### Interaktive Integration
 
-{{"demo": "pages/demos/progress/CircularIntegration.js"}}
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
 
 ### Zirkular Bestimmt
 
-{{"demo": "pages/demos/progress/CircularDeterminate.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Zirkular Statisch
 
-{{"demo": "pages/demos/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularStatic.js"}}
 
 ## Linear
 
@@ -45,19 +46,19 @@ Wenn Sie den Fortschritt für eine Folge von Prozessen anzeigen, geben Sie den G
 
 ### Linear Unbestimmt
 
-{{"demo": "pages/demos/progress/LinearIndeterminate.js"}}
+{{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
 ### Linear Bestimmt
 
-{{"demo": "pages/demos/progress/LinearDeterminate.js"}}
+{{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
 ### Linearer Puffer
 
-{{"demo": "pages/demos/progress/LinearBuffer.js"}}
+{{"demo": "pages/components/progress/LinearBuffer.js"}}
 
 ### Linear Abfrage
 
-{{"demo": "pages/demos/progress/LinearQuery.js"}}
+{{"demo": "pages/components/progress/LinearQuery.js"}}
 
 ## Nicht-standardmäßige Bereiche
 
@@ -80,19 +81,17 @@ function Progress(props) {
 }
 ```
 
-## Individueller Fortschritt
+## Customized progress bars
 
-Wenn du die [Overrides Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du die Komponenten anpassen könntest. Die letzte Demo zeigt, wie Sie einen Facebook-ähnlichen Spinner erstellen können.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
-
-{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
+{{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 
 ## Erscheinung verzögern
 
 Es gibt [3 wichtige Grenzwerte](https://www.nngroup.com/articles/response-times-3-important-limits/), um die Reaktionszeit zu kennen. Der Ripple Effekt der `ButtonBase` Komponente stellt sicher, dass der Benutzer das Gefühl hat, dass das System sofort reagiert. Normalerweise ist keine spezielle Rückmeldung bei Verzögerungen von mehr als 0,1 Sekunden und weniger als 1,0 Sekunden erforderlich. Nach 1,0 Sekund können Sie einen Fortschritt anzeigen, um den Gedankenfluss des Benutzers nicht zu unterbrechen.
 
-{{"demo": "pages/demos/progress/DelayingAppearance.js"}}
+{{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
 ## Einschränkungen
 
@@ -102,4 +101,4 @@ Bei starker Belastung verlieren Sie möglicherweise die Strich-Animation oder se
 
 Wenn dies nicht möglich ist, können Sie die `disableShrink` Eigenschaft nutzen, um das Problem zu verringern. Siehe https://github.com/mui-org/material-ui/issues/10327
 
-{{"demo": "pages/demos/progress/CircularUnderLoad.js"}}
+{{"demo": "pages/components/progress/CircularUnderLoad.js"}}

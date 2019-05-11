@@ -40,10 +40,10 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 
 > Isenção de responsabilidade: As datas são oferecidas como orientação geral e podem ser ajustadas por nós quando necessário para garantir a entrega de um código de alta qualidade.
 
-| Data            | Versão                     |
-|:--------------- |:-------------------------- |
-| Janeiro de 2019 | `@material-ui/core` v4.0.0 |
-| Julho de 2019   | `@material-ui/core` v5.0.0 |
+| Data          | Versão                     |
+|:------------- |:-------------------------- |
+| May 2019      | `@material-ui/core` v4.0.0 |
+| December 2019 | `@material-ui/core` v5.0.0 |
 
 Você pode seguir os [ milestones ](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 

@@ -2,6 +2,7 @@
 title: Componente React Panel de Expansión
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
+
 # Paneles de Expansión
 
 <p class="description">Los paneles de expansión contienen flujos de creación y permiten una edición simple de un elemento.</p>
@@ -16,28 +17,26 @@ Para óptima accesibilidad recomendamos establecer `id` y `aria-controls` en `Ex
 
 ## Panel de expansión simple
 
-{{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
 
 ## Acordeón controlado
 
 Extiende el comportamiento por defecto del panel para crear un acordeón con el componente `ExpansionPanel`.
 
-{{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}
+{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
 
 ## Cabecera secundaria y columnas
 
 Múltiples columnas pueden ser usadas para estructurar el contenido, y un texto de ayuda puede ser agregado al panel para asistir al usuario.
 
-{{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
 
 ## Rendimiento
 
 The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
 
-## Panel de expansión personalizado
+## Customized expansion panels
 
-Si has estado leyendo la [página de documentación de sobreescritura](/customization/overrides/) pero aún no te sientes seguro, aquí hay un ejemplo de cómo puedes personalizar el color de fondo del `ExpansionPanelSummary` y el padding de `ExpansionPanelDetails`.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, estos ejemplos no son comunes.
-
-{{"demo": "pages/demos/expansion-panels/CustomizedExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}

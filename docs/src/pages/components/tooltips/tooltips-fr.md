@@ -2,6 +2,7 @@
 title: Composant React Info-bulle
 components: Tooltip
 ---
+
 # Tooltips (Info-bulle)
 
 <p class="description">Les info-bulles affichent un texte informatif lorsque les utilisateurs survolent, se concentrent ou tapent sur un élément.</p>
@@ -10,21 +11,19 @@ Lorsqu'elles sont activées, [Info-bulles](https://material.io/design/components
 
 ## Info-bulles simples
 
-{{"demo": "pages/demos/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
 ## Info-bulles positionnées
 
 La `Tooltip` comporte 12 **placements** choix. Ils n'ont pas de flèches directionnelles; au lieu de cela, ils comptent sur le mouvement émanant de la source pour indiquer la direction.
 
-{{"demo": "pages/demos/tooltips/PositionedTooltips.js"}}
+{{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Info-bulles personnalisées
+## Customized tooltips
 
-Si vous avez lu le [remplace la page de documentation](/customization/overrides/) mais que vous n'êtes pas sûr de le faire, voici un exemple de la façon dont vous pouvez thématiser une info-bulle.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
-
-{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
+{{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
 ## Élément enfant personnalisé
 
@@ -49,37 +48,37 @@ Vous pouvez trouver un concept similaire dans le [composants d'emballage](/guide
 
 Vous pouvez définir les types d'événements qui entraînent l'affichage d'une info-bulle.
 
-{{"demo": "pages/demos/tooltips/TriggersTooltips.js"}}
+{{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
 ## Info-bulles contrôlées
 
 Vous pouvez utiliser les propriétés `open`, `onOpen` et `onClose` pour contrôler le comportement de l'info-bulle.
 
-{{"demo": "pages/demos/tooltips/ControlledTooltips.js"}}
+{{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
 ## Largeur Variable
 
 Le `Tooltip` enveloppements long texte par défaut pour le rendre lisible.
 
-{{"demo": "pages/demos/tooltips/VariableWidth.js"}}
+{{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
 ## Interactive
 
 Une info-bulle peut être interactive. Il ne se fermera pas lorsque l'utilisateur survolera l'info-bulle avant l'expiration du congé `congé`.
 
-{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
 ## Éléments désactivés
 
 Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les interactions utilisateur si un `infobulle` ne sera pas activée sur les événements normaux comme vol stationnaire. Pour recevoir des éléments handicapés, ajoutez un simple élément d'emballage comme un `durée`.
 
-{{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
+{{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
 ## Les transitions
 
 Utilisez une transition différente.
 
-{{"demo": "pages/demos/tooltips/TransitionsTooltips.js"}}
+{{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
 ## Montrer et se cacher
 
@@ -87,4 +86,4 @@ L'info-bulle est normalement affichée immédiatement lorsque la souris de l'uti
 
 Sur le mobile, l'info-bulle s'affiche lorsque l'utilisateur appuie longuement sur l'élément et se cache après un délai de 1500 ms. Vous pouvez désactiver cette fonctionnalité avec la propriété `disableTouchListener`.
 
-{{"demo": "pages/demos/tooltips/DelayTooltips.js"}}
+{{"demo": "pages/components/tooltips/DelayTooltips.js"}}

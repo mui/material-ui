@@ -1,14 +1,14 @@
-# Related projects
+# Projetos Relacionados
 
-<p class="description">We have carefully curated a list of libraries that are worth having a look at.</p>
+<p class="description">Temos cuidadosamente organizado uma lista de bibliotecas que vale a pena dar uma olhada.</p>
 
-Because the scope of problems Material-UI solves is limited, we try to play nicely with other libraries. Feel free to submit a pull request to add more projects; we will accept them if they match our criteria.
+Como o escopo dos problemas que o Material-UI resolve é limitado, tentamos interagir bem com outras bibliotecas. Sinta-se à vontade para enviar um Pull Request e adicionar mais projetos; vamos aceitá-los se corresponderem aos nossos critérios.
 
-## Design resources
+## Recursos de Design
 
 - [Figma UI Kit](https://material.5ly.co/) for Material-UI.
 
-## Material-UI Specific Projects
+## Material-UI Projetos Específicos
 
 - [Advanced Filter Builder](https://github.com/logipro/logi-filter-builder) Component will help your users create powerful filter criterias.
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Online tool for creating Material-UI themes via Material Design Color Tool
@@ -19,7 +19,6 @@ Because the scope of problems Material-UI solves is limited, we try to play nice
 - [material-table](https://github.com/mbrn/material-table) DataTable baseado no componente table com recursos adicionais como: pesquisa, filtro, ordenação e muito mais.
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and Material-UI.
 - [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers) A datepicker or timepicker in Material UI Next or can be imported as a clock or calendar component.
-- [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for Material-UI.
 - [material-ui-popup-state](https://github.com/jcoreio/material-ui-popup-state) Render props component that manages state for menus, popovers, and poppers, cutting down on boilerplate significantly.
 - [material-ui-rating](https://github.com/TeamWertarbyte/material-ui-rating) Rate something with style.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
@@ -35,9 +34,9 @@ Because the scope of problems Material-UI solves is limited, we try to play nice
 - [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Material-UI wrapper components for Uniforms.
 - [Wertarbyte](https://mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complementary components they have built.
 
-## Complementary Projects
+## Projetos Complementares
 
-- [downshift](https://github.com/paypal/downshift) Primitive to build simple, flexible, WAI-ARIA compliant enhanced input React components
+- [downshift](https://github.com/downshift-js/downshift) Primitive to build simple, flexible, WAI-ARIA compliant enhanced input React components
 - [react-admin](https://github.com/marmelab/react-admin) An admin framework combining material-ui with Redux, redux-form, redux-saga, and recompose
 - [react-autosuggest](https://github.com/moroshko/react-autosuggest) WAI-ARIA compliant React autosuggest component.
 - [react-final-form](https://github.com/final-form/react-final-form#material-ui-10) Subscription-based form state management for React.

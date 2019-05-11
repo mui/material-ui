@@ -2,6 +2,7 @@
 title: No SSR React component
 components: NoSsr
 ---
+
 # Pas de SSR
 
 <p class="description">NoSsr supprime intentionnellement des composants du rendu côté serveur (SSR).</p>
@@ -16,7 +17,7 @@ Ce composant peut être utile dans diverses situations:
 
 ## Report du côté client
 
-{{"demo": "pages/utils/no-ssr/SimpleNoSsr.js"}}
+{{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
 ## Report d'une frame
 
@@ -24,4 +25,4 @@ In it's core, the NoSsr component purpose is to **defer rendering**. As it's ill
 
 But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
 
-{{"demo": "pages/utils/no-ssr/FrameDeferring.js"}}
+{{"demo": "pages/components/no-ssr/FrameDeferring.js"}}

@@ -40,10 +40,10 @@ Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 
 > Haftungsausschluss: Die Daten werden als allgemeine Hinweise angeboten und können von uns bei Bedarf angepasst werden, um die Lieferung eines qualitativ hochwertigen Codes sicherzustellen.
 
-| Datum       | Version                    |
-|:----------- |:-------------------------- |
-| Januar 2019 | `@material-ui/core` v4.0.0 |
-| Juli 2019   | `@material-ui/core` v5.0.0 |
+| Datum         | Version                    |
+|:------------- |:-------------------------- |
+| May 2019      | `@material-ui/core` v4.0.0 |
+| December 2019 | `@material-ui/core` v5.0.0 |
 
 Sie können [unsere Meilensteine](https://github.com/mui-org/material-ui/milestones) für eine detailliertere Übersicht verfolgen.
 

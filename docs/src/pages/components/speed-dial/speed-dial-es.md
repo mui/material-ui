@@ -2,7 +2,8 @@
 title: Speed Dial React component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
-# Speed Dial
+
+# Marcación rápida
 
 <p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
 
@@ -12,13 +13,13 @@ If more than six actions are needed, something other than a FAB should be used t
 
 The floating action button can display related actions.
 
-{{"demo": "pages/lab/speed-dial/SpeedDials.js"}}
+{{"demo": "pages/components/speed-dial/SpeedDials.js"}}
 
 ## Custom close icon
 
 You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props of the `SpeedDialIcon` component.
 
-{{"demo": "pages/lab/speed-dial/OpenIconSpeedDial.js"}}
+{{"demo": "pages/components/speed-dial/OpenIconSpeedDial.js"}}
 
 ## Persistent action tooltips
 
@@ -26,4 +27,4 @@ The SpeedDialActions tooltips can be be displayed persistently so that users don
 
 It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the property.
 
-{{"demo": "pages/lab/speed-dial/SpeedDialTooltipOpen.js"}}
+{{"demo": "pages/components/speed-dial/SpeedDialTooltipOpen.js"}}

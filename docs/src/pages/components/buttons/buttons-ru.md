@@ -2,6 +2,7 @@
 title: React-компонент Кнопка
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # Кнопки
 
 <p class="description">Кнопки позволяют пользователям выполнять действия и делать выбор одним нажатием.</p>
@@ -20,7 +21,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Этот пример показывает, как использовать кнопку загрузки.
 
-{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
+{{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
 ## Текстовые кнопки
 
@@ -31,7 +32,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 В Карточках (Cards) текстовые кнопки помогают сохранить акцент на содержании карточки.
 
-{{"demo": "pages/demos/buttons/TextButtons.js"}}
+{{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Контурные кнопки
 
@@ -41,7 +42,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Выделенные кнопки также являются альтернативой выделенным кнопкам или могут использоваться как альтернатива текстовым кнопкам.
 
-{{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
+{{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
 ## Плавающие кнопки действий
 
@@ -51,7 +52,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Для отображения наиболее распространенных действий рекомендуется использовать только одну кнопку с плавающим действием.
 
-{{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtons.js"}}
 
 По умолчанию анимация кнопки с плавающим действием на экране является расширяющейся.
 
@@ -59,19 +60,19 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Переход масштабирование (Zoom) может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем ` enterDelay `, чтобы разрешить исходящим кнопкам плавающего действия анимироваться постепенно.
 
-{{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
 
 ## Размеры
 
 Хотите изменить размеры? Используйте параметр `size`.
 
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
+{{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
 ## Кнопки с иконками и текстом
 
 Иногда вы можете захотеть добавить текст для определенной кнопки, чтобы улучшить UX, поскольку мы распознаем логотипы легче, чем обычный текст. Например, если у вас есть кнопка удаления, вы можете пометить ее значком мусорной корзины.
 
-{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
+{{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
 ## Кнопки с иконками
 
@@ -79,52 +80,26 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Значки также подходят для кнопок переключения, которые позволяют выбрать элемент или отменить выбор, например, добавление или удаление звезды для элемента.
 
-{{"demo": "pages/demos/buttons/IconButtons.js"}}
+{{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Индивидуальные кнопки
+## Customized buttons
 
-Если вы читали [документацию по переопределению стилей(Overrides)](/customization/overrides/) но вы не уверены, вот примеры того, как вы можете изменить основной цвет кнопки, используя классы, и используя тему; и кнопки в стиле Bootstrap.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
+{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-{{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
+
 
 ## Сложные кнопки
 
 Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских взаимодействий.
 
-{{"demo": "pages/demos/buttons/ButtonBases.js"}}
+{{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Сторонняя библиотека маршрутизации
 
 Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Учитывая, что многие наши интерактивные компоненты используют `ButtonBase`, у вас есть возможность воспользоваться этим:
 
-```jsx
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
+{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-// required for react-router-dom < 5.0.0 
-// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
-const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
-
-<Button component={Link} to="/open-collective">
-  Link
-</Button>
-```
-
-или если вы хотите избежать столкновения свойств:
-
-```jsx
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-
-// use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
-
-<Button component={MyLink}>
-  Link
-</Button>
-```
-
-*Примечание: Создание `MyLink` необходимо для предотвращения неожиданного отключения. Вы можете прочитать больше об этом в нашем [руководстве по свойствам компонента](/guides/composition/#component-property).*
+*Note: Creating the Button components is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*

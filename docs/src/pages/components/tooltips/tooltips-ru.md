@@ -2,6 +2,7 @@
 title: Tooltip React component
 components: Tooltip
 ---
+
 # Всплывающие подсказки
 
 <p class="description">Всплывающие подсказки отображают информативный текст когда пользователь наводит курсор на элемент, фокусируется на нем или нажимает на него.</p>
@@ -10,21 +11,19 @@ components: Tooltip
 
 ## Простые подсказки
 
-{{"demo": "pages/demos/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
 ## Positioned Tooltips
 
 The `Tooltip` has 12 **placements** choice. They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
-{{"demo": "pages/demos/tooltips/PositionedTooltips.js"}}
+{{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Настраиваемые подсказки
+## Customized tooltips
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can theme a tooltip.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
-
-{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
+{{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
 ## Custom child element
 
@@ -49,37 +48,37 @@ You can find a similar concept in the [wrapping components](/guides/composition/
 
 You can define the types of events that cause a tooltip to show.
 
-{{"demo": "pages/demos/tooltips/TriggersTooltips.js"}}
+{{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
 ## Контролируемые подсказки
 
 Вы можете использовать `open`, `onOpen` and `onClose` свойства, чтобы контролировать поведение всплывающей подсказки.
 
-{{"demo": "pages/demos/tooltips/ControlledTooltips.js"}}
+{{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
 ## Вариативная ширина
 
 The `Tooltip` wraps long text by default to make it readable.
 
-{{"demo": "pages/demos/tooltips/VariableWidth.js"}}
+{{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
 ## Интерактивность
 
 A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
-{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
 ## Неактивные элементы
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element like a `span`.
 
-{{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
+{{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-## Transitions
+## Transições
 
-Use a different transition.
+Используйте другой transition.
 
-{{"demo": "pages/demos/tooltips/TransitionsTooltips.js"}}
+{{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
 ## Showing and hiding
 
@@ -87,4 +86,4 @@ Use a different transition.
 
 На мобильном телефоне всплывающая подсказка отображается, когда пользователь нажимает на элемент и скрывается после задержки в 1500 мс Вы можете отключить эту функцию с помощью свойства `disableTouchListener`.
 
-{{"demo": "pages/demos/tooltips/DelayTooltips.js"}}
+{{"demo": "pages/components/tooltips/DelayTooltips.js"}}

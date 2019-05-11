@@ -2,6 +2,7 @@
 title: Date Picker, Time Picker React components
 components: TextField
 ---
+
 # Pickers
 
 <p class="description">Seletores fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
@@ -17,33 +18,28 @@ components: TextField
 
 A native date picker example with `type="date"`.
 
-{{"demo": "pages/demos/pickers/DatePickers.js"}}
+{{"demo": "pages/components/pickers/DatePickers.js"}}
 
 ### Date & Time pickers
 
 A native date & time picker example with `type="datetime-local"`.
 
-{{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
+{{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
 ### Time pickers
 
 A native time picker example with `type="time"`.
 
-{{"demo": "pages/demos/pickers/TimePickers.js"}}
+{{"demo": "pages/components/pickers/TimePickers.js"}}
 
 ## Projetos Complementares
 
 Para caso de usos mais avançados, você é capaz de aproveitar de.
 
-### material-ui-pickers
+### @material-ui/pickers
 
-![estrelas](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
+![estrelas](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) provides date and time controls that follow the Material Design spec.
+[@material-ui/pickers](https://material-ui-pickers.dev/) provides date and time controls that follow the Material Design spec.
 
-{{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
-
-### Other
-
-- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): time pickers.
-- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): date pickers and time pickers.
+{{"demo": "pages/components/pickers/MaterialUIPickers.js"}}

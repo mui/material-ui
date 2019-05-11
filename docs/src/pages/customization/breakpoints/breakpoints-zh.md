@@ -23,7 +23,7 @@ range         |   xs   |   sm   |   md   |   lg   |   xl
 
 这些值可以自定义。 这些值被用于主题设定，你可以在 [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) 对象上找到它们。
 
-许多组件内部都使用了断点来实现响应式要求，同时你也可以利用断点来控制应用的布局，这可借助于 [Grid](/layout/grid/) 和 [Hidden](/layout/hidden/) 组件。
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden]/components/hidden/) components.
 
 ## CSS 媒体查询
 
@@ -53,7 +53,7 @@ const styles = theme => ({
 });
 ```
 
-{{"demo": "pages/layout/breakpoints/MediaQuery.js"}}
+{{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
 
 ## JavaScript媒体查询
 
@@ -61,11 +61,11 @@ const styles = theme => ({
 
 ### useMediaQuery钩子
 
-您可以在 [userMediaQuery](/layout/use-media-query/) 页面上了解更多信息。
+You can learn more on the [useMediaQuery]/components/use-media-query/) page.
 
 ### withWidth()
 
-> ⚠️当React Hooks成为稳定版本时，此高阶组件将被弃用并使用[ useMediaQuery](/layout/use-media-query/) hook代替。
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery]/components/use-media-query/) hook when the React's hooks are released as stable.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -79,7 +79,7 @@ export default withWidth()(MyComponent);
 
 在下面的演示中，我们基于屏幕宽度更改了渲染的DOM元素 (*em* ，<u>u</u> ，~~del~~ & span)。
 
-{{"demo": "pages/layout/breakpoints/WithWidth.js"}}
+{{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
 ## API
 
@@ -201,10 +201,10 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 #### 参数
 
-1. `选项` (*Object* [optional]): 
+1. `options` (*Object* [optional]): 
     - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
-    - `options.noSSR` (*Boolean* [optional]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 用户界面可能会闪烁。 如果不进行服务器端渲染，可以将此标志设置为 `true`。
-    - `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 您可能希望使用启发式来近似 客户端浏览器屏幕宽度的屏幕宽度。 例如，您可以使用用户代理或客户端提示。 https://caniuse.com/#search=client%20hint，我们还可以在主题上使用 [`自定义属性`](/customization/themes/#properties) 全局设置初始宽度 。 为了设置initialWidth，我们需要传递一个具有以下形状的自定义属性：
+    - `options.noSSR` (*Boolean* [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 用户界面可能会闪烁。 如果不进行服务器端渲染，可以将此标志设置为 `true`。
+    - `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 您可能希望使用启发式来近似 客户端浏览器屏幕宽度的屏幕宽度。 例如，您可以使用用户代理或客户端提示。 https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. 为了设置initialWidth，我们需要传递一个具有以下形状的自定义属性：
 
 ```js
 const theme = createMuiTheme({
@@ -212,7 +212,7 @@ const theme = createMuiTheme({
     // withWidth component ⚛️
     MuiWithWidth: {
       // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 
+      initialWidth: 'lg', // 断点全局设置 🌎!
     },
   },
 });

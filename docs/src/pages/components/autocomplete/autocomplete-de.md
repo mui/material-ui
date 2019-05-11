@@ -2,6 +2,7 @@
 title: Autocomplete React-Komponente
 components: TextField, Paper, MenuItem, Popper
 ---
+
 # Autovervollständigung (Autocomplete)
 
 <p class="description">Die Autovervollständigung ist eine normale Texteingabe, die durch ein Panel mit vorgeschlagenen Optionen ergänzt wird.</p>
@@ -12,11 +13,11 @@ Material-UI bietet keine High-Level-API zur Lösung dieses Problems. Wir unterst
 
 ![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-Im folgenden Beispiel demonstrieren wir, wie man einen [downshift](https://github.com/paypal/downshift) benutzt.
+Im folgenden Beispiel demonstrieren wir, wie man einen [downshift](https://github.com/downshift-js/downshift) benutzt.
 
 Die letzte Demo ermöglicht es, die Eingabe zu löschen und eine Reihe von Optionen für den Fokus anzuzeigen.
 
-{{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
+{{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
 
 ## react-select
 
@@ -24,7 +25,7 @@ Die letzte Demo ermöglicht es, die Eingabe zu löschen und eine Reihe von Optio
 
 Im folgenden Beispiel demonstrieren wir, wie man [react-select](https://github.com/JedWatson/react-select) benutzt.
 
-{{"demo": "pages/demos/autocomplete/IntegrationReactSelect.js"}}
+{{"demo": "pages/components/autocomplete/IntegrationReactSelect.js"}}
 
 ## react-autosuggest
 
@@ -32,4 +33,4 @@ Im folgenden Beispiel demonstrieren wir, wie man [react-select](https://github.c
 
 Im folgenden Beispiel demonstrieren wir, wie man [react-autosuggest](https://github.com/moroshko/react-autosuggest) verwendet. Es verwendet auch [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) für die Highlighting-Logik.
 
-{{"demo": "pages/demos/autocomplete/IntegrationAutosuggest.js"}}
+{{"demo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}

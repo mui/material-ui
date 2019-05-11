@@ -9,9 +9,9 @@
 #### 参数
 
 1. `选项` (*Object* [optional]): 
-    - ` options.dangerouslyUseGlobalCSS ` (*Boolean* [optional]): Defaults to `false`。 使Material-UI 类名称具有确定性。
+    - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
     - `options.productionPrefix` (*String* [optional])：初始值为`'jss'`. 用于在生产中对类名称进行前缀的字符串。
-    - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 当使用多个生成器时，它可用于避免类名冲突。
+    - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 It can be used to avoid class name collisions when using multiple generators in the same document.
 
 #### 返回结果
 
@@ -24,7 +24,6 @@ import React from 'react';
 import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
 
 const generateClassName = createGenerateClassName({
-  dangerouslyUseGlobalCSS: true,
   productionPrefix: 'c',
 });
 
@@ -104,62 +103,48 @@ export default function MyComponent() {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle server-side rendering. The instance offers the following API.
-
-```js
-import { ServerStyleSheets } from '@material-ui/styles';
-
-const sheets = new ServerStyleSheets();
-```
-
-### `sheets.collect(node) => void`
-
-The method wraps your node in a provider element.
+This is a class helper to handle server-side rendering. [You can follow our guide for a practical approach](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheets } from '@material-ui/styles';
 
+const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
-```
-
-### `sheets.toString() => CSS string`
-
-The method returns the collected styles. It's a CSS string.
-
-```js
-const css = sheets.toString();
+const cssString = sheets.toString();
 
 const response = `
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <style id="jss-server-side">${css}</style>
+    <style id="jss-server-side">${cssString}</style>
   </head>
-  <body>
-    ...
-  </body>
+  <body>${html}</body>
 </html>
 `;
 ```
 
-### `sheets.getStyleElement() => CSS React node`
+### `new ServerStyleSheets([options])`
 
-The method is an alternative to `toString()` when you are rendering the whole page with React.
+The instantiation accepts an options object as a first argument.
 
-```jsx
-const style = sheets.getStyleElement();
+1. `options` (*Object* [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
 
-const response = (
-  <html lang="en" dir="ltr">
-    <Head>
-      {style}
-    </Head>
-    <body>
-      <Main />
-    </body>
-  </html>
-);
-```
+### `sheets.collect(node) => React element`
+
+The method wraps your React node in a provider element. It collects the style sheets during the rendering so they can be later sent to the client.
+
+### `sheets.toString() => CSS string`
+
+The method returns the collected styles.
+
+⚠️ You must call `.collect()` before using this method.
+
+### `sheets.getStyleElement() => CSS React element`
+
+The method is an alternative to `.toString()` when you are rendering the whole page with React.
+
+⚠️ You must call `.collect()` before using this method.
 
 ## `styled(Component)(styles, [options]) => Component`
 
@@ -169,7 +154,7 @@ const response = (
 
 1. `Component` ：将被包装的组件。
 2. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 It's provided as property of the first argument.
-3. `选项` (*Object* [optional]): 
+3. `options` (*Object* [optional]): 
     - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
     - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
     - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
@@ -214,15 +199,15 @@ export default function StyledComponents() {
 #### PropsBy default, the styles are injected last in the 
 
 <head>
-  element of your page. They gain more specificity than any other style sheet on your page e.g. CSS modules, styled components. If you want to override the Material-UI's styles, set this prop.</td> </tr> 
+  element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.</td> </tr> 
   
   <tr>
     <td align="left">
-      <span class="prop-name">jss</span>
+      jss
     </td>
     
     <td align="left">
-      <span class="prop-type">object</span>
+      object
     </td>
     
     <td align="left">
@@ -284,11 +269,11 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
     
     <tr>
       <td align="left">
-        <span class="prop-name required">children&nbsp;*</span>
+        children&nbsp;*
       </td>
       
       <td align="left">
-        <span class="prop-type">node</span>
+        node
       </td>
       
       <td align="left">
@@ -302,11 +287,11 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
     
     <tr>
       <td align="left">
-        <span class="prop-name required">theme&nbsp;*</span>
+        theme&nbsp;*
       </td>
       
       <td align="left">
-        <span class="prop-type">union:&nbsp;object&nbsp;&#124;&nbsp;func</span>
+        union:&nbsp;object&nbsp;&#124;&nbsp;func
       </td>
       
       <td align="left">
@@ -405,7 +390,7 @@ export default function MyComponent() {
     </li>
     
     <li>
-      <code>选项</code> (<em>Object</em> [optional]): <ul>
+      <code>options</code> (<em>Object</em> [optional]): <ul>
         <li>
           <code>options.defaultTheme</code>（<em>Object</em> [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
         </li>

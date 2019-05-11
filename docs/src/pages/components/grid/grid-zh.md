@@ -1,8 +1,9 @@
 ---
-title: React 栅格(Grid)组件
-components: 栅格(Grid)
+title: React Grid（栅格）组件
+components: Grid
 ---
-# 栅格(Grid)
+
+# Grid（栅格)
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局之间的一致性。</p>
 
@@ -14,77 +15,69 @@ components: 栅格(Grid)
 
 - 为了达到高度的灵活性，它运用了用 [CSS 的 Flexible Box 模块](https://www.w3.org/TR/css-flexbox-1/) 。
 - 它有两种类型的布局： *containers* ， *items*。
-- 项目宽度以百分比设置，因此它们总是相对于其父元素是流动的和大小的。
-- 项目具有填充以创建单个项目之间的间距。
-- 有五个网格断点：xs，sm，md，lg和xl。
+- 项目宽度以百分比设置，因此它们总是相对于其父元素是流动的和变换大小的。
+- 子项自带 padding 来和其他元素之间产生间距。
+- 有五个网格断点：xs，sm，md，lg 和 xl。
 
-If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
+如果你**对 flexbox 不熟悉**，我们建议你阅读：[CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 手册。
 
-## 间距
+## Spacing（间距）
 
-响应式栅格侧重于一致的间距宽度，而不是列宽。 Material design 外边距和列遵循** 8dp **方形基线栅格。 spacing属性是0到10之间的整数，包括0和10。 默认情况下，两个网格项之间的间距遵循线性函数： `output(spacing) = spacing * 8px`，例如 `spacing = {2}` 创建16px宽间距。
+响应式栅格侧重于一致的间距宽度，而不是列宽。 Material design 外边距和列遵循** 8px **的方块形基线栅格。 spacing 属性设置为一个在0和10之间的整数，且并包括0和10。 默认情况下，两个网格项之间的间距遵循这样的线性函数： `output(spacing) = spacing * 8px`，例如 `spacing={2}` 会创建一个 16px 的宽间距。
 
-该输出变换函数可定制 [使用中的主题](/customization/themes/#spacing)。
+通过[使用主题](/customization/spacing/)，该变换函数的输出是可定制的。
 
-{{"demo": "pages/layout/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js"}}
 
-## 流体栅格
+## Fluid grids（流式格网）
 
-流体栅格使用可缩放和调整内容大小的列。 流体栅格布局可以使用断点来确定布局是否需要显着更改。
+流式格网使用了可缩放和调整内容大小的列。 使用 breakpoints（断点)，您可以来确定流式格网的布局是否需要大量的更改。
 
 ### 基本栅格
 
-列宽适用于所有断点（即` xs `及以上）。
+列宽适用于所有断点（即 `xs</code 及大于其的值）。</p>
 
-{{"demo": "pages/layout/grid/CenteredGrid.js"}}
+<p>{{"demo": "pages/components/grid/CenteredGrid.js"}}</p>
 
-### 有断点的栅格
+<h3>有断点的栅格</h3>
 
-一些列定义有多种宽度，定义断点之后布局会根据不同宽度改变。
+<p>一些列会定义多种宽度，这会导致布局会根据定义的端点来改变其宽度。</p>
 
-{{"demo": "pages/layout/grid/FullWidthGrid.js"}}
+<p>{{"demo": "pages/components/grid/FullWidthGrid.js"}}</p>
 
-## 交互式
+<h2>交互式</h2>
 
-下面是一个交互式演示，可让您探索不同设置的可视结果：
+<p>下面是一个交互式的演示，您可让探索不同设置下的视觉结果：</p>
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
+<p>{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}</p>
 
-## 自动布局
+<h2>自动布局</h2>
 
-自动布局使每个*item*公平地共享可用空间。这也意味着您可以设置一个*item*，其他元素将自动调整其大小。
+<p>自动布局使每个 <em>item</em> 公平地共享可用空间。这也意味着您可以设置一个<em>item</em>的宽度，而其他元素将自动调整其大小。</p>
 
-{{"demo": "pages/layout/grid/AutoGrid.js"}}
+<p>{{"demo": "pages/components/grid/AutoGrid.js"}}</p>
 
-## 复杂栅格
+<h2>复杂的栅格</h2>
 
-以下演示不遵循Material Design规范，但说明了如何使用栅格构建复杂的布局。
+<p>以下演示不遵循 Material Design 规范，但说明了如何使用栅格构建复杂的布局。</p>
 
-{{"demo": "pages/layout/grid/ComplexGrid.js"}}
+<p>{{"demo": "pages/components/grid/ComplexGrid.js"}}</p>
 
-## CSS栅格布局
+<h2>嵌套栅格</h2>
 
-** CSS栅格布局**擅长将页面划分为主要区域，或者在从HTML基元构建的控件的各个部分之间定义大小，位置和图层之间的关系。
+<p><code>container` 和 `item` 属性是两个独立的 booleans（布尔值），而它们可以结合使用。
 
-⚠️遗憾的是，CSS网格仅受最新浏览器的支持。
-
-{{"demo": "pages/layout/grid/CSSGrid.js"}}
-
-## 嵌套栅格
-
-`container`和` item `属性是两个独立的布尔值，它们可以结合使用。
-
-> flex **容器** 是由具有 `flex` 或 `inline-flex`的计算显示的元素生成的框。 Flex容器的流入子容器称为flex **items** 并使用flex布局模型进行布局。
+> 一个 flex **容器** 是通过将 `flex` 或 `inline-flex`的计算显示赋予给一个元素而生成的。 Flex 容器的流入子容器称为 flex **items**， 它们使用 flex 布局模型进行布局。
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/layout/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js"}}
 
 ## 局限性
 
 ### 负边距
 
-我们使用负边距来实现项目之间的间距有一个缺点。 如果负边距超出`<body>`元素，则会出现水平滚动。 有三种解决方法：1. 不使用spacing特性并且设置成默认的`spacing={0}` 2。 将填充应用于父级元素，并且至少将一半的间距值应用于子级元素：
+当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 如果负边距超出`<body>`元素，则会出现水平滚动。 有以下三种解决方法： 1。 不使用 spacing 的特性并且设置成默认的`spacing={0}` 2。 将填充应用于父级元素，并且将至少一半的间距值赋予子级元素：
 
 ```jsx
   <body>
@@ -96,26 +89,32 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   </body>
 ```
 
-1. 在父元素上设置`overflow-x: hidden;`
+1. 3。将父元素设置为 `overflow-x: hidden;`。
 
 ### white-space: nowrap;
 
-Flex 项目的初始设置为 `min-width: auto`。当子级使用 `white-space: nowrap;`时会导致冲突。 您可能遇到以下问题:
+Flex 项目的初始设置为 `min-width: auto`。当子级使用 `white-space: nowrap;` 时会导致冲突。 您可能遇到以下问题:
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-为了使项目保持在容器内, 您需要设置 `min-width: 0`。在实践中, 您可以设置 `zeroMinWidth` 属性:
+为了使项目保持在容器内，您需要设置 `min-width: 0`。在实际操作中, 您可以设置 `zeroMinWidth` 属性:
 
 ```jsx
 <Grid item xs zeroMinWidth>
   <Typography noWrap>
 ```
 
-{{"demo": "pages/layout/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
 
 ### direction: column | column-reverse
 
-Though the `Grid` component has a `direction` property that allows values of `row`, `row-reverse`, `column`, and `column-reverse`, there are some features that are not supported within `column` and `column-reverse` containers. The properties which define the number of grids the component will use for a given breakpoint (`xs`, `sm`, `md`, `lg`, and `xl`) are focused on controlling width and do **not** have similar effects on height within `column` and `column-reverse` containers. If used within `column` or `column-reverse` containers, these properties may have undesirable effects on the width of the `Grid` elements.
+虽然 `Grid` 组件有 `direction` 属性，所以组件能用这些的值：`row`，`row-reverse`，`column`，和`column-reverse`，但是有些功能是不被 `column` 和`column-reverse` 容器支持的。 一些定义了组件栅格数量的属性会用于一个特定的断点：（ `xs`，`sm`，`md`，`lg` 以及 `xl`) ， 而这这些属性主要来控制宽度，并且**不会**再 `column` 和 `column-reverse` 内产生对高度相同的效果。 如过在 `column` 或者 `column-reverse` 容器内使用这些属性,，将会对 `Grid` 元素产生意想不到的效果。
+
+## CSS 栅格布局
+
+Material-UI 本身不提供任何 CSS Grid 功能，但如下所示，您可以轻松使用 CSS Grid 来布局您的页面。
+
+{{"demo": "pages/components/grid/CSSGrid.js"}}

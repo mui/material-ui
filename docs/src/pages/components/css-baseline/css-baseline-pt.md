@@ -1,6 +1,7 @@
 ---
 components: CssBaseline
 ---
+
 # CSS Baseline
 
 <p class="description">Material-UI oferece um componente CSS Base a fim de inciar uma elegante, consistente e simples base para construir sobre.</p>
@@ -39,4 +40,4 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 ### Typography
 
 - Font antialiasing is enabled for better display of the Roboto font.
-- No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/themes/#typography-html-font-size) page.
+- No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.

@@ -2,6 +2,7 @@
 title: Grid React Komponente
 components: Grid
 ---
+
 # Grid
 
 <p class="description">Das responsive Layoutraster von Material Design passt sich der Bildschirmgröße und -ausrichtung an und sorgt für Konsistenz über alle Layouts hinweg.</p>
@@ -24,9 +25,9 @@ Wenn Sie **neu sind oder Flexbox nicht gut kennen**, empfehlen wir Ihnen, dies z
 
 Das responsive Raster konzentriert sich auf konsistente Abstandsbreiten und nicht auf die Spaltenbreite. Die Ränder und Spalten des Materialdesigns folgen einem Grundraster aus **8px** Quadraten. Die Abstandseigenschaft ist eine ganze Zahl zwischen 0 und einschließlich 10. Standardmäßig folgt der Abstand zwischen zwei Rasterelementen einer linearen Funktion: `output(spacing) = spacing * 8px`, z. B. `spacing={2}` erzeugt eine Lücke von 16px.
 
-Diese Ausgabetransformationsfunktion kann durch [Verwendung des Themes](/customization/themes/#spacing) angepasst werden.
+Diese Ausgabetransformationsfunktion kann durch [Verwendung des Themes](/customization/spacing/) angepasst werden.
 
-{{"demo": "pages/layout/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js"}}
 
 ## Fluides Raster
 
@@ -36,39 +37,31 @@ Im fluiden Rastern werden Säulen verwendet, die den Inhalt skalieren und dessen
 
 Die Spaltenbreiten gelten für alle Rasterpunkte (d.h. `xs` und höher).
 
-{{"demo": "pages/layout/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js"}}
 
 ### Raster mit Rasterpunkten
 
 Für einige Spalten sind mehrere Breiten definiert, wodurch sich das Layout am definierten Rasterpunkten ändert.
 
-{{"demo": "pages/layout/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js"}}
 
 ## Interaktive Liste
 
 Nachfolgend finden Sie eine interaktive Demo, mit der Sie die visuellen Ergebnisse der verschiedenen Einstellungen untersuchen können:
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
 
 ## Automatisches Layout
 
 Das Auto-Layout sorgt dafür, dass die *Elemente* den verfügbaren Speicherplatz gleichermaßen teilen. Das bedeutet auch, dass Sie die Breite von *Elementen* einstellen können. Die Größe der anderen Elemente wird automatisch angepasst.
 
-{{"demo": "pages/layout/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js"}}
 
 ## Komplexes Raster
 
 Die folgende Demo folgt nicht der Material Design-Spezifikation, sondern zeigt, wie das Raster zum Erstellen komplexer Layouts verwendet werden kann.
 
-{{"demo": "pages/layout/grid/ComplexGrid.js"}}
-
-## CSS-Raster Layout
-
-**CSS Grid Layout** eignet sich hervorragend zum Unterteilen einer Seite in Hauptregionen oder zum Definieren der Beziehung in Bezug auf Größe, Position und Ebene zwischen Teilen eines Steuerelements, das aus HTML-Grundelementen erstellt wird.
-
-⚠️ Leider wird das CSS-Raster nur von den neuesten Browsern unterstützt.
-
-{{"demo": "pages/layout/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js"}}
 
 ## Verschachteltes Raster
 
@@ -78,7 +71,7 @@ Die Eigenschaften von `container` und `item` sind zwei unabhängige Booleans. Si
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/layout/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js"}}
 
 ## Einschränkungen
 
@@ -114,8 +107,14 @@ Damit der Artikel im Container bleibt, müssen Sie `min-width: 0` setzten. In de
   <Typography noWrap>
 ```
 
-{{"demo": "pages/layout/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
 
 ### direction: column | column-reverse
 
 Obwohl die `Grid-` Komponente eine `direction-` Eigenschaft hat, die Werte von `row`, `row-reverse`, `column`und `column-reverse` zulässt, gibt es einige Funktionen, die in `column` und `column-reverse` Containern nicht unterstützt werden. Die Eigenschaften, die die Anzahl der Gitter definieren, die die Komponente für einen bestimmten Rasterpunkt (`xs`, `sm`, `md`, `lg` und `xl`) hat, konzentrieren sich auf die Steuerung der Breite und **nicht** auf die Höhe innerhalb der `column` und `column-reverse` Container. Wenn innerhalb `column` oder `column-reverse` - Container verwendete, können diese Eigenschaften unerwünschte Nebenwirkungen auf die Breite der `Grid` Elemente haben.
+
+## CSS-Raster Layout
+
+Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
+
+{{"demo": "pages/components/grid/CSSGrid.js"}}

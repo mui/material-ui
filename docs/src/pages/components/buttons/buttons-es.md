@@ -2,6 +2,7 @@
 title: Componente de React Button
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
+
 # Botones
 
 <p class="description">Los botones permiten a los usuarios ejecutar acciones, y tomar decisiones, con un simple toque.</p>
@@ -20,7 +21,7 @@ Los [Botones contenidos](https://material.io/design/components/buttons.html#cont
 
 El último ejemplo de esta demostración muestra cómo usar un botón de subir archivos.
 
-{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
+{{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
 ## Botones de texto
 
@@ -31,7 +32,7 @@ Los [Botones de texto](https://material.io/design/components/buttons.html#text-b
 
 En las tarjetas, los botones de texto ayudan a mantener un énfasis en el contenido de la tarjeta.
 
-{{"demo": "pages/demos/buttons/TextButtons.js"}}
+{{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Botones con Contorno
 
@@ -41,7 +42,7 @@ En las tarjetas, los botones de texto ayudan a mantener un énfasis en el conten
 
 Los botones delineados también son una alternativa de menos énfasis que los botones contenidos, o de mayor énfasis que los botones de texto.
 
-{{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
+{{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
 ## Botones de acción flotantes
 
@@ -51,7 +52,7 @@ Sólo se recomienda usar un BAF si es la manera más apta para presentar la acci
 
 Se recomienda solo un botón flotante por pantalla para representar la acción más común.
 
-{{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtons.js"}}
 
 El botón de acción flotante aparece en la página animado como un pedazo de material en expansión, por defecto.
 
@@ -59,19 +60,19 @@ Un botón de acción flotante que aparece en varias páginas laterales (como pá
 
 La transición Zoom se puede usar para lograr esto. Ten en cuenta que ya que las animaciones de salida y de entrada son desencadenados al mismo tiempo, usamos `enterDelay` para permitir que termine la animación del Botón de Acción Flotante saliente antes de que entre el nuevo.
 
-{{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
 
 ## Tamaños
 
 ¿Te gustan botones más grandes o más pequeños? Usa el atributo `size`.
 
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
+{{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
 ## Botones con iconos y títulos
 
 Tal vez se necesita tener iconos para un botón en particular para mejorar la experiencia del usuario de la aplicación porque se reconocen más fácilmente los logos que el texto. Por ejemplo, si se crea un botón para borrar se le puede poner un icono de papelera.
 
-{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
+{{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
 ## Botones con Iconos
 
@@ -79,52 +80,26 @@ Los botones de iconos suelen encontrarse en las barras de aplicaciones y las bar
 
 Los iconos son también apropiados para botones toggle que permiten marcar o desmarcar una sola opción, tal como poner o quitar una estrella de un elemento.
 
-{{"demo": "pages/demos/buttons/IconButtons.js"}}
+{{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Botones Personalizados
+## Customized buttons
 
-Si has estado leyendo la [página de documentación sobre overrides](/customization/overrides/) pero aún no te sientes cómodo intentándolo, a continuación hay ejemplos de como cambiar el color principal de un Botón usando clases, y usando un tema; y de un Botón estilo Bootstrap.
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, estos ejemplos no son comunes.
+{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-{{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
+
 
 ## Botones Complejos
 
 Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y los Botones con Iconos se construyen sobre el mismo componente: el `ButtonBase`. Se puede sacar partido de este componente básico para construir interacciones personalizadas.
 
-{{"demo": "pages/demos/buttons/ButtonBases.js"}}
+{{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Librería externa de routing
 
 Un uso común es usar el botón para empezar la navegación hacia una página nueva. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Ya que muchos de nuestros componentes interactivos dependen de `ButtonBase`, puede ser aprovechado en todas partes:
 
-```jsx
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
+{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-// required for react-router-dom < 5.0.0 
-// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
-const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
-
-<Button component={Link} to="/open-collective">
-  Link
-</Button>
-```
-
-o si quieres evitar un choque de propiedades:
-
-```jsx
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-
-// use `ref` instead of `innerRef` with react-router-dom@^5.0.0
-const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
-
-<Button component={MyLink}>
-  Link
-</Button>
-```
-
-*Nota: Crear `MyLink` es necesario para prevenir una montura inesperada. Más información en nuestra [guía de propiedades de componentes](/guides/composition/#component-property).*
+*Note: Creating the Button components is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*

@@ -2,33 +2,34 @@
 title: Componente React Migas de pan
 components: Breadcrumbs, Link, Typography
 ---
+
 # Migas de pan
 
 <p class="description">Las Migas de pan permiten a los usuarios realizar selecciones desde un rango de valores.</p>
 
 ## Migas de pan simples
 
-{{"demo": "pages/demos/breadcrumbs/SimpleBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
 ## Separador personalizado
 
 En los siguientes ejemplos, estamos usando dos cadenas como separadores, y un ícono SVG.
 
-{{"demo": "pages/demos/breadcrumbs/CustomSeparator.js"}}
+{{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
 ## Migas de pan con íconos
 
-{{"demo": "pages/demos/breadcrumbs/IconBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
 ## Migas de pan colapsadas
 
-{{"demo": "pages/demos/breadcrumbs/CollapsedBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
 ## Migas de pan personalizadas
 
-Si has estado leyendo la [página de documentación de anulaciones](/customization/overrides/) pero no estás con la confianza de abordarla, aquí hay un ejemplo de cómo puedes cambiar el diseño del vínculo de las migas de pan.
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/demos/breadcrumbs/CustomizedBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
 ## Accesibilidad
 
@@ -42,4 +43,4 @@ La accesibilidad de este componente se basa en:
 
 ## Integración con react-router
 
-{{"demo": "pages/demos/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}

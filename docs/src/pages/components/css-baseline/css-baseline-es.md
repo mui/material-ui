@@ -1,6 +1,7 @@
 ---
 components: CssBaseline
 ---
+
 # Base de CSS
 
 <p class="description">Material-UI provee un componente llamado CssBaseline como un punto de partida elegante, simple y consistente para empezar a desarrollar.</p>
@@ -39,4 +40,4 @@ Los elementos `<html>` y `<body>` son actualizados para proveer mejores valores 
 ### Tipografía
 
 - El antialiasing de fuentes está habilitado para una mejor visualización de la fuente Roboto.
-- No se declara ningún tamaño de fuente de base en el elemento `<html>`, pero se asume 16px (el valor predeterminado del navegador). Puedes aprender más acerca de las implicaciones de cambiar el tamaño de fuente predeterminado de `<html>`, en la página [de documentación del tema](/customization/themes/#typography-html-font-size).
+- No se declara ningún tamaño de fuente de base en el elemento `<html>`, pero se asume 16px (el valor predeterminado del navegador). Puedes aprender más acerca de las implicaciones de cambiar el tamaño de fuente predeterminado de `<html>`, en la página [de documentación del tema](/customization/typography/#typography-html-font-size).

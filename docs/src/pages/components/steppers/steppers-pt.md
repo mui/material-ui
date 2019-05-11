@@ -2,7 +2,8 @@
 title: Stepper React component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
-# Steppers
+
+# Passo a Passo
 
 <p class="description">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>
 
@@ -30,7 +31,7 @@ The `Stepper` can be controlled by passing the current step index (zero-based) a
 
 This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
 
-{{"demo": "pages/demos/steppers/HorizontalLinearStepper.js"}}
+{{"demo": "pages/components/steppers/HorizontalLinearStepper.js"}}
 
 ## Horizontal Non-linear
 
@@ -40,35 +41,33 @@ This example is similar to the regular horizontal stepper, except steps are no l
 
 We've used the `StepButton` here to demonstrate clickable step labels as well as setting the `completed` flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
 
-{{"demo": "pages/demos/steppers/HorizontalNonLinearStepper.js"}}
+{{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
 
 ## Horizontal Linear - Alternative Label
 
 Labels can be placed below the step icon by setting the `alternativeLabel` property on the `Stepper` component.
 
-{{"demo": "pages/demos/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
+{{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
 
 ## Horizontal Non Linear - Alternative Label
 
-{{"demo": "pages/demos/steppers/HorizontalNonLinearAlternativeLabelStepper.js"}}
+{{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js"}}
 
 ## Horizontal Non Linear - Error Step
 
-{{"demo": "pages/demos/steppers/HorizontalNonLinearStepperWithError.js"}}
+{{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js"}}
 
 ## Vertical Stepper
 
-{{"demo": "pages/demos/steppers/VerticalLinearStepper.js"}}
+{{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
 ## Customized Stepper
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a stepper.
+Aqui está um exemplo de personalização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
 
 This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
 
-⚠️ Embora a especificação do design do material incentive o tema, esses exemplos estão fora do caminho comum.
-
-{{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
+{{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
 ## Mobile Stepper
 
@@ -78,22 +77,22 @@ This component implements a compact stepper suitable for a mobile device. See [m
 
 This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.
 
-{{"demo": "pages/demos/steppers/TextMobileStepper.js"}}
+{{"demo": "pages/components/steppers/TextMobileStepper.js"}}
 
 ### Mobile Stepper - Text with Carousel effect
 
 This demo is very similar to the previous, the difference is the usage of [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
 
-{{"demo": "pages/demos/steppers/SwipeableTextMobileStepper.js"}}
+{{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js"}}
 
 ### Mobile Stepper - Dots
 
 Use dots when the number of steps isn’t large.
 
-{{"demo": "pages/demos/steppers/DotsMobileStepper.js"}}
+{{"demo": "pages/components/steppers/DotsMobileStepper.js"}}
 
 ### Mobile Stepper - Progress
 
 Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
 
-{{"demo": "pages/demos/steppers/ProgressMobileStepper.js"}}
+{{"demo": "pages/components/steppers/ProgressMobileStepper.js"}}

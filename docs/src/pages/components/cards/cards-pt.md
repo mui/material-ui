@@ -2,6 +2,7 @@
 title: Componente React Card
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
+
 # Card (Cartões)
 
 <p class="description">Os cards contêm conteúdo e ações sobre um único assunto.</p>
@@ -14,23 +15,23 @@ Eles devem ser fáceis de procurar informações relevantes e acionáveis. Eleme
 
 Apesar dos componentes "Cards" poderem suportar múltiplas ações tais como: controles de UI, e overflow de menu, use-os com moderação e lembre-se que os cards são pontos de entrada de informações mais complexas e detalhadas.
 
-{{"demo": "pages/demos/cards/SimpleCard.js"}}
+{{"demo": "pages/components/cards/SimpleCard.js"}}
 
 ## Interação Complexa
 
 O conteúdo do Card pode ser expandido.
 
-{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
+{{"demo": "pages/components/cards/RecipeReviewCard.js"}}
 
 ## Mídia
 
 Exemplo de um Card usando uma imagem para reforçar o conteúdo.
 
-{{"demo": "pages/demos/cards/MediaCard.js"}}
+{{"demo": "pages/components/cards/MediaCard.js"}}
 
 Por padrão, usamos a combinação de um `<div>` elemento e um *background image* para exibir a mídia. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estes casos de uso:
 
-{{"demo": "pages/demos/cards/ImgMediaCard.js"}}
+{{"demo": "pages/components/cards/ImgMediaCard.js"}}
 
 > ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
 
@@ -40,4 +41,4 @@ Ações suplementares dentro do cartão são explicitamente chamadas usando íco
 
 Aqui está um exemplo de um controle do Mídia Card.
 
-{{"demo": "pages/demos/cards/MediaControlCard.js"}}
+{{"demo": "pages/components/cards/MediaControlCard.js"}}

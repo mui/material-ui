@@ -2,6 +2,7 @@
 title: Portal React component
 components: Portal
 ---
+
 # Portal
 
 <p class="description">The portal component renders its children into a new "subtree" outside of current component hierarchy.</p>
@@ -12,4 +13,4 @@ The component is used internally by the [`Modal`](/utils/modal/) and [`Popper`](
 
 ## Simple Portal
 
-{{"demo": "pages/utils/portal/SimplePortal.js"}}
+{{"demo": "pages/components/portal/SimplePortal.js"}}

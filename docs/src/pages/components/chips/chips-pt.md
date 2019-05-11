@@ -2,6 +2,7 @@
 title: Chip React component
 components: Chip
 ---
+
 # Chips (Navios)
 
 <p class="description">Chips são elementos compactos que representam uma entrada, atributo ou ação.</p>
@@ -17,20 +18,20 @@ Exemplo do uso do Chips em Avatar, Avatar ícone SVG, "Carta" e (string) Avatar.
 - Chips com propriedade `onClick` definida, mudará o foco da aparência, suspensão e clique.
 - Chips with the `onDelete` property defined will display a delete icon which changes appearance on hover.
 
-{{"demo": "pages/demos/chips/Chips.js"}}
+{{"demo": "pages/components/chips/Chips.js"}}
 
 ### Outlined Chips
 
 Chips delineados oferecem uma alternativa de estilo.
 
-{{"demo": "pages/demos/chips/OutlinedChips.js"}}
+{{"demo": "pages/components/chips/OutlinedChips.js"}}
 
 ## Chip array
 
 Um exemplo de renderização de múltiplos Chips de uma matriz de valores. Deletando um chip removerá da matriz. Observe que uma vez nenhuma propriedade `onClick` definida, o Chip pode ser focado, mas não terá ganhos profundos quando clicado ou tocado.
 
-{{"demo": "pages/demos/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js"}}
 
 ## Chip Playground
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
