@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
@@ -165,7 +164,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
 
   // Restart the timer when the user is no longer interacting with the Snackbar
   // or when the window is shown back.
-  const handleResume = () => {
+  const handleResume = React.useCallback(() => {
     if (autoHideDuration != null) {
       if (resumeHideDuration != null) {
         setAutoHideTimer(resumeHideDuration);
@@ -173,7 +172,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
       }
       setAutoHideTimer(autoHideDuration * 0.5);
     }
-  };
+  }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
   const handleMouseEnter = event => {
     if (onMouseEnter) {
@@ -203,6 +202,20 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     setExited(false);
   };
 
+  React.useEffect(() => {
+    if (!disableWindowBlurListener) {
+      window.addEventListener('focus', handleResume);
+      window.addEventListener('blur', handlePause);
+
+      return () => {
+        window.removeEventListener('focus', handleResume);
+        window.removeEventListener('blur', handlePause);
+      };
+    }
+
+    return undefined;
+  }, [disableWindowBlurListener, handleResume]);
+
   // So we only render active snackbars.
   if (!open && exited) {
     return null;
@@ -221,11 +234,6 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
         ref={ref}
         {...other}
       >
-        <EventListener
-          target="window"
-          onFocus={disableWindowBlurListener ? undefined : handleResume}
-          onBlur={disableWindowBlurListener ? undefined : handlePause}
-        />
         <TransitionComponent
           appear
           in={open}

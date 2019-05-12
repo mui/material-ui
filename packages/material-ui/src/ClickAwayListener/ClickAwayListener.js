@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
@@ -16,6 +15,10 @@ function useMountedRef() {
   }, []);
 
   return mountedRef;
+}
+
+function mapEventPropToEvent(eventProp) {
+  return eventProp.substring(2).toLowerCase();
 }
 
 /**
@@ -76,21 +79,36 @@ function ClickAwayListener(props) {
     movedRef.current = true;
   }, []);
 
-  const listenerProps = {};
-  if (mouseEvent !== false) {
-    listenerProps[mouseEvent] = handleClickAway;
-  }
-  if (touchEvent !== false) {
-    listenerProps[touchEvent] = handleClickAway;
-    listenerProps.onTouchMove = handleTouchMove;
-  }
+  React.useEffect(() => {
+    if (touchEvent !== false) {
+      const mappedTouchEvent = mapEventPropToEvent(touchEvent);
 
-  return (
-    <React.Fragment>
-      {React.cloneElement(children, { ref: handleRef })}
-      <EventListener target="document" {...listenerProps} />
-    </React.Fragment>
-  );
+      document.addEventListener(mappedTouchEvent, handleClickAway);
+      document.addEventListener('touchmove', handleTouchMove);
+
+      return () => {
+        document.removeEventListener(mappedTouchEvent, handleClickAway);
+        document.removeEventListener('touchmove', handleTouchMove);
+      };
+    }
+
+    return undefined;
+  }, [handleClickAway, handleTouchMove, touchEvent]);
+
+  React.useEffect(() => {
+    if (mouseEvent !== false) {
+      const mappedMouseEvent = mapEventPropToEvent(mouseEvent);
+      document.addEventListener(mappedMouseEvent, handleClickAway);
+
+      return () => {
+        document.removeEventListener(mappedMouseEvent, handleClickAway);
+      };
+    }
+
+    return undefined;
+  }, [handleClickAway, mouseEvent]);
+
+  return <React.Fragment>{React.cloneElement(children, { ref: handleRef })}</React.Fragment>;
 }
 
 ClickAwayListener.propTypes = {
