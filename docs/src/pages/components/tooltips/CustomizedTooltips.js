@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 
 function arrowGenerator(color) {
   return {
@@ -107,6 +107,10 @@ function ArrowTooltip(props) {
   );
 }
 
+ArrowTooltip.propTypes = {
+  title: PropTypes.node,
+};
+
 const useStylesBootstrap = makeStyles(theme => ({
   arrow: {
     position: 'absolute',
@@ -167,6 +171,10 @@ function BootstrapTooltip(props) {
     />
   );
 }
+
+BootstrapTooltip.propTypes = {
+  title: PropTypes.node,
+};
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {

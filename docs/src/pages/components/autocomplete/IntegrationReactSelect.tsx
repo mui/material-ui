@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types, react/jsx-handler-names */
-
 import React, { CSSProperties, HTMLAttributes } from 'react';
 import clsx from 'clsx';
 import Select from 'react-select';
@@ -12,6 +10,7 @@ import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import PropTypes from 'prop-types';
 import { ValueContainerProps } from 'react-select/lib/components/containers';
 import { ControlProps } from 'react-select/lib/components/Control';
 import { MenuProps, NoticeProps } from 'react-select/lib/components/Menu';
@@ -130,11 +129,21 @@ function NoOptionsMessage(props: NoticeProps<OptionType>) {
   );
 }
 
+NoOptionsMessage.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  selectProps: PropTypes.object.isRequired,
+} as any;
+
 type InputComponentProps = Pick<BaseTextFieldProps, 'inputRef'> & HTMLAttributes<HTMLDivElement>;
 
 function inputComponent({ inputRef, ...props }: InputComponentProps) {
   return <div ref={inputRef} {...props} />;
 }
+
+inputComponent.propTypes = {
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+} as any;
 
 function Control(props: ControlProps<OptionType>) {
   return (
@@ -154,6 +163,13 @@ function Control(props: ControlProps<OptionType>) {
   );
 }
 
+Control.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  selectProps: PropTypes.object.isRequired,
+} as any;
+
 function Option(props: OptionProps<OptionType>) {
   return (
     <MenuItem
@@ -170,6 +186,14 @@ function Option(props: OptionProps<OptionType>) {
   );
 }
 
+Option.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  isFocused: PropTypes.bool,
+  isSelected: PropTypes.bool,
+} as any;
+
 function Placeholder(props: PlaceholderProps<OptionType>) {
   return (
     <Typography
@@ -182,6 +206,12 @@ function Placeholder(props: PlaceholderProps<OptionType>) {
   );
 }
 
+Placeholder.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  selectProps: PropTypes.object.isRequired,
+} as any;
+
 function SingleValue(props: SingleValueProps<OptionType>) {
   return (
     <Typography className={props.selectProps.classes.singleValue} {...props.innerProps}>
@@ -190,9 +220,20 @@ function SingleValue(props: SingleValueProps<OptionType>) {
   );
 }
 
+SingleValue.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  selectProps: PropTypes.object.isRequired,
+} as any;
+
 function ValueContainer(props: ValueContainerProps<OptionType>) {
   return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 }
+
+ValueContainer.propTypes = {
+  children: PropTypes.node,
+  selectProps: PropTypes.object.isRequired,
+} as any;
 
 function MultiValue(props: MultiValueProps<OptionType>) {
   return (
@@ -208,6 +249,13 @@ function MultiValue(props: MultiValueProps<OptionType>) {
   );
 }
 
+MultiValue.propTypes = {
+  children: PropTypes.node,
+  isFocused: PropTypes.bool,
+  removeProps: PropTypes.object.isRequired,
+  selectProps: PropTypes.object.isRequired,
+} as any;
+
 function Menu(props: MenuProps<OptionType>) {
   return (
     <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
@@ -215,6 +263,12 @@ function Menu(props: MenuProps<OptionType>) {
     </Paper>
   );
 }
+
+Menu.propTypes = {
+  children: PropTypes.node,
+  innerProps: PropTypes.object,
+  selectProps: PropTypes.object,
+} as any;
 
 const components = {
   Control,
