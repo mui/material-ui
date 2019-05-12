@@ -22,11 +22,11 @@ function Chips() {
   const classes = useStyles();
 
   function handleDelete() {
-    alert('You clicked the delete icon.'); // eslint-disable-line no-alert
+    alert('You clicked the delete icon.');
   }
 
   function handleClick() {
-    alert('You clicked the Chip.'); // eslint-disable-line no-alert
+    alert('You clicked the Chip.');
   }
 
   return (

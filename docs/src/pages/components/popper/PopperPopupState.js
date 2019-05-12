@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Popper from '@material-ui/core/Popper';
-import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state/index';
+import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 

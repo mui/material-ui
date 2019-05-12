@@ -1,5 +1,3 @@
-/* eslint-disable no-console, react/no-danger */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -70,7 +68,7 @@ class MuiVirtualizedTable extends React.PureComponent {
           {label}
         </TableSortLabel>
       ) : (
-        <span dangerouslySetInnerHTML={{ __html: label }} />
+        <span>{label}</span>
       );
 
     return (
@@ -177,7 +175,6 @@ function ReactVirtualizedTable() {
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
-        onRowClick={event => console.log(event)}
         columns={[
           {
             width: 200,
@@ -187,25 +184,25 @@ function ReactVirtualizedTable() {
           },
           {
             width: 120,
-            label: 'Calories&nbsp;(g)',
+            label: 'Calories\u00A0(g)',
             dataKey: 'calories',
             numeric: true,
           },
           {
             width: 120,
-            label: 'Fat&nbsp;(g)',
+            label: 'Fat\u00A0(g)',
             dataKey: 'fat',
             numeric: true,
           },
           {
             width: 120,
-            label: 'Carbs&nbsp;(g)',
+            label: 'Carbs\u00A0(g)',
             dataKey: 'carbs',
             numeric: true,
           },
           {
             width: 120,
-            label: 'Protein&nbsp;(g)',
+            label: 'Protein\u00A0(g)',
             dataKey: 'protein',
             numeric: true,
           },

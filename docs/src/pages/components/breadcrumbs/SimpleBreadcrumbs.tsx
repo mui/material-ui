@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
+  alert('You clicked a breadcrumb.');
 }
 
 function SimpleBreadcrumbs() {

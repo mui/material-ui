@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import { loadCSS } from 'fg-loadcss';
 import { withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Icon from '@material-ui/core/Icon';
