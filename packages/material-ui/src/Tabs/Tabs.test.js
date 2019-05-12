@@ -15,13 +15,13 @@ import TabScrollButton from './TabScrollButton';
 import TabIndicator from './TabIndicator';
 
 function AccessibleTabScrollButton(props) {
-  return <TabScrollButton aria-label={props.direction} {...props} />;
+  return <TabScrollButton data-direction={props.direction} {...props} />;
 }
 AccessibleTabScrollButton.propTypes = {
   direction: PropTypes.string.isRequired,
 };
 
-const findScrollButton = (wrapper, direction) => wrapper.find(`button[aria-label="${direction}"]`);
+const findScrollButton = (wrapper, direction) => wrapper.find(`div[data-direction="${direction}"]`);
 const hasLeftScrollButton = wrapper => findScrollButton(wrapper, 'left').exists();
 const hasRightScrollButton = wrapper => findScrollButton(wrapper, 'right').exists();
 
