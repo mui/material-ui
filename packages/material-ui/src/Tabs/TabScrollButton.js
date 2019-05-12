@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/aria-role */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -28,7 +30,15 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
   }
 
   return (
-    <ButtonBase className={className} onClick={onClick} ref={ref} tabIndex={-1} {...other}>
+    <ButtonBase
+      component="div"
+      className={className}
+      onClick={onClick}
+      ref={ref}
+      role={null}
+      tabIndex={null}
+      {...other}
+    >
       {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
     </ButtonBase>
   );
