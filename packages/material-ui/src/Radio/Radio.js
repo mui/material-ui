@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import SwitchBase from '../internal/SwitchBase';
-import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
+import RadioButtonIcon from './RadioButtonIcon';
 import { fade } from '../styles/colorManipulator';
 import { capitalize, createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
@@ -80,8 +79,7 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     <SwitchBase
       color={color}
       type="radio"
-      icon={<RadioButtonUncheckedIcon />}
-      checkedIcon={<RadioButtonCheckedIcon />}
+      icon={<RadioButtonIcon checked={checked} />}
       classes={{
         root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
