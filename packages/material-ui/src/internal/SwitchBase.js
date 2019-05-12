@@ -117,7 +117,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       ref={ref}
       {...other}
     >
-      {checked ? checkedIcon : icon}
+      {(checked && checkedIcon) ? checkedIcon : icon}
       <input
         autoFocus={autoFocus}
         checked={checkedProp}
@@ -151,9 +151,9 @@ SwitchBase.propTypes = {
    */
   checked: PropTypes.bool,
   /**
-   * The icon to display when the component is checked.
+   * The icon to display when the component is checked. If ommited, it will display the `icon` prop instead.
    */
-  checkedIcon: PropTypes.node.isRequired,
+  checkedIcon: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
