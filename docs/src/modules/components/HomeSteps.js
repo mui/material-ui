@@ -27,6 +27,7 @@ const styles = theme => ({
   step: {
     border: `12px solid ${theme.palette.background.paper}`,
     padding: theme.spacing(3, 2),
+    backgroundColor: theme.palette.background.level0,
     borderRightWidth: 0,
     borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {

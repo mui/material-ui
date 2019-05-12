@@ -53,8 +53,7 @@ const styles = theme => ({
     outline: 'none',
     margin: 'auto',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+    backgroundColor: theme.palette.background.level1,
     display: 'flex',
     justifyContent: 'center',
     padding: 20,
@@ -89,7 +88,7 @@ const styles = theme => ({
       overflow: 'auto',
       paddingTop: theme.spacing(5),
       margin: '0px !important',
-      borderRadius: '0px !important',
+      maxHeight: 1000,
     },
   },
   tooltip: {

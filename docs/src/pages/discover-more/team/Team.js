@@ -102,7 +102,7 @@ const partners = [
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
     twitter: 'dmtrKovalenko',
-    flag: 'Material-UI pickers',
+    flag: '@material-ui/pickers',
     city: 'Kharkiv, Ukraine',
   },
 ];

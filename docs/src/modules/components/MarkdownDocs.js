@@ -6,6 +6,10 @@ import warning from 'warning';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
@@ -15,6 +19,7 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
+import PageContext from 'docs/src/modules/components/PageContext';
 import {
   getHeaders,
   getTitle,
@@ -22,25 +27,51 @@ import {
   demoRegexp,
 } from 'docs/src/modules/utils/parseMarkdown';
 import compose from 'docs/src/modules/utils/compose';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
 const styles = theme => ({
-  root: {
-    marginBottom: 100,
-  },
   header: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
   },
   markdownElement: {
-    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
     padding: theme.spacing(0, 1),
+  },
+  footer: {
+    marginTop: theme.spacing(12),
+  },
+  pagination: {
+    margin: theme.spacing(3, 0, 4),
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  pageLinkButton: {
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  chevronLeftIcon: {
+    marginRight: theme.spacing(1),
+  },
+  chevronRightIcon: {
+    marginLeft: theme.spacing(1),
   },
 });
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next/docs/src';
+
+function flattenPages(pages, current = []) {
+  return pages.reduce((items, item) => {
+    if (item.children && item.children.length > 1) {
+      items = flattenPages(item.children, items);
+    } else {
+      items.push(item.children && item.children.length === 1 ? item.children[0] : item);
+    }
+    return items;
+  }, current);
+}
 
 function MarkdownDocs(props) {
   const {
@@ -52,6 +83,7 @@ function MarkdownDocs(props) {
     req,
     reqPrefix,
     reqSource,
+    t,
     userLanguage,
   } = props;
 
@@ -90,6 +122,13 @@ function MarkdownDocs(props) {
     });
     markdown = markdowns[userLanguage] || markdowns.en;
   }
+
+  const { activePage, pages } = React.useContext(PageContext);
+  const pageList = flattenPages(pages);
+  const currentPageNum = pageList.findIndex(page => page.pathname === activePage.pathname);
+  const currentPage = pageList[currentPageNum];
+  const prevPage = pageList[currentPageNum - 1];
+  const nextPage = pageList[currentPageNum + 1];
 
   const headers = getHeaders(markdown);
   // eslint-disable-next-line no-underscore-dangle
@@ -162,6 +201,38 @@ function MarkdownDocs(props) {
                 <MarkdownElement className={classes.markdownElement} key={index} text={content} />
               );
             })}
+            <footer className={classes.footer}>
+              {currentPage.displayNav === false ||
+              (nextPage.displayNav === false && !prevPage) ? null : (
+                <React.Fragment>
+                  <Divider />
+                  <div className={classes.pagination}>
+                    {prevPage ? (
+                      <Button
+                        href={prevPage.pathname}
+                        size="large"
+                        className={classes.pageLinkButton}
+                      >
+                        <ChevronLeftIcon fontSize="small" className={classes.chevronLeftIcon} />
+                        {pageToTitleI18n(prevPage, t)}
+                      </Button>
+                    ) : (
+                      <div />
+                    )}
+                    {nextPage.displayNav === false ? null : (
+                      <Button
+                        href={nextPage.pathname}
+                        size="large"
+                        className={classes.pageLinkButton}
+                      >
+                        {pageToTitleI18n(nextPage, t)}
+                        <ChevronRightIcon fontSize="small" className={classes.chevronRightIcon} />
+                      </Button>
+                    )}
+                  </div>
+                </React.Fragment>
+              )}
+            </footer>
           </AppContent>
         </AppFrame>
       )}
@@ -180,6 +251,7 @@ MarkdownDocs.propTypes = {
   req: PropTypes.func,
   reqPrefix: PropTypes.string,
   reqSource: PropTypes.func,
+  t: PropTypes.func.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
 
@@ -190,6 +262,7 @@ MarkdownDocs.defaultProps = {
 
 export default compose(
   connect(state => ({
+    t: state.options.t,
     userLanguage: state.options.userLanguage,
   })),
   withStyles(styles),
