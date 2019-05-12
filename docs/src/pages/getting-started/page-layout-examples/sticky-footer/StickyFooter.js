@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function StickyFooter() {
+export default function StickyFooter() {
   const classes = useStyles();
 
   return (
@@ -59,5 +59,3 @@ function StickyFooter() {
     </div>
   );
 }
-
-export default StickyFooter;

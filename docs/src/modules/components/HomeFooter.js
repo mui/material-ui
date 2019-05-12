@@ -10,6 +10,9 @@ import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
+  root: {
+    backgroundColor: theme.palette.background.level0,
+  },
   footer: {
     padding: theme.spacing(3, 0),
     [theme.breakpoints.up('sm')]: {
@@ -34,79 +37,81 @@ function HomeFooter(props) {
   const { classes, t } = props;
 
   return (
-    <Container maxWidth="md">
-      <footer className={classes.footer}>
-        <Typography variant="h6" component="h3" gutterBottom>
-          {t('quickLinks')}
-        </Typography>
-        <Typography variant="subtitle1" component="div">
-          <Grid container>
-            <Grid item xs={12} sm={6}>
-              <ul className={classes.list}>
-                <li className={classes.listItem}>
-                  <Link color="inherit" href="https://github.com/mui-org/material-ui">
-                    GitHub
+    <div className={classes.root}>
+      <Container maxWidth="md">
+        <footer className={classes.footer}>
+          <Typography variant="h6" component="h3" gutterBottom>
+            {t('quickLinks')}
+          </Typography>
+          <Typography variant="subtitle1" component="div">
+            <Grid container>
+              <Grid item xs={12} sm={6}>
+                <ul className={classes.list}>
+                  <li className={classes.listItem}>
+                    <Link color="inherit" href="https://github.com/mui-org/material-ui">
+                      GitHub
+                    </Link>
+                  </li>
+                  <li className={classes.listItem}>
+                    <Link color="inherit" href="https://twitter.com/MaterialUI">
+                      Twitter
+                    </Link>
+                  </li>
+                  <li className={classes.listItem}>
+                    <Link
+                      color="inherit"
+                      href="https://github.com/mui-org/material-ui/tree/next/examples"
+                    >
+                      {t('examples')}
+                    </Link>
+                  </li>
+                </ul>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <ul className={classes.list}>
+                  <li className={classes.listItem}>
+                    <Link color="inherit" href="/components/icons">
+                      {t('icons')}
+                    </Link>
+                  </li>
+                  <li className={classes.listItem}>
+                    <Link color="inherit" href="/customization/color">
+                      {t('color')}
+                    </Link>
+                  </li>
+                  <li className={classes.listItem}>
+                    <Link color="inherit" href="/discover-more/team">
+                      {t('team')}
+                    </Link>
+                  </li>
+                </ul>
+              </Grid>
+            </Grid>
+          </Typography>
+          <Typography className={classes.version}>
+            <Interpolate
+              replacement={{
+                versionNumber: (
+                  <Link color="inherit" href="/versions/">
+                    {`v${process.env.LIB_VERSION}`}
                   </Link>
-                </li>
-                <li className={classes.listItem}>
-                  <Link color="inherit" href="https://twitter.com/MaterialUI">
-                    Twitter
-                  </Link>
-                </li>
-                <li className={classes.listItem}>
+                ),
+                license: (
                   <Link
                     color="inherit"
-                    href="https://github.com/mui-org/material-ui/tree/next/examples"
+                    href="https://github.com/mui-org/material-ui/blob/next/LICENSE"
                   >
-                    {t('examples')}
+                    {t('license')}
                   </Link>
-                </li>
-              </ul>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <ul className={classes.list}>
-                <li className={classes.listItem}>
-                  <Link color="inherit" href="/components/icons">
-                    {t('icons')}
-                  </Link>
-                </li>
-                <li className={classes.listItem}>
-                  <Link color="inherit" href="/customization/color">
-                    {t('color')}
-                  </Link>
-                </li>
-                <li className={classes.listItem}>
-                  <Link color="inherit" href="/discover-more/team">
-                    {t('team')}
-                  </Link>
-                </li>
-              </ul>
-            </Grid>
-          </Grid>
-        </Typography>
-        <Typography className={classes.version}>
-          <Interpolate
-            replacement={{
-              versionNumber: (
-                <Link color="inherit" href="/versions/">
-                  {`v${process.env.LIB_VERSION}`}
-                </Link>
-              ),
-              license: (
-                <Link
-                  color="inherit"
-                  href="https://github.com/mui-org/material-ui/blob/next/LICENSE"
-                >
-                  {t('license')}
-                </Link>
-              ),
-            }}
-          >
-            {t('homeFooterRelease')}
-          </Interpolate>
-        </Typography>
-      </footer>
-    </Container>
+                ),
+              }}
+            >
+              {t('homeFooterRelease')}
+            </Interpolate>
+          </Typography>
+        </footer>
+      </Container>
+    </div>
   );
 }
 
