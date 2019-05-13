@@ -9,19 +9,30 @@ export default function createTheme() {
       lg: '@media (min-width:1280px) and (max-width:1919.95px)',
       xl: '@media (min-width:1920px)',
     };
-    const obj = {};
-    return Object.defineProperties(obj, {
+    const breakpoints = {};
+    Object.defineProperties(breakpoints, {
         keys: {
           get: () => {
             return Object.keys(mapping);
           },
-          writable: false,
+          //writable: false,
           configurable: false,
+          enumerable: true
         },
         only: {
           value: (key) => mapping[key],
-          writable: false,
+          //writable: false,
           configurable: false,
+          enumerable: true
         },
     });
+    const obj = {};
+    Object.defineProperties(obj, {
+      breakpoints: {
+        get:() => breakpoints,
+        enumerable: true,
+        configurable: false
+      }
+    });
+    return obj;
 }

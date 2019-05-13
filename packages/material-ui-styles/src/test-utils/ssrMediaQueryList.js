@@ -1,16 +1,19 @@
+import cssMatchMedia from 'css-mediaquery';
+
 export default function ssrMediaQueryList(media, screen) {
   // wrap new into something else
-  if (this instanceof global.MediaQueryList) {
+  if (this instanceof ssrMediaQueryList) {
     return ssrMediaQueryList(media, screen);
   }
   const listeners = new Set();
   const obj = {};
   let onchange;
-  let matches;
+  let matches = cssMatchMedia.match(media, { width: screen.getWidth() } );
+  //console.log(media, screen.getWidth(), matches);
   Object.defineProperties(obj, {
     matches: {
-      writable: false,
-      configurable: false,
+      //writable: false,
+      //configurable: false,
       get: () => {
         return matches;
       },
@@ -19,22 +22,22 @@ export default function ssrMediaQueryList(media, screen) {
       get: () => {
         return media;
       },
-      writable: false,
-      configurable: false,
+      //writable: false,
+      //configurable: false,
     },
     addListener: {
       value: (fn) => {
         listeners.add(fn);
       },
-      writable: false,
-      configurable: false,
+      //writable: false,
+      //configurable: false,
     },
     removeListener: {
       value: (fn) => {
         listeners.delete(fn);
       },
-      writable: false,
-      enumerable: false,
+      //writable: false,
+      //enumerable: false,
     },
 
     dispatchEvent: {
@@ -47,8 +50,8 @@ export default function ssrMediaQueryList(media, screen) {
           this.onchange(e);
         }
       },
-      writable: false,
-      configurable: false,
+      //writable: false,
+      //configurable: false,
     },
     onchange: {
       set: fn => {
@@ -60,8 +63,8 @@ export default function ssrMediaQueryList(media, screen) {
       get: () => {
         return onchange;
       },
-      writable: false,
-      configurable: false,
+      //writable: false,
+      //configurable: false,
     },
   });
   screen.register(media, obj);
