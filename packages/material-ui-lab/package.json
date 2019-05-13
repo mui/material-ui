@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "4.0.0-alpha.10",
+  "version": "4.0.0-alpha.11",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
@@ -33,7 +33,7 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.0.0-beta.1",
+    "@material-ui/core": "^4.0.0-beta.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },

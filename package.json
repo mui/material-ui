@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/workspace",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "private": true,
   "author": "Material-UI Team",
   "description": "Material-UI's workspace package",
