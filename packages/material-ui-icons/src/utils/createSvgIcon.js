@@ -11,7 +11,7 @@ export default function createSvgIcon(path, displayName) {
   );
 
   if (process.env.NODE_ENV !== 'production') {
-    Component.displayName = `memo(${displayName})`;
+    Component.displayName = displayName;
   }
 
   Component.muiName = SvgIcon.muiName;
