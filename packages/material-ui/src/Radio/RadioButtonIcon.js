@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import withStyles from '../styles/withStyles';
-import Zoom from '../Zoom';
 
 export const styles = {
   root: {
@@ -17,6 +16,13 @@ export const styles = {
     left: 0,
     top: 0,
   },
+  inner: {
+    transform: 'translateY(12px) scale(0)',
+    transition: 'transform 100ms',
+  },
+  innerChecked: {
+    transform: 'none',
+  },
 };
 
 /**
@@ -27,9 +33,9 @@ function RadioButtonIcon(props) {
 
   return (
     <div className={clsx(classes.root, className)} {...other}>
-      <Zoom in={checked} timeout={100}>
+      <div className={clsx(classes.inner, checked && classes.innerChecked)}>
         <RadioButtonCheckedIcon className={classes.icon} />
-      </Zoom>
+      </div>
       <RadioButtonUncheckedIcon className={classes.icon} />
     </div>
   );
