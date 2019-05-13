@@ -695,6 +695,15 @@ const appList = [
     image: 'learnseeker.jpg',
     dateAdded: '2019-03-26',
   },
+  {
+    title: 'Greenlink',
+    description:
+      'Point of sale and inventory management web app designed specifically for the cannabis industry. ' +
+      'Available via web browser or for iOS in the Apple App Store.',
+    link: 'https://greenlink.app/signup',
+    image: 'greenlink.png',
+    dateAdded: '2019-05-13',
+  },
 ];
 
 export default appList;
