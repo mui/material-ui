@@ -17,8 +17,9 @@ export const styles = {
     top: 0,
   },
   inner: {
-    transform: 'translateY(12px) scale(0)',
-    transition: 'transform 100ms',
+    height: 24,
+    transform: 'scale(0)',
+    transition: 'transform 150ms cubic-bezier(0.0, 0.0, 0.2, 1)',
   },
   innerChecked: {
     transform: 'none',
