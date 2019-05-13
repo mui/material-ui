@@ -256,11 +256,6 @@ describe('<SwitchBase />', () => {
       const wrapper = mount(<SwitchBase {...defaultProps} icon={<Icon>heart</Icon>} />);
       assert.strictEqual(wrapper.contains(Icon), true);
     });
-
-    it('should render Icon when checked and no checkedIcon is given', () => {
-      const wrapper = mount(<SwitchBase {...defaultProps} checked icon={<Icon>heart</Icon>} />);
-      assert.strictEqual(wrapper.contains(Icon), true);
-    });
   });
 
   describe('handleInputChange()', () => {

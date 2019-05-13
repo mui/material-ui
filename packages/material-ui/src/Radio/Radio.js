@@ -51,6 +51,9 @@ export const styles = theme => ({
   },
 });
 
+const defaultCheckedIcon = <RadioButtonIcon checked />;
+const defaultIcon = <RadioButtonIcon />;
+
 const Radio = React.forwardRef(function Radio(props, ref) {
   const {
     checked: checkedProp,
@@ -79,7 +82,8 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     <SwitchBase
       color={color}
       type="radio"
-      icon={<RadioButtonIcon checked={checked} />}
+      icon={defaultIcon}
+      checkedIcon={defaultCheckedIcon}
       classes={{
         root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
