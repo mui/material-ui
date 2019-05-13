@@ -5,7 +5,7 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const styles = theme => ({
   root: {
     position: 'relative',
     width: '24px',
@@ -19,12 +19,19 @@ export const styles = {
   inner: {
     height: 24,
     transform: 'scale(0)',
-    transition: 'transform 150ms cubic-bezier(0.0, 0.0, 0.2, 1)',
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   innerChecked: {
     transform: 'none',
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.shortest,
+    }),
   },
-};
+});
 
 /**
  * @ignore - internal component.
