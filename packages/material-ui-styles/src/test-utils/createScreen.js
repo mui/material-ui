@@ -14,7 +14,7 @@ export default function createScreen() {
         const current = cssMatchMedia.match(media, { width });
         // v is a set
         mSet.forEach(mql => {
-          mql.dipatchEvent({ type: 'change', matched: current, media, width });
+          mql.dispatchEvent({ type: 'change', matched: current, media, width });
         });
       });
     },

@@ -55,7 +55,7 @@ export default function useWidth(theme) {
       obj.mql.addListener(listener);
       // kickoff
       if (obj.mql.matches && width !== obj.name) {
-        console.log(`size:${propName}:${obj.only}`);
+        //console.log(`size:${propName}:${obj.only}`);
         setWidth(obj.name);
       }
     }
