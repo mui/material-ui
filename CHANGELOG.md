@@ -1,5 +1,58 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-beta.2
+###### *May 13, 2019*
+
+A big thanks to the 13 contributors who made this release possible!
+
+This is a stability release preparing v4.
+
+### `@material-ui/core@v4.0.0-beta.2`
+
+- [Box] Add export to barrel (index.js) (#15602) @ljvanschie
+- [ButtonBase] Extend error message for invalid `component` prop (#15627) @eps1lon
+- [Select] Add to docs that options must be direct descendants (#15619) @bh1505
+- [SwipeableDrawer] Remove internal accesses in the tests (#15469) @joshwooding
+- [Tabs] scrollButtons have an empty button error in compliance tools (#15646) @elnikolinho
+- [useScrollTrigger] Enhance trigger, improve tests (#15634) @cvanem
+
+### `@material-ui/styles@v4.0.0-beta.2`
+
+- [styles] Fix warning false positive (#15595) @oliviertassinari
+- [styles] Keep MuiThemeProvider for backward compatibility (#15650) @oliviertassinari
+
+### `@material-ui/system@v4.0.0-beta.2`
+
+- [system] Fix css function rejecting certain prop types (#15611) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.11`
+
+- [SpeedDial] Fix classname override logic (#15652) @janhesters
+
+### Docs
+
+- [docs] Add custom default props handler (#15473) @eps1lon
+- [docs] Add next page link (#15656) @mbrookes
+- [docs] Add QuintoAndar in the showcase (#15622) @oliviertassinari
+- [docs] Fix dead David DM badges in README (#15667) @mbrookes
+- [docs] Fix few grammar issues (#15643) @DDDDDanica
+- [docs] Fix plural spelling (#15613) @cvanem
+- [docs] Fix some dev-only warnings (#15640) @eps1lon
+- [docs] Fix the adapting makeStyles based on props example syntax (#15621) @devarsh
+- [docs] Improve installation instructions for running the docs locally (#15608) @andreawaxman
+- [docs] Improve v3 migration guide (#15615) @eps1lon
+- [docs] Link edit page button to github editor (#15659) @mbrookes
+- [docs] Miscellaneous polish (#15665) @eps1lon
+- [docs] Reorganize the structure (#15603) @mbrookes
+- [docs] Update the translations (#15653) @mbrookes
+
+### Core
+
+- [core] Drop partial chrome 41 support (#15630) @eps1lon
+- [core] Optimize clsx usage (#15589) @merceyz
+- [core] Remove react-event-listener from function components (#15633) @joshwooding
+- [core] Upgrade the dev dependencies (#15590) @oliviertassinari
+
 ## 4.0.0-beta.1
 ###### *May 5, 2019*
 
