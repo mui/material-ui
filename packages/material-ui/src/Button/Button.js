@@ -133,6 +133,26 @@ export const styles = theme => ({
       },
     },
   },
+  grouped: {
+    minWidth: 40,
+    backgroundColor: theme.palette.grey[300],
+    borderRight: `1px solid ${theme.palette.grey[400]}`,
+    borderRadius: 0,
+    '&:first-child': {
+      borderTopLeftRadius: theme.shape.borderRadius,
+      borderBottomLeftRadius: theme.shape.borderRadius,
+    },
+    '&:last-child': {
+      borderTopRightRadius: theme.shape.borderRadius,
+      borderBottomRightRadius: theme.shape.borderRadius,
+    },
+  },
+  groupedPrimary: {
+    borderRight: `1px solid ${theme.palette.primary.dark}`,
+  },
+  groupedSecondary: {
+    borderRight: `1px solid ${theme.palette.secondary.dark}`,
+  },
   /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
   containedPrimary: {
     color: theme.palette.primary.contrastText,
@@ -169,7 +189,6 @@ export const styles = theme => ({
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     padding: '4px 8px',
-    minWidth: 64,
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
@@ -201,6 +220,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   } = props;
 
   const contained = variant === 'contained';
+  const grouped = variant === 'grouped';
   const text = variant === 'text';
   const className = clsx(
     classes.root,
@@ -209,11 +229,14 @@ const Button = React.forwardRef(function Button(props, ref) {
       [classes.textPrimary]: text && color === 'primary',
       [classes.textSecondary]: text && color === 'secondary',
       [classes.contained]: contained,
-      [classes.containedPrimary]: contained && color === 'primary',
-      [classes.containedSecondary]: contained && color === 'secondary',
+      [classes.containedPrimary]: (contained || grouped) && color === 'primary',
+      [classes.containedSecondary]: (contained || grouped) && color === 'secondary',
       [classes.outlined]: variant === 'outlined',
       [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
       [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
+      [classes.grouped]: grouped,
+      [classes.groupedPrimary]: grouped && color === 'primary',
+      [classes.groupedSeconday]: grouped && color === 'secondary',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
@@ -302,7 +325,7 @@ Button.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  variant: PropTypes.oneOf(['text', 'outlined', 'contained', 'grouped']),
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

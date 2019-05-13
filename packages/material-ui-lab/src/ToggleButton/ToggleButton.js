@@ -36,7 +36,7 @@ export const styles = theme => ({
       color: fade(theme.palette.action.disabled, 0.12),
     },
     '&:hover': {
-      textDecoration: 'none',
+      textDecoration:  'none',
       // Reset on mouse devices
       backgroundColor: fade(theme.palette.text.primary, 0.05),
       '@media (hover: none)': {
