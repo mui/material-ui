@@ -3,7 +3,11 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const useStyles = makeStyles(
   createStyles({
@@ -25,13 +29,13 @@ function MaterialUIPickers() {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container className={classes.grid} justify="space-around">
-        <DatePicker
+        <KeyboardDatePicker
           margin="normal"
           label="Date picker"
           value={selectedDate}
           onChange={handleDateChange}
         />
-        <TimePicker
+        <KeyboardTimePicker
           margin="normal"
           label="Time picker"
           value={selectedDate}
