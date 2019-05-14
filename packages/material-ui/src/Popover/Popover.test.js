@@ -585,43 +585,74 @@ describe('<Popover />', () => {
 
   describe('on window resize', () => {
     let clock;
+    let innerHeightContainer;
+    let element;
+    let wrapper;
 
     before(() => {
+      innerHeightContainer = global.window.innerHeight;
+      const mockedAnchor = document.createElement('div');
+      stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+        left: 0,
+        top: 1,
+      }));
+      const handleEntering = spy();
+      global.window.innerHeight = 0;
+      wrapper = mount(
+        <Popover
+          anchorEl={mockedAnchor}
+          open
+          onEntering={handleEntering}
+          transitionDuration={0}
+          marginThreshold={0}
+        >
+          <div />
+        </Popover>,
+      );
+      element = handleEntering.args[0][0];
+
       clock = useFakeTimers();
     });
 
     after(() => {
+      global.window.innerHeight = innerHeightContainer;
+
       clock.restore();
     });
 
     it('should recalculate position if the popover is open', () => {
-      const wrapper = mount(
-        <Popover {...defaultProps} open transitionDuration={0}>
-          <div />
-        </Popover>,
-      );
-      const instance = wrapper.find('Popover').instance();
-
-      stub(instance, 'setPositioningStyles');
+      const beforeStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      global.window.innerHeight = innerHeightContainer * 2;
       window.dispatchEvent(new window.Event('resize'));
       clock.tick(166);
-      assert.strictEqual(instance.setPositioningStyles.called, true);
+      const afterStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      assert.notStrictEqual(JSON.stringify(beforeStyle), JSON.stringify(afterStyle));
     });
 
     it('should not recalculate position if the popover is closed', () => {
-      const wrapper = mount(
-        <Popover {...defaultProps} open transitionDuration={0}>
-          <div />
-        </Popover>,
-      );
-
-      const setPositioningStyles = stub(wrapper.find('Popover').instance(), 'setPositioningStyles');
-
+      const beforeStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      global.window.innerHeight = innerHeightContainer * 2;
       window.dispatchEvent(new window.Event('resize'));
       wrapper.setProps({ open: false });
       clock.tick(166);
-
-      assert.strictEqual(setPositioningStyles.called, false);
+      const afterStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      assert.strictEqual(JSON.stringify(beforeStyle), JSON.stringify(afterStyle));
     });
   });
 
