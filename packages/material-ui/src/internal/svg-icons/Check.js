@@ -5,6 +5,6 @@ import createSvgIcon from './createSvgIcon';
  * @ignore - internal component.
  */
 export default createSvgIcon(
-  <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />,
-  'CheckBoxOutlineBlank',
+  <path d="M5 12L10 17L19 8L17.59 6.58L10 14.17L6.41 10.59L5 12Z" />,
+  'Check',
 );

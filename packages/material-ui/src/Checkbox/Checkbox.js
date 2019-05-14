@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import SwitchBase from '../internal/SwitchBase';
-import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import { fade } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
+import CheckboxButtonIcon from './CheckboxButtonIcon';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -54,8 +53,8 @@ export const styles = theme => ({
   },
 });
 
-const defaultCheckedIcon = <CheckBoxIcon />;
-const defaultIcon = <CheckBoxOutlineBlankIcon />;
+const defaultCheckedIcon = <CheckboxButtonIcon checked />;
+const defaultIcon = <CheckboxButtonIcon />;
 const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = React.forwardRef(function Checkbox(props, ref) {
