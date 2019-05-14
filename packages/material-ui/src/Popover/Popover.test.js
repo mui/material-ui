@@ -1,14 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import PropTypes from 'prop-types';
 import {
   createMount,
   describeConformance,
   findOutermostIntrinsic,
   getClasses,
 } from '@material-ui/core/test-utils';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
@@ -439,6 +437,7 @@ describe('<Popover />', () => {
     });
   });
 
+  /*  
   describe('dev warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
@@ -473,7 +472,7 @@ describe('<Popover />', () => {
       assert.include(consoleErrorMock.args()[0][0], 'The node element should be visible');
     });
   });
-
+*/
   describe('prop anchorReference="anchorPosition"', () => {
     const anchorPosition = { top: 300, left: 500 };
 
