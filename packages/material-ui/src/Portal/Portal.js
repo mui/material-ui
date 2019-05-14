@@ -25,7 +25,7 @@ const Portal = React.forwardRef(function Portal(props, ref) {
     if (!disablePortal) {
       setMountNode(getContainer(container) || document.body);
     }
-  }, [container]);
+  }, [container, disablePortal]);
 
   React.useEffect(() => {
     if (onRendered && mountNode) {
