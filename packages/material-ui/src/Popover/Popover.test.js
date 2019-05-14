@@ -14,6 +14,19 @@ import Modal from '../Modal';
 import Paper from '../Paper';
 import Popover, { getOffsetLeft, getOffsetTop } from './Popover';
 
+const mockedAnchorEl = () => {
+  const div = document.createElement('div');
+  stub(div, 'getBoundingClientRect').callsFake(() => ({
+    width: 100,
+    height: 58,
+    left: 160,
+    right: 160,
+    top: 160,
+    bottom: 160,
+  }));
+  return div;
+};
+
 describe('<Popover />', () => {
   let mount;
   let classes;
@@ -426,14 +439,16 @@ describe('<Popover />', () => {
     });
   });
 
-  describe('warnings', () => {
+  describe('dev warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
       PropTypes.resetWarningCache();
+      process.env.NODE_ENV = 'dev';
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
+      process.env.NODE_ENV = 'test';
     });
 
     it('should warn if anchorEl is not valid', () => {
@@ -452,11 +467,11 @@ describe('<Popover />', () => {
       );
     });
 
-    // it('should warn if anchorEl is not visible', () => {
-    //   mount(<Popover open anchorEl={document.createElement('div')} />);
-    //   assert.strictEqual(consoleErrorMock.callCount(), 1);
-    //   assert.include(consoleErrorMock.args()[0][0], 'The node element should be visible');
-    // });
+    it('should warn if anchorEl is not visible', () => {
+      mount(<Popover open anchorEl={document.createElement('div')} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(consoleErrorMock.args()[0][0], 'The node element should be visible');
+    });
   });
 
   describe('prop anchorReference="anchorPosition"', () => {
@@ -612,41 +627,15 @@ describe('<Popover />', () => {
 
   [0, 8, 16].forEach(marginThreshold => {
     describe('getPositioningStyle(element)', () => {
-      let instance;
-      let element;
-      let anchorOffset;
-      let tempAnchorOffset;
-      let transformOrigin;
-      let positioningStyle;
-
       let innerHeightContainer;
       let innerWidthContainer;
 
       before(() => {
-        instance = mount(
-          <Popover {...defaultProps} marginThreshold={marginThreshold}>
-            <div />
-          </Popover>,
-        )
-          .find('Popover')
-          .instance();
-        instance.getContentAnchorOffset = spy();
-
         innerHeightContainer = global.window.innerHeight;
         innerWidthContainer = global.window.innerWidth;
 
         global.window.innerHeight = marginThreshold * 2;
         global.window.innerWidth = marginThreshold * 2;
-
-        anchorOffset = { top: marginThreshold, left: marginThreshold };
-        instance.getAnchorOffset = stub().returns(anchorOffset);
-
-        transformOrigin = { vertical: 0, horizontal: 0 };
-        instance.getTransformOrigin = stub().returns(transformOrigin);
-
-        instance.getTransformOriginValue = stub().returns(true);
-
-        element = { offsetHeight: 0, offsetWidth: 0 };
       });
 
       after(() => {
@@ -655,8 +644,23 @@ describe('<Popover />', () => {
       });
 
       describe('no offsets', () => {
+        let positioningStyle;
+        const negative = marginThreshold === 0 ? '' : '-';
+        const expectedTransformOrigin = `${negative}${marginThreshold}px ${negative}${marginThreshold}px`;
+
         before(() => {
-          positioningStyle = instance.getPositioningStyle(element);
+          const handleEntering = spy();
+          mount(
+            <Popover
+              {...defaultProps}
+              open
+              onEntering={handleEntering}
+              marginThreshold={marginThreshold}
+            >
+              <div />
+            </Popover>,
+          );
+          positioningStyle = handleEntering.args[0][0].style;
         });
 
         it('should set top to marginThreshold', () => {
@@ -668,20 +672,36 @@ describe('<Popover />', () => {
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.transformOrigin, '0px 0px');
+          assert.strictEqual(positioningStyle.transformOrigin, expectedTransformOrigin);
         });
       });
 
       describe('top < marginThreshold', () => {
-        before(() => {
-          tempAnchorOffset = { top: marginThreshold - 1, left: marginThreshold };
-          instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+        const handleEntering = spy();
+        let positioningStyle;
 
-          positioningStyle = instance.getPositioningStyle(element);
+        before(() => {
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold,
+            top: marginThreshold - 1,
+          }));
+
+          mount(
+            <Popover
+              anchorEl={mockedAnchor}
+              open
+              onEntering={handleEntering}
+              marginThreshold={marginThreshold}
+            >
+              <div />
+            </Popover>,
+          );
+          positioningStyle = handleEntering.args[0][0].style;
         });
 
         after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          handleEntering.resetHistory();
         });
 
         it('should set top to marginThreshold', () => {
@@ -698,15 +718,31 @@ describe('<Popover />', () => {
       });
 
       describe('bottom > heightThreshold', () => {
-        before(() => {
-          tempAnchorOffset = { top: marginThreshold + 1, left: marginThreshold };
-          instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+        const handleEntering = spy();
+        let positioningStyle;
 
-          positioningStyle = instance.getPositioningStyle(element);
+        before(() => {
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold,
+            top: marginThreshold + 1,
+          }));
+
+          mount(
+            <Popover
+              anchorEl={mockedAnchor}
+              open
+              onEntering={handleEntering}
+              marginThreshold={marginThreshold}
+            >
+              <div />
+            </Popover>,
+          );
+          positioningStyle = handleEntering.args[0][0].style;
         });
 
         after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          handleEntering.resetHistory();
         });
 
         it('should set top to marginThreshold', () => {
@@ -723,15 +759,31 @@ describe('<Popover />', () => {
       });
 
       describe('left < marginThreshold', () => {
-        before(() => {
-          tempAnchorOffset = { top: marginThreshold, left: marginThreshold - 1 };
-          instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+        const handleEntering = spy();
+        let positioningStyle;
 
-          positioningStyle = instance.getPositioningStyle(element);
+        before(() => {
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold - 1,
+            top: marginThreshold,
+          }));
+
+          mount(
+            <Popover
+              anchorEl={mockedAnchor}
+              open
+              onEntering={handleEntering}
+              marginThreshold={marginThreshold}
+            >
+              <div />
+            </Popover>,
+          );
+          positioningStyle = handleEntering.args[0][0].style;
         });
 
         after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          handleEntering.resetHistory();
         });
 
         it('should set top to marginThreshold', () => {
@@ -748,15 +800,31 @@ describe('<Popover />', () => {
       });
 
       describe('right > widthThreshold', () => {
-        before(() => {
-          tempAnchorOffset = { top: marginThreshold, left: marginThreshold + 1 };
-          instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+        const handleEntering = spy();
+        let positioningStyle;
 
-          positioningStyle = instance.getPositioningStyle(element);
+        before(() => {
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold + 1,
+            top: marginThreshold,
+          }));
+
+          mount(
+            <Popover
+              anchorEl={mockedAnchor}
+              open
+              onEntering={handleEntering}
+              marginThreshold={marginThreshold}
+            >
+              <div />
+            </Popover>,
+          );
+          positioningStyle = handleEntering.args[0][0].style;
         });
 
         after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          handleEntering.resetHistory();
         });
 
         it('should set top to marginThreshold', () => {
@@ -776,20 +844,30 @@ describe('<Popover />', () => {
 
   describe('prop: getContentAnchorEl', () => {
     it('should position accordingly', () => {
-      const element = { scrollTop: 5, contains: () => true };
-      const getContentAnchorEl = stub().returns({
-        offsetTop: 40,
-        clientHeight: 20,
-        parentNode: element,
-      });
-      const wrapper = mount(
-        <Popover {...defaultProps} getContentAnchorEl={getContentAnchorEl}>
-          <div />
+      const handleEntering = spy();
+      const divRef = React.createRef();
+      const getContentAnchorEl = () => {
+        stub(divRef.current, 'offsetTop').get(() => 8);
+        stub(divRef.current, 'clientHeight').get(() => 48);
+        stub(divRef.current, 'clientWidth').get(() => 116);
+        return divRef.current;
+      };
+
+      mount(
+        <Popover
+          anchorEl={mockedAnchorEl}
+          onEntering={handleEntering}
+          getContentAnchorEl={getContentAnchorEl}
+          open
+        >
+          <div ref={divRef} />
         </Popover>,
       );
 
-      const instance = wrapper.find('Popover').instance();
-      assert.strictEqual(instance.getContentAnchorOffset(element), 45);
+      const elementStyle = handleEntering.args[0][0].style;
+      assert.strictEqual(elementStyle.transformOrigin, '0px 32px');
+      assert.strictEqual(elementStyle.top, '157px');
+      assert.strictEqual(elementStyle.left, '160px');
     });
   });
 
