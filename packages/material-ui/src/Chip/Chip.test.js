@@ -2,8 +2,12 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import CancelIcon from '../internal/svg-icons/Cancel';
-import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  describeConformance,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
@@ -182,7 +186,7 @@ describe('<Chip />', () => {
       assert.strictEqual(chip.type(), 'div');
       assert.strictEqual(chip.childAt(0).type(), Avatar);
       assert.strictEqual(chip.childAt(1).name(), 'span');
-      assert.strictEqual(chip.childAt(2).type(), CancelIcon);
+      assert.strictEqual(findOutermostIntrinsic(chip.childAt(2)).type(), 'svg');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -208,7 +212,7 @@ describe('<Chip />', () => {
 
       // simulate seems to not work on memo components
       wrapper
-        .find(CancelIcon)
+        .find('svg[data-mui-test="CancelIcon"]')
         .props()
         .onClick({ stopPropagation: () => {} });
       assert.strictEqual(onDeleteSpy.callCount, 1);
@@ -220,7 +224,7 @@ describe('<Chip />', () => {
       wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper
-        .find(CancelIcon)
+        .find('svg[data-mui-test="CancelIcon"]')
         .props()
         .onClick({ stopPropagation: stopPropagationSpy });
       assert.strictEqual(stopPropagationSpy.callCount, 1);
@@ -300,7 +304,7 @@ describe('<Chip />', () => {
       );
 
       wrapper
-        .find(CheckBox)
+        .find('svg[data-mui-test="CheckBoxIcon"]')
         .props()
         .onClick({ stopPropagation: () => {} });
       assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
@@ -308,7 +312,7 @@ describe('<Chip />', () => {
 
     it('should render a default icon', () => {
       const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
-      assert.strictEqual(wrapper.find(CancelIcon).length, 1);
+      assert.strictEqual(wrapper.find('svg[data-mui-test="CancelIcon"]').length, 1);
     });
 
     it(
@@ -328,7 +332,7 @@ describe('<Chip />', () => {
         assert.strictEqual(chip.exists(), true);
         assert.strictEqual(chip.hasClass(classes.deletable), true);
 
-        const iconWrapper = wrapper.find(CancelIcon);
+        const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
         assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
         assert.strictEqual(iconWrapper.hasClass(classes.deleteIconOutlinedColorSecondary), true);
       },
@@ -341,7 +345,7 @@ describe('<Chip />', () => {
       assert.strictEqual(chip.exists(), true);
       assert.strictEqual(chip.hasClass(classes.deletable), true);
 
-      const iconWrapper = wrapper.find(CancelIcon);
+      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
     });
 
@@ -356,7 +360,7 @@ describe('<Chip />', () => {
       assert.strictEqual(chip.hasClass(classes.deletable), true);
       assert.strictEqual(chip.hasClass(classes.deletableColorPrimary), true);
 
-      const iconWrapper = wrapper.find(CancelIcon);
+      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorPrimary), true);
     });
@@ -371,7 +375,7 @@ describe('<Chip />', () => {
       assert.strictEqual(chip.hasClass(classes.deletable), true);
       assert.strictEqual(chip.hasClass(classes.deletableColorSecondary), true);
 
-      const iconWrapper = wrapper.find(CancelIcon);
+      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorSecondary), true);
     });

@@ -1,18 +1,20 @@
 import React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-function createSvgIcon(path, displayName) {
-  let Icon = props => (
-    <SvgIcon {...props}>
-      {path}
-    </SvgIcon>
+export default function createSvgIcon(path, displayName) {
+  const Component = React.memo(
+    React.forwardRef((props, ref) => (
+      <SvgIcon {...props} data-mui-test={`${displayName}Icon`} ref={ref}>
+        {path}
+      </SvgIcon>
+    )),
   );
 
-  Icon.displayName = `${displayName}Icon`;
-  Icon = React.memo(Icon);
-  Icon.muiName = 'SvgIcon';
+  if (process.env.NODE_ENV !== 'production') {
+    Component.displayName = `${displayName}Icon`;
+  }
 
-  return Icon;
-};
+  Component.muiName = SvgIcon.muiName;
 
-export default createSvgIcon;
+  return Component;
+}
