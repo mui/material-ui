@@ -12,6 +12,7 @@ import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
+import PersistScroll from 'docs/src/modules/components/PersistScroll';
 import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
@@ -100,7 +101,7 @@ function AppDrawer(props) {
   const { activePage, pages } = React.useContext(PageContext);
 
   const drawer = (
-    <div className={classes.nav}>
+    <PersistScroll>
       <div className={classes.placeholder} />
       <div className={classes.toolbarIe11}>
         <div className={classes.toolbar}>
@@ -116,7 +117,7 @@ function AppDrawer(props) {
       </div>
       <Divider />
       {renderNavItems({ props, pages, activePage, depth: 0, t })}
-    </div>
+    </PersistScroll>
   );
 
   return (
