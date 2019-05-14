@@ -74,13 +74,13 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pickers';
 `;
 
     assert.deepEqual(getDependencies(s3), {
       'date-fns': 'next',
       '@date-io/date-fns': 'latest',
-      'material-ui-pickers': 'latest',
+      '@material-ui/pickers': 'latest',
       '@material-ui/core': 'next',
       'prop-types': 'latest',
       'react-dom': 'latest',
