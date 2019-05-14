@@ -19,10 +19,12 @@ const useStyles = makeStyles(
 
 function MaterialUIPickers() {
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+    new Date('2014-08-18T21:11:54'),
+  );
   const classes = useStyles();
 
-  function handleDateChange(date: Date) {
+  function handleDateChange(date: Date | null) {
     setSelectedDate(date);
   }
 
