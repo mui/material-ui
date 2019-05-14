@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import SwitchBase from '../internal/SwitchBase';
 import { fade } from '../styles/colorManipulator';
-import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
-import CheckboxButtonIcon from './CheckboxButtonIcon';
+import CheckboxIcon from './CheckboxIcon';
+import IndeterminateCheckboxIcon from './IndeterminateCheckboxIcon';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -53,9 +53,10 @@ export const styles = theme => ({
   },
 });
 
-const defaultCheckedIcon = <CheckboxButtonIcon checked />;
-const defaultIcon = <CheckboxButtonIcon />;
-const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
+const defaultCheckedIcon = <CheckboxIcon checked />;
+const defaultIcon = <CheckboxIcon />;
+const defaultIndeterminateIcon = <IndeterminateCheckboxIcon />;
+const defaultIndeterminateCheckedIcon = <IndeterminateCheckboxIcon checked />;
 
 const Checkbox = React.forwardRef(function Checkbox(props, ref) {
   const {
@@ -64,6 +65,7 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     color = 'secondary',
     icon = defaultIcon,
     indeterminate = false,
+    indeterminateCheckedIcon = defaultIndeterminateCheckedIcon,
     indeterminateIcon = defaultIndeterminateIcon,
     inputProps,
     ...other
@@ -72,7 +74,7 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
   return (
     <SwitchBase
       type="checkbox"
-      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+      checkedIcon={indeterminate ? indeterminateCheckedIcon : checkedIcon}
       classes={{
         root: clsx(classes.root, classes[`color${capitalize(color)}`], {
           [classes.indeterminate]: indeterminate,
@@ -133,6 +135,10 @@ Checkbox.propTypes = {
    * However, we set a `data-indeterminate` attribute on the input.
    */
   indeterminate: PropTypes.bool,
+  /**
+   * The icon to display when the component is checked and indeterminate.
+   */
+  indeterminateCheckedIcon: PropTypes.node,
   /**
    * The icon to display when the component is indeterminate.
    */

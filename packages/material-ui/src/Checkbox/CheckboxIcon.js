@@ -17,7 +17,8 @@ export const styles = theme => ({
     top: 0,
   },
   outline: {
-    clipPath: 'polygon(0% 0%, 0% 100%, 5px 100%, 5px 5px, 19px 5px, 19px 19px, 5px 19px, 5px 100%, 100% 100%, 100% 0%);',
+    clipPath:
+      'polygon(0% 0%, 0% 100%, 5px 100%, 5px 5px, 19px 5px, 19px 19px, 5px 19px, 5px 100%, 100% 100%, 100% 0%)',
     transition: theme.transitions.create('clip-path', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.shortest,
@@ -28,7 +29,8 @@ export const styles = theme => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.shortest,
     }),
-    clipPath: 'polygon(0% 0%, 0% 100%, 50% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 100%, 100% 100%, 100% 0%);'
+    clipPath:
+      'polygon(0% 0%, 0% 100%, 50% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 100%, 100% 100%, 100% 0%)',
   },
   check: {
     // This is not a good idea, but I'm not sure what else I can do.
@@ -64,7 +66,9 @@ function CheckboxButtonIcon(props) {
 
   return (
     <div className={clsx(classes.root, className)} {...other}>
-      <CheckBoxBlankIcon className={clsx(classes.icon, classes.outline, checked && classes.outlineChecked)} />
+      <CheckBoxBlankIcon
+        className={clsx(classes.icon, classes.outline, checked && classes.outlineChecked)}
+      />
       <CheckIcon className={clsx(classes.icon, classes.check, checked && classes.checkChecked)} />
     </div>
   );
