@@ -17,7 +17,7 @@ import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
 
 const CssTextField = withStyles({
   root: {
-    '& label.focused': {
+    '& label.Mui-focused': {
       color: 'green',
     },
     '& .MuiInput-underline:after': {
@@ -30,7 +30,7 @@ const CssTextField = withStyles({
       '&:hover fieldset': {
         borderColor: 'yellow',
       },
-      '&.focused fieldset': {
+      '&.Mui-focused fieldset': {
         borderColor: 'green',
       },
     },

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { TextField, NoSsr } from '@material-ui/core';
 
 const StyledTextField = styled(TextField)`
-  label.focused {
+  label.Mui-focused {
     color: green;
   }
   .MuiOutlinedInput-root {
@@ -13,7 +13,7 @@ const StyledTextField = styled(TextField)`
     &:hover fieldset {
       border-color: yellow;
     }
-    &.focused fieldset {
+    &.Mui-focused fieldset {
       border-color: green;
     }
   }
