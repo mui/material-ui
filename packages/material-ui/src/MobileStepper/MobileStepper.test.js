@@ -73,14 +73,14 @@ describe('<MobileStepper />', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
     const backButton = findOutermostIntrinsic(wrapper).childAt(0);
     assert.strictEqual(backButton.text(), 'Back');
-    assert.lengthOf(backButton.find(KeyboardArrowLeft), 1);
+    assert.lengthOf(backButton.find('svg[data-mui-test="KeyboardArrowLeftIcon"]'), 1);
   });
 
   it('should render next button', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
     const nextButton = findOutermostIntrinsic(wrapper).childAt(2);
     assert.strictEqual(nextButton.childAt(0).text(), 'Next');
-    assert.lengthOf(nextButton.find(KeyboardArrowRight), 1);
+    assert.lengthOf(nextButton.find('svg[data-mui-test="KeyboardArrowRightIcon"]'), 1);
   });
 
   it('should render backButton custom text', () => {
