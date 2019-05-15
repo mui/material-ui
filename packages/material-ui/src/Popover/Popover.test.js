@@ -589,21 +589,21 @@ describe('<Popover />', () => {
     let wrapper;
 
     before(() => {
-      innerHeightContainer = global.window.innerHeight;
+      innerHeightContainer = window.innerHeight;
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
         left: 0,
-        top: 1,
+        top: 9,
       }));
       const handleEntering = spy();
-      global.window.innerHeight = 0;
+      window.innerHeight = 8;
       wrapper = mount(
         <Popover
           anchorEl={mockedAnchor}
           open
           onEntering={handleEntering}
           transitionDuration={0}
-          marginThreshold={0}
+          marginThreshold={8}
         >
           <div />
         </Popover>,
@@ -614,7 +614,7 @@ describe('<Popover />', () => {
     });
 
     after(() => {
-      global.window.innerHeight = innerHeightContainer;
+      window.innerHeight = innerHeightContainer;
 
       clock.restore();
     });
@@ -625,7 +625,7 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
-      global.window.innerHeight = innerHeightContainer * 2;
+      window.innerHeight = innerHeightContainer * 2;
       window.dispatchEvent(new window.Event('resize'));
       clock.tick(166);
       const afterStyle = {
@@ -642,7 +642,7 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
-      global.window.innerHeight = innerHeightContainer * 2;
+      window.innerHeight = innerHeightContainer * 2;
       window.dispatchEvent(new window.Event('resize'));
       wrapper.setProps({ open: false });
       clock.tick(166);
@@ -661,16 +661,16 @@ describe('<Popover />', () => {
       let innerWidthContainer;
 
       before(() => {
-        innerHeightContainer = global.window.innerHeight;
-        innerWidthContainer = global.window.innerWidth;
+        innerHeightContainer = window.innerHeight;
+        innerWidthContainer = window.innerWidth;
 
-        global.window.innerHeight = marginThreshold * 2;
-        global.window.innerWidth = marginThreshold * 2;
+        window.innerHeight = marginThreshold * 2;
+        window.innerWidth = marginThreshold * 2;
       });
 
       after(() => {
-        global.window.innerHeight = innerHeightContainer;
-        global.window.innerWidth = innerWidthContainer;
+        window.innerHeight = innerHeightContainer;
+        window.innerWidth = innerWidthContainer;
       });
 
       describe('no offsets', () => {
