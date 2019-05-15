@@ -7,7 +7,7 @@ describe('<Select> integration', () => {
   let mount;
 
   before(() => {
-    // StrictModeViolation: uses Portal
+    // StrictModeViolation: uses MenuItem
     mount = createMount({ strict: false });
   });
 
