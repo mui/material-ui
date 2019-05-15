@@ -380,7 +380,9 @@ function generateInheritance(reactAPI) {
 The properties of the [${inheritance.component}](${Router._rewriteUrlForNextExport(
     inheritance.pathname,
   )}) component${suffix} are also available.
-You can take advantage of this behavior to [target nested components](/guides/api/#spread).`;
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+`;
 }
 
 function generateDemos(reactAPI) {
@@ -425,7 +427,9 @@ function generateNotes(reactAPI) {
   const { strictModeReady } = reactAPI;
   return `## Notes
 
-The component is${!strictModeReady ? ' **not**' : ''} StrictMode ready.`;
+The component is${!strictModeReady ? ' **not**' : ''} StrictMode ready.
+
+`;
 }
 
 export default function generateMarkdown(reactAPI) {
@@ -445,10 +449,8 @@ export default function generateMarkdown(reactAPI) {
     '',
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}`,
-    '',
-    generateNotes(reactAPI),
-    '',
-    generateDemos(reactAPI),
+    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateNotes(
+      reactAPI,
+    )}${generateDemos(reactAPI)}`,
   ].join('\n');
 }
