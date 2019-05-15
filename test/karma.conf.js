@@ -81,6 +81,7 @@ module.exports = function setKarmaConfig(config) {
         flags: ['--no-sandbox'],
       },
     },
+    singleRun: Boolean(process.env.CI),
   };
 
   let newConfig = baseConfig;
