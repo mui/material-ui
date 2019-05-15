@@ -14,7 +14,7 @@ describe('<DialogContent />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<DialogContent />);
   });

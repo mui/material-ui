@@ -11,7 +11,7 @@ describe('<Breadcrumbs />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(
       <Breadcrumbs>
         <span>Hello World</span>

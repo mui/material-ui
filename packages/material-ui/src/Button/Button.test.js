@@ -18,7 +18,7 @@ describe('<Button />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     render = createRender();
     classes = getClasses(<Button>Hello World</Button>);

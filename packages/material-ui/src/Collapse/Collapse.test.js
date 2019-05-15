@@ -15,7 +15,7 @@ describe('<Collapse />', () => {
   };
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Collapse {...defaultProps} />);
   });
 
