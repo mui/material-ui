@@ -16,8 +16,7 @@ describe('<Popper />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Portal
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -51,7 +50,7 @@ describe('<Popper />', () => {
           }}
         </Popper>,
       );
-      assert.strictEqual(renderSpy.callCount, 1);
+      assert.strictEqual(renderSpy.callCount, 2); // 2 for strict mode
       assert.strictEqual(renderSpy.args[0][0], 'top');
     });
 
@@ -87,7 +86,7 @@ describe('<Popper />', () => {
             }}
           </Popper>,
         );
-        assert.strictEqual(renderSpy.callCount, 1);
+        assert.strictEqual(renderSpy.callCount, 2);
         assert.strictEqual(renderSpy.args[0][0], test.out);
       });
     });
@@ -171,17 +170,21 @@ describe('<Popper />', () => {
 
   describe('prop: transition', () => {
     let clock;
+    let looseMount;
 
     before(() => {
       clock = useFakeTimers();
+      // StrictModeViolation: uses Grow
+      looseMount = createMount({ strict: false });
     });
 
     after(() => {
       clock.restore();
+      looseMount.cleanUp();
     });
 
     it('should work', () => {
-      const wrapper = mount(
+      const wrapper = looseMount(
         <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
