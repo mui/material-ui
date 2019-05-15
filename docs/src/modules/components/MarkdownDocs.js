@@ -43,9 +43,15 @@ const styles = theme => ({
     padding: theme.spacing(0, 1),
   },
   markdownElementBlog: {
+    maxWidth: 700,
+    margin: 'auto',
+    padding: 0,
     fontFamily: 'Roboto Slab',
-    fontWeight: '300',
-    fontSize: ' 1.3rem',
+    fontWeight: 300,
+    fontSize: ' 1.1875rem',
+    '& p': {
+      lineHeight: 1.8,
+    },
   },
   footer: {
     marginTop: theme.spacing(12),
@@ -158,7 +164,7 @@ function MarkdownDocs(props) {
             </Portal>
           )}
 
-          <AppContent blog={blog} disableToc={disableToc} className={classes.root}>
+          <AppContent disableToc={disableToc} className={classes.root}>
             {!disableEdit ? (
               <div className={classes.header}>
                 <EditPage
