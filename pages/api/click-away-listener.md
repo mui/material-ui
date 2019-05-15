@@ -27,6 +27,10 @@ For instance, if you need to hide a menu when people click anywhere else on your
 The component cannot hold a ref.
 
 
+## Notes
+
+The component is **not** StrictMode ready.
+
 ## Demos
 
 - [Click Away Listener](/components/click-away-listener/)

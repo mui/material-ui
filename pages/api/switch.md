@@ -69,6 +69,10 @@ you need to use the following style sheet name: `MuiSwitch`.
 The properties of the [IconButton](/api/icon-button/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is StrictMode ready.
+
 ## Demos
 
 - [Switches](/components/switches/)

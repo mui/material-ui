@@ -59,6 +59,10 @@ for more detail.
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiTableCell`.
 
+## Notes
+
+The component is **not** StrictMode ready.
+
 ## Demos
 
 - [Tables](/components/tables/)

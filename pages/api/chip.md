@@ -75,6 +75,10 @@ for more detail.
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiChip`.
 
+## Notes
+
+The component is StrictMode ready.
+
 ## Demos
 
 - [Chips](/components/chips/)

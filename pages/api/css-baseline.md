@@ -23,6 +23,10 @@ Kickstart an elegant, consistent, and simple baseline to build upon.
 The component cannot hold a ref.
 
 
+## Notes
+
+The component is **not** StrictMode ready.
+
 ## Demos
 
 - [Css Baseline](/components/css-baseline/)

@@ -55,6 +55,10 @@ for more detail.
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiBadge`.
 
+## Notes
+
+The component is StrictMode ready.
+
 ## Demos
 
 - [Badges](/components/badges/)

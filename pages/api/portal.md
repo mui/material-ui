@@ -27,6 +27,10 @@ that exists outside the DOM hierarchy of the parent component.
 The component cannot hold a ref.
 
 
+## Notes
+
+The component is **not** StrictMode ready.
+
 ## Demos
 
 - [Portal](/components/portal/)

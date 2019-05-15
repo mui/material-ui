@@ -70,6 +70,10 @@ you need to use the following style sheet name: `MuiPopover`.
 The properties of the [Modal](/api/modal/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is **not** StrictMode ready.
+
 ## Demos
 
 - [Menus](/components/menus/)

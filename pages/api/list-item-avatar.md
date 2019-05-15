@@ -43,6 +43,10 @@ for more detail.
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiListItemAvatar`.
 
+## Notes
+
+The component is StrictMode ready.
+
 ## Demos
 
 - [Lists](/components/lists/)

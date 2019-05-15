@@ -49,6 +49,10 @@ you need to use the following style sheet name: `MuiCardActionArea`.
 The properties of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is StrictMode ready.
+
 ## Demos
 
 - [Cards](/components/cards/)

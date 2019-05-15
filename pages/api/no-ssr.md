@@ -31,6 +31,10 @@ This component can be useful in a variety of situations:
 The component cannot hold a ref.
 
 
+## Notes
+
+The component is **not** StrictMode ready.
+
 ## Demos
 
 - [No Ssr](/components/no-ssr/)

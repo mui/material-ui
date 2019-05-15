@@ -50,6 +50,10 @@ you need to use the following style sheet name: `MuiSnackbarContent`.
 The properties of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is StrictMode ready.
+
 ## Demos
 
 - [Snackbars](/components/snackbars/)

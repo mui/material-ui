@@ -48,3 +48,7 @@ for more detail.
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiTouchRipple`.
 
+## Notes
+
+The component is **not** StrictMode ready.
+

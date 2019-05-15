@@ -33,6 +33,10 @@ The `ref` is forwarded to the root element.
 
 Any other properties supplied will be provided to the root element (native element).
 
+## Notes
+
+The component is StrictMode ready.
+
 ## Demos
 
 - [Autocomplete](/components/autocomplete/)

@@ -57,6 +57,10 @@ you need to use the following style sheet name: `MuiCollapse`.
 The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is **not** StrictMode ready.
+
 ## Demos
 
 - [Cards](/components/cards/)

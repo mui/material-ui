@@ -58,3 +58,7 @@ class MyComponent extends React.Component {
 The component cannot hold a ref.
 
 
+## Notes
+
+The component is **not** StrictMode ready.
+
