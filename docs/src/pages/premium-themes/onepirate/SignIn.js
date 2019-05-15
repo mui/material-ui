@@ -120,7 +120,7 @@ class SignIn extends React.Component {
             )}
           </Form>
           <Typography align="center">
-            <Link underline="always" href="/premium-themes/onepirate/forgot-password">
+            <Link underline="always" href="/premium-themes/onepirate/forgot-password/">
               Forgot password?
             </Link>
           </Typography>

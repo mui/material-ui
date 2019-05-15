@@ -28,7 +28,7 @@ You will find them in the theme, in the [`breakpoints.values`](/customization/de
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them
 for controlling the layout of your application through the [Grid](/components/grid/) and
-[Hidden]/components/hidden/) components.
+[Hidden](/components/hidden/) components.
 
 ## CSS Media Queries
 
@@ -68,11 +68,11 @@ You might want to change the React rendering tree based on the breakpoint value,
 
 ### useMediaQuery hook
 
-You can learn more on the [useMediaQuery]/components/use-media-query/) page.
+You can learn more on the [useMediaQuery](/components/use-media-query/) page.
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery]/components/use-media-query/) hook when the React's hooks are released as stable.
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/components/use-media-query/) hook when the React's hooks are released as stable.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';

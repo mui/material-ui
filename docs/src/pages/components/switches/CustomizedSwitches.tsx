@@ -152,7 +152,7 @@ function CustomizedSwitches() {
       <Typography component="div">
         <Grid component="label" container alignItems="center" spacing={1}>
           <Grid item>Off</Grid>
-          <Grid item alignItems="center">
+          <Grid item>
             <AntSwitch
               checked={state.checkedC}
               onChange={handleChange('checkedC')}
