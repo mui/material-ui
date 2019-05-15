@@ -20,17 +20,6 @@ describe('<Portal />', () => {
     mount.cleanUp();
   });
 
-  describe('prop: disablePortal', () => {
-    it('should work as expected', () => {
-      const wrapper = mount(
-        <Portal disablePortal>
-          <h1 className="woofPortal">Foo</h1>
-        </Portal>,
-      );
-      assert.strictEqual(wrapper.children().length, 1);
-    });
-  });
-
   describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
