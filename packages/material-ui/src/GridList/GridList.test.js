@@ -28,7 +28,7 @@ describe('<GridList />', () => {
 
   before(() => {
     classes = getClasses(<GridList />);
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
   });
 

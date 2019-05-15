@@ -19,13 +19,13 @@ describe('<MobileStepper />', () => {
   const defaultProps = {
     steps: 2,
     nextButton: (
-      <Button>
+      <Button aria-label="next">
         Next
         <KeyboardArrowRight />
       </Button>
     ),
     backButton: (
-      <Button>
+      <Button aria-label="back">
         <KeyboardArrowLeft />
         Back
       </Button>
@@ -33,7 +33,7 @@ describe('<MobileStepper />', () => {
   };
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<MobileStepper {...defaultProps} />);
   });
 
@@ -71,79 +71,23 @@ describe('<MobileStepper />', () => {
 
   it('should render the back button', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
-    const backButton = findOutermostIntrinsic(wrapper).childAt(0);
-    assert.strictEqual(backButton.text(), 'Back');
+    const backButton = wrapper.find('button[aria-label="back"]');
+    assert.strictEqual(backButton.exists(), true);
     assert.lengthOf(backButton.find('svg[data-mui-test="KeyboardArrowLeftIcon"]'), 1);
   });
 
   it('should render next button', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
-    const nextButton = findOutermostIntrinsic(wrapper).childAt(2);
-    assert.strictEqual(nextButton.childAt(0).text(), 'Next');
+    const nextButton = wrapper.find('button[aria-label="next"]');
+    assert.strictEqual(nextButton.exists(), true);
     assert.lengthOf(nextButton.find('svg[data-mui-test="KeyboardArrowRightIcon"]'), 1);
-  });
-
-  it('should render backButton custom text', () => {
-    const wrapper = mount(
-      <MobileStepper
-        {...defaultProps}
-        backButton={
-          <Button>
-            <KeyboardArrowLeft />
-            Past
-          </Button>
-        }
-      />,
-    );
-    assert.strictEqual(
-      findOutermostIntrinsic(wrapper)
-        .childAt(0)
-        .text(),
-      'Past',
-    );
-  });
-
-  it('should render nextButton custom text', () => {
-    const wrapper = mount(
-      <MobileStepper
-        {...defaultProps}
-        nextButton={
-          <Button>
-            Future
-            <KeyboardArrowRight />
-          </Button>
-        }
-      />,
-    );
-    assert.strictEqual(
-      findOutermostIntrinsic(wrapper)
-        .childAt(2)
-        .text(),
-      'Future',
-    );
-  });
-
-  it('should render disabled backButton', () => {
-    const wrapper = mount(
-      <MobileStepper {...defaultProps} backButton={<Button disabled>back</Button>} />,
-    );
-    const backButton = findOutermostIntrinsic(wrapper).childAt(0);
-    assert.strictEqual(backButton.props().disabled, true);
-  });
-
-  it('should render disabled nextButton', () => {
-    const wrapper = mount(
-      <MobileStepper {...defaultProps} nextButton={<Button disabled>back</Button>} />,
-    );
-    const nextButton = findOutermostIntrinsic(wrapper).childAt(2);
-    assert.strictEqual(nextButton.props().disabled, true);
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {
     const wrapper = mount(
       <MobileStepper {...defaultProps} variant="text" activeStep={1} steps={3} />,
     );
-    assert.strictEqual(wrapper.text(), 'Back2 / 3Next');
+    assert.strictEqual(findOutermostIntrinsic(wrapper).instance().textContent, 'Back2 / 3Next');
   });
 
   it('should render dots when supplied with variant dots', () => {

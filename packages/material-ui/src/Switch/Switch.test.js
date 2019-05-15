@@ -16,7 +16,7 @@ describe('<Switch />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ untilSelector: 'span' });
     classes = getClasses(<Switch />);
   });
