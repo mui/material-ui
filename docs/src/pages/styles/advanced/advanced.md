@@ -509,7 +509,7 @@ const StyledTextField = styled(TextField)`
     &:hover fieldset {
       border-color: yellow; 💛
     }
-    &.focused fieldset {
+    &.Mui-focused fieldset {
       border-color: green; 💚
     }
   }

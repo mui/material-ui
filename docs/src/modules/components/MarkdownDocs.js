@@ -29,6 +29,7 @@ import {
 import compose from 'docs/src/modules/utils/compose';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   header: {
@@ -209,6 +210,8 @@ function MarkdownDocs(props) {
                   <div className={classes.pagination}>
                     {prevPage ? (
                       <Button
+                        component={Link}
+                        naked
                         href={prevPage.pathname}
                         size="large"
                         className={classes.pageLinkButton}
@@ -221,6 +224,8 @@ function MarkdownDocs(props) {
                     )}
                     {nextPage.displayNav === false ? null : (
                       <Button
+                        component={Link}
+                        naked
                         href={nextPage.pathname}
                         size="large"
                         className={classes.pageLinkButton}
