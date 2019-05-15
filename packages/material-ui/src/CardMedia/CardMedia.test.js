@@ -14,7 +14,7 @@ describe('<CardMedia />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ untilSelector: 'CardMedia' });
     classes = getClasses(<CardMedia image="/foo.jpg" />);
   });

@@ -15,7 +15,7 @@ describe('<GridListTileBar />', () => {
 
   before(() => {
     classes = getClasses(<GridListTileBar title="classes" />);
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
   });
 

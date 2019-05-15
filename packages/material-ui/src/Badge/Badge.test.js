@@ -16,7 +16,7 @@ describe('<Badge />', () => {
   };
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Badge {...defaultProps} />);
   });
 
@@ -51,10 +51,9 @@ describe('<Badge />', () => {
     assert.strictEqual(findBadge(wrapper).hasClass(badgeClassName), true);
   });
 
-  it('renders children and className', () => {
+  it('renders children', () => {
     const wrapper = mount(<Badge className="testClassName" {...defaultProps} />);
     assert.strictEqual(wrapper.contains(defaultProps.children), true);
-    assert.strictEqual(wrapper.hasClass('testClassName'), true);
   });
 
   describe('prop: color', () => {

@@ -11,7 +11,7 @@ describe('<Breadcrumbs />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(
       <Breadcrumbs>
         <span>Hello World</span>
@@ -98,7 +98,7 @@ describe('<Breadcrumbs />', () => {
       );
       assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 3);
       assert.strictEqual(wrapper.find(BreadcrumbCollapsed).length, 0);
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleErrorMock.callCount(), 2);
       assert.include(
         consoleErrorMock.args()[0][0],
         'you have provided an invalid combination of properties to the',

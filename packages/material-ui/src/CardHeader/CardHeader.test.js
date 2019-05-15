@@ -15,7 +15,7 @@ describe('<CardHeader />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ untilSelector: 'div' });
     classes = getClasses(<CardHeader />);
   });
