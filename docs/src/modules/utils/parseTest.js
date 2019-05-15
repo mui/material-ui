@@ -54,9 +54,9 @@ function findConformanceDescriptor(program) {
  * // somewhere in the code, not necessarily the same binding
  * mount = createMount({ strict: true });
  * ```
- * 
- * @param {import('@babel/types').Identifier} mountIdentifier 
- * @param {import('@babel/types').Program} program 
+ *
+ * @param {import('@babel/types').Identifier} mountIdentifier
+ * @param {import('@babel/types').Program} program
  */
 function isStrictMount(mountIdentifier, program) {
   // assume the path is above the mountNode in the AST and no variable is shadowed
@@ -69,9 +69,11 @@ function isStrictMount(mountIdentifier, program) {
     AssignmentExpression(babelPath) {
       if (isSameMountBinding(babelPath)) {
         // find `strict: literal` in `mount = someFunction({ })`
-        const strictProperty = babelPath.node.right.arguments[0].properties.find(
-          property => property.key.name === 'strict',
-        );
+        const options = babelPath.node.right.arguments[0];
+        if (options === undefined) {
+          return;
+        }
+        const strictProperty = options.properties.find(property => property.key.name === 'strict');
 
         isStrict = strictProperty.value.value;
       }
