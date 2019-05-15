@@ -6,6 +6,7 @@ import { exactProp } from '@material-ui/utils';
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
+  // #StrictMode ready
   return ReactDOM.findDOMNode(container);
 }
 
