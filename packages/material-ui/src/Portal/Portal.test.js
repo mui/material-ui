@@ -12,7 +12,6 @@ describe('<Portal />', () => {
   let render;
 
   before(() => {
-    // StrictModeViolation: uses findDOMNode
     mount = createMount({ strict: true });
     render = createRender();
   });
