@@ -393,9 +393,11 @@ describe('<ButtonBase />', () => {
       const onFocusVisibleSpy = spy();
       const buttonRef = React.createRef();
       mount(
-        <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy} ref={buttonRef}>
-          Hello
-        </ButtonBase>,
+        <>
+          <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy} ref={buttonRef}>
+            Hello
+          </ButtonBase>
+        </>,
       );
       simulatePointerDevice();
 
