@@ -47,7 +47,7 @@
     "test": "yarn lint && yarn typescript && yarn test:coverage",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.js' 'docs/**/*.test.js' --exclude '**/node_modules/**' && nyc report -r lcovonly",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/**/*.test.js' --exclude '**/node_modules/**' && nyc report --reporter=html",
-    "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
+    "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "test:umd": "yarn babel-node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' --exclude '**/node_modules/**'",
