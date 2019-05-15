@@ -6,6 +6,7 @@ import { exactProp } from '@material-ui/utils';
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
+  // #StrictMode ready
   return ReactDOM.findDOMNode(container);
 }
 
@@ -25,7 +26,7 @@ const Portal = React.forwardRef(function Portal(props, ref) {
     if (!disablePortal) {
       setMountNode(getContainer(container) || document.body);
     }
-  }, [container]);
+  }, [container, disablePortal]);
 
   React.useEffect(() => {
     if (onRendered && mountNode) {

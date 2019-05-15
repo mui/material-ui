@@ -15,7 +15,7 @@ describe('<Menu> integration', () => {
   let mount;
 
   before(() => {
-    // StrictModeViolation: test uses Portal
+    // StrictModeViolation: test uses simulate
     mount = createMount({ strict: false });
   });
 
