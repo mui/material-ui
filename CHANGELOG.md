@@ -1169,7 +1169,7 @@ Here are some highlights ✨:
 
 - [Grid] Use a unitless spacing API (#14099) @ifndefdeadmau5
 
-In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
+In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
 ```diff
   /**
    * Defines the space between the type `item` component.
