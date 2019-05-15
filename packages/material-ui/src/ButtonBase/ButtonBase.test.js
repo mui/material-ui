@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import rerender from 'test/utils/rerender';
@@ -273,46 +272,6 @@ describe('<ButtonBase />', () => {
 
       assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
       assert.strictEqual(wrapper.find('button').hasClass(classes.focusVisible), false);
-    });
-  });
-
-  describe('focus inside shadowRoot', () => {
-    // Only run on HeadlessChrome which has native shadowRoot support.
-    // And jsdom which has limited support for shadowRoot (^12.0.0).
-    if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
-
-    let rootElement;
-
-    beforeEach(() => {
-      rootElement = document.createElement('div');
-      rootElement.tabIndex = 0;
-      document.body.appendChild(rootElement);
-      rootElement.attachShadow({ mode: 'open' });
-    });
-
-    afterEach(() => {
-      ReactDOM.unmountComponentAtNode(rootElement.shadowRoot);
-      document.body.removeChild(rootElement);
-    });
-
-    it('should set focus state for shadowRoot children', () => {
-      mount(<ButtonBase id="test-button">Hello</ButtonBase>, {
-        attachTo: rootElement.shadowRoot,
-      });
-      simulatePointerDevice();
-
-      const button = rootElement.shadowRoot.getElementById('test-button');
-      if (!button) {
-        throw new Error('missing button');
-      }
-
-      assert.strictEqual(button.classList.contains(classes.focusVisible), false);
-
-      focusVisible(button);
-
-      assert.strictEqual(button.classList.contains(classes.focusVisible), true);
     });
   });
 
