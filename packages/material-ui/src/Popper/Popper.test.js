@@ -10,7 +10,7 @@ import Popper from './Popper';
 describe('<Popper />', () => {
   let mount;
   const defaultProps = {
-    anchorEl: () => window.document.createElement('div'),
+    anchorEl: () => window.document.createElement('svg'),
     children: <span>Hello World</span>,
     open: true,
   };
@@ -212,7 +212,7 @@ describe('<Popper />', () => {
     it('should warn if anchorEl is not valid', () => {
       mount(<Popper {...defaultProps} open anchorEl={null} />);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.args()[0][0], 'It should be a HTMLElement instance');
+      assert.include(consoleErrorMock.args()[0][0], 'It should be an Element instance');
     });
 
     // it('should warn if anchorEl is not visible', () => {
