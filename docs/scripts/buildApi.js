@@ -150,6 +150,7 @@ async function buildDocs(options) {
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
+  reactAPI.strictModeReady = testInfo.strictModeReady;
 
   // if (reactAPI.name !== 'TableCell') {
   //   return;
