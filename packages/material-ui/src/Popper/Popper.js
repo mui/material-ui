@@ -174,7 +174,7 @@ Popper.propTypes = {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
-      if (resolvedAnchorEl instanceof HTMLElement) {
+      if (resolvedAnchorEl instanceof Element) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
@@ -195,7 +195,7 @@ Popper.propTypes = {
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
+            `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );
       }

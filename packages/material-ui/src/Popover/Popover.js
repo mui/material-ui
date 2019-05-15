@@ -219,9 +219,7 @@ class Popover extends React.Component {
     const resolvedAnchorEl = getAnchorEl(anchorEl);
     // If an anchor element wasn't provided, just use the parent body element of this Popover
     const anchorElement =
-      resolvedAnchorEl instanceof HTMLElement
-        ? resolvedAnchorEl
-        : ownerDocument(this.paperRef).body;
+      resolvedAnchorEl instanceof Element ? resolvedAnchorEl : ownerDocument(this.paperRef).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -379,7 +377,7 @@ Popover.propTypes = {
     if (props.open && props.anchorReference === 'anchorEl') {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
-      if (resolvedAnchorEl instanceof HTMLElement) {
+      if (resolvedAnchorEl instanceof Element) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
@@ -400,7 +398,7 @@ Popover.propTypes = {
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
+            `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );
       }
