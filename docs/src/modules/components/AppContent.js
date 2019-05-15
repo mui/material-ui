@@ -28,10 +28,19 @@ const styles = theme => ({
       maxWidth: 'calc(100% - 240px)',
     },
   },
+  blog: {
+    maxWidth: '100%',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 'calc(80%)',
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: 'calc(60%)',
+    },
+  },
 });
 
 function AppContent(props) {
-  const { className, classes, children, disableToc } = props;
+  const { blog, className, classes, children, disableToc } = props;
 
   return (
     <Container
@@ -40,6 +49,7 @@ function AppContent(props) {
       tabIndex={-1}
       className={clsx(classes.root, className, {
         [classes.disableToc]: disableToc,
+        [classes.blog]: blog,
       })}
     >
       {children}
@@ -48,6 +58,7 @@ function AppContent(props) {
 }
 
 AppContent.propTypes = {
+  blog: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,

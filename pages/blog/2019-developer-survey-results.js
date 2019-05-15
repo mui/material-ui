@@ -5,7 +5,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from './2019-developer-survey-results.md';
 
 function Page() {
-  return <MarkdownDocs markdown={markdown} disableAd disableEdit />;
+  return <MarkdownDocs markdown={markdown} blog disableAd disableEdit />;
 }
 
 export default Page;

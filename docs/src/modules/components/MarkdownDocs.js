@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { connect } from 'react-redux';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -41,6 +42,11 @@ const styles = theme => ({
     marginBottom: theme.spacing(2),
     padding: theme.spacing(0, 1),
   },
+  markdownElementBlog: {
+    fontFamily: 'Roboto Slab',
+    fontWeight: '300',
+    fontSize: ' 1.3rem',
+  },
   footer: {
     marginTop: theme.spacing(12),
   },
@@ -76,6 +82,7 @@ function flattenPages(pages, current = []) {
 
 function MarkdownDocs(props) {
   const {
+    blog,
     classes,
     disableAd,
     disableToc,
@@ -151,7 +158,7 @@ function MarkdownDocs(props) {
             </Portal>
           )}
 
-          <AppContent disableToc={disableToc} className={classes.root}>
+          <AppContent blog={blog} disableToc={disableToc} className={classes.root}>
             {!disableEdit ? (
               <div className={classes.header}>
                 <EditPage
@@ -206,7 +213,11 @@ function MarkdownDocs(props) {
               }
 
               return (
-                <MarkdownElement className={classes.markdownElement} key={index} text={content} />
+                <MarkdownElement
+                  className={clsx(classes.markdownElement, { [classes.markdownElementBlog]: blog })}
+                  key={index}
+                  text={content}
+                />
               );
             })}
             <footer className={classes.footer}>
@@ -253,6 +264,7 @@ function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  blog: PropTypes.bool,
   classes: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
   disableEdit: PropTypes.bool,
