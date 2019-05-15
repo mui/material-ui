@@ -30,7 +30,7 @@ const appList = [
     image: 'bethesda.jpg',
     link: 'https://bethesda.net/',
     similarWebVisits: 18600,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Better Business Bureau',
@@ -40,7 +40,7 @@ const appList = [
     image: 'bbb.jpg',
     link: 'https://www.bbb.org/',
     similarWebVisits: 11000,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'OpenClassrooms',
@@ -62,7 +62,7 @@ const appList = [
     image: 'leroymerlin.jpg',
     link: 'https://www.leroymerlin.it/',
     similarWebVisits: 4400,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Codementor',
@@ -81,7 +81,7 @@ const appList = [
     image: 'barks.jpg',
     link: 'https://www.barks.jp/',
     similarWebVisits: 2700,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'GovX',
@@ -122,7 +122,7 @@ const appList = [
     image: 'sweek.jpg',
     link: 'https://sweek.com/',
     similarWebVisits: 383,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Hijup',
@@ -140,7 +140,7 @@ const appList = [
     image: 'ifit.jpg',
     link: 'https://www.ifit.com/',
     similarWebVisits: 304,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'NEO Tracker',
@@ -148,7 +148,7 @@ const appList = [
     image: 'neotracker.jpg',
     link: 'https://neotracker.io/',
     similarWebVisits: 350,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'EQ3',
@@ -167,7 +167,7 @@ const appList = [
     image: 'housecall.jpg',
     link: 'https://pro.housecall.io/pro/log_in',
     similarWebVisits: 214,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'BitCambio',
@@ -177,7 +177,7 @@ const appList = [
     image: 'bitcambio.jpg',
     link: 'https://bitcambio.com.br/',
     similarWebVisits: 148,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'VMware CloudHealth',
@@ -198,7 +198,7 @@ const appList = [
     image: 'cityads.jpg',
     link: 'https://cityads.com/main',
     similarWebVisits: 132,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'EOS Toolkit',
@@ -210,7 +210,7 @@ const appList = [
     source: 'https://github.com/generEOS/eostoolkit',
     stars: 43,
     similarWebVisits: 123,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'The Media Ant',
@@ -220,7 +220,7 @@ const appList = [
     image: 'themediaant.jpg',
     link: 'https://www.themediaant.com/',
     similarWebVisits: 112,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Forex Bank',
@@ -238,7 +238,7 @@ const appList = [
     image: 'numerai.jpg',
     link: 'https://numer.ai/homepage',
     similarWebVisits: 65,
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'LocalMonero',
@@ -262,7 +262,7 @@ const appList = [
     description: 'Coaching sportif à domicile. 🇫🇷',
     image: 'fizix.jpg',
     link: 'https://www.fizix.io/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Venuemob',
@@ -279,7 +279,7 @@ const appList = [
       'and distribute it to millions of travellers.',
     image: 'odigeo.jpg',
     link: 'https://www.odigeoconnect.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'comet',
@@ -288,7 +288,7 @@ const appList = [
       'It’s fast, simple, and free for open source projects.',
     image: 'comet.jpg',
     link: 'https://www.comet.ml/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Pointer',
@@ -297,7 +297,7 @@ const appList = [
       'A Pointer faz parte da Portobello e atua no Nordeste do Brasil. 🇧🇷',
     image: 'pointer.jpg',
     link: 'https://www.pointer.com.br/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Oneplanetcrowd',
@@ -305,7 +305,7 @@ const appList = [
       'Oneplanetcrowd is Europe’s leading sustainable crowdfunding platform for People & Planet.',
     image: 'oneplanetcrowd.jpg',
     link: 'https://www.oneplanetcrowd.com/en',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'CollegeAI',
@@ -316,7 +316,7 @@ const appList = [
       'planner, and college chance calculator.',
     image: 'collegeai.jpg',
     link: 'https://collegeai.com',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'react-admin',
@@ -346,7 +346,7 @@ const appList = [
     description: 'The #1 workout journal for coaches and swimmers.',
     image: 'commitswimming.jpg',
     link: 'https://www.commitswimming.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'EventHi',
@@ -355,7 +355,7 @@ const appList = [
       'community. Use our easy ticketing system, sponsor, and sell merchandise.',
     image: 'eventhi.jpg',
     link: 'https://eventhi.io/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
@@ -372,7 +372,7 @@ const appList = [
     description: 'Discovery Channel Latin America. 🇪🇸',
     image: 'tudiscovery.jpg',
     link: 'https://www.tudiscovery.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Iceberg Finder',
@@ -381,21 +381,21 @@ const appList = [
       'IcebergFinder.com is your premier place for finding bergs in Newfoundland and Labrador.',
     image: 'icebergfinder.jpg',
     link: 'https://icebergfinder.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Rare Bits',
     description: 'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
     image: 'rarebits.jpg',
     link: 'https://rarebits.io/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Roast',
     description: 'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
     image: 'roast.jpg',
     link: 'https://www.roast.io/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Melbourne Mint',
@@ -404,7 +404,7 @@ const appList = [
       'for over 100 years.',
     image: 'melbournemint.jpg',
     link: 'https://melbournemint.com.au/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Pilcro',
@@ -428,14 +428,14 @@ const appList = [
       'It’s a platform to ask questions, learn the facts and share the truth.',
     image: 'metafact.jpg',
     link: 'https://metafact.io/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Arkopharma',
     description: 'Arkopharma Laboritories customer loyalty site. 🇫🇷',
     image: 'arkoclub.jpg',
     link: 'https://www.arkoclub.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Modole Language Exchange',
@@ -493,14 +493,14 @@ const appList = [
       'Customer management and contract management we service for the insurance industry. 🇯🇵',
     image: 'hkn.jpg',
     link: 'https://hkn.jp/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'One Shot Move',
     description: 'An LA based moving company.',
     image: 'oneshotmove.jpg',
     link: 'https://www.oneshotmove.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Fluxguard',
@@ -509,7 +509,7 @@ const appList = [
       'regression testing, synthetic transaction monitoring, and more.',
     image: 'fluxguard.jpg',
     link: 'https://fluxguard.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Magic Mondayz',
@@ -518,7 +518,7 @@ const appList = [
       'the human way.',
     image: 'magicmondayz.jpg',
     link: 'https://magicmondayz.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Typekev',
@@ -539,7 +539,7 @@ const appList = [
       'And the simplest.',
     image: 'flink.jpg',
     link: 'https://goflink.ch/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'DropDesk',
@@ -548,7 +548,7 @@ const appList = [
       'coworking spaces. Meet, work and gain a sense of community.',
     image: 'dropdesk.jpg',
     link: 'https://drop-desk.com/',
-    dateAdded: '2000-01-30',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Tentu',
