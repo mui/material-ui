@@ -1,4 +1,5 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import rerender from 'test/utils/rerender';
@@ -146,11 +147,6 @@ describe('<ButtonBase />', () => {
       instanceWrapper = wrapper.find('ButtonBase');
     });
 
-    it('should be enabled by default', () => {
-      const ripple = wrapper.find(TouchRipple);
-      assert.strictEqual(ripple.length, 1);
-    });
-
     it('should not have a focus ripple by default', () => {
       instanceWrapper.instance().ripple = { pulsate: spy() };
       instanceWrapper.setState({ focusVisible: true });
@@ -212,12 +208,31 @@ describe('<ButtonBase />', () => {
   });
 
   describe('focusRipple', () => {
-    let instanceWrapper;
+    const buttonRef = React.createRef();
     let wrapper;
 
     before(() => {
-      wrapper = mount(<ButtonBase focusRipple>Hello</ButtonBase>);
-      instanceWrapper = wrapper.find('ButtonBase');
+      wrapper = mount(
+        <>
+          <ButtonBase
+            focusRipple
+            focusVisibleClassName="focus-visible"
+            ref={buttonRef}
+            TouchRippleProps={{
+              classes: {
+                root: 'touch-ripple',
+                ripple: 'ripple',
+                ripplePulsate: 'ripple-pulsate',
+                rippleVisible: 'ripple-visible',
+                childLeaving: 'child-leaving',
+              },
+            }}
+          >
+            Hello
+          </ButtonBase>
+        </>,
+      );
+      simulatePointerDevice();
     });
 
     it('should be enabled by default', () => {
@@ -226,14 +241,15 @@ describe('<ButtonBase />', () => {
     });
 
     it('should pulsate the ripple when focusVisible', () => {
-      instanceWrapper.instance().ripple = { pulsate: spy() };
-      instanceWrapper.setState({ focusVisible: true });
+      act(() => {
+        focusVisible(buttonRef.current);
+      });
+      wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.pulsate.callCount, 1);
+      assert.strictEqual(wrapper.find('.ripple-pulsate').length, 1);
     });
 
     it('should not stop the ripple when the mouse leaves', () => {
-      instanceWrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('mouseLeave', {
         defaultPrevented: false,
         preventDefault() {
@@ -241,37 +257,44 @@ describe('<ButtonBase />', () => {
         },
       });
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 0);
+      assert.strictEqual(wrapper.find('.ripple-pulsate').length, 1);
     });
 
     it('should stop pulsate and start a ripple when the space button is pressed', () => {
-      instanceWrapper.instance().ripple = { stop: spy((event, cb) => cb()), start: spy() };
-      instanceWrapper.simulate('keyDown', {
-        key: ' ',
-        persist: () => {},
+      act(() => {
+        wrapper.find('button').simulate('keyDown', {
+          key: ' ',
+          persist: () => {},
+        });
       });
+      wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-      assert.strictEqual(instanceWrapper.instance().ripple.start.callCount, 1);
+      assert.strictEqual(wrapper.find('.ripple-pulsate .child-leaving').length, 1);
+      assert.strictEqual(wrapper.find('.ripple-visible').length, 2);
     });
 
     it('should stop and re-pulsate when space bar is released', () => {
-      instanceWrapper.instance().ripple = { stop: spy((event, cb) => cb()), pulsate: spy() };
-      wrapper.simulate('keyUp', {
-        key: ' ',
-        persist: () => {},
+      act(() => {
+        wrapper.simulate('keyUp', {
+          key: ' ',
+          persist: () => {},
+        });
       });
+      wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-      assert.strictEqual(instanceWrapper.instance().ripple.pulsate.callCount, 1);
+      assert.strictEqual(wrapper.find('.ripple-pulsate .child-leaving').length, 1);
+      assert.strictEqual(wrapper.find('.ripple-pulsate').length, 2);
+      assert.strictEqual(wrapper.find('.ripple-visible').length, 3);
     });
 
     it('should stop on blur and set focusVisible to false', () => {
-      instanceWrapper.instance().ripple = { stop: spy() };
-      wrapper.simulate('blur', {});
+      assert.strictEqual(wrapper.find('button.focus-visible').length, 1);
+      act(() => {
+        wrapper.simulate('blur', {});
+      });
+      wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-      assert.strictEqual(wrapper.find('button').hasClass(classes.focusVisible), false);
+      assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 3);
     });
   });
 
