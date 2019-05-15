@@ -147,7 +147,7 @@ yarn add @material-ui/styles@next
 
 ### Layout
 
-- [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
+- [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
 
   ```diff
     /**
