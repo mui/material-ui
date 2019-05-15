@@ -699,8 +699,8 @@ const appList = [
     title: 'Greenlink',
     description:
       'Point of sale and inventory management web app designed specifically for the cannabis industry. ' +
-      'Available via web browser or for iOS in the Apple App Store.',
-    link: 'https://greenlink.app/signup',
+      'Material-UI is used in both the browser and native iOS application environments.',
+    link: 'https://greenlink.app/muidemo',
     image: 'greenlink.png',
     dateAdded: '2019-05-13',
   },
