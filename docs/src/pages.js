@@ -197,6 +197,14 @@ const pages = [
       { pathname: '/discover-more/governance' },
     ],
   },
+  {
+    pathname: '/blog',
+    children: [
+      { pathname: '/blog/april-2019-update' },
+      { pathname: '/blog/march-2019-update' },
+      { pathname: '/blog/2019-developer-survey-results' },
+    ],
+  },
   { pathname: '/versions', displayNav: false },
   { pathname: '/', displayNav: false, title: false },
 ];
