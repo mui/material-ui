@@ -205,7 +205,7 @@ describe('<Button />', () => {
 
   describe('server-side', () => {
     // Only run the test on node.
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
 

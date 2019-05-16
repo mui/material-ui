@@ -197,11 +197,6 @@ describe('<Tabs />', () => {
       });
 
       it('should let the selected <Tab /> render the indicator server-side', () => {
-        // Only run the test on node.
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          return;
-        }
-
         const markup = render(
           <Tabs width="md" onChange={noop} value={1}>
             <Tab />
