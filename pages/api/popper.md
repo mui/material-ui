@@ -35,7 +35,7 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## Notes
 
-The component is StrictMode ready.
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

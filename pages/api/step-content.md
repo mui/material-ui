@@ -49,7 +49,7 @@ you need to use the following style sheet name: `MuiStepContent`.
 
 ## Notes
 
-The component is **not** StrictMode ready.
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

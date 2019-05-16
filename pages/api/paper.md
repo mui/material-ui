@@ -73,7 +73,7 @@ you need to use the following style sheet name: `MuiPaper`.
 
 ## Notes
 
-The component is StrictMode ready.
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

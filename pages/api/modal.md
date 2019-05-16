@@ -53,7 +53,7 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## Notes
 
-The component is **not** StrictMode ready.
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

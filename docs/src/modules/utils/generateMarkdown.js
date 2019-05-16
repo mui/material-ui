@@ -425,9 +425,14 @@ import ${reactAPI.name} from '${source}';
 
 function generateNotes(reactAPI) {
   const { strictModeReady } = reactAPI;
+  const strictModeLinked = '[StrictMode](https://reactjs.org/docs/strict-mode.html)';
   return `## Notes
 
-The component is${!strictModeReady ? ' **not**' : ''} StrictMode ready.
+The component ${
+    !strictModeReady
+      ? `can cause issues in ${strictModeLinked}`
+      : `is fully ${strictModeLinked} compatible`
+  }.
 
 `;
 }
