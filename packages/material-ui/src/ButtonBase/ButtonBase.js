@@ -104,7 +104,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     return ReactDOM.findDOMNode(buttonRef.current);
   }
 
-  const rippleRef = React.useRef();
+  const rippleRef = React.useRef(null);
 
   const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && focusVisible) {
@@ -134,7 +134,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
         },
       });
     }
-  }, [action, buttonRef]);
+  }, [action]);
 
   React.useEffect(() => {
     if (focusVisible && focusRipple && !disableRipple) {
