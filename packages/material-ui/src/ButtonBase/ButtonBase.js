@@ -54,7 +54,7 @@ export const styles = {
  */
 function useEventCallback(fn) {
   const ref = React.useRef(fn);
-  const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+  const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
   useEnhancedEffect(() => {
     ref.current = fn;
   });
@@ -121,7 +121,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
         ].join(' '),
       );
     }
-    return button;
+    return button.ownerDocument;
   }, []);
   const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
 
