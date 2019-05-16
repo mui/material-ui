@@ -70,15 +70,15 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const {
     action,
     buttonRef: buttonRefProp,
-    centerRipple,
+    centerRipple = false,
     children,
     classes,
     className: classNameProp,
-    component,
+    component = 'button',
     disabled,
-    disableRipple,
-    disableTouchRipple,
-    focusRipple,
+    disableRipple = false,
+    disableTouchRipple = false,
+    focusRipple = false,
     focusVisibleClassName,
     onBlur,
     onClick,
@@ -92,9 +92,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     onTouchEnd,
     onTouchMove,
     onTouchStart,
-    tabIndex,
+    tabIndex = 0,
     TouchRippleProps,
-    type,
+    type = 'button',
     ...other
   } = props;
 
@@ -449,16 +449,6 @@ ButtonBase.propTypes = {
    * This property passes the value to the `type` attribute of the native button component.
    */
   type: PropTypes.oneOf(['submit', 'reset', 'button']),
-};
-
-ButtonBase.defaultProps = {
-  centerRipple: false,
-  component: 'button',
-  disableRipple: false,
-  disableTouchRipple: false,
-  focusRipple: false,
-  tabIndex: 0,
-  type: 'button',
 };
 
 export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
