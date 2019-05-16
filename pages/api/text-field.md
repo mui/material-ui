@@ -85,6 +85,10 @@ Any other properties supplied will be provided to the root element ([FormControl
 The properties of the [FormControl](/api/form-control/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
 - [Autocomplete](/components/autocomplete/)

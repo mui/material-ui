@@ -103,6 +103,10 @@ for more detail.
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiGrid`.
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
 - [Grid](/components/grid/)

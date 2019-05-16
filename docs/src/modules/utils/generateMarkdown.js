@@ -423,6 +423,20 @@ import ${reactAPI.name} from '${source}';
 \`\`\``;
 }
 
+function generateNotes(reactAPI) {
+  const { strictModeReady } = reactAPI;
+  const strictModeLinked = '[StrictMode](https://reactjs.org/docs/strict-mode.html)';
+  return `## Notes
+
+The component ${
+    !strictModeReady
+      ? `can cause issues in ${strictModeLinked}`
+      : `is fully ${strictModeLinked} compatible`
+  }.
+
+`;
+}
+
 export default function generateMarkdown(reactAPI) {
   return [
     generateHeader(reactAPI),
@@ -440,6 +454,8 @@ export default function generateMarkdown(reactAPI) {
     '',
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
+    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateNotes(
+      reactAPI,
+    )}${generateDemos(reactAPI)}`,
   ].join('\n');
 }

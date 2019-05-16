@@ -51,6 +51,10 @@ The `ref` is forwarded to the root element.
 
 Any other properties supplied will be provided to the root element (native element).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
 - [Modal](/components/modal/)

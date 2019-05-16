@@ -58,3 +58,7 @@ class MyComponent extends React.Component {
 The component cannot hold a ref.
 
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
