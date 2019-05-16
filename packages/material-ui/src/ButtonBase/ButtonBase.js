@@ -148,10 +148,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
         eventCallback(event);
       }
 
-      const { current: ripple } = rippleRef;
       const ignore = event.defaultPrevented || skipRippleAction;
-      if (!ignore && ripple) {
-        ripple[rippleAction](event);
+      if (!ignore && rippleRef.current) {
+        rippleRef.current[rippleAction](event);
       }
 
       return true;
@@ -215,12 +214,17 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 
   const keydownRef = React.useRef(false);
   const handleKeyDown = useEventCallback(event => {
-    const { current: ripple } = rippleRef;
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !keydownRef.current && focusVisible && ripple && event.key === ' ') {
+    if (
+      focusRipple &&
+      !keydownRef.current &&
+      focusVisible &&
+      rippleRef.current &&
+      event.key === ' '
+    ) {
       keydownRef.current = true;
       event.persist();
-      ripple.stop(event, () => {
+      rippleRef.current.stop(event, () => {
         rippleRef.current.start(event);
       });
     }
@@ -245,11 +249,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
   });
   const handleKeyUp = useEventCallback(event => {
-    const { current: ripple } = rippleRef;
-    if (focusRipple && event.key === ' ' && ripple && focusVisible) {
+    if (focusRipple && event.key === ' ' && rippleRef.current && focusVisible) {
       keydownRef.current = false;
       event.persist();
-      ripple.stop(event, () => {
+      rippleRef.current.stop(event, () => {
         rippleRef.current.pulsate(event);
       });
     }
