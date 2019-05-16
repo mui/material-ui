@@ -14,13 +14,19 @@ import Popover, { getOffsetLeft, getOffsetTop } from './Popover';
 
 const mockedAnchorEl = () => {
   const div = document.createElement('div');
+  div.style = {
+    width: 100,
+    height: 100,
+    left: 160,
+    top: 160,
+  };
   stub(div, 'getBoundingClientRect').callsFake(() => ({
     width: 100,
     height: 58,
     left: 160,
-    right: 160,
     top: 160,
-    bottom: 160,
+    bottom: 218,
+    right: 260,
   }));
   return div;
 };
@@ -687,7 +693,7 @@ describe('<Popover />', () => {
               onEntering={handleEntering}
               marginThreshold={marginThreshold}
             >
-              <div />
+              <div style={{ height: 10, width: 10 }} />
             </Popover>,
           );
           positioningStyle = handleEntering.args[0][0].style;
