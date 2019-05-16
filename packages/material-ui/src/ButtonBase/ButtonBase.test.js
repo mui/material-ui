@@ -15,6 +15,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import * as PropTypes from 'prop-types';
 
 function focusVisible(element) {
+  element.blur();
   document.dispatchEvent(new window.Event('keydown'));
   element.focus();
 }
@@ -539,7 +540,7 @@ describe('<ButtonBase />', () => {
       it('prevents default with an anchor and empty href', () => {
         const onClickSpy = spy();
         const wrapper = mount(
-          <ButtonBase component="a" href="" onClick={onClickSpy}>
+          <ButtonBase component="a" onClick={onClickSpy}>
             Hello
           </ButtonBase>,
         );
