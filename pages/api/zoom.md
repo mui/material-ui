@@ -33,6 +33,10 @@ Any other properties supplied will be provided to the root element ([Transition]
 The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
 - [Buttons](/components/buttons/)

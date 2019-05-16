@@ -33,6 +33,10 @@ Any other properties supplied will be provided to the root element ([FormGroup](
 The properties of the [FormGroup](/api/form-group/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
 - [Radio Buttons](/components/radio-buttons/)

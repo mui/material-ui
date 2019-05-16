@@ -23,6 +23,10 @@ Kickstart an elegant, consistent, and simple baseline to build upon.
 The component cannot hold a ref.
 
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
 - [Css Baseline](/components/css-baseline/)

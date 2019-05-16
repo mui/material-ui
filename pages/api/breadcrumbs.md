@@ -30,6 +30,10 @@ The `ref` is forwarded to the root element.
 
 Any other properties supplied will be provided to the root element (native element).
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
 - [Breadcrumbs](/components/breadcrumbs/)

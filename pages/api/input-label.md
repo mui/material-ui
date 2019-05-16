@@ -66,6 +66,10 @@ you need to use the following style sheet name: `MuiInputLabel`.
 The properties of the [FormLabel](/api/form-label/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
 - [Text Fields](/components/text-fields/)
