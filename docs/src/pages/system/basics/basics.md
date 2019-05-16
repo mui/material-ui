@@ -139,94 +139,21 @@ If you are already using `@material-ui/core`, we encourage you to start with the
 **All** the properties are responsive, we support 3 different APIs.
 It uses this default, but customizable, breakpoints theme structure:
 
-```js
-const values = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920,
-};
-
-const theme = {
-  breakpoints: {
-    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-    up: key => `@media (min-width:${values[key]}px)`,
-  },
-};
-```
+{{"demo": "pages/system/basics/ResponsiveValues.js", "defaultCodeOpen": true}}
 
 ### Array
 
-```jsx
-<Box p={[2, 3, 4]} />
-
-/**
- * Outputs:
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
+{{"demo": "pages/system/basics/ArrayApi.js", "defaultCodeOpen": true}}
 
 ### Object
 
-```jsx
-<Box p={{ xs: 2, sm: 3, md: 4 }} />
-
-/**
- * Outputs:
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
+{{"demo": "pages/system/basics/ObjectApi.js", "defaultCodeOpen": true}}
 
 ### Collocation
 
 If you want to group the breakpoint values, you can use our `breakpoints()` helper.
 
-```jsx
-import { compose, spacing, palette, breakpoints } from '@material-ui/system';
-import styled from 'styled-components';
-
-const Box = styled.div`
-  ${breakpoints(
-    compose(
-      spacing,
-      palette,
-    ),
-  )}
-`;
-
-<Box
-  p={2}
-  sm={{ p: 3 } }
-  md={{ p: 4 } }
-/>
-
-/**
- * Outputs:
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
+{{"demo": "pages/system/basics/CollocationApi.js", "defaultCodeOpen": true}}
 
 ## Custom style props
 
