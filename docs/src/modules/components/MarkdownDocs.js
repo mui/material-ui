@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { connect } from 'react-redux';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -41,6 +42,21 @@ const styles = theme => ({
     marginBottom: theme.spacing(2),
     padding: theme.spacing(0, 1),
   },
+  markdownElementBlog: {
+    maxWidth: 700,
+    margin: 'auto',
+    padding: 0,
+    fontSize: theme.typography.pxToRem(18),
+    fontFamily: `Roboto Slab, ${theme.typography.fontFamily}`,
+    fontWeight: 300,
+    '& p, & ul, & ol': {
+      lineHeight: 1.7,
+    },
+    '& strong': {
+      fontWeight: 400,
+      fontFamily: theme.typography.fontFamily,
+    },
+  },
   footer: {
     marginTop: theme.spacing(12),
   },
@@ -76,9 +92,11 @@ function flattenPages(pages, current = []) {
 
 function MarkdownDocs(props) {
   const {
+    blog,
     classes,
     disableAd,
     disableToc,
+    disableEdit,
     markdown: markdownProp,
     markdownLocation: markdownLocationProp,
     req,
@@ -149,10 +167,16 @@ function MarkdownDocs(props) {
               <Ad />
             </Portal>
           )}
+
           <AppContent disableToc={disableToc} className={classes.root}>
-            <div className={classes.header}>
-              <EditPage markdownLocation={markdownLocation} />
-            </div>
+            {!disableEdit ? (
+              <div className={classes.header}>
+                <EditPage
+                  markdownLocation={markdownLocation}
+                  sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
+                />
+              </div>
+            ) : null}
             {contents.map((content, index) => {
               if (demos && demoRegexp.test(content)) {
                 let demoOptions;
@@ -199,7 +223,11 @@ function MarkdownDocs(props) {
               }
 
               return (
-                <MarkdownElement className={classes.markdownElement} key={index} text={content} />
+                <MarkdownElement
+                  className={clsx(classes.markdownElement, { [classes.markdownElementBlog]: blog })}
+                  key={index}
+                  text={content}
+                />
               );
             })}
             <footer className={classes.footer}>
@@ -246,8 +274,10 @@ function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  blog: PropTypes.bool,
   classes: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
+  disableEdit: PropTypes.bool,
   disableToc: PropTypes.bool,
   markdown: PropTypes.string,
   // You can define the direction location of the markdown file.

@@ -16,7 +16,7 @@ const styles = theme => ({
     },
     [theme.breakpoints.up('lg')]: {
       paddingLeft: theme.spacing(6),
-      paddingRight: theme.spacing(5),
+      paddingRight: theme.spacing(6),
       maxWidth: 'calc(100% - 175px - 240px)',
     },
   },
