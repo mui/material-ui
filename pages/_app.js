@@ -11,6 +11,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import NextHead from 'next/head';
 
 // Add the strict mode back once the number of warnings is manageable.
 // We might miss important warnings by keeping the strict mode 🌊🌊🌊.
@@ -100,8 +101,20 @@ class MyApp extends App {
     // console.log(pages, { ...router, pathname })
     const activePage = findActivePage(pages, pathname);
 
+    let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500'];
+    if (pathname.match(/onepirate/)) {
+      fonts = ['https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400'];
+    } else if (pathname.match(/blog/)) {
+      fonts.push('https://fonts.googleapis.com/css?family=Roboto+Slab:300');
+    }
+
     return (
       <ReactMode>
+        <NextHead>
+          {fonts.map(font => (
+            <link rel="stylesheet" href={font} key={font} />
+          ))}
+        </NextHead>
         <Container>
           <ReduxProvider store={this.redux}>
             <PageContext.Provider value={{ activePage, pages }}>

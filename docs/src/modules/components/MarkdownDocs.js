@@ -46,9 +46,15 @@ const styles = theme => ({
     maxWidth: 700,
     margin: 'auto',
     padding: 0,
-    fontSize: theme.typography.pxToRem(17),
+    fontSize: theme.typography.pxToRem(18),
+    fontFamily: `Roboto Slab, ${theme.typography.fontFamily}`,
+    fontWeight: 300,
     '& p, & ul, & ol': {
-      lineHeight: 1.8,
+      lineHeight: 1.7,
+    },
+    '& strong': {
+      fontWeight: 400,
+      fontFamily: theme.typography.fontFamily,
     },
   },
   footer: {
