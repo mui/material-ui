@@ -10,9 +10,9 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 
 - [Figma UI Kit](https://material.5ly.co/) for Material-UI.
 
-## Material-UI Specific Projects
+## Libraries
 
-This is a collection of Material-UI specific projects that we couldn't better contextualize in the documentation pages.
+This is a collection of projects that we couldn't better contextualize in the documentation pages.
 
 - [Advanced Filter Builder](https://github.com/logipro/logi-filter-builder) Component will help your users create powerful filter criterias.
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Online tool for creating Material-UI themes via Material Design Color Tool
