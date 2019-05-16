@@ -168,6 +168,9 @@ const styles = theme => ({
     '& p, & ul, & ol': {
       lineHeight: 1.6,
     },
+    '& ul': {
+      paddingLeft: 30,
+    },
     '& h1, & h2, & h3, & h4': {
       '& code': {
         fontSize: 'inherit',

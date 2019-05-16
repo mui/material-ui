@@ -46,10 +46,8 @@ const styles = theme => ({
     maxWidth: 700,
     margin: 'auto',
     padding: 0,
-    fontFamily: 'Roboto Slab',
-    fontWeight: 300,
-    fontSize: ' 1.1875rem',
-    '& p': {
+    fontSize: theme.typography.pxToRem(17),
+    '& p, & ul, & ol': {
       lineHeight: 1.8,
     },
   },

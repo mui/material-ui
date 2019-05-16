@@ -77,9 +77,6 @@ class MyDocument extends Document {
             />
           ))}
           <link rel="stylesheet" href={font} />
-          {url.match(/blog/) ? (
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300" />
-          ) : null}
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.
