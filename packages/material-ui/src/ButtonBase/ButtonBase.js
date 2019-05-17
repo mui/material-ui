@@ -125,16 +125,16 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   }, []);
   const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
 
-  React.useEffect(() => {
-    if (action) {
-      action({
-        focusVisible: () => {
-          setFocusVisible(true);
-          buttonRef.current.focus();
-        },
-      });
-    }
-  }, [action]);
+  React.useImperativeHandle(
+    action,
+    () => ({
+      focusVisible: () => {
+        setFocusVisible(true);
+        buttonRef.current.focus();
+      },
+    }),
+    [],
+  );
 
   React.useEffect(() => {
     if (focusVisible && focusRipple && !disableRipple) {
