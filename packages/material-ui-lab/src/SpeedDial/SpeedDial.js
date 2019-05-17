@@ -75,16 +75,19 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     children: childrenProp,
     classes,
     className: classNameProp,
-    hidden,
+    hidden = false,
     icon: iconProp,
     onClick,
     onClose,
     onKeyDown,
     open,
-    direction,
+    direction = 'up',
     openIcon,
-    TransitionComponent,
-    transitionDuration,
+    TransitionComponent = Zoom,
+    transitionDuration = {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
     TransitionProps,
     ...other
   } = props;
@@ -141,21 +144,21 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
   const handleKeyboardNavigation = event => {
     const key = keycode(event);
-    const { current: nextItemArrowKeyValue = key } = nextItemArrowKey;
-    // const nextItemArrowKeyValue = nextItemArrowKey.current || key
+    const { current: nextItemArrowKeyCurrent = key } = nextItemArrowKey;
+
     if (key === 'esc') {
       closeActions(event, key);
     } else if (utils.sameOrientation(key, direction)) {
       event.preventDefault();
 
-      const actionStep = key === nextItemArrowKeyValue ? 1 : -1;
+      const actionStep = key === nextItemArrowKeyCurrent ? 1 : -1;
 
       // stay within array indices
       const nextAction = clamp(focusedAction.current + actionStep, 0, actions.current.length - 1);
       const nextActionRef = actions.current[nextAction];
       nextActionRef.focus();
       focusedAction.current = nextAction;
-      nextItemArrowKey.current = nextItemArrowKeyValue;
+      nextItemArrowKey.current = nextItemArrowKeyCurrent;
     }
 
     if (onKeyDown) {
@@ -351,16 +354,6 @@ SpeedDial.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-SpeedDial.defaultProps = {
-  hidden: false,
-  direction: 'up',
-  TransitionComponent: Zoom,
-  transitionDuration: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withStyles(styles, { name: 'MuiSpeedDial' })(SpeedDial);
