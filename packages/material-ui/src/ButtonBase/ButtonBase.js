@@ -143,7 +143,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   }, [disableRipple, focusRipple, focusVisible]);
 
   function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
-    function handleClient(event) {
+    return useEventCallback(event => {
       if (eventCallback) {
         eventCallback(event);
       }
@@ -154,11 +154,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       }
 
       return true;
-    }
-
-    function handleServer() {}
-
-    return useEventCallback(typeof window === 'undefined' ? handleServer : handleClient);
+    });
   }
 
   const handleMouseDown = useRippleHandler('start', onMouseDown);
