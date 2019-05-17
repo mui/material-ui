@@ -10,18 +10,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     width: '100%',
     display: 'flex',
-    justifyContent: 'space-evenly',
+    // justifyContent: 'space-evenly',
   },
   group: {
     display: 'inline-flex',
     borderRadius: 4,
-    boxShadow: theme.shadows[2],
   },
-}));
+});
 
 const options = [
   'Create a merge commit',
@@ -57,28 +56,42 @@ function MenuListComposition() {
   }
 
   return (
-    <Grid container className={classes.roo}>
-      <Grid item xs="12" md="6" align="center">
+    <Grid container className={classes.root}>
+      <Grid item xs="12" md="4" align="center">
         <div className={classes.group}>
-          <Button variant="grouped" onClick={handleClick}>
+          <Button grouped variant="outlined" color="primary">
             One
           </Button>
-          <Button variant="grouped" onClick={handleClick}>
+          <Button grouped variant="outlined" color="primary">
             Two
           </Button>
-          <Button variant="grouped" onClick={handleClick}>
+          <Button grouped variant="outlined" color="primary">
             Three
           </Button>
         </div>
       </Grid>
-      <Grid item xs="12" md="6" align="center">
+      <Grid item xs="12" md="4" align="center">
+        <div className={classes.group}>
+          <Button grouped variant="contained">
+            One
+          </Button>
+          <Button grouped variant="contained">
+            Two
+          </Button>
+          <Button grouped variant="contained">
+            Three
+          </Button>
+        </div>
+      </Grid>
+      <Grid item xs="12" md="4" align="center">
         <div className={classes.group} ref={anchorRef}>
-          <Button color="primary" variant="grouped" onClick={handleClick}>
+          <Button grouped color="primary" variant="contained" onClick={handleClick}>
             {options[selectedIndex]}
           </Button>
           <Button 
-            color="primary" 
-            variant="grouped" 
+            grouped
+            color="primary"
+            variant="contained"
             size="small" 
             aria-owns={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"

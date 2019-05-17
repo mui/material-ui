@@ -135,23 +135,22 @@ export const styles = theme => ({
   },
   grouped: {
     minWidth: 40,
-    backgroundColor: theme.palette.grey[300],
-    borderRight: `1px solid ${theme.palette.grey[400]}`,
-    borderRadius: 0,
-    '&:first-child': {
-      borderTopLeftRadius: theme.shape.borderRadius,
-      borderBottomLeftRadius: theme.shape.borderRadius,
+    // border: `1px solid ${theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
+    '&:not(:first-child)': {
+      borderLeft: 'none',
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
     },
-    '&:last-child': {
-      borderTopRightRadius: theme.shape.borderRadius,
-      borderBottomRightRadius: theme.shape.borderRadius,
+    '&:not(:last-child)': {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
     },
   },
   groupedPrimary: {
-    borderRight: `1px solid ${theme.palette.primary.dark}`,
+    // borderRight: `1px solid ${theme.palette.primary.dark}`,
   },
   groupedSecondary: {
-    borderRight: `1px solid ${theme.palette.secondary.dark}`,
+    // borderRight: `1px solid ${theme.palette.secondary.dark}`,
   },
   /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
   containedPrimary: {
@@ -213,6 +212,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     disableFocusRipple = false,
     focusVisibleClassName,
     fullWidth = false,
+    grouped = false,
     size = 'medium',
     type = 'button',
     variant = 'text',
@@ -220,7 +220,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   } = props;
 
   const contained = variant === 'contained';
-  const grouped = variant === 'grouped';
+  // const grouped = variant === 'grouped';
   const text = variant === 'text';
   const className = clsx(
     classes.root,
@@ -229,8 +229,8 @@ const Button = React.forwardRef(function Button(props, ref) {
       [classes.textPrimary]: text && color === 'primary',
       [classes.textSecondary]: text && color === 'secondary',
       [classes.contained]: contained,
-      [classes.containedPrimary]: (contained || grouped) && color === 'primary',
-      [classes.containedSecondary]: (contained || grouped) && color === 'secondary',
+      [classes.containedPrimary]: contained && color === 'primary',
+      [classes.containedSecondary]: contained && color === 'secondary',
       [classes.outlined]: variant === 'outlined',
       [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
       [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
@@ -308,6 +308,10 @@ Button.propTypes = {
    * If `true`, the button will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
+    /**
+   * If `true`, the button will act as a grouped button.
+   */
+  grouped: PropTypes.bool,
   /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
