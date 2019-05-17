@@ -85,6 +85,8 @@ module.exports = {
     'react/sort-prop-types': 'error',
 
     'import/no-extraneous-dependencies': 'off', // It would be better to enable this rule.
+    // does not work with wildcard imports. Mistakes will throw at runtime anyway
+    'import/named': false,
     'import/namespace': ['error', { allowComputed: true }],
     'import/order': [
       'error',

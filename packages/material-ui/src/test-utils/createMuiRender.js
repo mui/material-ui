@@ -23,7 +23,8 @@ function muiRender(element, options = {}) {
    * convenience helper. Better than repeating all props.
    */
   result.setProps = function setProps(props) {
-    return render(React.cloneElement(element, props), { wrapper: TestWrapper });
+    result.rerender(React.cloneElement(element, props));
+    return result;
   };
 
   return result;
