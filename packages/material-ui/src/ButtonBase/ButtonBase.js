@@ -156,9 +156,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       return true;
     }
 
-    function handleServer() {
-      return () => {};
-    }
+    function handleServer() {}
 
     return useEventCallback(typeof window === 'undefined' ? handleServer : handleClient);
   }
