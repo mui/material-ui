@@ -92,10 +92,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     ...other
   } = props;
 
-   /**
+  /**
    * an index in actions.current
    */
-  const focusedAction = React.useRef(0)
+  const focusedAction = React.useRef(0);
 
   /**
    * pressing this key while the focus is on a child SpeedDialAction focuses
@@ -132,7 +132,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
         origButtonRef(buttonRef);
       }
     };
-  }
+  };
 
   const closeActions = (event, key) => {
     actions.current[0].focus();
@@ -140,7 +140,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     if (onClose) {
       onClose(event, key);
     }
-  }
+  };
 
   const handleKeyboardNavigation = event => {
     const key = keycode(event);
@@ -165,7 +165,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
       onKeyDown(event, key);
     }
   };
-
 
   // actions were closed while navigation state was not reset
   if (!open && nextItemArrowKey.current !== undefined) {
@@ -237,11 +236,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
   }
 
   return (
-    <div
-      className={clsx(classes.root, actionsPlacementClass, classNameProp)}
-      ref={ref}
-      {...other}
-    >
+    <div className={clsx(classes.root, actionsPlacementClass, classNameProp)} ref={ref} {...other}>
       <TransitionComponent
         in={!hidden}
         timeout={transitionDuration}
@@ -267,17 +262,13 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
         id={`${id}-actions`}
         role="menu"
         aria-orientation={orientation}
-        className={clsx(
-          classes.actions,
-          { [classes.actionsClosed]: !open },
-          actionsPlacementClass,
-        )}
+        className={clsx(classes.actions, { [classes.actionsClosed]: !open }, actionsPlacementClass)}
       >
         {children}
       </div>
     </div>
   );
-})
+});
 
 SpeedDial.propTypes = {
   /**
