@@ -149,7 +149,7 @@ describe('<ButtonBase />', () => {
 
       before(() => {
         wrapper = mount(
-          <>
+          <React.Fragment>
             <ButtonBase
               ref={buttonRef}
               TouchRippleProps={{
@@ -165,7 +165,7 @@ describe('<ButtonBase />', () => {
             >
               Hello
             </ButtonBase>
-          </>,
+          </React.Fragment>,
         );
         simulatePointerDevice();
       });
@@ -255,7 +255,7 @@ describe('<ButtonBase />', () => {
 
     before(() => {
       wrapper = mount(
-        <>
+        <React.Fragment>
           <ButtonBase
             focusRipple
             focusVisibleClassName="focus-visible"
@@ -272,7 +272,7 @@ describe('<ButtonBase />', () => {
           >
             Hello
           </ButtonBase>
-        </>,
+        </React.Fragment>,
       );
       simulatePointerDevice();
     });
@@ -424,11 +424,11 @@ describe('<ButtonBase />', () => {
       const onFocusVisibleSpy = spy();
       const buttonRef = React.createRef();
       mount(
-        <>
+        <React.Fragment>
           <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy} ref={buttonRef}>
             Hello
           </ButtonBase>
-        </>,
+        </React.Fragment>,
       );
       simulatePointerDevice();
 
