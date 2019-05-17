@@ -31,7 +31,7 @@ export interface FontStyleOptions extends Partial<FontStyle> {
 }
 
 export type TypographyStyle = Required<
-  Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'color'>
+  Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'fontStyle' | 'color'>
 > &
   Partial<Pick<CSSProperties, 'letterSpacing' | 'lineHeight' | 'textTransform'>>;
 
