@@ -31,6 +31,9 @@ function createDOM() {
         global[key] = dom.window[key];
       }
     });
+
+  // required for react-testing-library
+  window.Date = global.Date;
 }
 
 module.exports = createDOM;
