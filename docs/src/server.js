@@ -3,12 +3,9 @@ const http = require('http');
 const express = require('express');
 const url = require('url');
 const next = require('next');
-const handleKillSignals = require('../../modules/handleKillSignals');
-const helpers = require('./modules/utils/helpers');
+const { addTeardown } = require('../../modules/handleKillSignals');
+const { pathnameToLanguage } = require('./modules/utils/helpers');
 const log = require('../../modules/log');
-
-const { addTeardown } = handleKillSignals;
-const { pathnameToLanguage } = helpers;
 
 const nextApp = next({
   dev: process.env.NODE_ENV !== 'production',

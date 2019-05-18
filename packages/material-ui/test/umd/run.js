@@ -4,10 +4,8 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const expect = require('expect-puppeteer');
-const handleKillSignals = require('../../../../modules/handleKillSignals');
+const { addTeardown, shutdown } = require('../../../../modules/handleKillSignals');
 const log = require('../../../../modules/log');
-
-const { addTeardown, shutdown } = handleKillSignals;
 
 const port = 3090;
 const host = '0.0.0.0';

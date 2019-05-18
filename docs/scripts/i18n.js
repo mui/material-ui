@@ -2,10 +2,8 @@
 
 const path = require('path');
 const fse = require('fs-extra');
-const helpers = require('../src/modules/utils/helpers');
+const { pageToTitle } = require('../src/modules/utils/helpers');
 const pages = require('../src/pages');
-
-const { pageToTitle } = helpers;
 
 async function run() {
   try {
