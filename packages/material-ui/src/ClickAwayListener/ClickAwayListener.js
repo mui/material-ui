@@ -118,7 +118,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 ClickAwayListener.defaultProps = {
-  mouseEvent: 'onMouseUp',
+  mouseEvent: 'onClick',
   touchEvent: 'onTouchEnd',
 };
 
