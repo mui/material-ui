@@ -1,8 +1,6 @@
 const babel = require('@babel/core');
-const fse = require('fs-extra');
+const { readFile } = require('fs-extra');
 const path = require('path');
-
-const { readFile } = fse;
 
 const workspaceRoot = path.join(__dirname, '../../../../');
 const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');

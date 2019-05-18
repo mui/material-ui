@@ -1,11 +1,11 @@
 /* eslint-disable react/forbid-foreign-prop-types, no-underscore-dangle */
 
-import { parse as parseDoctrine } from 'doctrine';
-import recast from 'recast';
-import { parse as docgenParse } from 'react-docgen';
-import { Router } from 'next/router';
-import { pageToTitle } from './helpers';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+const doctrine = require('doctrine');
+const recast = require('recast');
+const reactDocs = require('react-docgen');
+const { Router } = require('next/router');
+const { pageToTitle } = require('./helpers');
+const { LANGUAGES_IN_PROGRESS } = require('../constants');
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
 const PATH_REPLACE_REGEX = /\\/g;
@@ -42,7 +42,7 @@ function getChained(type) {
     const indexStart = type.raw.indexOf(marker);
 
     if (indexStart !== -1) {
-      const parsed = docgenParse(
+      const parsed = reactDocs.parse(
         `
         import PropTypes from 'prop-types';
         const Foo = () => <div />
@@ -94,7 +94,7 @@ function generatePropDescription(prop) {
     }
   }
 
-  const parsed = parseDoctrine(description, {
+  const parsed = doctrine.parse(description, {
     sloppy: true,
   });
 
@@ -437,7 +437,7 @@ The component ${
 `;
 }
 
-export default function generateMarkdown(reactAPI) {
+function generateMarkdown(reactAPI) {
   return [
     generateHeader(reactAPI),
     '',
@@ -459,3 +459,5 @@ export default function generateMarkdown(reactAPI) {
     )}${generateDemos(reactAPI)}`,
   ].join('\n');
 }
+
+module.exports = generateMarkdown;

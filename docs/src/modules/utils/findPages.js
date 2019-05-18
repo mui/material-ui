@@ -1,6 +1,6 @@
-const find = require('./find');
+const { findPages } = require('./find');
 
-const pages = find.findPages({
+const pages = findPages({
   front: true,
 });
 
