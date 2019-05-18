@@ -41,9 +41,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AppDrawerNavItem(props) {
-  const { children, depth, href, onClick, openImmediately, title, ...other } = props;
-  const [open, setOpen] = React.useState(openImmediately);
+  const {
+    children,
+    depth,
+    href,
+    onClick,
+    openImmediately = false,
+    topLevel = false,
+    title,
+    ...other
+  } = props;
   const classes = useStyles();
+  const [open, setOpen] = React.useState(openImmediately);
 
   const handleClick = () => {
     setOpen(oldOpen => !oldOpen);
@@ -77,7 +86,7 @@ function AppDrawerNavItem(props) {
       <Button
         classes={{
           root: classes.button,
-          label: openImmediately ? 'algolia-lvl0' : '',
+          label: topLevel ? 'algolia-lvl0' : '',
         }}
         onClick={handleClick}
         style={style}
@@ -98,10 +107,7 @@ AppDrawerNavItem.propTypes = {
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
   title: PropTypes.string.isRequired,
-};
-
-AppDrawerNavItem.defaultProps = {
-  openImmediately: false,
+  topLevel: PropTypes.bool,
 };
 
 export default AppDrawerNavItem;
