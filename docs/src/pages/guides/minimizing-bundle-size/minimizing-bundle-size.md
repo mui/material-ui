@@ -46,7 +46,7 @@ While importing directly in this manner doesn't use the exports in [`@material-u
 Be aware that we only support first and second leve imports. Anything below is considered
 private and can cause module duplication in your bundle.
 
-````js
+```js
 // OK
 import { Add as AddIcon } from '@material-ui/icons';
 import { Tabs } from '@material-ui/core';
@@ -60,13 +60,12 @@ import Tabs from '@material-ui/core/Tabs';
 // NOT OK
 import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 3rd level
-
+```
 
 ### Option 2
 
-**Important note**:
-This is only supported for `@material-ui/icons`. We recommend this approach if
-you often restart your development build.
+**Important note**: This is only supported for `@material-ui/icons`.
+We recommend this approach if you often restart your development build.
 
 Another option is to keep using named imports, but still have shorter
 start up times by using `babel` plugins.
@@ -113,4 +112,3 @@ necessary features. If you need support for other browsers, consider using
 [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
 ⚠️ In order to minimize duplication of code in users' bundles, we **strongly discourage** library authors from using the `/es` folder.
-````
