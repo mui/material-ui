@@ -108,24 +108,21 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
   });
 
   return (
-    <Component className={className} ref={ref} {...other}>
+    <Component role="group" className={className} ref={ref} {...other}>
       {React.Children.map(children, child => {
         if (!React.isValidElement(child)) {
           return null;
         }
-        if (child.type.options && child.type.options.name === 'MuiButton') {
-          return React.cloneElement(child, {
-            classes: Object.assign({ root: buttonClassName }, child.props.classes),
-            disabled: child.props.disabled || disabled,
-            color,
-            disableFocusRipple,
-            disableRipple,
-            fullWidth,
-            size: child.props.size || size,
-            variant,
-          });
-        }
-        return child;
+        return React.cloneElement(child, {
+          classes: Object.assign({ root: buttonClassName }, child.props.classes),
+          disabled: child.props.disabled || disabled,
+          color,
+          disableFocusRipple,
+          disableRipple,
+          fullWidth,
+          size: child.props.size || size,
+          variant,
+        });
       })}
     </Component>
   );

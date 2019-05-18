@@ -52,9 +52,13 @@ or a higher emphasis alternative to text buttons.
 
 ## Grouped Buttons
 
+The ButtonGroup component can be used to group outlined (the default) or contained buttons.
+
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
 ## Split Button
+
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to trigger some related action.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 

@@ -47,6 +47,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.contained), false);
     assert.strictEqual(wrapper.hasClass(classes.fullWidth), false);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.grouped), true);
   });
 
   it('should render an outlined button', () => {
@@ -55,8 +56,10 @@ describe('<ButtonGroup />', () => {
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
+    console.log(wrapper);
     assert.strictEqual(wrapper.childAt(0).props().variant, 'outlined');
     assert.strictEqual(wrapper.childAt(0).props().color, 'default');
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.grouped), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlined), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlinedPrimary), false);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlinedSecondary), false);
@@ -70,6 +73,7 @@ describe('<ButtonGroup />', () => {
     );
     assert.strictEqual(wrapper.childAt(0).props().variant, 'outlined');
     assert.strictEqual(wrapper.childAt(0).props().color, 'primary');
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.grouped), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlined), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlinedPrimary), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlinedSecondary), false);
@@ -83,6 +87,7 @@ describe('<ButtonGroup />', () => {
     );
     assert.strictEqual(wrapper.childAt(0).props().variant, 'outlined');
     assert.strictEqual(wrapper.childAt(0).props().color, 'secondary');
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.grouped), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlined), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlinedPrimary), false);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedOutlinedSecondary), true);
@@ -97,6 +102,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(wrapper.childAt(0).props().variant, 'contained');
     assert.strictEqual(wrapper.childAt(0).props().color, 'default');
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.grouped), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContained), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContainedPrimary), false);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContainedSecondary), false);
@@ -111,6 +117,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(wrapper.childAt(0).props().variant, 'contained');
     assert.strictEqual(wrapper.childAt(0).props().color, 'primary');
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.grouped), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContained), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContainedPrimary), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContainedSecondary), false);
@@ -125,6 +132,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(wrapper.childAt(0).props().variant, 'contained');
     assert.strictEqual(wrapper.childAt(0).props().color, 'secondary');
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.grouped), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContained), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContainedPrimary), false);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.groupedContainedSecondary), true);

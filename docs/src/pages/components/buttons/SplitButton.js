@@ -58,7 +58,7 @@ function SplitButton() {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12} align="center">
-        <ButtonGroup variant="contained" color="primary">
+        <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="Split button">
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
             color="primary"
@@ -70,34 +70,34 @@ function SplitButton() {
           >
             <ArrowDropDownIcon />
           </Button>
-          <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-                }}
-              >
-                <Paper id="menu-list-grow">
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList>
-                      {options.map((option, index) => (
-                        <MenuItem
-                          key={option}
-                          disabled={index === 2}
-                          selected={index === selectedIndex}
-                          onClick={event => handleMenuItemClick(event, index)}
-                        >
-                          {option}
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
         </ButtonGroup>
+        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+              }}
+            >
+              <Paper id="menu-list-grow">
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList>
+                    {options.map((option, index) => (
+                      <MenuItem
+                        key={option}
+                        disabled={index === 2}
+                        selected={index === selectedIndex}
+                        onClick={event => handleMenuItemClick(event, index)}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
       </Grid>
     </Grid>
   );
