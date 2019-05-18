@@ -1,4 +1,4 @@
-import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+const findPages = require('./modules/utils/findPages');
 
 const pages = [
   {
@@ -209,4 +209,4 @@ const pages = [
   { pathname: '/', displayNav: false, title: false },
 ];
 
-export default pages;
+module.exports = pages;

@@ -74,7 +74,7 @@ function fastAndSafeJsonStringify(object) {
   }
 }
 
-export function logMethod(process, console, type) {
+function logMethod(process, console, type) {
   return object => {
     const { name, msg, force = false } = object;
     let formatedMsg = msg;
@@ -144,4 +144,4 @@ const log = {
   fatal: logMethod(process, console, 'fatal'),
 };
 
-export default log;
+module.exports = log;

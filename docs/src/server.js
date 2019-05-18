@@ -1,11 +1,14 @@
-import address from 'address';
-import http from 'http';
-import express from 'express';
-import url from 'url';
-import next from 'next';
-import { addTeardown } from 'modules/handleKillSignals';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import log from 'modules/log';
+const address = require('address');
+const http = require('http');
+const express = require('express');
+const url = require('url');
+const next = require('next');
+const handleKillSignals = require('../../modules/handleKillSignals');
+const helpers = require('./modules/utils/helpers');
+const log = require('../../modules/log');
+
+const { addTeardown } = handleKillSignals;
+const { pathnameToLanguage } = helpers;
 
 const nextApp = next({
   dev: process.env.NODE_ENV !== 'production',

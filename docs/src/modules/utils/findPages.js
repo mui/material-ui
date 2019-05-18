@@ -1,7 +1,7 @@
-import { findPages } from 'docs/src/modules/utils/find';
+const find = require('./find');
 
-const pages = findPages({
+const pages = find.findPages({
   front: true,
 });
 
-export default pages;
+module.exports = pages;

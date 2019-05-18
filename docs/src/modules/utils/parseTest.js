@@ -1,6 +1,8 @@
-import * as babel from '@babel/core';
-import { readFile } from 'fs-extra';
-import * as path from 'path';
+const babel = require('@babel/core');
+const fse = require('fs-extra');
+const path = require('path');
+
+const { readFile } = fse;
 
 const workspaceRoot = path.join(__dirname, '../../../../');
 const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');
@@ -121,7 +123,7 @@ function getInheritComponentName(valueNode) {
  * @param {string} componentFilename
  * @returns {ParseResult}
  */
-export default async function parseTest(componentFilename) {
+async function parseTest(componentFilename) {
   const testFilename = withExtension(componentFilename, '.test.js');
   const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
   const descriptor = findConformanceDescriptor(babelParseResult.program);
@@ -153,3 +155,5 @@ export default async function parseTest(componentFilename) {
 
   return result;
 }
+
+module.exports = parseTest;

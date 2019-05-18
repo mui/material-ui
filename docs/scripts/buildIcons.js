@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
-import path from 'path';
-import gm from 'gm';
+const path = require('path');
+const gm = require('gm');
 
 const SIZES = [48, 70, 96, 150, 152, 192, 256, 310, 384, 512];
 const INPUT_ICON = path.join(__dirname, '../../static/logo.png');

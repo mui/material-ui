@@ -1,11 +1,13 @@
-import puppeteer from 'puppeteer';
-import fse from 'fs-extra';
-import http from 'http';
-import path from 'path';
-import express from 'express';
-import expect from 'expect-puppeteer';
-import { addTeardown, shutdown } from 'modules/handleKillSignals';
-import log from 'modules/log';
+const puppeteer = require('puppeteer');
+const fse = require('fs-extra');
+const http = require('http');
+const path = require('path');
+const express = require('express');
+const expect = require('expect-puppeteer');
+const handleKillSignals = require('../../../../modules/handleKillSignals');
+const log = require('../../../../modules/log');
+
+const { addTeardown, shutdown } = handleKillSignals;
 
 const port = 3090;
 const host = '0.0.0.0';

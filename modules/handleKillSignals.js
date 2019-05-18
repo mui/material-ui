@@ -1,11 +1,11 @@
-import log from 'modules/log';
+const log = require('./log');
 
 const SHUTDOWN_TIMEOUT = 10e3;
 
 let shuttingDown = false;
 const teardowns = [];
 
-export function isShuttingDown() {
+function isShuttingDown() {
   return shuttingDown;
 }
 
@@ -14,7 +14,7 @@ export function isShuttingDown() {
  * Terminate server on receipt of the specified signal.
  * @param {string} signal  Signal to terminate on.
  */
-export async function shutdown(signal, origin) {
+async function shutdown(signal, origin) {
   if (typeof signal === 'string') {
     log.info({
       name: 'kill signal',
@@ -54,11 +54,11 @@ export async function shutdown(signal, origin) {
   process.exit(1);
 }
 
-export function addTeardown(teardown) {
+function addTeardown(teardown) {
   teardowns.push(teardown);
 }
 
-export function removeTeardown(teardown) {
+function removeTeardown(teardown) {
   const index = teardowns.indexOf(teardown);
   teardowns.splice(index, 1);
 }
@@ -103,4 +103,10 @@ function handleKillSignals() {
   });
 }
 
-export default handleKillSignals;
+module.exports = {
+  handleKillSignals,
+  isShuttingDown,
+  shutdown,
+  addTeardown,
+  removeTeardown,
+};
