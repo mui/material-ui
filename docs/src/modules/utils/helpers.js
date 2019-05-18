@@ -1,5 +1,6 @@
 const warning = require('warning');
-const { camelCase, upperFirst } = require('lodash');
+const upperFirst = require('lodash/upperFirst');
+const camelCase = require('lodash/camelCase');
 const { CODE_VARIANTS, LANGUAGES } = require('../constants');
 
 function titleize(string) {
