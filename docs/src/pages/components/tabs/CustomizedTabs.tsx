@@ -4,40 +4,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-interface StyledTabsProps {
-  value: number;
-  onChange: (event: React.ChangeEvent<{}>, newValue: number) => void;
-}
-
-const StyledTabs = withStyles({
-  indicator: {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    '& > div': {
-      maxWidth: 40,
-      width: '100%',
-      backgroundColor: '#635ee7',
-    },
-  },
-})((props: StyledTabsProps) => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
-
-interface StyledTabProps {
-  label: string;
-}
-
-const StyledTab = withStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      textTransform: 'none',
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightRegular,
-      fontSize: theme.typography.pxToRem(15),
-      marginRight: theme.spacing(1),
-    },
-  }),
-)((props: StyledTabProps) => <Tab disableRipple {...props} />);
-
 const AntTabs = withStyles({
   root: {
     borderBottom: '1px solid #e8e8e8',
@@ -79,6 +45,43 @@ const AntTab = withStyles((theme: Theme) =>
       },
     },
     selected: {},
+  }),
+)((props: StyledTabProps) => <Tab disableRipple {...props} />);
+
+interface StyledTabsProps {
+  value: number;
+  onChange: (event: React.ChangeEvent<{}>, newValue: number) => void;
+}
+
+const StyledTabs = withStyles({
+  indicator: {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    '& > div': {
+      maxWidth: 40,
+      width: '100%',
+      backgroundColor: '#635ee7',
+    },
+  },
+})((props: StyledTabsProps) => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
+
+interface StyledTabProps {
+  label: string;
+}
+
+const StyledTab = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      textTransform: 'none',
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightRegular,
+      fontSize: theme.typography.pxToRem(15),
+      marginRight: theme.spacing(1),
+      '&:focus': {
+        opacity: 1,
+      },
+    },
   }),
 )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
