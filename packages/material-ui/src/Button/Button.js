@@ -16,12 +16,9 @@ export const styles = theme => ({
     padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
-    transition: theme.transitions.create(
-      ['background-color', 'box-shadow', 'border'],
-      {
-        duration: theme.transitions.duration.short,
-      },
-    ),
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
+      duration: theme.transitions.duration.short,
+    }),
     '&:hover': {
       textDecoration: 'none',
       backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
@@ -160,49 +157,6 @@ export const styles = theme => ({
       },
     },
   },
-  grouped: {
-    minWidth: 40,
-    '&:not(:first-child)': {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    '&:not(:last-child)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-  },
-  groupedOutlined: {
-    '&:not(:first-child)': {
-      borderLeft: '1px solid transparent',
-      marginLeft: -1,
-    },
-  },
-  groupedOutlinedPrimary: {
-    '&:hover': {
-      border: `1px solid ${theme.palette.primary.main}`,
-    },
-  },
-  groupedOutlinedSecondary: {
-    '&:hover': {
-      border: `1px solid ${theme.palette.secondary.main}`,
-    },
-  },
-  groupedContained: {
-    boxShadow: 'none',
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${theme.palette.grey[400]}`,
-    }
-  },
-  groupedContainedPrimary: {
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${theme.palette.primary.dark}`,
-    }
-  },
-  groupedContainedSecondary: {
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${theme.palette.secondary.dark}`,
-    }
-  },
   /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
   /* Styles applied to the root element if `disabled={true}`. */
@@ -239,7 +193,6 @@ const Button = React.forwardRef(function Button(props, ref) {
     disableFocusRipple = false,
     focusVisibleClassName,
     fullWidth = false,
-    grouped = false,
     size = 'medium',
     type = 'button',
     variant = 'text',
@@ -263,13 +216,6 @@ const Button = React.forwardRef(function Button(props, ref) {
       [classes.contained]: contained,
       [classes.containedPrimary]: contained && primary,
       [classes.containedSecondary]: contained && secondary,
-      [classes.grouped]: grouped,
-      [classes.groupedOutlined]: grouped && outlined,
-      [classes.groupedOutlinedPrimary]: grouped && outlined && primary,
-      [classes.groupedOutlinedSeconday]: grouped && outlined && secondary,
-      [classes.groupedContained]: grouped && contained,
-      [classes.groupedContainedPrimary]: grouped && contained && primary,
-      [classes.groupedContainedSecondary]: grouped && contained && secondary,
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
@@ -342,10 +288,6 @@ Button.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * If `true`, the button will act as a grouped button.
-   */
-  grouped: PropTypes.bool,
-  /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
    */
@@ -362,7 +304,7 @@ Button.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined', 'contained', 'grouped']),
+  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

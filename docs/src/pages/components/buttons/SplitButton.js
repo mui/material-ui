@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -14,7 +15,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     display: 'flex',
-    // justifyContent: 'space-evenly',
   },
   container: {
     marginBottom: theme.spacing(2),
@@ -57,52 +57,49 @@ function SplitButton() {
 
   return (
     <Grid container className={classes.root}>
-        <Grid item xs="12" align="center">
-          <div className={classes.group} ref={anchorRef}>
-            <Button grouped color="primary" variant="contained" onClick={handleClick}>
-              {options[selectedIndex]}
-            </Button>
-            <Button
-              grouped
-              color="primary"
-              variant="contained"
-              size="small"
-              aria-owns={open ? 'menu-list-grow' : undefined}
-              aria-haspopup="true"
-              onClick={handleToggle}
-            >
-              <ArrowDropDownIcon />
-            </Button>
-            <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
-              {({ TransitionProps, placement }) => (
-                <Grow
-                  {...TransitionProps}
-                  style={{
-                    transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-                  }}
-                >
-                  <Paper id="menu-list-grow">
-                    <ClickAwayListener onClickAway={handleClose}>
-                      <MenuList>
-                        {options.map((option, index) => (
-                          <MenuItem
-                            key={option}
-                            disabled={index === 2}
-                            selected={index === selectedIndex}
-                            onClick={event => handleMenuItemClick(event, index)}
-                          >
-                            {option}
-                          </MenuItem>
-                        ))}
-                      </MenuList>
-                    </ClickAwayListener>
-                  </Paper>
-                </Grow>
-              )}
-            </Popper>
-          </div>
-        </Grid>
+      <Grid item xs={12} align="center">
+        <ButtonGroup variant="contained" color="primary">
+          <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+          <Button
+            color="primary"
+            variant="contained"
+            size="small"
+            aria-owns={open ? 'menu-list-grow' : undefined}
+            aria-haspopup="true"
+            onClick={handleToggle}
+          >
+            <ArrowDropDownIcon />
+          </Button>
+          <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                }}
+              >
+                <Paper id="menu-list-grow">
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList>
+                      {options.map((option, index) => (
+                        <MenuItem
+                          key={option}
+                          disabled={index === 2}
+                          selected={index === selectedIndex}
+                          onClick={event => handleMenuItemClick(event, index)}
+                        >
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </ButtonGroup>
       </Grid>
+    </Grid>
   );
 }
 

@@ -82,6 +82,7 @@ export { default as Box } from './Box';
 export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
+export { default as ButtonGroup } from './ButtonGroup';
 export { default as Card } from './Card';
 export { default as CardActionArea } from './CardActionArea';
 export { default as CardActions } from './CardActions';
