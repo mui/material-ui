@@ -26,9 +26,6 @@ const styles = theme => ({
       '& .cf-text.cf-text': {
         ...theme.typography.body2,
         display: 'block',
-        '& strong': {
-          fontWeight: theme.typography.fontWeightMedium,
-        },
       },
       '& .cf-powered-by.cf-powered-by': {
         ...theme.typography.caption,
