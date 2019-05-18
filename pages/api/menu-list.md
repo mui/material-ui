@@ -31,7 +31,11 @@ Any other properties supplied will be provided to the root element ([List](/api/
 The properties of the [List](/api/list/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Menus](/demos/menus/)
+- [Menus](/components/menus/)
 

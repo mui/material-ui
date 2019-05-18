@@ -26,11 +26,12 @@ NextComposed.propTypes = {
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-const Link = React.forwardRef(function Link(props, ref) {
+function Link(props) {
   const {
     activeClassName,
     className: classNameProps,
     dispatch,
+    innerRef,
     naked,
     router,
     userLanguage,
@@ -46,11 +47,11 @@ const Link = React.forwardRef(function Link(props, ref) {
   }
 
   if (naked) {
-    return <NextComposed className={className} ref={ref} {...other} />;
+    return <NextComposed className={className} ref={innerRef} {...other} />;
   }
 
-  return <MuiLink component={NextComposed} className={className} ref={ref} {...other} />;
-});
+  return <MuiLink component={NextComposed} className={className} ref={innerRef} {...other} />;
+}
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
@@ -58,6 +59,7 @@ Link.propTypes = {
   className: PropTypes.string,
   dispatch: PropTypes.func,
   href: PropTypes.string,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
@@ -71,9 +73,11 @@ Link.defaultProps = {
   activeClassName: 'active',
 };
 
-export default compose(
+const RouterLink = compose(
   withRouter,
   connect(state => ({
     userLanguage: state.options.userLanguage,
   })),
 )(Link);
+
+export default React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />);

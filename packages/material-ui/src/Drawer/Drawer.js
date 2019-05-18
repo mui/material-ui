@@ -88,36 +88,35 @@ const oppositeDirection = {
   bottom: 'up',
 };
 
-export function isHorizontal(props) {
-  return ['left', 'right'].indexOf(props.anchor) !== -1;
+export function isHorizontal(anchor) {
+  return ['left', 'right'].indexOf(anchor) !== -1;
 }
 
-export function getAnchor(props) {
-  return props.theme.direction === 'rtl' && isHorizontal(props)
-    ? oppositeDirection[props.anchor]
-    : props.anchor;
+export function getAnchor(theme, anchor) {
+  return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
+const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
  * The properties of the [Modal](/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(props, ref) {
   const {
-    anchor: anchorProp,
+    anchor: anchorProp = 'left',
     BackdropProps,
     children,
     classes,
     className,
-    elevation,
+    elevation = 16,
     ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
     onClose,
-    open,
+    open = false,
     PaperProps,
     SlideProps,
     theme,
-    transitionDuration,
-    variant,
+    transitionDuration = defaultTransitionDuration,
+    variant = 'temporary',
     ...other
   } = props;
 
@@ -129,7 +128,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
     mounted.current = true;
   }, []);
 
-  const anchor = getAnchor(props);
+  const anchor = getAnchor(theme, anchorProp);
   const drawer = (
     <Paper
       elevation={variant === 'temporary' ? elevation : 0}
@@ -256,14 +255,6 @@ Drawer.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
-};
-
-Drawer.defaultProps = {
-  anchor: 'left',
-  elevation: 16,
-  open: false,
-  transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
-  variant: 'temporary', // Mobile first.
 };
 
 export default withStyles(styles, { name: 'MuiDrawer', flip: false, withTheme: true })(Drawer);

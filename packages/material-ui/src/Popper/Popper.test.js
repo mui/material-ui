@@ -10,14 +10,13 @@ import Popper from './Popper';
 describe('<Popper />', () => {
   let mount;
   const defaultProps = {
-    anchorEl: () => window.document.createElement('div'),
+    anchorEl: () => window.document.createElement('svg'),
     children: <span>Hello World</span>,
     open: true,
   };
 
   before(() => {
-    // StrictModeViolation: uses Portal
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -51,7 +50,7 @@ describe('<Popper />', () => {
           }}
         </Popper>,
       );
-      assert.strictEqual(renderSpy.callCount, 1);
+      assert.strictEqual(renderSpy.callCount, 2); // 2 for strict mode
       assert.strictEqual(renderSpy.args[0][0], 'top');
     });
 
@@ -87,7 +86,7 @@ describe('<Popper />', () => {
             }}
           </Popper>,
         );
-        assert.strictEqual(renderSpy.callCount, 1);
+        assert.strictEqual(renderSpy.callCount, 2);
         assert.strictEqual(renderSpy.args[0][0], test.out);
       });
     });
@@ -171,17 +170,21 @@ describe('<Popper />', () => {
 
   describe('prop: transition', () => {
     let clock;
+    let looseMount;
 
     before(() => {
       clock = useFakeTimers();
+      // StrictModeViolation: uses Grow
+      looseMount = createMount({ strict: false });
     });
 
     after(() => {
       clock.restore();
+      looseMount.cleanUp();
     });
 
     it('should work', () => {
-      const wrapper = mount(
+      const wrapper = looseMount(
         <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
@@ -212,7 +215,7 @@ describe('<Popper />', () => {
     it('should warn if anchorEl is not valid', () => {
       mount(<Popper {...defaultProps} open anchorEl={null} />);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.args()[0][0], 'It should be a HTMLElement instance');
+      assert.include(consoleErrorMock.args()[0][0], 'It should be an Element instance');
     });
 
     // it('should warn if anchorEl is not visible', () => {

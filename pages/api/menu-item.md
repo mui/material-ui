@@ -39,7 +39,7 @@ This property accepts the following keys:
 | <span class="prop-name">gutters</span> | Styles applied to the root element if `disableGutters={false}`.
 | <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/MenuItem/MenuItem.js)
 for more detail.
 
@@ -51,8 +51,12 @@ you need to use the following style sheet name: `MuiMenuItem`.
 The properties of the [ListItem](/api/list-item/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Autocomplete](/demos/autocomplete/)
-- [Menus](/demos/menus/)
+- [Autocomplete](/components/autocomplete/)
+- [Menus](/components/menus/)
 

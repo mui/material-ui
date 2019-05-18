@@ -16,28 +16,22 @@ npm install @material-ui/core@next
 yarn add @material-ui/core@next
 ```
 
-[react](https://www.npmjs.com/package/react) >= 16.3.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0がpeer dependenciesであることに注意してください。
+[react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0がpeer dependenciesであることに注意してください。
 
 ## Robotoフォント
 
-Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを考慮して設計されています。 その為、必ず[以下の手順](/style/typography/#general) に従ってください。 たとえば、Google Web Fontsを用いて、
+Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを考慮して設計されています。 So be sure to follow [these instructions]/components/typography/#general). たとえば、Google Web Fontsを用いて、
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-```
-
-あるいは、headタグをレンダリングするJSXを用いている場合は、
-
-```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
 ## フォントアイコン
 
-フォント`アイコン`を使うには、最初に[Material icons](https://material.io/tools/icons/)を追加します。 こちらは、その時の[手続き](/style/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
+フォント`アイコン`を使うには、最初に[Material icons](https://material.io/tools/icons/)を追加します。 Here are [some instructions]/components/icons/#font-icons) on how to do so. たとえば、Google Web Fontsを用いて、
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 あるいは、headタグをレンダリングするJSXを用いている場合は、
@@ -48,7 +42,7 @@ Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを�
 
 ## SVGアイコン
 
-[component demos](/demos/app-bar/)にあるような事前にビルドされたSVG Material iconsを使う為には、[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)パッケージをインストールします。
+In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
 
 ```sh
 // with npm

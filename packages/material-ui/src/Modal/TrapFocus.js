@@ -10,9 +10,9 @@ import { useForkRef } from '../utils/reactHelpers';
 function TrapFocus(props) {
   const {
     children,
-    disableAutoFocus,
-    disableEnforceFocus,
-    disableRestoreFocus,
+    disableAutoFocus = false,
+    disableEnforceFocus = false,
+    disableRestoreFocus = false,
     getDoc,
     isEnabled,
     open,
@@ -166,12 +166,6 @@ TrapFocus.propTypes = {
    * If `true`, the modal is open.
    */
   open: PropTypes.bool.isRequired,
-};
-
-TrapFocus.defaultProps = {
-  disableAutoFocus: false,
-  disableEnforceFocus: false,
-  disableRestoreFocus: false,
 };
 
 export default TrapFocus;

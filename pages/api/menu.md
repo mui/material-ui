@@ -23,7 +23,7 @@ import Menu from '@material-ui/core/Menu';
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Menu contents, normally `MenuItem`s. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">disableAutoFocusItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Same as `autoFocus=false`. |
-| <span class="prop-name">MenuListProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`MenuList`](/api/menu-list/) element. |
+| <span class="prop-name">MenuListProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Properties applied to the [`MenuList`](/api/menu-list/) element. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"` |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |  | Callback fired before the Menu enters. |
 | <span class="prop-name">onEntered</span> | <span class="prop-type">func</span> |  | Callback fired when the Menu has entered. |
@@ -51,7 +51,7 @@ This property accepts the following keys:
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 | <span class="prop-name">list</span> | Styles applied to the `List` component via `MenuList`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Menu/Menu.js)
 for more detail.
 
@@ -63,8 +63,12 @@ you need to use the following style sheet name: `MuiMenu`.
 The properties of the [Popover](/api/popover/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [App Bar](/demos/app-bar/)
-- [Menus](/demos/menus/)
+- [App Bar](/components/app-bar/)
+- [Menus](/components/menus/)
 

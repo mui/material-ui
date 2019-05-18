@@ -1,7 +1,6 @@
 import { ThemeProvider } from '@material-ui/styles';
 
 /**
- * @ignore - internal component.
- * @deprecated
+ * @ignore - do not document.
  */
 export default ThemeProvider;

@@ -1,5 +1,3 @@
-// @inheritedComponent IconButton
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -56,14 +54,18 @@ export const styles = theme => ({
   },
 });
 
+const defaultCheckedIcon = <CheckBoxIcon />;
+const defaultIcon = <CheckBoxOutlineBlankIcon />;
+const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
+
 const Checkbox = React.forwardRef(function Checkbox(props, ref) {
   const {
-    checkedIcon,
+    checkedIcon = defaultCheckedIcon,
     classes,
-    color,
-    icon,
-    indeterminate,
-    indeterminateIcon,
+    color = 'secondary',
+    icon = defaultIcon,
+    indeterminate = false,
+    indeterminateIcon = defaultIndeterminateIcon,
     inputProps,
     ...other
   } = props;
@@ -79,6 +81,7 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
         checked: classes.checked,
         disabled: classes.disabled,
       }}
+      color={color}
       inputProps={{
         'data-indeterminate': indeterminate,
         ...inputProps,
@@ -159,14 +162,6 @@ Checkbox.propTypes = {
    * The value of the component. The DOM API casts this to a string.
    */
   value: PropTypes.any,
-};
-
-Checkbox.defaultProps = {
-  checkedIcon: <CheckBoxIcon />,
-  color: 'secondary',
-  icon: <CheckBoxOutlineBlankIcon />,
-  indeterminate: false,
-  indeterminateIcon: <IndeterminateCheckBoxIcon />,
 };
 
 export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

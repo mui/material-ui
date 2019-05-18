@@ -36,7 +36,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog is exiting. |
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the Dialog is open. |
 | <span class="prop-name">PaperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the dialog. |
-| <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`Paper`](/api/paper/) element. |
+| <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Properties applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">scroll</span> | <span class="prop-type">enum:&nbsp;'body'&nbsp;&#124;<br>&nbsp;'paper'<br></span> | <span class="prop-default">'paper'</span> | Determine the container for scrolling the dialog. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Fade</span> | The component used for the transition. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
@@ -70,7 +70,7 @@ This property accepts the following keys:
 | <span class="prop-name">paperFullWidth</span> | Styles applied to the `Paper` component if `fullWidth={true}`.
 | <span class="prop-name">paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Dialog/Dialog.js)
 for more detail.
 
@@ -82,7 +82,11 @@ you need to use the following style sheet name: `MuiDialog`.
 The properties of the [Modal](/api/modal/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Dialogs](/demos/dialogs/)
+- [Dialogs](/components/dialogs/)
 

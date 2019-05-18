@@ -10,6 +10,7 @@ import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import { useForkRef } from '../utils/reactHelpers';
+import { useIsFocusVisible } from '../utils/focusVisible';
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
@@ -78,23 +79,23 @@ function Tooltip(props) {
   const {
     children,
     classes,
-    disableFocusListener,
-    disableHoverListener,
-    disableTouchListener,
-    enterDelay,
-    enterTouchDelay,
+    disableFocusListener = false,
+    disableHoverListener = false,
+    disableTouchListener = false,
+    enterDelay = 0,
+    enterTouchDelay = 700,
     id,
-    interactive,
-    leaveDelay,
-    leaveTouchDelay,
+    interactive = false,
+    leaveDelay = 0,
+    leaveTouchDelay = 1500,
     onClose,
     onOpen,
     open: openProp,
-    placement,
+    placement = 'bottom',
     PopperProps,
     theme,
     title,
-    TransitionComponent,
+    TransitionComponent = Grow,
     TransitionProps,
     ...other
   } = props;
@@ -201,6 +202,21 @@ function Tooltip(props) {
     }
   };
 
+  const getOwnerDocument = React.useCallback(() => {
+    if (childNode == null) {
+      return null;
+    }
+    return childNode.ownerDocument;
+  }, [childNode]);
+  const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
+  const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
+  function handleBlur() {
+    if (childIsFocusVisible) {
+      setChildIsFocusVisible(false);
+      onBlurVisible();
+    }
+  }
+
   const handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
@@ -209,7 +225,10 @@ function Tooltip(props) {
       setChildNode(event.currentTarget);
     }
 
-    handleEnter(event);
+    if (isFocusVisible(event)) {
+      setChildIsFocusVisible(true);
+      handleEnter(event);
+    }
 
     const childrenProps = children.props;
     if (childrenProps.onFocus) {
@@ -235,8 +254,11 @@ function Tooltip(props) {
   const handleLeave = event => {
     const childrenProps = children.props;
 
-    if (event.type === 'blur' && childrenProps.onBlur) {
-      childrenProps.onBlur(event);
+    if (event.type === 'blur') {
+      if (childrenProps.onBlur) {
+        childrenProps.onBlur(event);
+      }
+      handleBlur(event);
     }
 
     if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
@@ -481,19 +503,6 @@ Tooltip.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-Tooltip.defaultProps = {
-  disableFocusListener: false,
-  disableHoverListener: false,
-  disableTouchListener: false,
-  enterDelay: 0,
-  enterTouchDelay: 700,
-  interactive: false,
-  leaveDelay: 0,
-  leaveTouchDelay: 1500,
-  placement: 'bottom',
-  TransitionComponent: Grow,
 };
 
 export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);

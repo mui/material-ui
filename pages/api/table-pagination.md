@@ -31,7 +31,7 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 | <span class="prop-name required">page&nbsp;*</span> | <span class="prop-type">number</span> |  | The zero-based index of the current page. |
 | <span class="prop-name required">rowsPerPage&nbsp;*</span> | <span class="prop-type">number</span> |  | The number of rows per page. |
 | <span class="prop-name">rowsPerPageOptions</span> | <span class="prop-type">array</span> | <span class="prop-default">[10, 25, 50, 100]</span> | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
-| <span class="prop-name">SelectProps</span> | <span class="prop-type">object</span> |  | Properties applied to the rows per page [`Select`](/api/select/) element. |
+| <span class="prop-name">SelectProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Properties applied to the rows per page [`Select`](/api/select/) element. |
 
 The `ref` is forwarded to the root element.
 
@@ -56,7 +56,7 @@ This property accepts the following keys:
 | <span class="prop-name">menuItem</span> | Styles applied to the MenuItem component.
 | <span class="prop-name">actions</span> | Styles applied to the internal `TablePaginationActions` component.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/TablePagination/TablePagination.js)
 for more detail.
 
@@ -68,7 +68,11 @@ you need to use the following style sheet name: `MuiTablePagination`.
 The properties of the [TableCell](/api/table-cell/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Tables](/demos/tables/)
+- [Tables](/components/tables/)
 

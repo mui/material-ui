@@ -1,86 +1,86 @@
 # Testen
 
-<p class="description">Write tests to prevent regressions and write better code.</p>
+<p class="description">Schreiben Sie Tests, um Regressionen zu verhindern und besseren Code zu schreiben.</p>
 
-Examples in this guide use [global methods from Mocha](https://mochajs.org/api/global.html), not [Jest](https://jestjs.io/docs/en/api).
+Die Beispiele in diesem Abschnitt verwenden [globale Methoden von Mocha](https://mochajs.org/api/global.html), nicht [Jest](https://jestjs.io/docs/en/api).
 
 ## Intern
 
-We take tests seriously. We have written and maintain **a wide range** of tests so we can iterate with confidence on the components, for instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) have proven to be really helpful. To learn more about our internal tests, you can have a look at the [README](https://github.com/mui-org/material-ui/blob/next/test/README.md).
+Wir nehmen Tests ernst. Wir haben **eine breite Palette** von Tests geschrieben und halten diese aktuell, sodass wir mit Vertrauen auf den Komponenten iterieren können, zum Beispiel haben sich die, von [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) zur Verfügung gestellten, visuellen Regressionstests als sehr hilfreich erwiesen. Weitere Informationen zu unseren internen Tests finden Sie in der [README](https://github.com/mui-org/material-ui/blob/next/test/README.md).
 
-While we have reached the 100% test coverage achievement, we don't encourage our users to do the same. [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/next.svg)](https://codecov.io/gh/mui-org/material-ui/branch/next)
+Obwohl wir eine 100%ige Testabdeckung erreicht haben, empfehlen wir unseren Benutzern nicht, dasselbe zu tun. [![Abdeckungsstatus](https://img.shields.io/codecov/c/github/mui-org/material-ui/next.svg)](https://codecov.io/gh/mui-org/material-ui/branch/next)
 
-## Userspace
+## Benutzerraum
 
-What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose.
+Was ist mit Tests im Benutzerraum? Die Material-UI-Styling-Infrastruktur verwendet einige Hilfsfunktionen, die auf dem [enzym ](https://github.com/airbnb/enzyme) basieren, um den Prozess zu erleichtern, den wir offenlegen. Sie können sie nutzen, wenn Sie dies wünschen.
 
-### Shallow rendering
+### Flaches Rendering (Shallow)
 
-Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components. Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
+Flaches Rendering ist nützlich, um Ihre Tests auf eine Komponente als Einheit zu beschränken. Dadurch wird auch sichergestellt, dass Ihre Tests das Verhalten untergeordneter Komponenten nicht indirekt durchsetzen. Es wurde ein flaches Rendering erstellt, um Komponenten isoliert zu testen. Dies bedeutet, dass untergeordnete Implementierungsdetails wie der Kontext nicht verloren gehen.
 
-The `createShallow()` function can be used for this situation. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
+Die `createShallow()` Funktion kann für diese Situation verwendet werden. Neben dem Einwickeln der Enzym-API bietet es eine `dive` und `untilSelector` Möglichkeit.
 
-### Full DOM rendering
+### Volles DOM-Rendering
 
-Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (e.g., `componentDidMount` etc.).
+Das vollständige DOM-Rendering ist ideal für Anwendungsfälle, in denen Komponenten vorhanden sind, die mit DOM-APIs interagieren oder den gesamten Lebenszyklus erfordern, um die Komponente vollständig zu testen (z. B. `componentDidMount` usw.).
 
-The `createMount()` function is provided for this situation. Aside from wrapping the enzyme API, it provides a `cleanUp` function.
+Die `createMount()` Funktion kann für diese Situation verwendet werden. Neben dem Einwickeln der Enzym-API bietet es eine `cleanUp` Möglichkeit.
 
-### Render to string
+### Als string rendern
 
-Rendering to a string is useful to test the behavior of the components that are used on the server. You can take advantage of this to assert the generated HTML string.
+Das Rendern in einen String ist hilfreich, um das Verhalten der auf dem Server verwendeten Komponenten zu testen. Sie können dies nutzen, um die generierte HTML-Zeichenfolge zu bestätigen.
 
-The `createRender()` function is ideal for this. This is just an alias for the enzyme API, which is only exposed for consistency.
+Die `createRender()` Funktion ist dafür ideal. Dies ist nur ein Alias für die Enzym-API, die nur wegen der Konsistenz sichtbar ist.
 
 ## API
 
 ### `createShallow([options]) => shallow`
 
-Generate an enhanced shallow function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
+Generieren Sie eine erweiterte Shallow-Funktion mit dem erforderlichen Kontext. Bitte beachten Sie die [Enzyme API-Dokumentation](https://airbnb.io/enzyme/docs/api/shallow.html) für weitere Informationen zur `shallow` Funktion.
 
-#### Arguments
+#### Argumente
 
 1. `Optionen` (*Object* [optional]) 
-    - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
-    - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
-    - `options.dive` (*Boolean* [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
-    - The other keys are forwarded to the options argument of `enzyme.shallow()`.
+    - `options.shallow` (*Function* [optional]): Die Shallow-Funktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
+    - `options.untilSelector` (*String* [optional]): Rendert rekursiv die Kinder flach, so lange, bis sie den bereitgestellten Selektor finden können. Es ist hilfreich, Komponenten höherer Ordnung aufzuschlüsseln.
+    - `options.dive` (*Boolean* [optional]): Rednern flach das erste nicht-DOM-Child des aktuellen Wrappers und einen Wrapper um das Ergebnis zurückgeben.
+    - Die anderen Schlüssel werden an das Optionsargument von `enzyme.shallow()` weitergeleitet.
 
 #### Rückgabewerte
 
-`shallow` (*shallow*): A shallow function.
+`shallow` (*shallow*): Eine shallow-Funktion.
 
 #### Beispiele
 
 ```jsx
-import { createShallow } from '@material-ui/core/test-utils';
+importiere { createShallow } aus '@ material-ui / core / test-utils';
 
-describe('<MyComponent />', () => {
-  let shallow;
+beschreiben ('<0 />', () =&gt; {
+  sei flach;
 
-  before(() => {  // This is Mocha; in Jest, use beforeAll
-    shallow = createShallow();
+  vor (()) =&gt; {// Dies ist Mocha; in Jest verwende beforeAll
+    shallow = createShallow ();
   });
 
-  it('should work', () => {
-    const wrapper = shallow(<MyComponent />);
+  es ('sollte funktionieren', () =&gt; {
+    const wrapper = shallow (<0 />);
   });
 });
 ```
 
 ### `createMount([options]) => mount`
 
-Generate an enhanced mount function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
+Generieren Sie eine erweiterte Mount-Funktion mit dem erforderlichen Kontext. Bitte beachten Sie die [Enzyme API-Dokumentation](https://airbnb.io/enzyme/docs/api/mount.html) für weitere Informationen zur `mount` Funktion.
 
-#### Arguments
+#### Argumente
 
 1. `Optionen` (*Object* [optional]) 
-    - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
-    - The other keys are forwarded to the options argument of `enzyme.mount()`.
+    - `options.mount` (*Function* [optional]): Die Mount-Funktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
+    - Die anderen Schlüssel werden an das Optionsargument von `enzyme.mount()` weitergeleitet.
 
 #### Rückgabewerte
 
-`mount` (*mount*): A mount function.
+`mount` (*mount*): Die mount-Funktion.
 
 #### Beispiele
 
@@ -106,17 +106,17 @@ describe('<MyComponent />', () => {
 
 ### `createRender([options]) => render`
 
-Generate a render to string function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/render.html) for further details on the `render` function.
+Generieren Sie eine Render-zu-String-Funktion mit dem erforderlichen Kontext. Bitte beachten Sie die [Enzyme API-Dokumentation](https://airbnb.io/enzyme/docs/api/render.html) für weitere Informationen zur `render` Funktion.
 
-#### Arguments
+#### Argumente
 
 1. `Optionen` (*Object* [optional]) 
-    - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.
-    - The other keys are forwarded to the options argument of `enzyme.render()`.
+    - `options.render` (*Function* [optional]): Die Renderfunktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
+    - Die anderen Schlüssel werden an das Optionsargument von `enzyme.render()` weitergeleitet.
 
 #### Rückgabewerte
 
-`render` (*Function*): A render to string function.
+`render` (*Funktion*): Eine Render-zu-String-Funktion.
 
 #### Beispiele
 

@@ -34,5 +34,7 @@ Cuando comienzas a aprender Material-UI, puedes encontrar publicaciones en blogs
 
 ### De Pago
 
+- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI. 
+  - 📘 [The book](https://www.packtpub.com/application-development/react-material-ui-cookbook)
 - **Builder Book**: Aprenda cómo crear una aplicación web de JavaScript full-stack desde cero, utilizando un stack de JavaScript moderno y Material-UI. 
   - [El Libro](https://builderbook.org/book)

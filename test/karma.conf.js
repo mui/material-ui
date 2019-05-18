@@ -81,6 +81,7 @@ module.exports = function setKarmaConfig(config) {
         flags: ['--no-sandbox'],
       },
     },
+    singleRun: Boolean(process.env.CI),
   };
 
   let newConfig = baseConfig;
@@ -101,7 +102,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Sierra',
           browser: 'Chrome',
-          browser_version: '41.0',
+          browser_version: '49.0',
         },
         BrowserStack_Firefox: {
           base: 'BrowserStack',

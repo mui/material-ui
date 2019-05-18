@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import rerender from 'test/utils/rerender';
@@ -12,6 +11,8 @@ import {
 } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import * as PropTypes from 'prop-types';
 
 const ButtonBaseNaked = unwrap(ButtonBase);
 
@@ -271,46 +272,6 @@ describe('<ButtonBase />', () => {
 
       assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
       assert.strictEqual(wrapper.find('button').hasClass(classes.focusVisible), false);
-    });
-  });
-
-  describe('focus inside shadowRoot', () => {
-    // Only run on HeadlessChrome which has native shadowRoot support.
-    // And jsdom which has limited support for shadowRoot (^12.0.0).
-    if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
-
-    let rootElement;
-
-    beforeEach(() => {
-      rootElement = document.createElement('div');
-      rootElement.tabIndex = 0;
-      document.body.appendChild(rootElement);
-      rootElement.attachShadow({ mode: 'open' });
-    });
-
-    afterEach(() => {
-      ReactDOM.unmountComponentAtNode(rootElement.shadowRoot);
-      document.body.removeChild(rootElement);
-    });
-
-    it('should set focus state for shadowRoot children', () => {
-      mount(<ButtonBase id="test-button">Hello</ButtonBase>, {
-        attachTo: rootElement.shadowRoot,
-      });
-      simulatePointerDevice();
-
-      const button = rootElement.shadowRoot.getElementById('test-button');
-      if (!button) {
-        throw new Error('missing button');
-      }
-
-      assert.strictEqual(button.classList.contains(classes.focusVisible), false);
-
-      focusVisible(button);
-
-      assert.strictEqual(button.classList.contains(classes.focusVisible), true);
     });
   });
 
@@ -665,6 +626,43 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(
         rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
         3,
+      );
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('throws with additional warnings on invalid `component` prop', () => {
+      // Only run the test on node. On the browser the thrown error is not caught
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        return;
+      }
+
+      function Component(props) {
+        return <button type="button" {...props} />;
+      }
+
+      // cant match the error message here because flakiness with mocha watchmode
+      assert.throws(() => mount(<ButtonBase component={Component} />));
+
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Invalid prop `component` supplied to `ButtonBase`. Expected an element type that can hold a ref',
+      );
+      // first mount includes React warning that isn't logged on subsequent calls
+      // in watchmode because it's cached
+      const customErrorIndex = consoleErrorMock.callCount() === 3 ? 1 : 2;
+      assert.include(
+        consoleErrorMock.args()[customErrorIndex][0],
+        'Error: Material-UI: expected an Element but found null. Please check your console for additional warnings and try fixing those.',
       );
     });
   });

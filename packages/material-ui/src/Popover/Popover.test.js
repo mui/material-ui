@@ -21,7 +21,7 @@ describe('<Popover />', () => {
   let classes;
   const defaultProps = {
     open: false,
-    anchorEl: () => document.createElement('div'),
+    anchorEl: () => document.createElement('svg'),
   };
 
   before(() => {
@@ -472,7 +472,7 @@ describe('<Popover />', () => {
       const otherWrapper = mount(<Popover open />);
       assert.strictEqual(otherWrapper.find(Modal).props().container, undefined);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.args()[0][0], 'It should be a HTMLElement instance');
+      assert.include(consoleErrorMock.args()[0][0], 'It should be an Element instance');
     });
 
     it('warns if a component for the Paper is used that cant hold a ref', () => {

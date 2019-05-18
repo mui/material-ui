@@ -1,5 +1,3 @@
-// @inheritedComponent List
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -78,7 +76,7 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 const MenuList = React.forwardRef(function MenuList(props, ref) {
-  const { actions, autoFocus, className, onKeyDown, disableListWrap, ...other } = props;
+  const { actions, autoFocus, className, onKeyDown, disableListWrap = false, ...other } = props;
   const listRef = React.useRef(null);
   const textCriteriaRef = React.useRef({
     keys: [],
@@ -155,7 +153,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
       if (
         criteria.previousKeyMatched &&
-        (keepFocusOnCurrent || moveFocus(list, currentFocus, disableListWrap, nextItem, criteria))
+        (keepFocusOnCurrent || moveFocus(list, currentFocus, false, nextItem, criteria))
       ) {
         event.preventDefault();
       } else {
@@ -212,10 +210,6 @@ MenuList.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
-};
-
-MenuList.defaultProps = {
-  disableListWrap: false,
 };
 
 export default MenuList;

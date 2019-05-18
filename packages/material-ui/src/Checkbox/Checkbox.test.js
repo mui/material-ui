@@ -1,8 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
-import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { describeConformance, getClasses, createMount } from '@material-ui/core/test-utils';
 import Checkbox from './Checkbox';
+import IconButton from '../IconButton';
 
 describe('<Checkbox />', () => {
   let classes;
@@ -20,7 +20,7 @@ describe('<Checkbox />', () => {
 
   describeConformance(<Checkbox checked />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: IconButton,
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
@@ -35,7 +35,7 @@ describe('<Checkbox />', () => {
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       const wrapper = mount(<Checkbox indeterminate />);
-      assert.strictEqual(wrapper.find(IndeterminateCheckBoxIcon).length, 1);
+      assert.strictEqual(wrapper.find('svg[data-mui-test="IndeterminateCheckBoxIcon"]').length, 1);
     });
   });
 });

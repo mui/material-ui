@@ -34,11 +34,11 @@
 
 ### 原生属性
 
-我们避免记录DOM支持的本机属性，如[` className `](/customization/overrides/#overriding-with-class-names)。
+我们避免记录DOM支持的本机属性，如[` className `](/customization/components/#overriding-styles-with-class-names)。
 
 ### CSS classes
 
-所有组件都接受[`classes`](/customization/overrides/#overriding-with-classes)属性来自定义样式。 类设计回答了两个约束： 使类结构尽可能简单，同时足以实现Material Design规范。
+所有组件都接受[`classes`](/customization/components/#overriding-styles-with-classes)属性来自定义样式。 类设计回答了两个约束： 使类结构尽可能简单，同时足以实现Material Design规范。
 
 - 应用于根元素的类始终称为` root `。
 - 所有默认样式都分组在一个类中。
@@ -115,3 +115,15 @@ Material-UI组件根据以下规则使用两种方法的组合：
 - 当需要**>2**自由度时，或者如果将来可能需要额外的自由度，则使用*枚举*。
 
 回到上一个按钮示例; 因为它需要3个自由度，所以我们使用* enum *。
+
+### Ref
+
+The `ref` is forwarded to the root element. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element that which component renders. If you pass a different component via the `component` prop the ref will be attached to that component instead.
+
+## Glossary
+
+- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
+- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
+- **root component**: the outermost component that renders a host component.
+- **root element**: the outermost element that renders a host component.

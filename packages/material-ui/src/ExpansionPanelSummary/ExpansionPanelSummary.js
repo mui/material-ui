@@ -1,5 +1,3 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -69,7 +67,7 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
     children,
     classes,
     className,
-    disabled,
+    disabled = false,
     expanded,
     expandIcon,
     IconButtonProps,
@@ -194,10 +192,6 @@ ExpansionPanelSummary.propTypes = {
    * @ignore
    */
   onFocusVisible: PropTypes.func,
-};
-
-ExpansionPanelSummary.defaultProps = {
-  disabled: false,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(ExpansionPanelSummary);

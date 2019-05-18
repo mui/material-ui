@@ -1,11 +1,13 @@
 * * *
 
-title: React Themes, die vom Material-UI-Team erstellt oder betreut wurden Beschreibung: Unsere Vorlagen-Sammlung umfasst Designs zum Erstellen von Administratoren, Dashboards, Zielseiten, E-Commerce-Sites, Anwendungen und mehr.
+title: React Themes, erstellt oder betreut von den Erstellern der Material-UI
 
 * * *
 
 # Premium-Themes
 
-<p class="description">React Themes & Template gebaut oder betreut von Material-UI's Erschaffern.</p>
+<p class="description">Unsere Sammlung umfassen Vorlagen zum Erstellen von Administratoren, Dashboards, Zielseiten, E-Commerce-Sites, Anwendungen und mehr.</p>
+
+React Themes & Templates built by or curated by Material-UI's creators.
 
 {{"demo": "pages/premium-themes/PremiumThemes.js", "hideHeader": true}}

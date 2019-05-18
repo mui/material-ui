@@ -14,7 +14,7 @@ describe('<CardMedia />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ untilSelector: 'CardMedia' });
     classes = getClasses(<CardMedia image="/foo.jpg" />);
   });
@@ -57,7 +57,7 @@ describe('<CardMedia />', () => {
 
     it('should have `src` prop when media component specified', () => {
       const wrapper = shallow(<CardMedia image="/foo.jpg" component="iframe" />);
-      assert.strictEqual(wrapper.prop('src'), '/foo.jpg');
+      assert.strictEqual(wrapper.props().src, '/foo.jpg');
     });
 
     it('should not have default inline style when media component specified', () => {
@@ -67,7 +67,7 @@ describe('<CardMedia />', () => {
 
     it('should not have `src` prop if not media component specified', () => {
       const wrapper = shallow(<CardMedia image="/foo.jpg" component="table" />);
-      assert.strictEqual(wrapper.prop('src'), undefined);
+      assert.strictEqual(wrapper.props().src, undefined);
     });
   });
 });

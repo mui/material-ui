@@ -15,7 +15,7 @@ describe('<SnackbarContent />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     shallow = createShallow({ untilSelector: 'withStyles(Paper)' });
     classes = getClasses(<SnackbarContent message="message" />);
   });

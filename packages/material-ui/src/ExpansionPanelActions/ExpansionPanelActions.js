@@ -21,7 +21,7 @@ export const styles = {
 };
 
 const ExpansionPanelActions = React.forwardRef(function ExpansionPanelActions(props, ref) {
-  const { classes, className, disableSpacing, ...other } = props;
+  const { classes, className, disableSpacing = false, ...other } = props;
 
   return (
     <div
@@ -50,10 +50,6 @@ ExpansionPanelActions.propTypes = {
    * If `true`, the actions do not have additional margin.
    */
   disableSpacing: PropTypes.bool,
-};
-
-ExpansionPanelActions.defaultProps = {
-  disableSpacing: false,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanelActions' })(ExpansionPanelActions);

@@ -35,8 +35,9 @@ const useStyles = makeStyles(
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
 function CssBaseline(props) {
+  const { children = null } = props;
   useStyles();
-  return <React.Fragment>{props.children}</React.Fragment>;
+  return <React.Fragment>{children}</React.Fragment>;
 }
 
 CssBaseline.propTypes = {
@@ -50,9 +51,5 @@ if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   CssBaseline['propTypes' + ''] = exactProp(CssBaseline.propTypes);
 }
-
-CssBaseline.defaultProps = {
-  children: null,
-};
 
 export default CssBaseline;

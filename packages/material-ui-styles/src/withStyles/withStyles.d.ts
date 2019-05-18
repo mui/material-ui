@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PropInjector } from '@material-ui/core';
+import { PropInjector } from '@material-ui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 

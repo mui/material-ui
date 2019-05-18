@@ -1,5 +1,139 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-beta.2
+###### *May 13, 2019*
+
+A big thanks to the 13 contributors who made this release possible!
+
+This is a stability release preparing v4.
+
+### `@material-ui/core@v4.0.0-beta.2`
+
+- [Box] Add export to barrel (index.js) (#15602) @ljvanschie
+- [ButtonBase] Extend error message for invalid `component` prop (#15627) @eps1lon
+- [Select] Add to docs that options must be direct descendants (#15619) @bh1505
+- [SwipeableDrawer] Remove internal accesses in the tests (#15469) @joshwooding
+- [Tabs] scrollButtons have an empty button error in compliance tools (#15646) @elnikolinho
+- [useScrollTrigger] Enhance trigger, improve tests (#15634) @cvanem
+
+### `@material-ui/styles@v4.0.0-beta.2`
+
+- [styles] Fix warning false positive (#15595) @oliviertassinari
+- [styles] Keep MuiThemeProvider for backward compatibility (#15650) @oliviertassinari
+
+### `@material-ui/system@v4.0.0-beta.2`
+
+- [system] Fix css function rejecting certain prop types (#15611) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.11`
+
+- [SpeedDial] Fix classname override logic (#15652) @janhesters
+
+### Docs
+
+- [docs] Add custom default props handler (#15473) @eps1lon
+- [docs] Add next page link (#15656) @mbrookes
+- [docs] Add QuintoAndar in the showcase (#15622) @oliviertassinari
+- [docs] Fix dead David DM badges in README (#15667) @mbrookes
+- [docs] Fix few grammar issues (#15643) @DDDDDanica
+- [docs] Fix plural spelling (#15613) @cvanem
+- [docs] Fix some dev-only warnings (#15640) @eps1lon
+- [docs] Fix the adapting makeStyles based on props example syntax (#15621) @devarsh
+- [docs] Improve installation instructions for running the docs locally (#15608) @andreawaxman
+- [docs] Improve v3 migration guide (#15615) @eps1lon
+- [docs] Link edit page button to github editor (#15659) @mbrookes
+- [docs] Miscellaneous polish (#15665) @eps1lon
+- [docs] Reorganize the structure (#15603) @mbrookes
+- [docs] Update the translations (#15653) @mbrookes
+
+### Core
+
+- [core] Drop partial chrome 41 support (#15630) @eps1lon
+- [core] Optimize clsx usage (#15589) @merceyz
+- [core] Remove react-event-listener from function components (#15633) @joshwooding
+- [core] Upgrade the dev dependencies (#15590) @oliviertassinari
+
+## 4.0.0-beta.1
+###### *May 5, 2019*
+
+A big thanks to the 19 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🐛 Many bug fixes based on people migrating from v3 to v4.
+- 💄 Responsive font sizes (#14573) @n-batalha.
+- 💄 AppBar scroll behavior (#15522) @cvanem.
+- ♿️ Better Button and Tooltip keyboard behavior (#15398, #15484) @eps1lon.
+- And many more 🔍 TypeScript fixes and 📚 documentation improvements.
+
+### `@material-ui/core@v4.0.0-beta.1`
+
+### Bug fixes / Breaking changes
+
+- [ListItem][ExpansionPanel] Follow the style convention (#15534) @oliviertassinari
+  Fix a CSS override issue.
+- [Tooltip] Display only on keyboard focus (#15398) @eps1lon
+  Fix an accessibility issue.
+
+### Changes
+
+- [AppBar] Hide and Elevate on Scroll (#15522) @cvanem
+- [Box] Add to core index TypeScript definitions (#15576) @ljvanschie
+- [ButtonBase] Use fork of focus-visible polyfill (#15484) @eps1lon
+- [Menu] Add 'variant' prop TypeScript declaration (#15556) @kunimart
+- [MenuList] Ignore disableListWrap for text focus navigation (#15555) @ryancogswell
+- [Portal] Migrate to React hooks (#15399) @gautam-pahuja
+- [TableCell] Fix TypeScript declaration of the 'padding' prop (#15516) @kunimart
+- [TableCell] Update TypeScript definitions (#15541) @ljvanschie
+- [TablePagination] Use OverridableComponent in TypeScript declarations (#15517) @kunimart
+- [Tabs] Fix aria-label issue on the demos (#15507) @amangalvedhekar
+- [theme] Responsive font sizes (#14573) @n-batalha
+- [Transition] Fix false-positive ref warning (#15526) @eps1lon
+- [Badge] Handle undefined badgeContent rendering empty bubble (#15581) @Naismith
+
+### `@material-ui/styles@v4.0.0-beta.1`
+
+- [styles] Create a new JSS instance with injectFirst (#15560) @oliviertassinari
+- [core] Set default theme type for makeStyles (#15549) @merceyz
+- [core] Set default theme type for useTheme (#15538) @merceyz
+
+### `@material-ui/types@v4.0.0-beta.2`
+
+- [types] Add @material-ui/types package (#15577) @eps1lon
+
+### `@material-ui/system@v4.0.0-beta.1`
+
+- [system] Test types (#15575) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.10`
+
+- [Slider] Save focus after click (#15439) @jztang
+
+### Docs
+
+- [example] Fix TypeScript compilation error (#15550) @emmtqg
+- [docs] Add DelayingApperance TypeScript demo (#15551) @merceyz
+- [docs] Convert react-autosuggest demo to TypeScript (#15485) @nareshbhatia
+- [docs] Document v4 theme.spacing.unit deprecation (#15571) @cvanem
+- [docs] Extract inherited component from test (#15562) @eps1lon
+- [docs] Fix Draggable Dialog interactions with the content (#15552) @devdanco
+- [docs] Fix outdated links & demos (#15521) @oliviertassinari
+- [docs] Fix typechecking (#15501) @merceyz
+- [docs] Fix typography demo in dark mode (#15591) @jztang
+- [docs] Improve v3 migration guide (#15527) @janhesters
+- [docs] Migrate more demos to hooks (#15494) @merceyz
+- [docs] Remove NoSsr where possible (#15510) @oliviertassinari
+- [docs] Simplify wording for customization demo descriptions (#15539) @mbrookes
+- [docs] Update Changelog (#15567) @oliviertassinari
+- [docs] Updated v3 Migration guide (#15518) @vkasraj
+
+### Core
+
+- [core] Add additional warnings when attaching ref to function elements (#15519) @eps1lon
+- [core] Add ref prop to transition components (#15520) @eps1lon
+- [core] Better handle theme.overrides pseudo-classes (#15578) @oliviertassinari
+- [core] Fix createStyles not being defined (#15547) @pvdstel
+
 ## 4.0.0-beta.0
 ###### *Apr 28, 2019*
 
@@ -483,6 +617,35 @@ Here are some highlights ✨:
 - [Menu] Convert to function component (#15068) @joshwooding
 - [test] Update enzyme (#14987) @eps1lon
 - [core] Batch of fixes (#15115) @oliviertassinari
+
+## 3.9.3
+###### *Mar 28, 2019*
+
+Big thanks to the 11 contributors who made this release possible!
+
+This release fixes an important regression with TypeScript: https://github.com/mui-org/material-ui/issues/15076.
+
+### `@material-ui/core@v3.9.3`
+
+- [Select] Open select when focused with enter (#14452) @oknechirik
+- [Tooltip] Fix children focus detection (#14496) @codeheroics
+- [SwipeableDrawer] Ignore open swipe if it didn't start on the swipe area (#15038) @leMaik
+- [Button] Narrow type for `type` prop (#15096) @karlbohlmark
+
+### Docs
+
+- [docs] Fix hooks codesandbox broken (#14553) @Abbo44
+- [docs] Fix typo in simple breadcrumbs example (#14575) @AndrewUsher
+- [blog] Material-UI Developer Survey 2019 (#14614) @oliviertassinari
+- [docs] Change Gitter to Spectrum (#14668) @mbrookes
+- [docs] Update link to http://cssinjs.org/jss-api/ (#14788) @monicatie
+- [docs] Add Algolia metadata (#14835) @oliviertassinari
+- [docs] Improve overrides.md wording (#14403) @i0
+- [docs] Grammar fix (#14960) @nateq314
+
+### Core
+
+N/A
 
 ## 4.0.0-alpha.5
 ###### *Mar 23, 2019*
@@ -1006,7 +1169,7 @@ Here are some highlights ✨:
 
 - [Grid] Use a unitless spacing API (#14099) @ifndefdeadmau5
 
-In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
+In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
 ```diff
   /**
    * Defines the space between the type `item` component.
@@ -4136,7 +4299,7 @@ Here are some highlights ✨:
 
 - [Grid] Change the default spacing value: 0 (#10768) @oliviertassinari
 
-The negative margin implementation solution currently used comes with [serious limitations](https://material-ui.com/layout/grid/#negative-margin).
+The negative margin implementation solution currently used comes with [serious limitations](https://material-ui.com/components/grid/#negative-margin).
 Material-UI is the only library with a non-zero default spacing between the items.
 Having zero spacing by default will ease the usage of the component.
 

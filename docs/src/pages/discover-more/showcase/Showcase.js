@@ -132,7 +132,15 @@ function Showcase(props) {
                 {t('visit')}
               </Link>
             )}
-            <Typography className={classes.description}>{app.description}</Typography>
+            <Typography gutterBottom>{app.description}</Typography>
+            <Typography
+              variant="caption"
+              display="block"
+              color="textSecondary"
+              className={classes.description}
+            >
+              {app.dateAdded}
+            </Typography>
           </div>
         ),
       )}

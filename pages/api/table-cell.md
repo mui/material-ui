@@ -52,14 +52,18 @@ This property accepts the following keys:
 | <span class="prop-name">alignRight</span> | Styles applied to the root element if `align="right"`.
 | <span class="prop-name">alignJustify</span> | Styles applied to the root element if `align="justify"`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/TableCell/TableCell.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiTableCell`.
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Tables](/demos/tables/)
+- [Tables](/components/tables/)
 

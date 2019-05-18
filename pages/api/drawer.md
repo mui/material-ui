@@ -23,7 +23,7 @@ when `variant="temporary"` is set.
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The contents of the drawer. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">elevation</span> | <span class="prop-type">number</span> | <span class="prop-default">16</span> | The elevation of the drawer. |
-| <span class="prop-name">ModalProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`Modal`](/api/modal/) element. |
+| <span class="prop-name">ModalProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Properties applied to the [`Modal`](/api/modal/) element. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the drawer is open. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`Paper`](/api/paper/) element. |
@@ -56,14 +56,18 @@ This property accepts the following keys:
 | <span class="prop-name">paperAnchorDockedBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"` & `variant` is not "temporary".
 | <span class="prop-name">modal</span> | Styles applied to the `Modal` component.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Drawer/Drawer.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiDrawer`.
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Drawers](/demos/drawers/)
+- [Drawers](/components/drawers/)
 

@@ -64,16 +64,20 @@ This property accepts the following keys:
 | <span class="prop-name">elevation23</span> | 
 | <span class="prop-name">elevation24</span> | 
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Paper/Paper.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiPaper`.
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Autocomplete](/demos/autocomplete/)
-- [Cards](/demos/cards/)
-- [Paper](/demos/paper/)
+- [Autocomplete](/components/autocomplete/)
+- [Cards](/components/cards/)
+- [Paper](/components/paper/)
 

@@ -16,9 +16,9 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
 ![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/MaterialUI.svg?label=follow+Material-UI)](https://twitter.com/MaterialUI)
-[![PeerDependencies](https://img.shields.io/david/peer/mui-org/material-ui/next.svg)](https://david-dm.org/mui-org/material-ui/next?type=peer&path=packages/material-ui)
-[![Dependencies](https://img.shields.io/david/mui-org/material-ui/next.svg)](https://david-dm.org/mui-org/material-ui/next?path=packages/material-ui)
-[![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui/next.svg)](https://david-dm.org/mui-org/material-ui/next?type=dev)
+[![PeerDependencies](https://david-dm.org/mui-org/material-ui/next/peer-status.svg?path=packages/material-ui)](https://david-dm.org/mui-org/material-ui/next?type=peer&path=packages/material-ui)
+[![Dependencies](https://david-dm.org/mui-org/material-ui/next/status.svg?path=packages/material-ui)](https://david-dm.org/mui-org/material-ui/next?path=packages/material-ui)
+[![DevDependencies](https://david-dm.org/mui-org/material-ui/next/dev-status.svg?path=packages/material-ui)](https://david-dm.org/mui-org/material-ui/next?type=dev)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](http://isitmaintained.com/project/mui-org/material-ui "Average time to resolve an issue")
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/material-ui-docs/localized.svg?cache=v1)](https://translate.material-ui.com/project/material-ui-docs)
 
@@ -37,7 +37,7 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-**[Next channel v4.0.0-alpha](https://next.material-ui.com/)**
+**[Next channel v4.0.0-beta](https://next.material-ui.com/)**
 ```sh
 // with npm
 npm install @material-ui/core@next
@@ -88,8 +88,6 @@ via [OpenCollective](https://opencollective.com/material-ui)
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="callemall" title="The easy way to message your group"></a>
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="localize" href="https://localizejs.com" rel="noopener" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F629dea80-f1ae-11e8-b356-a5942970e22b.png&height=65" alt="localize" title="Application translation & localization platform"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="yakaz" href="https://yakaz.com" rel="noopener" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Fb47b9630-1586-11e9-a4d4-47c0a7133bdc.png&height=80" alt="yakaz" title="Search classified ads"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="zinggrid" href="https://www.zinggrid.com/" rel="noopener" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F453226e0-258a-11e9-ac89-996ff9caccb7.png&height=45" alt="zinggrid" title="Makes powerful grids easy"></a>
 </p>
 
 ### There is more!

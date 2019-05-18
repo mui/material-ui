@@ -9,7 +9,7 @@ describe('<Card />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Card />);
   });
 

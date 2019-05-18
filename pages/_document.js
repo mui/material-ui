@@ -35,13 +35,7 @@ const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA
 
 class MyDocument extends Document {
   render() {
-    const { canonical, url, userLanguage } = this.props;
-
-    let font = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
-
-    if (url.match(/onepirate/)) {
-      font = 'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400';
-    }
+    const { canonical, userLanguage } = this.props;
 
     return (
       <html lang={userLanguage} dir="ltr">
@@ -76,7 +70,6 @@ class MyDocument extends Document {
               hrefLang={userLanguage2}
             />
           ))}
-          <link rel="stylesheet" href={font} />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.
@@ -145,7 +138,6 @@ MyDocument.getInitialProps = async ctx => {
 
   return {
     ...initialProps,
-    url: ctx.req.url,
     canonical: pathnameToLanguage(ctx.req.url).canonical,
     userLanguage: ctx.query.userLanguage,
     styles: (

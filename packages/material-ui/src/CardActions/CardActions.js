@@ -20,7 +20,7 @@ export const styles = {
 };
 
 const CardActions = React.forwardRef(function CardActions(props, ref) {
-  const { disableSpacing, classes, className, ...other } = props;
+  const { disableSpacing = false, classes, className, ...other } = props;
 
   return (
     <div
@@ -49,10 +49,6 @@ CardActions.propTypes = {
    * If `true`, the actions do not have additional margin.
    */
   disableSpacing: PropTypes.bool,
-};
-
-CardActions.defaultProps = {
-  disableSpacing: false,
 };
 
 export default withStyles(styles, { name: 'MuiCardActions' })(CardActions);

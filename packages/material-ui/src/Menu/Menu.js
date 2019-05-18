@@ -1,5 +1,3 @@
-// @inheritedComponent Popover
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -42,7 +40,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     autoFocus: autoFocusProp,
     children,
     classes,
-    disableAutoFocusItem,
+    disableAutoFocusItem = false,
     MenuListProps = {},
     onClose,
     onEntering,
@@ -50,7 +48,8 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     PaperProps = {},
     PopoverClasses,
     theme,
-    variant,
+    transitionDuration = 'auto',
+    variant = 'selectedMenu',
     ...other
   } = props;
 
@@ -152,6 +151,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       }}
       open={open}
       ref={ref}
+      transitionDuration={transitionDuration}
       {...other}
     >
       <MenuList
@@ -255,12 +255,6 @@ Menu.propTypes = {
    * and the vertical alignment relative to the anchor element.
    */
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
-};
-
-Menu.defaultProps = {
-  disableAutoFocusItem: false,
-  transitionDuration: 'auto',
-  variant: 'selectedMenu',
 };
 
 export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(Menu);

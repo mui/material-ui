@@ -52,7 +52,7 @@ This property accepts the following keys:
 | <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"``.
 | <span class="prop-name">sizeMedium</span> | Styles applied to the root element if `size="medium"``.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Fab/Fab.js)
 for more detail.
 
@@ -64,7 +64,11 @@ you need to use the following style sheet name: `MuiFab`.
 The properties of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Buttons](/demos/buttons/)
+- [Buttons](/components/buttons/)
 

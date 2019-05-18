@@ -7,7 +7,6 @@ import {
   describeConformance,
   findOutermostIntrinsic,
   getClasses,
-  unwrap,
 } from '@material-ui/core/test-utils';
 import FormControlContext from '../FormControl/FormControlContext';
 import InputAdornment from '../InputAdornment';
@@ -19,11 +18,6 @@ import Select from '../Select';
 describe('<InputBase />', () => {
   let classes;
   let mount;
-  const NakedInputBase = unwrap(InputBase);
-
-  function setState(wrapper, state) {
-    return wrapper.find('InputBase').setState(state);
-  }
 
   before(() => {
     mount = createMount({ strict: true });
@@ -79,16 +73,20 @@ describe('<InputBase />', () => {
 
     it('should reset the focused state', () => {
       const handleBlur = spy();
-      const wrapper = mount(<InputBase muiFormControl={{ onBlur: handleBlur }} />);
-      // We simulate a focused input that is getting disabled.
-      setState(wrapper, {
-        focused: true,
-      });
-      wrapper.setProps({
-        disabled: true,
-      });
-      assert.strictEqual(wrapper.find('InputBase').instance().state.focused, false);
+      const handleFocus = spy();
+      const ref = React.createRef();
+      const wrapper = mount(<InputBase inputRef={ref} onBlur={handleBlur} onFocus={handleFocus} />);
+
+      // We simulate a focused input that is getting disabled.'
+      wrapper.find('input').simulate('focus');
+      // check if focus called
+      assert.strictEqual(handleFocus.callCount, 1);
+      // set input to disable
+      wrapper.setProps({ disabled: true });
+      // check if blur called
       assert.strictEqual(handleBlur.callCount, 1);
+      // check if focus not initiated again
+      assert.strictEqual(handleFocus.callCount, 1);
     });
 
     // IE 11 bug
@@ -120,9 +118,14 @@ describe('<InputBase />', () => {
 
   describe('controlled', () => {
     it('should considered [] as controlled', () => {
-      const wrapper = mount(<InputBase value={[]} />);
-      const instance = wrapper.find('InputBase').instance();
-      assert.strictEqual(instance.isControlled, true);
+      const initialValue = [];
+      const stubValue = 'do not work';
+      const wrapper = mount(<InputBase value={initialValue} />);
+      const inputEl = wrapper.find('input');
+      inputEl.instance().value = stubValue;
+      inputEl.simulate('change', { target: { value: stubValue } });
+
+      assert.strictEqual(inputEl.props().value, initialValue);
     });
 
     ['', 0].forEach(value => {
@@ -137,11 +140,6 @@ describe('<InputBase />', () => {
           wrapper = mount(
             <InputBase value={value} onFilled={handleFilled} onEmpty={handleEmpty} />,
           );
-        });
-
-        it('should check that the component is controlled', () => {
-          const instance = wrapper.find('InputBase').instance();
-          assert.strictEqual(instance.isControlled, true);
         });
 
         // don't test number because zero is a empty state, whereas '' is not
@@ -193,40 +191,32 @@ describe('<InputBase />', () => {
   // Note the initial callback when
   // uncontrolled only fires for a full mount
   describe('uncontrolled', () => {
-    let wrapper;
-    let handleFilled;
-    let handleEmpty;
-
-    before(() => {
-      handleEmpty = spy();
-      handleFilled = spy();
-      wrapper = mount(
-        <NakedInputBase
-          classes={{}}
-          onFilled={handleFilled}
-          defaultValue="hell"
-          onEmpty={handleEmpty}
-        />,
+    function setup() {
+      const handleEmpty = spy();
+      const handleFilled = spy();
+      const wrapper = mount(
+        <InputBase onFilled={handleFilled} defaultValue="hell" onEmpty={handleEmpty} />,
       );
-    });
-
-    it('should check that the component is uncontrolled', () => {
-      const instance = wrapper.find('InputBase').instance();
-      assert.strictEqual(instance.isControlled, false);
-    });
+      return { wrapper, handleEmpty, handleFilled };
+    }
 
     it('should fire the onFilled callback when dirtied', () => {
+      const { wrapper, handleFilled } = setup();
       assert.strictEqual(handleFilled.callCount, 1);
-      wrapper.find('InputBase').instance().inputRef.value = 'hello';
       wrapper.find('input').simulate('change');
       assert.strictEqual(handleFilled.callCount, 2);
     });
 
     it('should fire the onEmpty callback when cleaned', () => {
+      const { wrapper, handleEmpty } = setup();
       // Because of mount() this hasn't fired since there is no mounting
       assert.strictEqual(handleEmpty.callCount, 0);
-      wrapper.find('InputBase').instance().inputRef.value = '';
-      wrapper.find('input').simulate('change');
+      wrapper.find('input').instance().value = '';
+      wrapper.find('input').simulate('change', {
+        target: {
+          value: '',
+        },
+      });
       assert.strictEqual(handleEmpty.callCount, 1);
     });
   });
@@ -271,7 +261,7 @@ describe('<InputBase />', () => {
 
       beforeEach(() => {
         focus = spy();
-        wrapper.find('InputBase').instance().inputRef = { value: '', focus };
+        wrapper.find('input').instance().focus = focus;
         setFormControlContext({
           onFilled: spy(),
           onEmpty: spy(),
@@ -286,22 +276,33 @@ describe('<InputBase />', () => {
           onFilled: handleFilled,
         });
 
-        wrapper.find('InputBase').instance().inputRef.value = 'hello';
-        wrapper.find('input').simulate('change');
+        wrapper.find('input').instance().value = 'hello';
+        wrapper.find('input').simulate('change', { target: { value: 'hello' } });
         assert.strictEqual(handleFilled.callCount, 1);
         assert.strictEqual(muiFormControl.onFilled.callCount, 1);
       });
 
       it('should fire the onEmpty muiFormControl and props callback when cleaned', () => {
         const handleEmpty = spy();
+
+        // Set value to be cleared
+        wrapper.find('input').instance().value = 'test';
+        wrapper.find('input').simulate('change', {
+          target: {
+            value: 'test',
+          },
+        });
         wrapper.setProps({
           onEmpty: handleEmpty,
         });
-
-        wrapper.find('InputBase').instance().inputRef.value = '';
-        wrapper.find('input').simulate('change');
+        assert.strictEqual(handleEmpty.callCount, 0);
+        // Clear value
+        wrapper.find('input').instance().value = '';
+        wrapper.find('input').simulate('change', {
+          target: { value: '' },
+        });
         assert.strictEqual(handleEmpty.callCount, 1);
-        assert.strictEqual(muiFormControl.onEmpty.callCount, 1);
+        assert.strictEqual(muiFormControl.onEmpty.callCount, 2);
       });
 
       it('should fire the onFocus muiFormControl', () => {
@@ -385,7 +386,8 @@ describe('<InputBase />', () => {
 
     describe('focused', () => {
       it('prioritizes context focus', () => {
-        setState(wrapper, { focused: true });
+        wrapper.find('input').simulate('focus');
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.focused), true);
 
         setFormControlContext({ focused: false });
         assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.focused), false);

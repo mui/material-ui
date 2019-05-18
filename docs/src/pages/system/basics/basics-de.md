@@ -20,25 +20,7 @@ Es ist wichtig zu verstehen, dass dieses Paket mit dieser Signatur reine (nebenw
 
 Im Rest dieses *Erste Schritte* Abschnitts verwenden wir **styled-components** als Referenzbeispiel (um die Universalität dieses Pakets zu betonen). Alternativ können Sie [JSS verwenden](#interoperability). Die Demos basieren ebenfalls auf der **Standardeinstellung** des Material-UI [Themeobjekt](/customization/default-theme/).
 
-```jsx
-import { palette, spacing, typography } from '@material-ui/system';
-import styled from 'styled-components';
-
-const Box = styled.div`${palette}${spacing}${typography}`;
-// oder importiere Box von'@material-ui/core/Box';
-
-<Box
-  color="primary.main"
-  bgcolor="background.paper"
-  fontFamily="h6.fontFamily"
-  fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' } }
-  p={{ xs: 2, sm: 3, md: 4} }
->
-  @material-ui/system
-</Box>
-```
-
-{{"demo": "pages/system/basics/Demo.js"}}
+{{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
 ### Installation
 
@@ -89,7 +71,7 @@ const theme = {
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      {/* children */}
+      {/* Kinder*/}
     </ThemeProvider>
   )
 }
@@ -125,7 +107,7 @@ Um die Box-Komponente noch nützlicher zu machen, haben wir eine Sammlung von St
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-Wenn Sie bereits `@material-ui/core` verwenden, können Sie unsere [vorgefertigte Box](/utils/box/) Komponente verwenden (intern mit JSS):
+Wenn Sie bereits `@material-ui/core` verwenden, können Sie unsere [vorgefertigte Box](/components/box/) Komponente verwenden (intern mit JSS):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -139,36 +121,15 @@ Wenn Sie bereits `@material-ui/core` verwenden, empfehlen wir Ihnen, mit der **J
 
 ### JSS
 
-```jsx
-import { palette, spacing, compose } from '@material-ui/system';
-import { styled } from '@material-ui/styles';
-
-const Box = styled(compose(spacing, palette));
-```
-
-{{"demo": "pages/system/basics/JSS.js"}}
+{{"demo": "pages/system/basics/JSS.js", "defaultCodeOpen": true}}
 
 ### Styled components
 
-```jsx
-import { palette, spacing } from '@material-ui/system';
-import styled from 'styled-components';
-
-const Box = styled.div`${palette}${spacing}`;
-```
-
-{{"demo": "pages/system/basics/StyledComponents.js"}}
+{{"demo": "pages/system/basics/StyledComponents.js", "defaultCodeOpen": true}}
 
 ### Emotion
 
-```jsx
-import { spacing, palette } from '@material-ui/system';
-import styled from '@emotion/styled';
-
-const Box = styled.div`${palette}${spacing}`;
-```
-
-{{"demo": "pages/system/basics/Emotion.js"}}
+{{"demo": "pages/system/basics/Emotion.js", "defaultCodeOpen": true}}
 
 ## Reaktionsfähig
 
@@ -327,67 +288,13 @@ const palette = compose(textColor, bgcolor);
 
 Der `style()` Helfer kann auch verwendet werden, um Eigenschaften Stilobjekten in einem Theme zuzuordnen. In diesem Beispiel unterstützt die `variant` Eigenschaft alle in ` theme.typography` vorhandenen Schlüssel.
 
-```jsx
-import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { style, typography } from '@material-ui/system';
-
-const variant = style({
-  prop: 'variant',
-  cssProperty: false,
-  themeKey: 'typography',
-});
-
-// ⚠ Text ist schon definiert im globalen Context:
-// https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
-const Text = styled.span`
-  font-family: Helvetica;
-  ${variant}
-  ${typography}
-`;
-
-const theme = {
-  typography: {
-    h1: {
-      fontSize: 30,
-      lineHeight: 1.5,
-    },
-    h2: {
-      fontSize: 25,
-      lineHeight: 1.5,
-    },
-  },
-};
-
-// Renders the theme.typography.h1 style object.
-<Text variant="h1">variant=h1</Text>
-```
-
-{{"demo": "pages/system/basics/Variant.js"}}
+{{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
 ## CSS-Eigenschaft
 
 Wenn Sie benutzerdefinierte CSS-Werte unterstützen möchten, können Sie unseren `css()` Helfer verwenden. Dieser verarbeitet die `css ` Eigenshaften.
 
-```jsx
-import { compose, spacing, palette, css } from '@material-ui/system';
-import styled from 'styled-components';
-
-const Box = styled.div`
-  ${css(
-    compose(
-      spacing,
-      palette,
-    ),
-  )}
-`;
-
-<Box color="white" css={{ bgcolor: 'palevioletred', p: 1, textTransform: 'uppercase' }}>
-  CssProp
-</Box>
-```
-
-{{"demo": "pages/system/basics/CssProp.js"}}
+{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
 ## So funktioniert es
 

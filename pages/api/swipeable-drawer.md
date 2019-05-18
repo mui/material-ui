@@ -39,7 +39,11 @@ Any other properties supplied will be provided to the root element ([Drawer](/ap
 The properties of the [Drawer](/api/drawer/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Drawers](/demos/drawers/)
+- [Drawers](/components/drawers/)
 

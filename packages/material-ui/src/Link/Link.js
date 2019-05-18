@@ -1,5 +1,3 @@
-// @inheritedComponent Typography
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -50,7 +48,16 @@ export const styles = {
 };
 
 const Link = React.forwardRef(function Link(props, ref) {
-  const { classes, className, component, TypographyClasses, underline, ...other } = props;
+  const {
+    classes,
+    className,
+    component = 'a',
+    color = 'primary',
+    TypographyClasses,
+    underline = 'hover',
+    variant = 'inherit',
+    ...other
+  } = props;
 
   return (
     <Typography
@@ -63,8 +70,10 @@ const Link = React.forwardRef(function Link(props, ref) {
         className,
       )}
       classes={TypographyClasses}
+      color={color}
       component={component}
       ref={ref}
+      variant={variant}
       {...other}
     />
   );
@@ -113,13 +122,6 @@ Link.propTypes = {
    * Applies the theme typography styles.
    */
   variant: PropTypes.string,
-};
-
-Link.defaultProps = {
-  color: 'primary',
-  component: 'a',
-  underline: 'hover',
-  variant: 'inherit',
 };
 
 export default withStyles(styles, { name: 'MuiLink' })(Link);

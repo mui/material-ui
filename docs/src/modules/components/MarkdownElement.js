@@ -74,32 +74,40 @@ const markedOptions = {
   sanitize: false,
   smartLists: true,
   smartypants: false,
-  highlight(code, lang) {
-    let language;
-    switch (lang) {
+  highlight(code, language) {
+    let prismLanguage;
+    switch (language) {
       case 'ts':
-        language = prism.languages.tsx;
+        prismLanguage = prism.languages.tsx;
         break;
 
       case 'js':
       case 'sh':
-        language = prism.languages.jsx;
+        prismLanguage = prism.languages.jsx;
+        break;
+
+      case 'diff':
+        prismLanguage = { ...prism.languages.diff };
+        // original `/^[-<].*$/m` matches lines starting with `<` which matches
+        // <SomeComponent />
+        // we will only use `-` as the deleted marker
+        prismLanguage.deleted = /^[-].*$/m;
         break;
 
       default:
-        language = prism.languages[lang];
+        prismLanguage = prism.languages[language];
         break;
     }
 
-    if (!language) {
-      if (lang) {
-        throw new Error(`unsuppored language: "${lang}", "${code}"`);
+    if (!prismLanguage) {
+      if (language) {
+        throw new Error(`unsuppored language: "${language}", "${code}"`);
       } else {
-        language = prism.languages.jsx;
+        prismLanguage = prism.languages.jsx;
       }
     }
 
-    return prism.highlight(code, language);
+    return prism.highlight(code, prismLanguage);
   },
   renderer,
 };
@@ -116,23 +124,22 @@ const styles = theme => ({
     '& pre, & pre[class*="language-"]': {
       margin: '24px 0',
       padding: '12px 18px',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.level1,
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     },
     '& code': {
       display: 'inline-block',
-      lineHeight: 1.6,
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-      padding: '3px 6px',
+      padding: '2px 6px',
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.level1,
       fontSize: 14,
+      borderRadius: 2,
     },
     '& p code, & ul code, & pre code': {
       fontSize: 14,
-      lineHeight: 1.6,
     },
     '& h1': {
       ...theme.typography.h2,
@@ -160,6 +167,9 @@ const styles = theme => ({
     },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
+    },
+    '& ul': {
+      paddingLeft: 30,
     },
     '& h1, & h2, & h3, & h4': {
       '& code': {
@@ -260,7 +270,7 @@ const styles = theme => ({
     },
     '& blockquote': {
       borderLeft: `5px solid ${theme.palette.text.hint}`,
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.level1,
       padding: '4px 24px',
       margin: '24px 0',
     },

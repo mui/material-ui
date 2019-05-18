@@ -57,7 +57,7 @@ This property accepts the following keys:
 | <span class="prop-name">thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
 | <span class="prop-name">track</span> | Styles applied to the track element.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Switch/Switch.js)
 for more detail.
 
@@ -69,8 +69,12 @@ you need to use the following style sheet name: `MuiSwitch`.
 The properties of the [IconButton](/api/icon-button/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Switches](/demos/switches/)
-- [Transfer List](/demos/transfer-list/)
+- [Switches](/components/switches/)
+- [Transfer List](/components/transfer-list/)
 

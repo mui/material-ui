@@ -6,7 +6,7 @@ const styles = theme => ({
   '@global': {
     '#cf': {
       overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.level1,
       padding: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(
         1,
       ) + 130}px`,

@@ -39,13 +39,13 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     anchorEl,
     children,
     container,
-    disablePortal,
-    keepMounted,
+    disablePortal = false,
+    keepMounted = false,
     modifiers,
     open,
-    placement: placementProps,
+    placement: placementProps = 'bottom',
     popperOptions = {},
-    transition,
+    transition = false,
     ...other
   } = props;
   const tooltipRef = React.useRef(null);
@@ -174,7 +174,7 @@ Popper.propTypes = {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
-      if (resolvedAnchorEl instanceof HTMLElement) {
+      if (resolvedAnchorEl instanceof Element) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
@@ -195,7 +195,7 @@ Popper.propTypes = {
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
+            `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );
       }
@@ -264,13 +264,6 @@ Popper.propTypes = {
    * Help supporting a react-transition-group/Transition component.
    */
   transition: PropTypes.bool,
-};
-
-Popper.defaultProps = {
-  disablePortal: false,
-  keepMounted: false,
-  placement: 'bottom',
-  transition: false,
 };
 
 export default Popper;

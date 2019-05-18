@@ -17,7 +17,7 @@ const useEnhancedEffect =
  * - Under too heavy server load, you can turn on service degradation.
  */
 function NoSsr(props) {
-  const { children, defer, fallback } = props;
+  const { children, defer = false, fallback = null } = props;
   const [mountedState, setMountedState] = React.useState(false);
 
   useEnhancedEffect(() => {
@@ -56,10 +56,5 @@ if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   NoSsr['propTypes' + ''] = exactProp(NoSsr.propTypes);
 }
-
-NoSsr.defaultProps = {
-  defer: false,
-  fallback: null,
-};
 
 export default NoSsr;

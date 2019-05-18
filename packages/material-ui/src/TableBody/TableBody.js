@@ -16,7 +16,7 @@ const tablelvl2 = {
 };
 
 const TableBody = React.forwardRef(function TableBody(props, ref) {
-  const { classes, className, component: Component, ...other } = props;
+  const { classes, className, component: Component = 'tbody', ...other } = props;
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
@@ -44,10 +44,6 @@ TableBody.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
-};
-
-TableBody.defaultProps = {
-  component: 'tbody',
 };
 
 export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);

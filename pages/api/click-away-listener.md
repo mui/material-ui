@@ -27,8 +27,12 @@ For instance, if you need to hide a menu when people click anywhere else on your
 The component cannot hold a ref.
 
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Menus](/demos/menus/)
-- [Click Away Listener](/utils/click-away-listener/)
+- [Click Away Listener](/components/click-away-listener/)
+- [Menus](/components/menus/)
 

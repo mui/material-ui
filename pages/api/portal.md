@@ -27,7 +27,11 @@ that exists outside the DOM hierarchy of the parent component.
 The component cannot hold a ref.
 
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Portal](/utils/portal/)
+- [Portal](/components/portal/)
 

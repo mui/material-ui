@@ -1,5 +1,3 @@
-// @inheritedComponent ListItem
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -31,9 +29,9 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
   const {
     classes,
     className,
-    component,
-    disableGutters,
-    role,
+    component = 'li',
+    disableGutters = false,
+    role = 'menuitem',
     selected,
     tabIndex: tabIndexProp,
     ...other
@@ -104,12 +102,6 @@ MenuItem.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.number,
-};
-
-MenuItem.defaultProps = {
-  component: 'li',
-  disableGutters: false,
-  role: 'menuitem',
 };
 
 export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

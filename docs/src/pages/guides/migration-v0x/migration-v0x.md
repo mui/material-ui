@@ -16,7 +16,7 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
 The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
-- New styling solution using CSS-in-JS (better [customization](/customization/overrides/) power, better performance)
+- New styling solution using CSS-in-JS (better [customization](/customization/components/) power, better performance)
 - New [theme handling](/customization/themes/) (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
 - Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
@@ -82,7 +82,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
 ### Autocomplete
 
 Material-UI doesn't provide a high-level API for solving this problem.
-You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
+You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
 

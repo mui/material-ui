@@ -1,5 +1,3 @@
-// @inheritedComponent InputBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -91,7 +89,15 @@ export const styles = theme => {
 };
 
 const Input = React.forwardRef(function Input(props, ref) {
-  const { disableUnderline, classes, ...other } = props;
+  const {
+    disableUnderline,
+    classes,
+    fullWidth = false,
+    inputComponent = 'input',
+    multiline = false,
+    type = 'text',
+    ...other
+  } = props;
 
   return (
     <InputBase
@@ -102,7 +108,11 @@ const Input = React.forwardRef(function Input(props, ref) {
         }),
         underline: null,
       }}
+      fullWidth={fullWidth}
+      inputComponent={inputComponent}
+      multiline={multiline}
       ref={ref}
+      type={type}
       {...other}
     />
   );
@@ -223,13 +233,6 @@ Input.propTypes = {
    * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.any,
-};
-
-Input.defaultProps = {
-  fullWidth: false,
-  inputComponent: 'input',
-  multiline: false,
-  type: 'text',
 };
 
 Input.muiName = 'Input';

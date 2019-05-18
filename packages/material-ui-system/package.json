@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/system",
-  "version": "4.0.0-beta.0",
+  "version": "4.0.0-beta.2",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI System - Design system for Material-UI.",
@@ -29,7 +29,8 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-system/**/*.test.js' --exclude '**/node_modules/**'"
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-system/**/*.test.js' --exclude '**/node_modules/**'",
+    "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
     "react": "^16.8.0",

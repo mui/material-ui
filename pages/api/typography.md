@@ -73,15 +73,19 @@ This property accepts the following keys:
 | <span class="prop-name">displayInline</span> | Styles applied to the root element if `display="inline"`.
 | <span class="prop-name">displayBlock</span> | Styles applied to the root element if `display="block"`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Typography/Typography.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiTypography`.
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Breadcrumbs](/demos/breadcrumbs/)
-- [Typography](/style/typography/)
+- [Breadcrumbs](/components/breadcrumbs/)
+- [Typography](/components/typography/)
 

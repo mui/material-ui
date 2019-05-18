@@ -341,7 +341,7 @@ This property accepts the following keys:
 
 ${text}
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
     reactAPI.filename,
   )})
@@ -423,6 +423,20 @@ import ${reactAPI.name} from '${source}';
 \`\`\``;
 }
 
+function generateNotes(reactAPI) {
+  const { strictModeReady } = reactAPI;
+  const strictModeLinked = '[StrictMode](https://reactjs.org/docs/strict-mode.html)';
+  return `## Notes
+
+The component ${
+    !strictModeReady
+      ? `can cause issues in ${strictModeLinked}`
+      : `is fully ${strictModeLinked} compatible`
+  }.
+
+`;
+}
+
 export default function generateMarkdown(reactAPI) {
   return [
     generateHeader(reactAPI),
@@ -440,6 +454,8 @@ export default function generateMarkdown(reactAPI) {
     '',
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
+    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateNotes(
+      reactAPI,
+    )}${generateDemos(reactAPI)}`,
   ].join('\n');
 }

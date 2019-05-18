@@ -100,7 +100,7 @@ export const styles = theme => ({
 
 const TableCell = React.forwardRef(function TableCell(props, ref) {
   const {
-    align,
+    align = 'inherit',
     classes,
     className,
     component,
@@ -207,10 +207,6 @@ TableCell.propTypes = {
    * By default, the TableHead, TableBody or TableFooter parent component set the value.
    */
   variant: PropTypes.oneOf(['head', 'body', 'footer']),
-};
-
-TableCell.defaultProps = {
-  align: 'inherit',
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

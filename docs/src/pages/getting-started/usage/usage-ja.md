@@ -4,7 +4,7 @@
 
 Material-UIコンポーネントは独立して機能します。 **They are self-supporting**, and will only inject the styles they need to display. それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
 
-ドキュメントに示されているように、任意のコンポーネントを使用できます。 どのようにインポートされるか確認する為にそれぞれのコンポーネントの[デモページ](/demos/buttons/)を参照してください。
+ドキュメントに示されているように、任意のコンポーネントを使用できます。 どのようにインポートされるか確認する為にそれぞれのコンポーネントの[デモページ](/components/buttons/)を参照してください。
 
 ## 今すぐ始める
 
@@ -41,12 +41,13 @@ Material-UIは最初にモバイルで開発されました。最初にモバイ
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
+  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+/>
 ```
 
 ### CssBaseline
 
-Material-UIはオプションで[CssBaseline](/style/css-baseline/)コンポーネントを提供しています。 ブラウザとデバイス間の差分を無くすだけでなく、一般的なHTML要素に対して少しだけ慎重なリセットを提供しています。
+Material-UI provides an optional [CssBaseline]/components/css-baseline/) component. ブラウザとデバイス間の差分を無くすだけでなく、一般的なHTML要素に対して少しだけ慎重なリセットを提供しています。
 
 ## バージョン管理されたドキュメント
 
@@ -56,6 +57,6 @@ Material-UIはオプションで[CssBaseline](/style/css-baseline/)コンポー�
 
 これで基本的なセットアップがわかったので、次の項目について詳しく学びましょう。
 
-- [Material Designフォントとタイポグラフィ](/style/typography/)を導入する方法
+- How to provide [the Material Design font and typography]/components/typography/).
 - [テーマのカスタマイズ](/customization/themes/)を活用する方法
-- コンポーネントの見た目を[上書き](/customization/overrides/)する方法
+- コンポーネントの見た目を[上書き](/customization/components/)する方法

@@ -11,6 +11,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import NextHead from 'next/head';
 
 // Add the strict mode back once the number of warnings is manageable.
 // We might miss important warnings by keeping the strict mode 🌊🌊🌊.
@@ -51,14 +52,17 @@ Tip: you can access the documentation \`theme\` object directly in the console.
   );
 }
 
-function findActivePage(currentPages, router) {
+function findActivePage(currentPages, pathname) {
   const activePage = find(currentPages, page => {
     if (page.children) {
-      return router.pathname.indexOf(`${page.pathname}/`) === 0;
+      if (pathname.indexOf(`${page.pathname}/`) === 0) {
+        // Check if one of the children matches (for /components)
+        return findActivePage(page.children, pathname);
+      }
     }
 
     // Should be an exact match if no children
-    return router.pathname === page.pathname;
+    return pathname === page.pathname;
   });
 
   if (!activePage) {
@@ -66,8 +70,8 @@ function findActivePage(currentPages, router) {
   }
 
   // We need to drill down
-  if (activePage.pathname !== router.pathname) {
-    return findActivePage(activePage.children, router);
+  if (activePage.pathname !== pathname) {
+    return findActivePage(activePage.children, pathname);
   }
 
   return activePage;
@@ -94,10 +98,23 @@ class MyApp extends App {
       // See `_rewriteUrlForNextExport` on Next.js side.
       pathname = pathname.replace(/\/$/, '');
     }
-    const activePage = findActivePage(pages, { ...router, pathname });
+    // console.log(pages, { ...router, pathname })
+    const activePage = findActivePage(pages, pathname);
+
+    let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500'];
+    if (pathname.match(/onepirate/)) {
+      fonts = ['https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400'];
+    } else if (pathname.match(/blog/)) {
+      fonts.push('https://fonts.googleapis.com/css?family=Roboto+Slab:300');
+    }
 
     return (
       <ReactMode>
+        <NextHead>
+          {fonts.map(font => (
+            <link rel="stylesheet" href={font} key={font} />
+          ))}
+        </NextHead>
         <Container>
           <ReduxProvider store={this.redux}>
             <PageContext.Provider value={{ activePage, pages }}>
