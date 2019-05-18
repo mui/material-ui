@@ -28,7 +28,7 @@ If this is an issue for you you have various options:
 
 ### Option 1
 
-You can use paths imports to avoid pulling in unused modules. For instance, instead of:
+You can use path imports to avoid pulling in unused modules. For instance, instead of:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
