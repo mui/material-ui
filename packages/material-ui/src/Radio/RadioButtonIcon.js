@@ -5,32 +5,29 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import withStyles from '../styles/withStyles';
 
+const duration = 83; // 1s / 60 FPS * 5 frames
+
 export const styles = theme => ({
   root: {
     position: 'relative',
-    width: '24px',
-    height: '24px',
+    display: 'flex',
+    '&$checked $layer': {
+      transform: 'scale(1)',
+      transition: theme.transitions.create('transform', {
+        easing: theme.transitions.easing.easeOut,
+        duration,
+      }),
+    },
   },
-  icon: {
+  layer: {
     position: 'absolute',
-    left: 0,
-    top: 0,
-  },
-  inner: {
-    height: 24,
     transform: 'scale(0)',
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeIn,
-      duration: theme.transitions.duration.shortest,
+      duration,
     }),
   },
-  innerChecked: {
-    transform: 'none',
-    transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
+  checked: {},
 });
 
 /**
@@ -40,11 +37,9 @@ function RadioButtonIcon(props) {
   const { checked, classes, className, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} {...other}>
-      <div className={clsx(classes.inner, checked && classes.innerChecked)}>
-        <RadioButtonCheckedIcon className={classes.icon} />
-      </div>
-      <RadioButtonUncheckedIcon className={classes.icon} />
+    <div className={clsx(classes.root, { [classes.checked]: checked }, className)} {...other}>
+      <RadioButtonUncheckedIcon />
+      <RadioButtonCheckedIcon className={classes.layer} />
     </div>
   );
 }
@@ -65,4 +60,4 @@ RadioButtonIcon.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiRadioButtonIcon' })(RadioButtonIcon);
+export default withStyles(styles, { name: 'PrivateRadioButtonIcon' })(RadioButtonIcon);
