@@ -9,7 +9,7 @@ declare const Tabs: OverridableComponent<{
     centered?: boolean;
     children?: React.ReactNode;
     indicatorColor?: 'secondary' | 'primary' | string;
-    onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
+    onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
     ScrollButtonComponent?: React.ElementType;
     scrollButtons?: 'auto' | 'on' | 'off';
     TabIndicatorProps?: Partial<TabIndicatorProps>;

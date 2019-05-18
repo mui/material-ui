@@ -459,7 +459,7 @@ Tabs.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
-   * @param {number} value We default to the index of the child
+   * @param {any} value We default to the index of the child (number)
    */
   onChange: PropTypes.func,
   /**
