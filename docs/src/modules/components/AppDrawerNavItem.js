@@ -62,7 +62,7 @@ function AppDrawerNavItem(props) {
           activeClassName={`drawer-active ${classes.active}`}
           href={href}
           className={clsx(classes.buttonLeaf, `depth-${depth}`)}
-          disableRipple
+          disableTouchRipple
           onClick={onClick}
           style={style}
         >
