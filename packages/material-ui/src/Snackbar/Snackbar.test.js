@@ -32,7 +32,7 @@ describe('<Snackbar />', () => {
       const handleClose = spy();
       mount(<Snackbar open onClose={handleClose} message="message" />);
 
-      const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
+      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
       window.document.body.dispatchEvent(event);
 
       assert.strictEqual(handleClose.callCount, 1);
