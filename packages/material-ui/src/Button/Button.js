@@ -16,9 +16,12 @@ export const styles = theme => ({
     padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
-      duration: theme.transitions.duration.short,
-    }),
+    transition: theme.transitions.create(
+      ['background-color', 'box-shadow', 'border'],
+      {
+        duration: theme.transitions.duration.short,
+      },
+    ),
     '&:hover': {
       textDecoration: 'none',
       backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
@@ -133,25 +136,6 @@ export const styles = theme => ({
       },
     },
   },
-  grouped: {
-    minWidth: 40,
-    // border: `1px solid ${theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
-    '&:not(:first-child)': {
-      borderLeft: 'none',
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    '&:not(:last-child)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-  },
-  groupedPrimary: {
-    // borderRight: `1px solid ${theme.palette.primary.dark}`,
-  },
-  groupedSecondary: {
-    // borderRight: `1px solid ${theme.palette.secondary.dark}`,
-  },
   /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
   containedPrimary: {
     color: theme.palette.primary.contrastText,
@@ -175,6 +159,49 @@ export const styles = theme => ({
         backgroundColor: theme.palette.secondary.main,
       },
     },
+  },
+  grouped: {
+    minWidth: 40,
+    '&:not(:first-child)': {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    '&:not(:last-child)': {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  },
+  groupedOutlined: {
+    '&:not(:first-child)': {
+      borderLeft: '1px solid transparent',
+      marginLeft: -1,
+    },
+  },
+  groupedOutlinedPrimary: {
+    '&:hover': {
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
+  },
+  groupedOutlinedSecondary: {
+    '&:hover': {
+      border: `1px solid ${theme.palette.secondary.main}`,
+    },
+  },
+  groupedContained: {
+    boxShadow: 'none',
+    '&:not(:last-child)': {
+      borderRight: `1px solid ${theme.palette.grey[400]}`,
+    }
+  },
+  groupedContainedPrimary: {
+    '&:not(:last-child)': {
+      borderRight: `1px solid ${theme.palette.primary.dark}`,
+    }
+  },
+  groupedContainedSecondary: {
+    '&:not(:last-child)': {
+      borderRight: `1px solid ${theme.palette.secondary.dark}`,
+    }
   },
   /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
@@ -219,24 +246,30 @@ const Button = React.forwardRef(function Button(props, ref) {
     ...other
   } = props;
 
-  const contained = variant === 'contained';
-  // const grouped = variant === 'grouped';
   const text = variant === 'text';
+  const outlined = variant === 'outlined';
+  const contained = variant === 'contained';
+  const primary = color === 'primary';
+  const secondary = color === 'secondary';
   const className = clsx(
     classes.root,
     {
       [classes.text]: text,
-      [classes.textPrimary]: text && color === 'primary',
-      [classes.textSecondary]: text && color === 'secondary',
+      [classes.textPrimary]: text && primary,
+      [classes.textSecondary]: text && secondary,
+      [classes.outlined]: outlined,
+      [classes.outlinedPrimary]: outlined && primary,
+      [classes.outlinedSecondary]: outlined && secondary,
       [classes.contained]: contained,
-      [classes.containedPrimary]: contained && color === 'primary',
-      [classes.containedSecondary]: contained && color === 'secondary',
-      [classes.outlined]: variant === 'outlined',
-      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
-      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
+      [classes.containedPrimary]: contained && primary,
+      [classes.containedSecondary]: contained && secondary,
       [classes.grouped]: grouped,
-      [classes.groupedPrimary]: grouped && color === 'primary',
-      [classes.groupedSeconday]: grouped && color === 'secondary',
+      [classes.groupedOutlined]: grouped && outlined,
+      [classes.groupedOutlinedPrimary]: grouped && outlined && primary,
+      [classes.groupedOutlinedSeconday]: grouped && outlined && secondary,
+      [classes.groupedContained]: grouped && contained,
+      [classes.groupedContainedPrimary]: grouped && contained && primary,
+      [classes.groupedContainedSecondary]: grouped && contained && secondary,
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
@@ -308,7 +341,7 @@ Button.propTypes = {
    * If `true`, the button will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
-    /**
+  /**
    * If `true`, the button will act as a grouped button.
    */
   grouped: PropTypes.bool,

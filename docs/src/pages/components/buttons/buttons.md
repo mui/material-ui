@@ -54,6 +54,10 @@ or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
+## Split Button
+
+{{"demo": "pages/components/buttons/SplitButton.js"}}
+
 ## Floating Action Buttons
 
 A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
