@@ -2,7 +2,7 @@
 
 const doctrine = require('doctrine');
 const recast = require('recast');
-const reactDocs = require('react-docgen');
+const { parse } = require('react-docgen');
 const { Router } = require('next/router');
 const { pageToTitle } = require('./helpers');
 const { LANGUAGES_IN_PROGRESS } = require('../constants');
@@ -42,7 +42,7 @@ function getChained(type) {
     const indexStart = type.raw.indexOf(marker);
 
     if (indexStart !== -1) {
-      const parsed = reactDocs.parse(
+      const parsed = parse(
         `
         import PropTypes from 'prop-types';
         const Foo = () => <div />
