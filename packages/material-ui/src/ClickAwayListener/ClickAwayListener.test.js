@@ -45,7 +45,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      const event = fireBodyMouseEvent('mouseup');
+      const event = fireBodyMouseEvent('click');
 
       assert.strictEqual(handleClickAway.callCount, 1);
       assert.deepEqual(handleClickAway.args[0], [event]);
@@ -60,7 +60,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
+      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
       const el = ref.current;
       if (el) {
         el.dispatchEvent(event);
@@ -77,13 +77,13 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
       const preventDefault = event => event.preventDefault();
-      window.document.body.addEventListener('mouseup', preventDefault);
+      window.document.body.addEventListener('click', preventDefault);
 
-      const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
+      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
       window.document.body.dispatchEvent(event);
       assert.strictEqual(handleClickAway.callCount, 0);
 
-      window.document.body.removeEventListener('mouseup', preventDefault);
+      window.document.body.removeEventListener('click', preventDefault);
     });
   });
 
@@ -95,7 +95,7 @@ describe('<ClickAwayListener />', () => {
           <span>Hello</span>
         </ClickAwayListener>,
       );
-      fireBodyMouseEvent('mouseup');
+      fireBodyMouseEvent('click');
       assert.strictEqual(handleClickAway.callCount, 0);
     });
 
@@ -166,7 +166,7 @@ describe('<ClickAwayListener />', () => {
         <Child />
       </ClickAwayListener>,
     );
-    fireBodyMouseEvent('mouseup');
+    fireBodyMouseEvent('click');
     assert.strictEqual(handleClickAway.callCount, 0);
   });
 });

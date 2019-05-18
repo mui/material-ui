@@ -26,7 +26,7 @@ function mapEventPropToEvent(eventProp) {
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 function ClickAwayListener(props) {
-  const { children, mouseEvent = 'onMouseUp', touchEvent = 'onTouchEnd', onClickAway } = props;
+  const { children, mouseEvent = 'onClick', touchEvent = 'onTouchEnd', onClickAway } = props;
   const mountedRef = useMountedRef();
   const movedRef = React.useRef(false);
 
