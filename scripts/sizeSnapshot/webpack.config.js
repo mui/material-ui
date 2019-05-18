@@ -100,7 +100,7 @@ async function getSizeLimitBundles() {
       // vs https://bundlephobia.com/result?p=react-outside-click-handler
       name: '@material-ui/core/ClickAwayListener',
       webpack: true,
-      path: 'packages/material-ui/build/esm/ClickAwayListener.js',
+      path: 'packages/material-ui/build/esm/ClickAwayListener/index.js',
     },
     {
       name: 'docs.main',
