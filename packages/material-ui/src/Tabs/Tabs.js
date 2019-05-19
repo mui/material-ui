@@ -53,6 +53,10 @@ export const styles = theme => ({
       display: 'none',
     },
   },
+  /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` & `showLeftScroll={false}` & `showRightScroll={false}`. */
+  scrollButtonsAutoHidden: {
+    display: 'none',
+  },
   /* Styles applied to the `TabIndicator` component. */
   indicator: {},
 });
@@ -114,6 +118,7 @@ class Tabs extends React.Component {
 
   getConditionalElements = () => {
     const { classes, ScrollButtonComponent, scrollButtons, theme, variant } = this.props;
+    const { showLeftScroll, showRightScroll } = this.state;
     const conditionalElements = {};
     const scrollable = variant === 'scrollable';
     conditionalElements.scrollbarSizeListener = scrollable ? (
@@ -121,14 +126,16 @@ class Tabs extends React.Component {
     ) : null;
 
     const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
+    const scrollButtonsActive = showLeftScroll || showRightScroll;
 
     conditionalElements.scrollButtonLeft = showScrollButtons ? (
       <ScrollButtonComponent
         direction={theme && theme.direction === 'rtl' ? 'right' : 'left'}
         onClick={this.handleLeftScrollClick}
-        visible={this.state.showLeftScroll}
+        visible={showLeftScroll}
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+          [classes.scrollButtonsAutoHidden]: scrollButtons === 'auto' && !scrollButtonsActive,
         })}
       />
     ) : null;
@@ -137,9 +144,10 @@ class Tabs extends React.Component {
       <ScrollButtonComponent
         direction={theme && theme.direction === 'rtl' ? 'left' : 'right'}
         onClick={this.handleRightScrollClick}
-        visible={this.state.showRightScroll}
+        visible={showRightScroll}
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+          [classes.scrollButtonsAutoHidden]: scrollButtons === 'auto' && !scrollButtonsActive,
         })}
       />
     ) : null;

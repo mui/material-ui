@@ -52,6 +52,7 @@ This property accepts the following keys:
 | <span class="prop-name">scrollable</span> | Styles applied to the tablist element if `variant="scrollable"`.
 | <span class="prop-name">scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
 | <span class="prop-name">scrollButtonsAuto</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`.
+| <span class="prop-name">scrollButtonsAutoHidden</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` & `showLeftScroll={false}` & `showRightScroll={false}`.
 | <span class="prop-name">indicator</span> | Styles applied to the `TabIndicator` component.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
