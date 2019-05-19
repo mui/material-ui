@@ -19,7 +19,7 @@ use named imports and expect only a minimal set of Material-UI components in you
 import { Button, TextField } from '@material-ui/core';
 ```
 
-Be aware that tree-shaking is an optimization that is usually only applied on production
+Be aware that tree-shaking is an optimization that is usually only applied to production
 bundles. Development bundles will contain the full library which can lead to slower
 startup times. This is especially noticeable if you import from `@material-ui/icons`.
 Startup times can be approximately 6x slower than without named imports from the top-level API.
