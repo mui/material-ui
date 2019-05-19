@@ -99,14 +99,16 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
-    const topLevel = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
+    const topLevel = (page.pathname.match(/\//g) || []).length === 1 && !page.subheader;
+    const openImmediately =
+      activePage.pathname.indexOf(`${page.pathname}/`) === 0 || !!page.subheader;
 
     items.push(
       <AppDrawerNavItem
         depth={depth}
         key={title}
         topLevel={topLevel}
-        openImmediately={topLevel || !!page.subheader}
+        openImmediately={openImmediately}
         title={title}
       >
         {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1, t })}
