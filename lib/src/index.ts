@@ -1,9 +1,9 @@
 import { MaterialUiPickersDate } from './typings/date';
+import { KeyboardTimePickerProps } from './TimePicker';
 import { DatePickerProps, KeyboardDatePickerProps } from './DatePicker';
-import { KeyboardTimePickerProps, TimePickerProps } from './TimePicker';
 import { DateTimePickerProps, KeyboardDateTimePickerProps } from './DateTimePicker';
 
-export type TimePickerProps = TimePickerProps;
+export type TimePickerProps = KeyboardTimePickerProps;
 
 export type KeyboardTimePickerProps = KeyboardTimePickerProps;
 
@@ -17,17 +17,11 @@ export type KeyboardDateTimePickerProps = KeyboardDateTimePickerProps;
 
 export type MaterialUiPickersDate = MaterialUiPickersDate;
 
-export { default as DatePicker } from './DatePicker';
+export { DatePicker, KeyboardDatePicker } from './DatePicker';
 
-export { default as KeyboardDatePicker } from './DatePicker/KeyboardDatePicker';
+export { TimePicker, KeyboardTimePicker } from './TimePicker';
 
-export { default as TimePicker } from './TimePicker';
-
-export { default as KeyboardTimePicker } from './TimePicker/KeyboardTimePicker';
-
-export { default as DateTimePicker } from './DateTimePicker';
-
-export { default as KeyboardDateTimePicker } from './DateTimePicker/KeyboardDateTimePicker';
+export { DateTimePicker, KeyboardDateTimePicker } from './DateTimePicker';
 
 export { default as Calendar } from './DatePicker/components/Calendar';
 
@@ -36,6 +30,12 @@ export { default as Day } from './DatePicker/components/Day';
 export { default as TimePickerView } from './TimePicker/components/TimePickerView';
 
 export { default as Clock } from './TimePicker/components/Clock';
+
+export { Picker } from './Picker/Picker';
+
+export { makePurePicker } from './Picker/WrappedPurePicker';
+
+export { makeKeyboardPicker } from './Picker/WrappedKeyboardPicker';
 
 export { validate } from './_helpers/text-field-helper';
 

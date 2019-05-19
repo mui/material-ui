@@ -1,8 +1,8 @@
 import * as React from 'react';
 import addDays from 'date-fns/addDays';
-import KeyboardDatePicker, { KeyboardDatePickerProps } from '../../DatePicker/KeyboardDatePicker';
 import { ReactWrapper } from 'enzyme';
 import { mount } from '../test-utils';
+import { KeyboardDatePicker, KeyboardDatePickerProps } from '../../DatePicker/DatePicker';
 
 describe('e2e -- DatePicker keyboard input', () => {
   const onChangeMock = jest.fn();

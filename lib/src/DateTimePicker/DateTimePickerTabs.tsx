@@ -1,15 +1,14 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
 import { Theme } from '@material-ui/core';
-import { TimeIcon } from '../../_shared/icons/TimeIcon';
-import { DateTimePickerViewType } from '../DateTimePickerRoot';
+import { TimeIcon } from '../_shared/icons/TimeIcon';
+import { DateTimePickerView } from './DateTimePicker';
+import { DateRangeIcon } from '../_shared/icons/DateRangeIcon';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { DateRangeIcon } from '../../_shared/icons/DateRangeIcon';
 
-const viewToTabIndex = (openView: DateTimePickerViewType) => {
+const viewToTabIndex = (openView: DateTimePickerView) => {
   if (openView === 'date' || openView === 'year') {
     return 'date';
   }
@@ -17,7 +16,7 @@ const viewToTabIndex = (openView: DateTimePickerViewType) => {
   return 'time';
 };
 
-const tabIndexToView = (tab: DateTimePickerViewType) => {
+const tabIndexToView = (tab: DateTimePickerView) => {
   if (tab === 'date') {
     return 'date';
   }
@@ -26,10 +25,10 @@ const tabIndexToView = (tab: DateTimePickerViewType) => {
 };
 
 export interface DateTimePickerTabsProps {
-  view: DateTimePickerViewType;
-  onChange: (view: DateTimePickerViewType) => void;
-  dateRangeIcon: React.ReactNode;
-  timeIcon: React.ReactNode;
+  view: DateTimePickerView;
+  onChange: (view: DateTimePickerView) => void;
+  dateRangeIcon?: React.ReactNode;
+  timeIcon?: React.ReactNode;
 }
 
 export const useStyles = makeStyles(
@@ -56,9 +55,9 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = ({
   timeIcon,
 }) => {
   const classes = useStyles();
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const indicatorColor = theme.palette.type === 'light' ? 'secondary' : 'primary';
-  const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerViewType) => {
+  const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerView) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
     }
@@ -74,16 +73,10 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = ({
         indicatorColor={indicatorColor}
       >
         <Tab value="date" icon={<>{dateRangeIcon}</>} />
-        <Tab value="time" icon={<>{timeIcon!}</>} />
+        <Tab value="time" icon={<>{timeIcon}</>} />
       </Tabs>
     </Paper>
   );
-};
-
-(DateTimePickerTabs as any).propTypes = {
-  view: PropTypes.string.isRequired,
-  dateRangeIcon: PropTypes.node.isRequired,
-  timeIcon: PropTypes.node.isRequired,
 };
 
 DateTimePickerTabs.defaultProps = {

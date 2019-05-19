@@ -8,13 +8,13 @@ import { GITHUB_EDIT_URL } from '_constants';
 import { replaceGetFormatStrings } from 'utils/utilsService';
 import { withSnackbar, InjectedNotistackProps } from 'notistack';
 import { withUtilsService, UtilsContext } from './UtilsServiceContext';
-import { makeStyles, Theme, IconButton, Collapse, Tooltip } from '@material-ui/core';
+import { makeStyles, IconButton, Collapse, Tooltip } from '@material-ui/core';
 
 interface Props extends InjectedNotistackProps {
   source: { raw: string; relativePath: string; default: React.FC<any> };
 }
 
-const useStyles = makeStyles<Theme>(theme => ({
+const useStyles = makeStyles(theme => ({
   exampleTitle: {
     marginBottom: 8,
     '@media(max-width: 600px)': {

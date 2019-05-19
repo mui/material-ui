@@ -48,18 +48,12 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
     classes={{
       paper: clsx(classes.dialogRoot, {
         [classes.dialogRootWider]: wider,
-        [classes.dialogWithTabs]: showTabs,
       }),
     }}
     {...other}
   >
     <EventListener target="window" onKeyDown={onKeyDownInner} />
-    <DialogContent
-      children={children}
-      className={clsx(classes.dialog, {
-        [classes.dialogWithTabs]: showTabs,
-      })}
-    />
+    <DialogContent children={children} className={classes.dialog} />
 
     <DialogActions
       classes={{
@@ -97,27 +91,21 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
 
 ModalDialog.displayName = 'ModalDialog';
 
-const dialogHeight = 405;
-const dialogHeightWithTabs = 455;
-
 export const styles = createStyles({
   dialogRoot: {
     minWidth: DIALOG_WIDTH,
-    minHeight: dialogHeight,
+    maxWidth: DIALOG_WIDTH_WIDER,
   },
   dialogRootWider: {
     minWidth: DIALOG_WIDTH_WIDER,
   },
   dialog: {
-    minHeight: dialogHeight,
+    // minHeight: dialogHeight,
     overflow: 'hidden',
 
     '&:first-child': {
       padding: 0,
     },
-  },
-  dialogWithTabs: {
-    minHeight: dialogHeightWithTabs,
   },
   withAdditionalAction: {
     // set justifyContent to default value to fix IE11 layout bug

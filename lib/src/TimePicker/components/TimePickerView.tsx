@@ -5,6 +5,7 @@ import ClockType, { ClockViewType } from '../../constants/ClockType';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
+import { convertToMeridiem, getMeridiem } from '../../_helpers/time-utils';
 
 export interface TimePickerViewProps {
   /** TimePicker value */
@@ -40,9 +41,15 @@ export const TimePickerView: React.FC<TimePickerViewProps> = ({
           value: utils.getHours(date),
           children: getHourNumbers({ date, utils, ampm: Boolean(ampm) }),
           onChange: (value: number, isFinish?: boolean) => {
-            const updatedTime = utils.setHours(date, value);
+            const currentMeridiem = getMeridiem(date, utils);
+            const updatedTimeWithMeridiem = convertToMeridiem(
+              utils.setHours(date, value),
+              currentMeridiem,
+              Boolean(ampm),
+              utils
+            );
 
-            onHourChange(updatedTime, isFinish);
+            onHourChange(updatedTimeWithMeridiem, isFinish);
           },
         };
 

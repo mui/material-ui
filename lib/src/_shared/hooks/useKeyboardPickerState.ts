@@ -4,8 +4,8 @@ import { IUtils } from '@date-io/core/IUtils';
 import { useEffect, useMemo, useState } from 'react';
 import { BasePickerProps } from '../../typings/BasePicker';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { HookOptions, usePickerState } from './usePickerState';
 import { getDisplayDate } from '../../_helpers/text-field-helper';
+import { StateHookOptions, usePickerState } from './usePickerState';
 
 export interface BaseKeyboardPickerProps extends Omit<BasePickerProps, 'onChange'> {
   /** String value for controlling value with pure input string. Overrides value prop */
@@ -22,7 +22,7 @@ function parseInputString(value: string, utils: IUtils<any>, format: string) {
   }
 }
 
-export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: HookOptions) {
+export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: StateHookOptions) {
   const utils = useUtils();
   const format = props.format || options.getDefaultFormat();
 

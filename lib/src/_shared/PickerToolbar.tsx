@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
 import { Theme } from '@material-ui/core';
@@ -19,13 +18,6 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
       {children}
     </Toolbar>
   );
-};
-
-(PickerToolbar as any).propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  className: PropTypes.string,
-  classes: PropTypes.any.isRequired,
-  innerRef: PropTypes.any,
 };
 
 export const styles = (theme: Theme) =>

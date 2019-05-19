@@ -3,12 +3,12 @@ import { useUtils } from './useUtils';
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../..';
 import { BasePickerProps } from '../../typings/BasePicker';
-import { getDisplayDate } from '../../_helpers/text-field-helper';
+import { getDisplayDate, validate } from '../../_helpers/text-field-helper';
 import { useCallback, useDebugValue, useEffect, useRef, useState } from 'react';
 
-export interface HookOptions {
+export interface StateHookOptions {
   getDefaultFormat: () => string;
-  getValidationError: () => React.ReactNode;
+  getValidationError?: () => React.ReactNode;
 }
 
 const valueToDate = (
@@ -21,7 +21,7 @@ const valueToDate = (
   return date && utils.isValid(date) ? date : utils.date();
 };
 
-function useDateValues(props: BasePickerProps, options: HookOptions) {
+function useDateValues(props: BasePickerProps, options: StateHookOptions) {
   const utils = useUtils();
   const date = valueToDate(utils, props);
   const acceptedDateRef = useRef(date);
@@ -59,7 +59,7 @@ function useOpenState(props: BasePickerProps) {
 }
 /* eslint-enable react-hooks/rules-of-hooks */
 
-export function usePickerState(props: BasePickerProps, options: HookOptions) {
+export function usePickerState(props: BasePickerProps, options: StateHookOptions) {
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
   const { acceptedDateRef, date, format } = useDateValues(props, options);
@@ -71,7 +71,7 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
     }
   }, [acceptedDateRef, date, isOpen, props.value]);
 
-  const validationError = options.getValidationError();
+  const validationError = validate(props.value, utils, props);
   if (validationError && props.onError) {
     props.onError(validationError, props.value);
   }

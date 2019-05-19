@@ -1,7 +1,6 @@
 import * as PropTypes from 'prop-types';
-import { TimePickerProps } from '../TimePicker';
-import { DateTimePickerProps } from '../DateTimePicker';
-import { DatePickerProps } from '../DatePicker/DatePicker';
+import { BaseTimePickerProps } from '../TimePicker/TimePicker';
+import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 
 const date = PropTypes.oneOfType([
   PropTypes.object,
@@ -20,23 +19,19 @@ export const DomainPropTypes = { date, datePickerView };
 export const timePickerDefaultProps = {
   ampm: true,
   invalidDateMessage: 'Invalid Time Format',
-} as TimePickerProps;
+} as BaseTimePickerProps;
 
 export const datePickerDefaultProps = {
-  openTo: 'day',
-  views: ['year', 'day'],
   minDate: new Date('1900-01-01'),
   maxDate: new Date('2100-01-01'),
   invalidDateMessage: 'Invalid Date Format',
   minDateMessage: 'Date should not be before minimal date',
   maxDateMessage: 'Date should not be after maximal date',
   allowKeyboardControl: true,
-} as DatePickerProps;
+} as BaseDatePickerProps;
 
 export const dateTimePickerDefaultProps = {
   ...timePickerDefaultProps,
   ...datePickerDefaultProps,
   showTabs: true,
-  openTo: undefined,
-  views: undefined as never,
-} as DateTimePickerProps;
+} as BaseTimePickerProps & BaseDatePickerProps;

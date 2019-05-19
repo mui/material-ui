@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
-import { Typography, makeStyles, Paper, Theme } from '@material-ui/core';
+import { Typography, makeStyles, Paper } from '@material-ui/core';
 
 interface LandingPropertyProps {
   title: string;
@@ -8,7 +8,7 @@ interface LandingPropertyProps {
   icon: React.ComponentType<SvgIconProps>;
 }
 
-const useStyles = makeStyles<Theme>({
+const useStyles = makeStyles({
   propertyContainer: {
     display: 'flex',
     flexDirection: 'column',

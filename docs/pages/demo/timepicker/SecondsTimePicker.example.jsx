@@ -7,18 +7,20 @@ function SecondsTimePicker() {
   return (
     <Fragment>
       <TimePicker
-        seconds
-        format="hh:mm:ss a"
+        ampm={false}
+        openTo="hours"
+        views={['hours', 'minutes', 'seconds']}
+        format="HH:mm:ss"
         label="With seconds"
         value={selectedDate}
         onChange={handleDateChange}
       />
 
       <TimePicker
-        seconds
-        ampm={false}
-        format="HH:mm:ss"
-        label="24 hours"
+        openTo="minutes"
+        views={['minutes', 'seconds']}
+        format="mm:ss"
+        label="Minutes and seconds"
         value={selectedDate}
         onChange={handleDateChange}
       />

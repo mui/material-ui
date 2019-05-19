@@ -1,61 +1,65 @@
-import * as React from 'react';
-import TimePickerRoot, { BaseTimePickerProps } from './TimePickerRoot';
+import TimePickerToolbar from './TimePickerToolbar';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { BasePickerProps } from '../typings/BasePicker';
-import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
-import { usePickerState } from '../_shared/hooks/usePickerState';
 import { timePickerDefaultProps } from '../constants/prop-types';
-import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { BaseValidationProps, validate, pick12hOr24hFormat } from '../_helpers/text-field-helper';
+import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
+import { WrappedPurePickerProps, makePurePicker } from '../Picker/WrappedPurePicker';
+import { makeKeyboardPicker, WrappedKeyboardPickerProps } from '../Picker/WrappedKeyboardPicker';
 
-export type TimePickerProps = BasePickerProps &
-  BaseValidationProps &
-  BaseTimePickerProps &
-  ExtendWrapper<PureDateInputProps>;
+type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
-export const TimePicker: React.FC<TimePickerProps> = props => {
-  const {
-    ampm,
-    seconds,
-    minutesStep,
-    autoOk,
-    format,
-    forwardedRef,
-    initialFocusedDate,
-    labelFunc,
-    invalidDateMessage,
-    onAccept,
-    onChange,
-    value,
-    variant,
-    ...other
-  } = props;
+export interface BaseTimePickerProps {
+  /**
+   * 12h/24h view for hour selection clock
+   * @default true
+   */
+  ampm?: boolean;
+  /**
+   * Step over minutes
+   * @default 1
+   */
+  minutesStep?: number;
+}
 
+export interface TimePickerViewsProps extends BasePickerProps, BaseTimePickerProps {
+  /** Array of views to show */
+  views?: ('hours' | 'minutes' | 'seconds')[];
+  /** Open to timepicker */
+  openTo?: 'hours' | 'minutes' | 'seconds';
+}
+
+export type TimePickerProps = WrappedPurePickerProps & TimePickerViewsProps;
+
+export type KeyboardTimePickerProps = WrappedKeyboardPickerProps & TimePickerViewsProps;
+
+const defaultProps = {
+  ...timePickerDefaultProps,
+  openTo: 'hours' as TimePickerView,
+  views: ['hours', 'minutes'] as TimePickerView[],
+};
+
+function useOptions(props: TimePickerViewsProps) {
   const utils = useUtils();
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
-    getValidationError: () => validate(value, utils, props),
+
+  return {
     getDefaultFormat: () =>
-      pick12hOr24hFormat(format, ampm, {
+      pick12hOr24hFormat(props.format, props.ampm, {
         '12h': utils.time12hFormat,
         '24h': utils.time24hFormat,
       }),
-  });
+  };
+}
 
-  return (
-    <Wrapper
-      variant={variant}
-      InputComponent={PureDateInput}
-      DateInputProps={inputProps}
-      {...wrapperProps}
-      {...other}
-    >
-      <TimePickerRoot {...pickerProps} ampm={ampm} seconds={seconds} minutesStep={minutesStep} />
-    </Wrapper>
-  );
-};
+export const TimePicker = makePurePicker<TimePickerViewsProps>({
+  useOptions,
+  ToolbarComponent: TimePickerToolbar,
+});
 
-TimePicker.defaultProps = timePickerDefaultProps;
+export const KeyboardTimePicker = makeKeyboardPicker<TimePickerViewsProps>({
+  useOptions,
+  ToolbarComponent: TimePickerToolbar,
+});
 
-export default React.forwardRef((props: TimePickerProps, ref) => (
-  <TimePicker {...props} forwardedRef={ref} />
-));
+TimePicker.defaultProps = defaultProps;
+
+KeyboardTimePicker.defaultProps = defaultProps;

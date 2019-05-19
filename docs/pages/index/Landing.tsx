@@ -10,9 +10,9 @@ import Devices from '@material-ui/icons/DevicesOther';
 import PatreonSponsors from '_shared/PatreonSponsors';
 import { GITHUB_URL } from '_constants';
 import { LandingProperty } from './LandingProperty';
-import { Button, Paper, Typography, Theme, Toolbar, Grid, makeStyles } from '@material-ui/core';
+import { Button, Paper, Typography, Toolbar, Grid, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles<Theme>(theme => ({
+const useStyles = makeStyles(theme => ({
   logoContainer: {
     width: 228,
     backgroundColor: 'white',

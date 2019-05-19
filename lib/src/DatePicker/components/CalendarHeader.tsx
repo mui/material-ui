@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import { DateType } from '@date-io/type';
-import { Theme } from '@material-ui/core';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -23,7 +22,7 @@ export interface CalendarHeaderProps {
   onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
 }
 
-export const useStyles = makeStyles<Theme>(
+export const useStyles = makeStyles(
   theme => ({
     switchHeader: {
       display: 'flex',
@@ -78,7 +77,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
 }) => {
   const utils = useUtils();
   const classes = useStyles();
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const rtl = theme.direction === 'rtl';
 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(currentMonth), 'left');

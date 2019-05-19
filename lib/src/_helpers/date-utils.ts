@@ -1,6 +1,6 @@
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../typings/date';
-import { DatePickerViewType } from '../constants/DatePickerView';
+import { DatePickerView } from '../DatePicker/DatePicker';
 
 interface FindClosestDateParams {
   date: MaterialUiPickersDate;
@@ -72,16 +72,13 @@ export const findClosestEnabledDate = ({
   return null;
 };
 
-export const isYearOnlyView = (views: DatePickerViewType[]) =>
+export const isYearOnlyView = (views: DatePickerView[]) =>
   views.length === 1 && views[0] === 'year';
 
-export const isYearAndMonthViews = (views: DatePickerViewType[]) =>
+export const isYearAndMonthViews = (views: DatePickerView[]) =>
   views.length === 2 && views.includes('month') && views.includes('year');
 
-export const getFormatByViews = (
-  views: DatePickerViewType[],
-  utils: IUtils<MaterialUiPickersDate>
-) => {
+export const getFormatByViews = (views: DatePickerView[], utils: IUtils<MaterialUiPickersDate>) => {
   if (isYearOnlyView(views)) {
     return utils.yearFormat;
   }

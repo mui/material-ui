@@ -19,9 +19,8 @@ export interface YearSelectionProps {
 export const useStyles = makeStyles(
   {
     container: {
-      maxHeight: 300,
+      height: 300,
       overflowY: 'auto',
-      justifyContent: 'center',
     },
   },
   { name: 'MuiPickersYearSelection' }

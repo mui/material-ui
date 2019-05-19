@@ -1,6 +1,6 @@
 import * as React from 'react';
-import TimePicker, { TimePickerProps } from '../../TimePicker/TimePickerRoot';
 import { ReactWrapper } from 'enzyme';
+import { TimePicker, TimePickerProps } from '../../TimePicker/TimePicker';
 import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
 
 const fakeTouchEvent = {
@@ -18,7 +18,7 @@ describe('e2e - TimePicker', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     component = mount(
-      <TimePicker date={utilsToUse.date('2018-01-01T00:00:00.000')} onChange={onChangeMock} />
+      <TimePicker open value={utilsToUse.date('2018-01-01T00:00:00.000')} onChange={onChangeMock} />
     );
   });
 
@@ -79,7 +79,7 @@ describe('e2e - TimePicker', () => {
       .at(3)
       .simulate('click');
 
-    toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T12:00:00.000'), false]);
+    toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T12:00:00.000')]);
   });
 });
 
@@ -91,8 +91,9 @@ describe('e2e - TimePicker with seconds', () => {
     jest.clearAllMocks();
     component = mount(
       <TimePicker
-        seconds
-        date={utilsToUse.date('2018-01-01T00:00:12.000')}
+        open
+        views={['hours', 'minutes', 'seconds']}
+        value={utilsToUse.date('2018-01-01T00:00:12.000')}
         onChange={onChangeMock}
       />
     );
@@ -123,6 +124,6 @@ describe('e2e - TimePicker with seconds', () => {
       ],
     });
 
-    toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T00:00:53.000'), false]);
+    toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T00:00:53.000')]);
   });
 });

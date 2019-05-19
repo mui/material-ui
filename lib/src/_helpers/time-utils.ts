@@ -1,6 +1,5 @@
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../typings/date';
-import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 
 const center = {
   x: 260 / 2,
@@ -35,7 +34,6 @@ const getAngleValue = (step: number, offsetX: number, offsetY: number) => {
 };
 
 export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
-  // tslint:disable-next-line
   let { value, distance } = getAngleValue(30, offsetX, offsetY);
   value = value || 12;
 
@@ -59,9 +57,16 @@ export const getMinutes = (offsetX: number, offsetY: number, step = 1) => {
   return value;
 };
 
+export const getMeridiem = (
+  date: MaterialUiPickersDate,
+  utils: IUtils<MaterialUiPickersDate>
+): 'am' | 'pm' => {
+  return utils.getHours(date) >= 12 ? 'pm' : 'am';
+};
+
 export const convertToMeridiem = (
   time: MaterialUiPickersDate,
-  meridiem: MeridiemMode,
+  meridiem: 'am' | 'pm',
   ampm: boolean,
   utils: IUtils<MaterialUiPickersDate>
 ) => {

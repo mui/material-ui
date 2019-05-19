@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 export interface MonthProps {
@@ -12,7 +11,7 @@ export interface MonthProps {
   value: any;
 }
 
-export const useStyles = makeStyles<Theme>(
+export const useStyles = makeStyles(
   theme => ({
     root: {
       flex: '1 0 33.33%',
@@ -28,11 +27,11 @@ export const useStyles = makeStyles<Theme>(
         fontWeight: theme.typography.fontWeightMedium,
       },
     },
-    selected: {
+    monthSelected: {
       color: theme.palette.primary.main,
       fontWeight: theme.typography.fontWeightMedium,
     },
-    disabled: {
+    monthDisabled: {
       pointerEvents: 'none',
       color: theme.palette.text.hint,
     },
@@ -58,8 +57,8 @@ export const Month: React.FC<MonthProps> = ({
       role="button"
       component="div"
       className={clsx(classes.root, {
-        [classes.selected]: selected,
-        [classes.disabled]: disabled,
+        [classes.monthSelected]: selected,
+        [classes.monthDisabled]: disabled,
       })}
       tabIndex={disabled ? -1 : 0}
       onClick={handleSelection}

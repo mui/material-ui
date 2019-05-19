@@ -39,6 +39,11 @@ export interface BasePickerProps {
   onClose?: () => void;
   /** Controlled picker open state */
   open?: boolean;
+  /**
+   * Hide toolbar and show only date/time views
+   * @default false
+   */
+  disableToolbar?: boolean;
   mergePreviousDateOnChange?: boolean;
   forwardedRef?: any;
 }

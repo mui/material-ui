@@ -26,11 +26,11 @@ export const useStyles = makeStyles(
         fontWeight: theme.typography.fontWeightMedium,
       },
     },
-    selected: {
+    yearSelected: {
       margin: '10px 0',
       fontWeight: theme.typography.fontWeightMedium,
     },
-    disabled: {
+    yearDisabled: {
       pointerEvents: 'none',
       color: theme.palette.text.hint,
     },
@@ -62,8 +62,8 @@ export const Year: React.FC<YearProps> = ({
       children={children}
       ref={forwardedRef}
       className={clsx(classes.root, {
-        [classes.selected]: selected,
-        [classes.disabled]: disabled,
+        [classes.yearSelected]: selected,
+        [classes.yearDisabled]: disabled,
       })}
       {...other}
     />

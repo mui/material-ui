@@ -25,7 +25,7 @@ export const useStyles = makeStyles(
       color: theme.palette.primary.main,
       fontWeight: 600,
     },
-    isSelected: {
+    daySelected: {
       color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.main,
       fontWeight: theme.typography.fontWeightMedium,
@@ -33,7 +33,7 @@ export const useStyles = makeStyles(
         backgroundColor: theme.palette.primary.main,
       },
     },
-    isDisabled: {
+    dayDisabled: {
       pointerEvents: 'none',
       color: theme.palette.text.hint,
     },
@@ -66,8 +66,8 @@ export const Day: React.FC<DayProps> = ({
   const className = clsx(classes.day, {
     [classes.hidden]: hidden,
     [classes.current]: current,
-    [classes.isSelected]: selected,
-    [classes.isDisabled]: disabled,
+    [classes.daySelected]: selected,
+    [classes.dayDisabled]: disabled,
   });
 
   return (

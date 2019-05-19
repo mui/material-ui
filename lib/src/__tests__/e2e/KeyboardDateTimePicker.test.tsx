@@ -1,9 +1,10 @@
 import * as React from 'react';
-import KeyboardDateTimePicker, {
-  KeyboardDateTimePickerProps,
-} from '../../DateTimePicker/KeyboardDateTimePicker';
 import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse } from '../test-utils';
+import {
+  KeyboardDateTimePicker,
+  KeyboardDateTimePickerProps,
+} from '../../DateTimePicker/DateTimePicker';
 
 const format = process.env.UTILS === 'moment' ? 'MM/DD/YYYY HH:mm' : 'MM/dd/yyyy hh:mm';
 

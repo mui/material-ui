@@ -1,95 +1,80 @@
-import * as React from 'react';
-import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
 import { useUtils } from '../_shared/hooks/useUtils';
+import { DatePickerToolbar } from './DatePickerToolbar';
 import { BasePickerProps } from '../typings/BasePicker';
+import { MaterialUiPickersDate } from '../typings/date';
 import { getFormatByViews } from '../_helpers/date-utils';
-import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
-import { usePickerState } from '../_shared/hooks/usePickerState';
-import { datePickerDefaultProps } from '../constants/prop-types';
-import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { DateValidationProps, validate } from '../_helpers/text-field-helper';
+import { OutterCalendarProps } from './components/Calendar';
+import { datePickerDefaultProps, ParsableDate } from '../constants/prop-types';
+import { WrappedPurePickerProps, makePurePicker } from '../Picker/WrappedPurePicker';
+import { makeKeyboardPicker, WrappedKeyboardPickerProps } from '../Picker/WrappedKeyboardPicker';
 
-export type DatePickerProps = BasePickerProps &
-  DateValidationProps &
-  BaseDatePickerProps &
-  ExtendWrapper<PureDateInputProps>;
+export type DatePickerView = 'year' | 'date' | 'month';
 
-export const DatePicker: React.FC<DatePickerProps> = props => {
-  const {
-    allowKeyboardControl,
-    animateYearScrolling,
-    autoOk,
-    disableFuture,
-    disablePast,
-    format,
-    forwardedRef,
-    initialFocusedDate,
-    invalidDateMessage,
-    labelFunc,
-    leftArrowIcon,
-    leftArrowButtonProps,
-    maxDate,
-    maxDateMessage,
-    minDate,
-    minDateMessage,
-    onAccept,
-    onChange,
-    onMonthChange,
-    onYearChange,
-    onOpen,
-    onClose,
-    openTo,
-    renderDay,
-    rightArrowIcon,
-    rightArrowButtonProps,
-    shouldDisableDate,
-    value,
-    variant,
-    onlyCalendar,
-    views,
-    ...other
-  } = props;
+export interface BaseDatePickerProps extends OutterCalendarProps {
+  /**
+   * Min selectable date
+   * @default Date(1900-01-01)
+   */
+  minDate?: ParsableDate;
+  /**
+   * Max selectable date
+   * @default Date(2100-01-01)
+   */
+  maxDate?: ParsableDate;
+  /**
+   * Disable past dates
+   * @default false
+   */
+  disablePast?: boolean;
+  /**
+   * Disable future dates
+   * @default false
+   */
+  disableFuture?: boolean;
+  /**
+   * To animate scrolling to current year (with scrollIntoView)
+   * @default false
+   */
+  animateYearScrolling?: boolean;
+  /** Callback firing on year change */
+  onYearChange?: (date: MaterialUiPickersDate) => void;
+}
 
-  const utils = useUtils();
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
-    getDefaultFormat: () => getFormatByViews(views!, utils),
-    getValidationError: () => validate(value, utils, props),
-  });
+export interface DatePickerViewsProps extends BasePickerProps, BaseDatePickerProps {
+  /** Array of views to show */
+  views?: ('year' | 'date' | 'month')[];
+  /** Open to DatePicker */
+  openTo?: 'year' | 'date' | 'month';
+}
 
-  return (
-    <Wrapper
-      variant={variant}
-      InputComponent={PureDateInput}
-      DateInputProps={inputProps}
-      {...wrapperProps}
-      {...other}
-    >
-      <DatePickerRoot
-        {...pickerProps}
-        onlyCalendar={onlyCalendar}
-        allowKeyboardControl={allowKeyboardControl}
-        animateYearScrolling={animateYearScrolling}
-        disableFuture={disableFuture}
-        disablePast={disablePast}
-        leftArrowIcon={leftArrowIcon}
-        leftArrowButtonProps={leftArrowButtonProps}
-        maxDate={maxDate}
-        minDate={minDate}
-        renderDay={renderDay}
-        rightArrowIcon={rightArrowIcon}
-        rightArrowButtonProps={rightArrowButtonProps}
-        shouldDisableDate={shouldDisableDate}
-        onMonthChange={onMonthChange}
-        onYearChange={onYearChange}
-        views={views}
-        openTo={openTo}
-      />
-    </Wrapper>
-  );
+export type DatePickerProps = WrappedPurePickerProps & DatePickerViewsProps;
+
+export type KeyboardDatePickerProps = WrappedKeyboardPickerProps & DatePickerViewsProps;
+
+const defaultProps = {
+  ...datePickerDefaultProps,
+  openTo: 'date' as DatePickerView,
+  views: ['year', 'date'] as DatePickerView[],
 };
 
-DatePicker.defaultProps = datePickerDefaultProps;
+function useOptions(props: DatePickerViewsProps) {
+  const utils = useUtils();
 
-export default React.forwardRef((props: DatePickerProps, ref) => (
-  <DatePicker {...props} forwardedRef={ref} />
-));
+  return {
+    getDefaultFormat: () => getFormatByViews(props.views!, utils),
+  };
+}
+
+export const DatePicker = makePurePicker<DatePickerViewsProps>({
+  useOptions,
+  ToolbarComponent: DatePickerToolbar,
+});
+
+export const KeyboardDatePicker = makeKeyboardPicker<DatePickerViewsProps>({
+  useOptions,
+  ToolbarComponent: DatePickerToolbar,
+});
+
+DatePicker.defaultProps = defaultProps;
+
+KeyboardDatePicker.defaultProps = defaultProps;

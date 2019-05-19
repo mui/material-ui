@@ -10,19 +10,18 @@ const parser = require('react-docgen-typescript').withDefaultConfig({
 const doc = {};
 const srcPath = path.resolve(__dirname, '..', '..', 'lib', 'src');
 
-const components = {
+const components = [
   // wrappers must be on top to correctly filter
-  ModalWrapper: 'wrappers/ModalWrapper.tsx',
-  DatePicker: 'DatePicker/DatePicker.tsx',
-  KeyboardDatePicker: 'DatePicker/KeyboardDatePicker.tsx',
-  TimePicker: 'TimePicker/TimePicker.tsx',
-  KeyboardTimePicker: 'TimePicker/KeyboardTimePicker.tsx',
-  DateTimePicker: 'DateTimePicker/DateTimePicker.tsx',
-  KeyboardDateTimePicker: 'DateTimePicker/KeyboardDateTimePicker.tsx',
+  'wrappers/ModalWrapper.tsx',
+  'DatePicker/DatePicker.tsx',
+  'DatePicker/KeyboardDatePicker.tsx',
+  'TimePicker/TimePicker.tsx',
+  'DateTimePicker/DateTimePicker.tsx',
+  'DateTimePicker/KeyboardDateTimePicker.tsx',
   // internal components
-  Calendar: 'DatePicker/components/Calendar.tsx',
-  TimePickerView: 'TimePicker/components/TimePickerView.tsx',
-};
+  'DatePicker/components/Calendar.tsx',
+  'TimePicker/components/TimePickerView.tsx',
+];
 
 const customTypePattern = '\n@type {';
 function processProp(prop) {
@@ -50,19 +49,25 @@ const removeWrapperProps = name => ([_, value]) => {
   return true;
 };
 
-Object.entries(components).forEach(([name, filePart]) => {
+components.forEach(filePart => {
   const file = path.join(srcPath, filePart);
-  const parsedDoc = parser.parse(file)[0];
+  const parsedDocs = parser.parse(file);
 
-  doc[name] = Object.entries(parsedDoc.props)
-    .filter(removeExternalDeps)
-    .filter(removeWrapperProps(name))
-    .reduce((obj, [key, value]) => {
-      processProp(value);
+  parsedDocs.forEach(parsedDoc => {
+    if (Object.keys(parsedDoc.props).length === 0) {
+      return;
+    }
 
-      obj[key] = value;
-      return obj;
-    }, {});
+    doc[parsedDoc.displayName] = Object.entries(parsedDoc.props)
+      .filter(removeExternalDeps)
+      .filter(removeWrapperProps(parsedDoc.displayName))
+      .reduce((obj, [key, value]) => {
+        processProp(value);
+
+        obj[key] = value;
+        return obj;
+      }, {});
+  });
 });
 
 fs.writeFileSync(path.resolve(__dirname, '..', 'prop-types.json'), JSON.stringify(doc));

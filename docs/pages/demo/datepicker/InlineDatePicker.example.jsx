@@ -14,7 +14,7 @@ function InlineDatePickerDemo(props) {
       />
 
       <DatePicker
-        onlyCalendar
+        disableToolbar
         variant="inline"
         label="Only calendar"
         helperText="No year selection"

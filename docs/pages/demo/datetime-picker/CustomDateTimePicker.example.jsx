@@ -13,9 +13,8 @@ function CustomDateTimePicker(props) {
       <DateTimePicker
         autoOk
         disableFuture
+        hideTabs
         ampm={false}
-        showTabs={false}
-        autoSubmit={false}
         value={selectedDate}
         onChange={handleDateChange}
         allowKeyboardControl={false}

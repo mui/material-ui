@@ -1,9 +1,8 @@
-import { Theme } from '@material-ui/core';
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 // ! This is very handcrafted svg for SSR. Don't make your logos this way 🤦🤦‍🤦‍
 const Logo: React.FC = () => {
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   return (
     <svg width="200px" height="200px" viewBox="0 0 40 40" version="1.1">
       <defs />

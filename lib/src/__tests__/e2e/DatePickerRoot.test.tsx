@@ -1,19 +1,20 @@
 import * as React from 'react';
-import DatePickerRoot, { DatePickerRootProps } from '../../DatePicker/DatePickerRoot';
 import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse } from '../test-utils';
+import { DatePicker, DatePickerProps } from '../../DatePicker';
 
-describe('e2e - DatePickerRoot', () => {
-  let component: ReactWrapper<DatePickerRootProps>;
+describe('e2e - DatePicker', () => {
+  let component: ReactWrapper<DatePickerProps>;
   const onChangeMock = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
     component = mount(
-      <DatePickerRoot
-        openTo="day"
+      <DatePicker
+        open
+        openTo="date"
         animateYearScrolling={false}
-        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
       />
     );
@@ -51,16 +52,17 @@ describe('e2e - DatePickerRoot', () => {
   });
 });
 
-describe('e2e -- DatePickerRoot views year', () => {
+describe('e2e -- DatePicker views year', () => {
   const onChangeMock = jest.fn();
   const onYearChangeMock = jest.fn();
 
-  let component: ReactWrapper<DatePickerRootProps>;
+  let component: ReactWrapper<DatePickerProps>;
 
   beforeEach(() => {
     component = mount(
-      <DatePickerRoot
-        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      <DatePicker
+        open
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         onYearChange={onYearChangeMock}
         views={['year']}
@@ -81,16 +83,17 @@ describe('e2e -- DatePickerRoot views year', () => {
   });
 });
 
-describe('e2e -- DatePickerRoot views year and month', () => {
+describe('e2e -- DatePicker views year and month', () => {
   const onChangeMock = jest.fn();
   const onMonthChangeMock = jest.fn();
 
-  let component: ReactWrapper<DatePickerRootProps>;
+  let component: ReactWrapper<DatePickerProps>;
 
   beforeEach(() => {
     component = mount(
-      <DatePickerRoot
-        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      <DatePicker
+        open
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         onMonthChange={onMonthChangeMock}
         openTo="month"
@@ -124,14 +127,15 @@ describe('e2e -- DatePickerRoot views year and month', () => {
   });
 });
 
-describe('e2e -- DatePickerRoot views year and month open from year', () => {
+describe('e2e -- DatePicker views year and month open from year', () => {
   const onChangeMock = jest.fn();
-  let component: ReactWrapper<DatePickerRootProps>;
+  let component: ReactWrapper<DatePickerProps>;
 
   beforeEach(() => {
     component = mount(
-      <DatePickerRoot
-        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      <DatePicker
+        open
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         views={['year', 'month']}
         openTo="year"

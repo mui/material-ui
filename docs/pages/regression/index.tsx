@@ -39,7 +39,7 @@ function Regression() {
         <KeyboardDatePicker
           id="keyboard-mask-datepicker"
           {...sharedProps}
-          onChange={date => changeDate(date)}
+          onChange={changeDate}
           format="MM/dd/yyyy"
         />
         <DatePicker disabled id="disabled" {...sharedProps} />

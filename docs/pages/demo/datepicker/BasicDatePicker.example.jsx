@@ -30,7 +30,7 @@ function BasicDatePicker(props) {
           dateFns: 'dd/MM/yyyy',
         })}
         label="Date of birth"
-        views={['year', 'month', 'day']}
+        views={['year', 'month', 'date']}
         value={selectedDate}
         onChange={handleDateChange}
       />

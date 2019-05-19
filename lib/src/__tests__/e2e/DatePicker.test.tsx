@@ -1,7 +1,7 @@
 import * as React from 'react';
-import DatePicker, { DatePickerProps } from '../../DatePicker/DatePicker';
 import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse } from '../test-utils';
+import { DatePicker, DatePickerProps } from '../../DatePicker/DatePicker';
 
 describe('e2e - DatePicker default year format', () => {
   let component: ReactWrapper<DatePickerProps>;
@@ -52,7 +52,7 @@ describe('e2e - DatePicker default year month day format', () => {
 
   beforeEach(() => {
     component = mount(
-      <DatePicker onChange={onChangeMock} value={date} views={['year', 'month', 'day']} />
+      <DatePicker onChange={onChangeMock} value={date} views={['year', 'month', 'date']} />
     );
   });
 
