@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
@@ -15,87 +14,76 @@ import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   toggleContainer: {
     margin: theme.spacing(2, 0),
   },
-});
+}));
 
-class ToggleButtons extends React.Component {
-  state = {
-    alignment: 'left',
-    formats: ['bold'],
+export default function ToggleButtons() {
+  const [alignment, setAlignment] = React.useState('left');
+  const [formats, setFormats] = React.useState(() => ['bold']);
+
+  const handleFormat = (event, newFormats) => {
+    setFormats(newFormats);
   };
 
-  handleFormat = (event, formats) => {
-    this.setState({ formats });
+  const handleAlignment = (event, newAlignment) => {
+    setAlignment(newAlignment);
   };
 
-  handleAlignment = (event, alignment) => {
-    this.setState({ alignment });
-  };
+  const classes = useStyles();
 
-  render() {
-    const { classes } = this.props;
-    const { alignment, formats } = this.state;
-
-    return (
-      <Grid container spacing={2}>
-        <Grid item sm={12} md={6}>
-          <div className={classes.toggleContainer}>
-            <ToggleButtonGroup value={alignment} exclusive onChange={this.handleAlignment}>
-              <ToggleButton value="left">
-                <FormatAlignLeftIcon />
-              </ToggleButton>
-              <ToggleButton value="center">
-                <FormatAlignCenterIcon />
-              </ToggleButton>
-              <ToggleButton value="right">
-                <FormatAlignRightIcon />
-              </ToggleButton>
-              <ToggleButton value="justify" disabled>
-                <FormatAlignJustifyIcon />
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </div>
-          <Typography gutterBottom>Exclusive Selection</Typography>
-          <Typography>
-            Text justification toggle buttons present options for left, right, center, full, and
-            justified text with only one item available for selection at a time. Selecting one
-            option deselects any other.
-          </Typography>
-        </Grid>
-        <Grid item sm={12} md={6}>
-          <div className={classes.toggleContainer}>
-            <ToggleButtonGroup value={formats} onChange={this.handleFormat}>
-              <ToggleButton value="bold">
-                <FormatBoldIcon />
-              </ToggleButton>
-              <ToggleButton value="italic">
-                <FormatItalicIcon />
-              </ToggleButton>
-              <ToggleButton value="underlined">
-                <FormatUnderlinedIcon />
-              </ToggleButton>
-              <ToggleButton disabled value="color">
-                <FormatColorFillIcon />
-                <ArrowDropDownIcon />
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </div>
-          <Typography gutterBottom>Multiple Selection</Typography>
-          <Typography>
-            Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to
-            be selected.
-          </Typography>
-        </Grid>
+  return (
+    <Grid container spacing={2}>
+      <Grid item sm={12} md={6}>
+        <div className={classes.toggleContainer}>
+          <ToggleButtonGroup value={alignment} exclusive onChange={handleAlignment}>
+            <ToggleButton value="left">
+              <FormatAlignLeftIcon />
+            </ToggleButton>
+            <ToggleButton value="center">
+              <FormatAlignCenterIcon />
+            </ToggleButton>
+            <ToggleButton value="right">
+              <FormatAlignRightIcon />
+            </ToggleButton>
+            <ToggleButton value="justify" disabled>
+              <FormatAlignJustifyIcon />
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </div>
+        <Typography gutterBottom>Exclusive Selection</Typography>
+        <Typography>
+          Text justification toggle buttons present options for left, right, center, full, and
+          justified text with only one item available for selection at a time. Selecting one option
+          deselects any other.
+        </Typography>
       </Grid>
-    );
-  }
+      <Grid item sm={12} md={6}>
+        <div className={classes.toggleContainer}>
+          <ToggleButtonGroup value={formats} onChange={handleFormat}>
+            <ToggleButton value="bold">
+              <FormatBoldIcon />
+            </ToggleButton>
+            <ToggleButton value="italic">
+              <FormatItalicIcon />
+            </ToggleButton>
+            <ToggleButton value="underlined">
+              <FormatUnderlinedIcon />
+            </ToggleButton>
+            <ToggleButton disabled value="color">
+              <FormatColorFillIcon />
+              <ArrowDropDownIcon />
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </div>
+        <Typography gutterBottom>Multiple Selection</Typography>
+        <Typography>
+          Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to be
+          selected.
+        </Typography>
+      </Grid>
+    </Grid>
+  );
 }
-
-ToggleButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ToggleButtons);

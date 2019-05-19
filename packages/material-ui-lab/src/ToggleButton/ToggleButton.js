@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { capitalize } from '../utils/helpers';
+import { capitalize } from '@material-ui/core/utils/helpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -13,7 +13,7 @@ export const styles = theme => ({
     ...theme.typography.button,
     boxSizing: 'border-box',
     height: 48,
-    minWidth: 48,
+    minWidth: 49,
     padding: '0px 11px 0px 12px',
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
@@ -70,14 +70,13 @@ export const styles = theme => ({
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     height: 40,
-    minWidth: 40,
+    minWidth: 41,
     fontSize: theme.typography.pxToRem(13),
   },
-
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     height: 56,
-    minWidth: 56,
+    minWidth: 57,
     fontSize: theme.typography.pxToRem(15),
   },
 });

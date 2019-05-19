@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import {
   createRender,
-  createShallow,
   createMount,
   findOutermostIntrinsic,
   getClasses,
@@ -14,14 +13,12 @@ import ToggleButton from './ToggleButton';
 
 describe('<ToggleButton />', () => {
   let mount;
-  let shallow;
   let render;
   let classes;
 
   before(() => {
     // StrictModeViolation: uses ButtonBase
     mount = createMount({ strict: false });
-    shallow = createShallow({ dive: true });
     render = createRender();
     classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
   });
@@ -71,25 +68,27 @@ describe('<ToggleButton />', () => {
   });
 
   it('should render a small button', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <ToggleButton size="small" value="hello">
         Hello World
       </ToggleButton>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeLarge), false);
+    const root = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(root.hasClass(classes.root), true);
+    assert.strictEqual(root.hasClass(classes.sizeSmall), true);
+    assert.strictEqual(root.hasClass(classes.sizeLarge), false);
   });
 
   it('should render a large button', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <ToggleButton size="large" value="hello">
         Hello World
       </ToggleButton>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
-    assert.strictEqual(wrapper.hasClass(classes.sizeLarge), true);
+    const root = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(root.hasClass(classes.root), true);
+    assert.strictEqual(root.hasClass(classes.sizeSmall), false);
+    assert.strictEqual(root.hasClass(classes.sizeLarge), true);
   });
 
   describe('prop: onChange', () => {
