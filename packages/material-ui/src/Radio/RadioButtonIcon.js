@@ -5,8 +5,6 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import withStyles from '../styles/withStyles';
 
-const duration = 83; // 1s / 60 FPS * 5 frames
-
 export const styles = theme => ({
   root: {
     position: 'relative',
@@ -15,7 +13,7 @@ export const styles = theme => ({
       transform: 'scale(1)',
       transition: theme.transitions.create('transform', {
         easing: theme.transitions.easing.easeOut,
-        duration,
+        duration: theme.transitions.duration.shortest,
       }),
     },
   },
@@ -24,7 +22,7 @@ export const styles = theme => ({
     transform: 'scale(0)',
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeIn,
-      duration,
+      duration: theme.transitions.duration.shortest,
     }),
   },
   checked: {},
