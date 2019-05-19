@@ -35,7 +35,7 @@ export const styles = theme => ({
   /* Styles applied to the children if variant="outlined". */
   groupedOutlined: {
     '&:not(:first-child)': {
-      borderLeft: '1px solid transparent',
+      borderLeftColor: 'transparent',
       marginLeft: -1,
     },
   },
