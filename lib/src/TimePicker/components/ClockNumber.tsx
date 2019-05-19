@@ -55,7 +55,7 @@ export const useStyles = makeStyles(
         color:
           theme.palette.type === 'light' ? theme.palette.text.primary : theme.palette.text.hint,
       },
-      selected: {
+      clockNumberSelected: {
         color: theme.palette.primary.contrastText,
       },
     };
@@ -66,7 +66,7 @@ export const useStyles = makeStyles(
 export const ClockNumber: React.FC<ClockNumberProps> = ({ selected, label, index, isInner }) => {
   const classes = useStyles();
   const className = clsx(classes.clockNumber, {
-    [classes.selected]: selected,
+    [classes.clockNumberSelected]: selected,
   });
 
   const transformStyle = React.useMemo(() => {
