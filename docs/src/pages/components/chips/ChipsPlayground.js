@@ -33,6 +33,7 @@ class ChipsPlayground extends React.Component {
     avatar: 'none',
     icon: 'none',
     variant: 'default',
+    size: 'medium',
   };
 
   handleChange = key => (event, value) => {
@@ -47,9 +48,10 @@ class ChipsPlayground extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { color, onDelete, avatar, icon, variant } = this.state;
+    const { color, onDelete, avatar, icon, variant, size } = this.state;
 
     const colorToCode = color !== 'default' ? `color="${color}" ` : '';
+    const sizeToCode = size === 'small' ? `size="small" ` : '';
     const variantToCode = variant !== 'default' ? `variant="${variant}" ` : '';
 
     let onDeleteToCode;
@@ -108,7 +110,7 @@ class ChipsPlayground extends React.Component {
 
     const code = `
 \`\`\`jsx
-<Chip ${colorToCode}${onDeleteToCode}${avatarToCode}${iconToCode}${variantToCode}/>
+<Chip ${variantToCode}${colorToCode}${sizeToCode}${onDeleteToCode}${avatarToCode}${iconToCode}/>
 \`\`\`
 `;
 
@@ -118,13 +120,14 @@ class ChipsPlayground extends React.Component {
           <Grid container justify="center" alignItems="center" spacing={5}>
             <Grid item className={classes.chipWrapper}>
               <Chip
-                label="Awesome Chip Component"
+                label="Chip Component"
                 color={color}
                 deleteIcon={onDelete === 'custom' ? <DoneIcon /> : undefined}
                 onDelete={onDelete !== 'none' ? this.handleDeleteExample : undefined}
                 avatar={avatarToPlayground}
                 icon={iconToPlayground}
                 variant={variant}
+                size={size}
               />
             </Grid>
           </Grid>
@@ -132,6 +135,21 @@ class ChipsPlayground extends React.Component {
         <Grid item xs={12}>
           <Paper className={classes.control}>
             <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <FormControl component="fieldset">
+                  <FormLabel>variant</FormLabel>
+                  <RadioGroup
+                    row
+                    name="variant"
+                    aria-label="variant"
+                    value={variant}
+                    onChange={this.handleChange('variant')}
+                  >
+                    <FormControlLabel value="default" control={<Radio />} label="default" />
+                    <FormControlLabel value="outlined" control={<Radio />} label="outlined" />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
               <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>color</FormLabel>
@@ -150,17 +168,16 @@ class ChipsPlayground extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <FormControl component="fieldset">
-                  <FormLabel>onDelete</FormLabel>
+                  <FormLabel>size</FormLabel>
                   <RadioGroup
                     row
-                    name="onDelete"
-                    aria-label="onDelete"
-                    value={onDelete}
-                    onChange={this.handleChange('onDelete')}
+                    name="sizet"
+                    aria-label="size"
+                    value={size}
+                    onChange={this.handleChange('size')}
                   >
-                    <FormControlLabel value="none" control={<Radio />} label="none" />
-                    <FormControlLabel value="default" control={<Radio />} label="default" />
-                    <FormControlLabel value="custom" control={<Radio />} label="custom" />
+                    <FormControlLabel value="small" control={<Radio />} label="small" />
+                    <FormControlLabel value="medium" control={<Radio />} label="medium" />
                   </RadioGroup>
                 </FormControl>
               </Grid>
@@ -198,16 +215,17 @@ class ChipsPlayground extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <FormControl component="fieldset">
-                  <FormLabel>variant</FormLabel>
+                  <FormLabel>onDelete</FormLabel>
                   <RadioGroup
                     row
-                    name="variant"
-                    aria-label="variant"
-                    value={variant}
-                    onChange={this.handleChange('variant')}
+                    name="onDelete"
+                    aria-label="onDelete"
+                    value={onDelete}
+                    onChange={this.handleChange('onDelete')}
                   >
+                    <FormControlLabel value="none" control={<Radio />} label="none" />
                     <FormControlLabel value="default" control={<Radio />} label="default" />
-                    <FormControlLabel value="outlined" control={<Radio />} label="outlined" />
+                    <FormControlLabel value="custom" control={<Radio />} label="custom" />
                   </RadioGroup>
                 </FormControl>
               </Grid>
