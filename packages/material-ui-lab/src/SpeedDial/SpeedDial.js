@@ -6,7 +6,7 @@ import warning from 'warning';
 import { duration, withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
-import { isMuiElement, setRef, withForwardedRef } from '@material-ui/core/utils';
+import { isMuiElement, useForkRef } from '@material-ui/core/utils';
 import * as utils from './utils';
 import { clamp } from '../utils';
 
@@ -68,11 +68,34 @@ export const styles = {
   },
 };
 
-class SpeedDial extends React.Component {
+const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
+  const {
+    ariaLabel,
+    ButtonProps: { ref: origDialButtonRef, ...ButtonProps } = {},
+    children: childrenProp,
+    classes,
+    className: classNameProp,
+    hidden = false,
+    icon: iconProp,
+    onClick,
+    onClose,
+    onKeyDown,
+    open,
+    direction = 'up',
+    openIcon,
+    TransitionComponent = Zoom,
+    transitionDuration = {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
+    TransitionProps,
+    ...other
+  } = props;
+
   /**
-   * an index in this.actions
+   * an index in actions.current
    */
-  focusedAction = 0;
+  const focusedAction = React.useRef(0);
 
   /**
    * pressing this key while the focus is on a child SpeedDialAction focuses
@@ -81,39 +104,19 @@ class SpeedDial extends React.Component {
    * that is not orthogonal to the direction.
    * @type {utils.ArrowKey?}
    */
-  nextItemArrowKey = undefined;
+  const nextItemArrowKey = React.useRef(undefined);
 
   /**
    * refs to the Button that have an action associated to them in this SpeedDial
    * [Fab, ...(SpeedDialActions > Button)]
    * @type {HTMLButtonElement[]}
    */
-  actions = [];
+  const actions = React.useRef([]);
 
-  handleKeyboardNavigation = event => {
-    const key = keycode(event);
-    const { direction, onKeyDown } = this.props;
-    const { focusedAction, nextItemArrowKey = key } = this;
-
-    if (key === 'esc') {
-      this.closeActions(event, key);
-    } else if (utils.sameOrientation(key, direction)) {
-      event.preventDefault();
-
-      const actionStep = key === nextItemArrowKey ? 1 : -1;
-
-      // stay within array indices
-      const nextAction = clamp(focusedAction + actionStep, 0, this.actions.length - 1);
-      const nextActionRef = this.actions[nextAction];
-      nextActionRef.focus();
-      this.focusedAction = nextAction;
-      this.nextItemArrowKey = nextItemArrowKey;
-    }
-
-    if (onKeyDown) {
-      onKeyDown(event, key);
-    }
-  };
+  const handleOwnFabRef = React.useCallback(fabFef => {
+    actions.current[0] = fabFef;
+  }, []);
+  const handleFabRef = useForkRef(origDialButtonRef, handleOwnFabRef);
 
   /**
    * creates a ref callback for the Button in a SpeedDialAction
@@ -122,163 +125,150 @@ class SpeedDial extends React.Component {
    * @param dialActionIndex {number}
    * @param origButtonRef {React.RefObject?}
    */
-  createHandleSpeedDialActionButtonRef(dialActionIndex, origButtonRef) {
-    return ref => {
-      this.actions[dialActionIndex + 1] = ref;
+  const createHandleSpeedDialActionButtonRef = (dialActionIndex, origButtonRef) => {
+    return buttonRef => {
+      actions.current[dialActionIndex + 1] = buttonRef;
       if (origButtonRef) {
-        origButtonRef(ref);
+        origButtonRef(buttonRef);
       }
     };
-  }
+  };
 
-  closeActions(event, key) {
-    const { onClose } = this.props;
-
-    this.actions[0].focus();
-    this.setState(SpeedDial.initialNavigationState);
+  const closeActions = (event, key) => {
+    actions.current[0].focus();
 
     if (onClose) {
       onClose(event, key);
     }
+  };
+
+  const handleKeyboardNavigation = event => {
+    const key = keycode(event);
+    const { current: nextItemArrowKeyCurrent = key } = nextItemArrowKey;
+
+    if (key === 'esc') {
+      closeActions(event, key);
+    } else if (utils.sameOrientation(key, direction)) {
+      event.preventDefault();
+
+      const actionStep = key === nextItemArrowKeyCurrent ? 1 : -1;
+
+      // stay within array indices
+      const nextAction = clamp(focusedAction.current + actionStep, 0, actions.current.length - 1);
+      const nextActionRef = actions.current[nextAction];
+      nextActionRef.focus();
+      focusedAction.current = nextAction;
+      nextItemArrowKey.current = nextItemArrowKeyCurrent;
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event, key);
+    }
+  };
+
+  // actions were closed while navigation state was not reset
+  if (!open && nextItemArrowKey.current !== undefined) {
+    focusedAction.current = 0;
+    nextItemArrowKey.current = undefined;
   }
 
-  render() {
-    const {
-      ariaLabel,
-      ButtonProps: { ref: origDialButtonRef, ...ButtonProps } = {},
-      children: childrenProp,
-      classes,
-      className: classNameProp,
-      hidden,
-      icon: iconProp,
-      innerRef,
-      onClick,
-      onClose,
-      onKeyDown,
-      open,
-      direction,
-      openIcon,
-      TransitionComponent,
-      transitionDuration,
-      TransitionProps,
-      ...other
-    } = this.props;
+  // Filter the label for valid id characters.
+  const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
 
-    // actions were closed while navigation state was not reset
-    if (!open && this.nextItemArrowKey !== undefined) {
-      this.focusedAction = 0;
-      this.nextItemArrowKey = undefined;
+  const orientation = utils.getOrientation(direction);
+
+  let totalValidChildren = 0;
+  React.Children.forEach(childrenProp, child => {
+    if (React.isValidElement(child)) totalValidChildren += 1;
+  });
+
+  actions.current = [];
+  let validChildCount = 0;
+  const children = React.Children.map(childrenProp, child => {
+    if (!React.isValidElement(child)) {
+      return null;
     }
 
-    // Filter the label for valid id characters.
-    const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
-
-    const orientation = utils.getOrientation(direction);
-
-    let totalValidChildren = 0;
-    React.Children.forEach(childrenProp, child => {
-      if (React.isValidElement(child)) totalValidChildren += 1;
-    });
-
-    this.actions = [];
-    let validChildCount = 0;
-    const children = React.Children.map(childrenProp, child => {
-      if (!React.isValidElement(child)) {
-        return null;
-      }
-
-      warning(
-        child.type !== React.Fragment,
-        [
-          "Material-UI: the SpeedDial component doesn't accept a Fragment as a child.",
-          'Consider providing an array instead.',
-        ].join('\n'),
-      );
-
-      const delay = 30 * (open ? validChildCount : totalValidChildren - validChildCount);
-      validChildCount += 1;
-
-      const { ButtonProps: { ref: origButtonRef, ...ChildButtonProps } = {} } = child.props;
-      const NewChildButtonProps = {
-        ...ChildButtonProps,
-        ref: this.createHandleSpeedDialActionButtonRef(validChildCount - 1, origButtonRef),
-      };
-
-      return React.cloneElement(child, {
-        ButtonProps: NewChildButtonProps,
-        delay,
-        onKeyDown: this.handleKeyboardNavigation,
-        open,
-        id: `${id}-item-${validChildCount}`,
-      });
-    });
-
-    const icon = () => {
-      if (React.isValidElement(iconProp) && isMuiElement(iconProp, ['SpeedDialIcon'])) {
-        return React.cloneElement(iconProp, { open });
-      }
-      return iconProp;
-    };
-
-    const actionsPlacementClass = {
-      [classes.directionUp]: direction === 'up',
-      [classes.directionDown]: direction === 'down',
-      [classes.directionLeft]: direction === 'left',
-      [classes.directionRight]: direction === 'right',
-    };
-
-    let clickProp = { onClick };
-
-    if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
-      clickProp = { onTouchEnd: onClick };
-    }
-
-    return (
-      <div
-        className={clsx(classes.root, actionsPlacementClass, classNameProp)}
-        ref={innerRef}
-        {...other}
-      >
-        <TransitionComponent
-          in={!hidden}
-          timeout={transitionDuration}
-          unmountOnExit
-          {...TransitionProps}
-        >
-          <Fab
-            color="primary"
-            onKeyDown={this.handleKeyboardNavigation}
-            aria-label={ariaLabel}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : 'false'}
-            aria-controls={`${id}-actions`}
-            {...clickProp}
-            {...ButtonProps}
-            className={clsx(classes.fab, ButtonProps.className)}
-            ref={ref => {
-              this.actions[0] = ref;
-              setRef(origDialButtonRef, ref);
-            }}
-          >
-            {icon()}
-          </Fab>
-        </TransitionComponent>
-        <div
-          id={`${id}-actions`}
-          role="menu"
-          aria-orientation={orientation}
-          className={clsx(
-            classes.actions,
-            { [classes.actionsClosed]: !open },
-            actionsPlacementClass,
-          )}
-        >
-          {children}
-        </div>
-      </div>
+    warning(
+      child.type !== React.Fragment,
+      [
+        "Material-UI: the SpeedDial component doesn't accept a Fragment as a child.",
+        'Consider providing an array instead.',
+      ].join('\n'),
     );
+
+    const delay = 30 * (open ? validChildCount : totalValidChildren - validChildCount);
+    validChildCount += 1;
+
+    const { ButtonProps: { ref: origButtonRef, ...ChildButtonProps } = {} } = child.props;
+    const NewChildButtonProps = {
+      ...ChildButtonProps,
+      ref: createHandleSpeedDialActionButtonRef(validChildCount - 1, origButtonRef),
+    };
+
+    return React.cloneElement(child, {
+      ButtonProps: NewChildButtonProps,
+      delay,
+      onKeyDown: handleKeyboardNavigation,
+      open,
+      id: `${id}-item-${validChildCount}`,
+    });
+  });
+
+  const icon = () => {
+    if (React.isValidElement(iconProp) && isMuiElement(iconProp, ['SpeedDialIcon'])) {
+      return React.cloneElement(iconProp, { open });
+    }
+    return iconProp;
+  };
+
+  const actionsPlacementClass = {
+    [classes.directionUp]: direction === 'up',
+    [classes.directionDown]: direction === 'down',
+    [classes.directionLeft]: direction === 'left',
+    [classes.directionRight]: direction === 'right',
+  };
+
+  let clickProp = { onClick };
+
+  if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
+    clickProp = { onTouchEnd: onClick };
   }
-}
+
+  return (
+    <div className={clsx(classes.root, actionsPlacementClass, classNameProp)} ref={ref} {...other}>
+      <TransitionComponent
+        in={!hidden}
+        timeout={transitionDuration}
+        unmountOnExit
+        {...TransitionProps}
+      >
+        <Fab
+          color="primary"
+          onKeyDown={handleKeyboardNavigation}
+          aria-label={ariaLabel}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : 'false'}
+          aria-controls={`${id}-actions`}
+          {...clickProp}
+          {...ButtonProps}
+          className={clsx(classes.fab, ButtonProps.className)}
+          ref={handleFabRef}
+        >
+          {icon()}
+        </Fab>
+      </TransitionComponent>
+      <div
+        id={`${id}-actions`}
+        role="menu"
+        aria-orientation={orientation}
+        className={clsx(classes.actions, { [classes.actionsClosed]: !open }, actionsPlacementClass)}
+      >
+        {children}
+      </div>
+    </div>
+  );
+});
 
 SpeedDial.propTypes = {
   /**
@@ -316,11 +306,6 @@ SpeedDial.propTypes = {
    * provides a default Icon with animation.
    */
   icon: PropTypes.element.isRequired,
-  /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
@@ -362,14 +347,4 @@ SpeedDial.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-SpeedDial.defaultProps = {
-  hidden: false,
-  direction: 'up',
-  TransitionComponent: Zoom,
-  transitionDuration: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
-};
-
-export default withStyles(styles, { name: 'MuiSpeedDial' })(withForwardedRef(SpeedDial));
+export default withStyles(styles, { name: 'MuiSpeedDial' })(SpeedDial);
