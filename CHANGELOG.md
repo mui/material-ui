@@ -1,5 +1,49 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-rc.0
+###### *May 20, 2019*
+
+A big thanks to the 14 contributors who made this release possible!
+
+### `@material-ui/core@v4.0.0-rc.0`
+
+- [ButtonBase] Convert to function component (#15716) @eps1lon
+- [ClickAwayListener] Fix scrollbar interaction (#15743) @Umerbhat
+- [CssBaseline] Fix wrong default font weight (#15747) @oliviertassinari
+- [InputBase] Convert to function component (#15446) @adeelibr
+- [Popups] Allow Element as anchor el (#15707) @eps1lon
+- [Portal] Fix disablePortal not working (#15701) @imdaveead
+- [Tabs] Update onChange docs to match types (#15672) @jharrilim
+
+### `@material-ui/icons@v4.0.0-rc.0`
+
+- [icons] Forward ref (#15683) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.12`
+
+- [SpeedDial] Convert to function component (#15737) @jeongsd
+
+### Docs
+
+- [docs] Add showcase criteria (#15686) @cvanem
+- [docs] Document if a component is StrictMode compatible (#15718) @eps1lon
+- [docs] Fix "enebles" typo on Palette page (#15719) @sbward
+- [docs] Fix a typo (#15709) @designorant
+- [docs] Fix Algolia top level duplication (#15738) @oliviertassinari
+- [docs] Fix typo and formatting in app-bar demo (#15723) @flying-sheep
+- [docs] Overhaul bundle size guide (#15739) @eps1lon
+- [docs] Persist the side nav scroll (#15704) @oliviertassinari
+- [docs] Port blog to next (#15711) @mbrookes
+- [docs] Simplify /related-projects (#15702) @pinturic
+- [docs] Use pickers from material-ui namespace (#15691) @eps1lon
+- [docs] Warn about ButtonBase#disableRipple and a11y (#15740) @eps1lon
+
+### Core
+
+- [test] Colocate shadow root test for focus visible with implementation (#15712) @eps1lon
+- [test] Extend StrictMode tests (#15714) @eps1lon
+- [core] Add missing fontStyle type to TypographyStyle (#15733) @merceyz
+
 ## 4.0.0-beta.2
 ###### *May 13, 2019*
 
