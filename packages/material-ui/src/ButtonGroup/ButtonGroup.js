@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
@@ -114,8 +115,17 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
         if (!React.isValidElement(child)) {
           return null;
         }
+
+        warning(
+          child.type !== React.Fragment,
+          [
+            "Material-UI: the ButtonGroup component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+
         return React.cloneElement(child, {
-          className: buttonClassName,
+          className: clsx(buttonClassName, child.props.className),
           disabled: child.props.disabled || disabled,
           color,
           disableFocusRipple,
