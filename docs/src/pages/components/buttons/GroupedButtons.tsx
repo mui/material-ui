@@ -2,17 +2,19 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    display: 'flex',
-  },
-  item: {
-    padding: theme.spacing(1),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+      display: 'flex',
+    },
+    item: {
+      padding: theme.spacing(1),
+    },
+  }),
+);
 
 export default function GroupedButtons() {
   const classes = useStyles();

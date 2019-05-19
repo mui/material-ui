@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-// Solves a specificity issue for ButtonGroup overriding Button styles
-// eslint-disable-next-line no-unused-vars
-import Button from '../Button';
+import '../Button'; // So we don't have any override priority issue.
 
 export const styles = theme => ({
   /* Styles applied to the root element. */

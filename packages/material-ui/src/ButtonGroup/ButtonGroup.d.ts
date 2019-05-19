@@ -26,9 +26,7 @@ export type ButtonGroupClassKey =
   | 'groupedOutlinedSecondary'
   | 'groupedContained'
   | 'groupedContainedPrimary'
-  | 'groupedContainedSecondary'
-  | 'disabled'
-  | 'fullWidth';
+  | 'groupedContainedSecondary';
 
 export type ButtonGroupProps = SimplifiedPropsOf<typeof ButtonGroup>;
 
