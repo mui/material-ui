@@ -28,8 +28,7 @@ export type ButtonGroupClassKey =
   | 'groupedContainedPrimary'
   | 'groupedContainedSecondary'
   | 'disabled'
-  | 'fullWidth'
-  | 'colorInherit';
+  | 'fullWidth';
 
 export type ButtonGroupProps = SimplifiedPropsOf<typeof ButtonGroup>;
 

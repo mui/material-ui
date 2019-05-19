@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+// Solves a specificity issue for ButtonGroup overriding Button styles
+// eslint-disable-next-line no-unused-vars
+import Button from '../Button';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -39,13 +42,13 @@ export const styles = theme => ({
   /* Styles applied to the children if variant="outlined" & color="primary". */
   groupedOutlinedPrimary: {
     '&:hover': {
-      border: `1px solid ${theme.palette.primary.main}`,
+      borderColor: `${theme.palette.primary.main}`,
     },
   },
   /* Styles applied to the children if variant="outlined" & color="secondary". */
   groupedOutlinedSecondary: {
     '&:hover': {
-      border: `1px solid ${theme.palette.secondary.main}`,
+      borderColor: `${theme.palette.secondary.main}`,
     },
   },
   /* Styles applied to the children if variant="contained". */
@@ -114,7 +117,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           return null;
         }
         return React.cloneElement(child, {
-          classes: Object.assign({ root: buttonClassName }, child.props.classes),
+          className: buttonClassName,
           disabled: child.props.disabled || disabled,
           color,
           disableFocusRipple,

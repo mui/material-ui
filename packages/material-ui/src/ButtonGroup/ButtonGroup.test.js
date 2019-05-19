@@ -56,7 +56,6 @@ describe('<ButtonGroup />', () => {
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    console.log(wrapper);
     assert.strictEqual(wrapper.childAt(0).props().variant, 'outlined');
     assert.strictEqual(wrapper.childAt(0).props().color, 'default');
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.grouped), true);

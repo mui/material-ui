@@ -9,8 +9,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     display: 'flex',
   },
-  container: {
-    marginBottom: theme.spacing(2),
+  item: {
+    padding: theme.spacing(1),
   },
 }));
 
@@ -19,22 +19,22 @@ function GroupedButtons() {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item container className={classes.container}>
-        <Grid item xs={12} md={4} align="center">
+      <Grid item container>
+        <Grid item xs={12} md={6} lg={4} align="center" className={classes.item}>
           <ButtonGroup size="small" aria-label="Small outlined button group">
             <Button>One</Button>
             <Button>Two</Button>
             <Button>Three</Button>
           </ButtonGroup>
         </Grid>
-        <Grid item xs={12} md={4} align="center">
+        <Grid item xs={12} md={6} lg={4} align="center" className={classes.item}>
           <ButtonGroup color="primary" aria-label="Outlined primary button group">
             <Button>One</Button>
             <Button>Two</Button>
             <Button>Three</Button>
           </ButtonGroup>
         </Grid>
-        <Grid item xs={12} md={4} align="center">
+        <Grid item xs={12} md={6} lg={4} align="center" className={classes.item}>
           <ButtonGroup
             color="secondary"
             size="large"
@@ -45,16 +45,14 @@ function GroupedButtons() {
             <Button>Three</Button>
           </ButtonGroup>
         </Grid>
-      </Grid>
-      <Grid item container>
-        <Grid item xs={12} md={4} align="center">
+        <Grid item xs={12} md={6} lg={4} align="center" className={classes.item}>
           <ButtonGroup variant="contained" size="small" aria-label="Small contained button group">
             <Button>One</Button>
             <Button>Two</Button>
             <Button>Three</Button>
           </ButtonGroup>
         </Grid>
-        <Grid item xs={12} md={4} align="center">
+        <Grid item xs={12} md={6} lg={4} align="center" className={classes.item}>
           <ButtonGroup
             variant="contained"
             color="primary"
@@ -66,7 +64,7 @@ function GroupedButtons() {
             <Button>Three</Button>
           </ButtonGroup>
         </Grid>
-        <Grid item xs={12} md={4} align="center">
+        <Grid item xs={12} md={6} lg={4} align="center" className={classes.item}>
           <ButtonGroup
             variant="contained"
             color="secondary"
