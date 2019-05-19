@@ -12,6 +12,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import SwitchBase from './SwitchBase';
 import FormControlContext from '../FormControl/FormControlContext';
 import Icon from '../Icon';
+import ButtonBase from '../ButtonBase';
 
 function assertIsChecked(wrapper) {
   const iconButton = wrapper.find('span').at(0);
@@ -148,8 +149,8 @@ describe('<SwitchBase />', () => {
 
   it('should disable the components, and render the IconButton with the disabled className', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} disabled />);
-    assert.strictEqual(wrapper.find('ButtonBase').props().disabled, true);
-    assert.strictEqual(wrapper.find('ButtonBase').hasClass(classes.disabled), true);
+    assert.strictEqual(wrapper.find(ButtonBase).props().disabled, true);
+    assert.strictEqual(wrapper.find(ButtonBase).hasClass(classes.disabled), true);
   });
 
   it('should apply the custom disabled className when disabled', () => {

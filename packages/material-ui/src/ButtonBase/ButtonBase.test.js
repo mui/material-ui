@@ -1,23 +1,22 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { assert } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import rerender from 'test/utils/rerender';
 import {
   createShallow,
   createMount,
   describeConformance,
   getClasses,
-  unwrap,
 } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import * as PropTypes from 'prop-types';
 
-const ButtonBaseNaked = unwrap(ButtonBase);
-
 function focusVisible(element) {
-  element.ownerDocument.dispatchEvent(new window.Event('keydown'));
+  element.blur();
+  document.dispatchEvent(new window.Event('keydown'));
   element.focus();
 }
 
@@ -138,86 +137,144 @@ describe('<ButtonBase />', () => {
   });
 
   describe('ripple', () => {
-    let instanceWrapper;
-    let wrapper;
+    describe('interactions', () => {
+      const buttonRef = React.createRef();
+      let wrapper;
 
-    before(() => {
-      wrapper = mount(<ButtonBase>Hello</ButtonBase>);
-      instanceWrapper = wrapper.find('ButtonBase');
-    });
+      /**
+       * Each test in here relies on the previous one. Each one has a single
+       * act and a single assertion. The state of the Ripple is tracked by the number of ripples
+       * that are active i.e. not leaving and the number of ripples that are inactive (child-leaving)
+       */
 
-    it('should be enabled by default', () => {
-      const ripple = wrapper.find(TouchRipple);
-      assert.strictEqual(ripple.length, 1);
-    });
+      before(() => {
+        wrapper = mount(
+          <React.Fragment>
+            <ButtonBase
+              ref={buttonRef}
+              TouchRippleProps={{
+                classes: {
+                  root: 'touch-ripple',
+                  ripple: 'ripple',
+                  ripplePulsate: 'ripple-pulsate',
+                  rippleVisible: 'ripple-visible',
+                  child: 'child',
+                  childLeaving: 'child-leaving',
+                },
+              }}
+            >
+              Hello
+            </ButtonBase>
+          </React.Fragment>,
+        );
+        simulatePointerDevice();
+      });
 
-    it('should not have a focus ripple by default', () => {
-      instanceWrapper.instance().ripple = { pulsate: spy() };
-      instanceWrapper.setState({ focusVisible: true });
+      it('should not have a focus ripple by default', () => {
+        act(() => {
+          focusVisible(buttonRef.current);
+        });
+        wrapper.update();
 
-      assert.strictEqual(
-        instanceWrapper.instance().ripple.pulsate.callCount,
-        0,
-        'should not call pulsate on the ripple',
-      );
-    });
+        assert.strictEqual(wrapper.find('.ripple-pulsate').length, 0);
+      });
 
-    it('should start the ripple when the mouse is pressed 1', () => {
-      instanceWrapper.instance().ripple = { start: spy() };
-      wrapper.simulate('mouseDown', {});
+      it('should start the ripple when the mouse is pressed 1', () => {
+        act(() => {
+          wrapper.simulate('mouseDown');
+        });
+        wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.start.callCount, 1);
-    });
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 0);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 1);
+      });
 
-    it('should stop the ripple when the mouse is released', () => {
-      instanceWrapper.instance().ripple = { stop: spy() };
-      wrapper.simulate('mouseUp', {});
+      it('should stop the ripple when the mouse is released', () => {
+        act(() => {
+          wrapper.simulate('mouseUp');
+        });
+        wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-    });
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 1);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 0);
+      });
 
-    it('should start the ripple when the mouse is pressed 2', () => {
-      instanceWrapper.instance().ripple = { start: spy() };
-      wrapper.simulate('mouseDown', {});
+      it('should start the ripple when the mouse is pressed 2', () => {
+        act(() => {
+          wrapper.simulate('mouseDown');
+        });
+        wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.start.callCount, 1);
-    });
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 1);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 1);
+      });
 
-    it('should stop the ripple when the button blurs', () => {
-      instanceWrapper.instance().ripple = { stop: spy() };
-      wrapper.simulate('blur', {});
+      it('should stop the ripple when the button blurs', () => {
+        act(() => {
+          wrapper.simulate('blur');
+        });
+        wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-    });
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 2);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 0);
+      });
 
-    it('should start the ripple when the mouse is pressed 3', () => {
-      instanceWrapper.instance().ripple = { start: spy() };
-      wrapper.simulate('mouseDown', {});
+      it('should start the ripple when the mouse is pressed 3', () => {
+        act(() => {
+          wrapper.simulate('mouseDown');
+        });
+        wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.start.callCount, 1);
-    });
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 2);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 1);
+      });
 
-    it('should stop the ripple when the mouse leaves', () => {
-      instanceWrapper.instance().ripple = { stop: spy() };
-      wrapper.simulate('mouseLeave', {});
+      it('should stop the ripple when the mouse leaves', () => {
+        act(() => {
+          wrapper.simulate('mouseLeave');
+        });
+        wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 3);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 0);
+      });
     });
 
     it('should center the ripple', () => {
+      const wrapper = mount(<ButtonBase />);
       assert.strictEqual(wrapper.find(TouchRipple).props().center, false);
       wrapper.setProps({ centerRipple: true });
+      wrapper.update();
       assert.strictEqual(wrapper.find(TouchRipple).props().center, true);
     });
   });
 
   describe('focusRipple', () => {
-    let instanceWrapper;
+    const buttonRef = React.createRef();
     let wrapper;
 
     before(() => {
-      wrapper = mount(<ButtonBase focusRipple>Hello</ButtonBase>);
-      instanceWrapper = wrapper.find('ButtonBase');
+      wrapper = mount(
+        <React.Fragment>
+          <ButtonBase
+            focusRipple
+            focusVisibleClassName="focus-visible"
+            ref={buttonRef}
+            TouchRippleProps={{
+              classes: {
+                root: 'touch-ripple',
+                ripple: 'ripple',
+                ripplePulsate: 'ripple-pulsate',
+                rippleVisible: 'ripple-visible',
+                childLeaving: 'child-leaving',
+              },
+            }}
+          >
+            Hello
+          </ButtonBase>
+        </React.Fragment>,
+      );
+      simulatePointerDevice();
     });
 
     it('should be enabled by default', () => {
@@ -226,14 +283,15 @@ describe('<ButtonBase />', () => {
     });
 
     it('should pulsate the ripple when focusVisible', () => {
-      instanceWrapper.instance().ripple = { pulsate: spy() };
-      instanceWrapper.setState({ focusVisible: true });
+      act(() => {
+        focusVisible(buttonRef.current);
+      });
+      wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.pulsate.callCount, 1);
+      assert.strictEqual(wrapper.find('.ripple-pulsate').length, 1);
     });
 
     it('should not stop the ripple when the mouse leaves', () => {
-      instanceWrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('mouseLeave', {
         defaultPrevented: false,
         preventDefault() {
@@ -241,90 +299,54 @@ describe('<ButtonBase />', () => {
         },
       });
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 0);
+      assert.strictEqual(wrapper.find('.ripple-pulsate').length, 1);
     });
 
     it('should stop pulsate and start a ripple when the space button is pressed', () => {
-      instanceWrapper.instance().ripple = { stop: spy((event, cb) => cb()), start: spy() };
-      instanceWrapper.simulate('keyDown', {
-        key: ' ',
-        persist: () => {},
+      act(() => {
+        wrapper.find('button').simulate('keyDown', {
+          key: ' ',
+          persist: () => {},
+        });
       });
+      wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-      assert.strictEqual(instanceWrapper.instance().ripple.start.callCount, 1);
+      assert.strictEqual(wrapper.find('.ripple-pulsate .child-leaving').length, 1);
+      assert.strictEqual(wrapper.find('.ripple-visible').length, 2);
     });
 
     it('should stop and re-pulsate when space bar is released', () => {
-      instanceWrapper.instance().ripple = { stop: spy((event, cb) => cb()), pulsate: spy() };
-      wrapper.simulate('keyUp', {
-        key: ' ',
-        persist: () => {},
+      act(() => {
+        wrapper.simulate('keyUp', {
+          key: ' ',
+          persist: () => {},
+        });
       });
+      wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-      assert.strictEqual(instanceWrapper.instance().ripple.pulsate.callCount, 1);
+      assert.strictEqual(wrapper.find('.ripple-pulsate .child-leaving').length, 1);
+      assert.strictEqual(wrapper.find('.ripple-pulsate').length, 2);
+      assert.strictEqual(wrapper.find('.ripple-visible').length, 3);
     });
 
     it('should stop on blur and set focusVisible to false', () => {
-      instanceWrapper.instance().ripple = { stop: spy() };
-      wrapper.simulate('blur', {});
+      assert.strictEqual(wrapper.find('button.focus-visible').length, 1);
+      act(() => {
+        wrapper.simulate('blur', {});
+      });
+      wrapper.update();
 
-      assert.strictEqual(instanceWrapper.instance().ripple.stop.callCount, 1);
-      assert.strictEqual(wrapper.find('button').hasClass(classes.focusVisible), false);
-    });
-  });
-
-  describe('mounted tab press listener', () => {
-    let wrapper;
-    let instance;
-    let button;
-    let clock;
-
-    function getState() {
-      /**
-       * wrapper.find('ButtonBase').state()
-       * throws '::state() can only be called on class components'
-       */
-      return instance.state;
-    }
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-      wrapper = mount(
-        <ButtonBase
-          ref={element => {
-            button = element;
-          }}
-        >
-          Hello
-        </ButtonBase>,
-      );
-      simulatePointerDevice();
-      instance = wrapper.find('ButtonBase').instance();
-      if (!button) {
-        throw new Error('missing button');
-      }
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
-    it('should detect the keyboard', () => {
-      assert.strictEqual(getState().focusVisible, false);
-      focusVisible(button);
-      assert.strictEqual(getState().focusVisible, true);
+      assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 3);
     });
   });
 
   describe('prop: disabled', () => {
-    it('should not receive the focus', () => {
+    it('should have a negative tabIndex', () => {
       const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
       assert.strictEqual(wrapper.find('button').props().tabIndex, -1);
     });
 
-    it('should also apply it when using component', () => {
+    it('should forward it to native buttons', () => {
       const wrapper = mount(
         <ButtonBase disabled component="button">
           Hello
@@ -335,24 +357,26 @@ describe('<ButtonBase />', () => {
 
     it('should reset the focused state', () => {
       const wrapper = mount(<ButtonBase>Hello</ButtonBase>);
-      const instanceWrapper = wrapper.find('ButtonBase');
-      // We simulate a focusVisible button that is getting disabled.
-      instanceWrapper.setState({
-        focusVisible: true,
-      });
-      wrapper.setProps({
-        disabled: true,
-      });
-      assert.strictEqual(instanceWrapper.instance().state.focusVisible, false);
+      const button = wrapper.find('button').instance();
+      simulatePointerDevice();
+
+      focusVisible(button);
+
+      assert.strictEqual(button.classList.contains(classes.focusVisible), true);
+
+      wrapper.setProps({ disabled: true });
+
+      assert.strictEqual(button.classList.contains(classes.focusVisible), false);
     });
 
-    it('should not apply disabled on a span', () => {
+    it('should use aria attributes for other components', () => {
       const wrapper = mount(
         <ButtonBase component="span" disabled>
           Hello
         </ButtonBase>,
       );
       assert.strictEqual(wrapper.find('span[role="button"]').props().disabled, undefined);
+      assert.strictEqual(wrapper.find('span[role="button"]').props()['aria-disabled'], true);
     });
   });
 
@@ -370,32 +394,41 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('handleFocus()', () => {
-    let clock;
+  describe('event: focus', () => {
+    it('when disabled should not call onFocus', () => {
+      const onFocusSpy = spy();
+      const wrapper = mount(
+        <ButtonBase component="div" disabled onFocus={onFocusSpy}>
+          Hello
+        </ButtonBase>,
+      );
+      const button = wrapper.find('div[role="button"]').instance();
+      button.focus();
 
-    before(() => {
-      clock = useFakeTimers();
+      assert.strictEqual(onFocusSpy.callCount, 0);
     });
 
-    after(() => {
-      clock.restore();
-    });
+    it('has a focus-visible polyfill', () => {
+      const wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+      const button = wrapper.find('button').instance();
+      simulatePointerDevice();
 
-    it('when disabled should not persist event', () => {
-      const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
-      const instance = wrapper.find('ButtonBase').instance();
-      const eventMock = { persist: spy() };
-      instance.handleFocus(eventMock);
-      assert.strictEqual(eventMock.persist.callCount, 0);
+      assert.strictEqual(button.classList.contains(classes.focusVisible), false);
+      button.focus();
+      assert.strictEqual(button.classList.contains(classes.focusVisible), false);
+      focusVisible(button);
+      assert.strictEqual(button.classList.contains(classes.focusVisible), true);
     });
 
     it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
       const onFocusVisibleSpy = spy();
       const buttonRef = React.createRef();
       mount(
-        <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy} ref={buttonRef}>
-          Hello
-        </ButtonBase>,
+        <React.Fragment>
+          <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy} ref={buttonRef}>
+            Hello
+          </ButtonBase>
+        </React.Fragment>,
       );
       simulatePointerDevice();
 
@@ -404,34 +437,13 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(onFocusVisibleSpy.callCount, 1);
       assert.strictEqual(onFocusVisibleSpy.firstCall.args.length, 1);
     });
-
-    it('should work with a functional component', () => {
-      const MyLink = React.forwardRef((props, ref) => {
-        return (
-          <a href="/foo" ref={ref} {...props}>
-            bar
-          </a>
-        );
-      });
-      const wrapper = mount(
-        <ButtonBase theme={{}} component={MyLink}>
-          Hello
-        </ButtonBase>,
-      );
-      const instance = wrapper.find('ButtonBase').instance();
-      wrapper.simulate('focus');
-      clock.tick(instance.focusVisibleCheckTime);
-    });
   });
 
-  describe('handleKeyDown()', () => {
-    describe('avoids multiple keydown presses', () => {
+  describe('event: keydown', () => {
+    // eslint-disable-next-line mocha/no-skipped-tests
+    describe.skip('avoids multiple keydown presses', () => {
       it('should work', () => {
-        const wrapper = mount(
-          <ButtonBase theme={{}} classes={{}} focusRipple>
-            Hello
-          </ButtonBase>,
-        );
+        const wrapper = mount(<ButtonBase focusRipple>Hello</ButtonBase>);
         const instanceWrapper = wrapper.find('ButtonBase');
         instanceWrapper.setState({ focusVisible: true });
 
@@ -450,35 +462,64 @@ describe('<ButtonBase />', () => {
     });
 
     describe('prop: onKeyDown', () => {
-      it('should work', () => {
+      it('call it when keydown events are dispatched', () => {
         const onKeyDownSpy = spy();
-        const wrapper = mount(
-          <ButtonBaseNaked theme={{}} classes={{}} onKeyDown={onKeyDownSpy}>
-            Hello
-          </ButtonBaseNaked>,
-        );
+        const wrapper = mount(<ButtonBase onKeyDown={onKeyDownSpy}>Hello</ButtonBase>);
 
-        const eventPersistSpy = spy();
-        const event = { persist: eventPersistSpy, key: undefined };
+        const event = { persist: spy(), key: undefined };
+        wrapper.simulate('keyDown', event);
 
-        const instance = wrapper.find('ButtonBase').instance();
-        instance.keyDown = false;
-        instance.handleKeyDown(event);
-
-        assert.strictEqual(instance.keyDown, false);
         assert.strictEqual(event.persist.callCount, 0);
         assert.strictEqual(onKeyDownSpy.callCount, 1);
-        assert.strictEqual(onKeyDownSpy.calledWith(event), true);
+      });
+    });
+
+    describe('prop: disableTouchRipple', () => {
+      it('creates no ripples on click', () => {
+        const wrapper = mount(
+          <ButtonBase
+            disableTouchRipple
+            TouchRippleProps={{
+              classes: {
+                rippleVisible: 'ripple',
+              },
+            }}
+          >
+            Hello
+          </ButtonBase>,
+        );
+        const button = wrapper.find('button').instance();
+
+        assert.strictEqual(wrapper.find(TouchRipple).length, 1);
+
+        act(() => {
+          wrapper.simulate('click', {});
+        });
+        wrapper.update();
+
+        assert.strictEqual(button.classList.contains('ripple'), false);
+      });
+    });
+
+    describe('prop: disableRipple', () => {
+      it('removes the TouchRipple', () => {
+        const wrapper = mount(
+          <ButtonBase disableRipple focusRipple>
+            Hello
+          </ButtonBase>,
+        );
+
+        assert.strictEqual(wrapper.find(TouchRipple).length, 0);
       });
     });
 
     describe('keyboard accessibility for non interactive elements', () => {
-      it('should work', () => {
+      it('calls onClick when a spacebar is pressed on the element', () => {
         const onClickSpy = spy();
         const wrapper = mount(
-          <ButtonBaseNaked theme={{}} classes={{}} onClick={onClickSpy} component="div">
+          <ButtonBase onClick={onClickSpy} component="div">
             Hello
-          </ButtonBaseNaked>,
+          </ButtonBase>,
         );
 
         const event = {
@@ -487,23 +528,21 @@ describe('<ButtonBase />', () => {
           target: 'target',
           currentTarget: 'target',
         };
+        wrapper
+          .find('div[role="button"]')
+          .props()
+          .onKeyDown(event);
 
-        const instance = wrapper.find('ButtonBase').instance();
-        instance.keyDown = false;
-        instance.handleKeyDown(event);
-
-        assert.strictEqual(instance.keyDown, false);
         assert.strictEqual(event.preventDefault.callCount, 1);
-        assert.strictEqual(onClickSpy.callCount, 1);
-        assert.strictEqual(onClickSpy.calledWith(event), true);
+        assert.strictEqual(onClickSpy.firstCall.calledWithMatch(event), true);
       });
 
-      it('should handle a link with no href', () => {
+      it('prevents default with an anchor and empty href', () => {
         const onClickSpy = spy();
         const wrapper = mount(
-          <ButtonBaseNaked theme={{}} classes={{}} component="a" onClick={onClickSpy}>
+          <ButtonBase component="a" onClick={onClickSpy}>
             Hello
-          </ButtonBaseNaked>,
+          </ButtonBase>,
         );
         const event = {
           preventDefault: spy(),
@@ -511,18 +550,21 @@ describe('<ButtonBase />', () => {
           target: 'target',
           currentTarget: 'target',
         };
-        const instance = wrapper.find('ButtonBase').instance();
-        instance.handleKeyDown(event);
+        wrapper
+          .find('a[role="button"]')
+          .props()
+          .onKeyDown(event);
+
         assert.strictEqual(event.preventDefault.callCount, 1);
         assert.strictEqual(onClickSpy.callCount, 1);
       });
 
-      it('should ignore the link with href', () => {
+      it('should ignore anchors with href', () => {
         const onClickSpy = spy();
         const wrapper = mount(
-          <ButtonBaseNaked theme={{}} classes={{}} component="a" href="href" onClick={onClickSpy}>
+          <ButtonBase component="a" href="href" onClick={onClickSpy}>
             Hello
-          </ButtonBaseNaked>,
+          </ButtonBase>,
         );
         const event = {
           preventDefault: spy(),
@@ -530,56 +572,13 @@ describe('<ButtonBase />', () => {
           target: 'target',
           currentTarget: 'target',
         };
-        const instance = wrapper.find('ButtonBase').instance();
-        instance.handleKeyDown(event);
+        wrapper
+          .find('a[role="button"]')
+          .props()
+          .onKeyDown(event);
+
         assert.strictEqual(event.preventDefault.callCount, 0);
         assert.strictEqual(onClickSpy.callCount, 0);
-      });
-    });
-
-    describe('prop: disableTouchRipple', () => {
-      it('should work', () => {
-        const wrapper = mount(
-          <ButtonBase theme={{}} classes={{}} disableTouchRipple>
-            Hello
-          </ButtonBase>,
-        );
-        const instance = wrapper.find('ButtonBase').instance();
-        assert.strictEqual(wrapper.find(TouchRipple).length, 1);
-        instance.ripple = { start: spy(), stop: spy() };
-        wrapper.simulate('mouseDown', {});
-        assert.strictEqual(instance.ripple.start.callCount, 0);
-        wrapper.simulate('mouseUp', {});
-        assert.strictEqual(instance.ripple.stop.callCount, 0);
-      });
-    });
-
-    describe('prop: disableRipple', () => {
-      it('should work', () => {
-        const wrapper = mount(
-          <ButtonBase theme={{}} classes={{}}>
-            Hello
-          </ButtonBase>,
-        );
-        const instanceWrapper = wrapper.find('ButtonBase');
-
-        assert.strictEqual(wrapper.find(TouchRipple).length, 1);
-        const onKeyDownSpy = spy();
-        wrapper.setProps({ onKeyDown: onKeyDownSpy, disableRipple: true, focusRipple: true });
-        instanceWrapper.setState({ focusVisible: true });
-        assert.strictEqual(wrapper.find(TouchRipple).length, 0);
-
-        const eventPersistSpy = spy();
-        const event = { persist: eventPersistSpy, key: ' ' };
-
-        const instance = instanceWrapper.instance();
-        instance.keyDown = false;
-        instance.handleKeyDown(event);
-
-        assert.strictEqual(instance.keyDown, false);
-        assert.strictEqual(event.persist.callCount, 0);
-        assert.strictEqual(onKeyDownSpy.callCount, 1);
-        assert.strictEqual(onKeyDownSpy.calledWith(event), true);
       });
     });
   });
@@ -589,8 +588,6 @@ describe('<ButtonBase />', () => {
       let buttonActions = {};
       const wrapper = mount(
         <ButtonBase
-          theme={{}}
-          classes={{}}
           action={actions => {
             buttonActions = actions;
           }}
@@ -655,7 +652,7 @@ describe('<ButtonBase />', () => {
 
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Invalid prop `component` supplied to `ButtonBase`. Expected an element type that can hold a ref',
+        'Invalid prop `component` supplied to `ForwardRef(ButtonBase)`. Expected an element type that can hold a ref',
       );
       // first mount includes React warning that isn't logged on subsequent calls
       // in watchmode because it's cached
