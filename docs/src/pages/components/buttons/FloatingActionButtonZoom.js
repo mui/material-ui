@@ -73,16 +73,19 @@ function FloatingActionButtonZoom() {
       color: 'primary',
       className: classes.fab,
       icon: <AddIcon />,
+      label: 'Add',
     },
     {
       color: 'secondary',
       className: classes.fab,
       icon: <EditIcon />,
+      label: 'Edit',
     },
     {
       color: 'inherit',
       className: clsx(classes.fab, classes.fabGreen),
       icon: <UpIcon />,
+      label: 'Expand',
     },
   ];
 
@@ -120,7 +123,7 @@ function FloatingActionButtonZoom() {
           }}
           unmountOnExit
         >
-          <Fab className={fab.className} color={fab.color}>
+          <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
             {fab.icon}
           </Fab>
         </Zoom>
