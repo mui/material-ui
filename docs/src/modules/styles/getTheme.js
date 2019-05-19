@@ -12,7 +12,6 @@ function getTheme(uiTheme) {
       background: {
         default: uiTheme.paletteType === 'light' ? '#fff' : '#303030',
       },
-      contrastThreshold: 4.5,
     },
   });
 
