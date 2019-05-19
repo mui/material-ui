@@ -265,9 +265,6 @@ const styles = theme => ({
     '& thead tr': {
       height: 64,
     },
-    '& strong': {
-      fontWeight: theme.typography.fontWeightMedium,
-    },
     '& blockquote': {
       borderLeft: `5px solid ${theme.palette.text.hint}`,
       backgroundColor: theme.palette.background.level1,
