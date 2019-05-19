@@ -682,6 +682,22 @@ describe('<Popover />', () => {
 
   [0, 18, 16].forEach(marginThreshold => {
     describe(`positioning when \`marginThreshold=${marginThreshold}\``, () => {
+      function generateElementStyle(anchorEl = document.createElement('svg')) {
+        const handleEntering = spy();
+        mount(
+          <Popover
+            anchorEl={anchorEl}
+            open
+            onEntering={handleEntering}
+            marginThreshold={marginThreshold}
+            PaperProps={{ component: FakePaper }}
+          >
+            <div />
+          </Popover>,
+        );
+        return handleEntering.args[0][0].style;
+      }
+
       describe('when no movement is needed', () => {
         let positioningStyle;
         const negative = marginThreshold === 0 ? '' : '-';
@@ -690,18 +706,7 @@ describe('<Popover />', () => {
         );
 
         before(() => {
-          const handleEntering = spy();
-          mount(
-            <Popover
-              {...defaultProps}
-              open
-              onEntering={handleEntering}
-              marginThreshold={marginThreshold}
-            >
-              <div />
-            </Popover>,
-          );
-          positioningStyle = handleEntering.args[0][0].style;
+          positioningStyle = generateElementStyle();
         });
 
         it('should set top to marginThreshold', () => {
@@ -718,7 +723,6 @@ describe('<Popover />', () => {
       });
 
       describe('top < marginThreshold', () => {
-        const handleEntering = spy();
         let positioningStyle;
 
         before(() => {
@@ -728,21 +732,7 @@ describe('<Popover />', () => {
             top: marginThreshold - 1,
           }));
 
-          mount(
-            <Popover
-              anchorEl={mockedAnchor}
-              open
-              onEntering={handleEntering}
-              marginThreshold={marginThreshold}
-            >
-              <div />
-            </Popover>,
-          );
-          positioningStyle = handleEntering.args[0][0].style;
-        });
-
-        after(() => {
-          handleEntering.resetHistory();
+          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         it('should set top to marginThreshold', () => {
@@ -759,7 +749,6 @@ describe('<Popover />', () => {
       });
 
       describe('bottom > heightThreshold', () => {
-        const handleEntering = spy();
         let positioningStyle;
         let innerHeightContainer;
 
@@ -772,23 +761,11 @@ describe('<Popover />', () => {
             top: marginThreshold + 1,
           }));
 
-          mount(
-            <Popover
-              anchorEl={mockedAnchor}
-              open
-              onEntering={handleEntering}
-              marginThreshold={marginThreshold}
-              PaperProps={{ component: FakePaper }}
-            >
-              <div />
-            </Popover>,
-          );
-          positioningStyle = handleEntering.args[0][0].style;
+          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         after(() => {
           window.innerHeight = innerHeightContainer;
-          handleEntering.resetHistory();
         });
 
         it('should set top to marginThreshold', () => {
@@ -805,7 +782,6 @@ describe('<Popover />', () => {
       });
 
       describe('left < marginThreshold', () => {
-        const handleEntering = spy();
         let positioningStyle;
 
         before(() => {
@@ -815,21 +791,7 @@ describe('<Popover />', () => {
             top: marginThreshold,
           }));
 
-          mount(
-            <Popover
-              anchorEl={mockedAnchor}
-              open
-              onEntering={handleEntering}
-              marginThreshold={marginThreshold}
-            >
-              <div />
-            </Popover>,
-          );
-          positioningStyle = handleEntering.args[0][0].style;
-        });
-
-        after(() => {
-          handleEntering.resetHistory();
+          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         it('should set top to marginThreshold', () => {
@@ -846,7 +808,6 @@ describe('<Popover />', () => {
       });
 
       describe('right > widthThreshold', () => {
-        const handleEntering = spy();
         let positioningStyle;
         let innerWidthContainer;
 
@@ -859,23 +820,11 @@ describe('<Popover />', () => {
             top: marginThreshold,
           }));
 
-          mount(
-            <Popover
-              anchorEl={mockedAnchor}
-              open
-              onEntering={handleEntering}
-              marginThreshold={marginThreshold}
-              PaperProps={{ component: FakePaper }}
-            >
-              <div />
-            </Popover>,
-          );
-          positioningStyle = handleEntering.args[0][0].style;
+          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         after(() => {
           window.innerWidth = innerWidthContainer;
-          handleEntering.resetHistory();
         });
 
         it('should set top to marginThreshold', () => {
