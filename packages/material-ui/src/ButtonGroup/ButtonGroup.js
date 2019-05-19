@@ -42,13 +42,13 @@ export const styles = theme => ({
   /* Styles applied to the children if variant="outlined" & color="primary". */
   groupedOutlinedPrimary: {
     '&:hover': {
-      borderColor: `${theme.palette.primary.main}`,
+      borderColor: theme.palette.primary.main,
     },
   },
   /* Styles applied to the children if variant="outlined" & color="secondary". */
   groupedOutlinedSecondary: {
     '&:hover': {
-      borderColor: `${theme.palette.secondary.main}`,
+      borderColor: theme.palette.secondary.main,
     },
   },
   /* Styles applied to the children if variant="contained". */
