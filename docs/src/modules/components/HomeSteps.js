@@ -185,7 +185,7 @@ function HomeSteps(props) {
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>
             <NoSsr>
-              <img className={classes.img} alt="themes" src="/static/images/themes.jpg" />
+              <img className={classes.img} alt="themes" src="/static/images/themes-preview.jpg" />
             </NoSsr>
           </Link>
         </div>
