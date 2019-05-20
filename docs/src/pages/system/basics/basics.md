@@ -139,7 +139,22 @@ If you are already using `@material-ui/core`, we encourage you to start with the
 **All** the properties are responsive, we support 3 different APIs.
 It uses this default, but customizable, breakpoints theme structure:
 
-{{"demo": "pages/system/basics/ResponsiveValues.js", "defaultCodeOpen": true}}
+```js
+const values = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+  xl: 1920,
+};
+
+const theme = {
+  breakpoints: {
+    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+    up: key => `@media (min-width:${values[key]}px)`,
+  },
+};
+```
 
 ### Array
 
