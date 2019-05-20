@@ -28,14 +28,14 @@ const mockedAnchorEl = () => {
 };
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
-  const paperRef = React.useRef(null);
-  const handleRef = useForkRef(ref, paperRef);
-
-  React.useEffect(() => {
-    // For jsdom
-    Object.defineProperty(paperRef.current, 'offsetWidth', { value: 0 });
-    Object.defineProperty(paperRef.current, 'offsetHeight', { value: 0 });
-  });
+  const handleMocks = React.useCallback(paperInstance => {
+    if (paperInstance) {
+      // For jsdom
+      Object.defineProperty(paperInstance, 'offsetWidth', { value: 0 });
+      Object.defineProperty(paperInstance, 'offsetHeight', { value: 0 });
+    }
+  }, []);
+  const handleRef = useForkRef(ref, handleMocks);
 
   return (
     <div
