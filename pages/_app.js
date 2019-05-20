@@ -101,11 +101,13 @@ class MyApp extends App {
     // console.log(pages, { ...router, pathname })
     const activePage = findActivePage(pages, pathname);
 
-    let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500'];
+    let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap'];
     if (pathname.match(/onepirate/)) {
-      fonts = ['https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400'];
+      fonts = [
+        'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
+      ];
     } else if (pathname.match(/blog/)) {
-      fonts.push('https://fonts.googleapis.com/css?family=Roboto+Slab:300');
+      fonts.push('https://fonts.googleapis.com/css?family=Roboto+Slab:300&display=swap');
     }
 
     return (
