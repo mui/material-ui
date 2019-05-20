@@ -9,27 +9,11 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    display: 'flex',
-  },
-  container: {
-    marginBottom: theme.spacing(2),
-  },
-  group: {
-    display: 'inline-flex',
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[2],
-  },
-}));
 
 const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
 
 function SplitButton() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -56,7 +40,7 @@ function SplitButton() {
   }
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container>
       <Grid item xs={12} align="center">
         <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="Split button">
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>

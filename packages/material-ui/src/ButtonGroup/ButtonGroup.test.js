@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import {
   createMount,
   createShallow,
-  createRender,
   // describeConformance,
   getClasses,
 } from '@material-ui/core/test-utils';
@@ -13,13 +12,11 @@ import ButtonGroup from './ButtonGroup';
 describe('<ButtonGroup />', () => {
   let mount;
   let shallow;
-  let render;
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
-    render = createRender();
     classes = getClasses(
       <ButtonGroup>
         <Button>Hello World</Button>
@@ -152,7 +149,7 @@ describe('<ButtonGroup />', () => {
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    assert.strictEqual(wrapper.find('button').hasClass(classes.sizeLarge), true);
+    assert.strictEqual(wrapper.childAt(0).props().size, 'large');;
   });
 
   it('Button should have a ripple by default', () => {
@@ -209,21 +206,5 @@ describe('<ButtonGroup />', () => {
     );
     assert.strictEqual(wrapper.hasClass(classes.fullWidth), true);
     assert.strictEqual(wrapper.childAt(0).props().fullWidth, true);
-  });
-
-  describe('server-side', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
-
-    it('should server-side render', () => {
-      const markup = render(
-        <ButtonGroup>
-          <Button>Hello World</Button>
-        </ButtonGroup>,
-      );
-      assert.strictEqual(markup.text(), 'Hello World');
-    });
   });
 });
