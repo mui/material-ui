@@ -90,7 +90,7 @@ const styles = theme => ({
     padding: 4,
     textAlign: 'center',
     backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.getContrastText(theme.palette.primary.dark),
+    color: theme.palette.primary.contrastText,
   },
   grow: {
     flex: '1 1 auto',
