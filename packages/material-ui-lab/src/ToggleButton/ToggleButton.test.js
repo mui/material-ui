@@ -67,6 +67,30 @@ describe('<ToggleButton />', () => {
     assert.strictEqual(root.is('button[disabled]'), true);
   });
 
+  it('should render a small button', () => {
+    const wrapper = mount(
+      <ToggleButton size="small" value="hello">
+        Hello World
+      </ToggleButton>,
+    );
+    const root = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(root.hasClass(classes.root), true);
+    assert.strictEqual(root.hasClass(classes.sizeSmall), true);
+    assert.strictEqual(root.hasClass(classes.sizeLarge), false);
+  });
+
+  it('should render a large button', () => {
+    const wrapper = mount(
+      <ToggleButton size="large" value="hello">
+        Hello World
+      </ToggleButton>,
+    );
+    const root = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(root.hasClass(classes.root), true);
+    assert.strictEqual(root.hasClass(classes.sizeSmall), false);
+    assert.strictEqual(root.hasClass(classes.sizeLarge), true);
+  });
+
   describe('prop: onChange', () => {
     it('should be called when clicked', () => {
       const handleChange = spy();

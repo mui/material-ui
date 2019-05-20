@@ -42,6 +42,8 @@ This property accepts the following keys:
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
 | <span class="prop-name">label</span> | Styles applied to the `label` wrapper element.
+| <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span class="prop-name">sizeLarge</span> | Styles applied to the root element if `size="large"`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/ToggleButton/ToggleButton.js)
