@@ -3,7 +3,10 @@
 ## 4.0.0-rc.0
 ###### *May 20, 2019*
 
-A big thanks to the 14 contributors who made this release possible!
+A big thanks to the 17 contributors who made this release possible!
+
+We have done the very last breaking changes (nothing significant).
+The release of v4 is imminent, stay tuned!
 
 ### `@material-ui/core@v4.0.0-rc.0`
 
@@ -19,6 +22,20 @@ A big thanks to the 14 contributors who made this release possible!
   We recommend the default value since `mouseup` will be triggered by clicks
   on scrollbars.
 
+- [Tabs] Hide scrollbar buttons when possible (#15676) @whitneymarkov
+
+  ```diff
+  -<Tabs />
+  +<Tabs scrollButtons="desktop" />
+  ```
+
+- [Tabs] Remove deprecated fullWidth and scrollable props (#15670) @mbrookes
+
+  ```diff
+  -<Tabs fullWidth scrollable />
+  +<Tabs variant="scrollable" />
+  ```
+
 ### Changes
 
 - [ButtonBase] Convert to function component (#15716) @eps1lon
@@ -26,7 +43,11 @@ A big thanks to the 14 contributors who made this release possible!
 - [InputBase] Convert to function component (#15446) @adeelibr
 - [Popups] Allow Element as anchor el (#15707) @eps1lon
 - [Portal] Fix disablePortal not working (#15701) @imdaveead
+- [Radio] Animate the check state change (#15671) @imdaveead
+- [Tabs] Remove deprecated fullWidth and scrollable props (#15670) @mbrookes
+- [Tabs] Update rendering of auto-scrollable buttons (#15676) @whitneymarkov
 - [Tabs] Update onChange docs to match types (#15672) @jharrilim
+- [ToggleButtonGroup] Add size prop (#15644) @isaacblinder
 
 ### `@material-ui/icons@v4.0.0-rc.0`
 
@@ -50,6 +71,9 @@ A big thanks to the 14 contributors who made this release possible!
 - [docs] Simplify /related-projects (#15702) @pinturic
 - [docs] Use pickers from material-ui namespace (#15691) @eps1lon
 - [docs] Warn about ButtonBase#disableRipple and a11y (#15740) @eps1lon
+- [docs] Add ClickAwayListener breaking change (#15753) @eps1lon
+- [docs] Core a11y improvements (#15748) @eps1lon
+- [docs] Fix some apostrophe in TypeScript doc (#15757) @DDDDDanica
 
 ### Core
 
