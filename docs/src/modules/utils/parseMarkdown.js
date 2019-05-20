@@ -4,7 +4,7 @@ const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
 const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
 
-function getHeaders(markdown) {
+export function getHeaders(markdown) {
   let header = markdown.match(headerRegExp);
 
   if (!header) {
@@ -32,16 +32,16 @@ function getHeaders(markdown) {
   return headers;
 }
 
-const demoRegexp = /^"demo": "(.*)"/;
+export const demoRegexp = /^"demo": "(.*)"/;
 
-function getContents(markdown) {
+export function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{|}}$/gm) // Split markdown into an array, separating demos
     .filter(content => !emptyRegExp.test(content)); // Remove empty lines
 }
 
-function getTitle(markdown) {
+export function getTitle(markdown) {
   const matches = markdown.match(titleRegExp);
 
   if (!matches || !matches[1]) {
@@ -51,7 +51,7 @@ function getTitle(markdown) {
   return matches[1];
 }
 
-function getDescription(markdown) {
+export function getDescription(markdown) {
   const matches = markdown.match(descriptionRegExp);
 
   if (!matches || !matches[1]) {
@@ -60,11 +60,3 @@ function getDescription(markdown) {
 
   return matches[1];
 }
-
-module.exports = {
-  getHeaders,
-  demoRegexp,
-  getContents,
-  getTitle,
-  getDescription,
-};

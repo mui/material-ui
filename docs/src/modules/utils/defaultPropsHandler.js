@@ -1,7 +1,7 @@
-const astTypes = require('ast-types');
-const { utils } = require('react-docgen');
+import astTypes from 'ast-types';
+import { utils as docgenUtils } from 'react-docgen';
 
-const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = utils;
+const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
 // based on https://github.com/reactjs/react-docgen/blob/735f39ef784312f4c0e740d4bfb812f0a7acd3d5/src/handlers/defaultPropsHandler.js#L1-L112
 // adjusted for material-ui getThemedProps
@@ -81,12 +81,10 @@ function getPropsPath(functionBody) {
   return propsPath;
 }
 
-function defaultPropsHandler(documentation, componentDefinition) {
+export default function defaultPropsHandler(documentation, componentDefinition) {
   const renderBody = getRenderBody(componentDefinition);
   const props = getPropsPath(renderBody);
   if (props !== undefined) {
     getDefaultValuesFromProps(props.get('properties'), documentation);
   }
 }
-
-module.exports = defaultPropsHandler;

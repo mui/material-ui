@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
-const path = require('path');
-const fse = require('fs-extra');
-const { pageToTitle } = require('../src/modules/utils/helpers');
-const pages = require('../src/pages');
+import path from 'path';
+import fse from 'fs-extra';
+import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import pages from 'docs/src/pages';
 
 async function run() {
   try {
