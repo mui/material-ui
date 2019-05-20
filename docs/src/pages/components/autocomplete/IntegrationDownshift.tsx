@@ -2,14 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
 import Downshift from 'downshift';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import { createStyles, makeStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem, { MenuItemProps } from '@material-ui/core/MenuItem';
 import Chip from '@material-ui/core/Chip';
 
-const suggestions = [
+interface Suggestion {
+  label: string;
+}
+
+const suggestions: Suggestion[] = [
   { label: 'Afghanistan' },
   { label: 'Aland Islands' },
   { label: 'Albania' },
@@ -46,7 +50,12 @@ const suggestions = [
   { label: 'Brunei Darussalam' },
 ];
 
-function renderInput(inputProps) {
+type RenderInputProps = TextFieldProps & {
+  classes: ReturnType<typeof useStyles>;
+  ref?: React.Ref<HTMLDivElement>;
+};
+
+function renderInput(inputProps: RenderInputProps) {
   const { InputProps, classes, ref, ...other } = inputProps;
 
   return (
@@ -64,7 +73,15 @@ function renderInput(inputProps) {
   );
 }
 
-function renderSuggestion(suggestionProps) {
+interface RenderSuggestionProps {
+  highlightedIndex: number | null;
+  index: number;
+  itemProps: MenuItemProps<'div', { button?: never }>;
+  selectedItem: Suggestion['label'];
+  suggestion: Suggestion;
+}
+
+function renderSuggestion(suggestionProps: RenderSuggestionProps) {
   const { suggestion, index, itemProps, highlightedIndex, selectedItem } = suggestionProps;
   const isHighlighted = highlightedIndex === index;
   const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
@@ -91,7 +108,7 @@ renderSuggestion.propTypes = {
   suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
 };
 
-function getSuggestions(value, { showEmpty = false } = {}) {
+function getSuggestions(value: string, { showEmpty = false } = {}) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
@@ -110,22 +127,26 @@ function getSuggestions(value, { showEmpty = false } = {}) {
       });
 }
 
-function DownshiftMultiple(props) {
+interface DownshiftMultipleProps {
+  classes: ReturnType<typeof useStyles>;
+}
+
+function DownshiftMultiple(props: DownshiftMultipleProps) {
   const { classes } = props;
   const [inputValue, setInputValue] = React.useState('');
-  const [selectedItem, setSelectedItem] = React.useState([]);
+  const [selectedItem, setSelectedItem] = React.useState<Array<Suggestion['label']>>([]);
 
-  function handleKeyDown(event) {
+  function handleKeyDown(event: React.KeyboardEvent) {
     if (selectedItem.length && !inputValue.length && event.key === 'Backspace') {
       setSelectedItem(selectedItem.slice(0, selectedItem.length - 1));
     }
   }
 
-  function handleInputChange(event) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(event.target.value);
   }
 
-  function handleChange(item) {
+  function handleChange(item: Suggestion['label']) {
     let newSelectedItem = [...selectedItem];
     if (newSelectedItem.indexOf(item) === -1) {
       newSelectedItem = [...newSelectedItem, item];
@@ -134,7 +155,7 @@ function DownshiftMultiple(props) {
     setSelectedItem(newSelectedItem);
   }
 
-  const handleDelete = item => () => {
+  const handleDelete = (item: string) => () => {
     const newSelectedItem = [...selectedItem];
     newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
     setSelectedItem(newSelectedItem);
@@ -175,10 +196,9 @@ function DownshiftMultiple(props) {
             }),
             label: 'Label',
           })}
-
           {isOpen ? (
             <Paper className={classes.paper} square>
-              {getSuggestions(inputValue2).map((suggestion, index) =>
+              {getSuggestions(inputValue2!).map((suggestion, index) =>
                 renderSuggestion({
                   suggestion,
                   index,
@@ -199,38 +219,40 @@ DownshiftMultiple.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    height: 250,
-  },
-  container: {
-    flexGrow: 1,
-    position: 'relative',
-  },
-  paper: {
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: theme.spacing(1),
-    left: 0,
-    right: 0,
-  },
-  chip: {
-    margin: theme.spacing(0.5, 0.25),
-  },
-  inputRoot: {
-    flexWrap: 'wrap',
-  },
-  inputInput: {
-    width: 'auto',
-    flexGrow: 1,
-  },
-  divider: {
-    height: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      height: 250,
+    },
+    container: {
+      flexGrow: 1,
+      position: 'relative',
+    },
+    paper: {
+      position: 'absolute',
+      zIndex: 1,
+      marginTop: theme.spacing(1),
+      left: 0,
+      right: 0,
+    },
+    chip: {
+      margin: theme.spacing(0.5, 0.25),
+    },
+    inputRoot: {
+      flexWrap: 'wrap',
+    },
+    inputInput: {
+      width: 'auto',
+      flexGrow: 1,
+    },
+    divider: {
+      height: theme.spacing(2),
+    },
+  }),
+);
 
-let popperNode;
+let popperNode: HTMLDivElement | null | undefined;
 
 function IntegrationDownshift() {
   const classes = useStyles();
@@ -255,11 +277,10 @@ function IntegrationDownshift() {
                 placeholder: 'Search a country (start with a)',
               }),
             })}
-
             <div {...getMenuProps()}>
               {isOpen ? (
                 <Paper className={classes.paper} square>
-                  {getSuggestions(inputValue).map((suggestion, index) =>
+                  {getSuggestions(inputValue!).map((suggestion, index) =>
                     renderSuggestion({
                       suggestion,
                       index,
@@ -298,14 +319,13 @@ function IntegrationDownshift() {
                 popperNode = node;
               },
             })}
-
             <Popper open={isOpen} anchorEl={popperNode}>
               <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
                 <Paper
                   square
                   style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : undefined }}
                 >
-                  {getSuggestions(inputValue).map((suggestion, index) =>
+                  {getSuggestions(inputValue!).map((suggestion, index) =>
                     renderSuggestion({
                       suggestion,
                       index,
@@ -339,7 +359,7 @@ function IntegrationDownshift() {
               classes,
               InputProps: getInputProps({
                 onFocus: () => openMenu(),
-                onChange: event => {
+                onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                   if (event.target.value === '') {
                     clearSelection();
                   }
@@ -347,11 +367,10 @@ function IntegrationDownshift() {
                 placeholder: 'With the clear & show empty options',
               }),
             })}
-
             <div {...getMenuProps()}>
               {isOpen ? (
                 <Paper className={classes.paper} square>
-                  {getSuggestions(inputValue, { showEmpty: true }).map((suggestion, index) =>
+                  {getSuggestions(inputValue!, { showEmpty: true }).map((suggestion, index) =>
                     renderSuggestion({
                       suggestion,
                       index,
