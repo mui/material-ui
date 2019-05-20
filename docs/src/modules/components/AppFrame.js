@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NProgress from 'nprogress';
 import Router from 'next/router';
-import Interpolate from '@trendmicro/react-interpolate';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -84,13 +83,6 @@ export const languages = [
 const styles = theme => ({
   root: {
     display: 'flex',
-  },
-  banner: {
-    display: 'block',
-    padding: 4,
-    textAlign: 'center',
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.primary.contrastText,
   },
   grow: {
     flex: '1 1 auto',
@@ -228,19 +220,6 @@ class AppFrame extends React.Component {
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
-                <Typography className={classes.banner} variant="body2" noWrap>
-                  <Interpolate
-                    replacement={{
-                      versionNumber: (
-                        <Link color="inherit" href="/versions/">
-                          {`v${process.env.LIB_VERSION}`}
-                        </Link>
-                      ),
-                    }}
-                  >
-                    {t('topBanner')}
-                  </Interpolate>
-                </Typography>
                 <Toolbar>
                   <IconButton
                     edge="start"
