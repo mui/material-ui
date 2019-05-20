@@ -7,7 +7,7 @@ import {
   // describeConformance,
   getClasses,
 } from '@material-ui/core/test-utils';
-import Button from '../Button/Button';
+import Button from '../Button';
 import ButtonGroup from './ButtonGroup';
 
 describe('<ButtonGroup />', () => {
@@ -152,7 +152,7 @@ describe('<ButtonGroup />', () => {
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    assert.strictEqual(wrapper.childAt(0).props().size, 'large');
+    assert.strictEqual(wrapper.find('button').hasClass(classes.sizeLarge), true);
   });
 
   it('Button should have a ripple by default', () => {
