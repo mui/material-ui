@@ -12,7 +12,7 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',
-    width: 56,
+    width: 40,
     flexShrink: 0,
   },
 };
@@ -39,7 +39,11 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
       tabIndex={null}
       {...other}
     >
-      {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+      {direction === 'left' ? (
+        <KeyboardArrowLeft fontSize="small" />
+      ) : (
+        <KeyboardArrowRight fontSize="small" />
+      )}
     </ButtonBase>
   );
 });

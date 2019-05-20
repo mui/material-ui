@@ -47,8 +47,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the `ScrollButtonComponent` component. */
   scrollButtons: {},
-  /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`. */
-  scrollButtonsAuto: {
+  /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`. */
+  scrollButtonsDesktop: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
@@ -114,32 +114,38 @@ class Tabs extends React.Component {
 
   getConditionalElements = () => {
     const { classes, ScrollButtonComponent, scrollButtons, theme, variant } = this.props;
+    const { showLeftScroll, showRightScroll } = this.state;
     const conditionalElements = {};
     const scrollable = variant === 'scrollable';
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize onChange={this.handleScrollbarSizeChange} />
     ) : null;
 
-    const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
+    const scrollButtonsActive = showLeftScroll || showRightScroll;
+    const showScrollButtons =
+      scrollable &&
+      ((scrollButtons === 'auto' && scrollButtonsActive) ||
+        scrollButtons === 'desktop' ||
+        scrollButtons === 'on');
 
     conditionalElements.scrollButtonLeft = showScrollButtons ? (
       <ScrollButtonComponent
-        direction={theme && theme.direction === 'rtl' ? 'right' : 'left'}
+        direction={theme.direction === 'rtl' ? 'right' : 'left'}
         onClick={this.handleLeftScrollClick}
-        visible={this.state.showLeftScroll}
+        visible={showLeftScroll}
         className={clsx(classes.scrollButtons, {
-          [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+          [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
       />
     ) : null;
 
     conditionalElements.scrollButtonRight = showScrollButtons ? (
       <ScrollButtonComponent
-        direction={theme && theme.direction === 'rtl' ? 'left' : 'right'}
+        direction={theme.direction === 'rtl' ? 'left' : 'right'}
         onClick={this.handleRightScrollClick}
-        visible={this.state.showRightScroll}
+        visible={showRightScroll}
         className={clsx(classes.scrollButtons, {
-          [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+          [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
       />
     ) : null;
@@ -453,11 +459,13 @@ Tabs.propTypes = {
   ScrollButtonComponent: PropTypes.elementType,
   /**
    * Determine behavior of scroll buttons when tabs are set to scroll
-   * `auto` will only present them on medium and larger viewports
-   * `on` will always present them
-   * `off` will never present them
+   *
+   * - `auto` will only present them when not all the items are visible.
+   * - `desktop` will only present them on medium and larger viewports.
+   * - `on` will always present them.
+   * - `off` will never present them.
    */
-  scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
+  scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'on', 'off']),
   /**
    * Properties applied to the `TabIndicator` element.
    */
@@ -477,6 +485,7 @@ Tabs.propTypes = {
   value: PropTypes.any,
   /**
    *  Determines additional display behavior of the tabs:
+   *
    *  - `scrollable` will invoke scrolling properties and allow for horizontally
    *  scrolling (or swiping) of the tab bar.
    *  -`fullWidth` will make the tabs grow to use all the available space,
