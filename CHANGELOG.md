@@ -7,8 +7,21 @@ A big thanks to the 14 contributors who made this release possible!
 
 ### `@material-ui/core@v4.0.0-rc.0`
 
-- [ButtonBase] Convert to function component (#15716) @eps1lon
+### Breaking changes
+
 - [ClickAwayListener] Fix scrollbar interaction (#15743) @Umerbhat
+
+  ```diff
+  -<ClickAwayListener />
+  +<ClickAwayListener mouseEvent="onMouseUp" />
+  ```
+
+  We recommend the default value since `mouseup` will be triggered by clicks
+  on scrollbars.
+
+### Changes
+
+- [ButtonBase] Convert to function component (#15716) @eps1lon
 - [CssBaseline] Fix wrong default font weight (#15747) @oliviertassinari
 - [InputBase] Convert to function component (#15446) @adeelibr
 - [Popups] Allow Element as anchor el (#15707) @eps1lon
