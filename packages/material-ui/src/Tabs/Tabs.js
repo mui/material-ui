@@ -44,6 +44,13 @@ export const styles = theme => ({
   /* Styles applied to the tablist element if `variant="scrollable"`. */
   scrollable: {
     overflowX: 'scroll',
+    /* Hidden scrollbar vendor prefixed. */
+    // msOverflowStyle: 'none',
+    // overflow: '-moz-scrollbars-none',
+    // scrollbarWidth: 'none',
+    // '&::-webkit-scrollbar': {
+    //   display: 'none'
+    //  },
   },
   /* Styles applied to the `ScrollButtonComponent` component. */
   scrollButtons: {},
