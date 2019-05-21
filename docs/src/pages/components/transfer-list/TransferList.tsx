@@ -77,15 +77,24 @@ function TransferList() {
 
   const customList = (items: number[]) => (
     <Paper className={classes.paper}>
-      <List dense>
-        {items.map((value: number) => (
-          <ListItem key={value} role={undefined} button onClick={handleToggle(value)}>
-            <ListItemIcon>
-              <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
-            </ListItemIcon>
-            <ListItemText primary={`List item ${value + 1}`} />
-          </ListItem>
-        ))}
+      <List dense component="div" role="list">
+        {items.map((value: number) => {
+          const labelId = `transfer-list-item-${value}-label`;
+
+          return (
+            <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
+              <ListItemIcon>
+                <Checkbox
+                  checked={checked.indexOf(value) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{ 'aria-labelledby': labelId }}
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
+            </ListItem>
+          );
+        })}
         <ListItem />
       </List>
     </Paper>
