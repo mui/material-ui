@@ -85,6 +85,7 @@
     "@types/react-select": "^2.0.14",
     "@types/react-swipeable-views": "^0.13.0",
     "@types/react-text-mask": "^5.4.2",
+    "@types/react-virtualized": "^9.21.1",
     "@types/react-window": "^1.7.0",
     "@types/styled-components": "4.1.12",
     "@zeit/next-typescript": "^1.1.1",

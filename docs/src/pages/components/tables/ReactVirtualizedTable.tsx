@@ -1,40 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
-import { AutoSizer, Column, Table } from 'react-virtualized';
+import { AutoSizer, Column, Table, TableCellRenderer, TableHeaderProps } from 'react-virtualized';
 
-const styles = theme => ({
-  flexContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    boxSizing: 'border-box',
-  },
-  tableRow: {
-    cursor: 'pointer',
-  },
-  tableRowHover: {
-    '&:hover': {
-      backgroundColor: theme.palette.grey[200],
+const styles = (theme: Theme) =>
+  createStyles({
+    flexContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      boxSizing: 'border-box',
     },
-  },
-  tableCell: {
-    flex: 1,
-  },
-  noClick: {
-    cursor: 'initial',
-  },
-});
+    tableRow: {
+      cursor: 'pointer',
+    },
+    tableRowHover: {
+      '&:hover': {
+        backgroundColor: theme.palette.grey[200],
+      },
+    },
+    tableCell: {
+      flex: 1,
+    },
+    noClick: {
+      cursor: 'initial',
+    },
+  });
 
-class MuiVirtualizedTable extends React.PureComponent {
+interface ColumnData {
+  dataKey: string;
+  label: string;
+  numeric?: boolean;
+  width: number;
+}
+
+interface Row {
+  index: number;
+}
+
+interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
+  columns: ColumnData[];
+  headerHeight: number;
+  onRowClick?: () => void;
+  rowCount: number;
+  rowGetter: (row: Row) => Data;
+  rowHeight: number;
+}
+
+class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> {
   static defaultProps = {
     headerHeight: 48,
     rowHeight: 48,
   };
 
-  getRowClassName = ({ index }) => {
+  getRowClassName = ({ index }: Row) => {
     const { classes, onRowClick } = this.props;
 
     return clsx(classes.tableRow, classes.flexContainer, {
@@ -42,7 +63,7 @@ class MuiVirtualizedTable extends React.PureComponent {
     });
   };
 
-  cellRenderer = ({ cellData, columnIndex }) => {
+  cellRenderer: TableCellRenderer = ({ cellData, columnIndex }) => {
     const { columns, classes, rowHeight, onRowClick } = this.props;
     return (
       <TableCell
@@ -59,7 +80,7 @@ class MuiVirtualizedTable extends React.PureComponent {
     );
   };
 
-  headerRenderer = ({ label, columnIndex }) => {
+  headerRenderer = ({ label, columnIndex }: TableHeaderProps & { columnIndex: number }) => {
     const { headerHeight, columns, classes } = this.props;
 
     return (
@@ -105,7 +126,7 @@ class MuiVirtualizedTable extends React.PureComponent {
   }
 }
 
-MuiVirtualizedTable.propTypes = {
+(MuiVirtualizedTable as any).propTypes = {
   classes: PropTypes.object.isRequired,
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   headerHeight: PropTypes.number,
@@ -117,7 +138,17 @@ const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 // ---
 
-const sample = [
+interface Data {
+  calories: number;
+  carbs: number;
+  dessert: string;
+  fat: number;
+  id: number;
+  protein: number;
+}
+type Sample = [string, number, number, number, number];
+
+const sample: Sample[] = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
   ['Eclair', 262, 16.0, 24, 6.0],
@@ -125,11 +156,18 @@ const sample = [
   ['Gingerbread', 356, 16.0, 49, 3.9],
 ];
 
-function createData(id, dessert, calories, fat, carbs, protein) {
+function createData(
+  id: number,
+  dessert: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+): Data {
   return { id, dessert, calories, fat, carbs, protein };
 }
 
-const rows = [];
+const rows: Data[] = [];
 
 for (let i = 0; i < 200; i += 1) {
   const randomSelection = sample[Math.floor(Math.random() * sample.length)];
