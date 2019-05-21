@@ -20,7 +20,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
 }
 
 declare const ListItem: OverridableComponent<ListItemTypeMap<{ button?: false }, 'li'>> &
-  ExtendButtonBase<ListItemTypeMap<{ button: true }, 'div'>>;
+  ExtendButtonBase<ListItemTypeMap<{ button?: true }, 'div'>>;
 
 export type ListItemClassKey =
   | 'root'
