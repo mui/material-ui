@@ -74,7 +74,7 @@ export const flexbox: SimpleStyleFunction<
   | 'flexGrow'
   | 'flexShrink'
   | 'alignSelf'
->
+>;
 export type FlexboxProps = PropsFor<typeof flexbox>;
 
 // palette.js
@@ -85,10 +85,10 @@ export type PaletteProps = PropsFor<typeof palette>;
 
 export const positions: SimpleStyleFunction<
   'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'
->
+>;
 export type PositionsProps = PropsFor<typeof positions>;
 
-export const shadows: SimpleStyleFunction<'boxShadow'>
+export const shadows: SimpleStyleFunction<'boxShadow'>;
 export type ShadowsProps = PropsFor<typeof shadows>;
 
 // * sizing.js TODO
