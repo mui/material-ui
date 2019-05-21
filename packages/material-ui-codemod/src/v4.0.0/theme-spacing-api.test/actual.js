@@ -17,3 +17,9 @@ const spacingAdd = theme => ({
 const spacingSubtract = theme => ({
   spacing: theme.spacing.unit - 5,
 });
+
+const variable = 3;
+
+const spacingVariable = theme => ({
+  spacing: theme.spacing.unit * variable,
+});

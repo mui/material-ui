@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 /**
  * Update all `theme.spacing.unit` usages to use `theme.spacing()`.
  * Find and replace string literal AST nodes to ensure all spacing API usages get updated, regardless
@@ -21,28 +22,34 @@ function transformThemeSpacingApi(j, root) {
   });
 
   spacingPath.replaceWith(path => {
-    let mathPart = null;
+    let param = null;
 
     if (j.BinaryExpression.check(path.parent.node)) {
       const expression = path.parent.node;
       const operation = expression.operator;
-      const value = expression.right.value;
-      if (operation === '*' || operation === '/') {
-        mathPart = eval(`1 ${operation} ${value}`);
+
+      // check if it's a variable
+      if (j.Identifier.check(expression.right)) {
+        param = expression.right;
+      } else if (j.Literal.check(expression.right)) {
+        const value = expression.right.value;
+        if (operation === '*' || operation === '/') {
+          param = j.literal(eval(`1 ${operation} ${value}`));
+        }
       }
     }
 
-    if (mathPart) {
+    if (param) {
       path.parent.replace(
         j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('spacing')), [
-          j.literal(mathPart),
+          param,
         ]),
       );
-    } else {
-      return j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('spacing')), [
-        j.literal(1),
-      ]);
+      return path.node;
     }
+    return j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('spacing')), [
+      j.literal(1),
+    ]);
   });
 }
 
