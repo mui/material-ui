@@ -150,6 +150,7 @@ function DownshiftMultiple(props) {
       {({
         getInputProps,
         getItemProps,
+        getLabelProps,
         isOpen,
         inputValue: inputValue2,
         selectedItem: selectedItem2,
@@ -159,7 +160,9 @@ function DownshiftMultiple(props) {
           {renderInput({
             fullWidth: true,
             classes,
-            InputProps: getInputProps({
+            label: 'countries',
+            InputLabelProps: getLabelProps({ strink: true }),
+            InputProps: {
               startAdornment: selectedItem.map(item => (
                 <Chip
                   key={item}
@@ -172,8 +175,8 @@ function DownshiftMultiple(props) {
               onChange: handleInputChange,
               onKeyDown: handleKeyDown,
               placeholder: 'Select multiple countries',
-            }),
-            label: 'Label',
+            },
+            inputProps: getInputProps(),
           })}
 
           {isOpen ? (
@@ -241,6 +244,7 @@ function IntegrationDownshift() {
         {({
           getInputProps,
           getItemProps,
+          getLabelProps,
           getMenuProps,
           highlightedIndex,
           inputValue,
@@ -251,7 +255,9 @@ function IntegrationDownshift() {
             {renderInput({
               fullWidth: true,
               classes,
-              InputProps: getInputProps({
+              label: 'country',
+              InputLabelProps: getLabelProps({ shrink: true }),
+              inputProps: getInputProps({
                 placeholder: 'Search a country (start with a)',
               }),
             })}
@@ -281,6 +287,7 @@ function IntegrationDownshift() {
         {({
           getInputProps,
           getItemProps,
+          getLabelProps,
           getMenuProps,
           highlightedIndex,
           inputValue,
@@ -291,7 +298,9 @@ function IntegrationDownshift() {
             {renderInput({
               fullWidth: true,
               classes,
-              InputProps: getInputProps({
+              label: 'countries',
+              InputLabelProps: getLabelProps({ shrink: true }),
+              inputProps: getInputProps({
                 placeholder: 'With Popper',
               }),
               ref: node => {
@@ -326,6 +335,7 @@ function IntegrationDownshift() {
           clearSelection,
           getInputProps,
           getItemProps,
+          getLabelProps,
           getMenuProps,
           highlightedIndex,
           inputValue,
@@ -337,7 +347,9 @@ function IntegrationDownshift() {
             {renderInput({
               fullWidth: true,
               classes,
-              InputProps: getInputProps({
+              label: 'countries',
+              InputLabelProps: getLabelProps({ shrink: true }),
+              InputProps: {
                 onFocus: () => openMenu(),
                 onChange: event => {
                   if (event.target.value === '') {
@@ -345,7 +357,8 @@ function IntegrationDownshift() {
                   }
                 },
                 placeholder: 'With the clear & show empty options',
-              }),
+              },
+              inputProps: getInputProps({ foo: 1 }),
             })}
 
             <div {...getMenuProps()}>

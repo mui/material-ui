@@ -311,6 +311,16 @@ function IntegrationReactSelect() {
         <Select
           classes={classes}
           styles={selectStyles}
+          TextFieldProps={{
+            label: 'country',
+            InputProps: {
+              id: 'react-select-single',
+            },
+            InputLabelProps: {
+              htmlFor: 'react-select-single',
+              shrink: true,
+            },
+          }}
           options={suggestions}
           components={components}
           value={single}
@@ -322,8 +332,12 @@ function IntegrationReactSelect() {
           classes={classes}
           styles={selectStyles}
           TextFieldProps={{
-            label: 'Label',
+            label: 'countries',
+            InputProps: {
+              id: 'react-select-multiple',
+            },
             InputLabelProps: {
+              htmlFor: 'react-select-multiple',
               shrink: true,
             },
           }}
