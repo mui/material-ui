@@ -278,6 +278,7 @@ function OutlinedTextFields() {
         defaultValue="Bare"
         margin="normal"
         variant="outlined"
+        inputProps={{ 'aria-label': 'bare' }}
       />
     </form>
   );

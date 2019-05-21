@@ -37,7 +37,11 @@ function CustomizedInputBase() {
       <IconButton className={classes.iconButton} aria-label="Menu">
         <MenuIcon />
       </IconButton>
-      <InputBase className={classes.input} placeholder="Search Google Maps" />
+      <InputBase
+        className={classes.input}
+        placeholder="Search Google Maps"
+        inputProps={{ 'aria-label': 'Search Google Maps' }}
+      />
       <IconButton className={classes.iconButton} aria-label="Search">
         <SearchIcon />
       </IconButton>
