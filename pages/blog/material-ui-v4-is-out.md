@@ -285,7 +285,7 @@ Together, we have accomplished most of the objectives we defined a year ago in t
 
 Let us know the components you want! 🚀
 
-- **Documentation**. The documentation is paramount. We are working on a page raking mechanism that will help us better prioritize our effort on the documentation.
+- **Documentation**. The documentation is paramount. We are working on a page ranking mechanism that will help us better prioritize our effort on the documentation.
 - **Use `system` in the core.** We have received great feedback on the new system package. Going forward, we will try to move it to the core components. Ideally, you should be able to use dynamic color & variants from your theme as well as have access to all the props:
 
 ```jsx
