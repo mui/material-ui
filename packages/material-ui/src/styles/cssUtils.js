@@ -39,7 +39,7 @@ export function fontGrid({ lineHeight, pixels, htmlFontSize }) {
  * @param {string} params.cssProperty - The CSS property to be made responsive
  * @param {number} params.min - The smallest value of the CSS property
  * @param {number} params.max - The largest value of the CSS property
- * @param {number} [params.unit] - The unit to be used for the CSS property
+ * @param {string} [params.unit] - The unit to be used for the CSS property
  * @param {Array.number} [params.breakpoints]  - An array of breakpoints
  * @param {number} [params.alignStep] - Round scaled value to fall under this grid
  * @returns {Object} responsive styles for {params.cssProperty}
