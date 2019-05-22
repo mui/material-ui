@@ -224,7 +224,7 @@ An application example of the Box component.
 
 ![box](/static/blog/material-ui-v4-is-out/box.png)
 
-customization example of the new spacing helper.
+An example of the new spacing helper API.
 
 - A new [@material-ui/pickers](https://github.com/mui-org/material-ui-pickers) package created and supported by [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) 📅.
 
