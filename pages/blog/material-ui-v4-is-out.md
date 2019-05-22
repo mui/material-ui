@@ -294,7 +294,7 @@ import { Button } from '@material-ui/core';
 <Button mt={{ xs: 2, md: 3 }}>Hello worlds</Button>
 ```
 
-- **Styled components.** We have seen many people asking for a migration to styled components. We want Material-UI v5 to be better aligned with the community's best-loved tools, but at the same time, we don't want to break your code.
+- **Styled components.** We have seen many people asking for migration to styled components. We want Material-UI v5 to be better aligned with the community's best-loved tools, but at the same time, we don't want to break your code.
 So we will work on isolating the components from the styling solution. The new *@material-ui/styles* package is the first step in this direction. We envision a world where you can use Material-UI styled with styled components, linaria, and JSS or without any styles.
 People should be able to use their preferred styling solution without paying the cost of two CSS-in-JS runtimes.
 - **Accessibility.** While we try to fix all accessibility issues as they are reported by our users, we feel that we can do better. We want to run a professional ADA audit of all our components ♿️.
