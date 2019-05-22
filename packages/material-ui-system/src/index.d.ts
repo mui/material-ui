@@ -12,7 +12,7 @@ interface WithTheme<Theme extends object> {
 export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
   ? Props
   : never;
-export type StyleFunction<Props> = (props: Props & { theme?: any }) => any;
+export type StyleFunction<Props> = (props: Props) => any;
 type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Record<PropKey, any>>>;
 
 // borders.js
@@ -153,7 +153,7 @@ export interface StyleOptions<PropKey, Theme extends object> {
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey, Theme>,
-): StyleFunction<{ [K in PropKey]: unknown } & { theme: Theme }>;
+): StyleFunction<{ [K in PropKey]: unknown }>;
 
 // typography.js
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
