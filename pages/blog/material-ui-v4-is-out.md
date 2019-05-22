@@ -47,7 +47,7 @@ The Material Design team at Google has made the customization of their design sy
 
 After listening to v3 customization experiences of hundreds of developers, we realized that we could do better. We have found 4 classes of common problems.
 
-- **CSS specificity**. The developers' style specificity needs to be higher to win over the style Material-UI injects in the page. By default, Material-UI injects its style at the end of the `<head>` element. But styled components, and other popular styling solutions, inject the style just before it, losing specificity. In order to solve the problem, we have introduced a new prop: `injectFirst`.
+- **CSS specificity**. The developers' style specificity needs to be higher to win over the style Material-UI injects in the page. By default, Material-UI injects its style at the end of the `<head>` element. However, styled components and other popular styling solutions inject the style just before it, losing specificity. To solve the problem, we have introduced a new prop: `injectFirst`.
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
