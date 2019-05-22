@@ -3,7 +3,7 @@ import { Omit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
 
 /**
- * a component whose root component can be controled via a `component` prop
+ * a component whose root component can be controlled via a `component` prop
  *
  * Adjusts valid props based on the type of `component`
  */
