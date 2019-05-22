@@ -119,7 +119,7 @@ Documentation was reported as the 3rd most critical pain point in the developer 
 
 <p class="blog-description">Use the JS/TS toggle to see code in JavaScript or TypeScript</p>
 
-- **i18n**. People come to the Material-UI's documentation from all around the world. We want to include as many people as possible 🌎🌍🌏. We have completed the effort started in v3 by working on the Algolia search support, Google search indexing, Table Of Contents and Side Nav infrastructure.
+- **i18n**. People come to Material-UI's documentation from all around the world. We want to include as many people as possible 🌎🌍🌏. We have completed the effort started in v3 by working on the Algolia search support, Google search indexing, Table Of Contents and Side Nav infrastructure.
 
   We would like to thank [Danica Shen](https://github.com/Domino987) and [Dominik Engel](https://github.com/Domino987) for their heroic work on the 🇨🇳 and 🇩🇪 translations, while not forgetting the other 348 (and growing) translators.
 - **Best practices**. We are now recommending the use of the hooks API over the classes API wherever possible. We have migrated a large portion of the demos to showcase a single approach.
