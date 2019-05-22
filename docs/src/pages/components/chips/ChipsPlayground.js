@@ -176,8 +176,8 @@ class ChipsPlayground extends React.Component {
                     value={size}
                     onChange={this.handleChange('size')}
                   >
-                    <FormControlLabel value="small" control={<Radio />} label="small" />
                     <FormControlLabel value="medium" control={<Radio />} label="medium" />
+                    <FormControlLabel value="small" control={<Radio />} label="small" />
                   </RadioGroup>
                 </FormControl>
               </Grid>

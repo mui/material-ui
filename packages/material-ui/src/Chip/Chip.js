@@ -191,10 +191,6 @@ export const styles = theme => {
       paddingLeft: 8,
       paddingRight: 8,
     },
-    labelLarge: {
-      paddingLeft: 16,
-      paddingRight: 16,
-    },
     /* Styles applied to the `deleteIcon` element. */
     deleteIcon: {
       // Remove grey highlight
