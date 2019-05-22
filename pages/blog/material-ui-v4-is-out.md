@@ -107,7 +107,7 @@ function MyComponent() {
 
 ### Documentation
 
-Documentation was reported as the 3rd most critical pain point in the developer survey. We have fixed some of the reported issues and resolved to continuously improve going forward.
+Documentation was reported as the 3rd most critical pain point in the developer survey. We have fixed some of the reported issues and aim to continuously improve going forward.
 
 - **TypeScript**. TypeScript's growth is impressive, the traffic of their documentation website has grown by a factor of 6 in 3 years. Material-UI v1 was released with built-in TypeScript definitions, but we needed to do more. Sebastian has led the effort to migrate all the demos from JavaScript to TypeScript. This has two important implications. First, we type check our demos, it drastically improves our TypeScript test coverage. We have fixed many issues during the migration. Second, if you are writing your application with TypeScript, you can directly copy & paste our demos without needing to convert them, or having to fix the obscure errors.
 
