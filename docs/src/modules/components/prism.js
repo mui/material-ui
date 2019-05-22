@@ -14,8 +14,8 @@ let lightTheme;
 let darkTheme;
 
 if (process.browser) {
-  lightTheme = require('prism-themes/themes/prism-ghcolors.css');
-  darkTheme = require('prism-themes/themes/prism-atom-dark.css');
+  lightTheme = require('prismjs/themes/prism.css');
+  darkTheme = require('prismjs/themes/prism-okaidia.css');
 
   styleNode = document.createElement('style');
   styleNode.setAttribute('data-prism', 'true');
