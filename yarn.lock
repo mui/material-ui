@@ -3334,6 +3334,10 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
+"babel-plugin-unwrap-createStyles@link:packages/babel-plugin-unwrap-createStyles":
+  version "0.0.0"
+  uid ""
+
 babel-preset-es2015@^6.9.0:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-preset-es2015/-/babel-preset-es2015-6.24.1.tgz#d44050d6bc2c9feea702aaf38d727a0210538939"
@@ -6062,6 +6066,9 @@ eslint-plugin-jsx-a11y@^6.0.3:
     has "^1.0.3"
     jsx-ast-utils "^2.0.1"
 
+"eslint-plugin-material-ui@file:packages/eslint-plugin-material-ui":
+  version "3.0.0"
+
 eslint-plugin-mocha@^5.0.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-mocha/-/eslint-plugin-mocha-5.2.1.tgz#a6f917a939effe6bbf69ca2b046da9945545eef4"
@@ -7368,12 +7375,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@2.5.5, hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
-  version "2.5.5"
-  resolved "https://artifactory.globoi.com/artifactory/api/npm/npm-repos/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
-  integrity sha1-xZA89AnA39kI84jmGdhrnBF0y0c=
-
-hoist-non-react-statics@^3.2.1:
+hoist-non-react-statics@2.5.5, hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0, hoist-non-react-statics@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.2.1.tgz#c09c0555c84b38a7ede6912b61efddafd6e75e1e"
   integrity sha512-TFsu3TV3YLY+zFTZDrN8L2DTFanObwmBLpWvJs1qfUuEQ5bTAdFcwfx2T/bsCXfM9QHSLvjfP+nihEl0yvozxw==
@@ -8607,6 +8609,16 @@ jss-vendor-prefixer@^7.0.0:
   dependencies:
     css-vendor "^0.3.8"
 
+jss@^10.0.0-alpha.3, jss@^9.7.0:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss/-/jss-10.0.0-alpha.7.tgz#ee9909f3a97c9370fa120b50929a79b2caed8536"
+  integrity sha512-nxCfzcL9KzJEpxmSfozCzj5xgRvINF/g1ryHH/sgHeHcleFvY6mzo9D1VuhkUYF1mdEpcoprAjdqFYlsi8gRsQ==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    is-in-browser "^1.1.3"
+    symbol-observable "^1.2.0"
+    tiny-warning "^1.0.2"
+
 jss@^10.0.0-alpha.7:
   version "10.0.0-alpha.8"
   resolved "https://registry.yarnpkg.com/jss/-/jss-10.0.0-alpha.8.tgz#7bf6232046e131c8bb6edafd01d13beab06db0da"
@@ -8617,7 +8629,7 @@ jss@^10.0.0-alpha.7:
     symbol-observable "^1.2.0"
     tiny-warning "^1.0.2"
 
-jss@^9.7.0, jss@^9.8.7:
+jss@^9.8.7:
   version "9.8.7"
   resolved "https://registry.yarnpkg.com/jss/-/jss-9.8.7.tgz#ed9763fc0f2f0260fc8260dac657af61e622ce05"
   integrity sha512-awj3XRZYxbrmmrx9LUSj5pXSUfm12m8xzi/VKeqI1ZwWBtQ0kVPTs3vYs32t4rFw83CgFDukA8wKzOE9sMQnoQ==
