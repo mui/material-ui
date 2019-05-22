@@ -7,6 +7,7 @@ declare const ToggleButton: ExtendButtonBase<{
     disableFocusRipple?: boolean;
     disableRipple?: boolean;
     selected?: boolean;
+    size?: 'small' | 'medium' | 'large';
     value?: any;
   };
   defaultComponent: 'button';
