@@ -33,3 +33,8 @@ function styleFunction(theme) {
     spacing: theme.spacing.unit,
   };
 }
+
+const theme = {};
+const shouldntTouch = theme.spacing.unit;
+
+const styles = muiTheme => ({ root: { spacing: muiTheme.spacing.unit } });
