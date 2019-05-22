@@ -12,6 +12,7 @@ export interface ToggleButtonGroupProps
   selected?: boolean;
   exclusive?: boolean;
   onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
+  size?: 'small' | 'medium' | 'large';
   value?: any;
 }
 
