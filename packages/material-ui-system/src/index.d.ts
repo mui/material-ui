@@ -61,9 +61,21 @@ export function css<Props>(
   styleFunction: StyleFunction<Props>,
 ): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
 
-// default display.js TODO
+export const display: SimpleStyleFunction<'display' | 'displayPrint'>;
+export type DisplayProps = PropsFor<typeof display>;
 
-// * flexbox.js TODO
+export const flexbox: SimpleStyleFunction<
+  | 'flexboxDirection'
+  | 'flexWrap'
+  | 'justifyContent'
+  | 'alignItems'
+  | 'alignContent'
+  | 'order'
+  | 'flexGrow'
+  | 'flexShrink'
+  | 'alignSelf'
+>;
+export type FlexboxProps = PropsFor<typeof flexbox>;
 
 // palette.js
 export const color: SimpleStyleFunction<'color'>;
@@ -71,9 +83,13 @@ export const bgcolor: SimpleStyleFunction<'bgcolor'>;
 export const palette: SimpleStyleFunction<'bgcolor' | 'color'>;
 export type PaletteProps = PropsFor<typeof palette>;
 
-// * positions.js TODO
+export const positions: SimpleStyleFunction<
+  'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'
+>;
+export type PositionsProps = PropsFor<typeof positions>;
 
-// default shadows.js TODO
+export const shadows: SimpleStyleFunction<'boxShadow'>;
+export type ShadowsProps = PropsFor<typeof shadows>;
 
 // * sizing.js TODO
 export const width: SimpleStyleFunction<'width'>;
