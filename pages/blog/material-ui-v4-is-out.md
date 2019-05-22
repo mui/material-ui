@@ -171,7 +171,7 @@ function MyButton() {
 }
 ```
 - **Hooks migration**. While there is [no plan](https://reactjs.org/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React, the React Team [encourages](https://reactjs.org/docs/hooks-faq.html#do-i-need-to-rewrite-all-my-class-components) new code to be written with the hooks API.
-  Josh has lead an effort to rewrite the large majority of our components with the hooks API. The change has a couple of advantages.
+  Josh has led an effort to rewrite the vast majority of our components with the hooks API. The change has a couple of advantages.
 
   Not all [the platforms we support](/getting-started/supported-platforms/) can use the class API natively, so we transpile the syntax with Babel. Functions are supported everywhere, they require fewer line of code. We have observed a -2% gzipped bundle reduction by removing the need to transpile classes. 
 
