@@ -23,3 +23,13 @@ const variable = 3;
 const spacingVariable = theme => ({
   spacing: theme.spacing.unit * variable,
 });
+
+const spacingParamNameChange = muiTheme => ({
+  spacing: muiTheme.spacing.unit,
+});
+
+function styleFunction(theme) {
+  return {
+    spacing: theme.spacing.unit,
+  };
+}

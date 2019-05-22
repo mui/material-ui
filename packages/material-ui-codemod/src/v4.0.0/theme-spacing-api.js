@@ -7,50 +7,75 @@
  * @param {jscodeshift_ast_object} root
  */
 function transformThemeSpacingApi(j, root) {
-  const spacingPath = root.find(j.MemberExpression, {
-    object: {
-      object: {
-        name: 'theme',
-      },
-      property: {
-        name: 'spacing',
-      },
-    },
-    property: {
-      name: 'unit',
-    },
-  });
+  const mightContainApi = path => {
+    return (
+      j(path)
+        .find(j.MemberExpression, {
+          object: {
+            property: {
+              name: 'spacing',
+            },
+          },
+          property: {
+            name: 'unit',
+          },
+        })
+        .size() > 0
+    );
+  };
 
-  spacingPath.replaceWith(path => {
-    let param = null;
+  const replaceApi = pathArg => {
+    pathArg
+      .find(j.MemberExpression, {
+        object: {
+          property: {
+            name: 'spacing',
+          },
+        },
+        property: {
+          name: 'unit',
+        },
+      })
+      .replaceWith(path => {
+        let param = null;
 
-    if (j.BinaryExpression.check(path.parent.node)) {
-      const expression = path.parent.node;
-      const operation = expression.operator;
+        const themeParam = path.node.object.object.name;
+        if (j.BinaryExpression.check(path.parent.node)) {
+          const expression = path.parent.node;
+          const operation = expression.operator;
 
-      // check if it's a variable
-      if (j.Identifier.check(expression.right)) {
-        param = expression.right;
-      } else if (j.Literal.check(expression.right)) {
-        const value = expression.right.value;
-        if (operation === '*' || operation === '/') {
-          param = j.literal(eval(`1 ${operation} ${value}`));
+          // check if it's a variable
+          if (j.Identifier.check(expression.right)) {
+            param = expression.right;
+          } else if (j.Literal.check(expression.right)) {
+            const value = expression.right.value;
+            if (operation === '*' || operation === '/') {
+              param = j.literal(eval(`1 ${operation} ${value}`));
+            }
+          }
         }
-      }
-    }
 
-    if (param) {
-      path.parent.replace(
-        j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('spacing')), [
-          param,
-        ]),
-      );
-      return path.node;
-    }
-    return j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('spacing')), [
-      j.literal(1),
-    ]);
-  });
+        if (param) {
+          path.parent.replace(
+            j.callExpression(
+              j.memberExpression(j.identifier(themeParam), j.identifier('spacing')),
+              [param],
+            ),
+          );
+          return path.node;
+        }
+        return j.callExpression(
+          j.memberExpression(j.identifier(themeParam), j.identifier('spacing')),
+          [j.literal(1)],
+        );
+      });
+  };
+
+  const arrowFunctions = root.find(j.ArrowFunctionExpression).filter(mightContainApi);
+  const functionDeclarations = root.find(j.FunctionDeclaration).filter(mightContainApi);
+
+  replaceApi(arrowFunctions);
+  replaceApi(functionDeclarations);
 }
 
 module.exports = function transformer(fileInfo, api) {

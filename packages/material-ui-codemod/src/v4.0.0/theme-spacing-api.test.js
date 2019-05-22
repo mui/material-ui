@@ -19,7 +19,7 @@ describe('@material-ui/codemod', () => {
       it('update theme spacing API', () => {
         const actual = transform(
           { source: read('./theme-spacing-api.test/actual.js') },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
         );
 
         const expected = read('./theme-spacing-api.test/expected.js');
