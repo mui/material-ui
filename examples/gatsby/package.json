@@ -1,15 +1,15 @@
 {
   "name": "gatsby",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
     "gatsby": "latest",
-    "jss": "latest",
-    "prop-types": "latest",
+    "gatsby-plugin-material-ui": "next",
+    "gatsby-plugin-react-helmet": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-jss": "^8.1.0"
+    "react-helmet": "latest"
   },
   "scripts": {
     "develop": "gatsby develop",

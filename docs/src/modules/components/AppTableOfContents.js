@@ -15,9 +15,9 @@ import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
-    top: 70 + 29,
+    top: 70,
     // Fix IE 11 position sticky issue.
-    marginTop: 70 + 29,
+    marginTop: 70,
     width: 175,
     flexShrink: 0,
     order: 2,

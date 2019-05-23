@@ -1,12 +1,12 @@
-# Next.js v4-alpha with TypeScript example
+# Next.js with TypeScript example
 
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/nextjs-next-with-typescript
-cd nextjs-next-with-typescript
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs-with-typescript
+cd nextjs-with-typescript
 ```
 
 Install it and run:

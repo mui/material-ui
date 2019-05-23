@@ -65,9 +65,6 @@ const styles = theme => ({
   toolbarIe11: {
     display: 'flex',
   },
-  placeholder: {
-    height: 29,
-  },
   toolbar: {
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing(3),
@@ -141,7 +138,6 @@ function AppDrawer(props) {
 
   const drawer = (
     <PersistScroll>
-      <div className={classes.placeholder} />
       <div className={classes.toolbarIe11}>
         <div className={classes.toolbar}>
           <Link className={classes.title} href="/" onClick={onClose} variant="h6" color="inherit">

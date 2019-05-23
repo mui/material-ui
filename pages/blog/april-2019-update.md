@@ -19,24 +19,24 @@ Here are the most significant changes in April:
 - 🎀 We have migrated a large chunk of our components from classes to hooks. **@joshwooding** has lead the effort. We will explain why in the v4 release blog post.
 - 📐 We have updated our components to better match the Material Design specification
   (Snackbar, List, Checkbox, Radio & Switch).
-- 🎁 We have added a demo for building a [TransferList](https://next.material-ui.com/demos/transfer-list/) component.
+- 🎁 We have added a demo for building a [TransferList](/demos/transfer-list/) component.
 
-  [![Transfer List](/static/blog/april-2019-update/transfer-list.png)](https://next.material-ui.com/demos/transfer-list/)
+  [![Transfer List](/static/blog/april-2019-update/transfer-list.png)](/demos/transfer-list/)
 
 - 💅 We have changed the class name generation to output global class names.
   We have seen many people struggling with our `classes` API.
   This API targets plain CSS and styled-components users.
   It can be challenging to apply your class name on the right element with the `classes` API. It can also be cumbersome. ⚠️ Using global class names provide more power but comes with a responsibility. We encourage any pattern that increases your **custom style isolation**.
 
-  [![Global class names](/static/blog/april-2019-update/global-class-names.png)](https://next.material-ui.com/css-in-js/advanced/#with-material-ui-core)
+  [![Global class names](/static/blog/april-2019-update/global-class-names.png)](/css-in-js/advanced/#with-material-ui-core)
 
 - 📅 We have moved material-ui-pickers to our organization: [@material-ui/pickers](https://material-ui-pickers.dev/). A big thanks to **@dmtrKovalenko** for creating and owning these date/time components.
 - 🔥 We have fixed more Strict Mode warnings, getting us closer to [Concurrent React](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) support.
 - ♿️ We have significantly improved the keyboard behavior on the Select, Menu, Button and Tooltip components. The arrow key changes feel instantaneous. The select items can be selected with the alphabetical keys. The focus visible state is better detected.
-- 💄 We have added support for responsive font sizes. You can wrap your theme with [`responsiveFontSizes()`](https://next.material-ui.com/customization/themes/#responsive-font-sizes):
+- 💄 We have added support for responsive font sizes. You can wrap your theme with [`responsiveFontSizes()`](/customization/themes/#responsive-font-sizes):
 
-  [![Responsive font sizes](/static/blog/april-2019-update/responsive.png)](https://next.material-ui.com/customization/themes/#responsive-font-sizes)
-- We have added support for custom [header scroll behaviors](https://next.material-ui.com/demos/app-bar/#scrolling):
+  [![Responsive font sizes](/static/blog/april-2019-update/responsive.png)](/customization/themes/#responsive-font-sizes)
+- We have added support for custom [header scroll behaviors](/demos/app-bar/#scrolling):
 
   <video src="/static/blog/april-2019-update/scroll-trigger.mp4" controls loop autoplay></video>
 
@@ -63,4 +63,4 @@ But this summary is just scratching the surface. We have accepted 243 commits fr
 
 <hr />
 
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](https://material-ui.com/discover-more/backers/). Please join them ✨.
+Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](/discover-more/backers/). Please join them ✨.

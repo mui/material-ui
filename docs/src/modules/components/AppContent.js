@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 
 const styles = theme => ({
   root: {
-    paddingTop: 80 + 29 + 16,
+    paddingTop: 80 + 16,
     flex: '1 1 100%',
     maxWidth: '100%',
     margin: '0 auto',

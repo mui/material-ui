@@ -1,6 +1,6 @@
 {
   "name": "ssr",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "dependencies": {
     "@babel/core": "latest",
@@ -8,14 +8,13 @@
     "@babel/plugin-proposal-class-properties": "latest",
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
-    "@material-ui/core": "latest",
-    "babel-loader": "next",
+    "@material-ui/core": "next",
+    "@material-ui/styles": "next",
+    "babel-loader": "latest",
     "express": "latest",
     "nodemon": "latest",
-    "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-jss": "^8.1.0",
     "webpack": "latest",
     "webpack-cli": "latest"
   },

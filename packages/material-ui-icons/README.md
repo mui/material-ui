@@ -66,4 +66,4 @@ We have built a `jscodeshift` [codemod](https://github.com/facebook/codemod) to 
 
 ## Documentation
 
-[The documentation](https://next.material-ui.com/components/icons/)
+[The documentation](https://material-ui.com/components/icons/)

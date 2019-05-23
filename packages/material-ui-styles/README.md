@@ -16,4 +16,4 @@ yarn add @material-ui/styles
 
 ## Documentation
 
-[The documentation](https://next.material-ui.com/styles/basics/)
+[The documentation](https://material-ui.com/styles/basics/)

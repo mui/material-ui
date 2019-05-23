@@ -39,7 +39,7 @@ const styles = theme => ({
     width: 0,
   },
   hero: {
-    paddingTop: 64 + 29,
+    paddingTop: 64,
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
   },
