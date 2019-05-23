@@ -30,6 +30,26 @@ The `ref` is forwarded to the root element.
 
 Any other properties supplied will be provided to the root element (native element).
 
+## CSS
+
+You can override all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">ol</span> | Styles applied to the ol element.
+| <span class="prop-name">li</span> | Styles applied to the li element.
+| <span class="prop-name">separator</span> | Styles applied to the separator element.
+
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js)
+for more detail.
+
+If using the `overrides` [key of the theme](/customization/themes/#css),
+you need to use the following style sheet name: `MuiBreadcrumbs`.
+
 ## Notes
 
 The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
