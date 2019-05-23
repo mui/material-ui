@@ -44,7 +44,6 @@ export interface KeyboardDateInputProps
   KeyboardButtonProps?: Partial<IconButtonProps>;
 }
 
-const refuse = /[^\dap]+/gi;
 const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   inputValue,
   inputVariant,
@@ -56,6 +55,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   InputProps,
   mask,
   maskChar = '_',
+  refuse = /[^\dap]+/gi,
   format,
   disabled,
   ...other
