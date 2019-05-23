@@ -312,3 +312,7 @@ Within a few weeks, you should find a collection of the best Material-UI templat
 
 Finally, one last thank you to everyone who's contributed to Material-UI v4. 
 I'm so excited about this release! It's just the beginning. We will keep working hard on delivering the best possible React UI framework components.
+
+<hr />
+
+*You can find the [same post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).*

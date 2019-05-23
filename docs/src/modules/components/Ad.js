@@ -40,10 +40,7 @@ function getAdblock(classes, t) {
         {t('likeMui')}
       </Typography>
       <Typography variant="body2" display="block" component="span" gutterBottom>
-        {t('adblock')}
-      </Typography>
-      <Typography variant="body2" display="block" component="span">
-        {t('thanks')}{' '}
+        {t('adblock')}{' '}
         <span role="img" aria-label="Love">
           ❤️
         </span>
@@ -96,7 +93,7 @@ class Ad extends React.Component {
     const { classes, t } = this.props;
     const { adblock, disable } = this.state;
 
-    if (disable) {
+    if (disable && !/Googlebot/.test(navigator.userAgent)) {
       return <span className={classes.root}>{getAdblock(classes, t)}</span>;
     }
 
