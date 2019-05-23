@@ -22,7 +22,7 @@ export const styles = theme => {
       '&:hover:not($disabled):not($focused):not($error) $notchedOutline': {
         borderColor: theme.palette.text.primary,
         // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
+        '@media (hover: none), (pointer: coarse)': {
           borderColor,
         },
       },

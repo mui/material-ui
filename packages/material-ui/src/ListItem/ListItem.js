@@ -65,7 +65,7 @@ export const styles = theme => ({
       textDecoration: 'none',
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: 'transparent',
       },
     },
