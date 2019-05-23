@@ -32,11 +32,11 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "@date-io/core": "^1.3.0",
-    "@material-ui/core": "^4.0.0-beta.0",
+    "@date-io/core": "^1.3.6",
+    "@material-ui/core": "^4.0.0",
     "prop-types": "^15.6.0",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
   },
   "dependencies": {
     "@types/styled-jsx": "^2.2.8",
@@ -72,9 +72,9 @@
     "@date-io/date-fns": "^1.3.0",
     "@date-io/luxon": "^1.3.0",
     "@date-io/moment": "^1.3.0",
-    "@material-ui/core": "^4.0.0-beta.0",
+    "@material-ui/core": "^4.0.0",
     "@material-ui/icons": "^3.0.2",
-    "@material-ui/styles": "^4.0.0-beta.0",
+    "@material-ui/styles": "^4.0.0",
     "@types/enzyme": "^3.1.17",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/fs-extra": "^5.0.4",
@@ -100,8 +100,8 @@
     "luxon": "^1.11.1",
     "moment": "2.22.2",
     "prop-types": "^15.6.2",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.2.0",

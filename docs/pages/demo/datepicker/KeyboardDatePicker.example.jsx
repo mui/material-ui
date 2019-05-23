@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import { KeyboardDatePicker } from '@material-ui/pickers';
+import { KeyboardDatePicker, DatePicker } from '@material-ui/pickers';
 
 function KeyboardDatePickerExample(props) {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <Fragment>
-      <KeyboardDatePicker
+      <DatePicker
         clearable
         label="Uncontrolled input"
         value={selectedDate}

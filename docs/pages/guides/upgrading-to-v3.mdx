@@ -9,12 +9,14 @@ Version `v3` for @material-ui/pickers coming with whole bunch of breaking change
 <Ad />
 
 #### ⬇️ Install
-First of all you need to install new package, because the project is transfered to mui-org
+
+First of all you need to install new package, because the project is transfered to mui-org!
+And also make sure that **v3** of `@material-ui/pickers` relyes on **v4** of `@material-ui/core`
 
 ```
-npm i @material-ui/pickers @material-ui/core@next @material-ui/styles
+npm i @material-ui/pickers @material-ui/core@latest
 
-yarn add @material-ui/pickers @material-ui/core@next @material-ui/styles
+yarn add @material-ui/pickers @material-ui/core@latest
 ```
 
 **Note**: it's required also to update your `@material-ui/core` version to `@next`
@@ -41,6 +43,12 @@ Also there are no more wrapper-specific components, like `InlineDatePicker`. Use
 
 - <InlineDatePicker />
 + <DatePicker variant="inline" />
+```
+
+To override the default material-ui's `<TextField />` variant use
+
+```jsx
+<DatePicker variant="inline" inputVariant="outlined" />
 ```
 
 #### 💪 State management
