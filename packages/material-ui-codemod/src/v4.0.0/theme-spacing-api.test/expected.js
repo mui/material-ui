@@ -38,3 +38,7 @@ const theme = {};
 const shouldntTouch = theme.spacing.unit;
 
 const styles = muiTheme => ({ root: { spacing: muiTheme.spacing(1) } });
+
+const longChain = theme => ({
+  spacing: theme.spacing(5) * 5,
+});

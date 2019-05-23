@@ -19,6 +19,33 @@ APIs.
 
 ## Included Scripts
 
+### v4.0.0
+
+#### `theme-spacing-api`
+
+Updates the `theme-spacing-api` from `theme.spacing.unit x` to `theme.spacing(x)`.
+The diff should look like this:
+
+```diff
+-const spacing = theme.spacing.unit;
++const spacing = theme.spacing(1);
+```
+
+```sh
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.0/theme-spacing-api.js
+```
+
+This codemod tries to perform a basic expression simplification which can be improved for expressions that use more than one operation.
+
+```diff
+-const spacing = theme.spacing.unit / 5;
++const spacing = theme.spacing(0.2);
+
+// Limitation
+-const spacing = theme.spacing.unit * 5 * 5;
++const spacing = theme.spacing(5) * 5;
+```
+
 ### v1.0.0
 
 #### `import-path`
