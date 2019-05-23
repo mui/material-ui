@@ -90,7 +90,8 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
     if (!utils.isEqual(nextDate, state.lastDate)) {
       const nextMonth = utils.getMonth(nextDate);
-      const lastMonth = utils.getMonth(state.lastDate || nextDate);
+      const lastDate = state.lastDate || nextDate;
+      const lastMonth = utils.getMonth(lastDate);
 
       return {
         lastDate: nextDate,
@@ -98,7 +99,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
         // prettier-ignore
         slideDirection: nextMonth === lastMonth
           ? state.slideDirection
-          : nextMonth > lastMonth
+          : utils.isAfterDay(nextDate, lastDate)
             ? 'left'
             : 'right'
       };
