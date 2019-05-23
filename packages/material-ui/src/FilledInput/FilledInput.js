@@ -26,7 +26,7 @@ export const styles = theme => {
       '&:hover': {
         backgroundColor: light ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)',
         // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
+        '@media (hover: none), (pointer: coarse)': {
           backgroundColor,
         },
       },
