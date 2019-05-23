@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import Dialog from '../Dialog';
 import DialogTitle from '../DialogTitle';
 import DialogContent from '../DialogContent';
@@ -22,9 +21,9 @@ AlertDialog.show('MyDialogTitle', 'Do you accept?', {confirmable:true}).then(() 
 */
 
 const createDialog = (title, message, options, promise = {}) => {
-    let component = (
+    const component = (
         <Dialog id={promise.id}
-            open={true}
+            open
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description">
 
@@ -40,55 +39,61 @@ const createDialog = (title, message, options, promise = {}) => {
                 {options.confirmable ?
                     (
                         <DialogActions>
-                            <Button onClick={() => { promise.reject() }} color="primary">{options.buttons['no']}</Button>
-                            <Button onClick={() => { promise.resolve() }} color="primary" variant="contained" autoFocus> {options.buttons['yes']}</Button>
+                            <Button onClick={() => { promise.reject() }} color="primary">{options.buttons.no}</Button>
+                            <Button onClick={() => { promise.resolve() }} color="primary" variant="contained" autoFocus> {options.buttons.yes}</Button>
                         </DialogActions>
                     ) :
                     (
                         <Button onClick={() => { promise.resolve() }} variant="contained" color="primary">
-                            {options.buttons['ok']}
+                            {options.buttons.ok}
                         </Button>
                     )
                 }
             </DialogActions>
         </Dialog >
     );
-    let modalRoot = document.body.appendChild(document.createElement('div'));
+    
+    const modalRoot = document.body.appendChild(document.createElement('div'));
     modalRoot.setAttribute('id', promise.id);
     ReactDOM.render(component, modalRoot);
 }
 
-export default {
-    show: function (title, message, options) {
-        const id = 'mui-alert-container' + this.uuidv4();
-        const promise = new Promise((resolve, reject) => {
-            try {
-                createDialog(title, message, {
-                    buttons: { yes: 'Aceptar', no: 'Cancelar', ok: 'Cerrar' },
-                    ...options
-                }, { id, resolve, reject });
-            } catch (e) {
-                console.error(e);
-                throw e;
-            }
-        });
 
-        return promise.then((result) => {
-            this.close(id);
-            return result;
-        }, (result) => {
-            this.close(id);
-            return Promise.reject(result);
-        });
-    },
-    close: function (id) {
-        let modalRoot = document.getElementById(id);
-        ReactDOM.unmountComponentAtNode(modalRoot);
-    },
-    uuidv4: function () {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
-};
+const methods={};
+methods.prototype.show=function(title, message, options){
+    const id = `mui-alert-container${  this.uuidv4()}`;
+    const promise = new Promise((resolve, reject) => {
+        try {
+            createDialog(title, message, {
+                buttons: { yes: 'Aceptar', no: 'Cancelar', ok: 'Cerrar' },
+                ...options
+            }, { id, resolve, reject });
+        } catch (e) {
+            // console.error(e);
+            throw e;
+        }
+    });
+
+    return promise.then((result) => {
+        this.close(id);
+        return result;
+    }, (result) => {
+        this.close(id);
+        return Promise.reject(result);
+    });
+}
+
+methods.prototype.close=function(id){
+    const container = document.getElementById(id);
+        ReactDOM.unmountComponentAtNode(container);
+}
+
+methods.prototype.uuidv4= function () {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = Math.random() * 16 || 0; const v = c === 'x' ? r : (r && 0x3 || 0x8);
+        return v.toString(16);
+    });
+}
+
+
+export default methods;

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AlertDialog from './AlertDialog';
 
 describe('show dialog', () => {
