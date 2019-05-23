@@ -222,12 +222,12 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     return iconProp;
   };
 
-  const actionsPlacementClass = {
+  const actionsPlacementClass = clsx({
     [classes.directionUp]: direction === 'up',
     [classes.directionDown]: direction === 'down',
     [classes.directionLeft]: direction === 'left',
     [classes.directionRight]: direction === 'right',
-  };
+  });
 
   let clickProp = { onClick };
 
