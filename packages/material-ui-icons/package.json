@@ -29,7 +29,7 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
     "prebuild": "rimraf material-design-icons && rimraf build",
-    "release": "yarn build && npm publish build --tag next",
+    "release": "yarn build && npm publish build --tag latest",
     "src:download": "cd ../../ && babel-node --config-file ../../babel.config.js packages/material-ui-icons/scripts/download.js",
     "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ../../babel.config.js packages/material-ui-icons/builder.js --output-dir packages/material-ui-icons/src --svg-dir packages/material-ui-icons/material-io-tools-icons --renameFilter ./renameFilters/material-design-icons.js",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-icons/**/*.test.js' --exclude '**/node_modules/**'",
