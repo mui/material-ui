@@ -1,5 +1,38 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0
+###### *May 23, 2019*
+
+[Material-UI v4 is out 🎉]()
+
+Some statistics with v4 compared to the release of v1 one year ago:
+
+- From 300k downloads/month to 2M downloads/month on npm
+- From 90k users/month to 350k users/month on the documentation
+
+### `@material-ui/lab@v4.0.0-alpha.13`
+
+- [ToggleButtonGroup] Added missing size prop to type declarations (#15785) @CoolCyberBrain
+
+### `@material-ui/system@v4.0.0`
+
+- [system] Add missing TypeScript types for flexbox and shadows (#15781) @willbamford
+
+### Docs
+
+- [docs] Add remaining TypeScript component demos (#15755) @eps1lon
+- [docs] Fix Nav components subsections to be open by default (#15749) @mbrookes
+- [docs] Fix some gramma in testing doc (#15776) @DDDDDanica
+- [docs] Fix some grammar in right to left guide (#15789) @DDDDDanica
+- [docs] Fix typo (#15792) @retyui
+- [docs] Material-UI v4 is out (#15766) @oliviertassinari
+- [docs] Reference the article with it's full name in icon doc (#15796) @DDDDDanica
+- [docs] Revert the marked change (#15797) @oliviertassinari
+
+### Core
+
+- [core] Change cssutils responsiveProperty unit type (#15783) @eddiemonge
+
 ## 4.0.0-rc.0
 ###### *May 20, 2019*
 
