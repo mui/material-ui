@@ -299,6 +299,15 @@ So we will work on isolating the components from the styling solution. The new *
 People should be able to use their preferred styling solution without paying the cost of two CSS-in-JS runtimes.
 - **Accessibility.** While we try to fix all accessibility issues as they are reported by our users, we feel that we can do better. We want to run a professional ADA audit of all our components ♿️.
 
+## Premium themes store ✨
+
+How are we going to sustain this ambitious roadmap?
+We will follow the Bootstrap model.
+We are working on [a Premium themes store](https://themes.material-ui.com/).
+
+We have built partnerships with the best theme authors of the ecosystem.
+Within a few weeks, you should find a collection of the best Material-UI templates and themes 😍.
+
 ## Thank you
 
 Finally, one last thank you to everyone who's contributed to Material-UI v4. 

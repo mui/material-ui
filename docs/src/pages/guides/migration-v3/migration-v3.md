@@ -29,7 +29,7 @@ You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^4.0.0-beta.0"
+  "@material-ui/core": "^4.0.0"
 }
 ```
 
@@ -54,7 +54,7 @@ If you are previously using `@material-ui/styles` with v3 you need to update you
 
 ```json
 "dependencies": {
-  "@material-ui/styles": "^4.0.0-beta.0"
+  "@material-ui/styles": "^4.0.0"
 }
 ```
 
