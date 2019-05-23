@@ -141,6 +141,9 @@ const styles = theme => ({
     '& p code, & ul code, & pre code': {
       fontSize: 14,
     },
+    '& .token.operator': {
+      background: 'transparent',
+    },
     '& h1': {
       ...theme.typography.h2,
       margin: '32px 0 16px',
