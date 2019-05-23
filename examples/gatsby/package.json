@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "gatsby": "latest",
-    "gatsby-plugin-material-ui": "next",
+    "gatsby-plugin-material-ui": "latest",
     "gatsby-plugin-react-helmet": "latest",
     "react": "latest",
     "react-dom": "latest",
