@@ -10,11 +10,11 @@ import Button from '../Button';
 
 // HOW TO USE
 /*
-AlertDialog.show('GenesysPOS', 'texto de prueba').then(() => {
+AlertDialog.show('MyDialogTitle', 'texto de prueba').then(() => {
     console.log('finished');
 });
 
-AlertDialog.show('GenesysPOS', 'Do you accept?', {confirmable:true}).then(() => {
+AlertDialog.show('MyDialogTitle', 'Do you accept?', {confirmable:true}).then(() => {
     console.log('accept');
 }, ()=>{
     console.log('not accept');
