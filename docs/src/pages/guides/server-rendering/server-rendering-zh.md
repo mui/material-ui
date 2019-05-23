@@ -1,27 +1,27 @@
-# 为什么要服务端渲染？
+# 服务端渲染
 
-<p class="description">服务器端呈现的最常见用例是在用户（或搜索引擎爬虫）首次请求您的应用时处理初始呈现。</p>
+<p class="description">服务器端呈现的最常见用例是在用户（或搜索引擎爬虫）首次请求您的应用时处理初次渲染。</p>
 
-当服务器收到请求时，它会将所需的组件呈现为HTML字符串，然后将其作为响应发送给客户端。 从那时起，客户接管渲染职责。
+当服务器收到请求时，它会将所需的组件呈现为 HTML 字符串，然后将其作为响应发送给客户端。 从那时起，客户将接管渲染的职责。
 
-## Material-UI on the server
+## 在服务器端的 Material-UI
 
-Material-UI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated. It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker (FOUC). 要将样式注入客户端，我们需要：
+Material-UI 最初设计受到了在服务器端渲染的约束，但是您可以完全负责它的正确整合。 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS, 从而导致浏览器样式闪烁（FOUC）。 若想将样式注入客户端，我们需要：
 
-1. Create a fresh, new [`ServerStyleSheets`](/styles/api/#serverstylesheets) instance on every request.
-2. Render the React tree with the server-side collector.
-3. Pull the CSS out.
+1. 在每个请求上创建一个全新的 [`ServerStyleSheets`](/styles/api/#serverstylesheets) 实例。
+2. 用服务端收集器渲染 React 树组件。
+3. 拉出 CSS。
 4. 将CSS传递给客户端。
 
-在客户端，在删除服务器端注入的CSS之前，将第二次注入CSS。
+在删除服务器端注入的 CSS 之前，客户端将第二次注入 CSS。
 
 ## 配置
 
-在下面的配方中，我们将了解如何设置服务器端呈现。
+在下面的配置中，我们将了解如何设置服务器端的渲染。
 
-### The theme
+### 主题
 
-We create a theme that will be shared between the client and the server.
+我们创建了一个能在客户端和服务器端共享的主题。
 
 `theme.js`
 
@@ -29,7 +29,7 @@ We create a theme that will be shared between the client and the server.
 import { createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
-// Create a theme instance.
+// 创建一个主题的实例。
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -46,20 +46,18 @@ const theme = createMuiTheme({
     },
   },
 });
-
-export default theme;
 ```
 
-### The server-side
+### 服务器端
 
-The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
+下面的大纲可以大致展现一下我们的服务器端。 我们将使用 [app.use](http://expressjs.com/en/api.html) 来设置一个 [Express middleware](http://expressjs.com/en/guide/using-middleware.html) 从而处理来自我们服务器端的所有请求。 如果您对 Express 或者 middleware 不太熟悉，您只需要知道每次服务器收到了一个请求，都会调用我们的 handleRender 函数。
 
 `server.js`
 
 ```js
 import express from 'express';
 
-// We are going to fill these out in the sections to follow.
+// 我们将在章节中填写这些内容来遵守。
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -77,15 +75,15 @@ const port = 3000;
 app.listen(port);
 ```
 
-### Handling the Request
+### 处理请求
 
-The first thing that we need to do on every request is create a new `ServerStyleSheets`.
+对于每次请求，我们首先需要做的是创建一个 `ServerStyleSheets`。
 
-When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+当渲染的时候，我们将我们的根部组件，`App`，包装在一个 [`StylesProvider`](/styles/api/#stylesprovider) 和 [`ThemeProvider`](/styles/api/#themeprovider) 中，这样组件树中的所有组件都可以使用撰写的样式设置和 `theme`。
 
-The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+服务器渲染的关键步骤是在我们发送到客户端**之前**渲染我们组件的初始 HTML。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-We then get the CSS from our `sheets` using `sheets.toString()`. We will see how this is passed along in our `renderFullPage` function.
+接着，我们可以使用 `sheets.toString()` 来从我们的`表单`中得到 CSS。 我们将会了解到这是如何在我们的 `renderFullPage` 函数中传递下去的。
 
 ```jsx
 import express from 'express';
@@ -98,7 +96,7 @@ import theme from './theme';
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
+  // 将组件渲染成一个字符串。
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <ThemeProvider theme={theme}>
@@ -107,10 +105,10 @@ function handleRender(req, res) {
     ),
   );
 
-  // Grab the CSS from our sheets.
+  // 从我们的样式表中获取 CSS。
   const css = sheets.toString();
 
-  // Send the rendered page back to the client.
+  // 将渲染的页面送回到客户端。
   res.send(renderFullPage(html, css));
 }
 
@@ -118,16 +116,16 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server-side receives a request.
+// 每次服务器端收到请求时都会触发此操作。
 app.use(handleRender);
 
 const port = 3000;
 app.listen(port);
 ```
 
-### Inject Initial Component HTML and CSS
+### 注入组件的初始 HTML 和 CSS
 
-The final step on the server-side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
+服务器端最后一个步骤则是在我们的组件初始 HTML 和 CSS 中注入一个模板，从而在客户端渲染。
 
 ```js
 function renderFullPage(html, css) {
@@ -146,9 +144,9 @@ function renderFullPage(html, css) {
 }
 ```
 
-### The Client Side
+### 客户端
 
-The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at our client file:
+客户端则是简单明了的。 我们只需要移除服务器端生成的 CSS。 让我们来看一看我们客户端的文件：
 
 `client.js`
 
@@ -179,12 +177,12 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## 参考实现
 
-我们托管不同的参考实现，您可以在 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下的 [GitHub存储库](https://github.com/mui-org/material-ui) 找到它们：
+您可以在 [GitHub 存储库中](https://github.com/mui-org/material-ui)的 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 的文件夹下面，找到我们托管的不同的范例项目：
 
 - [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
 
-## 故障排除
+## 故障排除（Troubleshooting）
 
-Check out our FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+查看我们的常见问题解答答案：[我的应用程序无法在服务器上正确地渲染](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server) 。

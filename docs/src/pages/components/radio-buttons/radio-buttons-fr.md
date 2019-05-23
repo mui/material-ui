@@ -21,17 +21,17 @@ Généralement, les cases d'option doivent avoir l'option la plus utilisée sél
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
-## Label placement
+## Emplacement du label
 
-You can change the placement of the label:
+Vous pouvez changer l'emplacement du label:
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
 
 ## Accessibilité
 
-All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+Tous les contrôles de formulaire doivent avoir des labels, cela vaut également pour les boutons radio, les cases à cocher et les interrupteurs. Dans la plupart des cas, cela se fait en utilisant l'élément `<label>` ([FormControlLabel](/api/form-control-label/)).
 
-When a label can't be used, it's necessary to add an attribute directly to the input component. In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+Lorsqu'un label ne peut pas être utilisé, il est nécessaire d'ajouter un attribut directement au composant input. Dans ce cas, vous pouvez appliquer l'attribut supplémentaire (ex: `aria-label`, `aria-labelledby`, `title`) via la propriété `inputProps`.
 
 ```jsx
 <RadioButton
@@ -40,6 +40,6 @@ When a label can't be used, it's necessary to add an attribute directly to the i
 />
 ```
 
-## Guidance
+## Conseils
 
 - [Checkboxes vs. Cases d’option](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

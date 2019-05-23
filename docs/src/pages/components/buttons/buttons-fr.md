@@ -5,7 +5,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 # Buttons (Boutons)
 
-<p class="description">Les boutons permettent aux utilisateurs de prendre des mesures et de faire des choix en un seul clic.</p>
+<p class="description">Les boutons permettent aux utilisateurs d'effectuer une action et de faire des choix en un seul clic.</p>
 
 [Buttons](https://material.io/design/components/buttons.html) communiquent les actions que les utilisateurs peuvent effectuer. Ils sont généralement placés dans votre interface utilisateur, dans des endroits tels que:
 
@@ -15,9 +15,9 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 - Cartes
 - Barres d'outils
 
-## Boutons Contained
+## Contained Buttons (boutons contenus)
 
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button) are high-emphasis, distinguished by their use of elevation and fill. Ils contiennent des actions qui sont essentielles à votre application.
+[Les boutons contenus](https://material.io/design/components/buttons.html#contained-button) sont très accentués, ils se distinguent par leur utilisation de l'élévation et du remplissage. Ils contiennent des actions qui sont essentielles à votre application.
 
 Le dernier exemple de cette démo montre comment utiliser un bouton de téléchargement.
 
@@ -74,7 +74,7 @@ Parfois, vous voudrez peut-être avoir des icônes pour certains boutons afin d'
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Boutons d'icônes
+## Boutons avec icône
 
 Les boutons d'icône se trouvent généralement dans les barres d'applications et les barres d'outils.
 
@@ -82,9 +82,9 @@ Les icônes sont également appropriés pour les boutons à bascule qui permette
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## Boutons personnalisés
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici quelques exemples de personnalisation du composant. Vous pouvez en apprendre plus sur [la page de documentation de personnalisation](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
@@ -98,8 +98,8 @@ Les boutons texte, les boutons contained, les bouton d'action flottante et les b
 
 ## Bibliothèque de routage tierce
 
-Un cas d'utilisation courant consiste à utiliser le bouton pour déclencher une navigation vers une nouvelle page. Le composant `ButtonBase` fournit une propriété pour traiter ce cas d'utilisation: `composant`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Étant donné que beaucoup de nos composants interactifs comptent sur `ButtonBase`, vous devriez être en mesure de tirer profit de partout:
+Un cas d'utilisation courant consiste à utiliser le bouton pour déclencher une navigation vers une nouvelle page. Le composant `ButtonBase` fournit une propriété pour traiter ce cas d'utilisation: `composant`. Cependant, pour certains focus polyfills `ButtonBase` requiert le nœud DOM du composant fourni. Pour ce faire, associez une référence au composant et attendez-vous à ce que le composant transmette cette référence au noeud DOM sous-jacent. Étant donné que beaucoup de nos composants interactifs comptent sur `ButtonBase`, vous devriez être en mesure d'en tirer profit partout:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*Note: Creating the Button components is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*Note : La création de composants Button est nécessaire pour éviter une erreur inattendu. Vous pouvez en lire plus dans notre [guide de propriété de composant](/guides/composition/#component-property).*

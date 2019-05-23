@@ -20,7 +20,7 @@ yarn add @material-ui/core@next
 
 ## Robotoフォント
 
-Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを考慮して設計されています。 So be sure to follow [these instructions]/components/typography/#general). たとえば、Google Web Fontsを用いて、
+Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを考慮して設計されています。 その為、必ず[以下の手順](/components/typography/#general) に従ってください。 たとえば、Google Web Fontsを用いて、
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
@@ -28,7 +28,7 @@ Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを�
 
 ## フォントアイコン
 
-フォント`アイコン`を使うには、最初に[Material icons](https://material.io/tools/icons/)を追加します。 Here are [some instructions]/components/icons/#font-icons) on how to do so. たとえば、Google Web Fontsを用いて、
+フォント`アイコン`を使うには、最初に[Material icons](https://material.io/tools/icons/)を追加します。 こちらは、その時の[手続き](/components/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

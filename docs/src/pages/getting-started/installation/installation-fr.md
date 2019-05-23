@@ -20,7 +20,7 @@ Veuillez noter que [react](https://www.npmjs.com/package/react) >= 16.8.0 et [re
 
 ## La police Roboto
 
-Materiel-UI a été conçu avec la police [Roboto](https://fonts.google.com/specimen/Roboto) à l’esprit. So be sure to follow [these instructions]/components/typography/#general). Par exemple, via Google Web Fonts:
+Materiel-UI a été conçu avec la police [Roboto](https://fonts.google.com/specimen/Roboto) à l’esprit. Veillez donc à suivre [ces instructions](/components/typography/#general) . Par exemple, via Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
@@ -28,7 +28,7 @@ Materiel-UI a été conçu avec la police [Roboto](https://fonts.google.com/spec
 
 ## Polices d'icônes
 
-Pour utiliser le composant de police `Icon`, vous devez d’abord ajouter la police d'icônes [Material](https://material.io/tools/icons/). Here are [some instructions]/components/icons/#font-icons) on how to do so. Par exemple, via Google Web Fonts:
+Pour utiliser le composant de police `Icon`, vous devez d’abord ajouter la police d'icônes [Material](https://material.io/tools/icons/). Voici [quelques instructions](/components/icons/#font-icons) sur la façon de le faire. Par exemple, via Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

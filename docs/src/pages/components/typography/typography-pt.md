@@ -4,15 +4,15 @@ components: Typography
 
 # Tipografia
 
-<p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
+<p class="description">Use a tipografia para apresentar seu design e conteúdo da forma mais clara e eficiente possível.</p>
 
-Too many type sizes and styles at once can spoil any layout. A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
+O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer layout. Uma [escala tipográfica](https://material.io/design/typography/#type-scale) tem um conjunto limitado de tamanhos de tipo que funcionam bem em conjunto com a grade de layout.
 
-## General
+## Geral
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/typography/).
+A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. O desenvolvedor é responsável por carregar todas as fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de começar. Para configuração mais avançadas, dê uma olhada na [seção de personalização de temas](/customization/typography/).
 
-## Roboto Font CDN
+## CDN da fonte Roboto
 
 Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de um CDN:
 
@@ -20,7 +20,7 @@ Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
-## Install with npm
+## Instalar via npm
 
 Você pode [instalá-la](https://www.npmjs.com/package/typeface-roboto) digitando o comando a seguir em um terminal:
 
@@ -36,21 +36,21 @@ Para mais informações confira o projeto [typeface](https://github.com/KyleAMat
 
 ⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Colocar todos os arquivos de fonte inline pode aumentar o tamanho do seu bundle significativamente. A configuração de tipografia padrão da Material-UI depende apenas dos font weights 300, 400 e 500.
 
-## Component
+## Componente
 
 {{"demo": "pages/components/typography/Types.js"}}
 
-## Theme
+## Tema
 
 Em algumas situações, talvez você não consiga usar o componente `Tipografia`. Com sorte, você possa talvez tirar proveito das chaves de [`typography`](/customization/default-theme/?expend-path=$.typography) do tema.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
-## Changing the semantic element
+## Alterando o elemento semântico
 
 O componente de Tipografia (Typography) usa a propriedade `variantMapping` para associar a variação da UI com um elemento semântico. É importante ressaltar que o estilo de uma tipografia é independente do elemento semântico por baixo dela.
 
-- You can change the underlying element for a one time occassion with the `component` property:
+- Você pode alterar o elemento subjacente para uma ocasião única com a propriedade `component`:
 
 ```jsx
 {/* Já temos um h1 na página, não vamos duplicá-lo. */}
@@ -59,7 +59,7 @@ O componente de Tipografia (Typography) usa a propriedade `variantMapping` para 
 </Typography>
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- Você pode alterar o mapeamento [globalmente usando o tema](/customization/globals/#default-props):
 
 ```js
 const theme = createMuiTheme({

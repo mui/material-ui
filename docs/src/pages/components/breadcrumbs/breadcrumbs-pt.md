@@ -1,5 +1,5 @@
 ---
-title: Componente React Breadcrumbs
+title: Componente React para Breadcrumbs
 components: Breadcrumbs, Link, Typography
 ---
 
@@ -27,19 +27,19 @@ No exemplo a seguir, nós usamos duas strings separadoras, e um ícone SVG.
 
 ## Breadcrumbs personalizado
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
 ## Acessibilidade
 
-Esteja certo de adicionar uma descrição `aria-label` no componente `Breadcrumbs`.
+Certifique-se de adcionar uma descrição `aria-label` no componente `Breadcrumbs`.
 
-A acessibilidade neste componente conta:
+A acessibilidade neste componente conta com:
 
-- O conjunto dos links são estruturados usando uma lista ordenada (elemento `<ol>`).
+- O conjunto de links são estruturados usando uma lista ordenada (elemento `<ol>`).
 - Para prevenir que os leitores de tela pronunciem os separadores visuais entre os links, eles são escondidos com `aria-hidden`.
-- Um elemento nav rotulado com `aria-label` identifica a estrutura como uma trilha breadcrumb e faz dela uma referência de navegação para facilitar a localização.
+- Um elemento `nav` rotulado com `aria-label` identifica a estrutura como uma trilha breadcrumb e faz uma marcação na navegação para facilitar a localização.
 
 ## Integração com react-router
 

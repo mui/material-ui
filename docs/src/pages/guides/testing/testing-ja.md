@@ -43,7 +43,7 @@ Generate an enhanced shallow function with the needed context. Please refer to t
 1. `options` (*Object* [optional]) 
     - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
     - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
-    - `options.dive` (*Boolean* [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
+    - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
     - The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
 #### Returns

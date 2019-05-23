@@ -1,98 +1,98 @@
 ---
-title: Stepper React component
+title: Componente React Stepper
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
-# Passo a Passo
+# Assistente
 
-<p class="description">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>
+<p class="description">Assistentes representam progresso através de etapas numeradas. Ele fornece um fluxo de trabalho de passo a passo.</p>
 
-[Steppers](https://material.io/archive/guidelines/components/steppers.html) display progress through a sequence of logical and numbered steps. They may also be used for navigation. Steppers may display a transient feedback message after a step is saved.
+[Assistentes](https://material.io/archive/guidelines/components/steppers.html) exibem o progresso através de uma sequência de etapas lógicas e numeradas. Elas também podem ser usadas para navegação. Assistentes podem exibir uma mensagem de feedback transiente depois que uma etapa é salva.
 
-**Types of Steps**
+**Tipos de etapa**
 
-- Editable
-- Non-editable
+- Editável
+- Não editável
 - Mobile
-- Optional
+- Opcional
 
-**Types of Steppers**
+**Tipos de assistentes**
 
 - Horizontal
 - Vertical
 - Linear
-- Non-linear
+- Não linear
 
-> **Note:** Steppers are no longer documented in the Material Design documentation.
+> **Nota:** Os assistentes não estão documentados na documentação do Material Design.
 
 ## Horizontal Linear
 
-The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` property. `Stepper` orientation is set using the `orientation` property.
+O assistente (`Stepper`) pode ser controlado passando o índice da etapa atual (baseado em zero) com a propriedade `activeStep`. A orientação do asisstente (`Stepper`) é definida usando a propriedade `orientation`.
 
-This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
+Este exemplo também mostra o uso de uma etapa opcional, colocando a propriedade `optional` no segundo componente de `Step`. Observe que cabe a você gerenciar quando uma etapa opcional é ignorada. Depois de determinar isso para uma etapa específica, você deve definir `completed={false}` para indicar que, embora o índice da etapa ativa tenha ultrapassado a etapa opcional, ele não está realmente concluído.
 
 {{"demo": "pages/components/steppers/HorizontalLinearStepper.js"}}
 
-## Horizontal Non-linear
+## Horizontal não linear
 
-Non-linear steppers allow users to enter a multi-step flow at any point.
+Os assistentes não lineares permitem que os usuários insiram um fluxo de várias etapas a qualquer momento.
 
-This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` property.
+Este exemplo é semelhante ao não linear, porém as etapas não são mais automaticamente definidas `disabled={true}` com base na propriedade `activeStep`.
 
-We've used the `StepButton` here to demonstrate clickable step labels as well as setting the `completed` flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
+Nós usamos um `StepButton` aqui para demonstrar rótulos de etapa clicáveis, bem como definindo o flag `completed`, porque etapas podem ser acessadas de forma não-linear, e pode até implementar sua própria lógica para determinar quando todas as etapas forem concluídas (ou mesmo se elas precisam ser completadas).
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
 
-## Horizontal Linear - Alternative Label
+## Horizontal Linear - Rótulo Alternativo
 
-Labels can be placed below the step icon by setting the `alternativeLabel` property on the `Stepper` component.
+Os rótulos podem ser colocados abaixo do ícone da etapa, definindo a propriedade `alternativeLabel` no componente `Stepper`.
 
 {{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
 
-## Horizontal Non Linear - Alternative Label
+## Horizontal Não Linear - Rótulo Alternativo
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js"}}
 
-## Horizontal Non Linear - Error Step
+## Horizontal não linear - Etapa com erro
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js"}}
 
-## Vertical Stepper
+## Assistente vertical
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
-## Customized Stepper
+## Assistente customizado
 
-Aqui está um exemplo de personalização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
 
-This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
+Este componente usa um elemento `StepConnector` customizado que altera a cor da borda com base nos estados `active` e `completed`.
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
-## Mobile Stepper
+## Assistente Mobile
 
-This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
+Este componente implementa um assistente compacto adequado para um dispositivo mobile. Veja [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) para essa inspiração.
 
-### Mobile Stepper - Text
+### Assistente Mobile - Texto
 
-This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.
+Este é essencialmente um botão voltar/próximo posicionado corretamente. Você deve implementar a descrição textual por conta própria, no entanto, um exemplo é fornecido abaixo para referência.
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js"}}
 
-### Mobile Stepper - Text with Carousel effect
+### Assistente Mobile - Texto com efeito Carrossel
 
-This demo is very similar to the previous, the difference is the usage of [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
+Esta demonstração é muito similiar a anterior, a diferença é o uso de [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) para fazer a transição de etapas.
 
 {{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js"}}
 
-### Mobile Stepper - Dots
+### Assistente Mobile - Pontos
 
-Use dots when the number of steps isn’t large.
+Use pontos quando o número de etapas não for grande.
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js"}}
 
-### Mobile Stepper - Progress
+### Assistente Mobile - Progresso
 
-Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
+Use uma barra de progresso quando houver muitas etapas, ou se houver etapas que precisem ser inseridas durante o processo (com base nas respostas de etapas anteriores).
 
 {{"demo": "pages/components/steppers/ProgressMobileStepper.js"}}

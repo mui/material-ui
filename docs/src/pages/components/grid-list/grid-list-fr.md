@@ -3,32 +3,32 @@ title: Composant React Grid List
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
 
-# Liste de grille
+# Grid list
 
-<p class="description">Grid lists display a collection of images in an organized grid.</p>
+<p class="description">Les listes de grille affichent une collection d'images dans une grille organisée.</p>
 
-[Grid lists](https://material.io/design/components/image-lists.html) represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
+[Les listes de grille](https://material.io/design/components/image-lists.html) représentent une collection d'éléments dans un motif répété. Ils aident à améliorer la compréhension visuelle du contenu qu'ils contiennent.
 
-## Image-only Grid list
+## Grid list contenant uniquement des images
 
-A simple example of a scrollable image `GridList`.
+Un exemple simple d'image défilable `GridList`.
 
 {{"demo": "pages/components/grid-list/ImageGridList.js", "hideEditButton": true}}
 
-## Grid list with titlebars
+## Grid list avec barres de titre
 
-This example demonstrates the use of the `GridListTileBar` to add an overlay to each `GridListTile`. The overlay can accommodate a `title`, `subtitle` and secondary action - in this example an `IconButton`.
+Cet exemple illustre l'utilisation de `GridListTileBar` pour ajouter une superposition à chaque `GridListTile`. La superposition peut accueillir un `titre`, `sous - titre` et une action secondaire - dans cet exemple un `IconButton`.
 
 {{"demo": "pages/components/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 
-## Single line Grid list
+## Grid List sur une ligne
 
-This example demonstrates a horizontal scrollable single-line grid list of images. Horizontally scrolling grid lists are discouraged because the scrolling interferes with typical reading patterns, affecting comprehension. One notable exception is a horizontally-scrolling, single-line grid list of images, such as a gallery.
+Cet exemple illustre une grid list défilante horizontale d'images. Les listes de grille défilant horizontalement sont déconseillées car le défilement interfère avec les habitudes de lecture, ce qui affecte la compréhension. Une exception notable est la liste d'images comportant une seule ligne, telle qu'une galerie, qui défile horizontalement.
 
 {{"demo": "pages/components/grid-list/SingleLineGridList.js", "hideEditButton": true}}
 
-## Advanced Grid list
+## Grid list avancée
 
-This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing. The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`. The secondary action `IconButton` is positioned on the left.
+Cet exemple montre des tuiles , en utilisant les `rows` et `cols`props pour ajuster la taille de la tuile, et le `padding` prop pour ajuster l'espacement. Les tuiles ont une barre de titre personnalisée, placée en haut et avec un dégradé personnalisé `titleBackground`. L'action secondaire `IconButton` est positionnée sur la gauche.
 
 {{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true}}

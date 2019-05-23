@@ -23,7 +23,7 @@ Da die Benutzererfahrung auf mobilen Geräten durch die native Auswahl der Platt
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Anschließend können Sie es entweder direkt als Textfeld verwenden oder der Auswahlkomponente mit der Eigenschaft `input` geben, um ein Auswahl-Feld zu erhalten.
+Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -35,7 +35,7 @@ Wie bei der Einzelauswahl können Sie den neuen Wert abrufen, indem Sie auf `eve
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Kontrollierte Auswahl
+## Controlled Open Select
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 

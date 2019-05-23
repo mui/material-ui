@@ -1,4 +1,4 @@
-# 最小化捆绑包大小
+# 最小化捆绑包的大小
 
 <p class="description">了解有关可用于减少捆绑包大小的工具的详细信息。</p>
 
@@ -8,47 +8,87 @@ Material-UI的包大小非常重要。 We take size snapshots on every commit fo
 
 ## 如何减少捆绑尺寸？
 
-为方便起见，Material-UI在顶级 `material-ui` 导入上公开其完整API。 使用这是好的，如果你有树摇工作， 然而，在树上摇晃不支持或在构建链构成的情况下， **这将导致整个库及其依赖要包含** 在您的客户端包。
-
-您有几种方法可以克服这种情况：
-
-### 选项1
-
-您可以直接从 `material-ui /` 导入，以避免拉入未使用的模块。 例如，而不是：
+为方便起见，Material-UI在顶级 `material-ui` 导入上公开其完整API。 If you're using ES 6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and expect only a minimal set of Material-UI components in your bundle:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-使用：
+Be aware that tree-shaking is an optimization that is usually only applied to production bundles. Development bundles will contain the full library which can lead to slower startup times. This is especially noticeable if you import from `@material-ui/icons`. Startup times can be approximately 6x slower than without named imports from the top-level API.
+
+If this is an issue for you you have various options:
+
+### 选项1
+
+You can use path imports to avoid pulling in unused modules. For instance, instead of:
+
+```js
+import { Button, TextField } from '@material-ui/core';
+```
+
+use:
 
 ```js
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public. 任何未在此处列出的内容都应被视为 **私有**，如有更改，恕不另行通知。 例如， `Tabs` 组件是公共模块，而 `TabIndicator` 是私有模块。
+While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
+
+Be aware that we only support first and second leve imports. Anything below is considered private and can cause module duplication in your bundle.
+
+```js
+// OK
+import { Add as AddIcon } from '@material-ui/icons';
+import { Tabs } from '@material-ui/core';
+//                                 ^^^^ 1st or top-level
+
+// OK
+import AddIcon from '@material-ui/icons/Add';
+import Tabs from '@material-ui/core/Tabs';
+//                                  ^^^^ 2nd level
+
+// NOT OK
+import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
+//                                               ^^^^^^^^^^^^ 3rd level
+```
 
 ### 选项2
 
-另一种选择是继续使用缩短的导入，如下所示，但由于 **Babel插件**，仍然优化了捆绑的大小：
+**Important note**: This is only supported for `@material-ui/icons`. We recommend this approach if you often restart your development build.
 
-```js
-import { Button, TextField } from '@material-ui/core';
-```
+Another option is to keep using named imports, but still have shorter start up times by using `babel` plugins.
 
-选择以下插件之一：
+Pick one of the following plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) is quite customizable and with enough tweaks works with Material-UI.
-- [babel-transform-imports](https://bitbucket.org/amctheatres/babel-transform-imports) has a different api than a `babel-plugin-import` but does same thing.
-- [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
+- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration: 
+        js
+        [
+        'babel-plugin-import',
+        {
+          libraryName: '@material-ui/icons',
+          libraryDirectory: 'esm', // or '' if your bundler does not support ES modules
+          camel2DashComponentName: false,
+        },
+        ];
 
-**重要说明**：在向项目添加树摇动功能之前，这两个选项 *都应该是临时的*。
+- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-import) has a different api than `babel-plugin-import` but does same thing. 
+        js
+        [
+        'transform-imports',
+        {
+          '@material-ui/icons': {
+            transform: '@material-ui/icons/esm/${member}',
+            // for bundlers not supporting ES modules use:
+            // transform: '@material-ui/icons/${member}',
+          },
+        },
+        ];
 
 ## ECMAScript中
 
-在npm上发布的包是 **转换为**，带有 [Babel](https://github.com/babel/babel)，以考虑 [支持的平台](/getting-started/supported-platforms/)。
+The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
-我们还发布了第二个版本的组件，以针对 **常绿浏览器**。 您可以在< [`/es` folder](https://unpkg.com/@material-ui/core@next/es/)下找到此版本 。 所有非官方语法都被转换为 [ECMA-262标准](https://www.ecma-international.org/publications/standards/Ecma-262.htm)，仅此而已。 这可用于制作针对不同浏览器的单独捆绑包。 较旧的浏览器将需要更多的JavaScript功能进行转换， 会增加捆绑包的大小。 ES2015运行时功能不包含任何填充。 IE11 +和常绿的浏览器支持所有的 必要的功能。 如果您需要支持其他浏览器，请考虑使用 [`@ babel / polyfill`](https://www.npmjs.com/package/@babel/polyfill)。
+We also publish a second version of the components. 您可以在< [`/es` folder](https://unpkg.com/@material-ui/core@next/es/)下找到此版本 。 All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
 ⚠️为了最小化在用户的束的重复代码，我们 **强烈阻止** 从使用库作者 `/es` 的文件夹。

@@ -23,7 +23,7 @@ For optimal user experience, material design interfaces need to be able to adapt
 
 Эти значения всегда можно изменить. Вы найдете их в теме, в объекте [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values).
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden]/components/hidden/) components.
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
 
 ## CSS Media Queries
 
@@ -61,11 +61,11 @@ const styles = theme => ({
 
 ### useMediaQuery hook
 
-You can learn more on the [useMediaQuery]/components/use-media-query/) page.
+You can learn more on the [useMediaQuery](/components/use-media-query/) page.
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery]/components/use-media-query/) hook when the React's hooks are released as stable.
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/components/use-media-query/) hook when the React's hooks are released as stable.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';

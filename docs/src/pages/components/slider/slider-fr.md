@@ -3,41 +3,41 @@ title: Slider React component
 components: Slider
 ---
 
-# Slider
+# Slider (curseur)
 
-<p class="description">Sliders allow users to make selections from a range of values.</p>
+<p class="description">Les curseurs permettent aux utilisateurs d'effectuer des sélections à partir d'une plage de valeurs.</p>
 
-[Sliders](https://material.io/design/components/sliders.html) reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
+[Les curseurs](https://material.io/design/components/sliders.html) reflètent une plage de valeurs sur une barre, à partir de laquelle les utilisateurs peuvent sélectionner une seule valeur. Ils sont idéaux pour ajuster des paramètres tels que le volume, la luminosité ou l'application de filtres d'images.
 
-Sliders can have icons on both ends of the bar that reflect a range of values.
+Les curseurs peuvent avoir des icônes sur les deux extrémités de la barre, qui correspondent à une plage de valeurs.
 
-#### Immediate effects
+#### Effets immédiats
 
-Changes made with sliders are immediate, allowing a user to make slider adjustments until finding their preference. They shouldn’t be paired with settings that have even minor delays in providing user feedback.
+Les modifications apportées avec les curseurs sont immédiates, ce qui permet à l’utilisateur de faire des ajustements jusqu’à ce qu’il trouve sa préférence. They shouldn’t be paired with settings that have even minor delays in providing user feedback.
 
 #### Current state
 
 Sliders reflect the current state of the settings they control.
 
-## Simple slider
+## Slider simple
 
 {{"demo": "pages/components/slider/SimpleSlider.js"}}
 
-## Slider with steps
+## Curseur avec étapes
 
 {{"demo": "pages/components/slider/StepSlider.js"}}
 
-## Disabled slider
+## Curseur désactivé
 
 {{"demo": "pages/components/slider/DisabledSlider.js"}}
 
-## Vertical slider
+## Curseur vertical
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
-## Customized sliders
+## Curseurs personnalisés
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet sur la [page de documentation de personnalisation](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

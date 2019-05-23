@@ -1,5 +1,4 @@
 {
-  "topBanner": "⚠️({{versionNumber}}) Эта версия документации для следующего (`next`) релиза.",
   "homeQuickWord": "Несколько слов от наших спонсоров:",
   "editWebsiteColors": "Редактировать цветовую гамму сайта",
   "toggleTheme": "Переключить светлую/темную тему",
@@ -182,7 +181,7 @@
     "/customization/typography": "Оформление текста",
     "/customization/spacing": "Интервал",
     "/customization/z-index": "z-index",
-    "/customization/globals": "Globals",
+    "/customization/globals": "Глобальная настройка",
     "/customization/components": "Overrides",
     "/customization/default-theme": "Тема по умолчанию",
     "/guides": "Guides",

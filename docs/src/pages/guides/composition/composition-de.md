@@ -140,15 +140,15 @@ In some instances we issue an additional warning to help debugging, similar to:
 We will only cover the two most common use cases. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
-- const MyButton = props => <div role="button" {...props} />
-+ const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />)
-<Button component={MyButton} />
+- const MyButton = props => <div role="button" {...props} />;
++ const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+<Button component={MyButton} />;
 ```
 
 ```diff
-- const SomeContent = props => <div {...props}>Hello, World!</div>
-+ const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>)
-<Tooltip title="Hello, again.">
+- const SomeContent = props => <div {...props}>Hello, World!</div>;
++ const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
+<Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
 Um herauszufinden, ob die Material-UI - Komponente, die Sie verwenden, diese Anforderung hat, überprüfen Sie API - Dokumentation für diese Komponente. Wenn Sie Refs weiterleiten müssen, wird die Beschreibung mit diesem Abschnitt verknüpft.

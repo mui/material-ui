@@ -1,4 +1,4 @@
-# Typography
+# Tipografia
 
 <p class="description">Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.</p>
 
@@ -48,9 +48,9 @@
 import { typography } from '@material-ui/system';
 ```
 
-| Import name  | Prop         | CSS property  | Theme key                                                              |
-|:------------ |:------------ |:------------- |:---------------------------------------------------------------------- |
-| `fontFamily` | `fontFamily` | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `fontSize`   | `fontSize`   | `font-size`   | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `fontWeight` | `fontWeight` | `font-weight` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `textAlign`  | `textAlign`  | `text-align`  | none                                                                   |
+| Nome da importação | Prop         | Propriedade CSS | Chave do tema                       |
+|:------------------ |:------------ |:--------------- |:----------------------------------- |
+| `fontFamily`       | `fontFamily` | `font-family`   | [`typography`](/system/typography/) |
+| `fontSize`         | `fontSize`   | `font-size`     | [`typography`](/system/typography/) |
+| `fontWeight`       | `fontWeight` | `font-weight`   | [`typography`](/system/typography/) |
+| `textAlign`        | `textAlign`  | `text-align`    | none                                |

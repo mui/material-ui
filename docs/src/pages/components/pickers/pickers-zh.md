@@ -40,6 +40,6 @@ components: TextField
 
 ![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-[@material-ui/pickers](https://material-ui-pickers.dev/) provides date and time controls that follow the Material Design spec.
+[@material-ui-pickers](https://material-ui-pickers.dev/) 提供遵循 Material Design 规范的日期和时间控件。
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}

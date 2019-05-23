@@ -20,7 +20,7 @@ Usted podría terminar usando accidentalmente dos generadores de nombre de clase
 
 Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared between them**.
 
-## Why do the fixed positioned elements move when a modal is opened?
+## ¿Por qué los elementos de posición fija se mueven cuando se abre un modal?
 
 We block the scroll as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
 

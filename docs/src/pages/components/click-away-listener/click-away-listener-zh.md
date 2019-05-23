@@ -1,15 +1,17 @@
 ---
-title: 他处点击监听 React 组件
+title: Detect click outside React component
 components: ClickAwayListener
 ---
 
 # 他处点击监听器
 
-<p class="description">监听在该元素以外的点击事件。</p>
+<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
 
-## 基本设置
+- 
 
-例如，如果你需要以单击其他区域来隐藏你的菜单时：
+## Simple menu dropdown
+
+For instance, if you need to hide a menu dropdown when people click anywhere else on your page:
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 

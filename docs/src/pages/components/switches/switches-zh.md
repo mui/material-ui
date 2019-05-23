@@ -25,7 +25,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## Customized switches
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 

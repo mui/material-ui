@@ -1,19 +1,19 @@
 ---
-title: Expansion Panel React component
+title: Componente React para Painéis de Expansão
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Expansion Panels (Painéis de Expansão)
+# Painéis de Expansão
 
-<p class="description">Expansion panels contain creation flows and allow lightweight editing of an element.</p>
+<p class="description">Os painéis de expansão contêm fluxos de criação e permitem a edição simplificada de um elemento.</p>
 
-[An expansion panel](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
+[Um painel de expansão](https://material.io/archive/guidelines/components/expansion-panels.html) é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
 
-> **Note:** Expansion panels are no longer documented in the Material Design documentation.
+> **Nota:** Os painéis de expansão não estão mais documentados na documentação do Material Design.
 
 ## Acessibilidade
 
-Para melhor acessibilidade recomendamos a definição de `id` e `aria-controles` no `ExpansionPanelSummary`. O `ExpansionPanel` irá derivar o necessário `aria-labelledby` e `id` para a região de conteúdo do painel.
+Para melhor acessibilidade recomendamos a definição de `id` e `aria-controles` no `ExpansionPanelSummary`. O `ExpansionPanel` irá derivar os valores de `aria-labelledby` e `id` para a região de conteúdo do painel.
 
 ## Painel de Expansão Simples
 
@@ -27,16 +27,16 @@ Estenda o comportamento padrão do painel para criar um acordeão com o componen
 
 ## Cabeçalho Secundário e Colunas
 
-Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao painel para auxiliar o usuário.
+Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao painel para ajudar o usuário.
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
 
 ## Performance
 
-The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+O conteúdo dos painéis de expansão é montado por padrão, mesmo que o painel não esteja expandido. Esse comportamento padrão tem em mente a renderização do lado do servidor e o SEO. Se você renderizar grandes árvores de componentes dentro de seu painel ou simplesmente renderizar muitos painéis, pode ser uma boa ideia desabilitar esse comportamento padrão habilitando `unmountOnExit` em `TransitionProps`: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
 
-## Customized expansion panels
+## Painéis de Expansão Customizados
 
-Aqui está um exemplo de personalização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}

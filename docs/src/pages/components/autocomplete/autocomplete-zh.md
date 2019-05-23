@@ -13,7 +13,7 @@ Material-UI不提供任何高级 API 来解决此问题。我们鼓励大家参�
 
 ![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-在下面的示例中, 我们演示了如何使用 [downshift](https://github.com/downshift-js/downshift)。
+在下面的示例中，我们演示了如何使用 [downshift](https://github.com/downshift-js/downshift)。
 
 最后一个演示可以清除输入并在焦点的位置上显示一系列的选项。
 
@@ -33,4 +33,4 @@ Material-UI不提供任何高级 API 来解决此问题。我们鼓励大家参�
 
 在下面的示例中, 我们演示了如何使用 [react-autosuggest](https://github.com/moroshko/react-autosuggest)。 它还使用 [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight)完成了高亮的逻辑。
 
-{{"demo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}
+emo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}

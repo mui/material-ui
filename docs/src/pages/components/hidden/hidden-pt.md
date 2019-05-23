@@ -1,17 +1,17 @@
 ---
-title: Hidden React component
+title: Componente React Hidden
 components: Hidden
 ---
 
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with our hidden utilities.</p>
+<p class="description">Modifique rapidamente e de forma responsiva a visibilidade dos componentes e muito mais com nosso utilitário hidden.</p>
 
-All elements are visible unless **they are explicitly hidden**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with our [`Grid`](/components/grid/) component.
+Todos os elementos são visíveis a menos que **estejam explicitamente ocultos**. Para facilitar a integração com [pontos de quebra (breakpoint) responsivos](/customization/breakpoints/) do Material-UI's, este componente pode ser utilizado, ou você pode usa-lo de forma conjunta com um componente [`Grid`](/components/grid/).
 
-## How it works
+## Como funciona
 
-Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown`, or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`. Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior. The ranges are inclusive of the specified breakpoints.
+Hidden trabalha com um intervalo de pontos de quebra (breakpoints), por exemplo, `xsUp` ou `mdDown`, ou com um ou mais pontos de quebra, por exemplo, `only='sm'` ou `only={['md', 'xl']}`. Intervalos e pontos de quebra individuais podem ser usados simultaneamente para obter um comportamento muito mais customizado. Os intervalos são inclusivos dos pontos de quebra especificados.
 
 ```js
 innerWidth  |xs      sm       md       lg       xl
@@ -23,41 +23,41 @@ mdDown      |                     hide | show
 
 ```
 
-## Implementations
+## Implementações
 
 ### js
 
-By default, the `js` implementation is used, responsively hiding content based on using the [`withWidth()`](/customization/breakpoints/#withwidth) higher-order component that watches screen size. This has the benefit of not rendering any content at all unless the breakpoint is met.
+Por padrão, a implementação `js` é usada, responsivamente escondendo conteúdo baseado no uso de [`withWidth()`](/customization/breakpoints/#withwidth), componente de ordem mais elevada (higher-order) que observa o tamanho da tela. Isso tem o benefício de não renderizar nenhum conteúdo, a menos que o ponto de quebra seja atingido.
 
 ### css
 
-If you are using server-side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
+Se você estiver usando a renderização do lado do servidor, poderá definir `implementation = "css"` se não quer que o navegador reprocesse seu conteúdo na tela.
 
-## Breakpoint up
+## Ponto de quebra acima
 
-Using any breakpoint `up` property, the given *children* will be hidden *at or above* the breakpoint.
+Usando qualquer propriedade de ponto de quebra com `up`, o componente *children* será ocultado *em ou acima* do ponto de quebra.
 
 {{"demo": "pages/components/hidden/BreakpointUp.js"}}
 
-## Breakpoint down
+## Ponto de quebra abaixo
 
-Using any breakpoint `down` property, the given *children* will be hidden *at or below* the breakpoint.
+Usando qualquer propriedade de ponto de quebra com `down`, o componente *children* será ocultado *em ou abaixo* do ponto de quebra.
 
 {{"demo": "pages/components/hidden/BreakpointDown.js"}}
 
-## Breakpoint only
+## Ponto de quebra somente
 
-Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
+Usando a propriedade de ponto de quebra `only`, o componente *children* será ocultado *no(s) ponto(s) de quebra* especificado(s).
 
-The `only` property can be used in two ways:
+A propriedade `only` pode ser usada de duas maneiras:
 
-- list a single breakpoint
-- list an array of breakpoints
+- com um único ponto de quebra
+- com um array de pontos de quebra
 
 {{"demo": "pages/components/hidden/BreakpointOnly.js"}}
 
-## Integration with Grid
+## Integração com Grade
 
-It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.
+É bastante comum alterar um `Grid` em pontos de quebra responsivos diferentes e, em muitos casos, você deseja ocultar alguns desses elementos.
 
 {{"demo": "pages/components/hidden/GridIntegration.js"}}

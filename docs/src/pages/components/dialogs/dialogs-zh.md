@@ -7,7 +7,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 <p class="description">对话框将一个任务告知给用户，它包含了一些关键信息，需要用户进行确认，或者包含了多个任务。</p>
 
-[对话框](https://material.io/design/components/dialogs.html)是[模态](/components/modal/) 窗体的一种类型，通过显示在应用程序内容之前，来显示关键信息，或者要求用户的决策。 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框才不会留在屏幕上。
+[对话框](https://material.io/design/components/dialogs.html)是 [modal](/components/modal/) 窗体的一种类型，它通常在应用程序内容之前呈现，来提供一些关键信息，或者要求用户做出决策。 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框才不会留在屏幕上。
 
 对话框会带有目的性地中断用户体验，所以请您谨慎使用。
 
@@ -70,7 +70,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 响应式全屏
 
-You may make a dialog responsively full screen using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/customization/breakpoints/). 通过传递 `breakpoint`参数，您可以自主选择全屏切换点，比如使用`xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
+您可以使用 `withMobileDialog` 显示响应式的全屏对话框。 默认情况下, `withMobileDialog() (Dialog)` 在 [屏幕大小](/customization/breakpoints/)*小于等于* `sm`时响应式全屏。 通过传递 `breakpoint`参数，您可以自主选择全屏切换点，比如使用`xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
 
 {{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
@@ -84,7 +84,7 @@ You may make a dialog responsively full screen using `withMobileDialog`. By defa
 
 ## 可及性
 
-参考 [模态框可及性的部分](/components/modal/#accessibility)。
+参考[模态框可及性的部分](/components/modal/#accessibility)。
 
 ## 冗长内容的滚动
 

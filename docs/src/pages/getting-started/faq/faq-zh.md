@@ -16,20 +16,19 @@
 - 对于你的React Tree（React树控件）而言，你在使用`StylesProvider`构建**subset（分支）**。
 - You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
 
-> >如果你正使用带有[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，请尝试在[`优化项(optimizations)`下</code>配置 `runtimeChunk</2></a> 。</p>
-</blockquote>
+> 如果你正使用带有[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，请尝试在[`优化项(optimizations)`下配置 `runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) 。
 
-<p>总的来说，通过在其组件树顶部的<a href="/styles/api/#stylesprovider"><code>StylesProvider`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)来包装每个 Material-UI 应用程序，**并且在他们之间使用单个类名称生成器**，能够简单地解决这个问题。
-> 
-> ## 为什么当打开Modal（模态框）时，fixed positioned（位置固定的）元素会移动？
-> 
-> 一旦打开模态框，我们就会禁用滚动。 而模态框是应该是唯一的交互式内容时，这可以防止与背景交互，但是，删除滚动条可以恢复**fixed positioned(固定位置的)元素**的移动。 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
-> 
-> ## 如何在全局禁用 ripple effect（涟漪效果）？
-> 
-> 涟漪效应完全来自` BaseButton `零件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
-> 
-> ```js
+总的来说，通过在其组件树顶部的[`StylesProvider`](/styles/api/#stylesprovider)来包装每个 Material-UI 应用程序，**并且在他们之间使用单个类名称生成器**，能够简单地解决这个问题。
+
+## 为什么当打开Modal（模态框）时，fixed positioned（位置固定的）元素会移动？
+
+一旦打开模态框，我们就会禁用滚动。 而模态框是应该是唯一的交互式内容时，这可以防止与背景交互，但是，删除滚动条可以恢复**fixed positioned(固定位置的)元素**的移动。 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
+
+## 如何在全局禁用 ripple effect（涟漪效果）？
+
+涟漪效应完全来自` BaseButton `零件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
+
+```js
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({

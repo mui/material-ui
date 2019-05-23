@@ -10,7 +10,7 @@ Material-UI поддерживает все последние, стабильн
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
-Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it. [WRS is based on Chrome 41](https://developers.google.com/search/docs/guides/rendering). You can expect Material-UI's components to render without major issues.
+Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it. [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). You can expect Material-UI's components to render without major issues.
 
 ## Server
 

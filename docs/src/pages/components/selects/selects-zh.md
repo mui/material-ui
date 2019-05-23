@@ -23,7 +23,7 @@ components: Select, NativeSelect
 
 以下是自定义组件的一些示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
 
-第一步是设置 `InputBase` 组件的样式。 一旦设置好样式，您就可以直接将其用作文本字段，也可以将其提供给 select 组件的 `input` 属性作为一个可选项。
+第一步是设置 `InputBase` 组件的样式。 一旦设置好样式，您就可以直接将其用作文本字段，也可以将其提供给 select 组件的 `input` 属性作为一个 `select` 字段。
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -35,7 +35,7 @@ components: Select, NativeSelect
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## 可控制的打开选择器
+## 可控制地打开选择器
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 

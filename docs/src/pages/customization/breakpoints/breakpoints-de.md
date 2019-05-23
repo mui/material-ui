@@ -23,7 +23,7 @@ Bereich       |   xs   |   sm   |   md   |   lg   |   xl
 
 Diese Werte können immer angepasst werden. Sie finden sie im Theme unter dem [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) Schlüssel.
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden]/components/hidden/) components.
+Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/components/grid/) zu steuern und für [Hidden](/components/hidden/) Komponenten.
 
 ## CSS-Medienabfragen
 
@@ -61,11 +61,11 @@ Manchmal reicht die Verwendung von CSS nicht aus. Möglicherweise möchten Sie d
 
 ### useMediaQuery hook
 
-You can learn more on the [useMediaQuery]/components/use-media-query/) page.
+Weitere Informationen finden Sie auf der [ useMediaQuery](/components/use-media-query/) Seite.
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery]/components/use-media-query/) hook when the React's hooks are released as stable.
+> ⚠️ Diese Komponente höherer Ordnung wird ist veraltet und wird durch den [useMediaQuery](/components/use-media-query/) hook ersetzt, wenn die React hooks als stabil freigegeben werden.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';

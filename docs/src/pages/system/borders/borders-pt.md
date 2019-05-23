@@ -58,12 +58,12 @@ Use os utilitários de borda para adicionar ou remover as bordas de um elemento.
 import { borders } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property    | Theme key                                                        |
-|:-------------- |:-------------- |:--------------- |:---------------------------------------------------------------- |
-| `border`       | `border`       | `border`        | `borders`                                                        |
-| `borderTop`    | `borderTop`    | `border-top`    | `borders`                                                        |
-| `borderLeft`   | `borderLeft`   | `border-left`   | `borders`                                                        |
-| `borderRight`  | `borderRight`  | `border-right`  | `borders`                                                        |
-| `borderBottom` | `borderBottom` | `border-bottom` | `borders`                                                        |
-| `borderColor`  | `borderColor`  | `border-color`  | [`palette`](/customization/default-theme/?expend-path=$.palette) |
-| `borderRadius` | `borderRadius` | `border-radius` | [`shape`](/customization/default-theme/?expend-path=$.shape)     |
+| Nome da importação | Prop           | Propriedade CSS | Chave do tema                                                    |
+|:------------------ |:-------------- |:--------------- |:---------------------------------------------------------------- |
+| `border`           | `border`       | `border`        | `borders`                                                        |
+| `borderTop`        | `borderTop`    | `border-top`    | `borders`                                                        |
+| `borderLeft`       | `borderLeft`   | `border-left`   | `borders`                                                        |
+| `borderRight`      | `borderRight`  | `border-right`  | `borders`                                                        |
+| `borderBottom`     | `borderBottom` | `border-bottom` | `borders`                                                        |
+| `borderColor`      | `borderColor`  | `border-color`  | [`palette`](/customization/default-theme/?expend-path=$.palette) |
+| `borderRadius`     | `borderRadius` | `border-radius` | [`shape`](/system/borders/)                                      |

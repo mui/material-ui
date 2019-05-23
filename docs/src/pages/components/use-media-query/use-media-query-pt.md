@@ -4,19 +4,19 @@ title: Consulta de mídia no React para design responsivo
 
 # useMediaQuery
 
-<p class="description">This is a CSS media query hook for React. It listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
+<p class="description">Este é um hook de CSS media query para React. Ele ouve correspondências para uma consulta de mídia no CSS. Permite a renderização de componentes com base no fato de a consulta corresponder ou não.</p>
 
-Some of the key features:
+Algumas das principais características:
 
-- ⚛️ It has an idiomatic React API.
-- 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
+- ⚛️ Tem uma API React idiomática.
+- 🚀 Com desempenho, ele observa o documento para detectar quando suas consultas de mídia mudam, em vez de pesquisar os valores periodicamente.
 - 📦 [1 kB gzipped](/size-snapshot).
-- 💄 It's an alternative to react-responsive and react-media that aims for simplicity.
-- 🤖 It supports Server-side rendering.
+- 💄 É uma alternativa para react-responsive e react-media que visa simplicidade.
+- 🤖 Ele suporta a renderização do lado do servidor.
 
-## Simple media query
+## Consulta de mídia simples
 
-You should provide a media query to the first argument of the hook. The media query string can by any valid CSS media query, e.g. `'print'`.
+Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A string de consulta de mídia pode ser feita por qualquer consulta de mídia CSS válida, por exemplo, `'print'`.
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -30,9 +30,9 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js"}}
 
-## Using Material-UI's breakpoint helpers
+## Usando helpers de ponto de quebra do Material-UI
 
-You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
+Você pode usar os [helpers de ponto de quebra](/customization/breakpoints/) do Material-UI da seguinte maneira:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -48,15 +48,15 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
 
-## Server-side rendering
+## Renderização no servidor (Server-Side Rendering)
 
-An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery). We also encourage the usage of the `useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
+Uma implementação do [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) é necessária no servidor, recomendamos usar [css-mediaquery](https://github.com/ericf/css-mediaquery). Também incentivamos o uso da versão hook de `useMediaQueryTheme` que busca propriedades do tema. Dessa forma, você pode fornecer uma opção `ssrMatchMedia` uma vez para toda a sua árvore React.
 
 {{"demo": "pages/components/use-media-query/ServerSide.js"}}
 
-## Migrating from `withWidth()`
+## Migrando de `withWidth()`
 
-The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior as follow:
+O componente de ordem superior `withWidth()` injeta a largura da tela da página. Você pode reproduzir o mesmo comportamento como segue:
 
 ```jsx
 function MyComponent() {
@@ -80,15 +80,15 @@ function MyComponent() {
 
 #### Argumentos
 
-1. `query` (*String*): A string representing the media query to handle.
-2. `options` (*Object* [optional]): 
-    - `options.defaultMatches` (*Boolean* [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
-    - `options.noSsr` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
-    - `options.ssrMatchMedia` (*Function* [optional]) You might want to use an heuristic to approximate the screen of the client browser. For instance, you could be using the user-agent or the client-hint https://caniuse.com/#search=client%20hint. You can provide a global ponyfill using [`custom properties`](/customization/globals/#default-props) on the theme. Check the [server-side rendering example](#server-side-rendering).
+1. `query` (*String*): uma string representando a consulta de mídia a ser manipulada.
+2. `options` (*Object* [opcional]): 
+    - `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
+    - `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esse sinalizador para `true` se você **não estiver fazendo a renderização do lado do servidor**.
+    - `options.ssrMatchMedia` (*Function* [opcional]) Você pode querer usar uma heurística para aproximar a tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint https://caniuse.com/#search=client%20hint. Você pode fornecer um global ponyfill usando [`propriedades customizadas`](/customization/globals/#default-props) no tema. Verifique o exemplo de renderização do lado do servidor [](#server-side-rendering).
 
 #### Retornos
 
-`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
+`matches`: Matches é `true` se o documento coincidir com a consulta de mídia, e `false` quando isso não ocorrer.
 
 #### Exemplos
 

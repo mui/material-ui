@@ -1,6 +1,6 @@
 # Palette
 
-<p class="description">The palette enebles you to modify the color of the components to suit your brand.</p>
+<p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
 
 ## Intentionen
 
