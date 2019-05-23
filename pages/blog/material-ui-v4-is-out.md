@@ -70,7 +70,7 @@ As an attempt to further improve the situation, we have changed the class name g
 
 <p class="blog-description">side by side comparison of both valid classes vs global approaches.</p>
 
-  ⚠️ Using global class names provide more power but comes with a responsibility. We encourage patterns that increase your custom style isolation.
+  ⚠️ Using global class names provide more power but comes with responsibility. We encourage patterns that increase your custom style isolation.
 - **Pseudo-classes.** A pseudo-class is a keyword added to a selector that specifies a special state of the selected element. The native elements support a wide range of pseudo-classes, the most popular ones being: `:focus`, `:hover`, `:active`. Sometimes, Material-UI can't use a pseudo-class as the state doesn't exist in the platform, e.g. the selected state of a menu item. Material-UI implements support of eight different [custom pseudo-classes](/customization/components/#pseudo-classes). It's important to understand that you need to increase the specificity when using a pseudo-class. For instance:
 
 ```css
@@ -109,7 +109,7 @@ function MyComponent() {
 
 Documentation was reported as the 3rd most critical pain point in the developer survey. We have fixed some of the reported issues and aim to continuously improve going forward.
 
-- **TypeScript**. TypeScript's growth is impressive, the traffic of their documentation website has grown by a factor of 6 in 3 years. Material-UI v1 was released with built-in TypeScript definitions, but we needed to do more. Sebastian has led the effort to migrate all the demos from JavaScript to TypeScript. This has two important implications. First, we type check our demos, it drastically improves our TypeScript test coverage. We have fixed many issues during the migration. Second, if you are writing your application with TypeScript, you can directly copy & paste our demos without needing to convert them, or having to fix the obscure errors.
+- **TypeScript**. TypeScript's growth is impressive, the traffic of their documentation website has grown by a factor of 6 in 3 years. Material-UI v1 was released with built-in TypeScript definitions, but we needed to do more. Sebastian has led the effort to migrate all the demos from JavaScript to TypeScript. This has two important implications. First, we type check our demos, this drastically improves our TypeScript test coverage. We have fixed many issues during the migration. Second, if you are writing your application with TypeScript, you can directly copy & paste our demos without needing to convert them, or having to fix the obscure errors.
 
 ![typescript](/static/blog/material-ui-v4-is-out/typescript.png)
 
@@ -216,19 +216,19 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 - [A Box + system utility helpers](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df).
 
-![box](/static/blog/material-ui-v4-is-out/box.png)
+![Box usage example](/static/blog/material-ui-v4-is-out/box.png)
 
 An application example of the Box component.
 
 - [A better spacing helper.](http://material-ui.com/customization/spacing/)
 
-![box](/static/blog/material-ui-v4-is-out/box.png)
+![Spacing usage example](/static/blog/material-ui-v4-is-out/spacing.png)
 
 An example of the new spacing helper API.
 
 - A new [@material-ui/pickers](https://github.com/mui-org/material-ui-pickers) package created and supported by [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) 📅.
 
-![pickers](/static/blog/material-ui-v4-is-out/pickers.png)
+![Inline pickers](/static/blog/material-ui-v4-is-out/pickers.png)
 
 <p class="blog-description">Keyboard support</p>
 
@@ -298,10 +298,6 @@ import { Button } from '@material-ui/core';
 So we will work on isolating the components from the styling solution. The new *@material-ui/styles* package is the first step in this direction. We envision a world where you can use Material-UI styled with styled components, linaria, and JSS or without any styles.
 People should be able to use their preferred styling solution without paying the cost of two CSS-in-JS runtimes.
 - **Accessibility.** While we try to fix all accessibility issues as they are reported by our users, we feel that we can do better. We want to run a professional ADA audit of all our components ♿️.
-
-## Premium themes store
-
-😍
 
 ## Thank you
 
