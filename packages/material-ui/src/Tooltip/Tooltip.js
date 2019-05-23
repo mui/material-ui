@@ -19,7 +19,7 @@ export const styles = theme => ({
     pointerEvents: 'none',
     position: 'absolute',
     top: '0px',
-    left: '0px', /* */
+    left: '0px',
   },
   /* Styles applied to the Popper component if `interactive={true}`. */
   popperInteractive: {
