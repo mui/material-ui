@@ -56,6 +56,14 @@ const styles = theme => ({
       fontWeight: 400,
       fontFamily: theme.typography.fontFamily,
     },
+    '& img': {
+      display: 'block',
+      margin: 'auto',
+    },
+    '& .blog-description': {
+      fontSize: theme.typography.pxToRem(14),
+      textAlign: 'center',
+    },
   },
   footer: {
     marginTop: theme.spacing(12),
