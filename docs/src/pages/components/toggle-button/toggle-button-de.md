@@ -12,3 +12,9 @@ Um Gruppen von verwandten [Schaltern](https://material.io/design/components/butt
 Die `ToggleButtonGroup` wird die Auswahl von den untergeordneten Schaltern steuern, wenn es eigene `value` Eigenschaft gesetzt hat.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
+
+## Größen
+
+Lust auf größere oder kleinere Schaltflächen? Verwenden Sie die Eigenschaft `size`.
+
+{{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}

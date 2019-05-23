@@ -1,26 +1,26 @@
 # Testando
 
-<p class="description">Escrever os testes para impedir retrocessos e escrever um código melhor.</p>
+<p class="description">Escreva testes para evitar regressões e ter uma boa qualidade de código.</p>
 
-Exemplos neste guia de uso [métodos globais de Mocha](https://mochajs.org/api/global.html), não [Jest](https://jestjs.io/docs/en/api).
+Exemplos neste guia usam [métodos globais do Mocha](https://mochajs.org/api/global.html), ao invés do [Jest](https://jestjs.io/docs/en/api).
 
 ## Interno
 
-Nós levamos os testes a sério. Nós escrevemos e mantemos ** uma vasta gama ** de testes para que possamos iterar os componentes com confiança, por exemplo, os testes de regressão visual fornecidos por [ Argos-CI ](https://www.argos-ci.com/mui-org/material-ui) provaram ser realmente úteis. Para saber mais sobre nossos testes internos, você pode dar uma olhada no [ LEIA-ME ](https://github.com/mui-org/material-ui/blob/next/test/README.md).
+Nós levamos os testes a sério. Nós escrevemos e mantemos **uma vasta gama** de testes para que possamos iterar os componentes com confiança, por exemplo, os testes de regressão visual fornecidos por [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) provaram ser realmente úteis. Para saber mais sobre nossos testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui-org/material-ui/blob/next/test/README.md).
 
 Embora tenhamos atingido a conquista de 100% de cobertura de teste, não incentivamos nossos usuários a fazer o mesmo. [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/next.svg)](https://codecov.io/gh/mui-org/material-ui/branch/next)
 
-## Userspace
+## Espaço do usuário
 
-Que tal escrever testes no userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. Você pode aproveitá-los, se assim preferir.
+Que tal escrever testes no espaço do usuário? A infraestrutura de estilos do Material-UI usa algumas funções auxiliares construídas sobre o [enzyme](https://github.com/airbnb/enzyme) para facilitar o processo, ao qual estamos expondo. Você pode aproveitá-los, se assim preferir.
 
-### Shallow rendering
+### Renderização Rasa (Shallow)
 
-Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components. Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
+A renderização rasa é útil para restringir seu teste a um componente como uma unidade. Isso também garante que seus testes não estão adquirindo indiretamente o comportamento de componentes filhos. A renderização rasa foi criada para testar componentes isoladamente. Isso significa sem vazar detalhes de implementação de filhos, como o contexto.
 
-A função `createShallow()` pode ser utilizada para esta situação. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
+A função `createShallow()` pode ser utilizada para esta situação. Além de encapsular a API do enzyme, ela fornece uma opção `dive` e `untilSelector`.
 
-### Full DOM rendering
+### Renderização completa do DOM (Full)
 
 Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (e.g., `componentDidMount` etc.).
 
@@ -43,7 +43,7 @@ Generate an enhanced shallow function with the needed context. Please refer to t
 1. `options` (*Object* [optional]) 
     - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
     - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
-    - `options.dive` (*Boolean* [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
+    - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
     - The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
 #### Retornos

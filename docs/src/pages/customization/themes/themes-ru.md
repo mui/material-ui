@@ -23,7 +23,7 @@ Changing the theme configuration variables is the most effective way to match Ma
 - [Интервал](/customization/spacing/)
 - [Точки останова](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Globals](/customization/globals/)
+- [Глобальная настройка](/customization/globals/)
 
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 

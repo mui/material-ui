@@ -29,7 +29,7 @@ Você pode conferir a [seção de tema padrão](/customization/default-theme/) p
 
 ### Variáveis customizáveis
 
-When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
@@ -43,7 +43,7 @@ You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme
 
 {{"demo": "pages/customization/themes/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+O tema interno **sobrescreverá** o tema exterior. Você pode estender o tema externo fornecendo uma função:
 
 {{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
 

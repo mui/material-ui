@@ -1,28 +1,28 @@
 ---
-title: Componente React noSSR
+title: Componente React Sem SSR
 components: NoSsr
 ---
 
-# NoSSR
+# Sem SSR
 
-<p class="description">O NoSsr remove intencionalmente componentes do assunto do Server Side Rendering (SSR).</p>
+<p class="description">O NoSsr remove intencionalmente componentes do contexto de Server Side Rendering (SSR).</p>
 
 Esse componente pode ser útil em várias situações:
 
-- Escotilha de escape para dependências quebradas que não suportam SSR.
-- Improve the time-to-first paint on the client by only rendering above the fold.
-- Reduza o tempo de renderização no servidor.
+- Válvula de escape para dependências quebradas que não suportam SSR.
+- Melhorar o tempo para a primeira pintura no cliente renderizando somente a primeira parte da página (above the fold).
+- Reduzir o tempo de renderização no servidor.
 - Sob carga de servidor muito pesada, você pode ativar a degradação do serviço.
-- Melhore o tempo de interação apenas processando o que é importante (com a propriedade `defer`).
+- Melhorar o tempo de interação apenas renderizando o que é importante (com a propriedade `defer`).
 
-## Client side deferring
+## Adiamento do lado do cliente
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
-## Frame deferring
+## Adiamento de quadros
 
-In it's core, the NoSsr component purpose is to **defer rendering**. As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
+Em sua essência, o componente NoSsr tem a finalidade de **adiar a renderização**. Como é ilustrado na demonstração anterior, você pode usá-lo para adiar a renderização do servidor para o cliente.
 
-But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
+Mas você também pode usá-lo para adiar a renderização dentro do próprio cliente. Você pode **aguardar um quadro de tela** com a propriedade `defer` para renderizar o children. React faz [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) em vez de 1.
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}

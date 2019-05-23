@@ -7,18 +7,18 @@ components: Modal
 
 <p class="description">O componente modal fornece uma base sólida para criar diálogos, popovers, lightboxes ou qualquer outra coisa.</p>
 
-O componente renderiza o conteúdo de seu `children` sobre um backdrop. O `Modal` fornece alguns recursos úteis quando utilizado sobre um componente [`Portal`](/utils/portal/) e alguns estilos:
+O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. O `Modal` fornece alguns recursos úteis quando utilizado sobre um componente [`Portal`](/utils/portal/) e alguns estilos:
 
-- Gerencia o empilhamento de chamadas 'um a cada vez'.
+- Gerencia o empilhamento de chamadas um por vez não é suficiente.
 - Cria um backdrop para desabilitar a interação abaixo do modal.
-- Quando aberto, desabilita o scroll da página.
-- ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
-- ♿️ Adds the appropriate ARIA roles automatically.
+- Quando aberto, desabilita a rolagem da página.
+- ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
+- ♿️ Adiciona as funções ARIA apropriadas automaticamente.
 - 
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela Modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
-Se você está criando um diálogo Modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal uma estrutura de baixo-nível que é alavancada pelos seguintes componentes:
+Se você está criando um diálogo Modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é alavancada pelos seguintes componentes:
 
 - [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
@@ -60,7 +60,7 @@ Porém, criar elementos React tem um preço também. Considere o caso a seguir:
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+Criamos muitos elementos React que nunca serão montados. Isto é um desperdício 
 
 ```jsx
 <Modal open={false}>
@@ -68,11 +68,11 @@ We create a lot of React elements that will never be mounted. It's wasteful
 </Modal>
 ```
 
-This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
+Desta forma, você tem a vantagem do [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). A renderização do `TableComponent` só irá ocorrer quando a janela modal for aberta.
 
 ## Acessibilidade
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
+- Certifique-se de adicionar `aria-labelledby="id..."`, referenciando o título modal, ao `Modal`. Adicionalmente, você pode dar uma descrição do seu modal com a propriedade `aria-describedby = "id..."` no `Modal`.
 
 ```jsx
 <Modal
@@ -80,10 +80,10 @@ This way, you take advantage of [React render laziness evaluation](https://overr
   aria-describedby="simple-modal-description"
 >
   <Typography variant="h6" id="modal-title">
-    My Title
+    Meu título
   </Typography>
   <Typography variant="subtitle1" id="simple-modal-description">
-    My Description
+    Minha descrição
   </Typography>
 </Modal>
 ```

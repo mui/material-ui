@@ -1,20 +1,20 @@
 ---
-title: Transfer List React component
+title: Componente React para Transferência de Lista
 components: List, ListItem, Checkbox, Switch
 ---
 
-# Transfer List
+# Transferência de lista
 
-<p class="description">A transfer list (or "shuttle") enables the user to move one or more list items between lists.</p>
+<p class="description">Um transferência de lista (ou "shuttle") permite ao usuário mover um ou mais itens da lista entre as listas.</p>
 
-## Simple Transfer List
+## Transferência de lista simples
 
-For completeness, this example includes buttons for "move all", but not every transfer list needs these.
+Para completar, este exemplo inclui botões para "mover tudo", mas nem todas as transferências de lista precisam disso.
 
 {{"demo": "pages/components/transfer-list/TransferList.js"}}
 
-## Enhanced Transfer List
+## Transferência de lista aprimorada
 
-This example exchanges the "move all" buttons for a "select all / select none" checkbox, and adds a counter.
+Este exemplo troca os botões "mover todos" por uma caixa de seleção para "selecionar todos / selecionar nenhum" e adiciona um contador.
 
 {{"demo": "pages/components/transfer-list/SelectAllTransferList.js"}}

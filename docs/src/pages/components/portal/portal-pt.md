@@ -1,5 +1,5 @@
 ---
-title: Componente React Modal
+title: Componente React Portal
 components: Portal
 ---
 
@@ -9,7 +9,7 @@ components: Portal
 
 O filho do componente portal será adicionado ao `container` especificado.
 
-O componente é usado internamente pelos componentes [`Modal`](/utils/modal/) e [`Popper`](/utils/popper/). No servidor, o conteúdo não será renderizado. Você deve esperar pelo lado do servidor fazer o `hydration` para ver o filho.
+O componente é usado internamente pelos componentes [`Modal`](/utils/modal/) e [`Popper`](/utils/popper/). No servidor, o conteúdo não será renderizado. Você deve esperar pelo lado do cliente fazer o `hydration` para ver o filho.
 
 ## Simples Portal
 

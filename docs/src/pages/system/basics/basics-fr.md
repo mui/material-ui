@@ -232,7 +232,7 @@ Use this helper to create your own style function.
 
 We don't support all the CSS properties. It's possible that you want to support new ones. It's also possible that you want to change the theme path prefix.
 
-#### Arguments
+#### Paramètres
 
 1. `options` (*Object*): 
   - `options.prop` (*String*): The property the style function will be triggered on.
@@ -240,7 +240,7 @@ We don't support all the CSS properties. It's possible that you want to support 
   - `options.themeKey` (*String* [optional]): The theme path prefix.
   - `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
 
-#### Returns
+#### Valeur de retour
 
 `style function`: The style function created.
 
@@ -261,7 +261,7 @@ const borderColor = style({
 
 Merge multiple style functions into one.
 
-#### Returns
+#### Valeur de retour
 
 `style function`: The style function created.
 

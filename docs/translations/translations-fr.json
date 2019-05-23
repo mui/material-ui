@@ -1,5 +1,4 @@
 {
-  "topBanner": "⚠️ ({{versionNumber}}) il s’agit de la documentation de la version `next`.",
   "homeQuickWord": "Un mot rapide de nos sponsors :",
   "editWebsiteColors": "Modifier les couleurs du site",
   "toggleTheme": "Basculer le thème de couleurs \"clair/sombre\"",
@@ -112,7 +111,7 @@
     "/components/container": "Container",
     "/components/content": "Contenu",
     "/components/css-baseline": "Principes CSS",
-    "/components/data-display": "Data Display",
+    "/components/data-display": "Affichage des données",
     "/components/dialogs": "Dialogs (Dialogues)",
     "/components/dividers": "Dividers (Séparateurs)",
     "/components/drawers": "Drawers (Tiroirs)",

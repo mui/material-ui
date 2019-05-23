@@ -1,33 +1,33 @@
 ---
-title: Tooltip React component
+title: Componente React para Dicas
 components: Tooltip
 ---
 
-# Tooltips
+# Dicas
 
-<p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
+<p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 
-When activated, [Tooltips](https://material.io/design/components/tooltips.html) display a text label identifying an element, such as a description of its function.
+Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exibem um rótulo de texto identificando o elemento, como uma descrição de sua função.
 
-## Simple Tooltips
+## Dicas simples
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## Positioned Tooltips
+## Posicionamento de dicas
 
-The `Tooltip` has 12 **placements** choice. They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
+A dica (`Tooltip`) tem 12 **locais de posicionamento** para escolha. Elas não têm setas direcionais; em vez disso, elas dependem do movimento sobre a fonte para se exibirem na posição configurada.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customized tooltips
+## Dicas customizadas
 
-Aqui estão alguns exemplos de personalização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Custom child element
+## Elemento filho customizado
 
-The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+A dica precisa aplicar eventos DOM do tipo "listeners" para seu elemento filho. Se o filho for um elemento React customizado, você precisa garantir que ele estenda suas propriedades para o elemento DOM subjacente.
 
 ```jsx
 function MyComponent (props) {
@@ -42,35 +42,35 @@ function MyComponent (props) {
 </Tooltip>
 ```
 
-You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
+Você pode encontrar um conceito similar no guia de [componentes de encapsulamento](/guides/composition/#wrapping-components).
 
-## Triggers
+## Gatilhos
 
-You can define the types of events that cause a tooltip to show.
+Você pode definir os tipos de eventos que fazem com que uma dica seja exibida.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Controlled Tooltips
+## Dicas Controladas
 
-You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
+Você pode usas as propriedades `open`, `onOpen` e `onClose` para controlar o comportamento da dica.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Variable Width
+## Largura Variável
 
-The `Tooltip` wraps long text by default to make it readable.
+A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
-## Interativo
+## Interativa
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+Uma dia pode ser interativa. Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire.
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
-## Disabled Elements
+## Elementos Desativados
 
-By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element like a `span`.
+Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. Para acomodar elementos desativados, adicione um elemento encapsulador simples como um `span`.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
@@ -80,10 +80,10 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Showing and hiding
+## Mostrando e ocultando
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
+A dica normalmente é mostrada imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
 
-On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
+Em mobile, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. Você pode desativar esse recurso com a propriedade `disableTouchListener`.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}

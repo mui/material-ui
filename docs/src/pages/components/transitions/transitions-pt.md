@@ -45,17 +45,17 @@ Fade in de transparente para opaco.
 
 ## Grow
 
-Expand outwards from the center of the child element, while also fading in from transparent to opaque.
+Expande para fora a partir do centro do elemento filho, enquanto também desvanece em efeito de transparente para opaco.
 
-The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` property to change the entry speed.
+O segundo exemplo demonstra como alterar `transform-origin` e condicionalmente aplica a propriedade `timeout` para alterar a velocidade de entrada.
 
 {{"demo": "pages/components/transitions/SimpleGrow.js"}}
 
 ## Slide
 
-Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
+Slide (Deslize) a partir da borda da tela. A propriedade `direction` controla em qual borda da tela a transição começa.
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from it's off-screen position. Similarly the `unmountOnExit` property removes the component from the DOM after it has been transition off screen.
+A propriedade de transição do componente `mountOnEnter` impede que o componente filho seja montado até que `in` seja `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida (`in` = `false`).
 
 {{"demo": "pages/components/transitions/SimpleSlide.js"}}
 

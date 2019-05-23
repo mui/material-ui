@@ -1,12 +1,12 @@
 # @material-ui/styles
 
-<p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
+<p class="description">Вы можете использовать в своем приложении стилевое решение Material-UI независимо от того, используете ли вы компоненты Material-UI или нет.</p>
 
 Material-UI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
 
-## Why use Material-UI's styling solution?
+## Зачем использовать решение для стилей Material-UI?
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited. We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style). It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that this is the future:
+В предыдущих версиях Material-UI использовал LESS, а затем пользовательское решение для написания стилей компонентов, но эти подходы оказались ограниченными. We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style). It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that this is the future:
 
 - [Унифицированный язык стилей](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [Конвертировать SCSS (Sass) в CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
@@ -31,9 +31,9 @@ npm install @material-ui/styles
 yarn add @material-ui/styles
 ```
 
-## Getting started
+## Начало работы
 
-We provide 3 different APIs to generate and apply styles, however they all share the same underlying logic.
+Мы предоставляем 3 разных API для генерации и применения стилей, но все они имеют одинаковую базовую логику.
 
 ### Hook API
 
@@ -169,9 +169,9 @@ function MyComponent() {
 }
 ```
 
-This button component has a color property that changes its color:
+Этот компонент кнопка имеет свойство цвет, которое меняет свой цвет:
 
-### Adapting the hook API
+### Адаптация хука API
 
 {{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
 
@@ -179,7 +179,7 @@ This button component has a color property that changes its color:
 
 {{"demo": "pages/styles/basics/AdaptingStyledComponents.js"}}
 
-### Adapting the higher-order component API
+### Адаптация API компонента высшего порядка
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 

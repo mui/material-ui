@@ -4,7 +4,7 @@ title: Box React component
 
 # Box
 
-<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">Box компонент используется как обертка компонента для большинства CSS utility.</p>
 
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/styles`.
 
@@ -12,9 +12,9 @@ The Box component packages [all the style functions](/system/basics/#all-inclusi
 
 [The palette](/system/palette/) style function.
 
-## Overriding Material-UI components
+## Переопределение Material-UI компонентов
 
-The Box component wraps your component. It creates a new DOM element, a `<div>` by default that can be changed with the `component` property. Let's say you want to use a `<span>` instead:
+Box компонент оборачивает ваш компонент. Создает новый DOM элемент, `<div>` по умолчанию, но может быть изменен `component` свойством. Давайте предположим вы хотите использовать`<span>` взамен:
 
 ```jsx
 <Box component="span" m={1}>
@@ -22,7 +22,7 @@ The Box component wraps your component. It creates a new DOM element, a `<div>` 
 </Box>
 ```
 
-This works great when the changes can be isolated to a new DOM element. For instance, you can change the margin this way.
+Это работает превосходно когда изменения могут быть изолированы в новый DOM элемент. Для сущности, вы можете изменить margin(внешний отступ) таким образом.
 
 However, sometimes you have to target the underlying DOM element. For instance, you want to change the text color of the button. The Button component defines its own color. CSS inheritance doesn't help. To workaround the problem, you have two options:
 

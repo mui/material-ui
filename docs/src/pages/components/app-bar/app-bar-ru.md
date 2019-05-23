@@ -45,9 +45,9 @@ components: AppBar, Toolbar, Menu
 
 ## Scrolling
 
-### Hide App Bar
+### Скрытие панели навигации
 
-An App Bar that hides on scroll.
+Панель навигации скрывается при скролле.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": "true", "maxWidth": 500}}
 
@@ -62,14 +62,14 @@ An App Bar that elevates on scroll.
 #### Аргументы
 
 1. `options` (*Object* [optional]):
-
-- `options.disableHysteresis` (*Boolan* [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
-- `options.target` (*Node* [optional]): Defaults to `window`.
-- `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll crosses this threshold.
+    
+    - `options.disableHysteresis` (*Boolean* [optional]): Defaults to `false`. Disable the hysteresis. Игнорирование направления прокрутки когда определено `trigger` значение.
+    - `options.target` (*Node* [optional]): По умолчанию `window`.
+    - `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
 
 #### Возвращает
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: Соответствует ли положение прокрутки критериям?
 
 #### Примеры
 

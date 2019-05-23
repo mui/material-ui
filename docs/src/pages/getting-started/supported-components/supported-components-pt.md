@@ -1,18 +1,18 @@
 # Componentes Suportados
 
-<p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
+<p class="description">A seguir, uma lista de componentes e recursos do Material Design. Aqueles atualmente suportados pelo Material-UI são destacados com ✓.</p>
 
-While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, or every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
+Nós trabalhamos para seguir as orientações sempre que possível (aplicando senso comum onde as diretrizes contradizem - uma ocorrência mais comum do que se poderia esperar), não esperamos suportar cada componente, ou cada característica de cada componente, mas sim fornecer os blocos de construção que permitem que os desenvolvedores criem interfaces e experiências de usuário atraentes.
 
-If you wish to add support for a component or feature not highlighted here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one to discuss the approach before submitting a pull request.
+Se você deseja adicionar suporte a um componente ou recurso não destacado aqui, pesquise o problema relevante no [GitHub](https://github.com/mui-org/material-ui/issues) ou crie um novo para discutir a abordagem antes de enviar um pull request.
 
-- App bars 
-  - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
-  - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
+- Barra de Aplicativos 
+  - **[Superior](https://material.io/design/components/app-bars-top.html) ✓**
+  - **[Inferior](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banners](https://material.io/design/components/banners.html)** ([Pode ser composto](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
-- **[Buttons](https://material.io/design/components/buttons.html) ✓** 
-  - **[Texto & contidas botões (Antigamente flat & raised)](https://material.io/design/components/buttons.html) ✓**
+- **[Navegação Inferior](https://material.io/design/components/bottom-navigation.html) ✓**
+- **[Botões](https://material.io/design/components/buttons.html) ✓** 
+  - **[Botões de Texto & Botões Contidos (Antigamente flat & raised)](https://material.io/design/components/buttons.html) ✓**
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
@@ -26,9 +26,9 @@ If you wish to add support for a component or feature not highlighted here, plea
 - **[Cards](https://material.io/design/components/cards.html) ✓**
 - **[Chips](https://material.io/design/components/chips.html) ✓** 
   - **[Input](https://material.io/design/components/chips.html#input-chips) ✓**
-  - [Choice](https://material.io/design/components/chips.html#choice-chips)
-  - [Filter](https://material.io/design/components/chips.html#filter-chips)
-  - [Action](https://material.io/design/components/chips.html#action-chips)
+  - [Choice](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
+  - [Filter](https://material.io/design/components/chips.html#choice-chips)
+  - [Action](https://material.io/design/components/chips.html#filter-chips)
 - **[Data tables](https://material.io/design/components/data-tables.html) ✓** 
   - **Sortable ✓**
   - **Selectable ✓**
@@ -46,7 +46,7 @@ If you wish to add support for a component or feature not highlighted here, plea
 - **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legado Material v1*)
 - **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
 - **[Lists](https://material.io/design/components/lists.html) ✓** 
-  - [Types:](https://material.io/design/components/lists.html#types) 
+  - [Types:](https://material.io/design/components/chips.html#action-chips) 
     - **Single line ✓**
     - **Two line ✓**
     - Three line
@@ -60,8 +60,8 @@ If you wish to add support for a component or feature not highlighted here, plea
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
   - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Pode ser composto) 
-    - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
-  - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
+    - [Cascade](https://material.io/design/components/lists.html#types)
+  - [Exposed dropdown menus](https://material.io/design/components/menus.html#dropdown-menu) 
     - **Text field dropdown menu ✓** (Select)
     - Editable dropdown menu
   - **Contextual ✓**
@@ -80,7 +80,7 @@ If you wish to add support for a component or feature not highlighted here, plea
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*) 
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grid](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
-  - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
+  - [Menu](https://material.io/design/components/menus.html#exposed-dropdown-menu)
 - **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
@@ -92,7 +92,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legacy Material v1)
   - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
   - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
-  - [Types](https://material.io/design/components/text-fields.html#input-types): 
+  - [Types](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders): 
     - **Single-line ✓**
     - **Multi-line ✓**
     - Text-area

@@ -83,7 +83,7 @@ function Progress(props) {
 
 ## Customized progress bars
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici quelques exemples de personnalisation du composant. Vous pouvez en apprendre plus sur [la page de documentation de personnalisation](/customization/components/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 
@@ -99,6 +99,6 @@ Under heavy load, you might lose the stroke dash animation or see random Circula
 
 ![heavy load](/static/images/progress/heavy-load.gif)
 
-Lorsque ce n'est pas possible, vous pouvez utiliser la propriété `disableShrink` pour atténuer le problème. Voir https://github.com/mui-org/material-ui/issues/10327
+When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See [this issue](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}

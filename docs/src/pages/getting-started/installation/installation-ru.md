@@ -20,7 +20,7 @@ yarn add @material-ui/core@next
 
 ## Шрифт Roboto
 
-Material-UI был разработан на основе шрифта [Roboto](https://fonts.google.com/specimen/Roboto). So be sure to follow [these instructions]/components/typography/#general). Например, через Google Web Fonts:
+Material-UI был разработан на основе шрифта [Roboto](https://fonts.google.com/specimen/Roboto). Поэтому обязательно следуйте [этим инструкциям](/components/typography/#general). Например, через Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
@@ -28,7 +28,7 @@ Material-UI был разработан на основе шрифта [Roboto](
 
 ## Иконочный шрифт
 
-Для того, чтобы использовать компонент `Icon`, вы должны сначала добавить [Material icons](https://material.io/tools/icons/) шрифт. Here are [some instructions]/components/icons/#font-icons) on how to do so. Например, через Google Web Fonts:
+Для того, чтобы использовать компонент `Icon`, вы должны сначала добавить [Material icons](https://material.io/tools/icons/) шрифт. Вот [некоторые инструкции](/components/icons/#font-icons) как это сделать. Например, через Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -42,7 +42,7 @@ Material-UI был разработан на основе шрифта [Roboto](
 
 ## SVG Иконки
 
-In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+Для того, чтобы использовать предварительно собранные SVG-иконки Material, такие как те, которые используются для [демонстрации](/components/icons/), сначала необходимо установить пакет [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
 // через npm

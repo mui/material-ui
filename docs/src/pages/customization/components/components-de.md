@@ -77,7 +77,7 @@ Um die internen Zustände der Komponenten außer Kraft zu setzen, **müssen Sie 
 .MuiButton {
   color: black;
 }
-/* We increase the specificity */
+/ * Wir erhöhen die Spezifität * /
 .MuiButton:disabled {
   color: white;
 }

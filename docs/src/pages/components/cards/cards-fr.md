@@ -33,7 +33,7 @@ Par défaut, nous utilisons la combinaison d'un élément `<div>` et *background
 
 {{"demo": "pages/components/cards/ImgMediaCard.js"}}
 
-> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+> ⚠️ Lorsque `component = "img"`, CardMedia s’appuie sur `object-fit` pour centrer l’image. Ce n'est pas supporté par IE 11.
 
 ## Contrôles d'UI
 

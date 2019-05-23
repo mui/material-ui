@@ -30,7 +30,7 @@ Yes, this really is all you need to get started, as you can see in this live and
 
 {{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
 
-## Globals
+## Globais
 
 Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
 
@@ -47,7 +47,7 @@ Material-UI is developed mobile first, a strategy in which we first write code f
 
 ### CssBaseline
 
-Material-UI provides an optional [CssBaseline]/components/css-baseline/) component. It's fixing some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI provides an optional [CssBaseline](/components/css-baseline/) component. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
 
 ## Versioned Documentation
 
@@ -57,6 +57,6 @@ This documentation always reflects the latest stable version of Material-UI. You
 
 Now that you have an idea of the basic setup, it's time to learn more about:
 
-- How to provide [the Material Design font and typography]/components/typography/).
+- How to provide [the Material Design font and typography](/components/typography/).
 - How to take advantage of the [theming solution](/customization/themes/).
 - How to [override](/customization/components/) the look and feel of the components.

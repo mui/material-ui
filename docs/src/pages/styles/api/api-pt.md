@@ -4,18 +4,18 @@
 
 ## `createGenerateClassName([options]) => class name generator`
 
-A function which returns [a class name generator function](http://cssinjs.org/jss-api/#generate-your-class-names).
+Uma função que retorna [uma função geradora de nome de classe](http://cssinjs.org/jss-api/#generate-your-class-names).
 
 #### Argumentos
 
-1. `options` (*Object* [optional]): 
-    - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
-    - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
-    - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
+1. `options` (*Object* [opcional]): 
+    - `options.disableGlobal` (*Boolean* [opcional]): Padrão `false`. Desabilita a geração de nomes de classes determinísticas.
+    - `options.productionPrefix` (*String* [opcional]): Padrão `'jss'`. A string usada para prefixar os nomes de classes em produção.
+    - `options.seed` (*String* [opcional]): Padrão `''`. A string u usada unicamente para identificar o gerador. Ela pode ser usada para evitar colisões de nomes de classes ao usar vários geradores no mesmo documento.
 
 #### Retornos
 
-`class name generator`: The generator should be provided to JSS.
+`class name generator`: O gerador que deve ser fornecido ao JSS.
 
 #### Exemplos
 
@@ -36,7 +36,7 @@ export default function App() {
 
 ## `createStyles(styles) => styles`
 
-This function doesn't really "do anything" at runtime, it's just the identity function. Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
+Esta função realmente não "faz nada" em tempo de execução, é apenas uma função de identidade. Sua única finalidade é prevenir a ampliação de tipos do **TypeScript**, ao fornecer regras de estilo para `makeStyles`/`withStyles` que são uma função do `Tema`.
 
 #### Argumentos
 
@@ -44,7 +44,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 #### Retornos
 
-`styles`: A function generating the styles or a styles object.
+`styles`: Uma função que gera os estilos ou um objeto de estilos.
 
 #### Exemplos
 
@@ -67,21 +67,21 @@ export default MyComponent;
 
 ## `makeStyles(styles, [options]) => hook`
 
-Link a style sheet with a function component using the **hook** pattern.
+Vincula uma folha de estilo a um componente de função usando o padrão **hook**.
 
 #### Argumentos
 
-1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ele será vinculado ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
-2. `options` (*Object* [optional]): 
-    - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
-    - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
+2. `options` (*Object* [opcional]): 
+    - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
+    - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
+    - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
+    - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
+    - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Retornos
 
-`hook`: A hook. This hook can be used in a function component. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
+`hook`: Um hook. Este hook pode ser usado em uma função que retorna o componente. Aceita um argumento: as propriedades que serão usadas para "interpolação" na folha de estilo.
 
 #### Exemplos
 
@@ -103,7 +103,7 @@ export default function MyComponent() {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle server-side rendering. [You can follow our guide for a practical approach](/guides/server-rendering/).
+Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [Você pode seguir nosso guia para uma abordagem prática](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -126,44 +126,44 @@ const response = `
 
 ### `new ServerStyleSheets([options])`
 
-The instantiation accepts an options object as a first argument.
+A instanciação aceita um objeto de opções como primeiro argumento.
 
-1. `options` (*Object* [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
+1. `options` (*Object* [opcional]): As opções são distribuídas como propriedades para o componente [`StylesProvider`](#stylesprovider).
 
-### `sheets.collect(node) => React element`
+### `sheets.collect(node) => Elemento React`
 
-The method wraps your React node in a provider element. It collects the style sheets during the rendering so they can be later sent to the client.
+O método envolve seu nó React em um elemento provider. Ele coleta as folhas de estilo durante a renderização para que elas possam ser enviadas posteriormente ao cliente.
 
 ### `sheets.toString() => CSS string`
 
-The method returns the collected styles.
+O método retorna os estilos coletados.
 
-⚠️ You must call `.collect()` before using this method.
+⚠️ Você deve chamar `.collect()` antes de usar este método.
 
-### `sheets.getStyleElement() => CSS React element`
+### `sheets.getStyleElement() => CSS do elemento React`
 
-The method is an alternative to `.toString()` when you are rendering the whole page with React.
+O método é uma alternativa para `.toString()` quando você esta renderizando a página inteira com React.
 
-⚠️ You must call `.collect()` before using this method.
+⚠️ Você deve chamar `.collect()` antes de usar este método.
 
 ## `styled(Component)(styles, [options]) => Component`
 
-Link a style sheet with a function component using the **styled components** pattern.
+Vincula uma folha de estilos, com uma função de componente, usando o padrão de **componentes estilizados (styled components)**.
 
 #### Argumentos
 
-1. `Component`: The component that will be wrapped.
-2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ele será vinculado ao componente. Use a assinatura da função se você precisar ter acesso ao tema. It's provided as property of the first argument.
-3. `options` (*Object* [optional]): 
-    - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
-    - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+1. `Component`: O componente que será manipulado.
+2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como propriedade do primeiro argumento.
+3. `options` (*Object* [opcional]): 
+    - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
+    - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
+    - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
+    - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
+    - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Retornos
 
-`Component`: The new component created.
+`Component`: O novo componente criado.
 
 #### Exemplos
 
@@ -192,11 +192,11 @@ export default function StyledComponents() {
 
 ## `StylesProvider`
 
-This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to the context.
+Este componente permite que você altere o comportamento da solução de estilo. Ele torna as opções disponíveis na árvore React graças ao contexto.
 
-It should preferably be used at **the root of your component tree**.
+Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 
-#### PropsBy default, the styles are injected last in the 
+#### PropsPor padrão, os estilos são injetados por último 
 
 <head>
   element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.</td> </tr> 
@@ -215,7 +215,7 @@ It should preferably be used at **the root of your component tree**.
     </td>
     
     <td align="left">
-      JSS's instance.
+      Instância do JSS.
     </td>
   </tr></tbody> </table> 
   
@@ -241,7 +241,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </h2>
   
   <p>
-    This component takes a <code>theme</code> property, and makes it available down the React tree thanks to the context. It should preferably be used at <strong>the root of your component tree</strong>.
+    Este componente tem uma propriedade <code>theme</code>, e se torna disponível pela árvore React graças ao contexto. Deve preferencialmente ser usado na <strong>raiz da sua árvore de componentes</strong>.
   </p>
   
   <h4>
@@ -251,19 +251,19 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   <table>
     <tr>
       <th align="left">
-        Name
+        Nome
       </th>
       
       <th align="left">
-        Type
+        Tipo
       </th>
       
       <th align="left">
-        Default
+        Padrão
       </th>
       
       <th align="left">
-        Description
+        Descrição
       </th>
     </tr>
     
@@ -281,7 +281,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
       </td>
       
       <td align="left">
-        Your component tree.
+        Sua árvore de componentes.
       </td>
     </tr>
     
@@ -299,7 +299,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
       </td>
       
       <td align="left">
-        A theme object. You can provide a function to extend the outer theme.
+        Um objeto de tema. Você pode utilizar uma função para receber o tema externo.
       </td>
     </tr>
   </table>
@@ -392,19 +392,19 @@ export default function MyComponent() {
     <li>
       <code>options</code> (<em>Object</em> [optional]): <ul>
         <li>
-          <code>options.defaultTheme</code> (<em>Object</em> [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+          <code>options.defaultTheme</code> (<em>Object</em> [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
         </li>
         <li>
-          <code>options.withTheme</code> (<em>Boolean</em> [optional]): Defaults to <code>false</code>. Provide the <code>theme</code> object to the component as a property.
+          <code>options.withTheme</code> (<em>Boolean</em> [opcional]): Padrão <code>false</code>. Fornecer o objeto <code>theme</code> para o componente como uma propriedade.
         </li>
         <li>
-          <code>options.name</code> (<em>String</em> [optional]): The name of the style sheet. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
+          <code>options.name</code> (<em>String</em> [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
         </li>
         <li>
-          <code>options.flip</code> (<em>Boolean</em> [optional]): When set to <code>false</code>, this sheet will opt-out the <code>rtl</code> transformation. Quando definido para <code>true</code>, os estilos são invertidos. Quando definido para <code>null</code>, segue <code>theme.direction</code>.
+          <code>options.flip</code> (<em>Boolean</em> [opcional]): Quando definido como <code>false</code>, está folha irá cancelar a transformação <code>rtl</code>. Quando definido para <code>true</code>, os estilos são invertidos. Quando definido para <code>null</code>, segue <code>theme.direction</code>.
         </li>
         <li>
-          The other keys are forwarded to the options argument of <a href="http://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet([styles], [options])</a>.
+          As outras chaves são encaminhadas para o argumento de opções do <a href="http://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet ([styles], [options])</a>.
         </li>
       </ul>
     </li>
@@ -415,7 +415,7 @@ export default function MyComponent() {
   </h4>
   
   <p>
-    <code>higher-order component</code>: Should be used to wrap a component.
+    <code>higher-order component</code>: Deve ser usado para encapsular o componente.
   </p>
   
   <h4>
@@ -477,7 +477,7 @@ export default MyComponent
   
   <ol start="1">
     <li>
-      <code>Component</code>: The component that will be wrapped.
+      <code>Component</code>: O componente que será manipulado.
     </li>
   </ol>
   
@@ -486,7 +486,7 @@ export default MyComponent
   </h4>
   
   <p>
-    <code>Component</code>: The new component created. Does forward refs to the inner component.
+    <code>Component</code>: O novo componente criado. Does forward refs to the inner component.
   </p>
   
   <h4>

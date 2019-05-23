@@ -6,9 +6,9 @@ This guide aims to document the most popular alternatives, but you should find t
 
 - [Plain CSS](#plain-css)
 - [Global CSS](#global-css)
-- [Styled Components](#styled-components)
-- [CSS Modules](#css-modules)
-- [Emotion](#emotion)
+- [Styled Components](#global-css)
+- [CSS Modules](#styled-components)
+- [Emotion](#css-modules)
 - [React JSS](#react-jss)
 - [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
@@ -131,8 +131,8 @@ Both styled-components and JSS inject their styles at the bottom of the `<head>`
 import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Styled components can override Material-UI's styles. */}
+  {/* Sua árvore de componentes.
+      Componentes com estilo podem sobrescrever os estilos de Material-UI. */}
 </StylesProvider>
 ```
 
