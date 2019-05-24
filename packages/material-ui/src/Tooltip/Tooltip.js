@@ -18,8 +18,8 @@ export const styles = theme => ({
     zIndex: theme.zIndex.tooltip,
     pointerEvents: 'none',
     position: 'absolute',
-    top: '0px',
-    left: '0px',
+    top: 0,
+    left: 0,
   },
   /* Styles applied to the Popper component if `interactive={true}`. */
   popperInteractive: {
