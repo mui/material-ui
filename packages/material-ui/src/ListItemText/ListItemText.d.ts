@@ -18,7 +18,7 @@ export type ListItemTextClassKey =
   | 'dense'
   | 'primary'
   | 'secondary'
-  | 'textDense';
+  | 'multiline';
 
 declare const ListItemText: React.ComponentType<ListItemTextProps>;
 
