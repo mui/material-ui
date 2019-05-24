@@ -14,11 +14,11 @@ export interface ListItemTextProps
 
 export type ListItemTextClassKey =
   | 'root'
-  | 'inset'
+  | 'multiline'
   | 'dense'
+  | 'inset'
   | 'primary'
-  | 'secondary'
-  | 'multiline';
+  | 'secondary';
 
 declare const ListItemText: React.ComponentType<ListItemTextProps>;
 
