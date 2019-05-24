@@ -52,7 +52,7 @@ function initDocsearch(userLanguage) {
       indexName: 'material-ui',
       inputSelector: '#docsearch-input',
       algoliaOptions: {
-        facetFilters: ['version:next', `language:${userLanguage}`],
+        facetFilters: ['version:master', `language:${userLanguage}`],
       },
       handleSelected: (input, event, suggestion) => {
         event.button = 0;
