@@ -2,9 +2,9 @@
 
 <p class="description">Você pode adicionar tipagem estática para o JavaScript para melhorar a produtividade do desenvolvimento e a qualidade do código graças ao TypeScript.</p>
 
-Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript). É necessário estar no mínimo com a versão 2.8 do TypeScript.
+Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript). É necessário estar no mínimo com a versão 2.8 do TypeScript.
 
-Nossas definições são testadas com a seguinte configuração [tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json). Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros.
+Nossas definições são testadas com a seguinte configuração [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json). Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros.
 
 ## Uso de `withStyles`
 
@@ -12,7 +12,7 @@ Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há algu
 
 ### Utilizando `createStyles` para evitar a ampliação de tipo (type widening)
 
-Uma fonte frequente de confusão é a ampliação de tipos ([type widening](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening)) do TypeScript, que faz com que este exemplo não funcione como o esperado:
+Uma fonte frequente de confusão é a ampliação de tipos ([type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)) do TypeScript, que faz com que este exemplo não funcione como o esperado:
 
 ```ts
 const styles = {

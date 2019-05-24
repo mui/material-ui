@@ -195,7 +195,7 @@ export default App;
 
 ## String templates
 
-Se você preferir a sintaxe CSS sobre o JSS, você pode usar o plugin [jss-plugin-template ](https://cssinjs.org/jss-plugin-template).
+Se você preferir a sintaxe CSS sobre o JSS, você pode usar o plugin [jss-plugin-template ](https://cssinjs.org/jss-plugin-template/).
 
 ```jsx
 const useStyles = makeStyles({
@@ -388,13 +388,13 @@ Você pode [seguir o guia lado do servidor](/guides/server-rendering/) para um e
 
 Nós temos [um plugin oficial](https://github.com/hupe1980/gatsby-plugin-material-ui) que permite a renderização do lado do servidor para `@material-ui/ styles`. Consulte a página do plugin para obter instruções de configuração e uso.
 
-Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next).
+Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/master/examples/gatsby).
 
 ### Next.js
 
-Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
+Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
 
-Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next).
+Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/master/examples/nextjs).
 
 ## Nomes de classes (Class names)
 

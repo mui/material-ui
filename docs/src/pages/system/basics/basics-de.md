@@ -12,7 +12,7 @@
 - 🦎 Arbeiten Sie mit beliebigen Themeobjekten.
 - 💅 Arbeite mit den bekanntesten CSS-in-JS Lösungen.
 - 📦 Weniger als [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
+- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
 
 Es ist wichtig zu verstehen, dass dieses Paket mit dieser Signatur reine (nebenwirkungsfreie) Stilfunktionen bereitstellt: `({ theme, ...style }) => style` ** das ist alles** .
 
@@ -315,7 +315,7 @@ In Praxis kann eine Box-Komponente viel Zeit sparen. In diesem Beispiel wird gez
 - [Twitter-Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) hat langsam atomare Klassennamen in v2, v3 und v4 eingeführt. Wir haben die Art, wie sie ihre "Helper-Klassen" gruppieren, als Inspiration genutzt.
 - In der Welt von React, war das [Styled System](https://github.com/jxnblk/styled-system) eins der ersten (2017), die Stilfunktionen unterstützte. Sie kann als generische Box-Komponente verwendet werden und ersetzt die atomaren CSS-Helfer sowie Helfer beim Schreiben neuer Komponenten.
 - Große Unternehmen wie Pinterest, GitHub und Segment.io verwenden denselben Ansatz in verschiedenen Geschmacksrichtungen: 
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
+  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - Die eigentliche Implementierung und die objektabhängige API wurden vom [System der Smooth-UI](https://smooth-ui.smooth-code.com/docs-basics-system) inspiriert.

@@ -1,14 +1,14 @@
 # Utilização
 
-<p class="description">Get started with React and Material-UI in no time.</p>
+<p class="description">Comece com React e Material-UI em pouco tempo.</p>
 
-Material-UI components work in isolation. **They are self-supporting**, and will only inject the styles they need to display. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
+Componentes do Material-UI funcionam isoladamente. **Eles são auto-suficientes**, e só irão injetar os estilos que eles precisam para exibir. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
 
-You can use any of the components as demonstrated in the documentation. Please refer to each component's [demo page](/components/buttons/) to see how they should be imported.
+Você pode usar qualquer um dos componentes conforme demonstrado na documentação. Por favor, consulte a [página de demonstração](/components/buttons/) de cada componente para ver como eles devem ser importados.
 
-## Quick start
+## Inicio rápido
 
-Here's a quick example to get you started, **it's literally all you need**:
+Aqui está um exemplo rápido para você começar, **é literalmente tudo que você precisa**:
 
 ```jsx
 import React from 'react';
@@ -26,17 +26,17 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-Yes, this really is all you need to get started, as you can see in this live and interactive demo:
+Sim, isso é tudo o que você precisa para começar, como você pode ver nesta demonstração ao vivo e interativa:
 
 {{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
 
 ## Globais
 
-Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
+A experiência de uso com o Material-UI pode ser melhorada com um punhado de configurações globais importantes, das quais você precisa estar ciente.
 
-### Responsive meta tag
+### Meta tag para responsividade
 
-Material-UI is developed mobile first, a strategy in which we first write code for mobile devices and then scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element.
+O Material-UI é desenvolvido primeiro em dispositivos móveis, uma estratégia na qual primeiro escrevemos código para dispositivos móveis e, em seguida, dimensionamos componentes conforme necessário, usando consultas de mídia CSS. Para garantir a renderização adequada e o zoom de toque para todos os dispositivos, adicione a meta tag de visualização responsiva ao seu elemento `<head>`.
 
 ```html
 <meta
@@ -47,16 +47,16 @@ Material-UI is developed mobile first, a strategy in which we first write code f
 
 ### CssBaseline
 
-Material-UI provides an optional [CssBaseline](/components/css-baseline/) component. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI fornece um componente opcional [CssBaseline](/components/css-baseline/). Ele corrige algumas inconsistências nos navegadores e dispositivos, ao mesmo tempo em que fornece redefinições ligeiramente mais opinativas para elementos HTML comuns.
 
-## Versioned Documentation
+## Versões da documentação
 
-This documentation always reflects the latest stable version of Material-UI. You can find older versions of the documentation on a [separate page](/versions/).
+Esta documentação sempre reflete a última versão estável do Material-UI. Você pode encontrar versões mais antigas da documentação em uma [página separada](/versions/).
 
-## Next steps
+## Próximos passos
 
-Now that you have an idea of the basic setup, it's time to learn more about:
+Agora que você tem uma ideia da configuração básica, é hora de aprender mais sobre:
 
-- How to provide [the Material Design font and typography](/components/typography/).
-- How to take advantage of the [theming solution](/customization/themes/).
-- How to [override](/customization/components/) the look and feel of the components.
+- Como aplicar [a fonte e a tipografia do Material Design](/components/typography/).
+- Como tirar proveito da [solução de tema](/customization/themes/).
+- Como [sobrescrever](/customization/components/) o visual e a aparência dos componentes.

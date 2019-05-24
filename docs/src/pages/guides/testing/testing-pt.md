@@ -6,9 +6,9 @@ Exemplos neste guia usam [métodos globais do Mocha](https://mochajs.org/api/glo
 
 ## Interno
 
-Nós levamos os testes a sério. Nós escrevemos e mantemos **uma vasta gama** de testes para que possamos iterar os componentes com confiança, por exemplo, os testes de regressão visual fornecidos por [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) provaram ser realmente úteis. Para saber mais sobre nossos testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui-org/material-ui/blob/next/test/README.md).
+Nós levamos os testes a sério. Nós escrevemos e mantemos **uma vasta gama** de testes para que possamos iterar os componentes com confiança, por exemplo, os testes de regressão visual fornecidos por [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) provaram ser realmente úteis. Para saber mais sobre nossos testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
-Embora tenhamos atingido a conquista de 100% de cobertura de teste, não incentivamos nossos usuários a fazer o mesmo. [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/next.svg)](https://codecov.io/gh/mui-org/material-ui/branch/next)
+Embora tenhamos atingido a conquista de 100% de cobertura de teste, não incentivamos nossos usuários a fazer o mesmo. [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
 
 ## Espaço do usuário
 

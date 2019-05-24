@@ -300,7 +300,7 @@ The documentation site is using a custom theme. Hence, the color palette is diff
 
 There are many ways to support Material-UI:
 
-- Улучшить [документацию](https://github.com/mui-org/material-ui/tree/next/docs).
+- Улучшить [документацию](https://github.com/mui-org/material-ui/tree/master/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
 - Отвечать на вопросы на [и StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) или [Spectrum](https://spectrum.chat/material-ui).

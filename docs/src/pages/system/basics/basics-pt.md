@@ -4,7 +4,7 @@
 
 ## Primeiros passos
 
-`@material-ui/system` provides low-level utility functions called "*style functions*" for building powerful design systems. Some of the key features:
+`@material-ui/system` provides low-level utility functions called "*style functions*" for building powerful design systems. Algumas das principais características:
 
 - ⚛️ Access the theme values directly from the component props.
 - 🦋 Encourage UI consistency.
@@ -12,7 +12,7 @@
 - 🦎 Work with any theme object.
 - 💅 Work with the most popular CSS-in-JS solutions.
 - 📦 Less than [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [Fast enough](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) not to be a bottleneck at runtime.
+- 🚀 [Fast enough](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) not to be a bottleneck at runtime.
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 
@@ -315,7 +315,7 @@ In practice, a Box component can save you a lot of time. In this example, we dem
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. We have used the way they group their "Helper classes" as inspiration.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions. It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
 - Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
-  - [Evergreen Box](/system/typography/#api)
+  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://evergreen.segment.com/components/layout-primitives)
   - [Primer Box](https://primer.style/components/docs/Box)
 - The actual implementation and the object responsive API was inspired by the [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system).

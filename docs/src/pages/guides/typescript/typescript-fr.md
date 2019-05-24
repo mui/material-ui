@@ -2,9 +2,9 @@
 
 <p class="description">Vous pouvez ajouter du typage statique à JavaScript pour améliorer la productivité des développeurs et la qualité du code grâce à TypeScript.</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example. Une version minimale de TypeScript 2.8 est requise.
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. Une version minimale de TypeScript 2.8 est requise.
 
-Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json). Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
+Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json). Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
 
 ## Usage of `withStyles`
 
@@ -12,7 +12,7 @@ Using `withStyles` in TypeScript can be a little tricky, but there are some util
 
 ### Using `createStyles` to defeat type widening
 
-A frequent source of confusion is TypeScript's [type widening](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
 
 ```ts
 const styles = {

@@ -2,7 +2,7 @@
 
 <p class="description">Nous avons une sélection de mises en page de base pour vous aider à commencer à créer votre application.</p>
 
-Ils peuvent être combinés avec l'un des [Exemples de Projets](https://github.com/mui-org/material-ui/tree/next/examples) pour former un ensemble de départ.
+Ils peuvent être combinés avec l'un des [Exemples de Projets](https://github.com/mui-org/material-ui/tree/master/examples) pour former un ensemble de départ.
 
 Les sections de chaque mise en page sont clairement définies, soit par des commentaires, soit par l’utilisation de fichiers séparés ce qui facilite l’extraction de parties d’une page (telle qu'une "unité héros" ou un pied de page, par exemple) pour une utilisation ultérieure.
 

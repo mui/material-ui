@@ -1,17 +1,17 @@
 ---
-title: Detect click outside React component
+title: Componente React para Detectar clique fora
 components: ClickAwayListener
 ---
 
 # Observador de Clique (ClickAwayListener)
 
-<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
+<p class="description">Detecta se um evento de clique aconteceu fora de um elemento. Ele observa cliques que ocorrem em algum lugar no documento.</p>
 
 - 
 
-## Simple menu dropdown
+## Menu suspenso simples
 
-For instance, if you need to hide a menu dropdown when people click anywhere else on your page:
+Por exemplo, se você precisar ocultar um menu quando as pessoas clicarem em qualquer outro lugar da sua página:
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 

@@ -33,10 +33,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Nome do componente ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // As propriedades para aplicar
-      disableRipple: true, // Sem efeito cascata, em toda aplicação!
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 
     },
   },
 });
@@ -300,7 +300,7 @@ O site de documentação está usando um tema customizado. Assim, a paleta de co
 
 Existem muitas maneiras de apoiar o Material-UI:
 
-- Melhore [a documentação](https://github.com/mui-org/material-ui/tree/next/docs).
+- Melhore [a documentação](https://github.com/mui-org/material-ui/tree/master/docs).
 - Ajude os outros a começarem.
 - [Espalhe a palavra](https://twitter.com/MaterialUI).
 - Responda a perguntas no [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) ou no [Spectrum](https://spectrum.chat/material-ui).

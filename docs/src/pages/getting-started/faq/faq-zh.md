@@ -300,7 +300,7 @@ function handleRender(req, res) {
 
 有很多方法可以支持 Material-UI：
 
-- 帮助改进[这篇文档](https://github.com/mui-org/material-ui/tree/next/docs).
+- 帮助改进[这篇文档](https://github.com/mui-org/material-ui/tree/master/docs).
 - 帮助他人开始使用。
 - [口口相传](https://twitter.com/MaterialUI)。
 - 回答[ StackOverflow上的问题](https://stackoverflow.com/questions/tagged/material-ui)或[ Spectrum ](https://spectrum.chat/material-ui) 。

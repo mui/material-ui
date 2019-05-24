@@ -5,16 +5,16 @@
 1. [Variação específica para uma situação única](#1-specific-variation-for-a-one-time-situation)
 2. [Variação dinâmica para uma situação única](#2-dynamic-variation-for-a-one-time-situation)
 3. [Variação específica de um componente](#3-specific-variation-of-a-component) reutilizado em contextos diferentes
-4. [Material Design variations](#4-material-design-variations) such as with the button component
+4. [Variações do Material Design](#4-material-design-variations) tal como com o componente botão
 5. [Variação do tema global](#5-global-theme-variation)
 
 ## 1. Variação específica para uma situação única
 
-You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
+Pode ser necessário alterar o estilo de um componente em alguma implementação específica, para a qual você tem as seguintes soluções disponíveis:
 
 ### Sobrescrever usando nomes de classes
 
-The first way to override the style of a component is to use **class names**. Cada componente provê uma propriedade `className` no qual é sempre aplicada ao elemento raiz.
+A primeira maneira de sobrescrever o estilo de um componente é usar **nomes de classe**. Cada componente provê uma propriedade `className` no qual é sempre aplicada ao elemento raiz.
 
 Este exemplo usa o [`withStyles()`](/css-in-js/basics/#higher-order-component-api) high-order componente para injetar estilos customizados no DOM, e passar o nome da classe para o componente `ClassNames` através da propriedade `classes`. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/css-in-js/advanced/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
 

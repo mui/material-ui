@@ -2,9 +2,9 @@
 
 <p class="description">TypeScriptを使用することで、JavaScriptに静的型付けを追加し、開発者の生産性とコード品質を向上させることができます。</p>
 
-[Create React AppでのTypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript)の使用例を参考にしてください。 TypeScript 2.8以上が必要です。
+[Create React AppでのTypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript)の使用例を参考にしてください。 TypeScript 2.8以上が必要です。
 
-私たちの定義は、こちらの[tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json) でテストしています。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。
+私たちの定義は、こちらの[tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json) でテストしています。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。
 
 ## `withStyles`の使い方
 
@@ -12,7 +12,7 @@
 
 ### `createStyles`を使って型の拡大を打倒する
 
-よくある混乱の原因は、TypeScriptの[型の拡大(widening)](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening)です。これにより、この例は期待通りに動作しません。
+よくある混乱の原因は、TypeScriptの[型の拡大(widening)](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)です。これにより、この例は期待通りに動作しません。
 
 ```ts
 const styles = {
