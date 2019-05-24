@@ -34,6 +34,10 @@ const styles = theme => ({
 });
 
 function getAdblock(classes, t) {
+  if (/Googlebot/.test(navigator.userAgent)) {
+    return null;
+  }
+
   return (
     <Paper component="span" elevation={0} className={classes.paper}>
       <Typography variant="body2" display="block" component="span" gutterBottom>
@@ -93,7 +97,7 @@ class Ad extends React.Component {
     const { classes, t } = this.props;
     const { adblock, disable } = this.state;
 
-    if (disable && !/Googlebot/.test(navigator.userAgent)) {
+    if (disable) {
       return <span className={classes.root}>{getAdblock(classes, t)}</span>;
     }
 
