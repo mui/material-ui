@@ -17,7 +17,7 @@ We'll do our best to keep things easy to follow, and as sequential as possible s
 ## Why you should migrate
 
 This documentation page covers the *how* of migrating from v3 to v4.
-The *why* is covered in the release blog post: [*Work in progress, on Medium*](https://medium.com/material-ui).
+The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Updating Your Dependencies
 
