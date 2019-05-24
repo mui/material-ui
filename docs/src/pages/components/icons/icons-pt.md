@@ -104,7 +104,7 @@ Por padrão, um ícone herdará a cor do texto atual. Opcionalmente, você pode 
 
 Ambas as abordagens funcionam bem, no entanto, existem algumas diferenças sutis, especialmente em termos de desempenho e qualidade de renderização. Sempre que possível, utlize o SVG, pois permite a divisão do código, suporta mais ícones, renderiza mais rápido e melhor.
 
-For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://blog.github.com/2016-02-22-delivering-octicons-with-svg/).
+Para maiores detalhes, você pode conferir [porque o GitHub migrou ícones de fonte para ícones SVG](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
 
 ## Acessibilidade
 

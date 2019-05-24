@@ -9,7 +9,7 @@ components: Portal
 
 Дочерние элементы портала будут добавлены внутрь элемента, указанного в свойстве `container`.
 
-Портал используется внутри компонентов [`Modal`](/utils/modal/) и [`Popper`](/utils/popper/). На сервере содержимое портала не отрисовывается. You have to wait for the client side hydratation to see the children.
+The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components. На сервере содержимое портала не отрисовывается. You have to wait for the client side hydratation to see the children.
 
 ## Simple Portal
 

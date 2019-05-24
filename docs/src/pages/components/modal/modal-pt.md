@@ -7,11 +7,11 @@ components: Modal
 
 <p class="description">O componente modal fornece uma base sólida para criar diálogos, popovers, lightboxes ou qualquer outra coisa.</p>
 
-O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. O `Modal` fornece alguns recursos úteis quando utilizado sobre um componente [`Portal`](/utils/portal/) e alguns estilos:
+O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. The `Modal` offers a few helpful features over using just a [`components`](/utils/portal/) component and some styles:
 
-- Gerencia o empilhamento de chamadas um por vez não é suficiente.
-- Cria um backdrop para desabilitar a interação abaixo do modal.
-- Quando aberto, desabilita a rolagem da página.
+- 
+- 
+- 
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
 - 
@@ -60,7 +60,7 @@ Porém, criar elementos React tem um preço também. Considere o caso a seguir:
 </Modal>
 ```
 
-Criamos muitos elementos React que nunca serão montados. Isto é um desperdício 
+We create a lot of React elements that will never be mounted. It's wasteful 
 
 ```jsx
 <Modal open={false}>

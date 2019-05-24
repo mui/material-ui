@@ -13,7 +13,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
 - **[Navegação Inferior](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Botões](https://material.io/design/components/buttons.html) ✓** 
   - **[Botões de Texto & Botões Contidos (Antigamente flat & raised)](https://material.io/design/components/buttons.html) ✓**
-  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
+  - **[Botões de alternância](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
   - Transições: 

@@ -104,7 +104,7 @@ By default, an Icon will inherit the current text color. Optionally, you can set
 
 Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality. Whenever possible SVG is preferred as it allows code splitting, supports more icons, renders faster and better.
 
-For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://blog.github.com/2016-02-22-delivering-octicons-with-svg/).
+For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
 
 ## Accessibility
 

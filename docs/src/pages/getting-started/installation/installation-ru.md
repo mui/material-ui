@@ -9,11 +9,11 @@ Material-UI доступен в виде пакета [ npm ](https://www.npmjs.
 Для установки и сохранения в вашем ` package.json ` зависимости, запустите:
 
 ```sh
-// через npm
-npm install @material-ui/core@next
+// with npm
+npm install @material-ui/core
 
-// через yarn
-yarn add @material-ui/core@next
+// with yarn
+yarn add @material-ui/core
 ```
 
 Обратите внимание, что [react](https://www.npmjs.com/package/react) > = 16.8.0 и [react-dom](https://www.npmjs.com/package/react-dom) > = 16.8.0 являются одноранговыми зависимостями.
@@ -45,22 +45,24 @@ Material-UI был разработан на основе шрифта [Roboto](
 Для того, чтобы использовать предварительно собранные SVG-иконки Material, такие как те, которые используются для [демонстрации](/components/icons/), сначала необходимо установить пакет [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
-// через npm
-npm install @material-ui/icons@next
+// with npm
+npm install @material-ui/icons
 
-// через yarn
-yarn add @material-ui/icons@next
+// with yarn
+yarn add @material-ui/icons
 ```
 
 ## CDN
 
-Вы можете начать использовать Material-UI с минимальной интерфейсной инфраструктурой, что отлично подходит для прототипирования. Мы не рекомендуем использовать этот подход в производственных условиях - клиент должен загрузить всю библиотеку, независимо от того, какие компоненты фактически используются, как это влияет на производительность и использование полосы пропускания.
+Вы можете начать использовать Material-UI с минимальной интерфейсной инфраструктурой, что отлично подходит для прототипирования.
 
-#### Релизы UMD
+We are providing two Universal Module Definition (**UMD**) files:
 
-Мы предоставляем два файла универсального определения модуля (UMD):
+- один для разработки: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
+- один для публикации: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
-- один для разработки: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
-- один для публикации: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
+Вы можете следовать [этому примеру CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) для быстрого старта.
 
-Вы можете следовать [этому примеру CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next) для быстрого старта.
+⚠️ We **discourage** using this approach in **production** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
+
+⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is **unstable**, it shifts as we release new versions. You should consider pointing to a specific version like [v3.9.3](https://unpkg.com/@material-ui/core@3.9.3/umd/material-ui.development.js).

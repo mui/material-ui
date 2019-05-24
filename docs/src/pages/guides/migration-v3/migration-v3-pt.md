@@ -1,84 +1,84 @@
-# Migration From v3 to v4
+# Migrando da v3 para v4
 
-<p class="description">Yeah, v4 alpha has been released!</p>
+<p class="description">Sim, v4 alpha foi liberada!</p>
 
-Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
+Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-> This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md)
+> Este documento é um trabalho em progresso. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md)
 
-## Introduction
+## Introdução
 
-This is a reference for upgrading your site from Material-UI v3 to v4. While there's a lot covered here, you probably won't need to do everything for your site. We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
+Esta é uma referência para atualizar seu site de Material-UI v3 para v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
 
-## Why you should migrate
+## Por que você deve migrar
 
-This documentation page covers the *how* of migrating from v3 to v4. The *why* is covered in the release blog post: [*Work in progress, on Medium*](https://medium.com/material-ui).
+Esta página de documentação cobre o *como* migrar da v3 para a v4. O *por que* é coberto na postagem do blog de lançamento: [*Trabalho em andamento, no Medium*](https://medium.com/material-ui).
 
-## Updating Your Dependencies
+## Atualizando suas Dependências
 
-The very first thing you will need to do is update your dependencies.
+A primeira coisa que você precisa fazer é atualizar suas dependências.
 
-### Update Material-UI version
+### Atualize a versão do Material-UI
 
-You need to update your `package.json` to use the latest version of Material-UI.
+Você precisa atualizar seu `package.json` para usar a versão mais recente do Material-UI.
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^4.0.0-beta.0"
+  "@material-ui/core": "^4.0.0"
 }
 ```
 
-Or run
+Ou execute
 
 ```sh
 npm install @material-ui/core@next
 
-or
+ou
 
 yarn add @material-ui/core@next
 ```
 
-### Update React version
+### Atualize a versão do React
 
-The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`. This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
+A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
 
-### Update Material-UI Styles version
+### Atualize a versão do Material-UI Styles
 
-If you are previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles
+Se você estiver usando `@material-ui/styles` com a v3, você precisa atualizar seu `package.json` para usar a última versão de Material-UI Styles.
 
 ```json
 "dependencies": {
-  "@material-ui/styles": "^4.0.0-beta.0"
+  "@material-ui/styles": "^4.0.0"
 }
 ```
 
-Or run
+Ou execute
 
 ```sh
 npm install @material-ui/styles@next
 
-or
+ou
 
 yarn add @material-ui/styles@next
 ```
 
-## Handling breaking changes
+## Tratamento de alterações recentes
 
-### Core
+### Núcleo
 
-- Every component forward their ref. This is implemented by using `React.forwardRef()`. This affects the internal component tree and display name and therefore might break shallow or snapshot tests. `innerRef` will no longer return a ref to the instance (or nothing if the inner component is a function component) but a ref to its root component. The corresponding API docs list the root component.
+- Cada componente encaminha seu ref. Isso é implementado usando `React.forwardRef()`. Isso afeta a árvore interna do componente e o nome de exibição, portanto, pode quebrar testes superficiais ou instantâneos. `innerRef` não retornará mais um ref à instância (ou nada se o componente interno for um componente de função), mas uma referência ao seu componente raiz. Os documentos da API correspondentes listam o componente raiz.
 
 ### Estilos
 
-- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. Removing `react-jss` from your package.json can help.
-- Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the emotion and styled-components API.
+- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. Remover `react-jss` do seu package.json pode ajudar.
+- Remova a primeira opção de argumento do `withTheme()`. O primeiro argumento era um espaço reservado para uma eventual opção futura. Nós não encontramos uma necessidade para ele. É hora de remover esse argumento. Ele correspondia à API do emotion e styled-components.
   
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
 
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase. It helps isolating the animation logic:
+- Escopo da [API keyframes](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código. Isso ajuda a isolar a lógica da animação:
   
   ```diff
     rippleVisible: {
@@ -98,7 +98,7 @@ yarn add @material-ui/styles@next
 
 ### Tema
 
-- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color. To use it correctly, you have to use the returned value.
+- O método `theme.palette.augmentColor()` não aplica mais o efeito por referência em sua cor de entrada. Para usá-lo corretamente, agora você precisa usar o valor retornado.
   
   ```diff
   -const background = { main: color };
@@ -108,7 +108,7 @@ yarn add @material-ui/styles@next
   console.log({ background });
   ```
 
-- You can safely remove the next variant from the theme creation:
+- Você pode remover com segurança a opção `useNextVariants` do tema:
   
   ```js
   typography: {
@@ -116,7 +116,7 @@ yarn add @material-ui/styles@next
   },
   ```
 
-- `theme.spacing.unit` usage is deprecated, you can use the new API:
+- O uso de `theme.spacing.unit` se tornou obsoleto, você pode usar a nova API:
   
   ```diff
   label: {
@@ -127,7 +127,7 @@ yarn add @material-ui/styles@next
   }
   ```
   
-  *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
+  *Dica: você pode fornecer mais de 1 argumento: theme.spacing (1, 2) // = '8px 16px'*
 
 ### Leiaute
 

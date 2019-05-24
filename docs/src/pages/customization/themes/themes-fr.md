@@ -60,11 +60,11 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 Generate a theme base on the options received.
 
-#### Arguments
+#### Paramètres
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
 
-#### Returns
+#### Valeur de retour
 
 `theme` (*Object*): A complete, ready to use theme object.
 
@@ -90,7 +90,7 @@ const theme = createMuiTheme({
 
 Generate responsive typography settings based on the options received.
 
-#### Arguments
+#### Paramètres
 
 1. `theme` (*Object*): The theme object to enhance.
 2. `options` (*Object* [optional]):
@@ -100,7 +100,7 @@ Generate responsive typography settings based on the options received.
 - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must me greater than 1.
 - `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
 
-#### Returns
+#### Valeur de retour
 
 `theme` (*Object*): The new theme with a responsive typography.
 

@@ -7,11 +7,11 @@ components: Modal
 
 <p class="description">模态框组件可以用来快速创建对话框、弹出窗口，灯箱等任何你所需的组件。</p>
 
-组件会在背景组件前渲染其`children`节点。 与仅使用 [`Portal`](/utils/portal/) 组件和一些样式相比， `Modal` 提供了一些有用的功能：
+组件会在背景组件前渲染其`children`节点。 The `Modal` offers a few helpful features over using just a [`components`](/utils/portal/) component and some styles:
 
-- 管理模态堆叠时，一次一个是不够的。
-- 创建一个背景，用于禁用模态下的交互。
-- 它会在打开时禁用页面内容的滚动。
+- 
+- 
+- 
 - ♿️它妥善管理焦点;移动到模态内容， 并保持它直到模态关闭。
 - ♿️自动添加适当的ARIA角色。
 - 

@@ -23,7 +23,7 @@ intervalo       |   xs   |   sm   |   md   |   lg   |   xl
 
 Esses valores sempre podem ser customizados. Você os encontrará no tema, no objeto [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values).
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
+Os pontos de quebra são usados internamente em vários componentes para torná-los responsivos, mas você também pode tirar proveito deles para controlar o leiaute da sua aplicação através do componente [Grade](/components/grid/) e [Hidden](/components/hidden/).
 
 ## Consultas de Mídia CSS
 
@@ -61,11 +61,11 @@ const styles = theme => ({
 
 ### useMediaQuery hook
 
-You can learn more on the [useMediaQuery](/components/use-media-query/) page.
+Você pode aprender mais na página [useMediaQuery](/components/use-media-query/).
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/components/use-media-query/) hook when the React's hooks are released as stable.
+> ⚠️ Esse componente de ordem superior será descontinuado para o hook [ useMediaQuery](/components/use-media-query/) quando os hooks do React forem liberados como estáveis.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -204,15 +204,15 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 1. `options` (*Object* [optional]): 
     - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
     - `options.noSSR` (*Boolean* [opcional]): Padrão `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. A interface do usuário pode piscar. Você pode definir esse sinalizador para `true` se você não estiver fazendo a renderização do lado do servidor.
-    - `options.initialWidth` (*Breakpoint* [opcional]): Como `window.innerWidth` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. Você pode querer usar uma heurística para aproximar a largura da tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. Para definir o initialWidth, precisamos passar uma propriedade customizada com esta forma:
+    - `options.initialWidth` (*Breakpoint* [opcional]): Como `window.innerWidth` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. Você pode querer usar uma heurística para aproximar a largura da tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint. https://caniuse.com/#search=client%20hint, também podemos definir a largura inicial globalmente usando [`propriedades customizadas`](/customization/globals/#default-props) no tema. Para definir o initialWidth, precisamos passar uma propriedade customizada com esta forma:
 
 ```js
 const theme = createMuiTheme({
   props: {
-    // withWidth component ⚛️
+    // Componente withWidth ⚛️
     MuiWithWidth: {
-      // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 🌎!
+      // Propriedade de largura inicial
+      initialWidth: 'lg', // Ponto de quebra globalmente definido 🌎!
     },
   },
 });

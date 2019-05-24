@@ -6,9 +6,9 @@ Die Beispiele in diesem Abschnitt verwenden [globale Methoden von Mocha](https:/
 
 ## Intern
 
-Wir nehmen Tests ernst. Wir haben **eine breite Palette** von Tests geschrieben und halten diese aktuell, sodass wir mit Vertrauen auf den Komponenten iterieren können, zum Beispiel haben sich die, von [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) zur Verfügung gestellten, visuellen Regressionstests als sehr hilfreich erwiesen. Weitere Informationen zu unseren internen Tests finden Sie in der [README](https://github.com/mui-org/material-ui/blob/next/test/README.md).
+Wir nehmen Tests ernst. Wir haben **eine breite Palette** von Tests geschrieben und halten diese aktuell, sodass wir mit Vertrauen auf den Komponenten iterieren können, zum Beispiel haben sich die, von [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) zur Verfügung gestellten, visuellen Regressionstests als sehr hilfreich erwiesen. Weitere Informationen zu unseren internen Tests finden Sie in der [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
-Obwohl wir eine 100%ige Testabdeckung erreicht haben, empfehlen wir unseren Benutzern nicht, dasselbe zu tun. [![Abdeckungsstatus](https://img.shields.io/codecov/c/github/mui-org/material-ui/next.svg)](https://codecov.io/gh/mui-org/material-ui/branch/next)
+Obwohl wir eine 100%ige Testabdeckung erreicht haben, empfehlen wir unseren Benutzern nicht, dasselbe zu tun. [![Abdeckungsstatus](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
 
 ## Benutzerraum
 

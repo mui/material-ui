@@ -2,9 +2,9 @@
 
 <p class="description">Sie können statische Typisierung zu JavaScript hinzufügen, um die Produktivität und die Codequalität dank TypeScript zu verbessern.</p>
 
-Schauen Sie sich das [Create React App mit TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) Beispiel an. Eine Mindestversion von TypeScript 2.8 ist erforderlich.
+Schauen Sie sich das [Create React App mit TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) Beispiel an. Eine Mindestversion von TypeScript 2.8 ist erforderlich.
 
-Unsere Type Definitionen werden mit der folgenden [tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json) getestet. Verwendung einer weniger strengen `tsconfig.json` oder das Weglassen einiger Bibliotheken kann zu Fehlern führen.
+Unsere Type Definitionen werden mit der folgenden [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json) getestet. Verwendung einer weniger strengen `tsconfig.json` oder das Weglassen einiger Bibliotheken kann zu Fehlern führen.
 
 ## Verwendung von `withStyles`
 
@@ -12,7 +12,7 @@ Verwenden von `withStyles` in TypeScript kann es etwas kniffelig sein, aber es g
 
 ### Verwenden von `CreateStyles`, um die Typerweiterung zu besiegen
 
-Eine häufige Quelle der Verwirrung ist die [Erweiterung der Typen](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening) von TypeScript, was dazu führt, dass dieses Beispiel nicht wie erwartet funktioniert:
+Eine häufige Quelle der Verwirrung ist die [Erweiterung der Typen](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening) von TypeScript, was dazu führt, dass dieses Beispiel nicht wie erwartet funktioniert:
 
 ```ts
 const styles = {

@@ -2,19 +2,19 @@
 
 <p class="description">您是否正在寻找一个范例项目来开始？</p>
 
-您可以在[GitHub存储库中](https://github.com/mui-org/material-ui)的[`/examples`](https://github.com/mui-org/material-ui/tree/next/examples)的文件夹下面，找到一些我们托管一些范例项目：
+您可以在[GitHub存储库中](https://github.com/mui-org/material-ui)的[`/examples`](https://github.com/mui-org/material-ui/tree/master/examples)的文件夹下面，找到一些我们托管一些范例项目：
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-next)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
-- [Parcel](https://github.com/mui-org/material-ui/tree/next/examples/parcel-next)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
+- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
+- [Parcel](https://github.com/mui-org/material-ui/tree/master/examples/parcel)
+- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
+- [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - 以及更多
 
 Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
 
-此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/ docs`](https://github.com/mui-org/material-ui/tree/next/docs) 文件夹以获取创建项目的说明。
+此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/ docs`](https://github.com/mui-org/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
 
 ## 更高级的范例项目
 

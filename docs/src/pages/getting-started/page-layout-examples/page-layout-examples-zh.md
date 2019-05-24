@@ -2,7 +2,7 @@
 
 <p class="description">一系列基本页面布局可帮助您开始构建应用程序。</p>
 
-They can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/next/examples) to form a complete starter.
+They can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
 
 通过注释或使用单独的文件清楚地定义每个布局的部分， 使得提取页面的部分（例如“英雄单元”或页脚） 变得简单，以便在其他页面中重复使用。
 

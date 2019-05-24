@@ -2,9 +2,9 @@
 
 <p class="description">借助 TypeScript，你可以为 JavaScript 添加静态类型，从而提高代码质量及开发者的工作效率。</p>
 
-请查看 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。 此例子要求 TypeScript 版本大于 2.8。
+例子：https://github. com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript 此例子要求 TypeScript 版本大于 2.8。
 
-我们的定义都通过[tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json) 进行测试。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。
+我们的定义都通过[tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json) 进行测试。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。
 
 ## `withStyles` 的使用
 
@@ -12,7 +12,7 @@
 
 ### 使用 `createStyles` 来杜绝类型扩展
 
-有一个造成混淆的常见原因是 TypeScript的 [类型扩展](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening)，因此这个示例不会像预期那样工作：
+有一个造成混淆的常见原因是 TypeScript的 [类型扩展](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)，因此这个示例不会像预期那样工作：
 
 ```ts
 const styles = {

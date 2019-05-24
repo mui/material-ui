@@ -9,7 +9,7 @@ components: Portal
 
 Die untergeordneten Elemente der Portalkomponente werden an den angegebenen `Container` angehängt.
 
-Die Komponente wird intern von den Komponenten [`Modal`](/utils/modal/) und [`Popper`](/utils/popper/) benutzt. Auf dem Server wird der Inhalt nicht gerendert. Sie müssen auf die Hydratation des Klienten warten, um die Subkomponenten zu sehen.
+The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components. Auf dem Server wird der Inhalt nicht gerendert. Sie müssen auf die Hydratation des Klienten warten, um die Subkomponenten zu sehen.
 
 ## Einfaches Portal
 

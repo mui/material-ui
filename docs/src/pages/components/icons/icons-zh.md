@@ -104,7 +104,7 @@ import Icon from '@material-ui/core/Icon';
 
 这两种方法都能管用，然而，它们之间还是有着一些微妙的差异，特别当涉及到整体性能和渲染质量。 我们推荐尽可能选择 SVG，因为它允许代码分割、支持更多图标、而且渲染得更快、更好。
 
-For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://blog.github.com/2016-02-22-delivering-octicons-with-svg/).
+For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
 
 ## 可及性
 
