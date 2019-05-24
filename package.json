@@ -28,7 +28,7 @@
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development babel-node docs/src/server.js",
     "docs:export": "rimraf docs/export && next export -o docs/export && yarn docs:build-sw && cp -r docs/static/. docs/export",
     "docs:icons": "rimraf static/icons/* && babel-node ./docs/scripts/buildIcons.js",
-    "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
+    "docs:size-why": "cross-env DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:start": "next start",
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
     "docs:typescript": "node docs/scripts/formattedTSDemos --watch",
