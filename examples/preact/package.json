@@ -108,8 +108,8 @@
       "node"
     ],
     "watchPlugins": [
-      "/Users/oliviertassinari/preact-next/node_modules/jest-watch-typeahead/filename.js",
-      "/Users/oliviertassinari/preact-next/node_modules/jest-watch-typeahead/testname.js"
+      "/Users/oliviertassinari/preact/node_modules/jest-watch-typeahead/filename.js",
+      "/Users/oliviertassinari/preact/node_modules/jest-watch-typeahead/testname.js"
     ]
   },
   "babel": {

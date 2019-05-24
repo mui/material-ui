@@ -21,7 +21,7 @@ const defaultTimeout = {
 };
 
 /**
- * The Fade transition is used by the [Modal](/utils/modal/) component.
+ * The Fade transition is used by the [Modal](/components/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Fade = React.forwardRef(function Fade(props, ref) {

@@ -122,7 +122,7 @@ function HomeSteps(props) {
             variant="subtitle1"
             component="div"
             color="inherit"
-            href="https://github.com/mui-org/material-ui/tree/next/examples/cdn-next"
+            href="https://github.com/mui-org/material-ui/tree/master/examples/cdn-next"
             gutterBottom
           >
             {t('cdn')}

@@ -22,7 +22,7 @@ If you are wondering which you should use, we would encourage the use of `makeSt
   ```
 - We have committed to [a new Roadmap](/discover-more/roadmap/) (prioritized) for the next 6 months.
 - We have migrated 50% of the codebase from the Classes API to the Hooks API. Once we are done with this task we can remove the internal usage of higher-order components.
-- We have introduced [a simplified server-side rendering API](/css-in-js/advanced/#server-side-rendering), inspired by styled-components.
+- We have introduced [a simplified server-side rendering API](/styles/advanced/#server-side-rendering), inspired by styled-components.
 
 ## Our roadmap intent for April
 

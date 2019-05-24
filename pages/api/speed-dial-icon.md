@@ -42,7 +42,7 @@ This property accepts the following keys:
 | <span class="prop-name">openIconOpen</span> | Styles applied to the `openIcon` if provided & if `open={true}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

@@ -48,7 +48,7 @@ This property accepts the following keys:
 | <span class="prop-name">icon</span> | Styles applied to the `Input` component `icon` class.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/NativeSelect/NativeSelect.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/NativeSelect/NativeSelect.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

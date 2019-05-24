@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-// Used /docs/src/pages/demos/tooltips/PositionedTooltips.js as inspiration.
+// Used /docs/src/pages/components/tooltips/PositionedTooltips.js as inspiration.
 function PositionedTooltips(props) {
   const { classes } = props;
   return (
