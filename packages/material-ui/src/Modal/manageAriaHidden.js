@@ -12,8 +12,8 @@ function isHideable(node) {
   return node.nodeType === 1 && BLACKLIST.indexOf(node.tagName.toLowerCase()) === -1;
 }
 
-function siblings(container, mount, currentNode, callback) {
-  const blacklist = [mount, currentNode];
+function siblings(container, mount, currentNode, nodesToExclude, callback) {
+  const blacklist = [mount, currentNode, ...nodesToExclude];
 
   [].forEach.call(container.children, node => {
     if (blacklist.indexOf(node) === -1 && isHideable(node)) {
@@ -22,6 +22,6 @@ function siblings(container, mount, currentNode, callback) {
   });
 }
 
-export function ariaHiddenSiblings(container, mountNode, currentNode, show) {
-  siblings(container, mountNode, currentNode, node => ariaHidden(node, show));
+export function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
+  siblings(container, mountNode, currentNode, nodesToExclude, node => ariaHidden(node, show));
 }

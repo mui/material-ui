@@ -64,6 +64,16 @@ function removeContainerStyle(data) {
   }
 }
 
+function getHiddenSiblings(container) {
+  const hiddenSiblings = [];
+  [].forEach.call(container.children, node => {
+    if (node.getAttribute && node.getAttribute('aria-hidden') === 'true') {
+      hiddenSiblings.push(node);
+    }
+  });
+  return hiddenSiblings;
+}
+
 /**
  * @ignore - do not document.
  *
@@ -102,8 +112,9 @@ export default class ModalManager {
     if (modal.modalRef) {
       ariaHidden(modal.modalRef, false);
     }
+    const hiddenSiblingNodes = getHiddenSiblings(container);
     if (this.hideSiblingNodes) {
-      ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, true);
+      ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, hiddenSiblingNodes, true);
     }
 
     const containerIdx = findIndexOf(this.data, item => item.container === container);
@@ -117,6 +128,7 @@ export default class ModalManager {
       container,
       overflowing: isOverflowing(container),
       prevPaddings: [],
+      hiddenSiblingNodes,
     };
 
     this.data.push(data);
@@ -157,7 +169,13 @@ export default class ModalManager {
         ariaHidden(modal.modalRef, true);
       }
       if (this.hideSiblingNodes) {
-        ariaHiddenSiblings(data.container, modal.mountNode, modal.modalRef, false);
+        ariaHiddenSiblings(
+          data.container,
+          modal.mountNode,
+          modal.modalRef,
+          data.hiddenSiblingNodes,
+          false,
+        );
       }
       this.data.splice(containerIdx, 1);
     } else if (this.hideSiblingNodes) {
