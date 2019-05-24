@@ -23,7 +23,6 @@ Patches or hotfix releases are prepared on an independent branch.
 #### `master` is for 4.x
 
 We will do our best to keep `master` in good shape, with tests passing at all times.
-However, in order to move fast, we will make API changes that your application might not be compatible with.
 
 ### How to increase the chance of being accepted?
 
@@ -31,9 +30,6 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - The branch is targeted at:
   - `master` for ongoing development.
 - The branch is not behind its target.
-- If a breaking change is introduced:
-  - There is an open RFC issue that the PR addresses.
-  - The issue and the PR should be included in [#13663](https://github.com/mui-org/material-ui/issues/13663).
 - If a feature is being added:
    - If the result was already achievable with the core library, explain why this
       feature needs to be added to the core.
@@ -43,7 +39,7 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - The code is formatted (run `yarn prettier`).
 - The code is linted (run `yarn lint`).
 - If API documentation is being changed in the source, `yarn docs:api` was run.
-- If prop types were changed, the TypeScript declarations were updated.
+- If props were added or prop types were changed, the TypeScript declarations were updated.
 - If TypeScript declarations were changed, `yarn typescript` passed.
 - If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
   See [About TypeScript demos](#about-typescript-demos).
