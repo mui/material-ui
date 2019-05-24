@@ -59,15 +59,19 @@ yarn add @material-ui/icons
 ## CDN
 
 You can start using Material-UI with minimal Front-end infrastructure,
-which is great for prototyping. We discourage using this approach in production though -
-the client has to download the entire library, regardless of which components are actually used,
-affecting performance and bandwidth utilisation.
+which is great for prototyping.
 
-#### UMD releases
+We are providing two Universal Module Definition (**UMD**) files:
 
-We are providing two Universal Module Definition (UMD) files:
-
-- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- one for development: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
+- one for production: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
 You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
+
+⚠️ We **discourage** using this approach in **production** though -
+the client has to download the entire library, regardless of which components are actually used,
+affecting performance and bandwidth utilization.
+
+⚠️ The UMD links are using the `latest` tag to point to the latest version of the library.
+This pointer is **unstable**, it shifts as we release new versions.
+You should consider pointing to a specific version like [v3.9.3](https://unpkg.com/@material-ui/core@3.9.3/umd/material-ui.development.js).
