@@ -49,7 +49,7 @@ In general, you can expect the following release cycle:
 |:-----|:--------|
 | May 2018  ✅ | `@material-ui/core` v1.0.0 |
 | May 2019  ✅ | `@material-ui/core` v4.0.0 |
-| May 2020 ⏳ | `@material-ui/core` v5.0.0 |
+| ? ⏳ | `@material-ui/core` v5.0.0 |
 
 You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
