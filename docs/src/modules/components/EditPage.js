@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BZ', es: 'es-ES' };
+const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/edit/next';
 

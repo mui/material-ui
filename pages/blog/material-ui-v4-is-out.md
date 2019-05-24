@@ -210,7 +210,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 <p class="blog-description">One example among others</p>
 
-- [Responsive font sizes.](http://material-ui.com/customization/typography/#responsive-font-sizes)
+- [Responsive font sizes.](/customization/typography/#responsive-font-sizes)
 
 ![font-size](/static/blog/material-ui-v4-is-out/font-size.png)
 
@@ -220,7 +220,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 An application example of the Box component.
 
-- [A better spacing helper.](http://material-ui.com/customization/spacing/)
+- [A better spacing helper.](/customization/spacing/)
 
 ![Spacing usage example](/static/blog/material-ui-v4-is-out/spacing.png)
 
@@ -260,7 +260,7 @@ export default function Hook() {
 }
 ```
 
-⚠️ Be aware of the difference between *@material-ui/styles* and *@material-ui/core/styles*. The latter contains the [default theme](http://material-ui.com/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
+⚠️ Be aware of the difference between *@material-ui/styles* and *@material-ui/core/styles*. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
 
 - A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for *@material-ui/styles*.
 - A [Cookbook](https://www.packtpub.com/application-development/react-material-ui-cookbook) published by Packt and written by Adam Boduch.

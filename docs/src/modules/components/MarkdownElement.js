@@ -41,12 +41,7 @@ renderer.heading = (text, level) => {
   );
 };
 
-const externs = [
-  'https://material.io/',
-  'https://www.styled-components.com/',
-  'https://emotion.sh/',
-  'https://getbootstrap.com/',
-];
+const externs = ['https://material.io/', 'https://getbootstrap.com/'];
 
 renderer.link = (href, title, text) => {
   let more = '';

@@ -131,7 +131,7 @@ function AppFooter(props) {
               </Link>
               {' is licensed by '}
               <Link
-                href="http://creativecommons.org/licenses/by/3.0/"
+                href="https://creativecommons.org/licenses/by/3.0/"
                 title="Creative Commons BY 3.0"
                 target="_blank"
                 rel="noopener noreferrer"

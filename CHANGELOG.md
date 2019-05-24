@@ -8560,7 +8560,7 @@ to ease your pain. checkout the
 - [Core] Remove default theme handling from components (#3820)
 
 As of now you will need to provide theme on context, see:
-http://www.material-ui.com/#/customization/themes
+https://v0.material-ui.com/#/customization/themes
 
 - [Core] Removed redundant default export from the main library `index.js`.
 
@@ -9799,7 +9799,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - The main motivation here is to give developers more control over which font icons to include
     in their project. Instead of automatically including all material design icons in material-ui,
     developers can now create their own custom icon font file and just pass the icon className into
-    the FontIcon component. [Read more about FontIcons](http://www.material-ui.com/#/components/icons).
+    the FontIcon component.
   - Upgrade path:
     - If you were using the Icon component before, you'll need switch to either using FontIcon or SvgIcon.
       For FontIcon, create a custom font file and include it in your project and just pass the Icon

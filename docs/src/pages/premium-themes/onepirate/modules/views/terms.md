@@ -14,7 +14,7 @@ Last modified: October 7th, 2018.
 
 ## 2. Privacy
 
-Please see Material-UI’ privacy policy at [https://www.material-ui.com/privacy](https://www.material-ui.com/privacy) for information about how we collect, use, and disclose information about users of the Site and the Services. By using the Site and the Services, you consent to our collection, use, and disclosure of information as set forth in our privacy policy, as we may update that policy from time to time.
+Please see Material-UI’ privacy policy at www.material-ui.com/privacy for information about how we collect, use, and disclose information about users of the Site and the Services. By using the Site and the Services, you consent to our collection, use, and disclosure of information as set forth in our privacy policy, as we may update that policy from time to time.
 
 ## 3. Registration
 
