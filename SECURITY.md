@@ -12,4 +12,4 @@ The versions of the project that are currently supported with security updates.
 
 ## Reporting a Vulnerability
 
-You can report a vulnerability following the instructions in https://tidelift.com/docs/security.
+You can report a vulnerability sending us an email at material.ui.org@gmail.com.
