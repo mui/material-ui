@@ -10,10 +10,10 @@ To install and save in your `package.json` dependencies, run:
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @material-ui/core
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 Please note that [react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 are peer dependencies.
@@ -50,10 +50,10 @@ you must first install the [@material-ui/icons](https://www.npmjs.com/package/@m
 
 ```sh
 // with npm
-npm install @material-ui/icons@next
+npm install @material-ui/icons
 
 // with yarn
-yarn add @material-ui/icons@next
+yarn add @material-ui/icons
 ```
 
 ## CDN
@@ -67,7 +67,7 @@ affecting performance and bandwidth utilisation.
 
 We are providing two Universal Module Definition (UMD) files:
 
-- one for development: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
+- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
-You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next) to quickly get started.
+You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
