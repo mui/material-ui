@@ -155,45 +155,50 @@ function DownshiftMultiple(props) {
         inputValue: inputValue2,
         selectedItem: selectedItem2,
         highlightedIndex,
-      }) => (
-        <div className={classes.container}>
-          {renderInput({
-            fullWidth: true,
-            classes,
-            label: 'countries',
-            InputLabelProps: getLabelProps({ strink: true }),
-            InputProps: {
-              startAdornment: selectedItem.map(item => (
-                <Chip
-                  key={item}
-                  tabIndex={-1}
-                  label={item}
-                  className={classes.chip}
-                  onDelete={handleDelete(item)}
-                />
-              )),
-              onChange: handleInputChange,
-              onKeyDown: handleKeyDown,
-              placeholder: 'Select multiple countries',
-            },
-            inputProps: getInputProps(),
-          })}
+      }) => {
+        const { onBlur, onFocus, ...inputProps } = getInputProps();
+        return (
+          <div className={classes.container}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              label: 'countries',
+              InputLabelProps: getLabelProps({ strink: true }),
+              InputProps: {
+                startAdornment: selectedItem.map(item => (
+                  <Chip
+                    key={item}
+                    tabIndex={-1}
+                    label={item}
+                    className={classes.chip}
+                    onDelete={handleDelete(item)}
+                  />
+                )),
+                onBlur,
+                onChange: handleInputChange,
+                onFocus,
+                onKeyDown: handleKeyDown,
+                placeholder: 'Select multiple countries',
+              },
+              inputProps,
+            })}
 
-          {isOpen ? (
-            <Paper className={classes.paper} square>
-              {getSuggestions(inputValue2).map((suggestion, index) =>
-                renderSuggestion({
-                  suggestion,
-                  index,
-                  itemProps: getItemProps({ item: suggestion.label }),
-                  highlightedIndex,
-                  selectedItem: selectedItem2,
-                }),
-              )}
-            </Paper>
-          ) : null}
-        </div>
-      )}
+            {isOpen ? (
+              <Paper className={classes.paper} square>
+                {getSuggestions(inputValue2).map((suggestion, index) =>
+                  renderSuggestion({
+                    suggestion,
+                    index,
+                    itemProps: getItemProps({ item: suggestion.label }),
+                    highlightedIndex,
+                    selectedItem: selectedItem2,
+                  }),
+                )}
+              </Paper>
+            ) : null}
+          </div>
+        );
+      }}
     </Downshift>
   );
 }
@@ -250,35 +255,40 @@ function IntegrationDownshift() {
           inputValue,
           isOpen,
           selectedItem,
-        }) => (
-          <div className={classes.container}>
-            {renderInput({
-              fullWidth: true,
-              classes,
-              label: 'country',
-              InputLabelProps: getLabelProps({ shrink: true }),
-              inputProps: getInputProps({
-                placeholder: 'Search a country (start with a)',
-              }),
-            })}
+        }) => {
+          const { onBlur, onFocus, ...inputProps } = getInputProps({
+            placeholder: 'Search a country (start with a)',
+          });
 
-            <div {...getMenuProps()}>
-              {isOpen ? (
-                <Paper className={classes.paper} square>
-                  {getSuggestions(inputValue).map((suggestion, index) =>
-                    renderSuggestion({
-                      suggestion,
-                      index,
-                      itemProps: getItemProps({ item: suggestion.label }),
-                      highlightedIndex,
-                      selectedItem,
-                    }),
-                  )}
-                </Paper>
-              ) : null}
+          return (
+            <div className={classes.container}>
+              {renderInput({
+                fullWidth: true,
+                classes,
+                label: 'country',
+                InputLabelProps: getLabelProps({ shrink: true }),
+                InputProps: { onBlur, onFocus },
+                inputProps,
+              })}
+
+              <div {...getMenuProps()}>
+                {isOpen ? (
+                  <Paper className={classes.paper} square>
+                    {getSuggestions(inputValue).map((suggestion, index) =>
+                      renderSuggestion({
+                        suggestion,
+                        index,
+                        itemProps: getItemProps({ item: suggestion.label }),
+                        highlightedIndex,
+                        selectedItem,
+                      }),
+                    )}
+                  </Paper>
+                ) : null}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        }}
       </Downshift>
       <div className={classes.divider} />
       <DownshiftMultiple classes={classes} />
@@ -293,41 +303,45 @@ function IntegrationDownshift() {
           inputValue,
           isOpen,
           selectedItem,
-        }) => (
-          <div className={classes.container}>
-            {renderInput({
-              fullWidth: true,
-              classes,
-              label: 'countries',
-              InputLabelProps: getLabelProps({ shrink: true }),
-              inputProps: getInputProps({
-                placeholder: 'With Popper',
-              }),
-              ref: node => {
-                popperNode = node;
-              },
-            })}
+        }) => {
+          const { onBlur, onFocus, ...inputProps } = getInputProps({
+            placeholder: 'With Popper',
+          });
 
-            <Popper open={isOpen} anchorEl={popperNode}>
-              <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
-                <Paper
-                  square
-                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : undefined }}
-                >
-                  {getSuggestions(inputValue).map((suggestion, index) =>
-                    renderSuggestion({
-                      suggestion,
-                      index,
-                      itemProps: getItemProps({ item: suggestion.label }),
-                      highlightedIndex,
-                      selectedItem,
-                    }),
-                  )}
-                </Paper>
-              </div>
-            </Popper>
-          </div>
-        )}
+          return (
+            <div className={classes.container}>
+              {renderInput({
+                fullWidth: true,
+                classes,
+                label: 'countries',
+                InputLabelProps: getLabelProps({ shrink: true }),
+                inputProps,
+                ref: node => {
+                  popperNode = node;
+                },
+              })}
+
+              <Popper open={isOpen} anchorEl={popperNode}>
+                <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
+                  <Paper
+                    square
+                    style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : undefined }}
+                  >
+                    {getSuggestions(inputValue).map((suggestion, index) =>
+                      renderSuggestion({
+                        suggestion,
+                        index,
+                        itemProps: getItemProps({ item: suggestion.label }),
+                        highlightedIndex,
+                        selectedItem,
+                      }),
+                    )}
+                  </Paper>
+                </div>
+              </Popper>
+            </div>
+          );
+        }}
       </Downshift>
       <div className={classes.divider} />
       <Downshift id="downshift-options">
@@ -342,42 +356,52 @@ function IntegrationDownshift() {
           isOpen,
           openMenu,
           selectedItem,
-        }) => (
-          <div className={classes.container}>
-            {renderInput({
-              fullWidth: true,
-              classes,
-              label: 'countries',
-              InputLabelProps: getLabelProps({ shrink: true }),
-              InputProps: {
-                onFocus: () => openMenu(),
-                onChange: event => {
-                  if (event.target.value === '') {
-                    clearSelection();
-                  }
-                },
-                placeholder: 'With the clear & show empty options',
-              },
-              inputProps: getInputProps({ foo: 1 }),
-            })}
+        }) => {
+          const { onBlur, onFocus, ...inputProps } = getInputProps({ foo: 1 });
 
-            <div {...getMenuProps()}>
-              {isOpen ? (
-                <Paper className={classes.paper} square>
-                  {getSuggestions(inputValue, { showEmpty: true }).map((suggestion, index) =>
-                    renderSuggestion({
-                      suggestion,
-                      index,
-                      itemProps: getItemProps({ item: suggestion.label }),
-                      highlightedIndex,
-                      selectedItem,
-                    }),
-                  )}
-                </Paper>
-              ) : null}
+          return (
+            <div className={classes.container}>
+              {renderInput({
+                fullWidth: true,
+                classes,
+                label: 'countries',
+                InputLabelProps: getLabelProps({ shrink: true }),
+                InputProps: {
+                  onBlur,
+                  onFocus: event => {
+                    openMenu();
+                    if (onFocus !== undefined) {
+                      onFocus(event);
+                    }
+                  },
+                  onChange: event => {
+                    if (event.target.value === '') {
+                      clearSelection();
+                    }
+                  },
+                  placeholder: 'With the clear & show empty options',
+                },
+                inputProps,
+              })}
+
+              <div {...getMenuProps()}>
+                {isOpen ? (
+                  <Paper className={classes.paper} square>
+                    {getSuggestions(inputValue, { showEmpty: true }).map((suggestion, index) =>
+                      renderSuggestion({
+                        suggestion,
+                        index,
+                        itemProps: getItemProps({ item: suggestion.label }),
+                        highlightedIndex,
+                        selectedItem,
+                      }),
+                    )}
+                  </Paper>
+                ) : null}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        }}
       </Downshift>
     </div>
   );
