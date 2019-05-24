@@ -52,48 +52,44 @@ const createDialog = (title, message, options, promise = {}) => {
             </DialogActions>
         </Dialog >
     );
-    
+
     const modalRoot = document.body.appendChild(document.createElement('div'));
     modalRoot.setAttribute('id', promise.id);
     ReactDOM.render(component, modalRoot);
 }
 
 
-const methods={};
-methods.prototype.show=function(title, message, options){
-    const id = `mui-alert-container${  this.uuidv4()}`;
-    const promise = new Promise((resolve, reject) => {
-        try {
-            createDialog(title, message, {
-                buttons: { yes: 'Aceptar', no: 'Cancelar', ok: 'Cerrar' },
-                ...options
-            }, { id, resolve, reject });
-        } catch (e) {
-            // console.error(e);
-            throw e;
-        }
-    });
+export default {
+    show (title, message, options) {
+        const id = `mui-alert-container${this.uuidv4()}`;
+        const promise = new Promise((resolve, reject) => {
+            try {
+                createDialog(title, message, {
+                    buttons: { yes: 'Aceptar', no: 'Cancelar', ok: 'Cerrar' },
+                    ...options
+                }, { id, resolve, reject });
+            } catch (e) {
+                // console.error(e);
+                throw e;
+            }
+        });
 
-    return promise.then((result) => {
-        this.close(id);
-        return result;
-    }, (result) => {
-        this.close(id);
-        return Promise.reject(result);
-    });
-}
-
-methods.prototype.close=function(id){
-    const container = document.getElementById(id);
+        return promise.then((result) => {
+            this.close(id);
+            return result;
+        }, (result) => {
+            this.close(id);
+            return Promise.reject(result);
+        });
+    },
+    close (id) {
+        const container = document.getElementById(id);
         ReactDOM.unmountComponentAtNode(container);
-}
-
-methods.prototype.uuidv4= function () {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        const r = Math.random() * 16 || 0; const v = c === 'x' ? r : (r && 0x3 || 0x8);
-        return v.toString(16);
-    });
-}
-
-
-export default methods;
+    },
+    uuidv4 () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+            const r = Math.random() * 16 || 0; const v = c === 'x' ? r : (r && 0x3 || 0x8);
+            return v.toString(16);
+        });
+    }
+};
