@@ -63,7 +63,7 @@ export const styles = theme => {
       '&:hover:not($disabled):before': {
         borderBottom: `2px solid ${theme.palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
+        '@media (hover: none), (pointer: coarse)': {
           borderBottom: `1px solid ${bottomLineColor}`,
         },
       },

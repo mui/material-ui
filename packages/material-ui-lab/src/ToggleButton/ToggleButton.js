@@ -39,7 +39,7 @@ export const styles = theme => ({
       textDecoration: 'none',
       // Reset on mouse devices
       backgroundColor: fade(theme.palette.text.primary, 0.05),
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: 'transparent',
       },
       '&$disabled': {

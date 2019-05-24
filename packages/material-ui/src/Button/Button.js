@@ -23,7 +23,7 @@ export const styles = theme => ({
       textDecoration: 'none',
       backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: 'transparent',
       },
       '&$disabled': {
@@ -51,7 +51,7 @@ export const styles = theme => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: 'transparent',
       },
     },
@@ -62,7 +62,7 @@ export const styles = theme => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: 'transparent',
       },
     },
@@ -85,7 +85,7 @@ export const styles = theme => ({
       border: `1px solid ${theme.palette.primary.main}`,
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: 'transparent',
       },
     },
@@ -98,7 +98,7 @@ export const styles = theme => ({
       border: `1px solid ${theme.palette.secondary.main}`,
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: 'transparent',
       },
     },
@@ -125,7 +125,7 @@ export const styles = theme => ({
     '&:hover': {
       backgroundColor: theme.palette.grey.A100,
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: theme.palette.grey[300],
       },
       '&$disabled': {
@@ -140,7 +140,7 @@ export const styles = theme => ({
     '&:hover': {
       backgroundColor: theme.palette.primary.dark,
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: theme.palette.primary.main,
       },
     },
@@ -152,7 +152,7 @@ export const styles = theme => ({
     '&:hover': {
       backgroundColor: theme.palette.secondary.dark,
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      '@media (hover: none), (pointer: coarse)': {
         backgroundColor: theme.palette.secondary.main,
       },
     },
