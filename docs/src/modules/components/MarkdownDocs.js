@@ -85,7 +85,7 @@ const styles = theme => ({
   },
 });
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next/docs/src';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master/docs/src';
 
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {
