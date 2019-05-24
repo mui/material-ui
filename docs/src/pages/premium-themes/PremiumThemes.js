@@ -65,7 +65,7 @@ function themes(t) {
       src: '/static/themes/paperbase.png',
       price: t('free'),
       category: t('admin'),
-      href: '/premium-themes/paperbase',
+      href: '/premium-themes/paperbase/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/paperbase',
     },
@@ -75,7 +75,7 @@ function themes(t) {
       src: '/static/themes/onepirate.jpg',
       price: t('free'),
       category: t('landing'),
-      href: '/premium-themes/onepirate',
+      href: '/premium-themes/onepirate/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/onepirate',
     },
@@ -85,7 +85,7 @@ function themes(t) {
       src: '/static/themes/instapaper.png',
       price: t('free'),
       category: t('profile'),
-      href: '/premium-themes/instapaper',
+      href: '/premium-themes/instapaper/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/instapaper',
     },
@@ -95,7 +95,7 @@ function themes(t) {
       src: '/static/themes/tweeper.png',
       price: t('free'),
       category: t('profile'),
-      href: '/premium-themes/tweeper',
+      href: '/premium-themes/tweeper/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/tweeper',
     },

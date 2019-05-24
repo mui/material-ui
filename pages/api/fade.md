@@ -12,7 +12,7 @@ filename: /packages/material-ui/src/Fade/Fade.js
 import Fade from '@material-ui/core/Fade';
 ```
 
-The Fade transition is used by the [Modal](/utils/modal/) component.
+The Fade transition is used by the [Modal](/components/modal/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props

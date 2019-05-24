@@ -63,7 +63,9 @@ function Profile() {
                     Edit Profile
                   </Button>
                 </Box>
-                <Typography primary>siriwatknp</Typography>
+                <Typography component="h1" primary>
+                  siriwatknp
+                </Typography>
                 <Typography light gutterBottom>
                   @siriwatknp
                 </Typography>
