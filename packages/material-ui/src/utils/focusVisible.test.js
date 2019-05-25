@@ -17,17 +17,9 @@ function simulatePointerDevice() {
 }
 
 const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
-  const [element, setElement] = React.useState(null);
-  const getOwnerDocument = React.useCallback(() => {
-    if (element === null) {
-      return null;
-    }
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
 
-    return element.ownerDocument;
-  }, [element]);
-  const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
-
-  const handleRef = useForkRef(setElement, ref);
+  const handleRef = useForkRef(focusVisibleRef, ref);
 
   const [focusVisible, setFocusVisible] = React.useState(false);
 

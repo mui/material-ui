@@ -1,5 +1,6 @@
 // based on https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
@@ -122,13 +123,13 @@ export function handleBlurVisible() {
   }, 100);
 }
 
-export function useIsFocusVisible(getOwnerDocument) {
-  React.useEffect(() => {
-    const ownerDocument = getOwnerDocument();
-    if (ownerDocument != null) {
-      prepare(ownerDocument);
+export function useIsFocusVisible() {
+  const ref = React.useCallback(instance => {
+    const node = ReactDOM.findDOMNode(instance);
+    if (node != null) {
+      prepare(node.ownerDocument);
     }
-  }, [getOwnerDocument]);
+  }, []);
 
-  return { isFocusVisible, onBlurVisible: handleBlurVisible };
+  return { isFocusVisible, onBlurVisible: handleBlurVisible, ref };
 }

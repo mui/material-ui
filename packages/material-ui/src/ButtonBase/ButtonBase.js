@@ -110,20 +110,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-  const getOwnerDocument = React.useCallback(() => {
-    const button = getButtonNode();
-    if (button == null) {
-      throw new Error(
-        [
-          `Material-UI: expected an Element but found ${button}.`,
-          'Please check your console for additional warnings and try fixing those.',
-          'If the error persists please file an issue.',
-        ].join(' '),
-      );
-    }
-    return button.ownerDocument;
-  }, []);
-  const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
 
   React.useImperativeHandle(
     action,
@@ -281,7 +268,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   }
 
   const handleUserRef = useForkRef(buttonRefProp, ref);
-  const handleRef = useForkRef(handleUserRef, buttonRef);
+  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
+  const handleRef = useForkRef(handleUserRef, handleOwnRef);
 
   return (
     <ComponentProp
