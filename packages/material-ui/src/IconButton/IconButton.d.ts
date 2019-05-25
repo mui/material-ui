@@ -6,8 +6,6 @@ declare const IconButton: ExtendButtonBase<{
   props: {
     edge?: 'start' | 'end' | false;
     color?: PropTypes.Color;
-    disabled?: boolean;
-    disableRipple?: boolean;
     size?: 'small' | 'medium';
   };
   defaultComponent: 'button';
