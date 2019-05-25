@@ -7,11 +7,11 @@
 /size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/next/latest/size-snapshot.json 200
 
 # To remove when work starts on v5.
-https://next.material-ui.com/* https://material-ui.com/:splat 301
+https://next.material-ui.com/* https://material-ui.com/:splat 301!
 
 # We like to have multiple domains O:)
-https://material-ui-next.com/* https://material-ui.com/:splat 301
-https://material-ui.dev/* https://material-ui.com/:splat 301
+https://material-ui-next.com/* https://material-ui.com/:splat 301!
+https://material-ui.dev/* https://material-ui.com/:splat 301!
 
 # To remove at some point (2020).
 /demos/selection-controls/ /components/radio-buttons/ 301
