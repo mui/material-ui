@@ -2,7 +2,7 @@ import React from 'react';
 import enzyme from 'enzyme/build/index';
 import Adapter from 'enzyme-adapter-react-16';
 import consoleError from './consoleError';
-import { useIsSsr } from './RenderMode';
+import { useIsSsr } from '@material-ui/core/test-utils/RenderMode';
 
 consoleError();
 
