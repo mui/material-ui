@@ -3,6 +3,9 @@ import * as PropTypes from 'prop-types';
 
 const Context = React.createContext();
 
+/**
+ * @ignore - internal component.
+ */
 export function RenderContext({ children }) {
   return <Context.Provider value="render">{children}</Context.Provider>;
 }

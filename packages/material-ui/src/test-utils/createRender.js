@@ -1,6 +1,6 @@
 import { render as enzymeRender } from 'enzyme';
 import React from 'react';
-import { RenderContext } from 'test/utils/RenderMode';
+import { RenderContext } from './RenderMode';
 
 // Generate a render to string function.
 export default function createRender(options1 = {}) {
