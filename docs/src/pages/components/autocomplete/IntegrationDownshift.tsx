@@ -184,7 +184,7 @@ function DownshiftMultiple(props: DownshiftMultipleProps) {
               fullWidth: true,
               classes,
               label: 'Countries',
-              InputLabelProps: getLabelProps({ strink: true } as any),
+              InputLabelProps: getLabelProps(),
               InputProps: {
                 startAdornment: selectedItem.map(item => (
                   <Chip
