@@ -1,3 +1,3 @@
-const hasSymbol = typeof Symbol === 'function';
+const hasSymbol = typeof Symbol === "function";
 
-export default hasSymbol ? Symbol('nested') : '__THEME_NESTED__';
+export default hasSymbol ? Symbol("nested") : "__THEME_NESTED__";
