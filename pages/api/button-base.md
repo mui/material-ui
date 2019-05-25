@@ -27,7 +27,7 @@ It contains a load of style reset and some focus/ripple logic.
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">element type</span> | <span class="prop-default">'button'</span> | The component used for the root node. Either a string to use a DOM element or a component.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the base button will be disabled. |
-| <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the ripple effect will be disabled. |
+| <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the ripple effect will be disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`. |
 | <span class="prop-name">disableTouchRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the touch ripple effect will be disabled. |
 | <span class="prop-name">focusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
 | <span class="prop-name">focusVisibleClassName</span> | <span class="prop-type">string</span> |  | This property can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed. |
@@ -52,7 +52,7 @@ This property accepts the following keys:
 | <span class="prop-name">focusVisible</span> | Styles applied to the root element if keyboard focused.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ButtonBase/ButtonBase.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ButtonBase/ButtonBase.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

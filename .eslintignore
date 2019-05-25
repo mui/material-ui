@@ -3,10 +3,9 @@
 /coverage
 /docs/export
 /examples/create-react-app*/src/serviceWorker.js
-/examples/gatsby-next/public/
-/examples/gatsby/public
-/examples/preact-next/config
-/examples/preact-next/scripts
+/examples/gatsby/public/
+/examples/preact/config
+/examples/preact/scripts
 /packages/babel-plugin-unwrap-createStyles/test/__fixtures__/
 /packages/material-ui-codemod/lib
 /packages/material-ui-codemod/src/*/*.test

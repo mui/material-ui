@@ -10,7 +10,7 @@ Material-UIは主要なブラウザとプラットフォームの最新の安定
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
-Googlebotはページコンテンツのインデックス作成にweb rendering service (WRS) を使用するので、Material-UIがそれをサポートすることは重要です。 [WRSはChrome 41に基づいています](https://developers.google.com/search/docs/guides/rendering)。 特に支障なくレンダリングできるMaterial-UIのコンポーネントを期待できます。
+Googlebotはページコンテンツのインデックス作成にweb rendering service (WRS) を使用するので、Material-UIがそれをサポートすることは重要です。 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). 特に支障なくレンダリングできるMaterial-UIのコンポーネントを期待できます。
 
 ## サーバ
 

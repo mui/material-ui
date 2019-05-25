@@ -12,3 +12,9 @@ components: ToggleButton, ToggleButtonGroup
 当给 `ToggleButtonGroup` 自身的 `value` 属性赋值时，它可以控制哪个子按钮被选中。
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
+
+## 尺寸
+
+您喜欢更大一点或更小一点的按钮？使用 `size` 属性可以实现大小的控制。
+
+{{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}

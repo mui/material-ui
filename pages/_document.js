@@ -60,12 +60,17 @@ class MyDocument extends Document {
               `${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonical}`,
             )}`}
           />
+          <link
+            rel="alternate"
+            href={`https://material-ui.com${Router._rewriteUrlForNextExport(canonical)}`}
+            hrefLang="x-default"
+          />
           {LANGUAGES.map(userLanguage2 => (
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://material-ui.com/${Router._rewriteUrlForNextExport(
-                `${userLanguage2}${canonical}`,
+              href={`https://material-ui.com${Router._rewriteUrlForNextExport(
+                `${userLanguage2 === 'en' ? '' : `/${userLanguage2}`}${canonical}`,
               )}`}
               hrefLang={userLanguage2}
             />

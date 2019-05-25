@@ -300,7 +300,7 @@ Die Dokumentationssite verwendet ein benutzerdefiniertes Theme. Daher unterschei
 
 Es gibt viele Möglichkeiten, die Material-UI zu unterstützen:
 
-- Verbessern Sie [die Dokumentation](https://github.com/mui-org/material-ui/tree/next/docs).
+- Verbessern Sie [die Dokumentation](https://github.com/mui-org/material-ui/tree/master/docs).
 - Helfen Sie anderen, loszulegen.
 - [Verbreiten Sie Material-Ui](https://twitter.com/MaterialUI).
 - Beantworten Sie die Fragen auf [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) oder auf [Spectrum](https://spectrum.chat/material-ui).

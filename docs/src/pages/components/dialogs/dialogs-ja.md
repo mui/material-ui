@@ -52,7 +52,7 @@ Form dialogs allow users to fill out form fields within a dialog. For example, i
 
 ## Customized dialogs
 
-Here is example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 The dialog has a close button added to aide usability.
 

@@ -65,9 +65,6 @@ const styles = theme => ({
   toolbarIe11: {
     display: 'flex',
   },
-  placeholder: {
-    height: 29,
-  },
   toolbar: {
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing(3),
@@ -99,12 +96,16 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
-    const openImmediately = Boolean(
-      page.subheader || activePage.pathname.indexOf(`${page.pathname}/`) === 0,
-    );
+    const topLevel = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
 
     items.push(
-      <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>
+      <AppDrawerNavItem
+        depth={depth}
+        key={title}
+        topLevel={topLevel && !page.subheader}
+        openImmediately={topLevel || Boolean(page.subheader)}
+        title={title}
+      >
         {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1, t })}
       </AppDrawerNavItem>,
     );
@@ -137,7 +138,6 @@ function AppDrawer(props) {
 
   const drawer = (
     <PersistScroll>
-      <div className={classes.placeholder} />
       <div className={classes.toolbarIe11}>
         <div className={classes.toolbar}>
           <Link className={classes.title} href="/" onClick={onClose} variant="h6" color="inherit">

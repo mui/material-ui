@@ -12,7 +12,6 @@ import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
-import deprecatedPropType from '../utils/deprecatedPropType';
 import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => ({
@@ -48,8 +47,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the `ScrollButtonComponent` component. */
   scrollButtons: {},
-  /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`. */
-  scrollButtonsAuto: {
+  /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`. */
+  scrollButtonsDesktop: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
@@ -114,40 +113,39 @@ class Tabs extends React.Component {
   }
 
   getConditionalElements = () => {
-    const {
-      classes,
-      scrollable: deprecatedScrollable,
-      ScrollButtonComponent,
-      scrollButtons,
-      theme,
-      variant,
-    } = this.props;
+    const { classes, ScrollButtonComponent, scrollButtons, theme, variant } = this.props;
+    const { showLeftScroll, showRightScroll } = this.state;
     const conditionalElements = {};
-    const scrollable = variant === 'scrollable' || deprecatedScrollable;
+    const scrollable = variant === 'scrollable';
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize onChange={this.handleScrollbarSizeChange} />
     ) : null;
 
-    const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
+    const scrollButtonsActive = showLeftScroll || showRightScroll;
+    const showScrollButtons =
+      scrollable &&
+      ((scrollButtons === 'auto' && scrollButtonsActive) ||
+        scrollButtons === 'desktop' ||
+        scrollButtons === 'on');
 
     conditionalElements.scrollButtonLeft = showScrollButtons ? (
       <ScrollButtonComponent
-        direction={theme && theme.direction === 'rtl' ? 'right' : 'left'}
+        direction={theme.direction === 'rtl' ? 'right' : 'left'}
         onClick={this.handleLeftScrollClick}
-        visible={this.state.showLeftScroll}
+        visible={showLeftScroll}
         className={clsx(classes.scrollButtons, {
-          [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+          [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
       />
     ) : null;
 
     conditionalElements.scrollButtonRight = showScrollButtons ? (
       <ScrollButtonComponent
-        direction={theme && theme.direction === 'rtl' ? 'left' : 'right'}
+        direction={theme.direction === 'rtl' ? 'left' : 'right'}
         onClick={this.handleRightScrollClick}
-        visible={this.state.showRightScroll}
+        visible={showRightScroll}
         className={clsx(classes.scrollButtons, {
-          [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+          [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
       />
     ) : null;
@@ -249,8 +247,8 @@ class Tabs extends React.Component {
   };
 
   updateScrollButtonState = () => {
-    const { scrollable: deprecatedScrollable, scrollButtons, theme, variant } = this.props;
-    const scrollable = variant === 'scrollable' || deprecatedScrollable;
+    const { scrollButtons, theme, variant } = this.props;
+    const scrollable = variant === 'scrollable';
 
     if (scrollable && scrollButtons !== 'off') {
       const { scrollWidth, clientWidth } = this.tabsRef;
@@ -309,11 +307,9 @@ class Tabs extends React.Component {
       classes,
       className: classNameProp,
       component: Component,
-      fullWidth = false,
       indicatorColor,
       innerRef,
       onChange,
-      scrollable: deprecatedScrollable = false,
       ScrollButtonComponent,
       scrollButtons,
       TabIndicatorProps = {},
@@ -324,7 +320,7 @@ class Tabs extends React.Component {
       ...other
     } = this.props;
 
-    const scrollable = variant === 'scrollable' || deprecatedScrollable;
+    const scrollable = variant === 'scrollable';
 
     warning(
       !centered || !scrollable,
@@ -374,7 +370,7 @@ class Tabs extends React.Component {
 
       childIndex += 1;
       return React.cloneElement(child, {
-        fullWidth: variant === 'fullWidth' || fullWidth,
+        fullWidth: variant === 'fullWidth',
         indicator: selected && !this.state.mounted && indicator,
         selected,
         onChange,
@@ -442,11 +438,6 @@ Tabs.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the tabs will grow to use all the available space.
-   * This property is intended for small views, like on mobile.
-   */
-  fullWidth: deprecatedPropType(PropTypes.bool, 'Instead, use the `variant="fullWidth"` property.'),
-  /**
    * Determines the color of the indicator.
    */
   indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
@@ -459,28 +450,22 @@ Tabs.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
-   * @param {number} value We default to the index of the child
+   * @param {any} value We default to the index of the child (number)
    */
   onChange: PropTypes.func,
-  /**
-   * If `true`, it will invoke scrolling properties and allow for horizontally
-   * scrolling (or swiping) of the tab bar.
-   */
-  scrollable: deprecatedPropType(
-    PropTypes.bool,
-    'Instead, use the `variant="scrollable"` property.',
-  ),
   /**
    * The component used to render the scroll buttons.
    */
   ScrollButtonComponent: PropTypes.elementType,
   /**
    * Determine behavior of scroll buttons when tabs are set to scroll
-   * `auto` will only present them on medium and larger viewports
-   * `on` will always present them
-   * `off` will never present them
+   *
+   * - `auto` will only present them when not all the items are visible.
+   * - `desktop` will only present them on medium and larger viewports.
+   * - `on` will always present them.
+   * - `off` will never present them.
    */
-  scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
+  scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'on', 'off']),
   /**
    * Properties applied to the `TabIndicator` element.
    */
@@ -500,6 +485,7 @@ Tabs.propTypes = {
   value: PropTypes.any,
   /**
    *  Determines additional display behavior of the tabs:
+   *
    *  - `scrollable` will invoke scrolling properties and allow for horizontally
    *  scrolling (or swiping) of the tab bar.
    *  -`fullWidth` will make the tabs grow to use all the available space,

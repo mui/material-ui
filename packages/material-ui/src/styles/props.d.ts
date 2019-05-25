@@ -42,6 +42,7 @@ import { InputAdornmentProps } from '../InputAdornment';
 import { InputLabelProps } from '../InputLabel';
 import { InputProps } from '../Input';
 import { LinearProgressProps } from '../LinearProgress';
+import { LinkProps } from '../Link';
 import { ListItemAvatarProps } from '../ListItemAvatar';
 import { ListItemIconProps } from '../ListItemIcon';
 import { ListItemProps } from '../ListItem';
@@ -136,6 +137,7 @@ export interface ComponentsPropsList {
   MuiInputAdornment: InputAdornmentProps;
   MuiInputLabel: InputLabelProps;
   MuiLinearProgress: LinearProgressProps;
+  MuiLink: LinkProps;
   MuiList: ListProps;
   MuiListItem: ListItemProps;
   MuiListItemAvatar: ListItemAvatarProps;

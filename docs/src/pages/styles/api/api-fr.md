@@ -6,14 +6,14 @@
 
 A function which returns [a class name generator function](http://cssinjs.org/jss-api/#generate-your-class-names).
 
-#### Arguments
+#### Paramètres
 
 1. `options` (*Object* [optional]): 
     - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
     - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
     - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
-#### Returns
+#### Valeur de retour
 
 `class name generator`: The generator should be provided to JSS.
 
@@ -38,11 +38,11 @@ export default function App() {
 
 This function doesn't really "do anything" at runtime, it's just the identity function. Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 
-#### Arguments
+#### Paramètres
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object.
 
-#### Returns
+#### Valeur de retour
 
 `styles`: A function generating the styles or a styles object.
 
@@ -69,7 +69,7 @@ export default MyComponent;
 
 Link a style sheet with a function component using the **hook** pattern.
 
-#### Arguments
+#### Paramètres
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]): 
@@ -79,7 +79,7 @@ Link a style sheet with a function component using the **hook** pattern.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Returns
+#### Valeur de retour
 
 `hook`: A hook. This hook can be used in a function component. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
 
@@ -150,7 +150,7 @@ The method is an alternative to `.toString()` when you are rendering the whole p
 
 Link a style sheet with a function component using the **styled components** pattern.
 
-#### Arguments
+#### Paramètres
 
 1. `Component`: The component that will be wrapped.
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
@@ -161,7 +161,7 @@ Link a style sheet with a function component using the **styled components** pat
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Returns
+#### Valeur de retour
 
 `Component`: The new component created.
 
@@ -332,7 +332,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </p>
   
   <h4>
-    Returns
+    Valeur de retour
   </h4>
   
   <p>
@@ -381,7 +381,7 @@ export default function MyComponent() {
   </ul>
   
   <h4>
-    Arguments
+    Paramètres
   </h4>
   
   <ol start="1">
@@ -411,7 +411,7 @@ export default function MyComponent() {
   </ol>
   
   <h4>
-    Returns
+    Valeur de retour
   </h4>
   
   <p>
@@ -472,7 +472,7 @@ export default MyComponent
   </p>
   
   <h4>
-    Arguments
+    Paramètres
   </h4>
   
   <ol start="1">
@@ -482,7 +482,7 @@ export default MyComponent
   </ol>
   
   <h4>
-    Returns
+    Valeur de retour
   </h4>
   
   <p>

@@ -2,9 +2,9 @@
 
 <p class="description">TypeScriptを使用することで、JavaScriptに静的型付けを追加し、開発者の生産性とコード品質を向上させることができます。</p>
 
-[Create React AppでのTypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript)の使用例を参考にしてください。 TypeScript 2.8以上が必要です。
+[Create React AppでのTypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript)の使用例を参考にしてください。 TypeScript 2.8以上が必要です。
 
-私たちの定義は、こちらの[tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json) でテストしています。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。
+私たちの定義は、こちらの[tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json) でテストしています。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。
 
 ## `withStyles`の使い方
 
@@ -12,7 +12,7 @@
 
 ### `createStyles`を使って型の拡大を打倒する
 
-よくある混乱の原因は、TypeScriptの[型の拡大(widening)](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening)です。これにより、この例は期待通りに動作しません。
+よくある混乱の原因は、TypeScriptの[型の拡大(widening)](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)です。これにより、この例は期待通りに動作しません。
 
 ```ts
 const styles = {
@@ -97,7 +97,7 @@ const styles = createStyles({
 });
 ```
 
-However to allow these styles to pass TypeScript the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. Due to this class names that are equal to CSS properties should be avoided.
+However to allow these styles to pass TypeScript, the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. Due to this class names that are equal to CSS properties should be avoided.
 
 ```ts
 // error because TypeScript thinks `@media (min-width: 960px)` is a class name
@@ -150,7 +150,7 @@ interface Props {
 }
 ```
 
-However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write
+However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
 
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
@@ -249,6 +249,6 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 ## Usage of `component` property
 
-Material-UI allows you to replace a component's root node via a `component` property. For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component. For a code example concerning `Button` and `react-router-dom` checkout [this Button demo](/components/buttons/#third-party-routing-library)
+Material-UI allows you to replace a component's root node via a `component` property. For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component. For a code example concerning `Button` and `react-router-dom` checkout [this Button demo](/components/buttons/#third-party-routing-library).
 
 Not every component fully supports any component type you pass in. If you encounter a component that rejects its `component` props in TypeScript please open an issue. There is an ongoing effort to fix this by making component props generic.

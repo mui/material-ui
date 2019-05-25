@@ -2,9 +2,9 @@
 
 <p class="description">Sie können statische Typisierung zu JavaScript hinzufügen, um die Produktivität und die Codequalität dank TypeScript zu verbessern.</p>
 
-Schauen Sie sich das [Create React App mit TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) Beispiel an. Eine Mindestversion von TypeScript 2.8 ist erforderlich.
+Schauen Sie sich das [Create React App mit TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) Beispiel an. Eine Mindestversion von TypeScript 2.8 ist erforderlich.
 
-Unsere Type Definitionen werden mit der folgenden [tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json) getestet. Verwendung einer weniger strengen `tsconfig.json` oder das Weglassen einiger Bibliotheken kann zu Fehlern führen.
+Unsere Type Definitionen werden mit der folgenden [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json) getestet. Verwendung einer weniger strengen `tsconfig.json` oder das Weglassen einiger Bibliotheken kann zu Fehlern führen.
 
 ## Verwendung von `withStyles`
 
@@ -12,7 +12,7 @@ Verwenden von `withStyles` in TypeScript kann es etwas kniffelig sein, aber es g
 
 ### Verwenden von `CreateStyles`, um die Typerweiterung zu besiegen
 
-Eine häufige Quelle der Verwirrung ist die [Erweiterung der Typen](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening) von TypeScript, was dazu führt, dass dieses Beispiel nicht wie erwartet funktioniert:
+Eine häufige Quelle der Verwirrung ist die [Erweiterung der Typen](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening) von TypeScript, was dazu führt, dass dieses Beispiel nicht wie erwartet funktioniert:
 
 ```ts
 const styles = {
@@ -99,7 +99,7 @@ const styles = createStyles({
 });
 ```
 
-Damit diese Stile an TypeScript übergeben werden können, müssen die Definitionen hinsichtlich der Namen der CSS-Klassen und der tatsächlichen CSS-Eigenschaftsnamen mehrdeutig sein. Aus diesem Grund sollten Klassennamen, die den CSS-Eigenschaften entsprechen, vermieden werden.
+However to allow these styles to pass TypeScript, the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. Aus diesem Grund sollten Klassennamen, die den CSS-Eigenschaften entsprechen, vermieden werden.
 
 ```ts
 // Fehler, da TypeScript denkte, dass `@media (min-width: 960px)` ein Klassen-
@@ -152,7 +152,7 @@ interface Props {
 }
 ```
 
-Dies ist jedoch nicht sehr [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) weil Sie die Klassennamen (`'root'`, `'paper'`, `'button'`, ...) an zwei verschiedenen Stellen pflegen müssen. Wir stellen einen Typoperator `WithStyles` bereit, um damit zu helfen. So kannst du einfach schreiben
+Dies ist jedoch nicht sehr [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) weil Sie die Klassennamen (`'root'`, `'paper'`, `'button'`, ...) an zwei verschiedenen Stellen pflegen müssen. Wir stellen einen Typoperator `WithStyles` bereit, um damit zu helfen. So kannst du einfach schreiben:
 
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
@@ -251,6 +251,6 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 ## Verwendung der `component` Eigenschaft
 
-Mit der Material-UI können Sie die root Komponente einer Komponente durch die `component` Eigenschaft ersetzen. Zum Beispiel ist die Stamm Komponente eines `Button` durch einen React Router `Link` ersetzt werden und alle zusätzlichen Eigenschaften, die an den `Button` übergeben werden, wie `to`, wird auf die `Link` Komponente verteilt. Für ein Code Beispiel für den `Button ` und `react-router-dom` schau dir [diese Demo an](/components/buttons/#third-party-routing-library)
+Mit der Material-UI können Sie die root Komponente einer Komponente durch die `component` Eigenschaft ersetzen. Zum Beispiel ist die Stamm Komponente eines `Button` durch einen React Router `Link` ersetzt werden und alle zusätzlichen Eigenschaften, die an den `Button` übergeben werden, wie `to`, wird auf die `Link` Komponente verteilt. Für ein Code Beispiel für den `Button ` und `react-router-dom` schau dir [diese Demo an](/components/buttons/#third-party-routing-library).
 
 Nicht jede Komponente unterstützt vollständig jeden übergebenen Komponententyp. Wenn Sie auf eine Komponente stoßen, die ihre `component` Eigenschaft ablehnt in TypeScript, öffnen Sie bitte eine Frage in Github. Es besteht ein ständiger Aufwand, um dies zu beheben, indem Komponentenstützen generisch gemacht werden.

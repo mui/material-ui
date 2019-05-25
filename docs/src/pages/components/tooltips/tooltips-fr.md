@@ -21,7 +21,7 @@ La `Tooltip` comporte 12 **placements** choix. Ils n'ont pas de flèches directi
 
 ## Customized tooltips
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici quelques exemples de personnalisation du composant. Vous pouvez en apprendre plus sur [la page de documentation de personnalisation](/customization/components/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

@@ -23,7 +23,7 @@ range         |   xs   |   sm   |   md   |   lg   |   xl
 
 这些值可以自定义。 这些值被用于主题设定，你可以在 [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) 对象上找到它们。
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden]/components/hidden/) components.
+许多组件内部都使用了断点来实现响应式要求，同时你也可以利用断点来控制应用的布局，这可借助于 [Grid](/components/grid/) 和 [Hidden](/components/hidden/) 组件。
 
 ## CSS 媒体查询
 
@@ -61,11 +61,11 @@ const styles = theme => ({
 
 ### useMediaQuery钩子
 
-You can learn more on the [useMediaQuery]/components/use-media-query/) page.
+您可以在 [userMediaQuery](/components/use-media-query/) 页面上了解更多信息。
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery]/components/use-media-query/) hook when the React's hooks are released as stable.
+> ⚠️当React Hooks成为稳定版本时，此高阶组件将被弃用并使用[ useMediaQuery](/components/use-media-query/) hook代替。
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';

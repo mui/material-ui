@@ -54,6 +54,7 @@ function Profile() {
                     style={{ marginTop: '-18%', marginBottom: 14 }}
                     ultraLarge
                     bordered
+                    alt="My profile"
                     src={
                       'https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg'
                     }
@@ -62,7 +63,9 @@ function Profile() {
                     Edit Profile
                   </Button>
                 </Box>
-                <Typography primary>siriwatknp</Typography>
+                <Typography component="h1" primary>
+                  siriwatknp
+                </Typography>
                 <Typography light gutterBottom>
                   @siriwatknp
                 </Typography>

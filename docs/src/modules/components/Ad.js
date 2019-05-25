@@ -34,16 +34,17 @@ const styles = theme => ({
 });
 
 function getAdblock(classes, t) {
+  if (/Googlebot/.test(navigator.userAgent)) {
+    return null;
+  }
+
   return (
     <Paper component="span" elevation={0} className={classes.paper}>
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
       <Typography variant="body2" display="block" component="span" gutterBottom>
-        {t('adblock')}
-      </Typography>
-      <Typography variant="body2" display="block" component="span">
-        {t('thanks')}{' '}
+        {t('adblock')}{' '}
         <span role="img" aria-label="Love">
           ❤️
         </span>
@@ -102,7 +103,7 @@ class Ad extends React.Component {
 
     return (
       <span className={classes.root}>
-        {this.random >= 0.9 ? <AdCodeFund /> : <AdCarbon />}
+        {this.random >= 0.8 ? <AdCodeFund /> : <AdCarbon />}
         {adblock === true ? getAdblock(classes, t) : null}
         {adblock === false ? (
           <Tooltip id="ad-info" title={t('adTitle')} placement="left">

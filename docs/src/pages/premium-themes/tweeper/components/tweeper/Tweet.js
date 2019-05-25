@@ -44,6 +44,7 @@ function Tweet() {
         <Grid item>
           <Avatar
             medium
+            alt="Avatar"
             src="https://pbs.twimg.com/profile_images/1096807971374448640/rVCDhxkG_200x200.png"
           />
         </Grid>

@@ -34,11 +34,6 @@ function MadeWithLove() {
 }
 
 const useStyles = makeStyles(theme => ({
-  '@global': {
-    strong: {
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-  },
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },

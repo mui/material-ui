@@ -219,7 +219,7 @@ the color manipulations, the transitions, the media queries, and more.
 
 ### Portals
 
-The [Portal](/utils/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+The [Portal](/components/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
 Because of the way styled-components scopes its CSS, you may run into issues where styling is not applied.
 
 For example, if you attempt to style the [Menu](/components/menus/) of a [Select](/components/selects/) component using the property `MenuProps`,

@@ -11,7 +11,7 @@ declare const Tabs: OverridableComponent<{
     indicatorColor?: 'secondary' | 'primary' | string;
     onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
     ScrollButtonComponent?: React.ElementType;
-    scrollButtons?: 'auto' | 'on' | 'off';
+    scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
     TabIndicatorProps?: Partial<TabIndicatorProps>;
     textColor?: 'secondary' | 'primary' | 'inherit' | string;
     value: any;
@@ -30,7 +30,7 @@ export type TabsClassKey =
   | 'scrollable'
   | 'centered'
   | 'scrollButtons'
-  | 'scrollButtonsAuto'
+  | 'scrollButtonsDesktop'
   | 'indicator';
 
 export interface TabsActions {

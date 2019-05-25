@@ -47,13 +47,12 @@ function initDocsearch(userLanguage) {
     }
 
     initialized = docsearchInput;
-    const ariaLabel = docsearchInput.getAttribute('aria-label');
     window.docsearch({
       apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
       indexName: 'material-ui',
       inputSelector: '#docsearch-input',
       algoliaOptions: {
-        facetFilters: ['version:next', `language:${userLanguage}`],
+        facetFilters: ['version:master', `language:${userLanguage}`],
       },
       handleSelected: (input, event, suggestion) => {
         event.button = 0;
@@ -63,8 +62,6 @@ function initDocsearch(userLanguage) {
       },
       // debug: true, // Set debug to true if you want to inspect the dropdown.
     });
-    // https://github.com/algolia/docsearch/issues/418
-    docsearchInput.setAttribute('aria-label', ariaLabel);
   }, 100);
 }
 

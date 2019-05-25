@@ -195,7 +195,7 @@ export default App;
 
 ## String-Vorlagen
 
-Wenn Sie die CSS-Syntax gegenüber JSS bevorzugen, können Sie das [jss-plugin-template](https://cssinjs.org/jss-plugin-template) Plugin verwenden.
+Wenn Sie die CSS-Syntax gegenüber JSS bevorzugen, können Sie das [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) Plugin verwenden.
 
 ```jsx
 const useStyles = makeStyles({
@@ -388,13 +388,13 @@ Sie können der [serverseitigen Anleitung](/guides/server-rendering/) für ein d
 
 Wir haben [ein offizielles Plugin](https://github.com/hupe1980/gatsby-plugin-material-ui), welches serverseitiges Rendering für `@material-ui/styles` ermöglicht. Anleitungen zur Einrichtung und Verwendung finden Sie auf der Seite des Plugins.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
+Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
 
 ## Klassennamen
 
@@ -491,7 +491,7 @@ const StyledTextField = styled(TextField)`
     &:hover fieldset {
       border-color: yellow; 💛
     }
-    &.focused fieldset {
+    &.Mui-focused fieldset {
       border-color: green; 💚
     }
   }

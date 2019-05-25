@@ -8,7 +8,7 @@
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Latest versions
+## Últimas versões
 
 Aqui pode encontrar a versão em desenvolvimento e sua documentação. Poderá usar esta versão para ver quais alterações que estão a ser implementadas e fornecer um feedback melhor para os contribuidores de Material-UI.
 
@@ -40,10 +40,10 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 
 > Isenção de responsabilidade: As datas são oferecidas como orientação geral e podem ser ajustadas por nós quando necessário para garantir a entrega de um código de alta qualidade.
 
-| Data          | Versão                     |
-|:------------- |:-------------------------- |
-| May 2019      | `@material-ui/core` v4.0.0 |
-| December 2019 | `@material-ui/core` v5.0.0 |
+| Data             | Versão                     |
+|:---------------- |:-------------------------- |
+| Maio de 2019     | `@material-ui/core` v4.0.0 |
+| Dezembro de 2019 | `@material-ui/core` v5.0.0 |
 
 Você pode seguir os [ milestones ](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 

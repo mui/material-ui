@@ -1,47 +1,47 @@
 ---
-title: Slider React component
+title: Componente React Slider
 components: Slider
 ---
 
 # Slider
 
-<p class="description">Sliders allow users to make selections from a range of values.</p>
+<p class="description">Sliders permitem que os usuários façam seleções a partir de um intervalo de valores.</p>
 
-[Sliders](https://material.io/design/components/sliders.html) reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
+[Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
 
-Sliders can have icons on both ends of the bar that reflect a range of values.
+Sliders podem ter ícones em ambos os extremos da barra para descrever de forma visual o intervalo de valores.
 
-#### Immediate effects
+#### Efeitos imediatos
 
-Changes made with sliders are immediate, allowing a user to make slider adjustments until finding their preference. They shouldn’t be paired with settings that have even minor delays in providing user feedback.
+As alterações feitas com sliders são imediatas, permitindo que o usuário faça ajustes no slider até encontrar sua preferência. Eles não devem ser utilizados em conjunto com configurações que têm pequenos atrasos no fornecimento de feedback ao usuário.
 
-#### Current state
+#### Estado atual
 
-Sliders reflect the current state of the settings they control.
+Os sliders refletem o estado atual das configurações que eles controlam.
 
-## Simple slider
+## Slider simples
 
 {{"demo": "pages/components/slider/SimpleSlider.js"}}
 
-## Slider with steps
+## Slider com passos
 
 {{"demo": "pages/components/slider/StepSlider.js"}}
 
-## Disabled slider
+## Slider desabilitado
 
 {{"demo": "pages/components/slider/DisabledSlider.js"}}
 
-## Vertical slider
+## Slider vertical
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
-## Customized sliders
+## Sliders customizados
 
-Aqui está um exemplo de personalização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
-## Custom thumb
+## Slider com miniatura customizada
 
 {{"demo": "pages/components/slider/CustomIconSlider.js"}}
 

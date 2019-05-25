@@ -10,10 +10,10 @@ To install and save in your `package.json` dependencies, run:
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @material-ui/core
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 Please note that [react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 are peer dependencies.
@@ -50,24 +50,28 @@ you must first install the [@material-ui/icons](https://www.npmjs.com/package/@m
 
 ```sh
 // with npm
-npm install @material-ui/icons@next
+npm install @material-ui/icons
 
 // with yarn
-yarn add @material-ui/icons@next
+yarn add @material-ui/icons
 ```
 
 ## CDN
 
 You can start using Material-UI with minimal Front-end infrastructure,
-which is great for prototyping. We discourage using this approach in production though -
+which is great for prototyping.
+
+We are providing two Universal Module Definition (**UMD**) files:
+
+- one for development: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
+- one for production: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
+
+You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
+
+⚠️ We **discourage** using this approach in **production** though -
 the client has to download the entire library, regardless of which components are actually used,
-affecting performance and bandwidth utilisation.
+affecting performance and bandwidth utilization.
 
-#### UMD releases
-
-We are providing two Universal Module Definition (UMD) files:
-
-- one for development: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
-
-You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next) to quickly get started.
+⚠️ The UMD links are using the `latest` tag to point to the latest version of the library.
+This pointer is **unstable**, it shifts as we release new versions.
+You should consider pointing to a specific version like [v3.9.3](https://unpkg.com/@material-ui/core@3.9.3/umd/material-ui.development.js).

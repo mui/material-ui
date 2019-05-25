@@ -7,15 +7,15 @@ Material-UI uses [a recommended 8px scaling factor by default](https://material.
 ```js
 const styles = theme => ({
   root: {
-    // JSS uses px as the default units for this CSS property.
+    // O JSS usa px como unidade padrão para essa propriedade CSS.
     padding: theme.spacing(2), // = 8 * 2
   },
 });
 ```
 
-You can change the spacing transformation by providing:
+Você pode alterar a transformação do espaçamento fornecendo:
 
-- a number
+- um número
 
 ```js
 const theme = createMuiTheme({
@@ -25,17 +25,17 @@ const theme = createMuiTheme({
 theme.spacing(2) // = 4 * 2
 ```
 
-- a function
+- uma função
 
 ```js
 const theme = createMuiTheme({
-  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
+  spacing: factor => `${0.25 * factor}rem`, // (estratégia do Bootstrap)
 });
 
 theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px
 ```
 
-- an array
+- um vetor
 
 ```js
 const theme = createMuiTheme({

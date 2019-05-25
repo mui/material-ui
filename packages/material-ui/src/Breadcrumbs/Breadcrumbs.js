@@ -7,7 +7,7 @@ import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import BreadcrumbSeparator from './BreadcrumbSeparator';
 
-const styles = {
+export const styles = {
   /* Styles applied to the root element. */
   root: {},
   /* Styles applied to the ol element. */

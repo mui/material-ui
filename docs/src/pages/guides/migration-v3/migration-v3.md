@@ -6,7 +6,7 @@ Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
 Have you upgraded your site and run into something that's not covered here?
-[Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md)
+[Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md)
 
 ## Introduction
 
@@ -17,7 +17,7 @@ We'll do our best to keep things easy to follow, and as sequential as possible s
 ## Why you should migrate
 
 This documentation page covers the *how* of migrating from v3 to v4.
-The *why* is covered in the release blog post: [*Work in progress, on Medium*](https://medium.com/material-ui).
+The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Updating Your Dependencies
 
@@ -29,7 +29,7 @@ You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^4.0.0-beta.0"
+  "@material-ui/core": "^4.0.0"
 }
 ```
 
@@ -54,7 +54,7 @@ If you are previously using `@material-ui/styles` with v3 you need to update you
 
 ```json
 "dependencies": {
-  "@material-ui/styles": "^4.0.0-beta.0"
+  "@material-ui/styles": "^4.0.0"
 }
 ```
 
@@ -313,6 +313,13 @@ This has allowed us to remove 2 intermediary DOM elements.
 You should be able to move the custom styles to the `root` class key.
 
   ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+
+- [Tabs] Remove deprecated fullWidth and scrollable props
+
+  ```diff
+  -<Tabs fullWidth scrollable />
+  +<Tabs variant="scrollable" />
+  ```
 
 ### Table
 

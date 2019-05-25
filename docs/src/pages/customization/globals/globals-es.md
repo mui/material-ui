@@ -1,6 +1,6 @@
 # Globales
 
-<p class="description">The overrides key enables you to customize the appearance of all instances of a component type, while the `props` key enables you to change the default value(s) of a component's props.</p>
+<p class="description">The overrides key enables you to customize the appearance of all instances of a component type, while the props key enables you to change the default value(s) of a component's props.</p>
 
 ## CSS
 
@@ -20,7 +20,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
+The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
 ## Default props
 

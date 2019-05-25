@@ -1,5 +1,4 @@
 {
-  "topBanner": "⚠️ ({{versionNumber}}) Es handelt sich hier um die Dokumentation für den `next` Release.",
   "homeQuickWord": "Ein schnelles Wort von unseren Sponsoren:",
   "editWebsiteColors": "Farbschema der Seite bearbeiten",
   "toggleTheme": "helles/dunkles Thema umschalten",
@@ -146,7 +145,7 @@
     "/components/snackbars": "Snackbars",
     "/components/speed-dial": "Schnellwahl",
     "/components/steppers": "Stepper",
-    "/components/surfaces": "Surfaces",
+    "/components/surfaces": "Oberflächen",
     "/components/switches": "Schalter",
     "/components/tables": "Tabellen (Tables)",
     "/components/tabs": "Tabs",

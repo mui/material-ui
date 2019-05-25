@@ -53,7 +53,10 @@ const Header = () => (
         </Hidden>
         <Grid item xs={6} sm="auto">
           <ListItem>
-            <Avatar src="https://pbs.twimg.com/profile_images/1060539954361622533/-9ofKMvA_bigger.jpg" />
+            <Avatar
+              alt="My profile"
+              src="https://pbs.twimg.com/profile_images/1060539954361622533/-9ofKMvA_bigger.jpg"
+            />
             <ListItemText primary="siriwatknp" />
           </ListItem>
         </Grid>

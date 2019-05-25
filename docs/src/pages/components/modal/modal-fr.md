@@ -7,11 +7,11 @@ components: Modal
 
 <p class="description">Le composant modal fournit une base solide pour la création de boîtes de dialogue, de popovers, de lightboxes ou autres.</p>
 
-Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. The `Modal` offers a few helpful features over using just a [`Portal`](/utils/portal/) component and some styles:
+Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. The `Modal` offers a few helpful features over using just a [`components`](/utils/portal/) component and some styles:
 
-- Manages modal stacking when one-at-a-time just isn't enough.
-- Creates a backdrop, for disabling interaction below the modal.
-- It disables scrolling of the page content while open.
+- 
+- 
+- 
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 - 

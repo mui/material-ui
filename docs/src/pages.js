@@ -200,6 +200,10 @@ const pages = [
   {
     pathname: '/blog',
     children: [
+      {
+        pathname: '/blog/material-ui-v4-is-out',
+        title: 'Material-UI v4 is out',
+      },
       { pathname: '/blog/april-2019-update' },
       { pathname: '/blog/march-2019-update' },
       { pathname: '/blog/2019-developer-survey-results' },

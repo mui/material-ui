@@ -15,7 +15,7 @@ Il peut se transformer en une barre d’action contextuelle ou en tant que barre
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## Simple barre d'Application
+## Barre d'application simple
 
 {{"demo": "pages/components/app-bar/SimpleAppBar.js"}}
 
@@ -29,7 +29,7 @@ Une barre de recherche principale.
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## Barre d'applications avec champ de recherche
+## Barre d'application avec champ de recherche
 
 Une barre de recherche latérale.
 
@@ -43,33 +43,33 @@ Une barre de recherche latérale.
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
+## Défilement
 
-### Hide App Bar
+### Barre d'application masquable
 
-An App Bar that hides on scroll.
+Une barre d'application qui se masque au défilement.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": "true", "maxWidth": 500}}
 
-### Elevate App Bar
+### Barre d'application élevable
 
-An App Bar that elevates on scroll.
+Une barre d’application qui s’élève au défilement.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": "true", "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 
-#### Arguments
+#### Paramètres
 
 1. `options` (*Object* [optional]):
+    
+    - `options.disableHysteresis` (*Boolean* [optional]): Valeur par défaut `false`. Désactive l'hystérésis. Ignore le sens de défilement lors de la détermination de la valeur `trigger`.
+    - `options.target` (*Node* [optional]): Valeur par défaut `window`.
+    - `options.threshold` (*Number* [optional]): la valeur par défaut est `100`. Modifiez la valeur `trigger` lorsque le défilement vertical dépasse strictement ce seuil (exclusif).
 
-- `options.disableHysteresis` (*Boolan* [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
-- `options.target` (*Node* [optional]): Defaults to `window`.
-- `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll crosses this threshold.
+#### Valeur de retour
 
-#### Returns
-
-`trigger`: Does the scroll position match the criteria?
+`trigger`: Est-ce que la position de défilement respecte les critères ?
 
 #### Exemples
 

@@ -1,28 +1,28 @@
 ---
-title: Progresso
+title: Componente React Circular Progress, Linear Progress
 components: CircularProgress, LinearProgress
 ---
 
-# Progress (Progresso)
+# Progresso
 
 <p class="description">Os indicadores de progresso expressam um tempo de espera não especificado ou exibem a duração de um processo.</p>
 
-[Indicadores de progresso](https://material.io/design/components/progress-indicators.html) informam aos usuários sobre o estado de processos em progresso, como o carregamento de um app ou o envio de um formulário. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
+[Indicadores de progresso](https://material.io/design/components/progress-indicators.html) informam aos usuários sobre o estado de processos em progresso, como o carregamento de um aplicativo, envio de um formulário, ou atualizações. Eles comunicam o estado do aplicativo e indicam ações disponíveis, tal como, se o usuário pode sair da página atual.
 
-**Determinate** indicators display how long an operation will take.
+Indicador **determinado** mostra quanto tempo uma operação vai demorar.
 
-**Indeterminate** indicators visualize an unspecified wait time.
+Indicador **indeterminado** demonstra um tempo de espera não especificado.
 
-#### Progress as a group
+#### Conjunto de progressos
 
-When displaying progress for a sequence of processes, indicate overall progress rather than the progress of each activity.
+Ao exibir o progresso de uma seqüência de processos, indique o progresso geral em vez do progresso de cada atividade.
 
 ## Circular
 
-[Circular progress](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) support both determinate and indeterminate processes.
+[Progresso circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) suporta ambos, processos determinados e indeterminados.
 
-- **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.
-- **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
+- O indicador circular **determinado** preenche a faixa circular invisível com cor, a medida que o indicador se move de 0 a 360 graus.
+- O indicador circular **indeterminado** crescem e diminuem em tamanho enquanto se movem de forma circular na faixa invisível.
 
 ### Circular Indeterminado
 
@@ -32,19 +32,19 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 {{"demo": "pages/components/progress/CircularIntegration.js"}}
 
-### Determinado Circular
+### Circular Determinado
 
 {{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
-### Fatia Circular
+### Circular estático
 
 {{"demo": "pages/components/progress/CircularStatic.js"}}
 
 ## Linear
 
-[Linear progress](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) indicators.
+Indicadores de [progresso linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators).
 
-### Indeterminado Linear
+### Linear Indeterminado
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
@@ -60,13 +60,13 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 {{"demo": "pages/components/progress/LinearQuery.js"}}
 
-## Gamas não padronizadas
+## Intervalo não-padrão
 
-The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
+Os componentes de progresso aceitam um valor no intervalo de 0 a 100. Isso simplifica as coisas para os usuários de leitores de tela, onde estes são os valores padrão mínimos / máximos. Às vezes, no entanto, você pode estar trabalhando com uma fonte de dados onde os valores ficam de fora deste intervalo. Veja como você pode transformar facilmente um valor em qualquer intervalo em uma escala de 0 a 100:
 
 ```jsx
 // MIN = Valor mínimo esperado
-// MAX = Valor esperado Maximium
+// MAX = Valor máximo esperado
 // Função para normalizar os valores (MIN / MAX pode ser integrado)
 const normalise = value => (value - MIN) * 100 / (MAX - MIN);
 
@@ -81,24 +81,24 @@ function Progress(props) {
 }
 ```
 
-## Customized progress bars
+## Barra de progresso customizada
 
-Aqui estão alguns exemplos de personalização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 
-## Delaying appearance
+## Aparência atrasada
 
-There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time. The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second. After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
+Existem [3 limites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) para saber sobre o tempo de resposta. O efeito cascata do componente `ButtonBase` garante que o usuário experimente um sistema de feedback em tempo real. Normalmente, nenhum feedback é necessário durante atrasos de mais de 0,1 segundos e menos de 1,0 segundos. Mas após 1,0 segundo, você pode exibir um carregador para garantir que o fluxo de pensamento do usuário não seja interrompido.
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
 ## Limitações
 
-Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths. You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
+Quando o processamento é particularmente lento, você pode perder a animação do traço ou ver raios aleatórios com CircularProgress. Para não bloquear o processo principal de renderização, você deve processar suas operações com um web worker ou por batch.
 
-![heavy load](/static/images/progress/heavy-load.gif)
+![carga pesada](/static/images/progress/heavy-load.gif)
 
-When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See https://github.com/mui-org/material-ui/issues/10327
+Quando não for possível, você pode aproveitar a propriedade `disableShrink` para atenuar o problema. Veja [este issue](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}

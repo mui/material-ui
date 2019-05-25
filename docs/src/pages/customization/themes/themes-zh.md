@@ -19,7 +19,7 @@
 更改主题配置变量是将Material-UI与您的需求相匹配的最有效方法。 以下列出了一些重要的样式变量：
 
 - [调色板](/customization/palette/)
-- [活版印刷](/customization/typography/)
+- [Typography（文字排版）](/customization/typography/)
 - [间距](/customization/spacing/)
 - [断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)

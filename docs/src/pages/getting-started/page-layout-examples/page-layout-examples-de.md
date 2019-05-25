@@ -2,7 +2,7 @@
 
 <p class="description">Wir haben eine Auswahl der grundlegenden Seitenlayouts, um Ihnen beim Einstieg in die App zu helfen.</p>
 
-Sie können mit einer der [ Beispielanwendungen](https://github.com/mui-org/material-ui/tree/next/examples) kombiniert werden, um einen kompletten Starter zu bilden.
+Sie können mit einer der [ Beispielanwendungen](https://github.com/mui-org/material-ui/tree/master/examples) kombiniert werden, um einen kompletten Starter zu bilden.
 
 Abschnitte jedes Layouts sind entweder durch Kommentare oder die Verwendung separater Dateien eindeutig definiert. Dadurch wird das Extrahieren von Teilen einer Seite (z. B. "Heldeneinheit" oder Fußzeilen) für die Wiederverwendung in anderen Seiten vereinfacht.
 

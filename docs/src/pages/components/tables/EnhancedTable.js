@@ -89,25 +89,22 @@ function EnhancedTableHead(props) {
             onChange={onSelectAllClick}
           />
         </TableCell>
-        {headRows.map(
-          row => (
-            <TableCell
-              key={row.id}
-              align={row.numeric ? 'right' : 'left'}
-              padding={row.disablePadding ? 'none' : 'default'}
-              sortDirection={orderBy === row.id ? order : false}
+        {headRows.map(row => (
+          <TableCell
+            key={row.id}
+            align={row.numeric ? 'right' : 'left'}
+            padding={row.disablePadding ? 'none' : 'default'}
+            sortDirection={orderBy === row.id ? order : false}
+          >
+            <TableSortLabel
+              active={orderBy === row.id}
+              direction={order}
+              onClick={createSortHandler(row.id)}
             >
-              <TableSortLabel
-                active={orderBy === row.id}
-                direction={order}
-                onClick={createSortHandler(row.id)}
-              >
-                {row.label}
-              </TableSortLabel>
-            </TableCell>
-          ),
-          this,
-        )}
+              {row.label}
+            </TableSortLabel>
+          </TableCell>
+        ))}
       </TableRow>
     </TableHead>
   );
@@ -259,7 +256,7 @@ function EnhancedTable() {
   }
 
   function handleChangeRowsPerPage(event) {
-    setRowsPerPage(event.target.value);
+    setRowsPerPage(+event.target.value);
   }
 
   function handleChangeDense(event) {

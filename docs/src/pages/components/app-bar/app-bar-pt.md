@@ -3,9 +3,9 @@ title: Componente App Bar (Barra de Aplicativos) para React
 components: AppBar, Toolbar, Menu
 ---
 
-# App Bar (Barra de Aplicativos)
+# Barra de Aplicativos
 
-<p class="description">A App Bar exibe informações e ações relacionadas à tela atual.</p>
+<p class="description">A Barra de aplicativos exibe informações e ações relacionadas à tela atual.</p>
 
 O [App Bar superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ele é utilizado para a identidade visual, títulos de tela, navegação, e ações.
 
@@ -43,17 +43,17 @@ Uma barra de pesquisa na lateral.
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
+## Rolagem
 
-### Hide App Bar
+### Barra de Aplicativos oculta
 
-An App Bar that hides on scroll.
+Uma barra de aplicativos que se esconde ao rolar.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": "true", "maxWidth": 500}}
 
-### Elevate App Bar
+### Barra de aplicativos elevada
 
-An App Bar that elevates on scroll.
+Uma barra de aplicativos que se mantém acima ao rolar.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": "true", "maxWidth": 500}}
 
@@ -61,15 +61,15 @@ An App Bar that elevates on scroll.
 
 #### Argumentos
 
-1. `options` (*Object* [optional]):
-
-- `options.disableHysteresis` (*Boolan* [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
-- `options.target` (*Node* [optional]): Defaults to `window`.
-- `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll crosses this threshold.
+1. `options` (*Object* [opcional]):
+    
+    - `options.disableHysteresis` (*Boolean* [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor `trigger`.
+    - `options.target` (*Node* [opcional]): Padrão `window`.
+    - `options.threshold` (*Number* [opcional]): Padrão `100`. Modifica o valor de `trigger` quando a barra de rolagem vertical ultrapassar este limite.
 
 #### Retornos
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: a posição de rolagem corresponde aos critérios?
 
 #### Exemplos
 

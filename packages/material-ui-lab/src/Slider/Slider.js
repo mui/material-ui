@@ -541,14 +541,14 @@ class Slider extends React.Component {
 
     const percent = clamp(((value - min) * 100) / (max - min));
 
-    const commonClasses = {
+    const commonClasses = clsx({
       [classes.disabled]: disabled,
       [classes.jumped]: !disabled && currentState === 'jumped',
       [classes.focused]: !disabled && currentState === 'focused',
       [classes.activated]: !disabled && currentState === 'activated',
       [classes.vertical]: vertical,
       [classes.rtl]: theme.direction === 'rtl',
-    };
+    });
 
     const className = clsx(
       classes.root,

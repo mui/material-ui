@@ -33,7 +33,7 @@ function TrackWho() {
       {twitterList.map(({ image, primary, secondary }) => (
         <React.Fragment key={primary}>
           <ListItem button>
-            <Avatar link src={image} />
+            <Avatar alt="Avatar" link src={image} />
             <ListItemText primary={primary} secondary={secondary} />
             <Button variant="outlined" color="primary">
               Follow

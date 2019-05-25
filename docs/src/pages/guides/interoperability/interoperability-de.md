@@ -214,7 +214,7 @@ Material-UI hat eine reiche Themenstruktur, die Sie für Farbmanipulationen, Üb
 
 ### Portale
 
-Das [Portal](/utils/portal/) bietet eine erstklassige Möglichkeit, Kinder in einen DOM-Knoten zu rendern, der sich außerhalb der DOM-Hierarchie der übergeordneten Komponente befindet. Aufgrund der Art und Weise, in der styled-components das CSS erfasst, können Probleme auftreten, bei denen das Styling nicht angewendet wird.
+Das [Portal](/components/portal/) bietet eine erstklassige Möglichkeit, Kinder in einen DOM-Knoten zu rendern, der sich außerhalb der DOM-Hierarchie der übergeordneten Komponente befindet. Aufgrund der Art und Weise, in der styled-components das CSS erfasst, können Probleme auftreten, bei denen das Styling nicht angewendet wird.
 
 Beispielsweise, wenn Sie versuchen, das [Menu](/components/menus/) einer [Select](/components/selects/) Komponente mit der Eigenschaft `MenuProps` zu stylen. Dafür müssen Sie die `className` Eigenschaft für das Element, das außerhalb der DOM-Hierarchie gerendert wird, mit übergeben. The following example shows a workaround:
 

@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/types",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Types - Utility types for Material-UI.",
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-types",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-types",
   "scripts": {
     "release": "npm publish --tag latest",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",

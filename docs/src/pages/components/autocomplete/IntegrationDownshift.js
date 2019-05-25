@@ -64,7 +64,8 @@ function renderInput(inputProps) {
   );
 }
 
-function renderSuggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
+function renderSuggestion(suggestionProps) {
+  const { suggestion, index, itemProps, highlightedIndex, selectedItem } = suggestionProps;
   const isHighlighted = highlightedIndex === index;
   const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
 
@@ -174,6 +175,7 @@ function DownshiftMultiple(props) {
             }),
             label: 'Label',
           })}
+
           {isOpen ? (
             <Paper className={classes.paper} square>
               {getSuggestions(inputValue2).map((suggestion, index) =>
@@ -253,6 +255,7 @@ function IntegrationDownshift() {
                 placeholder: 'Search a country (start with a)',
               }),
             })}
+
             <div {...getMenuProps()}>
               {isOpen ? (
                 <Paper className={classes.paper} square>
@@ -295,11 +298,12 @@ function IntegrationDownshift() {
                 popperNode = node;
               },
             })}
+
             <Popper open={isOpen} anchorEl={popperNode}>
               <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
                 <Paper
                   square
-                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : null }}
+                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : undefined }}
                 >
                   {getSuggestions(inputValue).map((suggestion, index) =>
                     renderSuggestion({
@@ -334,7 +338,7 @@ function IntegrationDownshift() {
               fullWidth: true,
               classes,
               InputProps: getInputProps({
-                onFocus: openMenu,
+                onFocus: () => openMenu(),
                 onChange: event => {
                   if (event.target.value === '') {
                     clearSelection();
@@ -343,6 +347,7 @@ function IntegrationDownshift() {
                 placeholder: 'With the clear & show empty options',
               }),
             })}
+
             <div {...getMenuProps()}>
               {isOpen ? (
                 <Paper className={classes.paper} square>

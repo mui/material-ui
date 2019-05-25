@@ -7,11 +7,11 @@ components: Container
 
 <p class="description">容器会将其内容水平居中。 这是最基本的布局元素。</p>
 
-While containers can be nested, most layouts do not require a nested container.
+虽然容器可以嵌套，但大多数布局不需要嵌套容器。
 
-## 自适应
+## 流体
 
-自适应容器的最大宽度可以通过设置 `maxWidth` 属性来限制
+流体容器的最大宽度可以通过设置 `maxWidth` 属性来限制
 
 ```jsx
 <Container maxWidth="sm">
@@ -21,7 +21,7 @@ While containers can be nested, most layouts do not require a nested container.
 
 ## 固定大小
 
-If you prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport, you can set the `fixed` property. The max-width matches the min-width of the current breakpoint.
+如果您希望设计固定大小而不是尝试完全流体的视口，则可以设置 `fixed` 属性。 最大宽度和当前断点的最小宽度相同。
 
 ```jsx
 <Container fixed>

@@ -12,7 +12,7 @@
 - 🦎可以和任何主题对象 (theme object) 配合
 - 💅使用广为流行的 CSS-in-JS 样式方案
 - 📦体积小 [4KB gzipped](https://bundlephobia.com/result?p=@material-ui/system)
-- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
+- 🚀 [快速](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
 
 值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： `({ theme, ...style })=> style<、0>。</p>
 
@@ -315,7 +315,7 @@ const palette = compose(textColor, bgcolor);
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在v2，v3, 和v4中一步步介绍了原子类名 他们使用 `Helper classes` 聚合它们的方式给了我们启发。
 - 在 React 世界中， [Styled System](https://github.com/jxnblk/styled-system) (2017年) 是第一个推动样式函数的。 它可以做出一个通用的 Box 组件来已经衍生其他组件，这种方式可以替换原子CSS之中的辅助原子类的做法。
 - Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
+  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - 实际实现 和 对象响应API(object responsive API) 受到 [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system)的启发。

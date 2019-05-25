@@ -3,9 +3,9 @@ import { Omit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
 
 /**
- * a component whose root component can be controled via a `component` prop
+ * A component whose root component can be controlled via a `component` prop.
  *
- * Adjusts valid props based on the type of `component`
+ * Adjusts valid props based on the type of `component`.
  */
 export interface OverridableComponent<M extends OverridableTypeMap> {
   <C extends React.ElementType>(props: { component: C } & OverrideProps<M, C>): JSX.Element;
@@ -13,7 +13,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
 }
 
 /**
- * props of the component if `component={Component}` is used
+ * Props of the component if `component={Component}` is used.
  */
 // prettier-ignore
 export type OverrideProps<
@@ -25,7 +25,7 @@ export type OverrideProps<
 );
 
 /**
- * props if `component={Component}` is NOT used
+ * Props if `component={Component}` is NOT used.
  */
 // prettier-ignore
 export type DefaultComponentProps<M extends OverridableTypeMap> =
@@ -33,7 +33,7 @@ export type DefaultComponentProps<M extends OverridableTypeMap> =
   & Omit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
 
 /**
- * props defined on the component (+ common material-ui props)
+ * Props defined on the component (+ common material-ui props).
  */
 // prettier-ignore
 export type BaseProps<M extends OverridableTypeMap> =
@@ -41,7 +41,7 @@ export type BaseProps<M extends OverridableTypeMap> =
   & CommonProps<M>;
 
 /**
- * props that are valid for material-ui components
+ * Props that are valid for material-ui components.
  */
 export interface CommonProps<M extends OverridableTypeMap>
   extends StyledComponentProps<M['classKey']> {

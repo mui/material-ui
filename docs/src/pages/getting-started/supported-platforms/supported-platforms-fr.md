@@ -10,7 +10,7 @@ Material-UI prend en charge les dernières versions stables de tous les principa
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
-Étant donné que Googlebot utilise un service de rendu Web (WRS) pour indexer le contenu de la page, il est essentiel que Material-UI le prenne en charge. [WRS est basé sur Chrome 41](https://developers.google.com/search/docs/guides/rendering). Vous pouvez vous attendre à ce que les composants de Material-UI soient rendus sans problèmes majeurs.
+Étant donné que Googlebot utilise un service de rendu Web (WRS) pour indexer le contenu de la page, il est essentiel que Material-UI le prenne en charge. [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Vous pouvez vous attendre à ce que les composants de Material-UI soient rendus sans problèmes majeurs.
 
 ## Serveur
 

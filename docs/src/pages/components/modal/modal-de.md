@@ -7,11 +7,11 @@ components: Modal
 
 <p class="description">Die modale Komponente bietet eine solide Grundlage für das Erstellen von Dialogen, Popovers, Leuchtkästen oder anderen Elementen.</p>
 
-Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponente. Das `Modal` bietet einige hilfreiche Funktionen gegenüber der Verwendung einer [`Portal`](/utils/portal/) Komponente und einiger Stile:
+Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponente. The `Modal` offers a few helpful features over using just a [`components`](/utils/portal/) component and some styles:
 
-- Verwaltet modales Stacking, wenn eins zu einem Zeitpunkt nicht ausreicht.
-- Erstellt einen Hintergrund zum Deaktivieren der Interaktion unter dem Modal.
-- Es deaktiviert das Blättern des Seiteninhalts, während es geöffnet ist.
+- 
+- 
+- 
 - ♿️ Der Fokus wird richtig verwaltet. Wechseln des Fokus zum modalen Inhalt und diesen halten belassen, bis der Modal geschlossen ist.
 - ♿️ Fügt die entsprechenden ARIA-Rollen automatisch hinzu.
 - 

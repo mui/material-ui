@@ -14,3 +14,9 @@ The `ToggleButtonGroup` will control the selected of its child buttons when
 given its own `value` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
+
+## Sizes
+
+Fancy larger or smaller buttons? Use the `size` property.
+
+{{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}

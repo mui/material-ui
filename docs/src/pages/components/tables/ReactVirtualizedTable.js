@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
-import { AutoSizer, Column, SortDirection, Table } from 'react-virtualized';
+import { AutoSizer, Column, Table } from 'react-virtualized';
 
 const styles = theme => ({
   flexContainer: {
@@ -30,15 +29,20 @@ const styles = theme => ({
 });
 
 class MuiVirtualizedTable extends React.PureComponent {
-  getRowClassName = ({ index }) => {
-    const { classes, rowClassName, onRowClick } = this.props;
+  static defaultProps = {
+    headerHeight: 48,
+    rowHeight: 48,
+  };
 
-    return clsx(classes.tableRow, classes.flexContainer, rowClassName, {
+  getRowClassName = ({ index }) => {
+    const { classes, onRowClick } = this.props;
+
+    return clsx(classes.tableRow, classes.flexContainer, {
       [classes.tableRowHover]: index !== -1 && onRowClick != null,
     });
   };
 
-  cellRenderer = ({ cellData, columnIndex = null }) => {
+  cellRenderer = ({ cellData, columnIndex }) => {
     const { columns, classes, rowHeight, onRowClick } = this.props;
     return (
       <TableCell
@@ -55,21 +59,8 @@ class MuiVirtualizedTable extends React.PureComponent {
     );
   };
 
-  headerRenderer = ({ label, columnIndex, dataKey, sortBy, sortDirection }) => {
-    const { headerHeight, columns, classes, sort } = this.props;
-    const direction = {
-      [SortDirection.ASC]: 'asc',
-      [SortDirection.DESC]: 'desc',
-    };
-
-    const inner =
-      !columns[columnIndex].disableSort && sort != null ? (
-        <TableSortLabel active={dataKey === sortBy} direction={direction[sortDirection]}>
-          {label}
-        </TableSortLabel>
-      ) : (
-        <span>{label}</span>
-      );
+  headerRenderer = ({ label, columnIndex }) => {
+    const { headerHeight, columns, classes } = this.props;
 
     return (
       <TableCell
@@ -79,7 +70,7 @@ class MuiVirtualizedTable extends React.PureComponent {
         style={{ height: headerHeight }}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
       >
-        {inner}
+        <span>{label}</span>
       </TableCell>
     );
   };
@@ -90,18 +81,7 @@ class MuiVirtualizedTable extends React.PureComponent {
       <AutoSizer>
         {({ height, width }) => (
           <Table height={height} width={width} {...tableProps} rowClassName={this.getRowClassName}>
-            {columns.map(({ cellContentRenderer = null, className, dataKey, ...other }, index) => {
-              let renderer;
-              if (cellContentRenderer != null) {
-                renderer = cellRendererProps =>
-                  this.cellRenderer({
-                    cellData: cellContentRenderer(cellRendererProps),
-                    columnIndex: index,
-                  });
-              } else {
-                renderer = this.cellRenderer;
-              }
-
+            {columns.map(({ dataKey, ...other }, index) => {
               return (
                 <Column
                   key={dataKey}
@@ -111,8 +91,8 @@ class MuiVirtualizedTable extends React.PureComponent {
                       columnIndex: index,
                     })
                   }
-                  className={clsx(classes.flexContainer, className)}
-                  cellRenderer={renderer}
+                  className={classes.flexContainer}
+                  cellRenderer={this.cellRenderer}
                   dataKey={dataKey}
                   {...other}
                 />
@@ -127,23 +107,10 @@ class MuiVirtualizedTable extends React.PureComponent {
 
 MuiVirtualizedTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      cellContentRenderer: PropTypes.func,
-      dataKey: PropTypes.string.isRequired,
-      width: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   headerHeight: PropTypes.number,
   onRowClick: PropTypes.func,
-  rowClassName: PropTypes.string,
-  rowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  sort: PropTypes.func,
-};
-
-MuiVirtualizedTable.defaultProps = {
-  headerHeight: 48,
-  rowHeight: 48,
+  rowHeight: PropTypes.number,
 };
 
 const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
@@ -178,7 +145,6 @@ function ReactVirtualizedTable() {
         columns={[
           {
             width: 200,
-            flexGrow: 1.0,
             label: 'Dessert',
             dataKey: 'dessert',
           },

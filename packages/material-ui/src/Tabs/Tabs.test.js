@@ -398,14 +398,16 @@ describe('<Tabs />', () => {
 
     it('should render scroll buttons automatically', () => {
       const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="auto">
+        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="desktop">
           <Tab />
           <Tab />
         </Tabs>,
       );
       assert.strictEqual(wrapper.find(TabScrollButton).length, 2);
       assert.strictEqual(
-        wrapper.find(TabScrollButton).everyWhere(node => node.hasClass(classes.scrollButtonsAuto)),
+        wrapper
+          .find(TabScrollButton)
+          .everyWhere(node => node.hasClass(classes.scrollButtonsDesktop)),
         true,
       );
     });

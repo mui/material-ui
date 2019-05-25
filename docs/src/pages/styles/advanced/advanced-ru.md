@@ -55,7 +55,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 {{"demo": "pages/styles/advanced/WithTheme.js"}}
 
-### Theme nesting
+### Вложенные темы
 
 You can nest multiple theme providers. This can be really useful when dealing with different areas of your application that have distinct appearance from each other.
 
@@ -195,7 +195,7 @@ export default App;
 
 ## String templates
 
-If you prefer CSS syntax over JSS, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template) plugin.
+If you prefer CSS syntax over JSS, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) plugin.
 
 ```jsx
 const useStyles = makeStyles({
@@ -388,13 +388,13 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 We have [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
 
 ## Имена классов
 
@@ -491,7 +491,7 @@ const StyledTextField = styled(TextField)`
     &:hover fieldset {
       border-color: yellow; 💛
     }
-    &.focused fieldset {
+    &.Mui-focused fieldset {
       border-color: green; 💚
     }
   }

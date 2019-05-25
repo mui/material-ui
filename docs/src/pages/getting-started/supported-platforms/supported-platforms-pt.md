@@ -10,7 +10,7 @@ O Material-UI suporta as versões mais recentes e estáveis de todos os principa
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
-Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o conteúdo da página, é essencial que o Material-UI o suporte. [ O WRS é baseado no Chrome 41 ](https://developers.google.com/search/docs/guides/rendering). Você pode esperar que os componentes do Material-UI sejam renderizados sem grandes problemas.
+Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o conteúdo da página, é essencial que o Material-UI o suporte. [O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Você pode esperar que os componentes do Material-UI sejam renderizados sem grandes problemas.
 
 ## Servidor
 

@@ -1,15 +1,15 @@
 ---
-title: Lista React Componente
+title: Componente React Listas
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
-# Lists (Listas)
+# Listas
 
-<p class="description">As listas são índices verticais contínuos de texto ou imagens.</p>
+<p class="description">Listas são continuas, apresentam verticalmente texto ou imagens.</p>
 
-[Listas](https://material.io/design/components/lists.html) são um grupo contínuo de texto ou imagens. Eles são compostos por itens contendo ações primárias e complementares, que são representados por ícones e texto.
+[Listas](https://material.io/design/components/lists.html) são um grupo contínuo de texto ou imagens. Elas são compostas por itens contendo ações primárias e complementares, que são representados por ícones e texto.
 
-## Lista simples
+## Lista Simples
 
 {{"demo": "pages/components/lists/SimpleList.js"}}
 
@@ -27,13 +27,13 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-Você pode encontrar uma demonstração [com React Router seguindo esta seção](/guides/composition/#react-router) da documentação.
+Você pode encontrar uma [demonstração com React Router seguindo esta seção](/guides/composition/#react-router) da documentação.
 
-## Lista aninhada
+## Lista Aninhada
 
 {{"demo": "pages/components/lists/NestedList.js"}}
 
-## Lista de pastas
+## Lista de Pastas
 
 {{"demo": "pages/components/lists/FolderList.js"}}
 
@@ -43,33 +43,33 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 {{"demo": "pages/components/lists/InteractiveList.js"}}
 
-## ListItem Selecionado
+## Lista - Item Selecionado
 
 {{"demo": "pages/components/lists/SelectedListItem.js"}}
 
 ## Alinhar itens da lista
 
-Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, defina a propriedade `alignItems = "flex-start"`.
+Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, alterando a propriedade `alignItems = "flex-start"`.
 
 {{"demo": "pages/components/lists/AlignItemsList.js"}}
 
-## Controles de lista
+## Controles de Lista
 
-### Checkbox
+### Caixa de Seleção
 
-Uma caixa de seleção que pode ser tanto uma ação principal ou uma ação secundária.
+Uma caixa de seleção pode ser uma ação primária ou uma ação secundária.
 
-O checkbox é a ação primária e o estado indicador para o item da lista. O botão comentário é a ação secundária e um destino separado.
+A caixa de seleção é a ação primária e o indicador de estado para o item da lista. O botão comentário é uma ação secundária separada.
 
 {{"demo": "pages/components/lists/CheckboxList.js"}}
 
-O checkbox é a ação secundária para o item da lista e um destino separado.
+A caixa de seleção é uma ação secundária, sem interferir com o estado do item da lista.
 
 {{"demo": "pages/components/lists/CheckboxListSecondary.js"}}
 
-### Switch
+### Seletor
 
-O comutador é a ação secundária e um destino separado.
+O seletor é uma ação secundária, sem interferir com o estado do item da lista.
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js"}}
 
@@ -77,7 +77,7 @@ O comutador é a ação secundária e um destino separado.
 
 Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da tela pelo próximo subtítulo.
 
-Este recurso está dependendo do posicionamento de sticky CSS. Infelizmente, [não foi implementado](https://caniuse.com/#search=sticky) por todos os navegadores que suportamos. O padrão é `disableSticky` quando não é suportado.
+Este recurso está dependendo do posicionamento de sticky CSS. Infelizmente este recurso [não foi implementado](https://caniuse.com/#search=sticky) por todos os navegadores que suportamos. Colocamos como padrão `disableSticky` quando não é suportado.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
@@ -85,8 +85,8 @@ Este recurso está dependendo do posicionamento de sticky CSS. Infelizmente, [n�
 
 {{"demo": "pages/components/lists/InsetList.js"}}
 
-## Virtualized List
+## Lista Virtualizada
 
-In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. São renderizadas 200 linhas e pode facilmente lidar com mais. Virtualization helps with performance issues.
+No exemplo a seguir, nós demonstramos como usar [react-window](https://github.com/bvaughn/react-window) com o componente `List`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}

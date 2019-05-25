@@ -19,7 +19,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">ariaLabel&nbsp;*</span> | <span class="prop-type">string</span> |  | The aria-label of the `Button` element. Also used to provide the `id` for the `SpeedDial` element and its children. |
-| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`Button`](/api/button/) element. |
+| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Properties applied to the [`Button`](/api/button/) element. |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | SpeedDialActions to display when the SpeedDial is `open`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'up'&nbsp;&#124;<br>&nbsp;'down'&nbsp;&#124;<br>&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br></span> | <span class="prop-default">'up'</span> | The direction the actions open relative to the floating action button. |
@@ -54,7 +54,7 @@ This property accepts the following keys:
 | <span class="prop-name">actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/SpeedDial/SpeedDial.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDial/SpeedDial.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

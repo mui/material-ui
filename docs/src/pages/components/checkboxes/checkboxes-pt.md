@@ -1,39 +1,39 @@
 ---
-title: Checkbox React component
+title: Componente React Caixa de Seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Checkbox
+# Caixas de Seleção
 
-<p class="description">Checkboxes permitem o usuário selecionar um ou mais itens de um conjunto.</p>
+<p class="description">Caixas de Seleção permitem o usuário selecionar um ou mais itens de um conjunto.</p>
 
-[Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) podem ser usados para deixar uma opção disponível ou indisponível.
+[Caixas de Seleção](https://material.io/design/components/selection-controls.html#checkboxes) podem ser usadas para ativar ou desativar uma opção.
 
-Se você tem várias opções aparecendo na lista, você pode economizar espaço usando checkbox ao invés de on/off switches. Se você tem uma única opção, evite usar um checkbox e use um on/off switch.
+Se você tem várias opções aparecendo em uma lista, você pode economizar espaço usando caixas de seleção ao invés de seletores liga/desliga. Se você tem uma única opção, evite usar uma caixa de seleção e use um seletor de liga/desliga.
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-`Checkbox` também podem ser usadas com uma `label` graças ao `FormControlLabel` componente.
+Caixa de Seleção pode também ser usada com um rótulo graças ao componente `FormControlLabel`.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Checkboxes com FormGroup
+## Caixas de Seleção com FormGroup
 
 `FormGroup` é usado para agrupar componentes seletores para facilitar o uso da API.
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 
-## Posicionamento do Label
+## Posicionamento do Rótulo
 
-Você pode alterar o posicionamento do label:
+Você pode alterar o posicionamento do rótulo:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
 ## Acessibilidade
 
-Todos os form controls devem ter labels, e isso inclui radio buttons, checkboxes e switches. Na maioria dos casos, isso é feito usando `<label>` ([FormControlLabel](/api/form-control-label/)).
+Todos os controles de formulário devem ter rótulos, e isso inclui Botões de Opção, Caixas de Seleção e Seletores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
 
-Quando uma label não pode ser usada, é necessário adicionar um atributo diretamente no componente de input. Nesse caso você pode aplicar um atributo adicional (e.g.`aria-label`,`aria-labelledby`, `title`) através do `inputProps`.
+Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (e.g.`aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
 <Checkbox
@@ -44,4 +44,4 @@ Quando uma label não pode ser usada, é necessário adicionar um atributo diret
 
 ## Guia
 
-- [Checkboxes vs. Botões de Rádio](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

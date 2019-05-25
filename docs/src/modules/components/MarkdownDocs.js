@@ -56,6 +56,14 @@ const styles = theme => ({
       fontWeight: 400,
       fontFamily: theme.typography.fontFamily,
     },
+    '& img': {
+      display: 'block',
+      margin: 'auto',
+    },
+    '& .blog-description': {
+      fontSize: theme.typography.pxToRem(14),
+      textAlign: 'center',
+    },
   },
   footer: {
     marginTop: theme.spacing(12),
@@ -77,7 +85,7 @@ const styles = theme => ({
   },
 });
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next/docs/src';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master/docs/src';
 
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {

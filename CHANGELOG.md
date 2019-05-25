@@ -1,5 +1,119 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0
+###### *May 23, 2019*
+
+[Material-UI v4 is out 🎉](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)
+
+Some statistics with v4 compared to the release of v1 one year ago:
+
+- From 300k downloads/month to 2M downloads/month on npm
+- From 90k users/month to 350k users/month on the documentation
+
+### `@material-ui/lab@v4.0.0-alpha.13`
+
+- [ToggleButtonGroup] Added missing size prop to type declarations (#15785) @CoolCyberBrain
+
+### `@material-ui/system@v4.0.0`
+
+- [system] Add missing TypeScript types for flexbox and shadows (#15781) @willbamford
+
+### Docs
+
+- [docs] Add remaining TypeScript component demos (#15755) @eps1lon
+- [docs] Fix Nav components subsections to be open by default (#15749) @mbrookes
+- [docs] Fix some gramma in testing doc (#15776) @DDDDDanica
+- [docs] Fix some grammar in right to left guide (#15789) @DDDDDanica
+- [docs] Fix typo (#15792) @retyui
+- [docs] Material-UI v4 is out (#15766) @oliviertassinari
+- [docs] Reference the article with it's full name in icon doc (#15796) @DDDDDanica
+- [docs] Revert the marked change (#15797) @oliviertassinari
+
+### Core
+
+- [core] Change cssutils responsiveProperty unit type (#15783) @eddiemonge
+
+## 4.0.0-rc.0
+###### *May 20, 2019*
+
+A big thanks to the 17 contributors who made this release possible!
+
+We have done the very last breaking changes (nothing significant).
+The release of v4 is imminent, stay tuned!
+
+### `@material-ui/core@v4.0.0-rc.0`
+
+### Breaking changes
+
+- [ClickAwayListener] Fix scrollbar interaction (#15743) @Umerbhat
+
+  ```diff
+  -<ClickAwayListener />
+  +<ClickAwayListener mouseEvent="onMouseUp" />
+  ```
+
+  We recommend the default value since `mouseup` will be triggered by clicks
+  on scrollbars.
+
+- [Tabs] Hide scrollbar buttons when possible (#15676) @whitneymarkov
+
+  ```diff
+  -<Tabs />
+  +<Tabs scrollButtons="desktop" />
+  ```
+
+- [Tabs] Remove deprecated fullWidth and scrollable props (#15670) @mbrookes
+
+  ```diff
+  -<Tabs fullWidth scrollable />
+  +<Tabs variant="scrollable" />
+  ```
+
+### Changes
+
+- [ButtonBase] Convert to function component (#15716) @eps1lon
+- [CssBaseline] Fix wrong default font weight (#15747) @oliviertassinari
+- [InputBase] Convert to function component (#15446) @adeelibr
+- [Popups] Allow Element as anchor el (#15707) @eps1lon
+- [Portal] Fix disablePortal not working (#15701) @imdaveead
+- [Radio] Animate the check state change (#15671) @imdaveead
+- [Tabs] Remove deprecated fullWidth and scrollable props (#15670) @mbrookes
+- [Tabs] Update rendering of auto-scrollable buttons (#15676) @whitneymarkov
+- [Tabs] Update onChange docs to match types (#15672) @jharrilim
+- [ToggleButtonGroup] Add size prop (#15644) @isaacblinder
+
+### `@material-ui/icons@v4.0.0-rc.0`
+
+- [icons] Forward ref (#15683) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.12`
+
+- [SpeedDial] Convert to function component (#15737) @jeongsd
+
+### Docs
+
+- [docs] Add showcase criteria (#15686) @cvanem
+- [docs] Document if a component is StrictMode compatible (#15718) @eps1lon
+- [docs] Fix "enebles" typo on Palette page (#15719) @sbward
+- [docs] Fix a typo (#15709) @designorant
+- [docs] Fix Algolia top level duplication (#15738) @oliviertassinari
+- [docs] Fix typo and formatting in app-bar demo (#15723) @flying-sheep
+- [docs] Overhaul bundle size guide (#15739) @eps1lon
+- [docs] Persist the side nav scroll (#15704) @oliviertassinari
+- [docs] Port blog to next (#15711) @mbrookes
+- [docs] Simplify /related-projects (#15702) @pinturic
+- [docs] Use pickers from material-ui namespace (#15691) @eps1lon
+- [docs] Warn about ButtonBase#disableRipple and a11y (#15740) @eps1lon
+- [docs] Add ClickAwayListener breaking change (#15753) @eps1lon
+- [docs] Core a11y improvements (#15748) @eps1lon
+- [docs] Fix some apostrophe in TypeScript doc (#15757) @DDDDDanica
+
+### Core
+
+- [test] Colocate shadow root test for focus visible with implementation (#15712) @eps1lon
+- [test] Extend StrictMode tests (#15714) @eps1lon
+- [core] Add missing fontStyle type to TypographyStyle (#15733) @merceyz
+
 ## 4.0.0-beta.2
 ###### *May 13, 2019*
 
@@ -155,7 +269,7 @@ We will focus or effort on the stability of the library for the next two weeks.
 We don't plan more breaking changes, at the exception of changes that are required to fix bugs or that have minor impacts.
 We hope we can release v4 on May 15th, one year after v1.
 
-Please try the beta out! You can find an [upgrade guide](https://next.material-ui.com/guides/migration-v3/) to ease the transition.
+Please try the beta out! You can find an [upgrade guide](https://material-ui.com/guides/migration-v3/) to ease the transition.
 You will learn more about v4 in the final release blog post and our plans for the future.
 
 ### `@material-ui/core@v4.0.0-beta.0`
@@ -289,7 +403,7 @@ Here are the last breaking changes we want to introduce:
 
 We have done a lot of changes in the alpha phase.
 The beta phase will be used to stabilize the library, we might have introduced bugs.
-We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://next.material-ui.com/guides/migration-v3/).
+We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://material-ui.com/guides/migration-v3/).
 
 We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
@@ -1143,7 +1257,7 @@ Remove the first option argument of `withTheme()`. The first argument was a plac
 This is our first unstable release toward Material-UI v4.0.0. We try to release a major every 6-12 months.
 This gives us the opportunity to remove deprecated APIs, upgrade our peer dependencies and more importantly, keep up with the direction the community is taking.
 
-- You can find the documentation following this URL: https://next.material-ui.com/.
+- You can find the documentation following this URL: https://material-ui.com/.
 - You can track our progress following this URL: https://github.com/mui-org/material-ui/milestone/25.
 
 A big thanks to the 28 contributors who made this release possible!
@@ -8446,7 +8560,7 @@ to ease your pain. checkout the
 - [Core] Remove default theme handling from components (#3820)
 
 As of now you will need to provide theme on context, see:
-http://www.material-ui.com/#/customization/themes
+https://v0.material-ui.com/#/customization/themes
 
 - [Core] Removed redundant default export from the main library `index.js`.
 
@@ -9685,7 +9799,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - The main motivation here is to give developers more control over which font icons to include
     in their project. Instead of automatically including all material design icons in material-ui,
     developers can now create their own custom icon font file and just pass the icon className into
-    the FontIcon component. [Read more about FontIcons](http://www.material-ui.com/#/components/icons).
+    the FontIcon component.
   - Upgrade path:
     - If you were using the Icon component before, you'll need switch to either using FontIcon or SvgIcon.
       For FontIcon, create a custom font file and include it in your project and just pass the Icon

@@ -1,30 +1,30 @@
 ---
-title: Speed Dial React component
+title: Componente React para Acesso Rápido
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
 
-# Discagem Rápida
+# Acesso Rápido
 
-<p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
+<p class="description">Quando pressionado, um botão de ação flutuante pode exibir de três a seis ações relacionadas na forma de um acesso rápido.</p>
 
-If more than six actions are needed, something other than a FAB should be used to present them.
+Se mais de seis ações forem necessárias, algo diferente de um BAF deve ser usado para apresentá-las.
 
-## Discagem rápida simples
+## Acesso rápido simples
 
-The floating action button can display related actions.
+O botão de ação flutuante pode exibir ações relacionadas.
 
 {{"demo": "pages/components/speed-dial/SpeedDials.js"}}
 
-## Custom close icon
+## Ícone de fechamento customizado
 
-You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props of the `SpeedDialIcon` component.
+Você pode fornecer um ícone alternativo para os estados de aberto e fechado usando as propriedades `icon` e `openIcon` do componente `SpeedDialIcon`.
 
 {{"demo": "pages/components/speed-dial/OpenIconSpeedDial.js"}}
 
-## Persistent action tooltips
+## Sugestões de ação fixadas
 
-The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
+Os SpeedDialActions podem exibir dicas de forma fixadas para que os usuários não precisem manter as ações pressionadas para ver a dica nos dispositivos de toque.
 
-It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the property.
+A dica é ativada aqui em todos os dispositivos para fins de demonstração, mas em produção pode se usar uma lógica para definir condicionalmente a propriedade `isTouch`.
 
 {{"demo": "pages/components/speed-dial/SpeedDialTooltipOpen.js"}}

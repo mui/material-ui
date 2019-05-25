@@ -41,12 +41,7 @@ renderer.heading = (text, level) => {
   );
 };
 
-const externs = [
-  'https://material.io/',
-  'https://www.styled-components.com/',
-  'https://emotion.sh/',
-  'https://getbootstrap.com/',
-];
+const externs = ['https://material.io/', 'https://getbootstrap.com/'];
 
 renderer.link = (href, title, text) => {
   let more = '';
@@ -118,7 +113,7 @@ const styles = theme => ({
     fontSize: 16,
     color: theme.palette.text.primary,
     '& .anchor-link': {
-      marginTop: -96 - 29, // Offset for the anchor.
+      marginTop: -96, // Offset for the anchor.
       position: 'absolute',
     },
     '& pre, & pre[class*="language-"]': {
@@ -140,6 +135,9 @@ const styles = theme => ({
     },
     '& p code, & ul code, & pre code': {
       fontSize: 14,
+    },
+    '& .token.operator': {
+      background: 'transparent',
     },
     '& h1': {
       ...theme.typography.h2,
@@ -264,9 +262,6 @@ const styles = theme => ({
     },
     '& thead tr': {
       height: 64,
-    },
-    '& strong': {
-      fontWeight: theme.typography.fontWeightMedium,
     },
     '& blockquote': {
       borderLeft: `5px solid ${theme.palette.text.hint}`,
