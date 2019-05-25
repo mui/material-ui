@@ -134,7 +134,7 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`html
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
   \`\`\`
                 `}
           />
@@ -185,7 +185,7 @@ function HomeSteps(props) {
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>
             <NoSsr>
-              <img className={classes.img} alt="themes" src="/static/images/themes.jpg" />
+              <img className={classes.img} alt="themes" src="/static/images/themes-preview.jpg" />
             </NoSsr>
           </Link>
         </div>
