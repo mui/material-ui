@@ -1,5 +1,4 @@
 import style from './style';
-import compose from './compose';
 
 export const position = style({
   prop: 'position',
@@ -25,12 +24,3 @@ export const bottom = style({
 export const left = style({
   prop: 'left',
 });
-
-export default compose(
-  position,
-  zIndex,
-  top,
-  right,
-  bottom,
-  left,
-);

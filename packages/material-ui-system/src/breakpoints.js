@@ -1,6 +1,4 @@
 import warning from 'warning';
-import PropTypes from 'prop-types';
-import merge from './merge';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -19,9 +17,9 @@ const defaultBreakpoints = {
   up: key => `@media (min-width:${values[key]}px)`,
 };
 
-export function handleBreakpoints(props, propValue, styleFromPropValue) {
+export function handleBreakpoints(theme, propValue, styleFromPropValue) {
   warning(
-    props.theme,
+    theme,
     '@material-ui/system: you are calling a style function without a theme value.',
   );
 
@@ -45,38 +43,3 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 
   return output;
 }
-
-function breakpoints(styleFunction) {
-  const newStyleFunction = props => {
-    const base = styleFunction(props);
-    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
-
-    const extended = themeBreakpoints.keys.reduce((acc, key) => {
-      if (props[key]) {
-        acc = acc || {};
-        acc[themeBreakpoints.up(key)] = styleFunction({ theme: props.theme, ...props[key] });
-      }
-      return acc;
-    }, null);
-
-    return merge(base, extended);
-  };
-
-  newStyleFunction.propTypes =
-    process.env.NODE_ENV !== 'production'
-      ? {
-          ...styleFunction.propTypes,
-          xs: PropTypes.object,
-          sm: PropTypes.object,
-          md: PropTypes.object,
-          lg: PropTypes.object,
-          xl: PropTypes.object,
-        }
-      : {};
-
-  newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl', ...styleFunction.filterProps];
-
-  return newStyleFunction;
-}
-
-export default breakpoints;

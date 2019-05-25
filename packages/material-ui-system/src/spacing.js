@@ -1,64 +1,23 @@
 import warning from 'warning';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
-import merge from './merge';
-import memoize from './memoize';
 
-const properties = {
+const spacingKeys = {
   m: 'margin',
+  mt: 'marginTop',
+  mr: 'marginRight',
+  mb: 'marginBottom',
+  ml: 'marginLeft',
   p: 'padding',
+  pt: 'paddingTop',
+  pr: 'paddingRight',
+  pb: 'paddingBottom',
+  pl: 'paddingLeft',
+  px: ['paddingLeft', 'paddingRight'],
+  py: ['marginTop', 'marginBottom'],
+  mx: ['marginLeft', 'marginRight'],
+  my: ['marginTop', 'marginBottom'],
 };
-
-const directions = {
-  t: 'Top',
-  r: 'Right',
-  b: 'Bottom',
-  l: 'Left',
-  x: ['Left', 'Right'],
-  y: ['Top', 'Bottom'],
-};
-
-// memoize() impact:
-// From 300,000 ops/sec
-// To 350,000 ops/sec
-const getCssProperties = memoize(prop => {
-  // It's not a shorthand notation.
-  if (prop.length > 3) {
-    return [prop];
-  }
-
-  const [a, b] = prop.split('');
-  const property = properties[a];
-  const direction = directions[b] || '';
-  return Array.isArray(direction) ? direction.map(dir => property + dir) : [property + direction];
-});
-
-const spacingKeys = [
-  'm',
-  'mt',
-  'mr',
-  'mb',
-  'ml',
-  'mx',
-  'my',
-  'p',
-  'pt',
-  'pr',
-  'pb',
-  'pl',
-  'px',
-  'py',
-  'margin',
-  'marginLeft',
-  'marginTop',
-  'marginRight',
-  'marginBottom',
-  'padding',
-  'paddingTop',
-  'paddingRight',
-  'paddingBottom',
-  'paddingLeft',
-];
 
 function getTransformer(theme) {
   const themeSpacing = theme.spacing || 8;
@@ -97,11 +56,12 @@ function getTransformer(theme) {
   return () => undefined;
 }
 
-function getValue(transformer, propValue) {
+function getValue(propValue, theme) {
   if (typeof propValue === 'string') {
     return propValue;
   }
 
+  const transformer = getTransformer(theme)
   const abs = Math.abs(propValue);
   const transformed = transformer(abs);
 
@@ -116,43 +76,37 @@ function getValue(transformer, propValue) {
   return `-${transformed}`;
 }
 
-function getStyleFromPropValue(cssProperties, transformer) {
-  return propValue =>
-    cssProperties.reduce((acc, cssProperty) => {
-      acc[cssProperty] = getValue(transformer, propValue);
-      return acc;
-    }, {});
+const getCssPropertyHandler = (cssProperty) => {
+  if (Array.isArray(cssProperty)) {
+    return  (value) => {
+      return {
+        [cssProperty]: getValue(value, theme),
+      };
+    };
+  }
+  const [firstProperty, secondProperty] = cssProperty
+  return (value) => {
+    const finalValue = getValue(value, theme);
+    return {
+      [firstProperty]: finalValue,
+      [secondProperty]: finalValue,
+    };
+  };
 }
 
-function spacing(props) {
-  const theme = props.theme;
-  const transformer = getTransformer(theme);
+const spacing = Object.entries(spacingKeys).reduce((result, [prop, cssProperty]) => {
+  const cssPropertyHandler = getCssPropertyHandler(cssProperty);
 
-  return Object.keys(props)
-    .map(prop => {
-      // Using a hash computation over an array iteration could be faster, but with only 14 items,
-      // it's doesn't worth the bundle size.
-      if (spacingKeys.indexOf(prop) === -1) {
-        return null;
-      }
+  const styleFunction = (propValue, theme) => {
+    return handleBreakpoints(theme, propValue, cssPropertyHandler)
+  }
 
-      const cssProperties = getCssProperties(prop);
-      const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
+  styleFunction.propTypes = process.env.NODE_ENV !== 'production' ? {
+    [prop]: responsivePropType
+  } : {};
 
-      const propValue = props[prop];
-      return handleBreakpoints(props, propValue, styleFromPropValue);
-    })
-    .reduce(merge, {});
-}
+  return styleFunction;
+}, {});
 
-spacing.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? spacingKeys.reduce((obj, key) => {
-        obj[key] = responsivePropType;
-        return obj;
-      }, {})
-    : {};
-
-spacing.filterProps = spacingKeys;
 
 export default spacing;

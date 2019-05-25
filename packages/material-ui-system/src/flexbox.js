@@ -1,5 +1,4 @@
 import style from './style';
-import compose from './compose';
 
 export const flexDirection = style({
   prop: 'flexDirection',
@@ -40,18 +39,3 @@ export const flexShrink = style({
 export const alignSelf = style({
   prop: 'alignSelf',
 });
-
-const flexbox = compose(
-  flexDirection,
-  flexWrap,
-  justifyContent,
-  alignItems,
-  alignContent,
-  order,
-  flex,
-  flexGrow,
-  flexShrink,
-  alignSelf,
-);
-
-export default flexbox;

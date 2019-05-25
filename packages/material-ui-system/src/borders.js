@@ -1,5 +1,4 @@
 import style from './style';
-import compose from './compose';
 
 function getBorder(value) {
   if (typeof value !== 'number') {
@@ -49,15 +48,3 @@ export const borderRadius = style({
   prop: 'borderRadius',
   themeKey: 'shape',
 });
-
-const borders = compose(
-  border,
-  borderTop,
-  borderRight,
-  borderBottom,
-  borderLeft,
-  borderColor,
-  borderRadius,
-);
-
-export default borders;
