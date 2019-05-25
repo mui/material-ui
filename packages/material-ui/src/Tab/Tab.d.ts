@@ -4,7 +4,6 @@ import { SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Tab: ExtendButtonBase<{
   props: {
-    disabled?: boolean;
     fullWidth?: boolean;
     icon?: string | React.ReactElement;
     value?: any;

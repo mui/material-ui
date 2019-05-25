@@ -9,7 +9,6 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
     ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
     dense?: boolean;
-    disabled?: boolean;
     disableGutters?: boolean;
     divider?: boolean;
     focusVisibleClassName?: string;
