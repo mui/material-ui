@@ -3,6 +3,7 @@ import { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
 
 declare const ToggleButton: ExtendButtonBase<{
   props: {
+    disableFocusRipple?: boolean;
     selected?: boolean;
     value?: any;
   };

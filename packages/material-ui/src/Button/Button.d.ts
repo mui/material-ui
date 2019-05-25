@@ -5,6 +5,7 @@ import { OverridableComponent, OverrideProps, SimplifiedPropsOf } from '../Overr
 export type ButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {
     color?: PropTypes.Color;
+    disableFocusRipple?: boolean;
     fullWidth?: boolean;
     href?: string;
     size?: 'small' | 'medium' | 'large';
