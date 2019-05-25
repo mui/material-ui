@@ -1,3 +1,3 @@
-const nested = Symbol('nested');
+const hasSymbol = typeof Symbol === 'function';
 
-export default nested;
+export default hasSymbol ? Symbol('nested') : '__THEME_NESTED__';
