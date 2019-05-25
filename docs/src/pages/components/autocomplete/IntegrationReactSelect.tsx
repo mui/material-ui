@@ -312,7 +312,7 @@ function IntegrationReactSelect() {
           classes={classes}
           styles={selectStyles}
           TextFieldProps={{
-            label: 'country',
+            label: 'Country',
             InputProps: {
               id: 'react-select-single',
             },
@@ -332,7 +332,7 @@ function IntegrationReactSelect() {
           classes={classes}
           styles={selectStyles}
           TextFieldProps={{
-            label: 'countries',
+            label: 'Countries',
             InputProps: {
               id: 'react-select-multiple',
             },

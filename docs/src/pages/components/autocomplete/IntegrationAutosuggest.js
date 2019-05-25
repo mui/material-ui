@@ -175,7 +175,7 @@ function IntegrationAutosuggest() {
         inputProps={{
           classes,
           id: 'react-autosuggest-simple',
-          label: 'country',
+          label: 'Country',
           placeholder: 'Search a country (start with a)',
           value: state.single,
           onChange: handleChange('single'),
@@ -198,7 +198,7 @@ function IntegrationAutosuggest() {
         inputProps={{
           classes,
           id: 'react-autosuggest-popper',
-          label: 'country',
+          label: 'Country',
           placeholder: 'With Popper',
           value: state.popper,
           onChange: handleChange('popper'),

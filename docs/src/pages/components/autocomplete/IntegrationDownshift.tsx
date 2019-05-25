@@ -183,7 +183,7 @@ function DownshiftMultiple(props: DownshiftMultipleProps) {
             {renderInput({
               fullWidth: true,
               classes,
-              label: 'countries',
+              label: 'Countries',
               InputLabelProps: getLabelProps({ strink: true } as any),
               InputProps: {
                 startAdornment: selectedItem.map(item => (
@@ -279,7 +279,7 @@ function IntegrationDownshift() {
           selectedItem,
         }) => {
           const { onBlur, onFocus, ...inputProps } = getInputProps({
-            placeholder: 'Search a country (start with a)',
+            placeholder: 'Search for a country (start with a)',
           });
 
           return (
@@ -287,7 +287,7 @@ function IntegrationDownshift() {
               {renderInput({
                 fullWidth: true,
                 classes,
-                label: 'country',
+                label: 'Country',
                 InputLabelProps: getLabelProps({ shrink: true } as any),
                 InputProps: { onBlur, onFocus },
                 inputProps,
@@ -334,7 +334,7 @@ function IntegrationDownshift() {
               {renderInput({
                 fullWidth: true,
                 classes,
-                label: 'countries',
+                label: 'Countries',
                 InputLabelProps: getLabelProps({ shrink: true } as any),
                 inputProps,
                 ref: node => {
@@ -384,7 +384,7 @@ function IntegrationDownshift() {
               {renderInput({
                 fullWidth: true,
                 classes,
-                label: 'countries',
+                label: 'Countries',
                 InputLabelProps: getLabelProps({ shrink: true } as any),
                 InputProps: {
                   onBlur,
