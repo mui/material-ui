@@ -120,6 +120,7 @@ function getDependencies(raw, options = {}) {
 
   if (codeLanguage === CODE_VARIANTS.TS) {
     addTypeDeps(deps);
+    deps.typescript = 'latest';
   }
 
   return deps;
