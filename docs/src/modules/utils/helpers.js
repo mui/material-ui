@@ -1,9 +1,9 @@
-import warning from 'warning';
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
-import { CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
+const warning = require('warning');
+const upperFirst = require('lodash/upperFirst');
+const camelCase = require('lodash/camelCase');
+const { CODE_VARIANTS, LANGUAGES } = require('../constants');
 
-export function titleize(string) {
+function titleize(string) {
   warning(
     typeof string === 'string' && string.length > 0,
     'titleize(string) expects a non empty string argument.',
@@ -15,7 +15,7 @@ export function titleize(string) {
     .join(' ');
 }
 
-export function pageToTitle(page) {
+function pageToTitle(page) {
   if (page.title === false) {
     return null;
   }
@@ -34,7 +34,7 @@ export function pageToTitle(page) {
   return titleize(name);
 }
 
-export function pageToTitleI18n(page, t) {
+function pageToTitleI18n(page, t) {
   const path = page.subheader || page.pathname;
   return t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
 }
@@ -82,7 +82,7 @@ function addTypeDeps(deps) {
  * @param {'next' | 'latest'} options.reactVersion
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
-export function getDependencies(raw, options = {}) {
+function getDependencies(raw, options = {}) {
   const { codeLanguage = CODE_VARIANTS.JS, reactVersion = 'latest' } = options;
   const deps = {
     'react-dom': reactVersion,
@@ -125,12 +125,12 @@ export function getDependencies(raw, options = {}) {
   return deps;
 }
 
-export function getCookie(name) {
+function getCookie(name) {
   const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
   return document.cookie.replace(regex, '$1');
 }
 
-export function pathnameToLanguage(pathname) {
+function pathnameToLanguage(pathname) {
   const userLanguage = pathname.substring(1, 3);
 
   if (LANGUAGES.indexOf(userLanguage) !== -1 && pathname.indexOf(`/${userLanguage}/`) === 0) {
@@ -145,3 +145,12 @@ export function pathnameToLanguage(pathname) {
     canonical: pathname,
   };
 }
+
+module.exports = {
+  titleize,
+  pageToTitle,
+  pageToTitleI18n,
+  getDependencies,
+  getCookie,
+  pathnameToLanguage,
+};
