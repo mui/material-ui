@@ -20,7 +20,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/material-ui-codemod"
   },
   "license": "MIT",
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod",
