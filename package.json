@@ -56,7 +56,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "babel-polyfill": "*"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
