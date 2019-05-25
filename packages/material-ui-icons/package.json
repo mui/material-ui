@@ -14,7 +14,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/material-ui-icons"
   },
   "license": "MIT",
   "bugs": {

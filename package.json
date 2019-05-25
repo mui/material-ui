@@ -1,24 +1,5 @@
 {
-  "name": "@material-ui/core",
-  "version": "4.0.0",
   "private": true,
-  "author": "Material-UI Team",
-  "description": "Material-UI's workspace package",
-  "keywords": [
-    "react",
-    "react-component",
-    "material design",
-    "material-ui"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
-  },
-  "homepage": "https://material-ui.com/",
   "scripts": {
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
     "docs:api": "rimraf ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/api",
@@ -215,7 +196,6 @@
     "@material-ui/core": "^4.0.0-beta.0",
     "**/hoist-non-react-statics": "^3.2.1"
   },
-  "sideEffects": false,
   "nyc": {
     "include": [
       "packages/material-ui/src/**/*.js",
@@ -227,9 +207,6 @@
     ],
     "sourceMap": false,
     "instrument": false
-  },
-  "engines": {
-    "node": ">=8.0.0"
   },
   "workspaces": [
     "packages/*"
