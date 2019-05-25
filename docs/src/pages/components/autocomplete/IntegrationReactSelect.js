@@ -303,12 +303,12 @@ function IntegrationReactSelect() {
               htmlFor: 'react-select-single',
               shrink: true,
             },
+            placeholder: 'Search a country (start with a)',
           }}
           options={suggestions}
           components={components}
           value={single}
           onChange={handleChangeSingle}
-          placeholder="Search a country (start with a)"
         />
         <div className={classes.divider} />
         <Select
@@ -323,12 +323,12 @@ function IntegrationReactSelect() {
               htmlFor: 'react-select-multiple',
               shrink: true,
             },
+            placeholder: 'Select multiple countries',
           }}
           options={suggestions}
           components={components}
           value={multi}
           onChange={handleChangeMulti}
-          placeholder="Select multiple countries"
           isMulti
         />
       </NoSsr>
