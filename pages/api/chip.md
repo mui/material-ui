@@ -28,6 +28,7 @@ Chips represent complex entities in small blocks, such as a contact.
 | <span class="prop-name">icon</span> | <span class="prop-type">element</span> |  | Icon element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The content of the label. |
 | <span class="prop-name">onDelete</span> | <span class="prop-type">func</span> |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
+| <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'<br></span> | <span class="prop-default">'medium'</span> | The size of the chip. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'outlined'<br></span> | <span class="prop-default">'default'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -43,6 +44,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">clickable</span> | Styles applied to the root element if `onClick` is defined or `clickable={true}`.
@@ -55,14 +57,18 @@ This property accepts the following keys:
 | <span class="prop-name">outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
 | <span class="prop-name">avatar</span> | Styles applied to the `avatar` element.
+| <span class="prop-name">avatarSmall</span> | 
 | <span class="prop-name">avatarColorPrimary</span> | Styles applied to the `avatar` element if `color="primary"`.
 | <span class="prop-name">avatarColorSecondary</span> | Styles applied to the `avatar` element if `color="secondary"`.
 | <span class="prop-name">avatarChildren</span> | Styles applied to the `avatar` elements children.
 | <span class="prop-name">icon</span> | Styles applied to the `icon` element.
+| <span class="prop-name">iconSmall</span> | 
 | <span class="prop-name">iconColorPrimary</span> | Styles applied to the `icon` element if `color="primary"`.
 | <span class="prop-name">iconColorSecondary</span> | Styles applied to the `icon` element if `color="secondary"`.
 | <span class="prop-name">label</span> | Styles applied to the label `span` element`.
+| <span class="prop-name">labelSmall</span> | 
 | <span class="prop-name">deleteIcon</span> | Styles applied to the `deleteIcon` element.
+| <span class="prop-name">deleteIconSmall</span> | 
 | <span class="prop-name">deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.
 | <span class="prop-name">deleteIconColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`.
 | <span class="prop-name">deleteIconOutlinedColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.
