@@ -145,6 +145,8 @@ yarn add @material-ui/styles@next
 
   *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
 
+  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
+
 ### Layout
 
 - [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:

@@ -121,7 +121,7 @@ Documentation was reported as the 3rd most critical pain point in the developer 
 
 - **i18n**. People come to Material-UI's documentation from all around the world. We want to include as many people as possible 🌎🌍🌏. We have completed the effort started in v3 by working on the Algolia search support, Google search indexing, Table Of Contents and Side Nav infrastructure.
 
-  We would like to thank [Danica Shen](https://github.com/Domino987) and [Dominik Engel](https://github.com/Domino987) for their heroic work on the 🇨🇳 and 🇩🇪 translations, while not forgetting the other 348 (and growing) translators.
+  We would like to thank [Danica Shen](https://github.com/DDDDDanica), [Dominik Engel](https://github.com/Domino987), and [Jairon Alves Lima](https://github.com/jaironalves) for their heroic work on the 🇨🇳, 🇩🇪 and 🇧🇷 translations, while not forgetting the other 348 (and growing) translators.
 - **Best practices**. We are now recommending the use of the hooks API over the classes API wherever possible. We have migrated a large portion of the demos to showcase a single approach.
 - **A better UX**. We have changed the menu organization to group all the components under a single navigation item. We have changed the background color to white to increase the text contrast and readability.
 

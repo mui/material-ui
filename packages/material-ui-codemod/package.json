@@ -13,14 +13,15 @@
     "jscodeshift"
   ],
   "scripts": {
-    "test": "cd ../../ && mocha 'packages/material-ui-codemod/**/*.test.js'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-codemod/**/*.test.js'",
     "prebuild": "rimraf lib",
     "build": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./lib --ignore **/*.test.js",
     "release": "yarn build && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/material-ui-codemod"
   },
   "license": "MIT",
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod",
