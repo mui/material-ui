@@ -37,6 +37,26 @@ describe('<Tab />', () => {
     skip: ['componentProp'],
   }));
 
+  it('should have a ripple by default', () => {
+    const wrapper = shallow(<Tab />);
+    assert.strictEqual(wrapper.props().disableRipple, undefined);
+  });
+
+  it('should pass disableRipple to ButtonBase', () => {
+    const wrapper = shallow(<Tab disableRipple />);
+    assert.strictEqual(wrapper.props().disableRipple, true);
+  });
+
+  it('should have a focusRipple by default', () => {
+    const wrapper = shallow(<Tab />);
+    assert.strictEqual(wrapper.props().focusRipple, true);
+  });
+
+  it('should pass disableFocusRipple to ButtonBase', () => {
+    const wrapper = shallow(<Tab disableFocusRipple />);
+    assert.strictEqual(wrapper.props().focusRipple, false);
+  });
+
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {
       const wrapper = mount(<Tab selected textColor="secondary" />);
