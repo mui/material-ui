@@ -15,7 +15,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import DemoFrame from 'docs/src/modules/components/DemoFrame';
+import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import compose from 'docs/src/modules/utils/compose';
@@ -233,7 +233,6 @@ class Demo extends React.Component {
 
     const demoData = this.getDemoData();
     const DemoComponent = demoData.Component;
-    const Sandbox = demoOptions.iframe ? DemoFrame : React.Fragment;
     const gaCategory = demoOptions.demo;
 
     return (
@@ -361,9 +360,7 @@ class Demo extends React.Component {
             maxWidth: demoOptions.maxWidth,
           }}
         >
-          <Sandbox>
-            <DemoComponent />
-          </Sandbox>
+          <DemoSandboxed component={DemoComponent} iframe={demoOptions.iframe} />
         </div>
       </div>
     );

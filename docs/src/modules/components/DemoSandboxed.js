@@ -77,4 +77,22 @@ DemoFrame.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(DemoFrame);
+const StyledFrame = withStyles(styles, { withTheme: true })(DemoFrame);
+
+function DemoSandboxed(props) {
+  const { component: Component, iframe } = props;
+  const Sandbox = iframe ? StyledFrame : React.Fragment;
+
+  return (
+    <Sandbox>
+      <Component />
+    </Sandbox>
+  );
+}
+
+DemoSandboxed.propTypes = {
+  component: PropTypes.elementType.isRequired,
+  iframe: PropTypes.bool,
+};
+
+export default React.memo(DemoSandboxed);
