@@ -124,7 +124,6 @@ export const styles = theme => {
       height: 'auto',
       resize: 'none',
       padding: 0,
-      lineHeight: '1.1875em',
     },
     /* Styles applied to the `input` element if `type="search"`. */
     inputTypeSearch: {
