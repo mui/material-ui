@@ -1,14 +1,8 @@
-import { CSSProperties } from '@material-ui/styles';
 import * as CSS from 'csstype';
 
 // disable automatic export
 export {};
 
-type ThemeOf<Props> = Props extends WithTheme<infer Theme> ? Theme : never;
-type WithThemeOfProps<Props> = WithTheme<ThemeOf<Props>>;
-interface WithTheme<Theme extends object> {
-  theme?: Theme;
-}
 export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
   ? Props
   : never;

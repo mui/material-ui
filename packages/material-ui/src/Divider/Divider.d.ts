@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Divider: OverridableComponent<{

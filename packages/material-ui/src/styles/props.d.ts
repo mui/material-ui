@@ -147,12 +147,14 @@ export interface ComponentsPropsList {
   MuiListSubheader: ListSubheaderProps;
   MuiMenu: MenuProps;
   MuiMenuItem: MenuItemProps;
+  MuiMenuList: MenuListProps;
   MuiMobileStepper: MobileStepperProps;
   MuiModal: ModalProps;
   MuiNativeSelect: NativeSelectProps;
   MuiPaper: PaperProps;
   MuiPopover: PopoverProps;
   MuiRadio: RadioProps;
+  MuiRadioGroup: RadioGroupProps;
   MuiSelect: SelectProps;
   MuiSnackbar: SnackbarProps;
   MuiSnackbarContent: SnackbarContentProps;
