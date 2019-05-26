@@ -100,6 +100,7 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
     className,
     color = 'default',
     disabled = false,
+    disableFocusRipple = false,
     size = 'medium',
     ...other
   } = props;
@@ -118,7 +119,7 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
         className,
       )}
       centerRipple
-      focusRipple
+      focusRipple={!disableFocusRipple}
       disabled={disabled}
       ref={ref}
       {...other}
@@ -168,6 +169,15 @@ IconButton.propTypes = {
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the  keyboard focus ripple will be disabled.
+   * `disableRipple` must also be true.
+   */
+  disableFocusRipple: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: PropTypes.bool,
   /**
    * If given, uses a negative margin to counteract the padding on one
    * side (this is often helpful for aligning the left or right

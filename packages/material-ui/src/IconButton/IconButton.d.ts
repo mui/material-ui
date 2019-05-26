@@ -4,8 +4,9 @@ import { SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const IconButton: ExtendButtonBase<{
   props: {
-    edge?: 'start' | 'end' | false;
     color?: PropTypes.Color;
+    disableFocusRipple?: boolean;
+    edge?: 'start' | 'end' | false;
     size?: 'small' | 'medium';
   };
   defaultComponent: 'button';
