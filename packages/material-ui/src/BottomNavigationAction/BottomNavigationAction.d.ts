@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ButtonBaseTypeMap, ExtendButtonBase } from '../ButtonBase';
-import { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const BottomNavigationAction: ExtendButtonBase<{
   props: {
