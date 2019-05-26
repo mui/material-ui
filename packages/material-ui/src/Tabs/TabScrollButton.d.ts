@@ -1,14 +1,17 @@
-import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
+import { ExtendButtonBase } from '../ButtonBase';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface TabScrollButtonProps
-  extends StandardProps<ButtonBaseProps, TabScrollButtonClassKey> {
-  direction?: 'left' | 'right';
-  visible?: boolean;
-}
+declare const TabScrollButton: ExtendButtonBase<{
+  props: {
+    direction?: 'left' | 'right';
+    visible?: boolean;
+  };
+  defaultComponent: 'div';
+  classKey: TabScrollButtonClassKey;
+}>;
 
 export type TabScrollButtonClassKey = 'root';
 
-declare const TabScrollButton: React.ComponentType<TabScrollButtonProps>;
+export type TabScrollButtonProps = SimplifiedPropsOf<typeof TabScrollButton>;
 
 export default TabScrollButton;
