@@ -44,6 +44,11 @@ export const styles = theme => ({
   /* Styles applied to the tablist element if `variant="scrollable"`. */
   scrollable: {
     overflowX: 'scroll',
+    // Hide dimensionless scrollbar on MacOS
+    scrollbarWidth: 'none', // Firefox
+    '&::-webkit-scrollbar': {
+      display: 'none', // Safari + Chrome
+    },
   },
   /* Styles applied to the `ScrollButtonComponent` component. */
   scrollButtons: {},
@@ -118,7 +123,7 @@ class Tabs extends React.Component {
     const conditionalElements = {};
     const scrollable = variant === 'scrollable';
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize onChange={this.handleScrollbarSizeChange} />
+      <ScrollbarSize className={classes.scrollable} onChange={this.handleScrollbarSizeChange} />
     ) : null;
 
     const scrollButtonsActive = showLeftScroll || showRightScroll;
@@ -305,7 +310,7 @@ class Tabs extends React.Component {
       centered,
       children: childrenProp,
       classes,
-      className: classNameProp,
+      className,
       component: Component,
       indicatorColor,
       innerRef,
@@ -327,15 +332,6 @@ class Tabs extends React.Component {
       'Material-UI: you can not use the `centered={true}` and `variant="scrollable"` properties ' +
         'at the same time on a `Tabs` component.',
     );
-
-    const className = clsx(classes.root, classNameProp);
-    const flexContainerClassName = clsx(classes.flexContainer, {
-      [classes.centered]: centered && !scrollable,
-    });
-    const scrollerClassName = clsx(classes.scroller, {
-      [classes.fixed]: !scrollable,
-      [classes.scrollable]: scrollable,
-    });
 
     const indicator = (
       <TabIndicator
@@ -382,19 +378,28 @@ class Tabs extends React.Component {
     const conditionalElements = this.getConditionalElements();
 
     return (
-      <Component className={className} ref={innerRef} {...other}>
+      <Component className={clsx(classes.root, className)} ref={innerRef} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
-        {conditionalElements.scrollbarSizeListener}
         <div className={classes.flexContainer}>
           {conditionalElements.scrollButtonLeft}
+          {conditionalElements.scrollbarSizeListener}
           <div
-            className={scrollerClassName}
+            className={clsx(classes.scroller, {
+              [classes.fixed]: !scrollable,
+              [classes.scrollable]: scrollable,
+            })}
             style={this.state.scrollerStyle}
             ref={this.handleTabsRef}
             role="tablist"
             onScroll={this.handleTabsScroll}
           >
-            <div className={flexContainerClassName}>{children}</div>
+            <div
+              className={clsx(classes.flexContainer, {
+                [classes.centered]: centered && !scrollable,
+              })}
+            >
+              {children}
+            </div>
             {this.state.mounted && indicator}
           </div>
           {conditionalElements.scrollButtonRight}
