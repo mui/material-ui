@@ -160,7 +160,7 @@
     "react-frame-component": "^4.0.2",
     "react-inspector": "^2.2.2",
     "react-number-format": "^4.0.0",
-    "react-redux": "^6.0.0",
+    "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-select": "^2.0.0",
