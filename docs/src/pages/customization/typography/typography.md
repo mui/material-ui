@@ -78,7 +78,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        '@font-family': [raleway],
+        '@font-face': [raleway],
       },
     },
   },
