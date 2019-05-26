@@ -98,6 +98,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
     classes,
     className,
     disabled = false,
+    disableFocusRipple = false,
     fullWidth,
     icon,
     indicator,
@@ -123,7 +124,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
 
   return (
     <ButtonBase
-      focusRipple
+      focusRipple={!disableFocusRipple}
       className={clsx(
         classes.root,
         classes[`textColor${capitalize(textColor)}`],
@@ -171,6 +172,15 @@ Tab.propTypes = {
    * If `true`, the tab will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the  keyboard focus ripple will be disabled.
+   * `disableRipple` must also be true.
+   */
+  disableFocusRipple: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: PropTypes.bool,
   /**
    * @ignore
    */

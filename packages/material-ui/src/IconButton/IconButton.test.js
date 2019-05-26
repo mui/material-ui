@@ -77,6 +77,16 @@ describe('<IconButton />', () => {
     assert.strictEqual(wrapper.props().centerRipple, true);
   });
 
+  it('should have a focusRipple by default', () => {
+    const wrapper = shallow(<IconButton>book</IconButton>);
+    assert.strictEqual(wrapper.props().focusRipple, true);
+  });
+
+  it('should pass disableFocusRipple to ButtonBase', () => {
+    const wrapper = shallow(<IconButton disableFocusRipple>book</IconButton>);
+    assert.strictEqual(wrapper.props().focusRipple, false);
+  });
+
   describe('prop: size', () => {
     it('should render the right class', () => {
       let wrapper;
