@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ExtendButtonBase } from '../ButtonBase';
 import { SvgIconProps } from '../SvgIcon';
-import { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const TableSortLabel: ExtendButtonBase<{
   props: {
