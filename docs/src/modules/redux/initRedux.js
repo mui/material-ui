@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import themeReducer from 'docs/src/modules/redux/themeReducer';
 import optionsReducer from 'docs/src/modules/redux/optionsReducer';
 
 // Get the Redux DevTools extension and fallback to a no-op function
@@ -33,7 +32,6 @@ function create(initialState) {
 
   return createStore(
     combineReducers({
-      theme: themeReducer,
       options: optionsReducer,
     }),
     initialState, // Hydrate the store with server-side data

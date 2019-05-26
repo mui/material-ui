@@ -29,9 +29,10 @@ import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
-import { ACTION_TYPES, LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES } from 'docs/src/modules/constants';
 import compose from 'docs/src/modules/utils/compose';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -143,6 +144,8 @@ const styles = theme => ({
 });
 
 class AppFrame extends React.Component {
+  static contextType = DispatchContext;
+
   state = {
     languageMenu: null,
     mobileOpen: false,
@@ -170,11 +173,11 @@ class AppFrame extends React.Component {
   };
 
   handleTogglePaletteType = () => {
-    const paletteType = this.props.reduxTheme.paletteType === 'light' ? 'dark' : 'light';
+    const paletteType = this.props.theme.palette.type === 'light' ? 'dark' : 'light';
     document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
 
-    this.props.dispatch({
-      type: ACTION_TYPES.THEME_CHANGE,
+    this.context({
+      type: 'CHANGE',
       payload: {
         paletteType,
       },
@@ -182,16 +185,16 @@ class AppFrame extends React.Component {
   };
 
   handleToggleDirection = () => {
-    this.props.dispatch({
-      type: ACTION_TYPES.THEME_CHANGE,
+    this.context({
+      type: 'CHANGE',
       payload: {
-        direction: this.props.reduxTheme.direction === 'ltr' ? 'rtl' : 'ltr',
+        direction: this.props.theme.direction === 'ltr' ? 'rtl' : 'ltr',
       },
     });
   };
 
   render() {
-    const { children, classes, reduxTheme, t, userLanguage } = this.props;
+    const { children, classes, theme, t, userLanguage } = this.props;
     const { languageMenu } = this.state;
 
     return (
@@ -298,11 +301,7 @@ class AppFrame extends React.Component {
                       data-ga-event-category="AppBar"
                       data-ga-event-action="dark"
                     >
-                      {reduxTheme.paletteType === 'light' ? (
-                        <LightbulbOutlineIcon />
-                      ) : (
-                        <LightbulbFullIcon />
-                      )}
+                      {theme.type === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
                     </IconButton>
                   </Tooltip>
                   <Tooltip title={t('toggleRTL')} enterDelay={300}>
@@ -313,7 +312,7 @@ class AppFrame extends React.Component {
                       data-ga-event-category="AppBar"
                       data-ga-event-action="rtl"
                     >
-                      {reduxTheme.direction === 'rtl' ? (
+                      {theme.direction === 'rtl' ? (
                         <FormatTextdirectionLToR />
                       ) : (
                         <FormatTextdirectionRToL />
@@ -354,17 +353,18 @@ class AppFrame extends React.Component {
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  reduxTheme: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
 
 export default compose(
-  connect(state => ({
-    reduxTheme: state.theme,
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  })),
-  withStyles(styles),
+  connect(
+    state => ({
+      t: state.options.t,
+      userLanguage: state.options.userLanguage,
+    }),
+    null,
+  ),
+  withStyles(styles, { withTheme: true }),
 )(AppFrame);
