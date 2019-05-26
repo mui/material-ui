@@ -23,7 +23,7 @@ const styles = theme => ({
   it('should handle @ dependencies', () => {
     assert.deepEqual(getDependencies(s1), {
       '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'next',
+      '@material-ui/core': 'latest',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
@@ -46,7 +46,7 @@ const suggestions = [
 `;
 
     assert.deepEqual(getDependencies(s2), {
-      '@material-ui/core': 'next',
+      '@material-ui/core': 'latest',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -59,7 +59,7 @@ const suggestions = [
   it('should support next dependencies', () => {
     assert.deepEqual(getDependencies(s1, { reactVersion: 'next' }), {
       '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'next',
+      '@material-ui/core': 'latest',
       'prop-types': 'latest',
       'react-dom': 'next',
       react: 'next',
@@ -81,7 +81,7 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
       'date-fns': 'next',
       '@date-io/date-fns': 'latest',
       '@material-ui/pickers': 'latest',
-      '@material-ui/core': 'next',
+      '@material-ui/core': 'latest',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
@@ -91,7 +91,7 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
   it('can collect required @types packages', () => {
     assert.deepEqual(getDependencies(s1, { codeLanguage: 'TS' }), {
       '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'next',
+      '@material-ui/core': 'latest',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
@@ -99,6 +99,7 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
+      typescript: 'latest',
     });
   });
 });

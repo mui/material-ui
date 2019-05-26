@@ -89,12 +89,12 @@ function getDependencies(raw, options = {}) {
     react: reactVersion,
   };
   const versions = {
-    '@material-ui/core': 'next',
-    '@material-ui/icons': 'next',
-    '@material-ui/lab': 'next',
-    '@material-ui/styles': 'next',
-    '@material-ui/system': 'next',
-    '@material-ui/utils': 'next',
+    '@material-ui/core': 'latest',
+    '@material-ui/icons': 'latest',
+    '@material-ui/lab': 'latest',
+    '@material-ui/styles': 'latest',
+    '@material-ui/system': 'latest',
+    '@material-ui/utils': 'latest',
     'date-fns': 'next',
     jss: 'next',
     'jss-plugin-template': 'next',
@@ -120,6 +120,7 @@ function getDependencies(raw, options = {}) {
 
   if (codeLanguage === CODE_VARIANTS.TS) {
     addTypeDeps(deps);
+    deps.typescript = 'latest';
   }
 
   return deps;
