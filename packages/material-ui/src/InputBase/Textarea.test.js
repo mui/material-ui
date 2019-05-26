@@ -35,7 +35,7 @@ describe('<Textarea />', () => {
       return;
     }
 
-    const getComputedStyleStub = {};
+    let getComputedStyleStub = {};
 
     function setLayout(wrapper, { getComputedStyle, scrollHeight, lineHeight }) {
       const input = wrapper
@@ -60,6 +60,11 @@ describe('<Textarea />', () => {
       stub(window, 'getComputedStyle').value(node => getComputedStyleStub[node] || {});
     });
 
+    beforeEach(() => {
+      // Reset previously applied styles
+      getComputedStyleStub = {};
+    });
+
     after(() => {
       sinon.restore();
     });
@@ -81,6 +86,7 @@ describe('<Textarea />', () => {
         setLayout(wrapper, {
           getComputedStyle: {
             'box-sizing': 'content-box',
+            'line-height': '15px',
           },
           scrollHeight: 30,
           lineHeight: 15,
@@ -99,6 +105,7 @@ describe('<Textarea />', () => {
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
+          'line-height': '15px',
         },
         scrollHeight: 30,
         lineHeight: 15,
@@ -120,6 +127,7 @@ describe('<Textarea />', () => {
         getComputedStyle: {
           'box-sizing': 'border-box',
           'border-bottom-width': `${border}px`,
+          'line-height': '15px',
         },
         scrollHeight: 30,
         lineHeight: 15,
@@ -136,6 +144,7 @@ describe('<Textarea />', () => {
         getComputedStyle: {
           'box-sizing': 'content-box',
           'padding-top': `${padding}px`,
+          'line-height': '15px',
         },
         scrollHeight: 30,
         lineHeight: 15,
@@ -152,6 +161,7 @@ describe('<Textarea />', () => {
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
+          'line-height': `${lineHeight}px`,
         },
         scrollHeight: 30,
         lineHeight,
@@ -168,6 +178,7 @@ describe('<Textarea />', () => {
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
+          'line-height': `${lineHeight}px`,
         },
         scrollHeight: 100,
         lineHeight,
