@@ -61,6 +61,9 @@ export const styles = theme => {
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: `${8 - 2}px 0 ${8 - 1}px`,
+      '&$marginDense': {
+        paddingTop: 4 - 1,
+      },
     },
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {
@@ -121,6 +124,7 @@ export const styles = theme => {
       height: 'auto',
       resize: 'none',
       padding: 0,
+      lineHeight: '1.1875em',
     },
     /* Styles applied to the `input` element if `type="search"`. */
     inputTypeSearch: {
