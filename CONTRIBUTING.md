@@ -8,11 +8,11 @@ guidelines.
 
 ## Setting up
 
-Please make sure that we are using `develop` branch for active development. So your branches must be created from _develop_ and not from the ~~master~~. Here is a short step-by-step guide how to get started
+Please make sure that we are using `next` branch for active development. So your branches must be created from _develop_ and not from the ~~master~~. Here is a short step-by-step guide how to get started
 
 1. Fork the @material-ui/pickers repository on Github
 2. Clone your fork to your local machine `git clone git@github.com:<yourname>/@material-ui/pickers.git`
-3. Checkout develop `git checkout develop`
+3. Checkout next `git checkout next`
 4. Create a branch `git checkout -b feature/my-topic-branch`
 5. Make your changes, lint, run tests, then push to to GitHub with `git push --set-upstream origin my-topic-branch`.
 6. Visit GitHub and make your pull request.
@@ -21,26 +21,21 @@ If you have an existing local repository, please update it before you start, to 
 
 ```sh
 Ugit remote add upstream git@github.com:mui-org/@material-ui/pickers.git
-git checkout develop
-git pull upstream develop
+git checkout next
+git pull upstream next
 git checkout -b my-topic-branch
 ```
 
 ## Dev environment
 
-We are using lerna for development environment so it should be enough to make
+We are using yarn for development and linking, so you need to make
 
 ```sh
-npm install
-npm start
+yarn
+yarn dev
 ```
 
-To start development environment and be sure the `lib` folder is linked properly to the `docs` and your changes will be applied to the docs website. If you faced some problems with symlinking please do the following:
-
-```sh
-npx lerna clean
-npx lerna bootstrap
-```
+To start development environment and be sure the `lib` folder is linked properly to the `docs` and your changes will be applied to the docs website.
 
 ## General
 
