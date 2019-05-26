@@ -319,6 +319,7 @@ function IntegrationDownshift() {
                 fullWidth: true,
                 classes,
                 label: 'Countries',
+                InputProps: { onBlur, onFocus },
                 InputLabelProps: getLabelProps({ shrink: true }),
                 inputProps,
                 ref: node => {
@@ -362,7 +363,15 @@ function IntegrationDownshift() {
           openMenu,
           selectedItem,
         }) => {
-          const { onBlur, onFocus, ...inputProps } = getInputProps({ foo: 1 });
+          const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+            onChange: event => {
+              if (event.target.value === '') {
+                clearSelection();
+              }
+            },
+            onFocus: openMenu,
+            placeholder: 'With the clear & show empty options',
+          });
 
           return (
             <div className={classes.container}>
@@ -371,21 +380,7 @@ function IntegrationDownshift() {
                 classes,
                 label: 'Countries',
                 InputLabelProps: getLabelProps({ shrink: true }),
-                InputProps: {
-                  onBlur,
-                  onFocus: event => {
-                    openMenu();
-                    if (onFocus !== undefined) {
-                      onFocus(event);
-                    }
-                  },
-                  onChange: event => {
-                    if (event.target.value === '') {
-                      clearSelection();
-                    }
-                  },
-                  placeholder: 'With the clear & show empty options',
-                },
+                InputProps: { onBlur, onChange, onFocus },
                 inputProps,
               })}
 
