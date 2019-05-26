@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Orientation } from '../Stepper';
 import { ButtonBaseTypeMap, ExtendButtonBase } from '../ButtonBase';
-import { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
 export type StepButtonIcon = React.ReactElement | string | number | null;
 
