@@ -142,7 +142,7 @@ function DownshiftMultiple(props: DownshiftMultipleProps) {
     }
   }
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(event: React.ChangeEvent<{ value: string }>) {
     setInputValue(event.target.value);
   }
 
@@ -177,7 +177,10 @@ function DownshiftMultiple(props: DownshiftMultipleProps) {
         selectedItem: selectedItem2,
         highlightedIndex,
       }) => {
-        const { onBlur, onFocus, ...inputProps } = getInputProps();
+        const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+          onKeyDown: handleKeyDown,
+          placeholder: 'Select multiple countries',
+        });
         return (
           <div className={classes.container}>
             {renderInput({
@@ -196,10 +199,11 @@ function DownshiftMultiple(props: DownshiftMultipleProps) {
                   />
                 )),
                 onBlur,
-                onChange: handleInputChange,
+                onChange: event => {
+                  handleInputChange(event);
+                  onChange!(event as React.ChangeEvent<HTMLInputElement>);
+                },
                 onFocus,
-                onKeyDown: handleKeyDown,
-                placeholder: 'Select multiple countries',
               },
               inputProps,
             })}

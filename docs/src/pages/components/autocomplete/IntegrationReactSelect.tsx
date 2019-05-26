@@ -146,19 +146,26 @@ inputComponent.propTypes = {
 } as any;
 
 function Control(props: ControlProps<OptionType>) {
+  const {
+    children,
+    innerProps,
+    innerRef,
+    selectProps: { classes, TextFieldProps },
+  } = props;
+
   return (
     <TextField
       fullWidth
       InputProps={{
         inputComponent,
         inputProps: {
-          className: props.selectProps.classes.input,
-          inputRef: props.innerRef,
-          children: props.children,
-          ...props.innerProps,
+          className: classes.input,
+          ref: innerRef,
+          children,
+          ...innerProps,
         },
       }}
-      {...props.selectProps.TextFieldProps}
+      {...TextFieldProps}
     />
   );
 }
@@ -311,11 +318,9 @@ function IntegrationReactSelect() {
         <Select
           classes={classes}
           styles={selectStyles}
+          inputId="react-select-single"
           TextFieldProps={{
             label: 'Country',
-            InputProps: {
-              id: 'react-select-single',
-            },
             InputLabelProps: {
               htmlFor: 'react-select-single',
               shrink: true,
@@ -331,11 +336,9 @@ function IntegrationReactSelect() {
         <Select
           classes={classes}
           styles={selectStyles}
+          inputId="react-select-multiple"
           TextFieldProps={{
             label: 'Countries',
-            InputProps: {
-              id: 'react-select-multiple',
-            },
             InputLabelProps: {
               htmlFor: 'react-select-multiple',
               shrink: true,

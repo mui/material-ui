@@ -156,7 +156,11 @@ function DownshiftMultiple(props) {
         selectedItem: selectedItem2,
         highlightedIndex,
       }) => {
-        const { onBlur, onFocus, ...inputProps } = getInputProps();
+        const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+          onKeyDown: handleKeyDown,
+          placeholder: 'Select multiple countries',
+        });
+
         return (
           <div className={classes.container}>
             {renderInput({
@@ -175,10 +179,11 @@ function DownshiftMultiple(props) {
                   />
                 )),
                 onBlur,
-                onChange: handleInputChange,
+                onChange: event => {
+                  handleInputChange(event);
+                  onChange(event);
+                },
                 onFocus,
-                onKeyDown: handleKeyDown,
-                placeholder: 'Select multiple countries',
               },
               inputProps,
             })}
