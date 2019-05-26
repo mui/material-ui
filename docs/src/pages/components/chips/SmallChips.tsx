@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function Chips() {
+function SmallChips() {
   const classes = useStyles();
 
   function handleDelete() {
@@ -133,4 +133,4 @@ function Chips() {
   );
 }
 
-export default Chips;
+export default SmallChips;
