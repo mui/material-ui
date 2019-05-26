@@ -50,6 +50,7 @@ export const styles = {
       outline: 'auto',
     },
   },
+  /* Styles applied to the root element if the link is keyboard focused. */
   focusVisible: {},
 };
 
