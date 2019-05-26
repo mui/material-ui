@@ -1,5 +1,5 @@
 import { ButtonBaseTypeMap, ExtendButtonBase } from '../ButtonBase';
-import { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const CardActionArea: ExtendButtonBase<{
   props: {
