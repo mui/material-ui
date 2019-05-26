@@ -45,12 +45,18 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
     inputShallow.value = input.value || props.placeholder || 'x';
 
     // The height of the inner content
-    const innerHeight = inputShallow.scrollHeight;
+    let innerHeight = inputShallow.scrollHeight;
     const boxSizing = computedStyle['box-sizing'];
 
     // Measure height of a textarea with a single row
-    inputShallow.value = 'x';
-    const singleRowHeight = inputShallow.scrollHeight;
+    inputShallow.value = 'y';
+    const singleRowHeight = getStyleValue(window.getComputedStyle(inputShallow), 'line-height');
+    const rowsCount = Math.floor(innerHeight / singleRowHeight);
+    const descendersHeight = inputShallow.scrollHeight - singleRowHeight;
+
+    // Force one-line multiline input to have the same height as a non-multiline input
+    // but add the descenders height otherwise
+    innerHeight = rowsCount <= 1 ? singleRowHeight : rowsCount * singleRowHeight + descendersHeight;
 
     // The height of the outer content
     let outerHeight = innerHeight;
