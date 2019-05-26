@@ -79,7 +79,7 @@ The solution is simple: **avoid inline functions and pass a static component to 
 Let's change our `ListItemLink` to the following:
 
 ```jsx
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 class ListItemLink extends React.Component {
   renderLink = React.forwardRef((itemProps, ref) => (
