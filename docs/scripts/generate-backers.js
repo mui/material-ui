@@ -4,7 +4,7 @@ require('dotenv').config();
 const fse = require('fs-extra');
 const path = require('path');
 const patreonApi = require('patreon').patreon;
-const patreonAPIClient = patreonApi(process.env.CREATOR_TOKEN);
+const patreonAPIClient = patreonApi(process.env.PATREON_CREATOR_TOKEN);
 
 patreonAPIClient('/campaigns/1559688/pledges')
   .then(({ rawJson }) =>
