@@ -17,7 +17,8 @@ export type LinkClassKey =
   | 'underlineNone'
   | 'underlineHover'
   | 'underlineAlways'
-  | 'button';
+  | 'button'
+  | 'focusVisible';
 
 export type LinkBaseProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   Omit<TypographyProps, 'component'>;
