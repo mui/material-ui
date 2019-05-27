@@ -22,7 +22,8 @@ const styles = theme => ({
     padding: theme.spacing(2),
   },
   chipWrapper: {
-    marginBottom: theme.spacing(5),
+    height: theme.spacing(8),
+    marginBottom: theme.spacing(4),
   },
 });
 
