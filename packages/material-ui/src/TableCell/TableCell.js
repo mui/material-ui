@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import { darken, fade, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
@@ -15,12 +14,6 @@ export const styles = theme => ({
     verticalAlign: 'inherit',
     // Workaround for a rendering bug with spanned columns in Chrome 62.0.
     // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
-    borderBottom: `1px solid
-    ${
-      theme.palette.type === 'light'
-        ? lighten(fade(theme.palette.divider, 1), 0.88)
-        : darken(fade(theme.palette.divider, 1), 0.68)
-    }`,
     textAlign: 'left',
     padding: '14px 40px 14px 16px',
     '&:last-child': {

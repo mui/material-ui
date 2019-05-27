@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { darken, fade, lighten } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
@@ -23,6 +24,14 @@ export const styles = theme => ({
         theme.palette.type === 'light'
           ? 'rgba(0, 0, 0, 0.07)' // grey[200]
           : 'rgba(255, 255, 255, 0.14)',
+    },
+    '&$head, &:not(:last-child)': {
+      borderBottom: `${theme.shape.borderWidth}px solid
+      ${
+        theme.palette.type === 'light'
+          ? lighten(fade(theme.palette.divider, 1), 0.88)
+          : darken(fade(theme.palette.divider, 1), 0.68)
+      }`,
     },
   },
   /* Styles applied to the root element if `selected={true}`. */
