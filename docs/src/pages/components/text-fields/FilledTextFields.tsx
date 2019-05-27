@@ -278,6 +278,7 @@ function FilledTextFields() {
         defaultValue="Bare"
         margin="normal"
         variant="filled"
+        inputProps={{ 'aria-label': 'bare' }}
       />
     </form>
   );

@@ -249,6 +249,7 @@ function TextFields() {
         className={classes.textField}
         defaultValue="Bare"
         margin="normal"
+        inputProps={{ 'aria-label': 'bare' }}
       />
     </form>
   );

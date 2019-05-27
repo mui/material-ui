@@ -144,7 +144,11 @@ function CustomizedInputs() {
         variant="filled"
         id="reddit-input"
       />
-      <InputBase className={classes.margin} defaultValue="Naked input" />
+      <InputBase
+        className={classes.margin}
+        defaultValue="Naked input"
+        inputProps={{ 'aria-label': 'naked' }}
+      />
     </div>
   );
 }

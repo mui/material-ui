@@ -86,13 +86,14 @@ function NativeSelects() {
           onChange={handleChange('age')}
           name="age"
           className={classes.selectEmpty}
+          inputProps={{ 'aria-label': 'age' }}
         >
           <option value="">None</option>
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
         </NativeSelect>
-        <FormHelperText>Without label</FormHelperText>
+        <FormHelperText>With visually hidden label</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel shrink htmlFor="age-native-label-placeholder">
@@ -163,6 +164,7 @@ function NativeSelects() {
           value={state.age}
           name="age"
           onChange={handleChange('age')}
+          inputProps={{ 'aria-label': 'age' }}
         >
           <option value="" disabled>
             Placeholder

@@ -13,17 +13,28 @@ function Switches() {
 
   return (
     <div>
-      <Switch checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
+      <Switch
+        checked={state.checkedA}
+        onChange={handleChange('checkedA')}
+        value="checkedA"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
       <Switch
         checked={state.checkedB}
         onChange={handleChange('checkedB')}
         value="checkedB"
         color="primary"
+        inputProps={{ 'aria-label': 'primary checkbox' }}
       />
-      <Switch value="checkedC" />
-      <Switch disabled value="checkedD" />
-      <Switch disabled checked value="checkedE" />
-      <Switch defaultChecked value="checkedF" color="default" />
+      <Switch value="checkedC" inputProps={{ 'aria-label': 'primary checkbox' }} />
+      <Switch disabled value="checkedD" inputProps={{ 'aria-label': 'disabled checkbox' }} />
+      <Switch disabled checked value="checkedE" inputProps={{ 'aria-label': 'primary checkbox' }} />
+      <Switch
+        defaultChecked
+        value="checkedF"
+        color="default"
+        inputProps={{ 'aria-label': 'checkbox with default color' }}
+      />
     </div>
   );
 }

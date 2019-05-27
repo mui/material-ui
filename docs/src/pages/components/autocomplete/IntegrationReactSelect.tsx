@@ -146,19 +146,26 @@ inputComponent.propTypes = {
 } as any;
 
 function Control(props: ControlProps<OptionType>) {
+  const {
+    children,
+    innerProps,
+    innerRef,
+    selectProps: { classes, TextFieldProps },
+  } = props;
+
   return (
     <TextField
       fullWidth
       InputProps={{
         inputComponent,
         inputProps: {
-          className: props.selectProps.classes.input,
-          inputRef: props.innerRef,
-          children: props.children,
-          ...props.innerProps,
+          className: classes.input,
+          ref: innerRef,
+          children,
+          ...innerProps,
         },
       }}
-      {...props.selectProps.TextFieldProps}
+      {...TextFieldProps}
     />
   );
 }
@@ -311,27 +318,37 @@ function IntegrationReactSelect() {
         <Select
           classes={classes}
           styles={selectStyles}
+          inputId="react-select-single"
+          TextFieldProps={{
+            label: 'Country',
+            InputLabelProps: {
+              htmlFor: 'react-select-single',
+              shrink: true,
+            },
+            placeholder: 'Search a country (start with a)',
+          }}
           options={suggestions}
           components={components}
           value={single}
           onChange={handleChangeSingle}
-          placeholder="Search a country (start with a)"
         />
         <div className={classes.divider} />
         <Select
           classes={classes}
           styles={selectStyles}
+          inputId="react-select-multiple"
           TextFieldProps={{
-            label: 'Label',
+            label: 'Countries',
             InputLabelProps: {
+              htmlFor: 'react-select-multiple',
               shrink: true,
             },
+            placeholder: 'Select multiple countries',
           }}
           options={suggestions}
           components={components}
           value={multi}
           onChange={handleChangeMulti}
-          placeholder="Select multiple countries"
           isMulti
         />
       </NoSsr>

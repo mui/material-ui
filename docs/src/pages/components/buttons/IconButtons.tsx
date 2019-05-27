@@ -36,7 +36,12 @@ function IconButtons() {
       </IconButton>
       <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
       <label htmlFor="icon-button-file">
-        <IconButton color="primary" className={classes.button} component="span">
+        <IconButton
+          color="primary"
+          className={classes.button}
+          aria-label="Upload picture"
+          component="span"
+        >
           <PhotoCamera />
         </IconButton>
       </label>
