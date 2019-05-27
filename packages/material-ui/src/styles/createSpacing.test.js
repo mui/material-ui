@@ -22,6 +22,14 @@ describe('createSpacing', () => {
     createSpacing(spacing);
   });
 
+  it('should support a default value when no arguments are provided', () => {
+    let spacing;
+    spacing = createSpacing();
+    assert.strictEqual(spacing(), 8);
+    spacing = createSpacing(factor => `${0.25 * factor}rem`);
+    assert.strictEqual(spacing(), '0.25rem');
+  });
+
   it('should support multiple arguments', () => {
     let spacing;
     spacing = createSpacing();
