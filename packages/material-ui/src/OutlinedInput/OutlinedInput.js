@@ -8,6 +8,7 @@ import withStyles from '../styles/withStyles';
 export const styles = theme => {
   const borderColor =
     theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+  const borderWidth = theme.shape.borderWidth;
 
   return {
     /* Styles applied to the root element. */
@@ -25,7 +26,7 @@ export const styles = theme => {
       },
       '&$focused $notchedOutline': {
         borderColor: theme.palette.primary.main,
-        borderWidth: theme.shape.borderWidth,
+        borderWidth: `${borderWidth === 1 ? '2px' : `${borderWidth}px`}`,
       },
       '&$error $notchedOutline': {
         borderColor: theme.palette.error.main,
