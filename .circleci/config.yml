@@ -18,8 +18,8 @@ commands:
     steps:
       - restore_cache:
           keys:
-             - v2-yarn-sha-{{ checksum "yarn.lock" }}
-             - v2-yarn-sha-
+            - v2-yarn-sha-{{ checksum "yarn.lock" }}
+            - v2-yarn-sha-
       - run:
           name: Install js dependencies
           command: yarn
@@ -51,18 +51,6 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Check if yarn prettier was run
-          command: yarn prettier check-changed
-      - run:
-          name: Lint
-          command: yarn lint:ci
-      - run:
-          name: Lint JSON
-          command: yarn jsonlint
-      - run:
-          name: Tests TypeScript definitions
-          command: yarn typescript
-      - run:
           name: Tests fake browser
           command: yarn test:coverage
       - run:
@@ -75,6 +63,35 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
+  test_static:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Transpile TypeScript demos
+          command: yarn docs:typescript:formatted --disable-cache
+      - run:
+          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          command: git add -A && git diff --exit-code --staged
+      - run:
+          name: Can we generate the documentation?
+          command: yarn docs:api
+      - run:
+          name: '`yarn docs:api` changes committed?'
+          command: git diff --exit-code
+      - run:
+          name: Check if yarn prettier was run
+          command: yarn prettier check-changed
+      - run:
+          name: Lint
+          command: yarn lint:ci
+      - run:
+          name: Lint JSON
+          command: yarn jsonlint
+      - run:
+          name: Tests TypeScript definitions
+          command: yarn typescript
   test_material-ui-x:
     <<: *defaults
     steps:
@@ -145,18 +162,6 @@ jobs:
     steps:
       - checkout
       - install_js
-      - run:
-          name: Transpile TypeScript demos
-          command: yarn docs:typescript:formatted --disable-cache
-      - run:
-          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: Can we generate the documentation?
-          command: yarn docs:api
-      - run:
-          name: '`yarn docs:api` changes committed?'
-          command: git diff --exit-code
       - run:
           name: Can we generate the @material-ui/core build?
           command: cd packages/material-ui && yarn build
@@ -256,6 +261,9 @@ workflows:
       - test_unit:
           requires:
             - checkout
+      - test_static:
+          requires:
+            - checkout
       - test_material-ui-x:
           requires:
             - checkout
@@ -269,6 +277,7 @@ workflows:
           requires:
             - test_material-ui-x
             - test_unit
+            - test_static
             - test_browser
             - test_build
       - size_snapshot:
