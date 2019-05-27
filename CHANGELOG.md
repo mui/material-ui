@@ -1,5 +1,77 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.1
+###### *May 27, 2019*
+
+A big thanks to the 23 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🐛 A stability release after the release of v4.0.0.
+- 🤖 A new codemod to migrate the theme.spacing.unit API (#15782) @joshwooding
+- 🐛 Fix IE 11 crash (#15856) @aditya1906
+- 📚 Clean up the documentation after the next -> master migration
+
+### `@material-ui/core@v4.0.1`
+
+- [Buttons] Consolidate ripple props type declarations (#15843) @lychyi
+- [IconButton] Add disable ripple props (#15864) @lychyi
+- [ListItemText] Update classes type definitions (#15822) @davjo664
+- [Tabs] Hide scrollbar on MacOS (#15762) @Umerbhat
+- [Tooltip] Fix alignment issues (#15811) @pkmnct
+- [codemod] Create spacing api codemod (#15782) @joshwooding
+- [icons] Fix the TypeScript definition of createSvgIcon (#15861) @alexkirsz
+- [styles] Add MuiLink to ComponentsPropsList (#15814) @stuartgrigg
+
+### `@material-ui/styles@v4.0.1`
+
+- [styles] Fix Symbol() usage in IE11 (#15856) @aditya1906
+
+### `@material-ui/lab@v4.0.0-alpha.14`
+
+- [lab] Add missing clsx calls (#15809) @merceyz
+
+### Docs
+
+- [docs] Add SECURITY.md (#15804) @oliviertassinari
+- [docs] Add Transitions header in the dialogs page (#15847) @prasook-jain
+- [docs] Add extendedFab migration (#15866) @chanand
+- [docs] Add missing Breadcrumbs CSS API (#15813) @joshwooding
+- [docs] Correctly fix the Google Ad issue @oliviertassinari
+- [docs] Fix Boolan -> Boolean (#15880) @jaironalves
+- [docs] Fix Link import (#15871) @bennyn
+- [docs] Fix deploy command @oliviertassinari
+- [docs] Fix empty v4 blog post link (#15831) @drac
+- [docs] Fix typo in styles advanced guide (#15844) @mgvparas
+- [docs] Follow the documentation, my bad @oliviertassinari
+- [docs] Global at rule is called font-face (#15865) @aditya1906
+- [docs] Hide the Ad fallback to Google (#15815) @oliviertassinari
+- [docs] Improve SEO structure @oliviertassinari
+- [docs] Improve lighthouse performance score (#15758) @eps1lon
+- [docs] Let's take our time, we don't need to rush v5 (#15826) @oliviertassinari
+- [docs] Minor fixes (#15836) @mbrookes
+- [docs] Minor improvements to codesandbox demos and examples (#15857) @eps1lon
+- [docs] Move links to the master branch (#15830) @oliviertassinari
+- [docs] Redirect next.material-ui.com to material-ui.com (#15838) @mbrookes
+- [docs] Update Installation.md for v4.0.0 (#15818) @hinsxd
+- [docs] Update the translations (#15807) @mbrookes
+- [docs] Update the v4 blog post (#15862) @mbrookes
+- [docs] Update translations (#15841) @mbrookes
+- [docs] Use makeStyles from core in layout examples (#15845) @divyanshutomar
+- [docs] Fix typo in README (#15817) @ammaristotle
+- [example] Update gatsby-plugin-material-ui dependency (#15810) @hupe1980
+
+### Core
+
+- [core] Add cross-env to docs:size-why (#15816) @merceyz
+- [core] Change the top package name so we get the number of dependents packages @oliviertassinari
+- [core] Fix not appearing in github used/dependents (#15859) @eps1lon
+- [core] Prepare focus visible polyfill in ref phase (#15851) @eps1lon
+- [core] Remove babel-node for server/shared modules (#15764) @cvanem
+- [core] Remove dependency on workspace (#15849) @eps1lon
+- Create FUNDING.yml @oliviertassinari
+- [test] Remove FontAwesome from screenshot tests (#15853) @eps1lon
+
 ## 4.0.0
 ###### *May 23, 2019*
 
