@@ -44,7 +44,7 @@ export type TablePaginationClassKey =
   | 'selectIcon'
   | 'actions';
 
-export type TablePaginationBaseProps = Omit<TableCellProps, 'component'>;
+export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component'>;
 
 export type TablePaginationProps = SimplifiedPropsOf<typeof TablePagination>;
 
