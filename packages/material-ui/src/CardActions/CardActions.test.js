@@ -1,5 +1,6 @@
 import React from 'react';
-import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import CardActions from './CardActions';
 
 describe('<CardActions />', () => {

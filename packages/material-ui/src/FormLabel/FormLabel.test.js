@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
-import {
-  createMount,
-  describeConformance,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import FormLabel from './FormLabel';
 import FormControlContext from '../FormControl/FormControlContext';
 

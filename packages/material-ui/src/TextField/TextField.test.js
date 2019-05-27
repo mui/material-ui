@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import FormControl from '../FormControl';
 import Input from '../Input';
 import OutlinedInput from '../OutlinedInput';

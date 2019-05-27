@@ -1,12 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  findOutermostIntrinsic,
-} from '@material-ui/core/test-utils';
+import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';

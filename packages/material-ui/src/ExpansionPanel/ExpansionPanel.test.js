@@ -2,12 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  describeConformance,
-  getClasses,
-  findOutermostIntrinsic,
-} from '@material-ui/core/test-utils';
+import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';

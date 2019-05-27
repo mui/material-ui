@@ -4,10 +4,10 @@ import { spy } from 'sinon';
 import {
   createShallow,
   createMount,
-  describeConformance,
   getClasses,
   findOutermostIntrinsic,
 } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';

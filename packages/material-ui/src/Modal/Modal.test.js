@@ -3,11 +3,8 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import {
-  createMount,
-  findOutermostIntrinsic,
-  describeConformance,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Fade from '../Fade';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';

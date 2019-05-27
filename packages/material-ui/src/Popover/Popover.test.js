@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
-  describeConformance,
   findOutermostIntrinsic,
   getClasses,
 } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Modal from '../Modal';
