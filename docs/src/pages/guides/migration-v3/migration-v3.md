@@ -126,9 +126,9 @@ yarn add @material-ui/styles@next
   ```
 - You can safely remove the next variant from the theme creation:
 
-  ```js
+  ```diff
   typography: {
-    useNextVariants: true,
+  - useNextVariants: true,
   },
   ```
 
