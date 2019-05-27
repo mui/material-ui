@@ -9,8 +9,7 @@ function classesTest() {
     rowsPerPage: 1,
   };
 
-  // undesired
-  <TablePagination classes={{ actions: 'actions' }} {...defaultProps} />; // $ExpectError
-  // desired but unhelpful message
+  <TablePagination classes={{ actions: 'actions' }} {...defaultProps} />;
+  // desired
   <TablePagination classes={{ alignCenter: 'center' }} {...defaultProps} />; // $ExpectError
 }
