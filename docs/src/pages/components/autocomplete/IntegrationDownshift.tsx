@@ -338,7 +338,7 @@ function IntegrationDownshift() {
               {renderInput({
                 fullWidth: true,
                 classes,
-                label: 'Countries',
+                label: 'Country',
                 InputProps: { onBlur, onFocus },
                 InputLabelProps: getLabelProps({ shrink: true } as any),
                 inputProps,
