@@ -25,7 +25,7 @@ export const styles = theme => {
       },
       '&$focused $notchedOutline': {
         borderColor: theme.palette.primary.main,
-        borderWidth: 2,
+        borderWidth: theme.shape.borderWidth,
       },
       '&$error $notchedOutline': {
         borderColor: theme.palette.error.main,

@@ -7,7 +7,7 @@ import { fade } from '../styles/colorManipulator';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    height: 1,
+    height: theme.shape.borderWidth,
     margin: 0, // Reset browser default style.
     border: 'none',
     flexShrink: 0,

@@ -101,7 +101,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `variant="outlined"`. */
     outlined: {
       backgroundColor: 'transparent',
-      border: `1px solid ${
+      border: `${theme.shape.borderWidth}px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
@@ -114,7 +114,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
       color: theme.palette.primary.main,
-      border: `1px solid ${theme.palette.primary.main}`,
+      border: `${theme.shape.borderWidth}px solid ${theme.palette.primary.main}`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       },
@@ -122,7 +122,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
     outlinedSecondary: {
       color: theme.palette.secondary.main,
-      border: `1px solid ${theme.palette.secondary.main}`,
+      border: `${theme.shape.borderWidth}px solid ${theme.palette.secondary.main}`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },

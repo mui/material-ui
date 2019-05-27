@@ -15,7 +15,7 @@ export const styles = theme => ({
     verticalAlign: 'inherit',
     // Workaround for a rendering bug with spanned columns in Chrome 62.0.
     // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
-    borderBottom: `1px solid
+    borderBottom: `${theme.shape.borderWidth}px solid
     ${
       theme.palette.type === 'light'
         ? lighten(fade(theme.palette.divider, 1), 0.88)

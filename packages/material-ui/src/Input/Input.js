@@ -7,6 +7,7 @@ import withStyles from '../styles/withStyles';
 export const styles = theme => {
   const light = theme.palette.type === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+  const borderWidth = theme.shape.borderWidth;
 
   return {
     /* Styles applied to the root element. */
@@ -26,10 +27,12 @@ export const styles = theme => {
     /* Styles applied to the root element if `disableUnderline={false}`. */
     underline: {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette.primary[light ? 'dark' : 'light']}`,
+        borderBottom: `${borderWidth === 1 ? '2px' : `${borderWidth}px`} solid ${
+          theme.palette.primary[light ? 'dark' : 'light']
+        }`,
         left: 0,
         bottom: 0,
-        // Doing the other way around crash on IE 11 "''" https://github.com/cssinjs/jss/issues/242
+        // Doing it the other way around crashes on IE 11 "''" https://github.com/cssinjs/jss/issues/242
         content: '""',
         position: 'absolute',
         right: 0,
@@ -48,7 +51,7 @@ export const styles = theme => {
         transform: 'scaleX(1)', // error is always underlined in red
       },
       '&:before': {
-        borderBottom: `1px solid ${bottomLineColor}`,
+        borderBottom: `${borderWidth}px solid ${bottomLineColor}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE 11 "''" https://github.com/cssinjs/jss/issues/242
@@ -61,7 +64,9 @@ export const styles = theme => {
         pointerEvents: 'none', // Transparent to the hover style.
       },
       '&:hover:not($disabled):before': {
-        borderBottom: `2px solid ${theme.palette.text.primary}`,
+        borderBottom: `${borderWidth === 1 ? '2px' : `${borderWidth}px`} solid ${
+          theme.palette.text.primary
+        }`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`,

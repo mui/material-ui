@@ -7,79 +7,84 @@ import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { capitalize } from '@material-ui/core/utils/helpers';
 
-export const styles = theme => ({
-  /* Styles applied to the root element. */
-  root: {
-    ...theme.typography.button,
-    boxSizing: 'border-box',
-    height: 48,
-    minWidth: 49,
-    padding: '0px 11px 0px 12px',
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-    color: fade(theme.palette.action.active, 0.38),
-    '&:not(:first-child)': {
-      marginLeft: -1,
-      borderLeft: '1px solid transparent',
-    },
-    '&$selected': {
-      color: theme.palette.action.active,
-      backgroundColor: fade(theme.palette.action.active, 0.12),
-      '&:hover': {
-        backgroundColor: fade(theme.palette.action.active, 0.15),
+export const styles = theme => {
+  const activeColor = theme.palette.action.active;
+  const borderRadius = theme.shape.borderRadius;
+  const borderWidth = theme.shape.borderWidth;
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      ...theme.typography.button,
+      boxSizing: 'border-box',
+      height: 48,
+      minWidth: 49,
+      padding: '0px 11px 0px 12px',
+      border: `${borderWidth}px solid ${fade(activeColor, 0.12)}`,
+      color: fade(theme.palette.action.active, 0.38),
+      '&:not(:first-child)': {
+        marginLeft: `-${borderWidth}px`,
+        borderLeft: `${borderWidth}px solid transparent`,
       },
-      '& + &': {
-        borderLeft: 0,
-        marginLeft: 0,
-      },
-    },
-    '&$disabled': {
-      color: fade(theme.palette.action.disabled, 0.12),
-    },
-    '&:hover': {
-      textDecoration: 'none',
-      // Reset on mouse devices
-      backgroundColor: fade(theme.palette.text.primary, 0.05),
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+      '&$selected': {
+        color: theme.palette.action.active,
+        backgroundColor: fade(activeColor, 0.12),
+        '&:hover': {
+          backgroundColor: fade(activeColor, 0.15),
+        },
+        '& + &': {
+          borderLeft: 0,
+          marginLeft: 0,
+        },
       },
       '&$disabled': {
-        backgroundColor: 'transparent',
+        color: fade(theme.palette.action.disabled, 0.12),
+      },
+      '&:hover': {
+        textDecoration: 'none',
+        // Reset on mouse devices
+        backgroundColor: fade(theme.palette.text.primary, 0.05),
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+        '&$disabled': {
+          backgroundColor: 'transparent',
+        },
+      },
+      '&:first-child': {
+        borderTopLeftRadius: borderRadius,
+        borderBottomLeftRadius: borderRadius,
+      },
+      '&:last-child': {
+        borderTopRightRadius: borderRadius,
+        borderBottomRightRadius: borderRadius,
+        paddingLeft: 12,
       },
     },
-    '&:first-child': {
-      borderTopLeftRadius: 2,
-      borderBottomLeftRadius: 2,
+    /* Styles applied to the root element if `disabled={true}`. */
+    disabled: {},
+    /* Styles applied to the root element if `selected={true}`. */
+    selected: {},
+    /* Styles applied to the `label` wrapper element. */
+    label: {
+      width: '100%', // Ensure the correct width for iOS Safari
+      display: 'inherit',
+      alignItems: 'inherit',
+      justifyContent: 'inherit',
     },
-    '&:last-child': {
-      borderTopRightRadius: 2,
-      borderBottomRightRadius: 2,
-      paddingLeft: 12,
+    /* Styles applied to the root element if `size="small"`. */
+    sizeSmall: {
+      height: 40,
+      minWidth: 41,
+      fontSize: theme.typography.pxToRem(13),
     },
-  },
-  /* Styles applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the root element if `selected={true}`. */
-  selected: {},
-  /* Styles applied to the `label` wrapper element. */
-  label: {
-    width: '100%', // Ensure the correct width for iOS Safari
-    display: 'inherit',
-    alignItems: 'inherit',
-    justifyContent: 'inherit',
-  },
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
-    height: 40,
-    minWidth: 41,
-    fontSize: theme.typography.pxToRem(13),
-  },
-  /* Styles applied to the root element if `size="large"`. */
-  sizeLarge: {
-    height: 56,
-    minWidth: 57,
-    fontSize: theme.typography.pxToRem(15),
-  },
-});
+    /* Styles applied to the root element if `size="large"`. */
+    sizeLarge: {
+      height: 56,
+      minWidth: 57,
+      fontSize: theme.typography.pxToRem(15),
+    },
+  };
+};
 
 const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
   const {

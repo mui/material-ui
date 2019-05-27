@@ -51,7 +51,7 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the inner `component` element if `divider={true}`. */
   divider: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `${theme.shape.borderWidth}px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   },
   /* Styles applied to the inner `component` element if `disableGutters={false}`. */

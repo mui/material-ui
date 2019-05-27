@@ -20,7 +20,7 @@ export const styles = theme => {
       pointerEvents: 'none',
       borderRadius: theme.shape.borderRadius,
       borderStyle: 'solid',
-      borderWidth: 1,
+      borderWidth: theme.shape.borderWidth,
       // Match the Input Label
       transition: theme.transitions.create([`padding-${align}`, 'border-color', 'border-width'], {
         duration: theme.transitions.duration.shorter,
