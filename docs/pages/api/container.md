@@ -37,6 +37,7 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
+<<<<<<< HEAD
 - Style sheet name: `MuiContainer`.
 - Style sheet details:
 
@@ -58,6 +59,33 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Container/Container.js) for more detail.
+=======
+You can override all the class names injected by Material-UI thanks to the `classes` prop.
+This prop accepts the following keys:
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">gutters</span> | Styles applied to the root element if `disableGutters={false}`.
+| <span class="prop-name">fixed</span> | Styles applied to the root element if `fixed={true}`.
+| <span class="prop-name">maxWidthXs</span> | Styles applied to the root element if `maxWidth="xs"`.
+| <span class="prop-name">maxWidthSm</span> | Styles applied to the root element if `maxWidth="sm"`.
+| <span class="prop-name">maxWidthMd</span> | Styles applied to the root element if `maxWidth="md"`.
+| <span class="prop-name">maxWidthLg</span> | Styles applied to the root element if `maxWidth="lg"`.
+| <span class="prop-name">maxWidthXl</span> | Styles applied to the root element if `maxWidth="xl"`.
+
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Container/Container.js)
+for more detail.
+
+If using the `overrides` [key of the theme](/customization/themes/#css),
+you need to use the following style sheet name: `MuiContainer`.
+
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+>>>>>>> update the API wording to target the root
 
 ## Demos
 
