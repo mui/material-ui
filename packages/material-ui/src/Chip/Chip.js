@@ -167,7 +167,7 @@ export const styles = theme => {
     },
     iconSmall: {
       width: 16,
-      marginRight: -6,
+      marginRight: -5,
     },
     /* Styles applied to the `icon` element if `color="primary"`. */
     iconColorPrimary: {
@@ -205,7 +205,7 @@ export const styles = theme => {
     },
     deleteIconSmall: {
       height: 16,
-      marginRight: 1,
+      margin: '0 1px 0 -9px',
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`. */
     deleteIconColorPrimary: {
