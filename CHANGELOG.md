@@ -19,9 +19,15 @@ Here are some highlights ✨:
 - [ListItemText] Update classes type definitions (#15822) @davjo664
 - [Tabs] Hide scrollbar on MacOS (#15762) @Umerbhat
 - [Tooltip] Fix alignment issues (#15811) @pkmnct
-- [codemod] Create spacing api codemod (#15782) @joshwooding
-- [icons] Fix the TypeScript definition of createSvgIcon (#15861) @alexkirsz
 - [styles] Add MuiLink to ComponentsPropsList (#15814) @stuartgrigg
+
+### `@material-ui/icons@v4.0.1`
+
+- [icons] Fix the TypeScript definition of createSvgIcon (#15861) @alexkirsz
+
+### `@material-ui/codemod@v4.0.1`
+
+- [codemod] Create spacing api codemod (#15782) @joshwooding
 
 ### `@material-ui/styles@v4.0.1`
 

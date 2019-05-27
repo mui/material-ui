@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/icons",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
@@ -37,7 +37,7 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.0.0",
+    "@material-ui/core": "^4.0.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
