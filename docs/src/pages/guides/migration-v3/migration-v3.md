@@ -1,6 +1,6 @@
 # Migration From v3 to v4
 
-<p class="description">Yeah, v4 alpha has been released!</p>
+<p class="description">Yeah, v4 has been released!</p>
 
 Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
 
