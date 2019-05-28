@@ -250,6 +250,10 @@ jobs:
               echo "pull request; let's run dangerJS"
               yarn danger ci
             fi
+  docs_audit:
+    <<: *defaults
+    steps:
+      - checkout
 workflows:
   version: 2
   pipeline:
@@ -283,3 +287,5 @@ workflows:
       - size_snapshot:
           requires:
             - test_build
+      - docs_audit:
+          type: approval
