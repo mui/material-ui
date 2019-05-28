@@ -24,6 +24,8 @@ export const DispatchContext = React.createContext(() => {
   throw new Error('Forgot to wrap component in ThemeContext.Provider');
 });
 
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
 export function Provider(props) {
   const { children } = props;
 
@@ -49,6 +51,10 @@ export function Provider(props) {
   React.useEffect(() => {
     setPrismTheme(paletteType === 'light' ? lightTheme : darkTheme);
   }, [paletteType]);
+
+  useEnhancedEffect(() => {
+    document.body.dir = direction;
+  }, [direction]);
 
   const theme = React.useMemo(() => {
     const nextTheme = createMuiTheme({

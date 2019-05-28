@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NProgress from 'nprogress';
 import Router from 'next/router';
-import { useTheme, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -179,8 +179,6 @@ function AppFrame(props) {
     canonicalRef.current = canonical;
   }, []);
 
-  const { direction } = useTheme();
-
   return (
     <PageTitle t={t}>
       {title => {
@@ -198,7 +196,7 @@ function AppFrame(props) {
         }
 
         return (
-          <div className={classes.root} dir={direction}>
+          <div className={classes.root}>
             <NProgressBar />
             <CssBaseline />
             <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
