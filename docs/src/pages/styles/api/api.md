@@ -53,7 +53,7 @@ style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 ```jsx
 import { makeStyles, createStyles } from '@material-ui/styles';
 
-const styles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     backgroundColor: theme.color.red,
   },
