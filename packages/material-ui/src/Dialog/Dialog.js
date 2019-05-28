@@ -15,7 +15,11 @@ import Paper from '../Paper';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
-  root: {},
+  root: {
+    '@media print': {
+      position: 'absolute',
+    },
+  },
   /* Styles applied to the root element if `scroll="paper"`. */
   scrollPaper: {
     display: 'flex',
@@ -32,6 +36,9 @@ export const styles = theme => ({
     height: '100%',
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
+    '@media print': {
+      height: 'auto',
+    },
   },
   /* Styles applied to the `Paper` component. */
   paper: {
@@ -40,6 +47,10 @@ export const styles = theme => ({
     margin: 48,
     position: 'relative',
     overflowY: 'auto', // Fix IE 11 issue, to remove at some point.
+    '@media print': {
+      overflowY: 'visible',
+      boxShadow: 'none',
+    },
   },
   /* Styles applied to the `Paper` component if `scroll="paper"`. */
   paperScrollPaper: {
