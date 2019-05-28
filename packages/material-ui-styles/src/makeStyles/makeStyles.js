@@ -189,7 +189,7 @@ function useSynchronousEffect(func, values) {
 
 function makeStyles(stylesOrCreator, options = {}) {
   const {
-    // An explicit value provided by the developers.
+    // alias for classNamePrefix, if provided will listen to theme (required for theme.overrides)
     name,
     // Help with debuggability.
     classNamePrefix: classNamePrefixOption,

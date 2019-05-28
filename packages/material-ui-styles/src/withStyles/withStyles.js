@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import makeStyles from '../makeStyles';
@@ -26,14 +25,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
   if (process.env.NODE_ENV !== 'production' && !name) {
     // Provide a better DX outside production.
-    classNamePrefix = getDisplayName(Component);
-    warning(
-      typeof classNamePrefix === 'string',
-      [
-        'Material-UI: the component displayName is invalid. It needs to be a string.',
-        `Please fix the following component: ${Component}.`,
-      ].join('\n'),
-    );
+    const displayName = getDisplayName(Component);
+    if (displayName !== undefined) {
+      classNamePrefix = displayName;
+    }
   }
 
   const useStyles = makeStyles(stylesOrCreator, {

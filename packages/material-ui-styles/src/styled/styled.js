@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import warning from 'warning';
 import PropTypes from 'prop-types';
 import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import hoistNonReactStatics from 'hoist-non-react-statics';
@@ -37,14 +36,10 @@ function styled(Component) {
 
     if (process.env.NODE_ENV !== 'production' && !name) {
       // Provide a better DX outside production.
-      classNamePrefix = getDisplayName(Component);
-      warning(
-        typeof classNamePrefix === 'string',
-        [
-          'Material-UI: the component displayName is invalid. It needs to be a string.',
-          `Please fix the following component: ${Component}.`,
-        ].join('\n'),
-      );
+      const displayName = getDisplayName(Component);
+      if (displayName !== undefined) {
+        classNamePrefix = displayName;
+      }
     }
 
     const stylesOrCreator =
