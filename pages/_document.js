@@ -35,7 +35,7 @@ class MyDocument extends Document {
     const { canonical, userLanguage } = this.props;
 
     return (
-      <html lang={userLanguage} dir="ltr">
+      <html lang={userLanguage}>
         <Head>
           {/* Use minimum-scale=1 to enable GPU rasterization. */}
           <meta

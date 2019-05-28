@@ -47,10 +47,6 @@ export function Provider(props) {
   const { direction, paletteColors, paletteType } = themeOptions;
 
   React.useEffect(() => {
-    document.body.dir = direction;
-  }, [direction]);
-
-  React.useEffect(() => {
     setPrismTheme(paletteType === 'light' ? lightTheme : darkTheme);
   }, [paletteType]);
 
