@@ -284,7 +284,7 @@ const styles = theme => ({
 });
 
 function MarkdownElement(props) {
-  const { classes, className, dispatch, text, userLanguage, ...other } = props;
+  const { classes, className, text, userLanguage, ...other } = props;
 
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;
@@ -303,14 +303,16 @@ function MarkdownElement(props) {
 MarkdownElement.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  dispatch: PropTypes.func,
   text: PropTypes.string,
   userLanguage: PropTypes.string.isRequired,
 };
 
 export default compose(
-  connect(state => ({
-    userLanguage: state.options.userLanguage,
-  })),
+  connect(
+    state => ({
+      userLanguage: state.options.userLanguage,
+    }),
+    {},
+  ),
   withStyles(styles, { flip: false }),
 )(MarkdownElement);
