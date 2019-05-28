@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = theme => ({
   root: {
@@ -49,7 +50,10 @@ class SimpleGrow extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
+        <FormControlLabel
+          control={<Switch checked={checked} onChange={this.handleChange} />}
+          label="Show"
+        />
         <div className={classes.container}>
           <Grow in={checked}>{polygon}</Grow>
           {/* Conditionally applies the timeout property to change the entry speed. */}

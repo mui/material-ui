@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Slide from '@material-ui/core/Slide';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = theme => ({
   root: {
@@ -44,7 +45,10 @@ class SimpleSlide extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
-          <Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
+          <FormControlLabel
+            control={<Switch checked={checked} onChange={this.handleChange} />}
+            label="Show"
+          />
           <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
             <Paper elevation={4} className={classes.paper}>
               <svg className={classes.svg}>
