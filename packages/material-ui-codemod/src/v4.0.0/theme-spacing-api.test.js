@@ -30,6 +30,21 @@ describe('@material-ui/codemod', () => {
           'The transformed version should be correct',
         );
       });
+
+      it('update theme spacing API for destructured', () => {
+        const actual = transform(
+          { source: read('./theme-spacing-api.test/actual_destructured.js') },
+          { jscodeshift },
+        );
+
+        const expected = read('./theme-spacing-api.test/expected_destructured.js');
+
+        assert.strictEqual(
+          trim(actual),
+          trim(expected),
+          'The transformed version should be correct',
+        );
+      });
     });
   });
 });
