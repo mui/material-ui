@@ -283,7 +283,11 @@ function AppFrame(props) {
                     data-ga-event-category="AppBar"
                     data-ga-event-action="dark"
                   >
-                    {theme.type === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
+                    {theme.palette.type === 'light' ? (
+                      <LightbulbOutlineIcon />
+                    ) : (
+                      <LightbulbFullIcon />
+                    )}
                   </IconButton>
                 </Tooltip>
                 <Tooltip title={t('toggleRTL')} enterDelay={300}>
