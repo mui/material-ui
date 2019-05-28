@@ -16,7 +16,8 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     '@media print': {
-      position: 'absolute',
+      // Use !important to override the Modal inline-style.
+      position: 'absolute !important',
     },
   },
   /* Styles applied to the root element if `scroll="paper"`. */

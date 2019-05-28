@@ -110,6 +110,9 @@ const styles = theme => ({
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
+    '@media print': {
+      display: 'none',
+    },
   },
   appBar: {
     transition: theme.transitions.create('width'),
