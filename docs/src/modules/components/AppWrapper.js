@@ -103,12 +103,10 @@ async function registerServiceWorker() {
   }
 }
 
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
-
 function AppWrapper(props) {
   const { children } = props;
 
-  useEnhancedEffect(() => {
+  React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
