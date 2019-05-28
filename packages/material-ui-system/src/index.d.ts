@@ -53,8 +53,10 @@ export function breakpoints<Props extends { theme: { breakpoints?: unknown } }>(
  */
 type ComposedArg<T> = T extends Array<(arg: infer P) => any> ? P : never;
 type ComposedStyleProps<T> = ComposedArg<T>;
-type Composed<T extends Array<StyleFunction<any>>> = StyleFunction<ComposedStyleProps<T>>;
-export function compose<T extends Array<StyleFunction<any>>>(...args: T): Composed<T>;
+export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFunction<
+  ComposedStyleProps<T>
+>;
+export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
 
 // css.js
 export function css<Props>(

@@ -1,69 +1,42 @@
 import * as React from 'react';
+import {
+  borders,
+  ComposedStyleFunction,
+  display,
+  flexbox,
+  palette,
+  positions,
+  shadows,
+  sizing,
+  spacing,
+  typography,
+  PropsFor,
+} from '@material-ui/system';
+import { Omit } from '..';
 
-export interface BoxProps
-  extends React.HTMLAttributes<HTMLElement>,
-    Pick<
-      React.CSSProperties,
-      | 'alignContent'
-      | 'alignItems'
-      | 'alignSelf'
-      | 'border'
-      | 'borderBottom'
-      | 'borderColor'
-      | 'borderLeft'
-      | 'borderRadius'
-      | 'borderRight'
-      | 'borderTop'
-      | 'bottom'
-      | 'boxShadow'
-      | 'color'
-      | 'cursor'
-      | 'display'
-      | 'flex'
-      | 'flexDirection'
-      | 'flexGrow'
-      | 'flexShrink'
-      | 'flexWrap'
-      | 'fontFamily'
-      | 'fontSize'
-      | 'fontWeight'
-      | 'height'
-      | 'justifyContent'
-      | 'left'
-      | 'maxHeight'
-      | 'maxWidth'
-      | 'minHeight'
-      | 'minWidth'
-      | 'overflowX'
-      | 'overflowY'
-      | 'position'
-      | 'right'
-      | 'textAlign'
-      | 'top'
-      | 'width'
-      | 'zIndex'
-    > {
-  component?: React.ElementType;
+type BoxStyleFunction = ComposedStyleFunction<
+  [
+    typeof borders,
+    typeof display,
+    typeof flexbox,
+    typeof palette,
+    typeof positions,
+    typeof shadows,
+    typeof sizing,
+    typeof spacing,
+    typeof typography
+  ]
+>;
+
+type SystemProps = PropsFor<BoxStyleFunction>;
+type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
+
+export interface BoxProps extends ElementProps, SystemProps {
   // styled API
+  component?: React.ElementType;
   clone?: boolean;
-  // Box specific props
-  bgcolor?: string;
-  displayPrint?: string;
-  m?: string | number;
-  mb?: string | number;
-  ml?: string | number;
-  mr?: string | number;
-  mt?: string | number;
-  mx?: string | number;
-  my?: string | number;
-  order?: string | number;
-  p?: string | number;
-  pb?: string | number;
-  pl?: string | number;
-  pr?: string | number;
-  pt?: string | number;
-  px?: string | number;
-  py?: string | number;
+  // workaround for https://github.com/mui-org/material-ui/pull/15611
+  css?: SystemProps;
 }
 
 declare const Box: React.ComponentType<BoxProps>;
