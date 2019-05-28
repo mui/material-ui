@@ -507,7 +507,7 @@ describe('<SwipeableDrawer />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `SwipeableDrawer`. Expected an element type that can hold a ref.',
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `ForwardRef(SwipeableDrawer)`. Expected an element type that can hold a ref.',
       );
     });
 
@@ -524,7 +524,7 @@ describe('<SwipeableDrawer />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `SwipeableDrawer`. Expected an element type that can hold a ref.',
+        'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `ForwardRef(SwipeableDrawer)`. Expected an element type that can hold a ref.',
       );
     });
   });
