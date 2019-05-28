@@ -77,7 +77,7 @@ const RouterLink = compose(
     state => ({
       userLanguage: state.options.userLanguage,
     }),
-    null,
+    {},
   ),
 )(Link);
 

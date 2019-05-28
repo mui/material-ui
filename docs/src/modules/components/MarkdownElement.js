@@ -312,7 +312,7 @@ export default compose(
     state => ({
       userLanguage: state.options.userLanguage,
     }),
-    null,
+    {},
   ),
   withStyles(styles, { flip: false }),
 )(MarkdownElement);
