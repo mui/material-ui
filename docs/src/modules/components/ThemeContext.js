@@ -12,7 +12,9 @@ export const themeInitialOptions = {
   direction: 'ltr',
   paletteType: 'light',
   paletteColors: {
-    primary: blue,
+    primary: {
+      main: blue[500],
+    },
     secondary: {
       // Darken so we reach the AA contrast ratio level.
       main: darken(pink.A400, 0.08),
