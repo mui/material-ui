@@ -139,7 +139,7 @@ function PrimarySearchAppBar() {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="Show 17 new notifications" color="inherit">
+        <IconButton aria-label="Show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
