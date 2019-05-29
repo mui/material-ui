@@ -37,7 +37,6 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">gutters</span> | Styles applied to the root element for padding.
 | <span class="prop-name">fixed</span> | Styles applied to the root element if `fixed={true}`.
 | <span class="prop-name">maxWidthXs</span> | Styles applied to the root element if `maxWidth="xs"`.
 | <span class="prop-name">maxWidthSm</span> | Styles applied to the root element if `maxWidth="sm"`.

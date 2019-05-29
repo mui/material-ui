@@ -11,9 +11,6 @@ export const styles = theme => ({
     marginLeft: 'auto',
     boxSizing: 'border-box',
     marginRight: 'auto',
-  },
-  /* Styles applied to the root element for padding. */
-  gutters: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -82,7 +79,6 @@ const Container = React.forwardRef(function Container(props, ref) {
     <Component
       className={clsx(
         classes.root,
-        classes.gutters,
         {
           [classes.fixed]: fixed,
           [classes[`maxWidth${capitalize(String(maxWidth))}`]]: maxWidth !== false,
