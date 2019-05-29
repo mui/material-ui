@@ -143,7 +143,7 @@ export const styles = theme => {
     avatarSmall: {
       width: smallHeight,
       height: smallHeight,
-      fontSize: '0.8rem',
+      fontSize: theme.typography.pxToRem(12),
     },
     /* Styles applied to the `avatar` element if `color="primary"`. */
     avatarColorPrimary: {
