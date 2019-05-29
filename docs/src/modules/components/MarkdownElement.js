@@ -116,13 +116,16 @@ const styles = theme => ({
       marginTop: -96, // Offset for the anchor.
       position: 'absolute',
     },
-    '& pre, & pre[class*="language-"]': {
+    '& pre': {
       margin: '24px 0',
       padding: '12px 18px',
       backgroundColor: theme.palette.background.level1,
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+    },
+    '& code[class*="language-"]': {
+      boxShadow: 'none',
     },
     '& code': {
       display: 'inline-block',
@@ -138,6 +141,10 @@ const styles = theme => ({
     },
     '& .token.operator': {
       background: 'transparent',
+    },
+    '& .token.property, .token.tag,.token.constant, .token.symbol, .token.deleted': {
+      // adjust prism-okaidia to reach AA ratio
+      color: theme.palette.type === 'dark' ? '#f483ad' : undefined,
     },
     '& h1': {
       ...theme.typography.h2,

@@ -17,9 +17,7 @@ if (process.browser) {
   lightTheme = require('prismjs/themes/prism.css');
   darkTheme = require('prismjs/themes/prism-okaidia.css');
 
-  styleNode = document.createElement('style');
-  styleNode.setAttribute('data-prism', 'true');
-  document.head.appendChild(styleNode);
+  styleNode = document.querySelector('#prismjs');
 }
 
 export { lightTheme, darkTheme };
