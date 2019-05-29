@@ -12,8 +12,6 @@ export const styles = theme => ({
     ...theme.typography.body2,
     display: 'table-cell',
     verticalAlign: 'inherit',
-    // Workaround for a rendering bug with spanned columns in Chrome 62.0.
-    // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
     textAlign: 'left',
     padding: '14px 40px 14px 16px',
     '&:last-child': {
