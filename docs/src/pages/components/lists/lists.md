@@ -93,3 +93,6 @@ It renders 200 rows and can easily handle more.
 Virtualization helps with performance issues.
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
+
+We encourage the use of [react-window](https://github.com/bvaughn/react-window) when possible.
+If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
