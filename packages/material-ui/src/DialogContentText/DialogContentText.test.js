@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, createShallow, describeConformance, getClasses } from '../test-utils';
+import { createMount, createShallow, getClasses } from '../test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import DialogContentText from './DialogContentText';
 import Typography from '../Typography';
 

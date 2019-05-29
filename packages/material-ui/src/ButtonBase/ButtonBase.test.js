@@ -3,12 +3,8 @@ import { act } from 'react-dom/test-utils';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import rerender from 'test/utils/rerender';
-import {
-  createShallow,
-  createMount,
-  describeConformance,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 import consoleErrorMock from 'test/utils/consoleErrorMock';

@@ -1,12 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import {
-  createShallow,
-  createMount,
-  describeConformance,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import BottomNavigationAction from '../BottomNavigationAction';
 import Icon from '../Icon';
 import BottomNavigation from './BottomNavigation';

@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Select from '../Select';
 import IconButton from '../IconButton';

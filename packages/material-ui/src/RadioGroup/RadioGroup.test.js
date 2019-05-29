@@ -2,11 +2,8 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import * as PropTypes from 'prop-types';
-import {
-  createMount,
-  describeConformance,
-  findOutermostIntrinsic,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';

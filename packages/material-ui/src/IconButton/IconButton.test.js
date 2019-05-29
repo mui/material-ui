@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
-  describeConformance,
   getClasses,
   findOutermostIntrinsic,
 } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';

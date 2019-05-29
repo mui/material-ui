@@ -1,7 +1,8 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Popover from '../Popover';
 import Menu from './Menu';
 import MenuList from '../MenuList';

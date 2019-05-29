@@ -1,12 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import {
-  createShallow,
-  getClasses,
-  createMount,
-  describeConformance,
-} from '@material-ui/core/test-utils';
+import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import ListItem from '../ListItem';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import MenuItem from './MenuItem';

@@ -1,12 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createMount,
-  createShallow,
-  createRender,
-  describeConformance,
-  getClasses,
-} from '../test-utils';
+import { createMount, createShallow, createRender, getClasses } from '../test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';

@@ -1,13 +1,8 @@
 import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';
-import {
-  createShallow,
-  createMount,
-  describeConformance,
-  getClasses,
-  unwrap,
-} from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Ripple from './Ripple';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 

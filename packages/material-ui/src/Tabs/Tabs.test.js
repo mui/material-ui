@@ -3,12 +3,8 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import {
-  createMount,
-  createRender,
-  describeConformance,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, createRender, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Tab from '../Tab';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
