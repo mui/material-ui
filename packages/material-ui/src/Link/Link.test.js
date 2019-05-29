@@ -36,12 +36,12 @@ describe('<Link />', () => {
   }));
 
   it('should render children', () => {
-    const wrapper = shallow(<Link href="/">Home</Link>);
+    const wrapper = mount(<Link href="/">Home</Link>);
     assert.strictEqual(wrapper.contains('Home'), true);
   });
 
   it('should pass props to the <Typography> component', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Link href="/" color="primary">
         Test
       </Link>,
