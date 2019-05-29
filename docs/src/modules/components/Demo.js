@@ -234,6 +234,8 @@ class Demo extends React.Component {
     const demoData = this.getDemoData();
     const DemoComponent = demoData.Component;
     const gaCategory = demoOptions.demo;
+    // get the last alphanumeric pattern before the file extension
+    const demoName = demoData.githubLocation.replace(/(.+?)(\w+)\.\w+$$/, '$2');
 
     return (
       <div className={classes.root}>
@@ -360,7 +362,7 @@ class Demo extends React.Component {
             maxWidth: demoOptions.maxWidth,
           }}
         >
-          <DemoSandboxed component={DemoComponent} iframe={demoOptions.iframe} />
+          <DemoSandboxed component={DemoComponent} iframe={demoOptions.iframe} name={demoName} />
         </div>
       </div>
     );
