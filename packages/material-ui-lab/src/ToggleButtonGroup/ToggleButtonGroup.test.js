@@ -1,12 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  getClasses,
-  findOutermostIntrinsic,
-  testRef,
-} from '@material-ui/core/test-utils';
+import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import testRef from '@material-ui/core/test-utils/testRef';
 import ToggleButtonGroup from './ToggleButtonGroup';
 import ToggleButton from '../ToggleButton';
 
