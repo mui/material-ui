@@ -54,6 +54,11 @@ export function Provider(props) {
     setPrismTheme(paletteType === 'light' ? lightTheme : darkTheme);
   }, [paletteType]);
 
+  // persist paletteType
+  React.useEffect(() => {
+    document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
+  }, [paletteType]);
+
   useEnhancedEffect(() => {
     document.body.dir = direction;
   }, [direction]);

@@ -165,7 +165,6 @@ function AppFrame(props) {
   const changeTheme = useChangeTheme();
   function handleTogglePaletteType() {
     const paletteType = theme.palette.type === 'light' ? 'dark' : 'light';
-    document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
 
     changeTheme({ paletteType });
   }
