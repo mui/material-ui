@@ -106,8 +106,14 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'none',
         backgroundColor: theme.palette.background.paper,
       },
-      '& .algolia-docsearch-suggestion--title': theme.typography.h6,
-      '& .algolia-docsearch-suggestion--text': theme.typography.body2,
+      '& .algolia-docsearch-suggestion--title': {
+        ...theme.typography.h6,
+        color: theme.palette.text.primary,
+      },
+      '& .algolia-docsearch-suggestion--text': {
+        ...theme.typography.body2,
+        color: theme.palette.text.secondary,
+      },
       '&& .algolia-docsearch-suggestion--no-results': {
         width: '100%',
         '&::before': {
