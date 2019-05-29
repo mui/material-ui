@@ -41,7 +41,7 @@ function SimpleListMenu() {
 
   return (
     <div className={classes.root}>
-      <List component="nav">
+      <List component="nav" aria-label="Device settings">
         <ListItem
           button
           aria-haspopup="true"

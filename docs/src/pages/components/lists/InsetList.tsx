@@ -20,7 +20,7 @@ function InsetList() {
   const classes = useStyles();
 
   return (
-    <List component="nav" className={classes.root}>
+    <List component="nav" className={classes.root} aria-label="Contacts">
       <ListItem button>
         <ListItemIcon>
           <StarIcon />

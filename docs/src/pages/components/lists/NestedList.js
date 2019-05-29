@@ -35,7 +35,12 @@ function NestedList() {
   return (
     <List
       component="nav"
-      subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
+      aria-labelledby="nested-list-subheader"
+      subheader={
+        <ListSubheader component="div" id="nested-list-subheader">
+          Nested List Items
+        </ListSubheader>
+      }
       className={classes.root}
     >
       <ListItem button>

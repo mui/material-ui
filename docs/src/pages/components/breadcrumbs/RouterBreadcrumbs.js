@@ -101,7 +101,7 @@ class RouterBreadcrumbs extends React.Component {
               );
             }}
           </Route>
-          <nav className={classes.lists}>
+          <nav className={classes.lists} aria-label="Mailbox folders">
             <List>
               <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
               <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>
