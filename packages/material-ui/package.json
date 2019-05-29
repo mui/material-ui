@@ -43,6 +43,7 @@
     "@material-ui/types": "^4.0.1",
     "@material-ui/utils": "^4.0.1",
     "@types/react-transition-group": "^2.0.16",
+    "chai": "^4.2.0",
     "clsx": "^1.0.2",
     "convert-css-length": "^1.0.2",
     "csstype": "^2.5.2",
