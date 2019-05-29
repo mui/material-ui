@@ -74,8 +74,11 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
   const paperRef = React.useRef();
-  const handleBodyTouchMoveRef = React.useRef();
-  const handleBodyTouchEndRef = React.useRef();
+
+  const handlers = React.useRef({
+    touchMove: () => {},
+    touchEnd: () => {},
+  });
   const openRef = React.useRef(open);
 
   // Use a ref so the open value used is always up to date inside useCallback.
@@ -84,9 +87,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   }, [open]);
 
   const removeBodyTouchListeners = React.useCallback(() => {
-    document.body.removeEventListener('touchmove', handleBodyTouchMoveRef.current);
-    document.body.removeEventListener('touchend', handleBodyTouchEndRef.current);
-    document.body.removeEventListener('touchcancel', handleBodyTouchEndRef.current);
+    const { touchMove, touchEnd } = handlers.current;
+    document.body.removeEventListener('touchmove', touchMove);
+    document.body.removeEventListener('touchend', touchEnd);
+    document.body.removeEventListener('touchcancel', touchEnd);
   }, []);
 
   const setPosition = React.useCallback(
@@ -344,8 +348,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       document.body.addEventListener('touchend', handleBodyTouchEnd);
       // https://plus.google.com/+PaulIrish/posts/KTwfn1Y2238
       document.body.addEventListener('touchcancel', handleBodyTouchEnd);
-      handleBodyTouchMoveRef.current = handleBodyTouchMove;
-      handleBodyTouchEndRef.current = handleBodyTouchEnd;
+      handlers.current = {
+        touchEnd: handleBodyTouchEnd,
+        touchMove: handleBodyTouchMove,
+      };
     },
     [
       setPosition,
