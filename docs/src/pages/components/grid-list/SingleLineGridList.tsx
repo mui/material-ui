@@ -64,7 +64,7 @@ function SingleLineGridList() {
                 title: classes.title,
               }}
               actionIcon={
-                <IconButton>
+                <IconButton aria-label={`star ${tile.title}`}>
                   <StarBorderIcon className={classes.title} />
                 </IconButton>
               }

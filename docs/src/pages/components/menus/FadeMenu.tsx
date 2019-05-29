@@ -18,12 +18,13 @@ function FadeMenu() {
 
   return (
     <div>
-      <Button aria-owns={open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={handleClick}>
+      <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
         Open with fade transition
       </Button>
       <Menu
         id="fade-menu"
         anchorEl={anchorEl}
+        keepMounted
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}

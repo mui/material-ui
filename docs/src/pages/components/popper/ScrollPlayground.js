@@ -250,7 +250,11 @@ class ScrollPlayground extends React.Component {
                 className={classes.select}
                 label="Placement"
                 select
-                SelectProps={{ native: true }}
+                InputLabelProps={{ id: 'scroll-playground-placement-label' }}
+                SelectProps={{
+                  native: true,
+                  inputProps: { 'aria-labelledby': 'scroll-playground-placement-label' },
+                }}
                 value={placement}
                 onChange={this.handleChangeTarget('placement')}
               >
@@ -289,7 +293,11 @@ class ScrollPlayground extends React.Component {
                 className={classes.select}
                 label="Prevent overflow"
                 select
-                SelectProps={{ native: true }}
+                InputLabelProps={{ id: 'scroll-playground-overflow-label' }}
+                SelectProps={{
+                  native: true,
+                  inputProps: { 'aria-labelledby': 'scroll-playground-overflow-label' },
+                }}
                 value={preventOverflow}
                 onChange={this.handleChangeTarget('preventOverflow')}
               >

@@ -125,8 +125,8 @@ function ConfirmationDialog() {
 
   return (
     <div className={classes.root}>
-      <List>
-        <ListItem button divider disabled>
+      <List component="div" role="list">
+        <ListItem button divider disabled role="listitem">
           <ListItemText primary="Interruptions" />
         </ListItem>
         <ListItem
@@ -136,16 +136,19 @@ function ConfirmationDialog() {
           aria-controls="ringtone-menu"
           aria-label="Phone ringtone"
           onClick={handleClickListItem}
+          role="listitem"
         >
           <ListItemText primary="Phone ringtone" secondary={value} />
         </ListItem>
-        <ListItem button divider disabled>
+        <ListItem button divider disabled role="listitem">
           <ListItemText primary="Default notification ringtone" secondary="Tethys" />
         </ListItem>
         <ConfirmationDialogRaw
           classes={{
             paper: classes.paper,
           }}
+          id="ringtone-menu"
+          keepMounted
           open={open}
           onClose={handleClose}
           value={value}

@@ -25,7 +25,7 @@ function SimpleList() {
 
   return (
     <div className={classes.root}>
-      <List component="nav">
+      <List component="nav" aria-label="Main mailbox folders">
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
@@ -40,7 +40,7 @@ function SimpleList() {
         </ListItem>
       </List>
       <Divider />
-      <List component="nav">
+      <List component="nav" aria-label="Secondary mailbox folders">
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>

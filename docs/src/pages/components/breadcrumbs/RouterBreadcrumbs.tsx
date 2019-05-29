@@ -119,18 +119,18 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
               );
             }}
           </Route>
-          <div className={classes.lists}>
-            <List component="nav">
+          <nav className={classes.lists} aria-label="Mailbox folders">
+            <List>
               <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
-              <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
+              <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>
+                <List disablePadding>
                   <ListItemLink to="/inbox/important" className={classes.nested} />
                 </List>
               </Collapse>
               <ListItemLink to="/trash" />
               <ListItemLink to="/spam" />
             </List>
-          </div>
+          </nav>
         </div>
       </MemoryRouter>
     );

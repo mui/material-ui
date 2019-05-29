@@ -63,7 +63,8 @@ function MenuAppBar() {
           {auth && (
             <div>
               <IconButton
-                aria-owns={open ? 'menu-appbar' : undefined}
+                aria-label="Account of current user"
+                aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
@@ -77,6 +78,7 @@ function MenuAppBar() {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
+                keepMounted
                 transformOrigin={{
                   vertical: 'top',
                   horizontal: 'right',

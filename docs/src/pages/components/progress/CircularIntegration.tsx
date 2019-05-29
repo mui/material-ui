@@ -72,7 +72,12 @@ function CircularIntegration() {
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
-        <Fab color="primary" className={buttonClassname} onClick={handleButtonClick}>
+        <Fab
+          aria-label="Save"
+          color="primary"
+          className={buttonClassname}
+          onClick={handleButtonClick}
+        >
           {success ? <CheckIcon /> : <SaveIcon />}
         </Fab>
         {loading && <CircularProgress size={68} className={classes.fabProgress} />}

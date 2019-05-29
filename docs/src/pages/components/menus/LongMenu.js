@@ -39,7 +39,7 @@ function LongMenu() {
     <div>
       <IconButton
         aria-label="More"
-        aria-owns={open ? 'long-menu' : undefined}
+        aria-controls="long-menu"
         aria-haspopup="true"
         onClick={handleClick}
       >
@@ -48,6 +48,7 @@ function LongMenu() {
       <Menu
         id="long-menu"
         anchorEl={anchorEl}
+        keepMounted
         open={open}
         onClose={handleClose}
         PaperProps={{

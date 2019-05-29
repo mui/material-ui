@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = theme => ({
   root: {
@@ -41,7 +42,10 @@ class SimpleFade extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
+        <FormControlLabel
+          control={<Switch checked={checked} onChange={this.handleChange} />}
+          label="Show"
+        />
         <div className={classes.container}>
           <Fade in={checked}>
             <Paper elevation={4} className={classes.paper}>

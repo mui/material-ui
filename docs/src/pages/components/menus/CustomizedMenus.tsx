@@ -54,7 +54,7 @@ function CustomizedMenus() {
   return (
     <div>
       <Button
-        aria-owns={anchorEl ? 'simple-menu' : undefined}
+        aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
         color="primary"
@@ -63,8 +63,9 @@ function CustomizedMenus() {
         Open Menu
       </Button>
       <StyledMenu
-        id="simple-menu"
+        id="customized-menu"
         anchorEl={anchorEl}
+        keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >

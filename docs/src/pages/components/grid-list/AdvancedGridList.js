@@ -62,7 +62,7 @@ function AdvancedGridList() {
               title={tile.title}
               titlePosition="top"
               actionIcon={
-                <IconButton className={classes.icon}>
+                <IconButton aria-label={`star ${tile.title}`} className={classes.icon}>
                   <StarBorderIcon />
                 </IconButton>
               }

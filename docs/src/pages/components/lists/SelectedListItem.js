@@ -26,7 +26,7 @@ function SelectedListItem() {
 
   return (
     <div className={classes.root}>
-      <List component="nav">
+      <List component="nav" aria-label="Main mailbox folders">
         <ListItem
           button
           selected={selectedIndex === 0}
@@ -49,7 +49,7 @@ function SelectedListItem() {
         </ListItem>
       </List>
       <Divider />
-      <List component="nav">
+      <List component="nav" aria-label="Secondary mailbox folder">
         <ListItem
           button
           selected={selectedIndex === 2}

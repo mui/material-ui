@@ -45,7 +45,7 @@ class DemoFrame extends React.Component {
   };
 
   render() {
-    const { children, classes } = this.props;
+    const { children, classes, theme, ...other } = this.props;
 
     // NoSsr fixes a strange concurrency issue with iframe and quick React mount/unmount
     return (
@@ -55,6 +55,7 @@ class DemoFrame extends React.Component {
           className={classes.root}
           contentDidMount={this.onContentDidMount}
           contentDidUpdate={this.onContentDidUpdate}
+          {...other}
         >
           <div id="demo-frame-jss" />
           {this.state.ready ? (
@@ -80,11 +81,12 @@ DemoFrame.propTypes = {
 const StyledFrame = withStyles(styles, { withTheme: true })(DemoFrame);
 
 function DemoSandboxed(props) {
-  const { component: Component, iframe } = props;
+  const { component: Component, iframe, name } = props;
   const Sandbox = iframe ? StyledFrame : React.Fragment;
+  const sandboxProps = iframe ? { title: `${name} demo` } : {};
 
   return (
-    <Sandbox>
+    <Sandbox {...sandboxProps}>
       <Component />
     </Sandbox>
   );
@@ -93,6 +95,7 @@ function DemoSandboxed(props) {
 DemoSandboxed.propTypes = {
   component: PropTypes.elementType.isRequired,
   iframe: PropTypes.bool,
+  name: PropTypes.string.isRequired,
 };
 
 export default React.memo(DemoSandboxed);

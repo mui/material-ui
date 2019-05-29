@@ -58,7 +58,7 @@ function RecipeReviewCard() {
           </Avatar>
         }
         action={
-          <IconButton>
+          <IconButton aria-label="Settings">
             <MoreVertIcon />
           </IconButton>
         }

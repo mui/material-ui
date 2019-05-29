@@ -158,6 +158,7 @@ function CustomPaginationActionsTable() {
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{
+                  inputProps: { 'aria-label': 'Rows per page' },
                   native: true,
                 }}
                 onChangePage={handleChangePage}
