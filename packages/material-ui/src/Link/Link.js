@@ -68,11 +68,9 @@ const Link = React.forwardRef(function Link(props, ref) {
     ...other
   } = props;
 
-  const linkRef = React.useRef();
-  // TODO: Olivier originally included an arg of `() => linkRef.current.ownerDocument`. Am i missing something?
-  const { isFocusVisible, onBlurVisible } = useIsFocusVisible();
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
-  const handlerRef = useForkRef(linkRef, ref);
+  const handlerRef = useForkRef(ref, focusVisibleRef);
   const handleBlur = event => {
     if (focusVisible) {
       onBlurVisible();
