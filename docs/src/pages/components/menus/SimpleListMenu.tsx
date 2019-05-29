@@ -54,7 +54,13 @@ function SimpleListMenu() {
           <ListItemText primary="When device is locked" secondary={options[selectedIndex]} />
         </ListItem>
       </List>
-      <Menu id="lock-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+      <Menu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
         {options.map((option, index) => (
           <MenuItem
             key={option}
