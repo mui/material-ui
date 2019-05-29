@@ -15,6 +15,7 @@ const styles = (theme: Theme) =>
     },
     tableRow: {
       cursor: 'pointer',
+      borderTop: `1px solid ${theme.palette.divider}`,
     },
     tableRowHover: {
       '&:hover': {

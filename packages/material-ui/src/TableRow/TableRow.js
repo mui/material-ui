@@ -39,7 +39,9 @@ export const styles = theme => ({
   /* Styles applied to the root element if `hover={true}`. */
   hover: {},
   /* Styles applied to the root element if table variant="head". */
-  head: {},
+  head: {
+    borderTop: 'none',
+  },
   /* Styles applied to the root element if table variant="footer". */
   footer: {},
 });
