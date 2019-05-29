@@ -6,6 +6,7 @@ import { BackdropClassKey } from '../Backdrop';
 import { BadgeClassKey } from '../Badge';
 import { BottomNavigationClassKey } from '../BottomNavigation';
 import { BottomNavigationActionClassKey } from '../BottomNavigationAction';
+import { BreadcrumbsClassKey } from '../Breadcrumbs';
 import { ButtonClassKey } from '../Button';
 import { ButtonBaseClassKey } from '../ButtonBase';
 import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
@@ -105,6 +106,7 @@ export interface ComponentNameToClassKey {
   MuiBadge: BadgeClassKey;
   MuiBottomNavigation: BottomNavigationClassKey;
   MuiBottomNavigationAction: BottomNavigationActionClassKey;
+  MuiBreadcrumbs: BreadcrumbsClassKey;
   MuiButton: ButtonClassKey;
   MuiButtonBase: ButtonBaseClassKey;
   MuiCard: CardClassKey;
