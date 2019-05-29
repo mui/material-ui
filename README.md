@@ -20,7 +20,7 @@ Accessible, customizable, delightful date & time pickers for [@material-ui/core]
 
 ### Installation
 
-Please read the [migration guide](https://material-ui-pickers.dev/guides/upgrading-to-v3) if you are updating from v2
+Note that this package reqiures `@material-ui/core` **v4**. It will not work with the old v3. Please read the [migration guide](https://material-ui-pickers.dev/guides/upgrading-to-v3) if you are updating from v2
 
 ```sh
 // via npm
