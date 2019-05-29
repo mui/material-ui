@@ -1,15 +1,18 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { ExtendButtonBase } from '../ButtonBase';
 import { SvgIconProps } from '../SvgIcon';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface TableSortLabelProps
-  extends StandardProps<ButtonBaseProps, TableSortLabelClassKey> {
-  active?: boolean;
-  direction?: 'asc' | 'desc';
-  hideSortIcon?: boolean;
-  IconComponent?: React.ComponentType<SvgIconProps>;
-}
+declare const TableSortLabel: ExtendButtonBase<{
+  props: {
+    active?: boolean;
+    direction?: 'asc' | 'desc';
+    hideSortIcon?: boolean;
+    IconComponent?: React.ComponentType<SvgIconProps>;
+  };
+  defaultComponent: 'span';
+  classKey: TableSortLabelClassKey;
+}>;
 
 export type TableSortLabelClassKey =
   | 'root'
@@ -18,6 +21,6 @@ export type TableSortLabelClassKey =
   | 'iconDirectionDesc'
   | 'iconDirectionAsc';
 
-declare const TableSortLabel: React.ComponentType<TableSortLabelProps>;
+export type TableSortLabelProps = SimplifiedPropsOf<typeof TableSortLabel>;
 
 export default TableSortLabel;
