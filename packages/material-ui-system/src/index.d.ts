@@ -6,12 +6,8 @@ export {};
 export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
   ? Props
   : never;
-/**
- * @see https://next.material-ui.com/system/basics/#responsive
- */
-export type ResponsiveValue<Value = string | number> = Value | Value[] | { [key in Breakpoint]?: Value };
 export type StyleFunction<Props> = (props: Props) => any;
-type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Record<PropKey, ResponsiveValue>>>;
+type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Record<PropKey, any>>>;
 
 // borders.js
 export const border: SimpleStyleFunction<'border'>;
