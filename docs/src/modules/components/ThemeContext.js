@@ -49,7 +49,7 @@ export function Provider(props) {
     }
   }, themeInitialOptions);
 
-  const prefersDarkMode = useMediaQuery('prefers-color-scheme: dark');
+  const prefersDarkMode = useMediaQuery('@media (prefers-color-scheme: dark)');
   const preferredType = prefersDarkMode ? 'dark' : 'light';
   const { direction, paletteColors, paletteType = preferredType } = themeOptions;
 
