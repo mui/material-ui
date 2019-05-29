@@ -54,7 +54,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 ## Custom Table Pagination Action
 
-The `Action` property of the `TablePagination` component allows the implementation of
+The `ActionsComponent` property of the `TablePagination` component allows the implementation of
 custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}

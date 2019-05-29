@@ -25,16 +25,14 @@ export const styles = theme => ({
           ? 'rgba(0, 0, 0, 0.07)' // grey[200]
           : 'rgba(255, 255, 255, 0.14)',
     },
-    '&$head, &:not(:last-child)': {
-      // Workaround for a rendering bug with spanned columns in Chrome 62.0.
-      // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
-      borderBottom: `1px solid
-      ${
-        theme.palette.type === 'light'
-          ? lighten(fade(theme.palette.divider, 1), 0.88)
-          : darken(fade(theme.palette.divider, 1), 0.68)
-      }`,
-    },
+    // Workaround for a rendering bug with spanned columns in Chrome 62.0.
+    // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
+    borderTop: `1px solid
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.68)
+    }`,
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
