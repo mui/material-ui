@@ -8,6 +8,7 @@ import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
+import Divider from '../Divider';
 import TablePaginationActions from './TablePaginationActions';
 
 export const styles = theme => ({
@@ -101,6 +102,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
 
   return (
     <Component className={classes.root} colSpan={colSpan} ref={ref} {...other}>
+      <Divider />
       <Toolbar className={classes.toolbar}>
         <div className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (

@@ -14,6 +14,9 @@ const styles = theme => ({
   },
   tableRow: {
     cursor: 'pointer',
+    '&:not(:last-child)': {
+      borderBottom: `1px solid ${theme.palette.divider}`,
+    },
   },
   tableRowHover: {
     '&:hover': {
