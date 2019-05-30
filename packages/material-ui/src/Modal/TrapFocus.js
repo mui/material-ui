@@ -105,7 +105,7 @@ function TrapFocus(props) {
         // Not all elements in IE 11 have a focus method.
         // Because IE 11 market share is low, we accept the restore focus being broken
         // and we silent the issue.
-        if (lastFocus.current.focus) {
+        if (lastFocus.current && lastFocus.current.focus) {
           lastFocus.current.focus();
         }
 
