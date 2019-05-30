@@ -22,34 +22,30 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default class FontAwesome extends React.Component {
-  componentDidMount() {
+function FontAwesome() {
+  const classes = useStyles();
+
+  React.useEffect(() => {
     loadCSS(
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
       document.querySelector('#font-awesome-css'),
     );
-  }
+  }, []);
 
-  render() {
-    const classes = useStyles();
-
-    return (
-      <div className={classes.root}>
-        <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} />
-        <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="primary" />
-        <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="secondary" />
-        <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="action" />
-        <Icon
-          className={clsx(classes.iconHover, 'fa fa-plus-circle')}
-          color="error"
-          style={{ fontSize: 30 }}
-        />
-        <Icon
-          className={clsx(classes.icon, 'fa fa-plus-circle')}
-          color="disabled"
-          fontSize="large"
-        />
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} />
+      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="primary" />
+      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="secondary" />
+      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="action" />
+      <Icon
+        className={clsx(classes.iconHover, 'fa fa-plus-circle')}
+        color="error"
+        style={{ fontSize: 30 }}
+      />
+      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="disabled" fontSize="large" />
+    </div>
+  );
 }
+
+export default FontAwesome;

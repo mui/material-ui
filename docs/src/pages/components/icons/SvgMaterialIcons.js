@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SvgMaterialIcons = () => {
+function SvgMaterialIcons() {
   const classes = useStyles();
   return (
     <Grid container className={classes.root}>
@@ -75,6 +75,6 @@ const SvgMaterialIcons = () => {
       </Grid>
     </Grid>
   );
-};
+}
 
 export default SvgMaterialIcons;

@@ -29,7 +29,7 @@ function HomeIcon(props) {
   );
 }
 
-const SvgIcons = () => {
+function SvgIcons() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -61,6 +61,6 @@ const SvgIcons = () => {
       />
     </div>
   );
-};
+}
 
 export default SvgIcons;
