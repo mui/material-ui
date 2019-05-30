@@ -1,9 +1,9 @@
 import React from 'react';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Icon from '@material-ui/core/Icon';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',

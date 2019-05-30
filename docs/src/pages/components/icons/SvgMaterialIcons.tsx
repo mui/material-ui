@@ -14,9 +14,9 @@ import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import FourKIcon from '@material-ui/icons/FourK';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     color: theme.palette.text.primary,
   },

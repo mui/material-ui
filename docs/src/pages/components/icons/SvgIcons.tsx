@@ -1,10 +1,10 @@
 import React, { ReactElement, ReactNodeArray } from 'react';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
