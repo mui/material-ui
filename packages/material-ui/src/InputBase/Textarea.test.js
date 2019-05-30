@@ -146,7 +146,7 @@ describe('<Textarea />', () => {
           'padding-top': `${padding}px`,
           'line-height': '15px',
         },
-        scrollHeight: 30,
+        scrollHeight: 35, // 2 lines + padding
         lineHeight: 15,
       });
       wrapper.setProps();
