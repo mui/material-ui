@@ -47,6 +47,11 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
     // The height of the inner content
     let innerHeight = inputShallow.scrollHeight;
     const boxSizing = computedStyle['box-sizing'];
+    if (boxSizing === 'content-box') {
+      innerHeight -=
+        getStyleValue(computedStyle, 'padding-bottom') +
+        getStyleValue(computedStyle, 'padding-top');
+    }
 
     // Measure height of a textarea with a single row
     inputShallow.value = 'y';
