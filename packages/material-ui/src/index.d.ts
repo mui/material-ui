@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ConsistentWith, Omit } from '@material-ui/types';
+import { Omit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 

@@ -1,6 +1,6 @@
 import { PropTypes } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverridableComponent, OverrideProps, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverrideProps } from '../OverridableComponent';
 
 export type ButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {

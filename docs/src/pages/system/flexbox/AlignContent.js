@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 
-function AlignContnet() {
+function AlignContent() {
   return (
     <div style={{ width: '100%' }}>
       <Box
@@ -70,4 +70,4 @@ function AlignContnet() {
   );
 }
 
-export default AlignContnet;
+export default AlignContent;
