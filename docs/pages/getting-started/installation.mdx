@@ -7,7 +7,7 @@ import PageMeta from '../../_shared/PageMeta'
 
 ## Installation
 
-Available as [npm package](https://www.npmjs.com/package/@material-ui/pickers)
+Available as an [npm package](https://www.npmjs.com/package/@material-ui/pickers)
 
 ```
 npm i @material-ui/pickers
@@ -17,10 +17,10 @@ yarn add @material-ui/pickers
 
 #### Peer Library
 
-@material-ui/pickers was designed to use that date management library that you need.
+@material-ui/pickers was designed to use the date management library of your choice.
 We are providing interfaces for [moment](https://momentjs.com/), [date-fns 2](https://date-fns.org/), [luxon](https://moment.github.io/luxon/) and [dayjs](https://github.com/iamkun/dayjs).
 
-Note that we support only `v2` versions of date-fns.
+Note that we only support date-fns versions `v2` upwards.
 
 ```
 npm i @date-io/date-fns date-fns@next
@@ -32,14 +32,14 @@ npm i -s @date-io/luxon luxon
 npm i -s @date-io/dayjs dayjs
 ```
 
-Teach pickers how to use one of that library using `MuiPickersUtilsProvider`. This component takes an utils
-property, and makes it available down the React tree thanks to React context. It should
-preferably be used at the root of your component tree.
+Tell pickers which date management library it should use with `MuiPickersUtilsProvider`. This component takes a utils
+`prop`, and makes it available down the React tree with [React Context](https://reactjs.org/docs/context.html). It should
+be used at the root of your component tree, or at the highest level you wish the pickers to be available.
 
 ```jsx
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
-// pick utils
+// pick a date util library
 import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
 import LuxonUtils from '@date-io/luxon';

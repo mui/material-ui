@@ -8,24 +8,24 @@ import * as CssOverrides from './CssOverrides.example'
 
 ## Override styles
 
-Default pickers appearance built based on material-ui theme provided. So pickers will take all
-colors/fonts/theme setting as any other material-ui component.
+The default pickers appearance is built based on material-ui's theme provided. So pickers will take all
+colors/fonts/theme settings as any other material-ui component.
 
 <Ad />
 
 
 #### Default theme
 
-You can customize material-ui theme, that passed to `ThemeProvider` and picker`s will leverage your settings.
+You can customize the material-ui theme, that is passed to `ThemeProvider` and the pickers will leverage your settings.
 
 <Example source={CssTheme} />
 
 #### Override example
 
-*Date/Time pickers are quite simple control from UX side, so most people just use default appearence*
+*Date/Time pickers are quite simple controls from UX perspective, so most people just use the default appearence*
 
-Thats why we are not providing any for-component classes api to override stylesheet for particular
-component. Only one way to override existed stylesheet - usage of global material-ui theme
+That's why we are not providing any for-component classes api to override stylesheets for any particular
+component. The only way to override existing stylesheets are with the use of global material-ui theme
 overrides.
 
 
@@ -33,7 +33,7 @@ overrides.
 
 
 #### Typescript
-For typescript users it's also required to extend default material-ui theme typings with pickers controls.
+For TypeScript users it's also required to extend default material-ui theme typings with pickers controls.
 (This will also autocomplete classnames)
 
 ```typescript

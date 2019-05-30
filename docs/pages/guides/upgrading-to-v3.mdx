@@ -5,13 +5,13 @@ import PageMeta from '_shared/PageMeta'
 
 ## Upgrading to v3
 
-Version `v3` for @material-ui/pickers coming with whole bunch of breaking changes. This is a guide of how-to update :)
+Version `v3` for @material-ui/pickers is coming with a whole bunch of breaking changes. This is a guide of how-to update :)
 <Ad />
 
 #### ⬇️ Install
 
-First of all you need to install new package, because the project is transfered to mui-org!
-And also make sure that **v3** of `@material-ui/pickers` relyes on **v4** of `@material-ui/core`
+First of all, you need to install the new package, because the project is transferred to mui-org!
+Please also note, that **v3** of `@material-ui/pickers` relies on **v4** of `@material-ui/core`
 
 ```
 npm i @material-ui/pickers @material-ui/core@latest
@@ -19,13 +19,13 @@ npm i @material-ui/pickers @material-ui/core@latest
 yarn add @material-ui/pickers @material-ui/core@latest
 ```
 
-**Note**: it's required also to update your `@material-ui/core` version to `@next`
+**Note**: It's also required to upgrade your `@material-ui/core` version to `@next`
 
 
 #### 🌚 Imports
-There are a lot of changes in imports. From now on we are not providing `keyboard` prop on the pickers.
+There are a lot of changes in imports. From now on, we are not providing `keyboard` prop on the pickers.
 Keyboard mode comes with separate components like `<KeyboardDatePicker />`.
-Thus you will be sure that keyboard-specific logic will be correctly tree-shaked.
+Thus you are assured that keyboard-specific logic will be correctly tree-shaken.
 
 ```diff
 - import { DatePicker } from '@material-ui/pickers'
@@ -53,12 +53,12 @@ To override the default material-ui's `<TextField />` variant use
 
 #### 💪 State management
 
-We done a lot of work to make state-management of pickers more obviuos in `v3` and simplify form integration experience.
-From now there is *no hidden internal state* under the hood. Your components are truly controlled.
+We have done a lot of work to make state-management of pickers more obvious in `v3` and simplify the form integration experience.
+From now on, there is *no hidden internal state* under the hood. Your components are truly controlled.
 
 That means that now `onChange` will be called on **each** particular day-click or keystroke.
 So if you are doing some heavy operations in `onChange` (e.g. xhr requests, dom mutations or redirects) -
-please move them to the `onAccept`. This callback will be fired only when user actually accepts the date.
+please move them to `onAccept`. This callback will be fired only when the user actually accepts the date.
 
 ```diff
 <DatePicker
@@ -73,7 +73,7 @@ please move them to the `onAccept`. This callback will be fired only when user a
 
 #### ⌨ Keyboard mode
 
-Previously keyboard mode was a bit painful, especially from form integration prospective.
+Previously, keyboard mode was a bit painful, especially from form integration perspective.
 That's why we recreated it from scratch.
 Now `onChange` prop for `<Keyboard(Date|Time)Picker />` has different signature from the pure pickers:
 
@@ -98,7 +98,7 @@ function KeyboardString() {
 ```
 
 Also we completely replaced [react-text-mask](https://www.npmjs.com/package/react-text-mask) with [rifm](https://github.com/istarkov/rifm).
-That saved us several kbs of bundlesize, improved performance
+That saved us several KBs of bundle size, and improved performance
 
 ##### 🎉 And now no more need in mask prop 🎉
 
@@ -117,20 +117,20 @@ And it is still possible to fully customize mask, checkout [this](/api/timepicke
 #### 🚪 Controlling open/close state
 
 `ref` approach to customize open/close state was replaced with `open` props and `onClose`, `onOpen` callbacks.
-Check out [new example](/guides/controlling-programmatically)
+Check out the [new example](/guides/controlling-programmatically)
 
 #### 🛡 Typescript
 
-We are working hard to make this library perfectly works with Typescript.
-And from v3 date type in such props like `onChange`, `value` will automatically be inferred from the `@date-io` package you used.
+We are working hard to make this library perfectly Typescript compatible.
+And from `v3` and on, date type in such props like `onChange`, `value` will automatically be inferred from the `@date-io` package you used.
 So less `any` from our side :)
 
 #### 🙈 Misc
-- Improved accessibility by making toolbar button actually focusable `<button />`
+- Improved accessibility by making the toolbar button actually focusable `<button />`
 - Rename `onlyCalendar` prop to `disableToolbar`
-- Remove `withUtils` hoc, and provide `useUtils` hoc
-- Remove `BasePicker` hoc, and provide `usePickerState` and `useKeyboardPickerState` hooks
+- Remove `withUtils` HOC, and provide `useUtils` hook
+- Remove `BasePicker` HOC, and provide `usePickerState` and `useKeyboardPickerState` hooks
 - Remove `openToYearSelection` prop in favor of `openTo`
 - Remove exported `MuiPickersContextConsumer` in favor of `useUtils` hook
 - When using `views` prop - DatePicker by default will open to the the **first** item of `views`.
-And order of views will follow order in the passed `views` array.
+- Order of views will now follow the order in the passed `views` array.
