@@ -1,15 +1,17 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  close: {
-    padding: theme.spacing(0.5),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    close: {
+      padding: theme.spacing(0.5),
+    },
+  }),
+);
 
 function SimpleSnackbar() {
   const classes = useStyles();

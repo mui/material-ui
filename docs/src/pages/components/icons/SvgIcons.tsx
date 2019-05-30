@@ -1,25 +1,27 @@
-import React, { ReactElement, ReactNodeArray } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  icon: {
-    margin: theme.spacing(2),
-  },
-  iconHover: {
-    margin: theme.spacing(2),
-    '&:hover': {
-      color: red[800],
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-end',
     },
-  },
-}));
+    icon: {
+      margin: theme.spacing(2),
+    },
+    iconHover: {
+      margin: theme.spacing(2),
+      '&:hover': {
+        color: red[800],
+      },
+    },
+  }),
+);
 
 function HomeIcon(props: SvgIconProps) {
   return (
@@ -52,9 +54,12 @@ function SvgIcons() {
                   <stop offset="70%" stopColor={red[400]} />
                 </linearGradient>
               </defs>
-              {React.cloneElement((svgProps.children as ReactNodeArray)[0] as ReactElement, {
-                fill: 'url(#gradient1)',
-              })}
+              {React.cloneElement(
+                (svgProps.children as React.ReactNodeArray)[0] as React.ReactElement,
+                {
+                  fill: 'url(#gradient1)',
+                },
+              )}
             </svg>
           );
         }}
