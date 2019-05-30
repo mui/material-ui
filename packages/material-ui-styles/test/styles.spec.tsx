@@ -355,10 +355,11 @@ withStyles(theme =>
   // styles from props
   interface StyleProps {
     color?: 'blue' | 'red';
+    default: 'green' | 'yellow';
   }
 
   const styles = (theme: Theme) => ({
-    root: (props: StyleProps) => ({ backgroundColor: props.color || theme.palette.primary.main }),
+    root: (props: StyleProps) => ({ backgroundColor: props.color || props.default }),
   });
 
   interface MyComponentProps extends WithStyles<typeof styles> {
@@ -377,8 +378,11 @@ withStyles(theme =>
   }
 
   const StyledMyComponent = withStyles(styles)(MyComponent);
-  const renderedStyledMyComponentDefault = <StyledMyComponent message="Hi" />;
-  const renderedStyledMyComponentGreen = <StyledMyComponent message="Hi" color="blue" />;
+  const renderedStyledMyComponentNoDefault = <StyledMyComponent message="Hi" />; // $ExpectError
+  const renderedStyledMyComponentWithDefault = <StyledMyComponent message="Hi" default="green" />;
+  const renderedStyledMyComponentBlue = (
+    <StyledMyComponent message="Hi" default="green" color="blue" />
+  );
 
   //  number is not assignable to 'blue' | 'red'
   // $ExpectError
