@@ -11,6 +11,7 @@ declare const Chip: OverridableComponent<{
     icon?: React.ReactElement;
     label?: React.ReactNode;
     onDelete?: React.EventHandler<any>;
+    size?: 'small' | 'medium';
     variant?: 'default' | 'outlined';
   };
   defaultComponent: 'div';
@@ -19,6 +20,7 @@ declare const Chip: OverridableComponent<{
 
 export type ChipClassKey =
   | 'root'
+  | 'sizeSmall'
   | 'colorPrimary'
   | 'colorSecondary'
   | 'clickable'
@@ -31,14 +33,18 @@ export type ChipClassKey =
   | 'outlinedPrimary'
   | 'outlinedSecondary'
   | 'avatar'
+  | 'avatarSmall'
   | 'avatarColorPrimary'
   | 'avatarColorSecondary'
   | 'avatarChildren'
   | 'icon'
+  | 'iconSmall'
   | 'iconColorPrimary'
   | 'iconColorSecondary'
   | 'label'
+  | 'labelSmall'
   | 'deleteIcon'
+  | 'deleteIconSmall'
   | 'deleteIconColorPrimary'
   | 'deleteIconColorSecondary'
   | 'deleteIconOutlinedColorPrimary'
