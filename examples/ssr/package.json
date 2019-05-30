@@ -11,7 +11,7 @@
     "@material-ui/core": "latest",
     "@material-ui/styles": "latest",
     "babel-loader": "latest",
-    "cross-env": "^5.2.0",
+    "cross-env": "latest",
     "express": "latest",
     "nodemon": "latest",
     "react": "latest",
@@ -20,7 +20,7 @@
     "webpack-cli": "latest"
   },
   "scripts": {
-    "start": " nodemon --exec yarn babel-node -- server.js && webpack -w",
+    "start": "webpack -w & nodemon --exec yarn babel-node -- server.js",
     "production": "cross-env NODE_ENV=production npm start"
   }
 }
