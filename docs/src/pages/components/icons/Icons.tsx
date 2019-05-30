@@ -21,7 +21,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-export interface Props extends WithStyles<typeof styles> {}
+type Props = WithStyles<typeof styles>;
 
 const Icons = (props: Props) => {
   const { classes } = props;
