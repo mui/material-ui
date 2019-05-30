@@ -20,7 +20,7 @@
     "webpack-cli": "latest"
   },
   "scripts": {
-    "start": "webpack -w & nodemon --exec yarn babel-node -- server.js",
+    "start": "nodemon --exec yarn babel-node -- server.js && webpack -w",
     "production": "cross-env NODE_ENV=production npm start"
   }
 }
