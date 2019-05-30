@@ -81,4 +81,7 @@ export default function withStyles<
 >(
   style: S,
   options?: Options,
-): PropInjector<WithStyles<S, Options['withTheme']>, StyledComponentProps<ClassKeyOfStyles<S>> & PropsOfStyles<S>>;
+): PropInjector<
+  WithStyles<S, Options['withTheme']>,
+  StyledComponentProps<ClassKeyOfStyles<S>> & PropsOfStyles<S>
+>;
