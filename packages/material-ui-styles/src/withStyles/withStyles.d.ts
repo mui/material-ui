@@ -65,10 +65,10 @@ export type ThemeOfStyles<S> = S extends Styles<infer Theme, any> ? Theme : {};
 export type WithStyles<
   S extends ClassKeyInferable<any, any>,
   IncludeTheme extends boolean | undefined = false
-  > = (IncludeTheme extends true ? { theme: ThemeOfStyles<S> } : {}) & {
-    classes: ClassNameMap<ClassKeyOfStyles<S>>;
-    innerRef?: React.Ref<any> | React.RefObject<any>;
-  } & PropsOfStyles<S>;
+> = (IncludeTheme extends true ? { theme: ThemeOfStyles<S> } : {}) & {
+  classes: ClassNameMap<ClassKeyOfStyles<S>>;
+  innerRef?: React.Ref<any> | React.RefObject<any>;
+} & PropsOfStyles<S>;
 
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
