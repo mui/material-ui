@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Icon from '@material-ui/core/Icon';
@@ -21,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-function Icons(props) {
+const Icons = props => {
   const { classes } = props;
 
   return (
@@ -44,10 +43,6 @@ function Icons(props) {
       </Icon>
     </div>
   );
-}
-
-Icons.propTypes = {
-  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Icons);

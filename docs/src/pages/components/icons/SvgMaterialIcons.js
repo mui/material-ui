@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -77,9 +76,5 @@ function SvgMaterialIcons(props) {
     </Grid>
   );
 }
-
-SvgMaterialIcons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(SvgMaterialIcons);

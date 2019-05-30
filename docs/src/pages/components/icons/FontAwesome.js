@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { loadCSS } from 'fg-loadcss';
 import { withStyles } from '@material-ui/core/styles';
@@ -54,9 +53,5 @@ class FontAwesome extends React.Component {
     );
   }
 }
-
-FontAwesome.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(FontAwesome);
