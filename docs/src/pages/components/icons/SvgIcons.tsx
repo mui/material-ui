@@ -1,28 +1,25 @@
 import React, { ReactElement, ReactNodeArray } from 'react';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme, makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-end',
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  icon: {
+    margin: theme.spacing(2),
+  },
+  iconHover: {
+    margin: theme.spacing(2),
+    '&:hover': {
+      color: red[800],
     },
-    icon: {
-      margin: theme.spacing(2),
-    },
-    iconHover: {
-      margin: theme.spacing(2),
-      '&:hover': {
-        color: red[800],
-      },
-    },
-  });
-
-type SvgProps = SvgIconProps & WithStyles<typeof styles>;
+  },
+}));
 
 function HomeIcon(props: SvgIconProps) {
   return (
@@ -32,8 +29,8 @@ function HomeIcon(props: SvgIconProps) {
   );
 }
 
-function SvgIcons(props: SvgProps) {
-  const { classes } = props;
+const SvgIcons = () => {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <HomeIcon className={classes.icon} />
@@ -64,6 +61,6 @@ function SvgIcons(props: SvgProps) {
       />
     </div>
   );
-}
+};
 
-export default withStyles(styles)(SvgIcons);
+export default SvgIcons;

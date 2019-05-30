@@ -1,9 +1,9 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Icon from '@material-ui/core/Icon';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -18,10 +18,10 @@ const styles = theme => ({
       color: red[800],
     },
   },
-});
+}));
 
-const Icons = props => {
-  const { classes } = props;
+const Icons = () => {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -45,4 +45,4 @@ const Icons = props => {
   );
 };
 
-export default withStyles(styles)(Icons);
+export default Icons;

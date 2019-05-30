@@ -1,29 +1,28 @@
 import React from 'react';
 import clsx from 'clsx';
 import { loadCSS } from 'fg-loadcss';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme, makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Icon from '@material-ui/core/Icon';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-end',
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  icon: {
+    margin: theme.spacing(2),
+  },
+  iconHover: {
+    margin: theme.spacing(2),
+    '&:hover': {
+      color: red[800],
     },
-    icon: {
-      margin: theme.spacing(2),
-    },
-    iconHover: {
-      margin: theme.spacing(2),
-      '&:hover': {
-        color: red[800],
-      },
-    },
-  });
+  },
+}));
 
-class FontAwesome extends React.Component<WithStyles<typeof styles>> {
+export default class FontAwesome extends React.Component {
   componentDidMount() {
     loadCSS(
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
@@ -32,7 +31,7 @@ class FontAwesome extends React.Component<WithStyles<typeof styles>> {
   }
 
   render() {
-    const { classes } = this.props;
+    const classes = useStyles();
 
     return (
       <div className={classes.root}>
@@ -54,5 +53,3 @@ class FontAwesome extends React.Component<WithStyles<typeof styles>> {
     );
   }
 }
-
-export default withStyles(styles)(FontAwesome);

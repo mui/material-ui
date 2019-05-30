@@ -1,10 +1,10 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -19,7 +19,7 @@ const styles = theme => ({
       color: red[800],
     },
   },
-});
+}));
 
 function HomeIcon(props) {
   return (
@@ -29,8 +29,8 @@ function HomeIcon(props) {
   );
 }
 
-function SvgIcons(props) {
-  const { classes } = props;
+const SvgIcons = () => {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <HomeIcon className={classes.icon} />
@@ -61,6 +61,6 @@ function SvgIcons(props) {
       />
     </div>
   );
-}
+};
 
-export default withStyles(styles)(SvgIcons);
+export default SvgIcons;

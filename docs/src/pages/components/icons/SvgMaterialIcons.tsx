@@ -14,23 +14,20 @@ import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import FourKIcon from '@material-ui/icons/FourK';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      color: theme.palette.text.primary,
-    },
-    icon: {
-      margin: theme.spacing(1),
-      fontSize: 32,
-    },
-  });
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    color: theme.palette.text.primary,
+  },
+  icon: {
+    margin: theme.spacing(1),
+    fontSize: 32,
+  },
+}));
 
-type Props = WithStyles<typeof styles>;
-
-function SvgMaterialIcons(props: Props) {
-  const { classes } = props;
+const SvgMaterialIcons = () => {
+  const classes = useStyles();
   return (
     <Grid container className={classes.root}>
       <Grid item xs={4}>
@@ -78,6 +75,6 @@ function SvgMaterialIcons(props: Props) {
       </Grid>
     </Grid>
   );
-}
+};
 
-export default withStyles(styles)(SvgMaterialIcons);
+export default SvgMaterialIcons;

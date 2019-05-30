@@ -1,11 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
 import { loadCSS } from 'fg-loadcss';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Icon from '@material-ui/core/Icon';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -20,9 +20,9 @@ const styles = theme => ({
       color: red[800],
     },
   },
-});
+}));
 
-class FontAwesome extends React.Component {
+export default class FontAwesome extends React.Component {
   componentDidMount() {
     loadCSS(
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
@@ -31,7 +31,7 @@ class FontAwesome extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const classes = useStyles();
 
     return (
       <div className={classes.root}>
@@ -53,5 +53,3 @@ class FontAwesome extends React.Component {
     );
   }
 }
-
-export default withStyles(styles)(FontAwesome);

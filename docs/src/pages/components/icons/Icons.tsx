@@ -1,30 +1,27 @@
 import React from 'react';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme, makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Icon from '@material-ui/core/Icon';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-end',
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  icon: {
+    margin: theme.spacing(2),
+  },
+  iconHover: {
+    margin: theme.spacing(2),
+    '&:hover': {
+      color: red[800],
     },
-    icon: {
-      margin: theme.spacing(2),
-    },
-    iconHover: {
-      margin: theme.spacing(2),
-      '&:hover': {
-        color: red[800],
-      },
-    },
-  });
+  },
+}));
 
-type Props = WithStyles<typeof styles>;
-
-const Icons = (props: Props) => {
-  const { classes } = props;
+const Icons = () => {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -48,4 +45,4 @@ const Icons = (props: Props) => {
   );
 };
 
-export default withStyles(styles)(Icons);
+export default Icons;
