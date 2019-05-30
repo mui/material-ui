@@ -55,9 +55,9 @@ function SvgIcons(props: SvgProps) {
                   <stop offset="70%" stopColor={red[400]} />
                 </linearGradient>
               </defs>
-              {
-                React.cloneElement((svgProps.children as ReactNodeArray)[0] as ReactElement, { fill: 'url(#gradient1)' })
-              }
+              {React.cloneElement((svgProps.children as ReactNodeArray)[0] as ReactElement, {
+                fill: 'url(#gradient1)',
+              })}
             </svg>
           );
         }}

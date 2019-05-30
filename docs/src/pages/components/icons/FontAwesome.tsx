@@ -7,21 +7,21 @@ import Icon from '@material-ui/core/Icon';
 
 const styles = (theme: Theme) =>
   createStyles({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  icon: {
-    margin: theme.spacing(2),
-  },
-  iconHover: {
-    margin: theme.spacing(2),
-    '&:hover': {
-      color: red[800],
+    root: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-end',
     },
-  },
-});
+    icon: {
+      margin: theme.spacing(2),
+    },
+    iconHover: {
+      margin: theme.spacing(2),
+      '&:hover': {
+        color: red[800],
+      },
+    },
+  });
 
 class FontAwesome extends React.Component<WithStyles<typeof styles>> {
   componentDidMount() {

@@ -16,15 +16,16 @@ import FourKIcon from '@material-ui/icons/FourK';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 
-const styles = (theme: Theme) => createStyles({
-  root: {
-    color: theme.palette.text.primary,
-  },
-  icon: {
-    margin: theme.spacing(1),
-    fontSize: 32,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      color: theme.palette.text.primary,
+    },
+    icon: {
+      margin: theme.spacing(1),
+      fontSize: 32,
+    },
+  });
 
 type Props = WithStyles<typeof styles>;
 
