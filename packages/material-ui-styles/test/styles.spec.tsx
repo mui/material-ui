@@ -377,7 +377,8 @@ withStyles(theme =>
   }
 
   const StyledMyComponent = withStyles(styles)(MyComponent);
-  const renderedStyledMyComponent = <StyledMyComponent message="Hi" />;
+  const renderedStyledMyComponentDefault = <StyledMyComponent message="Hi" />;
+  const renderedStyledMyComponentGreen = <StyledMyComponent message="Hi" color="blue" />;
 
   //  number is not assignable to 'blue' | 'red'
   // $ExpectError
