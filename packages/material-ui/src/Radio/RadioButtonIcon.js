@@ -18,6 +18,7 @@ export const styles = theme => ({
     },
   },
   layer: {
+    left: 0,
     position: 'absolute',
     transform: 'scale(0)',
     transition: theme.transitions.create('transform', {
