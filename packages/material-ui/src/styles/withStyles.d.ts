@@ -29,12 +29,6 @@ export type StyleRulesCallback<ClassKey extends string = string, Props extends o
   theme: Theme,
 ) => StyleRules<ClassKey, Props>;
 
-export interface StylesCreator {
-  create(theme: Theme, name: string): StyleRules;
-  options: { index: number };
-  themingEnabled: boolean;
-}
-
 export type WithStylesOptions = Omit<DefaultWithStylesOptions<Theme>, 'defaultTheme'>;
 
 export type WithStyles<
