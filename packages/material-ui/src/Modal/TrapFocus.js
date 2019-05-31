@@ -102,10 +102,11 @@ function TrapFocus(props) {
 
       // restoreLastFocus()
       if (!disableRestoreFocus) {
+        // In IE 11 it is possible for document.activeElement to be null resulting
+        // in lastFocus.current being null.
         // Not all elements in IE 11 have a focus method.
-        // Because IE 11 market share is low, we accept the restore focus being broken
-        // and we silent the issue.
-        if (lastFocus.current.focus) {
+        // Once IE 11 support is dropped the focus() call can be unconditional.
+        if (lastFocus.current && lastFocus.current.focus) {
           lastFocus.current.focus();
         }
 
