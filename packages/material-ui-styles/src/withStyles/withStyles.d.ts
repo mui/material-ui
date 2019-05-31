@@ -8,16 +8,17 @@ export interface CSSProperties extends CSS.Properties<number | string> {
   [k: string]: CSS.Properties<number | string>[keyof CSS.Properties] | CSSProperties;
 }
 
-export type BaseCSSProperties<Props extends object = {}> = {
+export type BaseCreateCSSProperties<Props extends object = {}> = {
   [P in keyof CSS.Properties<number | string>]:
     | CSS.Properties<number | string>[P]
     | ((props: Props) => CSS.Properties<number | string>[P])
 };
 
-export interface CreateCSSProperties<Props extends object = {}> extends BaseCSSProperties<Props> {
+export interface CreateCSSProperties<Props extends object = {}>
+  extends BaseCreateCSSProperties<Props> {
   // Allow pseudo selectors and media queries
   [k: string]:
-    | BaseCSSProperties<Props>[keyof BaseCSSProperties<Props>]
+    | BaseCreateCSSProperties<Props>[keyof BaseCreateCSSProperties<Props>]
     | CreateCSSProperties<Props>;
 }
 
