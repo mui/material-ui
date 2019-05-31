@@ -120,7 +120,6 @@ function HomeSteps(props) {
           />
           <Link
             variant="subtitle1"
-            component="div"
             color="inherit"
             href="https://github.com/mui-org/material-ui/tree/master/examples/cdn-next"
             gutterBottom
