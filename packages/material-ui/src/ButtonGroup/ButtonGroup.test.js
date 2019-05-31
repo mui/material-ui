@@ -34,7 +34,7 @@ describe('<ButtonGroup />', () => {
     }),
   );
 
-  it('renders with the root class but no others', () => {
+  it('should render with the root class but no others', () => {
     const wrapper = mount(
       <ButtonGroup>
         <Button>Hello World</Button>
@@ -45,17 +45,6 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(buttonGroup.hasClass(classes.contained), false);
     assert.strictEqual(buttonGroup.hasClass(classes.fullWidth), false);
   });
-
-  // it('overwrites the root class', () => {
-  //   const rootClassName = 'testRootClassName';
-  //   const wrapper = mount(
-  //     <ButtonGroup classes={{ badge: rootClassName }}>
-  //       <Button>Hello World</Button>
-  //     </ButtonGroup>,
-  //   );
-
-  //   assert.strictEqual(findBG(wrapper).hasClass(rootClassName), true);
-  // });
 
   it('should render an outlined button', () => {
     const wrapper = mount(
@@ -71,7 +60,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), false);
   });
 
-  it('should render an outlined primary button', () => {
+  it('can render an outlined primary button', () => {
     const wrapper = mount(
       <ButtonGroup color="primary">
         <Button>Hello World</Button>
@@ -85,7 +74,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), false);
   });
 
-  it('should render an outlined secondary button', () => {
+  it('can render an outlined secondary button', () => {
     const wrapper = mount(
       <ButtonGroup color="secondary">
         <Button>Hello World</Button>
@@ -99,7 +88,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), true);
   });
 
-  it('should render a contained button', () => {
+  it('can render a contained button', () => {
     const wrapper = mount(
       <ButtonGroup variant="contained">
         <Button>Hello World</Button>
@@ -113,7 +102,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), false);
   });
 
-  it('should render a contained primary button', () => {
+  it('can render a contained primary button', () => {
     const wrapper = mount(
       <ButtonGroup variant="contained" color="primary">
         <Button>Hello World</Button>
@@ -127,7 +116,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), false);
   });
 
-  it('should render a contained secondary button', () => {
+  it('can render a contained secondary button', () => {
     const wrapper = mount(
       <ButtonGroup variant="contained" color="secondary">
         <Button>Hello World</Button>
@@ -141,7 +130,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), true);
   });
 
-  it('should render a small button', () => {
+  it('can render a small button', () => {
     const wrapper = mount(
       <ButtonGroup size="small">
         <Button>Hello World</Button>
@@ -151,7 +140,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass('MuiButton-sizeSmall'), true);
   });
 
-  it('should render a large button', () => {
+  it('can render a large button', () => {
     const wrapper = mount(
       <ButtonGroup size="large">
         <Button>Hello World</Button>
@@ -190,7 +179,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass('MuiButton-fullWidth'), false);
   });
 
-  it('should pass fullWidth to Button', () => {
+  it('can pass fullWidth to Button', () => {
     const wrapper = mount(
       <ButtonGroup fullWidth>
         <Button>Hello World</Button>
