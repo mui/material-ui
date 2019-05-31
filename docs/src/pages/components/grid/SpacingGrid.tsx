@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function GuttersGrid() {
+function SpacingGrid() {
   const [spacing, setSpacing] = React.useState<GridSpacing>(2);
   const classes = useStyles();
 
