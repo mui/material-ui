@@ -3,11 +3,9 @@ import { PropInjector } from '@material-ui/types';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
+import { CreateCSSProperties, CSSProperties } from '@material-ui/styles/withStyles';
 
-export interface CSSProperties extends CSS.Properties<number | string> {
-  // Allow pseudo selectors and media queries
-  [k: string]: CSS.Properties<number | string>[keyof CSS.Properties] | CSSProperties;
-}
+export { CSSProperties };
 
 /**
  * This is basically the API of JSS. It defines a Map<string, CSS>,
@@ -16,11 +14,14 @@ export interface CSSProperties extends CSS.Properties<number | string> {
  * - the `keys` are the class (names) that will be created
  * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
  */
-export type StyleRules<ClassKey extends string = string> = Record<ClassKey, CSSProperties>;
+export type StyleRules<ClassKey extends string = string, Props extends object = {}> = Record<
+  ClassKey,
+  CreateCSSProperties<Props> | ((props: Props) => CreateCSSProperties<Props>)
+>;
 
-export type StyleRulesCallback<ClassKey extends string = string> = (
+export type StyleRulesCallback<ClassKey extends string = string, Props extends object = {}> = (
   theme: Theme,
-) => StyleRules<ClassKey>;
+) => StyleRules<ClassKey, Props>;
 
 export interface StylesCreator {
   create(theme: Theme, name: string): StyleRules;
@@ -56,7 +57,11 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-export default function withStyles<ClassKey extends string, Options extends WithStylesOptions = {}>(
-  style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
+export default function withStyles<
+  ClassKey extends string,
+  Options extends WithStylesOptions = {},
+  Props extends object = {}
+>(
+  style: StyleRulesCallback<ClassKey, Props> | StyleRules<ClassKey, Props>,
   options?: Options,
 ): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;

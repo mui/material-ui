@@ -1,6 +1,6 @@
 import { Omit } from '@material-ui/types';
 import {
-  CSSProperties,
+  CreateCSSProperties,
   StyledComponentProps,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
@@ -11,8 +11,8 @@ import * as React from 'react';
  */
 export type ComponentCreator<C extends React.ElementType> = <Theme, Props extends {} = any>(
   styles:
-    | CSSProperties<Props>
-    | (({ theme, ...props }: { theme: Theme } & Props) => CSSProperties<Props>),
+    | CreateCSSProperties<Props>
+    | (({ theme, ...props }: { theme: Theme } & Props) => CreateCSSProperties<Props>),
   options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
   Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, 'classes' | 'className'> &
