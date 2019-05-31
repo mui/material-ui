@@ -5,7 +5,7 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import { Grid } from '@material-ui/core';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { DateTimePickerView } from './DateTimePicker';
 import { ToolbarComponentProps } from '../Picker/Picker';
 import { useMeridiemMode } from '../TimePicker/TimePickerToolbar';
@@ -41,6 +41,8 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   const classes = useStyles();
   const showTabs = !hideTabs && typeof window !== 'undefined' && window.innerHeight > 667;
   const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onChange);
+  const theme = useTheme();
+  const rtl = theme.direction === 'rtl';
 
   return (
     <>
@@ -61,7 +63,14 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             />
           </Grid>
 
-          <Grid item container xs={6} justify="center" alignItems="flex-end">
+          <Grid
+            item
+            container
+            xs={6}
+            justify="center"
+            alignItems="flex-end"
+            direction={rtl ? 'row-reverse' : 'row'}
+          >
             <ToolbarButton
               variant="h3"
               onClick={() => setOpenView('hours')}
