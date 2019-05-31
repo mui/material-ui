@@ -10,13 +10,18 @@ import {
   StyledComponentProps,
   WithStylesOptions as DefaultWithStylesOptions,
   StyleRules,
+  StyleRulesCallback as DefaultStyleRulesCallback,
 } from '@material-ui/styles/withStyles';
 
 export { CreateCSSProperties, CSSProperties, ClassNameMap, StyledComponentProps, StyleRules };
 
-export type StyleRulesCallback<ClassKey extends string = string, Props extends object = {}> = (
-  theme: Theme,
-) => StyleRules<ClassKey, Props>;
+/**
+ * @internal
+ */
+export type StyleRulesCallback<
+  ClassKey extends string = string,
+  Props extends object = {}
+> = DefaultStyleRulesCallback<Theme, Props, ClassKey>;
 
 export type WithStylesOptions = Omit<DefaultWithStylesOptions<Theme>, 'defaultTheme'>;
 
