@@ -478,7 +478,7 @@ const useStyles = makeStyles({
 }, { name: 'MuiButton' });
 ```
 
-generates the following class names you that can override:
+generates the following class names that you can override:
 
 ```css
 .MuiButton-root { /* … */ }
