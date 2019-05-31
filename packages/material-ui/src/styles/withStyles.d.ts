@@ -9,21 +9,10 @@ import {
   ClassNameMap,
   StyledComponentProps,
   WithStylesOptions as DefaultWithStylesOptions,
+  StyleRules,
 } from '@material-ui/styles/withStyles';
 
-export { CreateCSSProperties, CSSProperties, ClassNameMap, StyledComponentProps };
-
-/**
- * This is basically the API of JSS. It defines a Map<string, CSS>,
- * where
- *
- * - the `keys` are the class (names) that will be created
- * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
- */
-export type StyleRules<ClassKey extends string = string, Props extends object = {}> = Record<
-  ClassKey,
-  CreateCSSProperties<Props> | ((props: Props) => CreateCSSProperties<Props>)
->;
+export { CreateCSSProperties, CSSProperties, ClassNameMap, StyledComponentProps, StyleRules };
 
 export type StyleRulesCallback<ClassKey extends string = string, Props extends object = {}> = (
   theme: Theme,

@@ -29,7 +29,7 @@ export interface CreateCSSProperties<Props extends object = {}> extends BaseCSSP
  *
  * if only `CSSProperties` are matched `Props` are inferred to `any`
  */
-export type StyleRules<Props extends object, ClassKey extends string = string> = Record<
+export type StyleRules<ClassKey extends string = string, Props extends object = {}> = Record<
   ClassKey,
   CreateCSSProperties<Props> | ((props: Props) => CreateCSSProperties<Props>)
 >;
@@ -39,10 +39,10 @@ export type StyleRules<Props extends object, ClassKey extends string = string> =
  */
 export type StyleRulesCallback<Theme, Props extends object, ClassKey extends string = string> = (
   theme: Theme,
-) => StyleRules<Props, ClassKey>;
+) => StyleRules<ClassKey, Props>;
 
 export type Styles<Theme, Props extends object, ClassKey extends string = string> =
-  | StyleRules<Props, ClassKey>
+  | StyleRules<ClassKey, Props>
   | StyleRulesCallback<Theme, Props, ClassKey>;
 
 export interface WithStylesOptions<Theme> extends JSS.StyleSheetFactoryOptions {
@@ -62,7 +62,7 @@ export type ClassKeyOfStyles<S> = S extends string
   ? S
   : S extends StyleRulesCallback<any, any, infer K>
   ? K
-  : S extends StyleRules<any, infer K>
+  : S extends StyleRules<infer K>
   ? K
   : never;
 
