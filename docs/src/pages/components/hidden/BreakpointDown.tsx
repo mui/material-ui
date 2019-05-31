@@ -1,28 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
-import withWidth from '@material-ui/core/withWidth';
+import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  container: {
-    display: 'flex',
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    flex: '1 0 auto',
-    margin: theme.spacing(1),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    container: {
+      display: 'flex',
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      flex: '1 0 auto',
+      margin: theme.spacing(1),
+    },
+  }),
+);
 
-function BreakpointDown(props) {
+function BreakpointDown(props: WithWidth) {
   const classes = useStyles();
   const { width } = props;
 
@@ -50,7 +52,7 @@ function BreakpointDown(props) {
   );
 }
 
-BreakpointDown.propTypes = {
+(BreakpointDown as any).propTypes = {
   width: PropTypes.string.isRequired,
 };
 
