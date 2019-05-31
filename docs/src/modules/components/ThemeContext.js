@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import blue from '@material-ui/core/colors/blue';
 import pink from '@material-ui/core/colors/pink';
 import { darken } from '@material-ui/core/styles/colorManipulator';
@@ -10,7 +11,6 @@ import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/component
 
 export const themeInitialOptions = {
   direction: 'ltr',
-  paletteType: 'light',
   paletteColors: {
     primary: {
       main: blue[500],
@@ -48,10 +48,30 @@ export function Provider(props) {
         throw new Error(`Unrecognized type ${action.type}`);
     }
   }, themeInitialOptions);
-  const { direction, paletteColors, paletteType } = themeOptions;
+
+  const prefersDarkMode = useMediaQuery('@media (prefers-color-scheme: dark)');
+  const preferredType = prefersDarkMode ? 'dark' : 'light';
+  const { direction, paletteColors, paletteType = preferredType } = themeOptions;
 
   React.useEffect(() => {
     setPrismTheme(paletteType === 'light' ? lightTheme : darkTheme);
+  }, [paletteType]);
+
+  React.useEffect(() => {
+    if (process.browser) {
+      const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
+      const nextPaletteType = getCookie('paletteType');
+
+      dispatch({
+        type: 'CHANGE',
+        payload: { paletteColors: nextPaletteColors, paletteType: nextPaletteType },
+      });
+    }
+  }, []);
+
+  // persist paletteType
+  React.useEffect(() => {
+    document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
   }, [paletteType]);
 
   useEnhancedEffect(() => {
@@ -88,18 +108,6 @@ export function Provider(props) {
       window.theme = theme;
     }
   }, [theme]);
-
-  React.useEffect(() => {
-    if (process.browser) {
-      const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      const nextPaletteType = getCookie('paletteType');
-
-      dispatch({
-        type: 'CHANGE',
-        payload: { paletteColors: nextPaletteColors, paletteType: nextPaletteType },
-      });
-    }
-  }, []);
 
   return (
     <ThemeProvider theme={theme}>

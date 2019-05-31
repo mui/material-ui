@@ -81,6 +81,7 @@ class MyDocument extends Document {
           <style id="material-icon-font" />
           <style id="font-awesome-css" />
           <style id="app-search" />
+          <style id="prismjs" />
           <style id="insertion-point-jss" />
         </Head>
         <body>
