@@ -31,13 +31,15 @@ const options = [
 ];
 
 function ConfirmationDialogRaw(props) {
-  const { onClose, value: valueProp, ...other } = props;
+  const { onClose, value: valueProp, open, ...other } = props;
   const [value, setValue] = React.useState(valueProp);
   const radioGroupRef = React.useRef(null);
 
-  if (valueProp !== value) {
-    setValue(valueProp);
-  }
+  React.useEffect(() => {
+    if (!open) {
+      setValue(valueProp);
+    }
+  }, [valueProp, open]);
 
   function handleEntering() {
     if (radioGroupRef.current != null) {
@@ -64,6 +66,7 @@ function ConfirmationDialogRaw(props) {
       maxWidth="xs"
       onEntering={handleEntering}
       aria-labelledby="confirmation-dialog-title"
+      open={open}
       {...other}
     >
       <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
