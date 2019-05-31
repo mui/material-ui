@@ -180,8 +180,10 @@ const pages = [
       { pathname: '/guides/flow' },
     ],
   },
-  { pathname: '/premium-themes' },
-
+  {
+    pathname: 'https://themes.material-ui.com/',
+    title: 'Premium Themes',
+  },
   {
     pathname: '/discover-more',
     children: [
