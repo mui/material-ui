@@ -1,11 +1,17 @@
 import * as React from 'react';
-import { PropInjector } from '@material-ui/types';
+import { PropInjector, Omit } from '@material-ui/types';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
-import { CreateCSSProperties, CSSProperties } from '@material-ui/styles/withStyles';
+import {
+  CreateCSSProperties,
+  CSSProperties,
+  ClassNameMap,
+  StyledComponentProps,
+  WithStylesOptions as DefaultWithStylesOptions,
+} from '@material-ui/styles/withStyles';
 
-export { CSSProperties };
+export { CreateCSSProperties, CSSProperties, ClassNameMap, StyledComponentProps };
 
 /**
  * This is basically the API of JSS. It defines a Map<string, CSS>,
@@ -29,13 +35,7 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-export interface WithStylesOptions extends JSS.StyleSheetFactoryOptions {
-  flip?: boolean;
-  withTheme?: boolean;
-  name?: string;
-}
-
-export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
+export type WithStylesOptions = Omit<DefaultWithStylesOptions<Theme>, 'defaultTheme'>;
 
 export type WithStyles<
   T extends string | StyleRules | StyleRulesCallback = string,
@@ -51,11 +51,6 @@ export type WithStyles<
       : never
   >;
 };
-
-export interface StyledComponentProps<ClassKey extends string = string> {
-  classes?: Partial<ClassNameMap<ClassKey>>;
-  innerRef?: React.Ref<any> | React.RefObject<any>;
-}
 
 export default function withStyles<
   ClassKey extends string,
