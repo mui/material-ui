@@ -1,10 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createMount,
-  describeConformance,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, describeConformance, getClasses } from '@material-ui/core/test-utils';
 import Button from '../Button';
 import ButtonGroup from './ButtonGroup';
 
@@ -25,13 +21,18 @@ describe('<ButtonGroup />', () => {
     mount.cleanUp();
   });
 
-  describeConformance(<ButtonGroup><Button>Conformance?</Button></ButtonGroup>, () => ({
-    classes,
-    inheritComponent: 'div',
-    mount,
-    refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'span',
-  }));
+  describeConformance(
+    <ButtonGroup>
+      <Button>Conformance?</Button>
+    </ButtonGroup>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: 'span',
+    }),
+  );
 
   it('renders with the root class but no others', () => {
     const wrapper = mount(
@@ -39,7 +40,7 @@ describe('<ButtonGroup />', () => {
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const buttonGroup = wrapper.find('div')
+    const buttonGroup = wrapper.find('div');
     assert.strictEqual(buttonGroup.hasClass(classes.root), true);
     assert.strictEqual(buttonGroup.hasClass(classes.contained), false);
     assert.strictEqual(buttonGroup.hasClass(classes.fullWidth), false);
@@ -195,7 +196,7 @@ describe('<ButtonGroup />', () => {
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const buttonGroup = wrapper.find('div')
+    const buttonGroup = wrapper.find('div');
     const button = wrapper.find('button');
     assert.strictEqual(buttonGroup.hasClass(classes.fullWidth), true);
     assert.strictEqual(button.hasClass('MuiButton-fullWidth'), true);
