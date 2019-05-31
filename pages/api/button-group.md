@@ -29,7 +29,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br></span> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'contained'<br></span> | <span class="prop-default">'outlined'</span> | The variant to use. |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
 Any other properties supplied will be provided to the root element (native element).
 
@@ -61,7 +61,7 @@ you need to use the following style sheet name: `MuiButtonGroup`.
 
 ## Notes
 
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 
