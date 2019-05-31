@@ -68,11 +68,11 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 Die Lösung ist einfach: ** vermeiden von Inline-Funktionen und stattdessen übergeben eine statische Komponente an die `component` Eigenschaft. Lassen Sie uns unser `ListItemLink` zu dem Folgendem ändern:</p> 
 
 ```jsx
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 class ListItemLink extends React.Component {
   renderLink = React.forwardRef((itemProps, ref) => (
-    // mit react-router-dom@^5.0.0 benutze `ref` anstatt `innerRef`
+    // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
     <RouterLink to={this.props.to} {...itemProps} innerRef={ref} />
   ));
 

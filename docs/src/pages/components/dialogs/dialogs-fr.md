@@ -40,6 +40,8 @@ Si un titre est requis:
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
+## Les transitions
+
 Vous pouvez également permuter la transition. L’exemple suivant utilise `Slide`.
 
 {{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
@@ -52,7 +54,7 @@ Les boîtes de dialogue de formulaire permettent aux utilisateurs de remplir des
 
 ## Customized dialogs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet sur la [page de documentation de personnalisation](/customization/components/).
 
 The dialog has a close button added to aide usability.
 

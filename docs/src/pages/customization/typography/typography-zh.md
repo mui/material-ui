@@ -1,4 +1,4 @@
-# Typography
+# 排版
 
 <p class="description">The theme provides a set of type sizes that work well together, and also with the layout grid.</p>
 
@@ -8,7 +8,7 @@ The following example demonstrates how to change the typography default values �
 
 ## 字体系列
 
-You can use the system font instead of the default Roboto font.
+您可以使用系统字体而不是默认的Roboto字体。
 
 ```js
 const theme = createMuiTheme({
@@ -52,7 +52,7 @@ const raleway = {
 };
 ```
 
-Then, you can change the theme to use this new font. It requires use of the [`CssBaseline`](/components/css-baseline/) component to globally define Raleway as a font family.
+Then, you can change the theme to use this new font. In order to globally define Raleway as a font face the [`CssBaseline`](/components/css-baseline/) component needs to be used.
 
 ```js
 const theme = createMuiTheme({
@@ -74,7 +74,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        '@font-family': [raleway],
+        '@font-face': [raleway],
       },
     },
   },
@@ -101,7 +101,7 @@ The computed font size by the browser follows this mathematical equation:
 
 ![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-## HTML font size
+## HTML字体大小
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). We provide a `htmlFontSize` theme property for this use case. It's telling Material-UI what's the font-size on the `<html>` element is. It's used to adjust the `rem` value so the calculated font-size always match the specification.
 
@@ -124,7 +124,7 @@ html {
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-## Responsive font sizes
+## 响应的字体大小
 
 The typography variants properties map directly to the generated CSS. You can use [media queries](/customization/breakpoints/#api) inside them:
 

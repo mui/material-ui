@@ -11,7 +11,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 ## Liste simple
 
-{{"demo": "pages/components/lists/SimpleList.js"}}
+{{"demo": "pages/demos/lists/SimpleList.js"}}
 
 Le dernier élément de la démonstration précédente montre comment vous pouvez créer un lien:
 
@@ -31,27 +31,27 @@ Vous pouvez trouver une [démonstration avec la bibliothèque React Router en su
 
 ## Liste imbriquée
 
-{{"demo": "pages/components/lists/NestedList.js"}}
+{{"demo": "pages/demos/lists/SimpleList.js"}}
 
 ## Liste en répertoires
 
-{{"demo": "pages/components/lists/FolderList.js"}}
+{{"demo": "pages/demos/lists/SimpleList.js"}}
 
 ## Interactif
 
 Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels utilisant différents paramètres:
 
-{{"demo": "pages/components/lists/InteractiveList.js"}}
+{{"demo": "pages/demos/lists/InteractiveList.js"}}
 
 ## Sélection d'élément de liste
 
-{{"demo": "pages/components/lists/SelectedListItem.js"}}
+{{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
 ## Alignement d'élément de liste
 
 Vous devez modifier l'alignement des éléments de la liste lorsque vous affichez 3 lignes ou plus, définissez la propriété `alignItems = "flex-start"`.
 
-{{"demo": "pages/components/lists/AlignItemsList.js"}}
+{{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
 ## Liste et contrôles
 
@@ -85,8 +85,8 @@ Cette fonctionnalité repose sur le positionnement persistant (sticky) de CSS. M
 
 {{"demo": "pages/components/lists/InsetList.js"}}
 
-## Virtualized List
+## Liste virtualisée
 
-In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Il affiche 200 lignes et peut facilement gérer plus. La virtualisation aide à résoudre les problèmes de performances.
+Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https://github.com/bvaughn/react-window) avec le composant `List`. Il affiche 200 lignes et peut facilement gérer plus. La virtualisation aide à résoudre les problèmes de performances.
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}

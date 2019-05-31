@@ -4,13 +4,13 @@
 
 As diretrizes do Material Design são um ponto de partida incrível, mas não fornecem orientação sobre todos os aspectos ou necessidades de uma aplicação. Além da implementação específica de diretrizes, queremos que o Material-UI se torne algo realmente útil para o desenvolvimento de aplicações, tudo no espírito das diretrizes do Material Design.
 
-Portanto, Material-UI não será apenas uma implementação das diretrizes de Material Design, mas uma biblioteca de componentes UI de uso geral que são necessários para muitos. This generalized use doesn't imply any other design methodology. It also means we will have components or combinations that are simply not addressed in the design guidelines.
+Portanto, Material-UI não será apenas uma implementação das diretrizes de Material Design, mas uma biblioteca de componentes UI de uso geral que são necessários para muitos. Esse uso generalizado não implica em nenhuma outra metodologia de design. Isso também significa que teremos componentes ou combinações que simplesmente não são abordadas nas diretrizes de design.
 
-We will focus on providing all the low-level tools needed to build a rich user-interface with React. Once we implement the Material design specification (which is a bar set quite high), you should be able to take advantage of it for you own business with any style customization needed. We want to see companies succeeding using Material-UI in a way that matches their brand, close to the material philosophy or not. We don't want them to feel that their UI simply looks like another Google product.
+Vamos nos concentrar em fornecer todas as ferramentas de baixo nível necessárias para construir uma interface de usuário rica com o React. Depois de implementarmos a especificação do Material Design (que é um conjunto de barras bastante alto), você poderá aproveitá-la para seu próprio negócio com qualquer personalização de estilo necessária. Queremos que as empresas consigam usar o Material-UI de uma forma que corresponda à sua marca, próxima da filosofia material ou não. Não queremos que eles sintam que a interface do usuário simplesmente se parece com outro produto do Google.
 
-From a developer's point of view, we want Material-UI to:
+Do ponto de vista de um desenvolvedor, queremos que o Material-UI:
 
-- Deliver on fully encapsulated / composable React components.
-- Be themeable / customizable.
-- Be cross browser compatible and accessible.
-- Promote developer joy, a sense of community, and an environment where new and experienced developers can learn from each other.
+- Entregue componentes React totalmente encapsulados / compostos.
+- Seja capaz de lidar com temas / customizável.
+- Seja compatível com navegadores e acessível.
+- Promova a alegria do desenvolvedor, um senso de comunidade e um ambiente em que desenvolvedores novos e experientes podem aprender uns com os outros.

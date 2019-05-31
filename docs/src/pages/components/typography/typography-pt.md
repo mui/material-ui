@@ -17,7 +17,7 @@ A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. O de
 Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de um CDN:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
 ```
 
 ## Instalar via npm

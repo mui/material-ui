@@ -1,31 +1,31 @@
 # Espaçamento
 
-<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element’s appearance.</p>
+<p class="description">Uma ampla variedade de classes de utilitário responsivos de preenchimento e margem, para modificar a aparência de um elemento.</p>
 
-## Notation
+## Notação
 
-The space utility converts shorthand margin and padding props to margin and padding CSS declarations. The props are named using the format `{property}{sides}`.
+O utilitário de espaço converte margens e propriedades de preenchimento para margem e preenchimento de declarações CSS. As propriedades são nomeadas usando o formato `{property}{sides}`.
 
-Where *property* is one of:
+Onde a *propriedade* é um dos seguintes:
 
-- `m` - for classes that set *margin*
-- `p` - for classes that set *padding*
+- `m` - para classes que definem *margin*
+- `p` - para classes que definem *padding*
 
-Where *sides* is one of:
+Onde o *sides* é um dos seguintes:
 
-- `t` - for classes that set *margin-top* or *padding-top*
-- `b` - for classes that set *margin-bottom* or *padding-bottom*
-- `l` - for classes that set *margin-left* or *padding-left*
-- `r` - for classes that set *margin-right* or *padding-right*
-- `x` - for classes that set both **-left* and **-right*
-- `y` - for classes that set both **-top* and **-bottom*
-- blank - for classes that set a margin or padding on all 4 sides of the element
+- `t` - para classes que configuram *margin-top* ou *padding-top*
+- `b` - para classes que configuram *margin-bottom* ou *padding-bottom*
+- `l` - para classes que configuram *margin-left* ou *padding-left*
+- `r` - para classes que configuram *margin-right* ou *padding-right*
+- `x` - para classes que configuram ambos **-left* e **-right*
+- `y` - para classes que configuram **-top* e **-bottom*
+- blank - para classes que configuram margin ou padding nos 4 lados do elemento
 
-## Transformation
+## Transformação
 
-Depending on the input and the theme configuration, the following transformation is applied:
+Dependendo da entrada e da configuração do tema, a seguinte transformação é aplicada:
 
-- input: `number` & theme: `number`: the property is multiplied by the theme value.
+- entrada: `number` & tema: `number`: a propriedade é multiplicada pelo valor do tema.
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box m={2} /> // margin: 16px;
 ```
 
-- input: `number` & theme: `array`: the property is value is used as the array index.
+- entrada: `number` & tema: `array`: a propriedade é o valor usado como o índice no array.
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box m={2} /> // margin: 3px;
 ```
 
-- input: `number` & theme: `function`: the function is called with the property value.
+- entrada: `number` & tema: `function`: a função é chamada com o valor da propriedade.
 
 ```jsx
 const theme = {
@@ -61,7 +61,7 @@ const theme = {
 <Box m={2} /> // margin: 4px;
 ```
 
-- input: `string`: the property is passed as raw CSS value.
+- entrada: `string`: a propriedade é passada como valor CSS bruto.
 
 ```jsx
 <Box m="2rem" /> // margin: 2rem;
@@ -78,7 +78,7 @@ const theme = {
 
 {{"demo": "pages/system/spacing/Demo.js"}}
 
-## Horizontal centering
+## Centralização horizontal
 
 ```jsx
 <Box mx="auto">…
@@ -109,7 +109,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`          | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing`          | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 
-*Some people find the property shorthand confusing, you can use the full version if you prefer:*
+*Algumas pessoas acham a propriedade abreviada confusa, você pode usar a versão completa se preferir:*
 
 ```diff
 -<Box pt={2} />

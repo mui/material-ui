@@ -7,7 +7,7 @@ components: Modal
 
 <p class="description">Die modale Komponente bietet eine solide Grundlage für das Erstellen von Dialogen, Popovers, Leuchtkästen oder anderen Elementen.</p>
 
-Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponente. The `Modal` offers a few helpful features over using just a [`components`](/utils/portal/) component and some styles:
+The component renders its `children` node in front of a backdrop component. The `Modal` offers important features:
 
 - 
 - 

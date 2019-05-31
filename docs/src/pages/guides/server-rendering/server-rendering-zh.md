@@ -177,7 +177,7 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## 参考实现
 
-我们托管不同的参考实现，您可以在 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 文件夹下的 [GitHub存储库](https://github.com/mui-org/material-ui) 找到它们：
+您可以在 [GitHub 存储库中](https://github.com/mui-org/material-ui)的 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 的文件夹下面，找到我们托管的不同的范例项目：
 
 - [本教程的参考实现](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)

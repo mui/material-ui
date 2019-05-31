@@ -17,7 +17,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
   - Transições: 
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/components/about-the-lab/))
+    - **[Acesso rápido](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/components/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -54,9 +54,9 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **Icon ✓**
   - Thumbnail
   - **Controls ✓** 
-    - **Checkbox ✓**
-    - **Expand/collapse ✓** (AKA Nested)
-    - **Switch ✓**
+    - **Caixa de Seleção ✓**
+    - **Expandir/recolher ✓** (AKA Nested)
+    - **Interruptor ✓**
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
   - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Pode ser composto) 
@@ -68,7 +68,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
   - **[Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓**
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
-  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Legacy Material v1*)
+  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Legado Material v1*)
 - **[Selection controls](https://material.io/design/components/selection-controls.html) ✓** 
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
@@ -76,12 +76,12 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
 - **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/components/about-the-lab/)) 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
-- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*) 
+- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legado Material v1*)
+- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legado Material v1*) 
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grid](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/design/components/menus.html#exposed-dropdown-menu)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legado Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
@@ -89,7 +89,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
 - **[Text fields](https://material.io/design/components/text-fields.html) ✓** 
-  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legacy Material v1)
+  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legado Material v1)
   - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
   - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [Types](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders): 
@@ -102,7 +102,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
     - **Error message ✓**
     - **Ícones ✓**
     - Character counter
-- **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (Legacy Material v1)
+- **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (Legado Material v1)
 - **[Tooltips](https://material.io/design/components/tooltips.html) ✓** 
   - **Desktop ✓**
   - **Mobile ✓**

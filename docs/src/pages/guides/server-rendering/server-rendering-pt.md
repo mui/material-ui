@@ -1,27 +1,27 @@
 # Renderização no servidor
 
-<p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
+<p class="description">O caso de uso mais comum para a renderização do lado do servidor, é manipular a renderização inicial quando um usuário (ou rastreador do mecanismo de pesquisa) solicita sua aplicação.</p>
 
-When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client. From that point on, the client takes over rendering duties.
+Quando o servidor recebe a solicitação, ele renderiza o componente(s) requerido em uma cadeia HTML e o envia como uma resposta ao cliente. A partir desse momento, o cliente assume as funções de renderização.
 
 ## Material-UI no servidor
 
-O Material-UI foi desenhado da base com as limitações de renderizar no servidor, mas você pode se certificar que será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). To inject the style down to the client, we need to:
+O Material-UI foi desenhado da base com as limitações de renderizar no servidor, mas você pode se certificar que será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
 
 1. Cria uma instância nova e fresca do [`ServerStyleSheets`](/styles/api/#serverstylesheets) em cada requisição.
-2. Render the React tree with the server-side collector.
-3. Pull the CSS out.
-4. Pass the CSS along to the client.
+2. Renderize a árvore React com o coletor do lado do servidor.
+3. Puxe o CSS para fora.
+4. Passe o CSS junto ao cliente.
 
-On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
+No lado do cliente, o CSS será injetado uma segunda vez antes de remover o CSS injetado no lado do servidor.
 
-## Setting Up
+## Configurando
 
-In the following recipe, we are going to look at how to set up server-side rendering.
+Na receita a seguir, vamos ver como configurar a renderização do lado do servidor.
 
-### The theme
+### O tema
 
-We create a theme that will be shared between the client and the server.
+Criamos um tema que será compartilhado entre o cliente e o servidor.
 
 `theme.js`
 
@@ -29,7 +29,7 @@ We create a theme that will be shared between the client and the server.
 import { createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
-// Create a theme instance.
+// Cria a instância do tema.
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -50,16 +50,16 @@ const theme = createMuiTheme({
 export default theme;
 ```
 
-### The server-side
+### O lado do servidor
 
-The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
+O seguinte é o esboço para o aspecto que o nosso servidor deve olhar. Vamos montar um [middleware Express](http://expressjs.com/en/guide/using-middleware.html) usando [app.use](http://expressjs.com/en/api.html) para lidar com todas as requisições que chegam ao nosso servidor. Se você não estiver familiarizado com o Express ou o middleware, saiba apenas, que nossa função handleRender será chamada toda vez que o servidor receber uma requisição.
 
 `server.js`
 
 ```js
 import express from 'express';
 
-// We are going to fill these out in the sections to follow.
+// Vamos preenchê-las nas seções a seguir.
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -77,15 +77,15 @@ const port = 3000;
 app.listen(port);
 ```
 
-### Handling the Request
+### Manipulando a requisição
 
-The first thing that we need to do on every request is create a new `ServerStyleSheets`.
+A primeira coisa que precisamos fazer em cada solicitação é criar um novo `ServerStyleSheets`.
 
-When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+Quando renderizando, vamos encapsular `App`, nosso componente raiz, dentro de um [`StylesProvider`](/styles/api/#stylesprovider) e [` ThemeProvider`](/styles/api/#themeprovider) para tornar a configuração de estilo e o ` theme` disponíveis para todos os componentes na árvore de componentes.
 
-The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+A etapa principal na renderização do lado do servidor, é renderizar o HTML inicial de nosso componente **antes** de nós enviarmos para o lado do cliente. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-We then get the CSS from our `sheets` using `sheets.toString()`. We will see how this is passed along in our `renderFullPage` function.
+Em seguida, obtemos o CSS de nossas `folhas` usando `sheets.toString()`. Vamos ver como isso é passado em nossa função `renderFullPage`.
 
 ```jsx
 import express from 'express';
@@ -98,7 +98,7 @@ import theme from './theme';
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
+  // Renderiza o componente para string.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <ThemeProvider theme={theme}>
@@ -107,10 +107,10 @@ function handleRender(req, res) {
     ),
   );
 
-  // Grab the CSS from our sheets.
+  // Pega o CSS de nossas folhas.
   const css = sheets.toString();
 
-  // Send the rendered page back to the client.
+  // Envia a página renderizada de volta ao cliente.
   res.send(renderFullPage(html, css));
 }
 
@@ -118,16 +118,16 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server-side receives a request.
+// Isso é acionado toda vez que o servidor recebe uma solicitação.
 app.use(handleRender);
 
 const port = 3000;
 app.listen(port);
 ```
 
-### Inject Initial Component HTML and CSS
+### Injetar Componente Inicial HTML e CSS
 
-The final step on the server-side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
+A etapa final no lado do servidor é injetar nosso componente HTML e CSS inicial em um modelo a ser renderizado no lado do cliente.
 
 ```js
 function renderFullPage(html, css) {
@@ -135,7 +135,7 @@ function renderFullPage(html, css) {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>My page</title>
+        <title>Minha página</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
@@ -146,9 +146,9 @@ function renderFullPage(html, css) {
 }
 ```
 
-### The Client Side
+### O lado do cliente
 
-The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at our client file:
+O lado do cliente é direto. Tudo o que precisamos fazer é remover o CSS gerado no lado do servidor. Vamos dar uma olhada no nosso arquivo de cliente:
 
 `client.js`
 
@@ -177,14 +177,14 @@ function Main() {
 ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
-## Reference implementations
+## Implementações de referência
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+Nós hospedamos diferentes implementações de referência que você pode encontrar no [repositório GitHub](https://github.com/mui-org/material-ui) sob a pasta o [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples):
 
-- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
+- [A implementação de referência deste tutorial](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 
-## Troubleshooting
+## Resolução de problemas
 
-Check out our FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Confira nossa resposta FAQ: [Minha aplicação não é renderizada corretamente no servidor](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

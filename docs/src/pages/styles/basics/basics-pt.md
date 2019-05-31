@@ -1,39 +1,39 @@
 # @material-ui/styles
 
-<p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
+<p class="description">Você pode usar a solução de estilo do Material-UI na sua aplicação, esteja ou não usando componentes de Material-UI.</p>
 
-Material-UI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+Material-UI, tem como objetivo fornecer uma base sólida para a criação de interfaces de usuário dinâmicas. Por uma questão de simplicidade, **expomos a solução de estilo usada nos componentes de Material-UI** como pacote, `@material-ui/styles`. Você pode usá-lo, mas você não precisa, já que Material-UI também é [ interoperável com](/guides/interoperability/) todas as outras soluções de estilo principais.
 
-## Why use Material-UI's styling solution?
+## Por que usar a solução de estilo do Material-UI?
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited. We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style). **desbloqueia muitos ótimos recursos** (aninhamento de temas, estilos dinâmicos, auto-suporte, etc.). We think that this is the future:
+Nas versões anteriores, o Material-UI usava o LESS, e em seguida, uma solução customizada no estilo inline para escrever os estilos dos componentes, mas essas abordagens provaram ser limitadas. Nós [adotamos a solução *CSS-in-JS*](https://github.com/oliviertassinari/a-journey-toward-better-style). Ela **desbloqueia muitos ótimos recursos** (aninhamento de temas, estilos dinâmicos, auto-suporte, etc.). Nós pensamos que este é o futuro:
 
 - [Um idioma de estilo unificado](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [Converter SCSS (Sass) para CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas de estilo, como [styled-components](https://www.styled-components.com/) e [emotion](https://emotion.sh/).
 
-- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
-- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
-- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
-- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
+- 💅 Você pode esperar [as mesmas vantagens](https://www.styled-components.com/docs/basics#motivation) que styled-components.
+- 🚀 Está [super rápida](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
+- 🧩 É extensível através de uma API de [plugin](https://github.com/cssinjs/jss/blob/next/docs/plugins.md).
+- ⚡️Ela usa [JSS](https://github.com/cssinjs/jss) em seu núcleo – um [alto desempenho](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript para o compilador CSS, que funciona em tempo de execução e no lado do servidor.
+- 📦 Menor que [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); e nenhum aumento no tamanho do pacote se usado juntamente com o Material-UI.
 
 ## Instalação
 
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
-// usando npm
+// utilizando o npm
 npm install @material-ui/styles
 
-// usando yarn
+// utilizando o yarn
 yarn add @material-ui/styles
 ```
 
-## Getting started
+## Primeiros passos
 
-We provide 3 different APIs to generate and apply styles, however they all share the same underlying logic.
+Fornecemos três APIs diferentes para gerar e aplicar estilos, mas todas compartilham a mesma lógica subjacente.
 
 ### Hook API
 
@@ -64,7 +64,7 @@ export default function Hook() {
 
 ### Styled components API
 
-Note: this only applies to the calling syntax – style definitions still use a JSS object. You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
+Nota: isso se aplica somente para a sintaxe de chamada – definições de estilo de ainda usam um objeto JSS. Você também pode [alterar esse comportamento](/styles/advanced/#string-templates), com algumas limitações.
 
 ```jsx
 import React from 'react';
@@ -122,9 +122,9 @@ export default withStyles(styles)(HigherOrderComponent);
 
 {{"demo": "pages/styles/basics/HigherOrderComponent.js"}}
 
-## Nesting selectors
+## Aninhamento de seletores
 
-You can nest selectors to target elements inside the current class or component. The following example uses the Hook API, but it works the same way with the other APIs.
+Você pode aninhar seletores para segmentar elementos dentro da classe ou componente atual. O exemplo a seguir usa a Hook API, mas funciona da mesma maneira com as outras APIs.
 
 ```js
 const useStyles = makeStyles({
@@ -143,49 +143,49 @@ const useStyles = makeStyles({
 
 {{"demo": "pages/styles/basics/NestedStylesHook.js"}}
 
-## Adapting based on props
+## Adaptando com base em propriedades
 
-You can pass a function to `makeStyles` ("interpolation") in order to adapt the generated value based on the component's props. The function can be provided at the style rule level, or at the CSS property level:
+Você pode passar uma função para `makeStyles` ("interpolação") a fim de adaptar o valor gerado com base nas propriedades do componente. A função pode ser fornecida no nível de regra de estilo ou no nível da propriedade CSS:
 
 ```jsx
 const useStyles = makeStyles({
-  // style rule
+  // regra de estilo
   foo: props => ({
     backgroundColor: props.backgroundColor,
   }),
   bar: {
-    // CSS property
+    // propriedade CSS
     color: props => props.color,
   },
 });
 
 function MyComponent() {
-  // Simulated props for the purpose of the example
+  // Propriedades simuladas para fins de exemplo
   const props = { backgroundColor: 'black', color: 'white' };
-  // Pass the props as the first argument of useStyles()
+  // Passe as propriedades como primeiro argumento do useStyles()
   const classes = useStyles(props);
 
   return <div className={`${classes.foo} ${classes.bar}`} />
 }
 ```
 
-This button component has a color property that changes its color:
+Este componente botão tem uma propriedade de cor que modifica sua cor:
 
-### Adapting the hook API
+### Adaptando a hook API
 
 {{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
 
-### Adapting the styled components API
+### Adaptando a styled components API
 
 {{"demo": "pages/styles/basics/AdaptingStyledComponents.js"}}
 
-### Adapting the higher-order component API
+### Adaptando a higher-order component API
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-## Stress test
+## Teste de estresse
 
-In the following stress test, you can update the *theme color* and the *background-color property* live:
+No teste de estresse a seguir, você pode atualizar *a cor do tema* e a *propriedade background-color* de forma interativa:
 
 ```js
 const useStyles = makeStyles(theme => ({

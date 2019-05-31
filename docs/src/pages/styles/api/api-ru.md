@@ -9,7 +9,7 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 #### Аргументы
 
 1. `options` (*Object* [optional]): 
-    - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
+    - `options.disableGlobal` (*Boolean* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
     - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
     - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
@@ -51,7 +51,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 ```jsx
 import { makeStyles, createStyles } from '@material-ui/styles';
 
-const styles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     backgroundColor: theme.color.red,
   },

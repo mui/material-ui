@@ -9,10 +9,10 @@ Material-UIはMITライセンスのオープンソースプロジェクトです
 [パトロン](https://www.patreon.com/oliviertassinari)によるものです。
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?partner=104080" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="プレミアムテーマ"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://avatars2.githubusercontent.com/u/30204434?s=192" alt="tidelift" title="プロフェッショナルサポートのMaterial-UIを受け取る"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="コードをシェアする最も早い方法"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="blokt" href="https://blokt.com/" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://pbs.twimg.com/profile_images/927547020134502405/zY3QPxmz_200x200.jpg" alt="blokt" title="Leading Cryptocurrency News"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?partner=104080" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="126" src="https://github.com/creativetimofficial.png?size=126" alt="creative-tim" title="プレミアムテーマ"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="プロフェッショナルサポートのMaterial-UIを受け取る"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="コードをシェアする最も早い方法"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="blokt" href="https://blokt.com/" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="/static/images/blokt.jpg" alt="blokt" title="Leading Cryptocurrency News"></a>
 </p>
 
 [OpenCollective](https://opencollective.com/material-ui)によるものです。

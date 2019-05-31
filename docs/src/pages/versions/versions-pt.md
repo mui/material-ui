@@ -32,7 +32,7 @@ Trabalhamos em direção a um cronograma regular de lançamentos, para que você
 
 Em geral, você pode esperar o seguinte ciclo de lançamento:
 
-- A **principal** versão a cada 6 meses.
+- Um lançamento **principal** ocorre a cada 6-12 meses.
 - 1-3 ** menor ** lançamentos para cada versão principal.
 - Uma versão **patch** a cada semana (ou imediatamente para um bugfix urgente).
 
@@ -40,10 +40,11 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 
 > Isenção de responsabilidade: As datas são oferecidas como orientação geral e podem ser ajustadas por nós quando necessário para garantir a entrega de um código de alta qualidade.
 
-| Data             | Versão                     |
-|:---------------- |:-------------------------- |
-| Maio de 2019     | `@material-ui/core` v4.0.0 |
-| Dezembro de 2019 | `@material-ui/core` v5.0.0 |
+| Data           | Versão                     |
+|:-------------- |:-------------------------- |
+| Maio de 2018 ✅ | `@material-ui/core` v1.0.0 |
+| Maio de 2019 ✅ | `@material-ui/core` v4.0.0 |
+| ? ⏳            | `@material-ui/core` v5.0.0 |
 
 Você pode seguir os [ milestones ](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 

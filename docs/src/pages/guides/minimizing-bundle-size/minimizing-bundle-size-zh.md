@@ -1,32 +1,32 @@
-# 最小化捆绑包的大小
+# 最小化打包文件大小
 
-<p class="description">了解有关可用于减少捆绑包大小的工具的详细信息。</p>
+<p class="description">了解有关可用于减少打包文件大小的工具的详细信息。</p>
 
-## 捆绑尺寸很重要
+## 打包文件的大小是很重要的
 
-Material-UI的包大小非常重要。 We take size snapshots on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). Combined with [dangerJS](https://danger.systems/js/) we can inspect [detailed bundle size changes](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
+Material-UI 的打包文件大小至关重要。 每次当我们有一个新的提交时，我们会为每个包以及那些包的至关重要的部分拍个快照（[查看最新的快照](/size-snapshot)）。 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) 。
 
-## 如何减少捆绑尺寸？
+## 如何减少打包文件的体积？
 
-为方便起见，Material-UI在顶级 `material-ui` 导入上公开其完整API。 If you're using ES 6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and expect only a minimal set of Material-UI components in your bundle:
+为方便起见，Material-UI 在顶级 `material-ui` 的 import 上暴露其完整 API。 如果您正在使用 ES 6 的模块，以及一个支持 tree-shaking 的 bundle（ 要求 [`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/)，[带有 flag 的 `parcel 打包`](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) ，那么您则可以安全的使用命名的 imports，并且在您的 bundle 文件里面，预期会产生一个的最小配置的 Material-UI 组件。
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-Be aware that tree-shaking is an optimization that is usually only applied to production bundles. Development bundles will contain the full library which can lead to slower startup times. This is especially noticeable if you import from `@material-ui/icons`. Startup times can be approximately 6x slower than without named imports from the top-level API.
+请注意 tree-shaking 通常只运用于生产环境的打包优化。 开发环境的打包则涵盖了完整的库，因此加载时间会比较慢。 在当您导入 `@material-ui/icons` 的时候，这个情况特别显著。 加载时间会大约比那些从顶层 API 的名字导入方式慢六倍。
 
-If this is an issue for you you have various options:
+如果你认为这将是一个问题，你可以有以下几种选择：
 
 ### 选项1
 
-You can use path imports to avoid pulling in unused modules. For instance, instead of:
+你可以按需引入，以避免导入不需要用到的模块 全局导入是这样的
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-use:
+现在我们根据需要引入部分组件
 
 ```js
 import Button from '@material-ui/core/Button';
@@ -72,7 +72,7 @@ Pick one of the following plugins:
         },
         ];
 
-- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-import) has a different api than `babel-plugin-import` but does same thing. 
+- [<0> babel-plugin-transform-imports </0>](https://www.npmjs.com/package/babel-plugin-transform-import) 和` babel-plugin-import `的api不同，但做了同样的事情。 
         js
         [
         'transform-imports',

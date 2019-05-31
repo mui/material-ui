@@ -1,10 +1,10 @@
 # Flexbox
 
-<p class="description">Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities.</p>
+<p class="description">Gerencie rapidamente o leiaute, o alinhamento e o dimensionamento de colunas de grade, navegação, componentes e muito mais com um conjunto completo de utilitários flexbox responsivos.</p>
 
 Se você é **novo ou não está familiarizado com o flexbox**, nós recomendamos você a ler este [guia do Flexbox CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
-## Properties for the Parent
+## Propriedades para o pai
 
 ### display
 
@@ -61,7 +61,7 @@ Se você é **novo ou não está familiarizado com o flexbox**, nós recomendamo
 
 {{"demo": "pages/system/flexbox/AlignContent.js"}}
 
-## Properties for the Children
+## Propriedades para os Filhos
 
 ### order
 

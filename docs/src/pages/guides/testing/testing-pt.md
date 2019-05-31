@@ -8,7 +8,7 @@ Exemplos neste guia usam [métodos globais do Mocha](https://mochajs.org/api/glo
 
 Nós levamos os testes a sério. Nós escrevemos e mantemos **uma vasta gama** de testes para que possamos iterar os componentes com confiança, por exemplo, os testes de regressão visual fornecidos por [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) provaram ser realmente úteis. Para saber mais sobre nossos testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
-Embora tenhamos atingido a conquista de 100% de cobertura de teste, não incentivamos nossos usuários a fazer o mesmo. [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
+Embora tenhamos atingido a conquista de 100% de cobertura de teste, não incentivamos nossos usuários a fazer o mesmo. [![Taxa de Cobertura](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
 
 ## Espaço do usuário
 
@@ -22,13 +22,13 @@ A função `createShallow()` pode ser utilizada para esta situação. Além de e
 
 ### Renderização completa do DOM (Full)
 
-Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (e.g., `componentDidMount` etc.).
+A renderização total do DOM é ideal para casos em que você tem componentes que podem interagir com as APIs do DOM, ou podem exigir o ciclo de vida completo para testar completamente o componente (por exemplo, `componentDidMount` etc).
 
 A função `createMount ()` é fornecida para esta situação. Além de envolver enzyme API, ela fornece uma função chamada `cleanUp`.
 
-### Render to string
+### Renderizar para string
 
-Rendering to a string is useful to test the behavior of the components that are used on the server. You can take advantage of this to assert the generated HTML string.
+Renderizar em uma string é útil para testar o comportamento dos componentes usados no servidor. Você pode aproveitar isso para confirmar a sequência HTML gerada.
 
 A função `createRender()` é ideal para isso. Isso é apenas um alias para enzyme API, que é apenas exposta para consistência.
 
@@ -36,15 +36,15 @@ A função `createRender()` é ideal para isso. Isso é apenas um alias para enz
 
 ### `createShallow([options]) => shallow`
 
-Generate an enhanced shallow function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
+Gere uma função superficial aprimorada com o contexto necessário. Por favor, consulte [a documentação da API enzyme ](https://airbnb.io/enzyme/docs/api/shallow.html) para mais detalhes sobre a função `shallow`.
 
 #### Argumentos
 
-1. `options` (*Object* [optional]) 
-    - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
-    - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
-    - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
-    - The other keys are forwarded to the options argument of `enzyme.shallow()`.
+1. `options` (*Object* [opcional]) 
+    - `options.shallow` (*Function* [opcional]): A função superficial para melhorar, usa **enzyme por padrão**.
+    - `options.untilSelector` (*String* [opcional]): Recursivamente, renderiza superficialmente o componente children até encontrar o seletor fornecido. É útil para detalhar os componentes de ordem mais alta.
+    - `options.dive` (*Boolean* [opcional]): A função superficial renderiza o filho não-DOM do wrapper atual e retorna um wrapper em torno do resultado.
+    - As outras chaves são encaminhadas para o argumento de opções de `enzyme.shallow()`.
 
 #### Retornos
 
@@ -58,11 +58,11 @@ import { createShallow } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let shallow;
 
-  before(() => {  // This is Mocha; in Jest, use beforeAll
+  before(() => {  // Isto é Mocha; em Jest, use beforeAll
     shallow = createShallow();
   });
 
-  it('should work', () => {
+  it('deve funcionar', () => {
     const wrapper = shallow(<MyComponent />);
   });
 });
@@ -70,13 +70,13 @@ describe('<MyComponent />', () => {
 
 ### `createMount([options]) => mount`
 
-Generate an enhanced mount function with the needed context. Por favor, consulte [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) para mais detalhes sobre o `suporte ` função.
+Gere uma função de montagem aprimorada com o contexto necessário. Por favor, consulte [a documentação da API enzyme ](https://airbnb.io/enzyme/docs/api/mount.html) para mais detalhes sobre a função `mount`.
 
 #### Argumentos
 
-1. `options` (*Object* [optional]) 
-    - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
-    - The other keys are forwarded to the options argument of `enzyme.mount()`.
+1. `options` (*Object* [opcional]) 
+    - `options.mount` (*Function* [opcional]): A função de montagem para melhorar, usa **enzyme por padrão**.
+    - As outras chaves são encaminhadas para o argumento de opções de `enzyme.mount()`.
 
 #### Retornos
 
@@ -106,17 +106,17 @@ describe('<MyComponent />', () => {
 
 ### `createRender([options]) => render`
 
-Generate a render to string function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/render.html) for further details on the `render` function.
+Gere uma função de render para string com o contexto necessário. Por favor, consulte [a documentação da API enzyme ](https://airbnb.io/enzyme/docs/api/render.html) para mais detalhes sobre a função `render`.
 
 #### Argumentos
 
-1. `options` (*Object* [optional]) 
-    - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.
-    - The other keys are forwarded to the options argument of `enzyme.render()`.
+1. `options` (*Object* [opcional]) 
+    - `options.render` (*Function* [opcional]): A função de renderização para melhorar, usa **enzyme por padrão**.
+    - As outras chaves são encaminhadas para o argumento de opções de `enzyme.render()`.
 
 #### Retornos
 
-`render` (*Function*): A render to string function.
+`render` (*Function*): Uma função render para string.
 
 #### Exemplos
 
@@ -130,7 +130,7 @@ describe('<MyComponent />', () => {
     render = createRender();
   });
 
-  it('should work', () => {
+  it('deve funionar', () => {
     const wrapper = render(<MyComponent />);
   });
 });

@@ -1,10 +1,10 @@
 # Paleta de Cores
 
-<p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
+<p class="description">A paleta permite modificar a cor dos componentes para se adequarem à sua marca.</p>
 
 ## Intenções
 
-A color intention is a mapping of a palette to a given intention within your application.
+Uma intenção de cor é um mapeamento de uma paleta para uma determinada intenção dentro da sua aplicação.
 
 O tema expõe as seguintes intenções de cores:
 
@@ -12,17 +12,17 @@ O tema expõe as seguintes intenções de cores:
 - secundário - usado para representar os elementos de interface secundários para um usuário.
 - erro - usado para representar os elementos de interface dos quais o usuário deve estar ciente.
 
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention, and the un-prefixed shades for the other intentions.
+A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenção secundária, e as cores não pré-fixadas para as outras intenções.
 
-If you want to learn more about color, you can check out [the color section](/customization/color/).
+Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores](/customization/color/).
 
 ## Paleta personalizada
 
-You may override the default palette values by including a `palette` object as part of your theme.
+Você pode sobrescrever os valores padrão da paleta incluindo um objeto `palette` como parte do seu tema.
 
-If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'intention' objects are provided, they will replace the defaults.
+Se algum dos objetos de intenção [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) ou [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) forem fornecidos, eles sobrescreverão os padrões.
 
-The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
+O valor da intenção pode ser um objeto [cor](/customization/color/), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
 
 ```ts
 interface PaletteIntention {
@@ -35,7 +35,7 @@ interface PaletteIntention {
 
 **Usando um objeto de cor**
 
-The simplest way to customize an intention is to import one or more of the provided colors and apply them to a palette intention:
+A maneira mais simples de customizar uma intenção é importar uma ou mais das cores fornecidas e aplicá-las a uma intenção da paleta:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -48,7 +48,7 @@ const theme = createMuiTheme({
 });
 ```
 
-If the intention key receives a color object as in the example above, the following mapping is used to populate the required keys:
+Se a chave de intenção receber um objeto de cor como no exemplo acima, o mapeamento a seguir será usado para preencher as chaves necessárias:
 
 ```js
 palette: {
@@ -88,12 +88,12 @@ const theme = createMuiTheme({
     primary: indigo,
     secondary: pink,
     error: red,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
+    // Usado por `getContrastText ()` para maximizar o contraste entre o segundo plano e
+    // o texto.
     contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
+    // Usado para alterar a luminosidade de uma cor em aproximadamente
+    // dois índices em sua paleta de tons.
+    // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
     tonalOffset: 0.2,
   },
 });
@@ -101,7 +101,7 @@ const theme = createMuiTheme({
 
 **Fornecendo as cores diretamente**
 
-If you wish to provide more customized colors, you can either create your own color object, or directly supply colors to some or all of the intention's keys:
+Se você deseja fornecer cores mais personalizadas, você pode criar seu próprio objeto de cor, ou fornecer cores diretamente para algumas ou todas as chaves da intenção:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -109,29 +109,29 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
+      // light: será calculada com base em palette.primary.main,
       main: '#ff4400',
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      // dark: será calculada com base em palette.primary.main,
+      // contrastText: será calculada para contrastar com palette.primary.main
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
+      // dark: será calculada com base em palette.secondary.main,
       contrastText: '#ffcc00',
     },
-    // error: will use the default color
+    // error: irá usar a cor padrão
   },
 });
 ```
 
-As in the example above, if the intention object contains custom colors using any of the `main`, `light`, `dark` or `contrastText` keys, these map as follows:
+Como no exemplo acima, se o objeto intenção contiver cores personalizadas usando qualquer uma das chaves `main`, `light`, `dark` e `contrastText`, esses valores se mapeiam da seguinte maneira:
 
-- If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`, according to the `tonalOffset` value.
+- Se a chave `dark` e / ou `light` são omitidas, seus valores serão calculados com base em `main`, de acordo com o valor de `tonalOffset`.
 
-- If `contrastText` is omitted, its value will be calculated to contrast with `main`, according to the`contrastThreshold` value.
+- Se `contrastText` é omitido, seu valor será calculado para contrastar com `main`, de acordo com o valor de `contrastThreshold`.
 
-Both the `tonalOffset` and `contrastThreshold` values may be customized as needed. A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker. A higher value for `contrastThreshold` increases the point at which a background color is considered light, and given a dark `contrastText`.
+Tanto os valores de `tonalOffset` e `contrastThreshold` poderão ser customizados conforme o necessário. Um valor mais alto para `tonalOffset` fará valores calculados para `light` mais claro e `escuro` mais escuro. Um valor mais alto para `contrastThreshold` aumenta o ponto no qual uma cor de fundo é considerada clara, e recebe um `contrastText` escuro.
 
 Observe que `contrastThreshold ` segue uma curva não linear.
 

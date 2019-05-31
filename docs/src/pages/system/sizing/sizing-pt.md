@@ -1,10 +1,10 @@
-# Sizing
+# Dimensionando
 
-<p class="description">Easily make an element as wide or as tall (relative to its parent) with our width and height utilities.</p>
+<p class="description">Facilmente faça um elemento tão largo ou tão alto (relativo a seu pai) com nossos utilitários de largura e altura.</p>
 
-## Supported values
+## Valores suportados
 
-The sizing style functions support different property input type:
+As funções de estilo de dimensionamento suportam diferentes tipos de entrada de propriedade:
 
 ```jsx
 <Box width={1/4}> // Números em [0,1] são multiplicados por 100 e convertido em % valores.
@@ -15,7 +15,7 @@ The sizing style functions support different property input type:
 
 {{"demo": "pages/system/sizing/Values.js"}}
 
-## Width
+## Largura
 
 ```jsx
 <Box width="25%">…
@@ -27,7 +27,7 @@ The sizing style functions support different property input type:
 
 {{"demo": "pages/system/sizing/Width.js"}}
 
-## Height
+## Altura
 
 ```jsx
 <Box height="25%">…

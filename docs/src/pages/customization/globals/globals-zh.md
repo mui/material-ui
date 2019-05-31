@@ -1,10 +1,10 @@
-# 全局变量
+# 全局样式
 
-<p class="description">The overrides key enables you to customize the appearance of all instances of a component type, while the props key enables you to change the default value(s) of a component's props.</p>
+<p class="description">Overrides使你可以统一修改某个组件所有对象的样式，而props则能修改某个组件的默认属性值。</p>
 
 ## CSS
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change **every single style** injected by Material-UI into the DOM. 这是一个十分强有力的特点。
+当配置变量不够强大的时候，您可以使用`theme`的`overrides`来让Material-UI隐式地为您注入**样式规则**。 这是一个非常强大的特性。
 
 ```js
 const theme = createMuiTheme({

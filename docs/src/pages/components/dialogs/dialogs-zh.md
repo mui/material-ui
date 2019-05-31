@@ -40,6 +40,8 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
+## 过渡动画
+
 当然你也可以换掉过渡效果，下面的示例使用了 ` Slide（幻灯片）`。
 
 {{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
@@ -74,7 +76,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
-## 确认型对话框
+## 确认对话框
 
 确认型对话框明确要求用户在提交选项之前确认他们的选择。 比如说，用户可以听到多种铃声，但只有在点击 “OK” 后才意味着做出了选择。
 
@@ -82,11 +84,11 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## 可及性
+## 无障碍功能
 
 参考[模态框可及性的部分](/components/modal/#accessibility)。
 
-## 冗长内容的滚动
+## 长内容滚动
 
 由于用户设备的不同或视图的大小，对话框会变得很长，此时对话框是可以滚动的。
 

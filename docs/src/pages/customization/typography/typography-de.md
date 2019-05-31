@@ -52,7 +52,7 @@ const raleway = {
 };
 ```
 
-Dann können Sie das Theme ändern, um diese neue Schriftart zu verwenden. It requires use of the [`CssBaseline`](/components/css-baseline/) component to globally define Raleway as a font family.
+Dann können Sie das Theme ändern, um diese neue Schriftart zu verwenden. In order to globally define Raleway as a font face the [`CssBaseline`](/components/css-baseline/) component needs to be used.
 
 ```js
 const theme = createMuiTheme({
@@ -74,7 +74,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        '@font-family': [raleway],
+        '@font-face': [raleway],
       },
     },
   },
