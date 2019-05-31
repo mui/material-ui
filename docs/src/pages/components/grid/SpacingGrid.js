@@ -68,4 +68,4 @@ function GuttersGrid() {
   );
 }
 
-export default GuttersGrid;
+export default SpacingGrid;
