@@ -43,6 +43,7 @@ This property accepts the following keys:
 | <span class="prop-name">underlineHover</span> | Styles applied to the root element if `underline="hover"`.
 | <span class="prop-name">underlineAlways</span> | Styles applied to the root element if `underline="always"`.
 | <span class="prop-name">button</span> | Styles applied to the root element if `component="button"`.
+| <span class="prop-name">focusVisible</span> | Styles applied to the root element if the link is keyboard focused.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Link/Link.js)
