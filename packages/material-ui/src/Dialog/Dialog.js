@@ -16,7 +16,8 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     '@media print': {
-      position: 'absolute',
+      // Use !important to override the Modal inline-style.
+      position: 'absolute !important',
     },
   },
   /* Styles applied to the root element if `scroll="paper"`. */
@@ -29,6 +30,14 @@ export const styles = theme => ({
   scrollBody: {
     overflowY: 'auto',
     overflowX: 'hidden',
+    textAlign: 'center',
+    '&:after': {
+      content: '""',
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      height: '100%',
+      width: '0',
+    },
   },
   /* Styles applied to the container element. */
   container: {
@@ -41,8 +50,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the `Paper` component. */
   paper: {
-    display: 'flex',
-    flexDirection: 'column',
     margin: 48,
     position: 'relative',
     overflowY: 'auto', // Fix IE 11 issue, to remove at some point.
@@ -53,25 +60,26 @@ export const styles = theme => ({
   },
   /* Styles applied to the `Paper` component if `scroll="paper"`. */
   paperScrollPaper: {
-    flex: '0 1 auto',
+    display: 'flex',
+    flexDirection: 'column',
     maxHeight: 'calc(100% - 96px)',
   },
   /* Styles applied to the `Paper` component if `scroll="body"`. */
   paperScrollBody: {
-    margin: '48px auto',
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    textAlign: 'left', // 'initial' doesn't work on IE 11
   },
   /* Styles applied to the `Paper` component if `maxWidth=false`. */
   paperWidthFalse: {
-    '&$paperScrollBody': {
-      margin: 48,
-    },
+    maxWidth: 'calc(100% - 96px)',
   },
   /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 444),
     '&$paperScrollBody': {
       [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 48 * 2)]: {
-        margin: 48,
+        maxWidth: 'calc(100% - 96px)',
       },
     },
   },
@@ -80,7 +88,7 @@ export const styles = theme => ({
     maxWidth: theme.breakpoints.values.sm,
     '&$paperScrollBody': {
       [theme.breakpoints.down(theme.breakpoints.values.sm + 48 * 2)]: {
-        margin: 48,
+        maxWidth: 'calc(100% - 96px)',
       },
     },
   },
@@ -89,7 +97,7 @@ export const styles = theme => ({
     maxWidth: theme.breakpoints.values.md,
     '&$paperScrollBody': {
       [theme.breakpoints.down(theme.breakpoints.values.md + 48 * 2)]: {
-        margin: 48,
+        maxWidth: 'calc(100% - 96px)',
       },
     },
   },
@@ -98,7 +106,7 @@ export const styles = theme => ({
     maxWidth: theme.breakpoints.values.lg,
     '&$paperScrollBody': {
       [theme.breakpoints.down(theme.breakpoints.values.lg + 48 * 2)]: {
-        margin: 48,
+        maxWidth: 'calc(100% - 96px)',
       },
     },
   },
@@ -107,16 +115,13 @@ export const styles = theme => ({
     maxWidth: theme.breakpoints.values.xl,
     '&$paperScrollBody': {
       [theme.breakpoints.down(theme.breakpoints.values.xl + 48 * 2)]: {
-        margin: 48,
+        maxWidth: 'calc(100% - 96px)',
       },
     },
   },
   /* Styles applied to the `Paper` component if `fullWidth={true}`. */
   paperFullWidth: {
-    width: '100%',
-    '&$paperScrollBody': {
-      width: 'initial',
-    },
+    width: 'calc(100% - 96px)',
   },
   /* Styles applied to the `Paper` component if `fullScreen={true}`. */
   paperFullScreen: {
@@ -128,6 +133,7 @@ export const styles = theme => ({
     borderRadius: 0,
     '&$paperScrollBody': {
       margin: 0,
+      maxWidth: '100%',
     },
   },
 });
