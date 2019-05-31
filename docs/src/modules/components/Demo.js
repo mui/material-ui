@@ -344,7 +344,6 @@ class Demo extends React.Component {
             </div>
             <Collapse in={codeOpen} unmountOnExit>
               <MarkdownElement
-                dir="ltr"
                 className={classes.code}
                 text={`\`\`\`${demoData.sourceLanguage}\n${demoData.raw}\n\`\`\``}
               />

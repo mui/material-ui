@@ -8,7 +8,7 @@ import theme from './theme';
 function renderFullPage(html, css) {
   return `
     <!DOCTYPE html>
-    <html lang="en" dir="ltr">
+    <html lang="en">
       <head>
         <title>My page</title>
         <style id="jss-server-side">${css}</style>
