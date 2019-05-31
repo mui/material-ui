@@ -53,11 +53,9 @@ function GuttersGrid() {
                 onChange={handleChange}
                 row
               >
-                {Array(10)
-                  .fill(0)
-                  .map((value, index) => (
-                    <FormControlLabel key={index} value={index} control={<Radio />} label={index} />
-                  ))}
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => (
+                  <FormControlLabel key={value} value={value} control={<Radio />} label={value} />
+                ))}
               </RadioGroup>
             </Grid>
           </Grid>
