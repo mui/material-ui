@@ -11,6 +11,8 @@ import {
   WithStylesOptions as DefaultWithStylesOptions,
   StyleRules,
   StyleRulesCallback as DefaultStyleRulesCallback,
+  Styles as DefaultStyles,
+  ClassKeyOfStyles,
 } from '@material-ui/styles/withStyles';
 
 export { CreateCSSProperties, CSSProperties, ClassNameMap, StyledComponentProps, StyleRules };
@@ -23,21 +25,19 @@ export type StyleRulesCallback<
   Props extends object = {}
 > = DefaultStyleRulesCallback<Theme, Props, ClassKey>;
 
+export type Styles<ClassKey extends string = string, Props extends object = {}> = DefaultStyles<
+  Theme,
+  Props,
+  ClassKey
+>;
+
 export type WithStylesOptions = Omit<DefaultWithStylesOptions<Theme>, 'defaultTheme'>;
 
 export type WithStyles<
-  T extends string | StyleRules | StyleRulesCallback = string,
+  T extends string | Styles = string,
   IncludeTheme extends boolean | undefined = false
 > = (IncludeTheme extends true ? { theme: Theme } : {}) & {
-  classes: ClassNameMap<
-    T extends string
-      ? T
-      : T extends StyleRulesCallback<infer K>
-      ? K
-      : T extends StyleRules<infer K>
-      ? K
-      : never
-  >;
+  classes: ClassNameMap<ClassKeyOfStyles<T>>;
 };
 
 export default function withStyles<
@@ -45,6 +45,6 @@ export default function withStyles<
   Options extends WithStylesOptions = {},
   Props extends object = {}
 >(
-  style: StyleRulesCallback<ClassKey, Props> | StyleRules<ClassKey, Props>,
+  style: Styles<ClassKey, Props>,
   options?: Options,
 ): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;
