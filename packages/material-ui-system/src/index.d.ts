@@ -61,7 +61,7 @@ export const display: SimpleStyleFunction<'display' | 'displayPrint'>;
 export type DisplayProps = PropsFor<typeof display>;
 
 export const flexbox: SimpleStyleFunction<
-  | 'flexboxDirection'
+  | 'flexDirection'
   | 'flexWrap'
   | 'justifyContent'
   | 'alignItems'
