@@ -48,7 +48,7 @@ function ConfirmationDialogRaw(props) {
   }
 
   function handleCancel() {
-    onClose(value);
+    onClose();
   }
 
   function handleOk() {
@@ -96,8 +96,9 @@ function ConfirmationDialogRaw(props) {
 }
 
 ConfirmationDialogRaw.propTypes = {
-  onClose: PropTypes.func,
-  value: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 const useStyles = makeStyles(theme => ({
@@ -123,7 +124,10 @@ function ConfirmationDialog() {
 
   function handleClose(newValue) {
     setOpen(false);
-    setValue(newValue);
+
+    if (newValue) {
+      setValue(newValue);
+    }
   }
 
   return (

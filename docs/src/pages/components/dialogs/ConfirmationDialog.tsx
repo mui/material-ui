@@ -36,7 +36,7 @@ export interface ConfirmationDialogRawProps {
   keepMounted: boolean;
   value: string;
   open: boolean;
-  onClose: (value: string) => void;
+  onClose: (value?: string) => void;
 }
 
 function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
@@ -105,8 +105,9 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
 }
 
 ConfirmationDialogRaw.propTypes = {
-  onClose: PropTypes.func,
-  value: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -130,7 +131,7 @@ function ConfirmationDialog() {
     setOpen(true);
   }
 
-  function handleClose(newValue: string) {
+  function handleClose(newValue?: string) {
     setOpen(false);
 
     if (newValue) {
