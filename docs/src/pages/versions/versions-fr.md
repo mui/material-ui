@@ -32,7 +32,7 @@ We work toward a regular schedule of releases, so that you can plan and coordina
 
 In general, you can expect the following release cycle:
 
-- Une version **majeure** tous les 6 mois.
+- A **major** release every 6-12 months.
 - 1-3 **mineur** versions pour chaque version majeure.
 - A **patch** release every week (anytime for urgent bugfix).
 
@@ -40,10 +40,11 @@ In general, you can expect the following release cycle:
 
 > Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
 
-| Date          | Version                    |
-|:------------- |:-------------------------- |
-| May 2019      | `@material-ui/core` v4.0.0 |
-| December 2019 | `@material-ui/core` v5.0.0 |
+| Date       | Version                    |
+|:---------- |:-------------------------- |
+| May 2018 ✅ | `@material-ui/core` v1.0.0 |
+| May 2019 ✅ | `@material-ui/core` v4.0.0 |
+| ? ⏳        | `@material-ui/core` v5.0.0 |
 
 Vous pouvez suivre [ nos milestones ](https://github.com/mui-org/material-ui/milestones) pour un aperçu plus détaillé.
 

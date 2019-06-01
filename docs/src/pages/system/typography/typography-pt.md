@@ -1,8 +1,8 @@
 # Tipografia
 
-<p class="description">Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.</p>
+<p class="description">Documentação e exemplos de texto, utilizações comuns para controlar o alinhamento, quebra, peso e muito mais.</p>
 
-## Text alignment
+## Alinhamento do texto
 
 ```jsx
 <Box textAlign="left">…
@@ -12,7 +12,7 @@
 
 {{"demo": "pages/system/typography/TextAlignment.js"}}
 
-## Font weight
+## Peso da fonte
 
 ```jsx
 <Box fontWeight="fontWeightLight">…
@@ -23,7 +23,7 @@
 
 {{"demo": "pages/system/typography/FontWeight.js"}}
 
-## Font size
+## Tamanho da fonte
 
 ```jsx
 <Box fontSize="fontSize">…
@@ -33,7 +33,7 @@
 
 {{"demo": "pages/system/typography/FontSize.js"}}
 
-## Font family
+## Família da fonte
 
 ```jsx
 <Box fontFamily="fontFamily">…

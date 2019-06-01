@@ -1,40 +1,40 @@
 # @material-ui/system
 
-<p class="description">Styled system & style functions for building powerful design systems.</p>
+<p class="description">Sistema de estilo & funções de estilo para a construção de sistemas de design poderosos.</p>
 
 ## Primeiros passos
 
-`@material-ui/system` provides low-level utility functions called "*style functions*" for building powerful design systems. Algumas das principais características:
+`@material-ui/system` fornece funções utilitárias de baixo nível, chamadas de "*funções de estilo*", para construir sistemas de design poderosos. Algumas das principais características:
 
-- ⚛️ Access the theme values directly from the component props.
-- 🦋 Encourage UI consistency.
-- 🌈 Write responsive style effortlessly.
-- 🦎 Work with any theme object.
-- 💅 Work with the most popular CSS-in-JS solutions.
-- 📦 Less than [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [Fast enough](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) not to be a bottleneck at runtime.
+- ⚛️ Acesso aos valores do tema diretamente nas propriedades do componente.
+- 🦋 Incentivo a consistência da UI.
+- 🌈 Escreva estilo responsivo sem esforço.
+- 🦎 Trabalhe com qualquer objeto de tema.
+- 💅 Trabalhe com as soluções CSS-in-JS mais populares.
+- 📦 Menos que [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
+- 🚀 [Rápido o suficiente](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) para não ser um gargalo em tempo de execução.
 
-It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
+É importante entender que este pacote expõe funções de estilo puro (sem efeitos colaterais) com esta assinatura: `({ theme, ...style }) => style`, **só isso**.
 
 ### Demonstração
 
-In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [use JSS](#interoperability). The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
+No restante desta seção de *Primeiros passos*, estamos usando **styled-components** como exemplo de referência (para enfatizar a universalidade deste pacote). Alternativamente, você pode [usar JSS](#interoperability). As demonstrações também são baseadas no valor **padrão** do [objeto de tema](/customization/default-theme/) do Material-UI.
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
 ### Instalação
 
 ```jsx
-// usando npm
+// utilizando o npm
 npm install @material-ui/system
 
-// usando yarn
+// utilizando o yarn
 yarn add @material-ui/system
 ```
 
-### Create a component
+### Criar um componente
 
-In order to use the `Box` component, you first need to create it. To start with, add a `spacing` and `palette` function to the style argument.
+Para usar o componente `Box`, você primeiro precisa criá-lo. Para começar, adicione uma função de `espaçamento` e `paleta` para o argumento de estilo.
 
 ```jsx
 import styled from 'styled-components';
@@ -45,17 +45,17 @@ const Box = styled.div`${spacing}${palette}`;
 export default Box;
 ```
 
-This Box component now supports new [spacing properties](/system/spacing/#api) and [color properties](/system/palette/#api). For instance, you can provide a padding property: `p` and a color property: `color`.
+Este componente Box agora suporta novas [propriedades de espaçamento](/system/spacing/#api) e [propriedades de cor](/system/palette/#api). Por exemplo, você pode fornecer uma propriedade de preenchimedo (padding): `p` e uma propriedade de cor: `color`.
 
 ```jsx
-<Box p="1rem" color="grey">Give me some space!</Box>
+<Box p="1rem" color="grey">Me dê algum espaço!</Box>
 ```
 
-The component can be styled providing any valid CSS values.
+O componente pode ser estilizado, fornecendo quaisquer valores CSS válidos.
 
 ### Temas
 
-But most of the time, you want to rely on a theme's values to increase the UI consistency. It's preferable to have a predetermined set of padding and color values. Import the theme provider of your styling solution.
+Mas na maioria das vezes, você deseja depender dos valores de um tema, para aumentar a consistência da interface do usuário. É preferível ter um conjunto predeterminado de valores de preenchimento e cor. Importe o provedor de temas de sua solução de estilo.
 
 ```jsx
 import React from 'react'
@@ -79,7 +79,7 @@ function App() {
 export default App
 ```
 
-Now, you can provide a spacing multiplier value:
+Agora, você pode fornecer um valor multiplicador de espaçamento:
 
 ```jsx
 <Box p={1}>4px</Box>
@@ -87,15 +87,15 @@ Now, you can provide a spacing multiplier value:
 <Box p={-1}>-4px</Box>
 ```
 
-and a primary color:
+e uma cor primária:
 
 ```jsx
-<Box color="primary">blue</Box>
+<Box color="primary">azul</Box>
 ```
 
-### All-inclusive
+### Tudo incluído
 
-To make the Box component more useful, we have been building a collection of style functions, here is the full list:
+Para tornar o componente Box mais útil, estamos construindo uma coleção de funções de estilo, aqui está a lista completa:
 
 - [borders](/system/borders/#api)
 - [display](/system/display/#api)
@@ -107,17 +107,17 @@ To make the Box component more useful, we have been building a collection of sty
 - [spacing](/system/sizing/#api)
 - [typography](/system/typography/#api)
 
-If you are already using `@material-ui/core`, you can use our [prepackaged Box](/components/box/) component (using JSS internally):
+Se você já estiver usando `@material-ui/core`, você pode usar nosso componente [pré-empacotado Box](/components/box/) (usando JSS internamente):
 
 ```jsx
 import Box from '@material-ui/core/Box';
 ```
 
-## Interoperability
+## Interoperabilidade
 
-`@material-ui/system` works with most CSS-in-JS libraries, including JSS, styled-components, and emotion.
+`@material-ui/system` funciona com a maioria das bibliotecas CSS-in-JS, incluindo JSS, styled-components, e emotion.
 
-If you are already using `@material-ui/core`, we encourage you to start with the **JSS** solution to minimize bundle size.
+Se você já estiver usando `@material-ui/core`, nós recomendamos você a começar com a solução **JSS**, para diminuir o tamanho do pacote.
 
 ### JSS
 
@@ -131,9 +131,9 @@ If you are already using `@material-ui/core`, we encourage you to start with the
 
 {{"demo": "pages/system/basics/Emotion.js", "defaultCodeOpen": true}}
 
-## Responsive
+## Responsivo
 
-**All** the properties are responsive, we support 3 different APIs. It uses this default, but customizable, breakpoints theme structure:
+**Todas** as propriedades são responsivas, oferecemos suporte para 3 diferentes APIs. Ela usa essa estrutura de tema com pontos de quebra padrão, mas é customizável:
 
 ```js
 const values = {
@@ -188,9 +188,9 @@ const theme = {
  */
 ```
 
-### Collocation
+### Colocação
 
-If you want to group the breakpoint values, you can use our `breakpoints()` helper.
+Se você quiser agrupar valores de ponto de quebra, você pode usar nosso utilitário `breakpoints()`.
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -224,25 +224,25 @@ const Box = styled.div`
  */
 ```
 
-## Custom style props
+## Propriedades de estilo customizadas
 
 ### `style(options) => style function`
 
-Use this helper to create your own style function.
+Use esta função utilitária para criar sua própria função de estilo.
 
-We don't support all the CSS properties. It's possible that you want to support new ones. It's also possible that you want to change the theme path prefix.
+Nós não suportamos todas as propriedades CSS. É possível que você queira suportar novas. Também é possível que você queira alterar o prefixo do caminho do tema.
 
 #### Argumentos
 
 1. `options` (*Object*): 
-  - `options.prop` (*String*): The property the style function will be triggered on.
-  - `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
-  - `options.themeKey` (*String* [optional]): The theme path prefix.
-  - `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
+  - `options.prop` (*String*): A propriedade na qual a função de estilo será ativada.
+  - `options.cssProperty` (*String|Boolean* [opcional]): Padrão `options.prop`. A propriedade CSS usada. Você pode desativar esta opção fornecendo `false`. Quando desativado, o valor da propriedade será manipulado como um objeto de estilo próprio. Pode ser usado para [variações de renderização](#variants).
+  - `options.themeKey` (*String* [opcional]): O prefixo do caminho do tema.
+  - `options.transform` (*Function* [opcional]): Aplique uma transformação antes de gerar um valor de CSS.
 
 #### Retornos
 
-`style function`: The style function created.
+`style function`: A função de estilo criada.
 
 #### Exemplos
 
@@ -259,11 +259,11 @@ const borderColor = style({
 
 ### `compose(...style functions) => style function`
 
-Merge multiple style functions into one.
+Mesclar várias funções de estilo em uma.
 
 #### Retornos
 
-`style function`: The style function created.
+`style function`: A função de estilo criada.
 
 #### Exemplos
 
@@ -284,38 +284,38 @@ export const bgcolor = style({
 const palette = compose(textColor, bgcolor);
 ```
 
-## Variants
+## Variantes
 
-The `style()` helper can also be used to maps properties to style objects in a theme. In this example, the `variant` property supports all the keys present in `theme.typography`.
+A função auxiliar `style()` também pode ser usada para mapear propriedades para objetos de estilo no tema. Neste exemplo, a propriedade `variant` suporta todas as chaves presentes em `theme.typography`.
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
 ## Propriedade CSS
 
-If you want to support custom CSS values, you can use our `css()` helper. It will process the `css` property.
+Se você quiser suportar valores customizados de CSS, você pode usar nosso utilitário `css()`. Ele irá processar a propriedade `css`.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
 ## Como funciona
 
-styled-system has done a great job at [explaining how it works](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). It can help building a mental model for this "style function" concept.
+O styled-system fez um ótimo trabalho [explicando como ele funciona](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). Ele pode ajudar a construir um modelo mental para esse conceito de "função de estilo".
 
-## Real-world use case
+## Caso de uso do mundo real
 
-In practice, a Box component can save you a lot of time. In this example, we demonstrate how to reproduce a Banner component.
+Na prática, um componente do Box pode poupar muito tempo. Neste exemplo, demonstramos como reproduzir um componente Banner.
 
 {{"demo": "pages/system/basics/RealWorld.js"}}
 
-## Prior art
+## Arte prévia
 
-`@material-ui/system` synthesizes ideas & APIs from several different sources:
+`@material-ui/system` sintetiza ideias & APIs de várias fontes diferentes:
 
-- [Tachyons](https://tachyons.io/) was one of the first (2014) CSS libraries to promote the [Atomic CSS pattern](https://css-tricks.com/lets-define-exactly-atomic-css/) (or Functional CSS).
-- Tachyons was later on (2017) followed by [Tailwind CSS](https://tailwindcss.com/). They have made Atomic CSS more popular.
-- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. We have used the way they group their "Helper classes" as inspiration.
-- In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions. It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
-- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
+- [Tachyons](https://tachyons.io/) foi uma das primeiras bibliotecas CSS (2014) a promover o [padrão de CSS atômico](https://css-tricks.com/lets-define-exactly-atomic-css/) (ou CSS funcional).
+- Tachyons foi mais tarde (2017) seguido por [Tailwind CSS](https://tailwindcss.com/). Eles tornaram o CSS atômico mais popular.
+- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) introduziu lentamente nomes de classes atômicas em v2, v3 e v4. Usamos a maneira como eles agrupam suas "classes de ajuda" como inspiração.
+- No mundo React, [Styled System](https://github.com/jxnblk/styled-system) foi um dos primeiros (2017) a promover as funções de estilo. Ele pode ser usado como um componente genérico do Box, substituindo os auxiliares CSS atômicos, bem como os auxiliares para escrever novos componentes.
+- Grandes empresas como Pinterest, GitHub e Segment.io estão usando a mesma abordagem em diferentes gostos: 
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://evergreen.segment.com/components/layout-primitives)
   - [Primer Box](https://primer.style/components/docs/Box)
-- The actual implementation and the object responsive API was inspired by the [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system).
+- A implementação atual e a API responsiva de objetos foram inspiradas no [sistema Smooth-UI](https://smooth-ui.smooth-code.com/docs-basics-system).

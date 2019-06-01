@@ -68,7 +68,7 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 解决方案很简单： **避免内联函数并将静态组件传递给 `component` 属性**。 让我们改变我们的` ListItemLink `以下内容：
 
 ```jsx
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 class ListItemLink extends React.Component {
   renderLink = React.forwardRef((itemProps, ref) => (

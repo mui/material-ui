@@ -1,6 +1,6 @@
 # Posições
 
-<p class="description">Use these shorthand utilities for quickly configuring the position of an element.</p>
+<p class="description">Use esses utilitários para configurar rapidamente a posição de um elemento.</p>
 
 ## z-index
 

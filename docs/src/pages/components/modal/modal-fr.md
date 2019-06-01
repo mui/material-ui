@@ -7,7 +7,7 @@ components: Modal
 
 <p class="description">Le composant modal fournit une base solide pour la création de boîtes de dialogue, de popovers, de lightboxes ou autres.</p>
 
-Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. The `Modal` offers a few helpful features over using just a [`components`](/utils/portal/) component and some styles:
+The component renders its `children` node in front of a backdrop component. The `Modal` offers important features:
 
 - 
 - 

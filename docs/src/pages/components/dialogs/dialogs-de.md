@@ -40,6 +40,8 @@ Falls ein Titel erforderlich ist:
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
+## Übergänge
+
 Sie können den Übergang auch austauschen. Das nächste Beispiel verwendet `Slide (Gleiten)`.
 
 {{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}

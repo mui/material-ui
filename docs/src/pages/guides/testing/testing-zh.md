@@ -43,7 +43,7 @@
 1. `options` (*Object* [optional]) 
     - `options.shallow`(*Function* [optional])：用浅层函数来增强，它**默认使用 enzyme **。
     - `options.untilSelector`(*String* [optional])：递归地浅层渲染子项，直到找到提供的选择器。 进一步探索 higher-order components（高阶组件）是很有帮助的。
-    - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
+    - `options.dive` (*Boolean* [optional])：浅层函数能够渲染当前包装器的一个非 DOM 的子节点，并返回一个含有结果的包装器。
     - 其他的键则被转发到 `enzyme.shallow()` 的 options 参数当中。
 
 #### 返回结果

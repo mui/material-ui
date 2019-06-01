@@ -33,10 +33,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Name of the component ⚛️
+    // Nome do componente ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      // As propriedades para aplicar
+      disableRipple: true, // Sem efeito cascata, em toda aplicação 
     },
   },
 });
@@ -307,7 +307,7 @@ Existem muitas maneiras de apoiar o Material-UI:
 
 Se você usa o Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um **Patrocinador**, ou em um projeto paralelo ou passatempo e gostaria de se tornar um apoiador, você pode fazê-lo através do [OpenCollective](https://opencollective.com/material-ui).
 
-Todos os fundos conquistados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial da Material-UI.
+Todos os fundos conquistados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
 
 ## Por que o componente X requer um nó DOM em um prop em vez de um objeto ref?
 

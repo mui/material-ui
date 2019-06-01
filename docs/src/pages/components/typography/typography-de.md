@@ -17,7 +17,7 @@ Die *Roboto* Schriftart wird **nicht** automatisch durch Material UI geladen wer
 Unten ist ein Beispiel für ein Link-Markup zum Laden der Roboto-Schriftart von einem CDN dargestellt:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
 ```
 
 ## Mit npm installieren

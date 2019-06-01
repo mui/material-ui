@@ -51,7 +51,7 @@ Esta função realmente não "faz nada" em tempo de execução, é apenas uma fu
 ```jsx
 import { makeStyles, createStyles } from '@material-ui/styles';
 
-const styles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     backgroundColor: theme.color.red,
   },
@@ -199,7 +199,7 @@ Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 #### PropsPor padrão, os estilos são injetados por último 
 
 <head>
-  element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.</td> </tr> 
+  elemento da página. Como resultado, eles ganham mais especificidade do que qualquer outra folha de estilo. Se você quiser sobrescrever estilos do Material-UI, defina esta propriedade.</td> </tr> 
   
   <tr>
     <td align="left">
@@ -328,7 +328,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </h2>
   
   <p>
-    This hook returns the <code>theme</code> object so it can be used inside a function component.
+    Este hook retorna o objeto <code>theme</code>, para que possa ser usado dentro de um componente retornado por função.
   </p>
   
   <h4>
@@ -336,7 +336,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </h4>
   
   <p>
-    <code>theme</code>: The theme object previously injected in the context.
+    <code>theme</code>: O objeto de tema previamente injetado no contexto.
   </p>
   
   <h4>
@@ -358,7 +358,7 @@ export default function MyComponent() {
   </h2>
   
   <p>
-    Link a style sheet with a component using the <strong>higher-order component</strong> pattern. Ele não modifica o componente passados para ele; em vez disso, ele retorna um novo componente, com a propriedade <code>classes</code>. Este objeto <code>classes</code> contém o nome das classes inseridas no DOM.
+    Vincula uma folha de estilos com um componente usando o padrão de <strong>higher-order component</strong>. Ele não modifica o componente passados para ele; em vez disso, ele retorna um novo componente, com a propriedade <code>classes</code>. Este objeto <code>classes</code> contém o nome das classes inseridas no DOM.
   </p>
   
   <p>
@@ -370,13 +370,13 @@ export default function MyComponent() {
       Adiciona uma propriedade <code>classes</code>, assim você pode substituir, a partir do exterior, os nomes de classe previamente injectados.
     </li>
     <li>
-      It forwards refs to the inner component.
+      Ele encaminha refs para o componente interno.
     </li>
     <li>
-      The <code>innerRef</code> prop is deprecated. Use <code>ref</code> instead.
+      A propriedade <code>innerRef</code> está descontinuada. Em vez disso, use <code>ref</code>.
     </li>
     <li>
-      It does <strong>not</strong> copy over statics. Por exemplo, pode ser usado para definir um método estático (next.js) <code>getInitialProps()</code>.
+      Ele <strong>não</strong> faz copia sobre estáticos. Por exemplo, pode ser usado para definir um método estático (next.js) <code>getInitialProps()</code>.
     </li>
   </ul>
   
@@ -441,7 +441,7 @@ export default withStyles(styles)(MyComponent);
 </code></pre>
   
   <p>
-    Also, you can use as <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators">decorators</a> like so:
+    Além disso, você pode usar como <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators">decoradores</a> dessa forma:
   </p>
   
   <pre><code class="jsx">import React from 'react';
@@ -468,7 +468,7 @@ export default MyComponent
   </h2>
   
   <p>
-    Provide the <code>theme</code> object as a property of the input component so it can be used in the render method.
+    Fornece o objeto <code>theme</code> como uma propriedade do componente de entrada, para que ele possa ser usado no método de renderização.
   </p>
   
   <h4>
@@ -486,7 +486,7 @@ export default MyComponent
   </h4>
   
   <p>
-    <code>Component</code>: O novo componente criado. Does forward refs to the inner component.
+    <code>Component</code>: O novo componente criado. Encaminha refs para o componente interno.
   </p>
   
   <h4>

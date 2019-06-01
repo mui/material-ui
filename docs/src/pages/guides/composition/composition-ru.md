@@ -67,7 +67,7 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 Решение простое: ** избегайте встроенных функций и вместо этого, передавайте статический компонент в свойство `component`**. Давайте изменим наш `ListItemLink` следующим образом:
 
 ```jsx
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 class ListItemLink extends React.Component {
   renderLink = React.forwardRef((itemProps, ref) => (

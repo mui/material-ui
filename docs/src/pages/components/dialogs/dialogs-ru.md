@@ -40,6 +40,8 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
+## Transições
+
 Вы также можете поменять анимацию, в следующем примере используется `Slide`.
 
 {{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}

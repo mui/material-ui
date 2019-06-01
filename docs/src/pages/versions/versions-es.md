@@ -32,7 +32,7 @@ Trabajamos hacia un calendario regular de lanzamientos, para que puedas planific
 
 En general, espera el siguiente ciclo de lanzamiento:
 
-- Un lanzamiento ** mayor ** cada 6 meses.
+- A **major** release every 6-12 months.
 - 1-3 lanzamiento ** menor ** por cada lanzamiento mayor.
 - Un Lanzamiento de **parche** cada semana (en cualquier momento para la corrección de errores urgente).
 
@@ -40,10 +40,11 @@ En general, espera el siguiente ciclo de lanzamiento:
 
 > Descargo de responsabilidad: Las fechas se ofrecen como orientación general y podriamos ajustarlas cuando sea necesario para garantizar la entrega de un código de alta calidad.
 
-| Fecha         | Versión                    |
-|:------------- |:-------------------------- |
-| May 2019      | `@material-ui/core` v4.0.0 |
-| December 2019 | `@material-ui/core` v5.0.0 |
+| Fecha      | Versión                    |
+|:---------- |:-------------------------- |
+| May 2018 ✅ | `@material-ui/core` v1.0.0 |
+| May 2019 ✅ | `@material-ui/core` v4.0.0 |
+| ? ⏳        | `@material-ui/core` v5.0.0 |
 
 Puedes seguir [ nuestros hitos ](https://github.com/mui-org/material-ui/milestones) para una visión general más detallada.
 

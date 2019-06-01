@@ -83,7 +83,7 @@ The inner theme will **override** the outer theme. You can extend the outer them
 
 ## Overriding styles - `classes` prop
 
-The `makeStyles` (hook generator) and `withStyles` (HOC) APIs allow the creation of multiple style rules per style sheet. Each style rule has its own class name. The class names are provided to the component with the `classes` variable. The is particularly useful when styling nested elements in a component.
+The `makeStyles` (hook generator) and `withStyles` (HOC) APIs allow the creation of multiple style rules per style sheet. Each style rule has its own class name. The class names are provided to the component with the `classes` variable. This is particularly useful when styling nested elements in a component.
 
 ```jsx
 // A style sheet

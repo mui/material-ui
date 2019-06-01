@@ -40,6 +40,8 @@ If a title is required:
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
+## Transições
+
 You can also swap out the transition, the next example uses `Slide`.
 
 {{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}

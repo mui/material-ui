@@ -32,7 +32,7 @@ Wir arbeiten an einem regelmäßigen Zeitplan für Releases, damit Sie Ihre Upda
 
 Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 
-- Ein Veröffentlichung einer **Hauptversion ** alle 6 Monate.
+- A **major** release every 6-12 months.
 - 1-3 Veröffentlichungen von ** Nebenversionen** für jede Hauptversion.
 - Ein ** Patch ** Veröffentlichung jede Woche (jederzeit für dringende Bugfixes).
 
@@ -40,10 +40,11 @@ Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 
 > Haftungsausschluss: Die Daten werden als allgemeine Hinweise angeboten und können von uns bei Bedarf angepasst werden, um die Lieferung eines qualitativ hochwertigen Codes sicherzustellen.
 
-| Datum         | Version                    |
-|:------------- |:-------------------------- |
-| May 2019      | `@material-ui/core` v4.0.0 |
-| December 2019 | `@material-ui/core` v5.0.0 |
+| Datum      | Version                    |
+|:---------- |:-------------------------- |
+| May 2018 ✅ | `@material-ui/core` v1.0.0 |
+| May 2019 ✅ | `@material-ui/core` v4.0.0 |
+| ? ⏳        | `@material-ui/core` v5.0.0 |
 
 Sie können [unsere Meilensteine](https://github.com/mui-org/material-ui/milestones) für eine detailliertere Übersicht verfolgen.
 

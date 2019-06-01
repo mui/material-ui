@@ -32,7 +32,7 @@ Material-UI 严格遵循 [Semantic Versioning 2.0.0](https://semver.org/) 语义
 
 通常情况下, 你可以根据以下的发布周期来预测:
 
-- 每六个月发布一个**主版本**。
+- A **major** release every 6-12 months.
 - 每个主版本会附带1-3个向下兼容的**次版本**。
 - 每周会进行**日常**更新 (如果有紧急的 bugfix，则任何时候都可发布)。
 
@@ -40,10 +40,11 @@ Material-UI 严格遵循 [Semantic Versioning 2.0.0](https://semver.org/) 语义
 
 > 免责声明: 日期作为一般指导提供, 我们可以在必要时调整, 以确保交付高质量的代码。
 
-| 日期            | 版本                         |
-|:------------- |:-------------------------- |
-| May 2019      | `@material-ui/core` v4.0.0 |
-| December 2019 | `@material-ui/core` v5.0.0 |
+| 日期         | 版本                         |
+|:---------- |:-------------------------- |
+| May 2018 ✅ | `@material-ui/core` v1.0.0 |
+| May 2019 ✅ | `@material-ui/core` v4.0.0 |
+| ? ⏳        | `@material-ui/core` v5.0.0 |
 
 你可以在 [ 我们的里程碑 ](https://github.com/mui-org/material-ui/milestones) 中查看更详细的概述。
 

@@ -59,8 +59,8 @@ function RTL(props) {
 
 ## 选择退出 rtl 转换
 
-If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
+若您想避免一个特殊的特定规则受到 `rtl` 转换的影响，您可以在最开始时加上`flip: false`。
 
-*Use the direction toggle button on the top right corner to see the effect.*
+*请使用右上角的方向切换按钮来查看效果。*
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

@@ -9,7 +9,7 @@
 #### 参数
 
 1. `选项` (*Object* [optional]): 
-    - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
+    - `options.disableGlobal` (*Boolean* [optional]): 默认值为`false`。 Disable the generation of deterministic class names.
     - `options.productionPrefix` (*String* [optional])：初始值为`'jss'`. 用于在生产中对类名称进行前缀的字符串。
     - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 It can be used to avoid class name collisions when using multiple generators in the same document.
 
@@ -51,7 +51,7 @@ export default function App() {
 ```jsx
 import { makeStyles, createStyles } from '@material-ui/styles';
 
-const styles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     backgroundColor: theme.color.red,
   },
