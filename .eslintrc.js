@@ -64,7 +64,7 @@ module.exports = {
     // It's buggy
     'react/forbid-prop-types': 'off',
     'react/jsx-curly-brace-presence': 'off',
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }], // airbnb is using .jsx
+    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
     'react/jsx-handler-names': [
       'error',
       {

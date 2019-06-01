@@ -158,17 +158,77 @@ const theme = {
 
 ### Array
 
-{{"demo": "pages/system/basics/ArrayApi.js", "defaultCodeOpen": true}}
+```jsx
+<Box p={[2, 3, 4]} />
+
+/**
+ * Outputs:
+ *
+ * padding: 16px;
+ * @media (min-width: 600px) {
+ *   padding: 24px;
+ * }
+ * @media (min-width: 960px) {
+ *   padding: 32px;
+ * }
+ */
+```
 
 ### Object
 
-{{"demo": "pages/system/basics/ObjectApi.js", "defaultCodeOpen": true}}
+```jsx
+<Box p={{ xs: 2, sm: 3, md: 4 }} />
+
+/**
+ * Outputs:
+ *
+ * padding: 16px;
+ * @media (min-width: 600px) {
+ *   padding: 24px;
+ * }
+ * @media (min-width: 960px) {
+ *   padding: 32px;
+ * }
+ */
+```
 
 ### Collocation
 
 If you want to group the breakpoint values, you can use our `breakpoints()` helper.
 
-{{"demo": "pages/system/basics/CollocationApi.js", "defaultCodeOpen": true}}
+```jsx
+import { compose, spacing, palette, breakpoints } from '@material-ui/system';
+import styled from 'styled-components';
+
+const Box = styled.div`
+  ${breakpoints(
+    compose(
+      spacing,
+      palette,
+    ),
+  )}
+`;
+
+<Box
+  p={2}
+  sm={{ p: 3 } }
+  md={{ p: 4 } }
+/>
+
+/**
+ * Outputs:
+ *
+ * padding: 16px;
+ * @media (min-width: 600px) {
+ *   padding: 24px;
+ * }
+ * @media (min-width: 960px) {
+ *   padding: 32px;
+ * }
+ */
+```
+
+{{"demo": "pages/system/basics/CollocationApi.js"}}
 
 ## Custom style props
 
