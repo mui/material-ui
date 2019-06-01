@@ -120,6 +120,7 @@ const styles = theme => ({
       margin: '24px 0',
       padding: '12px 18px',
       backgroundColor: theme.palette.background.level1,
+      direction: 'ltr',
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.

@@ -20,6 +20,7 @@ export const styles = theme => ({
     position: 'absolute',
     top: 0,
     left: 0,
+    flip: false, // disable jss-rtl plugin
   },
   /* Styles applied to the Popper component if `interactive={true}`. */
   popperInteractive: {

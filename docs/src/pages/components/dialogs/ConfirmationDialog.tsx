@@ -36,17 +36,19 @@ export interface ConfirmationDialogRawProps {
   keepMounted: boolean;
   value: string;
   open: boolean;
-  onClose: (value: string) => void;
+  onClose: (value?: string) => void;
 }
 
 function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
-  const { onClose, value: valueProp, ...other } = props;
+  const { onClose, value: valueProp, open, ...other } = props;
   const [value, setValue] = React.useState(valueProp);
   const radioGroupRef = React.useRef<HTMLElement>(null);
 
-  if (valueProp !== value) {
-    setValue(valueProp);
-  }
+  React.useEffect(() => {
+    if (!open) {
+      setValue(valueProp);
+    }
+  }, [valueProp, open]);
 
   function handleEntering() {
     if (radioGroupRef.current != null) {
@@ -55,7 +57,7 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
   }
 
   function handleCancel() {
-    onClose(value);
+    onClose();
   }
 
   function handleOk() {
@@ -73,6 +75,7 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
       maxWidth="xs"
       onEntering={handleEntering}
       aria-labelledby="confirmation-dialog-title"
+      open={open}
       {...other}
     >
       <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
@@ -102,8 +105,9 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
 }
 
 ConfirmationDialogRaw.propTypes = {
-  onClose: PropTypes.func,
-  value: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -127,9 +131,12 @@ function ConfirmationDialog() {
     setOpen(true);
   }
 
-  function handleClose(newValue: string) {
+  function handleClose(newValue?: string) {
     setOpen(false);
-    setValue(newValue);
+
+    if (newValue) {
+      setValue(newValue);
+    }
   }
 
   return (
