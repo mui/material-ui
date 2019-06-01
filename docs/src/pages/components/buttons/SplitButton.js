@@ -12,7 +12,7 @@ import MenuList from '@material-ui/core/MenuList';
 
 const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
 
-function SplitButton() {
+export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -85,5 +85,3 @@ function SplitButton() {
     </Grid>
   );
 }
-
-export default SplitButton;

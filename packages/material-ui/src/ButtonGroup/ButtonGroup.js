@@ -91,14 +91,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
   const contained = variant === 'contained';
   const primary = color === 'primary';
   const secondary = color === 'secondary';
-  const className = clsx(
-    classes.root,
-    {
-      [classes.contained]: contained,
-      [classes.fullWidth]: fullWidth,
-    },
-    classNameProp,
-  );
   const buttonClassName = clsx(classes.grouped, {
     [classes.groupedOutlined]: outlined,
     [classes.groupedOutlinedPrimary]: outlined && primary,
@@ -106,11 +98,22 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     [classes.groupedContained]: contained,
     [classes.groupedContainedPrimary]: contained && primary,
     [classes.groupedContainedSecondary]: contained && secondary,
-    [classes.fullWidth]: fullWidth,
   });
 
   return (
-    <Component role="group" className={className} ref={ref} {...other}>
+    <Component
+      role="group"
+      className={clsx(
+        classes.root,
+        {
+          [classes.contained]: contained,
+          [classes.fullWidth]: fullWidth,
+        },
+        classNameProp,
+      )}
+      ref={ref}
+      {...other}
+    >
       {React.Children.map(children, child => {
         if (!React.isValidElement(child)) {
           return null;
