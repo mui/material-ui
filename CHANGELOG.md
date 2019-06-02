@@ -1,5 +1,82 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.2
+###### *June 2, 2019*
+
+A big thanks to the 29 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🐛 A second stability release after the release of v4.0.0.
+- 💄 Add a new size="small" prop to the Chip component (#15751) @mbrookes
+- 🐛 Fix three IE 11 issues (#15921, #15952, #15967) @eps1lon, @rupert-ong, @ryancogswell
+- And many more 📚 improvements.
+
+### `@material-ui/core@v4.0.2`
+
+- [Box] Fix prop-types and TypeScript warnings (#15884) @eps1lon
+- [Breadcrumbs] Add theme props and override TypeScript definitions (#15950) @chrislambe
+- [Chip] Add size prop for small option (#15751) @mbrookes
+- [Container] Document the classes API (#15919) @divyanshutomar
+- [Dialog] Improve scroll=body CSS logic (#15896) @DominikSerafin
+- [Link] Better support of component="button" (#15863) @ianschmitz
+- [Popover] Convert to function component (#15623) @joshwooding
+- [Portal] Synchronously call onRendered (#15943) @Arlevoy
+- [Radio] Fix dot misalignment in IE11 (#15952) @rupert-ong
+- [theme] Return default value for spacing when no args provided (#15891) @mbrookes
+- [TrapFocus] Fix error restoring focus when activeElement is null (#15967) @ryancogswell
+- [core] Export useMediaQuery & useScrollTrigger in index.js (#15958) @adeelibr
+- [core] Migrate extend ButtonBaseProps typings (#15869) @joshwooding
+
+### `@material-ui/styles@v4.0.2`
+
+- [styles] Remove warning when component with no displayName is provided (#15913) @eps1lon
+
+### `@material-ui/system@v4.0.2`
+
+- [system] Fix typing for flexDirection prop (#15987) @rhmoller
+
+### `@material-ui/lab@v4.0.0-alpha.15`
+
+- [lab] Consume correct core utils in lab (#15995) @TrySound
+
+### `@material-ui/codemod@v4.0.2`
+
+- [codemod] Improve theme codemod to handle destructured theme.spacing (#15916) @sviande
+
+### Docs
+
+- [docs] Add React + Material-UI + Firebase as an example project (#15915) @Phoqe
+- [docs] Batch of fixes (#15996) @oliviertassinari
+- [docs] Fix a typo within pricing page layout example (#15978) @sdornan
+- [docs] Fix broken JSS links (#15972) @timkindberg
+- [docs] Fix most lighthouse a11y issues in input demos (#15780) @eps1lon
+- [docs] Fix typo (#15975) @rick-software
+- [docs] Fix wrong variable name (styles => useStyles) (#15908) @hiromoon
+- [docs] Icon TypeScript demos (#15965) @goldins
+- [docs] Improve dark mode (#15944) @eps1lon
+- [docs] Improve interactive performance (#15874) @eps1lon
+- [docs] Improve lighthouse a11y score in demos (#15901) @eps1lon
+- [docs] Mention Virtuoso as a possible virtualization integration (#15934) @petyosi
+- [docs] Migrate Grid demos to hooks (#15970) @merceyz
+- [docs] Migrate Hidden demos to hooks (#15989) @merceyz
+- [docs] SignIn -> SignUp typo (#15966) @Hatko
+- [docs] Update FUNDING.yml with Tidelift string (#15981) @jeffstern
+- [docs] Update the translations (#15991) @mbrookes
+- [docs] v4 Migration doc slight clean up (#15886) @mlenser
+- [example] Fix ssr example to work on Windows (#15949) @petervaldesii
+- [example] Fix theme palette value (#15977) @vaidehi27
+
+### Core
+
+- [core] Add dependency react>=16.3.0 requested by @emotion/core and react-js (#15982) @marco-silva0000
+- [core] Fix IE 11 crashes related to Object.assign (#15921) @eps1lon
+- [core] Minor fixes (#15875) @joshwooding
+- [core] Remove export of internal test-utils (#15895) @eps1lon
+- [core] Update babel-plugin-optimize-clsx (#15894) @merceyz
+- [core] Upgrade rollup and related plugins (#15939) @merceyz
+- [ci] Move static tests into separate job (#15890) @eps1lon
+
 ## 4.0.1
 ###### *May 27, 2019*
 
