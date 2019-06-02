@@ -26,22 +26,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+function Polygon() {
+  const classes = useStyles();
+
+  return (
+    <Paper elevation={4} className={classes.paper}>
+      <svg className={classes.svg}>
+        <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+      </svg>
+    </Paper>
+  );
+}
+
 function SimpleGrow() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
   function handleChange() {
     setChecked(prev => !prev);
-  }
-
-  function Polygon() {
-    return (
-      <Paper elevation={4} className={classes.paper}>
-        <svg className={classes.svg}>
-          <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
-        </svg>
-      </Paper>
-    );
   }
 
   return (
