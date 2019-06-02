@@ -47,6 +47,7 @@ module.exports = {
     'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
 
     'material-ui/docgen-ignore-before-comment': 'error',
+    'material-ui/restricted-path-imports': 'error',
 
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',
