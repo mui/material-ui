@@ -24,6 +24,7 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 
 function SimpleBreadcrumbs() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Paper elevation={0} className={classes.paper}>

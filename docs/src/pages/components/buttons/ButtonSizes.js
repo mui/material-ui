@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 function ButtonSizes() {
   const classes = useStyles();
+
   return (
     <div>
       <div>

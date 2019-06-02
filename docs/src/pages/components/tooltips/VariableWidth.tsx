@@ -25,6 +25,7 @@ Nullam eget est sed sem iaculis gravida eget vitae justo.
 
 export default function VariableWidth() {
   const classes = useStyles();
+
   return (
     <div>
       <Tooltip title={longText}>

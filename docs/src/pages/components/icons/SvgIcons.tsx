@@ -33,6 +33,7 @@ function HomeIcon(props: SvgIconProps) {
 
 function SvgIcons() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <HomeIcon className={classes.icon} />

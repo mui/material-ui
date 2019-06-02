@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function SimpleTooltips() {
   const classes = useStyles();
+
   return (
     <div>
       <Tooltip title="Delete">

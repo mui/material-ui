@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function DenseAppBar() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
