@@ -5,7 +5,10 @@ module.exports = context => {
     ImportDeclaration(node) {
       const { source } = node;
       const folders = source.value.split('/');
-      const shouldRestrictImportPath = folders[0] === '@material-ui';
+      const shouldRestrictImportPath =
+        folders[0] === '@material-ui' &&
+        // test-utils are fine. it doesn't matter whether we use cjs or esm since they're not deployed to the web
+        !source.value.startsWith('@material-ui/core/test-utils');
       if (!shouldRestrictImportPath) {
         return;
       }
