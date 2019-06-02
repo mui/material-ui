@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-function ImageGridList() {
+export default function ImageGridList() {
   const classes = useStyles();
 
   return (
@@ -53,5 +53,3 @@ function ImageGridList() {
     </div>
   );
 }
-
-export default ImageGridList;

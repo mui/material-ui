@@ -39,7 +39,7 @@ const StyledSlider = withStyles({
   jumped: {},
 })(Slider);
 
-function CustomizedSlider() {
+export default function CustomizedSlider() {
   const classes = useStyles();
   const [value, setValue] = React.useState(50);
 
@@ -53,5 +53,3 @@ function CustomizedSlider() {
     </Paper>
   );
 }
-
-export default CustomizedSlider;

@@ -26,7 +26,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function IconAvatars() {
+export default function IconAvatars() {
   const classes = useStyles();
 
   return (
@@ -43,5 +43,3 @@ function IconAvatars() {
     </Grid>
   );
 }
-
-export default IconAvatars;

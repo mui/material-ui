@@ -29,12 +29,10 @@ class App extends React.Component<withSnackbarProps> {
 
 const MyApp = withSnackbar(App);
 
-function IntegrationNotistack() {
+export default function IntegrationNotistack() {
   return (
     <SnackbarProvider maxSnack={3}>
       <MyApp />
     </SnackbarProvider>
   );
 }
-
-export default IntegrationNotistack;

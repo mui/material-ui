@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-function ControlledTooltips() {
+export default function ControlledTooltips() {
   const [open, setOpen] = React.useState(false);
 
   function handleTooltipClose() {
@@ -19,5 +19,3 @@ function ControlledTooltips() {
     </Tooltip>
   );
 }
-
-export default ControlledTooltips;

@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-function LabelBottomNavigation() {
+export default function LabelBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState('recents');
 
@@ -30,5 +30,3 @@ function LabelBottomNavigation() {
     </BottomNavigation>
   );
 }
-
-export default LabelBottomNavigation;

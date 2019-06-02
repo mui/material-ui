@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-function IconTabs() {
+export default function IconTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -38,5 +38,3 @@ function IconTabs() {
     </Paper>
   );
 }
-
-export default IconTabs;

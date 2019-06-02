@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ListDividers() {
+export default function ListDividers() {
   const classes = useStyles();
 
   return (
@@ -35,5 +35,3 @@ function ListDividers() {
     </List>
   );
 }
-
-export default ListDividers;

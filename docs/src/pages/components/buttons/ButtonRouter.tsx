@@ -14,7 +14,7 @@ const CollisionLink = React.forwardRef<HTMLAnchorElement, Omit<LinkProps, 'inner
   (props, ref) => <Link innerRef={ref as any} to="/getting-started/installation/" {...props} />,
 );
 
-function ButtonRouter() {
+export default function ButtonRouter() {
   return (
     <Router>
       <Button color="primary" component={AdapterLink} to="/">
@@ -24,5 +24,3 @@ function ButtonRouter() {
     </Router>
   );
 }
-
-export default ButtonRouter;

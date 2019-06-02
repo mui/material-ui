@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-function ImageAvatars() {
+export default function ImageAvatars() {
   const classes = useStyles();
 
   return (
@@ -24,5 +24,3 @@ function ImageAvatars() {
     </Grid>
   );
 }
-
-export default ImageAvatars;

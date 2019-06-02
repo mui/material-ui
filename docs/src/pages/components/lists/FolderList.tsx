@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function FolderList() {
+export default function FolderList() {
   const classes = useStyles();
 
   return (
@@ -51,5 +51,3 @@ function FolderList() {
     </List>
   );
 }
-
-export default FolderList;

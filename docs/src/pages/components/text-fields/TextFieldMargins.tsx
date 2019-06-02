@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function TextFieldMargins() {
+export default function TextFieldMargins() {
   const classes = useStyles();
 
   return (
@@ -47,5 +47,3 @@ function TextFieldMargins() {
     </div>
   );
 }
-
-export default TextFieldMargins;

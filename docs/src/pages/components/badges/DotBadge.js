@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function DotBadge() {
+export default function DotBadge() {
   const classes = useStyles();
 
   return (
@@ -29,5 +29,3 @@ function DotBadge() {
     </div>
   );
 }
-
-export default DotBadge;

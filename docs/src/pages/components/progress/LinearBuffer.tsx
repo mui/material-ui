@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   },
 });
 
-function LinearBuffer() {
+export default function LinearBuffer() {
   const classes = useStyles();
   const [completed, setCompleted] = React.useState(0);
   const [buffer, setBuffer] = React.useState(10);
@@ -47,5 +47,3 @@ function LinearBuffer() {
     </div>
   );
 }
-
-export default LinearBuffer;

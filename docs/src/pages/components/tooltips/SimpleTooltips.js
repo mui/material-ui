@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleTooltips() {
+export default function SimpleTooltips() {
   const classes = useStyles();
   return (
     <div>
@@ -39,5 +39,3 @@ function SimpleTooltips() {
     </div>
   );
 }
-
-export default SimpleTooltips;

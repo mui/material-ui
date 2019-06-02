@@ -23,7 +23,7 @@ Praesent non nunc mollis, fermentum neque at, semper arcu.
 Nullam eget est sed sem iaculis gravida eget vitae justo.
 `;
 
-function VariableWidth() {
+export default function VariableWidth() {
   const classes = useStyles();
   return (
     <div>
@@ -39,5 +39,3 @@ function VariableWidth() {
     </div>
   );
 }
-
-export default VariableWidth;

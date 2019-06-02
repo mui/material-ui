@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SearchAppBar() {
+export default function SearchAppBar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -99,5 +99,3 @@ function SearchAppBar() {
     </div>
   );
 }
-
-export default SearchAppBar;

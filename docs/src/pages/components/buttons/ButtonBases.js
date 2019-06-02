@@ -94,7 +94,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ButtonBases() {
+export default function ButtonBases() {
   const classes = useStyles();
 
   return (
@@ -132,5 +132,3 @@ function ButtonBases() {
     </div>
   );
 }
-
-export default ButtonBases;

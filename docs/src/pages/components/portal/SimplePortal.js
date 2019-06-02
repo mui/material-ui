@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimplePortal() {
+export default function SimplePortal() {
   const [show, setShow] = React.useState(false);
   const container = React.useRef(null);
   const classes = useStyles();
@@ -37,5 +37,3 @@ function SimplePortal() {
     </div>
   );
 }
-
-export default SimplePortal;

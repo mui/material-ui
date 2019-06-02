@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
-function RealWorld() {
+export default function RealWorld() {
   return (
     <Box clone pt={2} pr={1} pb={1} pl={2}>
       <Paper elevation={0}>
@@ -32,5 +32,3 @@ function RealWorld() {
     </Box>
   );
 }
-
-export default RealWorld;
