@@ -19,7 +19,7 @@ export type PopperPlacementType =
 
 export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   transition?: boolean;
-  anchorEl?: null | Element | ReferenceObject | (() => Element);
+  anchorEl?: null | Element | ReferenceObject | (() => Element | ReferenceObject);
   children:
     | React.ReactNode
     | ((props: {
