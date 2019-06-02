@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: 3,
@@ -16,10 +15,10 @@ const styles = {
   label: {
     textTransform: 'capitalize',
   },
-};
+});
 
-function ClassesNesting(props) {
-  const { classes } = props;
+function ClassesNesting() {
+  const classes = useStyles();
 
   return (
     <Button
@@ -33,8 +32,4 @@ function ClassesNesting(props) {
   );
 }
 
-ClassesNesting.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ClassesNesting);
+export default ClassesNesting;
