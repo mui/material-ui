@@ -12,14 +12,14 @@ function TreeViewDemo() {
       defaultNodeIcon={<FolderIcon />}
       expandIcon={<ChevronRightIcon />}
     >
-      <TreeNode title="Test" id="test">
-        <TreeNode title="Test-Inner" id="testi">
-          <TreeNode title="Test-Inner-Inner" id="testii" />
+      <TreeNode label="Test" id="test">
+        <TreeNode label="Test-Inner" id="testi">
+          <TreeNode label="Test-Inner-Inner" id="testii" />
         </TreeNode>
-        <TreeNode title="Test-Inner" id="testi1" />
+        <TreeNode label="Test-Inner" id="testi1" />
       </TreeNode>
-      <TreeNode title="Test1" id="test1">
-        <TreeNode title="Test1-Inner" id="test1i" />
+      <TreeNode label="Test1" id="test1">
+        <TreeNode label="Test1-Inner" id="test1i" />
       </TreeNode>
     </TreeView>
   );

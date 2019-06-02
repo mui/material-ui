@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
     padding: 0,
     margin: 0,
     listStyle: 'none',
-  }
+  },
 });
 
 function TreeView(props) {
@@ -59,7 +59,9 @@ function TreeView(props) {
         toggle,
       }}
     >
-      <ul role="tree" className={classes.root} {...other}>{children}</ul>
+      <ul role="tree" className={classes.root} {...other}>
+        {children}
+      </ul>
     </TreeViewContext.Provider>
   );
 }

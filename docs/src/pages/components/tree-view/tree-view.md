@@ -7,4 +7,4 @@ components: TreeView, TreeNode
 
 <p class="description">Tree View description.</p>
 
-{{"demo": "pages/lab/tree-view/TreeView.js"}}
+{{"demo": "pages/components/tree-view/TreeView.js"}}

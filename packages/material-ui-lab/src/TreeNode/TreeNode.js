@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import { makeStyles } from '@material-ui/styles';
 import useTreeState from '../TreeView/useTreeState';
@@ -16,7 +15,7 @@ const useStyles = makeStyles({
   nestedList: {
     margin: 0,
     padding: 0,
-    marginLeft: 32,
+    marginLeft: 26,
   },
   content: {
     width: '100%',
@@ -25,14 +24,15 @@ const useStyles = makeStyles({
   },
   iconRoot: {
     marginRight: 2,
-    width: 30,
+    width: 24,
+    minWidth: 24,
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 });
 
 const TreeNode = React.forwardRef(function TreeNode(props, ref) {
-  const { children, collapseIcon, expandIcon, icon, id, title, ...other } = props;
+  const { children, collapseIcon, expandIcon, icon, id, label, ...other } = props;
   const classes = useStyles(props);
   const { isExpanded, toggle, icons } = useTreeState();
 
@@ -50,18 +50,18 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   let stateIcon = null;
 
   if (icons.expandIcon && children && !expanded) {
-    stateIcon = <IconButton size="small">{icons.expandIcon}</IconButton>;
+    stateIcon = icons.expandIcon;
   }
   if (icons.collapseIcon && children && expanded) {
-    stateIcon = <IconButton size="small">{icons.collapseIcon}</IconButton>;
+    stateIcon = icons.collapseIcon;
   }
 
   if (expandIcon && children && !expanded) {
-    stateIcon = <IconButton size="small">{expandIcon}</IconButton>;
+    stateIcon = expandIcon;
   }
 
   if (collapseIcon && children && expanded) {
-    stateIcon = <IconButton size="small">{collapseIcon}</IconButton>;
+    stateIcon = collapseIcon;
   }
 
   const stateIconsProvided = icons && (icons.collapseIcon || icons.expandIcon);
@@ -85,7 +85,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       <div className={classes.content}>
         {stateIconsProvided ? <div className={classes.iconRoot}>{stateIcon}</div> : null}
         {startAdornment}
-        <Typography className={classes.title}>{title}</Typography>
+        <Typography className={classes.title}>{label}</Typography>
       </div>
       {children && (
         <Collapse className={classes.nestedList} in={expanded} component="ul">
@@ -99,15 +99,10 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
 TreeNode.propTypes = {
   children: PropTypes.node,
   collapseIcon: PropTypes.node,
-  depth: PropTypes.number,
   expandIcon: PropTypes.node,
   icon: PropTypes.node,
   id: PropTypes.string.isRequired,
-  title: PropTypes.node,
-};
-
-TreeNode.defaultProps = {
-  depth: 0,
+  label: PropTypes.node,
 };
 
 export default TreeNode;
