@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
-import EventListener from 'react-event-listener';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog, { DialogProps } from '@material-ui/core/Dialog';
@@ -13,7 +12,6 @@ export interface ModalDialogProps extends DialogProps {
   onDismiss: () => void;
   onClear: () => void;
   onSetToday: () => void;
-  onKeyDownInner: (e: KeyboardEvent) => void;
   okLabel?: React.ReactNode;
   cancelLabel?: React.ReactNode;
   clearLabel?: React.ReactNode;
@@ -27,7 +25,6 @@ export interface ModalDialogProps extends DialogProps {
 export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
   children,
   classes,
-  onKeyDownInner,
   onAccept,
   onDismiss,
   onClear,
@@ -52,7 +49,6 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
     }}
     {...other}
   >
-    <EventListener target="window" onKeyDown={onKeyDownInner} />
     <DialogContent children={children} className={classes.dialog} />
 
     <DialogActions

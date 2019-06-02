@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
-import { act } from 'react-dom/test-utils';
 import { mount, utilsToUse } from '../test-utils';
 import { DateTimePicker, DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
 
@@ -55,28 +54,6 @@ describe('e2e - DateTimePicker', () => {
         .text()
     ).toBe('2018');
     // expect(component.find('ToolbarButton').at(1).text()).toBe('Jan 3');
-  });
-
-  it('Should handle accept on enter', () => {
-    component.find('input').simulate('click');
-    const onKeyDown = component
-      .find('EventListener')
-      .at(0)
-      .props().onKeyDown;
-
-    if (!onKeyDown) {
-      throw new Error('Expected onKeyDown to be non-null');
-    }
-
-    act(() => {
-      onKeyDown({
-        key: 'Enter',
-        preventDefault: jest.fn(),
-      } as any);
-    });
-
-    expect(onCloseMock).toHaveBeenCalled();
-    expect(onChangeMock).toHaveBeenCalled();
   });
 });
 

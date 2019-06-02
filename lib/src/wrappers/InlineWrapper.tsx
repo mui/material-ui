@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
-import EventListener from 'react-event-listener';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextFieldProps } from '@material-ui/core/TextField';
 import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
+import { useKeyDown } from '../_shared/hooks/useKeyDown';
 
 export const useStyles = makeStyles(
   {
@@ -42,26 +42,13 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
 }) => {
   const ref = React.useRef();
   const classes = useStyles();
-  const handleKeyDown = React.useCallback(
-    (event: KeyboardEvent) => {
-      switch (event.key) {
-        case 'Enter':
-          onAccept();
-          break;
-        default:
-          return; // if key is not handled, stop execution
-      }
 
-      // if event was handled prevent other side effects
-      event.preventDefault();
-    },
-    [onAccept]
-  );
+  useKeyDown(open, {
+    Enter: onAccept,
+  });
 
   return (
     <React.Fragment>
-      {open && <EventListener target="window" onKeyDown={handleKeyDown} />}
-
       <InputComponent inputRef={ref} {...other} {...DateInputProps} />
 
       <Popover

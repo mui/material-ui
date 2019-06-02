@@ -1406,13 +1406,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-event-listener@^0.4.9":
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/@types/react-event-listener/-/react-event-listener-0.4.9.tgz#7cd62145e78e80d1d427b061b29655d77248967a"
-  integrity sha512-IGC/0CSoqOBEj4D2RRkMlNMp84eAmzyDcLoeqqye8AtdPbmcfcdbHYeqAP+hK+MWw4o6+zuhysoLYUetmY3SBg==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-jss@^8.6.2":
   version "8.6.3"
   resolved "https://registry.yarnpkg.com/@types/react-jss/-/react-jss-8.6.3.tgz#cd2a7ec23599713f2caf5b24f734f1f59c60ef6b"
