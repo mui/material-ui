@@ -26,7 +26,7 @@ const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
   ...other
 }) => {
   return (
-    <Button className={clsx(classes.toolbarBtn, className)} {...other}>
+    <Button variant="text" className={clsx(classes.toolbarBtn, className)} {...other}>
       <ToolbarText
         className={typographyClassName}
         variant={variant}
