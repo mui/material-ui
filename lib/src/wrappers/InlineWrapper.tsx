@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
 import { makeStyles } from '@material-ui/core/styles';
+import { useKeyDown } from '../_shared/hooks/useKeyDown';
 import { TextFieldProps } from '@material-ui/core/TextField';
 import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
-import { useKeyDown } from '../_shared/hooks/useKeyDown';
 
 export const useStyles = makeStyles(
   {
@@ -49,7 +49,7 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
 
   return (
     <React.Fragment>
-      <InputComponent inputRef={ref} {...other} {...DateInputProps} />
+      <InputComponent {...other} {...DateInputProps} inputRef={ref} />
 
       <Popover
         open={open}
