@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from '@material-ui/core/Link';
 
-function ButtonLink() {
+export default function ButtonLink() {
   return (
     <Link
       component="button"
@@ -16,5 +16,3 @@ function ButtonLink() {
     </Link>
   );
 }
-
-export default ButtonLink;
