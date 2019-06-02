@@ -5,6 +5,7 @@ import { SimplifiedPropsOf } from '../OverridableComponent';
 declare const Fab: ExtendButtonBase<{
   props: {
     color?: PropTypes.Color;
+    component?: string;
     disableFocusRipple?: boolean;
     href?: string;
     size?: 'small' | 'medium' | 'large';
