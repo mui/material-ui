@@ -1,9 +1,9 @@
 import React from 'react';
-import Divider from '@material-ui/core/Divider/Divider';
-import List from '@material-ui/core/List/List';
-import ListItem from '@material-ui/core/ListItem/ListItem';
-import ListItemText from '@material-ui/core/ListItemText/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader/ListSubheader';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import atoms from '../atoms';
 
 const { Typography, Icon } = atoms;

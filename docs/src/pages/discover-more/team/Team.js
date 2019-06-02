@@ -6,8 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Github from '@material-ui/docs/svgIcons/GitHub';
-import Twitter from '@material-ui/docs/svgIcons/Twitter';
+import { Github, Twitter } from '@material-ui/docs';
 
 const activeCore = [
   {

@@ -9,7 +9,7 @@ import MenuItem from 'packages/material-ui/src/MenuItem';
 import { setRef } from '../../src/utils/reactHelpers';
 import { stub } from 'sinon';
 import PropTypes from 'prop-types';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 describe('<Menu> integration', () => {
   let mount;

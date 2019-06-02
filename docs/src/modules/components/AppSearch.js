@@ -4,10 +4,9 @@ import url from 'url';
 import { connect } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { fade, useTheme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 
