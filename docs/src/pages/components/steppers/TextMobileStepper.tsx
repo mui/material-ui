@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { makeStyles, Theme, useTheme, createStyles } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -35,26 +35,28 @@ const tutorialSteps = [
   },
 ];
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    maxWidth: 400,
-    flexGrow: 1,
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
-  },
-  img: {
-    height: 255,
-    maxWidth: 400,
-    overflow: 'hidden',
-    display: 'block',
-    width: '100%',
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      maxWidth: 400,
+      flexGrow: 1,
+    },
+    header: {
+      display: 'flex',
+      alignItems: 'center',
+      height: 50,
+      paddingLeft: theme.spacing(4),
+      backgroundColor: theme.palette.background.default,
+    },
+    img: {
+      height: 255,
+      maxWidth: 400,
+      overflow: 'hidden',
+      display: 'block',
+      width: '100%',
+    },
+  }),
+);
 
 function TextMobileStepper() {
   const classes = useStyles();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -7,36 +7,38 @@ import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    width: '90%',
-  },
-  button: {
-    marginRight: theme.spacing(1),
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  connectorActive: {
-    '& $connectorLine': {
-      borderColor: theme.palette.secondary.main,
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '90%',
     },
-  },
-  connectorCompleted: {
-    '& $connectorLine': {
-      borderColor: theme.palette.primary.main,
+    button: {
+      marginRight: theme.spacing(1),
     },
-  },
-  connectorDisabled: {
-    '& $connectorLine': {
-      borderColor: theme.palette.grey[100],
+    instructions: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
     },
-  },
-  connectorLine: {
-    transition: theme.transitions.create('border-color'),
-  },
-}));
+    connectorActive: {
+      '& $connectorLine': {
+        borderColor: theme.palette.secondary.main,
+      },
+    },
+    connectorCompleted: {
+      '& $connectorLine': {
+        borderColor: theme.palette.primary.main,
+      },
+    },
+    connectorDisabled: {
+      '& $connectorLine': {
+        borderColor: theme.palette.grey[100],
+      },
+    },
+    connectorLine: {
+      transition: theme.transitions.create('border-color'),
+    },
+  }),
+);
 
 function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];

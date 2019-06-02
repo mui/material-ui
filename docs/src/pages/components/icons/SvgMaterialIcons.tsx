@@ -14,17 +14,19 @@ import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import FourKIcon from '@material-ui/icons/FourK';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    color: theme.palette.text.primary,
-  },
-  icon: {
-    margin: theme.spacing(1),
-    fontSize: 32,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      color: theme.palette.text.primary,
+    },
+    icon: {
+      margin: theme.spacing(1),
+      fontSize: 32,
+    },
+  }),
+);
 
 function SvgMaterialIcons() {
   const classes = useStyles();

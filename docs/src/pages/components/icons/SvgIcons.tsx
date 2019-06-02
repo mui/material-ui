@@ -1,27 +1,29 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  icon: {
-    margin: theme.spacing(2),
-  },
-  iconHover: {
-    margin: theme.spacing(2),
-    '&:hover': {
-      color: red[800],
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-end',
     },
-  },
-}));
+    icon: {
+      margin: theme.spacing(2),
+    },
+    iconHover: {
+      margin: theme.spacing(2),
+      '&:hover': {
+        color: red[800],
+      },
+    },
+  }),
+);
 
-function HomeIcon(props) {
+function HomeIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -43,7 +45,7 @@ function SvgIcons() {
         className={classes.icon}
         color="primary"
         fontSize="large"
-        component={svgProps => {
+        component={(svgProps: SvgIconProps) => {
           return (
             <svg {...svgProps}>
               <defs>
@@ -52,9 +54,12 @@ function SvgIcons() {
                   <stop offset="70%" stopColor={red[400]} />
                 </linearGradient>
               </defs>
-              {React.cloneElement(svgProps.children[0], {
-                fill: 'url(#gradient1)',
-              })}
+              {React.cloneElement(
+                (svgProps.children as React.ReactNodeArray)[0] as React.ReactElement,
+                {
+                  fill: 'url(#gradient1)',
+                },
+              )}
             </svg>
           );
         }}

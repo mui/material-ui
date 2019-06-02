@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Card from '@material-ui/core/Card';
@@ -11,23 +11,25 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    margin: 'auto',
-  },
-  cardHeader: {
-    padding: theme.spacing(1, 2),
-  },
-  list: {
-    width: 200,
-    height: 230,
-    backgroundColor: theme.palette.background.paper,
-    overflow: 'auto',
-  },
-  button: {
-    margin: theme.spacing(0.5, 0),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      margin: 'auto',
+    },
+    cardHeader: {
+      padding: theme.spacing(1, 2),
+    },
+    list: {
+      width: 200,
+      height: 230,
+      backgroundColor: theme.palette.background.paper,
+      overflow: 'auto',
+    },
+    button: {
+      margin: theme.spacing(0.5, 0),
+    },
+  }),
+);
 
 function not(a: number[], b: number[]) {
   return a.filter(value => b.indexOf(value) === -1);
