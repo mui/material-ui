@@ -29,12 +29,11 @@ describe('<HiddenJs />', () => {
       const props = { [prop]: upDownOnly === 'only' ? breakpoint : true };
 
       it(descriptions[upDownOnly], () => {
-        let wrapper = shallow(
+        const wrapper = shallow(
           <HiddenJs width={width} {...props}>
             <div>foo</div>
           </HiddenJs>,
         );
-        wrapper = wrapper.find('HiddenJs').shallow();
         assert.strictEqual(wrapper.type(), null, 'should render null');
       });
     });
@@ -51,12 +50,11 @@ describe('<HiddenJs />', () => {
       const props = { [prop]: upDownOnly === 'only' ? breakpoint : true };
 
       it(descriptions[upDownOnly], () => {
-        let wrapper = shallow(
+        const wrapper = shallow(
           <HiddenJs width={width} {...props}>
             <div>foo</div>
           </HiddenJs>,
         );
-        wrapper = wrapper.find('HiddenJs').shallow();
         assert.isNotNull(wrapper.type(), 'should render');
         assert.strictEqual(wrapper.name(), 'div');
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
