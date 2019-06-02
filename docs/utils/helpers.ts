@@ -23,13 +23,7 @@ export function cloneCrossUtils(date: Date | Moment | DateTime | Dayjs) {
 }
 
 export function copy(text: string) {
-  return window.navigator.permissions.query({ name: 'clipboard-write' }).then(result => {
-    if (result.state == 'granted' || result.state == 'prompt') {
-      return navigator.clipboard.writeText(text);
-    }
-
-    return Promise.reject();
-  });
+  return navigator.clipboard.writeText(text);
 }
 
 export function loadScript(src: string, position: Element) {
