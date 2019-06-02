@@ -75,23 +75,13 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   const backdropRef = React.useRef();
   const paperRef = React.useRef();
 
-  const handlers = React.useRef({
-    touchMove: () => {},
-    touchEnd: () => {},
-  });
+  const touchDetected = React.useRef(false);
   const openRef = React.useRef(open);
 
   // Use a ref so the open value used is always up to date inside useCallback.
   React.useEffect(() => {
     openRef.current = open;
   }, [open]);
-
-  const removeBodyTouchListeners = React.useCallback(() => {
-    const { touchMove, touchEnd } = handlers.current;
-    document.body.removeEventListener('touchmove', touchMove);
-    document.body.removeEventListener('touchend', touchEnd);
-    document.body.removeEventListener('touchcancel', touchEnd);
-  }, []);
 
   const setPosition = React.useCallback(
     (translate, options = {}) => {
@@ -144,8 +134,11 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
 
   const handleBodyTouchEnd = React.useCallback(
     event => {
+      if (!touchDetected.current) {
+        return;
+      }
       nodeThatClaimedTheSwipe = null;
-      removeBodyTouchListeners();
+      touchDetected.current = false;
       setMaybeSwiping(false);
 
       // The swipe wasn't started.
@@ -194,22 +187,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
         });
       }
     },
-    [
-      anchor,
-      hysteresis,
-      minFlingVelocity,
-      onClose,
-      onOpen,
-      removeBodyTouchListeners,
-      setPosition,
-      theme,
-    ],
+    [anchor, hysteresis, minFlingVelocity, onClose, onOpen, setPosition, theme],
   );
 
   const handleBodyTouchMove = React.useCallback(
     event => {
       // the ref may be null when a parent component updates while swiping
-      if (!paperRef.current) return;
+      if (!paperRef.current || !touchDetected.current) {
+        return;
+      }
 
       const anchorRtl = getAnchor(theme, anchor);
       const horizontalSwipe = isHorizontal(anchor);
@@ -344,46 +330,35 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       swipeInstance.current.lastTime = null;
       swipeInstance.current.lastTranslate = null;
 
-      document.body.addEventListener('touchmove', handleBodyTouchMove, { passive: false });
-      document.body.addEventListener('touchend', handleBodyTouchEnd);
-      // https://plus.google.com/+PaulIrish/posts/KTwfn1Y2238
-      document.body.addEventListener('touchcancel', handleBodyTouchEnd);
-      handlers.current = {
-        touchEnd: handleBodyTouchEnd,
-        touchMove: handleBodyTouchMove,
-      };
+      touchDetected.current = true;
     },
-    [
-      setPosition,
-      handleBodyTouchEnd,
-      handleBodyTouchMove,
-      anchor,
-      disableDiscovery,
-      disableSwipeToOpen,
-      swipeAreaWidth,
-      theme,
-    ],
+    [setPosition, anchor, disableDiscovery, disableSwipeToOpen, swipeAreaWidth, theme],
   );
 
   React.useEffect(() => {
     if (variant === 'temporary') {
       document.body.addEventListener('touchstart', handleBodyTouchStart);
+      document.body.addEventListener('touchmove', handleBodyTouchMove, { passive: false });
+      document.body.addEventListener('touchend', handleBodyTouchEnd);
+      // https://plus.google.com/+PaulIrish/posts/KTwfn1Y2238
+      document.body.addEventListener('touchcancel', handleBodyTouchEnd);
     }
     return () => {
       document.body.removeEventListener('touchstart', handleBodyTouchStart);
+      document.body.removeEventListener('touchmove', handleBodyTouchMove);
+      document.body.removeEventListener('touchend', handleBodyTouchEnd);
+      document.body.removeEventListener('touchcancel', handleBodyTouchEnd);
     };
-  }, [variant, handleBodyTouchStart]);
+  }, [variant, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);
 
   React.useEffect(
     () => () => {
-      removeBodyTouchListeners();
-
       // We need to release the lock.
       if (nodeThatClaimedTheSwipe === swipeInstance.current) {
         nodeThatClaimedTheSwipe = null;
       }
     },
-    [removeBodyTouchListeners],
+    [],
   );
 
   React.useEffect(() => {
