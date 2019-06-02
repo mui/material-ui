@@ -1,39 +1,41 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import Grid, { GridItemsAlignment, GridJustification, GridDirection } from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 // We don't have a typescript version of MarkdownElement
 // tslint:disable-next-line: ban-ts-ignore
 // @ts-ignore
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  demo: {
-    height: 240,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    height: '100%',
-    color: theme.palette.text.secondary,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    demo: {
+      height: 240,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      height: '100%',
+      color: theme.palette.text.secondary,
+    },
+    control: {
+      padding: theme.spacing(2),
+    },
+  }),
+);
 
 function InteractiveGrid() {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState('row');
-  const [justify, setJustify] = React.useState('center');
-  const [alignItems, setAlignItems] = React.useState('center');
+  const [direction, setDirection] = React.useState<GridDirection>('row');
+  const [justify, setJustify] = React.useState<GridJustification>('center');
+  const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
 
   const code = `
 \`\`\`jsx
@@ -80,7 +82,7 @@ function InteractiveGrid() {
                   name="direction"
                   aria-label="Direction"
                   value={direction}
-                  onChange={(e, value) => setDirection(value)}
+                  onChange={(e, value) => setDirection(value as GridDirection)}
                 >
                   <FormControlLabel value="row" control={<Radio />} label="row" />
                   <FormControlLabel value="row-reverse" control={<Radio />} label="row-reverse" />
@@ -101,7 +103,7 @@ function InteractiveGrid() {
                   name="justify"
                   aria-label="Justify"
                   value={justify}
-                  onChange={(e, value) => setJustify(value)}
+                  onChange={(e, value) => setJustify(value as GridJustification)}
                 >
                   <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
                   <FormControlLabel value="center" control={<Radio />} label="center" />
@@ -124,7 +126,7 @@ function InteractiveGrid() {
                   name="alignItems"
                   aria-label="Align items"
                   value={alignItems}
-                  onChange={(e, value) => setAlignItems(value)}
+                  onChange={(e, value) => setAlignItems(value as GridItemsAlignment)}
                 >
                   <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
                   <FormControlLabel value="center" control={<Radio />} label="center" />
