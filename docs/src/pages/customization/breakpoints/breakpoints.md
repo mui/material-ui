@@ -35,9 +35,9 @@ for controlling the layout of your application through the [Grid](/components/gr
 CSS media queries is the idiomatic approach to make your UI responsive.
 We provide four styles helpers to do so:
 
-- [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
-- [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
+- [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
+- [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
 In the following demo, we change the background color (red, blue & green) based on the screen width.
@@ -90,7 +90,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 ## API
 
-### `theme.breakpoints.up(key) => media query`
+### `theme.breakpoints.only(key) => media query`
 
 #### Arguments
 
@@ -108,7 +108,7 @@ const styles = theme => ({
     backgroundColor: 'blue',
     // Match [md, ∞[
     //       [960px, ∞[
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
   },
@@ -141,7 +141,7 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.only(key) => media query`
+### `theme.breakpoints.up(key) => media query`
 
 #### Arguments
 
@@ -160,7 +160,7 @@ const styles = theme => ({
     // Match [md, md + 1[
     //       [md, lg[
     //       [960px, 1280px[
-    [theme.breakpoints.only('md')]: {
+    [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
   },
