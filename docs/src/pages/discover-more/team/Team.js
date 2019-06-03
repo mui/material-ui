@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import { Github, Twitter } from '@material-ui/docs';
+import { GitHub as GithubIcon, Twitter } from '@material-ui/docs';
 
 const activeCore = [
   {
@@ -164,7 +164,7 @@ function Group(props) {
                           href={`https://github.com/${member.github}`}
                           className={classes.icon}
                         >
-                          <Github fontSize="inherit" />
+                          <GithubIcon fontSize="inherit" />
                         </IconButton>
                       )}
                       {member.twitter && (
