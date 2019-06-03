@@ -11,12 +11,7 @@ module.exports = withTypescript({
   webpack: (config, options) => {
     // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
-      transpileModules: [
-        'notistack',
-        'material-ui-pickers',
-        '@material-ui/pickers',
-        'material-table',
-      ],
+      transpileModules: ['notistack', '@material-ui/pickers', 'material-table'],
     }).webpack(config, options);
 
     const plugins = config.plugins.concat([

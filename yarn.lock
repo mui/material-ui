@@ -1757,18 +1757,6 @@
     rifm "^0.7.0"
     tslib "^1.9.3"
 
-"@material-ui/pickers@^3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.0.0-beta.1.tgz#698fbeb318d1d30ab9aad0af006aa11a96d38b61"
-  integrity sha512-ugOrmObUwZUiZxtjZ/pZSmWQyVEiIYinlGMWjkI8P4KTqjF40x6HCqLoa2FuDpiTxjVvOdZ+fpsltqEhtBcaMQ==
-  dependencies:
-    "@types/styled-jsx" "^2.2.8"
-    clsx "^1.0.2"
-    react-event-listener "^0.6.6"
-    react-transition-group "^4.0.0"
-    rifm "^0.7.0"
-    tslib "^1.9.3"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
