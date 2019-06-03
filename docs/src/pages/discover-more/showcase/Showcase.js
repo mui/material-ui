@@ -10,7 +10,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
+import { GitHub as GithubIcon } from '@material-ui/docs';
 import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
 import appList from './appList';

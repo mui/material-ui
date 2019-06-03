@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
-import blue from '@material-ui/core/colors/blue';
+import { blue, red } from '@material-ui/core/colors';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 const useStyles = makeStyles(theme => ({

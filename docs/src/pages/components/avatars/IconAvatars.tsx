@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import pink from '@material-ui/core/colors/pink';
-import green from '@material-ui/core/colors/green';
+import { green, pink } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';

@@ -13,7 +13,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
-import Github from '@material-ui/docs/svgIcons/GitHub';
+import { GitHub as GithubIcon } from '@material-ui/docs';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
@@ -281,7 +281,7 @@ class Demo extends React.Component {
                     target="_blank"
                     rel="noopener nofollow"
                   >
-                    <Github />
+                    <GithubIcon />
                   </IconButton>
                 </Tooltip>
                 {demoOptions.hideEditButton ? null : (

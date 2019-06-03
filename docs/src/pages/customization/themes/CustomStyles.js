@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import { createMuiTheme, withStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import orange from '@material-ui/core/colors/orange';
+import { orange } from '@material-ui/core/colors';
 
 const styles = theme => ({
   root: {

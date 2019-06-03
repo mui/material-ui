@@ -1,7 +1,7 @@
 import React, { CSSProperties, HTMLAttributes } from 'react';
 import clsx from 'clsx';
 import Select from 'react-select';
-import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
+import { createStyles, emphasize, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import TextField, { BaseTextFieldProps } from '@material-ui/core/TextField';
@@ -9,7 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import CancelIcon from '@material-ui/icons/Cancel';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import PropTypes from 'prop-types';
 import { ValueContainerProps } from 'react-select/lib/components/containers';
 import { ControlProps } from 'react-select/lib/components/Control';
