@@ -96,4 +96,3 @@ export default function MenuAppBar() {
     </div>
   );
 }
-
