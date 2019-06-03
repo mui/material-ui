@@ -7,6 +7,7 @@ import { BottomNavigationProps } from '../BottomNavigation';
 import { BreadcrumbsProps } from '../Breadcrumbs';
 import { ButtonBaseProps } from '../ButtonBase';
 import { ButtonProps } from '../Button';
+import { ButtonGroupProps } from '../ButtonGroup';
 import { CardActionsProps } from '../CardActions';
 import { CardContentProps } from '../CardContent';
 import { CardHeaderProps } from '../CardHeader';
@@ -102,6 +103,7 @@ export interface ComponentsPropsList {
   MuiBreadcrumbs: BreadcrumbsProps;
   MuiButton: ButtonProps;
   MuiButtonBase: ButtonBaseProps;
+  MuiButtonGroup: ButtonGroupProps;
   MuiCard: CardProps;
   MuiCardActions: CardActionsProps;
   MuiCardContent: CardContentProps;
