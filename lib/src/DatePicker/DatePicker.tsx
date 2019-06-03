@@ -1,6 +1,5 @@
 import { useUtils } from '../_shared/hooks/useUtils';
 import { DatePickerToolbar } from './DatePickerToolbar';
-import { BasePickerProps } from '../typings/BasePicker';
 import { MaterialUiPickersDate } from '../typings/date';
 import { getFormatByViews } from '../_helpers/date-utils';
 import { OutterCalendarProps } from './components/Calendar';
@@ -47,7 +46,7 @@ export interface BaseDatePickerProps extends OutterCalendarProps {
   onYearChange?: (date: MaterialUiPickersDate) => void;
 }
 
-export interface DatePickerViewsProps extends BasePickerProps, BaseDatePickerProps {
+export interface DatePickerViewsProps extends BaseDatePickerProps {
   /** Array of views to show */
   views?: ('year' | 'date' | 'month')[];
   /** Open to DatePicker */

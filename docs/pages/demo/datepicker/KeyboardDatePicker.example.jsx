@@ -1,14 +1,13 @@
 import React, { Fragment, useState } from 'react';
-import { KeyboardDatePicker, DatePicker } from '@material-ui/pickers';
+import { KeyboardDatePicker } from '@material-ui/pickers';
 
 function KeyboardDatePickerExample(props) {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <Fragment>
-      <DatePicker
+      <KeyboardDatePicker
         clearable
-        label="Uncontrolled input"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         minDate={new Date()}
@@ -19,7 +18,6 @@ function KeyboardDatePickerExample(props) {
       />
 
       <KeyboardDatePicker
-        label="Masked input"
         placeholder="10/10/2018"
         value={selectedDate}
         onChange={date => handleDateChange(date)}

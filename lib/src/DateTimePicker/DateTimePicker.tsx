@@ -1,5 +1,4 @@
 import { useUtils } from '../_shared/hooks/useUtils';
-import { BasePickerProps } from '../typings/BasePicker';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { BaseTimePickerProps } from '../TimePicker/TimePicker';
 import { DateTimePickerToolbar } from './DateTimePickerToolbar';
@@ -12,7 +11,7 @@ export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes'
 
 export type BaseDateTimePickerProps = BaseTimePickerProps & BaseDatePickerProps;
 
-export interface DateTimePickerViewsProps extends BasePickerProps, BaseDateTimePickerProps {
+export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   /** Array of views to show */
   views?: ('year' | 'date' | 'month' | 'hours' | 'minutes')[];
   /** Open to DatePicker */
@@ -36,7 +35,7 @@ const defaultProps = {
   views: ['year', 'date', 'hours', 'minutes'] as DateTimePickerView[],
 };
 
-function useOptions(props: DateTimePickerViewsProps) {
+function useOptions(props: DateTimePickerProps | KeyboardDateTimePickerProps) {
   const utils = useUtils();
 
   return {

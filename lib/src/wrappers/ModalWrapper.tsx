@@ -3,8 +3,8 @@ import * as PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
 import { Omit } from '@material-ui/core';
 import { WrapperProps } from './Wrapper';
-import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 import { useKeyDown } from '../_shared/hooks/useKeyDown';
+import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 
 export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
   /**

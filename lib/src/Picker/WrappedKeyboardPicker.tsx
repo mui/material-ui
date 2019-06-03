@@ -14,7 +14,7 @@ export type WrappedKeyboardPickerProps = DateValidationProps &
   ExtendWrapper<KeyboardDateInputProps>;
 
 export interface MakePickerOptions<T> {
-  useOptions: (props: T) => StateHookOptions;
+  useOptions: (props: any) => StateHookOptions;
   ToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }
 

@@ -1,6 +1,5 @@
 import TimePickerToolbar from './TimePickerToolbar';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { BasePickerProps } from '../typings/BasePicker';
 import { timePickerDefaultProps } from '../constants/prop-types';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { WrappedPurePickerProps, makePurePicker } from '../Picker/WrappedPurePicker';
@@ -21,7 +20,7 @@ export interface BaseTimePickerProps {
   minutesStep?: number;
 }
 
-export interface TimePickerViewsProps extends BasePickerProps, BaseTimePickerProps {
+export interface TimePickerViewsProps extends BaseTimePickerProps {
   /** Array of views to show */
   views?: ('hours' | 'minutes' | 'seconds')[];
   /** Open to timepicker */
@@ -38,7 +37,7 @@ const defaultProps = {
   views: ['hours', 'minutes'] as TimePickerView[],
 };
 
-function useOptions(props: TimePickerViewsProps) {
+function useOptions(props: TimePickerProps | KeyboardTimePickerProps) {
   const utils = useUtils();
 
   return {
