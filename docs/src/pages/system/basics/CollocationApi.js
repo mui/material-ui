@@ -2,8 +2,10 @@ import React from 'react';
 import { typography, breakpoints } from '@material-ui/system';
 import styled from 'styled-components';
 
+// can't be inlined in the template string for proper type inference in TypeScript
+const styleFunction = breakpoints(typography);
 const Box = styled.div`
-  ${breakpoints(typography)}
+  ${styleFunction}
 `;
 
 /**
