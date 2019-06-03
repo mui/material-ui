@@ -228,6 +228,8 @@ const Box = styled.div`
  */
 ```
 
+{{"demo": "pages/system/basics/CollocationApi.js"}}
+
 ## Custom style props
 
 ### `style(options) => style function`
