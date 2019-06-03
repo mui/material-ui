@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-function AdvancedGridList() {
+export default function AdvancedGridList() {
   const classes = useStyles();
 
   return (
@@ -77,5 +77,3 @@ function AdvancedGridList() {
     </div>
   );
 }
-
-export default AdvancedGridList;

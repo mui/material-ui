@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function TimePickers() {
+export default function TimePickers() {
   const classes = useStyles();
 
   return (
@@ -35,5 +35,3 @@ function TimePickers() {
     </form>
   );
 }
-
-export default TimePickers;

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function Icons() {
+export default function Icons() {
   const classes = useStyles();
 
   return (
@@ -46,5 +46,3 @@ function Icons() {
     </div>
   );
 }
-
-export default Icons;

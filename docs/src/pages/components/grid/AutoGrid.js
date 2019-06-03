@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AutoGrid() {
+export default function AutoGrid() {
   const classes = useStyles();
 
   return (
@@ -44,5 +44,3 @@ function AutoGrid() {
     </div>
   );
 }
-
-export default AutoGrid;

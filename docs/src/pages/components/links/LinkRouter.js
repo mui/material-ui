@@ -12,7 +12,7 @@ const CollisionLink = React.forwardRef((props, ref) => (
   <RouterLink innerRef={ref} to="/getting-started/installation/" {...props} />
 ));
 
-function LinkRouter() {
+export default function LinkRouter() {
   return (
     <Router>
       <div>
@@ -29,5 +29,3 @@ function LinkRouter() {
     </Router>
   );
 }
-
-export default LinkRouter;

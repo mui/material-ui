@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function BadgeMax() {
+export default function BadgeMax() {
   const classes = useStyles();
 
   return (
@@ -27,5 +27,3 @@ function BadgeMax() {
     </React.Fragment>
   );
 }
-
-export default BadgeMax;

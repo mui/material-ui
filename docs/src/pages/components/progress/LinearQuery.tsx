@@ -10,7 +10,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function LinearQuery() {
+export default function LinearQuery() {
   const classes = useStyles();
 
   return (
@@ -21,5 +21,3 @@ function LinearQuery() {
     </div>
   );
 }
-
-export default LinearQuery;

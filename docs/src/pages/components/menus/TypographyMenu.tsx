@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-function TypographyMenu() {
+export default function TypographyMenu() {
   const classes = useStyles();
 
   return (
@@ -45,5 +45,3 @@ function TypographyMenu() {
     </Paper>
   );
 }
-
-export default TypographyMenu;

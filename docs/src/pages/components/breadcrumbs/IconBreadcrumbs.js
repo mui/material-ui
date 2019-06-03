@@ -29,6 +29,7 @@ function handleClick(event) {
 
 function IconBreadcrumbs() {
   const classes = useStyles();
+
   return (
     <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">

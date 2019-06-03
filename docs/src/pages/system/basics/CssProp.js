@@ -15,7 +15,7 @@ const Box = styled.div`
 
 const theme = createMuiTheme();
 
-function CssProp() {
+export default function CssProp() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
@@ -26,5 +26,3 @@ function CssProp() {
     </NoSsr>
   );
 }
-
-export default CssProp;

@@ -72,7 +72,7 @@ const theme = createMuiTheme({
   },
 });
 
-function CustomizedButtons() {
+export default function CustomizedButtons() {
   const classes = useStyles();
 
   return (
@@ -91,5 +91,3 @@ function CustomizedButtons() {
     </div>
   );
 }
-
-export default CustomizedButtons;

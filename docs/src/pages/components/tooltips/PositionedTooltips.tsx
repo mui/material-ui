@@ -14,6 +14,7 @@ const useStyles = makeStyles(
 
 function PositionedTooltips() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Grid container justify="center">

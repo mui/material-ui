@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 
 export default function NestedStylesHook() {
   const classes = useStyles();
+
   return (
     <Paper className={classes.root}>
       This is red since it is inside the paper.

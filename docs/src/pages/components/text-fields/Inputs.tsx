@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function Inputs() {
+export default function Inputs() {
   const classes = useStyles();
 
   return (
@@ -52,5 +52,3 @@ function Inputs() {
     </div>
   );
 }
-
-export default Inputs;

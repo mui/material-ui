@@ -99,6 +99,7 @@ const useStyles = makeStyles(theme => ({
 
 function BottomAppBar() {
   const classes = useStyles();
+
   return (
     <React.Fragment>
       <CssBaseline />

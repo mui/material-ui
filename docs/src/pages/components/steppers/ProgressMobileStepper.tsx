@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-function ProgressMobileStepper() {
+export default function ProgressMobileStepper() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -47,5 +47,3 @@ function ProgressMobileStepper() {
     />
   );
 }
-
-export default ProgressMobileStepper;

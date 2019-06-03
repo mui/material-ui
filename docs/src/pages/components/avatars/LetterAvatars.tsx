@@ -23,7 +23,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function LetterAvatars() {
+export default function LetterAvatars() {
   const classes = useStyles();
 
   return (
@@ -34,5 +34,3 @@ function LetterAvatars() {
     </Grid>
   );
 }
-
-export default LetterAvatars;

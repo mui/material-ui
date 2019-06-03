@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   },
 });
 
-function LinearDeterminate() {
+export default function LinearDeterminate() {
   const classes = useStyles();
   const [completed, setCompleted] = React.useState(0);
 
@@ -37,5 +37,3 @@ function LinearDeterminate() {
     </div>
   );
 }
-
-export default LinearDeterminate;

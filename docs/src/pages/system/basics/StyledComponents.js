@@ -8,7 +8,7 @@ const Box = styled.div`
   ${spacing}
 `;
 
-function StyledComponents() {
+export default function StyledComponents() {
   return (
     <NoSsr>
       <Box color="white" bgcolor="palevioletred" p={1}>
@@ -17,5 +17,3 @@ function StyledComponents() {
     </NoSsr>
   );
 }
-
-export default StyledComponents;

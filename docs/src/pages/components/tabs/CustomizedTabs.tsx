@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function CustomizedTabs() {
+export default function CustomizedTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -131,5 +131,3 @@ function CustomizedTabs() {
     </div>
   );
 }
-
-export default CustomizedTabs;

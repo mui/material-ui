@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function NestedGrid() {
+export default function NestedGrid() {
   const classes = useStyles();
 
   function FormRow() {
@@ -51,5 +51,3 @@ function NestedGrid() {
     </div>
   );
 }
-
-export default NestedGrid;

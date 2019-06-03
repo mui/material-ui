@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 function SvgMaterialIcons() {
   const classes = useStyles();
+
   return (
     <Grid container className={classes.root}>
       <Grid item xs={4}>
