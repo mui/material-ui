@@ -180,7 +180,7 @@ yarn add @material-ui/styles@next
   -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />
   +import Fab from '@material-ui/core/Fab';
-  +<Fab variant="extended />
+  +<Fab variant="extended" />
   ```
 
 - [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
