@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SimpleSlide() {
+export default function SimpleSlide() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
@@ -56,5 +56,3 @@ function SimpleSlide() {
     </div>
   );
 }
-
-export default SimpleSlide;

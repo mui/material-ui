@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
 // This resolves to nothing and doesn't affect browser history
 const dudUrl = 'javascript:;';
 
-function Links() {
+export default function Links() {
   const classes = useStyles();
 
   return (
@@ -32,5 +32,3 @@ function Links() {
     </Typography>
   );
 }
-
-export default Links;

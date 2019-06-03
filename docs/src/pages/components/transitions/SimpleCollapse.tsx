@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SimpleCollapse() {
+export default function SimpleCollapse() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
@@ -61,5 +61,3 @@ function SimpleCollapse() {
     </div>
   );
 }
-
-export default SimpleCollapse;

@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-function ClassesNesting() {
+export default function ClassesNesting() {
   const classes = useStyles();
 
   return (
@@ -31,5 +31,3 @@ function ClassesNesting() {
     </Button>
   );
 }
-
-export default ClassesNesting;

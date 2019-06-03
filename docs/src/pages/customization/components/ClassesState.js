@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   disabled: {},
 });
 
-function ClassesState() {
+export default function ClassesState() {
   const classes = useStyles();
 
   return (
@@ -38,5 +38,3 @@ function ClassesState() {
     </Button>
   );
 }
-
-export default ClassesState;

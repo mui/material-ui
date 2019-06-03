@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleFade() {
+export default function SimpleFade() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
@@ -52,5 +52,3 @@ function SimpleFade() {
     </div>
   );
 }
-
-export default SimpleFade;
