@@ -1,32 +1,34 @@
 import React from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
-import Zoom from '@material-ui/core/Zoom';
+import Collapse from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: 180,
-  },
-  container: {
-    display: 'flex',
-  },
-  paper: {
-    margin: theme.spacing(1),
-  },
-  svg: {
-    width: 100,
-    height: 100,
-  },
-  polygon: {
-    fill: theme.palette.common.white,
-    stroke: theme.palette.divider,
-    strokeWidth: 1,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      height: 180,
+    },
+    container: {
+      display: 'flex',
+    },
+    paper: {
+      margin: theme.spacing(1),
+    },
+    svg: {
+      width: 100,
+      height: 100,
+    },
+    polygon: {
+      fill: theme.palette.common.white,
+      stroke: theme.palette.divider,
+      strokeWidth: 1,
+    },
+  }),
+);
 
-function SimpleZoom() {
+export default function SimpleCollapse() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
@@ -41,23 +43,21 @@ function SimpleZoom() {
         label="Show"
       />
       <div className={classes.container}>
-        <Zoom in={checked}>
+        <Collapse in={checked}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
               <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
             </svg>
           </Paper>
-        </Zoom>
-        <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
+        </Collapse>
+        <Collapse in={checked} collapsedHeight="40px">
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
               <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
             </svg>
           </Paper>
-        </Zoom>
+        </Collapse>
       </div>
     </div>
   );
 }
-
-export default SimpleZoom;

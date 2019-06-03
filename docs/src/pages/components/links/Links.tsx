@@ -1,14 +1,16 @@
 /* eslint-disable no-script-url */
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
-  link: {
-    margin: theme.spacing(1),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    link: {
+      margin: theme.spacing(1),
+    },
+  }),
+);
 
 // This resolves to nothing and doesn't affect browser history
 const dudUrl = 'javascript:;';
