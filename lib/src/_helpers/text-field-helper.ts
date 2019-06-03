@@ -44,6 +44,22 @@ export interface DateValidationProps extends BaseValidationProps {
   maxDateMessage?: React.ReactNode;
 }
 
+const getComparisonMaxDate = (utils: IUtils<any>, strictCompareDates: boolean, date: Date) => {
+  if (strictCompareDates) {
+    return date;
+  }
+
+  return utils.endOfDay(date);
+};
+
+const getComparisonMinDate = (utils: IUtils<any>, strictCompareDates: boolean, date: Date) => {
+  if (strictCompareDates) {
+    return date;
+  }
+
+  return utils.startOfDay(date);
+};
+
 export const validate = (
   value: ParsableDate,
   utils: IUtils<any>,
@@ -55,6 +71,7 @@ export const validate = (
     maxDateMessage,
     minDateMessage,
     invalidDateMessage,
+    strictCompareDates,
   }: Omit<DatePickerProps, 'views' | 'openTo'> // DateTimePicker doesn't support
 ): React.ReactNode => {
   const parsedValue = utils.date(value);
@@ -69,15 +86,34 @@ export const validate = (
   }
 
   if (
-    (maxDate && utils.isAfter(parsedValue, utils.endOfDay(utils.date(maxDate)))) ||
-    (disableFuture && utils.isAfter(parsedValue, utils.endOfDay(utils.date())))
+    maxDate &&
+    utils.isAfter(
+      parsedValue,
+      getComparisonMaxDate(utils, !!strictCompareDates, utils.date(maxDate))
+    )
   ) {
     return maxDateMessage;
   }
 
   if (
-    (minDate && utils.isBefore(parsedValue, utils.startOfDay(utils.date(minDate)))) ||
-    (disablePast && utils.isBefore(parsedValue, utils.startOfDay(utils.date())))
+    disableFuture &&
+    utils.isAfter(parsedValue, getComparisonMaxDate(utils, !!strictCompareDates, utils.date()))
+  ) {
+    return maxDateMessage;
+  }
+
+  if (
+    minDate &&
+    utils.isBefore(
+      parsedValue,
+      getComparisonMinDate(utils, !!strictCompareDates, utils.date(minDate))
+    )
+  ) {
+    return minDateMessage;
+  }
+  if (
+    disablePast &&
+    utils.isBefore(parsedValue, getComparisonMinDate(utils, !!strictCompareDates, utils.date()))
   ) {
     return minDateMessage;
   }

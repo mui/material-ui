@@ -21,6 +21,13 @@ export interface BaseDatePickerProps extends OutterCalendarProps {
    * @default Date(2100-01-01)
    */
   maxDate?: ParsableDate;
+
+  /**
+   * Compare date isBefore or isAfter without utils endOfDay or startOfDay
+   * @default false
+   */
+  strictCompareDates?: boolean;
+
   /**
    * Disable past dates
    * @default false
