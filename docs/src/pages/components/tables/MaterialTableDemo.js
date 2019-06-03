@@ -1,5 +1,6 @@
 import React from 'react';
 import MaterialTable from 'material-table';
+import Promise from 'core-js-pure/features/promise'; // required for IE 11
 
 export default function MaterialTableDemo() {
   const [state, setState] = React.useState({
