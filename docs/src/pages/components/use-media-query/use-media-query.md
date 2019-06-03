@@ -19,17 +19,7 @@ Some of the key features:
 You should provide a media query to the first argument of the hook.
 The media query string can by any valid CSS media query, e.g. `'print'`.
 
-```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-function MyComponent() {
-  const matches = useMediaQuery('(min-width:600px)');
-
-  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
-}
-```
-
-{{"demo": "pages/components/use-media-query/SimpleMediaQuery.js"}}
+{{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
 ## Using Material-UI's breakpoint helpers
 
@@ -49,6 +39,12 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
 
+## Using JavaScript syntax
+
+[json2mq](https://github.com/akiran/json2mq) is used to generate media query string from a JavaScript object.
+
+{{"demo": "pages/components/use-media-query/JavaScriptMedia.js", "defaultCodeOpen": true}}
+
 ## Server-side rendering
 
 An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery).
@@ -59,19 +55,18 @@ We also encourage the usage of the `useMediaQueryTheme` version of the hook that
 ## Migrating from `withWidth()`
 
 The `withWidth()` higher-order component injects the screen width of the page.
-You can reproduce the same behavior as follow:
+You can reproduce the same behavior with a `useWidth` hook:
 
 ```jsx
-function MyComponent() {
+function useWidth() {
   const theme = useTheme();
-  const width =
-    [...theme.breakpoints.keys].reverse().reduce((output, key) => {
-      const matches = useMediaQuery(theme.breakpoints.only(key));
-
-      return !output && matches ? key : output;
-    }, null) || 'xs';
-
-  return <span>{width}</span>;
+  const keys = [...theme.breakpoints.keys].reverse();
+  const queries = useMediaQuery(keys.map(key => theme.breakpoints.only(key)));
+  return (
+    queries.reduce((output, matches, index) => {
+      return !output && matches ? keys[index] : output;
+    }, null) || 'xs'
+  );
 }
 ```
 

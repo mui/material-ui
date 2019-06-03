@@ -367,10 +367,6 @@ function generateInheritance(reactAPI) {
       suffix = ', from react-transition-group,';
       break;
 
-    case 'EventListener':
-      suffix = ', from react-event-listener,';
-      break;
-
     default:
       break;
   }
