@@ -68,7 +68,7 @@ It’s important to realize that the style of a typography is independent from t
 </Typography>
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/globals.md#default-props):
+- You can change the mapping [globally using the theme](/docs/src/pages/customization/globals/globals.md#default-props):
 
 ```js
 const theme = createMuiTheme({
