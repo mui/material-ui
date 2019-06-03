@@ -36,11 +36,11 @@ You need to update your `package.json` to use the latest version of Material-UI.
 Or run
 
 ```sh
-npm install @material-ui/core@master
+npm install @material-ui/core@next
 
 or
 
-yarn add @material-ui/core@master
+yarn add @material-ui/core@next
 ```
 
 ### Update React version
@@ -61,11 +61,11 @@ If you are previously using `@material-ui/styles` with v3 you need to update you
 Or run
 
 ```sh
-npm install @material-ui/styles@master
+npm install @material-ui/styles@next
 
 or
 
-yarn add @material-ui/styles@master
+yarn add @material-ui/styles@next
 ```
 
 ## Handling breaking changes
