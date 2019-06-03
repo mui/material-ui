@@ -59,7 +59,7 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
         <text className={classes.text} x="12" y="16" textAnchor="middle">
           {icon}
         </text>
-      </SvgIcon>
+      </Icon>
     );
   }
 
