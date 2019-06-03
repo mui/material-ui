@@ -38,7 +38,7 @@ const theme = createMuiTheme({
   },
 });
 
-function TypographyTheme() {
+export default function TypographyTheme() {
   const classes = useStyles();
 
   const children = (
@@ -56,5 +56,3 @@ function TypographyTheme() {
     </div>
   );
 }
-
-export default TypographyTheme;

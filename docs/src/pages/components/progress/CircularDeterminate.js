@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CircularDeterminate() {
+export default function CircularDeterminate() {
   const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
 
@@ -36,5 +36,3 @@ function CircularDeterminate() {
     </div>
   );
 }
-
-export default CircularDeterminate;

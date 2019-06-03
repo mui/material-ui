@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function InsetDividers() {
+export default function InsetDividers() {
   const classes = useStyles();
 
   return (
@@ -54,5 +54,3 @@ function InsetDividers() {
     </List>
   );
 }
-
-export default InsetDividers;

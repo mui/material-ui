@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function DatePickers() {
+export default function DatePickers() {
   const classes = useStyles();
 
   return (
@@ -34,5 +34,3 @@ function DatePickers() {
     </form>
   );
 }
-
-export default DatePickers;

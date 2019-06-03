@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function PaperSheet() {
+export default function PaperSheet() {
   const classes = useStyles();
 
   return (
@@ -25,5 +25,3 @@ function PaperSheet() {
     </div>
   );
 }
-
-export default PaperSheet;

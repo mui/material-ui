@@ -18,7 +18,7 @@ const Box = styled.div<
 
 const theme = createMuiTheme();
 
-function Demo() {
+export default function Demo() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
@@ -35,5 +35,3 @@ function Demo() {
     </NoSsr>
   );
 }
-
-export default Demo;

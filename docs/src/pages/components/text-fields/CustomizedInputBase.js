@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CustomizedInputBase() {
+export default function CustomizedInputBase() {
   const classes = useStyles();
 
   return (
@@ -52,5 +52,3 @@ function CustomizedInputBase() {
     </Paper>
   );
 }
-
-export default CustomizedInputBase;

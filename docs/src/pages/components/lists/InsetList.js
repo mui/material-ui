@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function InsetList() {
+export default function InsetList() {
   const classes = useStyles();
 
   return (
@@ -31,5 +31,3 @@ function InsetList() {
     </List>
   );
 }
-
-export default InsetList;

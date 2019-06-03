@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CenteredGrid() {
+export default function CenteredGrid() {
   const classes = useStyles();
 
   return (
@@ -45,5 +45,3 @@ function CenteredGrid() {
     </div>
   );
 }
-
-export default CenteredGrid;

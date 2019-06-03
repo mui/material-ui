@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function CircularIndeterminate() {
+export default function CircularIndeterminate() {
   const classes = useStyles();
 
   return (
@@ -20,5 +20,3 @@ function CircularIndeterminate() {
     </div>
   );
 }
-
-export default CircularIndeterminate;

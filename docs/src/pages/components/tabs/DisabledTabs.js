@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-function DisabledTabs() {
+export default function DisabledTabs() {
   const [value, setValue] = React.useState(2);
 
   function handleChange(event, newValue) {
@@ -20,5 +20,3 @@ function DisabledTabs() {
     </Paper>
   );
 }
-
-export default DisabledTabs;

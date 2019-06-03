@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
  *   },
  * ];
  */
-function TitlebarGridList() {
+export default function TitlebarGridList() {
   const classes = useStyles();
 
   return (
@@ -69,5 +69,3 @@ function TitlebarGridList() {
     </div>
   );
 }
-
-export default TitlebarGridList;

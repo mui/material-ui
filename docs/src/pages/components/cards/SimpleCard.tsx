@@ -25,7 +25,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function SimpleCard() {
+export default function SimpleCard() {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -57,5 +57,3 @@ function SimpleCard() {
     </Card>
   );
 }
-
-export default SimpleCard;

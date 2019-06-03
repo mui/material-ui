@@ -21,8 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ButtonAppBar() {
+export default function ButtonAppBar() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -39,5 +40,3 @@ function ButtonAppBar() {
     </div>
   );
 }
-
-export default ButtonAppBar;

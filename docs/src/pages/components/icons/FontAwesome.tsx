@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function FontAwesome() {
+export default function FontAwesome() {
   const classes = useStyles();
 
   React.useEffect(() => {
@@ -49,5 +49,3 @@ function FontAwesome() {
     </div>
   );
 }
-
-export default FontAwesome;
