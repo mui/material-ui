@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 });
 
 function LargeTree() {
-  return Array.from(new Array(3000)).map((_, index) => <span key={index}>.</span>);
+  return [...Array(3000)].map((_, index) => <span key={index}>.</span>);
 }
 
 function FrameDeferring() {
