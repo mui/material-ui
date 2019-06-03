@@ -185,9 +185,9 @@ class Tabs extends React.Component {
             `Material-UI: the value provided \`${value}\` to the Tabs component is invalid.`,
             'None of the Tabs children have this value.',
             this.valueToIndex.keys
-              ? `You can provide one of the following values: ${Array.from(
-                  this.valueToIndex.keys(),
-                ).join(', ')}.`
+              ? `You can provide one of the following values: ${[...this.valueToIndex.keys()].join(
+                  ', ',
+                )}.`
               : null,
           ].join('\n'),
         );
