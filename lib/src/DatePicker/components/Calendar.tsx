@@ -5,6 +5,7 @@ import DayWrapper from './DayWrapper';
 import CalendarHeader from './CalendarHeader';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import { Theme } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { runKeyHandler } from '../../_shared/hooks/useKeyDown';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { IconButtonProps } from '@material-ui/core/IconButton';
@@ -42,7 +43,9 @@ export interface OutterCalendarProps {
   /** Disable specific date */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
   /** Callback firing on month change */
-  onMonthChange?: (date: MaterialUiPickersDate) => void;
+  onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
+  /** Custom loading indicator  */
+  loadingIndicator?: JSX.Element;
 }
 
 export interface CalendarProps
@@ -67,6 +70,7 @@ export interface CalendarState {
   slideDirection: SlideDirection;
   currentMonth: MaterialUiPickersDate;
   lastDate?: MaterialUiPickersDate;
+  loadingQueue: number;
 }
 
 const KeyDownListener = ({ onKeyDown }: { onKeyDown: (e: KeyboardEvent) => void }) => {
@@ -121,6 +125,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   public state: CalendarState = {
     slideDirection: 'left',
     currentMonth: this.props.utils.startOfMonth(this.props.date),
+    loadingQueue: 0,
   };
 
   public componentDidMount() {
@@ -148,11 +153,17 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   };
 
   public handleChangeMonth = (newMonth: MaterialUiPickersDate, slideDirection: SlideDirection) => {
-    if (this.props.onMonthChange) {
-      this.props.onMonthChange(newMonth);
-    }
-
     this.setState({ currentMonth: newMonth, slideDirection });
+
+    if (this.props.onMonthChange) {
+      const returnVal = this.props.onMonthChange(newMonth);
+      if (returnVal) {
+        this.pushToLoadingQueue();
+        returnVal.then(() => {
+          this.popFromLoadingQueue();
+        });
+      }
+    }
   };
 
   public validateMinMaxDate = (day: MaterialUiPickersDate) => {
@@ -272,7 +283,9 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
       leftArrowIcon,
       rightArrowButtonProps,
       rightArrowIcon,
+      loadingIndicator,
     } = this.props;
+    const loadingElement = loadingIndicator ? loadingIndicator : <CircularProgress />;
 
     return (
       <React.Fragment>
@@ -295,17 +308,39 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
           transKey={currentMonth!.toString()}
           className={classes.transitionContainer}
         >
-          <div>{this.renderWeeks()}</div>
+          <>
+            {(this.state.loadingQueue > 0 && (
+              <div className={classes.progressContainer}>{loadingElement}</div>
+            )) || <div>{this.renderWeeks()}</div>}
+          </>
         </SlideTransition>
       </React.Fragment>
     );
   }
+
+  public pushToLoadingQueue = () => {
+    const loadingQueue = this.state.loadingQueue + 1;
+    this.setState({ loadingQueue });
+  };
+
+  public popFromLoadingQueue = () => {
+    let loadingQueue = this.state.loadingQueue;
+    loadingQueue = loadingQueue <= 0 ? 0 : loadingQueue - 1;
+    this.setState({ loadingQueue });
+  };
 }
 
 export const styles = (theme: Theme) => ({
   transitionContainer: {
     minHeight: 36 * 6,
     marginTop: theme.spacing(1.5),
+  },
+  progressContainer: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   week: {
     display: 'flex',

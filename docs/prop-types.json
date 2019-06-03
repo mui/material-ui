@@ -482,7 +482,18 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": { "name": "(date: any) => void | Promise<void>" }
+    },
+    "loadingIndicator": {
+      "defaultValue": null,
+      "description": " Custom loading indicator",
+      "name": "loadingIndicator",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "JSX.Element" }
     }
   },
   "KeyboardDatePicker": {
@@ -955,7 +966,18 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": { "name": "(date: any) => void | Promise<void>" }
+    },
+    "loadingIndicator": {
+      "defaultValue": null,
+      "description": " Custom loading indicator",
+      "name": "loadingIndicator",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "JSX.Element" }
     }
   },
   "TimePicker": {
@@ -2007,7 +2029,18 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": { "name": "(date: any) => void | Promise<void>" }
+    },
+    "loadingIndicator": {
+      "defaultValue": null,
+      "description": " Custom loading indicator",
+      "name": "loadingIndicator",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "JSX.Element" }
     }
   },
   "KeyboardDateTimePicker": {
@@ -2513,7 +2546,18 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": { "name": "(date: any) => void | Promise<void>" }
+    },
+    "loadingIndicator": {
+      "defaultValue": null,
+      "description": " Custom loading indicator",
+      "name": "loadingIndicator",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "JSX.Element" }
     }
   },
   "Calendar": {
@@ -2671,7 +2715,18 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": { "name": "(date: any) => void | Promise<void>" }
+    },
+    "loadingIndicator": {
+      "defaultValue": null,
+      "description": " Custom loading indicator",
+      "name": "loadingIndicator",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": { "name": "JSX.Element" }
     }
   },
   "TimePickerView": {

@@ -60,6 +60,7 @@ export function makeKeyboardPicker<T extends any>({
       timeIcon,
       variant,
       disableToolbar,
+      loadingIndicator,
       ...other
     } = props;
 
@@ -99,6 +100,7 @@ export function makeKeyboardPicker<T extends any>({
           rightArrowIcon={rightArrowIcon}
           rightArrowButtonProps={rightArrowButtonProps}
           shouldDisableDate={shouldDisableDate}
+          loadingIndicator={loadingIndicator}
         />
       </Wrapper>
     );

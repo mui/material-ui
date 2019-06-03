@@ -19,7 +19,7 @@ export interface CalendarHeaderProps {
   disablePrevMonth?: boolean;
   disableNextMonth?: boolean;
   slideDirection: SlideDirection;
-  onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
+  onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void | Promise<void>;
 }
 
 export const useStyles = makeStyles(

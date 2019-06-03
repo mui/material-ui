@@ -117,3 +117,104 @@ describe('e2e - DatePicker inline variant', () => {
     expect(component.find('WithStyles(ForwardRef(Popover))').props().open).toBeFalsy();
   });
 });
+
+describe('e2e - DatePicker without month change', () => {
+  let component: ReactWrapper<DatePickerProps>;
+  const onChangeMock = jest.fn();
+  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
+
+  beforeEach(() => {
+    component = mount(<DatePicker open onChange={onChangeMock} value={date} />);
+  });
+
+  it('Should not add to loading queue if callback is undefined', () => {
+    component
+      .find('CalendarHeader button')
+      .first()
+      .simulate('click');
+    expect(
+      component
+        .find('Calendar')
+        .first()
+        .state('loadingQueue')
+    ).toEqual(0);
+  });
+});
+
+describe('e2e - DatePicker month change sync', () => {
+  let component: ReactWrapper<DatePickerProps>;
+  const onChangeMock = jest.fn();
+  const onMonthChangeMock = jest.fn();
+  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
+
+  beforeEach(() => {
+    component = mount(
+      <DatePicker open onChange={onChangeMock} onMonthChange={onMonthChangeMock} value={date} />
+    );
+  });
+
+  it('Should not add to loading queue when synchronous', () => {
+    component
+      .find('CalendarHeader button')
+      .first()
+      .simulate('click');
+    expect(
+      component
+        .find('Calendar')
+        .first()
+        .state('loadingQueue')
+    ).toEqual(0);
+  });
+});
+
+describe('e2e - DatePicker month change async', () => {
+  let component: ReactWrapper<DatePickerProps>;
+  const onChangeMock = jest.fn();
+
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  const promise = sleep(50);
+  const onMonthChangeAsyncMock = jest.fn(async () => {
+    await promise;
+  });
+
+  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
+
+  beforeEach(() => {
+    component = mount(
+      <DatePicker
+        open
+        onChange={onChangeMock}
+        onMonthChange={onMonthChangeAsyncMock}
+        value={date}
+      />
+    );
+  });
+
+  it('Should add to loading queue when loading asynchronous data', () => {
+    component
+      .find('CalendarHeader button')
+      .first()
+      .simulate('click');
+
+    expect(
+      component
+        .find('Calendar')
+        .first()
+        .state('loadingQueue')
+    ).toEqual(1);
+  });
+
+  it('Should empty loading queue after loading asynchronous data', async () => {
+    component
+      .find('CalendarHeader button')
+      .first()
+      .simulate('click');
+    await sleep(100);
+    expect(
+      component
+        .find('Calendar')
+        .first()
+        .state('loadingQueue')
+    ).toEqual(0);
+  });
+});

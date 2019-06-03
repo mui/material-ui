@@ -90,6 +90,7 @@ export const Picker: React.FunctionComponent<PickerProps> = props => {
     leftArrowButtonProps,
     rightArrowButtonProps,
     ToolbarComponent,
+    loadingIndicator,
   } = props;
 
   const utils = useUtils();
@@ -156,6 +157,7 @@ export const Picker: React.FunctionComponent<PickerProps> = props => {
             renderDay={renderDay}
             shouldDisableDate={shouldDisableDate}
             allowKeyboardControl={allowKeyboardControl}
+            loadingIndicator={loadingIndicator}
           />
         )}
 

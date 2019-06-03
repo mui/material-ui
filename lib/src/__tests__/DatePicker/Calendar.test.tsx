@@ -5,7 +5,6 @@ import { Calendar, CalendarProps } from '../../DatePicker/components/Calendar';
 
 describe('Calendar', () => {
   let component: ShallowWrapper<CalendarProps>;
-
   const onChangeMock = jest.fn();
   const onMonthChangeMock = jest.fn();
 
@@ -48,5 +47,41 @@ describe('Calendar - disabled selected date on mount', () => {
     }
 
     expect(onChange).toHaveBeenCalledWith(utilsToUse.date('01-01-2018'), false);
+  });
+});
+
+describe('Calendar - pop and push loading queue', () => {
+  let component: ShallowWrapper<any, any, any>;
+
+  beforeEach(() => {
+    component = shallowRender(props => (
+      <Calendar
+        date={utilsToUse.date('01-01-2017')}
+        minDate={new Date('01-01-2018')}
+        onChange={jest.fn()}
+        utils={utilsToUse}
+        {...props}
+      />
+    ));
+  });
+
+  it('Push two times to loading queue', () => {
+    (component.instance() as Calendar).pushToLoadingQueue();
+    (component.instance() as Calendar).pushToLoadingQueue();
+
+    expect(component.state('loadingQueue')).toEqual(2);
+  });
+
+  it('Pop from empty loading queue', () => {
+    (component.instance() as Calendar).popFromLoadingQueue();
+
+    expect(component.state('loadingQueue')).toEqual(0);
+  });
+
+  it('Push and pop loading queue', () => {
+    (component.instance() as Calendar).pushToLoadingQueue();
+    (component.instance() as Calendar).popFromLoadingQueue();
+
+    expect(component.state('loadingQueue')).toEqual(0);
   });
 });

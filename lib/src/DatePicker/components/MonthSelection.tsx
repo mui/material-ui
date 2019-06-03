@@ -12,7 +12,7 @@ export interface MonthSelectionProps {
   onChange: (date: MaterialUiPickersDate, isFinish: boolean) => void;
   disablePast?: boolean | null | undefined;
   disableFuture?: boolean | null | undefined;
-  onMonthChange?: (date: MaterialUiPickersDate) => void;
+  onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
 }
 
 export const useStyles = makeStyles(
