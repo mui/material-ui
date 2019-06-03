@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -13,10 +12,10 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-});
+}));
 
-function FullWidthGrid(props) {
-  const { classes } = props;
+function FullWidthGrid() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -47,8 +46,4 @@ function FullWidthGrid(props) {
   );
 }
 
-FullWidthGrid.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FullWidthGrid);
+export default FullWidthGrid;

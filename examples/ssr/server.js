@@ -1,6 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import App from './App';
 import theme from './theme';
@@ -8,7 +9,7 @@ import theme from './theme';
 function renderFullPage(html, css) {
   return `
     <!DOCTYPE html>
-    <html lang="en" dir="ltr">
+    <html lang="en">
       <head>
         <title>My page</title>
         <style id="jss-server-side">${css}</style>
@@ -31,6 +32,8 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
         <App />
       </ThemeProvider>,
     ),
@@ -51,4 +54,7 @@ app.use('/build', express.static('build'));
 app.use(handleRender);
 
 const port = 3000;
-app.listen(port);
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Listening on ${port}`);
+});

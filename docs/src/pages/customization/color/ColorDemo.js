@@ -81,7 +81,6 @@ function ColorDemo(props) {
           </Toolbar>
         </AppBar>
         <MarkdownElement
-          dir="ltr"
           className={classes.code}
           text={`\`\`\`jsx
 {

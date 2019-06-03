@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     overflow: 'hidden',
@@ -17,13 +16,13 @@ const styles = theme => ({
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(2),
   },
-});
+}));
 
 const message = `Truncation should be conditionally applicable on this long line of text
  as this is a much longer line than what the container can support. `;
 
-function AutoGridNoWrap(props) {
-  const { classes } = props;
+function AutoGridNoWrap() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -61,8 +60,4 @@ function AutoGridNoWrap(props) {
   );
 }
 
-AutoGridNoWrap.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(AutoGridNoWrap);
+export default AutoGridNoWrap;

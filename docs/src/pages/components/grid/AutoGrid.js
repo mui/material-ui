@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -13,10 +12,10 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-});
+}));
 
-function AutoGrid(props) {
-  const { classes } = props;
+function AutoGrid() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -46,8 +45,4 @@ function AutoGrid(props) {
   );
 }
 
-AutoGrid.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(AutoGrid);
+export default AutoGrid;

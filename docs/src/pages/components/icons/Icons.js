@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Icon from '@material-ui/core/Icon';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -19,10 +18,10 @@ const styles = theme => ({
       color: red[800],
     },
   },
-});
+}));
 
-function Icons(props) {
-  const { classes } = props;
+function Icons() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -46,8 +45,4 @@ function Icons(props) {
   );
 }
 
-Icons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Icons);
+export default Icons;

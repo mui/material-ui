@@ -11,15 +11,19 @@
     "@material-ui/core": "latest",
     "@material-ui/styles": "latest",
     "babel-loader": "latest",
+    "cross-env": "latest",
     "express": "latest",
     "nodemon": "latest",
+    "npm-run-all": "latest",
     "react": "latest",
     "react-dom": "latest",
     "webpack": "latest",
     "webpack-cli": "latest"
   },
   "scripts": {
-    "start": "webpack -w & nodemon --exec yarn babel-node -- server.js",
-    "production": "NODE_ENV=production npm start"
+    "start": "npm-run-all -p build serve",
+    "build": "webpack -w",
+    "serve": "nodemon --ignore ./build --exec babel-node -- server.js",
+    "production": "cross-env NODE_ENV=production npm start"
   }
 }
