@@ -23,6 +23,7 @@ export interface FontStyle
     fontWeightLight: CSSProperties['fontWeight'];
     fontWeightRegular: CSSProperties['fontWeight'];
     fontWeightMedium: CSSProperties['fontWeight'];
+    fontWeightBold: CSSProperties['fontWeight'];
   }> {}
 
 export interface FontStyleOptions extends Partial<FontStyle> {

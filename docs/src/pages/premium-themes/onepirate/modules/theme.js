@@ -32,9 +32,10 @@ const rawTheme = createMuiTheme({
   typography: {
     fontFamily: "'Work Sans', sans-serif",
     fontSize: 14,
+    fontWeightBold: 700,
     fontWeightLight: 300, // Work Sans
     fontWeightRegular: 400, // Work Sans
-    fontWeightMedium: 700, // Roboto Condensed
+    fontWeightMedium: 500, // Roboto Condensed
     fontFamilySecondary: "'Roboto Condensed', sans-serif",
   },
 });
