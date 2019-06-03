@@ -11,10 +11,10 @@ export const styles = theme => ({
   root: {
     display: 'block',
     color: theme.palette.text.disabled,
-    '&$active': {
+    '&$completed': {
       color: theme.palette.primary.main,
     },
-    '&$completed': {
+    '&$active': {
       color: theme.palette.primary.main,
     },
     '&$error': {
@@ -39,17 +39,20 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
   const { completed = false, icon, active = false, error = false, classes } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
+    const className = clsx(classes.root, {
+      [classes.completed]: completed,
+      [classes.active]: active,
+      [classes.error]: error,
+    });
+    var Icon = SvgIcon;
     if (error) {
-      return <Warning className={clsx(classes.root, classes.error)} ref={ref} />;
-    }
-    if (completed) {
-      return <CheckCircle className={clsx(classes.root, classes.completed)} ref={ref} />;
+      Icon = Warning;
+    } else if (completed) {
+      Icon = CheckCircle;
     }
     return (
-      <SvgIcon
-        className={clsx(classes.root, {
-          [classes.active]: active,
-        })}
+      <Icon
+        className={className}
         ref={ref}
       >
         <circle cx="12" cy="12" r="12" />
