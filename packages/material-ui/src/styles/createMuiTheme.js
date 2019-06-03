@@ -8,6 +8,7 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import shape from './shape';
 import createSpacing from './createSpacing';
+import createBorder from './createBorder';
 import transitions from './transitions';
 import zIndex from './zIndex';
 
@@ -19,12 +20,20 @@ function createMuiTheme(options = {}) {
     shadows: shadowsInput,
     spacing: spacingInput,
     typography: typographyInput = {},
+    border: borderInput = {},
     ...other
   } = options;
 
   const palette = createPalette(paletteInput);
   const breakpoints = createBreakpoints(breakpointsInput);
   const spacing = createSpacing(spacingInput);
+
+  const {
+    defaultWidth = '1px',
+    defaultStyle = 'solid',
+    defaultColor = palette.divider,
+  } = borderInput;
+  const border = createBorder(defaultWidth, defaultStyle, defaultColor);
 
   const muiTheme = {
     breakpoints,
@@ -36,6 +45,7 @@ function createMuiTheme(options = {}) {
     shadows: shadowsInput || shadows,
     typography: createTypography(palette, typographyInput),
     spacing,
+    border,
     ...deepmerge(
       {
         shape,

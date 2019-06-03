@@ -5,6 +5,7 @@ import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
+import { Border, BorderOptions } from './createBorder';
 import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
@@ -22,6 +23,7 @@ export interface ThemeOptions {
   props?: ComponentsProps;
   shadows?: Shadows;
   spacing?: SpacingOptions;
+  border?: BorderOptions;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
@@ -37,6 +39,7 @@ export interface Theme {
   props?: ComponentsProps;
   shadows: Shadows;
   spacing: Spacing;
+  border: Border;
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
