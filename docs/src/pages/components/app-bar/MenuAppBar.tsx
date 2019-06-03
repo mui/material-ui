@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function MenuAppBar() {
+export default function MenuAppBar() {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -96,5 +96,3 @@ function MenuAppBar() {
     </div>
   );
 }
-
-export default MenuAppBar;
