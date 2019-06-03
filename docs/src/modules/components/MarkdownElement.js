@@ -232,7 +232,7 @@ const styles = theme => ({
     },
     '& thead': {
       fontSize: 14,
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: theme.typography.fontWeightBold,
       color: theme.palette.text.secondary,
     },
     '& tbody': {
@@ -258,7 +258,7 @@ const styles = theme => ({
     '& th': {
       whiteSpace: 'pre',
       borderBottom: `1px solid ${theme.palette.divider}`,
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: theme.typography.fontWeightBold,
       padding: '0 16px 0 8px',
       textAlign: 'left',
     },

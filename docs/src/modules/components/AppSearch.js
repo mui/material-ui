@@ -120,8 +120,8 @@ const useStyles = makeStyles(theme => ({
           display: 'none',
         },
       },
-      '& b': {
-        fontWeight: theme.typography.fontWeightMedium,
+      '& b, & strong': {
+        fontWeight: theme.typography.fontWeightBold,
       },
     },
   },

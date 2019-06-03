@@ -26,6 +26,7 @@ const theme = createMuiTheme({
       '"Segoe UI Symbol"',
     ].join(','),
     fontWeightMedium: 500,
+    fontWeightBold: 700,
     body1: {
       fontWeight: 500,
     },

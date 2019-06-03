@@ -32,7 +32,7 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(12),
     lineHeight: theme.typography.pxToRem(21),
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: theme.typography.fontWeightBold,
   },
   /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
   body: {

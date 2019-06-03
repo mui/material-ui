@@ -183,8 +183,8 @@ const HtmlTooltip = withStyles(theme => ({
     maxWidth: 220,
     fontSize: theme.typography.pxToRem(12),
     border: '1px solid #dadde9',
-    '& b': {
-      fontWeight: theme.typography.fontWeightMedium,
+    '& b, & strong': {
+      fontWeight: theme.typography.fontWeightBold,
     },
   },
 }))(Tooltip);
