@@ -14,8 +14,11 @@ function FontWeight() {
       <Box fontWeight="fontWeightMedium" m={1}>
         Medium
       </Box>
-      <Box fontWeight={600} m={1}>
-        600
+      <Box fontWeight={500} m={1}>
+        500
+      </Box>
+      <Box fontWeight="fontWeightBold" m={1}>
+        Bold
       </Box>
     </Typography>
   );

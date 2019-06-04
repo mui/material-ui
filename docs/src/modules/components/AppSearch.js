@@ -119,9 +119,6 @@ const useStyles = makeStyles(theme => ({
           display: 'none',
         },
       },
-      '& b': {
-        fontWeight: theme.typography.fontWeightMedium,
-      },
     },
   },
   root: {

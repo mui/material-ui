@@ -101,7 +101,7 @@ class MyApp extends App {
     // console.log(pages, { ...router, pathname })
     const activePage = findActivePage(pages, pathname);
 
-    let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap'];
+    let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
     if (pathname.match(/onepirate/)) {
       fonts = [
         'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
