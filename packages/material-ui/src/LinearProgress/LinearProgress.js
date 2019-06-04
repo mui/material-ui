@@ -175,6 +175,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
     classes,
     className: classNameProp,
     color = 'primary',
+    theme,
     value,
     valueBuffer,
     variant = 'indeterminate',
@@ -218,7 +219,11 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
-      inlineStyles.bar1.transform = `translateX(${value - 100}%)`;
+      let transform = value - 100;
+      if (theme.direction === 'rtl') {
+        transform = -transform;
+      }
+      inlineStyles.bar1.transform = `translateX(${transform}%)`;
     } else {
       warning(
         false,
@@ -229,7 +234,11 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      inlineStyles.bar2.transform = `translateX(${(valueBuffer || 0) - 100}%)`;
+      let transform = (valueBuffer || 0) - 100;
+      if (theme.direction === 'rtl') {
+        transform = -transform;
+      }
+      inlineStyles.bar2.transform = `translateX(${transform}%)`;
     } else {
       warning(
         false,
@@ -265,6 +274,10 @@ LinearProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
+   * @ignore
+   */
+  theme: PropTypes.object,
+  /**
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.
    */
@@ -281,4 +294,4 @@ LinearProgress.propTypes = {
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
 };
 
-export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);
+export default withStyles(styles, { name: 'MuiLinearProgress', withTheme: true })(LinearProgress);
