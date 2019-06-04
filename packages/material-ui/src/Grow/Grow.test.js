@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createMount, describeConformance } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Grow from './Grow';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
