@@ -68,6 +68,7 @@ export const flexbox: SimpleStyleFunction<
   | 'alignItems'
   | 'alignContent'
   | 'order'
+  | 'flex'
   | 'flexGrow'
   | 'flexShrink'
   | 'alignSelf'
