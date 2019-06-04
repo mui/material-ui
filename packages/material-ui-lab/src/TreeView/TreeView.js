@@ -106,6 +106,12 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
+  const blur = id => {
+    if (id === focused) {
+      setFocused(null);
+    }
+  };
+
   return (
     <TreeViewContext.Provider
       value={{
@@ -113,6 +119,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         icons: { collapseIcon, defaultNodeIcon, defaultLeafIcon, expandIcon },
         toggle,
         setFocused,
+        blur,
         isFocused,
         focusNextTopLevelNode,
         focusPreviousTopLevelNode,

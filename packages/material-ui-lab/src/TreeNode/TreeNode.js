@@ -47,6 +47,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     toggle,
     icons,
     setFocused,
+    blur,
     isFocused,
     focusNextTopLevelNode,
     focusPreviousTopLevelNode,
@@ -57,14 +58,13 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
 
   const isExpandable = Boolean(children);
 
-  const expanded = isExpanded(id);
-  const focused = isFocused(id);
+  const expanded = isExpanded ? isExpanded(id) : false;
+  const focused = isFocused ? isFocused(id) : false;
 
   const handleClick = event => {
-    if (ref && event.target !== ref.current && event.target !== ref.current.firstElementChild) {
+    if (!contentRef.current.contains(event.target)) {
       return;
     }
-
     toggle(id);
     event.stopPropagation();
   };
@@ -106,7 +106,11 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     setFocused(id);
   };
 
-  if (focused && window.activeElement !== contentRef.current) {
+  const handleBlur = () => {
+    blur(id);
+  };
+
+  if (focused && window.activeElement === nodeRef.current) {
     contentRef.current.focus();
   }
 
@@ -146,6 +150,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       role="treeitem"
       onClick={handleClick}
       onFocus={handleFocus}
+      onBlur={handleBlur}
       onKeyDown={handleKeyDown}
       ref={handleRef}
       {...other}
