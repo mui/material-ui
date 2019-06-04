@@ -165,33 +165,20 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
 Popper.propTypes = {
   /**
-   * This is the DOM element, or a function that returns the DOM element,
+   * This is the reference element, or a function that returns the reference element,
    * that may be used to set the position of the popover.
    * The return value will passed as the reference object of the Popper
    * instance.
+   *
+   * The reference element should be an HTML Element instance or a referenceObject:
+   * https://popper.js.org/popper-documentation.html#referenceObject.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
-      if (resolvedAnchorEl instanceof Element) {
-        const box = resolvedAnchorEl.getBoundingClientRect();
-
-        if (
-          process.env.NODE_ENV !== 'test' &&
-          box.top === 0 &&
-          box.left === 0 &&
-          box.right === 0 &&
-          box.bottom === 0
-        ) {
-          return new Error(
-            [
-              'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-              'The node element should be visible.',
-            ].join('\n'),
-          );
-        }
-      } else if (
+      if (
+        !resolvedAnchorEl ||
         typeof resolvedAnchorEl.clientWidth !== 'number' ||
         typeof resolvedAnchorEl.clientHeight !== 'number' ||
         typeof resolvedAnchorEl.getBoundingClientRect !== 'function'
@@ -199,8 +186,25 @@ Popper.propTypes = {
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            'It should be an Element instance or a referenceObject:',
+            'It should be an HTML Element instance or a referenceObject:',
             'https://popper.js.org/popper-documentation.html#referenceObject.',
+          ].join('\n'),
+        );
+      }
+
+      const box = resolvedAnchorEl.getBoundingClientRect();
+
+      if (
+        process.env.NODE_ENV !== 'test' &&
+        box.top === 0 &&
+        box.left === 0 &&
+        box.right === 0 &&
+        box.bottom === 0
+      ) {
+        return new Error(
+          [
+            'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+            'The reference element should be visible.',
           ].join('\n'),
         );
       }
