@@ -1,3 +1,4 @@
+/* tslint:disable:unified-signatures */
 import { BorderInlineStyleProperty } from 'csstype';
 
 export interface Border {
