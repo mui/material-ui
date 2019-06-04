@@ -902,10 +902,10 @@
     core-js "^2.5.7"
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime-corejs2@^7.3.0":
-  version "7.4.4"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.4.4.tgz#4d4519a4c85e9d98fdff59f5371758a34ae07923"
-  integrity sha512-hE7oVwVsRws84u5/nkaWWdN2J4SXEGuXKjrAsP0E4nkYImjSbpdHfGTS2nvFc82aDGIuG6OzhAQMpIzTHuZeKA==
+"@babel/runtime-corejs2@^7.4.4":
+  version "7.4.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.4.5.tgz#3d892f0560df21bafb384dd7727e33853e95d3c9"
+  integrity sha512-5yLuwzvIDecKwYMzJtiarky4Fb5643H3Ao5jwX0HrMR5oM5mn2iHH9wSZonxwNK0oAjAFUQAiOd4jT7/9Y2jMQ==
   dependencies:
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
@@ -965,9 +965,9 @@
     to-fast-properties "^2.0.0"
 
 "@date-io/core@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.2.0.tgz#da3a46999b8f58dc1d471c4f5373c5bff44b5794"
-  integrity sha512-lp77u8Q0ZP9a8M8CjskVZWxa5U4ixVC7mpsdPKr9kZEYlDPVtk1BXkJrr/Fz4Yt37jz8Al5zYOyr4Q+SMsJwCg==
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.3.6.tgz#5c518cee6fa011e754293aebc6f1192360061797"
+  integrity sha512-cihiu8YaTHh7IqrzekbZcA7dh+7uhViHgWyxcKAO2cg1DYGYC5J7z4/rnGGL7swrK5xFVLIeyoxJ+sacziIRKg==
 
 "@date-io/date-fns@^1.0.0", "@date-io/date-fns@^1.1.0":
   version "1.3.5"
@@ -1745,33 +1745,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@material-ui/core@^3.9.3":
-  version "4.0.1"
-  dependencies:
-    "@babel/runtime" "^7.2.0"
-    "@material-ui/styles" "^4.0.1"
-    "@material-ui/system" "^4.0.1"
-    "@material-ui/types" "^4.0.1"
-    "@material-ui/utils" "^4.0.1"
-    "@types/react-transition-group" "^2.0.16"
-    clsx "^1.0.2"
-    convert-css-length "^2.0.0"
-    csstype "^2.5.2"
-    debounce "^1.1.0"
-    deepmerge "^3.0.0"
-    hoist-non-react-statics "^3.2.1"
-    is-plain-object "^3.0.0"
-    normalize-scroll-left "^0.2.0"
-    popper.js "^1.14.1"
-    prop-types "^15.7.2"
-    react-event-listener "^0.6.6"
-    react-transition-group "^4.0.0"
-    warning "^4.0.1"
-
-"@material-ui/pickers@^3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.0.0-beta.1.tgz#698fbeb318d1d30ab9aad0af006aa11a96d38b61"
-  integrity sha512-ugOrmObUwZUiZxtjZ/pZSmWQyVEiIYinlGMWjkI8P4KTqjF40x6HCqLoa2FuDpiTxjVvOdZ+fpsltqEhtBcaMQ==
+"@material-ui/pickers@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.0.0.tgz#cd99933e5701fa5aeea1862418b43fc399398e15"
+  integrity sha512-tjnKWHudaZ089Gsxvio/8DxDVUmPIx/RRi1O66haAGGJmahoI9ICDU8lwpoU828nY7f3mQN7lSrca9bdAdrLoA==
   dependencies:
     "@types/styled-jsx" "^2.2.8"
     clsx "^1.0.2"
@@ -2009,7 +1986,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-text-mask@^5.4.2", "@types/react-text-mask@^5.4.3":
+"@types/react-text-mask@^5.4.2":
   version "5.4.4"
   resolved "https://registry.yarnpkg.com/@types/react-text-mask/-/react-text-mask-5.4.4.tgz#eb4606e1c431b7bd2f5e817ea141432cc63b58c1"
   integrity sha512-mnwyDgUwFtJVAZ8f+tzPGmYjpH7TLXxHSGty338abca6aAjdjRLCOC4h+CxlvB8xrVAIU5pkNllpHhfJCA3hXQ==
@@ -4519,12 +4496,12 @@ crypto-random-string@^1.0.0:
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
 
-css-box-model@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/css-box-model/-/css-box-model-1.1.1.tgz#c9fd8e7a8b1d59d41d6812fd1765433f671b2ee0"
-  integrity sha512-ZxbuLFeAPEDb0wPbGfT7783Vb00MVAkvOlMKwr0kA2PD5EGxk6P3MAhedvVuyVJCWb54bb+6HQ7pdPYENf8AZw==
+css-box-model@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/css-box-model/-/css-box-model-1.1.2.tgz#c0e2c9d23b1b2fd98759706b88cfd4e2c38db727"
+  integrity sha512-pFBTZXDPcr61VZzhZgZaulX1Ot0Q5CfXMjFjbWK5NuzZFsi9H4kBOyEZ9FiBvbe1TimJxIJO4WFsLP4/EBBtkg==
   dependencies:
-    tiny-invariant "^1.0.3"
+    tiny-invariant "^1.0.4"
 
 css-color-keywords@^1.0.0:
   version "1.0.0"
@@ -8951,33 +8928,21 @@ marked@^0.6.0:
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.6.2.tgz#c574be8b545a8b48641456ca1dbe0e37b6dccc1a"
   integrity sha512-LqxwVH3P/rqKX4EKGz7+c2G9r98WeM/SW34ybhgNGhUQNKtf1GmmSkJ6cDGJ/t6tiyae49qRkpyTw2B9HOrgUA==
 
-material-table@^1.32.0:
-  version "1.35.2"
-  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.35.2.tgz#3cbed7ecbaa5306538edaa2d68e05e0957d037ab"
-  integrity sha512-9h6xfPejVtVdSZJwe5uWc0kcVdxXXzRdj3P5c1N9X2xwLyMwiQtp3jAxBA5BrEQdS9AE82ojGeoAUWXIQwuqFg==
+material-table@^1.39.0:
+  version "1.39.0"
+  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.39.0.tgz#27024acf3a8856605d91f53524efe7760b0f11dd"
+  integrity sha512-k6xpMlW1MbxyxgjSfWqKxoV+P6/YgpH/mntgUjjl3Yqf644ti8pqde86HfaObP08oTYIh9s5oWNwuyfnf7sJsw==
   dependencies:
     "@date-io/date-fns" "^1.1.0"
-    "@material-ui/core" "^3.9.3"
+    "@material-ui/core" "^4.0.1"
+    "@material-ui/pickers" "^3.0.0"
     classnames "^2.2.6"
     date-fns "^2.0.0-alpha.27"
     debounce "^1.2.0"
     filefy "0.1.9"
-    material-ui-pickers "2.2.4"
     prop-types "^15.6.2"
-    react-beautiful-dnd "10.0.4"
+    react-beautiful-dnd "11.0.3"
     react-double-scrollbar "0.0.15"
-
-material-ui-pickers@2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/material-ui-pickers/-/material-ui-pickers-2.2.4.tgz#8b33cfc55cbc5b2d520db45abf4b3dc94090dd3c"
-  integrity sha512-QCQh08Ylmnt+o4laW+rPs92QRAcESv3sPXl50YadLm++rAZAXAOh3K8lreGdynCMYFgZfdyu81Oz9xzTlAZNfw==
-  dependencies:
-    "@types/react-text-mask" "^5.4.3"
-    clsx "^1.0.2"
-    react-event-listener "^0.6.6"
-    react-text-mask "^5.4.3"
-    react-transition-group "^2.5.3"
-    tslib "^1.9.3"
 
 material-ui-popup-state@^1.0.1:
   version "1.3.2"
@@ -9051,7 +9016,7 @@ memfs-or-file-map-to-github-branch@^1.1.0:
   resolved "https://registry.yarnpkg.com/memfs-or-file-map-to-github-branch/-/memfs-or-file-map-to-github-branch-1.1.2.tgz#9d46c02481b7eca8e5ee8a94f170b7e0138cad67"
   integrity sha512-D2JKK2DTuVYQqquBWco3K6UfSVyVwmd58dgNqh+TgxHOZdTmR8I130gjMbVCkemDl/EzqDA62417cJxKL3/FFA==
 
-"memoize-one@>=3.1.1 <6", memoize-one@^5.0.0:
+"memoize-one@>=3.1.1 <6", memoize-one@^5.0.0, memoize-one@^5.0.4:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.0.4.tgz#005928aced5c43d890a4dfab18ca908b0ec92cbc"
   integrity sha512-P0z5IeAH6qHHGkJIXWw0xC2HNEgkx/9uWWBQw64FJj3/ol14VYdfVGWWr0fXfjhhv3TKVIqUq65os6O4GUNksA==
@@ -11296,19 +11261,19 @@ react-autowhatever@^10.1.2:
     react-themeable "^1.1.0"
     section-iterator "^2.0.0"
 
-react-beautiful-dnd@10.0.4:
-  version "10.0.4"
-  resolved "https://registry.yarnpkg.com/react-beautiful-dnd/-/react-beautiful-dnd-10.0.4.tgz#56913a77706ad2d1b002041d9cb1ac3849a4ae89"
-  integrity sha512-j2Ra/mW48tXz1Mk6bNBuiENpRBt8wQcPbJgHSswmLDonUE8JPwVikaONoMavdowoMKQJoOJ9IwPTo82d/8aKKg==
+react-beautiful-dnd@11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/react-beautiful-dnd/-/react-beautiful-dnd-11.0.3.tgz#5678bb3e725d8b56cb7cf57f56e952105fc4f2af"
+  integrity sha512-2FX2SnOlKMmfn90xUHCav7cxRWXwY7FeRa6TzdxWeX7DdP5JTvVQcsWgiOkdbJSj+J+1q1nA9QO4/HQ52D0DAA==
   dependencies:
-    "@babel/runtime-corejs2" "^7.3.0"
-    css-box-model "^1.1.1"
-    memoize-one "^5.0.0"
-    prop-types "^15.6.1"
+    "@babel/runtime-corejs2" "^7.4.4"
+    css-box-model "^1.1.2"
+    memoize-one "^5.0.4"
     raf-schd "^4.0.0"
-    react-redux "^5.0.7"
+    react-redux "^7.0.3"
     redux "^4.0.1"
-    tiny-invariant "^1.0.3"
+    tiny-invariant "^1.0.4"
+    use-memo-one "^1.1.0"
 
 react-display-name@^0.2.4:
   version "0.2.4"
@@ -11412,7 +11377,7 @@ react-jss@^10.0.0-alpha.12:
     theming "^3.0.3"
     tiny-warning "^1.0.2"
 
-react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
+react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
@@ -11423,19 +11388,6 @@ react-number-format@^4.0.0:
   integrity sha512-boRHwPzkNDuyqeQ9zyHp0XgVAqT5RyS+BsohOhiTz6VMxEQr3DuSuNdg0Q8c3CYTgNESYlxnH278DPqaQFO72w==
   dependencies:
     prop-types "^15.6.0"
-
-react-redux@^5.0.7:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.1.1.tgz#88e368682c7fa80e34e055cd7ac56f5936b0f52f"
-  integrity sha512-LE7Ned+cv5qe7tMV5BPYkGQ5Lpg8gzgItK07c67yHvJ8t0iaD9kPFPAli/mYkiyJYrs2pJgExR2ZgsGqlrOApg==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-    hoist-non-react-statics "^3.1.0"
-    invariant "^2.2.4"
-    loose-envify "^1.1.0"
-    prop-types "^15.6.1"
-    react-is "^16.6.0"
-    react-lifecycles-compat "^3.0.0"
 
 react-redux@^7.0.3:
   version "7.0.3"
@@ -11560,7 +11512,7 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.8.5:
     react-is "^16.8.6"
     scheduler "^0.13.6"
 
-react-text-mask@^5.0.2, react-text-mask@^5.4.3:
+react-text-mask@^5.0.2:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.4.3.tgz#991efb4299e30c2e6c2c46d13f617169463e0d2d"
   integrity sha1-mR77QpnjDC5sLEbRP2FxaUY+DS0=
@@ -11574,7 +11526,7 @@ react-themeable@^1.1.0:
   dependencies:
     object-assign "^3.0.0"
 
-react-transition-group@^2.2.1, react-transition-group@^2.5.0, react-transition-group@^2.5.3:
+react-transition-group@^2.2.1, react-transition-group@^2.5.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
   integrity sha512-+HzNTCHpeQyl4MJ/bdE0u6XRMe9+XG/+aL4mCxVN4DnPBQ0/5bfHWPDuOZUzYdMj94daZaZdCCc1Dzt9R/xSSg==
@@ -13481,7 +13433,7 @@ tiny-emitter@^2.0.0:
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
-tiny-invariant@^1.0.2, tiny-invariant@^1.0.3:
+tiny-invariant@^1.0.2, tiny-invariant@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.4.tgz#346b5415fd93cb696b0c4e8a96697ff590f92463"
   integrity sha512-lMhRd/djQJ3MoaHEBrw8e2/uM4rs9YMNk0iOr8rHQ0QdbM7D4l0gFl3szKdeixrlyfm9Zqi4dxHCM2qVG8ND5g==
@@ -13908,6 +13860,11 @@ url@0.11.0, url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-memo-one@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/use-memo-one/-/use-memo-one-1.1.0.tgz#9392ec84881af047f22aef4bcb9cd1c333899613"
+  integrity sha512-mGmKaX2vauOWpFas4mGXj65JXkueLcca3OsT2iBKwB/Nl7NQeABIzBYq/HzVkFvnHXsf/S59DNN5UEOU+Bp1uw==
 
 use@^3.1.0:
   version "3.1.1"
