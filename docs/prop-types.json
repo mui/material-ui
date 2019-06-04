@@ -306,6 +306,17 @@
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
     },
+    "TextFieldComponent": {
+      "defaultValue": null,
+      "description": "Override input component",
+      "name": "TextFieldComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
+        "name": "PureDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "ComponentType<TextFieldProps>" }
+    },
     "views": {
       "defaultValue": null,
       "description": "Array of views to show",
@@ -756,6 +767,17 @@
       },
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+    },
+    "TextFieldComponent": {
+      "defaultValue": null,
+      "description": "Override input component",
+      "name": "TextFieldComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "ComponentType<TextFieldProps>" }
     },
     "keyboardIcon": {
       "defaultValue": null,
@@ -1241,6 +1263,17 @@
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
     },
+    "TextFieldComponent": {
+      "defaultValue": null,
+      "description": "Override input component",
+      "name": "TextFieldComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
+        "name": "PureDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "ComponentType<TextFieldProps>" }
+    },
     "views": {
       "defaultValue": null,
       "description": "Array of views to show",
@@ -1535,6 +1568,17 @@
       },
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+    },
+    "TextFieldComponent": {
+      "defaultValue": null,
+      "description": "Override input component",
+      "name": "TextFieldComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "ComponentType<TextFieldProps>" }
     },
     "keyboardIcon": {
       "defaultValue": null,
@@ -1863,6 +1907,17 @@
       },
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+    },
+    "TextFieldComponent": {
+      "defaultValue": null,
+      "description": "Override input component",
+      "name": "TextFieldComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
+        "name": "PureDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "ComponentType<TextFieldProps>" }
     },
     "views": {
       "defaultValue": null,
@@ -2369,6 +2424,17 @@
       },
       "required": false,
       "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+    },
+    "TextFieldComponent": {
+      "defaultValue": null,
+      "description": "Override input component",
+      "name": "TextFieldComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "ComponentType<TextFieldProps>" }
     },
     "keyboardIcon": {
       "defaultValue": null,

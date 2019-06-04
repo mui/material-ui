@@ -6,6 +6,8 @@ export interface PureDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
   /** Pass material-ui text field variant down, bypass internal variant prop */
   inputVariant?: TextFieldProps['variant'];
+  /** Override input component */
+  TextFieldComponent?: React.ComponentType<TextFieldProps>;
   InputProps?: TextFieldProps['InputProps'];
   inputValue: string;
   validationError?: React.ReactNode;
@@ -16,6 +18,7 @@ export const PureDateInput: React.FC<PureDateInputProps> = ({
   inputVariant,
   validationError,
   InputProps,
+  TextFieldComponent = TextField,
   ...other
 }) => {
   const PureDateInputProps = React.useMemo(
@@ -27,7 +30,7 @@ export const PureDateInput: React.FC<PureDateInputProps> = ({
   );
 
   return (
-    <TextField
+    <TextFieldComponent
       error={Boolean(validationError)}
       helperText={validationError}
       {...other}

@@ -16,6 +16,8 @@ export interface KeyboardDateInputProps
   validationError?: React.ReactNode;
   inputValue: string;
   InputProps?: TextFieldProps['InputProps'];
+  /** Override input component */
+  TextFieldComponent?: React.ComponentType<TextFieldProps>;
   /** Icon displaying for open picker button */
   keyboardIcon?: React.ReactNode;
   /** Pass material-ui text field variant down, bypass internal variant prop */
@@ -61,6 +63,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   format,
   keyboardIcon,
   disabled,
+  TextFieldComponent = TextField,
   ...other
 }) => {
   const inputMask = mask || makeMaskFromFormat(format, maskChar);
@@ -76,7 +79,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   return (
     <Rifm value={inputValue} onChange={onChange} refuse={refuse} format={formatter}>
       {({ onChange, value }) => (
-        <TextField
+        <TextFieldComponent
           disabled={disabled}
           error={Boolean(validationError)}
           helperText={validationError}
