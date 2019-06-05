@@ -13,6 +13,10 @@ https://next.material-ui.com/* https://material-ui.com/:splat 301!
 https://material-ui-next.com/* https://material-ui.com/:splat 301!
 https://material-ui.dev/* https://material-ui.com/:splat 301!
 
+# old code links
+# likely /style/typography#migration-to-typography-v2
+/style/typography https://v3-9-0.material-ui.com/style/typography/#migration-to-typography-v2
+
 # To remove at some point (2020).
 /demos/selection-controls/ /components/radio-buttons/ 301
 /page-layout-examples/* /getting-started/page-layout-examples/:splat 301
