@@ -149,7 +149,9 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   );
 
   React.useEffect(() => {
-    if (open) setAutoHideTimer();
+    if (open) {
+      setAutoHideTimer();
+    }
 
     return () => {
       clearTimeout(timerAutoHide.current);
@@ -203,7 +205,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   };
 
   React.useEffect(() => {
-    if (!disableWindowBlurListener) {
+    if (!disableWindowBlurListener && open) {
       window.addEventListener('focus', handleResume);
       window.addEventListener('blur', handlePause);
 
@@ -214,7 +216,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     }
 
     return undefined;
-  }, [disableWindowBlurListener, handleResume]);
+  }, [disableWindowBlurListener, handleResume, open]);
 
   // So we only render active snackbars.
   if (!open && exited) {
