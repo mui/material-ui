@@ -46,6 +46,10 @@ export default function ResponsiveFontSizes() {
 
       if (variant[value]) {
         data.push({
+          viewport: viewport - 1,
+          fontSize: data[data.length - 1].fontSize,
+        });
+        data.push({
           viewport,
           fontSize: toPx(variant[value].fontSize),
         });
@@ -74,12 +78,12 @@ export default function ResponsiveFontSizes() {
             left: 30,
           }}
         >
-          <XAxis dataKey="viewport" type="category" allowDuplicatedCategory={false}>
+          <XAxis dataKey="viewport" type="number">
             <Label position="right" offset={30}>
               viewport (px)
             </Label>
           </XAxis>
-          <YAxis dataKey="fontSize">
+          <YAxis dataKey="fontSize" type="number">
             <Label position="top" offset={20}>
               font-size (px)
             </Label>

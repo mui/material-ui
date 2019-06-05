@@ -86,7 +86,7 @@ Use the function signature if you need to have access to the theme. It's provide
 
 #### Returns
 
-`hook`: A hook. This hook can be used in a function component.
+`hook`: A hook. This hook can be used in a function component. The documentation often calls this returned hook `useStyles`.
 It accepts one argument: the properties that will be used for "interpolation" in
 the style sheet.
 
@@ -99,11 +99,12 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'red',
+    color: props => props.color,
   },
 });
 
-export default function MyComponent() {
-  const classes = useStyles();
+export default function MyComponent(props) {
+  const classes = useStyles(props);
   return <div className={classes.root} />;
 }
 ```
