@@ -204,7 +204,8 @@ Popper.propTypes = {
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            'The reference element should be visible.',
+            'The reference should have a sound position in the page.',
+            'If you have provided an element, it might no longer be mounted or display none.',
           ].join('\n'),
         );
       }
