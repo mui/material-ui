@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import PopperJS from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';
 
@@ -200,6 +201,14 @@ describe('<Popper />', () => {
       clock.tick(0);
       wrapper.update();
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+    });
+  });
+
+  describe('prop: popperRef', () => {
+    it('should return a ref', () => {
+      const ref = React.createRef();
+      mount(<Popper {...defaultProps} popperRef={ref} />);
+      assert.strictEqual(ref.current instanceof PopperJS, true);
     });
   });
 

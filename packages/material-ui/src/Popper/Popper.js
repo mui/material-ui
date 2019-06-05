@@ -31,6 +31,8 @@ function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
+const defaultPopperOptions = {};
+
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
  */
@@ -44,12 +46,14 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     modifiers,
     open,
     placement: placementProps = 'bottom',
-    popperOptions = {},
+    popperOptions = defaultPopperOptions,
+    popperRef: popperRefProp,
     transition = false,
     ...other
   } = props;
   const tooltipRef = React.useRef(null);
   const popperRef = React.useRef();
+  const handlePopperRef = useForkRef(popperRef, popperRefProp);
   const [exited, setExited] = React.useState(!props.open);
   const [placement, setPlacement] = React.useState();
   const handleRef = useForkRef(tooltipRef, ref);
@@ -69,10 +73,10 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
     if (popperRef.current) {
       popperRef.current.destroy();
-      popperRef.current = null;
+      handlePopperRef(null);
     }
 
-    popperRef.current = new PopperJS(getAnchorEl(anchorEl), popperNode, {
+    const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
       placement: flipPlacement(placementProps),
       ...popperOptions,
       modifiers: {
@@ -92,20 +96,30 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
-  }, [anchorEl, disablePortal, modifiers, open, placement, placementProps, popperOptions]);
+    handlePopperRef(popper);
+  }, [
+    handlePopperRef,
+    anchorEl,
+    disablePortal,
+    modifiers,
+    open,
+    placement,
+    placementProps,
+    popperOptions,
+  ]);
 
   const handleEnter = () => {
     setExited(false);
   };
 
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     if (!popperRef.current) {
       return;
     }
 
     popperRef.current.destroy();
-    popperRef.current = null;
-  };
+    handlePopperRef(null);
+  }, [handlePopperRef]);
 
   const handleExited = () => {
     setExited(true);
@@ -116,7 +130,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     return () => {
       handleClose();
     };
-  }, []);
+  }, [handleClose]);
 
   React.useEffect(() => {
     // Let's update the popper position.
@@ -128,7 +142,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       // Otherwise handleExited will call this.
       handleClose();
     }
-  }, [open, transition]);
+  }, [open, transition, handleClose]);
 
   if (!keepMounted && !open && (!transition || exited)) {
     return null;
@@ -270,6 +284,10 @@ Popper.propTypes = {
    * Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance.
    */
   popperOptions: PropTypes.object,
+  /**
+   * Callback fired when a new popper instance is used.
+   */
+  popperRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Help supporting a react-transition-group/Transition component.
    */

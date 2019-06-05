@@ -27,6 +27,7 @@ Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/p
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the popper is visible. |
 | <span class="prop-name">placement</span> | <span class="prop-type">enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br></span> | <span class="prop-default">'bottom'</span> | Popper placement. |
 | <span class="prop-name">popperOptions</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance. |
+| <span class="prop-name">popperRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | Callback fired when a new popper instance is used. |
 | <span class="prop-name">transition</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Help supporting a react-transition-group/Transition component. |
 
 The `ref` is forwarded to the root element.

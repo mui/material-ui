@@ -17,9 +17,12 @@ export type PopperPlacementType =
   | 'top-start'
   | 'top';
 
+export interface PopperRef {
+  update(): void;
+}
+
 export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
-  transition?: boolean;
-  anchorEl?: null | ReferenceObject | (() => ReferenceObject);
+  anchorEl?: null | Element | ReferenceObject | (() => Element);
   children:
     | React.ReactNode
     | ((props: {
@@ -33,6 +36,8 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
   placement?: PopperPlacementType;
   popperOptions?: object;
+  popperRef?: React.RefObject<PopperRef>;
+  transition?: boolean;
 }
 
 declare const Popper: React.ComponentType<PopperProps>;
