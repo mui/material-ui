@@ -46,7 +46,7 @@ export default function ResponsiveFontSizes() {
 
       if (variant[value]) {
         data.push({
-          viewport: viewport -1,
+          viewport: viewport - 1,
           fontSize: data[data.length - 1].fontSize,
         });
         data.push({
