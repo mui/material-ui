@@ -42,6 +42,7 @@ module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
     'babel-plugin-optimize-clsx',
+    'babel-plugin-optimize-react',
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     '@babel/plugin-transform-runtime',
