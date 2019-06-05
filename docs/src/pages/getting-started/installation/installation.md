@@ -38,11 +38,6 @@ For instance, via Google Web Fonts:
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
-```jsx
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-```
-
 ## SVG Icons
 
 In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/)
