@@ -10,10 +10,10 @@ export default ({ attach, nest, linked, linkInverted, theme, primary, TEXT, ICON
         color: primary.main,
       },
       [attach(TEXT.indented)]: {
-        marginLeft: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
       },
       [attach(TEXT.indentedLg)]: {
-        marginLeft: theme.spacing.unit * 3,
+        marginLeft: theme.spacing(3),
       },
       [attach(TEXT.bold)]: {
         fontWeight: 600,
@@ -29,7 +29,7 @@ export default ({ attach, nest, linked, linkInverted, theme, primary, TEXT, ICON
         display: 'flex',
         alignItems: 'flex-end',
         [nest(ICON.root)]: {
-          marginRight: theme.spacing.unit / 2,
+          marginRight: theme.spacing(0.5),
         },
       },
       [attach(TEXT.lightWeight)]: {

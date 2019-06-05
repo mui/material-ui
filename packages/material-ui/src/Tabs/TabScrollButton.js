@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/aria-role */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import withStyles from '../styles/withStyles';
@@ -10,7 +12,7 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',
-    width: 56,
+    width: 40,
     flexShrink: 0,
   },
 };
@@ -18,26 +20,38 @@ export const styles = {
 /**
  * @ignore - internal component.
  */
-function TabScrollButton(props) {
-  const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
+const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
+  const { classes, className: classNameProp, direction, onClick, visible = true, ...other } = props;
 
-  const className = classNames(classes.root, classNameProp);
+  const className = clsx(classes.root, classNameProp);
 
   if (!visible) {
     return <div className={className} />;
   }
 
   return (
-    <ButtonBase className={className} onClick={onClick} tabIndex={-1} {...other}>
-      {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+    <ButtonBase
+      component="div"
+      className={className}
+      onClick={onClick}
+      ref={ref}
+      role={null}
+      tabIndex={null}
+      {...other}
+    >
+      {direction === 'left' ? (
+        <KeyboardArrowLeft fontSize="small" />
+      ) : (
+        <KeyboardArrowRight fontSize="small" />
+      )}
     </ButtonBase>
   );
-}
+});
 
 TabScrollButton.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -58,8 +72,4 @@ TabScrollButton.propTypes = {
   visible: PropTypes.bool,
 };
 
-TabScrollButton.defaultProps = {
-  visible: true,
-};
-
-export default withStyles(styles, { name: 'MuiPrivateTabScrollButton' })(TabScrollButton);
+export default withStyles(styles, { name: 'PrivateTabScrollButton' })(TabScrollButton);

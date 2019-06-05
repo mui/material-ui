@@ -1,5 +1,6 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import TextField from '@material-ui/core/TextField';
 
 const theme = createMuiTheme({
@@ -8,12 +9,12 @@ const theme = createMuiTheme({
 
 function Direction() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <div dir="rtl">
         <TextField placeholder="Name" />
         <input type="text" placeholder="Name" />
       </div>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

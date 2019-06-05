@@ -1,15 +1,22 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface CardMediaProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardMediaClassKey> {
-  component?: React.ReactType<CardMediaProps>;
-  image?: string;
-  src?: string;
+interface CardMediaTypeMap<P, D extends React.ElementType> {
+  props: P & {
+    image?: string;
+    src?: string;
+  };
+  defaultComponent: D;
+  classKey: CardMediaClassKey;
 }
+
+declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;
 
 export type CardMediaClassKey = 'root' | 'media';
 
-declare const CardMedia: React.ComponentType<CardMediaProps>;
+export type CardMediaProps<D extends React.ElementType = 'div', P = {}> = OverrideProps<
+  CardMediaTypeMap<P, D>,
+  D
+>;
 
 export default CardMedia;

@@ -1,36 +1,63 @@
-# Server Rendering
+# 服务端渲染
 
-<p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
+<p class="description">服务器端呈现的最常见用例是在用户（或搜索引擎爬虫）首次请求您的应用时处理初次渲染。</p>
 
-When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client. From that point on, the client takes over rendering duties.
+当服务器收到请求时，它会将所需的组件呈现为 HTML 字符串，然后将其作为响应发送给客户端。 从那时起，客户将接管渲染的职责。
 
-## Material-UI on the Server
+## 在服务器端的 Material-UI
 
-Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated. It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker. To inject the style down to the client, we need to:
+Material-UI 最初设计受到了在服务器端渲染的约束，但是您可以完全负责它的正确整合。 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS, 从而导致浏览器样式闪烁（FOUC）。 若想将样式注入客户端，我们需要：
 
-1. Create a fresh, new `sheetsRegistry` and `theme` instance on every request.
-2. Render the React tree with the server-side API and the instance.
-3. Pull the CSS out of the `sheetsRegistry`.
-4. Pass the CSS along to the client.
+1. 在每个请求上创建一个全新的 [`ServerStyleSheets`](/styles/api/#serverstylesheets) 实例。
+2. 用服务端收集器渲染 React 树组件。
+3. 拉出 CSS。
+4. 将CSS传递给客户端。
 
-On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
+在删除服务器端注入的 CSS 之前，客户端将第二次注入 CSS。
 
-## Setting Up
+## 配置
 
-In the following recipe, we are going to look at how to set up server-side rendering.
+在下面的配置中，我们将了解如何设置服务器端的渲染。
 
-### The Server Side
+### 主题
 
-The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
+我们创建了一个能在客户端和服务器端共享的主题。
+
+`theme.js`
+
+```js
+import { createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
+
+// 创建一个主题的实例。
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#556cd6',
+    },
+    secondary: {
+      main: '#19857b',
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      default: '#fff',
+    },
+  },
+});
+```
+
+### 服务器端
+
+下面的大纲可以大致展现一下我们的服务器端。 我们将使用 [app.use](http://expressjs.com/en/api.html) 来设置一个 [Express middleware](http://expressjs.com/en/guide/using-middleware.html) 从而处理来自我们服务器端的所有请求。 如果您对 Express 或者 middleware 不太熟悉，您只需要知道每次服务器收到了一个请求，都会调用我们的 handleRender 函数。
 
 `server.js`
 
 ```js
 import express from 'express';
-import React from 'react';
-import App from './App';
 
-// We are going to fill these out in the sections to follow.
+// 我们将在章节中填写这些内容来遵守。
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -41,227 +68,121 @@ function handleRender(req, res) {
 
 const app = express();
 
-// This is fired every time the server-side receives a request.
+// 每次服务器端收到请求时都会触发此操作。
 app.use(handleRender);
 
 const port = 3000;
 app.listen(port);
 ```
 
-### Handling the Request
+### 处理请求
 
-The first thing that we need to do on every request is create a new `sheetsRegistry` and `theme` instance.
+对于每次请求，我们首先需要做的是创建一个 `ServerStyleSheets`。
 
-When rendering, we will wrap `App`, our root component, inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider/) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
+当渲染的时候，我们将我们的根部组件，`App`，包装在一个 [`StylesProvider`](/styles/api/#stylesprovider) 和 [`ThemeProvider`](/styles/api/#themeprovider) 中，这样组件树中的所有组件都可以使用撰写的样式设置和 `theme`。
 
-The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+服务器渲染的关键步骤是在我们发送到客户端**之前**渲染我们组件的初始 HTML。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
+接着，我们可以使用 `sheets.toString()` 来从我们的`表单`中得到 CSS。 我们将会了解到这是如何在我们的 `renderFullPage` 函数中传递下去的。
 
 ```jsx
-import ReactDOMServer from 'react-dom/server'
-import { SheetsRegistry } from 'jss';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import express from 'express';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
+import App from './App';
+import theme from './theme';
 
 function handleRender(req, res) {
-  // Create a sheetsRegistry instance.
-  const sheetsRegistry = new SheetsRegistry();
+  const sheets = new ServerStyleSheets();
 
-  // Create a sheetsManager instance.
-  const sheetsManager = new Map();
-
-  // Create a theme instance.
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-      accent: red,
-      type: 'light',
-    },
-  });
-
-  // Create a new class name generator.
-  const generateClassName = createGenerateClassName();
-
-  // Render the component to a string.
+  // 将组件渲染成一个字符串。
   const html = ReactDOMServer.renderToString(
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+    sheets.collect(
+      <ThemeProvider theme={theme}>
         <App />
-      </MuiThemeProvider>
-    </JssProvider>
-  )
+      </ThemeProvider>,
+    ),
+  );
 
-  // Grab the CSS from our sheetsRegistry.
-  const css = sheetsRegistry.toString()
+  // 从我们的样式表中获取 CSS。
+  const css = sheets.toString();
 
-  // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css))
+  // 将渲染的页面送回到客户端。
+  res.send(renderFullPage(html, css));
 }
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// 每次服务器端收到请求时都会触发此操作。
+app.use(handleRender);
+
+const port = 3000;
+app.listen(port);
 ```
 
-### Inject Initial Component HTML and CSS
+### 注入组件的初始 HTML 和 CSS
 
-The final step on the server-side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
+服务器端最后一个步骤则是在我们的组件初始 HTML 和 CSS 中注入一个模板，从而在客户端渲染。
 
 ```js
 function renderFullPage(html, css) {
   return `
-    <!doctype html>
+    <!DOCTYPE html>
     <html>
       <head>
-        <title>Material-UI</title>
+        <title>My page</title>
+        <style id="jss-server-side">${css}</style>
       </head>
       <body>
         <div id="root">${html}</div>
-        <style id="jss-server-side">${css}</style>
       </body>
     </html>
   `;
 }
 ```
 
-### The Client Side
+### 客户端
 
-The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at our client file:
+客户端则是简单明了的。 我们只需要移除服务器端生成的 CSS。 让我们来看一看我们客户端的文件：
 
 `client.js`
 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import { ThemeProvider } from '@material-ui/styles';
 import App from './App';
+import theme from './theme';
 
-class Main extends React.Component {
-  // Remove the server-side injected CSS.
-  componentDidMount() {
-    const jssStyles = document.getElementById('jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
+function Main() {
+  React.useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
-  }
+  }, []);
 
-  render() {
-    return <App />
-  }
+  return (
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  );
 }
 
-// Create a theme instance.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-    type: 'light',
-  },
-});
-
-// Create a new class name generator.
-const generateClassName = createGenerateClassName();
-
-ReactDOM.hydrate(
-  <JssProvider generateClassName={generateClassName}>
-    <MuiThemeProvider theme={theme}>
-      <Main />
-    </MuiThemeProvider>
-  </JssProvider>,
-  document.querySelector('#root'),
-);
+ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
-## Reference implementations
+## 参考实现
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+您可以在 [GitHub 存储库中](https://github.com/mui-org/material-ui)的 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 的文件夹下面，找到我们托管的不同的范例项目：
 
-- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
+- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 
-## Troubleshooting
+## 故障排除（Troubleshooting）
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](#reference-implementations), bit by bit.
-
-### CSS works only on first load then is missing
-
-The CSS is only generated on the first load of the page. Then, the CSS is missing on the server for consecutive requests.
-
-#### Action to Take
-
-We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to provide **a new `sheetsManager` for each request**.
-
-You can learn more about [the sheets manager concept in the documentation](/customization/css-in-js/#sheets-manager).
-
-*example of fix:*
-
-```diff
--// Create a sheetsManager instance.
--const sheetsManager = new Map();
-
-function handleRender(req, res) {
-
-+ // Create a sheetsManager instance.
-+ const sheetsManager = new Map();
-
-  //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-```
-
-### React class name hydration mismatch
-
-There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
-
-#### Action to Take
-
-The class names value relies on the concept of [class name generator](/customization/css-in-js/#creategenerateclassname-options-class-name-generator). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
-
-- You need to provide a new class name generator for each request. But you might share a `createGenerateClassName()` between different requests:
-
-*example of fix:*
-
-```diff
--// Create a new class name generator.
--const generateClassName = createGenerateClassName();
-
-function handleRender(req, res) {
-
-+ // Create a new class name generator.
-+ const generateClassName = createGenerateClassName();
-
-  //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-```
-
-- You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
-
-    You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
-
-*example of fix (package.json):*
-
-```diff
-  "dependencies": {
-    ...
-
--   "@material-ui/core": "^1.4.2",
-+   "@material-ui/core": "1.4.3",
-    ...
-  },
-```
-
-- You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
+查看我们的常见问题解答答案：[我的应用程序无法在服务器上正确地渲染](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server) 。

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
@@ -12,17 +11,19 @@ export const styles = {
   },
 };
 
-const contextValue = { variant: 'footer' };
+const tablelvl2 = {
+  variant: 'footer',
+};
 
-function TableFooter(props) {
-  const { classes, className, component: Component, ...other } = props;
+const TableFooter = React.forwardRef(function TableFooter(props, ref) {
+  const { classes, className, component: Component = 'tfoot', ...other } = props;
 
   return (
-    <Tablelvl2Context.Provider value={contextValue}>
-      <Component className={classNames(classes.root, className)} {...other} />
+    <Tablelvl2Context.Provider value={tablelvl2}>
+      <Component className={clsx(classes.root, className)} ref={ref} {...other} />
     </Tablelvl2Context.Provider>
   );
-}
+});
 
 TableFooter.propTypes = {
   /**
@@ -31,7 +32,7 @@ TableFooter.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -42,11 +43,7 @@ TableFooter.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
-};
-
-TableFooter.defaultProps = {
-  component: 'tfoot',
+  component: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTableFooter' })(TableFooter);

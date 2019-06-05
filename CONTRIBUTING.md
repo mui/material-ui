@@ -10,9 +10,9 @@ When in doubt, keep your pull requests small. To give a PR the best chance of ge
 
 As with issues, please begin the title with [ComponentName].
 
-When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/mui-org/material-ui/blob/master/test/README.md).
+When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
-When migrating a component to master, or submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
+When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
 
 ### Branch Structure
 
@@ -20,15 +20,16 @@ All stable releases are tagged ([view tags](https://github.com/mui-org/material-
 At any given time, `master` represents the latest development version of the library.
 Patches or hotfix releases are prepared on an independent branch.
 
-#### `master` is unsafe
+#### `master` is for 4.x
 
 We will do our best to keep `master` in good shape, with tests passing at all times.
-However, in order to move fast, we will make API changes that your application might not be compatible with.
 
 ### How to increase the chance of being accepted?
 
 We will only accept a pull request for which all tests pass. Make sure the following is true:
-- The branch is not behind master.
+- The branch is targeted at:
+  - `master` for ongoing development.
+- The branch is not behind its target.
 - If a feature is being added:
    - If the result was already achievable with the core library, explain why this
       feature needs to be added to the core.
@@ -38,8 +39,10 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - The code is formatted (run `yarn prettier`).
 - The code is linted (run `yarn lint`).
 - If API documentation is being changed in the source, `yarn docs:api` was run.
-- If prop types were changed, the TypeScript declarations were updated.
+- If props were added or prop types were changed, the TypeScript declarations were updated.
 - If TypeScript declarations were changed, `yarn typescript` passed.
+- If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
+  See [About TypeScript demos](#about-typescript-demos).
 - The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
 
 ## Getting started
@@ -70,6 +73,8 @@ yarn
 yarn docs:dev
 ```
 You can now access the documentation site [locally](http://localhost:3000).
+Changes to the docs will hot reload the site. If you make changes to TypeScript files
+in the docs run `yarn docs:typescript --watch` in a separate terminal.
 
 Test coverage is limited at present, but where possible, please add tests for any changes you make. Tests can be run with `yarn test`.
 
@@ -104,46 +109,51 @@ For example, let say you want to add new demos for buttons component, then you h
 
 In this case, I'm going to add the new file to the following directory:
 ```
-docs/src/pages/demos/buttons/
+docs/src/pages/components/buttons/
 ```
 And let's give it a name: `SuperButtons.js`.
+
+We try to also document how to use this library with TypeScript. If you are familiar with
+that language try writing that demo in TypeScript in a *.tsx file. When you're done
+run `yarn docs:typescript:formatted` to automatically add a JavaScript version.
+
+Apart from the inherent pros and cons of TypeScript the demos are also used to test our
+type declarations. This helps a lot in catching regressions when updating our type
+declarations.
 
 #### 2. Edit the page Markdown file.
 
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
-In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
+In this case, the file you need to edit is `docs/src/pages/components/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
+
+Changes should only be applied to the english version e.g. only `app-bar.md` and
+not `app-bar-de.md`. For contributions concerning translations please read the [section
+about translations](#Translations).
 
 ```diff
 + ### Super buttons
 +
 + Sometimes, you need a super button to make your app looks **superb**. Yea ...
 +
-+ {{"demo": "pages/demos/buttons/SuperButtons.js"}}
++ {{"demo": "pages/components/buttons/SuperButtons.js"}}
 ```
 
-#### 3. Edit the Next.js page.
-
-The Next.js page is saved in the following file.
-There is a direct mapping between the filename in the repository and the pathname in the documentation.
-
-```
-pages/demos/buttons.js
-```
-
-Then, you will need to add the following code:
-```diff
-+ 'pages/demos/buttons/SuperButtons.js': {
-+   js: require('docs/src/pages/demos/buttons/SuperButtons').default,
-+   raw: preval`
-+ module.exports = require('fs')
-+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/SuperButtons'), 'utf8')
-+`,
-+        },
-```
-
-#### 4. You are done 🎉!
+#### 3. You are done 🎉!
 
 In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/mui-org/material-ui/pull/8922/files)).
+
+### About TypeScript demos
+
+To help people use this library with TypeScript we try to provide equivalent demos
+in TypeScript.
+
+Changing demos in JavaScript requires a manual update of the TypeScript
+version. If you are not familiar with this language you can add the filepath
+of the TS demo to `docs/scripts/formattedTSDemos.js`. Otherwise our CI will fail the
+`test_build` job. A contributor can later update the TypeScript version of that demo.
+
+If you are already familiar with TypeScript you can simply write the demo in TypeScript.
+`yarn docs:typescript:formatted` will transpile it down to JavaScript.
 
 ## How do I use my local distribution of material-ui in any project?
 
@@ -172,6 +182,13 @@ yarn link "@material-ui/core"
 ```
 
 Now, every time you import `material-ui` in your project, it is going to use your local distribution.
+
+## Translations
+
+Translations are handled via [Crowdin](https://translate.material-ui.com).
+You don't need to apply any changes to localized versions of our markdown files
+i.e. files having a `-someLocale` suffix. Crowdin automatically takes care of syncing
+these changes across the localized versions.
 
 ## Roadmap
 

@@ -1,34 +1,59 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
-import Slider from './Slider';
+import {
+  createMount,
+  getClasses,
+  findOutermostIntrinsic,
+  wrapsIntrinsicElement,
+} from '@material-ui/core/test-utils';
+import Slider, { defaultValueReducer } from './Slider';
+
+function touchList(touchArray) {
+  touchArray.item = idx => touchArray[idx];
+  return touchArray;
+}
 
 describe('<Slider />', () => {
   let mount;
-  let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Slider value={0} />);
-    mount = createMount();
+    // StrictMode violation: uses ButtonBase
+    mount = createMount({ strict: false });
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
+  function findHandle(wrapper) {
+    // Will also match any other react component if not filtered. They won't appear in the DOM
+    // and are therefore an implementation detail. We're interested in what the user
+    // interacts with.
+    return wrapper.find('[role="slider"]').filterWhere(wrapsIntrinsicElement);
+  }
+
   it('should render a div', () => {
-    const wrapper = shallow(<Slider value={0} />);
-    assert.strictEqual(wrapper.name(), 'div');
+    const wrapper = mount(<Slider value={0} />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
   });
 
   it('should render with the default classes', () => {
-    const wrapper = shallow(<Slider value={0} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mount(<Slider value={0} />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should render with the default and user classes', () => {
-    const wrapper = shallow(<Slider value={0} className="mySliderClass" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('mySliderClass'), true);
+    const wrapper = mount(<Slider value={0} className="mySliderClass" />);
+    assert.strictEqual(
+      wrapper
+        .find(`.${classes.root}`)
+        .first()
+        .hasClass('mySliderClass'),
+      true,
+    );
   });
 
   it('should call handlers', () => {
@@ -51,6 +76,63 @@ describe('<Slider />', () => {
     document.body.dispatchEvent(new window.MouseEvent('mouseup'));
 
     assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
+    assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+
+    assert.strictEqual(
+      handleChange.args[0].length,
+      2,
+      'should have called the handleDragEnd cb with 2 arguments',
+    );
+    assert.strictEqual(
+      handleDragStart.args[0].length,
+      2,
+      'should have called the handleDragEnd cb with 2 argument',
+    );
+    assert.strictEqual(
+      handleDragEnd.args[0].length,
+      2,
+      'should have called the handleDragEnd cb with 2 arguments',
+    );
+  });
+
+  it('should only listen to changes from the same touchpoint', () => {
+    const handleChange = spy();
+    const handleDragStart = spy();
+    const handleDragEnd = spy();
+    let touchEvent;
+
+    const wrapper = mount(
+      <Slider
+        onChange={handleChange}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        value={0}
+      />,
+    );
+
+    wrapper.simulate('touchstart', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    wrapper.simulate('touchmove', {
+      changedTouches: touchList([{ identifier: 2 }]),
+    });
+    touchEvent = new window.MouseEvent('touchend');
+    touchEvent.changedTouches = touchList([{ identifier: 2 }]);
+    document.body.dispatchEvent(touchEvent);
+
+    assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
+    assert.strictEqual(handleDragEnd.callCount, 0, 'should not have called the handleDragEnd cb');
+
+    wrapper.simulate('touchmove', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    touchEvent = new window.MouseEvent('touchend');
+    touchEvent.changedTouches = touchList([{ identifier: 1 }]);
+    document.body.dispatchEvent(touchEvent);
+
+    assert.strictEqual(handleChange.callCount, 2, 'should have called the handleChange cb');
     assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
     assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
   });
@@ -134,9 +216,14 @@ describe('<Slider />', () => {
 
   describe('prop: vertical', () => {
     it('should render with the default and vertical classes', () => {
-      const wrapper = shallow(<Slider vertical value={0} />);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.vertical), true);
+      const wrapper = mount(<Slider vertical value={0} />);
+      assert.strictEqual(
+        wrapper
+          .find(`.${classes.root}`)
+          .first()
+          .hasClass(classes.vertical),
+        true,
+      );
     });
   });
 
@@ -149,10 +236,10 @@ describe('<Slider />', () => {
     });
 
     it('should render thumb with the disabled classes', () => {
-      const button = wrapper.find('button');
+      const handle = findHandle(wrapper);
 
-      assert.strictEqual(button.hasClass(classes.thumb), true);
-      assert.strictEqual(button.hasClass(classes.disabled), true);
+      assert.strictEqual(handle.hasClass(classes.thumb), true);
+      assert.strictEqual(handle.hasClass(classes.disabled), true);
     });
 
     it('should render tracks with the disabled classes', () => {
@@ -167,12 +254,93 @@ describe('<Slider />', () => {
       assert.strictEqual(handleChange.callCount, 0);
     });
 
-    it('should disable its thumb', () => {
-      assert.ok(wrapper.find('button').props().disabled);
+    it('should signal that it is disabled', () => {
+      assert.ok(findHandle(wrapper).props().disabled);
+    });
+  });
+
+  describe('prop: slider', () => {
+    let wrapper;
+
+    const moveLeftEvent = new window.KeyboardEvent('keydown', {
+      key: 'ArrowLeft',
+    });
+    const moveRightEvent = new window.KeyboardEvent('keydown', {
+      key: 'ArrowRight',
     });
 
-    it('should signal that it is disabled', () => {
-      assert.ok(wrapper.find('[role="slider"]').props()['aria-disabled']);
+    before(() => {
+      function valueReducer(rawValue, props, event) {
+        const { disabled, max, min, step } = props;
+
+        function roundToStep(number) {
+          return Math.round(number / step) * step;
+        }
+
+        if (!disabled && step) {
+          if (rawValue > min && rawValue < max) {
+            if (rawValue === max - step) {
+              // If moving the Slider using arrow keys and value is formerly an maximum edge value
+              return roundToStep(rawValue + step / 2);
+            }
+            if (rawValue === min + step) {
+              // Same for minimum edge value
+              return roundToStep(rawValue - step / 2);
+            }
+            return roundToStep(rawValue);
+          }
+          return rawValue;
+        }
+
+        return defaultValueReducer(rawValue, props, event);
+      }
+
+      const onChange = (_, value) => {
+        wrapper.setProps({ value });
+      };
+      wrapper = mount(
+        <Slider
+          value={90}
+          valueReducer={valueReducer}
+          min={6}
+          max={108}
+          step={10}
+          onChange={onChange}
+        />,
+      );
+    });
+
+    it('should reach right edge value', () => {
+      wrapper.setProps({ value: 90 });
+      const handle = findHandle(wrapper);
+
+      handle.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      handle.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 108);
+
+      handle.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      handle.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 90);
+    });
+
+    it('should reach left edge value', () => {
+      wrapper.setProps({ value: 20 });
+      const handle = findHandle(wrapper);
+      handle.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      handle.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 6);
+
+      handle.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      handle.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 20);
     });
   });
 });

@@ -1,9 +1,6 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType, chainPropTypes } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -39,7 +36,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the span element that wraps the children. */
   label: {
-    width: '100%', // assure the correct width for iOS Safari
+    width: '100%', // Ensure the correct width for iOS Safari
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',
@@ -70,18 +67,15 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
-  flat: {},
-  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
-  flatPrimary: {},
-  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
-  flatSecondary: {},
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
     padding: '5px 16px',
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
@@ -94,9 +88,6 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-    },
-    '&$disabled': {
-      border: `1px solid ${theme.palette.action.disabled}`,
     },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
@@ -115,7 +106,7 @@ export const styles = theme => ({
       border: `1px solid ${theme.palette.action.disabled}`,
     },
   },
-  /* Styles applied to the root element if `variant="[contained | fab]"`. */
+  /* Styles applied to the root element if `variant="contained"`. */
   contained: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
@@ -142,7 +133,7 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="primary"`. */
+  /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
   containedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
@@ -154,7 +145,7 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="secondary"`. */
+  /* Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
   containedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
@@ -166,32 +157,6 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
-  raised: {}, // legacy
-  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
-  raisedPrimary: {}, // legacy
-  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
-  raisedSecondary: {}, // legacy
-  /* Styles applied to the root element if `variant="[fab | extendedFab]"`. */
-  fab: {
-    borderRadius: '50%',
-    padding: 0,
-    minWidth: 0,
-    width: 56,
-    height: 56,
-    boxShadow: theme.shadows[6],
-    '&:active': {
-      boxShadow: theme.shadows[12],
-    },
-  },
-  /* Styles applied to the root element if `variant="extendedFab"`. */
-  extendedFab: {
-    borderRadius: 48 / 2,
-    padding: '0 16px',
-    width: 'auto',
-    minWidth: 48,
-    height: 48,
-  },
   /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
   /* Styles applied to the root element if `disabled={true}`. */
@@ -199,16 +164,11 @@ export const styles = theme => ({
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
-  },
-  /* Styles applied to the root element if `mini={true}` & `variant="[fab | extendedFab]"`. */
-  mini: {
-    width: 40,
-    height: 40,
+    borderColor: 'currentColor',
   },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     padding: '4px 8px',
-    minWidth: 64,
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
@@ -222,46 +182,40 @@ export const styles = theme => ({
   },
 });
 
-function Button(props) {
+const Button = React.forwardRef(function Button(props, ref) {
   const {
     children,
     classes,
     className: classNameProp,
-    color,
-    disabled,
-    disableFocusRipple,
+    color = 'default',
+    component = 'button',
+    disabled = false,
+    disableFocusRipple = false,
     focusVisibleClassName,
-    fullWidth,
-    mini,
-    size,
-    variant,
+    fullWidth = false,
+    size = 'medium',
+    type = 'button',
+    variant = 'text',
     ...other
   } = props;
 
-  const fab = variant === 'fab' || variant === 'extendedFab';
-  const contained = variant === 'contained' || variant === 'raised';
-  const text = variant === 'text' || variant === 'flat';
-  const className = classNames(
+  const text = variant === 'text';
+  const outlined = variant === 'outlined';
+  const contained = variant === 'contained';
+  const primary = color === 'primary';
+  const secondary = color === 'secondary';
+  const className = clsx(
     classes.root,
     {
-      [classes.fab]: fab,
-      [classes.mini]: fab && mini,
-      [classes.extendedFab]: variant === 'extendedFab',
       [classes.text]: text,
-      [classes.textPrimary]: text && color === 'primary',
-      [classes.textSecondary]: text && color === 'secondary',
-      [classes.flat]: text,
-      [classes.flatPrimary]: text && color === 'primary',
-      [classes.flatSecondary]: text && color === 'secondary',
-      [classes.contained]: contained || fab,
-      [classes.containedPrimary]: (contained || fab) && color === 'primary',
-      [classes.containedSecondary]: (contained || fab) && color === 'secondary',
-      [classes.raised]: contained || fab,
-      [classes.raisedPrimary]: (contained || fab) && color === 'primary',
-      [classes.raisedSecondary]: (contained || fab) && color === 'secondary',
-      [classes.outlined]: variant === 'outlined',
-      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
-      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
+      [classes.textPrimary]: text && primary,
+      [classes.textSecondary]: text && secondary,
+      [classes.outlined]: outlined,
+      [classes.outlinedPrimary]: outlined && primary,
+      [classes.outlinedSecondary]: outlined && secondary,
+      [classes.contained]: contained,
+      [classes.containedPrimary]: contained && primary,
+      [classes.containedSecondary]: contained && secondary,
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
@@ -273,15 +227,18 @@ function Button(props) {
   return (
     <ButtonBase
       className={className}
+      component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
+      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      ref={ref}
+      type={type}
       {...other}
     >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 Button.propTypes = {
   /**
@@ -290,7 +247,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -305,7 +262,7 @@ Button.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the button will be disabled.
    */
@@ -317,6 +274,9 @@ Button.propTypes = {
   disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect will be disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -333,10 +293,6 @@ Button.propTypes = {
    */
   href: PropTypes.string,
   /**
-   * If `true`, and `variant` is `'fab'`, will use mini floating action button styling.
-   */
-  mini: PropTypes.bool,
-  /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
@@ -347,55 +303,8 @@ Button.propTypes = {
   type: PropTypes.string,
   /**
    * The variant to use.
-   * __WARNING__: `flat` and `raised` are deprecated.
-   * Instead use `text` and `contained` respectively.
-   * `fab` and `extendedFab` are deprecated.
-   * Instead use `<Fab>` and `<Fab variant="extended">`
    */
-  variant: chainPropTypes(
-    PropTypes.oneOf(['text', 'outlined', 'contained', 'fab', 'extendedFab', 'flat', 'raised']),
-    props => {
-      if (props.variant === 'flat') {
-        return new Error(
-          'Material-UI: the `flat` variant will be removed in the next major release. ' +
-            '`text` is equivalent and should be used instead.',
-        );
-      }
-      if (props.variant === 'raised') {
-        return new Error(
-          'Material-UI: the `raised` variant will be removed in the next major release. ' +
-            '`contained` is equivalent and should be used instead.',
-        );
-      }
-      if (props.variant === 'fab') {
-        return new Error(
-          'Material-UI: the `fab` variant will be removed in the next major release. ' +
-            'The `<Fab>` component is equivalent and should be used instead.',
-        );
-      }
-      if (props.variant === 'extendedFab') {
-        return new Error(
-          'Material-UI: the `fab` variant will be removed in the next major release. ' +
-            'The `<Fab>` component with `variant="extended"` is equivalent ' +
-            'and should be used instead.',
-        );
-      }
-
-      return null;
-    },
-  ),
-};
-
-Button.defaultProps = {
-  color: 'default',
-  component: 'button',
-  disabled: false,
-  disableFocusRipple: false,
-  fullWidth: false,
-  mini: false,
-  size: 'medium',
-  type: 'button',
-  variant: 'text',
+  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

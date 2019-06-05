@@ -1,29 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
-import hasValue from './hasValue';
+import warning from 'warning';
+import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
+import { withStyles } from '@material-ui/core/styles';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    transition: theme.transitions.create('background,box-shadow'),
-    background: 'transparent',
+    backgroundColor: theme.palette.background.paper,
     borderRadius: 2,
-    overflow: 'hidden',
-  },
-  /* Styles applied to the root element if `selected={true}` or `selected="auto" and `value` set. */
-  selected: {
-    background: theme.palette.background.paper,
-    boxShadow: theme.shadows[2],
+    display: 'inline-flex',
   },
 });
 
-class ToggleButtonGroup extends React.Component {
-  handleChange = (event, buttonValue) => {
-    const { onChange, value } = this.props;
+const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
+  const { children, className, classes, exclusive, onChange, size, value, ...other } = props;
 
+  const handleChange = (event, buttonValue) => {
     if (!onChange) {
       return;
     }
@@ -41,9 +35,7 @@ class ToggleButtonGroup extends React.Component {
     onChange(event, newValue);
   };
 
-  handleExclusiveChange = (event, buttonValue) => {
-    const { onChange, value } = this.props;
-
+  const handleExclusiveChange = (event, buttonValue) => {
     if (!onChange) {
       return;
     }
@@ -51,50 +43,34 @@ class ToggleButtonGroup extends React.Component {
     onChange(event, value === buttonValue ? null : buttonValue);
   };
 
-  render() {
-    const {
-      children: childrenProp,
-      className: classNameProp,
-      classes,
-      exclusive,
-      onChange,
-      selected: selectedProp,
-      value,
-      ...other
-    } = this.props;
+  return (
+    <div className={clsx(classes.root, className)} ref={ref} {...other}>
+      {React.Children.map(children, child => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
 
-    const children = React.Children.map(childrenProp, child => {
-      if (!React.isValidElement(child)) {
-        return null;
-      }
+        warning(
+          child.type !== React.Fragment,
+          [
+            "Material-UI: the ToggleButtonGroup component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
 
-      const { selected: buttonSelected, value: buttonValue } = child.props;
+        const { selected: buttonSelected, value: buttonValue } = child.props;
+        const selected =
+          buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
 
-      const selected =
-        buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
-
-      return React.cloneElement(child, {
-        selected,
-        onChange: exclusive ? this.handleExclusiveChange : this.handleChange,
-      });
-    });
-
-    const groupSelected = selectedProp === 'auto' ? hasValue(value) : selectedProp;
-    const className = classNames(
-      classes.root,
-      {
-        [classes.selected]: groupSelected,
-      },
-      classNameProp,
-    );
-
-    return (
-      <div className={className} {...other}>
-        {children}
-      </div>
-    );
-  }
-}
+        return React.cloneElement(child, {
+          selected,
+          onChange: exclusive ? handleExclusiveChange : handleChange,
+          size,
+        });
+      })}
+    </div>
+  );
+});
 
 ToggleButtonGroup.propTypes = {
   /**
@@ -102,7 +78,8 @@ ToggleButtonGroup.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -123,10 +100,9 @@ ToggleButtonGroup.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, render the group in a selected state. If `auto` (the default)
-   * render in a selected state if `value` is not empty.
+   * The size of the buttons.
    */
-  selected: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['auto'])]),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.
@@ -136,7 +112,7 @@ ToggleButtonGroup.propTypes = {
 
 ToggleButtonGroup.defaultProps = {
   exclusive: false,
-  selected: 'auto',
+  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);

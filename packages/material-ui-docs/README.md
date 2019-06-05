@@ -24,3 +24,7 @@ npm install @material-ui/core
 // with yarn
 yarn add @material-ui/core
 ```
+
+## Documentation
+
+We have no documentation for these components.

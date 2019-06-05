@@ -1,6 +1,6 @@
 {
   "name": "parcel",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
@@ -8,12 +8,14 @@
     "babel-preset-env": "latest",
     "babel-preset-react": "latest",
     "parcel-bundler": "latest",
-    "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html --public-url ./"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3"
   }
 }

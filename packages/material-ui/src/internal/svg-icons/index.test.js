@@ -24,8 +24,8 @@ describe('svg-icons', () => {
       }
 
       files.forEach(file => {
-        // Ignore no js files and tests
-        if (file.indexOf('.js') === -1 || file.indexOf('spec.js') > -1) {
+        // Ignore everything that's not a component
+        if (!/^[A-Z].*\.js$/.test(file)) {
           return;
         }
 

@@ -1,50 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import TableContext from './TableContext';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table',
-    fontFamily: theme.typography.fontFamily,
     width: '100%',
     borderCollapse: 'collapse',
     borderSpacing: 0,
   },
+};
+
+const Table = React.forwardRef(function Table(props, ref) {
+  const {
+    classes,
+    className,
+    component: Component = 'table',
+    padding = 'default',
+    size = 'medium',
+    ...other
+  } = props;
+  const table = React.useMemo(() => ({ padding, size }), [padding, size]);
+
+  return (
+    <TableContext.Provider value={table}>
+      <Component ref={ref} className={clsx(classes.root, className)} {...other} />
+    </TableContext.Provider>
+  );
 });
-
-class Table extends React.Component {
-  memoizedContextValue = {};
-
-  // To replace with the corresponding Hook once Material-UI v4 is out:
-  // https://reactjs.org/docs/hooks-reference.html#usememo
-  useMemo(contextValue) {
-    const objectKeys = Object.keys(contextValue);
-
-    for (let i = 0; i < objectKeys.length; i += 1) {
-      const objectKey = objectKeys[i];
-
-      if (contextValue[objectKey] !== this.memoizedContextValue[objectKey]) {
-        this.memoizedContextValue = contextValue;
-        break;
-      }
-    }
-    return this.memoizedContextValue;
-  }
-
-  render() {
-    const { classes, className, component: Component, padding, ...other } = this.props;
-
-    return (
-      <TableContext.Provider value={this.useMemo({ padding })}>
-        <Component className={classNames(classes.root, className)} {...other} />
-      </TableContext.Provider>
-    );
-  }
-}
 
 Table.propTypes = {
   /**
@@ -53,7 +39,7 @@ Table.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -64,16 +50,15 @@ Table.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Allows TableCells to inherit padding of the Table.
    */
-  padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
-};
-
-Table.defaultProps = {
-  component: 'table',
-  padding: 'default',
+  padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
+  /**
+   * Allows TableCells to inherit size of the Table.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
 };
 
 export default withStyles(styles, { name: 'MuiTable' })(Table);

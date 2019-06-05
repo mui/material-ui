@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StandardProps, Omit } from '..';
+import { Omit } from '@material-ui/types';
+import { StandardProps } from '..';
 import { Breakpoint } from '../styles/createBreakpoints';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
@@ -14,7 +15,7 @@ export type GridContentAlignment =
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
-export type GridSpacing = 0 | 8 | 16 | 24 | 32 | 40;
+export type GridSpacing = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export type GridJustification =
   | 'flex-start'
@@ -66,10 +67,16 @@ export type GridClassKey =
   | 'justify-xs-flex-end'
   | 'justify-xs-space-between'
   | 'justify-xs-space-around'
+  | 'spacing-xs-1'
+  | 'spacing-xs-2'
+  | 'spacing-xs-3'
+  | 'spacing-xs-4'
+  | 'spacing-xs-5'
+  | 'spacing-xs-6'
+  | 'spacing-xs-7'
   | 'spacing-xs-8'
-  | 'spacing-xs-16'
-  | 'spacing-xs-24'
-  | 'spacing-xs-40'
+  | 'spacing-xs-9'
+  | 'spacing-xs-10'
   | 'grid-xs-auto'
   | 'grid-xs-true'
   | 'grid-xs-1'

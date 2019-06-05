@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-import './bootstrap';
 import Benchmark from 'benchmark';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -9,7 +8,7 @@ import { ThemeProvider as EmotionTheme } from 'emotion-theming';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
 import { spacing, palette, typography, compose } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { styleFunction } from '@material-ui/core/Box/Box';
+import { styleFunction } from '@material-ui/core/Box';
 import { styled, ThemeProvider as StylesThemeProvider } from '@material-ui/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
@@ -36,17 +35,9 @@ const BoxEmotion = styledEmotion('div')(styleFunction);
 const BoxMaterialSystem = styledComponents.div`${materialSystem}`;
 const BoxStyledSystem = styledComponents.div`${styledSystem}`;
 
-const materialSystemTheme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const materialSystemTheme = createMuiTheme();
 
-const styledSystemTheme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const styledSystemTheme = createMuiTheme();
 styledSystemTheme.breakpoints = null;
 styledSystemTheme.colors = styledSystemTheme.palette;
 styledSystemTheme.fontSizes = styledSystemTheme.typography;

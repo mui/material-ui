@@ -1,61 +1,26 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import ExpansionPanelActions from './ExpansionPanelActions';
 
 describe('<ExpansionPanelActions />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount({ strict: true });
     classes = getClasses(<ExpansionPanelActions>foo</ExpansionPanelActions>);
   });
 
-  it('should render a div', () => {
-    const wrapper = shallow(<ExpansionPanelActions>foo</ExpansionPanelActions>);
-    assert.strictEqual(wrapper.name(), 'div');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should spread custom props on the root node', () => {
-    const wrapper = shallow(
-      <ExpansionPanelActions data-my-prop="woofExpansionPanelActions">foo</ExpansionPanelActions>,
-    );
-    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofExpansionPanelActions');
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(
-      <ExpansionPanelActions className="woofExpansionPanelActions">foo</ExpansionPanelActions>,
-    );
-    assert.strictEqual(wrapper.hasClass('woofExpansionPanelActions'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should render children with the button class wrapped in a div with the action class', () => {
-    const wrapper = shallow(
-      <ExpansionPanelActions>
-        <button type="submit" className="woofExpansionPanelActions">
-          Hello
-        </button>
-      </ExpansionPanelActions>,
-    );
-    const button = wrapper.childAt(0);
-    assert.strictEqual(button.hasClass(classes.action), true);
-    assert.strictEqual(button.type(), 'button');
-    assert.strictEqual(button.hasClass('woofExpansionPanelActions'), true);
-  });
-
-  it('should render a valid children', () => {
-    const wrapper = shallow(
-      <ExpansionPanelActions>
-        <button type="submit">Hello</button>
-        {null}
-      </ExpansionPanelActions>,
-    );
-
-    const button = wrapper.childAt(0);
-    assert.strictEqual(button.hasClass(classes.action), true);
-    assert.strictEqual(button.type(), 'button');
-  });
+  describeConformance(<ExpansionPanelActions>Conformance</ExpansionPanelActions>, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 });

@@ -1,20 +1,26 @@
-import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { PropTypes } from '..';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
 
-export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
-  color?: PropTypes.Color;
-  component?: React.ReactType<ButtonProps>;
-  disabled?: boolean;
-  disableFocusRipple?: boolean;
-  disableRipple?: boolean;
-  fullWidth?: boolean;
-  href?: string;
-  mini?: boolean;
-  size?: 'small' | 'medium' | 'large';
-  type?: string;
-  variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
-}
+export type ButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
+  props: P & {
+    color?: PropTypes.Color;
+    disableFocusRipple?: boolean;
+    fullWidth?: boolean;
+    href?: string;
+    size?: 'small' | 'medium' | 'large';
+    variant?: 'text' | 'outlined' | 'contained';
+  };
+  defaultComponent: D;
+  classKey: ButtonClassKey;
+}>;
+
+declare const Button: ExtendButtonBase<ButtonTypeMap<{}, 'button'>>;
+
+export type ButtonProps<D extends React.ElementType = 'button', P = {}> = OverrideProps<
+  ButtonTypeMap<P, D>,
+  D
+>;
 
 export type ButtonClassKey =
   | 'root'
@@ -22,28 +28,17 @@ export type ButtonClassKey =
   | 'text'
   | 'textPrimary'
   | 'textSecondary'
-  | 'flat'
-  | 'flatPrimary'
-  | 'flatSecondary'
   | 'outlined'
   | 'outlinedPrimary'
   | 'outlinedSecondary'
-  | 'colorInherit'
   | 'contained'
   | 'containedPrimary'
   | 'containedSecondary'
-  | 'raised'
-  | 'raisedPrimary'
-  | 'raisedSecondary'
   | 'focusVisible'
   | 'disabled'
-  | 'fab'
-  | 'extendedFab'
-  | 'mini'
+  | 'colorInherit'
   | 'sizeSmall'
   | 'sizeLarge'
   | 'fullWidth';
-
-declare const Button: React.ComponentType<ButtonProps>;
 
 export default Button;

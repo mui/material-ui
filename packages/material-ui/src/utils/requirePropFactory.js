@@ -1,5 +1,4 @@
 function requirePropFactory(componentNameInError) {
-  /* istanbul ignore if */
   if (process.env.NODE_ENV === 'production') {
     return () => null;
   }

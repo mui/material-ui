@@ -5,8 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 4,
-    marginRight: theme.spacing.unit * 2,
+    marginTop: theme.spacing(4),
+    marginRight: theme.spacing(2),
   },
   affected: {
     textAlign: 'right',

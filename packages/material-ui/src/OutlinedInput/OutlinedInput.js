@@ -1,9 +1,6 @@
-// @inheritedComponent InputBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import InputBase from '../InputBase';
 import NotchedOutline from './NotchedOutline';
 import withStyles from '../styles/withStyles';
@@ -19,7 +16,7 @@ export const styles = theme => {
       '& $notchedOutline': {
         borderColor,
       },
-      '&:hover:not($disabled):not($focused):not($error) $notchedOutline': {
+      '&:hover $notchedOutline': {
         borderColor: theme.palette.text.primary,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -54,7 +51,6 @@ export const styles = theme => {
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '18.5px 14px',
-      boxSizing: 'border-box', // Prevent padding issue with fullWidth.
     },
     /* Styles applied to the `NotchedOutline` element. */
     notchedOutline: {},
@@ -82,8 +78,17 @@ export const styles = theme => {
   };
 };
 
-function OutlinedInput(props) {
-  const { classes, labelWidth, notched, ...other } = props;
+const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
+  const {
+    classes,
+    fullWidth = false,
+    inputComponent = 'input',
+    labelWidth = 0,
+    multiline = false,
+    notched,
+    type = 'text',
+    ...other
+  } = props;
 
   return (
     <InputBase
@@ -100,29 +105,33 @@ function OutlinedInput(props) {
       )}
       classes={{
         ...classes,
-        root: classNames(classes.root, classes.underline),
+        root: clsx(classes.root, classes.underline),
         notchedOutline: null,
       }}
+      fullWidth={fullWidth}
+      inputComponent={inputComponent}
+      multiline={multiline}
+      ref={ref}
+      type={type}
       {...other}
     />
   );
-}
+});
 
 OutlinedInput.propTypes = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it here:
-   * https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the input will be focused during the first mount.
+   * If `true`, the `input` element will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -130,19 +139,11 @@ OutlinedInput.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default input value, useful when not controlling the component.
+   * The default `input` element value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  defaultValue: PropTypes.any,
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the `input` element will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -166,19 +167,19 @@ OutlinedInput.propTypes = {
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: componentPropType,
+  inputComponent: PropTypes.elementType,
   /**
-   * Attributes applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * The width of the legend.
+   * The width of the label.
    */
-  labelWidth: PropTypes.number.isRequired,
+  labelWidth: PropTypes.number,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
@@ -213,7 +214,7 @@ OutlinedInput.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the input will be required.
+   * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
   /**
@@ -229,28 +230,13 @@ OutlinedInput.propTypes = {
    */
   startAdornment: PropTypes.node,
   /**
-   * Type of the input element. It should be a valid HTML5 input type.
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
   type: PropTypes.string,
   /**
-   * The input value, required for a controlled component.
+   * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
-};
-
-InputBase.defaultProps = {
-  fullWidth: false,
-  inputComponent: 'input',
-  multiline: false,
-  type: 'text',
+  value: PropTypes.any,
 };
 
 OutlinedInput.muiName = 'Input';

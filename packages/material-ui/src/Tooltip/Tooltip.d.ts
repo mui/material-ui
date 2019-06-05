@@ -3,8 +3,8 @@ import { StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 
 export interface TooltipProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
-  children: React.ReactElement<any>;
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title', false> {
+  children: React.ReactElement;
   disableFocusListener?: boolean;
   disableHoverListener?: boolean;
   disableTouchListener?: boolean;
@@ -32,7 +32,7 @@ export interface TooltipProps
     | 'top';
   PopperProps?: object;
   title: React.ReactNode;
-  TransitionComponent?: React.ReactType;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   TransitionProps?: TransitionProps;
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import SvgIcon from './SvgIcon';
 
 describe('<SvgIcon />', () => {
@@ -11,7 +12,7 @@ describe('<SvgIcon />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<SvgIcon>foo</SvgIcon>);
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
   });
@@ -20,25 +21,34 @@ describe('<SvgIcon />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(
+    <SvgIcon>
+      <path />
+    </SvgIcon>,
+    () => ({
+      classes,
+      inheritComponent: 'svg',
+      mount,
+      refInstanceof: window.SVGSVGElement,
+      testComponentPropWith: props => (
+        <svg {...props}>
+          <defs>
+            <linearGradient id="gradient1">
+              <stop offset="20%" stopColor="#39F" />
+              <stop offset="90%" stopColor="#F3F" />
+            </linearGradient>
+          </defs>
+          {/* eslint-disable-next-line react/prop-types */}
+          {props.children}
+        </svg>
+      ),
+    }),
+  );
+
   it('renders children by default', () => {
     const wrapper = shallow(<SvgIcon>{path}</SvgIcon>);
     assert.strictEqual(wrapper.contains(path), true);
     assert.strictEqual(wrapper.props()['aria-hidden'], 'true');
-  });
-
-  it('should render an svg', () => {
-    const wrapper = shallow(<SvgIcon>book</SvgIcon>);
-    assert.strictEqual(wrapper.name(), 'svg');
-  });
-
-  it('should spread props on svg', () => {
-    const wrapper = shallow(
-      <SvgIcon data-test="hello" viewBox="0 0 32 32">
-        {path}
-      </SvgIcon>,
-    );
-    assert.strictEqual(wrapper.props()['data-test'], 'hello');
-    assert.strictEqual(wrapper.props().viewBox, '0 0 32 32');
   });
 
   describe('prop: titleAccess', () => {
@@ -85,29 +95,6 @@ describe('<SvgIcon />', () => {
     it('should be able to change the fontSize', () => {
       const wrapper = shallow(<SvgIcon fontSize="inherit">{path}</SvgIcon>);
       assert.strictEqual(wrapper.hasClass(classes.fontSizeInherit), true);
-    });
-  });
-
-  describe('prop: component', () => {
-    it('should render component before path', () => {
-      const wrapper = mount(
-        <SvgIcon
-          component={props => (
-            <svg {...props}>
-              <defs>
-                <linearGradient id="gradient1">
-                  <stop offset="20%" stopColor="#39F" />
-                  <stop offset="90%" stopColor="#F3F" />
-                </linearGradient>
-              </defs>
-              {props.children}
-            </svg>
-          )}
-        >
-          {path}
-        </SvgIcon>,
-      );
-      assert.strictEqual(wrapper.find('defs').length, 1);
     });
   });
 });

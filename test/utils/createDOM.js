@@ -2,7 +2,7 @@ const { JSDOM } = require('jsdom');
 const Node = require('jsdom/lib/jsdom/living/node-document-position');
 
 // We can use jsdom-global at some point if maintaining these lists is a burden.
-const whitelist = ['HTMLElement', 'HTMLInputElement', 'Performance'];
+const whitelist = ['Element', 'HTMLElement', 'HTMLInputElement', 'Performance'];
 const blacklist = ['sessionStorage', 'localStorage'];
 
 function createDOM() {

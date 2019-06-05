@@ -7,7 +7,7 @@ import createPalette from './createPalette';
 import createTypography from './createTypography';
 import shadows from './shadows';
 import shape from './shape';
-import defaultSpacing from './spacing';
+import createSpacing from './createSpacing';
 import transitions from './transitions';
 import zIndex from './zIndex';
 
@@ -17,14 +17,14 @@ function createMuiTheme(options = {}) {
     mixins: mixinsInput = {},
     palette: paletteInput = {},
     shadows: shadowsInput,
-    spacing: spacingInput = {},
+    spacing: spacingInput,
     typography: typographyInput = {},
     ...other
   } = options;
 
   const palette = createPalette(paletteInput);
   const breakpoints = createBreakpoints(breakpointsInput);
-  const spacing = { ...defaultSpacing, ...spacingInput };
+  const spacing = createSpacing(spacingInput);
 
   const muiTheme = {
     breakpoints,
@@ -35,10 +35,10 @@ function createMuiTheme(options = {}) {
     props: {}, // Inject custom properties
     shadows: shadowsInput || shadows,
     typography: createTypography(palette, typographyInput),
+    spacing,
     ...deepmerge(
       {
         shape,
-        spacing,
         transitions,
         zIndex,
       },
@@ -50,7 +50,16 @@ function createMuiTheme(options = {}) {
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    const statesWarning = ['disabled', 'focused', 'selected', 'checked'];
+    const pseudoClasses = [
+      'checked',
+      'disabled',
+      'error',
+      'focused',
+      'focusVisible',
+      'required',
+      'expanded',
+      'selected',
+    ];
     const traverse = (node, parentKey, depth = 1) => {
       let key;
 
@@ -61,7 +70,7 @@ function createMuiTheme(options = {}) {
           if (key.indexOf('Mui') === 0 && child) {
             traverse(child, key, depth + 1);
           }
-        } else if (statesWarning.indexOf(key) !== -1 && Object.keys(child).length > 0) {
+        } else if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
           warning(
             false,
             [
@@ -73,20 +82,24 @@ function createMuiTheme(options = {}) {
               'Instead, you need to use the $ruleName syntax:',
               JSON.stringify(
                 {
-                  [`&$${key}`]: child,
+                  root: {
+                    [`&$${key}`]: child,
+                  },
                 },
                 null,
                 2,
               ),
               '',
-              'https://material-ui.com/customization/overrides#internal-states',
+              'https://material-ui.com/customization/components/#pseudo-classes',
             ].join('\n'),
           );
+          // Remove the style to prevent global conflicts.
+          node[key] = {};
         }
       }
     };
 
-    traverse(other.overrides);
+    traverse(muiTheme.overrides);
   }
 
   warning(

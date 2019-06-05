@@ -41,10 +41,10 @@ We use cookies to understand and save your preferences for future visits, to adv
 
 You may refuse to accept cookies by activating the setting on your browser which allows you to refuse the setting of cookies. You can find information on popular browsers and how to adjust your cookie preferences at the following websites:
 
-- [Microsoft Internet Explorer](https://www.microsoft.com/info/cookies.mspx)
-- [Mozilla Firefox](https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences)
-- [Google Chrome](https://support.google.com/accounts/answer/61416)
-- [Apple Safari](https://support.apple.com/en-us/HT201265)
+- Microsoft Internet Explorer
+- Mozilla Firefox
+- Google Chrome
+- Apple Safari
 
 However, if you choose to disable cookies, you may be unable to access certain parts of our site. Unless you have adjusted your browser setting so that it will refuse cookies, our system will issue cookies when you log on to our site.
 

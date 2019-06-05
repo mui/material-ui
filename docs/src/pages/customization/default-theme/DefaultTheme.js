@@ -1,26 +1,28 @@
 import React from 'react';
-import url from 'url';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import url from 'url';
 import Inspector from 'react-inspector';
-import { withStyles, withTheme, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     paddingTop: 0,
     // Match <Inspector /> default theme.
     backgroundColor: theme.palette.type === 'light' ? theme.palette.common.white : '#242424',
-    minHeight: theme.spacing.unit * 40,
+    minHeight: theme.spacing(40),
     width: '100%',
   },
   switch: {
-    paddingBottom: theme.spacing.unit,
+    paddingBottom: theme.spacing(1),
   },
 });
 
-class ThemeDefault extends React.Component {
+class DefaultTheme extends React.Component {
   state = {
     checked: false,
     expandPaths: null,
@@ -44,7 +46,7 @@ class ThemeDefault extends React.Component {
   }
 
   render() {
-    const { classes, theme: docsTheme } = this.props;
+    const { classes, t, theme: docsTheme } = this.props;
     const { checked, expandPaths } = this.state;
 
     const theme = createMuiTheme({
@@ -64,7 +66,7 @@ class ThemeDefault extends React.Component {
               onChange={(event, value) => this.setState({ checked: value })}
             />
           }
-          label="Expand all"
+          label={t('expandAll')}
         />
         <Inspector
           theme={theme.palette.type === 'light' ? 'chromeLight' : 'chromeDark'}
@@ -78,9 +80,13 @@ class ThemeDefault extends React.Component {
   }
 }
 
-ThemeDefault.propTypes = {
+DefaultTheme.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withTheme()(ThemeDefault));
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(state => ({ t: state.options.t })),
+)(DefaultTheme);

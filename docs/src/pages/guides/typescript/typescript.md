@@ -2,9 +2,9 @@
 
 <p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to TypeScript.</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. A minimum version of TypeScript 2.8 is required. 
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. A minimum version of TypeScript 2.8 is required.
 
-Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json). 
+Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json).
 Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
 
 ## Usage of `withStyles`
@@ -13,7 +13,7 @@ Using `withStyles` in TypeScript can be a little tricky, but there are some util
 
 ### Using `createStyles` to defeat type widening
 
-A frequent source of confusion is TypeScript's [type widening](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
 
 ```ts
 const styles = {
@@ -98,7 +98,7 @@ const styles = createStyles({
 });
 ```
 
-However to allow these styles to pass TypeScript the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. Due to this class names that are equal to CSS properties should be avoided.
+However to allow these styles to pass TypeScript, the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. Due to this class names that are equal to CSS properties should be avoided.
 
 ```ts
 // error because TypeScript thinks `@media (min-width: 960px)` is a class name
@@ -151,7 +151,7 @@ interface Props {
 }
 ```
 
-However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write
+However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
 
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
@@ -198,7 +198,7 @@ Unfortunately due to a [current limitation of TypeScript decorators](https://git
 ## Customization of `Theme`
 
 When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
-[Typescript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+[TypeScript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
 The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
 
@@ -247,3 +247,12 @@ import createMyTheme from './styles/createMyTheme';
 
 const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 ```
+
+## Usage of `component` property
+Material-UI allows you to replace a component's root node via a `component` property.
+For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component. For a code
+example concerning `Button` and `react-router-dom` checkout [this Button demo](/components/buttons/#third-party-routing-library).
+
+Not every component fully supports any component type you pass in. If you encounter a
+component that rejects its `component` props in TypeScript please open an issue.
+There is an ongoing effort to fix this by making component props generic.

@@ -1,27 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
   /* Styles applied to the root element. */
   root: {
     position: 'absolute',
-    right: 4,
+    right: 16,
     top: '50%',
     transform: 'translateY(-50%)',
   },
 };
 
-function ListItemSecondaryAction(props) {
-  const { children, classes, className, ...other } = props;
+/**
+ * Must be used as the last child of ListItem to function properly.
+ */
+const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
+  const { classes, className, ...other } = props;
 
-  return (
-    <div className={classNames(classes.root, className)} {...other}>
-      {children}
-    </div>
-  );
-}
+  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
+});
 
 ListItemSecondaryAction.propTypes = {
   /**
@@ -30,7 +29,7 @@ ListItemSecondaryAction.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

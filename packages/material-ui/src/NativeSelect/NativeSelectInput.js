@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 
 /**
  * @ignore - internal component.
  */
-function NativeSelectInput(props) {
+const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
   const {
-    children,
     classes,
     className,
     disabled,
@@ -24,7 +22,7 @@ function NativeSelectInput(props) {
   return (
     <div className={classes.root}>
       <select
-        className={classNames(
+        className={clsx(
           classes.select,
           {
             [classes.filled]: variant === 'filled',
@@ -37,15 +35,13 @@ function NativeSelectInput(props) {
         disabled={disabled}
         onChange={onChange}
         value={value}
-        ref={inputRef}
+        ref={inputRef || ref}
         {...other}
-      >
-        {children}
-      </select>
+      />
       <IconComponent className={classes.icon} />
     </div>
   );
-}
+});
 
 NativeSelectInput.propTypes = {
   /**
@@ -55,7 +51,7 @@ NativeSelectInput.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -69,9 +65,10 @@ NativeSelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: componentPropType,
+  IconComponent: PropTypes.elementType,
   /**
    * Use that property to pass a ref callback to the native select element.
+   * @deprecated
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -88,12 +85,7 @@ NativeSelectInput.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
-  ]),
+  value: PropTypes.any,
   /**
    * The variant to use.
    */

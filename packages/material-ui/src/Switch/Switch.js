@@ -1,7 +1,10 @@
+// @inheritedComponent IconButton
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import { fade } from '../styles/colorManipulator';
 import { capitalize } from '../utils/helpers';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -9,88 +12,108 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
-    width: 62,
+    width: 34 + 12 * 2,
+    height: 14 + 12 * 2,
+    overflow: 'hidden',
+    padding: 12,
+    boxSizing: 'border-box',
     position: 'relative',
     flexShrink: 0,
     zIndex: 0, // Reset the stacking context.
-    // For correct alignment with the text.
-    verticalAlign: 'middle',
+    verticalAlign: 'middle', // For correct alignment with the text.
   },
-  /* Styles used to create the `icon` passed to the internal `SwitchBase` component `icon` prop. */
-  icon: {
-    boxShadow: theme.shadows[1],
-    backgroundColor: 'currentColor',
-    width: 20,
-    height: 20,
-    borderRadius: '50%',
+  /* Styles applied to the root element if `edge="start"`. */
+  edgeStart: {
+    marginLeft: -8,
   },
-  /* Styles applied the icon element component if `checked={true}`. */
-  iconChecked: {
-    boxShadow: theme.shadows[2],
+  /* Styles applied to the root element if `edge="end"`. */
+  edgeEnd: {
+    marginRight: -8,
   },
   /* Styles applied to the internal `SwitchBase` component's `root` class. */
   switchBase: {
-    padding: 0,
-    height: 48,
-    width: 48,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: 1, // Render above the focus ripple.
     color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-  },
-  /* Styles applied to the internal `SwitchBase` component's `checked` class. */
-  checked: {
-    transform: 'translateX(14px)',
-    '& + $bar': {
+    '&$checked': {
+      transform: 'translateX(50%)',
+    },
+    '&$disabled': {
+      color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+    },
+    '&$checked + $track': {
       opacity: 0.5,
+    },
+    '&$disabled + $track': {
+      opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
     },
   },
   /* Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
   colorPrimary: {
     '&$checked': {
       color: theme.palette.primary.main,
-      '& + $bar': {
-        backgroundColor: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       },
+    },
+    '&$disabled': {
+      color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+    },
+    '&$checked + $track': {
+      backgroundColor: theme.palette.primary.main,
+    },
+    '&$disabled + $track': {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
   /* Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
   colorSecondary: {
     '&$checked': {
       color: theme.palette.secondary.main,
-      '& + $bar': {
-        backgroundColor: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
-  },
-  /* Styles applied to the internal SwitchBase component's disabled class. */
-  disabled: {
-    '& + $bar': {
-      opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
-    },
-    '& $icon': {
-      boxShadow: theme.shadows[1],
-    },
-    '&$switchBase': {
+    '&$disabled': {
       color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
-      '& + $bar': {
-        backgroundColor:
-          theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
-      },
+    },
+    '&$checked + $track': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    '&$disabled + $track': {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
-  /* Styles applied to the bar element. */
-  bar: {
+  /* Styles applied to the internal `SwitchBase` component's `checked` class. */
+  checked: {},
+  /* Styles applied to the internal SwitchBase component's disabled class. */
+  disabled: {},
+  /* Styles applied to the internal SwitchBase component's input element. */
+  input: {
+    left: '-100%',
+    width: '300%',
+  },
+  /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
+  thumb: {
+    boxShadow: theme.shadows[1],
+    backgroundColor: 'currentColor',
+    width: 20,
+    height: 20,
+    borderRadius: '50%',
+  },
+  /* Styles applied to the track element. */
+  track: {
+    height: '100%',
+    width: '100%',
     borderRadius: 14 / 2,
-    display: 'block',
-    position: 'absolute',
     zIndex: -1,
-    width: 34,
-    height: 14,
-    top: '50%',
-    left: '50%',
-    marginTop: -7,
-    marginLeft: -17,
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -100,39 +123,51 @@ export const styles = theme => ({
   },
 });
 
-function Switch(props) {
-  const { classes, className, color, ...other } = props;
+const Switch = React.forwardRef(function Switch(props, ref) {
+  const { classes, className, color = 'secondary', edge = false, ...other } = props;
+  const icon = <span className={classes.thumb} />;
 
   return (
-    <span className={classNames(classes.root, className)}>
+    <span
+      className={clsx(
+        classes.root,
+        {
+          [classes.edgeStart]: edge === 'start',
+          [classes.edgeEnd]: edge === 'end',
+        },
+        className,
+      )}
+    >
       <SwitchBase
         type="checkbox"
-        icon={<span className={classes.icon} />}
+        icon={icon}
+        checkedIcon={icon}
         classes={{
-          root: classNames(classes.switchBase, classes[`color${capitalize(color)}`]),
+          root: clsx(classes.switchBase, classes[`color${capitalize(color)}`]),
+          input: classes.input,
           checked: classes.checked,
           disabled: classes.disabled,
         }}
-        checkedIcon={<span className={classNames(classes.icon, classes.iconChecked)} />}
+        ref={ref}
         {...other}
       />
-      <span className={classes.bar} />
+      <span className={classes.track} />
     </span>
   );
-}
+});
 
 Switch.propTypes = {
   /**
    * If `true`, the component is checked.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
    */
   checkedIcon: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -156,6 +191,13 @@ Switch.propTypes = {
    */
   disableRipple: PropTypes.bool,
   /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   */
+  edge: PropTypes.oneOf(['start', 'end', false]),
+  /**
    * The icon to display when the component is unchecked.
    */
   icon: PropTypes.node,
@@ -164,11 +206,11 @@ Switch.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Attributes applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -186,11 +228,7 @@ Switch.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
-};
-
-Switch.defaultProps = {
-  color: 'secondary',
+  value: PropTypes.any,
 };
 
 export default withStyles(styles, { name: 'MuiSwitch' })(Switch);

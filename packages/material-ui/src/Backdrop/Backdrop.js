@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Fade from '../Fade';
 
@@ -25,30 +25,31 @@ export const styles = {
   },
 };
 
-function Backdrop(props) {
-  const { classes, className, invisible, open, transitionDuration, ...other } = props;
+const Backdrop = React.forwardRef(function Backdrop(props, ref) {
+  const { classes, className, invisible = false, open, transitionDuration, ...other } = props;
 
   return (
     <Fade in={open} timeout={transitionDuration} {...other}>
       <div
         data-mui-test="Backdrop"
-        className={classNames(
+        className={clsx(
           classes.root,
           {
             [classes.invisible]: invisible,
           },
           className,
         )}
-        aria-hidden="true"
+        aria-hidden
+        ref={ref}
       />
     </Fade>
   );
-}
+});
 
 Backdrop.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -72,10 +73,6 @@ Backdrop.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
-};
-
-Backdrop.defaultProps = {
-  invisible: false,
 };
 
 export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

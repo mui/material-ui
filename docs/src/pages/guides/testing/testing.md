@@ -2,6 +2,8 @@
 
 <p class="description">Write tests to prevent regressions and write better code.</p>
 
+Examples in this guide use [global methods from Mocha](https://mochajs.org/api/global.html), not [Jest](https://jestjs.io/docs/en/api).
+
 ## Internal
 
 We take tests seriously. We have written and maintain **a wide range** of tests so we can
@@ -49,7 +51,7 @@ Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api
 1. `options` (*Object* [optional])
   - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
   - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
-  - `options.dive` (*Boolean* [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
+  - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
   - The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
 #### Returns
@@ -64,7 +66,7 @@ import { createShallow } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let shallow;
 
-  before(() => {
+  before(() => {  // This is Mocha; in Jest, use beforeAll
     shallow = createShallow();
   });
 

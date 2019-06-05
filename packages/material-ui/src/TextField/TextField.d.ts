@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { FormControlClassKey, FormControlProps } from '../FormControl';
+import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputProps as StandardInputProps } from '../Input';
 import { FilledInputProps } from '../FilledInput';
@@ -13,7 +13,7 @@ export interface BaseTextFieldProps
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
-  defaultValue?: string | number;
+  defaultValue?: unknown;
   disabled?: boolean;
   error?: boolean;
   FormHelperTextProps?: Partial<FormHelperTextProps>;
@@ -34,7 +34,7 @@ export interface BaseTextFieldProps
   select?: boolean;
   SelectProps?: Partial<SelectProps>;
   type?: string;
-  value?: Array<string | number | boolean> | string | number | boolean;
+  value?: unknown;
 }
 
 export interface StandardTextFieldProps extends BaseTextFieldProps {
@@ -57,7 +57,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
 
-export type TextFieldClassKey = FormControlClassKey;
+export type TextFieldClassKey = 'root';
 
 declare const TextField: React.ComponentType<TextFieldProps>;
 

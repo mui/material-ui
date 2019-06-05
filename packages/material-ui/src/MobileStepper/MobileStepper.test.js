@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import Paper from '../Paper';
@@ -9,18 +10,18 @@ import LinearProgress from '../LinearProgress';
 import MobileStepper from './MobileStepper';
 
 describe('<MobileStepper />', () => {
-  let shallow;
+  let mount;
   let classes;
   const defaultProps = {
     steps: 2,
     nextButton: (
-      <Button>
+      <Button aria-label="next">
         Next
         <KeyboardArrowRight />
       </Button>
     ),
     backButton: (
-      <Button>
+      <Button aria-label="back">
         <KeyboardArrowLeft />
         Back
       </Button>
@@ -28,140 +29,79 @@ describe('<MobileStepper />', () => {
   };
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount({ strict: true });
     classes = getClasses(<MobileStepper {...defaultProps} />);
   });
 
-  it('should render a Paper component', () => {
-    const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    assert.strictEqual(wrapper.type(), Paper);
-    assert.strictEqual(wrapper.props().elevation, 0);
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the root class', () => {
-    const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<MobileStepper {...defaultProps} />, () => ({
+    classes,
+    inheritComponent: Paper,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 
-  it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<MobileStepper className="test-class-name" {...defaultProps} />);
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  it('should render a Paper with 0 elevation', () => {
+    const wrapper = mount(<MobileStepper {...defaultProps} />);
+    assert.strictEqual(wrapper.find(Paper).props().elevation, 0);
   });
 
   it('should render with the bottom class if position prop is set to bottom', () => {
-    const wrapper = shallow(<MobileStepper position="bottom" {...defaultProps} />);
-    assert.strictEqual(wrapper.hasClass(classes.positionBottom), true);
+    const wrapper = mount(<MobileStepper {...defaultProps} position="bottom" />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.positionBottom), true);
   });
 
   it('should render with the top class if position prop is set to top', () => {
-    const wrapper = shallow(<MobileStepper position="top" {...defaultProps} />);
-    assert.strictEqual(wrapper.hasClass(classes.positionTop), true);
+    const wrapper = mount(<MobileStepper {...defaultProps} position="top" />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.positionTop), true);
   });
 
   it('should render two buttons', () => {
-    const wrapper = shallow(<MobileStepper {...defaultProps} />);
+    const wrapper = mount(<MobileStepper {...defaultProps} />);
     assert.lengthOf(wrapper.find(Button), 2);
   });
 
   it('should render the back button', () => {
-    const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    const backButton = wrapper.childAt(0);
-    assert.strictEqual(backButton.childAt(1).text(), 'Back');
-    assert.lengthOf(backButton.find(KeyboardArrowLeft), 1);
+    const wrapper = mount(<MobileStepper {...defaultProps} />);
+    const backButton = wrapper.find('button[aria-label="back"]');
+    assert.strictEqual(backButton.exists(), true);
+    assert.lengthOf(backButton.find('svg[data-mui-test="KeyboardArrowLeftIcon"]'), 1);
   });
 
   it('should render next button', () => {
-    const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    const nextButton = wrapper.childAt(2);
-    assert.strictEqual(nextButton.childAt(0).text(), 'Next');
-    assert.lengthOf(nextButton.find(KeyboardArrowRight), 1);
+    const wrapper = mount(<MobileStepper {...defaultProps} />);
+    const nextButton = wrapper.find('button[aria-label="next"]');
+    assert.strictEqual(nextButton.exists(), true);
+    assert.lengthOf(nextButton.find('svg[data-mui-test="KeyboardArrowRightIcon"]'), 1);
   });
 
-  it('should render backButton custom text', () => {
-    const props = {
-      steps: defaultProps.steps,
-      nextButton: defaultProps.nextButton,
-      backButton: (
-        <Button>
-          <KeyboardArrowLeft />
-          Past
-        </Button>
-      ),
-    };
-    const wrapper = shallow(<MobileStepper {...props} />);
-    assert.strictEqual(
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .text(),
-      'Past',
+  it('should render two buttons and text displaying progress when supplied with variant text', () => {
+    const wrapper = mount(
+      <MobileStepper {...defaultProps} variant="text" activeStep={1} steps={3} />,
     );
-  });
-
-  it('should render nextButton custom text', () => {
-    const props = {
-      steps: defaultProps.steps,
-      nextButton: (
-        <Button>
-          Future
-          <KeyboardArrowRight />
-        </Button>
-      ),
-      backButton: defaultProps.backButton,
-    };
-    const wrapper = shallow(<MobileStepper {...props} />);
-    assert.strictEqual(
-      wrapper
-        .childAt(2)
-        .childAt(0)
-        .text(),
-      'Future',
-    );
-  });
-
-  it('should render disabled backButton', () => {
-    const props = {
-      steps: defaultProps.steps,
-      nextButton: defaultProps.nextButton,
-      backButton: <Button disabled>back</Button>,
-    };
-    const wrapper = shallow(<MobileStepper {...props} />);
-    const backButton = wrapper.childAt(0);
-    assert.strictEqual(backButton.props().disabled, true);
-  });
-
-  it('should render disabled nextButton', () => {
-    const props = {
-      steps: defaultProps.steps,
-      nextButton: <Button disabled>back</Button>,
-      backButton: defaultProps.backButton,
-    };
-    const wrapper = shallow(<MobileStepper {...props} />);
-    const nextButton = wrapper.childAt(2);
-    assert.strictEqual(nextButton.props().disabled, true);
-  });
-
-  it('should render just two buttons when supplied with variant text', () => {
-    const wrapper = shallow(<MobileStepper variant="text" {...defaultProps} />);
-    assert.lengthOf(wrapper.children(), 2);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).instance().textContent, 'Back2 / 3Next');
   });
 
   it('should render dots when supplied with variant dots', () => {
-    const wrapper = shallow(<MobileStepper variant="dots" {...defaultProps} />);
-    assert.lengthOf(wrapper.children(), 3);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.dots), true);
+    const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
+    const outermost = findOutermostIntrinsic(wrapper);
+    assert.lengthOf(outermost.children(), 3);
+    assert.strictEqual(outermost.childAt(1).hasClass(classes.dots), true);
   });
 
   it('should render a dot for each step when using dots variant', () => {
-    const wrapper = shallow(<MobileStepper variant="dots" {...defaultProps} />);
+    const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
     assert.lengthOf(wrapper.find(`.${classes.dot}`), 2);
   });
 
   it('should render the first dot as active if activeStep is not set', () => {
-    const wrapper = shallow(<MobileStepper variant="dots" {...defaultProps} />);
+    const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
     assert.strictEqual(
-      wrapper
+      findOutermostIntrinsic(wrapper)
         .childAt(1)
         .childAt(0)
         .hasClass(classes.dotActive),
@@ -170,9 +110,9 @@ describe('<MobileStepper />', () => {
   });
 
   it('should honor the activeStep prop', () => {
-    const wrapper = shallow(<MobileStepper variant="dots" activeStep={1} {...defaultProps} />);
+    const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" activeStep={1} />);
     assert.strictEqual(
-      wrapper
+      findOutermostIntrinsic(wrapper)
         .childAt(1)
         .childAt(1)
         .hasClass(classes.dotActive),
@@ -181,21 +121,24 @@ describe('<MobileStepper />', () => {
   });
 
   it('should render a <LinearProgress /> when supplied with variant progress', () => {
-    const wrapper = shallow(<MobileStepper variant="progress" {...defaultProps} />);
+    const wrapper = mount(<MobileStepper {...defaultProps} variant="progress" />);
     assert.lengthOf(wrapper.find(LinearProgress), 1);
   });
 
   it('should calculate the <LinearProgress /> value correctly', () => {
-    const props = { backButton: defaultProps.backButton, nextButton: defaultProps.nextButton };
-    let wrapper = shallow(<MobileStepper variant="progress" steps={3} {...props} />);
+    let wrapper = mount(<MobileStepper {...defaultProps} variant="progress" steps={3} />);
     let linearProgressProps = wrapper.find(LinearProgress).props();
     assert.strictEqual(linearProgressProps.value, 0);
 
-    wrapper = shallow(<MobileStepper variant="progress" steps={3} activeStep={1} {...props} />);
+    wrapper = mount(
+      <MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={1} />,
+    );
     linearProgressProps = wrapper.find(LinearProgress).props();
     assert.strictEqual(linearProgressProps.value, 50);
 
-    wrapper = shallow(<MobileStepper variant="progress" steps={3} activeStep={2} {...props} />);
+    wrapper = mount(
+      <MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={2} />,
+    );
     linearProgressProps = wrapper.find(LinearProgress).props();
     assert.strictEqual(linearProgressProps.value, 100);
   });

@@ -21,10 +21,10 @@ export default ({ attach, nest, primary, theme, red, white, BUTTON, ICON }) => (
         fontSize: 20,
       },
       [nest(ICON.left)]: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
       },
       [nest(ICON.right)]: {
-        marginLeft: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
       },
     },
     outlined: {
@@ -61,12 +61,6 @@ export default ({ attach, nest, primary, theme, red, white, BUTTON, ICON }) => (
       },
       '&:active': {
         opacity: 0.6,
-      },
-    },
-    fab: {
-      boxShadow: theme.shadows[2],
-      '&:active': {
-        boxShadow: theme.shadows[4],
       },
     },
   },

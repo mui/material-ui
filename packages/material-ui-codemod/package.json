@@ -1,8 +1,8 @@
 {
   "name": "@material-ui/codemod",
+  "version": "4.0.2",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.1.0",
   "description": "Codemod scripts for Material-UI.",
   "keywords": [
     "react",
@@ -13,25 +13,26 @@
     "jscodeshift"
   ],
   "scripts": {
-    "test": "cd ../../ && mocha 'packages/material-ui-codemod/**/*.test.js'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-codemod/**/*.test.js'",
     "prebuild": "rimraf lib",
     "build": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./lib --ignore **/*.test.js",
     "release": "yarn build && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/material-ui-codemod"
   },
   "license": "MIT",
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod",
   "devDependencies": {
-    "jscodeshift": "^0.5.0"
+    "jscodeshift": "^0.6.0"
   },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   }
 }

@@ -1,38 +1,36 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
-import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
+import { spy, useFakeTimers } from 'sinon';
+import PropTypes from 'prop-types';
+import { createMount } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Popper from './Popper';
 
-const PopperNaked = unwrap(Popper);
-
 describe('<Popper />', () => {
-  const defaultProps = {
-    open: true,
-    children: <span>Hello World</span>,
-  };
-  let shallow;
   let mount;
-  let anchorEl;
+  const defaultProps = {
+    anchorEl: () => window.document.createElement('svg'),
+    children: <span>Hello World</span>,
+    open: true,
+  };
 
   before(() => {
-    anchorEl = window.document.createElement('div');
-    window.document.body.appendChild(anchorEl);
-    shallow = createShallow();
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
     mount.cleanUp();
-    window.document.body.removeChild(anchorEl);
   });
 
-  it('should render the correct structure', () => {
-    const wrapper = shallow(<Popper {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'Portal');
-    assert.strictEqual(wrapper.childAt(0).name(), 'div');
-  });
+  describeConformance(<Popper {...defaultProps} />, () => ({
+    classes: {},
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 
   describe('prop: placement', () => {
     before(() => {
@@ -45,7 +43,7 @@ describe('<Popper />', () => {
 
     it('should have top placement', () => {
       const renderSpy = spy();
-      shallow(
+      mount(
         <Popper {...defaultProps} placement="top">
           {({ placement }) => {
             renderSpy(placement);
@@ -53,7 +51,7 @@ describe('<Popper />', () => {
           }}
         </Popper>,
       );
-      assert.strictEqual(renderSpy.callCount, 1);
+      assert.strictEqual(renderSpy.callCount, 2); // 2 for strict mode
       assert.strictEqual(renderSpy.args[0][0], 'top');
     });
 
@@ -81,7 +79,7 @@ describe('<Popper />', () => {
     ].forEach(test => {
       it(`should flip ${test.in} when direction=rtl is used`, () => {
         const renderSpy = spy();
-        shallow(
+        mount(
           <Popper {...defaultProps} placement={test.in}>
             {({ placement }) => {
               renderSpy(placement);
@@ -89,86 +87,142 @@ describe('<Popper />', () => {
             }}
           </Popper>,
         );
-        assert.strictEqual(renderSpy.callCount, 1);
+        assert.strictEqual(renderSpy.callCount, 2);
         assert.strictEqual(renderSpy.args[0][0], test.out);
       });
     });
   });
 
-  describe('mount', () => {
-    it('should mount without any issue', () => {
-      const wrapper = mount(<Popper {...defaultProps} open={false} anchorEl={anchorEl} />);
-      assert.strictEqual(wrapper.find('span').length, 0);
+  describe('prop: open', () => {
+    it('should open without any issue', () => {
+      const wrapper = mount(<Popper {...defaultProps} open={false} />);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       wrapper.setProps({ open: true });
       wrapper.update();
-      assert.strictEqual(wrapper.find('span').length, 1);
-      assert.strictEqual(wrapper.find('span').text(), 'Hello World');
-      wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.find('span').length, 0);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
     });
 
-    it('should position the popper when opening', () => {
-      const wrapper = mount(<PopperNaked {...defaultProps} open={false} anchorEl={anchorEl} />);
-      const instance = wrapper.instance();
-      assert.strictEqual(instance.popper == null, true);
-      wrapper.setProps({ open: true });
-      assert.strictEqual(instance.popper !== null, true);
-    });
-
-    it('should not position the popper when closing', () => {
-      const wrapper = mount(<PopperNaked {...defaultProps} open anchorEl={anchorEl} />);
-      const instance = wrapper.instance();
-      assert.strictEqual(instance.popper !== null, true);
+    it('should close without any issue', () => {
+      const wrapper = mount(<Popper {...defaultProps} />);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
       wrapper.setProps({ open: false });
-      assert.strictEqual(instance.popper, null);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').length, 0);
+    });
+  });
+
+  describe('prop: popperOptions', () => {
+    it('should pass all popperOptions to popperjs', done => {
+      const popperOptions = {
+        onCreate: data => {
+          data.instance.update({ placement: 'left' });
+        },
+        onUpdate: () => {
+          done();
+        },
+      };
+      mount(<Popper {...defaultProps} popperOptions={popperOptions} placement="top" open />);
+    });
+  });
+
+  describe('prop: keepMounted', () => {
+    describe('by default', () => {
+      // Test case for https://github.com/mui-org/material-ui/issues/15180
+      it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
+        const children = <p>Hello World</p>;
+
+        class OpenClose extends React.Component {
+          state = {
+            open: false,
+          };
+
+          handleClick = () => {
+            this.setState({ open: true }, () => {
+              this.setState({ open: false });
+            });
+          };
+
+          render() {
+            return (
+              <div>
+                <button type="button" onClick={this.handleClick}>
+                  Toggle Tooltip
+                </button>
+                <Popper {...defaultProps} open={this.state.open} transition>
+                  {({ TransitionProps }) => (
+                    <Grow {...TransitionProps}>
+                      <span>{children}</span>
+                    </Grow>
+                  )}
+                </Popper>
+              </div>
+            );
+          }
+        }
+
+        const wrapper = mount(<OpenClose />);
+        assert.strictEqual(wrapper.contains(children), false);
+        wrapper.find('button').simulate('click');
+        assert.strictEqual(wrapper.contains(children), false);
+      });
     });
   });
 
   describe('prop: transition', () => {
+    let clock;
+    let looseMount;
+
+    before(() => {
+      clock = useFakeTimers();
+      // StrictModeViolation: uses Grow
+      looseMount = createMount({ strict: false });
+    });
+
+    after(() => {
+      clock.restore();
+      looseMount.cleanUp();
+    });
+
     it('should work', () => {
-      const wrapper = mount(
-        <PopperNaked {...defaultProps} open anchorEl={anchorEl} transition>
+      const wrapper = looseMount(
+        <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
               <span>Hello World</span>
             </Grow>
           )}
-        </PopperNaked>,
+        </Popper>,
       );
-      const instance = wrapper.instance();
-      assert.strictEqual(wrapper.find('span').length, 1);
-      assert.strictEqual(wrapper.find('span').text(), 'Hello World');
-      assert.strictEqual(instance.popper !== null, true);
-      wrapper.setProps({ anchorEl: null });
-      assert.strictEqual(instance.popper !== null, true);
-      wrapper.setProps({ open: false });
-      wrapper
-        .find(Grow)
-        .props()
-        .onExited();
-      assert.strictEqual(instance.popper, null);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
+      wrapper.setProps({ anchorEl: null, open: false });
+      clock.tick(0);
+      wrapper.update();
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
     });
   });
 
-  describe('prop: onExited', () => {
-    it('should update the exited state', () => {
-      const wrapper = mount(
-        <PopperNaked {...defaultProps} open anchorEl={anchorEl} transition>
-          {({ TransitionProps }) => (
-            <Grow {...TransitionProps}>
-              <span>Hello World</span>
-            </Grow>
-          )}
-        </PopperNaked>,
-      );
-      wrapper.setProps({
-        open: false,
-      });
-      wrapper
-        .find(Grow)
-        .props()
-        .onExited();
-      assert.strictEqual(wrapper.state().exited, true);
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn if anchorEl is not valid', () => {
+      mount(<Popper {...defaultProps} open anchorEl={null} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(consoleErrorMock.args()[0][0], 'It should be an Element instance');
+    });
+
+    // it('should warn if anchorEl is not visible', () => {
+    //   mount(<Popper {...defaultProps} open anchorEl={document.createElement('div')} />);
+    //   assert.strictEqual(consoleErrorMock.callCount(), 1);
+    //   assert.include(consoleErrorMock.args()[0][0], 'The node element should be visible');
+    // });
   });
 });

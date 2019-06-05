@@ -1,53 +1,43 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Table from './Table';
 import TableContext from './TableContext';
+import findOutermostIntrinsic from '../test-utils/findOutermostIntrinsic';
 
 describe('<Table />', () => {
   let mount;
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Table>foo</Table>);
   });
 
-  it('should render a table', () => {
-    const wrapper = mount(
-      <Table>
-        <tbody />
-      </Table>,
-    );
-    assert.strictEqual(wrapper.getDOMNode().nodeName, 'TABLE');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render a div', () => {
-    const wrapper = mount(<Table component="div">foo</Table>);
-    assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
-  });
+  describeConformance(
+    <Table>
+      <tbody />
+    </Table>,
+    () => ({
+      classes,
+      inheritComponent: 'table',
+      mount,
+      refInstanceof: window.HTMLTableElement,
+      // can't test another component with tbody as a child
+      testComponentPropWith: 'table',
+    }),
+  );
 
-  it('should spread custom props on the root node', () => {
-    const wrapper = mount(
-      <Table data-my-prop="woofTable">
-        <tbody />
-      </Table>,
-    );
-    assert.strictEqual(
-      wrapper.props()['data-my-prop'],
-      'woofTable',
-      'custom prop should be woofTable',
-    );
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = mount(
-      <Table className="woofTable">
-        <tbody />
-      </Table>,
-    );
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofTable'), true);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
+  describe('prop: component', () => {
+    it('can render a different component', () => {
+      const wrapper = mount(<Table component="div">foo</Table>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
+    });
   });
 
   it('should render children', () => {
@@ -59,19 +49,20 @@ describe('<Table />', () => {
   it('should define table in the child context', () => {
     let context;
 
+    // TODO test integration with TableCell
     mount(
       <Table>
         <TableContext.Consumer>
           {value => {
             context = value;
-
             return <tbody />;
           }}
         </TableContext.Consumer>
       </Table>,
     );
 
-    assert.deepStrictEqual(context, {
+    assert.deepEqual(context, {
+      size: 'medium',
       padding: 'default',
     });
   });

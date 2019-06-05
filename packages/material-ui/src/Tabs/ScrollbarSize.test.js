@@ -1,8 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { mount, shallow } from 'enzyme';
-import EventListener from 'react-event-listener';
-import { spy, useFakeTimers } from 'sinon';
+import { mount } from 'enzyme';
+import { spy, useFakeTimers, stub } from 'sinon';
 import ScrollbarSize from './ScrollbarSize';
 
 describe('<ScrollbarSize />', () => {
@@ -46,17 +45,15 @@ describe('<ScrollbarSize />', () => {
 
     beforeEach(() => {
       onChange = spy();
-      wrapper = shallow(<ScrollbarSize {...defaultProps} onChange={onChange} />);
-      const instance = wrapper.instance();
-      instance.nodeRef = {
-        offsetHeight: 17,
-        clientHeight: 0,
-      };
+      wrapper = mount(<ScrollbarSize {...defaultProps} onChange={onChange} />);
+      // find internal div and simulate scrollbar
+      stub(wrapper.find('div').instance(), 'offsetHeight').get(() => 17);
+      stub(wrapper.find('div').instance(), 'clientHeight').get(() => 0);
     });
 
     it('should call on first resize event', () => {
       assert.strictEqual(onChange.callCount, 1);
-      wrapper.find(EventListener).simulate('resize');
+      window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
       assert.strictEqual(onChange.callCount, 2);
       assert.strictEqual(onChange.calledWith(17), true);
@@ -64,7 +61,7 @@ describe('<ScrollbarSize />', () => {
 
     it('should not call on second resize event', () => {
       assert.strictEqual(onChange.callCount, 1);
-      wrapper.find(EventListener).simulate('resize');
+      window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
       assert.strictEqual(onChange.callCount, 2);
     });

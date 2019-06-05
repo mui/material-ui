@@ -1,8 +1,6 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
@@ -28,7 +26,7 @@ export const styles = {
   },
 };
 
-function StepButton(props) {
+const StepButton = React.forwardRef(function StepButton(props, ref) {
   const {
     active,
     alternativeLabel,
@@ -63,13 +61,14 @@ function StepButton(props) {
     <ButtonBase
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
-      className={classNames(classes.root, classes[orientation], classNameProp)}
+      className={clsx(classes.root, classes[orientation], classNameProp)}
+      ref={ref}
       {...other}
     >
       {child}
     </ButtonBase>
   );
-}
+});
 
 StepButton.propTypes = {
   /**
@@ -88,7 +87,7 @@ StepButton.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

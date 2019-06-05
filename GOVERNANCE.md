@@ -34,7 +34,7 @@ also contribute in the following ways.
 
 - Support new users by answering questions on
 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) and
-[Gitter](https://gitter.im/mui-org/material-ui).
+[Spectrum](https://spectrum.chat/material-ui).
 - Reviewing and commenting on [existing pull requests](https://github.com/mui-org/material-ui/pulls)
 and [issues](https://github.com/mui-org/material-ui/issues).
 - Reporting bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
@@ -78,7 +78,7 @@ In addition to their participation as a committer, Core Team members have the fo
 - Owner access to [mui-org on GitHub](https://github.com/mui-org).
 - Admin access to various tools and services ([npm](https://www.npmjs.com/package/@material-ui/core),
 [CircleCi](https://circleci.com/gh/mui-org/material-ui),
-[BrowserStack](https://www.browserstack.com/), [Gitter](https://gitter.im/mui-org/material-ui)).
+[BrowserStack](https://www.browserstack.com/), [Spectrum](https://spectrum.chat/material-ui)).
 - Admin access to all financial accounts.
 - Vote on the removal of committers and Core Team members.
 - Vote on decisions when consensus cannot be reached by the community.
@@ -95,6 +95,6 @@ until they step down or removed by a two thirds majority vote by the Core Team.
 
 ## Resources
 
-- Governance Models - [http://oss-watch.ac.uk/resources/governancemodels](http://oss-watch.ac.uk/resources/governancemodels)
+- Governance Models - [https://oss-watch.ac.uk/resources/governancemodels](https://oss-watch.ac.uk/resources/governancemodels)
 - Sustain OSS Report - [https://sustainoss.org/assets/pdf/SustainOSS-west-2017-report.pdf](https://sustainoss.org/assets/pdf/SustainOSS-west-2017-report.pdf)
-- Elinor Ostrom's 8 Principles for Managing A Commons - [http://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs](http://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs)
+- Elinor Ostrom's 8 Principles for Managing A Commons - [https://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs](https://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs)

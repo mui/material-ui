@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
@@ -15,48 +14,45 @@ export const styles = theme => ({
   },
 });
 
-function BottomNavigation(props) {
+const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) {
   const {
-    children: childrenProp,
+    children,
     classes,
-    className: classNameProp,
-    component: Component,
+    className,
+    component: Component = 'div',
     onChange,
-    showLabels,
+    showLabels = false,
     value,
     ...other
   } = props;
 
-  const className = classNames(classes.root, classNameProp);
-
-  const children = React.Children.map(childrenProp, (child, childIndex) => {
-    if (!React.isValidElement(child)) {
-      return null;
-    }
-
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the BottomNavigation component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
-
-    const childValue = child.props.value === undefined ? childIndex : child.props.value;
-    return React.cloneElement(child, {
-      selected: childValue === value,
-      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
-      value: childValue,
-      onChange,
-    });
-  });
-
   return (
-    <Component className={className} {...other}>
-      {children}
+    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
+      {React.Children.map(children, (child, childIndex) => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
+
+        warning(
+          child.type !== React.Fragment,
+          [
+            "Material-UI: the BottomNavigation component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+
+        const childValue = child.props.value === undefined ? childIndex : child.props.value;
+
+        return React.cloneElement(child, {
+          selected: childValue === value,
+          showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
+          value: childValue,
+          onChange,
+        });
+      })}
     </Component>
   );
-}
+});
 
 BottomNavigation.propTypes = {
   /**
@@ -65,7 +61,7 @@ BottomNavigation.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -76,7 +72,7 @@ BottomNavigation.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Callback fired when the value changes.
    *
@@ -93,11 +89,6 @@ BottomNavigation.propTypes = {
    * The value of the currently selected `BottomNavigationAction`.
    */
   value: PropTypes.any,
-};
-
-BottomNavigation.defaultProps = {
-  component: 'div',
-  showLabels: false,
 };
 
 export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);

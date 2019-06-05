@@ -3,7 +3,7 @@ import * as React from 'react';
 export interface ClickAwayListenerProps {
   children: React.ReactNode;
   mouseEvent?: 'onClick' | 'onMouseDown' | 'onMouseUp' | false;
-  onClickAway: (event: React.ChangeEvent<{}>) => void;
+  onClickAway: (event: React.MouseEvent<Document>) => void;
   touchEvent?: 'onTouchStart' | 'onTouchEnd' | false;
 }
 

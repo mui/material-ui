@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
@@ -66,20 +65,20 @@ export const styles = theme => ({
   },
 });
 
-function StepLabel(props) {
+const StepLabel = React.forwardRef(function StepLabel(props, ref) {
   const {
-    active,
-    alternativeLabel,
+    active = false,
+    alternativeLabel = false,
     children,
     classes,
     className: classNameProp,
-    completed,
-    disabled,
-    error,
+    completed = false,
+    disabled = false,
+    error = false,
     icon,
     last,
     optional,
-    orientation,
+    orientation = 'horizontal',
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
     ...other
@@ -93,7 +92,7 @@ function StepLabel(props) {
 
   return (
     <span
-      className={classNames(
+      className={clsx(
         classes.root,
         classes[orientation],
         {
@@ -103,11 +102,12 @@ function StepLabel(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     >
       {icon || StepIconComponent ? (
         <span
-          className={classNames(classes.iconContainer, {
+          className={clsx(classes.iconContainer, {
             [classes.alternativeLabel]: alternativeLabel,
           })}
         >
@@ -122,13 +122,15 @@ function StepLabel(props) {
       ) : null}
       <span className={classes.labelContainer}>
         <Typography
+          variant="body2"
           component="span"
-          className={classNames(classes.label, {
+          className={clsx(classes.label, {
             [classes.alternativeLabel]: alternativeLabel,
             [classes.completed]: completed,
             [classes.active]: active,
             [classes.error]: error,
           })}
+          display="block"
         >
           {children}
         </Typography>
@@ -136,7 +138,7 @@ function StepLabel(props) {
       </span>
     </span>
   );
-}
+});
 
 StepLabel.propTypes = {
   /**
@@ -155,7 +157,7 @@ StepLabel.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -195,21 +197,11 @@ StepLabel.propTypes = {
   /**
    * The component to render in place of the [`StepIcon`](/api/step-icon/).
    */
-  StepIconComponent: componentPropType,
+  StepIconComponent: PropTypes.elementType,
   /**
    * Properties applied to the [`StepIcon`](/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
-};
-
-StepLabel.defaultProps = {
-  active: false,
-  alternativeLabel: false,
-  completed: false,
-  disabled: false,
-  error: false,
-  last: false,
-  orientation: 'horizontal',
 };
 
 StepLabel.muiName = 'StepLabel';

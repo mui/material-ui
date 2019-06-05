@@ -1,6 +1,6 @@
 ## Another blog post
 
-#### March 23, 2020 by Matt
+#### March 23, 2020 by [Matt](/)
 
 Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.

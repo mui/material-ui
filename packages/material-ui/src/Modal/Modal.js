@@ -1,22 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import warning from 'warning';
-import keycode from 'keycode';
-import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
-import RootRef from '../RootRef';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
-import withStyles from '../styles/withStyles';
+import { setRef } from '../utils/reactHelpers';
+import withForwardedRef from '../utils/withForwardedRef';
+import { withTheme } from '@material-ui/styles';
+import { elementAcceptingRef } from '@material-ui/utils';
+import zIndex from '../styles/zIndex';
 import ModalManager from './ModalManager';
-import Backdrop from '../Backdrop';
+import TrapFocus from './TrapFocus';
+import SimpleBackdrop from './SimpleBackdrop';
 import { ariaHidden } from './manageAriaHidden';
 
-function getContainer(container, defaultContainer) {
+function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
-  return ReactDOM.findDOMNode(container) || defaultContainer;
+  return ReactDOM.findDOMNode(container);
 }
 
 function getHasTransition(props) {
@@ -39,11 +39,6 @@ export const styles = theme => ({
   },
 });
 
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
-}
-
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
@@ -58,8 +53,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
-  mounted = false;
-
   constructor(props) {
     super();
     this.state = {
@@ -68,7 +61,6 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    this.mounted = true;
     if (this.props.open) {
       this.handleOpen();
     }
@@ -78,45 +70,21 @@ class Modal extends React.Component {
     if (prevProps.open && !this.props.open) {
       this.handleClose();
     } else if (!prevProps.open && this.props.open) {
-      this.lastFocus = ownerDocument(this.mountNode).activeElement;
       this.handleOpen();
     }
   }
 
   componentWillUnmount() {
-    this.mounted = false;
-
     if (this.props.open || (getHasTransition(this.props) && !this.state.exited)) {
-      this.handleClose();
+      this.handleClose('unmount');
     }
-  }
-
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    if (!getHasTransition(nextProps)) {
-      // Otherwise let handleExited take care of marking exited.
-      return {
-        exited: true,
-      };
-    }
-
-    return null;
   }
 
   handleOpen = () => {
-    const doc = ownerDocument(this.mountNode);
-    const container = getContainer(this.props.container, doc.body);
+    const container = getContainer(this.props.container) || this.getDoc().body;
 
     this.props.manager.add(this, container);
-    doc.addEventListener('keydown', this.handleDocumentKeyDown);
-    doc.addEventListener('focus', this.enforceFocus, true);
-
-    if (this.dialogRef) {
+    if (this.modalRef) {
       this.handleOpened();
     }
   };
@@ -134,24 +102,30 @@ class Modal extends React.Component {
   };
 
   handleOpened = () => {
-    this.autoFocus();
     this.props.manager.mount(this);
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     this.modalRef.scrollTop = 0;
   };
 
-  handleClose = () => {
-    this.props.manager.remove(this);
+  handleClose = reason => {
+    const hasTransition = getHasTransition(this.props);
+    /* If the component does not have a transition or is unmounting remove the Modal
+    otherwise let the transition handle removing the style, this prevents elements
+    moving around when the Modal is closed. */
+    if (!(hasTransition && this.props.closeAfterTransition) || reason === 'unmount') {
+      this.props.manager.remove(this);
+    }
+  };
 
-    const doc = ownerDocument(this.mountNode);
-    doc.removeEventListener('keydown', this.handleDocumentKeyDown);
-    doc.removeEventListener('focus', this.enforceFocus, true);
-
-    this.restoreLastFocus();
+  handleEnter = () => {
+    this.setState({ exited: false });
   };
 
   handleExited = () => {
+    if (this.props.closeAfterTransition) {
+      this.props.manager.remove(this);
+    }
     this.setState({ exited: true });
   };
 
@@ -169,11 +143,19 @@ class Modal extends React.Component {
     }
   };
 
-  handleDocumentKeyDown = event => {
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (keycode(event) !== 'esc' || !this.isTopModal() || event.defaultPrevented) {
+  handleKeyDown = event => {
+    // We don't take event.defaultPrevented into account:
+    //
+    // event.preventDefault() is meant to stop default behaviours like
+    // clicking a checkbox to check it, hitting a button to submit a form,
+    // and hitting left arrow to move the cursor in a text input etc.
+    // Only special HTML elements have these default behaviors.
+    if (event.key !== 'Escape' || !this.isTopModal()) {
       return;
     }
+
+    // Swallow the event, in case someone is listening for the escape key on the body.
+    event.stopPropagation();
 
     if (this.props.onEscapeKeyDown) {
       this.props.onEscapeKeyDown(event);
@@ -184,83 +166,29 @@ class Modal extends React.Component {
     }
   };
 
-  enforceFocus = () => {
-    // The Modal might not already be mounted.
-    if (!this.isTopModal() || this.props.disableEnforceFocus || !this.mounted || !this.dialogRef) {
-      return;
-    }
-
-    const currentActiveElement = ownerDocument(this.mountNode).activeElement;
-
-    if (!this.dialogRef.contains(currentActiveElement)) {
-      this.dialogRef.focus();
-    }
-  };
-
   handlePortalRef = ref => {
-    this.mountNode = ref ? ref.getMountNode() : ref;
+    this.mountNode = ref;
   };
 
   handleModalRef = ref => {
     this.modalRef = ref;
+    setRef(this.props.innerRef, ref);
   };
 
-  onRootRef = ref => {
-    this.dialogRef = ref;
-  };
-
-  autoFocus() {
-    // We might render an empty child.
-    if (this.props.disableAutoFocus || !this.dialogRef) {
-      return;
-    }
-
-    const currentActiveElement = ownerDocument(this.mountNode).activeElement;
-
-    if (!this.dialogRef.contains(currentActiveElement)) {
-      if (!this.dialogRef.hasAttribute('tabIndex')) {
-        warning(
-          false,
-          [
-            'Material-UI: the modal content node does not accept focus.',
-            'For the benefit of assistive technologies, ' +
-              'the tabIndex of the node is being set to "-1".',
-          ].join('\n'),
-        );
-        this.dialogRef.setAttribute('tabIndex', -1);
-      }
-
-      this.lastFocus = currentActiveElement;
-      this.dialogRef.focus();
-    }
-  }
-
-  restoreLastFocus() {
-    if (this.props.disableRestoreFocus || !this.lastFocus) {
-      return;
-    }
-
-    // Not all elements in IE 11 have a focus method.
-    // Because IE 11 market share is low, we accept the restore focus being broken
-    // and we silent the issue.
-    if (this.lastFocus.focus) {
-      this.lastFocus.focus();
-    }
-
-    this.lastFocus = null;
-  }
-
-  isTopModal() {
+  isTopModal = () => {
     return this.props.manager.isTopModal(this);
-  }
+  };
+
+  getDoc = () => {
+    return ownerDocument(this.mountNode);
+  };
 
   render() {
     const {
       BackdropComponent,
       BackdropProps,
       children,
-      classes,
-      className,
+      closeAfterTransition,
       container,
       disableAutoFocus,
       disableBackdropClick,
@@ -269,6 +197,7 @@ class Modal extends React.Component {
       disablePortal,
       disableRestoreFocus,
       hideBackdrop,
+      innerRef,
       keepMounted,
       manager,
       onBackdropClick,
@@ -276,6 +205,7 @@ class Modal extends React.Component {
       onEscapeKeyDown,
       onRendered,
       open,
+      theme,
       ...other
     } = this.props;
     const { exited } = this.state;
@@ -289,6 +219,7 @@ class Modal extends React.Component {
 
     // It's a Transition like component
     if (hasTransition) {
+      childProps.onEnter = createChainedFunction(this.handleEnter, children.props.onEnter);
       childProps.onExited = createChainedFunction(this.handleExited, children.props.onExited);
     }
 
@@ -300,6 +231,8 @@ class Modal extends React.Component {
       childProps.tabIndex = children.props.tabIndex || '-1';
     }
 
+    const stylesRender = styles(theme || { zIndex });
+
     return (
       <Portal
         ref={this.handlePortalRef}
@@ -307,18 +240,37 @@ class Modal extends React.Component {
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
+        {/*
+          Marking an element with the role presentation indicates to assistive technology
+          that this element should be ignored; it exists to support the web application and
+          is not meant for humans to interact with directly.
+          https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+        */}
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
-          className={classNames('mui-fixed', classes.root, className, {
-            [classes.hidden]: exited,
-          })}
+          onKeyDown={this.handleKeyDown}
+          role="presentation"
           {...other}
+          style={{
+            ...stylesRender.root,
+            ...(!open && exited ? stylesRender.hidden : {}),
+            ...other.style,
+          }}
         >
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
           )}
-          <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childProps)}</RootRef>
+          <TrapFocus
+            disableEnforceFocus={disableEnforceFocus}
+            disableAutoFocus={disableAutoFocus}
+            disableRestoreFocus={disableRestoreFocus}
+            getDoc={this.getDoc}
+            isEnabled={this.isTopModal}
+            open={open}
+          >
+            {React.cloneElement(children, childProps)}
+          </TrapFocus>
         </div>
       </Portal>
     );
@@ -329,7 +281,7 @@ Modal.propTypes = {
   /**
    * A backdrop component. This property enables custom backdrop rendering.
    */
-  BackdropComponent: componentPropType,
+  BackdropComponent: PropTypes.elementType,
   /**
    * Properties applied to the [`Backdrop`](/api/backdrop/) element.
    */
@@ -337,16 +289,11 @@ Modal.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: elementAcceptingRef.isRequired,
   /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * When set to true the Modal waits until a nested Transition is completed before closing.
    */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
+  closeAfterTransition: PropTypes.bool,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
@@ -391,12 +338,19 @@ Modal.propTypes = {
    */
   hideBackdrop: PropTypes.bool,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
    */
   keepMounted: PropTypes.bool,
   /**
+   * @ignore
+   *
    * A modal manager used to track and manage the state of open
    * Modals. This enables customizing how modals interact within a container.
    */
@@ -427,10 +381,15 @@ Modal.propTypes = {
    * If `true`, the modal is open.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object,
 };
 
 Modal.defaultProps = {
-  BackdropComponent: Backdrop,
+  BackdropComponent: SimpleBackdrop,
+  closeAfterTransition: false,
   disableAutoFocus: false,
   disableBackdropClick: false,
   disableEnforceFocus: false,
@@ -443,4 +402,4 @@ Modal.defaultProps = {
   manager: new ModalManager(),
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);
+export default withTheme(withForwardedRef(Modal));

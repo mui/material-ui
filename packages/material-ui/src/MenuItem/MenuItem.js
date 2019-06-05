@@ -1,22 +1,20 @@
-// @inheritedComponent ListItem
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ListItem from '../ListItem';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    ...theme.typography.subheading,
-    height: 24,
-    boxSizing: 'content-box',
+    ...theme.typography.subtitle1,
+    minHeight: 48,
+    paddingTop: 4,
+    paddingBottom: 4,
+    boxSizing: 'border-box',
     width: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    '&$selected': {},
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {
@@ -27,18 +25,31 @@ export const styles = theme => ({
   selected: {},
 });
 
-function MenuItem(props) {
-  const { classes, className, component, disableGutters, role, selected, ...other } = props;
+const MenuItem = React.forwardRef(function MenuItem(props, ref) {
+  const {
+    classes,
+    className,
+    component = 'li',
+    disableGutters = false,
+    role = 'menuitem',
+    selected,
+    tabIndex: tabIndexProp,
+    ...other
+  } = props;
 
+  let tabIndex;
+  if (!props.disabled) {
+    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
+  }
   return (
     <ListItem
       button
       role={role}
-      tabIndex={-1}
+      tabIndex={tabIndex}
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.selected]: selected,
@@ -46,10 +57,11 @@ function MenuItem(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 MenuItem.propTypes = {
   /**
@@ -58,7 +70,7 @@ MenuItem.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -69,7 +81,11 @@ MenuItem.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, the left and right padding is removed.
    */
@@ -82,12 +98,10 @@ MenuItem.propTypes = {
    * @ignore
    */
   selected: PropTypes.bool,
-};
-
-MenuItem.defaultProps = {
-  component: 'li',
-  disableGutters: false,
-  role: 'menuitem',
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.number,
 };
 
 export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

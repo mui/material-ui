@@ -2,6 +2,8 @@ import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import Ripple from './Ripple';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
@@ -14,7 +16,7 @@ describe('<TouchRipple />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    mount = createMount({ strict: undefined });
     classes = getClasses(<TouchRipple />);
   });
 
@@ -22,22 +24,18 @@ describe('<TouchRipple />', () => {
     mount.cleanUp();
   });
 
-  it('should render a <ReactTransitionGroup> component', () => {
-    const wrapper = shallow(<TouchRipple />);
-    assert.strictEqual(wrapper.name(), 'TransitionGroup');
-    assert.strictEqual(wrapper.props().component, 'span');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should render the custom className', () => {
-    const wrapper = shallow(<TouchRipple className="test-class-name" />);
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-  });
+  describeConformance(<TouchRipple />, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: React.Component,
+    skip: ['componentProp'],
+  }));
 
   describe('prop: center', () => {
     it('should should compute the right ripple dimensions', () => {
-      const wrapper = shallow(<TouchRipple center />);
-      const instance = wrapper.instance();
+      const wrapper = mount(<TouchRipple center />);
+      const instance = wrapper.find('TouchRipple').instance();
       instance.start(
         {},
         {
@@ -46,7 +44,13 @@ describe('<TouchRipple />', () => {
         cb,
       );
       wrapper.update();
-      assert.strictEqual(wrapper.childAt(0).props().rippleSize, 1);
+      assert.strictEqual(
+        wrapper
+          .find(Ripple)
+          .at(0)
+          .props().rippleSize,
+        1,
+      );
     });
   });
 

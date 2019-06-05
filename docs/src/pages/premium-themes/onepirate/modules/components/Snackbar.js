@@ -25,14 +25,14 @@ const styles = theme => ({
     alignItems: 'center',
   },
   contentAction: {
-    paddingLeft: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing(2),
   },
   info: {
     flexShrink: 0,
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
   },
   close: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 

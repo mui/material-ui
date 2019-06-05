@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
@@ -10,8 +9,7 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(12),
+    ...theme.typography.caption,
     textAlign: 'left',
     marginTop: 8,
     lineHeight: '1em',
@@ -44,11 +42,11 @@ export const styles = theme => ({
   required: {},
 });
 
-function FormHelperText(props) {
+const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   const {
     classes,
     className: classNameProp,
-    component: Component,
+    component: Component = 'p',
     disabled,
     error,
     filled,
@@ -68,7 +66,7 @@ function FormHelperText(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.contained]: fcs.variant === 'filled' || fcs.variant === 'outlined',
@@ -81,10 +79,11 @@ function FormHelperText(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 FormHelperText.propTypes = {
   /**
@@ -93,7 +92,7 @@ FormHelperText.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -104,7 +103,7 @@ FormHelperText.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the helper text should be displayed in a disabled state.
    */
@@ -138,10 +137,6 @@ FormHelperText.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-FormHelperText.defaultProps = {
-  component: 'p',
 };
 
 export default withStyles(styles, { name: 'MuiFormHelperText' })(

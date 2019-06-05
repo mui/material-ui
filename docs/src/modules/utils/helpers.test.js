@@ -20,7 +20,7 @@ const styles = theme => ({
   formContro
 `;
 
-  it('generates the right npm dependencies', () => {
+  it('should handle @ dependencies', () => {
     assert.deepEqual(getDependencies(s1), {
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
@@ -30,7 +30,7 @@ const styles = theme => ({
     });
   });
 
-  it('generates the right npm dependencies', () => {
+  it('should handle * dependencies', () => {
     const s2 = `
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -56,8 +56,8 @@ const suggestions = [
     });
   });
 
-  it('generates the right npm dependencies', () => {
-    assert.deepEqual(getDependencies(s1, 'next'), {
+  it('should support next dependencies', () => {
+    assert.deepEqual(getDependencies(s1, { reactVersion: 'next' }), {
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
       'prop-types': 'latest',
@@ -66,7 +66,7 @@ const suggestions = [
     });
   });
 
-  it('generates the right npm dependencies', () => {
+  it('should support direct import', () => {
     const s3 = `
 import 'date-fns';
 import React from 'react';
@@ -74,17 +74,32 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pickers';
 `;
 
     assert.deepEqual(getDependencies(s3), {
       'date-fns': 'next',
       '@date-io/date-fns': 'latest',
-      'material-ui-pickers': 'latest',
+      '@material-ui/pickers': 'latest',
       '@material-ui/core': 'latest',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
+    });
+  });
+
+  it('can collect required @types packages', () => {
+    assert.deepEqual(getDependencies(s1, { codeLanguage: 'TS' }), {
+      '@foo-bar/bip': 'latest',
+      '@material-ui/core': 'latest',
+      'prop-types': 'latest',
+      'react-dom': 'latest',
+      react: 'latest',
+      '@types/foo-bar__bip': 'latest',
+      '@types/prop-types': 'latest',
+      '@types/react-dom': 'latest',
+      '@types/react': 'latest',
+      typescript: 'latest',
     });
   });
 });

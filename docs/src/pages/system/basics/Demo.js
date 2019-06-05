@@ -5,22 +5,17 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { palette, spacing, typography } from '@material-ui/system';
 
 const Box = styled.div`${palette}${spacing}${typography}`;
-// or import { unstable_Box as Box } from '@material-ui/core/Box';
+// or import Box from '@material-ui/core/Box';
 
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const theme = createMuiTheme();
 
-function Demo() {
+export default function Demo() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
         <Box
           color="primary.main"
           bgcolor="background.paper"
-          width="100%"
           fontFamily="h6.fontFamily"
           fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
           p={{ xs: 2, sm: 3, md: 4 }}
@@ -31,5 +26,3 @@ function Demo() {
     </NoSsr>
   );
 }
-
-export default Demo;

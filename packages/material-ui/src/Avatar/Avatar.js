@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -20,7 +19,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     userSelect: 'none',
   },
-  /* Styles applied to the root element if there are children and not `src` or `srcSet` */
+  /* Styles applied to the root element if there are children and not `src` or `srcSet`. */
   colorDefault: {
     color: theme.palette.background.default,
     backgroundColor:
@@ -36,14 +35,14 @@ export const styles = theme => ({
   },
 });
 
-function Avatar(props) {
+const Avatar = React.forwardRef(function Avatar(props, ref) {
   const {
     alt,
     children: childrenProp,
     childrenClassName: childrenClassNameProp,
     classes,
     className: classNameProp,
-    component: Component,
+    component: Component = 'div',
     imgProps,
     sizes,
     src,
@@ -67,7 +66,7 @@ function Avatar(props) {
     );
   } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
     children = React.cloneElement(childrenProp, {
-      className: classNames(childrenClassNameProp, childrenProp.props.className),
+      className: clsx(childrenClassNameProp, childrenProp.props.className),
     });
   } else {
     children = childrenProp;
@@ -75,7 +74,7 @@ function Avatar(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         classes.system,
         {
@@ -83,12 +82,13 @@ function Avatar(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     >
       {children}
     </Component>
   );
-}
+});
 
 Avatar.propTypes = {
   /**
@@ -112,7 +112,7 @@ Avatar.propTypes = {
   childrenClassName: PropTypes.string,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -123,7 +123,7 @@ Avatar.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Attributes applied to the `img` element if the component
    * is used to display an image.
@@ -141,10 +141,6 @@ Avatar.propTypes = {
    * The `srcSet` attribute for the `img` element.
    */
   srcSet: PropTypes.string,
-};
-
-Avatar.defaultProps = {
-  component: 'div',
 };
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

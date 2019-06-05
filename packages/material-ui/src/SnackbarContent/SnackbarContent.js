@@ -1,8 +1,6 @@
-// @inheritedComponent Paper
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Typography from '../Typography';
@@ -20,14 +18,12 @@ export const styles = theme => {
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
-      padding: '6px 24px',
-      [theme.breakpoints.up('md')]: {
+      padding: '6px 16px',
+      borderRadius: theme.shape.borderRadius,
+      flexGrow: 1,
+      [theme.breakpoints.up('sm')]: {
+        flexGrow: 'initial',
         minWidth: 288,
-        maxWidth: 568,
-        borderRadius: theme.shape.borderRadius,
-      },
-      [theme.breakpoints.down('sm')]: {
-        flexGrow: 1,
       },
     },
     /* Styles applied to the message wrapper element. */
@@ -39,33 +35,35 @@ export const styles = theme => {
       display: 'flex',
       alignItems: 'center',
       marginLeft: 'auto',
-      paddingLeft: 24,
+      paddingLeft: 16,
       marginRight: -8,
     },
   };
 };
 
-function SnackbarContent(props) {
+const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
   const { action, classes, className, message, ...other } = props;
 
   return (
     <Paper
       component={Typography}
-      headlineMapping={{
+      variant="body2"
+      variantMapping={{
         body1: 'div',
         body2: 'div',
       }}
       role="alertdialog"
       square
       elevation={6}
-      className={classNames(classes.root, className)}
+      className={clsx(classes.root, className)}
+      ref={ref}
       {...other}
     >
       <div className={classes.message}>{message}</div>
       {action ? <div className={classes.action}>{action}</div> : null}
     </Paper>
   );
-}
+});
 
 SnackbarContent.propTypes = {
   /**
@@ -74,7 +72,7 @@ SnackbarContent.propTypes = {
   action: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

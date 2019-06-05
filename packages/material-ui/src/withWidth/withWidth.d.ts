@@ -1,5 +1,5 @@
 import { Breakpoint } from '../styles/createBreakpoints';
-import { PropInjector } from '..';
+import { PropInjector } from '@material-ui/types';
 
 export interface WithWidthOptions {
   withTheme?: boolean;
@@ -10,6 +10,9 @@ export interface WithWidthOptions {
 
 export interface WithWidth {
   width: Breakpoint;
+}
+
+export interface WithWidthProps extends Partial<WithWidth> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
@@ -27,4 +30,4 @@ export function isWidthUp(
 
 export default function withWidth(
   options?: WithWidthOptions,
-): PropInjector<WithWidth, Partial<WithWidth>>;
+): PropInjector<WithWidth, WithWidthProps>;

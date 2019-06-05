@@ -1,53 +1,37 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import url from 'url';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { StylesProvider } from '@material-ui/styles';
-import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
-import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { Provider as ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES } from 'docs/src/modules/constants';
-import acceptLanguage from 'accept-language';
+import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { create } from 'jss';
+import rtl from 'jss-rtl';
 
-// Inject the insertion-point-jss after docssearch
-if (process.browser && !global.__INSERTION_POINT__) {
-  global.__INSERTION_POINT__ = true;
-  const styleNode = document.createComment('insertion-point-jss');
-  const docsearchStylesSheet = document.querySelector('#insertion-point-jss');
-
-  if (document.head && docsearchStylesSheet) {
-    document.head.insertBefore(styleNode, docsearchStylesSheet.nextSibling);
-  }
-}
-
-function themeSideEffect(reduxTheme) {
-  setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);
-  document.body.dir = reduxTheme.direction;
-}
+// Configure JSS
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+  insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
+});
 
 class SideEffectsRaw extends React.Component {
   componentDidMount() {
     const { options } = this.props;
-
-    acceptLanguage.languages(['en', 'zh']);
-    const URL = url.parse(document.location.href, true);
-    const userLanguage = acceptLanguage.get(
-      URL.query.lang || getCookie('lang') || navigator.language || 'en',
-    );
     const codeVariant = getCookie('codeVariant');
 
-    if (options.userLanguage !== userLanguage || options.codeVariant !== codeVariant) {
+    if (codeVariant && options.codeVariant !== codeVariant) {
+      window.ga('set', 'dimension1', codeVariant);
       this.props.dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
         payload: {
-          userLanguage,
           codeVariant,
         },
       });
+    } else {
+      window.ga('set', 'dimension1', CODE_VARIANTS.JS);
     }
+
+    window.ga('set', 'dimension2', options.userLanguage);
   }
 
   render() {
@@ -90,7 +74,8 @@ function forcePageReload(registration) {
         // A new service worker is available, inform the user
         registration.waiting.postMessage('skipWaiting');
       } else if (event.target.state === 'activated') {
-        // window.location.reload();
+        // Force the control of the page by the activated service worker.
+        window.location.reload();
       }
     });
   }
@@ -118,90 +103,31 @@ async function registerServiceWorker() {
   }
 }
 
-class AppWrapper extends React.Component {
-  state = {};
+function AppWrapper(props) {
+  const { children } = props;
 
-  componentDidMount() {
-    themeSideEffect(this.props.reduxTheme);
-
+  React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
+    if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
+  }, []);
 
-    const { reduxTheme } = this.props;
-
-    const paletteType = getCookie('paletteType');
-    const paletteColors = getCookie('paletteColors');
-
-    if (reduxTheme.paletteType !== paletteType || reduxTheme.paletteColors !== paletteColors) {
-      this.props.dispatch({
-        type: ACTION_TYPES.THEME_CHANGE,
-        payload: {
-          paletteType,
-          paletteColors: paletteColors ? JSON.parse(paletteColors) : null,
-        },
-      });
-    }
-
+  React.useEffect(() => {
     registerServiceWorker();
-  }
+  }, []);
 
-  componentDidUpdate() {
-    themeSideEffect(this.props.reduxTheme);
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.pageContext === 'undefined') {
-      return {
-        prevProps: nextProps,
-        pageContext: nextProps.pageContext,
-      };
-    }
-
-    const { prevProps } = prevState;
-
-    if (
-      nextProps.reduxTheme.paletteType !== prevProps.reduxTheme.paletteType ||
-      nextProps.reduxTheme.paletteColors !== prevProps.reduxTheme.paletteColors ||
-      nextProps.reduxTheme.direction !== prevProps.reduxTheme.direction
-    ) {
-      return {
-        prevProps: nextProps,
-        pageContext: updatePageContext(nextProps.reduxTheme),
-      };
-    }
-
-    return null;
-  }
-
-  render() {
-    const { children } = this.props;
-    const { pageContext } = this.state;
-
-    return (
-      <StylesProvider
-        generateClassName={pageContext.generateClassName}
-        jss={pageContext.jss}
-        sheetsManager={pageContext.sheetsManager}
-        sheetsRegistry={pageContext.sheetsRegistry}
-      >
-        <MuiThemeProvider theme={pageContext.theme}>{children}</MuiThemeProvider>
-        <SideEffects />
-      </StylesProvider>
-    );
-  }
+  return (
+    <StylesProvider jss={jss}>
+      <ThemeProvider>{children}</ThemeProvider>
+      <SideEffects />
+    </StylesProvider>
+  );
 }
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/no-unused-prop-types
-  pageContext: PropTypes.object,
-  reduxTheme: PropTypes.object.isRequired,
 };
 
-export default connect(state => ({
-  reduxTheme: state.theme,
-}))(AppWrapper);
+export default AppWrapper;

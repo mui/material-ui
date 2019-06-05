@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
@@ -35,21 +35,22 @@ export const styles = theme => ({
   error: {},
 });
 
-function StepIcon(props) {
-  const { completed, icon, active, error, classes } = props;
+const StepIcon = React.forwardRef(function StepIcon(props, ref) {
+  const { completed = false, icon, active = false, error = false, classes } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
     if (error) {
-      return <Warning className={classNames(classes.root, classes.error)} />;
+      return <Warning className={clsx(classes.root, classes.error)} ref={ref} />;
     }
     if (completed) {
-      return <CheckCircle className={classNames(classes.root, classes.completed)} />;
+      return <CheckCircle className={clsx(classes.root, classes.completed)} ref={ref} />;
     }
     return (
       <SvgIcon
-        className={classNames(classes.root, {
+        className={clsx(classes.root, {
           [classes.active]: active,
         })}
+        ref={ref}
       >
         <circle cx="12" cy="12" r="12" />
         <text className={classes.text} x="12" y="16" textAnchor="middle">
@@ -60,7 +61,7 @@ function StepIcon(props) {
   }
 
   return icon;
-}
+});
 
 StepIcon.propTypes = {
   /**
@@ -69,7 +70,7 @@ StepIcon.propTypes = {
   active: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -84,12 +85,6 @@ StepIcon.propTypes = {
    * The icon displayed by the step label.
    */
   icon: PropTypes.node.isRequired,
-};
-
-StepIcon.defaultProps = {
-  active: false,
-  completed: false,
-  error: false,
 };
 
 export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);

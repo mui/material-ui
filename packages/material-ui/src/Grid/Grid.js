@@ -11,13 +11,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 
-const GUTTERS = [0, 8, 16, 24, 32, 40];
+const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 function generateGrid(globalStyles, theme, breakpoint) {
@@ -68,17 +67,18 @@ function generateGrid(globalStyles, theme, breakpoint) {
 function generateGutter(theme, breakpoint) {
   const styles = {};
 
-  GUTTERS.forEach((spacing, index) => {
-    if (index === 0) {
-      // Skip the default style.
+  SPACINGS.forEach(spacing => {
+    const themeSpacing = theme.spacing(spacing);
+
+    if (themeSpacing === 0) {
       return;
     }
 
     styles[`spacing-${breakpoint}-${spacing}`] = {
-      margin: -spacing / 2,
-      width: `calc(100% + ${spacing}px)`,
+      margin: -themeSpacing / 2,
+      width: `calc(100% + ${themeSpacing}px)`,
       '& > $item': {
-        padding: spacing / 2,
+        padding: themeSpacing / 2,
       },
     };
   });
@@ -93,6 +93,8 @@ function generateGutter(theme, breakpoint) {
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
 export const styles = theme => ({
+  /* Styles applied to the root element */
+  root: {},
   /* Styles applied to the root element if `container={true}`. */
   container: {
     boxSizing: 'border-box',
@@ -193,41 +195,40 @@ export const styles = theme => ({
   }, {}),
 });
 
-function Grid(props) {
+const Grid = React.forwardRef((props, ref) => {
   const {
-    alignContent,
-    alignItems,
+    alignContent = 'stretch',
+    alignItems = 'stretch',
     classes,
     className: classNameProp,
-    component: Component,
-    container,
-    direction,
-    item,
-    justify,
-    lg,
-    md,
-    sm,
-    spacing,
-    wrap,
-    xl,
-    xs,
-    zeroMinWidth,
+    component: Component = 'div',
+    container = false,
+    direction = 'row',
+    item = false,
+    justify = 'flex-start',
+    lg = false,
+    md = false,
+    sm = false,
+    spacing = 0,
+    wrap = 'wrap',
+    xl = false,
+    xs = false,
+    zeroMinWidth = false,
     ...other
   } = props;
 
-  const className = classNames(
+  const className = clsx(
+    classes.root,
     {
       [classes.container]: container,
       [classes.item]: item,
       [classes.zeroMinWidth]: zeroMinWidth,
       [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
-      [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
-      [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
-      [classes[`align-items-xs-${String(alignItems)}`]]:
-        alignItems !== Grid.defaultProps.alignItems,
-      [classes[`align-content-xs-${String(alignContent)}`]]:
-        alignContent !== Grid.defaultProps.alignContent,
-      [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
+      [classes[`direction-xs-${String(direction)}`]]: direction !== 'row',
+      [classes[`wrap-xs-${String(wrap)}`]]: wrap !== 'wrap',
+      [classes[`align-items-xs-${String(alignItems)}`]]: alignItems !== 'stretch',
+      [classes[`align-content-xs-${String(alignContent)}`]]: alignContent !== 'stretch',
+      [classes[`justify-xs-${String(justify)}`]]: justify !== 'flex-start',
       [classes[`grid-xs-${String(xs)}`]]: xs !== false,
       [classes[`grid-sm-${String(sm)}`]]: sm !== false,
       [classes[`grid-md-${String(md)}`]]: md !== false,
@@ -237,7 +238,13 @@ function Grid(props) {
     classNameProp,
   );
 
-  return <Component className={className} {...other} />;
+  return <Component className={className} ref={ref} {...other} />;
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  // can't use named function expression since the function body references `Grid`
+  // which would point to the render function instead of the actual component
+  Grid.displayName = 'ForwardRef(Grid)';
 }
 
 Grid.propTypes = {
@@ -264,7 +271,7 @@ Grid.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -275,7 +282,7 @@ Grid.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
@@ -322,7 +329,7 @@ Grid.propTypes = {
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  spacing: PropTypes.oneOf(GUTTERS),
+  spacing: PropTypes.oneOf(SPACINGS),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
@@ -345,24 +352,6 @@ Grid.propTypes = {
   zeroMinWidth: PropTypes.bool,
 };
 
-Grid.defaultProps = {
-  alignContent: 'stretch',
-  alignItems: 'stretch',
-  component: 'div',
-  container: false,
-  direction: 'row',
-  item: false,
-  justify: 'flex-start',
-  lg: false,
-  md: false,
-  sm: false,
-  spacing: 0,
-  wrap: 'wrap',
-  xl: false,
-  xs: false,
-  zeroMinWidth: false,
-};
-
 const StyledGrid = withStyles(styles, { name: 'MuiGrid' })(Grid);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -379,7 +368,7 @@ if (process.env.NODE_ENV !== 'production') {
     spacing: requireProp('container'),
     wrap: requireProp('container'),
     xs: requireProp('item'),
-    zeroMinWidth: requireProp('zeroMinWidth'),
+    zeroMinWidth: requireProp('item'),
   };
 }
 

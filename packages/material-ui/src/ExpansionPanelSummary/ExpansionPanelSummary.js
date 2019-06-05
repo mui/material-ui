@@ -1,8 +1,6 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
@@ -31,7 +29,7 @@ export const styles = theme => {
         opacity: 0.38,
       },
     },
-    /* Styles applied to the root element if `expanded={true}`. */
+    /* Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
     expanded: {},
     /* Styles applied to the root and children wrapper elements when focused. */
     focused: {},
@@ -43,19 +41,13 @@ export const styles = theme => {
       flexGrow: 1,
       transition: theme.transitions.create(['margin'], transition),
       margin: '12px 0',
-      '& > :last-child': {
-        paddingRight: 32,
-      },
       '&$expanded': {
         margin: '20px 0',
       },
     },
     /* Styles applied to the `IconButton` component when `expandIcon` is supplied. */
     expandIcon: {
-      position: 'absolute',
-      top: '50%',
-      right: 8,
-      transform: 'translateY(-50%) rotate(0deg)',
+      transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
       '&:hover': {
         // Disable the hover effect for the IconButton,
@@ -64,39 +56,44 @@ export const styles = theme => {
         backgroundColor: 'transparent',
       },
       '&$expanded': {
-        transform: 'translateY(-50%) rotate(180deg)',
+        transform: 'rotate(180deg)',
       },
     },
   };
 };
 
-class ExpansionPanelSummary extends React.Component {
-  state = {
-    focused: false,
-  };
+const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(props, ref) {
+  const {
+    children,
+    classes,
+    className,
+    disabled = false,
+    expanded,
+    expandIcon,
+    IconButtonProps,
+    onBlur,
+    onChange,
+    onClick,
+    onFocusVisible,
+    ...other
+  } = props;
 
-  handleFocusVisible = event => {
-    this.setState({
-      focused: true,
-    });
+  const [focusedState, setFocusedState] = React.useState(false);
+  const handleFocusVisible = event => {
+    setFocusedState(true);
 
-    if (this.props.onFocusVisible) {
-      this.props.onFocusVisible(event);
+    if (onFocusVisible) {
+      onFocusVisible(event);
     }
   };
+  const handleBlur = event => {
+    setFocusedState(false);
 
-  handleBlur = event => {
-    this.setState({
-      focused: false,
-    });
-
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
+    if (onBlur) {
+      onBlur(event);
     }
   };
-
-  handleChange = event => {
-    const { onChange, onClick } = this.props;
+  const handleChange = event => {
     if (onChange) {
       onChange(event);
     }
@@ -105,65 +102,47 @@ class ExpansionPanelSummary extends React.Component {
     }
   };
 
-  render() {
-    const {
-      children,
-      classes,
-      className,
-      disabled,
-      expanded,
-      expandIcon,
-      IconButtonProps,
-      onBlur,
-      onChange,
-      onClick,
-      onFocusVisible,
-      ...other
-    } = this.props;
-    const { focused } = this.state;
-
-    return (
-      <ButtonBase
-        focusRipple={false}
-        disableRipple
-        disabled={disabled}
-        component="div"
-        aria-expanded={expanded}
-        className={classNames(
-          classes.root,
-          {
-            [classes.disabled]: disabled,
+  return (
+    <ButtonBase
+      focusRipple={false}
+      disableRipple
+      disabled={disabled}
+      component="div"
+      aria-expanded={expanded}
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.expanded]: expanded,
+          [classes.focused]: focusedState,
+        },
+        className,
+      )}
+      onFocusVisible={handleFocusVisible}
+      onBlur={handleBlur}
+      onClick={handleChange}
+      ref={ref}
+      {...other}
+    >
+      <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
+      {expandIcon && (
+        <IconButton
+          disabled={disabled}
+          className={clsx(classes.expandIcon, {
             [classes.expanded]: expanded,
-            [classes.focused]: focused,
-          },
-          className,
-        )}
-        onFocusVisible={this.handleFocusVisible}
-        onBlur={this.handleBlur}
-        onClick={this.handleChange}
-        {...other}
-      >
-        <div className={classNames(classes.content, { [classes.expanded]: expanded })}>
-          {children}
-        </div>
-        {expandIcon && (
-          <IconButton
-            disabled={disabled}
-            className={classNames(classes.expandIcon, {
-              [classes.expanded]: expanded,
-            })}
-            component="div"
-            tabIndex={-1}
-            aria-hidden="true"
-            {...IconButtonProps}
-          >
-            {expandIcon}
-          </IconButton>
-        )}
-      </ButtonBase>
-    );
-  }
-}
+          })}
+          edge="end"
+          component="div"
+          tabIndex={-1}
+          aria-hidden
+          {...IconButtonProps}
+        >
+          {expandIcon}
+        </IconButton>
+      )}
+    </ButtonBase>
+  );
+});
 
 ExpansionPanelSummary.propTypes = {
   /**
@@ -172,7 +151,7 @@ ExpansionPanelSummary.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -194,9 +173,13 @@ ExpansionPanelSummary.propTypes = {
    */
   expandIcon: PropTypes.node,
   /**
-   * Properties applied to the `TouchRipple` element wrapping the expand icon.
+   * Properties applied to the `IconButton` element wrapping the expand icon.
    */
   IconButtonProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
   /**
    * @ignore
    */
@@ -205,12 +188,10 @@ ExpansionPanelSummary.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocusVisible: PropTypes.func,
 };
-
-ExpansionPanelSummary.defaultProps = {
-  disabled: false,
-};
-
-ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
 
 export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(ExpansionPanelSummary);

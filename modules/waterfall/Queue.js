@@ -35,8 +35,8 @@ class Queue {
     });
   };
 
-  wait = (options = {}) => {
-    return waitUntil(
+  wait = (options = {}) =>
+    waitUntil(
       () => {
         if (this.err) {
           this.pendingEntries = [];
@@ -53,7 +53,6 @@ class Queue {
         delay: 50,
       },
     );
-  };
 }
 
 export default Queue;

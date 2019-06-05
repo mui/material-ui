@@ -1,18 +1,27 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { ButtonProps } from '@material-ui/core/Button';
-import { TransitionProps } from 'react-transition-group/Transition';
-import { TransitionHandlerProps } from '@material-ui/core/transitions/transition';
+
+/**
+ * @param rawValue - the value inferred from the event in [min, max]
+ */
+export type ValueReducer = (
+  rawValue: number,
+  props: SliderProps,
+  event: React.SyntheticEvent,
+) => number;
+
+export const defaultValueReducer: ValueReducer;
 
 export interface SliderProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange'> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange', false> {
   disabled?: boolean;
   vertical?: boolean;
   max?: number;
   min?: number;
   step?: number;
   value?: number;
-  thumb?: React.ReactElement<any>;
+  valueReducer?: ValueReducer;
+  thumb?: React.ReactElement;
   onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
   onDragEnd?: (event: React.ChangeEvent<{}>) => void;
   onDragStart?: (event: React.ChangeEvent<{}>) => void;

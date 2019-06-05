@@ -1,27 +1,34 @@
 import * as React from 'react';
+import { Omit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
-export type PropsOf<C> = C extends new (props: infer P) => React.Component
-  ? P
-  : C extends (props: infer P) => React.ReactElement<any> | null
-  ? P
-  : C extends keyof JSX.IntrinsicElements
-  ? JSX.IntrinsicElements[C]
-  : never;
+/**
+ * @deprecated
+ * Import from `@material-ui/types` instead
+ */
+export { Omit };
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
  */
-export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
+export type StandardProps<
   C,
-  'classes' | Removals
-> &
+  ClassKey extends string,
+  Removals extends keyof C = never,
+  AcceptsRef = true
+> = Omit<C, 'classes' | Removals> &
   StyledComponentProps<ClassKey> & {
     className?: string;
     style?: React.CSSProperties;
+  } & {
+    ref?: AcceptsRef extends true
+      ? C extends { ref?: infer RefType }
+        ? RefType
+        : React.Ref<unknown>
+      : never;
   };
 
 export type PaletteType = 'light' | 'dark';
@@ -42,47 +49,6 @@ export interface Color {
   A700: string;
 }
 
-/**
- * Remove properties `K` from `T`.
- *
- * @internal
- */
-export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof T, K>> : never;
-
-/**
- * `T extends ConsistentWith<T, U>` means that where `T` has overlapping properties with
- * `U`, their value types do not conflict.
- *
- * @internal
- */
-export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
-  [P in keyof DecorationTargetProps]: P extends keyof InjectedProps
-    ? InjectedProps[P] extends DecorationTargetProps[P]
-      ? DecorationTargetProps[P]
-      : InjectedProps[P]
-    : DecorationTargetProps[P]
-};
-
-/**
- * a function that takes {component} and returns a component that passes along
- * all the props to {component} except the {InjectedProps} and will accept
- * additional {AdditionalProps}
- */
-export type PropInjector<InjectedProps, AdditionalProps = {}> = <
-  C extends React.ComponentType<ConsistentWith<PropsOf<C>, InjectedProps>>
->(
-  component: C,
-) => React.ComponentType<
-  Omit<JSX.LibraryManagedAttributes<C, PropsOf<C>>, keyof InjectedProps> & AdditionalProps
->;
-
-/**
- * Like `T & U`, but using the value types from `U` where their properties overlap.
- *
- * @internal
- */
-export type Overwrite<T, U> = Omit<T, keyof U> & U;
-
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
   type Color = 'inherit' | 'primary' | 'secondary' | 'default';
@@ -94,15 +60,14 @@ import * as colors from './colors';
 
 export { colors };
 export {
-  createGenerateClassName,
   createMuiTheme,
-  jssPreset,
-  MuiThemeProvider,
+  createStyles,
+  makeStyles,
   StyleRulesCallback,
   Theme,
+  useTheme,
   withStyles,
   WithStyles,
-  createStyles,
   withTheme,
   WithTheme,
 } from './styles';
@@ -113,8 +78,11 @@ export { default as Backdrop } from './Backdrop';
 export { default as Badge } from './Badge';
 export { default as BottomNavigation } from './BottomNavigation';
 export { default as BottomNavigationAction } from './BottomNavigationAction';
+export { default as Box } from './Box';
+export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
+export { default as ButtonGroup } from './ButtonGroup';
 export { default as Card } from './Card';
 export { default as CardActionArea } from './CardActionArea';
 export { default as CardActions } from './CardActions';
@@ -126,6 +94,7 @@ export { default as Chip } from './Chip';
 export { default as CircularProgress } from './CircularProgress';
 export { default as ClickAwayListener } from './ClickAwayListener';
 export { default as Collapse } from './Collapse';
+export { default as Container } from './Container';
 export { default as CssBaseline } from './CssBaseline';
 export { default as Dialog } from './Dialog';
 export { default as DialogActions } from './DialogActions';
@@ -159,6 +128,7 @@ export { default as InputAdornment } from './InputAdornment';
 export { default as InputBase } from './InputBase';
 export { default as InputLabel } from './InputLabel';
 export { default as LinearProgress } from './LinearProgress';
+export { default as Link } from './Link';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as ListItemAvatar } from './ListItemAvatar';
@@ -209,6 +179,8 @@ export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
 export { default as Tooltip } from './Tooltip';
 export { default as Typography } from './Typography';
+export { default as useMediaQuery } from './useMediaQuery';
+export { default as useScrollTrigger } from './useScrollTrigger';
 export { default as withMobileDialog } from './withMobileDialog';
 export { default as withWidth } from './withWidth';
 export { default as Zoom } from './Zoom';

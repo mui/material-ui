@@ -2,11 +2,11 @@ import * as colors from './colors';
 
 export { colors };
 export {
-  createGenerateClassName,
   createMuiTheme,
   createStyles,
-  jssPreset,
+  makeStyles,
   MuiThemeProvider,
+  styled,
   withStyles,
   withTheme,
 } from './styles';
@@ -17,8 +17,11 @@ export { default as Backdrop } from './Backdrop';
 export { default as Badge } from './Badge';
 export { default as BottomNavigation } from './BottomNavigation';
 export { default as BottomNavigationAction } from './BottomNavigationAction';
+export { default as Box } from './Box';
+export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
+export { default as ButtonGroup } from './ButtonGroup';
 export { default as Card } from './Card';
 export { default as CardActionArea } from './CardActionArea';
 export { default as CardActions } from './CardActions';
@@ -30,6 +33,7 @@ export { default as Chip } from './Chip';
 export { default as CircularProgress } from './CircularProgress';
 export { default as ClickAwayListener } from './ClickAwayListener';
 export { default as Collapse } from './Collapse';
+export { default as Container } from './Container';
 export { default as CssBaseline } from './CssBaseline';
 export { default as Dialog } from './Dialog';
 export { default as DialogActions } from './DialogActions';
@@ -63,6 +67,7 @@ export { default as InputAdornment } from './InputAdornment';
 export { default as InputBase } from './InputBase';
 export { default as InputLabel } from './InputLabel';
 export { default as LinearProgress } from './LinearProgress';
+export { default as Link } from './Link';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as ListItemAvatar } from './ListItemAvatar';
@@ -113,6 +118,8 @@ export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
 export { default as Tooltip } from './Tooltip';
 export { default as Typography } from './Typography';
+export { default as useMediaQuery } from './useMediaQuery';
+export { default as useScrollTrigger } from './useScrollTrigger';
 export { default as withMobileDialog } from './withMobileDialog';
 export { default as withWidth } from './withWidth';
 export { default as Zoom } from './Zoom';

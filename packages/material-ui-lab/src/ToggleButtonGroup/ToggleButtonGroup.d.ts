@@ -6,11 +6,13 @@ export interface ToggleButtonGroupProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
     ToggleButtonGroupClassKey,
-    'onChange'
+    'onChange',
+    false
   > {
   selected?: boolean;
   exclusive?: boolean;
   onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
+  size?: 'small' | 'medium' | 'large';
   value?: any;
 }
 

@@ -1,14 +1,15 @@
 /* eslint-disable consistent-this */
-// @inheritedComponent Drawer
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { getTransitionProps } from '../transitions/utils';
 import NoSsr from '../NoSsr';
+import withForwardedRef from '../utils/withForwardedRef';
 import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to
@@ -25,15 +26,14 @@ export function reset() {
   nodeThatClaimedTheSwipe = null;
 }
 
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
-}
-
 class SwipeableDrawer extends React.Component {
   state = {};
 
   isSwiping = null;
+
+  swipeAreaRef = React.createRef();
+
+  paperRef = null;
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {
@@ -85,11 +85,11 @@ class SwipeableDrawer extends React.Component {
   }
 
   getMaxTranslate() {
-    return isHorizontal(this.props) ? this.paperRef.clientWidth : this.paperRef.clientHeight;
+    return isHorizontal(this.props.anchor) ? this.paperRef.clientWidth : this.paperRef.clientHeight;
   }
 
   getTranslate(current) {
-    const start = isHorizontal(this.props) ? this.startX : this.startY;
+    const start = isHorizontal(this.props.anchor) ? this.startX : this.startY;
     return Math.min(
       Math.max(this.props.open ? start - current : this.getMaxTranslate() + start - current, 0),
       this.getMaxTranslate(),
@@ -99,9 +99,9 @@ class SwipeableDrawer extends React.Component {
   setPosition(translate, options = {}) {
     const { mode = null, changeTransition = true } = options;
 
-    const anchor = getAnchor(this.props);
+    const anchor = getAnchor(this.props.theme, this.props.anchor);
     const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchor) !== -1 ? 1 : -1;
-    const transform = isHorizontal(this.props)
+    const transform = isHorizontal(this.props.anchor)
       ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
       : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
     const drawerStyle = this.paperRef.style;
@@ -147,7 +147,7 @@ class SwipeableDrawer extends React.Component {
     }
 
     const { disableDiscovery, disableSwipeToOpen, open, swipeAreaWidth } = this.props;
-    const anchor = getAnchor(this.props);
+    const anchor = getAnchor(this.props.theme, this.props.anchor);
     const currentX =
       anchor === 'right'
         ? document.body.offsetWidth - event.touches[0].pageX
@@ -158,10 +158,10 @@ class SwipeableDrawer extends React.Component {
         : event.touches[0].clientY;
 
     if (!open) {
-      if (disableSwipeToOpen) {
+      if (disableSwipeToOpen || event.target !== this.swipeAreaRef.current) {
         return;
       }
-      if (isHorizontal(this.props)) {
+      if (isHorizontal(this.props.anchor)) {
         if (currentX > swipeAreaWidth) {
           return;
         }
@@ -196,8 +196,8 @@ class SwipeableDrawer extends React.Component {
     // the ref may be null when a parent component updates while swiping
     if (!this.paperRef) return;
 
-    const anchor = getAnchor(this.props);
-    const horizontalSwipe = isHorizontal(this.props);
+    const anchor = getAnchor(this.props.theme, this.props.anchor);
+    const horizontalSwipe = isHorizontal(this.props.anchor);
 
     const currentX =
       anchor === 'right'
@@ -284,9 +284,9 @@ class SwipeableDrawer extends React.Component {
 
     this.isSwiping = null;
 
-    const anchor = getAnchor(this.props);
+    const anchor = getAnchor(this.props.theme, this.props.anchor);
     let current;
-    if (isHorizontal(this.props)) {
+    if (isHorizontal(this.props.anchor)) {
       current =
         anchor === 'right'
           ? document.body.offsetWidth - event.changedTouches[0].pageX
@@ -327,11 +327,13 @@ class SwipeableDrawer extends React.Component {
   };
 
   handleBackdropRef = ref => {
-    this.backdropRef = ref ? ReactDOM.findDOMNode(ref) : null;
+    // #StrictMode ready
+    this.backdropRef = ReactDOM.findDOMNode(ref);
   };
 
   handlePaperRef = ref => {
-    this.paperRef = ref ? ReactDOM.findDOMNode(ref) : null;
+    // #StrictMode ready
+    this.paperRef = ReactDOM.findDOMNode(ref);
   };
 
   listenTouchStart() {
@@ -355,6 +357,7 @@ class SwipeableDrawer extends React.Component {
       disableDiscovery,
       disableSwipeToOpen,
       hysteresis,
+      innerRef,
       minFlingVelocity,
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
@@ -388,11 +391,17 @@ class SwipeableDrawer extends React.Component {
             ref: this.handlePaperRef,
           }}
           anchor={anchor}
+          ref={innerRef}
           {...other}
         />
-        {!disableDiscovery && !disableSwipeToOpen && variant === 'temporary' && (
+        {!disableSwipeToOpen && variant === 'temporary' && (
           <NoSsr>
-            <SwipeArea anchor={anchor} width={swipeAreaWidth} {...SwipeAreaProps} />
+            <SwipeArea
+              anchor={anchor}
+              innerRef={this.swipeAreaRef}
+              width={swipeAreaWidth}
+              {...SwipeAreaProps}
+            />
           </NoSsr>
         )}
       </React.Fragment>
@@ -421,10 +430,19 @@ SwipeableDrawer.propTypes = {
    */
   disableSwipeToOpen: PropTypes.bool,
   /**
+   * @ignore
+   */
+  hideBackdrop: PropTypes.bool,
+  /**
    * Affects how far the drawer must be opened/closed to change his state.
    * Specified as percent (0-1) of the width of the drawer
    */
   hysteresis: PropTypes.number,
+  /**
+   * @ignore
+   * from `withForwardedRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Defines, from which (average) velocity on, the swipe is
    * defined as complete although hysteresis isn't reached.
@@ -434,7 +452,11 @@ SwipeableDrawer.propTypes = {
   /**
    * @ignore
    */
-  ModalProps: PropTypes.object,
+  ModalProps: PropTypes.shape({
+    BackdropProps: PropTypes.shape({
+      component: elementTypeAcceptingRef,
+    }),
+  }),
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -454,7 +476,9 @@ SwipeableDrawer.propTypes = {
   /**
    * @ignore
    */
-  PaperProps: PropTypes.object,
+  PaperProps: PropTypes.shape({
+    component: elementTypeAcceptingRef,
+  }),
   /**
    * Properties applied to the swipe area element.
    */
@@ -495,4 +519,4 @@ SwipeableDrawer.defaultProps = {
   variant: 'temporary', // Mobile first.
 };
 
-export default withTheme()(SwipeableDrawer);
+export default withTheme(withForwardedRef(SwipeableDrawer));

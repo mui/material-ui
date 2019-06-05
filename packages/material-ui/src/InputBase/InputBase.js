@@ -3,13 +3,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
-import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
-import { setRef } from '../utils/reactHelpers';
+import { useForkRef } from '../utils/reactHelpers';
 import Textarea from './Textarea';
 import { isFilled } from './utils';
 
@@ -23,7 +21,7 @@ export const styles = theme => {
     }),
   };
   const placeholderHidden = {
-    opacity: 0,
+    opacity: '0 !important',
   };
   const placeholderVisible = {
     opacity: light ? 0.42 : 0.5,
@@ -37,6 +35,7 @@ export const styles = theme => {
       color: theme.palette.text.primary,
       fontSize: theme.typography.pxToRem(16),
       lineHeight: '1.1875em', // Reset (19px), match the native input line-height
+      boxSizing: 'border-box', // Prevent padding issue with fullWidth.
       cursor: 'text',
       display: 'inline-flex',
       alignItems: 'center',
@@ -75,6 +74,7 @@ export const styles = theme => {
       border: 0,
       boxSizing: 'content-box',
       background: 'none',
+      height: '1.1875em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
       // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',
@@ -118,13 +118,9 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
+      height: 'auto',
       resize: 'none',
       padding: 0,
-    },
-    /* Styles applied to the `input` element if `type` is not "text"`. */
-    inputType: {
-      // type="date" or type="time", etc. have specific styles we need to reset.
-      height: '1.1875em', // Reset (19px), match the native input line-height
     },
     /* Styles applied to the `input` element if `type="search"`. */
     inputTypeSearch: {
@@ -144,307 +140,289 @@ export const styles = theme => {
  * It aims to be a simple building block for creating an input.
  * It contains a load of style reset and some state logic.
  */
-class InputBase extends React.Component {
-  static getDerivedStateFromProps(props, state) {
-    // The blur won't fire when the disabled state is set on a focused input.
-    // We need to book keep the focused state manually.
-    if (props.disabled && state.focused) {
-      return { focused: false };
-    }
-    return null;
-  }
+const InputBase = React.forwardRef(function InputBase(props, ref) {
+  const {
+    'aria-describedby': ariaDescribedby,
+    autoComplete,
+    autoFocus,
+    classes,
+    className: classNameProp,
+    defaultValue,
+    disabled,
+    endAdornment,
+    error,
+    fullWidth = false,
+    id,
+    inputComponent = 'input',
+    inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
+    inputRef: inputRefProp,
+    margin,
+    multiline = false,
+    name,
+    onBlur,
+    onChange,
+    onClick,
+    onEmpty,
+    onFilled,
+    onFocus,
+    onKeyDown,
+    onKeyUp,
+    placeholder,
+    readOnly,
+    renderPrefix,
+    rows,
+    rowsMax,
+    startAdornment,
+    type = 'text',
+    value,
+    ...other
+  } = props;
 
-  constructor(props) {
-    super(props);
-    this.isControlled = props.value != null;
-    if (this.isControlled) {
-      this.checkDirty(props);
-    }
-  }
+  const { current: isControlled } = React.useRef(value != null);
 
-  state = {
-    focused: false,
-  };
-
-  componentDidMount() {
-    if (!this.isControlled) {
-      this.checkDirty(this.inputRef);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    // Book keep the focused state.
-    if (!prevProps.disabled && this.props.disabled) {
-      const { muiFormControl } = this.props;
-      if (muiFormControl && muiFormControl.onBlur) {
-        muiFormControl.onBlur();
-      }
-    }
-    if (this.isControlled) {
-      this.checkDirty(this.props);
-    } // else performed in the onChange
-  }
-
-  handleFocus = event => {
-    const { muiFormControl } = this.props;
-    // Fix a bug with IE 11 where the focus/blur events are triggered
-    // while the input is disabled.
-    if (formControlState({ props: this.props, muiFormControl, states: ['disabled'] }).disabled) {
-      event.stopPropagation();
-      return;
-    }
-
-    this.setState({ focused: true });
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
-
-    if (muiFormControl && muiFormControl.onFocus) {
-      muiFormControl.onFocus(event);
-    }
-  };
-
-  handleBlur = event => {
-    this.setState({ focused: false });
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
-
-    const { muiFormControl } = this.props;
-    if (muiFormControl && muiFormControl.onBlur) {
-      muiFormControl.onBlur(event);
-    }
-  };
-
-  handleChange = (...args) => {
-    if (!this.isControlled) {
-      this.checkDirty(this.inputRef);
-    }
-
-    // Perform in the willUpdate
-    if (this.props.onChange) {
-      this.props.onChange(...args);
-    }
-  };
-
-  handleRefInput = ref => {
-    this.inputRef = ref;
-
+  const inputRef = React.useRef();
+  const handleInputRefWarning = React.useCallback(instance => {
     warning(
-      !ref || ref instanceof HTMLInputElement || ref.focus,
+      !instance || instance instanceof HTMLInputElement || instance.focus,
       [
         'Material-UI: you have provided a `inputComponent` to the input component',
         'that does not correctly handle the `inputRef` property.',
         'Make sure the `inputRef` property is called with a HTMLInputElement.',
       ].join('\n'),
     );
+  }, []);
+  const handleInputPropsRefProp = useForkRef(inputPropsProp.ref, handleInputRefWarning);
+  const handleInputRefProp = useForkRef(inputRefProp, handleInputPropsRefProp);
+  const handleInputRef = useForkRef(inputRef, handleInputRefProp);
 
-    let refProp;
+  const [focused, setFocused] = React.useState(false);
+  const muiFormControl = React.useContext(FormControlContext);
 
-    if (this.props.inputRef) {
-      refProp = this.props.inputRef;
-    } else if (this.props.inputProps && this.props.inputProps.ref) {
-      refProp = this.props.inputProps.ref;
-    }
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['disabled', 'error', 'margin', 'required', 'filled'],
+  });
+  fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 
-    setRef(refProp, ref);
-  };
-
-  handleClick = event => {
-    if (this.inputRef && event.currentTarget === event.target) {
-      this.inputRef.focus();
-    }
-
-    if (this.props.onClick) {
-      this.props.onClick(event);
-    }
-  };
-
-  checkDirty(obj) {
-    const { muiFormControl } = this.props;
-
-    if (isFilled(obj)) {
-      if (muiFormControl && muiFormControl.onFilled) {
-        muiFormControl.onFilled();
+  // The blur won't fire when the disabled state is set on a focused input.
+  // We need to book keep the focused state manually.
+  React.useEffect(() => {
+    if (!muiFormControl && disabled && focused) {
+      setFocused(false);
+      if (onBlur) {
+        onBlur();
       }
-      if (this.props.onFilled) {
-        this.props.onFilled();
+    }
+  }, [muiFormControl, disabled, focused, onBlur]);
+
+  const checkDirty = React.useCallback(
+    obj => {
+      if (isFilled(obj)) {
+        if (muiFormControl && muiFormControl.onFilled) {
+          muiFormControl.onFilled();
+        }
+        if (onFilled) {
+          onFilled();
+        }
+        return;
       }
+
+      if (muiFormControl && muiFormControl.onEmpty) {
+        muiFormControl.onEmpty();
+      }
+      if (onEmpty) {
+        onEmpty();
+      }
+    },
+    [muiFormControl, onEmpty, onFilled],
+  );
+
+  React.useEffect(() => {
+    if (isControlled) {
+      checkDirty({ value });
+    }
+  }, [value, checkDirty, isControlled]);
+
+  React.useEffect(() => {
+    if (!isControlled) {
+      checkDirty(inputRef.current);
+    }
+  }, [checkDirty, isControlled]);
+
+  const handleFocus = event => {
+    // Fix a bug with IE 11 where the focus/blur events are triggered
+    // while the input is disabled.
+    if (fcs.disabled) {
+      event.stopPropagation();
       return;
     }
 
-    if (muiFormControl && muiFormControl.onEmpty) {
-      muiFormControl.onEmpty();
+    if (onFocus) {
+      onFocus(event);
     }
-    if (this.props.onEmpty) {
-      this.props.onEmpty();
-    }
-  }
 
-  render() {
-    const {
-      autoComplete,
-      autoFocus,
-      classes,
-      className: classNameProp,
-      defaultValue,
-      disabled,
-      endAdornment,
-      error,
-      fullWidth,
-      id,
-      inputComponent,
-      inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
-      inputRef,
-      margin,
-      muiFormControl,
-      multiline,
-      name,
-      onBlur,
-      onChange,
-      onClick,
-      onEmpty,
-      onFilled,
-      onFocus,
-      onKeyDown,
-      onKeyUp,
-      placeholder,
-      readOnly,
-      renderPrefix,
-      rows,
-      rowsMax,
-      startAdornment,
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    } else {
+      setFocused(true);
+    }
+  };
+
+  const handleBlur = event => {
+    if (onBlur) {
+      onBlur(event);
+    }
+
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
+    } else {
+      setFocused(false);
+    }
+  };
+
+  const handleChange = (event, ...args) => {
+    if (!isControlled) {
+      checkDirty({
+        value: (event.target || inputRef.current).value,
+      });
+    }
+
+    // Perform in the willUpdate
+    if (onChange) {
+      onChange(event, ...args);
+    }
+  };
+
+  const handleClick = event => {
+    if (inputRef.current && event.currentTarget === event.target) {
+      inputRef.current.focus();
+    }
+
+    if (onClick) {
+      onClick(event);
+    }
+  };
+
+  let InputComponent = inputComponent;
+  let inputProps = {
+    ...inputPropsProp,
+    ref: handleInputRef,
+  };
+
+  if (typeof InputComponent !== 'string') {
+    inputProps = {
+      // Rename ref to inputRef as we don't know the
+      // provided `inputComponent` structure.
+      inputRef: handleInputRef,
       type,
-      value,
-      ...other
-    } = this.props;
-
-    const fcs = formControlState({
-      props: this.props,
-      muiFormControl,
-      states: ['disabled', 'error', 'margin', 'required', 'filled'],
-    });
-
-    const focused = muiFormControl ? muiFormControl.focused : this.state.focused;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.disabled]: fcs.disabled,
-        [classes.error]: fcs.error,
-        [classes.fullWidth]: fullWidth,
-        [classes.focused]: focused,
-        [classes.formControl]: muiFormControl,
-        [classes.marginDense]: fcs.margin === 'dense',
-        [classes.multiline]: multiline,
-        [classes.adornedStart]: startAdornment,
-        [classes.adornedEnd]: endAdornment,
-      },
-      classNameProp,
-    );
-
-    const inputClassName = classNames(
-      classes.input,
-      {
-        [classes.disabled]: fcs.disabled,
-        [classes.inputType]: type !== 'text',
-        [classes.inputTypeSearch]: type === 'search',
-        [classes.inputMultiline]: multiline,
-        [classes.inputMarginDense]: fcs.margin === 'dense',
-        [classes.inputAdornedStart]: startAdornment,
-        [classes.inputAdornedEnd]: endAdornment,
-      },
-      inputPropsClassName,
-    );
-
-    let InputComponent = inputComponent;
-    let inputProps = {
-      ...inputPropsProp,
-      ref: this.handleRefInput,
+      ...inputProps,
+      ref: null,
     };
-
-    if (typeof InputComponent !== 'string') {
-      inputProps = {
-        // Rename ref to inputRef as we don't know the
-        // provided `inputComponent` structure.
-        inputRef: this.handleRefInput,
-        type,
-        ...inputProps,
-        ref: null,
-      };
-    } else if (multiline) {
-      if (rows && !rowsMax) {
-        InputComponent = 'textarea';
-      } else {
-        inputProps = {
-          rowsMax,
-          textareaRef: this.handleRefInput,
-          ...inputProps,
-          ref: null,
-        };
-        InputComponent = Textarea;
-      }
+  } else if (multiline) {
+    if (rows && !rowsMax) {
+      InputComponent = 'textarea';
     } else {
       inputProps = {
-        type,
+        rows,
+        rowsMax,
         ...inputProps,
       };
+      InputComponent = Textarea;
     }
-
-    return (
-      <FormControlContext.Provider value={null}>
-        <div className={className} onClick={this.handleClick} {...other}>
-          {renderPrefix
-            ? renderPrefix({
-                ...fcs,
-                startAdornment,
-                focused,
-              })
-            : null}
-          {startAdornment}
-          <InputComponent
-            aria-invalid={fcs.error}
-            autoComplete={autoComplete}
-            autoFocus={autoFocus}
-            className={inputClassName}
-            defaultValue={defaultValue}
-            disabled={fcs.disabled}
-            id={id}
-            name={name}
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onKeyDown={onKeyDown}
-            onKeyUp={onKeyUp}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            required={fcs.required}
-            rows={rows}
-            value={value}
-            {...inputProps}
-          />
-          {endAdornment}
-        </div>
-      </FormControlContext.Provider>
-    );
+  } else {
+    inputProps = {
+      type,
+      ...inputProps,
+    };
   }
-}
+
+  return (
+    <div
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: fcs.disabled,
+          [classes.error]: fcs.error,
+          [classes.fullWidth]: fullWidth,
+          [classes.focused]: fcs.focused,
+          [classes.formControl]: muiFormControl,
+          [classes.marginDense]: fcs.margin === 'dense',
+          [classes.multiline]: multiline,
+          [classes.adornedStart]: startAdornment,
+          [classes.adornedEnd]: endAdornment,
+        },
+        classNameProp,
+      )}
+      onClick={handleClick}
+      ref={ref}
+      {...other}
+    >
+      {renderPrefix
+        ? renderPrefix({
+            ...fcs,
+            startAdornment,
+          })
+        : null}
+      {startAdornment}
+      <FormControlContext.Provider value={null}>
+        <InputComponent
+          aria-invalid={fcs.error}
+          aria-describedby={ariaDescribedby}
+          autoComplete={autoComplete}
+          autoFocus={autoFocus}
+          className={clsx(
+            classes.input,
+            {
+              [classes.disabled]: fcs.disabled,
+              [classes.inputTypeSearch]: type === 'search',
+              [classes.inputMultiline]: multiline,
+              [classes.inputMarginDense]: fcs.margin === 'dense',
+              [classes.inputAdornedStart]: startAdornment,
+              [classes.inputAdornedEnd]: endAdornment,
+            },
+            inputPropsClassName,
+          )}
+          defaultValue={defaultValue}
+          disabled={fcs.disabled}
+          id={id}
+          name={name}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          required={fcs.required}
+          rows={rows}
+          value={value}
+          {...inputProps}
+        />
+      </FormControlContext.Provider>
+      {endAdornment}
+    </div>
+  );
+});
 
 InputBase.propTypes = {
   /**
+   * @ignore
+   */
+  'aria-describedby': PropTypes.string,
+  /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it here:
-   * https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the input will be focused during the first mount.
+   * If `true`, the `input` element will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -452,19 +430,11 @@ InputBase.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default input value, useful when not controlling the component.
+   * The default `input` element value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  defaultValue: PropTypes.any,
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the `input` element will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -485,16 +455,16 @@ InputBase.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * The component used for the native input.
+   * The component used for the `input` element.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: componentPropType,
+  inputComponent: PropTypes.elementType,
   /**
-   * Attributes applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -502,10 +472,6 @@ InputBase.propTypes = {
    * FormControl.
    */
   margin: PropTypes.oneOf(['dense', 'none']),
-  /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
   /**
    * If `true`, a textarea element will be rendered.
    */
@@ -525,6 +491,10 @@ InputBase.propTypes = {
    * You can pull out the new value by accessing `event.target.value`.
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * @ignore
    */
@@ -559,7 +529,7 @@ InputBase.propTypes = {
    */
   renderPrefix: PropTypes.func,
   /**
-   * If `true`, the input will be required.
+   * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
   /**
@@ -575,28 +545,13 @@ InputBase.propTypes = {
    */
   startAdornment: PropTypes.node,
   /**
-   * Type of the input element. It should be a valid HTML5 input type.
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
   type: PropTypes.string,
   /**
-   * The input value, required for a controlled component.
+   * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  value: PropTypes.any,
 };
 
-InputBase.defaultProps = {
-  fullWidth: false,
-  inputComponent: 'input',
-  multiline: false,
-  type: 'text',
-};
-
-export default withStyles(styles, { name: 'MuiInputBase' })(withFormControlContext(InputBase));
+export default withStyles(styles, { name: 'MuiInputBase' })(InputBase);

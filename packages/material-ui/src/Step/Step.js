@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
@@ -29,23 +29,23 @@ export const styles = {
   completed: {},
 };
 
-function Step(props) {
+const Step = React.forwardRef(function Step(props, ref) {
   const {
-    active,
+    active = false,
     alternativeLabel,
     children,
     classes,
     className: classNameProp,
-    completed,
+    completed = false,
     connector,
-    disabled,
+    disabled = false,
     index,
     last,
     orientation,
     ...other
   } = props;
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[orientation],
     {
@@ -56,7 +56,7 @@ function Step(props) {
   );
 
   return (
-    <div className={className} {...other}>
+    <div className={className} ref={ref} {...other}>
       {connector &&
         alternativeLabel &&
         index !== 0 &&
@@ -94,7 +94,7 @@ function Step(props) {
       })}
     </div>
   );
-}
+});
 
 Step.propTypes = {
   /**
@@ -112,7 +112,7 @@ Step.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -146,12 +146,6 @@ Step.propTypes = {
    * @ignore
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-};
-
-Step.defaultProps = {
-  active: false,
-  completed: false,
-  disabled: false,
 };
 
 export default withStyles(styles, { name: 'MuiStep' })(Step);

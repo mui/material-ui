@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
@@ -26,21 +26,22 @@ export const styles = theme => ({
 /**
  * @ignore - internal component.
  */
-function TabIndicator(props) {
+const TabIndicator = React.forwardRef(function TabIndicator(props, ref) {
   const { classes, className, color, ...other } = props;
 
   return (
     <span
-      className={classNames(classes.root, classes[`color${capitalize(color)}`], className)}
+      className={clsx(classes.root, classes[`color${capitalize(color)}`], className)}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 TabIndicator.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -54,4 +55,4 @@ TabIndicator.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary']),
 };
 
-export default withStyles(styles, { name: 'MuiPrivateTabIndicator' })(TabIndicator);
+export default withStyles(styles, { name: 'PrivateTabIndicator' })(TabIndicator);

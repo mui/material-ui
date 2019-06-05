@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
-import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -17,22 +16,23 @@ export const styles = {
   },
 };
 
-function GridList(props) {
+const GridList = React.forwardRef(function GridList(props, ref) {
   const {
-    cellHeight,
+    cellHeight = 180,
     children,
     classes,
     className: classNameProp,
-    cols,
-    component: Component,
-    spacing,
+    cols = 2,
+    component: Component = 'ul',
+    spacing = 4,
     style,
     ...other
   } = props;
 
   return (
     <Component
-      className={classNames(classes.root, classNameProp)}
+      className={clsx(classes.root, classNameProp)}
+      ref={ref}
       style={{ margin: -spacing / 2, ...style }}
       {...other}
     >
@@ -65,7 +65,7 @@ function GridList(props) {
       })}
     </Component>
   );
-}
+});
 
 GridList.propTypes = {
   /**
@@ -79,7 +79,7 @@ GridList.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -94,7 +94,7 @@ GridList.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Number of px for the spacing between tiles.
    */
@@ -103,13 +103,6 @@ GridList.propTypes = {
    * @ignore
    */
   style: PropTypes.object,
-};
-
-GridList.defaultProps = {
-  cellHeight: 180,
-  cols: 2,
-  component: 'ul',
-  spacing: 4,
 };
 
 export default withStyles(styles, { name: 'MuiGridList' })(GridList);

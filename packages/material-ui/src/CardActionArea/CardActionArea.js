@@ -1,8 +1,6 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
@@ -37,20 +35,21 @@ export const styles = theme => ({
   },
 });
 
-function CardActionArea(props) {
+const CardActionArea = React.forwardRef(function CardActionArea(props, ref) {
   const { children, classes, className, focusVisibleClassName, ...other } = props;
 
   return (
     <ButtonBase
-      className={classNames(classes.root, className)}
-      focusVisibleClassName={classNames(focusVisibleClassName, classes.focusVisible)}
+      className={clsx(classes.root, className)}
+      focusVisibleClassName={clsx(focusVisibleClassName, classes.focusVisible)}
+      ref={ref}
       {...other}
     >
       {children}
       <span className={classes.focusHighlight} />
     </ButtonBase>
   );
-}
+});
 
 CardActionArea.propTypes = {
   /**
@@ -59,7 +58,7 @@ CardActionArea.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import MuiIcon from '@material-ui/core/Icon';
 import { ICON } from '../../theme/core';
 
@@ -18,7 +18,7 @@ const Icon = ({
   ...props
 }) => (
   <MuiIcon
-    className={cx(
+    className={clsx(
       ICON.root,
       className,
       left && ICON.left,

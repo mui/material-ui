@@ -18,12 +18,14 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the expansion panel summary. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |   | The icon to display as the expand indicator. |
-| <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `TouchRipple` element wrapping the expand icon. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the expansion panel summary. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon to display as the expand indicator. |
+| <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `IconButton` element wrapping the expand icon. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
+The `ref` is forwarded to the root element.
+
+Any other properties supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS
 
@@ -34,13 +36,13 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">expanded</span> | Styles applied to the root element if `expanded={true}`.
+| <span class="prop-name">expanded</span> | Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
 | <span class="prop-name">focused</span> | Styles applied to the root and children wrapper elements when focused.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">content</span> | Styles applied to the children wrapper element.
 | <span class="prop-name">expandIcon</span> | Styles applied to the `IconButton` component when `expandIcon` is supplied.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ExpansionPanelSummary/ExpansionPanelSummary.js)
 for more detail.
 
@@ -52,7 +54,11 @@ you need to use the following style sheet name: `MuiExpansionPanelSummary`.
 The properties of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+
 ## Demos
 
-- [Expansion Panels](/demos/expansion-panels/)
+- [Expansion Panels](/components/expansion-panels/)
 

@@ -5,7 +5,7 @@ export interface SelectInputProps {
   autoFocus?: boolean;
   autoWidth: boolean;
   disabled?: boolean;
-  IconComponent?: React.ReactType;
+  IconComponent?: React.ElementType;
   inputRef?: (
     ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
   ) => void;
@@ -14,7 +14,10 @@ export interface SelectInputProps {
   name?: string;
   native: boolean;
   onBlur?: React.FocusEventHandler<any>;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>, child: React.ReactNode) => void;
+  onChange?: (
+    event: React.ChangeEvent<{ name?: string; value: unknown }>,
+    child: React.ReactNode,
+  ) => void;
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onFocus?: React.FocusEventHandler<any>;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
@@ -23,7 +26,7 @@ export interface SelectInputProps {
   renderValue?: (value: SelectInputProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   tabIndex?: number;
-  value: string | number | boolean | Array<string | number | boolean>;
+  value: unknown;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 

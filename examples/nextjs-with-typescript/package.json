@@ -1,0 +1,25 @@
+{
+  "name": "nextjs-with-typescript",
+  "version": "4.0.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/styles": "latest",
+    "@zeit/next-typescript": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "devDependencies": {
+    "@types/next": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/styled-jsx": "latest",
+    "typescript": "latest"
+  }
+}

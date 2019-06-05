@@ -1,43 +1,55 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { PropTypes } from '..';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface ChipProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ChipClassKey> {
-  avatar?: React.ReactElement<any>;
-  clickable?: boolean;
-  color?: PropTypes.Color;
-  component?: React.ReactType<ChipProps>;
-  deleteIcon?: React.ReactElement<any>;
-  icon?: React.ReactElement<any>;
-  label?: React.ReactNode;
-  onDelete?: React.EventHandler<any>;
-  variant?: 'default' | 'outlined';
-}
+declare const Chip: OverridableComponent<{
+  props: {
+    avatar?: React.ReactElement;
+    clickable?: boolean;
+    color?: PropTypes.Color;
+    deleteIcon?: React.ReactElement;
+    icon?: React.ReactElement;
+    label?: React.ReactNode;
+    onDelete?: React.EventHandler<any>;
+    size?: 'small' | 'medium';
+    variant?: 'default' | 'outlined';
+  };
+  defaultComponent: 'div';
+  classKey: ChipClassKey;
+}>;
 
 export type ChipClassKey =
   | 'root'
+  | 'sizeSmall'
   | 'colorPrimary'
   | 'colorSecondary'
   | 'clickable'
-  | 'clickablePrimary'
-  | 'clickableSecondary'
+  | 'clickableColorPrimary'
+  | 'clickableColorSecondary'
   | 'deletable'
-  | 'deletablePrimary'
-  | 'deletableSecondary'
+  | 'deletableColorPrimary'
+  | 'deletableColorSecondary'
   | 'outlined'
   | 'outlinedPrimary'
   | 'outlinedSecondary'
   | 'avatar'
-  | 'avatarPrimary'
-  | 'avatarSecondary'
+  | 'avatarSmall'
+  | 'avatarColorPrimary'
+  | 'avatarColorSecondary'
   | 'avatarChildren'
+  | 'icon'
+  | 'iconSmall'
+  | 'iconColorPrimary'
+  | 'iconColorSecondary'
   | 'label'
+  | 'labelSmall'
   | 'deleteIcon'
-  | 'deleteIconPrimary'
-  | 'deleteIconSecondary'
+  | 'deleteIconSmall'
+  | 'deleteIconColorPrimary'
+  | 'deleteIconColorSecondary'
   | 'deleteIconOutlinedColorPrimary'
   | 'deleteIconOutlinedColorSecondary';
 
-declare const Chip: React.ComponentType<ChipProps>;
+export type ChipProps = SimplifiedPropsOf<typeof Chip>;
 
 export default Chip;

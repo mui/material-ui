@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit, PropInjector, PropsOf } from '..';
+import { PropInjector } from '@material-ui/types';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
@@ -49,7 +49,6 @@ export type WithStyles<
       ? K
       : never
   >;
-  innerRef?: React.Ref<any> | React.RefObject<any>;
 };
 
 export interface StyledComponentProps<ClassKey extends string = string> {

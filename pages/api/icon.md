@@ -18,13 +18,15 @@ import Icon from '@material-ui/core/Icon';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The name of the icon font ligature. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The name of the icon font ligature. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'inherit', 'primary', 'secondary', 'action', 'error', 'disabled'<br></span> | <span class="prop-default">'inherit'</span> | The color of the component. It supports those theme colors that make sense for this component. |
-| <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">fontSize</span> | <span class="prop-type">enum:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'default'&nbsp;&#124;<br>&nbsp;'small'&nbsp;&#124;<br>&nbsp;'large'<br></span> | <span class="prop-default">'default'</span> | The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. |
 
-Any other properties supplied will be spread to the root element (native element).
+The `ref` is forwarded to the root element.
+
+Any other properties supplied will be provided to the root element (native element).
 
 ## CSS
 
@@ -44,14 +46,18 @@ This property accepts the following keys:
 | <span class="prop-name">fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
 | <span class="prop-name">fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Icon/Icon.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiIcon`.
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Icons](/style/icons/)
+- [Icons](/components/icons/)
 

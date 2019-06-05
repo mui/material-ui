@@ -1,18 +1,27 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow } from '@material-ui/core/test-utils';
-import InputBase from '../InputBase';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Input from './Input';
+import InputBase from '../InputBase';
 
 describe('<Input />', () => {
-  let shallow;
+  let classes;
+  let mount;
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'Input' });
+    classes = getClasses(<Input />);
+    mount = createMount({ strict: true });
   });
 
-  it('should render a <div />', () => {
-    const wrapper = shallow(<Input />);
-    assert.strictEqual(wrapper.type(), InputBase);
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<Input />, () => ({
+    classes,
+    inheritComponent: InputBase,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 });

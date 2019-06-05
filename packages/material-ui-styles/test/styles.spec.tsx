@@ -1,19 +1,12 @@
 import * as React from 'react';
-import {
-  createStyles,
-  withStyles,
-  ThemeProvider,
-  withTheme,
-  WithTheme,
-  WithStyles,
-} from '@material-ui/styles';
-import Button from '@material-ui/core/Button/Button';
+import { createStyles, withStyles, withTheme, WithTheme, WithStyles } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 import { Theme } from '@material-ui/core/styles';
 
 // Example 1
 const styles = ({ palette, spacing }: Theme) => ({
   root: {
-    padding: spacing.unit,
+    padding: spacing(1),
     backgroundColor: palette.background.default,
     color: palette.primary.dark,
   },
@@ -30,9 +23,10 @@ const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) 
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({ classes, text }) => (
-  <div className={classes.root}>{text}</div>
-);
+const Component: React.FunctionComponent<ComponentProps & WithStyles<typeof styles>> = ({
+  classes,
+  text,
+}) => <div className={classes.root}>{text}</div>;
 
 const StyledExampleTwo = withStyles(styles)(Component);
 <StyledExampleTwo text="I am styled!" />;
@@ -47,9 +41,10 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({ classes, children }) => (
-  <div className={classes.root}>{children}</div>
-);
+const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof styles>> = ({
+  classes,
+  children,
+}) => <div className={classes.root}>{children}</div>;
 
 const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
@@ -66,9 +61,9 @@ const AnotherStyledSFC = withStyles({
 })(({ classes }: WithStyles<'root'>) => <div className={classes.root}>Stylish!</div>);
 
 // withTheme
-const ComponentWithTheme = withTheme<Theme>()(({ theme }: WithTheme<Theme>) => (
-  <div>{theme.spacing.unit}</div>
-));
+const ComponentWithTheme = withTheme<Theme, React.FunctionComponent<WithTheme<Theme>>>(
+  ({ theme }: WithTheme<Theme>) => <div>{theme.spacing(1)}</div>,
+);
 
 <ComponentWithTheme />;
 
@@ -82,12 +77,12 @@ const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => 
 // missing prop theme
 <StyledComponent />; // $ExpectError
 
-const AllTheComposition = withTheme<Theme>()(StyledComponent);
+const AllTheComposition = withTheme<Theme, typeof StyledComponent>(StyledComponent);
 
 <AllTheComposition />;
 
 {
-  const Foo = withTheme<Theme>()(
+  const Foo = withTheme<Theme, React.ComponentClass<WithTheme<Theme>>>(
     class extends React.Component<WithTheme<Theme>> {
       render() {
         return null;
@@ -107,7 +102,7 @@ declare const themed: boolean;
   const Foo = withStyles(themedStyles, { withTheme: true })(
     class extends React.Component<WithTheme<Theme>> {
       render() {
-        return <div style={{ margin: this.props.theme.spacing.unit }} />;
+        return <div style={{ margin: this.props.theme.spacing(1) }} />;
       }
     },
   );
@@ -115,7 +110,7 @@ declare const themed: boolean;
 
   const Bar = withStyles(themedStyles, { withTheme: true })(
     ({ theme }: WithStyles<typeof themedStyles, true>) => (
-      <div style={{ margin: theme.spacing.unit }} />
+      <div style={{ margin: theme.spacing(1) }} />
     ),
   );
   <Bar />;
@@ -139,11 +134,11 @@ const DecoratedComponent = withStyles(styles)(
 // Allow nested pseudo selectors
 withStyles(theme =>
   createStyles({
-    guttered: theme.mixins.gutters({
+    guttered: {
       '&:hover': {
         textDecoration: 'none',
       },
-    }),
+    },
     listItem: {
       '&:hover $listItemIcon': {
         visibility: 'inherit',
@@ -195,7 +190,7 @@ withStyles(theme =>
 
       inset: {
         '&:first-child': {
-          paddingLeft: theme.spacing.unit * 7,
+          paddingLeft: theme.spacing(7),
         },
       },
       row: {
@@ -206,7 +201,7 @@ withStyles(theme =>
     });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
-    children?: React.ReactElement<any>;
+    children?: React.ReactElement;
     inset?: boolean;
     row?: boolean;
   }
@@ -302,7 +297,7 @@ withStyles(theme =>
   // $ExpectError
   const StyledComponent = withStyles(styles)(Component);
 
-  // implicit SFC
+  // implicit FunctionComponent
   withStyles(styles)((props: Props) => null); // $ExpectError
   withStyles(styles)((props: Props & WithStyles<typeof styles>) => null); // $ExpectError
   withStyles(styles)((props: Props & { children?: React.ReactNode }) => null); // $ExpectError
@@ -312,8 +307,10 @@ withStyles(theme =>
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
-  const StatelessComponent: React.SFC<Props> = props => null;
-  const StatelessComponentWithStyles: React.SFC<Props & WithStyles<typeof styles>> = props => null;
+  const StatelessComponent: React.FunctionComponent<Props> = props => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<
+    Props & WithStyles<typeof styles>
+  > = props => null;
   withStyles(styles)(StatelessComponent); // $ExpectError
   withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
 }
@@ -387,4 +384,38 @@ withStyles(theme =>
   interface InconsistentProps extends WithStyles<typeof styles> {
     color: number;
   }
+}
+
+function forwardRefTest() {
+  const styles = createStyles({
+    root: { color: 'red' },
+  });
+
+  function Anchor(props: WithStyles<typeof styles>) {
+    const { classes } = props;
+    return <a className={classes.root} />;
+  }
+  const StyledAnchor = withStyles(styles)(Anchor);
+
+  const anchorRef = React.useRef<HTMLAnchorElement>(null);
+  // forwarded to function components which can't hold refs
+  // property 'ref' does not exists
+  <StyledAnchor ref={anchorRef} />; // $ExpectError
+  <StyledAnchor innerRef={anchorRef} />;
+
+  const RefableAnchor = React.forwardRef<HTMLAnchorElement, WithStyles<typeof styles>>(
+    (props, ref) => {
+      const { classes } = props;
+      return <a className={classes.root} />;
+    },
+  );
+  const StyledRefableAnchor = withStyles(styles)(RefableAnchor);
+
+  <StyledRefableAnchor ref={anchorRef} />;
+  const buttonRef = React.createRef<HTMLButtonElement>();
+  // HTMLButtonElement is missing properties
+  <StyledRefableAnchor ref={buttonRef} />; // $ExpectError
+  // undesired: `innerRef` is currently typed as any but for backwards compat we're keeping it
+  // especially since `innerRef` will be removed in v5 and is equivalent to `ref`
+  <StyledRefableAnchor innerRef={buttonRef} />;
 }

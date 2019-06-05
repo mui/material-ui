@@ -1,6 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -12,34 +10,49 @@ import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
-const styles = theme => ({
+function MadeWithLove() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by the '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI
+      </Link>
+      {' team.'}
+    </Typography>
+  );
+}
+const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
     },
-  },
-  appBar: {
-    position: 'relative',
-  },
-  toolbarTitle: {
-    flex: 1,
-  },
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
-      width: 900,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+    ul: {
+      margin: 0,
+      padding: 0,
+    },
+    li: {
+      listStyle: 'none',
     },
   },
+  appBar: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  toolbar: {
+    flexWrap: 'wrap',
+  },
+  toolbarTitle: {
+    flexGrow: 1,
+  },
+  link: {
+    margin: theme.spacing(1, 1.5),
+  },
   heroContent: {
-    maxWidth: 600,
-    margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+    padding: theme.spacing(8, 0, 6),
   },
   cardHeader: {
     backgroundColor: theme.palette.grey[200],
@@ -48,19 +61,19 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'baseline',
-    marginBottom: theme.spacing.unit * 2,
-  },
-  cardActions: {
-    [theme.breakpoints.up('sm')]: {
-      paddingBottom: theme.spacing.unit * 2,
-    },
+    marginBottom: theme.spacing(2),
   },
   footer: {
-    marginTop: theme.spacing.unit * 8,
     borderTop: `1px solid ${theme.palette.divider}`,
-    padding: `${theme.spacing.unit * 6}px 0`,
+    marginTop: theme.spacing(8),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: theme.spacing(6),
+      paddingBottom: theme.spacing(6),
+    },
   },
-});
+}));
 
 const tiers = [
   {
@@ -115,38 +128,46 @@ const footers = [
   },
 ];
 
-function Pricing(props) {
-  const { classes } = props;
+export default function Pricing() {
+  const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="static" color="default" className={classes.appBar}>
-        <Toolbar>
+      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+        <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Company name
           </Typography>
-          <Button>Features</Button>
-          <Button>Enterprise</Button>
-          <Button>Support</Button>
-          <Button color="primary" variant="outlined">
+          <nav>
+            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+              Features
+            </Link>
+            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+              Enterprise
+            </Link>
+            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+              Support
+            </Link>
+          </nav>
+          <Button href="#" color="primary" variant="outlined" className={classes.link}>
             Login
           </Button>
         </Toolbar>
       </AppBar>
-      <main className={classes.layout}>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Pricing
-          </Typography>
-          <Typography variant="h6" align="center" color="textSecondary" component="p">
-            Quickly build an effective pricing table for your potential customers with this layout.
-            It&apos;s built with default Material-UI components with little customization.
-          </Typography>
-        </div>
-        {/* End hero unit */}
-        <Grid container spacing={40} alignItems="flex-end">
+      {/* Hero unit */}
+      <Container maxWidth="sm" component="main" className={classes.heroContent}>
+        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          Pricing
+        </Typography>
+        <Typography variant="h5" align="center" color="textSecondary" component="p">
+          Quickly build an effective pricing table for your potential customers with this layout.
+          It&apos;s built with default Material-UI components with little customization.
+        </Typography>
+      </Container>
+      {/* End hero unit */}
+      <Container maxWidth="md" component="main">
+        <Grid container spacing={5} alignItems="flex-end">
           {tiers.map(tier => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
@@ -168,13 +189,15 @@ function Pricing(props) {
                       /mo
                     </Typography>
                   </div>
-                  {tier.description.map(line => (
-                    <Typography variant="subtitle1" align="center" key={line}>
-                      {line}
-                    </Typography>
-                  ))}
+                  <ul>
+                    {tier.description.map(line => (
+                      <Typography component="li" variant="subtitle1" align="center" key={line}>
+                        {line}
+                      </Typography>
+                    ))}
+                  </ul>
                 </CardContent>
-                <CardActions className={classes.cardActions}>
+                <CardActions>
                   <Button fullWidth variant={tier.buttonVariant} color="primary">
                     {tier.buttonText}
                   </Button>
@@ -183,31 +206,32 @@ function Pricing(props) {
             </Grid>
           ))}
         </Grid>
-      </main>
+      </Container>
       {/* Footer */}
-      <footer className={classNames(classes.footer, classes.layout)}>
-        <Grid container spacing={32} justify="space-evenly">
+      <Container maxWidth="md" component="footer" className={classes.footer}>
+        <Grid container spacing={4} justify="space-evenly">
           {footers.map(footer => (
-            <Grid item xs key={footer.title}>
+            <Grid item xs={6} sm={3} key={footer.title}>
               <Typography variant="h6" color="textPrimary" gutterBottom>
                 {footer.title}
               </Typography>
-              {footer.description.map(item => (
-                <Typography key={item} variant="subtitle1" color="textSecondary">
-                  {item}
-                </Typography>
-              ))}
+              <ul>
+                {footer.description.map(item => (
+                  <li key={item}>
+                    <Link href="#" variant="subtitle1" color="textSecondary">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </Grid>
           ))}
         </Grid>
-      </footer>
+        <Box mt={5}>
+          <MadeWithLove />
+        </Box>
+      </Container>
       {/* End footer */}
     </React.Fragment>
   );
 }
-
-Pricing.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Pricing);

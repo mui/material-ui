@@ -1,29 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Modal from '../Modal';
+import Backdrop from '../Backdrop';
 import withStyles from '../styles/withStyles';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
 import { duration } from '../styles/transitions';
-
-const oppositeDirection = {
-  left: 'right',
-  right: 'left',
-  top: 'down',
-  bottom: 'up',
-};
-
-export function isHorizontal(props) {
-  return ['left', 'right'].indexOf(props.anchor) !== -1;
-}
-
-export function getAnchor(props) {
-  return props.theme.direction === 'rtl' && isHorizontal(props)
-    ? oppositeDirection[props.anchor]
-    : props.anchor;
-}
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -97,100 +81,115 @@ export const styles = theme => ({
   modal: {},
 });
 
+const oppositeDirection = {
+  left: 'right',
+  right: 'left',
+  top: 'down',
+  bottom: 'up',
+};
+
+export function isHorizontal(anchor) {
+  return ['left', 'right'].indexOf(anchor) !== -1;
+}
+
+export function getAnchor(theme, anchor) {
+  return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
+}
+
+const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
  * The properties of the [Modal](/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
-class Drawer extends React.Component {
+const Drawer = React.forwardRef(function Drawer(props, ref) {
+  const {
+    anchor: anchorProp = 'left',
+    BackdropProps,
+    children,
+    classes,
+    className,
+    elevation = 16,
+    ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
+    onClose,
+    open = false,
+    PaperProps,
+    SlideProps,
+    theme,
+    transitionDuration = defaultTransitionDuration,
+    variant = 'temporary',
+    ...other
+  } = props;
+
   // Let's assume that the Drawer will always be rendered on user space.
   // We use this state is order to skip the appear transition during the
   // initial mount of the component.
-  mounted = false;
+  const mounted = React.useRef(false);
+  React.useEffect(() => {
+    mounted.current = true;
+  }, []);
 
-  componentDidMount() {
-    this.mounted = true;
-  }
+  const anchor = getAnchor(theme, anchorProp);
+  const drawer = (
+    <Paper
+      elevation={variant === 'temporary' ? elevation : 0}
+      square
+      className={clsx(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
+        [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
+      })}
+      {...PaperProps}
+    >
+      {children}
+    </Paper>
+  );
 
-  render() {
-    const {
-      anchor: anchorProp,
-      BackdropProps,
-      children,
-      classes,
-      className,
-      elevation,
-      ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
-      onClose,
-      open,
-      PaperProps,
-      SlideProps,
-      theme,
-      transitionDuration,
-      variant,
-      ...other
-    } = this.props;
-
-    const anchor = getAnchor(this.props);
-    const drawer = (
-      <Paper
-        elevation={variant === 'temporary' ? elevation : 0}
-        square
-        className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
-          [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
-        })}
-        {...PaperProps}
-      >
-        {children}
-      </Paper>
-    );
-
-    if (variant === 'permanent') {
-      return (
-        <div className={classNames(classes.root, classes.docked, className)} {...other}>
-          {drawer}
-        </div>
-      );
-    }
-
-    const slidingDrawer = (
-      <Slide
-        in={open}
-        direction={oppositeDirection[anchor]}
-        timeout={transitionDuration}
-        appear={this.mounted}
-        {...SlideProps}
-      >
-        {drawer}
-      </Slide>
-    );
-
-    if (variant === 'persistent') {
-      return (
-        <div className={classNames(classes.root, classes.docked, className)} {...other}>
-          {slidingDrawer}
-        </div>
-      );
-    }
-
-    // variant === temporary
+  if (variant === 'permanent') {
     return (
-      <Modal
-        BackdropProps={{
-          ...BackdropProps,
-          ...BackdropPropsProp,
-          transitionDuration,
-        }}
-        className={classNames(classes.root, classes.modal, className)}
-        open={open}
-        onClose={onClose}
-        {...other}
-        {...ModalProps}
-      >
-        {slidingDrawer}
-      </Modal>
+      <div className={clsx(classes.root, classes.docked, className)} ref={ref} {...other}>
+        {drawer}
+      </div>
     );
   }
-}
+
+  const slidingDrawer = (
+    <Slide
+      in={open}
+      direction={oppositeDirection[anchor]}
+      timeout={transitionDuration}
+      appear={mounted.current}
+      {...SlideProps}
+    >
+      {drawer}
+    </Slide>
+  );
+
+  if (variant === 'persistent') {
+    return (
+      <div className={clsx(classes.root, classes.docked, className)} {...other}>
+        {slidingDrawer}
+      </div>
+    );
+  }
+
+  // variant === temporary
+  return (
+    <Modal
+      BackdropProps={{
+        ...BackdropProps,
+        ...BackdropPropsProp,
+        transitionDuration,
+      }}
+      BackdropComponent={Backdrop}
+      className={clsx(classes.root, classes.modal, className)}
+      open={open}
+      onClose={onClose}
+      ref={ref}
+      {...other}
+      {...ModalProps}
+    >
+      {slidingDrawer}
+    </Modal>
+  );
+});
 
 Drawer.propTypes = {
   /**
@@ -198,12 +197,16 @@ Drawer.propTypes = {
    */
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   /**
+   * @ignore
+   */
+  BackdropProps: PropTypes.object,
+  /**
    * The contents of the drawer.
    */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -252,14 +255,6 @@ Drawer.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
-};
-
-Drawer.defaultProps = {
-  anchor: 'left',
-  elevation: 16,
-  open: false,
-  transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
-  variant: 'temporary', // Mobile first.
 };
 
 export default withStyles(styles, { name: 'MuiDrawer', flip: false, withTheme: true })(Drawer);

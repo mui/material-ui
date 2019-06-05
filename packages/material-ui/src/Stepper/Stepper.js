@@ -1,8 +1,6 @@
-// @inheritedComponent Paper
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import StepConnector from '../StepConnector';
@@ -28,20 +26,22 @@ export const styles = {
   },
 };
 
-function Stepper(props) {
+const defaultConnector = <StepConnector />;
+
+const Stepper = React.forwardRef(function Stepper(props, ref) {
   const {
-    activeStep,
-    alternativeLabel,
+    activeStep = 0,
+    alternativeLabel = false,
     children,
     classes,
     className: classNameProp,
-    connector: connectorProp,
-    nonLinear,
-    orientation,
+    connector: connectorProp = defaultConnector,
+    nonLinear = false,
+    orientation = 'horizontal',
     ...other
   } = props;
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[orientation],
     {
@@ -90,11 +90,11 @@ function Stepper(props) {
   });
 
   return (
-    <Paper square elevation={0} className={className} {...other}>
+    <Paper square elevation={0} className={className} ref={ref} {...other}>
       {steps}
     </Paper>
   );
-}
+});
 
 Stepper.propTypes = {
   /**
@@ -112,7 +112,7 @@ Stepper.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -132,15 +132,5 @@ Stepper.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
-
-Stepper.defaultProps = {
-  activeStep: 0,
-  alternativeLabel: false,
-  connector: <StepConnector />,
-  nonLinear: false,
-  orientation: 'horizontal',
-};
-
-Stepper.muiName = 'Stepper';
 
 export default withStyles(styles, { name: 'MuiStepper' })(Stepper);

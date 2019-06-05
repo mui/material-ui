@@ -1,34 +1,32 @@
-// @inheritedComponent Input
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { componentPropType } from '@material-ui/utils';
+import { mergeClasses } from '@material-ui/styles';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
-import mergeClasses from '../styles/mergeClasses';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-// To replace with InputBase in v4.0.0
 import Input from '../Input';
 import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 
 export const styles = nativeSelectStyles;
 
-function Select(props) {
+const defaultInput = <Input />;
+
+const Select = React.forwardRef(function Select(props, ref) {
   const {
-    autoWidth,
+    autoWidth = false,
     children,
     classes,
-    displayEmpty,
-    IconComponent,
-    input,
+    displayEmpty = false,
+    IconComponent = ArrowDropDownIcon,
+    input = defaultInput,
     inputProps,
     MenuProps,
     muiFormControl,
-    multiple,
-    native,
+    multiple = false,
+    native = false,
     onClose,
     onOpen,
     open,
@@ -77,9 +75,10 @@ function Select(props) {
         : classes,
       ...(input ? input.props.inputProps : {}),
     },
+    ref,
     ...other,
   });
-}
+});
 
 Select.propTypes = {
   /**
@@ -90,11 +89,13 @@ Select.propTypes = {
   /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
+   *
+   * ⚠️The `MenuItem` elements **must** be direct descendants when `native` is false.
    */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -105,13 +106,13 @@ Select.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: componentPropType,
+  IconComponent: PropTypes.elementType,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
   input: PropTypes.element,
   /**
-   * Attributes applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps: PropTypes.object,
@@ -119,6 +120,11 @@ Select.propTypes = {
    * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
+  /**
+   * @ignore
+   * from `withFormControlContext`
+   */
+  muiFormControl: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
    */
@@ -170,28 +176,11 @@ Select.propTypes = {
    * The input value.
    * This property is required when the `native` property is `false` (default).
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]),
+  value: PropTypes.any,
   /**
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-Select.defaultProps = {
-  autoWidth: false,
-  displayEmpty: false,
-  IconComponent: ArrowDropDownIcon,
-  input: <Input />,
-  multiple: false,
-  native: false,
 };
 
 Select.muiName = 'Select';

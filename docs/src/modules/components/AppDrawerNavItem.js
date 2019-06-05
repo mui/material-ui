@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
 import Link from 'docs/src/modules/components/Link';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   item: {
     display: 'block',
     paddingTop: 0,
@@ -38,96 +38,76 @@ const styles = theme => ({
     color: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightMedium,
   },
-});
+}));
 
-class AppDrawerNavItem extends React.Component {
-  state = {
-    open: this.props.openImmediately,
+function AppDrawerNavItem(props) {
+  const {
+    children,
+    depth,
+    href,
+    onClick,
+    openImmediately = false,
+    topLevel = false,
+    title,
+    ...other
+  } = props;
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(openImmediately);
+
+  const handleClick = () => {
+    setOpen(oldOpen => !oldOpen);
   };
 
-  componentDidMount() {
-    // So we only run this logic once.
-    if (!this.props.openImmediately) {
-      return;
-    }
-
-    // Center the selected item in the list container.
-    const activeElement = document.querySelector(`.${this.props.classes.active}`);
-    if (activeElement && activeElement.scrollIntoView) {
-      activeElement.scrollIntoView({});
-    }
-  }
-
-  handleClick = () => {
-    this.setState(state => ({ open: !state.open }));
+  const style = {
+    paddingLeft: 8 * (3 + 2 * depth),
   };
 
-  render() {
-    const {
-      children,
-      classes,
-      depth,
-      href,
-      onClick,
-      openImmediately,
-      title,
-      ...other
-    } = this.props;
-
-    const style = {
-      paddingLeft: 8 * (3 + 2 * depth),
-    };
-
-    if (href) {
-      return (
-        <ListItem className={classes.itemLeaf} disableGutters {...other}>
-          <Button
-            component={props => (
-              <Link variant="button" activeClassName={classes.active} href={href} {...props} />
-            )}
-            className={classNames(classes.buttonLeaf, `depth-${depth}`)}
-            disableRipple
-            onClick={onClick}
-            style={style}
-          >
-            {title}
-          </Button>
-        </ListItem>
-      );
-    }
-
+  if (href) {
     return (
-      <ListItem className={classes.item} disableGutters {...other}>
+      <ListItem className={classes.itemLeaf} disableGutters {...other}>
         <Button
-          classes={{
-            root: classes.button,
-            label: openImmediately ? 'algolia-lvl0' : '',
-          }}
-          onClick={this.handleClick}
+          component={Link}
+          naked
+          activeClassName={`drawer-active ${classes.active}`}
+          href={href}
+          className={clsx(classes.buttonLeaf, `depth-${depth}`)}
+          disableTouchRipple
+          onClick={onClick}
           style={style}
         >
           {title}
         </Button>
-        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-          {children}
-        </Collapse>
       </ListItem>
     );
   }
+
+  return (
+    <ListItem className={classes.item} disableGutters {...other}>
+      <Button
+        classes={{
+          root: classes.button,
+          label: topLevel ? 'algolia-lvl0' : '',
+        }}
+        onClick={handleClick}
+        style={style}
+      >
+        {title}
+      </Button>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        {children}
+      </Collapse>
+    </ListItem>
+  );
 }
 
 AppDrawerNavItem.propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
   depth: PropTypes.number.isRequired,
   href: PropTypes.string,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
   title: PropTypes.string.isRequired,
+  topLevel: PropTypes.bool,
 };
 
-AppDrawerNavItem.defaultProps = {
-  openImmediately: false,
-};
-
-export default withStyles(styles)(AppDrawerNavItem);
+export default AppDrawerNavItem;

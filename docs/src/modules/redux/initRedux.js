@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import themeReducer from 'docs/src/modules/redux/themeReducer';
 import optionsReducer from 'docs/src/modules/redux/optionsReducer';
 
 // Get the Redux DevTools extension and fallback to a no-op function
@@ -22,7 +21,8 @@ function create(initialState) {
     process.env.NODE_ENV !== 'production' &&
     process.browser &&
     !window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    Object.assign // redux-logger needs this feature
+    // redux-logger needs this feature
+    Object['assign'] // eslint-disable-line dot-notation
   ) {
     // eslint-disable-next-line global-require
     const createLogger = require('redux-logger').createLogger;
@@ -32,7 +32,6 @@ function create(initialState) {
 
   return createStore(
     combineReducers({
-      theme: themeReducer,
       options: optionsReducer,
     }),
     initialState, // Hydrate the store with server-side data

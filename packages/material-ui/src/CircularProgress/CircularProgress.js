@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -86,7 +86,7 @@ export const styles = theme => ({
     },
     '100%': {
       strokeDasharray: '100px, 200px',
-      strokeDashoffset: '-120px',
+      strokeDashoffset: '-125px',
     },
   },
   /* Styles applied to the `circle` svg path if `disableShrink={true}`. */
@@ -102,17 +102,17 @@ export const styles = theme => ({
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
  */
-function CircularProgress(props) {
+const CircularProgress = React.forwardRef(function CircularProgress(props, ref) {
   const {
     classes,
     className,
-    color,
-    disableShrink,
-    size,
+    color = 'primary',
+    disableShrink = false,
+    size = 40,
     style,
-    thickness,
-    value,
-    variant,
+    thickness = 3.6,
+    value = 0,
+    variant = 'indeterminate',
     ...other
   } = props;
 
@@ -138,7 +138,7 @@ function CircularProgress(props) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
@@ -148,13 +148,14 @@ function CircularProgress(props) {
         className,
       )}
       style={{ width: size, height: size, ...rootStyle, ...style }}
+      ref={ref}
       role="progressbar"
       {...rootProps}
       {...other}
     >
       <svg className={classes.svg} viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
         <circle
-          className={classNames(classes.circle, {
+          className={clsx(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
             [classes.circleStatic]: variant === 'static',
             [classes.circleDisableShrink]: disableShrink,
@@ -169,12 +170,12 @@ function CircularProgress(props) {
       </svg>
     </div>
   );
-}
+});
 
 CircularProgress.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -190,8 +191,7 @@ CircularProgress.propTypes = {
    * This only works if variant is `indeterminate`.
    */
   disableShrink: chainPropTypes(PropTypes.bool, props => {
-    /* istanbul ignore if */
-    if (props.disableShrink && props.variant !== 'indeterminate') {
+    if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {
       return new Error(
         'Material-UI: you have provided the `disableShrink` property ' +
           'with a variant other than `indeterminate`. This will have no effect.',
@@ -222,15 +222,6 @@ CircularProgress.propTypes = {
    * Use indeterminate when there is no progress value.
    */
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
-};
-
-CircularProgress.defaultProps = {
-  color: 'primary',
-  disableShrink: false,
-  size: 40,
-  thickness: 3.6,
-  value: 0,
-  variant: 'indeterminate',
 };
 
 export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);

@@ -1,21 +1,31 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import CircularProgress from './CircularProgress';
 
 describe('<CircularProgress />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<CircularProgress />);
   });
 
-  it('should render a div with the root class', () => {
-    const wrapper = shallow(<CircularProgress />);
-    assert.strictEqual(wrapper.name(), 'div');
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<CircularProgress />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 
   it('should render with the primary color by default', () => {
     const wrapper = shallow(<CircularProgress />);
@@ -30,13 +40,6 @@ describe('<CircularProgress />', () => {
   it('should render with the secondary color', () => {
     const wrapper = shallow(<CircularProgress color="secondary" />);
     assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<CircularProgress className="woofCircularProgress" />);
-    assert.strictEqual(wrapper.hasClass('woofCircularProgress'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.props().role, 'progressbar');
   });
 
   it('should contain an SVG with the svg class, and a circle with the circle class', () => {

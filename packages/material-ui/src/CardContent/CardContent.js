@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -14,16 +13,16 @@ export const styles = {
   },
 };
 
-function CardContent(props) {
-  const { classes, className, component: Component, ...other } = props;
+const CardContent = React.forwardRef(function CardContent(props, ref) {
+  const { classes, className, component: Component = 'div', ...other } = props;
 
-  return <Component className={classNames(classes.root, className)} {...other} />;
-}
+  return <Component className={clsx(classes.root, className)} ref={ref} {...other} />;
+});
 
 CardContent.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -34,11 +33,7 @@ CardContent.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
-};
-
-CardContent.defaultProps = {
-  component: 'div',
+  component: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiCardContent' })(CardContent);

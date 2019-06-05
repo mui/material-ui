@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import {
@@ -11,6 +12,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import SwitchBase from './SwitchBase';
 import FormControlContext from '../FormControl/FormControlContext';
 import Icon from '../Icon';
+import ButtonBase from '../ButtonBase';
 
 function assertIsChecked(wrapper) {
   const iconButton = wrapper.find('span').at(0);
@@ -75,7 +77,8 @@ describe('<SwitchBase />', () => {
 
   before(() => {
     SwitchBaseNaked = unwrap(SwitchBase);
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(<SwitchBase {...defaultProps} />);
   });
 
@@ -91,7 +94,7 @@ describe('<SwitchBase />', () => {
   it('should render an icon and input inside the button by default', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} />);
     assert.strictEqual(
-      wrapper.find('IconButton').containsMatchingElement(
+      wrapper.containsMatchingElement(
         <span>
           {defaultProps.icon}
           <input type="checkbox" />
@@ -103,12 +106,12 @@ describe('<SwitchBase />', () => {
 
   it('should have a ripple by default', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(wrapper.find('IconButton').props().disableRipple, undefined);
+    assert.strictEqual(wrapper.find('TouchRipple').exists(), true);
   });
 
-  it('should pass disableRipple={true} to IconButton', () => {
+  it('can disable the ripple ', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} disableRipple />);
-    assert.strictEqual(wrapper.find('IconButton').props().disableRipple, true);
+    assert.strictEqual(wrapper.find('TouchRipple').exists(), false);
   });
 
   // className is put on the root node, this is a special case!
@@ -121,7 +124,7 @@ describe('<SwitchBase />', () => {
   it('should spread custom props on the root node', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} data-my-prop="woofSwitchBase" />);
     assert.strictEqual(
-      wrapper.props()['data-my-prop'],
+      findOutermostIntrinsic(wrapper).props()['data-my-prop'],
       'woofSwitchBase',
       'custom prop should be woofSwitchBase',
     );
@@ -146,8 +149,8 @@ describe('<SwitchBase />', () => {
 
   it('should disable the components, and render the IconButton with the disabled className', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} disabled />);
-    assert.strictEqual(wrapper.find('ButtonBase').props().disabled, true);
-    assert.strictEqual(wrapper.find('IconButton').hasClass(classes.disabled), true);
+    assert.strictEqual(wrapper.find(ButtonBase).props().disabled, true);
+    assert.strictEqual(wrapper.find(ButtonBase).hasClass(classes.disabled), true);
   });
 
   it('should apply the custom disabled className when disabled', () => {
@@ -185,15 +188,6 @@ describe('<SwitchBase />', () => {
           checked={false}
         />,
       );
-    });
-
-    it('should recognize a controlled input', () => {
-      assert.strictEqual(
-        wrapper.find('SwitchBase').instance().isControlled,
-        true,
-        'should set instance.isControlled to true',
-      );
-      assertIsNotChecked(wrapper);
     });
 
     it('should check the checkbox', () => {
@@ -235,11 +229,6 @@ describe('<SwitchBase />', () => {
       );
     });
 
-    it('should recognize an uncontrolled input', () => {
-      assert.strictEqual(wrapper.find('SwitchBase').instance().isControlled, false);
-      assertIsNotChecked(wrapper);
-    });
-
     it('should check the checkbox', () => {
       wrapper
         .find('input')
@@ -271,10 +260,12 @@ describe('<SwitchBase />', () => {
   });
 
   describe('handleInputChange()', () => {
+    const eventMock = 'something-to-match';
     const event = {
       target: {
         checked: false,
       },
+      eventMock,
     };
 
     it('should call onChange exactly once with event', () => {
@@ -282,11 +273,12 @@ describe('<SwitchBase />', () => {
       const wrapper = mount(
         <SwitchBaseNaked {...defaultProps} classes={{}} onChange={handleChange} />,
       );
-      const instance = wrapper.find('SwitchBase').instance();
-      instance.handleInputChange(event);
+
+      const input = wrapper.find('input');
+      input.simulate('change', event);
 
       assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.calledWith(event), true);
+      assert.strictEqual(handleChange.calledWithMatch(event), true);
 
       handleChange.resetHistory();
     });
@@ -303,12 +295,12 @@ describe('<SwitchBase />', () => {
             onChange={handleChange}
           />,
         );
-        const instance = wrapper.find('SwitchBase').instance();
-        instance.handleInputChange(event);
+        const input = wrapper.find('input');
+        input.simulate('change', event);
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(
-          handleChange.calledWith(event, !checked),
+          handleChange.calledWithMatch(event, !checked),
           true,
           'call onChange with event and !props.checked',
         );
@@ -324,10 +316,10 @@ describe('<SwitchBase />', () => {
         handleChange = spy();
         wrapper = mount(<SwitchBaseNaked {...defaultProps} classes={{}} onChange={handleChange} />);
         checkedMock = true;
-        const instance = wrapper.find('SwitchBase').instance();
-        instance.handleInputChange({ target: { checked: checkedMock } });
+        const input = wrapper.find('input');
+        input.simulate('change', { target: { checked: checkedMock }, eventMock });
         handleChange.resetHistory();
-        instance.handleInputChange(event);
+        input.simulate('change', event);
       });
 
       it('should call onChange exactly once', () => {
@@ -335,7 +327,7 @@ describe('<SwitchBase />', () => {
       });
 
       it('should call onChange with right params', () => {
-        assert.strictEqual(handleChange.calledWith(event, !checkedMock), true);
+        assert.strictEqual(handleChange.calledWithMatch(event, !checkedMock), true);
       });
 
       it('should change state.checked !checkedMock', () => {
@@ -381,6 +373,9 @@ describe('<SwitchBase />', () => {
           </FormControlContext.Provider>
         );
       }
+      Provider.propTypes = {
+        context: PropTypes.object,
+      };
 
       wrapper = mount(<Provider />);
     });

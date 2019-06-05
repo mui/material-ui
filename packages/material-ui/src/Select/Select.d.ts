@@ -9,7 +9,7 @@ export interface SelectProps
     Pick<SelectInputProps, 'onChange'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
-  IconComponent?: React.ReactType;
+  IconComponent?: React.ElementType;
   input?: React.ReactNode;
   MenuProps?: Partial<MenuProps>;
   multiple?: boolean;
@@ -19,7 +19,7 @@ export interface SelectProps
   open?: boolean;
   renderValue?: (value: SelectProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
-  value?: Array<string | number | boolean | object> | string | number | boolean | object;
+  value?: unknown;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 

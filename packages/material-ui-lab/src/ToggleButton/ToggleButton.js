@@ -2,26 +2,34 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import clsx from 'clsx';
+import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import { capitalize } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
-    height: 32,
-    minWidth: 48,
-    margin: 0,
-    padding: `${theme.spacing.unit - 4}px ${theme.spacing.unit * 1.5}px`,
-    borderRadius: 2,
+    boxSizing: 'border-box',
+    height: 48,
+    minWidth: 49,
+    padding: '0px 11px 0px 12px',
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
+    '&:not(:first-child)': {
+      marginLeft: -1,
+      borderLeft: '1px solid transparent',
+    },
     '&$selected': {
       color: theme.palette.action.active,
-      backgroundColor: fade(theme.palette.action.active, 0.2),
+      backgroundColor: fade(theme.palette.action.active, 0.12),
       '&:hover': {
-        backgroundColor: fade(theme.palette.action.active, 0.25),
+        backgroundColor: fade(theme.palette.action.active, 0.15),
+      },
+      '& + &': {
+        borderLeft: 0,
+        marginLeft: 0,
       },
     },
     '&$disabled': {
@@ -30,7 +38,7 @@ export const styles = theme => ({
     '&:hover': {
       textDecoration: 'none',
       // Reset on mouse devices
-      backgroundColor: fade(theme.palette.text.primary, 0.12),
+      backgroundColor: fade(theme.palette.text.primary, 0.05),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
@@ -38,13 +46,14 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
-    '&:not(:first-child)': {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
+    '&:first-child': {
+      borderTopLeftRadius: 2,
+      borderBottomLeftRadius: 2,
     },
-    '&:not(:last-child)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
+    '&:last-child': {
+      borderTopRightRadius: 2,
+      borderBottomRightRadius: 2,
+      paddingLeft: 12,
     },
   },
   /* Styles applied to the root element if `disabled={true}`. */
@@ -53,17 +62,41 @@ export const styles = theme => ({
   selected: {},
   /* Styles applied to the `label` wrapper element. */
   label: {
-    width: '100%',
+    width: '100%', // Ensure the correct width for iOS Safari
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    height: 40,
+    minWidth: 41,
+    fontSize: theme.typography.pxToRem(13),
+  },
+  /* Styles applied to the root element if `size="large"`. */
+  sizeLarge: {
+    height: 56,
+    minWidth: 57,
+    fontSize: theme.typography.pxToRem(15),
+  },
 });
 
-class ToggleButton extends React.Component {
-  handleChange = event => {
-    const { onChange, onClick, value } = this.props;
+const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
+  const {
+    children,
+    classes,
+    className,
+    disabled,
+    disableFocusRipple,
+    onChange,
+    onClick,
+    selected,
+    size,
+    value,
+    ...other
+  } = props;
 
+  const handleChange = event => {
     if (onClick) {
       onClick(event, value);
       if (event.isDefaultPrevented()) {
@@ -76,39 +109,29 @@ class ToggleButton extends React.Component {
     }
   };
 
-  render() {
-    const {
-      children,
-      className: classNameProp,
-      classes,
-      disableFocusRipple,
-      disabled,
-      selected,
-      ...other
-    } = this.props;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.disabled]: disabled,
-        [classes.selected]: selected,
-      },
-      classNameProp,
-    );
-
-    return (
-      <ButtonBase
-        className={className}
-        disabled={disabled}
-        focusRipple={!disableFocusRipple}
-        onClick={this.handleChange}
-        {...other}
-      >
-        <span className={classes.label}>{children}</span>
-      </ButtonBase>
-    );
-  }
-}
+  return (
+    <ButtonBase
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.selected]: selected,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
+        },
+        className,
+      )}
+      disabled={disabled}
+      focusRipple={!disableFocusRipple}
+      ref={ref}
+      onClick={handleChange}
+      onChange={onChange}
+      value={value}
+      {...other}
+    >
+      <span className={classes.label}>{children}</span>
+    </ButtonBase>
+  );
+});
 
 ToggleButton.propTypes = {
   /**
@@ -116,7 +139,8 @@ ToggleButton.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -149,6 +173,10 @@ ToggleButton.propTypes = {
    */
   selected: PropTypes.bool,
   /**
+   * @ignore
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
    * The value to associate with the button when selected in a
    * ToggleButtonGroup.
    */
@@ -159,8 +187,7 @@ ToggleButton.defaultProps = {
   disabled: false,
   disableFocusRipple: false,
   disableRipple: false,
+  size: 'medium',
 };
-
-ToggleButton.muiName = 'ToggleButton';
 
 export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);

@@ -1,22 +1,32 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import Paper from '../Paper';
 import SnackbarContent from './SnackbarContent';
 
 describe('<SnackbarContent />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ untilSelector: 'withStyles(Paper)' });
     classes = getClasses(<SnackbarContent message="message" />);
   });
 
-  it('should render a Paper with classes', () => {
-    const wrapper = shallow(<SnackbarContent message="message" />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<SnackbarContent message="conform?" />, () => ({
+    classes,
+    inheritComponent: Paper,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 
   describe('prop: action', () => {
     it('should render the action', () => {

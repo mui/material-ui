@@ -64,18 +64,16 @@ const svgo = new SVGO({
 /**
  * Return Pascal-Cased component name.
  *
- * @param {string} svgPath
+ * @param {string} destPath
  * @returns {string} class name
  */
 function getComponentName(destPath) {
-  const splitregex = new RegExp(`[${path.sep}-]+`);
+  const splitregex = new RegExp(`[\\${path.sep}-]+`);
 
   const parts = destPath
     .replace('.js', '')
     .split(splitregex)
-    .map(part => {
-      return part.charAt(0).toUpperCase() + part.substring(1);
-    });
+    .map(part => part.charAt(0).toUpperCase() + part.substring(1));
 
   return parts.join('');
 }
@@ -95,9 +93,10 @@ async function generateIndex(options) {
 async function worker({ svgPath, options, renameFilter, template }) {
   process.stdout.write('.');
 
-  const svgPathObj = path.parse(svgPath);
+  const normalizedSvgPath = path.normalize(svgPath);
+  const svgPathObj = path.parse(normalizedSvgPath);
   const innerPath = path
-    .dirname(svgPath)
+    .dirname(normalizedSvgPath)
     .replace(options.svgDir, '')
     .replace(path.relative(process.cwd(), options.svgDir), ''); // for relative dirs
   const destPath = renameFilter(svgPathObj, innerPath, options);
@@ -170,7 +169,7 @@ async function main(options) {
 
     let renameFilter = options.renameFilter;
     if (typeof renameFilter === 'string') {
-      /* eslint-disable-next-line global-require, import/no-dynamic-require */
+      // eslint-disable-next-line global-require, import/no-dynamic-require
       renameFilter = require(renameFilter).default;
     }
     if (typeof renameFilter !== 'function') {
@@ -189,14 +188,13 @@ async function main(options) {
     ]);
 
     const queue = new Queue(
-      svgPath => {
-        return worker({
+      svgPath =>
+        worker({
           svgPath,
           options,
           renameFilter,
           template,
-        });
-      },
+        }),
       { concurrency: 8 },
     );
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Button'; // So we don't have any override priority issue.
 
 export const styles = {
@@ -10,25 +9,28 @@ export const styles = {
   root: {
     display: 'flex',
     alignItems: 'center',
+    padding: 8,
     justifyContent: 'flex-end',
-    flex: '0 0 auto',
-    margin: '8px 4px',
   },
-  /* Styles applied to the children. */
-  action: {
-    margin: '0 4px',
+  /* Styles applied to the root element if `disableSpacing={false}`. */
+  spacing: {
+    '& > * + *': {
+      marginLeft: 8,
+    },
   },
 };
 
-function DialogActions(props) {
-  const { disableActionSpacing, children, classes, className, ...other } = props;
+const DialogActions = React.forwardRef(function DialogActions(props, ref) {
+  const { disableSpacing = false, classes, className, ...other } = props;
 
   return (
-    <div className={classNames(classes.root, className)} {...other}>
-      {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
-    </div>
+    <div
+      className={clsx(classes.root, { [classes.spacing]: !disableSpacing }, className)}
+      ref={ref}
+      {...other}
+    />
   );
-}
+});
 
 DialogActions.propTypes = {
   /**
@@ -37,7 +39,7 @@ DialogActions.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -45,13 +47,9 @@ DialogActions.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the dialog actions do not have additional margin.
+   * If `true`, the actions do not have additional margin.
    */
-  disableActionSpacing: PropTypes.bool,
-};
-
-DialogActions.defaultProps = {
-  disableActionSpacing: false,
+  disableSpacing: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiDialogActions' })(DialogActions);

@@ -1,18 +1,18 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import testRef from '@material-ui/core/test-utils/testRef';
 import ToggleButtonGroup from './ToggleButtonGroup';
 import ToggleButton from '../ToggleButton';
 
 describe('<ToggleButtonGroup />', () => {
-  let shallow;
   let mount;
   let classes;
 
   before(() => {
-    mount = createMount();
-    shallow = createShallow({ dive: true });
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(
       <ToggleButtonGroup>
         <ToggleButton value="hello" />
@@ -20,103 +20,80 @@ describe('<ToggleButtonGroup />', () => {
     );
   });
 
-  it('should render a <div> element', () => {
-    const wrapper = shallow(
+  after(() => {
+    mount.cleanUp();
+  });
+
+  function findToggleButton(wrapper, value) {
+    return wrapper
+      .find(ToggleButton)
+      .find(`[value="${value}"]`)
+      .first();
+  }
+
+  it('does forward refs', () => {
+    testRef(
       <ToggleButtonGroup>
-        <ToggleButton value="hello" />
+        <ToggleButton value="hello">hello</ToggleButton>
+      </ToggleButtonGroup>,
+      mount,
+    );
+  });
+
+  it('should render a <div> element', () => {
+    const wrapper = mount(
+      <ToggleButtonGroup>
+        <ToggleButton value="hello">hello</ToggleButton>
       </ToggleButtonGroup>,
     );
-    assert.strictEqual(wrapper.type(), 'div');
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
   });
 
   it('should render the custom className and the root class', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <ToggleButtonGroup className="test-class-name">
-        <ToggleButton value="hello" />
+        <ToggleButton value="hello">hello</ToggleButton>
       </ToggleButtonGroup>,
     );
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should render a selected div', () => {
-    const wrapper = shallow(
-      <ToggleButtonGroup selected>
-        <ToggleButton value="hello" />
-      </ToggleButtonGroup>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true);
-  });
-
-  it('should render a selected div when selected is "auto" and a value is present', () => {
-    const wrapper = shallow(
-      <ToggleButtonGroup selected="auto" value={['one']}>
-        <ToggleButton value="hello" />
-      </ToggleButtonGroup>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true);
-  });
-
-  it('should not render a selected div when selected is "auto" and a value is missing', () => {
-    const wrapper = shallow(
-      <ToggleButtonGroup selected="auto">
-        <ToggleButton value="hello" />
-      </ToggleButtonGroup>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), false);
+    const root = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(root.hasClass('test-class-name'), true);
+    assert.strictEqual(root.hasClass(classes.root), true);
   });
 
   describe('exclusive', () => {
     it('should render a selected ToggleButton if value is selected', () => {
-      const wrapper = shallow(
-        <ToggleButtonGroup selected="auto" exclusive value="one">
-          <ToggleButton value="one" />
+      const wrapper = mount(
+        <ToggleButtonGroup exclusive value="one">
+          <ToggleButton value="one">1</ToggleButton>
         </ToggleButtonGroup>,
       );
-      const buttonWrapper = wrapper.find(ToggleButton);
 
-      assert.strictEqual(buttonWrapper.props().selected, true);
+      assert.strictEqual(findToggleButton(wrapper, 'one').props().selected, true);
     });
 
     it('should not render a selected ToggleButton when its value is not selected', () => {
-      const wrapper = shallow(
-        <ToggleButtonGroup selected="auto" exclusive value="one">
-          <ToggleButton value="one" />
-          <ToggleButton value="two" />
+      const wrapper = mount(
+        <ToggleButtonGroup exclusive value="one">
+          <ToggleButton value="one">1</ToggleButton>
+          <ToggleButton value="two">2</ToggleButton>
         </ToggleButtonGroup>,
       );
-      const buttonWrapper = wrapper.find(ToggleButton).at(1);
 
-      assert.strictEqual(buttonWrapper.props().selected, false);
+      assert.strictEqual(findToggleButton(wrapper, 'two').props().selected, false);
     });
   });
 
   describe('non exclusive', () => {
     it('should render a selected ToggleButton if value is selected', () => {
-      const wrapper = shallow(
-        <ToggleButtonGroup selected="auto" value={['one']}>
-          <ToggleButton value="one" />
-          <ToggleButton value="two" />
+      const wrapper = mount(
+        <ToggleButtonGroup value={['one']}>
+          <ToggleButton value="one">1</ToggleButton>
+          <ToggleButton value="two">2</ToggleButton>
         </ToggleButtonGroup>,
       );
 
-      assert.strictEqual(
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .props().selected,
-        true,
-      );
-      assert.strictEqual(
-        wrapper
-          .find(ToggleButton)
-          .at(1)
-          .props().selected,
-        false,
-      );
+      assert.strictEqual(findToggleButton(wrapper, 'one').props().selected, true);
+      assert.strictEqual(findToggleButton(wrapper, 'two').props().selected, false);
     });
   });
 
@@ -131,10 +108,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(handleChange.args[0][1], null);
@@ -149,10 +123,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(handleChange.args[0][1], 'one');
@@ -167,10 +138,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(1)
-          .simulate('click');
+        findToggleButton(wrapper, 'two').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(handleChange.args[0][1], 'two');
@@ -187,10 +155,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.ok(Array.isArray(handleChange.args[0][1]));
@@ -206,10 +171,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][1], ['one']);
@@ -224,10 +186,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(0)
-          .simulate('click');
+        findToggleButton(wrapper, 'one').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][1], ['two']);
@@ -242,10 +201,7 @@ describe('<ToggleButtonGroup />', () => {
           </ToggleButtonGroup>,
         );
 
-        wrapper
-          .find(ToggleButton)
-          .at(1)
-          .simulate('click');
+        findToggleButton(wrapper, 'two').simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][1], ['one', 'two']);

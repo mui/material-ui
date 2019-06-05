@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import getScrollbarSize from '../utils/getScrollbarSize';
 import ModalManager from './ModalManager';
 
 describe('ModalManager', () => {
@@ -9,6 +9,15 @@ describe('ModalManager', () => {
   before(() => {
     modalManager = new ModalManager();
     container1 = document.createElement('div');
+    container1.style.padding = '20px';
+    Object.defineProperty(container1, 'scrollHeight', {
+      value: 100,
+      writable: false,
+    });
+    Object.defineProperty(container1, 'clientHeight', {
+      value: 90,
+      writable: false,
+    });
     document.body.appendChild(container1);
   });
 
@@ -60,7 +69,7 @@ describe('ModalManager', () => {
       assert.strictEqual(idx, 1, 'should be the second modal');
     });
 
-    it('should add modal2', () => {
+    it('should add modal2 2', () => {
       const idx = modalManager.add(modal2, container1);
       modalManager.mount(modal2);
       assert.strictEqual(idx, 2, 'should be the "third" modal');
@@ -77,7 +86,7 @@ describe('ModalManager', () => {
       assert.strictEqual(idx, 1);
     });
 
-    it('should remove modal2', () => {
+    it('should remove modal2 2', () => {
       const idx = modalManager.remove(modal2);
       assert.strictEqual(idx, 1);
       assert.strictEqual(modalManager.isTopModal(modal1), true);
@@ -113,15 +122,22 @@ describe('ModalManager', () => {
     it('should handle the scroll', () => {
       const modal = {};
       const paddingRightBefore = container1.style.paddingRight;
+      const paddingFixedRightBefore = fixedNode.style.paddingRight;
       modalManager.add(modal, container1);
       modalManager.mount(modal);
       assert.strictEqual(container1.style.overflow, 'hidden');
-      assert.strictEqual(container1.style.paddingRight, `${getScrollbarSize()}px`);
-      assert.strictEqual(fixedNode.style.paddingRight, `${14 + getScrollbarSize()}px`);
+      assert.strictEqual(
+        container1.style.paddingRight,
+        `${parseInt(paddingRightBefore, 10) + getScrollbarSize()}px`,
+      );
+      assert.strictEqual(
+        fixedNode.style.paddingRight,
+        `${parseInt(paddingFixedRightBefore, 10) + getScrollbarSize()}px`,
+      );
       modalManager.remove(modal);
       assert.strictEqual(container1.style.overflow, '');
       assert.strictEqual(container1.style.paddingRight, paddingRightBefore);
-      assert.strictEqual(fixedNode.style.paddingRight, '14px');
+      assert.strictEqual(fixedNode.style.paddingRight, paddingFixedRightBefore);
     });
   });
 

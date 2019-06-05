@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 
@@ -41,7 +41,7 @@ class Inputs extends React.Component {
             className={classes.input}
           />
         </div>
-        <Input value="Large input" className={classNames(classes.input, classes.large)} />
+        <Input value="Large input" className={clsx(classes.input, classes.large)} />
       </div>
     );
   }

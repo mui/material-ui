@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
-import classNames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
+import clsx from 'clsx';
+import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { componentPropType } from '@material-ui/utils';
-import clamp from '../utils/clamp';
+import { setRef, withForwardedRef } from '@material-ui/core/utils';
+import { clamp } from '@material-ui/lab/utils';
 
 export const styles = theme => {
   const commonTransitionsOptions = {
@@ -36,6 +34,12 @@ export const styles = theme => {
    */
   const pressedOutlineRadius = 9;
 
+  /**
+   * We need to give some overflow so that the button and tap
+   * highlight can be shown with overlay hidden.
+   */
+  const overflowSize = 24;
+
   return {
     /* Styles applied to the root element. */
     root: {
@@ -52,9 +56,13 @@ export const styles = theme => {
     },
     /* Styles applied to the container element. */
     container: {
-      position: 'relative',
+      width: `calc(100% + ${overflowSize * 2}px)`,
+      overflow: 'hidden',
+      padding: overflowSize,
+      margin: -overflowSize,
+      boxSizing: 'border-box',
       '&$vertical': {
-        height: '100%',
+        height: `calc(100% + ${overflowSize * 2}px)`,
       },
     },
     /* Styles applied to the track elements. */
@@ -177,12 +185,24 @@ function getOffset(node) {
   };
 }
 
-function getMousePosition(event) {
-  if (event.changedTouches && event.changedTouches[0]) {
-    return {
-      x: event.changedTouches[0].pageX,
-      y: event.changedTouches[0].pageY,
-    };
+function getMousePosition(event, touchId) {
+  if (event.changedTouches) {
+    // event.changedTouches.findIndex(touch => touch.identifier === touchId)
+    let touchIndex = 0;
+    for (let i = 0; i < event.changedTouches.length; i += 1) {
+      const touch = event.changedTouches[i];
+      if (touch.identifier === touchId) {
+        touchIndex = i;
+        break;
+      }
+    }
+
+    if (event.changedTouches[touchIndex]) {
+      return {
+        x: event.changedTouches[touchIndex].pageX,
+        y: event.changedTouches[touchIndex].pageY,
+      };
+    }
   }
 
   return {
@@ -191,10 +211,10 @@ function getMousePosition(event) {
   };
 }
 
-function calculatePercent(node, event, isVertical, isRtl) {
+function calculatePercent(node, event, isVertical, isRtl, touchId) {
   const { width, height } = node.getBoundingClientRect();
   const { bottom, left } = getOffset(node);
-  const { x, y } = getMousePosition(event);
+  const { x, y } = getMousePosition(event, touchId);
 
   const value = isVertical ? bottom - y : x - left;
   const onePercent = (isVertical ? height : width) / 100;
@@ -206,9 +226,22 @@ function preventPageScrolling(event) {
   event.preventDefault();
 }
 
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
+/**
+ * @param {number} rawValue
+ * @param {object} props
+ */
+export function defaultValueReducer(rawValue, props) {
+  const { disabled, step } = props;
+
+  if (disabled) {
+    return null;
+  }
+
+  if (step) {
+    return roundToStep(rawValue, step);
+  }
+
+  return Number(rawValue.toFixed(3));
 }
 
 class Slider extends React.Component {
@@ -218,19 +251,9 @@ class Slider extends React.Component {
 
   jumpAnimationTimeoutId = -1;
 
-  componentDidMount() {
-    if (this.containerRef) {
-      this.containerRef.addEventListener('touchstart', preventPageScrolling, { passive: false });
-    }
-  }
+  touchId = undefined;
 
   componentWillUnmount() {
-    // Guarding for **broken** shallow rendering method that call componentDidMount
-    // but doesn't handle refs correctly.
-    // To remove once the shallow rendering has been fixed.
-    if (this.containerRef) {
-      this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
-    }
     document.body.removeEventListener('mouseenter', this.handleMouseEnter);
     document.body.removeEventListener('mouseleave', this.handleMouseLeave);
     document.body.removeEventListener('mousemove', this.handleMouseMove);
@@ -257,25 +280,25 @@ class Slider extends React.Component {
     const step = this.props.step || onePercent;
     let value;
 
-    switch (keycode(event)) {
-      case 'home':
+    switch (event.key) {
+      case 'Home':
         value = min;
         break;
-      case 'end':
+      case 'End':
         value = max;
         break;
-      case 'page up':
+      case 'PageUp':
         value = currentValue + onePercent * 10;
         break;
-      case 'page down':
+      case 'PageDown':
         value = currentValue - onePercent * 10;
         break;
-      case 'right':
-      case 'up':
+      case 'ArrowRight':
+      case 'ArrowUp':
         value = currentValue + step;
         break;
-      case 'left':
-      case 'down':
+      case 'ArrowLeft':
+      case 'ArrowDown':
         value = currentValue - step;
         break;
       default:
@@ -298,9 +321,7 @@ class Slider extends React.Component {
   };
 
   handleClick = event => {
-    const { min, max, vertical } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
-    const value = percentToValue(percent, min, max);
+    const value = this.calculateValueFromPercent(event);
 
     this.emitChange(event, value, () => {
       this.playJumpAnimation();
@@ -323,26 +344,54 @@ class Slider extends React.Component {
 
   handleTouchStart = event => {
     event.preventDefault();
+    const touch = event.changedTouches.item(0);
+    if (touch != null) {
+      this.touchId = touch.identifier;
+    }
     this.setState({ currentState: 'activated' });
 
-    document.body.addEventListener('touchend', this.handleMouseUp);
+    const { onDragStart, valueReducer } = this.props;
 
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
+    const value = this.calculateValueFromPercent(event);
+    const newValue = valueReducer(value, this.props, event);
+    this.emitChange(event, value);
+
+    document.body.addEventListener('touchend', this.handleTouchEnd);
+
+    if (typeof onDragStart === 'function') {
+      onDragStart(event, newValue);
     }
   };
 
   handleMouseDown = event => {
-    event.preventDefault();
     this.setState({ currentState: 'activated' });
+
+    const { onDragStart, valueReducer } = this.props;
+
+    const value = this.calculateValueFromPercent(event);
+    const newValue = valueReducer(value, this.props, event);
 
     document.body.addEventListener('mouseenter', this.handleMouseEnter);
     document.body.addEventListener('mouseleave', this.handleMouseLeave);
     document.body.addEventListener('mousemove', this.handleMouseMove);
     document.body.addEventListener('mouseup', this.handleMouseUp);
 
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
+    if (typeof onDragStart === 'function') {
+      onDragStart(event, newValue);
+    }
+  };
+
+  handleTouchEnd = event => {
+    if (this.touchId === undefined) {
+      this.handleMouseUp(event);
+    }
+
+    for (let i = 0; i < event.changedTouches.length; i += 1) {
+      const touch = event.changedTouches.item(i);
+      if (touch.identifier === this.touchId) {
+        this.handleMouseUp(event);
+        break;
+      }
     }
   };
 
@@ -350,44 +399,72 @@ class Slider extends React.Component {
     this.handleDragEnd(event);
   };
 
+  handleTouchMove = event => {
+    if (this.touchId === undefined) {
+      this.handleMouseMove(event);
+    }
+
+    for (let i = 0; i < event.changedTouches.length; i += 1) {
+      const touch = event.changedTouches.item(i);
+      if (touch.identifier === this.touchId) {
+        this.handleMouseMove(event);
+        break;
+      }
+    }
+  };
+
   handleMouseMove = event => {
-    const { min, max, vertical } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
-    const value = percentToValue(percent, min, max);
+    const value = this.calculateValueFromPercent(event);
 
     this.emitChange(event, value);
   };
 
+  handleRef = ref => {
+    setRef(this.props.innerRef, ref);
+
+    // #StrictMode ready
+    const nextContainer = ReactDOM.findDOMNode(ref);
+    const prevContainer = this.container;
+
+    if (prevContainer !== nextContainer) {
+      if (prevContainer) {
+        prevContainer.removeEventListener('touchstart', preventPageScrolling, {
+          passive: false,
+        });
+      }
+      if (nextContainer) {
+        nextContainer.addEventListener('touchstart', preventPageScrolling, { passive: false });
+      }
+    }
+
+    this.container = nextContainer;
+  };
+
   handleDragEnd(event) {
+    const { onDragEnd, valueReducer } = this.props;
+
+    const value = this.calculateValueFromPercent(event);
+    const newValue = valueReducer(value, this.props, event);
+
     this.setState({ currentState: 'normal' });
 
     document.body.removeEventListener('mouseenter', this.handleMouseEnter);
     document.body.removeEventListener('mouseleave', this.handleMouseLeave);
     document.body.removeEventListener('mousemove', this.handleMouseMove);
     document.body.removeEventListener('mouseup', this.handleMouseUp);
-    document.body.removeEventListener('touchend', this.handleMouseUp);
+    document.body.removeEventListener('touchend', this.handleTouchEnd);
 
-    if (typeof this.props.onDragEnd === 'function') {
-      this.props.onDragEnd(event);
+    if (typeof onDragEnd === 'function') {
+      onDragEnd(event, newValue);
     }
   }
 
   emitChange(event, rawValue, callback) {
-    const { step, value: previousValue, onChange, disabled } = this.props;
-    let value = rawValue;
+    const { onChange, value: previousValue, valueReducer } = this.props;
+    const newValue = valueReducer(rawValue, this.props, event);
 
-    if (disabled) {
-      return;
-    }
-
-    if (step) {
-      value = roundToStep(rawValue, step);
-    } else {
-      value = Number(rawValue.toFixed(3));
-    }
-
-    if (typeof onChange === 'function' && value !== previousValue) {
-      onChange(event, value);
+    if (newValue !== null && newValue !== previousValue && typeof onChange === 'function') {
+      onChange(event, newValue);
 
       if (typeof callback === 'function') {
         callback();
@@ -415,6 +492,18 @@ class Slider extends React.Component {
     }
   }
 
+  calculateValueFromPercent(event) {
+    const { min, max, vertical } = this.props;
+    const percent = calculatePercent(
+      this.container,
+      event,
+      vertical,
+      this.isReverted(),
+      this.touchId,
+    );
+    return percentToValue(percent, min, max);
+  }
+
   playJumpAnimation() {
     this.setState({ currentState: 'jumped' }, () => {
       clearTimeout(this.jumpAnimationTimeoutId);
@@ -436,6 +525,7 @@ class Slider extends React.Component {
       component: Component,
       thumb: thumbIcon,
       disabled,
+      innerRef,
       max,
       min,
       onChange,
@@ -444,22 +534,23 @@ class Slider extends React.Component {
       step,
       theme,
       value,
+      valueReducer,
       vertical,
       ...other
     } = this.props;
 
     const percent = clamp(((value - min) * 100) / (max - min));
 
-    const commonClasses = {
+    const commonClasses = clsx({
       [classes.disabled]: disabled,
       [classes.jumped]: !disabled && currentState === 'jumped',
       [classes.focused]: !disabled && currentState === 'focused',
       [classes.activated]: !disabled && currentState === 'activated',
       [classes.vertical]: vertical,
       [classes.rtl]: theme.direction === 'rtl',
-    };
+    });
 
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes.vertical]: vertical,
@@ -468,12 +559,12 @@ class Slider extends React.Component {
       classNameProp,
     );
 
-    const containerClasses = classNames(classes.container, {
+    const containerClasses = clsx(classes.container, {
       [classes.vertical]: vertical,
     });
 
-    const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses);
-    const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses);
+    const trackBeforeClasses = clsx(classes.track, classes.trackBefore, commonClasses);
+    const trackAfterClasses = clsx(classes.track, classes.trackAfter, commonClasses);
 
     const thumbTransformFunction = vertical ? 'translateY' : 'translateX';
     const thumbDirectionInverted = vertical || theme.direction === 'rtl';
@@ -487,13 +578,13 @@ class Slider extends React.Component {
     const ThumbIcon = thumbIcon
       ? React.cloneElement(thumbIcon, {
           ...thumbIcon.props,
-          className: classNames(thumbIcon.props.className, classes.thumbIcon),
+          className: clsx(thumbIcon.props.className, classes.thumbIcon),
         })
       : null;
     /** End Thumb Icon Logic Here */
 
-    const thumbWrapperClasses = classNames(classes.thumbWrapper, commonClasses);
-    const thumbClasses = classNames(
+    const thumbWrapperClasses = clsx(classes.thumbWrapper, commonClasses);
+    const thumbClasses = clsx(
       classes.thumb,
       {
         [classes.thumbIconWrapper]: thumbIcon,
@@ -503,34 +594,31 @@ class Slider extends React.Component {
 
     return (
       <Component
-        role="slider"
         className={className}
-        aria-disabled={disabled}
-        aria-valuenow={value}
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-orientation={vertical ? 'vertical' : 'horizontal'}
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onTouchStartCapture={this.handleTouchStart}
-        onTouchMove={this.handleMouseMove}
-        ref={ref => {
-          this.containerRef = ReactDOM.findDOMNode(ref);
-        }}
+        onTouchMove={this.handleTouchMove}
+        ref={this.handleRef}
         {...other}
       >
         <div className={containerClasses}>
           <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
           <div className={thumbWrapperClasses} style={inlineThumbStyles}>
             <ButtonBase
+              aria-valuenow={value}
+              aria-valuemin={min}
+              aria-valuemax={max}
+              aria-orientation={vertical ? 'vertical' : 'horizontal'}
               className={thumbClasses}
               disabled={disabled}
               disableRipple
               onBlur={this.handleBlur}
               onKeyDown={this.handleKeyDown}
               onTouchStartCapture={this.handleTouchStart}
-              onTouchMove={this.handleMouseMove}
+              onTouchMove={this.handleTouchMove}
               onFocusVisible={this.handleFocus}
+              role="slider"
             >
               {ThumbIcon}
             </ButtonBase>
@@ -545,7 +633,7 @@ class Slider extends React.Component {
 Slider.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -556,11 +644,16 @@ Slider.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the slider will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
@@ -601,6 +694,14 @@ Slider.propTypes = {
    */
   value: PropTypes.number.isRequired,
   /**
+   * the reducer used to process the value emitted from the slider. If `null` or
+   * the same value is returned no change is emitted.
+   * @param {number} rawValue - value in [min, max]
+   * @param {SliderProps} props - current props of the Slider
+   * @param {Event} event - the event the change was triggered from
+   */
+  valueReducer: PropTypes.func,
+  /**
    * If `true`, the slider will be vertical.
    */
   vertical: PropTypes.bool,
@@ -610,6 +711,7 @@ Slider.defaultProps = {
   min: 0,
   max: 100,
   component: 'div',
+  valueReducer: defaultValueReducer,
 };
 
-export default withStyles(styles, { name: 'MuiSlider', withTheme: true })(Slider);
+export default withStyles(styles, { name: 'MuiSlider', withTheme: true })(withForwardedRef(Slider));

@@ -12,17 +12,18 @@ filename: /packages/material-ui/src/ListItemAvatar/ListItemAvatar.js
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 ```
 
-This is a simple wrapper to apply the `dense`
-and `align-items="flex-start"` mode styles to `Avatar`.
+A simple wrapper to apply `List` styles to an `Avatar`.
 
 ## Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">element</span> |   | The content of the component – normally `Avatar`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The content of the component – normally `Avatar`. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
-Any other properties supplied will be spread to the root element (native element).
+The `ref` is forwarded to the root element.
+
+Any other properties supplied will be provided to the root element (native element).
 
 ## CSS
 
@@ -33,17 +34,20 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the root element when.
-| <span class="prop-name">icon</span> | Styles applied to the children – typically the `Avatar` component.
+| <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ListItemAvatar/ListItemAvatar.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiListItemAvatar`.
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Lists](/demos/lists/)
+- [Lists](/components/lists/)
 

@@ -61,36 +61,35 @@ const spacingKeys = [
 ];
 
 function getTransformer(theme) {
-  const themeTransformer =
-    theme.spacing && theme.spacing.unit != null ? theme.spacing.unit : theme.spacing || 8;
+  const themeSpacing = theme.spacing || 8;
 
-  if (typeof themeTransformer === 'number') {
-    return abs => themeTransformer * abs;
+  if (typeof themeSpacing === 'number') {
+    return abs => themeSpacing * abs;
   }
 
-  if (Array.isArray(themeTransformer)) {
+  if (Array.isArray(themeSpacing)) {
     return abs => {
       warning(
-        abs <= themeTransformer.length - 1,
+        abs <= themeSpacing.length - 1,
         [
           `@material-ui/system: the value provided (${abs}) overflows.`,
-          `The supported values are: ${JSON.stringify(themeTransformer)}.`,
-          `${abs} > ${themeTransformer.length - 1}, you need to add the missing values.`,
+          `The supported values are: ${JSON.stringify(themeSpacing)}.`,
+          `${abs} > ${themeSpacing.length - 1}, you need to add the missing values.`,
         ].join('\n'),
       );
 
-      return themeTransformer[abs];
+      return themeSpacing[abs];
     };
   }
 
-  if (typeof themeTransformer === 'function') {
-    return themeTransformer;
+  if (typeof themeSpacing === 'function') {
+    return themeSpacing;
   }
 
   warning(
     false,
     [
-      `@material-ui/system: the \`theme.spacing\` value (${themeTransformer}) is invalid.`,
+      `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
       'It should be a number, an array or a function.',
     ].join('\n'),
   );

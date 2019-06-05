@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import keycode from 'keycode';
+import clsx from 'clsx';
 import warning from 'warning';
-import { componentPropType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
-import { setRef } from '../utils/reactHelpers';
+import { useForkRef } from '../utils/reactHelpers';
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {
@@ -19,321 +17,300 @@ function areEqualValues(a, b) {
 /**
  * @ignore - internal component.
  */
-class SelectInput extends React.Component {
-  ignoreNextBlur = false;
+const SelectInput = React.forwardRef(function SelectInput(props, ref) {
+  const {
+    autoFocus,
+    autoWidth,
+    children,
+    classes,
+    className,
+    disabled,
+    displayEmpty,
+    IconComponent,
+    inputRef,
+    MenuProps = {},
+    multiple,
+    name,
+    onBlur,
+    onChange,
+    onClose,
+    onFocus,
+    onOpen,
+    open: openProp,
+    readOnly,
+    renderValue,
+    required,
+    SelectDisplayProps,
+    tabIndex: tabIndexProp,
+    type = 'hidden',
+    value,
+    variant,
+    ...other
+  } = props;
+  const displayRef = React.useRef(null);
+  const ignoreNextBlur = React.useRef(false);
+  const { current: isOpenControlled } = React.useRef(props.open != null);
+  const [menuMinWidthState, setMenuMinWidthState] = React.useState();
+  const [openState, setOpenState] = React.useState(false);
+  const [, forceUpdate] = React.useState(0);
+  const handleRef = useForkRef(ref, inputRef);
 
-  constructor(props) {
-    super();
-    this.isOpenControlled = props.open !== undefined;
-    this.state = {
-      menuMinWidth: null,
-      open: false,
-    };
-  }
+  React.useImperativeHandle(
+    handleRef,
+    () => ({
+      focus: () => {
+        displayRef.current.focus();
+      },
+      node: inputRef ? inputRef.current : null,
+      value,
+    }),
+    [inputRef, value],
+  );
 
-  componentDidMount() {
-    if (this.isOpenControlled && this.props.open) {
+  React.useEffect(() => {
+    if (isOpenControlled && openProp) {
       // Focus the display node so the focus is restored on this element once
       // the menu is closed.
-      this.displayRef.focus();
+      displayRef.current.focus();
       // Rerender with the resolve `displayRef` reference.
-      this.forceUpdate();
+      forceUpdate(n => !n);
     }
 
-    if (this.props.autoFocus) {
-      this.displayRef.focus();
+    if (autoFocus) {
+      displayRef.current.focus();
     }
-  }
+  }, [autoFocus, isOpenControlled, openProp]);
 
-  update = ({ event, open }) => {
-    if (this.isOpenControlled) {
-      if (open) {
-        this.props.onOpen(event);
-      } else {
-        this.props.onClose(event);
+  const update = (open, event) => {
+    if (open) {
+      if (onOpen) {
+        onOpen(event);
       }
-      return;
+    } else if (onClose) {
+      onClose(event);
     }
 
-    this.setState({
-      // Perform the layout computation outside of the render method.
-      menuMinWidth: this.props.autoWidth ? null : this.displayRef.clientWidth,
-      open,
-    });
+    if (!isOpenControlled) {
+      setMenuMinWidthState(autoWidth ? null : displayRef.current.clientWidth);
+      setOpenState(open);
+    }
   };
 
-  handleClick = event => {
+  const handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.
-    this.ignoreNextBlur = true;
-    this.update({
-      open: true,
-      event,
-    });
+    ignoreNextBlur.current = true;
+    update(true, event);
   };
 
-  handleClose = event => {
-    this.update({
-      open: false,
-      event,
-    });
+  const handleClose = event => {
+    update(false, event);
   };
 
-  handleItemClick = child => event => {
-    if (!this.props.multiple) {
-      this.update({
-        open: false,
-        event,
-      });
+  const handleItemClick = child => event => {
+    if (!multiple) {
+      update(false, event);
     }
-
-    const { onChange, name } = this.props;
 
     if (onChange) {
-      let value;
+      let newValue;
 
-      if (this.props.multiple) {
-        value = Array.isArray(this.props.value) ? [...this.props.value] : [];
+      if (multiple) {
+        newValue = Array.isArray(value) ? [...value] : [];
         const itemIndex = value.indexOf(child.props.value);
         if (itemIndex === -1) {
-          value.push(child.props.value);
+          newValue.push(child.props.value);
         } else {
-          value.splice(itemIndex, 1);
+          newValue.splice(itemIndex, 1);
         }
       } else {
-        value = child.props.value;
+        newValue = child.props.value;
       }
 
       event.persist();
-      event.target = { value, name };
+      event.target = { value: newValue, name };
       onChange(event, child);
     }
   };
 
-  handleBlur = event => {
-    if (this.ignoreNextBlur === true) {
+  const handleBlur = event => {
+    if (ignoreNextBlur.current === true) {
       // The parent components are relying on the bubbling of the event.
       event.stopPropagation();
-      this.ignoreNextBlur = false;
+      ignoreNextBlur.current = false;
       return;
     }
 
-    if (this.props.onBlur) {
-      const { value, name } = this.props;
+    if (onBlur) {
       event.persist();
       event.target = { value, name };
-      this.props.onBlur(event);
+      onBlur(event);
     }
   };
 
-  handleKeyDown = event => {
-    if (this.props.readOnly) {
-      return;
-    }
+  const handleKeyDown = event => {
+    if (!readOnly) {
+      const validKeys = [
+        ' ',
+        'ArrowUp',
+        'ArrowDown',
+        // The native select doesn't respond to enter on MacOS, but it's recommended by
+        // https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html
+        'Enter',
+      ];
 
-    if (['space', 'up', 'down'].indexOf(keycode(event)) !== -1) {
-      event.preventDefault();
-      // Opening the menu is going to blur the. It will be focused back when closed.
-      this.ignoreNextBlur = true;
-      this.update({
-        open: true,
-        event,
-      });
-    }
-  };
-
-  handleDisplayRef = ref => {
-    this.displayRef = ref;
-  };
-
-  handleInputRef = ref => {
-    const { inputRef } = this.props;
-
-    if (!inputRef) {
-      return;
-    }
-
-    const nodeProxy = {
-      node: ref,
-      // By pass the native input as we expose a rich object (array).
-      value: this.props.value,
-      focus: () => {
-        this.displayRef.focus();
-      },
-    };
-
-    setRef(inputRef, nodeProxy);
-  };
-
-  render() {
-    const {
-      autoWidth,
-      children,
-      classes,
-      className,
-      disabled,
-      displayEmpty,
-      IconComponent,
-      inputRef,
-      MenuProps = {},
-      multiple,
-      name,
-      onBlur,
-      onChange,
-      onClose,
-      onFocus,
-      onOpen,
-      open: openProp,
-      readOnly,
-      renderValue,
-      required,
-      SelectDisplayProps,
-      tabIndex: tabIndexProp,
-      type = 'hidden',
-      value,
-      variant,
-      ...other
-    } = this.props;
-    const open = this.isOpenControlled && this.displayRef ? openProp : this.state.open;
-
-    delete other['aria-invalid'];
-
-    let display;
-    let displaySingle = '';
-    const displayMultiple = [];
-    let computeDisplay = false;
-
-    // No need to display any value if the field is empty.
-    if (isFilled(this.props) || displayEmpty) {
-      if (renderValue) {
-        display = renderValue(value);
-      } else {
-        computeDisplay = true;
+      if (validKeys.indexOf(event.key) !== -1) {
+        event.preventDefault();
+        // Opening the menu is going to blur the. It will be focused back when closed.
+        ignoreNextBlur.current = true;
+        update(true, event);
       }
     }
+  };
 
-    const items = React.Children.map(children, child => {
-      if (!React.isValidElement(child)) {
-        return null;
-      }
+  const open = isOpenControlled && displayRef.current ? openProp : openState;
 
-      warning(
-        child.type !== React.Fragment,
-        [
-          "Material-UI: the Select component doesn't accept a Fragment as a child.",
-          'Consider providing an array instead.',
-        ].join('\n'),
-      );
+  delete other['aria-invalid'];
 
-      let selected;
+  let display;
+  let displaySingle = '';
+  const displayMultiple = [];
+  let computeDisplay = false;
 
-      if (multiple) {
-        if (!Array.isArray(value)) {
-          throw new Error(
-            'Material-UI: the `value` property must be an array ' +
-              'when using the `Select` component with `multiple`.',
-          );
-        }
-
-        selected = value.some(v => areEqualValues(v, child.props.value));
-        if (selected && computeDisplay) {
-          displayMultiple.push(child.props.children);
-        }
-      } else {
-        selected = areEqualValues(value, child.props.value);
-        if (selected && computeDisplay) {
-          displaySingle = child.props.children;
-        }
-      }
-
-      return React.cloneElement(child, {
-        onClick: this.handleItemClick(child),
-        role: 'option',
-        selected,
-        value: undefined, // The value is most likely not a valid HTML attribute.
-        'data-value': child.props.value, // Instead, we provide it as a data attribute.
-      });
-    });
-
-    if (computeDisplay) {
-      display = multiple ? displayMultiple.join(', ') : displaySingle;
-    }
-
-    // Avoid performing a layout computation in the render method.
-    let menuMinWidth = this.state.menuMinWidth;
-
-    if (!autoWidth && this.isOpenControlled && this.displayRef) {
-      menuMinWidth = this.displayRef.clientWidth;
-    }
-
-    let tabIndex;
-    if (typeof tabIndexProp !== 'undefined') {
-      tabIndex = tabIndexProp;
+  // No need to display any value if the field is empty.
+  if (isFilled(props) || displayEmpty) {
+    if (renderValue) {
+      display = renderValue(value);
     } else {
-      tabIndex = disabled ? null : 0;
+      computeDisplay = true;
+    }
+  }
+
+  const items = React.Children.map(children, child => {
+    if (!React.isValidElement(child)) {
+      return null;
     }
 
-    return (
-      <div className={classes.root}>
-        <div
-          className={classNames(
-            classes.select,
-            classes.selectMenu,
-            {
-              [classes.disabled]: disabled,
-              [classes.filled]: variant === 'filled',
-              [classes.outlined]: variant === 'outlined',
-            },
-            className,
-          )}
-          ref={this.handleDisplayRef}
-          data-mui-test="SelectDisplay"
-          aria-pressed={open ? 'true' : 'false'}
-          tabIndex={tabIndex}
-          role="button"
-          aria-owns={open ? `menu-${name || ''}` : undefined}
-          aria-haspopup="true"
-          onKeyDown={this.handleKeyDown}
-          onBlur={this.handleBlur}
-          onClick={disabled || readOnly ? null : this.handleClick}
-          onFocus={onFocus}
-          {...SelectDisplayProps}
-        >
-          {/* So the vertical align positioning algorithm kicks in. */}
-          {/* eslint-disable-next-line react/no-danger */}
-          {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
-        </div>
-        <input
-          value={Array.isArray(value) ? value.join(',') : value}
-          name={name}
-          ref={this.handleInputRef}
-          type={type}
-          {...other}
-        />
-        <IconComponent className={classes.icon} />
-        <Menu
-          id={`menu-${name || ''}`}
-          anchorEl={this.displayRef}
-          open={open}
-          onClose={this.handleClose}
-          {...MenuProps}
-          MenuListProps={{
-            role: 'listbox',
-            ...MenuProps.MenuListProps,
-          }}
-          PaperProps={{
-            ...MenuProps.PaperProps,
-            style: {
-              minWidth: menuMinWidth,
-              ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
-            },
-          }}
-        >
-          {items}
-        </Menu>
-      </div>
+    warning(
+      child.type !== React.Fragment,
+      [
+        "Material-UI: the Select component doesn't accept a Fragment as a child.",
+        'Consider providing an array instead.',
+      ].join('\n'),
     );
+
+    let selected;
+
+    if (multiple) {
+      if (!Array.isArray(value)) {
+        throw new Error(
+          'Material-UI: the `value` property must be an array ' +
+            'when using the `Select` component with `multiple`.',
+        );
+      }
+
+      selected = value.some(v => areEqualValues(v, child.props.value));
+      if (selected && computeDisplay) {
+        displayMultiple.push(child.props.children);
+      }
+    } else {
+      selected = areEqualValues(value, child.props.value);
+      if (selected && computeDisplay) {
+        displaySingle = child.props.children;
+      }
+    }
+
+    return React.cloneElement(child, {
+      onClick: handleItemClick(child),
+      role: 'option',
+      selected,
+      value: undefined, // The value is most likely not a valid HTML attribute.
+      'data-value': child.props.value, // Instead, we provide it as a data attribute.
+    });
+  });
+
+  if (computeDisplay) {
+    display = multiple ? displayMultiple.join(', ') : displaySingle;
   }
-}
+
+  // Avoid performing a layout computation in the render method.
+  let menuMinWidth = menuMinWidthState;
+
+  if (!autoWidth && isOpenControlled.current && displayRef.current) {
+    menuMinWidth = displayRef.current.clientWidth;
+  }
+
+  let tabIndex;
+  if (typeof tabIndexProp !== 'undefined') {
+    tabIndex = tabIndexProp;
+  } else {
+    tabIndex = disabled ? null : 0;
+  }
+
+  return (
+    <div className={classes.root}>
+      <div
+        className={clsx(
+          classes.select,
+          classes.selectMenu,
+          {
+            [classes.disabled]: disabled,
+            [classes.filled]: variant === 'filled',
+            [classes.outlined]: variant === 'outlined',
+          },
+          className,
+        )}
+        ref={displayRef}
+        data-mui-test="SelectDisplay"
+        aria-pressed={open ? 'true' : 'false'}
+        tabIndex={tabIndex}
+        role="button"
+        aria-owns={open ? `menu-${name || ''}` : undefined}
+        aria-haspopup="true"
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
+        onClick={disabled || readOnly ? null : handleClick}
+        onFocus={onFocus}
+        // The id can help with end-to-end testing automation.
+        id={name ? `select-${name}` : undefined}
+        {...SelectDisplayProps}
+      >
+        {/* So the vertical align positioning algorithm kicks in. */}
+        {/* eslint-disable-next-line react/no-danger */}
+        {display != null ? display : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
+      </div>
+      <input
+        value={Array.isArray(value) ? value.join(',') : value}
+        name={name}
+        ref={handleRef}
+        type={type}
+        autoFocus={autoFocus}
+        {...other}
+      />
+      <IconComponent className={classes.icon} />
+      <Menu
+        id={`menu-${name || ''}`}
+        anchorEl={displayRef.current}
+        open={open}
+        onClose={handleClose}
+        {...MenuProps}
+        MenuListProps={{
+          role: 'listbox',
+          disableListWrap: true,
+          ...MenuProps.MenuListProps,
+        }}
+        PaperProps={{
+          ...MenuProps.PaperProps,
+          style: {
+            minWidth: menuMinWidth,
+            ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+          },
+        }}
+      >
+        {items}
+      </Menu>
+    </div>
+  );
+});
 
 SelectInput.propTypes = {
   /**
@@ -352,7 +329,7 @@ SelectInput.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -370,7 +347,7 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: componentPropType,
+  IconComponent: PropTypes.elementType,
   /**
    * Use that property to pass a ref callback to the native select element.
    */
@@ -451,15 +428,7 @@ SelectInput.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
-    ),
-  ]).isRequired,
+  value: PropTypes.any.isRequired,
   /**
    * The variant to use.
    */

@@ -1,18 +1,54 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { _rewriteUrlForNextExport } from 'next/router';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
+import compose from 'docs/src/modules/utils/compose';
+
+let savedScrollTop = null;
+function PersistScroll(props) {
+  const { children } = props;
+  const rootRef = React.useRef();
+
+  React.useEffect(() => {
+    const parent = rootRef.current ? rootRef.current.parentNode : null;
+    const activeElement = document.querySelector('.drawer-active');
+
+    if (!parent || !activeElement || !activeElement.scrollIntoView) {
+      return undefined;
+    }
+
+    const activeBox = activeElement.getBoundingClientRect();
+
+    if (savedScrollTop === null || activeBox.top - savedScrollTop < 0) {
+      // Center the selected item in the list container.
+      activeElement.scrollIntoView();
+      // Fix a Chrome issue, reset the tabbable ring back to the top of the document.
+      document.body.scrollIntoView();
+    } else {
+      parent.scrollTop = savedScrollTop;
+    }
+
+    return () => {
+      savedScrollTop = parent.scrollTop;
+    };
+  }, []);
+
+  return <div ref={rootRef}>{children}</div>;
+}
+
+PersistScroll.propTypes = {
+  children: PropTypes.node,
+};
 
 const styles = theme => ({
   paper: {
@@ -20,7 +56,7 @@ const styles = theme => ({
   },
   title: {
     color: theme.palette.text.secondary,
-    marginBottom: theme.spacing.unit / 2,
+    marginBottom: theme.spacing(0.5),
     '&:hover': {
       color: theme.palette.primary.main,
     },
@@ -31,15 +67,12 @@ const styles = theme => ({
   },
   toolbar: {
     ...theme.mixins.toolbar,
-    paddingLeft: theme.spacing.unit * 3,
+    paddingLeft: theme.spacing(3),
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-  },
-  anchor: {
-    color: theme.palette.text.secondary,
   },
 });
 
@@ -56,22 +89,28 @@ function renderNavItems({ pages, ...params }) {
   );
 }
 
-function reduceChildRoutes({ props, activePage, items, page, depth }) {
+function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
   if (page.displayNav === false) {
     return items;
   }
 
   if (page.children && page.children.length > 1) {
-    const title = pageToTitle(page);
-    const openImmediately = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
+    const title = pageToTitleI18n(page, t);
+    const topLevel = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
 
     items.push(
-      <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>
-        {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1 })}
+      <AppDrawerNavItem
+        depth={depth}
+        key={title}
+        topLevel={topLevel && !page.subheader}
+        openImmediately={topLevel || Boolean(page.subheader)}
+        title={title}
+      >
+        {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1, t })}
       </AppDrawerNavItem>,
     );
   } else {
-    const title = pageToTitle(page);
+    const title = pageToTitleI18n(page, t);
     page = page.children && page.children.length === 1 ? page.children[0] : page;
 
     items.push(
@@ -94,39 +133,34 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 function AppDrawer(props) {
-  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
+  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen, t } = props;
+  const { activePage, pages } = React.useContext(PageContext);
 
   const drawer = (
-    <PageContext.Consumer>
-      {({ activePage, pages }) => (
-        <div className={classes.nav}>
-          <div className={classes.toolbarIe11}>
-            <div className={classes.toolbar}>
-              <Link className={classes.title} href="/" onClick={onClose}>
-                <Typography variant="h6" color="inherit">
-                  Material-UI
-                </Typography>
-              </Link>
-              {process.env.LIB_VERSION ? (
-                <Link className={classes.anchor} href={_rewriteUrlForNextExport('/versions')}>
-                  <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
-                </Link>
-              ) : null}
-            </div>
-          </div>
-          <Divider />
-          {renderNavItems({ props, pages, activePage, depth: 0 })}
+    <PersistScroll>
+      <div className={classes.toolbarIe11}>
+        <div className={classes.toolbar}>
+          <Link className={classes.title} href="/" onClick={onClose} variant="h6" color="inherit">
+            Material-UI
+          </Link>
+          {process.env.LIB_VERSION ? (
+            <Link color="textSecondary" variant="caption" href="/versions" onClick={onClose}>
+              {`v${process.env.LIB_VERSION}`}
+            </Link>
+          ) : null}
         </div>
-      )}
-    </PageContext.Consumer>
+      </div>
+      <Divider />
+      {renderNavItems({ props, pages, activePage, depth: 0, t })}
+    </PersistScroll>
   );
 
   return (
-    <nav className={className}>
+    <nav className={className} aria-label="Main navigation">
       <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{
-            paper: classNames(classes.paper, 'algolia-drawer'),
+            paper: clsx(classes.paper, 'algolia-drawer'),
           }}
           disableBackdropTransition={!iOS}
           variant="temporary"
@@ -164,6 +198,12 @@ AppDrawer.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(AppDrawer);
+export default compose(
+  connect(state => ({
+    t: state.options.t,
+  })),
+  withStyles(styles),
+)(AppDrawer);

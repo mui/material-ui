@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
-import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => {
@@ -17,6 +16,8 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.primary,
+      transition: theme.transitions.create('box-shadow'),
     },
     /* Styles applied to the root element if `square={false}`. */
     rounded: {
@@ -26,13 +27,13 @@ export const styles = theme => {
   };
 };
 
-function Paper(props) {
+const Paper = React.forwardRef(function Paper(props, ref) {
   const {
     classes,
     className: classNameProp,
-    component: Component,
-    square,
-    elevation,
+    component: Component = 'div',
+    square = false,
+    elevation = 1,
     ...other
   } = props;
 
@@ -41,7 +42,7 @@ function Paper(props) {
     `Material-UI: this elevation \`${elevation}\` is not implemented.`,
   );
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[`elevation${elevation}`],
     {
@@ -50,8 +51,8 @@ function Paper(props) {
     classNameProp,
   );
 
-  return <Component className={className} {...other} />;
-}
+  return <Component className={className} ref={ref} {...other} />;
+});
 
 Paper.propTypes = {
   /**
@@ -60,7 +61,7 @@ Paper.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -71,22 +72,16 @@ Paper.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
-   * It's accepting values between 0 and 24 inclusive.
+   * It accepts values between 0 and 24 inclusive.
    */
   elevation: PropTypes.number,
   /**
    * If `true`, rounded corners are disabled.
    */
   square: PropTypes.bool,
-};
-
-Paper.defaultProps = {
-  component: 'div',
-  elevation: 2,
-  square: false,
 };
 
 export default withStyles(styles, { name: 'MuiPaper' })(Paper);

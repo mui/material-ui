@@ -12,9 +12,9 @@ import { StandardProps } from '..';
 export interface TableCellProps
   extends StandardProps<TableCellBaseProps, TableCellClassKey, 'align'> {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
-  component?: React.ReactType<TableCellBaseProps>;
-  numeric?: boolean;
+  component?: React.ElementType<TableCellBaseProps>;
   padding?: Padding;
+  size?: Size;
   sortDirection?: SortDirection;
   variant?: 'head' | 'body' | 'footer';
 }
@@ -22,7 +22,9 @@ export interface TableCellProps
 export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
   React.TdHTMLAttributes<HTMLTableDataCellElement>;
 
-export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
+export type Padding = 'default' | 'checkbox' | 'none';
+
+export type Size = 'small' | 'medium';
 
 export type SortDirection = 'asc' | 'desc' | false;
 
@@ -31,8 +33,11 @@ export type TableCellClassKey =
   | 'head'
   | 'body'
   | 'footer'
-  | 'numeric'
-  | 'paddingDense'
+  | 'alignLeft'
+  | 'alignCenter'
+  | 'alignRight'
+  | 'alignJustify'
+  | 'sizeSmall'
   | 'paddingCheckbox'
   | 'paddingNone';
 

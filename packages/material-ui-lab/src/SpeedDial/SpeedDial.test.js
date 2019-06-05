@@ -2,7 +2,12 @@ import { codes as keycodes } from 'keycode';
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  findOutermostIntrinsic,
+  getClasses,
+  wrapsIntrinsicElement,
+} from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
@@ -10,22 +15,32 @@ import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
   let mount;
-  let shallow;
   let classes;
+
   const icon = <Icon>font_icon</Icon>;
+  const FakeAction = () => <div />;
   const defaultProps = {
     open: true,
     ariaLabel: 'mySpeedDial',
   };
 
+  function findActionsWrapper(wrapper) {
+    const control = wrapper.find('[aria-expanded]').first();
+    return wrapper.find(`#${control.props()['aria-controls']}`).first();
+  }
+
   before(() => {
-    mount = createMount();
-    shallow = createShallow({ dive: true });
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render with a minimal setup', () => {
@@ -34,99 +49,103 @@ describe('<SpeedDial />', () => {
         <SpeedDialAction icon={<Icon>save_icon</Icon>} tooltipTitle="Save" />
       </SpeedDial>,
     );
-
     wrapper.unmount();
   });
 
   it('should render a Fade transition', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <SpeedDial {...defaultProps} icon={icon}>
-        <div />
+        <FakeAction />
       </SpeedDial>,
     );
-    assert.strictEqual(wrapper.type(), 'div');
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
   });
 
   it('should render a Fab', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <SpeedDial {...defaultProps} icon={icon}>
-        <div />
+        <FakeAction />
       </SpeedDial>,
     );
-    const buttonWrapper = wrapper.childAt(0).childAt(0);
+    const buttonWrapper = wrapper.find('[aria-expanded]').first();
     assert.strictEqual(buttonWrapper.type(), Fab);
   });
 
   it('should render with a null child', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <SpeedDial {...defaultProps} icon={icon}>
-        <SpeedDialAction tooltipTitle="One" />
+        <SpeedDialAction icon={icon} tooltipTitle="One" />
         {null}
-        <SpeedDialAction tooltipTitle="Three" />
+        <SpeedDialAction icon={icon} tooltipTitle="Three" />
       </SpeedDial>,
     );
     assert.strictEqual(wrapper.find(SpeedDialAction).length, 2);
   });
 
   it('should render with the root class', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <SpeedDial {...defaultProps} icon={icon}>
-        <div />
+        <FakeAction />
       </SpeedDial>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <SpeedDial {...defaultProps} className="mySpeedDialClass" icon={icon}>
-        <div />
+        <FakeAction />
       </SpeedDial>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('mySpeedDialClass'), true);
+    assert.strictEqual(
+      wrapper
+        .find(`.${classes.root}`)
+        .first()
+        .hasClass('mySpeedDialClass'),
+      true,
+    );
   });
 
   it('should render the actions with the actions class', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <SpeedDial {...defaultProps} className="mySpeedDial" icon={icon}>
         <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction" />
       </SpeedDial>,
     );
-    const actionsWrapper = wrapper.childAt(1);
+    const actionsWrapper = findActionsWrapper(wrapper);
     assert.strictEqual(actionsWrapper.hasClass(classes.actions), true);
     assert.strictEqual(actionsWrapper.hasClass(classes.actionsClosed), false);
   });
 
   it('should render the actions with the actions and actionsClosed classes', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <SpeedDial {...defaultProps} open={false} className="mySpeedDial" icon={icon}>
         <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction" />
       </SpeedDial>,
     );
-    const actionsWrapper = wrapper.childAt(1);
+    const actionsWrapper = findActionsWrapper(wrapper);
     assert.strictEqual(actionsWrapper.hasClass(classes.actions), true);
     assert.strictEqual(actionsWrapper.hasClass(classes.actionsClosed), true);
   });
 
   it('should pass the open prop to its children', () => {
-    const wrapper = shallow(
+    const actionClasses = { buttonClosed: 'is-closed' };
+    const wrapper = mount(
       <SpeedDial {...defaultProps} icon={icon}>
-        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction1" />
-        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction2" />
+        <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction1" />
+        <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction2" />
       </SpeedDial>,
     );
-    const actionsWrapper = wrapper.childAt(1);
-    assert.strictEqual(actionsWrapper.childAt(0).props().open, true);
-    assert.strictEqual(actionsWrapper.childAt(1).props().open, true);
+    const actions = wrapper.find('[role="menuitem"]').filterWhere(wrapsIntrinsicElement);
+    assert.strictEqual(actions.some(`.is-closed`), false);
   });
 
   describe('prop: onClick', () => {
     it('should be set as the onClick prop of the Fab', () => {
       const onClick = spy();
-      const wrapper = shallow(
+      const wrapper = mount(
         <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
-          <div />
+          <FakeAction />
         </SpeedDial>,
       );
       const buttonWrapper = wrapper.find(Fab);
@@ -141,9 +160,9 @@ describe('<SpeedDial />', () => {
       it('should be set as the onTouchEnd prop of the button if touch device', () => {
         const onClick = spy();
 
-        const wrapper = shallow(
+        const wrapper = mount(
           <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
-            <div />
+            <FakeAction />
           </SpeedDial>,
         );
         const buttonWrapper = wrapper.find(Fab);
@@ -159,31 +178,34 @@ describe('<SpeedDial />', () => {
   describe('prop: onKeyDown', () => {
     it('should be called when a key is pressed', () => {
       const handleKeyDown = spy();
-      const wrapper = shallow(
+      const wrapper = mount(
         <SpeedDial {...defaultProps} icon={icon} onKeyDown={handleKeyDown}>
-          <div />
+          <FakeAction />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.childAt(0).childAt(0);
-      const event = {};
-      buttonWrapper.simulate('keyDown', event);
+      const buttonWrapper = wrapper.find('[aria-expanded]').first();
+      const eventMock = 'something-to-match';
+      buttonWrapper.simulate('keyDown', { eventMock });
       assert.strictEqual(handleKeyDown.callCount, 1);
-      assert.strictEqual(handleKeyDown.args[0][0], event);
+      assert.strictEqual(handleKeyDown.calledWithMatch({ eventMock }), true);
     });
   });
 
   describe('prop: direction', () => {
     const testDirection = direction => {
       const className = `direction${direction}`;
-      const wrapper = shallow(
+      const wrapper = mount(
         <SpeedDial {...defaultProps} direction={direction.toLowerCase()} icon={icon}>
-          <SpeedDialAction icon={icon} />
-          <SpeedDialAction icon={icon} />
+          <SpeedDialAction icon={icon} tooltipTitle="action1" />
+          <SpeedDialAction icon={icon} tooltipTitle="action2" />
         </SpeedDial>,
       );
-      const actionsWrapper = wrapper.childAt(1);
-      assert.strictEqual(wrapper.hasClass(classes[className]), true);
-      assert.strictEqual(actionsWrapper.hasClass(classes[className]), true);
+
+      const root = wrapper.find(`.${classes.root}`).first();
+      const actionContainer = findActionsWrapper(wrapper);
+
+      assert.strictEqual(root.hasClass(classes[className]), true);
+      assert.strictEqual(actionContainer.hasClass(classes[className]), true);
     };
 
     it('should place actions in correct position', () => {
@@ -200,7 +222,7 @@ describe('<SpeedDial />', () => {
     let onkeydown;
     let wrapper;
 
-    const mountSpeedDial = (direction = 'up', actionCount = 6) => {
+    const mountSpeedDial = (direction = 'up', actionCount = 4) => {
       actionRefs = [];
       dialButtonRef = undefined;
       onkeydown = spy();
@@ -209,7 +231,7 @@ describe('<SpeedDial />', () => {
         <SpeedDial
           {...defaultProps}
           ButtonProps={{
-            buttonRef: ref => {
+            ref: ref => {
               dialButtonRef = ref;
             },
           }}
@@ -217,20 +239,18 @@ describe('<SpeedDial />', () => {
           icon={icon}
           onKeyDown={onkeydown}
         >
-          {Array.from({ length: actionCount }, (_, i) => {
-            return (
-              <SpeedDialAction
-                key={i}
-                ButtonProps={{
-                  buttonRef: ref => {
-                    actionRefs[i] = ref;
-                  },
-                }}
-                icon={icon}
-                tooltipTitle={`action${i}`}
-              />
-            );
-          })}
+          {Array.from({ length: actionCount }, (_, i) => (
+            <SpeedDialAction
+              key={i}
+              ButtonProps={{
+                ref: ref => {
+                  actionRefs[i] = ref;
+                },
+              }}
+              icon={icon}
+              tooltipTitle={`action${i}`}
+            />
+          ))}
         </SpeedDial>,
       );
     };
@@ -238,7 +258,7 @@ describe('<SpeedDial />', () => {
     /**
      * @returns the button of SpeedDial
      */
-    const getDialButton = () => wrapper.find('Fab').first();
+    const getDialButton = () => wrapper.find('[aria-controls]').first();
     /**
      *
      * @param actionIndex
@@ -271,13 +291,9 @@ describe('<SpeedDial />', () => {
       dialButtonRef.focus();
     };
 
-    after(() => {
-      wrapper.unmount();
-    });
-
     it('displays the actions on focus gain', () => {
       resetDialToOpen();
-      assert.strictEqual(wrapper.props().open, true);
+      assert.strictEqual(wrapper.find(SpeedDial).props().open, true);
     });
 
     describe('first item selection', () => {
@@ -319,7 +335,10 @@ describe('<SpeedDial />', () => {
       });
     });
 
-    describe('actions navigation', () => {
+    // eslint-disable-next-line func-names
+    describe('actions navigation', function() {
+      this.timeout(5000); // This tests are really slow.
+
       /**
        * tests a combination of arrow keys on a focused SpeedDial
        */
@@ -331,8 +350,9 @@ describe('<SpeedDial />', () => {
         resetDialToOpen(dialDirection);
 
         getDialButton().simulate('keydown', { keyCode: keycodes[firstKey] });
-        assert.isTrue(
+        assert.strictEqual(
           isActionFocused(firstFocusedAction),
+          true,
           `focused action initial ${firstKey} should be ${firstFocusedAction}`,
         );
 
@@ -344,8 +364,9 @@ describe('<SpeedDial />', () => {
           getActionButton(previousFocusedAction).simulate('keydown', {
             keyCode: keycodes[arrowKey],
           });
-          assert.isTrue(
+          assert.strictEqual(
             isActionFocused(expectedFocusedAction),
+            true,
             `focused action after ${combinationUntilNot.join(
               ',',
             )} should be ${expectedFocusedAction}`,

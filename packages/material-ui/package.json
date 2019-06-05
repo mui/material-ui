@@ -1,8 +1,8 @@
 {
   "name": "@material-ui/core",
+  "version": "4.0.2",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.8.1",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
@@ -12,7 +12,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/material-ui"
   },
   "license": "MIT",
   "bugs": {
@@ -20,48 +21,40 @@
   },
   "homepage": "https://material-ui.com/",
   "scripts": {
-    "prebuild": "rimraf build",
-    "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore *.test.js",
-    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore *.test.js",
+    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:umd && yarn build:copy-files",
+    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
+    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --config-file ../../babel.config.js ./src --out-dir ./build/esm --ignore \"**/*.test.js\"",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore \"**/*.test.js\"",
     "build:umd": "cross-env BABEL_ENV=production-umd rollup -c scripts/rollup.config.js",
-    "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
-    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd && yarn build:copy-files",
-    "release": "yarn build && npm publish build",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui/**/*.test.js'"
+    "build:copy-files": "node ../../scripts/copy-files.js",
+    "prebuild": "rimraf build",
+    "release": "yarn build && npm publish build --tag latest",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui/**/*.test.js' --exclude '**/node_modules/**'",
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.2.0",
-    "@material-ui/system": "^3.0.0-alpha.0",
-    "@material-ui/utils": "^3.0.0-alpha.2",
-    "@types/jss": "^9.5.6",
-    "@types/react-transition-group": "^2.0.8",
-    "brcast": "^3.0.1",
-    "classnames": "^2.2.5",
+    "@babel/runtime": "^7.2.0",
+    "@material-ui/styles": "^4.0.2",
+    "@material-ui/system": "^4.0.2",
+    "@material-ui/types": "^4.0.1",
+    "@material-ui/utils": "^4.0.1",
+    "@types/react-transition-group": "^2.0.16",
+    "clsx": "^1.0.2",
+    "convert-css-length": "^2.0.0",
     "csstype": "^2.5.2",
     "debounce": "^1.1.0",
     "deepmerge": "^3.0.0",
-    "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^3.2.1",
-    "is-plain-object": "^2.0.4",
-    "jss": "^9.8.7",
-    "jss-camel-case": "^6.0.0",
-    "jss-default-unit": "^8.0.2",
-    "jss-global": "^3.0.0",
-    "jss-nested": "^6.0.1",
-    "jss-props-sort": "^6.0.0",
-    "jss-vendor-prefixer": "^7.0.0",
-    "keycode": "^2.1.9",
-    "normalize-scroll-left": "^0.1.2",
+    "is-plain-object": "^3.0.0",
+    "normalize-scroll-left": "^0.2.0",
     "popper.js": "^1.14.1",
-    "prop-types": "^15.6.0",
-    "react-event-listener": "^0.6.2",
-    "react-transition-group": "^2.2.1",
-    "recompose": "0.28.0 - 0.30.0",
+    "prop-types": "^15.7.2",
+    "react-event-listener": "^0.6.6",
+    "react-transition-group": "^4.0.0",
     "warning": "^4.0.1"
   },
   "sideEffects": false,
@@ -69,6 +62,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   }
 }

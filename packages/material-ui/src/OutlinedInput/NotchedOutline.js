@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '../styles';
 import { capitalize } from '../utils/helpers';
 
@@ -43,7 +43,7 @@ export const styles = theme => {
 /**
  * @ignore - internal component.
  */
-function NotchedOutline(props) {
+const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
   const {
     children,
     classes,
@@ -65,7 +65,8 @@ function NotchedOutline(props) {
         [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
         ...style,
       }}
-      className={classNames(classes.root, className)}
+      className={clsx(classes.root, className)}
+      ref={ref}
       {...other}
     >
       <legend
@@ -83,12 +84,16 @@ function NotchedOutline(props) {
       </legend>
     </fieldset>
   );
-}
+});
 
 NotchedOutline.propTypes = {
   /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**
@@ -96,7 +101,7 @@ NotchedOutline.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The width of the legend.
+   * The width of the label.
    */
   labelWidth: PropTypes.number.isRequired,
   /**
@@ -113,6 +118,6 @@ NotchedOutline.propTypes = {
   theme: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateNotchedOutline', withTheme: true })(
+export default withStyles(styles, { name: 'PrivateNotchedOutline', withTheme: true })(
   NotchedOutline,
 );

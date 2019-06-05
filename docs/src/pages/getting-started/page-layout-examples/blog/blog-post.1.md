@@ -1,6 +1,6 @@
 ## Sample blog post
 
-#### April 1, 2020 by Olivier
+#### April 1, 2020 by [Olivier](/)
 
 This blog post shows a few different types of content that are supported and styled with
 Material styles. Basic typography, images, and code are all supported.
@@ -25,13 +25,6 @@ Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 ### Sub-heading
 
 Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-
-    Example code block
-    Aenean lacinia bibendum nulla sed consectetur.
-    Etiam porta sem malesuada magna mollis euismod.
-    Fusce dapibus, tellus ac cursus commodo.
-    Tortor mauris condimentum nibh, ut fermentum massa.
 
 ### Sub-heading
 

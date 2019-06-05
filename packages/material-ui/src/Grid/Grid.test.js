@@ -1,22 +1,31 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Grid from './Grid';
 
 describe('<Grid />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Grid />);
   });
 
-  it('should render', () => {
-    const wrapper = shallow(<Grid className="woofGrid" />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass('woofGrid'), true);
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<Grid />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'span',
+  }));
 
   describe('prop: container', () => {
     it('should apply the container class', () => {
@@ -29,13 +38,6 @@ describe('<Grid />', () => {
     it('should apply the item class', () => {
       const wrapper = shallow(<Grid item />);
       assert.strictEqual(wrapper.hasClass(classes.item), true);
-    });
-  });
-
-  describe('prop: component', () => {
-    it('should change the component', () => {
-      const wrapper = shallow(<Grid component="span" />);
-      assert.strictEqual(wrapper.name(), 'span');
     });
   });
 
@@ -58,8 +60,8 @@ describe('<Grid />', () => {
 
   describe('prop: spacing', () => {
     it('should have a spacing', () => {
-      const wrapper = shallow(<Grid container spacing={8} />);
-      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-8']), true);
+      const wrapper = shallow(<Grid container spacing={1} />);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-1']), true);
     });
   });
 

@@ -2,143 +2,178 @@ import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
-import Tidelift from 'docs/src/modules/components/Tidelift';
+import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
+import HomeUsers from 'docs/src/modules/components/HomeUsers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
+import loadScript from 'docs/src/modules/utils/loadScript';
+import compose from 'docs/src/modules/utils/compose';
+
+let dependenciesLoaded = false;
+
+function loadDependencies() {
+  if (dependenciesLoaded) {
+    return;
+  }
+
+  dependenciesLoaded = true;
+
+  loadScript('https://buttons.github.io/buttons.js', document.querySelector('head'));
+  loadScript('https://platform.twitter.com/widgets.js', document.querySelector('head'));
+}
 
 const styles = theme => ({
   root: {
     flex: '1 0 100%',
   },
+  drawer: {
+    width: 0,
+  },
   hero: {
-    minHeight: '80vh',
-    flex: '0 0 auto',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingTop: 64,
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
   },
-  text: {
+  content: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    textAlign: 'center',
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(8),
+    [theme.breakpoints.up('md')]: {
+      paddingTop: theme.spacing(20),
+      paddingBottom: theme.spacing(20),
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      textAlign: 'left',
+    },
   },
   title: {
+    marginLeft: -12,
+    whiteSpace: 'nowrap',
     letterSpacing: '.7rem',
     textIndent: '.7rem',
     fontWeight: theme.typography.fontWeightLight,
     [theme.breakpoints.only('xs')]: {
       fontSize: 28,
     },
-    whiteSpace: 'nowrap',
   },
-  headline: {
-    paddingLeft: theme.spacing.unit * 4,
-    paddingRight: theme.spacing.unit * 4,
-    marginTop: theme.spacing.unit,
-    maxWidth: 500,
-    textAlign: 'center',
-  },
-  content: {
-    paddingBottom: theme.spacing.unit * 8,
-    paddingTop: theme.spacing.unit * 8,
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 12,
+  logo: {
+    flexShrink: 0,
+    width: 120,
+    height: 120,
+    marginBottom: theme.spacing(2),
+    [theme.breakpoints.up('md')]: {
+      marginRight: theme.spacing(8),
+      width: 220,
+      height: 200,
     },
   },
   button: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(4),
   },
-  logo: {
-    margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 4}px`,
-    width: '100%',
-    height: '35vw',
-    maxHeight: 200,
+  social: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(2, 0),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 21,
+    boxSizing: 'content-box',
+    '& span': {
+      display: 'flex',
+      marginRight: theme.spacing(1),
+    },
+    '& a': {
+      color: theme.palette.background.paper,
+    },
   },
-  steps: {
-    maxWidth: theme.spacing.unit * 130,
-    margin: 'auto',
-  },
-  step: {
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
-  },
-  stepIcon: {
-    marginBottom: theme.spacing.unit,
-  },
-  markdownElement: {},
+});
+
+const GettingStartedLink = React.forwardRef((props, ref) => {
+  return <Link href="/getting-started/installation" naked prefetch ref={ref} {...props} />;
 });
 
 class HomePage extends React.Component {
   componentDidMount() {
-    if (window.location.hash !== '') {
+    if (window.location.hash !== '' && window.location.hash !== '#main=content') {
       window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
     }
+
+    loadDependencies();
   }
 
   render() {
-    const classes = this.props.classes;
+    const { classes, t } = this.props;
 
     return (
-      <AppFrame>
+      <AppFrame classes={{ drawer: classes.drawer }}>
         <div className={classes.root}>
           <Head />
-          <Tidelift />
-          <div className={classes.hero}>
-            <div className={classes.content}>
-              <img
-                src="/static/images/material-ui-logo.svg"
-                alt="Material-UI Logo"
-                className={classes.logo}
-              />
-              <div className={classes.text}>
-                <Typography
-                  variant="h3"
-                  align="center"
-                  component="h1"
-                  color="inherit"
-                  gutterBottom
-                  className={classes.title}
-                >
-                  {'MATERIAL-UI'}
-                </Typography>
-                <Typography
-                  variant="h5"
-                  component="h2"
-                  color="inherit"
-                  gutterBottom
-                  className={classes.headline}
-                >
-                  {"React components that implement Google's Material Design."}
-                </Typography>
-                <Button
-                  component={buttonProps => (
-                    <Link
-                      variant="button"
-                      prefetch
-                      href="/getting-started/installation"
-                      {...buttonProps}
-                    />
-                  )}
-                  className={classes.button}
-                  variant="outlined"
-                  color="primary"
-                >
-                  {'Get Started'}
-                </Button>
-              </div>
+          <main id="main-content" tabIndex="-1">
+            <div className={classes.hero}>
+              <Container maxWidth="md" className={classes.content}>
+                <img
+                  src="/static/images/material-ui-logo.svg"
+                  alt="Material-UI Logo"
+                  className={classes.logo}
+                />
+                <div>
+                  <Typography
+                    variant="h3"
+                    component="h1"
+                    color="inherit"
+                    gutterBottom
+                    className={classes.title}
+                  >
+                    {'MATERIAL-UI'}
+                  </Typography>
+                  <Typography variant="h5" component="h2" color="inherit">
+                    {t('strapline')}
+                  </Typography>
+                  <Button
+                    component={GettingStartedLink}
+                    className={classes.button}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    {t('getStarted')}
+                  </Button>
+                </div>
+              </Container>
             </div>
-          </div>
-          <HomeSteps />
-          <HomeBackers />
+            <div className={classes.social}>
+              <a
+                className="github-button"
+                href="https://github.com/mui-org/material-ui"
+                data-icon="octicon-star"
+                data-show-count="true"
+              >
+                Star
+              </a>
+              <a
+                className="twitter-follow-button"
+                href="https://twitter.com/@materialui"
+                data-show-screen-name="false"
+              >
+                Follow
+              </a>
+            </div>
+            <HomeQuickWord />
+            <HomeSteps />
+            <HomeBackers />
+            <HomeUsers />
+          </main>
           <HomeFooter />
         </div>
         <script
@@ -147,7 +182,7 @@ class HomePage extends React.Component {
           dangerouslySetInnerHTML={{
             __html: `
 {
-  "@context": "http://schema.org",
+  "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Material-UI",
   "url": "https://material-ui.com/",
@@ -168,9 +203,12 @@ class HomePage extends React.Component {
 
 HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-const Page = withStyles(styles)(HomePage);
-
-// Hack for https://github.com/zeit/next.js/pull/5857
-export default () => <Page />;
+export default compose(
+  connect(state => ({
+    t: state.options.t,
+  })),
+  withStyles(styles),
+)(HomePage);

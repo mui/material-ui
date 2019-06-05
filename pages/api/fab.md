@@ -18,18 +18,20 @@ import Fab from '@material-ui/core/Fab';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the button. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the button. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br></span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
-| <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'button'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'button'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
-| <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |   | If `true`, the ripple effect will be disabled. |
-| <span class="prop-name">href</span> | <span class="prop-type">string</span> |   | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
+| <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
+| <span class="prop-name">href</span> | <span class="prop-type">string</span> |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br></span> | <span class="prop-default">'large'</span> | The size of the button. `small` is equivalent to the dense button styling. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'round'&nbsp;&#124;<br>&nbsp;'extended'<br></span> | <span class="prop-default">'round'</span> | The variant to use. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
+The `ref` is forwarded to the root element.
+
+Any other properties supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS
 
@@ -50,7 +52,7 @@ This property accepts the following keys:
 | <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"``.
 | <span class="prop-name">sizeMedium</span> | Styles applied to the root element if `size="medium"``.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Fab/Fab.js)
 for more detail.
 
@@ -62,7 +64,11 @@ you need to use the following style sheet name: `MuiFab`.
 The properties of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Buttons](/demos/buttons/)
+- [Buttons](/components/buttons/)
 

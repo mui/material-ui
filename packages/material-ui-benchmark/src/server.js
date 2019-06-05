@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-import './bootstrap';
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -12,12 +11,11 @@ import {
   ThemeProvider,
   createGenerateClassName,
 } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import { green, red } from '@material-ui/core/colors';
 import Pricing from 'docs/src/pages/getting-started/page-layout-examples/pricing/Pricing';
 import { spacing, palette } from '@material-ui/system';
 import Avatar from '@material-ui/core/Avatar';
-import { styleFunction, unstable_Box as Box } from '@material-ui/core/Box/Box';
+import Box, { styleFunction } from '@material-ui/core/Box';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';
 
@@ -30,10 +28,10 @@ const StyledFunction = materialStyled('div')(() => ({
 
 function renderFullPage(html, css) {
   return `
-    <!doctype html>
+    <!DOCTYPE html>
     <html>
       <head>
-        <title>Material-UI</title>
+        <title>My page</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
@@ -47,10 +45,6 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
     accent: red,
-    type: 'light',
-  },
-  typography: {
-    useNextVariants: true,
   },
 });
 

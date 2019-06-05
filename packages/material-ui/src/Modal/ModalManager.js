@@ -1,5 +1,4 @@
-import css from 'dom-helpers/style';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import getScrollbarSize from '../utils/getScrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import isOverflowing from './isOverflowing';
 import { ariaHidden, ariaHiddenSiblings } from './manageAriaHidden';
@@ -17,16 +16,18 @@ function findIndexOf(data, callback) {
 }
 
 function getPaddingRight(node) {
-  return parseInt(css(node, 'paddingRight') || 0, 10);
+  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
 }
 
 function setContainerStyle(data) {
-  const style = { overflow: 'hidden' };
-
   // We are only interested in the actual `style` here because we will override it.
   data.style = {
     overflow: data.container.style.overflow,
     paddingRight: data.container.style.paddingRight,
+  };
+
+  const style = {
+    overflow: 'hidden',
   };
 
   if (data.overflowing) {

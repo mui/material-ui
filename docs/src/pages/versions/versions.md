@@ -8,12 +8,12 @@ The most recent version is recommended in production.
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Latest version
+## Latest versions
 
 Here you can find the latest unreleased documentation and code.
 You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
 
-{{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
 
 ## Versioning strategy
 
@@ -37,7 +37,7 @@ We work toward a regular schedule of releases, so that you can plan and coordina
 
 In general, you can expect the following release cycle:
 
-- A **major** release every 6 months.
+- A **major** release every 6-12 months.
 - 1-3 **minor** releases for each major release.
 - A **patch** release every week (anytime for urgent bugfix).
 
@@ -47,8 +47,9 @@ In general, you can expect the following release cycle:
 
 | Date | Version |
 |:-----|:--------|
-| January 2019 | `@material-ui/core` v4.0.0 |
-| July 2019 | `@material-ui/core` v5.0.0 |
+| May 2018  ✅ | `@material-ui/core` v1.0.0 |
+| May 2019  ✅ | `@material-ui/core` v4.0.0 |
+| ? ⏳ | `@material-ui/core` v5.0.0 |
 
 You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 

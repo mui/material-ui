@@ -1,26 +1,35 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createRender, getClasses } from '../test-utils';
+import { createMount, createShallow, createRender, getClasses } from '../test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
 describe('<Fab />', () => {
+  let mount;
   let shallow;
   let render;
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     render = createRender();
     classes = getClasses(<Fab>Fab</Fab>);
   });
 
-  it('should render a <ButtonBase> element', () => {
-    const wrapper = shallow(<Fab>Fab</Fab>);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-    assert.strictEqual(wrapper.props().type, 'button');
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<Fab>Conformance?</Fab>, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    skip: ['componentProp'],
+  }));
 
   it('should render with the root class but no others', () => {
     const wrapper = shallow(<Fab>Fab</Fab>);
@@ -35,12 +44,6 @@ describe('<Fab />', () => {
     assert.strictEqual(wrapper.hasClass(classes.fullWidth), false);
     assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
     assert.strictEqual(wrapper.hasClass(classes.sizeMedium), false);
-  });
-
-  it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<Fab className="test-class-name">Fab</Fab>);
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render an extended floating action button', () => {

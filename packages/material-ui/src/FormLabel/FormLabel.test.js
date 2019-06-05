@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import FormLabel from './FormLabel';
 import FormControlContext from '../FormControl/FormControlContext';
 
@@ -9,29 +11,37 @@ describe('<FormLabel />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<FormLabel />);
   });
 
-  it('should render a <label />', () => {
-    const wrapper = findOutermostIntrinsic(mount(<FormLabel className="woofFormLabel" />));
-    assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woofFormLabel'), true);
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<FormLabel />, () => ({
+    classes,
+    inheritComponent: 'label',
+    mount,
+    refInstanceof: window.HTMLLabelElement,
+    testComponentPropWith: 'div',
+  }));
 
   describe('prop: required', () => {
     it('should show an asterisk if required is set', () => {
-      const wrapper = mount(<FormLabel required />);
-      const text = wrapper.text();
+      const labelRef = React.createRef();
+      const wrapper = mount(<FormLabel ref={labelRef} required />);
+      const text = labelRef.current.textContent;
       assert.strictEqual(text.slice(-1), '*');
       assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
     });
 
     it('should not show an asterisk by default', () => {
-      const wrapper = mount(<FormLabel />);
+      const labelRef = React.createRef();
+      const wrapper = mount(<FormLabel ref={labelRef} />);
+
       assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 0);
-      assert.strictEqual(wrapper.text().includes('*'), false);
+      assert.strictEqual(labelRef.current.textContent.indexOf('*'), -1);
     });
   });
 
@@ -62,6 +72,9 @@ describe('<FormLabel />', () => {
           </FormControlContext.Provider>
         );
       }
+      Provider.propTypes = {
+        context: PropTypes.object,
+      };
 
       wrapper = mount(<Provider />);
     });

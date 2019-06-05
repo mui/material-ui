@@ -2,6 +2,8 @@
 
 import 'isomorphic-fetch';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import sleep from 'modules/waterfall/sleep';
@@ -17,7 +19,7 @@ let messages = null;
 async function getMessages() {
   try {
     if (!messages) {
-      await sleep(1e3); // Soften the pressure on the main thread.
+      await sleep(1500); // Soften the pressure on the main thread.
       const result = await fetch(
         'https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json',
       );
@@ -56,7 +58,21 @@ class Notifications extends React.Component {
 
   handleMessage = () => {
     const lastSeen = getLastSeenNotification();
-    const unseenMessages = messages.filter(message => message.id > lastSeen);
+    const unseenMessages = messages.filter(message => {
+      if (message.id <= lastSeen) {
+        return false;
+      }
+
+      if (
+        message.userLanguage &&
+        message.userLanguage !== this.props.userLanguage &&
+        message.userLanguage !== navigator.language.substring(0, 2)
+      ) {
+        return false;
+      }
+
+      return true;
+    });
     if (unseenMessages.length > 0 && this.mounted) {
       this.setState({ message: unseenMessages[0], open: true });
     }
@@ -92,4 +108,10 @@ class Notifications extends React.Component {
   }
 }
 
-export default Notifications;
+Notifications.propTypes = {
+  userLanguage: PropTypes.string.isRequired,
+};
+
+export default connect(state => ({
+  userLanguage: state.options.userLanguage,
+}))(Notifications);

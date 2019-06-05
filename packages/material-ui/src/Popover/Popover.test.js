@@ -1,24 +1,64 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import css from 'dom-helpers/style';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import PropTypes from 'prop-types';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
+import Modal from '../Modal';
 import Paper from '../Paper';
-import Popover from './Popover';
+import Popover, { getOffsetLeft, getOffsetTop } from './Popover';
+import { useForkRef } from '../utils/reactHelpers';
+
+const mockedAnchorEl = () => {
+  const div = document.createElement('div');
+
+  stub(div, 'getBoundingClientRect').callsFake(() => ({
+    width: 100,
+    height: 58,
+    left: 160,
+    top: 160,
+    bottom: 218,
+    right: 260,
+  }));
+  return div;
+};
+
+const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
+  const handleMocks = React.useCallback(paperInstance => {
+    if (paperInstance) {
+      // For jsdom
+      Object.defineProperty(paperInstance, 'offsetWidth', { value: 0 });
+      Object.defineProperty(paperInstance, 'offsetHeight', { value: 0 });
+    }
+  }, []);
+  const handleRef = useForkRef(ref, handleMocks);
+
+  return (
+    <div
+      tabIndex={-1}
+      ref={handleRef}
+      style={{
+        width: 0,
+        height: 0,
+      }}
+      {...props}
+    />
+  );
+});
 
 describe('<Popover />', () => {
-  let shallow;
   let mount;
   let classes;
   const defaultProps = {
     open: false,
+    anchorEl: () => document.createElement('svg'),
   };
-  const PopoverNaked = unwrap(Popover);
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: uses Grow
+    mount = createMount({ strict: false });
     classes = getClasses(
       <Popover {...defaultProps}>
         <div />
@@ -30,143 +70,139 @@ describe('<Popover />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(<Popover {...defaultProps} open />, () => ({
+    classes,
+    inheritComponent: Modal,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
+
   describe('root node', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} data-root-node>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.props().BackdropProps.invisible, true);
-    });
-
-    it('should pass onClose prop to Modal', () => {
-      const fn = () => {};
-      const wrapper = shallow(
-        <Popover {...defaultProps} onClose={fn}>
-          <div />
-        </Popover>,
-      );
-      assert.strictEqual(wrapper.props().onClose, fn, 'should be the onClose function');
+      const root = wrapper.find('ForwardRef(Popover) > [data-root-node]').first();
+      assert.strictEqual(root.type(), Modal);
+      assert.strictEqual(root.props().BackdropProps.invisible, true);
     });
 
     it('should pass open prop to Modal as `open`', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Popover {...defaultProps}>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.props().open, false);
+      assert.strictEqual(wrapper.find(Modal).props().open, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.props().open, true);
+      assert.strictEqual(wrapper.find(Modal).props().open, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.props().open, false);
+      assert.strictEqual(wrapper.find(Modal).props().open, false);
     });
 
     describe('getOffsetTop', () => {
-      let instance;
       let rect;
 
       before(() => {
-        instance = shallow(
-          <Popover {...defaultProps}>
-            <div />
-          </Popover>,
-        ).instance();
         rect = { height: 1 };
       });
 
       it('should return vertical when vertical is a number', () => {
         const vertical = 1;
-        const offsetTop = instance.handleGetOffsetTop('', vertical);
+        const offsetTop = getOffsetTop('', vertical);
         assert.strictEqual(offsetTop, vertical);
       });
 
       it("should return half of rect.height if vertical is 'center'", () => {
         const vertical = 'center';
-        const offsetTop = instance.handleGetOffsetTop(rect, vertical);
+        const offsetTop = getOffsetTop(rect, vertical);
         assert.strictEqual(offsetTop, rect.height / 2);
       });
 
       it("should return rect.height if vertical is 'bottom'", () => {
         const vertical = 'bottom';
-        const offsetTop = instance.handleGetOffsetTop(rect, vertical);
+        const offsetTop = getOffsetTop(rect, vertical);
         assert.strictEqual(offsetTop, rect.height);
       });
 
       it('should return zero if vertical is something else', () => {
         const vertical = undefined;
-        const offsetTop = instance.handleGetOffsetTop(rect, vertical);
+        const offsetTop = getOffsetTop(rect, vertical);
         assert.strictEqual(offsetTop, 0);
       });
     });
 
     describe('getOffsetLeft', () => {
-      let instance;
       let rect;
 
       before(() => {
-        instance = shallow(
-          <Popover {...defaultProps}>
-            <div />
-          </Popover>,
-        ).instance();
         rect = { width: 1 };
       });
 
       it('should return horizontal when horizontal is a number', () => {
         const horizontal = 1;
-        const offsetLeft = instance.handleGetOffsetLeft('', horizontal);
+        const offsetLeft = getOffsetLeft('', horizontal);
         assert.strictEqual(offsetLeft, horizontal);
       });
 
       it("should return half of rect.width if horizontal is 'center'", () => {
         const horizontal = 'center';
-        const offsetLeft = instance.handleGetOffsetLeft(rect, horizontal);
+        const offsetLeft = getOffsetLeft(rect, horizontal);
         assert.strictEqual(offsetLeft, rect.width / 2);
       });
 
       it("should return rect.width if horizontal is 'right'", () => {
         const horizontal = 'right';
-        const offsetLeft = instance.handleGetOffsetLeft(rect, horizontal);
+        const offsetLeft = getOffsetLeft(rect, horizontal);
         assert.strictEqual(offsetLeft, rect.width);
       });
 
       it('should return zero if horizontal is something else', () => {
         const horizontal = undefined;
-        const offsetLeft = instance.handleGetOffsetLeft(rect, horizontal);
+        const offsetLeft = getOffsetLeft(rect, horizontal);
         assert.strictEqual(offsetLeft, 0);
       });
     });
   });
 
   describe('transition', () => {
-    it('should have Transition as the only child of Modal', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+    let clock;
+
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('uses Grow as the Transition of the modal', () => {
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.children().length, 1, 'should have one child');
-      assert.strictEqual(wrapper.childAt(0).type(), Grow);
-      assert.strictEqual(
-        wrapper.childAt(0).props().appear,
-        true,
-        'should transition on first appearance',
-      );
+      const modal = wrapper.find('[data-mui-test="Modal"]');
+      const transition = modal.find(Grow);
+
+      assert.strictEqual(transition.exists(), true);
+      assert.strictEqual(transition.props().appear, true, 'should transition on first appearance');
     });
 
     it('should set the transition in/out based on the open prop', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} keepMounted>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.childAt(0).props().in, false);
+      assert.strictEqual(wrapper.find(Grow).props().in, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.childAt(0).props().in, true);
+      assert.strictEqual(wrapper.find(Grow).props().in, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.childAt(0).props().in, false);
+      assert.strictEqual(wrapper.find(Grow).props().in, false);
     });
 
     it('should fire Popover transition event callbacks', () => {
@@ -177,15 +213,18 @@ describe('<Popover />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(
-        <Popover {...defaultProps} {...handlers}>
+      // transitions towards entered
+      const wrapper = mount(
+        <Popover {...defaultProps} open transitionDuration={0} {...handlers}>
           <div />
         </Popover>,
       );
+      clock.tick(0);
+      // transition towards exited
+      wrapper.setProps({ open: false });
+      clock.tick(0);
 
       events.forEach(eventHook => {
-        const event = eventHook.charAt(2).toLowerCase() + eventHook.slice(3);
-        wrapper.find(Grow).simulate(event, { style: {} });
         assert.strictEqual(
           handlers[eventHook].callCount,
           1,
@@ -196,94 +235,75 @@ describe('<Popover />', () => {
   });
 
   describe('paper', () => {
-    it('should have Paper as the only child of Transition', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+    it('should have Paper as a child of Transition', () => {
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.childAt(0).children().length, 1, 'should have one child');
+
       assert.strictEqual(
         wrapper
-          .childAt(0)
-          .childAt(0)
-          .type(),
-        Paper,
+          .find(Grow)
+          .find(Paper)
+          .exists(),
+        true,
       );
     });
 
     it('should have the paper class and user classes', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps} className="test-class">
+      const wrapper = mount(
+        <Popover {...defaultProps} open className="test-class">
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.hasClass('test-class'), true);
-      const paper = wrapper.childAt(0).childAt(0);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('test-class'), true);
+      const paper = wrapper.find(Paper);
       assert.strictEqual(paper.hasClass(classes.paper), true);
     });
 
     it('should have a elevation prop passed down', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
+
       assert.strictEqual(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .props().elevation,
+        wrapper.find(Paper).props().elevation,
         8,
         'should be 8 elevation by default',
       );
+
       wrapper.setProps({ elevation: 16 });
-      assert.strictEqual(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .props().elevation,
-        16,
-        'should be 16 elevation',
-      );
+      assert.strictEqual(wrapper.find(Paper).props().elevation, 16, 'should be 16 elevation');
     });
   });
 
   describe('transition lifecycle', () => {
-    const element = {
-      style: {
-        offsetTop: 'auto',
-        left: 'auto',
-        opacity: 1,
-        transform: undefined,
-        transformOrigin: undefined,
-        transition: undefined,
-      },
-    };
-
     describe('handleEntering(element)', () => {
-      let wrapper;
-      let handleEntering;
-
-      before(() => {
-        handleEntering = spy();
-        wrapper = shallow(
+      it('should set the inline styles for the enter phase', () => {
+        const handleEntering = spy();
+        const wrapper = mount(
           <Popover {...defaultProps} onEntering={handleEntering}>
             <div />
           </Popover>,
         );
-        wrapper.instance().handleEntering(element);
-      });
 
-      it('should set the inline styles for the enter phase', () => {
+        wrapper.setProps({
+          open: true,
+        });
+
+        const element = handleEntering.args[0][0];
+
         assert.strictEqual(
           element.style.top === '16px' && element.style.left === '16px',
           true,
           'should offset the element from the top left of the screen by 16px',
         );
-        assert.strictEqual(
+        assert.match(
           element.style.transformOrigin,
-          wrapper.instance().getPositioningStyle(element).transformOrigin,
+          /-16px -16px( 0px)?/,
           'should have a transformOrigin',
         );
       });
@@ -293,7 +313,7 @@ describe('<Popover />', () => {
   describe('prop: anchorEl', () => {
     it('should accept a function', () => {
       const anchorElSpy = spy();
-      shallow(
+      mount(
         <Popover {...defaultProps} anchorEl={anchorElSpy}>
           <div />
         </Popover>,
@@ -310,10 +330,16 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = (anchorOrigin, renderShallow) => {
+      openPopover = anchorOrigin => {
         if (!anchorEl) {
           anchorEl = window.document.createElement('div');
         }
+
+        const css = (element, styles) => {
+          Object.keys(styles).forEach(key => {
+            element.style[key] = styles[key];
+          });
+        };
 
         css(anchorEl, {
           width: '50px',
@@ -339,12 +365,8 @@ describe('<Popover />', () => {
               <div />
             </Popover>
           );
-          wrapper = renderShallow ? shallow(component) : mount(component);
+          wrapper = mount(component);
           wrapper.setProps({ open: true });
-
-          if (renderShallow) {
-            resolve();
-          }
         });
       };
 
@@ -365,103 +387,110 @@ describe('<Popover />', () => {
     });
 
     after(() => {
-      window.document.body.removeChild(anchorEl);
+      if (anchorEl) {
+        window.document.body.removeChild(anchorEl);
+      }
     });
 
-    it('should be positioned over the top left of the anchor', () => {
-      return openPopover({ vertical: 'top', horizontal: 'left' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
-        const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the top left of the anchor', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'left' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
+      const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the center left of the anchor', () => {
-      return openPopover({ vertical: 'center', horizontal: 'left' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const anchorTop = anchorRect.top + anchorRect.height / 2;
-        const expectedTop = anchorTop <= 16 ? 16 : anchorTop;
-        const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the center left of the anchor', async () => {
+      await openPopover({ vertical: 'center', horizontal: 'left' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const anchorTop = anchorRect.top + anchorRect.height / 2;
+      const expectedTop = anchorTop <= 16 ? 16 : anchorTop;
+      const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the bottom left of the anchor', () => {
-      return openPopover({ vertical: 'bottom', horizontal: 'left' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
-        const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the bottom left of the anchor', async () => {
+      await openPopover({ vertical: 'bottom', horizontal: 'left' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
+      const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the center center of the anchor', () => {
-      return openPopover({ vertical: 'center', horizontal: 'center' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const anchorTop = anchorRect.top + anchorRect.height / 2;
-        const anchorLeft = anchorRect.left + anchorRect.height / 2;
-        const expectedTop = anchorTop <= 16 ? 16 : anchorTop;
-        const expectedLeft = anchorLeft <= 16 ? 16 : anchorLeft;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the center center of the anchor', async () => {
+      await openPopover({ vertical: 'center', horizontal: 'center' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const anchorTop = anchorRect.top + anchorRect.height / 2;
+      const anchorLeft = anchorRect.left + anchorRect.height / 2;
+      const expectedTop = anchorTop <= 16 ? 16 : anchorTop;
+      const expectedLeft = anchorLeft <= 16 ? 16 : anchorLeft;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the top right of the anchor', () => {
-      return openPopover({ vertical: 'top', horizontal: 'right' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
-        const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the top right of the anchor', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'right' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
+      const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the bottom right of the anchor', () => {
-      return openPopover({ vertical: 'bottom', horizontal: 'right' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
-        const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the bottom right of the anchor', async () => {
+      await openPopover({ vertical: 'bottom', horizontal: 'right' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
+      const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
+      expectPopover(expectedTop, expectedLeft);
     });
 
     it('should pass through container prop if container and anchorEl props are provided', () => {
-      const container = {};
-      const shallowWrapper = shallow(<Popover container={container} open />);
+      const container = document.createElement('div');
+      const wrapper2 = mount(<Popover anchorEl={anchorEl} container={container} open />);
+
+      assert.strictEqual(wrapper2.find(Modal).props().container, container);
+    });
+
+    it("should use anchorEl's parent body as container if container not provided", async () => {
+      await openPopover(undefined);
       assert.strictEqual(
-        shallowWrapper
-          .dive()
-          .find('Modal')
-          .props().container,
-        container,
-        'should pass through container prop if both container and anchorEl props are provided',
+        wrapper.find(Modal).props().container,
+        window.document.body,
+        "should use anchorEl's parent body as Modal container",
+      );
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn if anchorEl is not valid', () => {
+      const otherWrapper = mount(<Popover open />);
+      assert.strictEqual(otherWrapper.find(Modal).props().container, undefined);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(consoleErrorMock.args()[0][0], 'It should be an Element instance');
+    });
+
+    it('warns if a component for the Paper is used that cant hold a ref', () => {
+      mount(<Popover {...defaultProps} PaperProps={{ component: () => <div />, elevation: 4 }} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `ForwardRef(Popover)`. Expected an element type that can hold a ref.',
       );
     });
 
-    it("should use anchorEl's parent body as container if container prop not provided", () => {
-      return openPopover(undefined, true).then(() => {
-        assert.strictEqual(
-          wrapper
-            .dive()
-            .find('Modal')
-            .props().container,
-          window.document.body,
-          "should use anchorEl's parent body as Modal container",
-        );
-      });
-    });
-
-    it('should not pass container to Modal if container or anchorEl props are not provided', () => {
-      const shallowWrapper = shallow(<Popover open />);
-      assert.strictEqual(
-        shallowWrapper
-          .dive()
-          .find('Modal')
-          .props().container,
-        undefined,
-        'should not pass a container prop if neither container or anchorEl are provided',
-      );
-    });
+    // it('should warn if anchorEl is not visible', () => {
+    //   mount(<Popover open anchorEl={document.createElement('div')} />);
+    //   assert.strictEqual(consoleErrorMock.callCount(), 1);
+    //   assert.include(consoleErrorMock.args()[0][0], 'The node element should be visible');
+    // });
   });
 
   describe('prop anchorReference="anchorPosition"', () => {
@@ -473,8 +502,8 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = anchorOrigin => {
-        return new Promise(resolve => {
+      openPopover = anchorOrigin =>
+        new Promise(resolve => {
           wrapper = mount(
             <Popover
               {...defaultProps}
@@ -492,7 +521,6 @@ describe('<Popover />', () => {
           );
           wrapper.setProps({ open: true });
         });
-      };
 
       expectPopover = (top, left) => {
         assert.strictEqual(
@@ -510,16 +538,14 @@ describe('<Popover />', () => {
       };
     });
 
-    it('should be positioned according to the passed coordinates', () => {
-      return openPopover().then(() => {
-        expectPopover(anchorPosition.top, anchorPosition.left);
-      });
+    it('should be positioned according to the passed coordinates', async () => {
+      await openPopover();
+      expectPopover(anchorPosition.top, anchorPosition.left);
     });
 
-    it('should ignore the anchorOrigin prop when being positioned', () => {
-      return openPopover({ vertical: 'top', horizontal: 'right' }).then(() => {
-        expectPopover(anchorPosition.top, anchorPosition.left);
-      });
+    it('should ignore the anchorOrigin prop when being positioned', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'right' });
+      expectPopover(anchorPosition.top, anchorPosition.left);
     });
   });
 
@@ -530,8 +556,8 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = () => {
-        return new Promise(resolve => {
+      openPopover = () =>
+        new Promise(resolve => {
           wrapper = mount(
             <Popover
               {...defaultProps}
@@ -553,7 +579,6 @@ describe('<Popover />', () => {
           );
           wrapper.setProps({ open: true });
         });
-      };
 
       expectPopover = (top, left) => {
         assert.strictEqual(
@@ -571,105 +596,112 @@ describe('<Popover />', () => {
       };
     });
 
-    it('should not try to change the position', () => {
-      return openPopover().then(() => {
-        expectPopover(11, 12);
-      });
+    it('should not try to change the position', async () => {
+      await openPopover();
+      expectPopover(11, 12);
     });
   });
 
   describe('on window resize', () => {
     let clock;
+    let innerHeightContainer;
+    let element;
+    let wrapper;
 
     before(() => {
+      innerHeightContainer = window.innerHeight;
+      const mockedAnchor = document.createElement('div');
+      stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+        left: 0,
+        top: 9,
+      }));
+      const handleEntering = spy();
+      window.innerHeight = 8;
+      wrapper = mount(
+        <Popover
+          anchorEl={mockedAnchor}
+          open
+          onEntering={handleEntering}
+          transitionDuration={0}
+          marginThreshold={8}
+        >
+          <div />
+        </Popover>,
+      );
+      element = handleEntering.args[0][0];
+
       clock = useFakeTimers();
     });
 
     after(() => {
+      window.innerHeight = innerHeightContainer;
+
       clock.restore();
     });
 
     it('should recalculate position if the popover is open', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps} open transitionDuration={0}>
-          <div />
-        </Popover>,
-      );
-      const instance = wrapper.instance();
-
-      stub(instance, 'setPositioningStyles');
-      wrapper
-        .find('EventListener')
-        .at(0)
-        .simulate('resize');
+      const beforeStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      window.innerHeight = innerHeightContainer * 2;
+      window.dispatchEvent(new window.Event('resize'));
       clock.tick(166);
-      assert.strictEqual(instance.setPositioningStyles.called, true);
+      const afterStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      assert.notStrictEqual(JSON.stringify(beforeStyle), JSON.stringify(afterStyle));
     });
 
     it('should not recalculate position if the popover is closed', () => {
-      const wrapper = mount(
-        <PopoverNaked {...defaultProps} classes={{}} transitionDuration={0}>
-          <div />
-        </PopoverNaked>,
-      );
-      const instance = wrapper.instance();
-      assert.strictEqual(wrapper.contains('EventListener'), false);
-      stub(instance, 'setPositioningStyles');
-      wrapper.instance().handleResize();
+      const beforeStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      window.innerHeight = innerHeightContainer * 2;
+      window.dispatchEvent(new window.Event('resize'));
+      wrapper.setProps({ open: false });
       clock.tick(166);
-      assert.strictEqual(instance.setPositioningStyles.called, false);
+      const afterStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      assert.strictEqual(JSON.stringify(beforeStyle), JSON.stringify(afterStyle));
     });
   });
 
-  [0, 8, 16].forEach(marginThreshold => {
-    describe('getPositioningStyle(element)', () => {
-      let instance;
-      let element;
-      let anchorOffset;
-      let tempAnchorOffset;
-      let transformOrigin;
-      let positioningStyle;
-
-      let innerHeightContainer;
-      let innerWidthContainer;
-
-      before(() => {
-        instance = shallow(
-          <Popover {...defaultProps} marginThreshold={marginThreshold}>
+  [0, 18, 16].forEach(marginThreshold => {
+    describe(`positioning when \`marginThreshold=${marginThreshold}\``, () => {
+      function generateElementStyle(anchorEl = document.createElement('svg')) {
+        const handleEntering = spy();
+        mount(
+          <Popover
+            anchorEl={anchorEl}
+            open
+            onEntering={handleEntering}
+            marginThreshold={marginThreshold}
+            PaperProps={{ component: FakePaper }}
+          >
             <div />
           </Popover>,
-        ).instance();
-        instance.getContentAnchorOffset = spy();
+        );
+        return handleEntering.args[0][0].style;
+      }
 
-        innerHeightContainer = global.window.innerHeight;
-        innerWidthContainer = global.window.innerWidth;
+      describe('when no movement is needed', () => {
+        let positioningStyle;
+        const negative = marginThreshold === 0 ? '' : '-';
+        const expectedTransformOrigin = new RegExp(
+          `${negative}${marginThreshold}px ${negative}${marginThreshold}px( 0px)?`,
+        );
 
-        global.window.innerHeight = marginThreshold * 2;
-        global.window.innerWidth = marginThreshold * 2;
-
-        anchorOffset = { top: marginThreshold, left: marginThreshold };
-        instance.getAnchorOffset = stub().returns(anchorOffset);
-
-        transformOrigin = { vertical: 0, horizontal: 0 };
-        instance.getTransformOrigin = stub().returns(transformOrigin);
-
-        instance.getTransformOriginValue = stub().returns(true);
-
-        element = { offsetHeight: 0, offsetWidth: 0 };
-      });
-
-      after(() => {
-        global.window.innerHeight = innerHeightContainer;
-        global.window.innerWidth = innerWidthContainer;
-      });
-
-      describe('no offsets', () => {
         before(() => {
-          positioningStyle = instance.getPositioningStyle(element);
-        });
-
-        after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          positioningStyle = generateElementStyle();
         });
 
         it('should set top to marginThreshold', () => {
@@ -681,20 +713,21 @@ describe('<Popover />', () => {
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.transformOrigin, '0px 0px');
+          assert.match(positioningStyle.transformOrigin, expectedTransformOrigin);
         });
       });
 
       describe('top < marginThreshold', () => {
+        let positioningStyle;
+
         before(() => {
-          tempAnchorOffset = { top: marginThreshold - 1, left: marginThreshold };
-          instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold,
+            top: marginThreshold - 1,
+          }));
 
-          positioningStyle = instance.getPositioningStyle(element);
-        });
-
-        after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         it('should set top to marginThreshold', () => {
@@ -706,20 +739,28 @@ describe('<Popover />', () => {
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.transformOrigin, '0px -1px');
+          assert.match(positioningStyle.transformOrigin, /0px -1px( 0ms)?/);
         });
       });
 
       describe('bottom > heightThreshold', () => {
-        before(() => {
-          tempAnchorOffset = { top: marginThreshold + 1, left: marginThreshold };
-          instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+        let positioningStyle;
+        let innerHeightContainer;
 
-          positioningStyle = instance.getPositioningStyle(element);
+        before(() => {
+          innerHeightContainer = window.innerHeight;
+          window.innerHeight = marginThreshold * 2;
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold,
+            top: marginThreshold + 1,
+          }));
+
+          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          window.innerHeight = innerHeightContainer;
         });
 
         it('should set top to marginThreshold', () => {
@@ -731,20 +772,21 @@ describe('<Popover />', () => {
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.transformOrigin, '0px 1px');
+          assert.match(positioningStyle.transformOrigin, /0px 1px( 0px)?/);
         });
       });
 
       describe('left < marginThreshold', () => {
+        let positioningStyle;
+
         before(() => {
-          tempAnchorOffset = { top: marginThreshold, left: marginThreshold - 1 };
-          instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold - 1,
+            top: marginThreshold,
+          }));
 
-          positioningStyle = instance.getPositioningStyle(element);
-        });
-
-        after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         it('should set top to marginThreshold', () => {
@@ -756,20 +798,28 @@ describe('<Popover />', () => {
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.transformOrigin, '-1px 0px');
+          assert.match(positioningStyle.transformOrigin, /-1px 0px( 0px)?/);
         });
       });
 
       describe('right > widthThreshold', () => {
-        before(() => {
-          tempAnchorOffset = { top: marginThreshold, left: marginThreshold + 1 };
-          instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+        let positioningStyle;
+        let innerWidthContainer;
 
-          positioningStyle = instance.getPositioningStyle(element);
+        before(() => {
+          innerWidthContainer = window.innerWidth;
+          window.innerWidth = marginThreshold * 2;
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold + 1,
+            top: marginThreshold,
+          }));
+
+          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
+          window.innerWidth = innerWidthContainer;
         });
 
         it('should set top to marginThreshold', () => {
@@ -781,7 +831,7 @@ describe('<Popover />', () => {
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.transformOrigin, '1px 0px');
+          assert.match(positioningStyle.transformOrigin, /1px 0px( 0px)?/);
         });
       });
     });
@@ -789,14 +839,32 @@ describe('<Popover />', () => {
 
   describe('prop: getContentAnchorEl', () => {
     it('should position accordingly', () => {
-      const element = { scrollTop: 5, contains: () => true };
-      const child = { offsetTop: 40, clientHeight: 20, parentNode: element };
-      const wrapper = shallow(
-        <Popover {...defaultProps} getContentAnchorEl={() => child}>
-          <div />
+      const handleEntering = spy();
+      const divRef = React.createRef();
+      const getContentAnchorEl = () => {
+        Object.defineProperties(divRef.current, {
+          offsetTop: { get: () => 8 },
+          clientHeight: { get: () => 48 },
+          clientWidth: { get: () => 116 },
+        });
+        return divRef.current;
+      };
+
+      mount(
+        <Popover
+          anchorEl={mockedAnchorEl}
+          onEntering={handleEntering}
+          getContentAnchorEl={getContentAnchorEl}
+          open
+        >
+          <div ref={divRef} />
         </Popover>,
       );
-      assert.strictEqual(wrapper.instance().getContentAnchorOffset(element), 45);
+
+      const elementStyle = handleEntering.args[0][0].style;
+      assert.match(elementStyle.transformOrigin, /0px 32px( 0px)?/);
+      assert.strictEqual(elementStyle.top, '157px');
+      assert.strictEqual(elementStyle.left, '160px');
     });
   });
 
@@ -827,8 +895,8 @@ describe('<Popover />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should apply the auto property if supported', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
@@ -836,9 +904,9 @@ describe('<Popover />', () => {
     });
 
     it('should not apply the auto property if not supported', () => {
-      const TransitionComponent = props => <div {...props} />;
-      const wrapper = shallow(
-        <Popover {...defaultProps} TransitionComponent={TransitionComponent}>
+      const TransitionComponent = React.forwardRef((_, ref) => <div ref={ref} tabIndex="-1" />);
+      const wrapper = mount(
+        <Popover {...defaultProps} open TransitionComponent={TransitionComponent}>
           <div />
         </Popover>,
       );
@@ -847,18 +915,43 @@ describe('<Popover />', () => {
   });
 
   describe('prop: TransitionProp', () => {
-    it('should fire Popover transition event callbacks', () => {
-      const handler1 = spy();
-      const handler2 = spy();
-      const wrapper = shallow(
-        <Popover {...defaultProps} TransitionProps={{ onEntering: handler2 }} onEntering={handler1}>
+    it('chains onEntering with the apparent onEntering prop', () => {
+      const apparentHandler = spy();
+      const transitionHandler = spy();
+
+      mount(
+        <Popover
+          {...defaultProps}
+          open
+          TransitionProps={{ onEntering: transitionHandler }}
+          onEntering={apparentHandler}
+        >
           <div />
         </Popover>,
       );
 
-      wrapper.find(Grow).simulate('entering', { style: {} });
-      assert.strictEqual(handler1.callCount, 1);
-      assert.strictEqual(handler2.callCount, 1);
+      assert.strictEqual(apparentHandler.callCount, 1);
+      assert.strictEqual(transitionHandler.callCount, 1);
+    });
+
+    it('does not chain other transition callbacks with the apparent ones', () => {
+      const apparentHandler = spy();
+      const transitionHandler = spy();
+      const wrapper = mount(
+        <Popover
+          {...defaultProps}
+          open
+          TransitionProps={{ onExiting: transitionHandler }}
+          onExiting={apparentHandler}
+        >
+          <div />
+        </Popover>,
+      );
+
+      wrapper.setProps({ open: false });
+
+      assert.strictEqual(apparentHandler.callCount, 0);
+      assert.strictEqual(transitionHandler.callCount, 1);
     });
   });
 });

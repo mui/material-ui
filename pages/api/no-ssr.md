@@ -24,13 +24,18 @@ This component can be useful in a variety of situations:
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   |  |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | You can wrap a node. |
 | <span class="prop-name">defer</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will not only prevent server-side rendering. It will also defer the rendering of the children into a different screen frame. |
 | <span class="prop-name">fallback</span> | <span class="prop-type">node</span> | <span class="prop-default">null</span> | The fallback content to display. |
 
-Any other properties supplied will be spread to the root element (native element).
+The component cannot hold a ref.
+
+
+## Notes
+
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 
-- [No Ssr](/utils/no-ssr/)
+- [No Ssr](/components/no-ssr/)
 

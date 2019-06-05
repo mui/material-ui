@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface DividerProps
-  extends StandardProps<React.HTMLAttributes<HTMLHRElement>, DividerClassKey> {
-  absolute?: boolean;
-  component?: React.ReactType<DividerProps>;
-  inset?: boolean;
-  light?: boolean;
-  variant?: 'fullWidth' | 'inset' | 'middle';
-}
+declare const Divider: OverridableComponent<{
+  props: {
+    absolute?: boolean;
+    light?: boolean;
+    variant?: 'fullWidth' | 'inset' | 'middle';
+  };
+  defaultComponent: 'hr';
+  classKey: DividerClassKey;
+}>;
 
 export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle';
 
-declare const Divider: React.ComponentType<DividerProps>;
+export type DividerProps = SimplifiedPropsOf<typeof Divider>;
 
 export default Divider;

@@ -1,8 +1,6 @@
-// @inheritedComponent TableCell
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { componentPropType } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -44,7 +42,9 @@ export const styles = theme => ({
   /* Styles applied to the Select component `select` class. */
   select: {
     paddingLeft: 8,
-    paddingRight: 16,
+    paddingRight: 24,
+    textAlign: 'right',
+    textAlignLast: 'right', // Align <select> on Chrome.
   },
   /* Styles applied to the Select component `icon` class. */
   selectIcon: {
@@ -65,116 +65,107 @@ export const styles = theme => ({
   },
 });
 
+const defaultLabelDisplayedRows = ({ from, to, count }) => `${from}-${to} of ${count}`;
+const defaultRowsPerPageOptions = [10, 25, 50, 100];
+
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
-class TablePagination extends React.Component {
-  // This logic would be better handled on userside.
-  // However, we have it just in case.
-  componentDidUpdate() {
-    const { count, onChangePage, page, rowsPerPage } = this.props;
-    const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
-    if (page > newLastPage) {
-      onChangePage(null, newLastPage);
-    }
+const TablePagination = React.forwardRef(function TablePagination(props, ref) {
+  const {
+    ActionsComponent = TablePaginationActions,
+    backIconButtonProps,
+    classes,
+    colSpan: colSpanProp,
+    component: Component = TableCell,
+    count,
+    labelDisplayedRows = defaultLabelDisplayedRows,
+    labelRowsPerPage = 'Rows per page:',
+    nextIconButtonProps,
+    onChangePage,
+    onChangeRowsPerPage,
+    page,
+    rowsPerPage,
+    rowsPerPageOptions = defaultRowsPerPageOptions,
+    SelectProps = {},
+    ...other
+  } = props;
+
+  let colSpan;
+
+  if (Component === TableCell || Component === 'td') {
+    colSpan = colSpanProp || 1000; // col-span over everything
   }
 
-  render() {
-    const {
-      ActionsComponent,
-      backIconButtonProps,
-      classes,
-      colSpan: colSpanProp,
-      component: Component,
-      count,
-      labelDisplayedRows,
-      labelRowsPerPage,
-      nextIconButtonProps,
-      onChangePage,
-      onChangeRowsPerPage,
-      page,
-      rowsPerPage,
-      rowsPerPageOptions,
-      SelectProps = {},
-      ...other
-    } = this.props;
+  const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
-    let colSpan;
-
-    if (Component === TableCell || Component === 'td') {
-      colSpan = colSpanProp || 1000; // col-span over everything
-    }
-
-    const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
-
-    return (
-      <Component className={classes.root} colSpan={colSpan} {...other}>
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.spacer} />
-          {rowsPerPageOptions.length > 1 && (
-            <Typography color="inherit" variant="caption" className={classes.caption}>
-              {labelRowsPerPage}
-            </Typography>
-          )}
-          {rowsPerPageOptions.length > 1 && (
-            <Select
-              classes={{
-                root: classes.selectRoot,
-                select: classes.select,
-                icon: classes.selectIcon,
-              }}
-              input={<InputBase className={classes.input} />}
-              value={rowsPerPage}
-              onChange={onChangeRowsPerPage}
-              {...SelectProps}
-            >
-              {rowsPerPageOptions.map(rowsPerPageOption => (
-                <MenuItemComponent
-                  className={classes.menuItem}
-                  key={rowsPerPageOption}
-                  value={rowsPerPageOption}
-                >
-                  {rowsPerPageOption}
-                </MenuItemComponent>
-              ))}
-            </Select>
-          )}
+  return (
+    <Component className={classes.root} colSpan={colSpan} ref={ref} {...other}>
+      <Toolbar className={classes.toolbar}>
+        <div className={classes.spacer} />
+        {rowsPerPageOptions.length > 1 && (
           <Typography color="inherit" variant="caption" className={classes.caption}>
-            {labelDisplayedRows({
-              from: count === 0 ? 0 : page * rowsPerPage + 1,
-              to: Math.min(count, (page + 1) * rowsPerPage),
-              count,
-              page,
-            })}
+            {labelRowsPerPage}
           </Typography>
-          <ActionsComponent
-            className={classes.actions}
-            backIconButtonProps={backIconButtonProps}
-            count={count}
-            nextIconButtonProps={nextIconButtonProps}
-            onChangePage={onChangePage}
-            page={page}
-            rowsPerPage={rowsPerPage}
-          />
-        </Toolbar>
-      </Component>
-    );
-  }
-}
+        )}
+        {rowsPerPageOptions.length > 1 && (
+          <Select
+            classes={{
+              root: classes.selectRoot,
+              select: classes.select,
+              icon: classes.selectIcon,
+            }}
+            input={<InputBase className={classes.input} />}
+            value={rowsPerPage}
+            onChange={onChangeRowsPerPage}
+            {...SelectProps}
+          >
+            {rowsPerPageOptions.map(rowsPerPageOption => (
+              <MenuItemComponent
+                className={classes.menuItem}
+                key={rowsPerPageOption}
+                value={rowsPerPageOption}
+              >
+                {rowsPerPageOption}
+              </MenuItemComponent>
+            ))}
+          </Select>
+        )}
+        <Typography color="inherit" variant="caption" className={classes.caption}>
+          {labelDisplayedRows({
+            from: count === 0 ? 0 : page * rowsPerPage + 1,
+            to: Math.min(count, (page + 1) * rowsPerPage),
+            count,
+            page,
+          })}
+        </Typography>
+        <ActionsComponent
+          className={classes.actions}
+          backIconButtonProps={backIconButtonProps}
+          count={count}
+          nextIconButtonProps={nextIconButtonProps}
+          onChangePage={onChangePage}
+          page={page}
+          rowsPerPage={rowsPerPage}
+        />
+      </Toolbar>
+    </Component>
+  );
+});
 
 TablePagination.propTypes = {
   /**
    * The component used for displaying the actions.
    * Either a string to use a DOM element or a component.
    */
-  ActionsComponent: componentPropType,
+  ActionsComponent: PropTypes.elementType,
   /**
    * Properties applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
   backIconButtonProps: PropTypes.object,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -185,7 +176,7 @@ TablePagination.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * The total number of rows.
    */
@@ -219,7 +210,17 @@ TablePagination.propTypes = {
   /**
    * The zero-based index of the current page.
    */
-  page: PropTypes.number.isRequired,
+  page: chainPropTypes(PropTypes.number.isRequired, props => {
+    const { count, page, rowsPerPage } = props;
+    const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
+    if (page < 0 || page > newLastPage) {
+      return new Error(
+        'Material-UI: the page prop of a TablePagination is out of range ' +
+          `(0 to ${newLastPage}, but page is ${page}).`,
+      );
+    }
+    return null;
+  }),
   /**
    * The number of rows per page.
    */
@@ -233,14 +234,6 @@ TablePagination.propTypes = {
    * Properties applied to the rows per page [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
-};
-
-TablePagination.defaultProps = {
-  ActionsComponent: TablePaginationActions,
-  component: TableCell,
-  labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
-  labelRowsPerPage: 'Rows per page:',
-  rowsPerPageOptions: [10, 25, 50, 100],
 };
 
 export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);

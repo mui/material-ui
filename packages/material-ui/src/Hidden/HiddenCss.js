@@ -55,10 +55,10 @@ function HiddenCss(props) {
     )} by \`<Hidden />\`.`,
   );
 
-  const classNames = [];
+  const clsx = [];
 
   if (className) {
-    classNames.push(className);
+    clsx.push(className);
   }
 
   for (let i = 0; i < breakpointKeys.length; i += 1) {
@@ -67,21 +67,21 @@ function HiddenCss(props) {
     const breakpointDown = props[`${breakpoint}Down`];
 
     if (breakpointUp) {
-      classNames.push(classes[`${breakpoint}Up`]);
+      clsx.push(classes[`${breakpoint}Up`]);
     }
     if (breakpointDown) {
-      classNames.push(classes[`${breakpoint}Down`]);
+      clsx.push(classes[`${breakpoint}Down`]);
     }
   }
 
   if (only) {
     const onlyBreakpoints = Array.isArray(only) ? only : [only];
     onlyBreakpoints.forEach(breakpoint => {
-      classNames.push(classes[`only${capitalize(breakpoint)}`]);
+      clsx.push(classes[`only${capitalize(breakpoint)}`]);
     });
   }
 
-  return <div className={classNames.join(' ')}>{children}</div>;
+  return <div className={clsx.join(' ')}>{children}</div>;
 }
 
 HiddenCss.propTypes = {
@@ -91,7 +91,7 @@ HiddenCss.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -152,4 +152,4 @@ HiddenCss.propTypes = {
   xsUp: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateHiddenCss' })(HiddenCss);
+export default withStyles(styles, { name: 'PrivateHiddenCss' })(HiddenCss);

@@ -31,7 +31,7 @@ function AdvancedTabs(props) {
         </Tabs>
       </Paper>
       <Paper className={classes.appBar}>
-        <Tabs onChange={noop} value="two" scrollable scrollButtons="auto">
+        <Tabs onChange={noop} value="two" variant="scrollable" scrollButtons="auto">
           <Tab label="Item One" />
           <Tab value="two" label="Item Two" />
           <Tab label="Item Three" />
@@ -42,7 +42,13 @@ function AdvancedTabs(props) {
         </Tabs>
       </Paper>
       <Paper className={classes.root}>
-        <Tabs onChange={noop} value={0} scrollable scrollButtons="on" textColor="secondary">
+        <Tabs
+          onChange={noop}
+          value={0}
+          variant="scrollable"
+          scrollButtons="on"
+          textColor="secondary"
+        >
           <Tab label="Item One" icon={<Icon>phone</Icon>} />
           <Tab label="Item Two" icon={<Icon>favorite</Icon>} />
           <Tab label="Item Three" icon={<Icon>person_pin</Icon>} />
@@ -53,7 +59,7 @@ function AdvancedTabs(props) {
         </Tabs>
       </Paper>
       <Paper className={classes.appBar}>
-        <Tabs onChange={noop} value={0} scrollable scrollButtons="off">
+        <Tabs onChange={noop} value={0} variant="scrollable" scrollButtons="off">
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
           <Tab icon={<Icon>person_pin</Icon>} />

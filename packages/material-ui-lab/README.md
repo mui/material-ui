@@ -27,4 +27,4 @@ yarn add @material-ui/core
 
 ## Documentation
 
-[The documentation](https://material-ui.com/lab/about/)
+[The documentation](https://material-ui.com/components/about-the-lab/)

@@ -1,73 +1,55 @@
+version: 2.1
+
 defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:10.14
+    - image: circleci/node:8.15
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
+# https://discuss.circleci.com/t/saving-cache-stopped-working-warning-skipping-this-step-disabled-in-configuration/24423/21
+#
 # restore_repo: &restore_repo
 #   restore_cache:
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
-install_js: &install_js
-  run:
-    name: Install js dependencies
-    command: |
-      yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
-      yarn
-restore_yarn_cache: &restore_yarn_cache
-  restore_cache:
-    key: v1-yarn-sha-{{ checksum "yarn.lock" }}
-restore_yarn_offline_mirror: &restore_yarn_offline_mirror
-  restore_cache:
-    key: v1-npm-packages-offline-cache
-version: 2
+
+commands:
+  install_js:
+    steps:
+      - restore_cache:
+          keys:
+            - v2-yarn-sha-{{ checksum "yarn.lock" }}
+            - v2-yarn-sha-
+      - run:
+          name: Install js dependencies
+          command: yarn
+  prepare_chrome_headless:
+    steps:
+      - run:
+          name: Install dependencies for Chrome Headless
+          # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+
 jobs:
   checkout:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - run:
-          name: Check versions and env
-          command: |
-            yarn --version
-            node --version
-            docker --version
-            docker-compose --version
-            env
-            yarn cache dir
-      - *install_js
+      - install_js
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
       - save_cache:
-          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn/v1
-      - save_cache:
-          key: v1-npm-packages-offline-cache
-          paths:
-            - ~/.cache/npm-packages-offline-cache/v1
+            - ~/.cache/yarn/v4
   test_unit:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
-      - run:
-          name: Check if yarn prettier was run
-          command: yarn prettier check-changed
-      - run:
-          name: Lint
-          command: yarn lint
-      - run:
-          name: Lint JSON
-          command: yarn jsonlint
-      - run:
-          name: Tests TypeScript definitions
-          command: yarn typescript
+      - install_js
       - run:
           name: Tests fake browser
           command: yarn test:coverage
@@ -81,13 +63,40 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
+  test_static:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Transpile TypeScript demos
+          command: yarn docs:typescript:formatted --disable-cache
+      - run:
+          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          command: git add -A && git diff --exit-code --staged
+      - run:
+          name: Can we generate the documentation?
+          command: yarn docs:api
+      - run:
+          name: '`yarn docs:api` changes committed?'
+          command: git diff --exit-code
+      - run:
+          name: Check if yarn prettier was run
+          command: yarn prettier check-changed
+      - run:
+          name: Lint
+          command: yarn lint:ci
+      - run:
+          name: Lint JSON
+          command: yarn jsonlint
+      - run:
+          name: Tests TypeScript definitions
+          command: yarn typescript
   test_material-ui-x:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
+      - install_js
       - run:
           name: material-ui-icons
           command: |
@@ -150,18 +159,15 @@ jobs:
             fi
   test_build:
     <<: *defaults
-    # This isn't user facing code.
-    # Let's take advantage of the most up to date node version.
-    docker:
-      - image: circleci/node:10.14
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
+      - install_js
       - run:
           name: Can we generate the @material-ui/core build?
           command: cd packages/material-ui && yarn build
+      - run:
+          name: Can we generate the @material-ui/lab build?
+          command: cd packages/material-ui-lab && yarn build
       - run:
           name: Can we generate the @material-ui/styles build?
           command: cd packages/material-ui-styles && yarn build
@@ -172,54 +178,90 @@ jobs:
           name: Can we generate the @material-ui/system build?
           command: cd packages/material-ui-system && yarn build
       - run:
-          name: Can we build the docs?
-          command: yarn docs:build
+          name: Prepare persisting workspace
+          command: tar cfvz builds.tar.gz packages/*/build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - builds.tar.gz
+            # rollup snapshot
+            - packages/material-ui/size-snapshot.json
+      - prepare_chrome_headless
       - run:
-          name: Is the size acceptable?
-          command: yarn lerna bootstrap && yarn size
+          name: Test umd release
+          command: yarn test:umd
   test_browser:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
-      - run:
-          name: Can we generate the documentation?
-          command: yarn docs:api
-      - run:
-          name: "`yarn docs:api` changes commited?"
-          command: git diff --exit-code
-      - run:
-          name: Install dependencies for Chrome Headless
-          # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+      - install_js
+      - prepare_chrome_headless
       - run:
           name: Tests real browsers
           command: yarn test:karma
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:10.14
+      - image: circleci/node:8.15
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
+      - install_js
       - run:
           name: Visual regression tests
           command: |
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
             yarn argos
+  size_snapshot:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Restore build
+          command: |
+            mv /tmp/workspace/builds.tar.gz ./
+            tar xfvz builds.tar.gz
+            mv /tmp/workspace/packages/material-ui/size-snapshot.json packages/material-ui/size-snapshot.json
+      # Netlify already do it for us but we need to check the size.
+      - run:
+          name: Can we build the docs?
+          command: yarn docs:build
+      - run:
+          name: Create a size snapshot
+          command: yarn size:snapshot
+      # downloaded by aws lambda to s3 bucket
+      # lambda allowes us to limit this to mui-org-branches-only while hiding credentials
+      # that allow write access to s3
+      - store_artifacts:
+          path: size-snapshot.json
+      # for debugging purposes, this is created by webpack called from size:snapshot
+      - store_artifacts:
+          path: scripts/sizeSnapshot/build/stats.json
+      - run:
+          name: Possibly persist size snapshot
+          command: |
+            if [ -z "$CI_PULL_REQUEST" ]; then
+              echo "no pull request; lets persist the size snapshot"
+              curl -X PUT --header "x-api-key: $CIRCLE_AWS_API_KEY" https://t6nulys5kl.execute-api.us-east-1.amazonaws.com/v1/persist-size-snapshot?build-id=$CIRCLE_BUILD_NUM
+            else
+              echo "pull request; let's run dangerJS"
+              yarn danger ci
+            fi
 workflows:
   version: 2
   pipeline:
     jobs:
-      - checkout
+      - checkout:
+          filters:
+            branches:
+              ignore: l10n
       - test_unit:
+          requires:
+            - checkout
+      - test_static:
           requires:
             - checkout
       - test_material-ui-x:
@@ -235,5 +277,9 @@ workflows:
           requires:
             - test_material-ui-x
             - test_unit
+            - test_static
             - test_browser
+            - test_build
+      - size_snapshot:
+          requires:
             - test_build

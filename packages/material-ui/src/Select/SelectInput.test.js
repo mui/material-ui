@@ -1,10 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
-import keycode from 'keycode';
+import { spy, stub, useFakeTimers } from 'sinon';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Menu from '../Menu';
-import Portal from '../Portal';
 import MenuItem from '../MenuItem';
 import SelectInput from './SelectInput';
 
@@ -33,7 +31,8 @@ describe('<SelectInput />', () => {
 
   before(() => {
     shallow = createShallow();
-    mount = createMount();
+    // StrictModeViolation: test uses MenuItem
+    mount = createMount({ strict: false });
   });
 
   after(() => {
@@ -96,11 +95,9 @@ describe('<SelectInput />', () => {
 
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', () => {
-      const wrapper = shallow(<SelectInput {...defaultProps} readOnly />);
-      wrapper
-        .find(`.${defaultProps.classes.select}`)
-        .simulate('keyDown', { which: keycode('down') });
-      assert.strictEqual(wrapper.state().open, false);
+      const wrapper = mount(<SelectInput {...defaultProps} readOnly />);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('keyDown', { key: 'ArrowDown' });
+      assert.strictEqual(wrapper.find(MenuItem).exists(), false);
     });
   });
 
@@ -167,7 +164,15 @@ describe('<SelectInput />', () => {
   describe('prop: onChange', () => {
     let wrapper;
     let handleChange;
-    let instance;
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
 
     beforeEach(() => {
       handleChange = spy();
@@ -178,18 +183,18 @@ describe('<SelectInput />', () => {
           MenuProps={{ transitionDuration: 0 }}
         />,
       );
-      instance = wrapper.instance();
     });
 
     it('should call onChange when clicking an item', () => {
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
-      assert.strictEqual(wrapper.state().open, true);
-      const portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
-      portalLayer.querySelectorAll('li')[1].click();
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.find(MenuItem).exists(), true);
+      wrapper
+        .find('li')
+        .at(1)
+        .simulate('click');
+      clock.tick(0);
+      wrapper.update();
+      assert.strictEqual(wrapper.find(MenuItem).exists(), false);
       assert.strictEqual(handleChange.callCount, 1);
       assert.strictEqual(handleChange.args[0][0].target.value, 20);
     });
@@ -199,11 +204,9 @@ describe('<SelectInput />', () => {
       wrapper.setProps({ onBlur: handleBlur });
 
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
-      assert.strictEqual(wrapper.state().open, true);
-      assert.strictEqual(instance.ignoreNextBlur, true);
+      assert.strictEqual(wrapper.find(MenuItem).exists(), true);
       wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
       assert.strictEqual(handleBlur.callCount, 0);
-      assert.strictEqual(instance.ignoreNextBlur, false);
       wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
       assert.strictEqual(handleBlur.callCount, 1);
     });
@@ -213,37 +216,30 @@ describe('<SelectInput />', () => {
       wrapper.setProps({ onBlur: handleBlur, name: 'blur-testing' });
 
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
-      assert.strictEqual(wrapper.state().open, true);
-      assert.strictEqual(instance.ignoreNextBlur, true);
+      assert.strictEqual(wrapper.find(MenuItem).exists(), true);
       wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
       assert.strictEqual(handleBlur.callCount, 0);
-      assert.strictEqual(instance.ignoreNextBlur, false);
       wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
       assert.strictEqual(handleBlur.callCount, 1);
       assert.strictEqual(handleBlur.args[0][0].target.name, 'blur-testing');
     });
 
-    ['space', 'up', 'down'].forEach(key => {
+    [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach(key => {
       it(`'should open menu when pressed ${key} key on select`, () => {
-        wrapper
-          .find(`.${defaultProps.classes.select}`)
-          .simulate('keyDown', { which: keycode(key) });
-        assert.strictEqual(wrapper.state().open, true);
-        assert.strictEqual(instance.ignoreNextBlur, true);
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('keyDown', { key });
+        assert.strictEqual(wrapper.find(MenuItem).exists(), true);
       });
     });
 
     it('should call handleClose', () => {
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
-      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(wrapper.find(MenuItem).exists(), true);
 
-      const portalLayer = wrapper
-        .find(Portal)
-        .instance()
-        .getMountNode();
-      const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
-      backdrop.click();
-      assert.strictEqual(wrapper.state().open, false);
+      const backdrop = wrapper.find('[data-mui-test="Backdrop"]');
+      backdrop.simulate('click');
+      clock.tick(0);
+      wrapper.update();
+      assert.strictEqual(wrapper.find(MenuItem).exists(), false);
     });
   });
 
@@ -270,9 +266,9 @@ describe('<SelectInput />', () => {
     it('should allow to control closing by passing onClose props', () => {
       const wrapper = mount(<ControlledWrapper />);
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
-      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(wrapper.find('ControlledWrapper').state().open, true);
       wrapper.find(MenuItem).simulate('click');
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.find('ControlledWrapper').state().open, false);
     });
 
     it('should work when open is initially true', () => {
@@ -291,20 +287,18 @@ describe('<SelectInput />', () => {
 
   describe('prop: autoWidth', () => {
     it('should take the anchor width into account', () => {
-      const wrapper = shallow(<SelectInput {...defaultProps} />);
-      const instance = wrapper.instance();
-      instance.displayRef = { clientWidth: 14 };
-      instance.update({ open: true });
-      wrapper.update();
+      const wrapper = mount(<SelectInput {...defaultProps} />);
+      const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]').instance();
+      stub(selectDisplay, 'clientWidth').get(() => 14);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
     });
 
     it('should not take the anchor width into account', () => {
-      const wrapper = shallow(<SelectInput {...defaultProps} autoWidth />);
-      const instance = wrapper.instance();
-      instance.displayRef = { clientWidth: 14 };
-      instance.update({ open: true });
-      wrapper.update();
+      const wrapper = mount(<SelectInput {...defaultProps} autoWidth />);
+      const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]').instance();
+      stub(selectDisplay, 'clientWidth').get(() => 14);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, null);
     });
   });
@@ -390,23 +384,30 @@ describe('<SelectInput />', () => {
 
       it('should call onChange when clicking an item', () => {
         wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
-        assert.strictEqual(wrapper.state().open, true);
-        const portalLayer = wrapper
-          .find(Portal)
-          .instance()
-          .getMountNode();
+        assert.strictEqual(wrapper.find(MenuItem).exists(), true);
+        const portalLayer = document.querySelector('[data-mui-test="Modal"]');
 
         portalLayer.querySelectorAll('li')[1].click();
-        assert.strictEqual(wrapper.state().open, true);
+        assert.strictEqual(wrapper.find(MenuItem).exists(), true);
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][0].target.value, [30]);
         assert.deepEqual(handleChange.args[0][0].target.name, 'age');
         wrapper.setProps({ value: [30] });
 
         portalLayer.querySelectorAll('li')[0].click();
-        assert.strictEqual(wrapper.state().open, true);
+        assert.strictEqual(wrapper.find(MenuItem).exists(), true);
         assert.strictEqual(handleChange.callCount, 2);
         assert.deepEqual(handleChange.args[1][0].target.value, [30, 10]);
+      });
+    });
+
+    describe('no selection', () => {
+      it('should focus list if no selection', () => {
+        const wrapper = mount(<SelectInput {...defaultProps} value="" autoFocus />);
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
+        assert.strictEqual(wrapper.find(MenuItem).exists(), true);
+        const portalLayer = document.querySelector('[data-mui-test="Modal"]');
+        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('ul')[0]);
       });
     });
 
@@ -437,6 +438,18 @@ describe('<SelectInput />', () => {
       mount(<SelectInput {...defaultProps} inputRef={ref} onFocus={onFocus} />);
       ref.current.focus();
       assert.strictEqual(onFocus.called, true);
+    });
+  });
+
+  describe('prop: name', () => {
+    it('should have no id when name is not provided', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} />);
+      assert.strictEqual(wrapper.find('.select').props().id, undefined);
+    });
+
+    it('should have select-`name` id when name is provided', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} name="foo" />);
+      assert.strictEqual(wrapper.find('.select').props().id, 'select-foo');
     });
   });
 });

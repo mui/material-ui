@@ -3,11 +3,11 @@
 <p class="description">Get started with React and Material-UI in no time.</p>
 
 Material-UI components work in isolation.
-**They are self-supporting**, and will inject, and only inject, the styles they need to display.
-They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/),
+**They are self-supporting**, and will only inject the styles they need to display.
+They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/).
 
 You can use any of the components as demonstrated in the documentation.
-Please refer to each component's [demo page](/demos/buttons/) to see how they should be imported.
+Please refer to each component's [demo page](/components/buttons/) to see how they should be imported.
 
 ## Quick start
 
@@ -46,13 +46,13 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 <meta
   name="viewport"
   content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
->
+/>
 ```
 
 ### CssBaseline
 
-Material-UI provides an optional [CssBaseline](/style/css-baseline/) component.
-It's fixing some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI provides an optional [CssBaseline](/components/css-baseline/) component.
+It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
 
 ## Versioned Documentation
 
@@ -63,6 +63,6 @@ You can find older versions of the documentation on a [separate page](/versions/
 
 Now that you have an idea of the basic setup, it's time to learn more about:
 
-- How to provide [the Material Design font and typography](/style/typography/).
+- How to provide [the Material Design font and typography](/components/typography/).
 - How to take advantage of the [theming solution](/customization/themes/).
-- How to [override](/customization/overrides/) the look and feel of the components.
+- How to [override](/customization/components/) the look and feel of the components.

@@ -1,134 +1,169 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import * as PropTypes from 'prop-types';
+import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<RadioGroup />', () => {
-  let shallow;
+  let mount;
 
   before(() => {
-    shallow = createShallow();
+    // StrictModeViolation: uses #simulate
+    mount = createMount({ strict: false });
   });
 
-  it('should render a FormGroup with the radiogroup role', () => {
-    const wrapper = shallow(<RadioGroup value="" />);
-    assert.strictEqual(wrapper.type(), FormGroup);
-    assert.strictEqual(wrapper.props().role, 'radiogroup');
+  after(() => {
+    mount.cleanUp();
+  });
+
+  function findRadio(wrapper, value) {
+    return wrapper.find(`input[value="${value}"]`).first();
+  }
+
+  describeConformance(<RadioGroup value="" />, () => ({
+    classes: {},
+    inheritComponent: FormGroup,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
+
+  it('the root component has the radiogroup role', () => {
+    const wrapper = mount(<RadioGroup value="" />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).props().role, 'radiogroup');
   });
 
   it('should fire the onBlur callback', () => {
     const handleBlur = spy();
-    const wrapper = shallow(<RadioGroup value="" onBlur={handleBlur} />);
-    const event = {};
-    wrapper.simulate('blur', event);
+    const wrapper = mount(<RadioGroup value="" onBlur={handleBlur} />);
+
+    const eventMock = 'something-to-match';
+    wrapper.simulate('blur', { eventMock });
     assert.strictEqual(handleBlur.callCount, 1);
-    assert.strictEqual(handleBlur.args[0][0], event);
+    assert.strictEqual(handleBlur.calledWithMatch({ eventMock }), true);
   });
 
   it('should fire the onKeyDown callback', () => {
     const handleKeyDown = spy();
-    const wrapper = shallow(<RadioGroup value="" onKeyDown={handleKeyDown} />);
-    const event = {};
-    wrapper.simulate('keyDown', event);
+    const wrapper = mount(<RadioGroup value="" onKeyDown={handleKeyDown} />);
+
+    const eventMock = 'something-to-match';
+    wrapper.simulate('keyDown', { eventMock });
     assert.strictEqual(handleKeyDown.callCount, 1);
-    assert.strictEqual(handleKeyDown.args[0][0], event);
+    assert.strictEqual(handleKeyDown.calledWithMatch({ eventMock }), true);
   });
 
   it('should support uncontrolled mode', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <RadioGroup name="group">
         <Radio value="one" />
       </RadioGroup>,
     );
 
-    const radio = wrapper.children().first();
-    const event = { target: { value: 'one' } };
-    radio.simulate('change', event, true);
-    assert.strictEqual(
-      wrapper
-        .children()
-        .first()
-        .props().checked,
-      true,
+    findRadio(wrapper, 'one').simulate('change');
+    assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
+  });
+
+  it('should support default value in uncontrolled mode', () => {
+    const wrapper = mount(
+      <RadioGroup name="group" defaultValue="zero">
+        <Radio value="zero" />
+        <Radio value="one" />
+      </RadioGroup>,
     );
+
+    assert.strictEqual(findRadio(wrapper, 'zero').props().checked, true);
+    findRadio(wrapper, 'one').simulate('change');
+    assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
   });
 
   describe('imperative focus()', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = shallow(<RadioGroup value="" />);
-    });
-
     it('should focus the first non-disabled radio', () => {
-      const radios = [
-        { disabled: true, focus: spy() },
-        { disabled: false, focus: spy() },
-        { disabled: false, focus: spy() },
-      ];
-      wrapper.instance().radios = radios;
-      wrapper.instance().focus();
+      const actionsRef = React.createRef();
+      const oneRadioOnFocus = spy();
 
-      assert.strictEqual(radios[1].focus.callCount, 1);
+      mount(
+        <RadioGroup actions={actionsRef} value="">
+          <Radio value="zero" disabled />
+          <Radio value="one" onFocus={oneRadioOnFocus} />
+          <Radio value="two" />
+        </RadioGroup>,
+      );
+
+      actionsRef.current.focus();
+      assert.strictEqual(oneRadioOnFocus.callCount, 1);
     });
 
     it('should not focus any radios if all are disabled', () => {
-      const radios = [
-        { disabled: true, focus: spy() },
-        { disabled: true, focus: spy() },
-        { disabled: true, focus: spy() },
-      ];
-      wrapper.instance().radios = radios;
-      wrapper.instance().focus();
+      const actionsRef = React.createRef();
+      const zeroRadioOnFocus = spy();
+      const oneRadioOnFocus = spy();
+      const twoRadioOnFocus = spy();
 
-      assert.strictEqual(radios[0].focus.callCount, 0);
-      assert.strictEqual(radios[1].focus.callCount, 0);
-      assert.strictEqual(radios[2].focus.callCount, 0);
+      mount(
+        <RadioGroup actions={actionsRef} value="">
+          <Radio value="zero" disabled onFocus={zeroRadioOnFocus} />
+          <Radio value="one" disabled onFocus={oneRadioOnFocus} />
+          <Radio value="two" disabled onFocus={twoRadioOnFocus} />
+        </RadioGroup>,
+      );
+
+      actionsRef.current.focus();
+
+      assert.strictEqual(zeroRadioOnFocus.callCount, 0);
+      assert.strictEqual(oneRadioOnFocus.callCount, 0);
+      assert.strictEqual(twoRadioOnFocus.callCount, 0);
     });
 
     it('should focus the selected radio', () => {
-      const radios = [
-        { disabled: true, focus: spy() },
-        { disabled: false, focus: spy() },
-        { disabled: false, checked: true, focus: spy() },
-        { disabled: false, focus: spy() },
-      ];
-      wrapper.instance().radios = radios;
-      wrapper.instance().focus();
+      const actionsRef = React.createRef();
+      const twoRadioOnFocus = spy();
 
-      assert.strictEqual(radios[0].focus.callCount, 0);
-      assert.strictEqual(radios[1].focus.callCount, 0);
-      assert.strictEqual(radios[2].focus.callCount, 1);
-      assert.strictEqual(radios[3].focus.callCount, 0);
+      mount(
+        <RadioGroup actions={actionsRef} value="two">
+          <Radio value="zero" disabled />
+          <Radio value="one" />
+          <Radio value="two" onFocus={twoRadioOnFocus} />
+          <Radio value="three" />
+        </RadioGroup>,
+      );
+
+      actionsRef.current.focus();
+      assert.strictEqual(twoRadioOnFocus.callCount, 1);
     });
 
     it('should focus the non-disabled radio rather than the disabled selected radio', () => {
-      const radios = [
-        { disabled: true, focus: spy() },
-        { disabled: true, focus: spy() },
-        { disabled: true, checked: true, focus: spy() },
-        { disabled: false, focus: spy() },
-      ];
-      wrapper.instance().radios = radios;
-      wrapper.instance().focus();
+      const actionsRef = React.createRef();
+      const threeRadioOnFocus = spy();
 
-      assert.strictEqual(radios[0].focus.callCount, 0);
-      assert.strictEqual(radios[1].focus.callCount, 0);
-      assert.strictEqual(radios[2].focus.callCount, 0);
-      assert.strictEqual(radios[3].focus.callCount, 1);
+      mount(
+        <RadioGroup actions={actionsRef} value="two">
+          <Radio value="zero" disabled />
+          <Radio value="one" disabled />
+          <Radio value="two" disabled />
+          <Radio value="three" onFocus={threeRadioOnFocus} />
+        </RadioGroup>,
+      );
+
+      actionsRef.current.focus();
+      assert.strictEqual(threeRadioOnFocus.callCount, 1);
     });
 
     it('should be able to focus with no radios', () => {
-      wrapper.instance().radios = [];
-      wrapper.instance().focus();
+      const actionsRef = React.createRef();
+      mount(<RadioGroup actions={actionsRef} value="" />);
+
+      actionsRef.current.focus();
     });
   });
 
   it('should accept invalid child', () => {
-    shallow(
+    mount(
       <RadioGroup value="">
         <Radio />
         {null}
@@ -139,60 +174,124 @@ describe('<RadioGroup />', () => {
   describe('prop: onChange', () => {
     it('should fire onChange', () => {
       const handleChange = spy();
-      const wrapper = shallow(
+      const wrapper = mount(
         <RadioGroup value="" onChange={handleChange}>
-          <Radio />
+          <Radio value="woofRadioGroup" />
           <Radio />
         </RadioGroup>,
       );
 
-      const internalRadio = wrapper.children().first();
-      const event = { target: { value: 'woofRadioGroup' } };
-      internalRadio.simulate('change', event, true);
+      const eventMock = 'something-to-match';
+      findRadio(wrapper, 'woofRadioGroup').simulate('change', { eventMock });
       assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.calledWith(event), true);
+      assert.strictEqual(handleChange.calledWithMatch({ eventMock }), true);
     });
 
     it('should chain the onChange property', () => {
       const handleChange1 = spy();
       const handleChange2 = spy();
-      const wrapper = shallow(
+      const wrapper = mount(
         <RadioGroup value="" onChange={handleChange1}>
-          <Radio onChange={handleChange2} />
+          <Radio value="woofRadioGroup" onChange={handleChange2} />
           <Radio />
         </RadioGroup>,
       );
 
-      const internalRadio = wrapper.children().first();
-      internalRadio.simulate('change', { target: { value: 'woofRadioGroup' } }, true);
+      findRadio(wrapper, 'woofRadioGroup').simulate('change');
       assert.strictEqual(handleChange1.callCount, 1);
       assert.strictEqual(handleChange2.callCount, 1);
     });
+
+    describe('with non-string values', () => {
+      before(() => {
+        // swallow prop-types warnings
+        consoleErrorMock.spy();
+      });
+
+      after(() => {
+        consoleErrorMock.reset();
+      });
+
+      it('passes the value of the selected Radio as a string', () => {
+        function selectNth(wrapper, n) {
+          return wrapper
+            .find('input[type="radio"]')
+            .at(n)
+            .simulate('change');
+        }
+        function isNthChecked(wrapper, n) {
+          return wrapper
+            .find('input[type="radio"]')
+            .at(n)
+            .is('[checked=true]');
+        }
+        function Test(props) {
+          const { values, ...other } = props;
+          return (
+            <RadioGroup {...other}>
+              {values.map(value => {
+                return <Radio key={value.id} value={value} />;
+              })}
+            </RadioGroup>
+          );
+        }
+        Test.propTypes = {
+          values: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.number.isRequired })),
+        };
+
+        const values = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+        const handleChange = spy();
+
+        const wrapper = mount(<Test onChange={handleChange} value={values[1]} values={values} />);
+        // on the initial mount it works because we compare to the `value` prop
+        assert.strictEqual(isNthChecked(wrapper, 0), false);
+        assert.strictEqual(isNthChecked(wrapper, 1), true);
+
+        selectNth(wrapper, 0);
+        // on updates, however, we compare against event.target.value
+        // object information is lost on stringification.
+        assert.strictEqual(isNthChecked(wrapper, 0), false);
+        assert.strictEqual(isNthChecked(wrapper, 1), true);
+        assert.strictEqual(handleChange.firstCall.args[1], '[object Object]');
+      });
+    });
   });
 
-  describe('register internal radios to this.radio', () => {
-    let mount;
-
-    before(() => {
-      mount = createMount();
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
     });
 
-    after(() => {
-      mount.cleanUp();
+    afterEach(() => {
+      consoleErrorMock.reset();
     });
 
-    it('should add a child', () => {
+    it('should warn when switching from controlled to uncontrolled', () => {
       const wrapper = mount(
-        <RadioGroup value="">
-          <Radio />
+        <RadioGroup value="foo">
+          <Radio value="foo" />
         </RadioGroup>,
       );
-      assert.strictEqual(wrapper.instance().radios.length, 1);
+
+      wrapper.setProps({ value: undefined });
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'A component is changing a controlled RadioGroup to be uncontrolled.',
+      );
     });
 
-    it('should keep radios empty', () => {
-      const wrapper = mount(<RadioGroup value="" />);
-      assert.strictEqual(wrapper.instance().radios.length, 0);
+    it('should warn when switching between uncontrolled to controlled', () => {
+      const wrapper = mount(
+        <RadioGroup>
+          <Radio value="foo" />
+        </RadioGroup>,
+      );
+
+      wrapper.setProps({ value: 'foo' });
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'A component is changing an uncontrolled RadioGroup to be controlled.',
+      );
     });
   });
 });

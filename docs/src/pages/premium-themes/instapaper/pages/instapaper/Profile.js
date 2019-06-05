@@ -3,14 +3,14 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/styles';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import atoms from '../../components/atoms';
 import molecules from '../../components/molecules';
 import Header from '../../components/instapaper/Header';
 import theme from '../../theme/instapaper/theme';
 import withTheme from './withTheme';
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 
 const { Avatar, Icon, Typography } = atoms;
 const { Tabs, Tab } = molecules;
@@ -48,6 +48,7 @@ function ProfilePage() {
                 ultraLarge={upSm}
                 medium={!upSm}
                 style={{ margin: 'auto' }}
+                alt="My profile"
                 src="https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg"
               />
             </Grid>
@@ -68,7 +69,7 @@ function ProfilePage() {
                 </Grid>
               </Box>
               <Box mb="20px">
-                <Grid container spacing={40}>
+                <Grid container spacing={5}>
                   <Grid item>
                     <Typography variant="subtitle1">
                       <b>132</b> posts
@@ -106,7 +107,7 @@ function ProfilePage() {
           <Tab label="Saved" icon={<Icon>bookmark_border_outlined</Icon>} />
           <Tab label="Tagged" />
         </Tabs>
-        <Grid container spacing={32}>
+        <Grid container spacing={4}>
           <Grid item xs={4}>
             <img
               alt="post"

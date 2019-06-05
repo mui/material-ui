@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
@@ -42,21 +41,21 @@ export const styles = theme => ({
   },
 });
 
-function ListSubheader(props) {
+const ListSubheader = React.forwardRef(function ListSubheader(props, ref) {
   const {
     classes,
     className,
-    color,
-    component: Component,
-    disableGutters,
-    disableSticky,
-    inset,
+    color = 'default',
+    component: Component = 'li',
+    disableGutters = false,
+    disableSticky = false,
+    inset = false,
     ...other
   } = props;
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
@@ -66,10 +65,11 @@ function ListSubheader(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 ListSubheader.propTypes = {
   /**
@@ -78,7 +78,7 @@ ListSubheader.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -93,7 +93,7 @@ ListSubheader.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the List Subheader will not have gutters.
    */
@@ -107,15 +107,5 @@ ListSubheader.propTypes = {
    */
   inset: PropTypes.bool,
 };
-
-ListSubheader.defaultProps = {
-  color: 'default',
-  component: 'li',
-  disableGutters: false,
-  disableSticky: false,
-  inset: false,
-};
-
-ListSubheader.muiName = 'ListSubheader';
 
 export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);

@@ -1,9 +1,8 @@
-// @inheritedComponent FormControl
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -11,11 +10,17 @@ import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
+import withStyles from '../styles/withStyles';
 
 const variantComponent = {
   standard: Input,
   filled: FilledInput,
   outlined: OutlinedInput,
+};
+
+const styles = {
+  /* Styles applied to the root element. */
+  root: {},
 };
 
 /**
@@ -26,12 +31,15 @@ const variantComponent = {
  *
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
+ *
  * - [FormControl](/api/form-control/)
  * - [InputLabel](/api/input-label/)
+ * - [FilledInput](/api/filled-input/)
+ * - [OutlinedInput](/api/outlined-input/)
  * - [Input](/api/input/)
  * - [FormHelperText](/api/form-helper-text/)
  *
- * If you wish to alter the properties applied to the native input, you can do so as follows:
+ * If you wish to alter the properties applied to the `input` element, you can do so as follows:
  *
  * ```jsx
  * const inputProps = {
@@ -43,139 +51,137 @@ const variantComponent = {
  *
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
+ *
  * - using the upper case props for passing values directly to the components
  * - using the underlying components directly as shown in the demos
  */
-class TextField extends React.Component {
-  constructor(props) {
-    super(props);
-    this.labelRef = React.createRef();
-  }
+const TextField = React.forwardRef(function TextField(props, ref) {
+  const {
+    autoComplete,
+    autoFocus,
+    children,
+    classes,
+    className: classNameProp,
+    defaultValue,
+    error,
+    FormHelperTextProps,
+    fullWidth,
+    helperText,
+    id,
+    InputLabelProps,
+    inputProps,
+    InputProps,
+    inputRef,
+    label,
+    multiline,
+    name,
+    onBlur,
+    onChange,
+    onFocus,
+    placeholder,
+    required = false,
+    rows,
+    rowsMax,
+    select = false,
+    SelectProps,
+    type,
+    value,
+    variant = 'standard',
+    ...other
+  } = props;
 
-  componentDidMount() {
-    if (this.props.variant === 'outlined') {
-      this.labelNode = ReactDOM.findDOMNode(this.labelRef.current);
-      this.forceUpdate();
-    }
-  }
-
-  render() {
-    const {
-      autoComplete,
-      autoFocus,
-      children,
-      className,
-      defaultValue,
-      error,
-      FormHelperTextProps,
-      fullWidth,
-      helperText,
-      id,
-      InputLabelProps,
-      inputProps,
-      InputProps,
-      inputRef,
-      label,
-      multiline,
-      name,
-      onBlur,
-      onChange,
-      onFocus,
-      placeholder,
-      required,
-      rows,
-      rowsMax,
-      select,
-      SelectProps,
-      type,
-      value,
-      variant,
-      ...other
-    } = this.props;
-
-    warning(
-      !select || Boolean(children),
-      'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
-    );
-
-    const InputMore = {};
-
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  const labelRef = React.useRef(null);
+  React.useEffect(() => {
     if (variant === 'outlined') {
-      if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
-        InputMore.notched = InputLabelProps.shrink;
-      }
+      // #StrictMode ready
+      const labelNode = ReactDOM.findDOMNode(labelRef.current);
+      setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
+    }
+  }, [variant, required]);
 
-      InputMore.labelWidth = (this.labelNode && this.labelNode.offsetWidth) || 0;
+  warning(
+    !select || Boolean(children),
+    'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+  );
+
+  const InputMore = {};
+
+  if (variant === 'outlined') {
+    if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
+      InputMore.notched = InputLabelProps.shrink;
     }
 
-    const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
-    const InputComponent = variantComponent[variant];
-    const InputElement = (
-      <InputComponent
-        autoComplete={autoComplete}
-        autoFocus={autoFocus}
-        defaultValue={defaultValue}
-        fullWidth={fullWidth}
-        multiline={multiline}
-        name={name}
-        rows={rows}
-        rowsMax={rowsMax}
-        type={type}
-        value={value}
-        id={id}
-        inputRef={inputRef}
-        onBlur={onBlur}
-        onChange={onChange}
-        onFocus={onFocus}
-        placeholder={placeholder}
-        inputProps={inputProps}
-        {...InputMore}
-        {...InputProps}
-      />
-    );
-
-    return (
-      <FormControl
-        aria-describedby={helperTextId}
-        className={className}
-        error={error}
-        fullWidth={fullWidth}
-        required={required}
-        variant={variant}
-        {...other}
-      >
-        {label && (
-          <InputLabel htmlFor={id} ref={this.labelRef} {...InputLabelProps}>
-            {label}
-          </InputLabel>
-        )}
-        {select ? (
-          <Select value={value} input={InputElement} {...SelectProps}>
-            {children}
-          </Select>
-        ) : (
-          InputElement
-        )}
-        {helperText && (
-          <FormHelperText id={helperTextId} {...FormHelperTextProps}>
-            {helperText}
-          </FormHelperText>
-        )}
-      </FormControl>
-    );
+    InputMore.labelWidth = labelWidth;
   }
-}
+
+  const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+  const InputComponent = variantComponent[variant];
+  const InputElement = (
+    <InputComponent
+      aria-describedby={helperTextId}
+      autoComplete={autoComplete}
+      autoFocus={autoFocus}
+      defaultValue={defaultValue}
+      fullWidth={fullWidth}
+      multiline={multiline}
+      name={name}
+      rows={rows}
+      rowsMax={rowsMax}
+      type={type}
+      value={value}
+      id={id}
+      inputRef={inputRef}
+      onBlur={onBlur}
+      onChange={onChange}
+      onFocus={onFocus}
+      placeholder={placeholder}
+      inputProps={inputProps}
+      {...InputMore}
+      {...InputProps}
+    />
+  );
+
+  return (
+    <FormControl
+      className={clsx(classes.root, classNameProp)}
+      error={error}
+      fullWidth={fullWidth}
+      ref={ref}
+      required={required}
+      variant={variant}
+      {...other}
+    >
+      {label && (
+        <InputLabel htmlFor={id} ref={labelRef} {...InputLabelProps}>
+          {label}
+        </InputLabel>
+      )}
+      {select ? (
+        <Select aria-describedby={helperTextId} value={value} input={InputElement} {...SelectProps}>
+          {children}
+        </Select>
+      ) : (
+        InputElement
+      )}
+      {helperText && (
+        <FormHelperText id={helperTextId} {...FormHelperTextProps}>
+          {helperText}
+        </FormHelperText>
+      )}
+    </FormControl>
+  );
+});
 
 TextField.propTypes = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it here:
-   * https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the input will be focused during the first mount.
+   * If `true`, the `input` element will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -183,15 +189,20 @@ TextField.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
   /**
-   * The default value of the `Input` element.
+   * The default value of the `input` element.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultValue: PropTypes.any,
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the `input` element will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -212,7 +223,7 @@ TextField.propTypes = {
   helperText: PropTypes.node,
   /**
    * The id of the `input` element.
-   * Use that property to make `label` and `helperText` accessible for screen readers.
+   * Use this property to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
@@ -220,15 +231,18 @@ TextField.propTypes = {
    */
   InputLabelProps: PropTypes.object,
   /**
-   * Properties applied to the `Input` element.
+   * Properties applied to the Input element.
+   * It will be a [`FilledInput`](/api/filled-input/),
+   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * component depending on the `variant` prop value.
    */
   InputProps: PropTypes.object,
   /**
-   * Attributes applied to the native `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -267,7 +281,7 @@ TextField.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the label is displayed as required and the input will be required.
+   * If `true`, the label is displayed as required and the `input` element` will be required.
    */
   required: PropTypes.bool,
   /**
@@ -279,7 +293,7 @@ TextField.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Render a `Select` element while passing the `Input` element to `Select` as `input` parameter.
+   * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    */
   select: PropTypes.bool,
@@ -288,28 +302,17 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   /**
-   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
   type: PropTypes.string,
   /**
-   * The value of the `Input` element, required for a controlled component.
+   * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
-  ]),
+  value: PropTypes.any,
   /**
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-TextField.defaultProps = {
-  required: false,
-  select: false,
-  variant: 'standard',
-};
-
-export default TextField;
+export default withStyles(styles, { name: 'MuiTextField' })(TextField);

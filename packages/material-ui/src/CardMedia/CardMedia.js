@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
-import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -16,13 +15,15 @@ export const styles = {
   /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
   media: {
     width: '100%',
+    // ⚠️ object-fit is not supported by IE 11.
+    objectFit: 'cover',
   },
 };
 
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 
-function CardMedia(props) {
-  const { classes, className, component: Component, image, src, style, ...other } = props;
+const CardMedia = React.forwardRef(function CardMedia(props, ref) {
+  const { classes, className, component: Component = 'div', image, src, style, ...other } = props;
 
   warning(
     Boolean(image || src),
@@ -35,24 +36,25 @@ function CardMedia(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.media]: isMediaComponent,
         },
         className,
       )}
+      ref={ref}
       style={composedStyle}
       src={isMediaComponent ? image || src : undefined}
       {...other}
     />
   );
-}
+});
 
 CardMedia.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -63,7 +65,7 @@ CardMedia.propTypes = {
    * Component for rendering image.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Image to be displayed as a background image.
    * Either `image` or `src` prop must be specified.
@@ -80,10 +82,6 @@ CardMedia.propTypes = {
    * @ignore
    */
   style: PropTypes.object,
-};
-
-CardMedia.defaultProps = {
-  component: 'div',
 };
 
 export default withStyles(styles, { name: 'MuiCardMedia' })(CardMedia);

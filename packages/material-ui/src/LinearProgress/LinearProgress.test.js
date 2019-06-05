@@ -1,29 +1,32 @@
 import React from 'react';
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import LinearProgress from './LinearProgress';
 
 describe('<LinearProgress />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<LinearProgress />);
   });
 
-  it('should render a div with the root class', () => {
-    const wrapper = shallow(<LinearProgress />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<LinearProgress className="woofLinearProgress" />);
-    assert.strictEqual(wrapper.hasClass('woofLinearProgress'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  describeConformance(<LinearProgress />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 
   it('should render indeterminate variant by default', () => {
     const wrapper = shallow(<LinearProgress />);
@@ -79,7 +82,7 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.hasClass(classes.determinate), true);
     assert.strictEqual(
       wrapper.childAt(0).props().style.transform,
-      'scaleX(0.77)',
+      'translateX(-23%)',
       'should have width set',
     );
     assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
@@ -144,12 +147,12 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.childAt(1).props().style.transform,
-      'scaleX(0.77)',
+      'translateX(-23%)',
       'should have width set',
     );
     assert.strictEqual(
       wrapper.childAt(2).props().style.transform,
-      'scaleX(0.85)',
+      'translateX(-15%)',
       'should have width set',
     );
   });

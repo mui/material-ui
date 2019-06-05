@@ -1,9 +1,6 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
@@ -122,23 +119,24 @@ export const styles = theme => ({
   },
 });
 
-function Fab(props) {
+const Fab = React.forwardRef(function Fab(props, ref) {
   const {
     children,
     classes,
     className,
-    color,
-    disabled,
-    disableFocusRipple,
+    color = 'default',
+    component = 'button',
+    disabled = false,
+    disableFocusRipple = false,
     focusVisibleClassName,
-    size,
-    variant,
+    size = 'large',
+    variant = 'round',
     ...other
   } = props;
 
   return (
     <ButtonBase
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.extended]: variant === 'extended',
@@ -150,15 +148,17 @@ function Fab(props) {
         },
         className,
       )}
+      component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
+      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      ref={ref}
       {...other}
     >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 Fab.propTypes = {
   /**
@@ -167,7 +167,7 @@ Fab.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -182,7 +182,7 @@ Fab.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the button will be disabled.
    */
@@ -218,16 +218,6 @@ Fab.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['round', 'extended']),
-};
-
-Fab.defaultProps = {
-  color: 'default',
-  component: 'button',
-  disabled: false,
-  disableFocusRipple: false,
-  size: 'large',
-  type: 'button',
-  variant: 'round',
 };
 
 export default withStyles(styles, { name: 'MuiFab' })(Fab);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -46,22 +46,22 @@ export const styles = theme => ({
   },
 });
 
-function StepConnector(props) {
+const StepConnector = React.forwardRef(function StepConnector(props, ref) {
   const {
     active,
-    alternativeLabel,
+    alternativeLabel = false,
     classes,
     className: classNameProp,
     completed,
     disabled,
     index,
-    orientation,
+    orientation = 'horizontal',
     ...other
   } = props;
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         classes.root,
         classes[orientation],
         {
@@ -72,17 +72,18 @@ function StepConnector(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     >
       <span
-        className={classNames(classes.line, {
+        className={clsx(classes.line, {
           [classes.lineHorizontal]: orientation === 'horizontal',
           [classes.lineVertical]: orientation === 'vertical',
         })}
       />
     </div>
   );
-}
+});
 
 StepConnector.propTypes = {
   /**
@@ -96,7 +97,7 @@ StepConnector.propTypes = {
   alternativeLabel: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -119,11 +120,6 @@ StepConnector.propTypes = {
    * @ignore
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-};
-
-StepConnector.defaultProps = {
-  alternativeLabel: false,
-  orientation: 'horizontal',
 };
 
 export default withStyles(styles, { name: 'MuiStepConnector' })(StepConnector);

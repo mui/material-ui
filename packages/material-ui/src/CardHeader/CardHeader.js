@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
@@ -34,14 +33,14 @@ export const styles = {
   subheader: {},
 };
 
-function CardHeader(props) {
+const CardHeader = React.forwardRef(function CardHeader(props, ref) {
   const {
     action,
     avatar,
     classes,
     className: classNameProp,
-    component: Component,
-    disableTypography,
+    component: Component = 'div',
+    disableTypography = false,
     subheader: subheaderProp,
     subheaderTypographyProps,
     title: titleProp,
@@ -53,10 +52,10 @@ function CardHeader(props) {
   if (title != null && title.type !== Typography && !disableTypography) {
     title = (
       <Typography
-        variant={avatar ? 'body2' : 'headline'}
-        internalDeprecatedVariant
+        variant={avatar ? 'body2' : 'h5'}
         className={classes.title}
         component="span"
+        display="block"
         {...titleTypographyProps}
       >
         {title}
@@ -72,6 +71,7 @@ function CardHeader(props) {
         className={classes.subheader}
         color="textSecondary"
         component="span"
+        display="block"
         {...subheaderTypographyProps}
       >
         {subheader}
@@ -80,7 +80,7 @@ function CardHeader(props) {
   }
 
   return (
-    <Component className={classNames(classes.root, classNameProp)} {...other}>
+    <Component className={clsx(classes.root, classNameProp)} ref={ref} {...other}>
       {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
         {title}
@@ -89,7 +89,7 @@ function CardHeader(props) {
       {action && <div className={classes.action}>{action}</div>}
     </Component>
   );
-}
+});
 
 CardHeader.propTypes = {
   /**
@@ -102,7 +102,7 @@ CardHeader.propTypes = {
   avatar: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -113,7 +113,7 @@ CardHeader.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the children won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping
@@ -139,11 +139,6 @@ CardHeader.propTypes = {
    * (as long as disableTypography is not `true`).
    */
   titleTypographyProps: PropTypes.object,
-};
-
-CardHeader.defaultProps = {
-  component: 'div',
-  disableTypography: false,
 };
 
 export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
-import classNames from 'classnames';
+import { TransitionGroup } from 'react-transition-group';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Ripple from './Ripple';
 
@@ -25,10 +24,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the internal `Ripple` components `ripple` class. */
   ripple: {
-    width: 50,
-    height: 50,
-    left: 0,
-    top: 0,
     opacity: 0,
     position: 'absolute',
   },
@@ -115,10 +110,11 @@ class TouchRipple extends React.PureComponent {
   // startTimerCommit = null;
 
   state = {
-    // eslint-disable-next-line react/no-unused-state
     nextKey: 0,
     ripples: [],
   };
+
+  container = React.createRef();
 
   componentWillUnmount() {
     clearTimeout(this.startTimer);
@@ -144,7 +140,7 @@ class TouchRipple extends React.PureComponent {
       this.ignoringMouseDown = true;
     }
 
-    const element = fakeElement ? null : ReactDOM.findDOMNode(this);
+    const element = fakeElement ? null : this.container.current;
     const rect = element
       ? element.getBoundingClientRect()
       : {
@@ -209,8 +205,8 @@ class TouchRipple extends React.PureComponent {
   startCommit = params => {
     const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
 
-    this.setState(state => {
-      return {
+    this.setState(
+      state => ({
         nextKey: state.nextKey + 1,
         ripples: [
           ...state.ripples,
@@ -227,8 +223,9 @@ class TouchRipple extends React.PureComponent {
             rippleSize={rippleSize}
           />,
         ],
-      };
-    }, cb);
+      }),
+      cb,
+    );
   };
 
   stop = (event, cb) => {
@@ -243,7 +240,7 @@ class TouchRipple extends React.PureComponent {
       this.startTimerCommit = null;
       this.startTimer = setTimeout(() => {
         this.stop(event, cb);
-      }, 0);
+      });
       return;
     }
 
@@ -263,15 +260,11 @@ class TouchRipple extends React.PureComponent {
     const { center, classes, className, ...other } = this.props;
 
     return (
-      <TransitionGroup
-        component="span"
-        enter
-        exit
-        className={classNames(classes.root, className)}
-        {...other}
-      >
-        {this.state.ripples}
-      </TransitionGroup>
+      <span className={clsx(classes.root, className)} ref={this.container} {...other}>
+        <TransitionGroup component={null} enter exit>
+          {this.state.ripples}
+        </TransitionGroup>
+      </span>
     );
   }
 }
@@ -284,7 +277,7 @@ TouchRipple.propTypes = {
   center: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

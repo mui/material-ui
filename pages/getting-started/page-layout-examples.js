@@ -11,12 +11,12 @@ const req = require.context(
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/getting-started/page-layout-examples',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/getting-started/page-layout-examples';
 
 function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+  return <MarkdownDocs disableToc req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

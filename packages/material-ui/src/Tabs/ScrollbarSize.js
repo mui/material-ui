@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 
 const styles = {
-  width: 90,
-  height: 90,
+  width: 99,
+  height: 99,
   position: 'absolute',
-  top: -9000,
+  top: -9999,
   overflow: 'scroll',
-  // Support IE 11
-  msOverflowStyle: 'scrollbar',
 };
 
 /**
@@ -18,57 +15,41 @@ const styles = {
  * The component is originates from https://github.com/STORIS/react-scrollbar-size.
  * It has been moved into the core in order to minimize the bundle size.
  */
-class ScrollbarSize extends React.Component {
-  constructor() {
-    super();
+export default function ScrollbarSize(props) {
+  const { onChange, ...other } = props;
+  const scrollbarHeight = React.useRef();
+  const nodeRef = React.useRef(null);
 
-    if (typeof window !== 'undefined') {
-      this.handleResize = debounce(() => {
-        const prevHeight = this.scrollbarHeight;
-        this.setMeasurements();
-
-        if (prevHeight !== this.scrollbarHeight) {
-          this.props.onChange(this.scrollbarHeight);
-        }
-      }, 166); // Corresponds to 10 frames at 60 Hz.
-    }
-  }
-
-  componentDidMount() {
-    this.setMeasurements();
-    this.props.onChange(this.scrollbarHeight);
-  }
-
-  componentWillUnmount() {
-    this.handleResize.clear();
-  }
-
-  handleRef = ref => {
-    this.nodeRef = ref;
+  const setMeasurements = () => {
+    scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
   };
 
-  setMeasurements = () => {
-    const nodeRef = this.nodeRef;
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      const prevHeight = scrollbarHeight.current;
+      setMeasurements();
 
-    if (!nodeRef) {
-      return;
-    }
+      if (prevHeight !== scrollbarHeight.current) {
+        onChange(scrollbarHeight.current);
+      }
+    }, 166); // Corresponds to 10 frames at 60 Hz.
 
-    this.scrollbarHeight = nodeRef.offsetHeight - nodeRef.clientHeight;
-  };
+    window.addEventListener('resize', handleResize);
 
-  render() {
-    return (
-      <React.Fragment>
-        <EventListener target="window" onResize={this.handleResize} />
-        <div style={styles} ref={this.handleRef} />
-      </React.Fragment>
-    );
-  }
+    return () => {
+      handleResize.clear();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [onChange]);
+
+  React.useEffect(() => {
+    setMeasurements();
+    onChange(scrollbarHeight.current);
+  }, [onChange]);
+
+  return <div style={styles} ref={nodeRef} {...other} />;
 }
 
 ScrollbarSize.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
-
-export default ScrollbarSize;

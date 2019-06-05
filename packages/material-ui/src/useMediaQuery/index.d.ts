@@ -1,1 +1,1 @@
-export { default } from './unstable_useMediaQuery';
+export { default } from './useMediaQuery';

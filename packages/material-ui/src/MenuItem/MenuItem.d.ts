@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { StandardProps } from '..';
-import { ListItemProps } from '../ListItem';
-
-export interface MenuItemProps extends StandardProps<ListItemProps, MenuItemClassKey> {
-  component?: React.ReactType<MenuItemProps>;
-  role?: string;
-}
+import { ListItemTypeMap } from '../ListItem';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ExtendButtonBase } from '../ButtonBase';
 
 export type MenuItemClassKey = 'root' | 'gutters' | 'selected';
 
-declare const MenuItem: React.ComponentType<MenuItemProps>;
+declare const MenuItem: OverridableComponent<ListItemTypeMap<{ button: false }, 'li'>> &
+  ExtendButtonBase<ListItemTypeMap<{ button?: true }, 'li'>>;
+
+export type MenuItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
+  ListItemTypeMap<P, D>,
+  D
+>;
 
 export default MenuItem;

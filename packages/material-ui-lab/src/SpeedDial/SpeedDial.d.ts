@@ -2,12 +2,14 @@ import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { ButtonProps } from '@material-ui/core/Button';
 import { TransitionProps } from 'react-transition-group/Transition';
-import { TransitionHandlerProps } from '@material-ui/core/transitions/transition';
+import { TransitionHandlerProps } from '@material-ui/core/transitions';
 
 export interface SpeedDialProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
-    SpeedDialClassKey
+    SpeedDialClassKey,
+    never,
+    false
   > {
   ariaLabel: string;
   ButtonProps?: Partial<ButtonProps>;
@@ -17,7 +19,7 @@ export interface SpeedDialProps
   onClose?: React.ReactEventHandler<{}>;
   open: boolean;
   openIcon?: React.ReactNode;
-  TransitionComponent?: React.ReactType;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   transitionDuration?: TransitionProps['timeout'];
   TransitionProps?: TransitionProps;
 }

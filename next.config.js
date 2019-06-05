@@ -1,22 +1,23 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
-const withTM = require('@weco/next-plugin-transpile-modules');
+const withTM = require('next-plugin-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
+const withTypescript = require('@zeit/next-typescript');
 
-process.env.LIB_VERSION = pkg.version;
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
 
-module.exports = {
+module.exports = withTypescript({
   webpack: (config, options) => {
     // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
-      transpileModules: ['notistack', 'material-ui-pickers'],
+      transpileModules: ['notistack', '@material-ui/pickers', 'material-table'],
     }).webpack(config, options);
 
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {
-          LIB_VERSION: JSON.stringify(process.env.LIB_VERSION),
+          LIB_VERSION: JSON.stringify(pkg.version),
         },
       }),
     ]);
@@ -32,6 +33,9 @@ module.exports = {
         }),
       );
     }
+
+    config.resolve.alias['react-dom$'] = 'react-dom/profiling';
+    config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
 
     return Object.assign({}, config, {
       plugins,
@@ -56,25 +60,38 @@ module.exports = {
     });
   },
   webpackDevMiddleware: config => config,
-  // next.js also provide a `defaultPathMap` so we could simplify the logic.
-  // However, we keep it in order to prevent any future regression on the `findPages()` side.
+  // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
+  // However, we don't in order to prevent any regression in the `findPages()` method.
   exportPathMap: () => {
+    const pages = findPages();
     const map = {};
 
-    function generateMap(pages) {
-      pages.forEach(page => {
+    function traverse(pages2, userLanguage) {
+      const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
+
+      pages2.forEach(page => {
         if (!page.children) {
-          map[page.pathname] = {
+          map[`${prefix}${page.pathname}`] = {
             page: page.pathname,
+            query: {
+              userLanguage,
+            },
           };
           return;
         }
 
-        generateMap(page.children);
+        traverse(page.children, userLanguage);
       });
     }
 
-    generateMap(findPages());
+    // We want to speed-up the build of pull requests.
+    if (process.env.PULL_REQUEST === 'true') {
+      traverse(pages, 'en');
+    } else {
+      LANGUAGES.forEach(userLanguage => {
+        traverse(pages, userLanguage);
+      });
+    }
 
     return map;
   },
@@ -84,4 +101,4 @@ module.exports = {
     // Number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 3, // default 2
   },
-};
+});

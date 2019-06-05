@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PortalProps } from '../Portal';
 
 export interface PortalProps {
-  children: React.ReactElement<any>;
+  children: React.ReactElement;
   container?: React.ReactInstance | (() => React.ReactInstance) | null;
   disablePortal?: boolean;
   onRendered?: () => void;

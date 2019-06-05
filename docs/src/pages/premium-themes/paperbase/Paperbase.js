@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Navigator from './Navigator';
@@ -9,7 +10,6 @@ import Header from './Header';
 
 let theme = createMuiTheme({
   typography: {
-    useNextVariants: true,
     h5: {
       fontWeight: 500,
       fontSize: 26,
@@ -38,7 +38,7 @@ theme = {
     },
     MuiButton: {
       label: {
-        textTransform: 'initial',
+        textTransform: 'none',
       },
       contained: {
         boxShadow: 'none',
@@ -49,7 +49,7 @@ theme = {
     },
     MuiTabs: {
       root: {
-        marginLeft: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
       },
       indicator: {
         height: 3,
@@ -60,23 +60,19 @@ theme = {
     },
     MuiTab: {
       root: {
-        textTransform: 'initial',
+        textTransform: 'none',
         margin: '0 16px',
         minWidth: 0,
-        [theme.breakpoints.up('md')]: {
-          minWidth: 0,
-        },
-      },
-      labelContainer: {
         padding: 0,
         [theme.breakpoints.up('md')]: {
           padding: 0,
+          minWidth: 0,
         },
       },
     },
     MuiIconButton: {
       root: {
-        padding: theme.spacing.unit,
+        padding: theme.spacing(1),
       },
     },
     MuiTooltip: {
@@ -161,7 +157,7 @@ class Paperbase extends React.Component {
     const { classes } = this.props;
 
     return (
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
           <nav className={classes.drawer}>
@@ -184,7 +180,7 @@ class Paperbase extends React.Component {
             </main>
           </div>
         </div>
-      </MuiThemeProvider>
+      </ThemeProvider>
     );
   }
 }

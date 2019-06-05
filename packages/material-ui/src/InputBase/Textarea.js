@@ -1,201 +1,144 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
-import EventListener from 'react-event-listener';
-import withStyles from '../styles/withStyles';
-import { setRef } from '../utils/reactHelpers';
+import { useForkRef } from '../utils/reactHelpers';
 
-const ROWS_HEIGHT = 19;
+function getStyleValue(computedStyle, property) {
+  return parseInt(computedStyle[property], 10) || 0;
+}
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    position: 'relative', // because the shadow has position: 'absolute',
-    width: '100%',
-  },
-  textarea: {
-    width: '100%',
-    height: '100%',
-    resize: 'none',
-    font: 'inherit',
-    padding: 0,
-    cursor: 'inherit',
-    boxSizing: 'border-box',
-    lineHeight: 'inherit',
-    border: 'none',
-    outline: 'none',
-    background: 'transparent',
-  },
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
+const styles = {
+  /* Styles applied to the shadow textarea element. */
   shadow: {
-    // Overflow also needed to here to remove the extra row
-    // added to textareas in Firefox.
-    overflow: 'hidden',
     // Visibility needed to hide the extra text area on iPads
     visibility: 'hidden',
+    // Remove from the content flow
     position: 'absolute',
-    height: 'auto',
-    whiteSpace: 'pre-wrap',
+    // Ignore the scrollbar width
+    overflow: 'hidden',
+    height: '0',
   },
 };
 
 /**
  * @ignore - internal component.
+ *
+ * To make public in v4+.
  */
-class Textarea extends React.Component {
-  constructor(props) {
-    super();
-    this.isControlled = props.value != null;
-    // <Input> expects the components it renders to respond to 'value'
-    // so that it can check whether they are filled.
-    this.value = props.value || props.defaultValue || '';
-    this.state = {
-      height: Number(props.rows) * ROWS_HEIGHT,
+const Textarea = React.forwardRef(function Textarea(props, ref) {
+  const { onChange, rows, rowsMax, style, value, ...other } = props;
+
+  const { current: isControlled } = React.useRef(value != null);
+  const inputRef = React.useRef(null);
+  const [state, setState] = React.useState({});
+  const shadowRef = React.useRef(null);
+  const handleRef = useForkRef(ref, inputRef);
+
+  const syncHeight = React.useCallback(() => {
+    const input = inputRef.current;
+    const inputShallow = shadowRef.current;
+
+    const computedStyle = window.getComputedStyle(input);
+    inputShallow.style.width = computedStyle.width;
+    inputShallow.value = input.value || props.placeholder || 'x';
+
+    // The height of the inner content
+    const innerHeight = inputShallow.scrollHeight;
+    const boxSizing = computedStyle['box-sizing'];
+
+    // Measure height of a textarea with a single row
+    inputShallow.value = 'x';
+    const singleRowHeight = inputShallow.scrollHeight;
+
+    // The height of the outer content
+    let outerHeight = innerHeight;
+
+    if (rows != null) {
+      outerHeight = Math.max(Number(rows) * singleRowHeight, outerHeight);
+    }
+    if (rowsMax != null) {
+      outerHeight = Math.min(Number(rowsMax) * singleRowHeight, outerHeight);
+    }
+    outerHeight = Math.max(outerHeight, singleRowHeight);
+
+    if (boxSizing === 'content-box') {
+      outerHeight -=
+        getStyleValue(computedStyle, 'padding-bottom') +
+        getStyleValue(computedStyle, 'padding-top');
+    } else if (boxSizing === 'border-box') {
+      outerHeight +=
+        getStyleValue(computedStyle, 'border-bottom-width') +
+        getStyleValue(computedStyle, 'border-top-width');
+    }
+
+    setState(prevState => {
+      // Need a large enough different to update the height.
+      // This prevents infinite rendering loop.
+      if (innerHeight > 0 && Math.abs((prevState.innerHeight || 0) - innerHeight) > 1) {
+        return {
+          innerHeight,
+          outerHeight,
+        };
+      }
+
+      return prevState;
+    });
+  }, [setState, rows, rowsMax, props.placeholder]);
+
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      syncHeight();
+    }, 166); // Corresponds to 10 frames at 60 Hz.
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      handleResize.clear();
+      window.removeEventListener('resize', handleResize);
     };
+  }, [syncHeight]);
 
-    if (typeof window !== 'undefined') {
-      this.handleResize = debounce(() => {
-        this.syncHeightWithShadow();
-      }, 166); // Corresponds to 10 frames at 60 Hz.
-    }
-  }
+  useEnhancedEffect(() => {
+    syncHeight();
+  });
 
-  componentDidMount() {
-    this.syncHeightWithShadow();
-  }
-
-  componentDidUpdate() {
-    this.syncHeightWithShadow();
-  }
-
-  componentWillUnmount() {
-    this.handleResize.clear();
-  }
-
-  handleRefInput = ref => {
-    this.inputRef = ref;
-
-    setRef(this.props.textareaRef, ref);
-  };
-
-  handleRefSinglelineShadow = ref => {
-    this.singlelineShadowRef = ref;
-  };
-
-  handleRefShadow = ref => {
-    this.shadowRef = ref;
-  };
-
-  handleChange = event => {
-    this.value = event.target.value;
-
-    if (!this.isControlled) {
-      // The component is not controlled, we need to update the shallow value.
-      this.shadowRef.value = this.value;
-      this.syncHeightWithShadow();
+  const handleChange = event => {
+    if (!isControlled) {
+      syncHeight();
     }
 
-    if (this.props.onChange) {
-      this.props.onChange(event);
+    if (onChange) {
+      onChange(event);
     }
   };
 
-  syncHeightWithShadow() {
-    const props = this.props;
-
-    // Guarding for **broken** shallow rendering method that call componentDidMount
-    // but doesn't handle refs correctly.
-    // To remove once the shallow rendering has been fixed.
-    if (!this.shadowRef) {
-      return;
-    }
-
-    if (this.isControlled) {
-      // The component is controlled, we need to update the shallow value.
-      this.shadowRef.value = props.value == null ? '' : String(props.value);
-    }
-
-    const lineHeight = this.singlelineShadowRef.scrollHeight;
-    let newHeight = this.shadowRef.scrollHeight;
-
-    // Guarding for jsdom, where scrollHeight isn't present.
-    // See https://github.com/tmpvar/jsdom/issues/1013
-    if (newHeight === undefined) {
-      return;
-    }
-
-    if (Number(props.rowsMax) >= Number(props.rows)) {
-      newHeight = Math.min(Number(props.rowsMax) * lineHeight, newHeight);
-    }
-
-    newHeight = Math.max(newHeight, lineHeight);
-
-    // Need a large enough different to update the height.
-    // This prevents infinite rendering loop.
-    if (Math.abs(this.state.height - newHeight) > 1) {
-      this.setState({
-        height: newHeight,
-      });
-    }
-  }
-
-  render() {
-    const {
-      classes,
-      className,
-      defaultValue,
-      onChange,
-      rows,
-      rowsMax,
-      textareaRef,
-      value,
-      style,
-      ...other
-    } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <EventListener target="window" onResize={this.handleResize} />
-        <textarea
-          aria-hidden="true"
-          className={classnames(classes.textarea, classes.shadow)}
-          readOnly
-          ref={this.handleRefSinglelineShadow}
-          rows="1"
-          tabIndex={-1}
-          value=""
-        />
-        <textarea
-          aria-hidden="true"
-          className={classnames(classes.textarea, classes.shadow)}
-          defaultValue={defaultValue}
-          readOnly
-          ref={this.handleRefShadow}
-          rows={rows}
-          tabIndex={-1}
-          value={value}
-        />
-        <textarea
-          rows={rows}
-          className={classnames(classes.textarea, className)}
-          defaultValue={defaultValue}
-          value={value}
-          onChange={this.handleChange}
-          ref={this.handleRefInput}
-          style={{ height: this.state.height, ...style }}
-          {...other}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <textarea
+        value={value}
+        onChange={handleChange}
+        ref={handleRef}
+        style={{
+          height: state.outerHeight,
+          overflow: state.outerHeight === state.innerHeight ? 'hidden' : null,
+          ...style,
+        }}
+        {...other}
+      />
+      <textarea
+        aria-hidden
+        className={props.className}
+        readOnly
+        ref={shadowRef}
+        tabIndex={-1}
+        style={{ ...styles.shadow, ...style }}
+      />
+    </React.Fragment>
+  );
+});
 
 Textarea.propTypes = {
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
-   */
-  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -203,35 +146,27 @@ Textarea.propTypes = {
   /**
    * @ignore
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * @ignore
-   */
-  disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
   onChange: PropTypes.func,
   /**
-   * Number of rows to display when multiline option is set to true.
+   * @ignore
+   */
+  placeholder: PropTypes.string,
+  /**
+   * Minimum umber of rows to display.
    */
   rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Maximum number of rows to display when multiline option is set to true.
+   * Maximum number of rows to display.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Use that property to pass a ref callback to the native textarea element.
+   * @ignore
    */
-  textareaRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  style: PropTypes.object,
   /**
    * @ignore
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.any,
 };
 
-Textarea.defaultProps = {
-  rows: 1,
-};
-
-export default withStyles(styles, { name: 'MuiPrivateTextarea' })(Textarea);
+export default Textarea;

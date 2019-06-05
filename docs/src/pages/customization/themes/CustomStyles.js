@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
-import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
-import orange from '@material-ui/core/colors/orange';
+import { createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { orange } from '@material-ui/core/colors';
 
 const styles = theme => ({
   root: {
@@ -35,14 +36,13 @@ const theme = createMuiTheme({
     // My business variables
     danger: orange[500],
   },
-  typography: { useNextVariants: true },
 });
 
 function CustomStyles() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <CustomCheckbox />
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

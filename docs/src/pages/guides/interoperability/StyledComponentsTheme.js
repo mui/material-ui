@@ -1,10 +1,9 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { darken, fade } from '@material-ui/core/styles/colorManipulator';
+import { createMuiTheme, darken, fade } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({ typography: { useNextVariants: true } });
+const theme = createMuiTheme();
 
 const StyledButton = styled.button`
   padding: 8px 12px;

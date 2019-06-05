@@ -18,14 +18,16 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">actionIcon</span> | <span class="prop-type">node</span> |   | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
+| <span class="prop-name">actionIcon</span> | <span class="prop-type">node</span> |  | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
 | <span class="prop-name">actionPosition</span> | <span class="prop-type">enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br></span> | <span class="prop-default">'right'</span> | Position of secondary action IconButton. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">subtitle</span> | <span class="prop-type">node</span> |   | String or element serving as subtitle (support text). |
-| <span class="prop-name">title</span> | <span class="prop-type">node</span> |   | Title to be displayed on tile. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">subtitle</span> | <span class="prop-type">node</span> |  | String or element serving as subtitle (support text). |
+| <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed on tile. |
 | <span class="prop-name">titlePosition</span> | <span class="prop-type">enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br></span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 
-Any other properties supplied will be spread to the root element (native element).
+The `ref` is forwarded to the root element.
+
+Any other properties supplied will be provided to the root element (native element).
 
 ## CSS
 
@@ -47,14 +49,18 @@ This property accepts the following keys:
 | <span class="prop-name">actionIcon</span> | Styles applied to the actionIcon if supplied.
 | <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
 
-Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/GridListTileBar/GridListTileBar.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiGridListTileBar`.
 
+## Notes
+
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+
 ## Demos
 
-- [Grid List](/demos/grid-list/)
+- [Grid List](/components/grid-list/)
 

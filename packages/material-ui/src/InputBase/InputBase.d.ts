@@ -9,13 +9,13 @@ export interface InputBaseProps
   > {
   autoComplete?: string;
   autoFocus?: boolean;
-  defaultValue?: Array<string | number | boolean | object> | string | number | boolean | object;
+  defaultValue?: unknown;
   disabled?: boolean;
   endAdornment?: React.ReactNode;
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
-  inputComponent?: React.ReactType<InputBaseComponentProps>;
+  inputComponent?: React.ElementType<InputBaseComponentProps>;
   inputProps?: InputBaseComponentProps;
   inputRef?: React.Ref<any> | React.RefObject<any>;
   margin?: 'dense' | 'none';
@@ -24,22 +24,20 @@ export interface InputBaseProps
   placeholder?: string;
   readOnly?: boolean;
   required?: boolean;
-  renderPrefix?: (
-    state: {
-      disabled?: boolean;
-      error?: boolean;
-      filled?: boolean;
-      focused?: boolean;
-      margin?: 'dense' | 'none' | 'normal';
-      required?: boolean;
-      startAdornment?: React.ReactNode;
-    },
-  ) => React.ReactNode;
+  renderPrefix?: (state: {
+    disabled?: boolean;
+    error?: boolean;
+    filled?: boolean;
+    focused?: boolean;
+    margin?: 'dense' | 'none' | 'normal';
+    required?: boolean;
+    startAdornment?: React.ReactNode;
+  }) => React.ReactNode;
   rows?: string | number;
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;
   type?: string;
-  value?: Array<string | number | boolean | object> | string | number | boolean | object;
+  value?: unknown;
   onFilled?: () => void;
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
@@ -54,7 +52,8 @@ export interface InputBaseProps
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 }
 
-export interface InputBaseComponentProps extends InputBaseProps {
+export interface InputBaseComponentProps
+  extends React.HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   // Accommodate arbitrary additional props coming from the `inputProps` prop
   [arbitrary: string]: any;
 }
@@ -64,15 +63,18 @@ export type InputBaseClassKey =
   | 'formControl'
   | 'focused'
   | 'disabled'
+  | 'adornedEnd'
+  | 'adornedStart'
   | 'error'
+  | 'marginDense'
   | 'multiline'
   | 'fullWidth'
   | 'input'
   | 'inputMarginDense'
-  | 'inputDisabled'
   | 'inputMultiline'
-  | 'inputType'
-  | 'inputTypeSearch';
+  | 'inputTypeSearch'
+  | 'inputAdornedStart'
+  | 'inputAdornedEnd';
 
 declare const InputBase: React.ComponentType<InputBaseProps>;
 

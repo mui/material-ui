@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '../internal/svg-icons/Add';
 
@@ -32,21 +32,21 @@ export const styles = theme => ({
     opacity: 0,
     transform: 'rotate(-45deg)',
   },
-  /* Styles applied to the `openIcon` if provided & if `open={true}` */
+  /* Styles applied to the `openIcon` if provided & if `open={true}`. */
   openIconOpen: {
     transform: 'rotate(0deg)',
     opacity: 1,
   },
 });
 
-function SpeedDialIcon(props) {
+const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(props, ref) {
   const { classes, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
-  const iconClassName = classNames(classes.icon, {
+  const iconClassName = clsx(classes.icon, {
     [classes.iconOpen]: open,
     [classes.iconWithOpenIconOpen]: openIconProp && open,
   });
-  const openIconClassName = classNames(classes.openIcon, { [classes.openIconOpen]: open });
+  const openIconClassName = clsx(classes.openIcon, { [classes.openIconOpen]: open });
 
   function formatIcon(icon, className) {
     if (React.isValidElement(icon)) {
@@ -57,16 +57,17 @@ function SpeedDialIcon(props) {
   }
 
   return (
-    <span className={classes.root} {...other}>
+    <span className={classes.root} ref={ref} {...other}>
       {openIconProp ? formatIcon(openIconProp, openIconClassName) : null}
       {iconProp ? formatIcon(iconProp, iconClassName) : <AddIcon className={iconClassName} />}
     </span>
   );
-}
+});
 
 SpeedDialIcon.propTypes = {
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { StandardProps } from '..';
 import { InputBaseProps } from '../InputBase';
 
 export interface OutlinedInputProps extends StandardProps<InputBaseProps, OutlinedInputClassKey> {

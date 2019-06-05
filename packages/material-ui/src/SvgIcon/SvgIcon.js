@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
@@ -14,7 +13,7 @@ export const styles = theme => ({
     display: 'inline-block',
     fill: 'currentColor',
     flexShrink: 0,
-    fontSize: 24,
+    fontSize: theme.typography.pxToRem(24),
     transition: theme.transitions.create('fill', {
       duration: theme.transitions.duration.shorter,
     }),
@@ -45,31 +44,31 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: {
-    fontSize: 20,
+    fontSize: theme.typography.pxToRem(20),
   },
   /* Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: {
-    fontSize: 35,
+    fontSize: theme.typography.pxToRem(35),
   },
 });
 
-function SvgIcon(props) {
+const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
   const {
     children,
     classes,
     className,
-    color,
-    component: Component,
-    fontSize,
-    nativeColor,
+    color = 'inherit',
+    component: Component = 'svg',
+    fontSize = 'default',
+    htmlColor,
     titleAccess,
-    viewBox,
+    viewBox = '0 0 24 24',
     ...other
   } = props;
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
@@ -79,16 +78,17 @@ function SvgIcon(props) {
       )}
       focusable="false"
       viewBox={viewBox}
-      color={nativeColor}
+      color={htmlColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
       role={titleAccess ? 'img' : 'presentation'}
+      ref={ref}
       {...other}
     >
       {children}
       {titleAccess ? <title>{titleAccess}</title> : null}
     </Component>
   );
-}
+});
 
 SvgIcon.propTypes = {
   /**
@@ -97,7 +97,7 @@ SvgIcon.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -106,14 +106,14 @@ SvgIcon.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * You can use the `nativeColor` property to apply a color attribute to the SVG element.
+   * You can use the `htmlColor` property to apply a color attribute to the SVG element.
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
@@ -121,10 +121,10 @@ SvgIcon.propTypes = {
   /**
    * Applies a color attribute to the SVG element.
    */
-  nativeColor: PropTypes.string,
+  htmlColor: PropTypes.string,
   /**
-   * The shape-rendering attribute. The behavior of the different options is described
-   * [here](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+   * The shape-rendering attribute. The behavior of the different options is described on the
+   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
    * If you are having issues with blurry icons you should investigate this property.
    */
   shapeRendering: PropTypes.string,
@@ -141,13 +141,6 @@ SvgIcon.propTypes = {
    * to bottom right (50,20) and each unit will be worth 10px.
    */
   viewBox: PropTypes.string,
-};
-
-SvgIcon.defaultProps = {
-  color: 'inherit',
-  component: 'svg',
-  fontSize: 'default',
-  viewBox: '0 0 24 24',
 };
 
 SvgIcon.muiName = 'SvgIcon';

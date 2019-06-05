@@ -1,10 +1,9 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { style } from '@material-ui/system';
+import { style, typography } from '@material-ui/system';
 
-const typography = style({
+const variant = style({
   prop: 'variant',
   cssProperty: false,
   themeKey: 'typography',
@@ -12,30 +11,41 @@ const typography = style({
 
 // ⚠ Text is already defined in the global context:
 // https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
-const Text = styled.div`
+const Text = styled.span`
+  font-family: Helvetica;
+  ${variant}
   ${typography}
 `;
 
-const muiTheme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
-
 const theme = {
   typography: {
-    h5: muiTheme.typography.h5,
+    h1: {
+      fontSize: 30,
+      lineHeight: 1.5,
+    },
+    h2: {
+      fontSize: 25,
+      lineHeight: 1.5,
+    },
   },
 };
 
-function Variant() {
+export default function Variant() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
-        <Text variant="h5">variant=h5</Text>
+        <div>
+          <Text variant="h1" as="div">
+            variant=h1
+          </Text>
+          <Text variant="h1" fontWeight={300} as="div">
+            fontWeight=300
+          </Text>
+          <Text variant="h2" as="div">
+            variant=h2
+          </Text>
+        </div>
       </ThemeProvider>
     </NoSsr>
   );
 }
-
-export default Variant;

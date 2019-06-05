@@ -72,8 +72,8 @@ export interface Palette {
       mainShade?: number | string,
       lightShade?: number | string,
       darkShade?: number | string,
-    ): void;
-    (color: PaletteColorOptions): void;
+    ): PaletteColor;
+    (color: PaletteColorOptions): PaletteColor;
   };
 }
 
