@@ -196,5 +196,7 @@
     "/styles/basics": "Basics",
     "/styles/advanced": "Advanced",
     "https://themes.material-ui.com/": "Premium Themes"
-  }
+  },
+  "copySourceLinkJS": "Copy link to JavaScript source",
+  "copySourceLinkTS": "Copy link to TypeScript source"
 }

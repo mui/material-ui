@@ -17,6 +17,15 @@ const jss = create({
 class SideEffectsRaw extends React.Component {
   componentDidMount() {
     const { options } = this.props;
+    const navigatedCodeVariantMatch = window.location.hash.match(/\.(js|tsx)$/);
+    const navigatedCodeVariant =
+      navigatedCodeVariantMatch !== null ? navigatedCodeVariantMatch[1] : undefined;
+    if (navigatedCodeVariant !== undefined) {
+      const navigatedCodeVariantAsPersistable = navigatedCodeVariant === 'tsx' ? 'TS' : 'JS';
+      document.cookie = `codeVariant=${navigatedCodeVariantAsPersistable};path=/;max-age=31536000`;
+      window.ga('set', 'dimension1', navigatedCodeVariantAsPersistable);
+    }
+
     const codeVariant = getCookie('codeVariant');
 
     if (codeVariant && options.codeVariant !== codeVariant) {
