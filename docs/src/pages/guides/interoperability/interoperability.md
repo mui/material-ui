@@ -125,7 +125,7 @@ export default function StyledComponents() {
 
 ### Controlling Priority
 
-Both styled-components and JSS inject their styles at the bottom of the `<head>`.
+**Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`.
 The best approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
