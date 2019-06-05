@@ -37,6 +37,11 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /css-in-js/* /styles/:splat 301
 /premium-themes* https://themes.material-ui.com/ 301
 
+# link shortener
+/r/styles-instance-warning https://material-ui.com/getting-started/faq#i-have-several-instances-of-styles-on-the-page
+/r/caveat-with-refs-guide https://material-ui.com/guides/composition/#caveat-with-refs
+/r/pseudo-classes-guide https://material-ui.com/guides/composition/#caveat-with-refs
+
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0
 /v0.19.4 https://v0.material-ui.com/v0.19.4
