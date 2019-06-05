@@ -44,6 +44,7 @@ export function makeKeyboardPicker<T extends any>({
       onOpen,
       onClose,
       minDateMessage,
+      strictCompareDates,
       minutesStep,
       onAccept,
       onChange,
@@ -92,6 +93,7 @@ export function makeKeyboardPicker<T extends any>({
           leftArrowButtonProps={leftArrowButtonProps}
           maxDate={maxDate}
           minDate={minDate}
+          strictCompareDates={strictCompareDates}
           onMonthChange={onMonthChange}
           onYearChange={onYearChange}
           renderDay={renderDay}
