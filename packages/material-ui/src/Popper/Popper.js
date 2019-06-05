@@ -177,7 +177,25 @@ Popper.propTypes = {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
-      if (
+      if (resolvedAnchorEl instanceof Element) {
+        const box = resolvedAnchorEl.getBoundingClientRect();
+
+        if (
+          process.env.NODE_ENV !== 'test' &&
+          box.top === 0 &&
+          box.left === 0 &&
+          box.right === 0 &&
+          box.bottom === 0
+        ) {
+          return new Error(
+            [
+              'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+              'The reference element should have a sound position in the page.',
+              'It might no longer be mounted or display none.',
+            ].join('\n'),
+          );
+        }
+      } else if (
         !resolvedAnchorEl ||
         typeof resolvedAnchorEl.clientWidth !== 'number' ||
         typeof resolvedAnchorEl.clientHeight !== 'number' ||
@@ -188,24 +206,6 @@ Popper.propTypes = {
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
             'It should be an HTML Element instance or a referenceObject:',
             'https://popper.js.org/popper-documentation.html#referenceObject.',
-          ].join('\n'),
-        );
-      }
-
-      const box = resolvedAnchorEl.getBoundingClientRect();
-
-      if (
-        process.env.NODE_ENV !== 'test' &&
-        box.top === 0 &&
-        box.left === 0 &&
-        box.right === 0 &&
-        box.bottom === 0
-      ) {
-        return new Error(
-          [
-            'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            'The reference should have a sound position in the page.',
-            'If you have provided an element, it might no longer be mounted or display none.',
           ].join('\n'),
         );
       }
