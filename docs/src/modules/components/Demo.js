@@ -357,11 +357,16 @@ class Demo extends React.Component {
           tabIndex={-1}
           onMouseEnter={this.handleDemoHover}
           onMouseLeave={this.handleDemoHover}
-          style={{
-            maxWidth: demoOptions.maxWidth,
-          }}
         >
-          <DemoSandboxed component={DemoComponent} iframe={demoOptions.iframe} name={demoName} />
+          <DemoSandboxed
+            style={{
+              maxWidth: demoOptions.maxWidth,
+              height: demoOptions.height,
+            }}
+            component={DemoComponent}
+            iframe={demoOptions.iframe}
+            name={demoName}
+          />
         </div>
       </div>
     );
