@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { getClasses, createMount, describeConformance } from '@material-ui/core/test-utils';
+import { getClasses, createMount } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Radio from './Radio';
 import IconButton from '../IconButton';
 
