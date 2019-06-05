@@ -76,11 +76,7 @@ const styles = theme => ({
   itemPrimary: {
     color: 'inherit',
     fontSize: theme.typography.fontSize,
-    '&$textDense': {
-      fontSize: theme.typography.fontSize,
-    },
   },
-  textDense: {},
   divider: {
     marginTop: theme.spacing(2),
   },
@@ -133,7 +129,6 @@ function Navigator(props) {
                 <ListItemText
                   classes={{
                     primary: classes.itemPrimary,
-                    textDense: classes.textDense,
                   }}
                 >
                   {childId}
