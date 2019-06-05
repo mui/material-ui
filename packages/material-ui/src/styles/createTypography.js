@@ -36,7 +36,7 @@ export default function createTypography(palette, typography) {
     fontFamily,
     fontWeight,
     fontSize: pxToRem(size),
-    // Unitless following http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+    // Unitless following https://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
     lineHeight,
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.

@@ -182,7 +182,7 @@ class HomePage extends React.Component {
           dangerouslySetInnerHTML={{
             __html: `
 {
-  "@context": "http://schema.org",
+  "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Material-UI",
   "url": "https://material-ui.com/",

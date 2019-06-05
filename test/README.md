@@ -47,7 +47,7 @@ Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages
 #### Create HTML coverage reports
 `yarn test:coverage:html`
 
-When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](http://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
+When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
 
 ### DOM API level
 
@@ -109,7 +109,7 @@ testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
 
 In addition to docker, the visual regression tests depend on either
 [ImageMagick](https://www.imagemagick.org/)
-or [GraphicsMagick](http://http://www.graphicsmagick.org/) being installed.
+or [GraphicsMagick](https://www.graphicsmagick.org/) being installed.
 
 ## Writing Tests
 
