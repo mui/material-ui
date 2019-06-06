@@ -49,7 +49,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `textColor="primary"`. */
   textColorPrimary: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     '&$selected': {
       color: theme.palette.primary.main,
     },
