@@ -31,6 +31,8 @@ function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 const defaultPopperOptions = {};
 
 /**
@@ -57,9 +59,10 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   const popperRef = React.useRef(null);
   const instance = React.useRef();
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     instance.current = handlePopperRef;
-  });
+  }, [handlePopperRef]);
+  React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
 
   const [exited, setExited] = React.useState(!props.open);
   const [placement, setPlacement] = React.useState();

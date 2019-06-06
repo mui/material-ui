@@ -206,9 +206,15 @@ describe('<Popper />', () => {
 
   describe('prop: popperRef', () => {
     it('should return a ref', () => {
-      const ref = React.createRef();
-      mount(<Popper {...defaultProps} popperRef={ref} />);
-      assert.strictEqual(ref.current instanceof PopperJS, true);
+      const ref1 = React.createRef();
+      const ref2 = React.createRef();
+      const wrapper = mount(<Popper {...defaultProps} popperRef={ref1} />);
+      assert.strictEqual(ref1.current instanceof PopperJS, true);
+      wrapper.setProps({
+        popperRef: ref2,
+      });
+      assert.strictEqual(ref1.current, null);
+      assert.strictEqual(ref2.current instanceof PopperJS, true);
     });
   });
 
