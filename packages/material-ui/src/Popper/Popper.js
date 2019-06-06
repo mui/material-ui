@@ -79,7 +79,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
     if (popperRef.current) {
       popperRef.current.destroy();
-      instance.current(null)
+      instance.current(null);
     }
 
     const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
@@ -102,7 +102,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
-    instance.current(popper)
+    instance.current(popper);
   }, [anchorEl, disablePortal, modifiers, open, placement, placementProps, popperOptions]);
 
   const handleEnter = () => {
@@ -115,7 +115,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     }
 
     popperRef.current.destroy();
-    instance.current(null)
+    instance.current(null);
   };
 
   const handleExited = () => {
