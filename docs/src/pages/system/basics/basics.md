@@ -265,6 +265,20 @@ const borderColor = style({
   transform: value => `${value} !important`,
 });
 ```
+We can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` we can reuse logic enabling the behaivior we see in other spacing properties like `padding`.
+```jsx
+import styled from 'styled-components';
+import { style } from '@material-ui/system'
+import { Box } from '@material-ui/core';
+
+const gridGap = style({
+  prop: 'gridGap', 
+  themeKey: 'spacing' 
+});
+
+const Grid = styled(Box)`${gridGap}`;
+const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>
+```
 
 ### `compose(...style functions) => style function`
 
