@@ -1,21 +1,26 @@
 import * as React from 'react';
-import { PropInjector, Omit } from '@material-ui/types';
+import { PropInjector } from '@material-ui/types';
 import { Theme } from './createMuiTheme';
-import * as CSS from 'csstype';
-import * as JSS from 'jss';
 import {
   CreateCSSProperties,
   CSSProperties,
   ClassNameMap,
   StyledComponentProps,
-  WithStylesOptions as DefaultWithStylesOptions,
+  WithStylesOptions,
   StyleRules,
   StyleRulesCallback as DefaultStyleRulesCallback,
   Styles as DefaultStyles,
   ClassKeyOfStyles,
 } from '@material-ui/styles/withStyles';
 
-export { CreateCSSProperties, CSSProperties, ClassNameMap, StyledComponentProps, StyleRules };
+export {
+  CreateCSSProperties,
+  CSSProperties,
+  ClassNameMap,
+  StyledComponentProps,
+  StyleRules,
+  WithStylesOptions,
+};
 
 /**
  * @internal
@@ -31,8 +36,6 @@ export type Styles<ClassKey extends string = string, Props extends object = {}> 
   ClassKey
 >;
 
-export type WithStylesOptions = Omit<DefaultWithStylesOptions<Theme>, 'defaultTheme'>;
-
 export type WithStyles<
   T extends string | Styles = string,
   IncludeTheme extends boolean | undefined = false
@@ -42,7 +45,7 @@ export type WithStyles<
 
 export default function withStyles<
   ClassKey extends string,
-  Options extends WithStylesOptions = {},
+  Options extends WithStylesOptions<Theme> = {},
   Props extends object = {}
 >(
   style: Styles<ClassKey, Props>,

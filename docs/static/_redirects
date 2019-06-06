@@ -13,6 +13,10 @@ https://next.material-ui.com/* https://material-ui.com/:splat 301!
 https://material-ui-next.com/* https://material-ui.com/:splat 301!
 https://material-ui.dev/* https://material-ui.com/:splat 301!
 
+# old code links
+# likely /style/typography#migration-to-typography-v2
+/style/typography https://v3-9-0.material-ui.com/style/typography/#migration-to-typography-v2 301
+
 # To remove at some point (2020).
 /demos/selection-controls/ /components/radio-buttons/ 301
 /page-layout-examples/* /getting-started/page-layout-examples/:splat 301
@@ -32,6 +36,11 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /lab/* /components/:splat 301
 /css-in-js/* /styles/:splat 301
 /premium-themes* https://themes.material-ui.com/ 301
+
+# link shortener
+/r/styles-instance-warning https://material-ui.com/getting-started/faq#i-have-several-instances-of-styles-on-the-page 307
+/r/caveat-with-refs-guide https://material-ui.com/guides/composition/#caveat-with-refs 307
+/r/pseudo-classes-guide https://material-ui.com/guides/composition/#caveat-with-refs 307
 
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0
