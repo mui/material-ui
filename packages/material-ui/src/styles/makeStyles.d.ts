@@ -4,7 +4,7 @@ import { StylesHook } from '@material-ui/styles/makeStyles';
 
 export default function makeStyles<
   Theme = DefaultTheme,
-  Props extends {} = {},
+  Props extends {} = any,
   ClassKey extends string = string
 >(
   styles: Styles<Theme, Props, ClassKey>,
