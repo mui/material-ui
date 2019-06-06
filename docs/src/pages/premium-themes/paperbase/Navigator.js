@@ -43,44 +43,40 @@ const categories = [
 
 const styles = theme => ({
   categoryHeader: {
-    paddingTop: 16,
-    paddingBottom: 16,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   categoryHeaderPrimary: {
     color: theme.palette.common.white,
   },
   item: {
-    paddingTop: 4,
-    paddingBottom: 4,
+    paddingTop: 1,
+    paddingBottom: 1,
     color: 'rgba(255, 255, 255, 0.7)',
+    '&:hover,&:focus': {
+      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    },
   },
   itemCategory: {
     backgroundColor: '#232f3e',
     boxShadow: '0 -1px 0 #404854 inset',
-    paddingTop: 16,
-    paddingBottom: 16,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   firebase: {
     fontSize: 24,
-    fontFamily: theme.typography.fontFamily,
     color: theme.palette.common.white,
-  },
-  itemActionable: {
-    '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    },
   },
   itemActiveItem: {
     color: '#4fc3f7',
   },
   itemPrimary: {
-    color: 'inherit',
-    fontSize: theme.typography.fontSize,
-    '&$textDense': {
-      fontSize: theme.typography.fontSize,
-    },
+    fontSize: 'inherit',
   },
-  textDense: {},
+  itemIcon: {
+    minWidth: 'auto',
+    marginRight: theme.spacing(2),
+  },
   divider: {
     marginTop: theme.spacing(2),
   },
@@ -96,7 +92,7 @@ function Navigator(props) {
           Paperbase
         </ListItem>
         <ListItem className={clsx(classes.item, classes.itemCategory)}>
-          <ListItemIcon>
+          <ListItemIcon className={classes.itemIcon}>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText
@@ -120,20 +116,14 @@ function Navigator(props) {
             </ListItem>
             {children.map(({ id: childId, icon, active }) => (
               <ListItem
-                button
-                dense
                 key={childId}
-                className={clsx(
-                  classes.item,
-                  classes.itemActionable,
-                  active && classes.itemActiveItem,
-                )}
+                button
+                className={clsx(classes.item, active && classes.itemActiveItem)}
               >
-                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
                 <ListItemText
                   classes={{
                     primary: classes.itemPrimary,
-                    textDense: classes.textDense,
                   }}
                 >
                   {childId}

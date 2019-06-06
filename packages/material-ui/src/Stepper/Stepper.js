@@ -82,7 +82,7 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
         connector &&
         index !== 0 &&
         React.cloneElement(connector, {
-          key: index, // eslint-disable-line react/no-array-index-key
+          key: index,
           ...state,
         }),
       React.cloneElement(step, { ...controlProps, ...state, ...step.props }),

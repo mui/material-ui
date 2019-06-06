@@ -83,6 +83,7 @@ yarn add @material-ui/styles@next
 - ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9.
   Make sure JSS v9 is not installed in your environment.
   Removing `react-jss` from your package.json can help.
+  The StylesProvider component replaces the JssProvider one.
 - Remove the first option argument of `withTheme()`.
   The first argument was a placeholder for a potential future option.
   We have never found a need for it.
@@ -143,8 +144,6 @@ yarn add @material-ui/styles@next
   }
   ```
 
-  You can use the `https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api` migration helper to make the migration process smoother.
-
   *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
 
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
@@ -189,7 +188,7 @@ yarn add @material-ui/styles@next
   +import Fab from '@material-ui/core/Fab';
   +<Fab />
   ```
-  
+
   ```diff
   -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />

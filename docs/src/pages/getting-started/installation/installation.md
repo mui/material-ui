@@ -25,7 +25,7 @@ font in mind. So be sure to follow [these instructions](/components/typography/#
 For instance, via Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
 ## Font Icons
@@ -35,11 +35,6 @@ Here are [some instructions](/components/icons/#font-icons)
 on how to do so.
 For instance, via Google Web Fonts:
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-```
-
-Alternatively, if you are using JSX over HTML to render the head:
-```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 

@@ -61,6 +61,8 @@ module.exports = {
     'mocha/no-top-level-hooks': 'error',
     'mocha/valid-suite-description': 'error',
 
+    // This rule is great for raising people awareness of what a key is and how it works.
+    'react/no-array-index-key': 'off',
     'react/destructuring-assignment': 'off',
     // It's buggy
     'react/forbid-prop-types': 'off',

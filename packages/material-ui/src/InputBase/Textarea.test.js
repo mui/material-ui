@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
-import { createMount, describeConformance } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Textarea from './Textarea';
 
 function getHeight(wrapper) {
