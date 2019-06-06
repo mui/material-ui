@@ -396,7 +396,7 @@ withStyles(theme =>
 
 {
   // https://github.com/mui-org/material-ui/issues/11164
-  const style: StyleRulesCallback = theme => ({
+  const style: StyleRulesCallback<Theme, any, any> = theme => ({
     text: theme.typography.body2,
   });
 }
