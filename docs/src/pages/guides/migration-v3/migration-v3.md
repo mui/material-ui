@@ -144,8 +144,6 @@ yarn add @material-ui/styles@next
   }
   ```
 
-  You can use the `https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api` migration helper to make the migration process smoother.
-
   *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
 
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
