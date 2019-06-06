@@ -65,7 +65,7 @@ export type StylesRequireProps<S> = Or<
  * from which the typechecker could infer a type so it falls back to `any`.
  * See the test cases for examples and implications of explicit `any` annotation
  */
-export type StylesHook<S extends Styles<any, any>> = StylesRequireProps<S> extends false
+export type StylesHook<S extends Styles<any>> = StylesRequireProps<S> extends false
   ? (props?: any) => ClassNameMap<ClassKeyOfStyles<S>>
   : (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 

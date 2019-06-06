@@ -6,6 +6,4 @@ export interface StylesCreator<Theme, Props extends object, ClassKey extends str
   themingEnabled: boolean;
 }
 
-export default function getStylesCreator<S extends Styles<any, any>>(
-  style: S,
-): StylesCreator<any, any>;
+export default function getStylesCreator<S extends Styles<any>>(style: S): StylesCreator<any, any>;

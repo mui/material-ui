@@ -60,7 +60,7 @@ export type PropsOfStyles<S> = S extends Styles<any, infer Props> ? Props : {};
 /**
  * infers the type of the props used in the styles
  */
-export type ThemeOfStyles<S> = S extends Styles<infer Theme, any> ? Theme : {};
+export type ThemeOfStyles<S> = S extends Styles<infer Theme> ? Theme : {};
 
 export type WithStyles<
   S extends ClassKeyInferable<any, any>,
@@ -76,7 +76,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 }
 
 export default function withStyles<
-  S extends Styles<any, any>,
+  S extends Styles<any>,
   Options extends WithStylesOptions<ThemeOfStyles<S>> = {}
 >(
   style: S,
