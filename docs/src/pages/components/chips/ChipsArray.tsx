@@ -33,15 +33,13 @@ function ChipsArray() {
     { key: 4, label: 'Vue.js' },
   ]);
 
-  const handleDelete = (data: ChipData) => () => {
-    if (data.label === 'React') {
+  const handleDelete = (chipToDelete: ChipData) => () => {
+    if (chipToDelete.label === 'React') {
       alert('Why would you want to delete React?! :)');
       return;
     }
 
-    const chipToDelete = chipData.indexOf(data);
-    chipData.splice(chipToDelete, 1);
-    setChipData(chipData);
+    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
   };
 
   return (
