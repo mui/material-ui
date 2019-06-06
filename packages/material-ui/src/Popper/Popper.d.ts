@@ -32,7 +32,7 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
   placement?: PopperPlacementType;
   popperOptions?: object;
-  popperRef?: React.RefObject<PopperJs>;
+  popperRef?: React.Ref<PopperJs>;
   transition?: boolean;
 }
 
