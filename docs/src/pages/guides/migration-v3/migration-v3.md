@@ -50,7 +50,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we
 
 ### Update Material-UI Styles version
 
-If you are previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
+If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
 
 ```json
 "dependencies": {
