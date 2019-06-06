@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 {
   // Value is a string so the value in onChange should also be a string
@@ -32,4 +33,16 @@ import Select from '@material-ui/core/Select';
       const value = e.target.value;
     }}
   />;
+}
+
+{
+  // Type can't be inferred from children
+  <Select
+    onChange={e => {
+      // $ExpectType unknown
+      const value = e.target.value;
+    }}
+  >
+    <MenuItem value={'foo'} />
+  </Select>;
 }
