@@ -28,7 +28,7 @@ export type StyleRulesCallback<Theme, Props extends object, ClassKey extends str
   theme: Theme,
 ) => StyleRules<Props, ClassKey>;
 
-export type Styles<Theme, Props extends {}, ClassKey extends string = string> =
+export type Styles<Theme, Props extends {} = any, ClassKey extends string = string> =
   | StyleRules<Props, ClassKey>
   | StyleRulesCallback<Theme, Props, ClassKey>;
 
