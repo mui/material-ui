@@ -88,7 +88,7 @@ yarn add @material-ui/styles@next
   The first argument was a placeholder for a potential future option.
   We have never found a need for it.
   It's time to remove this argument.
-  It matches the [emotion](https://emotion.sh/docs/introduction) and styled-components API.
+  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -143,15 +143,10 @@ yarn add @material-ui/styles@next
     },
   }
   ```
-
-<<<<<<< HEAD
-  *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
-
-=======
->>>>>>> [doc] fix grammar in migration doc
-  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
-
+  
   *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
+
+  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
 ### Layout
 
@@ -242,8 +237,8 @@ yarn add @material-ui/styles@next
 
 - [List] Rework the list components to match the specification:
 
-  - The usage of the `ListItemAvatar` component is required when using an avatar`.
-  - The usage of the `ListItemIcon` component is required when using a left checkbox.
+  - The `ListItemAvatar` component is required when using an avatar`.
+  - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
 
 - [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
