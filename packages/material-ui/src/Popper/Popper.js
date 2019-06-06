@@ -52,11 +52,17 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     ...other
   } = props;
   const tooltipRef = React.useRef(null);
-  const popperRef = React.useRef();
+  const handleRef = useForkRef(tooltipRef, ref);
+
+  const popperRef = React.useRef(null);
+  const instance = React.useRef();
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
+  React.useEffect(() => {
+    instance.current = handlePopperRef;
+  });
+
   const [exited, setExited] = React.useState(!props.open);
   const [placement, setPlacement] = React.useState();
-  const handleRef = useForkRef(tooltipRef, ref);
 
   const handleOpen = React.useCallback(() => {
     const handlePopperUpdate = data => {
@@ -73,7 +79,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
     if (popperRef.current) {
       popperRef.current.destroy();
-      handlePopperRef(null);
+      instance.current(null)
     }
 
     const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
@@ -96,30 +102,21 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
-    handlePopperRef(popper);
-  }, [
-    handlePopperRef,
-    anchorEl,
-    disablePortal,
-    modifiers,
-    open,
-    placement,
-    placementProps,
-    popperOptions,
-  ]);
+    instance.current(popper)
+  }, [anchorEl, disablePortal, modifiers, open, placement, placementProps, popperOptions]);
 
   const handleEnter = () => {
     setExited(false);
   };
 
-  const handleClose = React.useCallback(() => {
+  const handleClose = () => {
     if (!popperRef.current) {
       return;
     }
 
     popperRef.current.destroy();
-    handlePopperRef(null);
-  }, [handlePopperRef]);
+    instance.current(null)
+  };
 
   const handleExited = () => {
     setExited(true);
@@ -130,7 +127,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     return () => {
       handleClose();
     };
-  }, [handleClose]);
+  }, []);
 
   React.useEffect(() => {
     // Let's update the popper position.
@@ -142,7 +139,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       // Otherwise handleExited will call this.
       handleClose();
     }
-  }, [open, transition, handleClose]);
+  }, [open, transition]);
 
   if (!keepMounted && !open && (!transition || exited)) {
     return null;
