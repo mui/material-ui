@@ -35,7 +35,7 @@ function elementTypeAcceptingRef(props, propName, componentName, location, propF
     return new Error(
       `Invalid ${location} \`${safePropName}\` supplied to \`${componentName}\`. ` +
         `Expected an element type that can hold a ref. ${warningHint} ` +
-        'For more information see https://material-ui.com/guides/composition/#caveat-with-refs',
+        'For more information see https://material-ui.com/r/caveat-with-refs-guide',
     );
   }
 
