@@ -36,7 +36,7 @@ export const styles = theme => ({
       marginBottom: 6,
     },
   },
-  /* Styles applied to the root element if `textColor="inherit"`. */
+  /* Styles applied to the root element if `<Tabs textColor="inherit" />`. */
   textColorInherit: {
     color: 'inherit',
     opacity: 0.7,
@@ -47,7 +47,7 @@ export const styles = theme => ({
       opacity: 0.4,
     },
   },
-  /* Styles applied to the root element if `textColor="primary"`. */
+  /* Styles applied to the root element if `<Tabs textColor="primary" />`. */
   textColorPrimary: {
     color: theme.palette.text.secondary,
     '&$selected': {
@@ -57,7 +57,7 @@ export const styles = theme => ({
       color: theme.palette.text.disabled,
     },
   },
-  /* Styles applied to the root element if `textColor="secondary"`. */
+  /* Styles applied to the root element if `<Tabs textColor="secondary" />`. */
   textColorSecondary: {
     color: theme.palette.text.secondary,
     '&$selected': {
