@@ -137,6 +137,15 @@ function FilledTextFields() {
         variant="filled"
       />
       <TextField
+        id="filled-dense-multiline"
+        label="Dense multiline"
+        className={clsx(classes.textField, classes.dense)}
+        margin="dense"
+        variant="filled"
+        multiline
+        rowsMax="4"
+      />
+      <TextField
         id="filled-multiline-flexible"
         label="Multiline"
         multiline

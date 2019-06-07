@@ -137,6 +137,15 @@ function OutlinedTextFields() {
         variant="outlined"
       />
       <TextField
+        id="outlined-dense-multiline"
+        label="Dense multiline"
+        className={clsx(classes.textField, classes.dense)}
+        margin="dense"
+        variant="outlined"
+        multiline
+        rowsMax="4"
+      />
+      <TextField
         id="outlined-multiline-flexible"
         label="Multiline"
         multiline

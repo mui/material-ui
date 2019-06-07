@@ -73,7 +73,7 @@ export const styles = theme => ({
     pointerEvents: 'none',
     transform: 'translate(14px, 20px) scale(1)',
     '&$marginDense': {
-      transform: 'translate(14px, 11px) scale(1)',
+      transform: 'translate(14px, 12px) scale(1)',
     },
     '&$shrink': {
       transform: 'translate(14px, -6px) scale(0.75)',
