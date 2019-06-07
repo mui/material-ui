@@ -23,8 +23,8 @@ export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
    */
   clearLabel?: React.ReactNode;
   /**
-   * "CLEAR" label message
-   * @default 'CLEAR'
+   * "TODAY" label message
+   * @default 'TODAY'
    */
   todayLabel?: React.ReactNode;
   /**

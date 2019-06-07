@@ -34,8 +34,8 @@
       "type": { "name": "ReactNode" }
     },
     "todayLabel": {
-      "defaultValue": { "value": "'CLEAR'" },
-      "description": "\"CLEAR\" label message",
+      "defaultValue": { "value": "'TODAY'" },
+      "description": "\"TODAY\" label message",
       "name": "todayLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
