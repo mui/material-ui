@@ -11,9 +11,22 @@ export const fontSize = style({
   themeKey: 'typography',
 });
 
+export const fontStyle = style({
+  prop: 'fontStyle',
+  themeKey: 'typography',
+});
+
 export const fontWeight = style({
   prop: 'fontWeight',
   themeKey: 'typography',
+});
+
+export const letterSpacing = style({
+  prop: 'letterSpacing',
+});
+
+export const lineHeight = style({
+  prop: 'lineHeight',
 });
 
 export const textAlign = style({
@@ -23,7 +36,10 @@ export const textAlign = style({
 const typography = compose(
   fontFamily,
   fontSize,
+  fontStyle,
   fontWeight,
+  letterSpacing,
+  lineHeight,
   textAlign,
 );
 
