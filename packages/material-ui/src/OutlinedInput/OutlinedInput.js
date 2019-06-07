@@ -60,8 +60,8 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
-      paddingTop: 8,
-      paddingBottom: 8,
+      paddingTop: 10,
+      paddingBottom: 11,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
