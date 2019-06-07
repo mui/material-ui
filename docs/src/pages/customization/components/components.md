@@ -250,9 +250,25 @@ Material-UI attempts to implement all of these variations. Please refer to the [
 
 ## 5. Global theme variation
 
+In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes.
+
+The demos of this section covers how to the change the button's font size.
+
 ### Theme variables
 
-In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes by adjusting the [theme configuration variables](/customization/themes/#theme-configuration-variables).
+You can adjusting the [theme configuration variables](/customization/themes/#theme-configuration-variables).
+
+```jsx
+const theme = createMuiTheme({
+  typography: {
+    button: {
+      fontSize: '1rem',
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/components/ThemeVariables.js"}}
 
 ### Global CSS override
 
@@ -260,7 +276,39 @@ You can also customize all instances of a component with CSS.
 We expose [global class names](/styles/advanced/#with-material-ui-core) to do so.
 It's very similar to how you would customize Bootstrap.
 
+```jsx
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+    '.MuiButton-root': {
+      fontSize: '1rem',
+    },
+  },
+})(() => null);
+
+// …
+
+<GlobalCss />
+```
+
+{{"demo": "pages/customization/components/GlobalCssOverride.js", "iframe": true, "height": 70}}
+
 ### Global theme override
 
 You can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
-Learn more about it in the [themes section](/customization/globals/) of the documentation.
+Learn more about it in the [themes section](/customization/globals/#css) of the documentation.
+
+```jsx
+const theme = createMuiTheme({
+  overrides: {
+    MuiButton: {
+      root: {
+        fontSize: '1rem',
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/components/GlobalThemeOverride.js"}}
