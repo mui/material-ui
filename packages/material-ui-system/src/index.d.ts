@@ -162,8 +162,13 @@ export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
 export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
 export const typography: SimpleStyleFunction<
-  'fontFamily' | 'fontSize' | 'fontStyle' |'fontWeight' |
-  'letterSpacing' | 'lineHeight' | 'textAlign'
+  | 'fontFamily'
+  | 'fontSize'
+  | 'fontStyle'
+  | 'fontWeight'
+  | 'letterSpacing'
+  | 'lineHeight'
+  | 'textAlign'
 >;
 export type TypographyProps = PropsFor<typeof typography>;
 
