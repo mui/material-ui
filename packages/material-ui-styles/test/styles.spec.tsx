@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { createStyles, withStyles, withTheme, WithTheme, WithStyles } from '@material-ui/styles';
+import {
+  createStyles,
+  withStyles,
+  withTheme,
+  WithTheme,
+  WithStyles,
+  makeStyles,
+} from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { Theme } from '@material-ui/core/styles';
 
@@ -418,4 +425,27 @@ function forwardRefTest() {
   // undesired: `innerRef` is currently typed as any but for backwards compat we're keeping it
   // especially since `innerRef` will be removed in v5 and is equivalent to `ref`
   <StyledRefableAnchor innerRef={buttonRef} />;
+}
+
+{
+  // https://github.com/mui-org/material-ui/pull/15546
+  // Update type definition to let CSS properties be functions
+  interface testProps {
+    foo: boolean;
+  }
+  const useStyles = makeStyles((theme: Theme) => ({
+    root: {
+      width: (prop: testProps) => (prop.foo ? 100 : 0),
+    },
+    root2: (prop2: testProps) => ({
+      width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      height: 100,
+    }),
+  }));
+
+  const styles = useStyles({ foo: true });
+  // $ExpectType string
+  const root = styles.root;
+  // $ExpectType string
+  const root2 = styles.root2;
 }

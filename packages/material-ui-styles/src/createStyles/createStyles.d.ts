@@ -8,9 +8,9 @@ import { StyleRules } from '@material-ui/styles/withStyles';
  * @param styles a set of style mappings
  * @returns the same styles that were passed in
  */
-// For TypeScript v3.5 P has to extend {} instead of object
+// For TypeScript v3.5 Props has to extend {} instead of object
 // See https://github.com/mui-org/material-ui/issues/15942
 // and https://github.com/microsoft/TypeScript/issues/31735
-export default function createStyles<C extends string, P extends {}>(
-  styles: StyleRules<P, C>,
-): StyleRules<P, C>;
+export default function createStyles<ClassKey extends string, Props extends {}>(
+  styles: StyleRules<Props, ClassKey>,
+): StyleRules<Props, ClassKey>;
