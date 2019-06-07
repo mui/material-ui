@@ -18,7 +18,7 @@ export type PopperPlacementType =
   | 'top';
 
 export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
-  anchorEl?: null | Element | ReferenceObject | (() => Element);
+  anchorEl?: null | ReferenceObject | (() => ReferenceObject);
   children:
     | React.ReactNode
     | ((props: {

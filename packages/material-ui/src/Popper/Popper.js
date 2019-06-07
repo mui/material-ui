@@ -60,7 +60,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   const handlePopperRefRef = React.useRef();
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
   useEnhancedEffect(() => {
-    instance.current = handlePopperRef;
+    handlePopperRefRef.current = handlePopperRef;
   }, [handlePopperRef]);
   React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
 
@@ -82,7 +82,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
     if (popperRef.current) {
       popperRef.current.destroy();
-      instance.current(null);
+      handlePopperRefRef.current(null);
     }
 
     const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
@@ -105,7 +105,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
-    instance.current(popper);
+    handlePopperRefRef.current(popper);
   }, [anchorEl, disablePortal, modifiers, open, placement, placementProps, popperOptions]);
 
   const handleEnter = () => {
@@ -118,7 +118,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     }
 
     popperRef.current.destroy();
-    instance.current(null);
+    handlePopperRefRef.current(null);
   };
 
   const handleExited = () => {
