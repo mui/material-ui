@@ -24,10 +24,10 @@ export {
 };
 
 export type WithStyles<
-  T extends string | Styles<any, any, any> = string,
+  StylesOrClassKey extends string | Styles<any, any, any> = string,
   IncludeTheme extends boolean | undefined = false
 > = (IncludeTheme extends true ? { theme: Theme } : {}) & {
-  classes: ClassNameMap<ClassKeyOfStyles<T>>;
+  classes: ClassNameMap<ClassKeyOfStyles<StylesOrClassKey>>;
 };
 
 export default function withStyles<

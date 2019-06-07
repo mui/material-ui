@@ -59,30 +59,30 @@ export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, st
  * @internal
  */
 export type ClassKeyInferable<Theme, Props extends object> = string | Styles<Theme, Props>;
-export type ClassKeyOfStyles<S> = S extends string
-  ? S
-  : S extends StyleRulesCallback<any, any, infer K>
-  ? K
-  : S extends StyleRules<infer K>
-  ? K
+export type ClassKeyOfStyles<StylesOrClassKey> = StylesOrClassKey extends string
+  ? StylesOrClassKey
+  : StylesOrClassKey extends StyleRulesCallback<any, any, infer ClassKey>
+  ? ClassKey
+  : StylesOrClassKey extends StyleRules<infer ClassKey>
+  ? ClassKey
   : never;
 
 /**
  * infers the type of the theme used in the styles
  */
-export type PropsOfStyles<S> = S extends Styles<any, infer Props> ? Props : {};
+export type PropsOfStyles<StylesType> = StylesType extends Styles<any, infer Props> ? Props : {};
 /**
  * infers the type of the props used in the styles
  */
-export type ThemeOfStyles<S> = S extends Styles<infer Theme, any> ? Theme : {};
+export type ThemeOfStyles<StylesType> = StylesType extends Styles<infer Theme, any> ? Theme : {};
 
 export type WithStyles<
-  S extends ClassKeyInferable<any, any>,
+  StylesType extends ClassKeyInferable<any, any>,
   IncludeTheme extends boolean | undefined = false
-> = (IncludeTheme extends true ? { theme: ThemeOfStyles<S> } : {}) & {
-  classes: ClassNameMap<ClassKeyOfStyles<S>>;
+> = (IncludeTheme extends true ? { theme: ThemeOfStyles<StylesType> } : {}) & {
+  classes: ClassNameMap<ClassKeyOfStyles<StylesType>>;
   innerRef?: React.Ref<any> | React.RefObject<any>;
-} & PropsOfStyles<S>;
+} & PropsOfStyles<StylesType>;
 
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
@@ -90,9 +90,12 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 }
 
 export default function withStyles<
-  S extends Styles<any, any>,
-  Options extends WithStylesOptions<ThemeOfStyles<S>> = {}
+  StylesType extends Styles<any, any>,
+  Options extends WithStylesOptions<ThemeOfStyles<StylesType>> = {}
 >(
-  style: S,
+  style: StylesType,
   options?: Options,
-): PropInjector<WithStyles<S, Options['withTheme']>, StyledComponentProps<ClassKeyOfStyles<S>>>;
+): PropInjector<
+  WithStyles<StylesType, Options['withTheme']>,
+  StyledComponentProps<ClassKeyOfStyles<StylesType>>
+>;
