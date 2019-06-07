@@ -83,10 +83,10 @@ const StyledFrame = withStyles(styles, { withTheme: true })(DemoFrame);
 function DemoSandboxed(props) {
   const { component: Component, iframe, name, ...other } = props;
   const Sandbox = iframe ? StyledFrame : React.Fragment;
-  const sandboxProps = iframe ? { title: `${name} demo` } : {};
+  const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
 
   return (
-    <Sandbox {...sandboxProps} {...other}>
+    <Sandbox {...sandboxProps}>
       <Component />
     </Sandbox>
   );
