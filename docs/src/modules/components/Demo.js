@@ -228,6 +228,13 @@ function Demo(props) {
   const gaCategory = demoOptions.demo;
   // get the last alphanumeric pattern before the file extension
   const demoName = demoData.githubLocation.replace(/(.+?)(\w+)\.\w+$$/, '$2');
+  const demoSandboxedStyle = React.useMemo(
+    () => ({
+      maxWidth: demoOptions.maxWidth,
+      height: demoOptions.height,
+    }),
+    [demoOptions.height, demoOptions.maxWidth],
+  );
 
   return (
     <div className={classes.root}>
@@ -351,10 +358,7 @@ function Demo(props) {
         onMouseLeave={handleDemoHover}
       >
         <DemoSandboxed
-          style={{
-            maxWidth: demoOptions.maxWidth,
-            height: demoOptions.height,
-          }}
+          style={demoSandboxedStyle}
           component={DemoComponent}
           iframe={demoOptions.iframe}
           name={demoName}
