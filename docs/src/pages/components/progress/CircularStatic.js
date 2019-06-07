@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CircularStatic() {
+export default function CircularStatic() {
   const classes = useStyles();
   const [completed, setCompleted] = React.useState(0);
 
@@ -34,5 +34,3 @@ function CircularStatic() {
     </div>
   );
 }
-
-export default CircularStatic;

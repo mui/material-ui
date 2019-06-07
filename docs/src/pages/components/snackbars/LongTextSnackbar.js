@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function LongTextSnackbar() {
+export default function LongTextSnackbar() {
   const classes = useStyles();
 
   return (
@@ -47,5 +47,3 @@ function LongTextSnackbar() {
     </div>
   );
 }
-
-export default LongTextSnackbar;

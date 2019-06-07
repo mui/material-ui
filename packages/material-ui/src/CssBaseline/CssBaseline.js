@@ -17,7 +17,7 @@ const useStyles = makeStyles(
         boxSizing: 'inherit',
       },
       'strong, b': {
-        fontWeight: theme.typography.fontWeightMedium,
+        fontWeight: 'bolder',
       },
       body: {
         margin: 0, // Remove the margin in all browsers.

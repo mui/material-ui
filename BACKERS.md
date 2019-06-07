@@ -74,7 +74,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Antonio Seveso | Ali Akhavan | Bruno Winck | Alessandro Annini | Victor Irzak |
 | Manuel U Grullon | Skaronator | Peter James | Vincz | Micah Davidson |
 | Nelson Batalha | Daniel Woss | Michael Staub | Scott Fortmann-Roe | Markus Wüstenberg |
-| Anthony Mezzolesta |
+| Anthony Mezzolesta | Julien Vallini | Johan Eliasson | Tomasz Szkodziński |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 

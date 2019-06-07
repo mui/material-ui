@@ -10,6 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
+const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
   typography: {
     // Use the system font instead of the default Roboto font.
@@ -38,7 +39,7 @@ const theme = createMuiTheme({
   },
 });
 
-function TypographyTheme() {
+export default function TypographyTheme() {
   const classes = useStyles();
 
   const children = (
@@ -50,11 +51,11 @@ function TypographyTheme() {
   );
 
   return (
-    <div className={classes.root}>
-      {children}
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </div>
+    <ThemeProvider theme={defaultTheme}>
+      <div className={classes.root}>
+        {children}
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      </div>
+    </ThemeProvider>
   );
 }
-
-export default TypographyTheme;

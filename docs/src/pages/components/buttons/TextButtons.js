@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function TextButtons() {
+export default function TextButtons() {
   const classes = useStyles();
 
   return (
@@ -44,5 +44,3 @@ function TextButtons() {
     </div>
   );
 }
-
-export default TextButtons;

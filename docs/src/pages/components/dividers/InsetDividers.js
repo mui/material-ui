@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function InsetDividers() {
+export default function InsetDividers() {
   const classes = useStyles();
 
   return (
@@ -52,5 +52,3 @@ function InsetDividers() {
     </List>
   );
 }
-
-export default InsetDividers;

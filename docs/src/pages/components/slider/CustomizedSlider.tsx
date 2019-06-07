@@ -1,8 +1,7 @@
 import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { fade, withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Slider from '@material-ui/lab/Slider';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const useStyles = makeStyles({
   root: {
@@ -39,7 +38,7 @@ const StyledSlider = withStyles({
   jumped: {},
 })(Slider);
 
-function CustomizedSlider() {
+export default function CustomizedSlider() {
   const classes = useStyles();
   const [value, setValue] = React.useState(50);
 
@@ -53,5 +52,3 @@ function CustomizedSlider() {
     </Paper>
   );
 }
-
-export default CustomizedSlider;

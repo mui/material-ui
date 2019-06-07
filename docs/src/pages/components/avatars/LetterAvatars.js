@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import deepOrange from '@material-ui/core/colors/deepOrange';
-import deepPurple from '@material-ui/core/colors/deepPurple';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
@@ -21,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-function LetterAvatars() {
+export default function LetterAvatars() {
   const classes = useStyles();
 
   return (
@@ -32,5 +31,3 @@ function LetterAvatars() {
     </Grid>
   );
 }
-
-export default LetterAvatars;

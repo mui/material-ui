@@ -13,7 +13,7 @@ const StyledButton = styled(Button)`
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
 `;
 
-function StyledComponents() {
+export default function StyledComponents() {
   return (
     <NoSsr>
       <div>
@@ -23,5 +23,3 @@ function StyledComponents() {
     </NoSsr>
   );
 }
-
-export default StyledComponents;

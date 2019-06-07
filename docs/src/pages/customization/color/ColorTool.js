@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { rgbToHex, withStyles } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
-import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
 import { capitalize } from '@material-ui/core/utils';
 import ColorDemo from './ColorDemo';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';

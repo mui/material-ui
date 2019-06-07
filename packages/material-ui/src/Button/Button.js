@@ -169,7 +169,6 @@ export const styles = theme => ({
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     padding: '4px 8px',
-    minWidth: 64,
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
@@ -200,20 +199,23 @@ const Button = React.forwardRef(function Button(props, ref) {
     ...other
   } = props;
 
-  const contained = variant === 'contained';
   const text = variant === 'text';
+  const outlined = variant === 'outlined';
+  const contained = variant === 'contained';
+  const primary = color === 'primary';
+  const secondary = color === 'secondary';
   const className = clsx(
     classes.root,
     {
       [classes.text]: text,
-      [classes.textPrimary]: text && color === 'primary',
-      [classes.textSecondary]: text && color === 'secondary',
+      [classes.textPrimary]: text && primary,
+      [classes.textSecondary]: text && secondary,
+      [classes.outlined]: outlined,
+      [classes.outlinedPrimary]: outlined && primary,
+      [classes.outlinedSecondary]: outlined && secondary,
       [classes.contained]: contained,
-      [classes.containedPrimary]: contained && color === 'primary',
-      [classes.containedSecondary]: contained && color === 'secondary',
-      [classes.outlined]: variant === 'outlined',
-      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
-      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
+      [classes.containedPrimary]: contained && primary,
+      [classes.containedSecondary]: contained && secondary,
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,

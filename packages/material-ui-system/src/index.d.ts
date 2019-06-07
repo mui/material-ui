@@ -29,13 +29,14 @@ export const borders: SimpleStyleFunction<
 export type BordersProps = PropsFor<typeof borders>;
 
 // breakpoints.js
+type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 /**
  *
  * @returns An enhanced stylefunction that considers breakpoints
  */
-export function breakpoints<Props extends { theme: { breakpoints?: unknown } }>(
+export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>,
-): StyleFunction<Props>;
+): StyleFunction<Partial<Record<Breakpoints, Props>>>;
 
 // compose.js
 /**
@@ -67,6 +68,7 @@ export const flexbox: SimpleStyleFunction<
   | 'alignItems'
   | 'alignContent'
   | 'order'
+  | 'flex'
   | 'flexGrow'
   | 'flexShrink'
   | 'alignSelf'

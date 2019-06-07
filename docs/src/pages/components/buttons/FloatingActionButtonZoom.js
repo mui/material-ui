@@ -12,7 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import green from '@material-ui/core/colors/green';
+import { green } from '@material-ui/core/colors';
 
 function TabContainer(props) {
   const { children, dir } = props;

@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function IconButtons() {
+export default function IconButtons() {
   const classes = useStyles();
 
   return (
@@ -46,5 +46,3 @@ function IconButtons() {
     </div>
   );
 }
-
-export default IconButtons;

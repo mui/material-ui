@@ -77,7 +77,7 @@ const theme = createMuiTheme({
   },
   overrides: {
     // Name of the component ⚛️
-    CssBasline: {
+    MuiCssBaseline: {
       // Name of the rule
       '@global': {
         '*, *::before, *::after': {

@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-function SingleLineGridList() {
+export default function SingleLineGridList() {
   const classes = useStyles();
 
   return (
@@ -75,5 +75,3 @@ function SingleLineGridList() {
     </div>
   );
 }
-
-export default SingleLineGridList;

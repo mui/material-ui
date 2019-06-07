@@ -1,21 +1,20 @@
 /* eslint-disable no-script-url */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   link: {
     margin: theme.spacing(1),
   },
-});
+}));
 
 // This resolves to nothing and doesn't affect browser history
 const dudUrl = 'javascript:;';
 
-function Links(props) {
-  const { classes } = props;
+export default function Links() {
+  const classes = useStyles();
 
   return (
     <Typography>
@@ -31,9 +30,3 @@ function Links(props) {
     </Typography>
   );
 }
-
-Links.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Links);

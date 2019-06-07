@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
 import React from 'react';
 import NoSsr from '@material-ui/core/NoSsr';
 

@@ -1,9 +1,9 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## 4.0.2
-###### *June 2, 2019*
+###### *June 3, 2019*
 
-A big thanks to the 29 contributors who made this release possible!
+A big thanks to the 30 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -31,6 +31,7 @@ Here are some highlights ✨:
 ### `@material-ui/styles@v4.0.2`
 
 - [styles] Remove warning when component with no displayName is provided (#15913) @eps1lon
+- [styles] Fix createStyles for TypeScript v3.5 (#15990) @merceyz
 
 ### `@material-ui/system@v4.0.2`
 
@@ -66,6 +67,8 @@ Here are some highlights ✨:
 - [docs] v4 Migration doc slight clean up (#15886) @mlenser
 - [example] Fix ssr example to work on Windows (#15949) @petervaldesii
 - [example] Fix theme palette value (#15977) @vaidehi27
+- [docs] Fix syntax error in v3 migration guide (#16010) @zhuangya
+- [docs] Use immediate export when there is no HOC (#16005) @merceyz
 
 ### Core
 
@@ -76,6 +79,7 @@ Here are some highlights ✨:
 - [core] Update babel-plugin-optimize-clsx (#15894) @merceyz
 - [core] Upgrade rollup and related plugins (#15939) @merceyz
 - [ci] Move static tests into separate job (#15890) @eps1lon
+- [core] Upgrade dependencies with esm support (#16000) @TrySound
 
 ## 4.0.1
 ###### *May 27, 2019*

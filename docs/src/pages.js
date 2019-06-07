@@ -173,15 +173,17 @@ const pages = [
       { pathname: '/guides/composition' },
       { pathname: '/guides/server-rendering' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
-      { pathname: '/guides/migration-v3', title: 'Migration From v3' },
-      { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
+      { pathname: '/guides/migration-v3', title: 'Migration From v3 to v4' },
+      { pathname: '/guides/migration-v0x', title: 'Migration From v0.x to v1' },
       { pathname: '/guides/testing' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/guides/flow' },
     ],
   },
-  { pathname: '/premium-themes' },
-
+  {
+    pathname: 'https://themes.material-ui.com/',
+    title: 'Premium Themes',
+  },
   {
     pathname: '/discover-more',
     children: [

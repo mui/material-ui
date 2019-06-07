@@ -15,7 +15,7 @@ function renderFullPage(html, css) {
         <style id="jss-server-side">${css}</style>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <!-- Fonts to support Material Design -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </head>
       <body>
         <script async src="build/bundle.js"></script>

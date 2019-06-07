@@ -17,7 +17,7 @@ const CollisionLink = React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 
   ),
 );
 
-function LinkRouter() {
+export default function LinkRouter() {
   return (
     <Router>
       <div>
@@ -34,5 +34,3 @@ function LinkRouter() {
     </Router>
   );
 }
-
-export default LinkRouter;

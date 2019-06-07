@@ -872,7 +872,7 @@ const TabsTest = () => {
 
   type ClassKey = 'root' | 'button';
 
-  const styles: StyleRulesCallback<ClassKey> = theme => ({
+  const styles: StyleRulesCallback<Theme, any, ClassKey> = theme => ({
     root: {
       flexGrow: 1,
       marginTop: theme.spacing(3),

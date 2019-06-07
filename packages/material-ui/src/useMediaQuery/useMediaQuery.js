@@ -3,40 +3,54 @@ import React from 'react';
 // This variable will be true once the server-side hydration is completed.
 let hydrationCompleted = false;
 
+function deepEqual(a, b) {
+  return a.length === b.length && a.every((item, index) => item === b[index]);
+}
+
 function useMediaQuery(queryInput, options = {}) {
-  const query = queryInput.replace('@media ', '');
+  const multiple = Array.isArray(queryInput);
+  let queries = multiple ? queryInput : [queryInput];
+  queries = queries.map(query => query.replace('@media ', ''));
+
   const { defaultMatches = false, noSsr = false, ssrMatchMedia = null } = options;
 
   const [matches, setMatches] = React.useState(() => {
     if (hydrationCompleted || noSsr) {
-      return window.matchMedia(query).matches;
+      return queries.map(query => window.matchMedia(query).matches);
     }
     if (ssrMatchMedia) {
-      return ssrMatchMedia(query).matches;
+      return queries.map(query => ssrMatchMedia(query).matches);
     }
 
     // Once the component is mounted, we rely on the
     // event listeners to return the correct matches value.
-    return defaultMatches;
+    return queries.map(() => defaultMatches);
   });
 
   React.useEffect(() => {
     hydrationCompleted = true;
 
-    const queryList = window.matchMedia(query);
-    setMatches(queryList.matches);
+    const queryLists = queries.map(query => window.matchMedia(query));
+    setMatches(prev => {
+      const next = queryLists.map(queryList => queryList.matches);
+      return deepEqual(prev, next) ? prev : next;
+    });
 
-    function handleMatchesChange(event) {
-      setMatches(event.matches);
+    function handleMatchesChange() {
+      setMatches(queryLists.map(queryList => queryList.matches));
     }
 
-    queryList.addListener(handleMatchesChange);
+    queryLists.forEach(queryList => {
+      queryList.addListener(handleMatchesChange);
+    });
     return () => {
-      queryList.removeListener(handleMatchesChange);
+      queryLists.forEach(queryList => {
+        queryList.removeListener(handleMatchesChange);
+      });
     };
-  }, [query]);
+  }, queries); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return matches;
+  return multiple ? matches : matches[0];
 }
 
 export function testReset() {

@@ -8,7 +8,7 @@ const Box = styled.div`
   ${spacing}
 `;
 
-function Emotion() {
+export default function Emotion() {
   return (
     <NoSsr>
       <Box color="white" bgcolor="palevioletred" p={1}>
@@ -17,5 +17,3 @@ function Emotion() {
     </NoSsr>
   );
 }
-
-export default Emotion;

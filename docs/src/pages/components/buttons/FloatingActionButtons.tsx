@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function FloatingActionButtons() {
+export default function FloatingActionButtons() {
   const classes = useStyles();
 
   return (
@@ -38,5 +38,3 @@ function FloatingActionButtons() {
     </div>
   );
 }
-
-export default FloatingActionButtons;

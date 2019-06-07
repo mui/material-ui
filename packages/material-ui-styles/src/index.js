@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
         'This may cause theme propagation issues, broken class names ' +
           'and makes your application bigger without a good reason.',
         '',
-        'See https://material-ui.com/getting-started/faq#i-have-several-instances-of-styles-on-the-page for more info.',
+        'See https://material-ui.com/r/styles-instance-warning for more info.',
       ].join('\n'),
     );
   }

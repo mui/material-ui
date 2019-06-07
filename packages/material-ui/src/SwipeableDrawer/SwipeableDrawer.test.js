@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, describeConformance } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';

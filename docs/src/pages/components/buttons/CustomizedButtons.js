@@ -2,8 +2,7 @@ import React from 'react';
 import { createMuiTheme, withStyles, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import { green, purple } from '@material-ui/core/colors';
 
 const BootstrapButton = withStyles({
   root: {
@@ -64,7 +63,7 @@ const theme = createMuiTheme({
   },
 });
 
-function CustomizedButtons() {
+export default function CustomizedButtons() {
   const classes = useStyles();
 
   return (
@@ -83,5 +82,3 @@ function CustomizedButtons() {
     </div>
   );
 }
-
-export default CustomizedButtons;

@@ -17,12 +17,14 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MuiLink from '@material-ui/core/Link';
 import ColorsIcon from '@material-ui/icons/InvertColors';
-import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
-import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
+import {
+  GitHub as GithubIcon,
+  LightbulbOutline as LightbulbOutlineIcon,
+  LightbulbFull as LightbulbFullIcon,
+} from '@material-ui/docs';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
-import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';

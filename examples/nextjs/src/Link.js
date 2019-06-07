@@ -6,15 +6,15 @@ import { withRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 
-function NextComposed(props) {
+const NextComposed = React.forwardRef(function NextComposed(props, ref) {
   const { as, href, prefetch, ...other } = props;
 
   return (
     <NextLink href={href} prefetch={prefetch} as={as}>
-      <a {...other} />
+      <a ref={ref} {...other} />
     </NextLink>
   );
-}
+});
 
 NextComposed.propTypes = {
   as: PropTypes.string,
@@ -25,17 +25,17 @@ NextComposed.propTypes = {
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
 function Link(props) {
-  const { activeClassName, router, className: classNameProps, naked, ...other } = props;
+  const { activeClassName, router, className: classNameProps, innerRef, naked, ...other } = props;
 
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === props.href && activeClassName,
   });
 
   if (naked) {
-    return <NextComposed className={className} {...other} />;
+    return <NextComposed className={className} ref={innerRef} {...other} />;
   }
 
-  return <MuiLink component={NextComposed} className={className} {...other} />;
+  return <MuiLink component={NextComposed} className={className} ref={innerRef} {...other} />;
 }
 
 Link.propTypes = {
@@ -43,6 +43,7 @@ Link.propTypes = {
   as: PropTypes.string,
   className: PropTypes.string,
   href: PropTypes.string,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
@@ -55,4 +56,6 @@ Link.defaultProps = {
   activeClassName: 'active',
 };
 
-export default withRouter(Link);
+const RouterLink = withRouter(Link);
+
+export default React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />);

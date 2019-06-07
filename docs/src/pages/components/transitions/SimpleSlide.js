@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Slide from '@material-ui/core/Slide';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { makeStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     height: 180,
   },
@@ -27,43 +26,31 @@ const styles = theme => ({
     stroke: theme.palette.divider,
     strokeWidth: 1,
   },
-});
+}));
 
-class SimpleSlide extends React.Component {
-  state = {
-    checked: false,
-  };
+export default function SimpleSlide() {
+  const classes = useStyles();
+  const [checked, setChecked] = React.useState(false);
 
-  handleChange = () => {
-    this.setState(state => ({ checked: !state.checked }));
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { checked } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <div className={classes.wrapper}>
-          <FormControlLabel
-            control={<Switch checked={checked} onChange={this.handleChange} />}
-            label="Show"
-          />
-          <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
-            <Paper elevation={4} className={classes.paper}>
-              <svg className={classes.svg}>
-                <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
-              </svg>
-            </Paper>
-          </Slide>
-        </div>
-      </div>
-    );
+  function handleChange() {
+    setChecked(prev => !prev);
   }
+
+  return (
+    <div className={classes.root}>
+      <div className={classes.wrapper}>
+        <FormControlLabel
+          control={<Switch checked={checked} onChange={handleChange} />}
+          label="Show"
+        />
+        <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
+          <Paper elevation={4} className={classes.paper}>
+            <svg className={classes.svg}>
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+            </svg>
+          </Paper>
+        </Slide>
+      </div>
+    </div>
+  );
 }
-
-SimpleSlide.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleSlide);

@@ -99,8 +99,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function BottomAppBar() {
+export default function BottomAppBar() {
   const classes = useStyles();
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -143,5 +144,3 @@ function BottomAppBar() {
     </React.Fragment>
   );
 }
-
-export default BottomAppBar;

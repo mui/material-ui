@@ -4,7 +4,7 @@
 
 ## `createGenerateClassName([options]) => class name generator`
 
-A function which returns [a class name generator function](http://cssinjs.org/jss-api/#generate-your-class-names).
+A function which returns [a class name generator function](https://cssinjs.org/jss-api/#generate-your-class-names).
 
 #### Arguments
 
@@ -82,11 +82,11 @@ Use the function signature if you need to have access to the theme. It's provide
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Returns
 
-`hook`: A hook. This hook can be used in a function component.
+`hook`: A hook. This hook can be used in a function component. The documentation often calls this returned hook `useStyles`.
 It accepts one argument: the properties that will be used for "interpolation" in
 the style sheet.
 
@@ -99,11 +99,12 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'red',
+    color: props => props.color,
   },
 });
 
-export default function MyComponent() {
-  const classes = useStyles();
+export default function MyComponent(props) {
+  const classes = useStyles(props);
   return <div className={classes.root} />;
 }
 ```
@@ -170,7 +171,7 @@ Use the function signature if you need to have access to the theme. It's provide
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Returns
 
@@ -308,7 +309,7 @@ Use the function signature if you need to have access to the theme. It's provide
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Returns
 

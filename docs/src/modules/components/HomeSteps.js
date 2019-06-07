@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
+import { FileDownload as FileDownloadIcon } from '@material-ui/docs';
 import BuildIcon from '@material-ui/icons/Build';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -63,7 +63,7 @@ const styles = theme => ({
     fontSize: 30,
   },
   stepBody: {
-    minHeight: 270,
+    minHeight: 290,
   },
   markdownElement: {
     maxWidth: `calc(100vw - ${(theme.spacing(5) + 1) * 2}px)`,
@@ -91,11 +91,12 @@ const styles = theme => ({
 });
 
 const PremiumThemesLink = React.forwardRef((props, ref) => {
-  return <Link href="/premium-themes" naked prefetch ref={ref} {...props} />;
+  return <Link href="https://themes.material-ui.com/" naked ref={ref} {...props} />;
 });
 
 function HomeSteps(props) {
   const { classes, t } = props;
+  const theme = useTheme();
 
   return (
     <Grid container>
@@ -133,7 +134,7 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`html
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
   \`\`\`
                 `}
           />
@@ -182,9 +183,13 @@ function HomeSteps(props) {
           <Typography variant="subtitle1" component="div" gutterBottom>
             {t('themesDescr')}
           </Typography>
-          <Link prefetch href="/premium-themes" className={classes.link}>
+          <Link href="https://themes.material-ui.com/" className={classes.link}>
             <NoSsr>
-              <img className={classes.img} alt="themes" src="/static/images/themes-preview.jpg" />
+              <img
+                className={classes.img}
+                alt="themes"
+                src={`/static/images/themes-${theme.palette.type}.jpg`}
+              />
             </NoSsr>
           </Link>
         </div>

@@ -21,6 +21,7 @@ export default function createTypography(palette, typography) {
     fontWeightLight = 300,
     fontWeightRegular = 400,
     fontWeightMedium = 500,
+    fontWeightBold = 700,
     // Tell Material-UI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
@@ -36,7 +37,7 @@ export default function createTypography(palette, typography) {
     fontFamily,
     fontWeight,
     fontSize: pxToRem(size),
-    // Unitless following http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+    // Unitless following https://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
     lineHeight,
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
@@ -73,6 +74,7 @@ export default function createTypography(palette, typography) {
       fontWeightLight,
       fontWeightRegular,
       fontWeightMedium,
+      fontWeightBold,
       ...variants,
     },
     other,

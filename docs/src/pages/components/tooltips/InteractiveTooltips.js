@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function InteractiveTooltips() {
+export default function InteractiveTooltips() {
   const classes = useStyles();
 
   return (
@@ -23,5 +23,3 @@ function InteractiveTooltips() {
     </div>
   );
 }
-
-export default InteractiveTooltips;

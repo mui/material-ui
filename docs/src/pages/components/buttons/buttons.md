@@ -1,6 +1,6 @@
 ---
 title: Button React component
-components: Button, Fab, IconButton, ButtonBase, Zoom
+components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons
@@ -49,6 +49,18 @@ Outlined buttons are also a lower emphasis alternative to contained buttons,
 or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
+
+## Grouped Buttons
+
+The ButtonGroup component can be used to group outlined (the default) or contained buttons.
+
+{{"demo": "pages/components/buttons/GroupedButtons.js"}}
+
+## Split Button
+
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+
+{{"demo": "pages/components/buttons/SplitButton.js"}}
 
 ## Floating Action Buttons
 

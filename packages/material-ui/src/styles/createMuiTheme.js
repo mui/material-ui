@@ -90,7 +90,7 @@ function createMuiTheme(options = {}) {
                 2,
               ),
               '',
-              'https://material-ui.com/customization/components/#pseudo-classes',
+              'https://material-ui.com/r/pseudo-classes-guide',
             ].join('\n'),
           );
           // Remove the style to prevent global conflicts.

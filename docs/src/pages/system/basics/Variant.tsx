@@ -30,7 +30,7 @@ const theme = {
   },
 };
 
-function Variant() {
+export default function Variant() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
@@ -49,5 +49,3 @@ function Variant() {
     </NoSsr>
   );
 }
-
-export default Variant;

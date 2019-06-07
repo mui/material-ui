@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function PinnedSubheaderList() {
+export default function PinnedSubheaderList() {
   const classes = useStyles();
 
   return (
@@ -45,5 +45,3 @@ function PinnedSubheaderList() {
     </List>
   );
 }
-
-export default PinnedSubheaderList;

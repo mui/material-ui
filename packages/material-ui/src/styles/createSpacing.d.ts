@@ -3,6 +3,7 @@
 export type SpacingArgument = number | string;
 
 export interface Spacing {
+  (): number;
   (value1: SpacingArgument): number;
   (value1: SpacingArgument, value2: SpacingArgument): string;
   (value1: SpacingArgument, value2: SpacingArgument, value3: SpacingArgument): string;
