@@ -6,7 +6,7 @@ import {
   ClassNameMap,
   StyledComponentProps,
   WithStylesOptions,
-  StyleRules,
+  StyleRules as ActualStyleRules,
   StyleRulesCallback,
   Styles,
   ClassKeyOfStyles,
@@ -17,11 +17,19 @@ export {
   CSSProperties,
   ClassNameMap,
   StyledComponentProps,
-  StyleRules,
   Styles,
   WithStylesOptions,
   StyleRulesCallback,
 };
+
+/**
+ * Adapter for `StyleRules` from `@material-ui/styles` for backwards compatibility.
+ * Order of generic arguments is just reversed.
+ */
+export type StyleRules<
+  ClassKey extends string = string,
+  Props extends object = {}
+> = ActualStyleRules<Props, ClassKey>;
 
 export type WithStyles<
   StylesOrClassKey extends string | Styles<any, any, any> = string,

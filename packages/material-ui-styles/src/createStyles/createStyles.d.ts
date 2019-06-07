@@ -12,5 +12,5 @@ import { StyleRules } from '@material-ui/styles/withStyles';
 // See https://github.com/mui-org/material-ui/issues/15942
 // and https://github.com/microsoft/TypeScript/issues/31735
 export default function createStyles<ClassKey extends string, Props extends {}>(
-  styles: StyleRules<ClassKey, Props>,
-): StyleRules<ClassKey, Props>;
+  styles: StyleRules<Props, ClassKey>,
+): StyleRules<Props, ClassKey>;
