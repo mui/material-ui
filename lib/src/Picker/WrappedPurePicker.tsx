@@ -50,6 +50,7 @@ export function makePurePicker<T extends any>({
       rightArrowButtonProps,
       shouldDisableDate,
       dateRangeIcon,
+      emptyLabel,
       timeIcon,
       value,
       variant,

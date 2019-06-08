@@ -58,6 +58,7 @@ export function makeKeyboardPicker<T extends any>({
       shouldDisableDate,
       value,
       dateRangeIcon,
+      emptyLabel,
       timeIcon,
       variant,
       disableToolbar,
