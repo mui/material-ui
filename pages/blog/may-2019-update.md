@@ -24,7 +24,7 @@ But this summary is just scratching the surface. We have accepted 206 commits fr
 
 ![Slider](/static/blog/may-2019-update/slider.png)
 
-- We will release a new Tree View component. You can already [preview it](https://deploy-preview-14827--material-ui.netlify.com/components/tree-view/).
+- We will work on a new Tree View component. You can already [preview it](https://deploy-preview-14827--material-ui.netlify.com/components/tree-view/).
 
 ![Tree View](/static/blog/may-2019-update/tree-view.png)
 
@@ -35,8 +35,7 @@ If you are an enterprise and are looking for one of the following:
   - A dedicated communication channel. Have priority access to Material-UI engineers.
   - Architecture Reviews. Sit down with a Material-UI engineer and walk through all aspects of your Material-UI project and current tech stack or architecture, to identify vulnerabilities and opportunities for improvement.
 
-You can contact us at `advisory at material-ui.com`.
-- If we have the time, we will work on new components.
+You can contact us at advisory@material-ui.com.
 
 <hr />
 
