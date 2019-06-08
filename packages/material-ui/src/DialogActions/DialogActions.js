@@ -11,6 +11,7 @@ export const styles = {
     alignItems: 'center',
     padding: 8,
     justifyContent: 'flex-end',
+    flex: '0 0 auto',
   },
   /* Styles applied to the root element if `disableSpacing={false}`. */
   spacing: {
