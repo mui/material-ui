@@ -33,7 +33,7 @@ But this summary is just scratching the surface. We have accepted 206 commits fr
 - We will experiment around advisory offerings for enterprises.
 If you are an enterprise and are looking for one of the following:
   - A dedicated communication channel giving priority access to Material-UI engineers.
-  - Architecture Reviews. Sit down with a Material-UI engineer and walk through all aspects of your Material-UI project and current tech stack or architecture, to identify vulnerabilities and opportunities for improvement.
+  - Architecture Reviews. Sit down with a Material-UI engineer and walk through all aspects of your Material-UI project and current tech stack or architecture, to identify issues and opportunities for improvement.
 
 You can contact us at advisory@material-ui.com.
 
