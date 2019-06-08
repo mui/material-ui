@@ -80,13 +80,17 @@ DemoFrame.propTypes = {
 
 const StyledFrame = withStyles(styles, { withTheme: true })(DemoFrame);
 
+/**
+ * Isolates the demo component as best as possible. Additional props are spread
+ * to an `iframe` if `iframe={true}`.
+ */
 function DemoSandboxed(props) {
   const { component: Component, iframe, name, ...other } = props;
   const Sandbox = iframe ? StyledFrame : React.Fragment;
-  const sandboxProps = iframe ? { title: `${name} demo` } : {};
+  const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
 
   return (
-    <Sandbox {...sandboxProps} {...other}>
+    <Sandbox {...sandboxProps}>
       <Component />
     </Sandbox>
   );

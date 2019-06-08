@@ -96,28 +96,63 @@ const styles = theme => ({
   },
 });
 
-class Demo extends React.Component {
-  state = {
-    anchorEl: null,
-    codeOpen: Boolean(this.props.demoOptions.defaultCodeOpen),
-    demoHovered: false,
-    sourceHintSeen: false,
-  };
-
-  componentDidMount() {
-    this.setState({ sourceHintSeen: getCookie('sourceHintSeen') });
+function getDemoData(codeVariant, demo, githubLocation) {
+  if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+    return {
+      codeVariant: CODE_VARIANTS.TS,
+      githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+      raw: demo.rawTS,
+      Component: demo.tsx,
+      sourceLanguage: 'tsx',
+    };
   }
 
-  handleClickMore = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  return {
+    codeVariant: CODE_VARIANTS.JS,
+    githubLocation,
+    raw: demo.raw,
+    Component: demo.js,
+    sourceLanguage: 'jsx',
   };
+}
 
-  handleCloseMore = () => {
-    this.setState({ anchorEl: null });
-  };
+function Demo(props) {
+  const { classes, codeVariant, demo, demoOptions, dispatch, githubLocation, t } = props;
+  const demoData = getDemoData(codeVariant, demo, githubLocation);
 
-  handleClickCodeSandbox = () => {
-    const demoConfig = getDemoConfig(this.getDemoData());
+  const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
+  React.useEffect(() => {
+    setSourceHintSeen(getCookie('sourceHintSeen'));
+  }, []);
+
+  const [demoHovered, setDemoHovered] = React.useState(false);
+  function handleDemoHover(event) {
+    setDemoHovered(event.type === 'mouseenter');
+  }
+
+  function handleCodeLanguageClick(event, clickedCodeVariant) {
+    if (codeVariant !== clickedCodeVariant) {
+      document.cookie = `codeVariant=${clickedCodeVariant};path=/;max-age=31536000`;
+      window.ga('set', 'dimension1', clickedCodeVariant);
+
+      dispatch({
+        type: ACTION_TYPES.OPTIONS_CHANGE,
+        payload: {
+          codeVariant: clickedCodeVariant,
+        },
+      });
+    }
+  }
+
+  const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen);
+  function handleClickCodeOpen() {
+    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
+    setCodeOpen(open => !open);
+    setSourceHintSeen(setSourceHintSeen(true));
+  }
+
+  function handleClickCodeSandbox() {
+    const demoConfig = getDemoConfig(demoData);
     const parameters = compress({
       files: {
         'package.json': {
@@ -148,229 +183,189 @@ class Demo extends React.Component {
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);
-  };
+  }
 
-  handleClickCopy = async () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  function handleClickMore(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleCloseMore() {
+    setAnchorEl(null);
+  }
+
+  async function handleClickCopy() {
     try {
-      await copy(this.getDemoData().raw);
+      await copy(demoData.raw);
     } finally {
-      this.handleCloseMore();
+      handleCloseMore();
     }
-  };
+  }
 
-  handleClickStackBlitz = () => {
-    const demo = getDemoConfig(this.getDemoData());
+  function handleClickStackBlitz() {
+    const demoConfig = getDemoConfig(demoData);
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
     form.action = 'https://stackblitz.com/run';
     addHiddenInput(form, 'project[template]', 'javascript');
-    addHiddenInput(form, 'project[title]', demo.title);
-    addHiddenInput(form, 'project[description]', demo.description);
-    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demo.dependencies));
-    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demo.devDependencies));
-    Object.keys(demo.files).forEach(key => {
-      const value = demo.files[key];
+    addHiddenInput(form, 'project[title]', demoConfig.title);
+    addHiddenInput(form, 'project[description]', demoConfig.description);
+    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
+    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
+    Object.keys(demoConfig.files).forEach(key => {
+      const value = demoConfig.files[key];
       addHiddenInput(form, `project[files][${key}]`, value);
     });
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);
-    this.handleCloseMore();
-  };
+    handleCloseMore();
+  }
 
-  handleCodeLanguageClick = (event, codeVariant) => {
-    if (this.props.codeVariant !== codeVariant) {
-      document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
-      window.ga('set', 'dimension1', codeVariant);
+  const showSourceHint = demoHovered && !sourceHintSeen;
+  const DemoComponent = demoData.Component;
+  const gaCategory = demoOptions.demo;
+  // get the last alphanumeric pattern before the file extension
+  const demoName = demoData.githubLocation.replace(/(.+?)(\w+)\.\w+$$/, '$2');
+  const demoSandboxedStyle = React.useMemo(
+    () => ({
+      maxWidth: demoOptions.maxWidth,
+      height: demoOptions.height,
+    }),
+    [demoOptions.height, demoOptions.maxWidth],
+  );
 
-      this.props.dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          codeVariant,
-        },
-      });
-    }
-  };
-
-  handleClickCodeOpen = () => {
-    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
-    this.setState(state => ({
-      codeOpen: !state.codeOpen,
-      sourceHintSeen: true,
-    }));
-  };
-
-  handleDemoHover = event => {
-    this.setState({ demoHovered: event.type === 'mouseenter' });
-  };
-
-  getDemoData = () => {
-    const { codeVariant, demo, githubLocation } = this.props;
-    if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
-      return {
-        codeVariant: CODE_VARIANTS.TS,
-        githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-        raw: demo.rawTS,
-        Component: demo.tsx,
-        sourceLanguage: 'tsx',
-      };
-    }
-
-    return {
-      codeVariant: CODE_VARIANTS.JS,
-      githubLocation,
-      raw: demo.raw,
-      Component: demo.js,
-      sourceLanguage: 'jsx',
-    };
-  };
-
-  render() {
-    const { classes, codeVariant, demo, demoOptions, t } = this.props;
-    const { anchorEl, codeOpen, demoHovered, sourceHintSeen } = this.state;
-    const showSourceHint = demoHovered && !sourceHintSeen;
-
-    const demoData = this.getDemoData();
-    const DemoComponent = demoData.Component;
-    const gaCategory = demoOptions.demo;
-    // get the last alphanumeric pattern before the file extension
-    const demoName = demoData.githubLocation.replace(/(.+?)(\w+)\.\w+$$/, '$2');
-
-    return (
-      <div className={classes.root}>
-        {demoOptions.hideHeader ? null : (
-          <div>
-            <div className={classes.header}>
-              <DemoLanguages
-                demo={demo}
-                codeOpen={codeOpen}
-                codeVariant={codeVariant}
-                gaEventCategory={gaCategory}
-                onLanguageClick={this.handleCodeLanguageClick}
-              />
-              <div>
-                <Tooltip
-                  classes={{ popper: classes.tooltip }}
-                  key={showSourceHint}
-                  open={showSourceHint ? true : undefined}
-                  PopperProps={{ disablePortal: true }}
-                  title={codeOpen ? t('hideSource') : t('showSource')}
-                  placement="top"
-                >
-                  <IconButton
-                    aria-label={codeOpen ? t('hideSource') : t('showSource')}
-                    data-ga-event-category={gaCategory}
-                    data-ga-event-action="expand"
-                    onClick={this.handleClickCodeOpen}
-                    color={demoHovered ? 'primary' : 'default'}
-                  >
-                    <CodeIcon />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip
-                  classes={{ popper: classes.tooltip }}
-                  title={t('viewGitHub')}
-                  placement="top"
-                >
-                  <IconButton
-                    aria-label={t('viewGitHub')}
-                    data-ga-event-category={gaCategory}
-                    data-ga-event-action="github"
-                    href={demoData.githubLocation}
-                    target="_blank"
-                    rel="noopener nofollow"
-                  >
-                    <GithubIcon />
-                  </IconButton>
-                </Tooltip>
-                {demoOptions.hideEditButton ? null : (
-                  <Tooltip
-                    classes={{ popper: classes.tooltip }}
-                    title={t('codesandbox')}
-                    placement="top"
-                  >
-                    <IconButton
-                      aria-label={t('codesandbox')}
-                      data-ga-event-category={gaCategory}
-                      data-ga-event-action="codesandbox"
-                      onClick={this.handleClickCodeSandbox}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                  </Tooltip>
-                )}
+  return (
+    <div className={classes.root}>
+      {demoOptions.hideHeader ? null : (
+        <div>
+          <div className={classes.header}>
+            <DemoLanguages
+              demo={demo}
+              codeOpen={codeOpen}
+              codeVariant={codeVariant}
+              gaEventCategory={gaCategory}
+              onLanguageClick={handleCodeLanguageClick}
+            />
+            <div>
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                key={showSourceHint}
+                open={showSourceHint ? true : undefined}
+                PopperProps={{ disablePortal: true }}
+                title={codeOpen ? t('hideSource') : t('showSource')}
+                placement="top"
+              >
                 <IconButton
-                  onClick={this.handleClickMore}
-                  aria-owns={anchorEl ? 'demo-menu-more' : undefined}
-                  aria-haspopup="true"
-                  aria-label={t('seeMore')}
+                  aria-label={codeOpen ? t('hideSource') : t('showSource')}
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="expand"
+                  onClick={handleClickCodeOpen}
+                  color={demoHovered ? 'primary' : 'default'}
                 >
-                  <MoreVertIcon />
+                  <CodeIcon />
                 </IconButton>
-                <Menu
-                  id="demo-menu-more"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={this.handleCloseMore}
-                  getContentAnchorEl={null}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
+              </Tooltip>
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('viewGitHub')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('viewGitHub')}
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="github"
+                  href={demoData.githubLocation}
+                  target="_blank"
+                  rel="noopener nofollow"
                 >
+                  <GithubIcon />
+                </IconButton>
+              </Tooltip>
+              {demoOptions.hideEditButton ? null : (
+                <Tooltip
+                  classes={{ popper: classes.tooltip }}
+                  title={t('codesandbox')}
+                  placement="top"
+                >
+                  <IconButton
+                    aria-label={t('codesandbox')}
+                    data-ga-event-category={gaCategory}
+                    data-ga-event-action="codesandbox"
+                    onClick={handleClickCodeSandbox}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+              <IconButton
+                onClick={handleClickMore}
+                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
+                aria-haspopup="true"
+                aria-label={t('seeMore')}
+              >
+                <MoreVertIcon />
+              </IconButton>
+              <Menu
+                id="demo-menu-more"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleCloseMore}
+                getContentAnchorEl={null}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <MenuItem
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="copy"
+                  onClick={handleClickCopy}
+                >
+                  {t('copySource')}
+                </MenuItem>
+                {demoOptions.hideEditButton ? null : (
                   <MenuItem
                     data-ga-event-category={gaCategory}
-                    data-ga-event-action="copy"
-                    onClick={this.handleClickCopy}
+                    data-ga-event-action="stackblitz"
+                    onClick={handleClickStackBlitz}
                   >
-                    {t('copySource')}
+                    {t('stackblitz')}
                   </MenuItem>
-                  {demoOptions.hideEditButton ? null : (
-                    <MenuItem
-                      data-ga-event-category={gaCategory}
-                      data-ga-event-action="stackblitz"
-                      onClick={this.handleClickStackBlitz}
-                    >
-                      {t('stackblitz')}
-                    </MenuItem>
-                  )}
-                </Menu>
-              </div>
+                )}
+              </Menu>
             </div>
-            <Collapse in={codeOpen} unmountOnExit>
-              <MarkdownElement
-                className={classes.code}
-                text={`\`\`\`${demoData.sourceLanguage}\n${demoData.raw}\n\`\`\``}
-              />
-            </Collapse>
           </div>
-        )}
-        <div
-          className={clsx(classes.demo, {
-            [classes.demoHiddenHeader]: demoOptions.hideHeader,
-          })}
-          tabIndex={-1}
-          onMouseEnter={this.handleDemoHover}
-          onMouseLeave={this.handleDemoHover}
-        >
-          <DemoSandboxed
-            style={{
-              maxWidth: demoOptions.maxWidth,
-              height: demoOptions.height,
-            }}
-            component={DemoComponent}
-            iframe={demoOptions.iframe}
-            name={demoName}
-          />
+          <Collapse in={codeOpen} unmountOnExit>
+            <MarkdownElement
+              className={classes.code}
+              text={`\`\`\`${demoData.sourceLanguage}\n${demoData.raw}\n\`\`\``}
+            />
+          </Collapse>
         </div>
+      )}
+      <div
+        className={clsx(classes.demo, {
+          [classes.demoHiddenHeader]: demoOptions.hideHeader,
+        })}
+        tabIndex={-1}
+        onMouseEnter={handleDemoHover}
+        onMouseLeave={handleDemoHover}
+      >
+        <DemoSandboxed
+          style={demoSandboxedStyle}
+          component={DemoComponent}
+          iframe={demoOptions.iframe}
+          name={demoName}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 Demo.propTypes = {
