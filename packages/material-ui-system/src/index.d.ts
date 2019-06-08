@@ -156,10 +156,19 @@ export function style<PropKey extends string, Theme extends object>(
 // typography.js
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
 export const fontSize: SimpleStyleFunction<'fontSize'>;
+export const fontStyle: SimpleStyleFunction<'fontStyle'>;
 export const fontWeight: SimpleStyleFunction<'fontWeight'>;
+export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
+export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
 export const typography: SimpleStyleFunction<
-  'fontFamily' | 'fontSize' | 'fontWeight' | 'textAlign'
+  | 'fontFamily'
+  | 'fontSize'
+  | 'fontStyle'
+  | 'fontWeight'
+  | 'letterSpacing'
+  | 'lineHeight'
+  | 'textAlign'
 >;
 export type TypographyProps = PropsFor<typeof typography>;
 

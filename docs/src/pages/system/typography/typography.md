@@ -34,6 +34,16 @@
 
 {{"demo": "pages/system/typography/FontSize.js"}}
 
+## Font Style
+
+```jsx
+<Box fontStyle="normal">…
+<Box fontStyle="italic">…
+<Box fontStyle="oblique">…
+```
+
+{{"demo": "pages/system/typography/FontStyle.js"}}
+
 ## Font family
 
 ```jsx
@@ -42,6 +52,24 @@
 ```
 
 {{"demo": "pages/system/typography/FontFamily.js"}}
+
+## Letter Spacing
+
+```jsx
+<Box letterSpacing={6}>…
+<Box letterSpacing={10}>…
+```
+
+{{"demo": "pages/system/typography/LetterSpacing.js"}}
+
+## Line Height
+
+```jsx
+<Box lineHeight="normal">…
+<Box lineHeight={10}>…
+```
+
+{{"demo": "pages/system/typography/LineHeight.js"}}
 
 ## API
 
@@ -53,5 +81,8 @@ import { typography } from '@material-ui/system';
 |:------------|:-----|:-------------|:----------|
 | `fontFamily` | `fontFamily` | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontSize` | `fontSize` | `font-size` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| `fontStyle` | `fontStyle` | `font-style` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontWeight` | `fontWeight` | `font-weight` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| `letterSpacing` | `letterSpacing` | `letter-spacing` | none |
+| `lineHeight` | `lineHeight` | `line-height` | none |
 | `textAlign` | `textAlign` | `text-align` | none |
