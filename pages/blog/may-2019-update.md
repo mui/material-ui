@@ -32,7 +32,7 @@ But this summary is just scratching the surface. We have accepted 206 commits fr
 - We will start exploring how we can provide style adapters in v5 (styled-components, JSS, linaria, naked, etc.)
 - We will experiment around advisory offerings for enterprises.
 If you are an enterprise and are looking for one of the following:
-  - A dedicated communication channel. Have priority access to Material-UI engineers.
+  - A dedicated communication channel giving priority access to Material-UI engineers.
   - Architecture Reviews. Sit down with a Material-UI engineer and walk through all aspects of your Material-UI project and current tech stack or architecture, to identify vulnerabilities and opportunities for improvement.
 
 You can contact us at advisory@material-ui.com.
