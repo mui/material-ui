@@ -228,7 +228,6 @@ function Demo(props) {
   const DemoComponent = demoData.Component;
   const gaCategory = demoOptions.demo;
   const demoName = getDemoName(demoData.githubLocation);
-  const demoExtension = codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'js';
   const demoSandboxedStyle = React.useMemo(
     () => ({
       maxWidth: demoOptions.maxWidth,
@@ -245,7 +244,7 @@ function Demo(props) {
     }
   };
 
-  const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen);
+  const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);
@@ -289,8 +288,6 @@ function Demo(props) {
                   data-ga-event-action="expand"
                   onClick={handleClickCodeOpen}
                   color={demoHovered ? 'primary' : 'default'}
-                  component="a"
-                  href={`#${demoName}.${demoExtension}`}
                 >
                   <CodeIcon />
                 </IconButton>
