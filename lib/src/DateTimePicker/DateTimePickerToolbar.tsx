@@ -5,9 +5,9 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import { Grid } from '@material-ui/core';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { DateTimePickerView } from './DateTimePicker';
 import { ToolbarComponentProps } from '../Picker/Picker';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMeridiemMode } from '../TimePicker/TimePickerToolbar';
 
 export const useStyles = makeStyles(
@@ -15,8 +15,8 @@ export const useStyles = makeStyles(
     toolbar: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingLeft: 12,
-      paddingRight: 12,
+      paddingLeft: 16,
+      paddingRight: 16,
       justifyContent: 'space-around',
     },
     separator: {
@@ -48,19 +48,23 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
     <>
       <PickerToolbar className={classes.toolbar}>
         <Grid container justify="center" wrap="nowrap">
-          <Grid item container xs={5} direction="row">
-            <ToolbarButton
-              variant="subtitle1"
-              onClick={() => setOpenView('year')}
-              selected={openView === 'year'}
-              label={utils.getYearText(date)}
-            />
-            <ToolbarButton
-              variant="h4"
-              onClick={() => setOpenView('date')}
-              selected={openView === 'date'}
-              label={utils.getDateTimePickerHeaderText(date)}
-            />
+          <Grid item container xs={5} justify="flex-start" direction="column">
+            <div>
+              <ToolbarButton
+                variant="subtitle1"
+                onClick={() => setOpenView('year')}
+                selected={openView === 'year'}
+                label={utils.getYearText(date)}
+              />
+            </div>
+            <div>
+              <ToolbarButton
+                variant="h4"
+                onClick={() => setOpenView('date')}
+                selected={openView === 'date'}
+                label={utils.getDateTimePickerHeaderText(date)}
+              />
+            </div>
           </Grid>
 
           <Grid
