@@ -25,7 +25,7 @@ export const styles = {
     flex: 1,
     position: 'relative',
   },
-  /* Styles applied to the root element if `completed={true}`. */
+  /* Pseudo-class applied to the root element if `completed={true}`. */
   completed: {},
 };
 

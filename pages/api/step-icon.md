@@ -38,9 +38,9 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">text</span> | Styles applied to the SVG text element.
-| <span class="prop-name">active</span> | Styles applied to the root element if `active={true}`.
-| <span class="prop-name">completed</span> | Styles applied to the root element if `completed={true}`.
-| <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span class="prop-name">completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <span class="prop-name">error</span> | Pseudo-class applied to the root element if `error={true}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepIcon/StepIcon.js)

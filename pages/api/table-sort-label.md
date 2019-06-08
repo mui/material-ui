@@ -38,7 +38,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">active</span> | Styles applied to the root element if `active={true}`.
+| <span class="prop-name">active</span> | Pseudo-class applied to the root element if `active={true}`.
 | <span class="prop-name">icon</span> | Styles applied to the icon component.
 | <span class="prop-name">iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
 | <span class="prop-name">iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.

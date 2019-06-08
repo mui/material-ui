@@ -38,8 +38,8 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
-| <span class="prop-name">hover</span> | Styles applied to the root element if `hover={true}`.
+| <span class="prop-name">selected</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <span class="prop-name">hover</span> | Pseudo-class applied to the root element if `hover={true}`.
 | <span class="prop-name">head</span> | Styles applied to the root element if table variant="head".
 | <span class="prop-name">footer</span> | Styles applied to the root element if table variant="footer".
 

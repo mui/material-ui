@@ -67,9 +67,9 @@ export const styles = theme => ({
       color: theme.palette.text.disabled,
     },
   },
-  /* Styles applied to the root element if `selected={true}` (controlled by the Tabs component). */
+  /* Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component). */
   selected: {},
-  /* Styles applied to the root element if `disabled={true}` (controlled by the Tabs component). */
+  /* Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
   disabled: {},
   /* Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). */
   fullWidth: {

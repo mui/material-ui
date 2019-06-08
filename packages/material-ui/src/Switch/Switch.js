@@ -91,9 +91,9 @@ export const styles = theme => ({
         theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
-  /* Styles applied to the internal `SwitchBase` component's `checked` class. */
+  /* Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */
   checked: {},
-  /* Styles applied to the internal SwitchBase component's disabled class. */
+  /* Pseudo-class applied to the internal SwitchBase component's disabled class. */
   disabled: {},
   /* Styles applied to the internal SwitchBase component's input element. */
   input: {

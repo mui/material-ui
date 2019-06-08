@@ -46,15 +46,15 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
 | <span class="prop-name">container</span> | Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
-| <span class="prop-name">focusVisible</span> | Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`.
+| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the `component`'s `focusVisibleClassName` property if `button={true}`.
 | <span class="prop-name">dense</span> | Styles applied to the `component` element if dense.
 | <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
-| <span class="prop-name">disabled</span> | Styles applied to the inner `component` element if `disabled={true}`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the inner `component` element if `disabled={true}`.
 | <span class="prop-name">divider</span> | Styles applied to the inner `component` element if `divider={true}`.
 | <span class="prop-name">gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
 | <span class="prop-name">button</span> | Styles applied to the inner `component` element if `button={true}`.
 | <span class="prop-name">secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
-| <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
+| <span class="prop-name">selected</span> | Pseudo-class applied to the root element if `selected={true}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ListItem/ListItem.js)

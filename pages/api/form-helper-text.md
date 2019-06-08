@@ -42,13 +42,13 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">error</span> | Pseudo-class applied to the root element if `error={true}`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">contained</span> | Styles applied to the root element if `variant="filled"` or `variant="outlined"`.
-| <span class="prop-name">focused</span> | Styles applied to the root element if `focused={true}`.
-| <span class="prop-name">filled</span> | Styles applied to the root element if `filled={true}`.
-| <span class="prop-name">required</span> | Styles applied to the root element if `required={true}`.
+| <span class="prop-name">focused</span> | Pseudo-class applied to the root element if `focused={true}`.
+| <span class="prop-name">filled</span> | Pseudo-class applied to the root element if `filled={true}`.
+| <span class="prop-name">required</span> | Pseudo-class applied to the root element if `required={true}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormHelperText/FormHelperText.js)

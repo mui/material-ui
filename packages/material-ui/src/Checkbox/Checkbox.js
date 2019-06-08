@@ -14,11 +14,11 @@ export const styles = theme => ({
   root: {
     color: theme.palette.text.secondary,
   },
-  /* Styles applied to the root element if `checked={true}`. */
+  /* Pseudo-class applied to the root element if `checked={true}`. */
   checked: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if `indeterminate={true}`. */
+  /* Pseudo-class applied to the root element if `indeterminate={true}`. */
   indeterminate: {},
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {

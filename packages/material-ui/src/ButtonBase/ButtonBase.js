@@ -41,9 +41,9 @@ export const styles = {
       cursor: 'default',
     },
   },
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if keyboard focused. */
+  /* Pseudo-class applied to the root element if keyboard focused. */
   focusVisible: {},
 };
 
