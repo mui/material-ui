@@ -94,7 +94,15 @@ const styles = theme => ({
   tooltip: {
     zIndex: theme.zIndex.appBar - 1,
   },
+  anchorLink: {
+    marginTop: -64, // height of toolbar
+    position: 'absolute',
+  },
 });
+
+function getDemoName(location) {
+  return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
+}
 
 function getDemoData(codeVariant, demo, githubLocation) {
   if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
@@ -142,13 +150,6 @@ function Demo(props) {
         },
       });
     }
-  }
-
-  const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen);
-  function handleClickCodeOpen() {
-    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
-    setCodeOpen(open => !open);
-    setSourceHintSeen(setSourceHintSeen(true));
   }
 
   function handleClickCodeSandbox() {
@@ -226,8 +227,7 @@ function Demo(props) {
   const showSourceHint = demoHovered && !sourceHintSeen;
   const DemoComponent = demoData.Component;
   const gaCategory = demoOptions.demo;
-  // get the last alphanumeric pattern before the file extension
-  const demoName = demoData.githubLocation.replace(/(.+?)(\w+)\.\w+$$/, '$2');
+  const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
       maxWidth: demoOptions.maxWidth,
@@ -236,8 +236,33 @@ function Demo(props) {
     [demoOptions.height, demoOptions.maxWidth],
   );
 
+  const createHandleCodeSourceLink = anchor => async () => {
+    try {
+      await copy(`${window.location.href.split('#')[0]}#${anchor}`);
+    } finally {
+      handleCloseMore();
+    }
+  };
+
+  const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
+
+  React.useEffect(() => {
+    const navigatedDemoName = getDemoName(window.location.hash);
+    if (demoName === navigatedDemoName) {
+      setCodeOpen(true);
+    }
+  }, [demoName]);
+
+  function handleClickCodeOpen() {
+    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
+    setCodeOpen(open => !open);
+    setSourceHintSeen(setSourceHintSeen(true));
+  }
+
   return (
     <div className={classes.root}>
+      <div className={classes.anchorLink} id={`${demoName}.js`} />
+      <div className={classes.anchorLink} id={`${demoName}.tsx`} />
       {demoOptions.hideHeader ? null : (
         <div>
           <div className={classes.header}>
@@ -338,6 +363,20 @@ function Demo(props) {
                     {t('stackblitz')}
                   </MenuItem>
                 )}
+                <MenuItem
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="copy-js-source-link"
+                  onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+                >
+                  {t('copySourceLinkJS')}
+                </MenuItem>
+                <MenuItem
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="copy-ts-source-link"
+                  onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+                >
+                  {t('copySourceLinkTS')}
+                </MenuItem>
               </Menu>
             </div>
           </div>

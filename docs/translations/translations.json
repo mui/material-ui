@@ -64,6 +64,8 @@
   "codesandbox": "Edit in CodeSandbox",
   "seeMore": "See more",
   "copySource": "Copy the source",
+  "copySourceLinkJS": "Copy link to JavaScript source",
+  "copySourceLinkTS": "Copy link to TypeScript source",
   "stackblitz": "Edit in StackBlitz (JS only)",
   "headTitle": "The world's most popular React UI framework - Material-UI",
   "pages": {
