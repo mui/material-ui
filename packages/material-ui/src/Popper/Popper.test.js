@@ -216,7 +216,7 @@ describe('<Popper />', () => {
     it('should warn if anchorEl is not valid', () => {
       mount(<Popper {...defaultProps} open anchorEl={null} />);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.args()[0][0], 'It should be an Element instance');
+      assert.include(consoleErrorMock.args()[0][0], 'It should be an HTML Element instance');
     });
 
     // it('should warn if anchorEl is not visible', () => {
