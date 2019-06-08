@@ -64,6 +64,7 @@ This property accepts the following keys:
 | <span class="prop-name">adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
 | <span class="prop-name">adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
 | <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">input</span> | Styles applied to the `input` element.
 | <span class="prop-name">inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.

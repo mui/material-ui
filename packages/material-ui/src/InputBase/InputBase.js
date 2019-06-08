@@ -61,6 +61,9 @@ export const styles = theme => {
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: `${8 - 2}px 0 ${8 - 1}px`,
+      '&$marginDense': {
+        paddingTop: 4 - 1,
+      },
     },
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {

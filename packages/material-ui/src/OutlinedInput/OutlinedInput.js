@@ -48,9 +48,15 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `error={true}`. */
     error: {},
+    /* Styles applied to the `input` element if `margin="dense"`. */
+    marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '18.5px 14px',
+      '&$marginDense': {
+        paddingTop: 10.5,
+        paddingBottom: 10.5,
+      },
     },
     /* Styles applied to the `NotchedOutline` element. */
     notchedOutline: {},
@@ -60,8 +66,8 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
-      paddingTop: 15,
-      paddingBottom: 15,
+      paddingTop: 10.5,
+      paddingBottom: 10.5,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
