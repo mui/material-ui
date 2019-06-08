@@ -1,16 +1,10 @@
-import { Omit } from '@material-ui/types';
+import { Omit, IsAny, CoerceEmptyInterface } from '@material-ui/types';
 import {
   CreateCSSProperties,
   StyledComponentProps,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
 import * as React from 'react';
-
-/**
- * If props is any, returns empty object, otherwise T
- * @internal
- */
-export type GetProps<T> = 0 extends 1 & T ? {} : T;
 
 /**
  * @internal
@@ -25,7 +19,7 @@ export type ComponentCreator<Component extends React.ElementType> = <Theme, Prop
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
   > &
-    StyledComponentProps<'root'> & { className?: string } & GetProps<Props>
+    StyledComponentProps<'root'> & { className?: string } & CoerceEmptyInterface<Props>
 >;
 
 export interface StyledProps {

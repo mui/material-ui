@@ -42,3 +42,14 @@ export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof
  * @internal
  */
 export type Overwrite<T, U> = Omit<T, keyof U> & U;
+
+/**
+ * Returns true if T is any, otherwise false
+ */
+// https://stackoverflow.com/a/49928360/3406963 without generic branch types
+export type IsAny<T> = 0 extends (1 & T) ? true : false;
+
+/**
+ * Returns an empty object type if T is any, otherwise returns T
+ */
+export type CoerceEmptyInterface<T> = IsAny<T> extends true ? {} : T;
