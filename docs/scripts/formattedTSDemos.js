@@ -26,22 +26,8 @@ const babelConfig = {
   configFile: false,
 };
 
-const options = {
-  // Watches for file changes and transpiles the files as they change
-  watchMode: '--watch',
-
-  // Transpile files no matter when they were last edited
-  disableCache: '--disable-cache',
-
-  // Use immediate exports when there is no HOC present
-  // Warning: This modifies the typescript file
-  immediateExports: '--immediate-exports',
-};
-
-Object.keys(options).forEach(key => {
-  const flag = options[key];
-  options[key] = process.argv.some(arg => arg === flag);
-});
+const watchMode = process.argv.some(arg => arg === '--watch');
+const cacheDisabled = process.argv.some(arg => arg === '--disable-cache');
 
 const workspaceRoot = path.join(__dirname, '../../');
 
@@ -94,7 +80,7 @@ const TranspileResult = {
 async function transpileFile(tsxPath, ignoreCache = false) {
   const jsPath = tsxPath.replace('.tsx', '.js');
   try {
-    if (!options.disableCache && !ignoreCache && (await fse.exists(jsPath))) {
+    if (!cacheDisabled && !ignoreCache && (await fse.exists(jsPath))) {
       const [jsStat, tsxStat] = await Promise.all([fse.stat(jsPath), fse.stat(tsxPath)]);
       if (jsStat.mtimeMs > tsxStat.mtimeMs) {
         // JavaScript version is newer, skip transpiling
@@ -102,18 +88,7 @@ async function transpileFile(tsxPath, ignoreCache = false) {
       }
     }
 
-    let content = (await fse.readFile(tsxPath)).toString();
-
-    if (options.immediateExports) {
-      const functionExport = /(function )(\w*)(\((.|\r?\n)*?)(\r?\n*export default \2;\r?\n)/gm;
-
-      if (functionExport.test(content)) {
-        content = content.replace(functionExport, 'export default function $2$3');
-        await fse.writeFile(tsxPath, content);
-      }
-    }
-
-    const { code } = await babel.transformAsync(content, { ...babelConfig, filename: tsxPath });
+    const { code } = await babel.transformFileAsync(tsxPath, babelConfig);
     const prettified = prettier.format(code, { ...prettierConfig, filepath: tsxPath });
     const formatted = fixBabelGeneratorIssues(prettified);
 
@@ -163,7 +138,7 @@ async function transpileFile(tsxPath, ignoreCache = false) {
     failed,
   );
 
-  if (!options.watchMode) {
+  if (!watchMode) {
     if (failed > 0) {
       process.exit(1);
     }
