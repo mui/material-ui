@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Slider from '@material-ui/lab/Slider';
+import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
-    width: 300,
+    width: 300 + 24 * 2,
     padding: 24,
   },
-});
+  margin: {
+    height: theme.spacing(3),
+  },
+}));
 
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
@@ -95,6 +99,7 @@ const IOSSlider = withStyles({
   },
   rail: {
     height: 2,
+    opacity: 0.5,
     backgroundColor: '#bfbfbf',
   },
   mark: {
@@ -108,16 +113,16 @@ const IOSSlider = withStyles({
   },
 })(Slider);
 
-const StyledSlider = withStyles({
+const PrettoSlider = withStyles({
   root: {
-    color: '#de235b',
+    color: '#52af77',
     height: 8,
   },
   thumb: {
     height: 24,
     width: 24,
     backgroundColor: '#fff',
-    border: '2px solid #de235b',
+    border: '2px solid currentColor',
     marginTop: -8,
     marginLeft: -12,
     '&:focus,&:hover': {
@@ -137,17 +142,78 @@ const StyledSlider = withStyles({
   },
 })(Slider);
 
+const AirbnbSlider = withStyles({
+  root: {
+    color: '#3a8589',
+    height: 3,
+    padding: '13px 0',
+  },
+  thumb: {
+    height: 27,
+    width: 27,
+    backgroundColor: '#fff',
+    border: '1px solid currentColor',
+    marginTop: -12,
+    marginLeft: -13,
+    boxShadow: '#ebebeb 0px 2px 2px',
+    '&:focus,&:hover': {
+      boxShadow: '#ccc 0px 2px 3px 1px',
+    },
+    '& .bar': {
+      // display: inline-block !important;
+      height: 9,
+      width: 1,
+      backgroundColor: 'currentColor',
+      marginLeft: 1,
+      marginRight: 1,
+    },
+  },
+  valueLabel: {
+    left: 'calc(-50% + 4px)',
+  },
+  track: {
+    height: 3,
+  },
+  rail: {
+    color: '#d8d8d8',
+    opacity: 1,
+    height: 3,
+  },
+})(Slider);
+
+function AirbnbThumbComponent(props) {
+  return (
+    <span {...props}>
+      <span className="bar" />
+      <span className="bar" />
+      <span className="bar" />
+    </span>
+  );
+}
+
 export default function CustomizedSlider() {
   const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
+      <Typography gutterBottom>iOS</Typography>
       <IOSSlider aria-label="iOS slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
-      <StyledSlider aria-label="Pratto slider" defaultValue={20} />
+      <div className={classes.margin} />
+      <Typography gutterBottom>pretto.fr</Typography>
+      <PrettoSlider valueLabelDisplay="auto" aria-label="Pretto slider" defaultValue={20} />
+      <div className={classes.margin} />
+      <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
         ValueLabelComponent={ValueLabelComponent}
         aria-label="Custom thumb label"
         defaultValue={20}
+      />
+      <div className={classes.margin} />
+      <Typography gutterBottom>Airbnb</Typography>
+      <AirbnbSlider
+        ThumbComponent={AirbnbThumbComponent}
+        aria-label="Airbnb slider"
+        defaultValue={[20, 40]}
       />
     </Paper>
   );

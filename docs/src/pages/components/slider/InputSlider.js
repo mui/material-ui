@@ -45,12 +45,7 @@ export default function InputSlider() {
           <VolumeUp />
         </Grid>
         <Grid item xs>
-          <Slider
-            value={value}
-            onChange={handleSliderChange}
-            valueLabelDisplay="off"
-            aria-labelledby="input-slider"
-          />
+          <Slider value={value} onChange={handleSliderChange} aria-labelledby="input-slider" />
         </Grid>
         <Grid item>
           <Input

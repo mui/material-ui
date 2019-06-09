@@ -25,7 +25,7 @@ export default function ContinuousSlider() {
           <VolumeDown />
         </Grid>
         <Grid item xs>
-          <Slider defaultValue={30} valueLabelDisplay="off" aria-labelledby="continuous-slider" />
+          <Slider defaultValue={30} aria-labelledby="continuous-slider" />
         </Grid>
         <Grid item>
           <VolumeUp />

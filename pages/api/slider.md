@@ -34,9 +34,10 @@ import Slider from '@material-ui/lab/Slider';
 | <span class="prop-name">onChangeCommitted</span> | <span class="prop-type">func</span> |  | Callback function that is fired when the mouseup is triggerd.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* The new value |
 | <span class="prop-name">orientation</span> | <span class="prop-type">enum:&nbsp;'horizontal'&nbsp;&#124;<br>&nbsp;'vertical'<br></span> | <span class="prop-default">'horizontal'</span> | The stepper orientation (layout flow direction). |
 | <span class="prop-name">step</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The granularity the slider can step through values. When step is `null`, users can only slide the thumbs onto marks. |
+| <span class="prop-name">ThumbComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The value component. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br></span> |  | The value of the slider. |
-| <span class="prop-name">ValueLabelComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ValueLabel</span> | The value label. |
-| <span class="prop-name">valueLabelDisplay</span> | <span class="prop-type">enum:&nbsp;'on'&nbsp;&#124;<br>&nbsp;'active'&nbsp;&#124;<br>&nbsp;'off'<br></span> | <span class="prop-default">'active'</span> | Show value label. |
+| <span class="prop-name">ValueLabelComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ValueLabel</span> | The value label componnet. |
+| <span class="prop-name">valueLabelDisplay</span> | <span class="prop-type">enum:&nbsp;'on'&nbsp;&#124;<br>&nbsp;'auto'&nbsp;&#124;<br>&nbsp;'off'<br></span> | <span class="prop-default">'off'</span> | Show value label. |
 | <span class="prop-name">valueLabelFormat</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br></span> | <span class="prop-default">x => x</span> | The format function the value label's value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label's value to format - {number} index The value label's index to format |
 
 The `ref` is forwarded to the root element.

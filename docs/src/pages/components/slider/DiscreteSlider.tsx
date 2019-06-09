@@ -53,6 +53,7 @@ export default function DiscreteSlider() {
         defaultValue={20}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
         step={10}
         marks
       />
@@ -65,6 +66,7 @@ export default function DiscreteSlider() {
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-custom"
         step={10}
+        valueLabelDisplay="auto"
         marks={marks}
       />
       <div className={classes.margin} />
@@ -77,6 +79,7 @@ export default function DiscreteSlider() {
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-restrict"
         step={null}
+        valueLabelDisplay="auto"
         marks={marks}
       />
       <div className={classes.margin} />

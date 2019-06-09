@@ -22,7 +22,12 @@ export default function RangeSlider() {
       <Typography id="range-slider" gutterBottom>
         Temperature range
       </Typography>
-      <Slider defaultValue={[20, 37]} aria-labelledby="range-slider" getAriaValueText={valuetext} />
+      <Slider
+        defaultValue={[20, 37]}
+        valueLabelDisplay="auto"
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
+      />
     </div>
   );
 }

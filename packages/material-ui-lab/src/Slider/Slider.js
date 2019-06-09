@@ -201,6 +201,9 @@ export const styles = theme => ({
     borderRadius: '50%',
     outline: 'none',
     backgroundColor: 'currentColor',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     transition: theme.transitions.create(['box-shadow'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -285,9 +288,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     onMouseDown,
     orientation = 'horizontal',
     step = 1,
+    ThumbComponent = 'span',
     value: valueProp,
     ValueLabelComponent = ValueLabel,
-    valueLabelDisplay = 'active',
+    valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     ...other
   } = props;
@@ -656,7 +660,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             open={open === index || active === index}
             disabled={disabled}
           >
-            <span
+            <ThumbComponent
               className={clsx(classes.thumb, {
                 [classes.active]: active === index,
               })}
@@ -783,17 +787,21 @@ Slider.propTypes = {
    */
   step: PropTypes.number,
   /**
+   * The value component.
+   */
+  ThumbComponent: PropTypes.elementType,
+  /**
    * The value of the slider.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
   /**
-   * The value label.
+   * The value label componnet.
    */
   ValueLabelComponent: PropTypes.elementType,
   /**
    * Show value label.
    */
-  valueLabelDisplay: PropTypes.oneOf(['on', 'active', 'off']),
+  valueLabelDisplay: PropTypes.oneOf(['on', 'auto', 'off']),
   /**
    * The format function the value label's value.
    *

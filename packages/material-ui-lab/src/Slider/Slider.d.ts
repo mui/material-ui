@@ -32,9 +32,10 @@ export interface SliderProps
   onChangeCommitted?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
   orientation?: 'horizontal' | 'vertical';
   step?: number | null;
+  ThumbComponent?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
   value?: number | number[];
   ValueLabelComponent?: React.ElementType<ValueLabelProps>;
-  valueLabelDisplay?: 'on' | 'active' | 'off';
+  valueLabelDisplay?: 'on' | 'auto' | 'off';
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }
 
