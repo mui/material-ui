@@ -16,7 +16,7 @@ Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o c
 
 Como o Material-UI suporta a renderização do lado do servidor, precisamos oferecer suporte às versões mais recentes e estáveis de [ Node.js ](https://github.com/nodejs/node). Também tentamos suportar as versões do [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1). Agora, nós suportamos o **node v8.x ** e versões mais recentes.
 
-### CSS prefixos
+### Prefixos CSS
 
 Esteja ciente de que alguns recursos CSS [ exigem ](https://github.com/cssinjs/jss/issues/279) uma etapa adicional de pós-processamento que adiciona prefixos específicos do fornecedor. Estes prefixos são adicionados automaticamente no cliente graças ao [` jss-plugin-vendor-prefixer `](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
 

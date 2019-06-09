@@ -1,6 +1,6 @@
 ---
 title: Componente de React Button
-components: Button, Fab, IconButton, ButtonBase, Zoom
+components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
 # Botones
@@ -43,6 +43,18 @@ En las tarjetas, los botones de texto ayudan a mantener un énfasis en el conten
 Los botones delineados también son una alternativa de menos énfasis que los botones contenidos, o de mayor énfasis que los botones de texto.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
+
+## Grouped Buttons
+
+The ButtonGroup component can be used to group outlined (the default) or contained buttons.
+
+{{"demo": "pages/components/buttons/GroupedButtons.js"}}
+
+## Split Button
+
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+
+{{"demo": "pages/components/buttons/SplitButton.js"}}
 
 ## Botones de acción flotantes
 

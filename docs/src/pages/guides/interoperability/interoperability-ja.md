@@ -1,4 +1,4 @@
-# Style Library Interoperability
+# スタイルライブラリの相互運用性
 
 <p class="description">While it is simple to use the JSS based styling solution provided by Material-UI to style your application, it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.</p>
 
@@ -125,7 +125,7 @@ export default function StyledComponents() {
 
 ### Controlling Priority
 
-Both styled-components and JSS inject their styles at the bottom of the `<head>`. The best approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
+**Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`. The best approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';

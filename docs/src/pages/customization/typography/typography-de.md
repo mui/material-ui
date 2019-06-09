@@ -1,8 +1,8 @@
 # Typografie
 
-<p class="description">The theme provides a set of type sizes that work well together, and also with the layout grid.</p>
+<p class="description">Das Theme bietet eine Anzahl von Schriftgrößen, die gut zusammen mit dem Layoutraster funktionieren.</p>
 
-The following example demonstrates how to change the typography default values – in this case, the font family. If you want to learn more about typography, you can check out [the typography component](/components/typography/).
+Das folgende Beispiel zeigt, wie die Standardwerte für die Typografie geändert werden können - in diesem Fall die Schriftfamilie. Wenn Sie mehr über Typografie erfahren möchten, können Sie sich über die [Typografie Komponente](/components/typography/) informieren.
 
 {{"demo": "pages/customization/typography/TypographyTheme.js"}}
 
@@ -52,7 +52,7 @@ const raleway = {
 };
 ```
 
-Dann können Sie das Theme ändern, um diese neue Schriftart zu verwenden. In order to globally define Raleway as a font face the [`CssBaseline`](/components/css-baseline/) component needs to be used.
+Dann können Sie das Theme ändern, um diese neue Schriftart zu verwenden. Um Raleway global als Schriftart zu definieren, verwenden Sie die [`CssBaseline`](/components/css-baseline/) Komponente.
 
 ```js
 const theme = createMuiTheme({
@@ -90,8 +90,8 @@ Um die Schriftgröße der Material-UI zu ändern, können Sie eine `fontSize` Ei
 ```js
 const theme = createMuiTheme({
   typography: {
-    // In Chinese and Japanese the characters are usually larger,
-    // so a smaller fontsize may be appropriate.
+    // In Chinesisch und Japanisch sind die Zeichen normalerweise größer,
+    // daher kann eine kleinere Schriftgröße angemessen sein.
     fontSize: 12,
   },
 });
@@ -124,9 +124,9 @@ html {
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-## Responsive font sizes
+## Responsive Schriftgrößen
 
-The typography variants properties map directly to the generated CSS. You can use [media queries](/customization/breakpoints/#api) inside them:
+Die Eigenschaften der Typografievarianten werden direkt dem generierten CSS zugeordnet. Sie können in ihnen [Medienabfragen](/customization/breakpoints/#api) verwenden:
 
 ```js
 const theme = createMuiTheme();
@@ -142,14 +142,14 @@ theme.typography.h1 = {
 };
 ```
 
-To automate this setup, you can use the [`responsiveFontSizes()`](/customization/themes/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+Um dieses Setup zu automatisieren, können Sie die Funktion [`responsiveFontSizes()`](/customization/themes/#responsivefontsizes-theme-options-theme) Helfer verwenden, um die Schriftgrößen der Typografie im Design ansprechend zu gestalten.
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
 
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Sie können dies in dem folgenden Beispiel in Aktion sehen. Passen Sie die Fenstergröße Ihres Browsers an und beachten Sie, wie sich die Schriftgröße ändert, wenn die Breite die unterschiedlichen [Haltepunkte](/customization/breakpoints/) überschreitet:
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizes.js"}}
 
-## Fluid font sizes
+## Fließende Schriftgrößen
 
-To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+Noch zu tun: [#15251](https://github.com/mui-org/material-ui/issues/15251).

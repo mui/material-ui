@@ -115,6 +115,6 @@ Obwohl die `Grid-` Komponente eine `direction-` Eigenschaft hat, die Werte von `
 
 ## CSS-Raster Layout
 
-Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
+Die Material-UI bietet selbst keine CSS-Grid-Funktionalität. Wie Sie jedoch unten sehen, können Sie CSS-Grid einfach zum Layout Ihrer Seiten hinzufügen.
 
 {{"demo": "pages/components/grid/CSSGrid.js"}}

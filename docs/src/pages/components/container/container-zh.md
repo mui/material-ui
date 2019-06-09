@@ -11,7 +11,7 @@ components: Container
 
 ## 流体
 
-流体容器的最大宽度可以通过设置 `maxWidth` 属性来限制
+自适应容器的最大宽度可以通过设置 `maxWidth` 属性来限制
 
 ```jsx
 <Container maxWidth="sm">

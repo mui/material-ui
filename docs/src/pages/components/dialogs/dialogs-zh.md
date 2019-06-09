@@ -84,7 +84,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## 无障碍功能
+## 可及性
 
 参考[模态框可及性的部分](/components/modal/#accessibility)。
 

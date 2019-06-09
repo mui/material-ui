@@ -33,10 +33,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Nome do componente ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // As propriedades para aplicar
-      disableRipple: true, // Sem efeito cascata, em toda aplicação 
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 
     },
   },
 });
@@ -66,12 +66,12 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   transitions: {
-    // Então temos `transition: none;` em todo lugar
+    // So we have `transition: none;` everywhere
     create: () => 'none',
   },
   overrides: {
     // Name of the component ⚛️
-    CssBasline: {
+    MuiCssBaseline: {
       // Name of the rule
       '@global': {
         '*, *::before, *::after': {
@@ -82,10 +82,10 @@ const theme = createMuiTheme({
     },
   },
   props: {
-    // Nome do componente ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // As propriedades para aplicar
-      disableRipple: true, // Sem efeito cascata, em toda aplicação!
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application!
     },
   },
 });

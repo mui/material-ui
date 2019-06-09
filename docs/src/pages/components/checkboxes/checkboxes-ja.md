@@ -1,39 +1,39 @@
 ---
-title: Checkbox React component
+title: CheckBox コンポーネント
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Checkboxes
+# Checkbox
 
-<p class="description">Checkboxes allow the user to select one or more items from a set.</p>
+<p class="description">Checkboxコンポーネントにより、ユーザーの選択が一つ以上の項目から設定します。</p>
 
-[Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) can be used to turn an option on or off.
+[CheckBox コンポーネント](https://material.io/design/components/selection-controls.html#checkboxes) を使用してオプションをオンまたはオフにすることができます。
 
-If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches. If you have a single option, avoid using a checkbox and use an on/off switch instead.
+リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。
 
-{{"demo": "pages/components/checkboxes/Checkboxes.js"}}
+{{"demo": "pages/demos/checkboxes/Checkboxes.js"}}
 
-`Checkbox` can also be used with a label description thanks to the `FormControlLabel` component.
+`Checkbox`コンポーネントは` FormControlLabel<code>コンポーネントを説明のラベルとして使うことができます。</p>
 
-{{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
+<p>{{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}</p>
 
-## Checkboxes with FormGroup
+<h2>FormGroupのCheckbox</h2>
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
+<p><code>FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 
-## Label placement
+## ラベルの配置
 
-You can change the placement of the label:
+ラベルの配置は自由に変更できます。
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Accessibility
+## アクセシビリティ
 
-All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+ラジオボタン、チェックボックス、スイッチなどのすべてのフォームコントロールにラベルを付ける必要があります。 ほとんどの場合、 `<label>` 要素（[FormControlLabel](/api/form-control-label/)）を使用して行われます。
 
-When a label can't be used, it's necessary to add an attribute directly to the input component. In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+ラベルを使用できない場合は、入力コンポーネントに直接属性を追加する必要があります。 この場合、追加の属性（例： `aria-label`, `aria-labelledby`, `title`)を経由して `inputProps` プロパティを追加します。
 
 ```jsx
 <Checkbox
@@ -42,6 +42,6 @@ When a label can't be used, it's necessary to add an attribute directly to the i
 />
 ```
 
-## Guidance
+## ガイド
 
-- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxと Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

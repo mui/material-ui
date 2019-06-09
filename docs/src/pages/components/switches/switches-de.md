@@ -7,7 +7,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 <p class="description">Schalter ändern den Status einer einzelnen Einstellung ein oder aus.</p>
 
-[Switches](https://material.io/design/components/selection-controls.html#switches) are the preferred way to adjust settings on mobile. Die Option, die der Schalter steuert, sowie der Status, in dem er sich befindet, sollte aus dem entsprechenden Inline-Label hervorgehen.
+[Schalter](https://material.io/design/components/selection-controls.html#switches) sind die bevorzugte Methode zum Anpassen der Einstellungen auf dem Handy. Die Option, die der Schalter steuert, sowie der Status, in dem er sich befindet, sollte aus dem entsprechenden Inline-Label hervorgehen.
 
 {{"demo": "pages/components/switches/Switches.js"}}
 
@@ -23,9 +23,9 @@ Ein `Schalter` kann dank der `FormControlLabel` Komponente auch mit einer Etiket
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
-## Customized switches
+## Anpasster Schalter
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 

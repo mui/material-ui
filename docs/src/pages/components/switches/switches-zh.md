@@ -23,9 +23,9 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
-## Customized switches
+## 自定义样式开关
 
-Here are some examples of customizing the component. 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+这是一些自定义样式开关的例子 您可以在[样式重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 

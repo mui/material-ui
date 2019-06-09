@@ -32,6 +32,18 @@ components: Chip
 
 {{"demo": "pages/components/chips/ChipsArray.js"}}
 
-## 纸片组件的实战场
+## Small Chip
+
+You can use the `size` prop to define a small Chip.
+
+### Default variant
+
+{{"demo": "pages/components/chips/SmallChips.js"}}
+
+### Outlined variant
+
+{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+
+## 纸片演练
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

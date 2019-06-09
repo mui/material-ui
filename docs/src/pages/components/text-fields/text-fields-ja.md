@@ -43,7 +43,7 @@ You might also have noticed that some native HTML input properties are missing f
 
 ## Customized inputs
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -103,7 +103,7 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-## Accessibility
+## アクセシビリティ
 
 In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 

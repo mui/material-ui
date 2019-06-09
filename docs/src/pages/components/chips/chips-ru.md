@@ -32,6 +32,18 @@ components: Chip
 
 {{"demo": "pages/components/chips/ChipsArray.js"}}
 
+## Маленькая фишка
+
+Для определения маленькой фишки можно использовать свойство `size`.
+
+### Вариант по умолчанию
+
+{{"demo": "pages/components/chips/SmallChips.js"}}
+
+### Контурный вариант
+
+{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+
 ## Песочница
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

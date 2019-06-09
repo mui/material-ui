@@ -18,17 +18,7 @@ title: React中的媒体查询用于响应式设计
 
 您应该为挂钩的第一个参数提供媒体查询。 媒体查询字符串可以由任何有效的CSS媒体查询，如 `'print'`。
 
-```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-function MyComponent() {
-  const matches = useMediaQuery('(min-width:600px)');
-
-  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
-}
-```
-
-{{"demo": "pages/components/use-media-query/SimpleMediaQuery.js"}}
+{{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
 ## 使用Material-UI的断点助手
 
@@ -48,27 +38,32 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
 
+## Using JavaScript syntax
+
+[json2mq](https://github.com/akiran/json2mq) is used to generate media query string from a JavaScript object.
+
+{{"demo": "pages/components/use-media-query/JavaScriptMedia.js", "defaultCodeOpen": true}}
+
 ## 服务器端呈现
 
-服务器上需要实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ，我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery)。 We also encourage the usage of the `useMediaQueryTheme` version of the hook that fetches properties from the theme. 这样，您可以为所有React树提供一次 `ssrMatchMedia` 选项。
+An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery). We also encourage the usage of the `useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
 
 {{"demo": "pages/components/use-media-query/ServerSide.js"}}
 
-## 从 `迁移withWidth（）`
+## Migrating from `withWidth()`
 
-`withWidth()` 高阶组件注入页面的屏幕宽度。 您可以重现与以下相同的行为：
+`withWidth()` 高阶组件注入页面的屏幕宽度。 You can reproduce the same behavior with a `useWidth` hook:
 
 ```jsx
-function MyComponent() {
+function useWidth() {
   const theme = useTheme();
-  const width =
-    [...theme.breakpoints.keys].reverse().reduce((output, key) => {
-      const matches = useMediaQuery(theme.breakpoints.only(key));
-
-      return !output && matches ? key : output;
-    }, null) || 'xs';
-
-  return <span>{width}</span>;
+  const keys = [...theme.breakpoints.keys].reverse();
+  const queries = useMediaQuery(keys.map(key => theme.breakpoints.only(key)));
+  return (
+    queries.reduce((output, matches, index) => {
+      return !output && matches ? keys[index] : output;
+    }, null) || 'xs'
+  );
 }
 ```
 
@@ -88,7 +83,7 @@ function MyComponent() {
 
 #### 返回结果
 
-`匹配`：匹配是 `真` 如果文档当前匹配的媒体的查询和 `假` 时它没有。
+`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
 
 #### 例子
 

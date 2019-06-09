@@ -34,22 +34,6 @@
   "adTitle": "Este anúncio é projetado para apoiar o Código Aberto.",
   "editPage": "Ajude a traduzir esta página",
   "tableOfContents": "Índice",
-  "component": "Kit de Componente",
-  "mdbProDescr": "Material Dashboard Pro React is a Premium Material-UI Admin.",
-  "mkProDescr": "Um badass Material-UI Kit baseado em Material Design.",
-  "mdbDescr": "Material Dashboard React is a Free Material-UI Admin.",
-  "mkDescr": "Um Kit de Material-UI gratuito baseado no Material Design.",
-  "pbDescr": "Uma página que imita o Firebase. Este item inclui temas usando o componente ThemeProvider.",
-  "opDescr": "Um exemplo de página de inscrição e de login.",
-  "instaDescr": "Uma recriação da página de perfil do Instagram, personalizando o tema do Material-UI.",
-  "tweeperDescr": "Uma recriação da página de perfil do Twitter, personalizando o tema do Material-UI.",
-  "admin": "Administração & Controle",
-  "components": "Componentes",
-  "landing": "Página inicial",
-  "profile": "Página de perfil",
-  "free": "GRÁTIS",
-  "learnMore": "Learn More",
-  "preview": "Pré visualização",
   "sourceCode": "Código fonte",
   "traffic": "Tráfego",
   "newest": "Mais recentes",
@@ -80,6 +64,8 @@
   "codesandbox": "Edite em CodeSandbox",
   "seeMore": "Ver mais",
   "copySource": "Copiar código fonte",
+  "copySourceLinkJS": "Copy link to JavaScript source",
+  "copySourceLinkTS": "Copy link to TypeScript source",
   "stackblitz": "Editar em StackBlits (apenas JS)",
   "headTitle": "O framework visual para React mais popular do mundo - Material-UI",
   "pages": {
@@ -196,7 +182,6 @@
     "/guides/testing": "Testando",
     "/guides/flow": "Flow",
     "/guides/right-to-left": "Da Direita para Esquerda",
-    "/premium-themes": "Temas Premium",
     "/discover-more": "Descubra mais",
     "/discover-more/showcase": "Demonstração",
     "/discover-more/related-projects": "Projetos Relacionados",
@@ -211,6 +196,7 @@
     "/versions": "Versões",
     "/styles": "Estilos",
     "/styles/basics": "Noções Básicas",
-    "/styles/advanced": "Avançado"
+    "/styles/advanced": "Avançado",
+    "https://themes.material-ui.com/": "Temas Premium"
   }
 }

@@ -42,13 +42,13 @@ Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
 
 ## SVG Symbole
 
-In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+Um vorgefertigte SVG-Materialsymbole zu verwenden, wie sie in den [Icon Demos](/components/icons/) enthalten sind, müssen Sie zuerst das [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) Paket installieren:
 
 ```sh
-// with npm
+// mit npm
 npm install @material-ui/icons
 
-// with yarn
+// mit yarn
 yarn add @material-ui/icons
 ```
 
@@ -56,13 +56,13 @@ yarn add @material-ui/icons
 
 Sie können mit der Material-UI mit minimaler Front-End-Infrastruktur verwenden, was sich hervorragend für das Prototyping eignet.
 
-We are providing two Universal Module Definition (**UMD**) files:
+Wir bieten zwei UMD-Dateien (**Universal Module Definition**) an:
 
 - eine für die Entwicklung: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
 - eine für die Entwicklung: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
 Sie können diesem [CDN-Beispiel](https://github.com/mui-org/material-ui/tree/master/examples/cdn) folgen um schnell anfangen zu können.
 
-⚠️ We **discourage** using this approach in **production** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
+⚠️ Wir **raten davon ab**, diesen Ansatz in der **Produktion** zu verwenden: Der Client muss die gesamte Bibliothek herunterladen, unabhängig davon, welche Komponenten tatsächlich verwendet werden, was die Leistung und Bandbreitennutzung beeinflusst.
 
-⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is **unstable**, it shifts as we release new versions. You should consider pointing to a specific version like [v3.9.3](https://unpkg.com/@material-ui/core@3.9.3/umd/material-ui.development.js).
+⚠️ Die UMD-Links verwenden den `neueste` Tag, um auf die neueste Version der Bibliothek zu verweisen. Dieser Link ist **instabil**, da er sich verändert, wenn wir neue Versionen veröffentlichen. Sie sollten in Betracht ziehen, auf eine bestimmte Version wie [v3.9.3](https://unpkg.com/@material-ui/core@3.9.3/umd/material-ui.development.js) zu verweisen.

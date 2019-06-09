@@ -84,7 +84,7 @@ Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the ac
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Accessibility
+## アクセシビリティ
 
 Follow the [Modal accessibility section](/components/modal/#accessibility).
 

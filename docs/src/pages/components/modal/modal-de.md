@@ -7,7 +7,7 @@ components: Modal
 
 <p class="description">Die modale Komponente bietet eine solide Grundlage für das Erstellen von Dialogen, Popovers, Leuchtkästen oder anderen Elementen.</p>
 
-The component renders its `children` node in front of a backdrop component. The `Modal` offers important features:
+Die Komponente rendert den Knoten `children` vor einer Hintergrundkomponente. Der `Modal` bietet wichtige Funktionen:
 
 - 
 - 
@@ -60,7 +60,7 @@ Das Erstellen von React-Elementen ist jedoch ebenfalls mit Kosten verbunden. Bet
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+Wir erstellen viele React-Elemente, die niemals gemounted werden. Das ist verschwenderisch 
 
 ```jsx
 <Modal open={false}>

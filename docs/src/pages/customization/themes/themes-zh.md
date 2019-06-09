@@ -19,7 +19,7 @@
 更改主题配置变量是将Material-UI与您的需求相匹配的最有效方法。 以下列出了一些重要的样式变量：
 
 - [调色板](/customization/palette/)
-- [Typography（文字排版）](/customization/typography/)
+- [Typography](/customization/typography/)
 - [间距](/customization/spacing/)
 - [断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
@@ -43,7 +43,7 @@ You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme
 
 {{"demo": "pages/customization/themes/ThemeNesting.js"}}
 
-内的主题将 **倍率** 外的主题。 您可以通过提供一个函数来扩展外部主题：
+内部主题将 **覆盖** 外部主题。 您可以通过提供一个函数来扩展外部主题：
 
 {{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
 
@@ -97,7 +97,7 @@ Generate responsive typography settings based on the options received.
 
 - `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
-- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must me greater than 1.
+- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
 - `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
 
 #### 返回结果

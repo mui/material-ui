@@ -187,4 +187,4 @@ Wir bieten verschiedene Referenzimplementierungen an, die Sie im [GitHub-Reposit
 
 ## Problemlösungen
 
-Check out our FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Lesen Sie unsere Antworten auf häufig gestellte Fragen: [Meine App wird auf dem Server nicht richtig gerendert](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

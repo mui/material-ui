@@ -2,7 +2,7 @@
 
 <p class="description">Festgefahren bei einem bestimmten Problem? Sehen Sie sich zuerst einige dieser häufig vorkommenden Probleme in unseren FAQ an.</p>
 
-If you still can't find what you're looking for, you can ask the community in [Spectrum](https://spectrum.chat/material-ui). Verwenden Sie für Fragen zur Vorgehensweise und zu anderen Problemen [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) anstelle von Github-Problemen. Es gibt ein StackOverflow-Tag namens `material-ui` welchen Sie verwenden können, um Ihre Fragen zu kennzeichnen.
+Wenn Sie immer noch nicht finden, wonach Sie suchen, können Sie die Community auf [Spectrum](https://spectrum.chat/material-ui) fragen. Verwenden Sie für Fragen zur Vorgehensweise und zu anderen Problemen [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) anstelle von Github-Problemen. Es gibt ein StackOverflow-Tag namens `material-ui` welchen Sie verwenden können, um Ihre Fragen zu kennzeichnen.
 
 ## Warum werden meine Komponenten in Produktions-Builds nicht richtig gerendert?
 
@@ -66,13 +66,13 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   transitions: {
-    // Jetzt haben wir überall 'transition: none'
+    // So we have `transition: none;` everywhere
     create: () => 'none',
   },
   overrides: {
-    // Name der Komponente ⚛️
-    CssBasline: {
-      // Name der Regel
+    // Name of the component ⚛️
+    MuiCssBaseline: {
+      // Name of the rule
       '@global': {
         '*, *::before, *::after': {
           transition: 'none !important',
@@ -82,10 +82,10 @@ const theme = createMuiTheme({
     },
   },
   props: {
-    // Name der Komponente ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // Die Eigenschaften, die angewandt werden sollen
-      disableRipple: true, // Keine Welleneffekte in der ganzen Applikation!
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application!
     },
   },
 });
@@ -134,31 +134,31 @@ Wenn Sie nicht sicher sind, ob die Material-UI-Komponente in Frage sein ref weit
 
 was anzeigt, dass Sie mit einem ref auf das DOM-Element zugreifen können.
 
-## I have several instances of styles on the page
+## Ich habe mehrere Instanzen von Stilen auf der Seite
 
-If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
+Wenn in der Konsole eine Warnmeldung wie die folgende angezeigt wird, haben Sie wahrscheinlich mehrere Instanzen von `@material-ui/styles` auf der Seite initialisiert.
 
 > It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names and makes your application bigger without a good reason.
 
-### Possible reasons
+### Mögliche Gründe
 
-There are several common reasons for this to happen:
+Dafür gibt es mehrere häufige Gründe:
 
-- You have another `@material-ui/styles` library somewhere in your dependencies.
-- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@material-ui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
-- You have several applications that are using `@material-ui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
+- Sie haben eine andere `@material-ui/styles` Bibliothek irgendwo in Ihren Abhängigkeiten.
+- Sie haben eine Monorepo-Struktur für Ihr Projekt (z. B. Lerna, yarn workspaces) und das `@material-ui/styles` Modul ist eine Abhängigkeit in mehr als einem Paket (dieses ist mehr oder weniger dasselbe wie das vorherige).
+- Sie haben mehrere Anwendungen, die `@material-ui/styles` verwenden, und auf derselben Seite ausgeführt werden (z. B. werden mehrere Einstiegspunkte im Webpack auf derselben Seite geladen).
 
-### Duplicated module in node_modules
+### Dupliziertes Modul in node_modules
 
-If you think that the issue is in duplicated @material-ui/styles module somewhere in your dependencies, there are several ways to check this. You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
+Wenn Sie der Meinung sind, dass sich das Problem irgendwo in Ihren Abhängigkeiten durch duplizierte @material-ui/styles-Module befindet, gibt es verschiedene Möglichkeiten, dies zu überprüfen. Sie können die `npm ls @material-ui/styles`, `yarn list @material-ui/styles` oder `find -L ./node_modules | grep /@material-ui/styles/package.json` Befehle in Ihrem Anwendungsordner ausführen.
 
-If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @material-ui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+Wenn keiner dieser Befehle die Duplizierung identifiziert, analysieren Sie Ihr Bundle auf mehrere Instanzen von @material-ui/styles. Sie können einfach Ihre Bundle-Quelle überprüfen oder ein Tool wie [source-map-explorer verwenden](https://github.com/danvk/source-map-explorer) oder [Webpack-Bundle-Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
-If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
+Wenn Sie festgestellt haben, dass Duplizierung das Problem ist, können sie mehrere Dinge ausprobieren, um dies zu lösen:
 
-If you are using npm you can try running `npm dedupe`. This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
+Wenn Sie npm verwenden, können Sie versuchen, `npm dedupe` auszuführen. Dieser Befehl durchsucht die lokalen Abhängigkeiten und versucht, die Struktur zu vereinfachen, indem allgemeine Abhängigkeiten weiter nach oben verschoben werden.
 
-If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @material-ui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
+Wenn Sie das Webpack verwenden, können Sie die Art und Weise ändern, in der das @material-ui/styles Modul [aufgelöst wird](https://webpack.js.org/configuration/resolve/#resolve-modules). Sie können die Standardreihenfolge überschreiben, in der Webpack nach Abhängigkeiten sucht, und die Priorität Ihrer "node_modules" in Ihrer Anwendung gegenüber der Standardreihenfolge für die Auflösung von Knotenmodulen erhöhen:
 
 ```diff
   resolve: {
@@ -168,17 +168,17 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
   }
 ```
 
-### Usage with Lerna
+### Verwendung mit Lerna
 
-One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages, is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
+Ein möglicher Fix, um @material-ui/styles in einem Lerna-Monorepo oberhalb der Pakete laufen zu lassen, ist es [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) auszuführen, um geteilte Abhängigkeiten zum Stammverzeichnis Ihrer Monorepo-Datei hinzuzufügen. Versuchen Sie, die Bootstrap-Option mit dem Flag --hoist auszuführen.
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-Alternatively, you can remove @material-ui/styles from your package.json file and hoist it manually to your top-level package.json file.
+Alternativ können Sie @material-ui/styles aus Ihrer package.json-Datei entfernen und manuell in Ihre package.json-Datei an der obersten Ebene einfügen.
 
-Example of a package.json file in a Lerna root folder
+Beispiel für eine package.json-Datei in einem Lerna-Stammverzeichnis
 
 ```json
 {
@@ -198,9 +198,9 @@ Example of a package.json file in a Lerna root folder
 }
 ```
 
-### Running multiple applications on one page
+### Mehrere Anwendungen auf einer Seite ausführen
 
-If you have several applications running on one page, consider using one @material-ui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @material-ui/styles module:
+Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @material-ui/styles-Modul für alle verwenden. Wenn Sie Webpack verwenden, können Sie das [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) verwenden. So erstellen Sie einen expliziten [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), das das Modul @ material-ui/styles enthält:
 
 ```diff
   module.exports = {
@@ -218,9 +218,9 @@ If you have several applications running on one page, consider using one @materi
   }
 ```
 
-## My App doesn't render correctly on the server
+## Meine App wird auf dem Server nicht richtig dargestellt
 
-Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. Eine fehlende Eigenschaft, eine falsche Aufrufreihenfolge oder eine fehlende Komponente. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. Eine fehlende Eigenschaft, eine falsche Aufrufreihenfolge oder eine fehlende Komponente. Bei der Konfiguration sind wir sehr streng. Um herauszufinden, was falsch ist, können Sie am besten Ihr Projekt mit einem bereits funktionierenden Setup vergleichen. Schauen Sie sich unsere [Referenzimplementierungen](/guides/server-rendering/#reference-implementations) an, Stück für Stück.
 
 ### CSS funktioniert nur beim ersten Laden, dann fehlt es
 
@@ -228,7 +228,7 @@ Das CSS wird nur beim ersten Laden der Seite generiert. Auf dem Server fehlt dan
 
 #### Zu ergreifende Maßnahmen
 
-Wir setzen auf einen Cache, den Sheets-Manager, um das CSS nur einmal pro Komponententyp (wenn Sie zwei Schaltflächen verwenden, benötigen Sie nur einmal das CSS der Schaltfläche) zu injizieren. You need to create **a new `sheets` instance for each request**.
+Wir setzen auf einen Cache, den Sheets-Manager, um das CSS nur einmal pro Komponententyp (wenn Sie zwei Schaltflächen verwenden, benötigen Sie nur einmal das CSS der Schaltfläche) zu injizieren. Sie müssen **eine neue ` sheets `Instanze für jede Anfrage** erstellen.
 
 *beispiel für fix:*
 
@@ -255,7 +255,7 @@ Es gibt eine Nichtübereinstimmung der Klassennamen zwischen Client und Server. 
 
 Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/styles/advanced/#class-names). Die gesamte Seite muss mit **einem einzigen Generator** gerendert werden. Dieser Generator muss sich auf dem Server und auf dem Client identisch verhalten. Zum Beispiel:
 
-- Sie müssen für jede Anforderung einen neuen Klassennamengenerator bereitstellen. But you shouldn't share a `createGenerateClassName()` between different requests:
+- Sie müssen für jede Anforderung einen neuen Klassennamengenerator bereitstellen. Sie sollten jedoch nicht eine `createGenerateClassName()` Funktion zwischen verschiedenen Anfragen teilen:
 
 *beispiel für fix:*
 
@@ -309,9 +309,9 @@ Wenn Sie die Material-UI in einem kommerziellen Projekt verwenden und ihre weite
 
 Alle erhaltenen Mittel werden transparent verwaltet, und die Sponsoren werden in der README-Datei und auf der Material-UI-Startseite anerkannt.
 
-## Why does component X require a DOM node in a prop instead of a ref object?
+## Warum erfordert Komponente X einen DOM-Knoten in einer Eigenschaft anstelle eines Ref-Objekts?
 
-Components like the [Portal](/api/portal/#props) or [Popper](/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let Material-UI access the current value. This works in a simple scenario:
+Komponenten wie das [Portal](/api/portal/#props) oder [Popper](/api/popper/#props) erfordern jeweils einen DOM-Knoten in der `container` oder `anchorEl` Eigenschaft. Es erscheint zweckmäßig, in diesen Eigenschaften einfach ein ref-Objekt zu übergeben und Material-UI auf den aktuellen Wert zugreifen zu lassen. Dies funktioniert in einem einfachen Szenario:
 
 ```jsx
 function App() {
@@ -328,7 +328,7 @@ function App() {
 }
 ```
 
-where `Portal` would only mount the children into the container when `container.current` is available. Here is a naive implementation of Portal:
+wo `Portal` die Kinder nur dann in den Container einhängen würde, wenn `container.current` verfügbar ist. Hier ist eine naive Implementierung von Portal:
 
 ```jsx
 function Portal({ children, container }) {
@@ -345,9 +345,9 @@ function Portal({ children, container }) {
 }
 ```
 
-With this simple heuristic `Portal` might re-render after it mounts because refs are up-to-date before any effects run. However, just because a ref is up-to-date doesn't mean it points to a defined instance. If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available. In the above example the `Portal` would run run an effect once but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. The above implementation could also not account for a change in the DOM node.
+Mit diesem einfaches heuristischen `Portal` wird es nach dem Einhängen möglicherweise erneut gerendert, da die Refs vor der Ausführung von Effekten auf dem neuesten Stand sind. Nur weil ein Ref aktuell ist, bedeutet das nicht, dass er auf eine definierte Instanz verweist. Wenn der ref an eine ref-Weiterleitungskomponente angehängt ist, ist nicht klar, wann der DOM-Knoten verfügbar ist. Im obigen Beispiel würde das `Portal` einen Effekt einmal ausführen, aber möglicherweise nicht erneut rendern, da `ref.current` ist immer noch `null` ist. Dies ist insbesondere für React.lazy-Komponenten in Suspense wichtig. Die obige Implementierung könnte auch keine Änderung im DOM-Knoten berücksichtigen.
 
-This is why we require a prop with the actual DOM node so that React can take care of determining when the `Portal` should re-render:
+Aus diesem Grund benötigen wir eine Eigenschaft mit dem eigentlichen DOM-Knoten, damit React ermitteln kann, wann das `Portal` neu gerendert werden soll:
 
 ```jsx
 function App() {

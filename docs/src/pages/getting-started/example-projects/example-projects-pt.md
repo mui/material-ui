@@ -22,8 +22,16 @@ Procurando por um projeto de exemplo mais avançado?
 
 Se você quer começar com um exemplo mais completo e do mundo real, você pode dar uma olhada em:
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), que inclui: 
+- [Material Sense](https://github.com/alexanmtz/material-sense), que inclui:
+  
   - Gráfico usando recharts
   - React Router incluído com um exemplo de navegação
   - Um contêiner docker com um servidor Nginx para compilação de produção
   - Criado com o [Create React App](https://facebook.github.io/create-react-app/)
+
+- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
+  
+  - Bootstrapped com Create React App, porém, também funcionará em seus boilerplates
+  - Criado sobre o Firebase com autenticação funcionando desde o início
+  - Encaminhamento robusto com o React Router, incluindo tratamento de erros (404)
+  - Suporte mobile extensível com [react-swipeable-views](https://react-swipeable-views.com) para as guias

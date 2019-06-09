@@ -47,7 +47,7 @@ Material-UI wurde zuerst für Mobilgeräte entwickelt. Bei dieser Strategie schr
 
 ### CssBaseline
 
-Material-UI bietet eine optionale [CssBaseline](/components/css-baseline/)-Komponente an. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI bietet eine optionale [CssBaseline](/components/css-baseline/)-Komponente an. Mit dieser Komponente werden einige Inkonsistenzen zwischen Browsern und Geräten behoben, während sie bewährte Eigenschaften für häufig auftretende HTML-Elemente bereitstellt.
 
 ## Versionierte Dokumentation
 

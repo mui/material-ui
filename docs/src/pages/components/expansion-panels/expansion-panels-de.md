@@ -35,8 +35,8 @@ Zur Strukturierung des Inhalts können mehrere Spalten verwendet werden. Dem Bed
 
 Der Inhalt von ExpansionPanels wird standardmäßig bereitgestellt, auch wenn das Panel nicht erweitert wird. Bei diesem Standardverhalten werden serverseitiges Rendering und SEO berücksichtigt. Wenn Sie teure Komponentenbäume in Ihren Panels rendern oder einfach viele Panels rendern, empfiehlt es sich, dieses Standardverhalten zu ändern, indem Sie `unmountOnExit` in `TransitionProps` aktivieren: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. Wie bei jeder Leistungsoptimierung ist dies keine Silberkugel. Stellen Sie sicher, dass Sie zuerst Engpässe erkennen und anschließend diese Optimierungsstrategien ausprobieren.
 
-## Customized expansion panels
+## Individuelles Erweiterungspanel
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}

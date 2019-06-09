@@ -1,22 +1,22 @@
 # @material-ui/styles
 
-<p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
+<p class="description">无论您是否使用Material-UI组件，都可以在应用中使用Material-UI的样式解决方案。</p>
 
-Material-UI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+Material-UI 旨在为构建动态 UI 提供坚实的基础。 为了项目结构更清晰简单，**我们将 Material-UI 组件中使用的样式解决方案**作为` @ material-ui / styles `包单独发布。 @material-ui/styles并不是唯一的选择，Material-UI也可以与其他主流样式解决方案[互动](/guides/interoperability/)。
 
 ## Why use Material-UI's styling solution?
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited. We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style). 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
+在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式来编写组件的样式。但是这些方法已被证明了其局限性。 最近， [我们开始向*CSS-in-JS*解决方案方向转移 ](https://github.com/oliviertassinari/a-journey-toward-better-style)。 它**解锁了许多很棒的功能**(主题嵌套、动态样式、自我支持等...) 我们认为这是未来：
 
 - [统一的样式语言](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [将 SCSS（Sass）转换为 CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+Material-UI的样式解决方案受到许多其他CSS-in-JS库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
-- 💅你可以期待 [与样式组件相同的优势](https://www.styled-components.com/docs/basics#motivation)。
-- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
-- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
-- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
+- 💅具备styled-components的 [ 优势](https://www.styled-components.com/docs/basics#motivation)。
+- 🚀[超 ](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles)快 。
+- 🧩可通过[插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md)API 扩展。
+- ⚡️它使用[ JSS ](https://github.com/cssinjs/jss)作为其核心 -- 一个 [高性能](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript到CSS编译器，它在运行时和服务器端工作。
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
 
 ## 安装
@@ -33,7 +33,7 @@ yarn add @material-ui/styles
 
 ## 入门
 
-We provide 3 different APIs to generate and apply styles, however they all share the same underlying logic.
+我们提供3种不同的API来生成和应用样式，但它们都共享相同的底层逻辑。
 
 ### Hook API
 
@@ -124,7 +124,7 @@ export default withStyles(styles)(HigherOrderComponent);
 
 ## Nesting selectors
 
-You can nest selectors to target elements inside the current class or component. The following example uses the Hook API, but it works the same way with the other APIs.
+您可以将选择器嵌套到当前类或组件内的目标元素。 以下示例使用Hook API，其他API的工作方式相同。
 
 ```js
 const useStyles = makeStyles({
@@ -143,9 +143,9 @@ const useStyles = makeStyles({
 
 {{"demo": "pages/styles/basics/NestedStylesHook.js"}}
 
-## 适应基于道具
+## 接受传入属性
 
-You can pass a function to `makeStyles` ("interpolation") in order to adapt the generated value based on the component's props. The function can be provided at the style rule level, or at the CSS property level:
+您可以将函数传递给` makeStyles ` (“插值”) 以便根据组件的属性适配生成的值。 The function can be provided at the style rule level, or at the CSS property level:
 
 ```jsx
 const useStyles = makeStyles({
@@ -183,9 +183,9 @@ function MyComponent() {
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-## Stress test
+## 压力测试
 
-In the following stress test, you can update the *theme color* and the *background-color property* live:
+在以下压力测试中，您可以更新*主题颜色*和*背景颜色属性*：
 
 ```js
 const useStyles = makeStyles(theme => ({

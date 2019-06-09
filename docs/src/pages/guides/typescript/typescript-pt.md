@@ -211,7 +211,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       breakpoint: Breakpoint
     }
   }
-  // allow configuration using `createMuiTheme`
+  // permitir configuração usando `createMuiTheme`
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width']

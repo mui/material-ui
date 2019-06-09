@@ -125,7 +125,7 @@ export default function StyledComponents() {
 
 ### Controlar Prioridade
 
-Ambos styled-components e JSS, injetam seus estilos na parte inferior `<head>`. A melhor abordagem para garantir que os estilos do styled-components sejam carregados por último, é alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
+**Nota:** Ambos, styled-components e JSS injetam seus estilos na parte inferior do `<head>`. A melhor abordagem para garantir que os estilos do styled-components sejam carregados por último, é alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';

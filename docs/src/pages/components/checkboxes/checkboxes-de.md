@@ -7,7 +7,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 <p class="description">Kontrollkästchen ermöglichen dem Benutzer die Auswahl eines oder mehrerer Elemente aus einem Satz.</p>
 
-[Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) can be used to turn an option on or off.
+[Kontrollkästchen ](https://material.io/design/components/selection-controls.html#checkboxes) können eine Option aus- oder anschalten.
 
 Wenn in einer Liste mehrere Optionen erscheinen, können Sie durch Kontrollkästchen die Abstände erhalten statt Ein- / Aus - Schalter zu verwenden. Wenn Sie nur eine Option haben, vermeiden Sie die Verwendung eines Kontrollkästchens und verwenden Sie stattdessen einen Ein- / Ausschalter.
 

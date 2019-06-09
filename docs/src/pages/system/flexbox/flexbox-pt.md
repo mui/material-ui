@@ -109,7 +109,7 @@ Se você é **novo ou não está familiarizado com o flexbox**, nós recomendamo
 import { flexbox } from '@material-ui/system';
 ```
 
-| Nome da importação | Prop             | Propriedade CSS   | Chave do tema |
+| Nome da importação | Propriedade      | Propriedade CSS   | Chave do tema |
 |:------------------ |:---------------- |:----------------- |:------------- |
 | `flexDirection`    | `flexDirection`  | `flex-direction`  | none          |
 | `flexWrap`         | `flexWrap`       | `flex-wrap`       | none          |

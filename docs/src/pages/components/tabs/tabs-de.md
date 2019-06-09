@@ -63,9 +63,9 @@ Linke und rechte Bildlauftasten werden niemals angezeigt. Der gesamte Bildlauf m
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js"}}
 
-## Customized tabs
+## Benutzerdefinierte Tabs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 

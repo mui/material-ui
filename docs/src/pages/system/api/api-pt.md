@@ -2,7 +2,7 @@
 
 <p class="description">A referência da API do pacote @material-ui/system.</p>
 
-| Grupo                             | Nome da importação | Prop             | Propriedade CSS                 | Chave do tema                                                          |
+| Grupo                             | Nome da importação | Propriedade      | Propriedade CSS                 | Chave do tema                                                          |
 |:--------------------------------- |:------------------ |:---------------- |:------------------------------- |:---------------------------------------------------------------------- |
 | [borders](/system/borders/)       | `border`           | `border`         | `border`                        | `borders`                                                              |
 | [borders](/system/borders/)       | `borderBottom`     | `borderBottom`   | `border-bottom`                 | `borders`                                                              |

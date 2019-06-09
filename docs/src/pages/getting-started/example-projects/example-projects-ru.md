@@ -22,8 +22,16 @@ Create React App - отличный проект для изучения React. 
 
 Если вы хотите начать с более полного и реального примера, вы можете взглянуть на:
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), который включает в себя: 
+- [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
+  
   - Graph using recharts
   - React Router включен с примером навигации
   - A docker container with an Nginx server for production build
   - Created with [Create React App](https://facebook.github.io/create-react-app/)
+
+- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
+  
+  - Bootstrapped with Create React App, the same tooling works out of the box
+  - Built on top of Firebase with authentication working from the start
+  - Robust routing with React Router including error handling (404)
+  - Extensive mobile support with [react-swipeable-views](https://react-swipeable-views.com) for tabs

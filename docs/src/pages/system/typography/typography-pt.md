@@ -1,4 +1,4 @@
-# Tipografia
+# Typography
 
 <p class="description">Documentação e exemplos de texto, utilizações comuns para controlar o alinhamento, quebra, peso e muito mais.</p>
 
@@ -18,7 +18,8 @@
 <Box fontWeight="fontWeightLight">…
 <Box fontWeight="fontWeightRegular">…
 <Box fontWeight="fontWeightMedium">…
-<Box fontWeight={600}>…
+<Box fontWeight={500}>…
+<Box fontWeight="fontWeightBold">…
 ```
 
 {{"demo": "pages/system/typography/FontWeight.js"}}
@@ -33,6 +34,16 @@
 
 {{"demo": "pages/system/typography/FontSize.js"}}
 
+## Font Style
+
+```jsx
+<Box fontStyle="normal">…
+<Box fontStyle="italic">…
+<Box fontStyle="oblique">…
+```
+
+{{"demo": "pages/system/typography/FontStyle.js"}}
+
 ## Família da fonte
 
 ```jsx
@@ -42,15 +53,36 @@
 
 {{"demo": "pages/system/typography/FontFamily.js"}}
 
+## Letter Spacing
+
+```jsx
+<Box letterSpacing={6}>…
+<Box letterSpacing={10}>…
+```
+
+{{"demo": "pages/system/typography/LetterSpacing.js"}}
+
+## Line Height
+
+```jsx
+<Box lineHeight="normal">…
+<Box lineHeight={10}>…
+```
+
+{{"demo": "pages/system/typography/LineHeight.js"}}
+
 ## API
 
 ```js
 import { typography } from '@material-ui/system';
 ```
 
-| Nome da importação | Prop         | Propriedade CSS | Chave do tema                       |
-|:------------------ |:------------ |:--------------- |:----------------------------------- |
-| `fontFamily`       | `fontFamily` | `font-family`   | [`typography`](/system/typography/) |
-| `fontSize`         | `fontSize`   | `font-size`     | [`typography`](/system/typography/) |
-| `fontWeight`       | `fontWeight` | `font-weight`   | [`typography`](/system/typography/) |
-| `textAlign`        | `textAlign`  | `text-align`    | none                                |
+| Nome da importação | Prop            | Propriedade CSS  | Chave do tema                       |
+|:------------------ |:--------------- |:---------------- |:----------------------------------- |
+| `fontFamily`       | `fontFamily`    | `font-family`    | [`typography`](/system/typography/) |
+| `fontSize`         | `fontSize`      | `font-size`      | [`typography`](/system/typography/) |
+| `fontStyle`        | `fontStyle`     | `font-style`     | [`typography`](/system/typography/) |
+| `fontWeight`       | `fontWeight`    | `font-weight`    | [`typography`](/system/typography/) |
+| `letterSpacing`    | `letterSpacing` | `letter-spacing` | none                                |
+| `lineHeight`       | `lineHeight`    | `line-height`    | none                                |
+| `textAlign`        | `textAlign`     | `text-align`     | none                                |
