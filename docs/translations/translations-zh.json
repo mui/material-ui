@@ -34,22 +34,6 @@
   "adTitle": "该广告旨在支持开源代码。",
   "editPage": "帮助改进此页面的翻译",
   "tableOfContents": "目录",
-  "component": "组件包",
-  "mdbProDescr": "Material Dashboard Pro React 是一个专业版的 Material-UI 管理员主题。",
-  "mkProDescr": "一个根据 Material Design 开发的超棒的 Material-UI 组件。",
-  "mdbDescr": "Material Dashboard React 是一个免费版的 Material-UI 管理员主题。",
-  "mkDescr": "一个在 Material Design 基础上开发的免费 Material-UI 工具包。",
-  "pbDescr": "这是一个模仿 Firebase 的页面，而这个项目包括了使用ThemeProvide 组件的主题。",
-  "opDescr": "这是一个登录和注册页面的例子。",
-  "instaDescr": "这是一个由自定义的 Material-UI 的主题重建的 Instagram(图享)个人资料页面。",
-  "tweeperDescr": "这是一个由自定义的Material-UI的主题重建的 Twitter(推特) 个人资料页面。",
-  "admin": "管理员和管理面板",
-  "components": "组件",
-  "landing": "登陆页面",
-  "profile": "个人资料页面",
-  "free": "免费",
-  "learnMore": "了解更多",
-  "preview": "效果预览",
   "sourceCode": "源代码",
   "traffic": "流量",
   "newest": "最新的",
@@ -80,6 +64,8 @@
   "codesandbox": "在 CodeSandbox 中编辑",
   "seeMore": "查看更多",
   "copySource": "复制源代码",
+  "copySourceLinkJS": "Copy link to JavaScript source",
+  "copySourceLinkTS": "Copy link to TypeScript source",
   "stackblitz": "在 StackBlitz 中编辑（仅限JS）",
   "headTitle": "世界上最受欢迎的 React UI 框架 -  Material-UI",
   "pages": {
@@ -196,7 +182,6 @@
     "/guides/testing": "测试",
     "/guides/flow": "Flow",
     "/guides/right-to-left": "源文语言从右至左读",
-    "/premium-themes": "高级版主题",
     "/discover-more": "发现更多",
     "/discover-more/showcase": "展示",
     "/discover-more/related-projects": "相关的项目",
@@ -211,6 +196,7 @@
     "/versions": "版本",
     "/styles": "Styles（样式表单）",
     "/styles/basics": "基础",
-    "/styles/advanced": "高级"
+    "/styles/advanced": "高级",
+    "https://themes.material-ui.com/": "高级版主题"
   }
 }

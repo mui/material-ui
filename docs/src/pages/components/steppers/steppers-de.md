@@ -63,7 +63,7 @@ Beschriftungen können unterhalb des Schrittsymbols platziert werden, indem Sie 
 
 ## Anpasster Stepper
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 Diese Komponente verwendet ein benutzerdefiniertes `StepConnector` Element, das die Randfarbe basierend auf dem Status `active` und `completed` ändert.
 

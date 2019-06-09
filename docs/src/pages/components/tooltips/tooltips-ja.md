@@ -21,7 +21,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Customized tooltips
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -62,7 +62,7 @@ The `Tooltip` wraps long text by default to make it readable.
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
-## Interactive
+## インタラクティブ
 
 A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 

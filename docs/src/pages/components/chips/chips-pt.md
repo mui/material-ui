@@ -1,9 +1,9 @@
 ---
-title: Componente React Chip (Fatias)
+title: Componente React Chip
 components: Chip
 ---
 
-# Chips (Lascas)
+# Chips
 
 <p class="description">Chips são elementos compactos que representam uma entrada, atributo ou ação.</p>
 
@@ -31,6 +31,18 @@ Chips Delineados oferecem um estilo alternativo.
 Um exemplo de renderização de vários Chips em uma matriz de valores. Deletando um chip irá remove-lo da matriz. Observe que mesmo que a propriedade `onClick` não esteja definida, o Chip pode ser focado, mas não irá ganhar efeito de profundidade quando clicado ou tocado.
 
 {{"demo": "pages/components/chips/ChipsArray.js"}}
+
+## Chip Pequeno
+
+Você pode usar a propriedade `size` para definir um Chip pequeno.
+
+### Variante Default
+
+{{"demo": "pages/components/chips/SmallChips.js"}}
+
+### Variante Outlined
+
+{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
 
 ## Chip - Live Demo
 

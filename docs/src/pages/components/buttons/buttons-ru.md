@@ -1,6 +1,6 @@
 ---
 title: React-компонент Кнопка
-components: Button, Fab, IconButton, ButtonBase, Zoom
+components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
 # Кнопки
@@ -44,6 +44,18 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Grouped Buttons
+
+The ButtonGroup component can be used to group outlined (the default) or contained buttons.
+
+{{"demo": "pages/components/buttons/GroupedButtons.js"}}
+
+## Split Button
+
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+
+{{"demo": "pages/components/buttons/SplitButton.js"}}
+
 ## Плавающие кнопки действий
 
 [Плавающая кнопка действия](https://material.io/design/components/buttons-floating-action-button.html) выполняет основное или наиболее распространенное действие на экране. Они отображаются над всем содержимым экрана, обычно в виде закрашенного круга со значком в центре. FABs бывают двух типов: обычные и расширенные.
@@ -82,9 +94,9 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## Настраиваемые кнопки
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже приведены несколько примеров настройки компонента. Более подробно с этой темой можно ознакомиться на [странице документации по переопределению компонентов](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 

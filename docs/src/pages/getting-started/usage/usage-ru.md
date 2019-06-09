@@ -32,31 +32,53 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## Глобальная настройка
 
-Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
+Опыт использования Material-UI может быть улучшен с помощью ряда важных глобальных настроек, о которых вам нужно знать.
 
 ### Responsive meta tag
 
-Material-UI is developed mobile first, a strategy in which we first write code for mobile devices and then scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element.
+Material-UI сначала разрабатывается для мобильных устройств - подход, при котором мы сначала пишем код для мобильных устройств, а затем масштабируем компоненты по мере необходимости, используя медиазапросы CSS. Чтобы обеспечить правильный рендеринг и масштабирование касанием для всех устройств, добавьте метатег реагирующего окна просмотра в элемент 
 
-```html
-<meta
+<head>
+  .</p> 
+  
+  <pre><code class="html">&lt;meta
   name="viewport"
   content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-/>
-```
-
-### CssBaseline
-
-Material-UI provides an optional [CssBaseline](/components/css-baseline/) component. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
-
-## Versioned Documentation
-
-This documentation always reflects the latest stable version of Material-UI. You can find older versions of the documentation on a [separate page](/versions/).
-
-## Next steps
-
-Now that you have an idea of the basic setup, it's time to learn more about:
-
-- How to provide [the Material Design font and typography](/components/typography/).
-- How to take advantage of the [theming solution](/customization/themes/).
-- How to [override](/customization/components/) the look and feel of the components.
+/&gt;
+</code></pre>
+  
+  <h3>
+    CssBaseline
+  </h3>
+  
+  <p>
+    Material-UI provides an optional <a href="/components/css-baseline/">CssBaseline</a> component. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+  </p>
+  
+  <h2>
+    Versioned Documentation
+  </h2>
+  
+  <p>
+    This documentation always reflects the latest stable version of Material-UI. You can find older versions of the documentation on a <a href="/versions/">separate page</a>.
+  </p>
+  
+  <h2>
+    Next steps
+  </h2>
+  
+  <p>
+    Now that you have an idea of the basic setup, it's time to learn more about:
+  </p>
+  
+  <ul>
+    <li>
+      How to provide <a href="/components/typography/">the Material Design font and typography</a>.
+    </li>
+    <li>
+      How to take advantage of the <a href="/customization/themes/">theming solution</a>.
+    </li>
+    <li>
+      How to <a href="/customization/components/">override</a> the look and feel of the components.
+    </li>
+  </ul>

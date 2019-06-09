@@ -4,7 +4,7 @@
 
 Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-> Este documento é um trabalho em progresso. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md)
+> Este documento é um trabalho em progresso. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introdução
 
@@ -44,7 +44,7 @@ A versão miníma necessária do React foi incrementada de `react@^16.3.0` para 
 
 ### Atualize a versão do Material-UI Styles
 
-Se você estiver usando `@material-ui/styles` com a v3, você precisa atualizar seu `package.json` para usar a última versão de Material-UI Styles.
+Se você estava usando anteriormente `@material-ui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material-UI Styles.
 
 ```json
 "dependencies": {
@@ -70,8 +70,8 @@ yarn add @material-ui/styles@next
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. Remover `react-jss` do seu package.json pode ajudar.
-- Remova a primeira opção de argumento do `withTheme()`. O primeiro argumento era um espaço reservado para uma eventual opção futura. Nós não encontramos uma necessidade para ele. É hora de remover esse argumento. Ele correspondia à API do emotion e styled-components.
+- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. Remover `react-jss` do seu `package.json` pode ajudar. O componente StylesProvider substitui o componente JssProvider.
+- Remova a primeira opção de argumento do `withTheme()`. O primeiro argumento era um espaço reservado para uma eventual opção futura. Nós não encontramos uma necessidade para ele. É hora de remover esse argumento. It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
   
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -127,9 +127,7 @@ yarn add @material-ui/styles@next
   }
   ```
   
-  Você pode usar esta ajuda `https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api`, para tornar o processo de migração mais suave.
-  
-  *Dica: você pode fornecer mais de 1 argumento: theme.spacing (1, 2) // = '8px 16px'*
+  *Dica: você pode fornecer mais de 1 argumento: `theme.spacing (1, 2) // = '8px 16px'`*.
   
   Você pode usar [esta ajuda de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
 
@@ -148,7 +146,7 @@ yarn add @material-ui/styles@next
   
   Indo além, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada](https://material-ui.com/system/spacing/#transformation).
 
-- [Container] Movido de `@material-ui/lab` para `@material-ui/core`
+- [Container] Movido de `@material-ui/lab` para `@material-ui/core`.
   
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -180,12 +178,12 @@ yarn add @material-ui/styles@next
   -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />
   +import Fab from '@material-ui/core/Fab';
-  +<Fab variant="extended />
+  +<Fab variant="extended" />
   ```
 
 - [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
   
-  Isso também se aplica a `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` bem como `ListItem` se a propriedade `button` for `true`
+  Isso também se aplica a `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` bem como `ListItem` se a propriedade `button` for `true`.
 
 ### Cartão
 
@@ -206,7 +204,7 @@ yarn add @material-ui/styles@next
 
 ### Divisor
 
-- [Divider] Remova a propriedade obsoleta inset.
+- [Divider] Remova a propriedade obsoleta `inset`.
   
   ```diff
   -<Divider inset />
@@ -222,8 +220,8 @@ yarn add @material-ui/styles@next
 
 - [List] Refaça a lista de componentes para coincidir com a especificação:
   
-  - O uso componente `ListItemAvatar` é necessário quando usando um avatar
-  - O uso do componente `ListItemIcon` é necessário quando usando uma caixa de seleção à esquerda
+  - O componente `ListItemAvatar` é necessário ao usar um avatar.
+  - O componente `ListItemIcon` é necessário ao usar uma caixa de seleção à esquerda.
   - A propriedade `edge` deve ser definida para botões de ícone.
 
 - [ListItem] Aumente a especificidade CSS das regras de estilo `disabled` e `focusVisible`.
@@ -238,7 +236,7 @@ yarn add @material-ui/styles@next
   
   Isso também se aplica aos componentes `Dialog` e `Popover`.
 
-- [Modal] Remova a customização da API classes para o componente Modal. (-74% de redução no tamanho do pacote quando usado de forma independente)
+- [Modal] Remova a API de customização de classes para o componente Modal (redução do tamanho do pacote -74% quando usado de forma independente).
 
 - [Modal] event.defaultPrevented é agora ignorado. A nova lógica fecha o Modal mesmo se `event.preventDefault()` é chamado no evento down da tecla escape (Esc). `event.preventDefault()` destina-se a impedir comportamentos padrão, como clicar em uma caixa de seleção para verificá-lo, apertar um botão para enviar um formulário e pressionar a seta para a esquerda para mover o cursor em uma entrada de texto, etc. Apenas elementos HTML especiais possuem esses comportamentos padrão. Você deve usar `event.stopPropagation()` se você não quer acionar o evento `onClose` no modal.
 
@@ -294,7 +292,7 @@ yarn add @material-ui/styles@next
   
   ![Uma estrutura DOM de item de guia mais simples](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
-- [Tabs] Remova as propriedades descontinuadas fullWidth e scrollable
+- [Tabs] Remova as propriedades descontinuadas fullWidth e scrollable:
   
   ```diff
   -<Tabs fullWidth scrollable />
@@ -303,7 +301,7 @@ yarn add @material-ui/styles@next
 
 ### Tabela
 
-- [TableCell] Remova a propriedade descontinuada `numeric`.
+- [TableCell] Remova a propriedade descontinuada `numeric`:
   
   ```diff
   -<TableCell numeric>{row.calories}</TableCell>

@@ -224,6 +224,8 @@ const Box = styled.div`
  */
 ```
 
+{{"demo": "pages/system/basics/CollocationApi.js"}}
+
 ## Custom style props
 
 ### `style(options) => style function`
@@ -232,7 +234,7 @@ Use this helper to create your own style function.
 
 We don't support all the CSS properties. It's possible that you want to support new ones. It's also possible that you want to change the theme path prefix.
 
-#### Arguments
+#### 引数
 
 1. `options` (*Object*): 
   - `options.prop` (*String*): The property the style function will be triggered on.
@@ -240,14 +242,33 @@ We don't support all the CSS properties. It's possible that you want to support 
   - `options.themeKey` (*String* [optional]): The theme path prefix.
   - `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
 
-#### Returns
+#### 戻り値
 
 `style function`: The style function created.
 
 #### 例
 
-```js
-import { style } from '@material-ui/system'
+We can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` we can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+
+```jsx
+import styled from 'styled-components';
+import { style } from '@material-ui/system';
+import { Box } from '@material-ui/core';
+
+const gridGap = style({
+  prop: 'gridGap',
+  themeKey: 'spacing',
+});
+
+const Grid = styled(Box)`${gridGap}`;
+const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
+```
+
+We can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
+
+```jsx
+import styled from 'styled-components';
+import { style } from '@material-ui/system';
 
 const borderColor = style({
   prop: 'bc',
@@ -255,13 +276,16 @@ const borderColor = style({
   themeKey: 'palette',
   transform: value => `${value} !important`,
 });
+
+const Colored = styled.div`${borderColor}`;
+const example = <Colored bc="primary.main">...</Colored>;
 ```
 
 ### `compose(...style functions) => style function`
 
 Merge multiple style functions into one.
 
-#### Returns
+#### 戻り値
 
 `style function`: The style function created.
 
@@ -296,7 +320,7 @@ If you want to support custom CSS values, you can use our `css()` helper. It wil
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
-## How it works
+## 仕組み
 
 styled-system has done a great job at [explaining how it works](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). It can help building a mental model for this "style function" concept.
 

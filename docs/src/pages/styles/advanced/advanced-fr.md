@@ -461,7 +461,7 @@ const useStyles = makeStyles({
 }, { name: 'MuiButton' });
 ```
 
-generates the following class names you that can override:
+generates the following class names that you can override:
 
 ```css
 .MuiButton-root { /* … */ }
@@ -536,7 +536,7 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### Comment met-on en place un CSP?
 
-Pour utiliser CSP avec Material-UI (et JSS), vous devez utiliser un "nonce". A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS a un [ excellent tutoriel ](https://github.com/cssinjs/jss/blob/next/docs/csp.md) comment y parvenir avec Express et React Helmet. Pour un aperçu de base, continuez à lire.
+Pour utiliser CSP avec Material-UI (et JSS), vous devez utiliser un "nonce". A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS a un [ excellent tutoriel ](https://github.com/cssinjs/jss/blob/master/docs/csp.md) comment y parvenir avec Express et React Helmet. Pour un aperçu de base, continuez à lire.
 
 Un nonce CSP est une chaîne codée en Base 64. Vous pouvez en générer un comme ceci:
 

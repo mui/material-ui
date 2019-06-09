@@ -43,7 +43,7 @@ Generieren Sie eine erweiterte Shallow-Funktion mit dem erforderlichen Kontext. 
 1. `Optionen` (*Object* [optional]) 
     - `options.shallow` (*Function* [optional]): Die Shallow-Funktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
     - `options.untilSelector` (*String* [optional]): Rendert rekursiv die Kinder flach, so lange, bis sie den bereitgestellten Selektor finden können. Es ist hilfreich, Komponenten höherer Ordnung aufzuschlüsseln.
-    - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
+    - `options.dive` (*Boolean* [optional]): Rendert funktional flach das erste nicht-DOM-Child des aktuellen Wrappers und gibt einen Wrapper zurück.
     - Die anderen Schlüssel werden an das Optionsargument von `enzyme.shallow()` weitergeleitet.
 
 #### Rückgabewerte

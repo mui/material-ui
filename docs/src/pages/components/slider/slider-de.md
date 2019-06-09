@@ -3,7 +3,7 @@ title: Slider React Komponente
 components: Slider
 ---
 
-# Schieberegler
+# Schieberegler (Slider)
 
 <p class="description">Schieberegler erlauben es Nutzern, eine Auswahl aus einer Reihe von Werten zu treffen.</p>
 
@@ -35,9 +35,9 @@ Schieberegler zeigen den aktuellen Status der Einstellungen an, die sie steuern.
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
-## Customized sliders
+## Benutzerdefinierte Auswahl
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

@@ -66,7 +66,7 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 import { display } from '@material-ui/system';
 ```
 
-| Nome da importação | Prop           | Propriedade CSS | Chave do tema |
+| Nome da importação | Propriedade    | Propriedade CSS | Chave do tema |
 |:------------------ |:-------------- |:--------------- |:------------- |
 | `displayRaw`       | `display`      | `display`       | none          |
 | `displayPrint`     | `displayPrint` | `display`       | none          |

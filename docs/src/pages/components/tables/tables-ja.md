@@ -1,11 +1,11 @@
 ---
-title: Table React component
+title: Tableコンポーネント
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
 # Tables
 
-<p class="description">Data tables display sets of data. They can be fully customized.</p>
+<p class="description">データテーブルにはデータセットが表示されます。完全にカスタマイズすることができます。</p>
 
 [Data tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
 
@@ -27,13 +27,13 @@ For accessibility, the first column is set to be a `<th>` element, with a `scope
 
 ## Simple Table
 
-A simple example with no frills.
+飾り気のないシンプルな例です。
 
 {{"demo": "pages/components/tables/SimpleTable.js"}}
 
 ## Dense Table
 
-A simple example of a dense table with no frills.
+簡単な例ではの緻密なテーブル詳細
 
 {{"demo": "pages/components/tables/DenseTable.js"}}
 
@@ -65,7 +65,7 @@ A simple example with spanning rows & columns.
 
 ## Virtualized Table
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more. Virtualization helps with performance issues.
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 

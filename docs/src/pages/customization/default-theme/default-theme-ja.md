@@ -1,20 +1,20 @@
-# Default Theme
+# デフォルトのテーマ
 
-<p class="description">Here's what the theme object looks like with the default values.</p>
+<p class="description">これがテーマオブジェクトでデフォルト値がどのように見えるかです。</p>
 
-## Explore
+## 調べる
 
-Explore the documentation theme object:
+ドキュメンテーションのテーマオブジェクトを調べる。
 
 {{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
 
-> Tip: you can play with the documentation theme object in **your console**. We expose a documentation `theme` variable on all the documentation pages. Please note that the documentation site is using a custom theme.
+> ヒント：あなたのコンソールでドキュメントのテーマオブジェクトで遊ぶことができます。 すべてのドキュメントページで可変なドキュメントのテーマを公開します。 ドキュメントサイトはカスタムテーマを使用していることに注意してください。
 
-If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), and the related imports which `createMuiTheme` uses.
+テーマについてもっと知りたい場合は、[`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js)又は `createMuiTheme`に関連するものをインポートして使って下さい。
 
-## @material-ui/core/styles vs @material-ui/styles
+## @material-ui/core/styles と @material-ui/styles
 
-Material-UI styles are powered by the [@material-ui/styles](/styles/basics/) npm package. It's a styling solution for React. This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles), it has has no knowledge of the default Material-UI theme. To remove the need for injecting a theme in the React's context **systematically**, we are wrapping the style modules (`makeStyles`, `withStyles` and `styled`) with the default Material-UI theme:
+Material-UIスタイルはnpmパッケージの[@material-ui/styles](/styles/basics/) で提供されます。 これはReactのスタイリングソリューションです。 [isolated](https://bundlephobia.com/result?p=@material-ui/styles)はMaterial-UIのデフォルトテーマです。 To remove the need for injecting a theme in the React's context **systematically**, we are wrapping the style modules (`makeStyles`, `withStyles` and `styled`) with the default Material-UI theme:
 
 - `@material-ui/core/styles/makeStyles` wraps `@material-ui/styles/makeStyles`.
 - `@material-ui/core/styles/withStyles` wraps `@material-ui/styles/withStyles`.

@@ -1,4 +1,4 @@
-# Themes
+# テーマ
 
 <p class="description">あなたが作成したテーマでMaterial-UIをカスタマイズしてください。 色や文字のスタイルなどを変更できます。</p>
 
@@ -8,7 +8,7 @@
 
 アプリ間で一貫性を高めるために、ライトテーマとダークテーマを選択できます。 デフォルトでは、ライトテーマを使用する仕様になっています。
 
-## Theme provider
+## テーマプロバイダー
 
 If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
 
@@ -20,7 +20,7 @@ Changing the theme configuration variables is the most effective way to match Ma
 
 - [パレット](/customization/palette/)
 - [タイポグラフィ](/customization/typography/)
-- [Spacing](/customization/spacing/)
+- [間隔](/customization/spacing/)
 - [ブレイクポイント](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [グローバル](/customization/globals/)
@@ -60,11 +60,11 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 Generate a theme base on the options received.
 
-#### Arguments
+#### 引数
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
 
-#### Returns
+#### 戻り値
 
 `theme` (*Object*): A complete, ready to use theme object.
 
@@ -90,17 +90,17 @@ const theme = createMuiTheme({
 
 Generate responsive typography settings based on the options received.
 
-#### Arguments
+#### 引数
 
 1. `theme` (*Object*): The theme object to enhance.
-2. `options` (*Object* [optional]):
+2. `オプション` (*オプジェクト* [任意]):
 
 - `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
-- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must me greater than 1.
+- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
 - `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
 
-#### Returns
+#### 戻り値
 
 `theme` (*Object*): The new theme with a responsive typography.
 

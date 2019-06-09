@@ -40,6 +40,6 @@ Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen.
 
 ![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-[@material-ui/pickers](https://material-ui-pickers.dev/) provides date and time controls that follow the Material Design spec.
+[@material-ui/pickers](https://material-ui-pickers.dev/) enthält Steuerelemente für Datum und Uhrzeit, die der Material Design-Spezifikation entsprechen.
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}

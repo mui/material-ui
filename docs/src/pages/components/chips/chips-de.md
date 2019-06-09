@@ -32,6 +32,18 @@ Ein Beispiel vom Rendern mehrerer Chips aus einem Array von Werten. Das Löschen
 
 {{"demo": "pages/components/chips/ChipsArray.js"}}
 
+## Kleiner Chip
+
+Sie können die Requisite `size` verwenden, um einen kleinen Chip zu definieren.
+
+### Standardvariante
+
+{{"demo": "pages/components/chips/SmallChips.js"}}
+
+### Umrahmte Variante
+
+{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+
 ## Chip Spielwiese
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

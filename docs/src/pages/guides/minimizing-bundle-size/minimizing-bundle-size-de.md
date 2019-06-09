@@ -8,19 +8,19 @@ Die Paketgröße der Material-UI wird sehr ernst genommen. Bei jedem Commit werd
 
 ## Wie kann ich die Packetgröße reduzieren?
 
-Der Einfachheit halber stellt Material-UI seine vollständige API auf der oberste Ebene des `material-ui` Imports zur Verfügung. If you're using ES 6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and expect only a minimal set of Material-UI components in your bundle:
+Der Einfachheit halber stellt Material-UI seine vollständige API auf der oberste Ebene des `material-ui` Imports zur Verfügung. Wenn Sie ES 6-Module und einen Bundler verwenden, der Tree-Shaking unterstützt ([`webpack` >= 2.x ](https://webpack.js.org/guides/tree-shaking/), [ ` parcel` mit einer Flagge](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)), können Sie sicher benannte Importe verwenden und nur einen minimalen Satz von Material-UI-Komponenten in Ihrem Bundles erwarten:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-Be aware that tree-shaking is an optimization that is usually only applied to production bundles. Development bundles will contain the full library which can lead to slower startup times. This is especially noticeable if you import from `@material-ui/icons`. Startup times can be approximately 6x slower than without named imports from the top-level API.
+Beachten Sie, dass das Tree-Shacking eine Optimierung darstellt, die normalerweise nur für die Produktion von Bundles angewendet wird. Entwicklung-Bundles wird die gesamte Bibliothek enthalten, was zu langsamen Startzeiten führen kann. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
 
-If this is an issue for you you have various options:
+Wenn dies ein Problem für Sie ist, haben Sie verschiedene Möglichkeiten:
 
 ### Option 1
 
-You can use path imports to avoid pulling in unused modules. Zum Beispiel anstelle von:
+Sie können Pfadimporte verwenden, um zu vermeiden, dass nicht verwendete Module abgerufen werden. Zum Beispiel anstelle von:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -35,51 +35,51 @@ import TextField from '@material-ui/core/TextField';
 
 Beim direkten Importieren auf diese Weise werden die Exporte in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js) nicht verwendet. Diese Datei kann trotzdem als praktische Referenz für die öffentlichen Module dienen.
 
-Be aware that we only support first and second leve imports. Anything below is considered private and can cause module duplication in your bundle.
+Beachten Sie, dass wir nur Importe der ersten und zweiten Ebene unterstützen. Alles drunter wird als privat betrachtet und kann zu einer Duplizierung des Moduls in Ihrem Bundle führen.
 
 ```js
 // OK
 import { Add as AddIcon } from '@material-ui/icons';
 import { Tabs } from '@material-ui/core';
-//                                 ^^^^ 1st or top-level
+//                                 ^^^^ 1. oder Top-Level
 
 // OK
 import AddIcon from '@material-ui/icons/Add';
 import Tabs from '@material-ui/core/Tabs';
-//                                  ^^^^ 2nd level
+//                                  ^^^^ 2. Level
 
-// NOT OK
+// NICHT OK
 import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 3rd level
+//                                               ^^^^^^^^^^^^ 3. Level
 ```
 
 ### Option 2
 
-**Important note**: This is only supported for `@material-ui/icons`. We recommend this approach if you often restart your development build.
+**Wichtiger Hinweis**: Dies wird nur für `@material-ui/icons` unterstützt. Wir empfehlen diesen Ansatz, wenn Sie Ihren Entwicklungsbuild häufig neu starten.
 
-Another option is to keep using named imports, but still have shorter start up times by using `babel` plugins.
+Eine weitere Option ist benannte Import zu benutzen, aber immer noch kurze Startzeiten zu erhalten, indem Sie `babel` Plugins benutzen.
 
 Wählen Sie eines der folgenden Plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration: 
+- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) mit folgender Konfiguration: 
         js
         [
         'babel-plugin-import',
         {
           libraryName: '@material-ui/icons',
-          libraryDirectory: 'esm', // or '' if your bundler does not support ES modules
+          libraryDirectory: 'esm', // order falls dein Bundler keine ES Module unterstützt
           camel2DashComponentName: false,
         },
         ];
 
-- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-import) has a different api than `babel-plugin-import` but does same thing. 
+- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-import) hat eine andere Api als `babel-plugin-import` aber macht das gleiche. 
         js
         [
         'transform-imports',
         {
           '@material-ui/icons': {
             transform: '@material-ui/icons/esm/${member}',
-            // for bundlers not supporting ES modules use:
+            / Für Bundler, die keine ES-Module unterstützen, verwenden Sie:
             // transform: '@material-ui/icons/${member}',
           },
         },
@@ -89,6 +89,6 @@ Wählen Sie eines der folgenden Plugins:
 
 Das auf npm veröffentlichte Paket ist mit [Babel](https://github.com/babel/babel) **transpiliert**, um die [ unterstützten Plattformen](/getting-started/supported-platforms/) zu berücksichtigen.
 
-We also publish a second version of the components. Sie finden diese Version unter den [`/es` Ordner](https://unpkg.com/@material-ui/core@next/es/). Die gesamte nicht offizielle Syntax wird auf den [ECMA-262 Standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm) transpiliert, nichts mehr. Dies kann verwendet werden, um separate Bundles für verschiedene Browser zu erstellen. Ältere Browser erfordern mehr transpilierte JavaScript-Funktionen. Dies erhöht die Größe des Packets. Für die Laufzeitfunktionen von ES2015 sind keine polyfills enthalten. IE11 + und Evergreen-Browser unterstützen alle erforderlichen Funktionen. Wenn Sie Unterstützung für andere Browser benötigen, sollten Sie [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill) in Betracht ziehen.
+Wir veröffentlichen auch eine zweite Version der Komponenten. Sie finden diese Version unter den [`/es` Ordner](https://unpkg.com/@material-ui/core@next/es/). Die gesamte nicht offizielle Syntax wird auf den [ECMA-262 Standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm) transpiliert, nichts mehr. Dies kann verwendet werden, um separate Bundles für verschiedene Browser zu erstellen. Ältere Browser erfordern mehr transpilierte JavaScript-Funktionen. Dies erhöht die Größe des Packets. Für die Laufzeitfunktionen von ES2015 sind keine polyfills enthalten. IE11 + und Evergreen-Browser unterstützen alle erforderlichen Funktionen. Wenn Sie Unterstützung für andere Browser benötigen, sollten Sie [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill) in Betracht ziehen.
 
 ⚠️ Um die Duplizierung von Code in Benutzerpaketen zu minimieren, raten wir **dringend davon ab** den `/es` Ordner zu benutzten.

@@ -90,3 +90,5 @@ Diese Funktion basiert auf der CSS-Sticky-Positionierung. Leider ist es [ nicht 
 Im folgenden Beispiel zeigen wir wie Sie [react-window](https://github.com/bvaughn/react-window) mit der `Listen<` Komponente nutzen können. Sie zeigt 200 Zeilen an und kann auch einfach mehr verwalten. Virtualisierung hilft bei Leistungsproblemen.
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
+
+Wir empfehlen die Verwendung von [react-window](https://github.com/bvaughn/react-window) wenn dies möglich ist. Wenn diese Bibliothek Ihren Anwendungsfall nicht abdeckt, sollten Sie [react-virtualized](https://github.com/bvaughn/react-virtualized) und Alternativen wie [react-virtuoso](https://github.com/petyosi/react-virtuoso) in Betracht ziehen.

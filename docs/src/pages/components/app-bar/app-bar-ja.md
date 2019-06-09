@@ -1,5 +1,5 @@
 ---
-title: App Bar React component
+title: App Bar コンポーネント
 components: AppBar, Toolbar, Menu
 ---
 
@@ -43,33 +43,33 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
+## スクロール
 
-### Hide App Bar
+### App Barを隠す
 
-An App Bar that hides on scroll.
+スクロール時に隠れるApp Bar。
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": "true", "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
-### Elevate App Bar
+### App Barを固定する
 
-An App Bar that elevates on scroll.
+スクロール時に上部に固定されたApp Bar。
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": "true", "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 
-#### Arguments
+#### 引数
 
-1. `options` (*Object* [optional]):
+1. `オプション` (*オプジェクト* [任意]):
     
-    - `options.disableHysteresis` (*Boolean* [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
-    - `options.target` (*Node* [optional]): Defaults to `window`.
-    - `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+    - `options.disableHysteresis` (*ブール値* [任意]): デフォルト値 `false`. ヒステリシスを無効にします。 ` trigger ` 値を決定するときにスクロール方向を無視します。
+    - `options.target` (*ノード* [任意]): デフォルト地 `window`.
+    - `options.threshold` （*数値* [任意]）：デフォルト値`100`。垂直スクロールがこのしきい値を厳密に横切ったときに ` trigger ` 値を変更します（排他的）。
 
-#### Returns
+#### 戻り値
 
-`trigger`: Does the scroll position match the criteria?
+` trigger `：スクロール位置が基準に合っているのか
 
 #### 例
 

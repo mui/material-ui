@@ -22,8 +22,16 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 如果你想从一个更完整的和现实世界的例子开始，你可以看看：
 
-- [Material Sense](https://github.com/alexanmtz/material-sense)，包括： 
+- [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
+  
   - 使用 recharts 的图表
   - 在导航示例中涵盖了 React Router
   - 一个具有用于生产环境创造的 Nginx 服务器的 Docker container(Docker 容器)。
   - 使用 [Create React App](https://facebook.github.io/create-react-app/) 创建
+
+- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
+  
+  - Bootstrapped with Create React App, the same tooling works out of the box
+  - Built on top of Firebase with authentication working from the start
+  - Robust routing with React Router including error handling (404)
+  - Extensive mobile support with [react-swipeable-views](https://react-swipeable-views.com) for tabs

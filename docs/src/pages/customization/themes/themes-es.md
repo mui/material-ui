@@ -60,11 +60,11 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 Generate a theme base on the options received.
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
 
-#### Returns
+#### Devuelve
 
 `theme` (*Object*): A complete, ready to use theme object.
 
@@ -90,17 +90,17 @@ const theme = createMuiTheme({
 
 Generate responsive typography settings based on the options received.
 
-#### Arguments
+#### Argumentos
 
 1. `theme` (*Object*): The theme object to enhance.
 2. `options` (*Object* [optional]):
 
 - `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
-- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must me greater than 1.
+- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
 - `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
 
-#### Returns
+#### Devuelve
 
 `theme` (*Object*): The new theme with a responsive typography.
 

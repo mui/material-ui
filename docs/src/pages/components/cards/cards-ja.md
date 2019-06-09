@@ -1,5 +1,5 @@
 ---
-title: Card React component
+title: Card コンポーネント
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
@@ -17,7 +17,7 @@ Cardは複数のアクション、UIコントロール、およびオーバー�
 
 {{"demo": "pages/components/cards/SimpleCard.js"}}
 
-## 複雑な相互作用
+## 複雑なインタラクション
 
 デスクトップでは、Cardの内容が展開できる可能性があります。
 
@@ -33,7 +33,7 @@ Cardは複数のアクション、UIコントロール、およびオーバー�
 
 {{"demo": "pages/components/cards/ImgMediaCard.js"}}
 
-> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+> ⚠️ `component="img"`を使用時、 CardMediaは画像をセンタリングするために `object-fit` が依存します。（IE 11非対応）
 
 ## UIコントロール
 

@@ -31,7 +31,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Accessibility
+## アクセシビリティ
 
 Be sure to add a `aria-label` description on the `Breadcrumbs` component.
 

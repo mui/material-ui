@@ -8,60 +8,60 @@ Material-UI 的打包文件大小至关重要。 每次当我们有一个新的�
 
 ## 如何减少打包文件的体积？
 
-为方便起见，Material-UI 在顶级 `material-ui` 的 import 上暴露其完整 API。 如果您正在使用 ES 6 的模块，以及一个支持 tree-shaking 的 bundle（ 要求 [`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/)，[带有 flag 的 `parcel 打包`](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) ，那么您则可以安全的使用命名的 imports，并且在您的 bundle 文件里面，预期会产生一个的最小配置的 Material-UI 组件。
+为方便起见，Material-UI 在顶级 `material-ui` 的 import 上暴露其完整 API。 如果您正在使用 ES 6 的模块，以及一个支持 tree-shaking 的 bundle（ 要求 [`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/)，[带有 flag 的 `parcel 打包`](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) ，那么您则可以安全的使用命名导入，并且在您的 bundle 文件里面，预期会产生一个的最小配置的 Material-UI 组件。
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-请注意 tree-shaking 通常只运用于生产环境的打包优化。 开发环境的打包则涵盖了完整的库，因此加载时间会比较慢。 在当您导入 `@material-ui/icons` 的时候，这个情况特别显著。 加载时间会大约比那些从顶层 API 的名字导入方式慢六倍。
+请注意 tree-shaking 通常只运用于生产环境的打包优化。 开发环境的打包则涵盖了完整的库，因此加载时间会比较慢。 在当您导入 `@material-ui/icons` 的时候，这个情况特别显著。 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
 
-如果你认为这将是一个问题，你可以有以下几种选择：
+如果您觉得这样不妥，您还有以下几个选择：
 
 ### 选项1
 
-你可以按需引入，以避免导入不需要用到的模块 全局导入是这样的
+您可以使用路径导入，这样可以避免导入用不到的模块。 例如，相比这样导入：
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-现在我们根据需要引入部分组件
+可以使用：
 
 ```js
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
+尽管这样直接导入并不会使用 [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js) 中的导出模式，但是对于那些公开的模块来说，此文件仍可以作为一个方便的参考。
 
-Be aware that we only support first and second leve imports. Anything below is considered private and can cause module duplication in your bundle.
+请注意，我们只支持第一级和第二级的导入。 以下的这些例子是私有的，它们会给你的打包文件带来重复的模块。
 
 ```js
-// OK
+// 可以
 import { Add as AddIcon } from '@material-ui/icons';
 import { Tabs } from '@material-ui/core';
-//                                 ^^^^ 1st or top-level
+//                                 ^^^^ 第一级或者顶层
 
-// OK
+// 可以
 import AddIcon from '@material-ui/icons/Add';
 import Tabs from '@material-ui/core/Tabs';
-//                                  ^^^^ 2nd level
+//                                  ^^^^ 第二级
 
-// NOT OK
+// 不可以
 import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 3rd level
+//                                               ^^^^^^^^^^^^ 第三极
 ```
 
 ### 选项2
 
-**Important note**: This is only supported for `@material-ui/icons`. We recommend this approach if you often restart your development build.
+**重要提示**：此方法只支持 `@material-ui/icons`。 若您经常重新启动您的开发构建，我们推荐你使用此方法。
 
-Another option is to keep using named imports, but still have shorter start up times by using `babel` plugins.
+另一个选项则是继续使用命名导入，但是通过 `babel` 的插件，仍然可以缩短启动时间。
 
-Pick one of the following plugins:
+请在以下插件中选择一个：
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration: 
+- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 基于以下配置： 
         js
         [
         'babel-plugin-import',
@@ -72,7 +72,7 @@ Pick one of the following plugins:
         },
         ];
 
-- [<0> babel-plugin-transform-imports </0>](https://www.npmjs.com/package/babel-plugin-transform-import) 和` babel-plugin-import `的api不同，但做了同样的事情。 
+- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-import) 和 ` babel-plugin-import `的 api 是异曲同工的。 
         js
         [
         'transform-imports',
@@ -85,10 +85,10 @@ Pick one of the following plugins:
         },
         ];
 
-## ECMAScript中
+## ECMAScript
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
+考虑到一些[支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的包是和 [Babel](https://github.com/babel/babel) 一起被**编译**的。
 
-We also publish a second version of the components. 您可以在< [`/es` folder](https://unpkg.com/@material-ui/core@next/es/)下找到此版本 。 All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+我们同时也发布了这些组件的第二种版本。 您可以在 [`/es` 文件夹](https://unpkg.com/@material-ui/core@next/es/)下找到此版本。 所有非官方的语义都被编译成[ECMA-262 的标准](https://www.ecma-international.org/publications/standards/Ecma-262.htm)，仅此而已。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。 一些旧的浏览器需编译一些 JavaScript 的功能，这样会增加打包文件的大小。 ES2015 运行的时候的功能中不包含垫片。 IE11+ 和一些长青浏览器会支持所有必要的功能。 如果您需要支持其他浏览器，请考虑使用 [`@ babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill)。
 
-⚠️为了最小化在用户的束的重复代码，我们 **强烈阻止** 从使用库作者 `/es` 的文件夹。
+⚠️为了使得用户打包文件中的重复代码最小化，我们**强烈阻止**库的作者使用`/es` 文件夹。

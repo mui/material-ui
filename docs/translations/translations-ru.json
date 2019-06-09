@@ -34,22 +34,6 @@
   "adTitle": "Эта реклама предназначена для поддержки Open Source.",
   "editPage": "Помогите перевести эту страницу",
   "tableOfContents": "Содержание",
-  "component": "Набор компонентов",
-  "mdbProDescr": "Material Dashboard Pro React - это премиум шаблон Material-UI.",
-  "mkProDescr": "Badass Material-UI Kit основывается на Material Design.",
-  "mdbDescr": "Material Dashboard React - это бесплатный шаблон Material-UI.",
-  "mkDescr": "Бесплатный Material-UI Kit основан на Material Design.",
-  "pbDescr": "Страница, которая имитирует Firebase. Этот элемент включает темы с использованием компонента ThemeProvider.",
-  "opDescr": "Примеры одностраничника и страницы авторизации.",
-  "instaDescr": "Воссоздание страницы профиля в Instagram путём кастомизации темы Material-UI.",
-  "tweeperDescr": "Воссоздание страницы профиля в Twitter путем кастомизации темы Material-UI.",
-  "admin": "Панель управления и администрирования",
-  "components": "Компоненты",
-  "landing": "Посадочная страница",
-  "profile": "Страница профиля",
-  "free": "БЕСПЛАТНО",
-  "learnMore": "Узнать больше",
-  "preview": "Предварительный просмотр",
   "sourceCode": "Исходный код",
   "traffic": "Трафик",
   "newest": "По новизне",
@@ -80,6 +64,8 @@
   "codesandbox": "Редактировать в CodeSandbox",
   "seeMore": "Ещё",
   "copySource": "Копировать исходник",
+  "copySourceLinkJS": "Copy link to JavaScript source",
+  "copySourceLinkTS": "Copy link to TypeScript source",
   "stackblitz": "Редактировать в StackBlitz (только JS)",
   "headTitle": "Самый популярный в мире React UI фреймворк - Material-UI",
   "pages": {
@@ -196,7 +182,6 @@
     "/guides/testing": "Тестирование",
     "/guides/flow": "Flow",
     "/guides/right-to-left": "Справа налево",
-    "/premium-themes": "Премиум темы",
     "/discover-more": "Discover More",
     "/discover-more/showcase": "Showcase",
     "/discover-more/related-projects": "Связанные проекты",
@@ -211,6 +196,7 @@
     "/versions": "Версии",
     "/styles": "Styles",
     "/styles/basics": "Основы",
-    "/styles/advanced": "Advanced"
+    "/styles/advanced": "Advanced",
+    "https://themes.material-ui.com/": "Премиум темы"
   }
 }

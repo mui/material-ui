@@ -1,6 +1,6 @@
 ---
 title: Componente React para Botão
-components: Button, Fab, IconButton, ButtonBase, Zoom
+components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
 # Botões
@@ -9,7 +9,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 [Botões](https://material.io/design/components/buttons.html) comunicam ações que os usuários podem tomar. Eles normalmente são colocados em toda a sua interface do usuário, em lugares como:
 
-- Diálogos
+- Caixa de diálogo
 - Janelas modais
 - Formulários
 - Cartões
@@ -27,7 +27,7 @@ O último exemplo desta demonstração mostra como usar um botão de upload.
 
 [Botões de Texto](https://material.io/design/components/buttons.html#text-button) são utilizados tipicamente para ações menos-pronunciadas, incluindo aquelas localizadas em:
 
-- Diálogos
+- Caixas de diálogo
 - Cartões
 
 Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
@@ -43,6 +43,18 @@ Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cart�
 Botões delineados são uma alternativa de menor ênfase comparado com botões contidos, ou uma uma alternativa de maior ênfase comparado com botões de texto.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
+
+## Botões Agrupados
+
+O componente ButtonGroup pode ser usado para agrupar os botões delineados (o padrão) ou contidos.
+
+{{"demo": "pages/components/buttons/GroupedButtons.js"}}
+
+## Split Button
+
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+
+{{"demo": "pages/components/buttons/SplitButton.js"}}
 
 ## Botões de Ação Flutuante
 
@@ -70,35 +82,35 @@ Botões extravagantes ou menores? Use a propriedade `size`.
 
 ## Botões com ícones e rótulo
 
-Às vezes você pode querer ter ícones para determinado botão para melhorar o UX do aplicativo pois reconhecemos logotipos mais facilmente do que o texto sem formatação. Por exemplo, se você tem um botão deletar você pode rotulá-lo com um ícone de lixeira.
+Às vezes você pode querer ter ícones para determinados botão para melhorar o UX do aplicativo como reconhecemos logotipos mais facilmente do que o texto sem formatação. Por exemplo, se você tem um botão com a açõo de "deletar" você pode rotulá-lo com um ícone do caixote de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Ícone
+## Botões de Icone
 
-Botões de Ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
+Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
-Ícones são também adequados para botões de alternância que permitem uma escolha única para ser selecionado ou desselecionado, como adicionar ou remover uma estrela para um item.
+Ícones são também adequadas para botões de alternância que permitem uma escolha única para ser selecionado ou desmarcada, como adicionar ou remover uma estrela para um item.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Botões Personalizados
+## Botões Customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
 
 
-## Botões Complexos
+## Botões complexos
 
-Os Botões de Texto, Botões Contidos, Botões de Ação Flutuante e Botões de Ícone são construídos em cima do mesmo componente: O componente `ButtonBase`. Você pode tirar vantagem deste componente de nível mais abastrato para construir interações personalizadas.
+O botões de texto, botões contidos, botões de ação flutuante e ícone botões são construídos em cima do mesmo componente: O componente `ButtonBase `. Você pode tirar vantagem deste componente de nível mais abastrato para construir interações personalizadas.
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Biblioteca de roteamento de terceiros
 
-Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `component`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que vários de nossos componentes interativos dependem do `ButtonBase`, você deve ser capaz de tirar vantagem disto em qualquer lugar:
+Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `componente`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que um monte de nossos componentes interativos dependem do `ButtonBase`, você deve estar capaz de tirar vantagem em todos os lugares:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 

@@ -1,6 +1,6 @@
 ---
 title: React Button（按钮）组件
-components: Button, Fab, IconButton, ButtonBase, Zoom
+components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons（按钮）
@@ -44,6 +44,18 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Grouped Buttons（按钮组）
+
+ButtonGroup组件可用于对描边按钮(默认) 或者实心按钮进行分组。
+
+{{"demo": "pages/components/buttons/GroupedButtons.js"}}
+
+## 分割按钮
+
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+
+{{"demo": "pages/components/buttons/SplitButton.js"}}
+
 ## Floating Action Buttons（提升动作按钮）
 
 [提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FAB有两种类型：常规的和扩展的。
@@ -62,23 +74,23 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
 
-## 大小
+## 尺寸
 
 您喜欢更大一点或更小一点的按钮？使用 `size` 属性可以实现大小的控制。
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## 带有icons（图标）和 label（标签）的按钮
+## 带有图标和标签的按钮
 
-考虑到相比纯文本，我们更容易识别出图标，有时您可能想要在某个按钮上添加图标以增强应用程序的用户体验， 例如，如果您有一个删除按钮，则可以使用垃圾箱图标对其进行标记。
+有时您可能希望为某个按钮添加图标以增强应用程序的用户体验，因为我们识别徽标比纯文本更容易。 例如，如果您有删除按钮，则可以使用垃圾箱图标对其进行标记。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons（图标按钮）
+## 图标按钮
 
 图标按钮通常位于应用栏和工具栏中。
 
-图标也适用于实现单个选项的选择和或取消选择的切换按钮，例如向一个元素添加或删除星标。
+图标也适用于允许选择单个选项的切换按钮或 取消选择，例如向项目添加或删除星标。
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
@@ -90,15 +102,15 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 
 
-## Complex Buttons（复杂按钮）
+## 复杂按钮
 
-Text Buttons（文本按钮），Contained Buttons（实心按钮），Floating Action Buttons（浮动操作按钮）和 Icon Buttons（图标按钮）是根据同一个组件 `ButtonBase` 构建的。 您可以利用此较底层的组件来构建自定义的交互。
+文本按钮，包含按钮，浮动操作按钮和图标按钮构建在同一组件之上：`ButtonBase`。 您可以利用此较底层的组件来构建自定义交互。
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
-## Third-party routing library（第三方路由库）
+## 第三方路由库
 
-一个常见的用例是使用按钮来触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在任何地方使用它：
+一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在所有地方用到它的好处：
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
