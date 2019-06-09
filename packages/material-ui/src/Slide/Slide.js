@@ -53,7 +53,7 @@ function getTranslateValue(direction, node) {
   }
 
   // direction === 'down'
-  return `translateY(-${rect.top + rect.height + GUTTER - offsetY}px)`;
+  return `translateY(-100vh) translateY(${rect.top + rect.height + GUTTER - offsetY}px)`;
 }
 
 export function setTranslateValue(direction, node) {
