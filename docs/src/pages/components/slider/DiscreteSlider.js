@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     width: 300,
   },
   margin: {
-    margin: theme.spacing(1.5, 0),
+    height: theme.spacing(3),
   },
 }));
 
@@ -53,33 +53,41 @@ export default function DiscreteSlider() {
         aria-labelledby="discrete-slider"
         step={10}
         marks
-        className={classes.margin}
       />
+      <div className={classes.margin} />
+      <Typography id="discrete-slider-custom" gutterBottom>
+        Custom marks
+      </Typography>
       <Slider
         defaultValue={20}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
+        aria-labelledby="discrete-slider-custom"
         step={10}
         marks={marks}
-        className={classes.margin}
       />
+      <div className={classes.margin} />
+      <Typography id="discrete-slider-restrict" gutterBottom>
+        Restricted values
+      </Typography>
       <Slider
         defaultValue={20}
         valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
+        aria-labelledby="discrete-slider-restrict"
         step={null}
         marks={marks}
-        className={classes.margin}
       />
+      <div className={classes.margin} />
+      <Typography id="discrete-slider-always" gutterBottom>
+        Always visible
+      </Typography>
       <Slider
         defaultValue={80}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
+        aria-labelledby="discrete-slider-always"
         step={10}
         marks={marks}
         valueLabelDisplay="on"
-        className={classes.margin}
       />
     </div>
   );
