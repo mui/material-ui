@@ -3,11 +3,11 @@ import * as PropTypes from 'prop-types';
 import Day from './Day';
 import DayWrapper from './DayWrapper';
 import CalendarHeader from './CalendarHeader';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import { Theme } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { runKeyHandler } from '../../_shared/hooks/useKeyDown';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { runKeyHandler } from '../../_shared/hooks/useKeyDown';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
@@ -42,7 +42,7 @@ export interface OutterCalendarProps {
   rightArrowButtonProps?: Partial<IconButtonProps>;
   /** Disable specific date */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
-  /** Callback firing on month change */
+  /** Callback firing on month change. Return promise to render spinner till it will not be resolved */
   onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
   /** Custom loading indicator  */
   loadingIndicator?: JSX.Element;
@@ -207,7 +207,13 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   };
 
   public moveToDay = (day: MaterialUiPickersDate) => {
+    const { utils } = this.props;
+
     if (day && !this.shouldDisableDate(day)) {
+      if (utils.getMonth(day) !== utils.getMonth(this.state.currentMonth)) {
+        this.handleChangeMonth(utils.startOfMonth(day), 'left');
+      }
+
       this.onDateSelect(day, false);
     }
   };

@@ -22,7 +22,7 @@ export interface BaseDatePickerProps extends OutterCalendarProps {
   maxDate?: ParsableDate;
 
   /**
-   * Compare date isBefore or isAfter without utils endOfDay or startOfDay
+   * Compare dates by the exact timestamp, instead of start/end of date
    * @default false
    */
   strictCompareDates?: boolean;

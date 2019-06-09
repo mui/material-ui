@@ -281,8 +281,12 @@
       "defaultValue": { "value": "'dialog'" },
       "description": "Displaying variant",
       "name": "variant",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\"" }
+      "type": { "name": "WrapperVariant" }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -363,7 +367,7 @@
     },
     "strictCompareDates": {
       "defaultValue": { "value": "false" },
-      "description": "Compare date isBefore or isAfter without utils endOfDay or startOfDay",
+      "description": "Compare dates by the exact timestamp, instead of start/end of date",
       "name": "strictCompareDates",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
@@ -497,7 +501,7 @@
     },
     "onMonthChange": {
       "defaultValue": null,
-      "description": "Callback firing on month change",
+      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved",
       "name": "onMonthChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
@@ -618,6 +622,17 @@
       "required": false,
       "type": { "name": "string" }
     },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "WrapperVariant" }
+    },
     "onError": {
       "defaultValue": null,
       "description": "Callback fired when new error should be displayed",
@@ -727,13 +742,6 @@
       },
       "required": false,
       "type": { "name": "boolean" }
-    },
-    "variant": {
-      "defaultValue": { "value": "'dialog'" },
-      "description": "Displaying variant",
-      "name": "variant",
-      "required": false,
-      "type": { "name": "\"dialog\" | \"inline\"" }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -880,7 +888,7 @@
     },
     "strictCompareDates": {
       "defaultValue": { "value": "false" },
-      "description": "Compare date isBefore or isAfter without utils endOfDay or startOfDay",
+      "description": "Compare dates by the exact timestamp, instead of start/end of date",
       "name": "strictCompareDates",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
@@ -1014,7 +1022,7 @@
     },
     "onMonthChange": {
       "defaultValue": null,
-      "description": "Callback firing on month change",
+      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved",
       "name": "onMonthChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
@@ -1238,8 +1246,12 @@
       "defaultValue": { "value": "'dialog'" },
       "description": "Displaying variant",
       "name": "variant",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\"" }
+      "type": { "name": "WrapperVariant" }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -1408,6 +1420,17 @@
       "required": false,
       "type": { "name": "string" }
     },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "WrapperVariant" }
+    },
     "onError": {
       "defaultValue": null,
       "description": "Callback fired when new error should be displayed",
@@ -1528,13 +1551,6 @@
       },
       "required": false,
       "type": { "name": "boolean" }
-    },
-    "variant": {
-      "defaultValue": { "value": "'dialog'" },
-      "description": "Displaying variant",
-      "name": "variant",
-      "required": false,
-      "type": { "name": "\"dialog\" | \"inline\"" }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -1883,8 +1899,12 @@
       "defaultValue": { "value": "'dialog'" },
       "description": "Displaying variant",
       "name": "variant",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\"" }
+      "type": { "name": "WrapperVariant" }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -2020,7 +2040,7 @@
     },
     "strictCompareDates": {
       "defaultValue": { "value": "false" },
-      "description": "Compare date isBefore or isAfter without utils endOfDay or startOfDay",
+      "description": "Compare dates by the exact timestamp, instead of start/end of date",
       "name": "strictCompareDates",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
@@ -2154,7 +2174,7 @@
     },
     "onMonthChange": {
       "defaultValue": null,
-      "description": "Callback firing on month change",
+      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved",
       "name": "onMonthChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
@@ -2263,6 +2283,17 @@
       },
       "required": false,
       "type": { "name": "string" }
+    },
+    "variant": {
+      "defaultValue": { "value": "'dialog'" },
+      "description": "Displaying variant",
+      "name": "variant",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": { "name": "WrapperVariant" }
     },
     "onError": {
       "defaultValue": null,
@@ -2384,13 +2415,6 @@
       },
       "required": false,
       "type": { "name": "boolean" }
-    },
-    "variant": {
-      "defaultValue": { "value": "'dialog'" },
-      "description": "Displaying variant",
-      "name": "variant",
-      "required": false,
-      "type": { "name": "\"dialog\" | \"inline\"" }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -2592,7 +2616,7 @@
     },
     "strictCompareDates": {
       "defaultValue": { "value": "false" },
-      "description": "Compare date isBefore or isAfter without utils endOfDay or startOfDay",
+      "description": "Compare dates by the exact timestamp, instead of start/end of date",
       "name": "strictCompareDates",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
@@ -2726,7 +2750,7 @@
     },
     "onMonthChange": {
       "defaultValue": null,
-      "description": "Callback firing on month change",
+      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved",
       "name": "onMonthChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",
@@ -2895,7 +2919,7 @@
     },
     "onMonthChange": {
       "defaultValue": null,
-      "description": "Callback firing on month change",
+      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved",
       "name": "onMonthChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/components/Calendar.tsx",

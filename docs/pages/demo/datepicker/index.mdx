@@ -4,6 +4,7 @@ import PageMeta from '_shared/PageMeta'
 import LinkedComponents from '_shared/LinkedComponents'
 
 import * as CustomDay from './CustomDay.example'
+import * as ServerRequest from './ServerRequest.example'
 import * as BasicDatePicker from './BasicDatePicker.example'
 import * as ViewsDatePicker from './ViewsDatePicker.example'
 import * as InlineDatePicker from './InlineDatePicker.example'
@@ -49,6 +50,13 @@ Thus you can easily create
 The displaying of dates is heavily cusomizable. Thus you can add badges or fully change displaying of day.
 
 <Example source={CustomDay} />
+
+#### Dynamic data
+
+Sometimes it's required to displaying additional info right in calendar.
+For this just return `Promise` in `onMonthChange`.
+
+<Example source={ServerRequest} />
 
 #### Components API
 

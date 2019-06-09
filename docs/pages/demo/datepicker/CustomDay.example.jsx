@@ -6,10 +6,10 @@ import endOfWeek from 'date-fns/endOfWeek';
 import React, { PureComponent } from 'react';
 import startOfWeek from 'date-fns/startOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
-// @ts-ignore this guy required only on the docs site to work with dynamic date library
-import { cloneCrossUtils } from 'utils/helpers';
 import { DatePicker } from '@material-ui/pickers';
 import { createStyles } from '@material-ui/styles';
+// this guy required only on the docs site to work with dynamic date library
+import { makeJSDateObject } from '../../../utils/helpers';
 import { IconButton, withStyles } from '@material-ui/core';
 
 class CustomElements extends PureComponent {
@@ -18,11 +18,11 @@ class CustomElements extends PureComponent {
   };
 
   handleWeekChange = date => {
-    this.setState({ selectedDate: startOfWeek(cloneCrossUtils(date)) });
+    this.setState({ selectedDate: startOfWeek(makeJSDateObject(date)) });
   };
 
   formatWeekSelectLabel = (date, invalidLabel) => {
-    let dateClone = cloneCrossUtils(date);
+    let dateClone = makeJSDateObject(date);
 
     return dateClone && isValid(dateClone)
       ? `Week of ${format(startOfWeek(dateClone), 'MMM do')}`
@@ -31,8 +31,8 @@ class CustomElements extends PureComponent {
 
   renderWrappedWeekDay = (date, selectedDate, dayInCurrentMonth) => {
     const { classes } = this.props;
-    let dateClone = cloneCrossUtils(date);
-    let selectedDateClone = cloneCrossUtils(selectedDate);
+    let dateClone = makeJSDateObject(date);
+    let selectedDateClone = makeJSDateObject(selectedDate);
 
     const start = startOfWeek(selectedDateClone);
     const end = endOfWeek(selectedDateClone);
