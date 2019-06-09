@@ -22,9 +22,9 @@ Continuous sliders allow users to select a value along a subjective range.
 Discrete sliders can be adjusted to a specific value by referencing its value indicator.
 By order of demos:
 
-1. You can generates a mark for each step with `mark={true}`.
-2. You can have custom marks by providing a rich array to the `mark` prop.
-3. You can restrict the possible values with `step={null}`.
+1. You can generates a mark for each step with `marks={true}`.
+2. You can have custom marks by providing a rich array to the `marks` prop.
+3. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
 4. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}

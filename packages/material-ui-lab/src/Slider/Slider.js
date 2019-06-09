@@ -727,7 +727,7 @@ Slider.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * The default element value, useful when not controlling the component.
+   * The default element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
   /**
@@ -735,14 +735,16 @@ Slider.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Returns a string value that provides a user-friendly name for the current value of the slider.
+   * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
    *
    * @param {number} value The thumb label's value to format
    * @param {number} index The thumb label's index to format
    */
   getAriaValueText: PropTypes.func,
   /**
-   * Marks represent predetermined values to which the user can move the slider.
+   * Marks indicate predetermined values to which the user can move the slider.
+   * If `true` the marks will be spaced according the value of the `step` prop.
+   * If an array, it should contain objects with `value` and an optional `label` keys.
    */
   marks: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   /**
@@ -767,7 +769,7 @@ Slider.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * Callback function that is fired when the mouseup is triggerd.
+   * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {object} event The event source of the callback
    * @param {any} value The new value
@@ -778,20 +780,21 @@ Slider.propTypes = {
    */
   onMouseDown: PropTypes.func,
   /**
-   * The stepper orientation (layout flow direction).
+   * The slider orientation.
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The granularity the slider can step through values.
-   * When step is `null`, users can only slide the thumbs onto marks.
+   * The granularity with which the slider can step through values. (A "discrete" slider.)
+   * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
    */
   step: PropTypes.number,
   /**
-   * The value component.
+   * The component used to display the value label.
    */
   ThumbComponent: PropTypes.elementType,
   /**
    * The value of the slider.
+   * For ranged sliders, provide an array with two values.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
   /**
@@ -799,7 +802,11 @@ Slider.propTypes = {
    */
   ValueLabelComponent: PropTypes.elementType,
   /**
-   * Show value label.
+   * Controls when the value label is displayed:
+   *
+   * - `auto` the value label will display when the thumb is hovered or focused.
+   * - `on` will display persistently.
+   * - `off` will never display.
    */
   valueLabelDisplay: PropTypes.oneOf(['on', 'auto', 'off']),
   /**
