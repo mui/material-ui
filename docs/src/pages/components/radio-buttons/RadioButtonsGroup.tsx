@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function RadioButtonsGroup() {
+export default function RadioButtonsGroup() {
   const classes = useStyles();
   const [value, setValue] = React.useState('female');
 
@@ -91,5 +91,3 @@ function RadioButtonsGroup() {
     </div>
   );
 }
-
-export default RadioButtonsGroup;

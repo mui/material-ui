@@ -250,7 +250,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function EnhancedTable() {
+export default function EnhancedTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
@@ -392,5 +392,3 @@ function EnhancedTable() {
     </div>
   );
 }
-
-export default EnhancedTable;

@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ScrollableTabsButtonPrevent() {
+export default function ScrollableTabsButtonPrevent() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -70,5 +70,3 @@ function ScrollableTabsButtonPrevent() {
     </div>
   );
 }
-
-export default ScrollableTabsButtonPrevent;

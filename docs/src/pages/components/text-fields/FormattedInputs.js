@@ -63,7 +63,7 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-function FormattedInputs() {
+export default function FormattedInputs() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     textmask: '(1  )    -    ',
@@ -101,5 +101,3 @@ function FormattedInputs() {
     </div>
   );
 }
-
-export default FormattedInputs;

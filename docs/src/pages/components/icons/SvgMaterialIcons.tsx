@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SvgMaterialIcons() {
+export default function SvgMaterialIcons() {
   const classes = useStyles();
 
   return (
@@ -79,5 +79,3 @@ function SvgMaterialIcons() {
     </Grid>
   );
 }
-
-export default SvgMaterialIcons;

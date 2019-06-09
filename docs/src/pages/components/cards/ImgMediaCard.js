@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-function ImgMediaCard() {
+export default function ImgMediaCard() {
   const classes = useStyles();
 
   return (
@@ -48,5 +48,3 @@ function ImgMediaCard() {
     </Card>
   );
 }
-
-export default ImgMediaCard;

@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CustomizedBreadcrumbs() {
+export default function CustomizedBreadcrumbs() {
   const classes = useStyles();
 
   return (
@@ -66,5 +66,3 @@ function CustomizedBreadcrumbs() {
     </Paper>
   );
 }
-
-export default CustomizedBreadcrumbs;

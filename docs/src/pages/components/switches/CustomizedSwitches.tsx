@@ -116,7 +116,7 @@ const AntSwitch = withStyles(theme => ({
   checked: {},
 }))(Switch);
 
-function CustomizedSwitches() {
+export default function CustomizedSwitches() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -165,5 +165,3 @@ function CustomizedSwitches() {
     </FormGroup>
   );
 }
-
-export default CustomizedSwitches;

@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CheckboxesGroup() {
+export default function CheckboxesGroup() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     gilad: true,
@@ -76,5 +76,3 @@ function CheckboxesGroup() {
     </div>
   );
 }
-
-export default CheckboxesGroup;

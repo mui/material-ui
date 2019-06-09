@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function MaxWidthDialog() {
+export default function MaxWidthDialog() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
@@ -105,5 +105,3 @@ function MaxWidthDialog() {
     </React.Fragment>
   );
 }
-
-export default MaxWidthDialog;

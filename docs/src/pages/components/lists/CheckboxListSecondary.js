@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CheckboxListSecondary() {
+export default function CheckboxListSecondary() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([1]);
 
@@ -60,5 +60,3 @@ function CheckboxListSecondary() {
     </List>
   );
 }
-
-export default CheckboxListSecondary;

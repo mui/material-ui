@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ControlledExpansionPanels() {
+export default function ControlledExpansionPanels() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
@@ -103,5 +103,3 @@ function ControlledExpansionPanels() {
     </div>
   );
 }
-
-export default ControlledExpansionPanels;

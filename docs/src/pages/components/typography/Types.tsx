@@ -11,7 +11,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function Types() {
+export default function Types() {
   const classes = useStyles();
 
   return (
@@ -62,5 +62,3 @@ function Types() {
     </div>
   );
 }
-
-export default Types;

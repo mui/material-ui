@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function InputAdornments() {
+export default function InputAdornments() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     amount: '',
@@ -128,5 +128,3 @@ function InputAdornments() {
     </div>
   );
 }
-
-export default InputAdornments;

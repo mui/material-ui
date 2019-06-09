@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function PermanentDrawerRight() {
+export default function PermanentDrawerRight() {
   const classes = useStyles();
 
   return (
@@ -110,5 +110,3 @@ function PermanentDrawerRight() {
     </div>
   );
 }
-
-export default PermanentDrawerRight;

@@ -59,7 +59,7 @@ interface ResponsiveDrawerProps {
   container: Element;
 }
 
-function ResponsiveDrawer(props: ResponsiveDrawerProps) {
+export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -178,5 +178,3 @@ ResponsiveDrawer.propTypes = {
   // You won't need it on your project.
   container: PropTypes.object,
 };
-
-export default ResponsiveDrawer;

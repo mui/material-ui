@@ -266,7 +266,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 let popperNode: HTMLDivElement | null | undefined;
 
-function IntegrationDownshift() {
+export default function IntegrationDownshift() {
   const classes = useStyles();
 
   return (
@@ -424,5 +424,3 @@ function IntegrationDownshift() {
     </div>
   );
 }
-
-export default IntegrationDownshift;

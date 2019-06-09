@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 
-function Checkboxes() {
+export default function Checkboxes() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -72,5 +72,3 @@ function Checkboxes() {
     </div>
   );
 }
-
-export default Checkboxes;

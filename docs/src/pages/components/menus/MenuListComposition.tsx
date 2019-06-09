@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function MenuListComposition() {
+export default function MenuListComposition() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -76,5 +76,3 @@ function MenuListComposition() {
     </div>
   );
 }
-
-export default MenuListComposition;

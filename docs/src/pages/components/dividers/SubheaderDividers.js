@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SubheaderDividers() {
+export default function SubheaderDividers() {
   const classes = useStyles();
 
   return (
@@ -67,5 +67,3 @@ function SubheaderDividers() {
     </List>
   );
 }
-
-export default SubheaderDividers;

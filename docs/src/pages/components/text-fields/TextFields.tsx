@@ -50,7 +50,7 @@ interface State {
   currency: string;
 }
 
-function TextFields() {
+export default function TextFields() {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     name: 'Cat in the Hat',
@@ -254,5 +254,3 @@ function TextFields() {
     </form>
   );
 }
-
-export default TextFields;

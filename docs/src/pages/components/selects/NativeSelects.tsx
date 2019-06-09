@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function NativeSelects() {
+export default function NativeSelects() {
   const classes = useStyles();
   const [state, setState] = React.useState<{ age: string | number; name: string }>({
     age: '',
@@ -228,5 +228,3 @@ function NativeSelects() {
     </div>
   );
 }
-
-export default NativeSelects;

@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function FontFamily() {
+export default function FontFamily() {
   return (
     <Typography component="div">
       <Box fontFamily="fontFamily" m={1}>
@@ -14,5 +14,3 @@ function FontFamily() {
     </Typography>
   );
 }
-
-export default FontFamily;

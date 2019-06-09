@@ -47,7 +47,7 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-function SpanningTable() {
+export default function SpanningTable() {
   const classes = useStyles();
 
   return (
@@ -90,5 +90,3 @@ function SpanningTable() {
     </Paper>
   );
 }
-
-export default SpanningTable;

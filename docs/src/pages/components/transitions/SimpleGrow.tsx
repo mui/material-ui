@@ -40,7 +40,7 @@ function Polygon() {
   );
 }
 
-function SimpleGrow() {
+export default function SimpleGrow() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
@@ -70,5 +70,3 @@ function SimpleGrow() {
     </div>
   );
 }
-
-export default SimpleGrow;

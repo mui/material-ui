@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function InputWithIcon() {
+export default function InputWithIcon() {
   const classes = useStyles();
 
   return (
@@ -57,5 +57,3 @@ function InputWithIcon() {
     </div>
   );
 }
-
-export default InputWithIcon;

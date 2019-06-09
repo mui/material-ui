@@ -36,7 +36,7 @@ function getStepContent(stepIndex) {
   }
 }
 
-function HorizontalLabelPositionBelowStepper() {
+export default function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -89,5 +89,3 @@ function HorizontalLabelPositionBelowStepper() {
     </div>
   );
 }
-
-export default HorizontalLabelPositionBelowStepper;

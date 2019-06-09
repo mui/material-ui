@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function LineHeight() {
+export default function LineHeight() {
   return (
     <Typography component="div">
       <Box lineHeight="normal" m={1}>
@@ -14,5 +14,3 @@ function LineHeight() {
     </Typography>
   );
 }
-
-export default LineHeight;

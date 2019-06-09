@@ -174,7 +174,7 @@ for (let i = 0; i < 200; i += 1) {
   rows.push(createData(i, ...randomSelection));
 }
 
-function ReactVirtualizedTable() {
+export default function ReactVirtualizedTable() {
   return (
     <Paper style={{ height: 400, width: '100%' }}>
       <VirtualizedTable
@@ -215,5 +215,3 @@ function ReactVirtualizedTable() {
     </Paper>
   );
 }
-
-export default ReactVirtualizedTable;

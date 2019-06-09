@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function FontStyle() {
+export default function FontStyle() {
   return (
     <Typography component="div">
       <Box fontStyle="normal" m={1}>
@@ -17,5 +17,3 @@ function FontStyle() {
     </Typography>
   );
 }
-
-export default FontStyle;

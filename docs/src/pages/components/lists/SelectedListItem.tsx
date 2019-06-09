@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SelectedListItem() {
+export default function SelectedListItem() {
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
@@ -73,5 +73,3 @@ function SelectedListItem() {
     </div>
   );
 }
-
-export default SelectedListItem;

@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CircularIntegration() {
+export default function CircularIntegration() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
@@ -95,5 +95,3 @@ function CircularIntegration() {
     </div>
   );
 }
-
-export default CircularIntegration;

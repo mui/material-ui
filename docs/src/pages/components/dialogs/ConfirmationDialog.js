@@ -113,7 +113,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ConfirmationDialog() {
+export default function ConfirmationDialog() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
@@ -164,5 +164,3 @@ function ConfirmationDialog() {
     </div>
   );
 }
-
-export default ConfirmationDialog;

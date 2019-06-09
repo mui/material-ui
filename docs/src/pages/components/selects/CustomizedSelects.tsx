@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function CustomizedSelects() {
+export default function CustomizedSelects() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -100,5 +100,3 @@ function CustomizedSelects() {
     </form>
   );
 }
-
-export default CustomizedSelects;

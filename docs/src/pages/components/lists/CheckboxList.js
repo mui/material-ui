@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CheckboxList() {
+export default function CheckboxList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
 
@@ -62,5 +62,3 @@ function CheckboxList() {
     </List>
   );
 }
-
-export default CheckboxList;

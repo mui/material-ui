@@ -91,7 +91,7 @@ const useStyles2 = makeStyles((theme: Theme) => ({
   },
 }));
 
-function CustomizedSnackbars() {
+export default function CustomizedSnackbars() {
   const classes = useStyles2();
   const [open, setOpen] = React.useState(false);
 
@@ -150,5 +150,3 @@ function CustomizedSnackbars() {
     </div>
   );
 }
-
-export default CustomizedSnackbars;

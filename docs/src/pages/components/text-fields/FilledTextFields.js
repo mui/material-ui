@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function FilledTextFields() {
+export default function FilledTextFields() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     name: 'Cat in the Hat',
@@ -283,5 +283,3 @@ function FilledTextFields() {
     </form>
   );
 }
-
-export default FilledTextFields;
