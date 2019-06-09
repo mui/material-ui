@@ -16,15 +16,15 @@ export const displayPrint = style({
 });
 
 export const overflow = style ({
-  prop: 'overflow'
+  prop: 'overflow',
 });
 
 export const textOverflow = style({
-  prop: 'textOverflow'
+  prop: 'textOverflow',
 });
 
 export const whiteSpace = style({
-  prop: 'whiteSpace'
+  prop: 'whiteSpace',
 });
 
 export default compose(
