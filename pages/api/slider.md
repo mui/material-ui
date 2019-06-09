@@ -54,7 +54,6 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">marked</span> | Styles applied to the root element if `marks` is provided with at least one label.
 | <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">rtl</span> | Styles applied to the root element if the theme is RTL.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">rail</span> | Styles applied to the rail element.
 | <span class="prop-name">track</span> | Styles applied to the track element.

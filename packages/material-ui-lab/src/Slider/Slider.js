@@ -165,8 +165,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {},
-  /* Styles applied to the root element if the theme is RTL. */
-  rtl: {},
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the rail element. */
@@ -259,9 +257,6 @@ export const styles = theme => ({
       top: 'auto',
       left: 22,
       transform: 'translateY(50%)',
-    },
-    '$vertical$rtl &': {
-      transform: 'translateY(-50%)',
     },
   },
   /* Styles applied to the mark label element if active (depending on the value). */
@@ -416,7 +411,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleRef = useForkRef(sliderRef, ref);
   const previousIndex = React.useRef();
   let axis = orientation;
-  if (theme.direction === 'rtl') {
+  if (theme.direction === 'rtl' && orientation === 'horizontal') {
     axis += '-reverse';
   }
 
@@ -611,7 +606,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           [classes.disabled]: disabled,
           [classes.marked]: marks.length > 0 && marks.some(mark => mark.label),
           [classes.vertical]: orientation === 'vertical',
-          [classes.rtl]: theme.direction === 'rtl',
         },
         className,
       )}
