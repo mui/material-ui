@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import TreeViewContext from './TreeViewContext';
 import { makeStyles } from '@material-ui/core/styles';
-import { setRef, useForkRef } from '@material-ui/core/utils';
+import TreeNode from '../TreeNode';
 
 const useStyles = makeStyles({
   root: {
@@ -15,117 +13,151 @@ const useStyles = makeStyles({
 });
 
 const TreeView = React.forwardRef(function TreeView(props, ref) {
-  const {
-    children: childrenProp,
-    collapseIcon,
-    expanded: expandedProp,
-    expandIcon,
-    defaultLeafIcon,
-    defaultNodeIcon,
-    onExpanded,
-    ...other
-  } = props;
-  const [expanded, setExpanded] = React.useState([]);
-  const [focused, setFocused] = React.useState(null);
-  const treeRef = React.useRef(null);
-  const handleRef = useForkRef(ref, treeRef);
+  const { collapseIcon, expandIcon, defaultLeafIcon, defaultNodeIcon, items, ...other } = props;
   const classes = useStyles();
+  const [expanded, setExpanded] = React.useState([]);
+  const [focusable, setFocusable] = React.useState(null);
+  const [focused, setFocused] = React.useState(null);
+  const firstNode = React.useRef(null);
+  const lastNode = React.useRef(null);
+  const nodeMap = React.useRef({});
+  const topLevelNodes = React.useRef([]);
 
-  const topLevelNodes = [];
-
-  if (expandedProp && expandedProp !== expanded) {
-    setExpanded(expandedProp);
-  }
-
-  const isExpanded = value => {
-    return expanded.indexOf(value) !== -1;
-  };
-
-  const isFocused = value => focused === value;
-
-  const toggle = value => {
+  const toggle = (value = focused) => {
     setExpanded(prevExpanded => {
       let newExpanded;
 
       if (prevExpanded.indexOf(value) !== -1) {
         newExpanded = prevExpanded.filter(id => id !== value);
+        setFocusable(oldFocusable => {
+          const map = nodeMap.current[oldFocusable];
+          if (oldFocusable && (map && map.parent ? map.parent.id : null) === value) {
+            return value;
+          }
+          return oldFocusable;
+        });
       } else {
         newExpanded = [value, ...prevExpanded];
-      }
-
-      if (onExpanded) {
-        onExpanded(newExpanded);
       }
 
       return newExpanded;
     });
   };
 
-  React.useEffect(() => {
-    if (treeRef.current.firstChild) {
-      treeRef.current.firstChild.tabIndex = 0;
-    }
-  }, []);
+  const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
+  const isFocusable = id => focusable === id;
+  const isFocused = id => focused === id;
 
-  const children = React.Children.map(childrenProp, child => {
-    if (!React.isValidElement(child)) {
-      return null;
-    }
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the TreeView component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
-
-    return React.cloneElement(child, {
-      ref: instance => {
-        // #StrictMode ready
-        topLevelNodes.push(ReactDOM.findDOMNode(instance));
-        setRef(child.ref, instance);
-      },
-    });
+  const children = items.map(item => {
+    const { id, ...others } = item;
+    return <TreeNode key={id} id={id} {...others} />;
   });
 
-  const focusNextTopLevelNode = instance => {
-    const currentNodeIndex = topLevelNodes.indexOf(instance);
-    if (currentNodeIndex !== -1 && currentNodeIndex !== topLevelNodes.length - 1) {
-      window.document.activeElement.tabIndex = -1;
-      topLevelNodes[currentNodeIndex + 1].tabIndex = 0;
-      topLevelNodes[currentNodeIndex + 1].focus();
+  React.useEffect(() => {
+    if (items.length > 0) {
+      firstNode.current = items[0];
+    }
+
+    if (firstNode.current && firstNode.current.id) {
+      setFocusable(firstNode.current.id);
+    }
+  }, [items]);
+
+  React.useEffect(() => {
+    const mapNodes = (parentNode, node) => {
+      nodeMap.current[node.id] = { parent: parentNode, children: node.children };
+      if (node.children) {
+        node.children.forEach(child => {
+          mapNodes(node, child);
+        });
+      }
+    };
+
+    nodeMap.current = {};
+    topLevelNodes.current = [];
+    items.forEach(item => {
+      topLevelNodes.current.push(item.id);
+      mapNodes(null, item);
+    });
+  }, [items]);
+
+  React.useEffect(() => {
+    const getLastNode = node => {
+      if (isExpanded(node.id)) {
+        if (node.children && node.children.length > 0) {
+          return getLastNode(node.children[node.children.length - 1]);
+        }
+      }
+      return node;
+    };
+
+    if (items.length > 0) {
+      lastNode.current = getLastNode(items[items.length - 1]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(expanded), items, isExpanded]);
+
+  const focus = id => {
+    if (id) {
+      setFocusable(id);
+    }
+    setFocused(id);
+  };
+
+  const focusNextNode = id => {
+    const map = nodeMap.current[id];
+    if (isExpanded(id)) {
+      focus(map.children[0].id);
+    } else {
+      const parent = map.parent;
+      if (parent && parent.children) {
+        const nodeIndex = parent.children.map(c => c.id).indexOf(id);
+        const nextIndex = nodeIndex + 1;
+        if (parent.children.length > nextIndex) {
+          focus(parent.children[nextIndex].id);
+        }
+      } else {
+        const topLevelNodeIndex = topLevelNodes.current.indexOf(id);
+        if (topLevelNodeIndex !== -1 && topLevelNodeIndex !== topLevelNodes.current.length - 1) {
+          focus(topLevelNodes.current[topLevelNodeIndex + 1]);
+        }
+      }
+    }
+  };
+  const focusPreviousNode = id => {
+    const topLevelNodeIndex = topLevelNodes.current.indexOf(id);
+    if (topLevelNodeIndex !== -1 && topLevelNodeIndex !== 0) {
+      focus(topLevelNodes.current[topLevelNodeIndex - 1]);
+    }
+  };
+  const focusFirstNode = () => {
+    if (firstNode.current && firstNode.current.id) {
+      focus(firstNode.current.id);
     }
   };
 
-  const focusPreviousTopLevelNode = instance => {
-    const currentNodeIndex = topLevelNodes.indexOf(instance);
-    if (currentNodeIndex !== -1 && currentNodeIndex !== 0) {
-      window.document.activeElement.tabIndex = -1;
-      topLevelNodes[currentNodeIndex - 1].tabIndex = 0;
-      topLevelNodes[currentNodeIndex - 1].focus();
-    }
-  };
-
-  const blur = id => {
-    if (id === focused) {
-      setFocused(null);
+  const focusLastNode = () => {
+    if (lastNode.current && lastNode.current.id) {
+      focus(lastNode.current.id);
     }
   };
 
   return (
     <TreeViewContext.Provider
       value={{
-        isExpanded,
         icons: { collapseIcon, defaultNodeIcon, defaultLeafIcon, expandIcon },
         toggle,
-        setFocused,
-        blur,
+        isExpanded,
+        isFocusable,
+        focus,
+        focusNextNode,
+        focusPreviousNode,
+        focusFirstNode,
+        focusLastNode,
         isFocused,
-        focusNextTopLevelNode,
-        focusPreviousTopLevelNode,
       }}
     >
-      <ul role="tree" className={classes.root} ref={handleRef} {...other}>
+      <ul role="tree" className={classes.root} ref={ref} {...other}>
         {children}
       </ul>
     </TreeViewContext.Provider>
@@ -137,9 +169,8 @@ TreeView.propTypes = {
   collapseIcon: PropTypes.node,
   defaultLeafIcon: PropTypes.node,
   defaultNodeIcon: PropTypes.node,
-  expanded: PropTypes.arrayOf(PropTypes.string),
   expandIcon: PropTypes.node,
-  onExpanded: PropTypes.func,
+  items: PropTypes.array,
 };
 
 export default TreeView;
