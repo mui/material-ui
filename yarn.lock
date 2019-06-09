@@ -9652,13 +9652,15 @@ normalize-url@^3.0.0, normalize-url@^3.3.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
 
-notistack@^0.5.0:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.5.1.tgz#a8b62586afdfbe4c2080d67ea034bf784711f520"
-  integrity sha512-Pym0iWYCDFsC3imDL+zx4lWjkeEu6s/mlIDq6m+VRpHPPNFJErNcHCqo+xakvkkpOOR3fz4Y802GtMk8GDFVIA==
+notistack@^0.8.6:
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.8.6.tgz#8c24ab5ea2bce7bf93f3e6e61fab168d23d430c7"
+  integrity sha512-WJ4Mmk/Q9oEqOtQLJGI52GL1OglWd+GPpUFFHolw4rNq5qfAtl58WAUqIJk6A0t6Jr13BYl6B+QpJhEYH7lDBA==
   dependencies:
     classnames "^2.2.6"
+    hoist-non-react-statics "^3.3.0"
     prop-types "^15.6.2"
+    react-is "^16.8.6"
 
 npm-bundled@^1.0.1:
   version "1.0.6"

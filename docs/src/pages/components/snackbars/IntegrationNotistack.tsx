@@ -1,33 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { SnackbarProvider, VariantType, withSnackbar, withSnackbarProps } from 'notistack';
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
 
-class App extends React.Component<withSnackbarProps> {
-  handleClick = () => {
-    this.props.enqueueSnackbar('I love snacks.');
+function MyApp() {
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClick = () => {
+    enqueueSnackbar('I love snacks.');
   };
 
-  handleClickVariant = (variant: VariantType) => () => {
+  const handleClickVariant = (variant: VariantType) => () => {
     // variant could be success, error, warning, info, or default
-    this.props.enqueueSnackbar('This is a warning message!', { variant });
+    enqueueSnackbar('This is a warning message!', { variant });
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <Button onClick={this.handleClick}>Show snackbar</Button>
-        <Button onClick={this.handleClickVariant('warning')}>Show warning snackbar</Button>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <Button onClick={handleClick}>Show snackbar</Button>
+      <Button onClick={handleClickVariant('warning')}>Show warning snackbar</Button>
+    </React.Fragment>
+  );
 }
-
-(App as React.ComponentClass<withSnackbarProps>).propTypes = {
-  enqueueSnackbar: PropTypes.func.isRequired,
-};
-
-const MyApp = withSnackbar(App);
 
 export default function IntegrationNotistack() {
   return (
