@@ -85,13 +85,13 @@ const KeyDownListener = ({ onKeyDown }: { onKeyDown: (e: KeyboardEvent) => void 
 };
 
 export class Calendar extends React.Component<CalendarProps, CalendarState> {
-  public static propTypes: any = {
+  static propTypes: any = {
     renderDay: PropTypes.func,
     shouldDisableDate: PropTypes.func,
     allowKeyboardControl: PropTypes.bool,
   };
 
-  public static defaultProps: Partial<CalendarProps> = {
+  static defaultProps: Partial<CalendarProps> = {
     minDate: new Date('1900-01-01'),
     maxDate: new Date('2100-01-01'),
     disablePast: false,
@@ -99,7 +99,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     allowKeyboardControl: true,
   };
 
-  public static getDerivedStateFromProps(nextProps: CalendarProps, state: CalendarState) {
+  static getDerivedStateFromProps(nextProps: CalendarProps, state: CalendarState) {
     const { utils, date: nextDate } = nextProps;
 
     if (!utils.isEqual(nextDate, state.lastDate)) {
@@ -122,13 +122,13 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     return null;
   }
 
-  public state: CalendarState = {
+  state: CalendarState = {
     slideDirection: 'left',
     currentMonth: this.props.utils.startOfMonth(this.props.date),
     loadingQueue: 0,
   };
 
-  public componentDidMount() {
+  componentDidMount() {
     const { date, minDate, maxDate, utils, disablePast, disableFuture } = this.props;
 
     if (this.shouldDisableDate(date)) {
@@ -142,17 +142,22 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
         shouldDisableDate: this.shouldDisableDate,
       });
 
-      this.onDateSelect(closestEnabledDate, false);
+      this.handleDaySelect(closestEnabledDate, false);
     }
   }
 
-  public onDateSelect = (day: MaterialUiPickersDate, isFinish = true) => {
-    const { date, utils } = this.props;
-
-    this.props.onChange(utils.mergeDateAndTime(day, date), isFinish);
+  private pushToLoadingQueue = () => {
+    const loadingQueue = this.state.loadingQueue + 1;
+    this.setState({ loadingQueue });
   };
 
-  public handleChangeMonth = (newMonth: MaterialUiPickersDate, slideDirection: SlideDirection) => {
+  private popFromLoadingQueue = () => {
+    let loadingQueue = this.state.loadingQueue;
+    loadingQueue = loadingQueue <= 0 ? 0 : loadingQueue - 1;
+    this.setState({ loadingQueue });
+  };
+
+  handleChangeMonth = (newMonth: MaterialUiPickersDate, slideDirection: SlideDirection) => {
     this.setState({ currentMonth: newMonth, slideDirection });
 
     if (this.props.onMonthChange) {
@@ -166,7 +171,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     }
   };
 
-  public validateMinMaxDate = (day: MaterialUiPickersDate) => {
+  validateMinMaxDate = (day: MaterialUiPickersDate) => {
     const { minDate, maxDate, utils, disableFuture, disablePast } = this.props;
     const now = utils.date();
 
@@ -178,7 +183,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     );
   };
 
-  public shouldDisablePrevMonth = () => {
+  shouldDisablePrevMonth = () => {
     const { utils, disablePast, minDate } = this.props;
 
     const now = utils.date();
@@ -189,7 +194,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     return !utils.isBefore(firstEnabledMonth, this.state.currentMonth);
   };
 
-  public shouldDisableNextMonth = () => {
+  shouldDisableNextMonth = () => {
     const { utils, disableFuture, maxDate } = this.props;
 
     const now = utils.date();
@@ -200,13 +205,19 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     return !utils.isAfter(lastEnabledMonth, this.state.currentMonth);
   };
 
-  public shouldDisableDate = (day: MaterialUiPickersDate) => {
+  shouldDisableDate = (day: MaterialUiPickersDate) => {
     const { shouldDisableDate } = this.props;
 
     return this.validateMinMaxDate(day) || Boolean(shouldDisableDate && shouldDisableDate(day));
   };
 
-  public moveToDay = (day: MaterialUiPickersDate) => {
+  handleDaySelect = (day: MaterialUiPickersDate, isFinish = true) => {
+    const { date, utils } = this.props;
+
+    this.props.onChange(utils.mergeDateAndTime(day, date), isFinish);
+  };
+
+  moveToDay = (day: MaterialUiPickersDate) => {
     const { utils } = this.props;
 
     if (day && !this.shouldDisableDate(day)) {
@@ -214,11 +225,11 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
         this.handleChangeMonth(utils.startOfMonth(day), 'left');
       }
 
-      this.onDateSelect(day, false);
+      this.handleDaySelect(day, false);
     }
   };
 
-  public handleKeyDown = (event: KeyboardEvent) => {
+  handleKeyDown = (event: KeyboardEvent) => {
     const { theme, date, utils } = this.props;
 
     runKeyHandler(event, {
@@ -229,7 +240,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     });
   };
 
-  public renderWeeks = () => {
+  private renderWeeks = () => {
     const { utils, classes } = this.props;
     const weeks = utils.getWeekArray(this.state.currentMonth);
 
@@ -240,7 +251,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     ));
   };
 
-  public renderDays = (week: MaterialUiPickersDate[]) => {
+  private renderDays = (week: MaterialUiPickersDate[]) => {
     const { date, renderDay, utils } = this.props;
 
     const now = utils.date();
@@ -272,7 +283,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
           key={day!.toString()}
           disabled={disabled}
           dayInCurrentMonth={isDayInCurrentMonth}
-          onSelect={this.onDateSelect}
+          onSelect={this.handleDaySelect}
         >
           {dayComponent}
         </DayWrapper>
@@ -280,7 +291,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     });
   };
 
-  public render() {
+  render() {
     const { currentMonth, slideDirection } = this.state;
     const {
       classes,
@@ -323,17 +334,6 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
       </React.Fragment>
     );
   }
-
-  public pushToLoadingQueue = () => {
-    const loadingQueue = this.state.loadingQueue + 1;
-    this.setState({ loadingQueue });
-  };
-
-  public popFromLoadingQueue = () => {
-    let loadingQueue = this.state.loadingQueue;
-    loadingQueue = loadingQueue <= 0 ? 0 : loadingQueue - 1;
-    this.setState({ loadingQueue });
-  };
 }
 
 export const styles = (theme: Theme) => ({
