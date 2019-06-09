@@ -15,7 +15,7 @@ export const displayPrint = style({
   }),
 });
 
-export const overflow = style ({
+export const overflow = style({
   prop: 'overflow',
 });
 
