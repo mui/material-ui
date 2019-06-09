@@ -23,13 +23,13 @@ export { TimePicker, KeyboardTimePicker } from './TimePicker';
 
 export { DateTimePicker, KeyboardDateTimePicker } from './DateTimePicker';
 
-export { default as Calendar } from './DatePicker/components/Calendar';
+export { default as Calendar } from './views/Calendar/Calendar';
 
-export { default as Day } from './DatePicker/components/Day';
+export { default as Day } from './views/Calendar/Day';
 
-export { default as TimePickerView } from './TimePicker/components/TimePickerView';
+export { default as TimePickerView } from './views/Clock/ClockView';
 
-export { default as Clock } from './TimePicker/components/Clock';
+export { default as Clock } from './views/Clock/Clock';
 
 export { Picker } from './Picker/Picker';
 

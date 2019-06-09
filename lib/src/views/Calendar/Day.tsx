@@ -3,11 +3,10 @@ import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(
-  (theme: Theme) => ({
+  theme => ({
     day: {
       width: 36,
       height: 36,

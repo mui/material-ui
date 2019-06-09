@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ShallowWrapper } from 'enzyme';
 import { shallow } from '../test-utils';
-import { Clock, ClockProps } from '../../TimePicker/components/Clock';
+import { Clock, ClockProps } from '../../views/Clock/Clock';
 
 const mouseClockEvent = {
   preventDefault: jest.fn(),

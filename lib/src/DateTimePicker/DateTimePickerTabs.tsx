@@ -2,7 +2,6 @@ import * as React from 'react';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
-import { Theme } from '@material-ui/core';
 import { TimeIcon } from '../_shared/icons/TimeIcon';
 import { DateTimePickerView } from './DateTimePicker';
 import { DateRangeIcon } from '../_shared/icons/DateRangeIcon';
@@ -32,7 +31,7 @@ export interface DateTimePickerTabsProps {
 }
 
 export const useStyles = makeStyles(
-  (theme: Theme) => {
+  theme => {
     // prettier-ignore
     const tabsBackground = theme.palette.type === 'light'
     ? theme.palette.primary.main

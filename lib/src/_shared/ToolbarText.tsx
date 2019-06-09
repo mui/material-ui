@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { Theme } from '@material-ui/core';
 import { ExtendMui } from '../typings/extendMui';
 import { makeStyles, fade } from '@material-ui/core/styles';
 
@@ -11,7 +10,7 @@ export interface ToolbarTextProps extends ExtendMui<TypographyProps> {
 }
 
 export const useStyles = makeStyles(
-  (theme: Theme) => {
+  theme => {
     const textColor =
       theme.palette.type === 'light'
         ? theme.palette.primary.contrastText

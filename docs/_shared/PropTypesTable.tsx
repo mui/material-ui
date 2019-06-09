@@ -12,11 +12,10 @@ import {
   TableRow,
   makeStyles,
   Typography,
-  Theme,
   Grid,
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(theme => ({
   header: {
     marginTop: 24,
   },

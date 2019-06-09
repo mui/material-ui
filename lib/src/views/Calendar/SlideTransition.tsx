@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export type SlideDirection = 'right' | 'left';
@@ -13,7 +13,7 @@ interface SlideTransitionProps {
 
 const animationDuration = 350;
 export const useStyles = makeStyles(
-  (theme: Theme) => {
+  theme => {
     const slideTransition = theme.transitions.create('transform', {
       duration: animationDuration,
       easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',

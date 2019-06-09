@@ -92,5 +92,3 @@ export const MonthSelection: React.FC<MonthSelectionProps> = ({
     </div>
   );
 };
-
-export default MonthSelection;

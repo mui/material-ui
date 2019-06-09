@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const positions: Record<number, [number, number]> = {
   0: [0, 40],
@@ -38,7 +38,7 @@ export interface ClockNumberProps {
 }
 
 export const useStyles = makeStyles(
-  (theme: Theme) => {
+  theme => {
     const size = theme.spacing(4);
 
     return {

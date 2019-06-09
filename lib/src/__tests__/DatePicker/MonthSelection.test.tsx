@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Month from '../../DatePicker/components/Month';
+import Month from '../../views/Month/Month';
 import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse } from '../test-utils';
-import { MonthSelection, MonthSelectionProps } from '../../DatePicker/components/MonthSelection';
+import { MonthSelection, MonthSelectionProps } from '../../views/Month/MonthView';
 
 describe('MonthSelection', () => {
   let component: ReactWrapper<MonthSelectionProps>;

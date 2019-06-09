@@ -1,15 +1,15 @@
 import * as React from 'react';
-import Calendar from '../DatePicker/components/Calendar';
-import YearSelection from '../DatePicker/components/YearSelection';
-import MonthSelection from '../DatePicker/components/MonthSelection';
-import { MaterialUiPickersDate } from '..';
-import { useViews } from '../_shared/hooks/useViews';
+import Calendar from '../views/Calendar/Calendar';
 import { useUtils } from '../_shared/hooks/useUtils';
+import { useViews } from '../_shared/hooks/useViews';
 import { makeStyles } from '@material-ui/core/styles';
+import { YearSelection } from '../views/Year/YearView';
+import { MaterialUiPickersDate } from '../typings/date';
+import { MonthSelection } from '../views/Month/MonthView';
+import { TimePickerView } from '../views/Clock/ClockView';
 import { BaseTimePickerProps } from '../TimePicker/TimePicker';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { datePickerDefaultProps } from '../constants/prop-types';
-import { TimePickerView } from '../TimePicker/components/TimePickerView';
 
 const viewsMap = {
   year: YearSelection,

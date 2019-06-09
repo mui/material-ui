@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export interface YearProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ export interface YearProps {
 }
 
 export const useStyles = makeStyles(
-  (theme: Theme) => ({
+  theme => ({
     root: {
       height: theme.spacing(5),
       display: 'flex',

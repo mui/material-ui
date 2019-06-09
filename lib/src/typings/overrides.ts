@@ -1,23 +1,23 @@
+import { styles as ClockStyles } from '../views/Clock/Clock';
+import { useStyles as DayStyles } from '../views/Calendar/Day';
 import { styles as ModalDialogStyles } from '../_shared/ModalDialog';
-import { useStyles as DayStyles } from '../DatePicker/components/Day';
-import { styles as ClockStyles } from '../TimePicker/components/Clock';
-import { styles as PickerToolbarStyles } from '../_shared/PickerToolbar';
+import { styles as CalendarStyles } from '../views/Calendar/Calendar';
+import { useStyles as MuiPickersYearStyles } from '../views/Year/Year';
 import { styles as ToolbarButtonStyles } from '../_shared/ToolbarButton';
-import { styles as CalendarStyles } from '../DatePicker/components/Calendar';
+import { useStyles as MuiPickersMonthStyles } from '../views/Month/Month';
+import { styles as ClockPointerStyles } from '../views/Clock/ClockPointer';
+import { useStyles as PickerToolbarStyles } from '../_shared/PickerToolbar';
+import { useStyles as ClockNumberStyles } from '../views/Clock/ClockNumber';
 import { useStyles as DTTabsStyles } from '../DateTimePicker/DateTimePickerTabs';
-import { useStyles as MuiPickersYearStyles } from '../DatePicker/components/Year';
 import { useStyles as DatePickerRootStyles } from '../DatePicker/DatePickerToolbar';
-import { useStyles as MuiPickersMonthStyles } from '../DatePicker/components/Month';
-import { styles as ClockPointerStyles } from '../TimePicker/components/ClockPointer';
+import { useStyles as MuiPickersYearSelectionStyles } from '../views/Year/YearView';
 import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
-import { useStyles as ClockNumberStyles } from '../TimePicker/components/ClockNumber';
+import { useStyles as CalendarHeaderStyles } from '../views/Calendar/CalendarHeader';
 import { useStyles as DTHeaderStyles } from '../DateTimePicker/DateTimePickerToolbar';
 import { useStyles as TimePickerToolbarStyles } from '../TimePicker/TimePickerToolbar';
-import { useStyles as CalendarHeaderStyles } from '../DatePicker/components/CalendarHeader';
-import { useStyles as SlideTransitionStyles } from '../DatePicker/components/SlideTransition';
+import { useStyles as SlideTransitionStyles } from '../views/Calendar/SlideTransition';
+import { useStyles as MuiPickersMonthSelectionStyles } from '../views/Month/MonthView';
 import { useStyles as MuiPickerDTToolbarStyles } from '../DateTimePicker/DateTimePickerToolbar';
-import { useStyles as MuiPickersYearSelectionStyles } from '../DatePicker/components/YearSelection';
-import { useStyles as MuiPickersMonthSelectionStyles } from '../DatePicker/components/MonthSelection';
 
 type Classes<T> = Partial<
   StyleRules<

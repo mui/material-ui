@@ -2,7 +2,7 @@ import { useUtils } from '../_shared/hooks/useUtils';
 import { DatePickerToolbar } from './DatePickerToolbar';
 import { MaterialUiPickersDate } from '../typings/date';
 import { getFormatByViews } from '../_helpers/date-utils';
-import { OutterCalendarProps } from './components/Calendar';
+import { OutterCalendarProps } from '../views/Calendar/Calendar';
 import { datePickerDefaultProps, ParsableDate } from '../constants/prop-types';
 import { WrappedPurePickerProps, makePurePicker } from '../Picker/WrappedPurePicker';
 import { makeKeyboardPicker, WrappedKeyboardPickerProps } from '../Picker/WrappedKeyboardPicker';

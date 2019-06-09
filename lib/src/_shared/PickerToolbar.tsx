@@ -1,27 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
-import { Theme } from '@material-ui/core';
 import { ExtendMui } from '../typings/extendMui';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export interface PickerToolbarProps extends ExtendMui<ToolbarProps>, WithStyles<typeof styles> {}
-
-const PickerToolbar: React.SFC<PickerToolbarProps> = ({
-  children,
-  className = null,
-  classes,
-  ...other
-}) => {
-  return (
-    <Toolbar className={clsx(classes.toolbar, className)} {...other}>
-      {children}
-    </Toolbar>
-  );
-};
-
-export const styles = (theme: Theme) =>
-  createStyles({
+export const useStyles = makeStyles(
+  theme => ({
     toolbar: {
       display: 'flex',
       flexDirection: 'column',
@@ -33,6 +17,22 @@ export const styles = (theme: Theme) =>
           ? theme.palette.primary.main
           : theme.palette.background.default,
     },
-  });
+  }),
+  { name: 'MuiPickersToolbar' }
+);
 
-export default withStyles(styles, { name: 'MuiPickersToolbar' })(PickerToolbar);
+const PickerToolbar: React.SFC<ExtendMui<ToolbarProps>> = ({
+  children,
+  className = null,
+  ...other
+}) => {
+  const classes = useStyles();
+
+  return (
+    <Toolbar className={clsx(classes.toolbar, className)} {...other}>
+      {children}
+    </Toolbar>
+  );
+};
+
+export default PickerToolbar;

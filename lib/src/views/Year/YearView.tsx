@@ -26,7 +26,7 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersYearSelection' }
 );
 
-const YearSelection: React.FC<YearSelectionProps> = ({
+export const YearSelection: React.FC<YearSelectionProps> = ({
   date,
   onChange,
   onYearChange,
@@ -86,5 +86,3 @@ const YearSelection: React.FC<YearSelectionProps> = ({
     </div>
   );
 };
-
-export default YearSelection;
