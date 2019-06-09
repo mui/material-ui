@@ -45,6 +45,8 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
   );
 }
 
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   const {
     anchor,
@@ -79,7 +81,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   const openRef = React.useRef(open);
 
   // Use a ref so the open value used is always up to date inside useCallback.
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     openRef.current = open;
   }, [open]);
 
@@ -340,14 +342,11 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       document.body.addEventListener('touchstart', handleBodyTouchStart);
       document.body.addEventListener('touchmove', handleBodyTouchMove, { passive: false });
       document.body.addEventListener('touchend', handleBodyTouchEnd);
-      // https://plus.google.com/+PaulIrish/posts/KTwfn1Y2238
-      document.body.addEventListener('touchcancel', handleBodyTouchEnd);
     }
     return () => {
       document.body.removeEventListener('touchstart', handleBodyTouchStart);
-      document.body.removeEventListener('touchmove', handleBodyTouchMove);
+      document.body.removeEventListener('touchmove', handleBodyTouchMove, { passive: false });
       document.body.removeEventListener('touchend', handleBodyTouchEnd);
-      document.body.removeEventListener('touchcancel', handleBodyTouchEnd);
     };
   }, [variant, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);
 
