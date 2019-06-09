@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function FloatingActionButtonZoom() {
+export default function FloatingActionButtonZoom() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -131,5 +131,3 @@ function FloatingActionButtonZoom() {
     </div>
   );
 }
-
-export default FloatingActionButtonZoom;

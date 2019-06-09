@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function FontSize() {
+export default function FontSize() {
   return (
     <Typography component="div">
       <Box fontSize="fontSize" m={1}>
@@ -17,5 +17,3 @@ function FontSize() {
     </Typography>
   );
 }
-
-export default FontSize;

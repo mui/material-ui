@@ -12,7 +12,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function PositionedTooltips() {
+export default function PositionedTooltips() {
   const classes = useStyles();
 
   return (
@@ -78,5 +78,3 @@ function PositionedTooltips() {
     </div>
   );
 }
-
-export default PositionedTooltips;

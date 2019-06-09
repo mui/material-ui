@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ChipsArray() {
+export default function ChipsArray() {
   const classes = useStyles();
   const [chipData, setChipData] = React.useState<ChipData[]>([
     { key: 0, label: 'Angular' },
@@ -64,5 +64,3 @@ function ChipsArray() {
     </Paper>
   );
 }
-
-export default ChipsArray;

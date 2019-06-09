@@ -22,7 +22,7 @@ function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
   return <ListItem button component="a" {...props} />;
 }
 
-function SimpleList() {
+export default function SimpleList() {
   const classes = useStyles();
 
   return (
@@ -53,5 +53,3 @@ function SimpleList() {
     </div>
   );
 }
-
-export default SimpleList;

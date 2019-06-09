@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SmallOutlinedChips() {
+export default function SmallOutlinedChips() {
   const classes = useStyles();
 
   function handleDelete() {
@@ -142,5 +142,3 @@ function SmallOutlinedChips() {
     </div>
   );
 }
-
-export default SmallOutlinedChips;

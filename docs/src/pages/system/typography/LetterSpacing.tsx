@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function LetterSpacing() {
+export default function LetterSpacing() {
   return (
     <Typography component="div">
       <Box letterSpacing={6} m={1}>
@@ -14,5 +14,3 @@ function LetterSpacing() {
     </Typography>
   );
 }
-
-export default LetterSpacing;

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ComplexGrid() {
+export default function ComplexGrid() {
   const classes = useStyles();
 
   return (
@@ -68,5 +68,3 @@ function ComplexGrid() {
     </div>
   );
 }
-
-export default ComplexGrid;

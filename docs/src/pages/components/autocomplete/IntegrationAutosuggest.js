@@ -134,7 +134,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function IntegrationAutosuggest() {
+export default function IntegrationAutosuggest() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [state, setState] = React.useState({
@@ -228,5 +228,3 @@ function IntegrationAutosuggest() {
     </div>
   );
 }
-
-export default IntegrationAutosuggest;

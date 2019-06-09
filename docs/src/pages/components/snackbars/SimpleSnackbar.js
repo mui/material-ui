@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleSnackbar() {
+export default function SimpleSnackbar() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -60,5 +60,3 @@ function SimpleSnackbar() {
     </div>
   );
 }
-
-export default SimpleSnackbar;

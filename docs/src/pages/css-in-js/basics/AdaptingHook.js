@@ -32,7 +32,7 @@ MyButton.propTypes = {
   color: PropTypes.oneOf(['red', 'blue']).isRequired,
 };
 
-function AdaptingHook() {
+export default function AdaptingHook() {
   return (
     <React.Fragment>
       <MyButton color="red">Red</MyButton>
@@ -40,5 +40,3 @@ function AdaptingHook() {
     </React.Fragment>
   );
 }
-
-export default AdaptingHook;

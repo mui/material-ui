@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Chips() {
+export default function Chips() {
   const classes = useStyles();
 
   function handleDelete() {
@@ -119,5 +119,3 @@ function Chips() {
     </div>
   );
 }
-
-export default Chips;

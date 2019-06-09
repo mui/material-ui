@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function BadgeVisibility() {
+export default function BadgeVisibility() {
   const classes = useStyles();
   const [invisible, setInvisible] = React.useState(false);
 
@@ -61,5 +61,3 @@ function BadgeVisibility() {
     </div>
   );
 }
-
-export default BadgeVisibility;

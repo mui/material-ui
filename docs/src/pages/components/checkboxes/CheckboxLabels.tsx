@@ -19,7 +19,7 @@ const GreenCheckbox = withStyles({
   checked: {},
 })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
 
-function CheckboxLabels() {
+export default function CheckboxLabels() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -91,5 +91,3 @@ function CheckboxLabels() {
     </FormGroup>
   );
 }
-
-export default CheckboxLabels;

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function DialogSelect() {
+export default function DialogSelect() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     open: false,
@@ -95,5 +95,3 @@ function DialogSelect() {
     </div>
   );
 }
-
-export default DialogSelect;

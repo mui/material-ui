@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ComposedTextField() {
+export default function ComposedTextField() {
   const [labelWidth, setLabelWidth] = React.useState(0);
   const [name, setName] = React.useState('Composed TextField');
   const labelRef = React.useRef(null);
@@ -80,5 +80,3 @@ function ComposedTextField() {
     </div>
   );
 }
-
-export default ComposedTextField;

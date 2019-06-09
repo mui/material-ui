@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function TextAlignment() {
+export default function TextAlignment() {
   return (
     <Typography component="div">
       <Box textAlign="justify" m={1}>
@@ -21,5 +21,3 @@ function TextAlignment() {
     </Typography>
   );
 }
-
-export default TextAlignment;

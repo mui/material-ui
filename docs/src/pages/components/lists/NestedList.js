@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function NestedList() {
+export default function NestedList() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -75,5 +75,3 @@ function NestedList() {
     </List>
   );
 }
-
-export default NestedList;

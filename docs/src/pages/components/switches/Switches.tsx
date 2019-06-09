@@ -1,7 +1,7 @@
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
 
-function Switches() {
+export default function Switches() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -38,5 +38,3 @@ function Switches() {
     </div>
   );
 }
-
-export default Switches;

@@ -49,7 +49,7 @@ interface State {
   currency: string;
 }
 
-function OutlinedTextFields() {
+export default function OutlinedTextFields() {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     name: 'Cat in the Hat',
@@ -292,5 +292,3 @@ function OutlinedTextFields() {
     </form>
   );
 }
-
-export default OutlinedTextFields;

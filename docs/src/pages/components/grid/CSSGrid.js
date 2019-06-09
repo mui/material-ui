@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CSSGrid() {
+export default function CSSGrid() {
   const classes = useStyles();
 
   return (
@@ -78,5 +78,3 @@ function CSSGrid() {
     </div>
   );
 }
-
-export default CSSGrid;

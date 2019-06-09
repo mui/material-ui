@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleZoom() {
+export default function SimpleZoom() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
@@ -59,5 +59,3 @@ function SimpleZoom() {
     </div>
   );
 }
-
-export default SimpleZoom;

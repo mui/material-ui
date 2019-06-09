@@ -105,7 +105,7 @@ const theme = createMuiTheme({
   },
 });
 
-function CustomizedInputs() {
+export default function CustomizedInputs() {
   const classes = useStyles();
 
   return (
@@ -151,5 +151,3 @@ function CustomizedInputs() {
     </div>
   );
 }
-
-export default CustomizedInputs;

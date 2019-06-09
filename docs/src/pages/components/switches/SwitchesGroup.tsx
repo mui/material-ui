@@ -6,7 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Switch from '@material-ui/core/Switch';
 
-function SwitchesGroup() {
+export default function SwitchesGroup() {
   const [state, setState] = React.useState({
     gilad: true,
     jason: false,
@@ -40,5 +40,3 @@ function SwitchesGroup() {
     </FormControl>
   );
 }
-
-export default SwitchesGroup;

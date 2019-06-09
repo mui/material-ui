@@ -38,7 +38,7 @@ function getStepContent(step: number) {
   }
 }
 
-function HorizontalLinearStepper() {
+export default function HorizontalLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
@@ -147,5 +147,3 @@ function HorizontalLinearStepper() {
     </div>
   );
 }
-
-export default HorizontalLinearStepper;

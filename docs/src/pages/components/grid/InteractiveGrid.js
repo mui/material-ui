@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function InteractiveGrid() {
+export default function InteractiveGrid() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState('row');
   const [justify, setJustify] = React.useState('center');
@@ -143,5 +143,3 @@ function InteractiveGrid() {
     </Grid>
   );
 }
-
-export default InteractiveGrid;

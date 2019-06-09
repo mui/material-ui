@@ -27,7 +27,7 @@ const MyButton = styled(({ color, ...other }: MyButtonProps) => <Button {...othe
   margin: 8,
 });
 
-function AdaptingStyledComponents() {
+export default function AdaptingStyledComponents() {
   return (
     <React.Fragment>
       <MyButton color="red">Red</MyButton>
@@ -35,5 +35,3 @@ function AdaptingStyledComponents() {
     </React.Fragment>
   );
 }
-
-export default AdaptingStyledComponents;

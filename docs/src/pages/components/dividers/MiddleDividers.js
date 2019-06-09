@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function MiddleDividers() {
+export default function MiddleDividers() {
   const classes = useStyles();
 
   return (
@@ -67,5 +67,3 @@ function MiddleDividers() {
     </div>
   );
 }
-
-export default MiddleDividers;

@@ -14,7 +14,7 @@ function GrowTransition(props: TransitionProps) {
   return <Grow {...props} />;
 }
 
-function TransitionsSnackbar() {
+export default function TransitionsSnackbar() {
   const [state, setState] = React.useState({
     open: false,
     Transition: Fade,
@@ -51,5 +51,3 @@ function TransitionsSnackbar() {
     </div>
   );
 }
-
-export default TransitionsSnackbar;

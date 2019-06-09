@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SpacingGrid() {
+export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
 
@@ -67,5 +67,3 @@ function SpacingGrid() {
     </Grid>
   );
 }
-
-export default SpacingGrid;

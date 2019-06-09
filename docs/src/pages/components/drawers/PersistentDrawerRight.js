@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function PersistentDrawerRight() {
+export default function PersistentDrawerRight() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -179,5 +179,3 @@ function PersistentDrawerRight() {
     </div>
   );
 }
-
-export default PersistentDrawerRight;

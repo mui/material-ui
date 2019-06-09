@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-function TriggersTooltips() {
+export default function TriggersTooltips() {
   const [open, setOpen] = React.useState(false);
 
   function handleTooltipClose() {
@@ -56,5 +56,3 @@ function TriggersTooltips() {
     </div>
   );
 }
-
-export default TriggersTooltips;

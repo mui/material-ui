@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function FontWeight() {
+export default function FontWeight() {
   return (
     <Typography component="div">
       <Box fontWeight="fontWeightLight" m={1}>
@@ -23,5 +23,3 @@ function FontWeight() {
     </Typography>
   );
 }
-
-export default FontWeight;

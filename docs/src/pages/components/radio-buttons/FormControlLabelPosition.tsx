@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-function FormControlLabelPosition() {
+export default function FormControlLabelPosition() {
   const [value, setValue] = React.useState('female');
 
   function handleChange(event: React.ChangeEvent<unknown>) {
@@ -44,5 +44,3 @@ function FormControlLabelPosition() {
     </FormControl>
   );
 }
-
-export default FormControlLabelPosition;

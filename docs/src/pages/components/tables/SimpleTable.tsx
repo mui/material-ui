@@ -32,7 +32,7 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-function SimpleTable() {
+export default function SimpleTable() {
   const classes = useStyles();
 
   return (
@@ -64,5 +64,3 @@ function SimpleTable() {
     </Paper>
   );
 }
-
-export default SimpleTable;

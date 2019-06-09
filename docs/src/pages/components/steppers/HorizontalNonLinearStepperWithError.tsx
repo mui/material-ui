@@ -38,7 +38,7 @@ function getStepContent(step: number) {
   }
 }
 
-function HorizontalNonLinearStepperWithError() {
+export default function HorizontalNonLinearStepperWithError() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
@@ -158,5 +158,3 @@ function HorizontalNonLinearStepperWithError() {
     </div>
   );
 }
-
-export default HorizontalNonLinearStepperWithError;

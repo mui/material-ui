@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ScrollableTabsButtonAuto() {
+export default function ScrollableTabsButtonAuto() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -64,5 +64,3 @@ function ScrollableTabsButtonAuto() {
     </div>
   );
 }
-
-export default ScrollableTabsButtonAuto;

@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleTabs() {
+export default function SimpleTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -48,5 +48,3 @@ function SimpleTabs() {
     </div>
   );
 }
-
-export default SimpleTabs;

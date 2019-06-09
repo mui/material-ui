@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SwitchListSecondary() {
+export default function SwitchListSecondary() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(['wifi']);
 
@@ -68,5 +68,3 @@ function SwitchListSecondary() {
     </List>
   );
 }
-
-export default SwitchListSecondary;

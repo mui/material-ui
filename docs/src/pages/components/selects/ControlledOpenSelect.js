@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ControlledOpenSelect() {
+export default function ControlledOpenSelect() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
   const [open, setOpen] = React.useState(false);
@@ -63,5 +63,3 @@ function ControlledOpenSelect() {
     </form>
   );
 }
-
-export default ControlledOpenSelect;

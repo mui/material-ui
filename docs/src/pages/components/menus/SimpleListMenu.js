@@ -21,7 +21,7 @@ const options = [
   'Hide all notification content',
 ];
 
-function SimpleListMenu() {
+export default function SimpleListMenu() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -73,5 +73,3 @@ function SimpleListMenu() {
     </div>
   );
 }
-
-export default SimpleListMenu;

@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-function SwipeableTemporaryDrawer() {
+export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -130,5 +130,3 @@ function SwipeableTemporaryDrawer() {
     </div>
   );
 }
-
-export default SwipeableTemporaryDrawer;

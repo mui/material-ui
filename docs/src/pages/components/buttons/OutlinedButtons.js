@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function OutlinedButtons() {
+export default function OutlinedButtons() {
   const classes = useStyles();
 
   return (
@@ -49,5 +49,3 @@ function OutlinedButtons() {
     </div>
   );
 }
-
-export default OutlinedButtons;

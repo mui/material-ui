@@ -31,7 +31,7 @@ function intersection(a, b) {
   return a.filter(value => b.indexOf(value) !== -1);
 }
 
-function TransferList() {
+export default function TransferList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([0, 1, 2, 3]);
@@ -151,5 +151,3 @@ function TransferList() {
     </Grid>
   );
 }
-
-export default TransferList;

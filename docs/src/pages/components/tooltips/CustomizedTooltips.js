@@ -186,7 +186,7 @@ const HtmlTooltip = withStyles(theme => ({
   },
 }))(Tooltip);
 
-function CustomizedTooltips() {
+export default function CustomizedTooltips() {
   return (
     <div>
       <LightTooltip title="Add">
@@ -212,5 +212,3 @@ function CustomizedTooltips() {
     </div>
   );
 }
-
-export default CustomizedTooltips;

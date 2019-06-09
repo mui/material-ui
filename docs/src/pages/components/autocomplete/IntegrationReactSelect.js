@@ -270,7 +270,7 @@ const components = {
   ValueContainer,
 };
 
-function IntegrationReactSelect() {
+export default function IntegrationReactSelect() {
   const classes = useStyles();
   const theme = useTheme();
   const [single, setSingle] = React.useState(null);
@@ -337,5 +337,3 @@ function IntegrationReactSelect() {
     </div>
   );
 }
-
-export default IntegrationReactSelect;

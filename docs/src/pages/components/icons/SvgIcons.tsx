@@ -30,7 +30,7 @@ function HomeIcon(props: SvgIconProps) {
   );
 }
 
-function SvgIcons() {
+export default function SvgIcons() {
   const classes = useStyles();
 
   return (
@@ -67,5 +67,3 @@ function SvgIcons() {
     </div>
   );
 }
-
-export default SvgIcons;

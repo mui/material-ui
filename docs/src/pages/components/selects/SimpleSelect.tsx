@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SimpleSelect() {
+export default function SimpleSelect() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     age: '',
@@ -258,5 +258,3 @@ function SimpleSelect() {
     </form>
   );
 }
-
-export default SimpleSelect;

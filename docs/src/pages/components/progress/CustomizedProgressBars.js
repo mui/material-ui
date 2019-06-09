@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CustomizedProgressBars() {
+export default function CustomizedProgressBars() {
   const classes = useStyles();
 
   return (
@@ -96,5 +96,3 @@ function CustomizedProgressBars() {
     </div>
   );
 }
-
-export default CustomizedProgressBars;
