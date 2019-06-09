@@ -25,7 +25,7 @@ By order of demos:
 1. You can generates a mark for each step with `mark={true}`.
 2. You can have custom marks by providing a rich array to the `mark` prop.
 3. You can restrict the possible values with `step={null}`.
-4. You can force the thumb label to be always visible with `thumbLabelDisplay="on"`.
+4. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}
 

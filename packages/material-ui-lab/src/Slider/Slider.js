@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { useTheme, withStyles, fade, lighten } from '@material-ui/core/styles';
 import { useForkRef, ownerWindow } from '@material-ui/core/utils';
 import { chainPropTypes } from '@material-ui/utils';
-import ThumbLabel from './ThumbLabel';
+import ValueLabel from './ValueLabel';
 
 function asc(a, b) {
   return a - b;
@@ -234,7 +234,7 @@ export const styles = theme => ({
   /* Styles applied to the thumb element if it's active. */
   active: {},
   /* Styles applied to the thumb label element. */
-  thumbLabel: {},
+  valueLabel: {},
   /* Styles applied to the mark element. */
   mark: {
     position: 'absolute',
@@ -290,10 +290,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     onMouseDown,
     orientation = 'horizontal',
     step = 1,
-    ThumbLabelComponent = ThumbLabel,
-    thumbLabelDisplay = 'active',
-    thumbLabelFormat = Identity,
     value: valueProp,
+    ValueLabelComponent = ValueLabel,
+    valueLabelDisplay = 'active',
+    valueLabelFormat = Identity,
     ...other
   } = props;
   const theme = useTheme();
@@ -652,11 +652,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         const style = axisProps[axis].offset(percent);
 
         return (
-          <ThumbLabelComponent
+          <ValueLabelComponent
             key={index}
-            thumbLabelFormat={thumbLabelFormat}
-            thumbLabelDisplay={thumbLabelDisplay}
-            className={classes.thumbLabel}
+            valueLabelFormat={valueLabelFormat}
+            valueLabelDisplay={valueLabelDisplay}
+            className={classes.valueLabel}
             value={value}
             index={index}
             open={open === index || active === index}
@@ -683,7 +683,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               onMouseOver={handleMouseOver}
               onMouseLeave={handleMouseLeave}
             />
-          </ThumbLabelComponent>
+          </ValueLabelComponent>
         );
       })}
     </Component>
@@ -789,26 +789,26 @@ Slider.propTypes = {
    */
   step: PropTypes.number,
   /**
-   * The thumb label.
-   */
-  ThumbLabelComponent: PropTypes.elementType,
-  /**
-   * Show thumb label.
-   */
-  thumbLabelDisplay: PropTypes.oneOf(['on', 'active', 'off']),
-  /**
-   * The format function the thumb label's value.
-   *
-   * When a function is provided, it should have the following signature:
-   *
-   * - {number} value The thumb label's value to format
-   * - {number} index The thumb label's index to format
-   */
-  thumbLabelFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
    * The value of the slider.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  /**
+   * The value label.
+   */
+  ValueLabelComponent: PropTypes.elementType,
+  /**
+   * Show value label.
+   */
+  valueLabelDisplay: PropTypes.oneOf(['on', 'active', 'off']),
+  /**
+   * The format function the value label's value.
+   *
+   * When a function is provided, it should have the following signature:
+   *
+   * - {number} value The value label's value to format
+   * - {number} index The value label's index to format
+   */
+  valueLabelFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 export default withStyles(styles, { name: 'MuiSlider' })(Slider);

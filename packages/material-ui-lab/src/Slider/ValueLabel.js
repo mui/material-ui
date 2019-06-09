@@ -44,19 +44,19 @@ const styles = theme => ({
 /**
  * @ignore - internal component.
  */
-function ThumbLabel(props) {
+function ValueLabel(props) {
   const {
     children,
     classes,
     className,
     index,
     open,
-    thumbLabelDisplay,
-    thumbLabelFormat,
     value,
+    valueLabelDisplay,
+    valueLabelFormat,
   } = props;
 
-  if (thumbLabelDisplay === 'off') {
+  if (valueLabelDisplay === 'off') {
     return children;
   }
 
@@ -66,7 +66,7 @@ function ThumbLabel(props) {
       className: clsx(
         children.props.className,
         {
-          [classes.open]: open || thumbLabelDisplay === 'on',
+          [classes.open]: open || valueLabelDisplay === 'on',
         },
         classes.thumb,
       ),
@@ -74,13 +74,13 @@ function ThumbLabel(props) {
     <span className={clsx(classes.offset, className)}>
       <span className={classes.circle}>
         <span className={classes.label}>
-          {typeof thumbLabelFormat === 'function'
-            ? thumbLabelFormat(value, index)
-            : thumbLabelFormat}
+          {typeof valueLabelFormat === 'function'
+            ? valueLabelFormat(value, index)
+            : valueLabelFormat}
         </span>
       </span>
     </span>,
   );
 }
 
-export default withStyles(styles, { name: 'PrivateThumbLabel' })(ThumbLabel);
+export default withStyles(styles, { name: 'PrivateValueLabel' })(ValueLabel);

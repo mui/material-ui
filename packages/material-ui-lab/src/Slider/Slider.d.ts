@@ -6,7 +6,7 @@ export interface Mark {
   label?: React.ReactNode;
 }
 
-export interface ThumbLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
   open: boolean;
   children: React.ReactElement;
@@ -32,10 +32,10 @@ export interface SliderProps
   onChangeCommitted?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
   orientation?: 'horizontal' | 'vertical';
   step?: number | null;
-  ThumbLabelComponent?: React.ElementType<ThumbLabelProps>;
-  thumbLabelDisplay?: 'on' | 'active' | 'off';
-  thumbLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
   value?: number | number[];
+  ValueLabelComponent?: React.ElementType<ValueLabelProps>;
+  valueLabelDisplay?: 'on' | 'active' | 'off';
+  valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }
 
 export type SliderClassKey =
@@ -47,7 +47,7 @@ export type SliderClassKey =
   | 'rail'
   | 'track'
   | 'thumb'
-  | 'thumbLabel'
+  | 'valueLabel'
   | 'mark'
   | 'markActive'
   | 'markLabel'

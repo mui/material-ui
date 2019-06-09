@@ -48,7 +48,7 @@ export default function InputSlider() {
           <Slider
             value={value}
             onChange={handleSliderChange}
-            thumbLabelDisplay="off"
+            valueLabelDisplay="off"
             aria-labelledby="input-slider"
           />
         </Grid>

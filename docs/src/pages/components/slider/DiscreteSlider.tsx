@@ -37,7 +37,7 @@ function valuetext(value: number) {
   return `${value}°C`;
 }
 
-function thumbLabelFormat(value: number) {
+function valueLabelFormat(value: number) {
   return marks.findIndex(mark => mark.value === value) + 1;
 }
 
@@ -67,7 +67,7 @@ export default function DiscreteSlider() {
       />
       <Slider
         defaultValue={20}
-        thumbLabelFormat={thumbLabelFormat}
+        valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         step={null}
@@ -80,7 +80,7 @@ export default function DiscreteSlider() {
         aria-labelledby="discrete-slider"
         step={10}
         marks={marks}
-        thumbLabelDisplay="on"
+        valueLabelDisplay="on"
         className={classes.margin}
       />
     </div>

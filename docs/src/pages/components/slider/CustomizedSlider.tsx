@@ -19,7 +19,7 @@ interface Props {
   value: number;
 }
 
-function ThumbLabelComponent(props: Props) {
+function ValueLabelComponent(props: Props) {
   const { children, open, value } = props;
 
   const popperRef = React.useRef<PopperJs | null>(null);
@@ -44,7 +44,7 @@ function ThumbLabelComponent(props: Props) {
   );
 }
 
-ThumbLabelComponent.propTypes = {
+ValueLabelComponent.propTypes = {
   children: PropTypes.element.isRequired,
   open: PropTypes.bool.isRequired,
   value: PropTypes.number.isRequired,
@@ -89,7 +89,7 @@ const IOSSlider = withStyles({
       },
     },
   },
-  thumbLabel: {
+  valueLabel: {
     left: 'calc(-50% + 11px)',
     top: -22,
     '& *': {
@@ -131,7 +131,7 @@ const StyledSlider = withStyles({
       boxShadow: 'inherit',
     },
   },
-  thumbLabel: {
+  valueLabel: {
     left: 'calc(-50% + 4px)',
   },
   track: {
@@ -149,10 +149,10 @@ export default function CustomizedSlider() {
 
   return (
     <Paper className={classes.root}>
-      <IOSSlider aria-label="iOS slider" defaultValue={60} marks={marks} thumbLabelDisplay="on" />
+      <IOSSlider aria-label="iOS slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
       <StyledSlider aria-label="Pratto slider" defaultValue={20} />
       <Slider
-        ThumbLabelComponent={ThumbLabelComponent}
+        ValueLabelComponent={ValueLabelComponent}
         aria-label="Custom thumb label"
         defaultValue={20}
       />
