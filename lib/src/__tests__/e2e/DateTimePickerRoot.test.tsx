@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
-import { mount, utilsToUse } from '../test-utils';
+import { clickOKButton } from './commands';
+import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
 import { DateTimePicker, DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
 
 describe('e2e - DateTimePicker', () => {
@@ -27,18 +28,19 @@ describe('e2e - DateTimePicker', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should render year selection', () => {
+  it('Should display year view', () => {
     component
       .find('ToolbarButton')
       .first()
       .simulate('click');
 
     expect(component.find('Year').length).toBe(201);
-
     component
       .find('Year')
       .at(1)
       .simulate('click');
+
+    clickOKButton(component);
     expect(onChangeMock).toHaveBeenCalled();
   });
 
@@ -64,11 +66,7 @@ describe('e2e - DateTimePicker', () => {
       .at(5)
       .simulate('click');
 
-    if (process.env.UTILS === 'moment') {
-      expect(onChangeMock).toHaveBeenCalled();
-      return;
-    }
-
-    expect(onChangeMock).toHaveBeenCalledWith(utilsToUse.date('2018-01-01T12:00:00.000Z'));
+    clickOKButton(component);
+    toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T12:00:00.000Z')]);
   });
 });

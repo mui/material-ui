@@ -5,6 +5,7 @@ import GithubIcon from '_shared/svgIcons/GithubIcon';
 import React, { useState, useCallback, useMemo, useContext } from 'react';
 import { copy } from 'utils/helpers';
 import { GITHUB_EDIT_URL } from '_constants';
+import { useUtils } from '@material-ui/pickers';
 import { replaceGetFormatStrings } from 'utils/utilsService';
 import { withSnackbar, InjectedNotistackProps } from 'notistack';
 import { withUtilsService, UtilsContext } from './UtilsServiceContext';
@@ -66,6 +67,7 @@ function Example({ source, enqueueSnackbar }: Props) {
     );
   }
 
+  const utils = useUtils();
   const classes = useStyles();
   const currentLib = useContext(UtilsContext).lib;
   const [expanded, setExpanded] = useState(false);
@@ -121,7 +123,10 @@ function Example({ source, enqueueSnackbar }: Props) {
           </IconButton>
         </Tooltip>
 
-        <Component />
+        <Component
+          // remount component when utils changed
+          key={utils.constructor.name}
+        />
       </div>
     </>
   );

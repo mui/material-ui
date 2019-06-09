@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
+import { clickOKButton } from './commands';
 import { mount, utilsToUse } from '../test-utils';
 import { DatePicker, DatePickerProps } from '../../DatePicker';
 
@@ -12,6 +13,7 @@ describe('e2e - DatePicker', () => {
     component = mount(
       <DatePicker
         open
+        autoOk
         openTo="date"
         animateYearScrolling={false}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
@@ -48,6 +50,8 @@ describe('e2e - DatePicker', () => {
       .find('Year')
       .at(1)
       .simulate('click');
+
+    clickOKButton(component);
     expect(onChangeMock).toHaveBeenCalled();
   });
 });
@@ -78,7 +82,7 @@ describe('e2e -- DatePicker views year', () => {
       .at(1)
       .simulate('click');
 
-    expect(onChangeMock).toHaveBeenCalled();
+    clickOKButton(component);
     expect(onYearChangeMock).toHaveBeenCalled();
   });
 });
@@ -93,6 +97,7 @@ describe('e2e -- DatePicker views year and month', () => {
     component = mount(
       <DatePicker
         open
+        autoOk
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         onMonthChange={onMonthChangeMock}
@@ -109,7 +114,6 @@ describe('e2e -- DatePicker views year and month', () => {
       .first()
       .simulate('click');
 
-    expect(onChangeMock).toHaveBeenCalled();
     expect(onMonthChangeMock).toHaveBeenCalled();
   });
 
@@ -135,6 +139,7 @@ describe('e2e -- DatePicker views year and month open from year', () => {
     component = mount(
       <DatePicker
         open
+        autoOk
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         views={['year', 'month']}

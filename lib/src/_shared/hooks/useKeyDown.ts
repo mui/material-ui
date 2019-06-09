@@ -29,5 +29,5 @@ export function useKeyDown(active: boolean, keyHandlers: KeyHandlers) {
         window.removeEventListener('keydown', handleKeyDown);
       };
     }
-  }, [active]);
+  }, [active, keyHandlers]);
 }

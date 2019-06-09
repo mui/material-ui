@@ -7,7 +7,7 @@ export const UtilsContext = React.createContext<UtilsService>(createUtilsService
 export const withUtilsService = <P extends UtilsService>(Component: React.ComponentType<P>) => {
   const withUtilsService: React.SFC<Omit<P, keyof UtilsService>> = props => (
     <UtilsContext.Consumer>
-      {service => <Component {...service} {...props as any} />}
+      {service => <Component {...service} {...(props as any)} />}
     </UtilsContext.Consumer>
   );
 

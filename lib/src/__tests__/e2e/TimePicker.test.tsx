@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
+import { clickOKButton } from './commands';
 import { TimePicker, TimePickerProps } from '../../TimePicker/TimePicker';
 import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
 
@@ -28,24 +29,20 @@ describe('e2e - TimePicker', () => {
 
   it('Should submit onChange on moving', () => {
     component.find('Clock div[role="menu"]').simulate('mouseMove', fakeTouchEvent);
-
-    expect(onChangeMock).toHaveBeenCalled();
-  });
-
-  it('Should submit hourview (mouse move)', () => {
-    component
-      .find('WithStyles(ToolbarButton)')
-      .at(1)
-      .simulate('click');
     component.find('Clock div[role="menu"]').simulate('mouseUp', fakeTouchEvent);
 
-    expect(onChangeMock).toHaveBeenCalled();
+    expect(
+      component
+        .find('WithStyles(ToolbarButton)')
+        .at(0)
+        .text()
+    ).toBe('11');
   });
 
   it('Should change minutes (touch)', () => {
     component
       .find('WithStyles(ToolbarButton)')
-      .at(2)
+      .at(1)
       .simulate('click');
 
     component.find('Clock div[role="menu"]').simulate('touchMove', {
@@ -58,19 +55,12 @@ describe('e2e - TimePicker', () => {
       ],
     });
 
-    expect(onChangeMock).toHaveBeenCalled();
-
-    component.find('Clock div[role="menu"]').simulate('touchEnd', {
-      buttons: 1,
-      changedTouches: [
-        {
-          clientX: 20,
-          clientY: 15,
-        },
-      ],
-    });
-
-    expect(onChangeMock).toHaveBeenCalled();
+    expect(
+      component
+        .find('WithStyles(ToolbarButton)')
+        .at(1)
+        .text()
+    ).toBe('53');
   });
 
   it('Should change meridiem mode', () => {
@@ -79,6 +69,7 @@ describe('e2e - TimePicker', () => {
       .at(3)
       .simulate('click');
 
+    clickOKButton(component);
     toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T12:00:00.000')]);
   });
 });
@@ -124,6 +115,7 @@ describe('e2e - TimePicker with seconds', () => {
       ],
     });
 
+    clickOKButton(component);
     toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T00:00:53.000')]);
   });
 });

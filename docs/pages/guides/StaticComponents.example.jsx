@@ -9,7 +9,6 @@ function StaticPickers() {
     { value, onChange: handleDateChange },
     {
       getDefaultFormat: () => 'MM/dd/yyyy',
-      getValidationError: () => null,
     }
   );
 

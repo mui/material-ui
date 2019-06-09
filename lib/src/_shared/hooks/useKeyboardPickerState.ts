@@ -40,7 +40,7 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
     }
   }, [format, props, props.value, utils]);
 
-  function handleChange(date: MaterialUiPickersDate) {
+  function handleKeyboardChange(date: MaterialUiPickersDate) {
     const dateString = date === null ? null : utils.format(date, format);
 
     props.onChange(date, dateString);
@@ -48,13 +48,13 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
 
   const { inputProps: innerInputProps, wrapperProps, pickerProps } = usePickerState(
     // Extend props interface
-    { ...props, value: dateValue, onChange: handleChange },
+    { ...props, value: dateValue, onChange: handleKeyboardChange },
     options
   );
 
   const inputProps = useMemo(
     () => ({
-      ...innerInputProps,
+      ...innerInputProps, // reuse validation and open/close logic
       format: wrapperProps.format,
       inputValue: props.inputValue || innerInputValue,
       onChange: (value: string) => {

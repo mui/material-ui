@@ -14,7 +14,7 @@ export type WrappedPurePickerProps = DateValidationProps &
 export function makePurePicker<T extends any>({
   useOptions,
   ToolbarComponent,
-}: MakePickerOptions<T>): React.FC<WrappedPurePickerProps & T> {
+}: MakePickerOptions): React.FC<WrappedPurePickerProps & T> {
   function WrappedPurePicker(props: WrappedPurePickerProps & T) {
     const {
       allowKeyboardControl,
