@@ -165,7 +165,7 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Can we generate the @material-ui/core build?
+          name: Can we generate the @material-ui/core umd build?
           command: yarn workspace @material-ui/core build:umd
       - prepare_chrome_headless
       - run:
@@ -213,7 +213,7 @@ workflows:
       - test_browser:
           requires:
             - checkout
-      - test_build:
+      - test_production:
           requires:
             - checkout
       - test_regressions:
