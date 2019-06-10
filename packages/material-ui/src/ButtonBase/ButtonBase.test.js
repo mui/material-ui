@@ -113,6 +113,7 @@ describe('<ButtonBase />', () => {
         'onMouseDown',
         'onMouseLeave',
         'onMouseUp',
+        'onDragEnd',
         'onTouchEnd',
         'onTouchStart',
       ];
@@ -232,6 +233,26 @@ describe('<ButtonBase />', () => {
         wrapper.update();
 
         assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 3);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 0);
+      });
+
+      it('should start the ripple when the mouse is pressed 4', () => {
+        act(() => {
+          wrapper.simulate('mouseDown');
+        });
+        wrapper.update();
+
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 3);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 1);
+      });
+
+      it('should stop the ripple when dragging has finished', () => {
+        act(() => {
+          wrapper.simulate('dragEnd');
+        });
+        wrapper.update();
+
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 4);
         assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 0);
       });
     });
