@@ -182,6 +182,17 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
+  const handleLeftArrow = id => {
+    if (isExpanded(id)) {
+      toggle(id);
+    } else {
+      const parent = nodeMap.current[id].parent;
+      if (parent) {
+        focus(parent.id);
+      }
+    }
+  };
+
   return (
     <TreeViewContext.Provider
       value={{
@@ -195,6 +206,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         focusFirstNode,
         focusLastNode,
         isFocused,
+        handleLeftArrow,
       }}
     >
       <ul role="tree" className={classes.root} ref={ref} {...other}>

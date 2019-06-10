@@ -51,6 +51,7 @@ function TreeNode(props) {
     focusFirstNode,
     focusLastNode,
     isFocused,
+    handleLeftArrow,
   } = useTreeState();
   const [nodes, setNodes] = React.useState([]);
   const nodeRef = React.useRef(null);
@@ -123,6 +124,20 @@ function TreeNode(props) {
         break;
       case 'ArrowUp':
         focusPreviousNode(idProp);
+        flag = true;
+        break;
+      case 'ArrowRight':
+        if (expandable) {
+          if (expanded) {
+            focusNextNode(idProp);
+          } else {
+            toggle();
+          }
+        }
+        flag = true;
+        break;
+      case 'ArrowLeft':
+        handleLeftArrow(idProp);
         flag = true;
         break;
       case 'Home':
