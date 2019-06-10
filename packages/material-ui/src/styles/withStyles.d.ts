@@ -1,4 +1,4 @@
-import { PropInjector } from '@material-ui/types';
+import { PropInjector, CoerceEmptyInterface } from '@material-ui/types';
 import { Theme } from './createMuiTheme';
 import {
   CreateCSSProperties,
@@ -10,6 +10,7 @@ import {
   StyleRulesCallback,
   Styles,
   ClassKeyOfStyles,
+  PropsOfStyles,
 } from '@material-ui/styles/withStyles';
 
 export {
@@ -36,7 +37,7 @@ export type WithStyles<
   IncludeTheme extends boolean | undefined = false
 > = (IncludeTheme extends true ? { theme: Theme } : {}) & {
   classes: ClassNameMap<ClassKeyOfStyles<StylesOrClassKey>>;
-};
+} & PropsOfStyles<StylesOrClassKey>;
 
 export default function withStyles<
   ClassKey extends string,
@@ -45,4 +46,7 @@ export default function withStyles<
 >(
   style: Styles<Theme, Props, ClassKey>,
   options?: Options,
-): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;
+): PropInjector<
+  WithStyles<ClassKey, Options['withTheme']>,
+  StyledComponentProps<ClassKey> & CoerceEmptyInterface<Props>
+>;
