@@ -418,6 +418,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       setValueState(newValue);
     }
 
+    setFocusVisible(index);
+
     if (onChange) {
       onChange(event, newValue);
     }
