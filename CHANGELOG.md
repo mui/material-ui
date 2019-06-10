@@ -1,5 +1,88 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.1.0
+###### *June 10, 2019*
+
+A big thanks to the 26 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 💄 A new ButtonGroup component (#15751) @mbrookes
+- 📚 No more notification spam in the documentation! (#16070)
+- 💄 New system props (flex, fontStyle, letterSpacing, lineHeight) (#16045, #16109) @ljvanschie, @aditya1906
+- 💄 A new fontWeightBold typography theme value (#16036) @aditya1906
+- 🚀 Reduce TypeScript compile time when using the icons (#16083) @phryneas
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.1.0`
+
+- [ButtonGroup] New component (#15744) @mbrookes
+- [TextField] Improve dense height to better match the specification (#16087) @Ritorna
+- [Popper] Add popperRef prop (#16069) @oliviertassinari
+- [theme] Add fontWeightBold to theme.typography (#16036) @aditya1906
+- [LinearProgress] Fix direction issue in RTL (#16009) @mkermani144
+- [Dialog] Fix double scroll issue (#16108) @williamsdyyz
+- [Popper] Fix anchorEl prop types (#16004) @dan8f
+- [Snackbar] Fix wrong event call (#16070) @oliviertassinari
+- [SwipeableDrawer] Convert to function component (#15947) @joshwooding
+- [Tab] Improve the textColor description (#16085) @sPaCeMoNk3yIam
+- [withWidth] Migrate to hooks (#15678) @jacobbogers
+
+### `@material-ui/system@v4.1.0`
+
+- [system] Add flex to FlexboxProps type definitions (#16045) @ljvanschie
+- [system] Add fontStyle, letterSpacing, lineHeight props (#16109) @aditya1906
+- [system] Fix breakpoints typescript types (#15720) @Kujawadl
+
+### `@material-ui/styles@v4.1.0`
+
+- [styles] Allow CSS properties to be functions (#15546) @merceyz
+- [styles] Fix styled type definition not including properties (#15548) @merceyz
+- [styles] Upgrade jss (#16121) @eps1lon
+
+### `@material-ui/icons@v4.1.0`
+
+- [icons] Simplify generated index.d.ts to reduce TS compile time (#16083) @phryneas
+
+### Docs
+
+- [blog] May 2019 Update (#16117) @oliviertassinari
+- [docs] Minor typo correction (#16115) @tonytino
+- [docs] Add AdaptingHook TypeScript demo (#16131) @merceyz
+- [docs] Add global override demos (#16067) @oliviertassinari
+- [docs] Add redirect for typography migration (#16077) @eps1lon
+- [docs] Add system example for prop + theme key (#16099) @peteruithoven
+- [docs] Batch of small fixes (#16061) @oliviertassinari
+- [docs] Bump material-table and @material-ui/pickers versions (#16039) @eps1lon
+- [docs] Change http to https (#16056) @aditya1906
+- [docs] Fix bundle doc typos (#16054) @DDDDDanica
+- [docs] Fix chip array removal (#16086) @joaosilvalopes
+- [docs] Fix grammar in migration doc (#16064) @DDDDDanica
+- [docs] Fix some warnings/regressions (#16106) @eps1lon
+- [docs] Fix spelling and usage of MuiCssBaseline (#16098) @tschaub
+- [docs] Fix typo in the Gatsby example (#16130) @bernardwang
+- [docs] Make demos linkable (#16063) @eps1lon
+- [docs] Migrate Popover demo to Hooks (#16074) @nikhilem
+- [docs] Migrate batch of demos to hooks/typescript (#16003) @merceyz
+- [docs] Move the themes to themes.material-ui.com (#15983) @oliviertassinari
+- [docs] Remove duplicate font icons instruction (#16066) @hubgit
+- [docs] Remove extraneous link to migration helper (#16082) @charlax
+- [docs] Remove unsupported textDense styles (#16057) @sadika9
+- [docs] Revert unreleased changes to the useMediaQuery API (#16127) @oliviertassinari
+- [docs] Update translations (#16125) @mbrookes
+- [docs] Upgrade notistack and migrate the demo to hooks (#16124) @merceyz
+- [docs] Use immediate export in MenuAppBar.js (#16032) @aditya1906
+- [docs] Use immediate export when there is no HOC part 2 (#16038) @merceyz
+
+### Core
+
+- [core] Fix incorrect typings for hexToRgb (#16059) @whitneyit
+- [core] Fix type definition for theme.spacing (#16031) @merceyz
+- [core] Remove direct type dependency to jss/csstype (#16071) @eps1lon
+- [core] Remove export of describeConformance (#16048) @eps1lon
+- [core] Use only up to second level path imports (#16002) @eps1lon
+- [test] Bump karma-webpack (#16119) @eps1lon
+
 ## 4.0.2
 ###### *June 3, 2019*
 
