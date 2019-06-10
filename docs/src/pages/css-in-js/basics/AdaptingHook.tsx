@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import Button, { ButtonProps as MuiButtonProps } from '@material-ui/core/Button';
-
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+import { Omit } from '@material-ui/types';
 
 interface Props {
   color: 'red' | 'blue';
 }
-
-type MyButtonProps = Props & Omit<MuiButtonProps, keyof Props>;
 
 const useStyles = makeStyles({
   root: {
@@ -30,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MyButton(props: MyButtonProps) {
+function MyButton(props: Props & Omit<MuiButtonProps, keyof Props>) {
   const { color, ...other } = props;
   const classes = useStyles(props);
   return <Button className={classes.root} {...other} />;
