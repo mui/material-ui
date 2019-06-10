@@ -21,7 +21,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const firstNode = React.useRef(null);
   const lastNode = React.useRef(null);
   const nodeMap = React.useRef({});
-  const topLevelNodes = React.useRef([]);
 
   const toggle = (value = focused) => {
     setExpanded(prevExpanded => {
@@ -65,6 +64,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   React.useEffect(() => {
     const mapNodes = (parentNode, node) => {
+      if (!parentNode) {
+        if (nodeMap.current[-1]) {
+          nodeMap.current[-1].children.push(node);
+        } else {
+          nodeMap.current[-1] = { children: [node] };
+        }
+      }
       nodeMap.current[node.id] = { parent: parentNode, children: node.children };
       if (node.children) {
         node.children.forEach(child => {
@@ -74,28 +80,29 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     };
 
     nodeMap.current = {};
-    topLevelNodes.current = [];
     items.forEach(item => {
-      topLevelNodes.current.push(item.id);
       mapNodes(null, item);
     });
   }, [items]);
 
-  React.useEffect(() => {
-    const getLastNode = node => {
+  const getLastNode = React.useCallback(
+    node => {
       if (isExpanded(node.id)) {
         if (node.children && node.children.length > 0) {
           return getLastNode(node.children[node.children.length - 1]);
         }
       }
       return node;
-    };
+    },
+    [isExpanded],
+  );
 
+  React.useEffect(() => {
     if (items.length > 0) {
       lastNode.current = getLastNode(items[items.length - 1]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(expanded), items, isExpanded]);
+  }, [JSON.stringify(expanded), items, isExpanded, getLastNode]);
 
   const focus = id => {
     if (id) {
@@ -104,30 +111,63 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     setFocused(id);
   };
 
-  const focusNextNode = id => {
+  const getNextNode = (id, end) => {
     const map = nodeMap.current[id];
-    if (isExpanded(id)) {
-      focus(map.children[0].id);
-    } else {
-      const parent = map.parent;
-      if (parent && parent.children) {
-        const nodeIndex = parent.children.map(c => c.id).indexOf(id);
-        const nextIndex = nodeIndex + 1;
-        if (parent.children.length > nextIndex) {
-          focus(parent.children[nextIndex].id);
-        }
-      } else {
-        const topLevelNodeIndex = topLevelNodes.current.indexOf(id);
-        if (topLevelNodeIndex !== -1 && topLevelNodeIndex !== topLevelNodes.current.length - 1) {
-          focus(topLevelNodes.current[topLevelNodeIndex + 1]);
-        }
+    const parent = map.parent;
+
+    if (!end) {
+      if (isExpanded(id)) {
+        return map.children[0];
       }
+    }
+    if (parent) {
+      const nodeIndex = parent.children.map(c => c.id).indexOf(id);
+      const nextIndex = nodeIndex + 1;
+      if (parent.children.length > nextIndex) {
+        return parent.children[nextIndex];
+      }
+      return getNextNode(parent.id, true);
+    }
+    const topLevelNodes = nodeMap.current[-1].children;
+    const topLevelNodeIndex = topLevelNodes.map(c => c.id).indexOf(id);
+    if (topLevelNodeIndex !== -1 && topLevelNodeIndex !== topLevelNodes.length - 1) {
+      return topLevelNodes[topLevelNodeIndex + 1];
+    }
+
+    return null;
+  };
+
+  const getPreviousNode = id => {
+    const map = nodeMap.current[id];
+    const parent = map.parent;
+
+    if (parent) {
+      const nodeIndex = parent.children.map(c => c.id).indexOf(id);
+      if (nodeIndex !== 0) {
+        const nextIndex = nodeIndex - 1;
+        return getLastNode(parent.children[nextIndex]);
+      }
+      return parent;
+    }
+    const topLevelNodes = nodeMap.current[-1].children;
+    const topLevelNodeIndex = topLevelNodes.map(c => c.id).indexOf(id);
+    if (topLevelNodeIndex > 0) {
+      return getLastNode(topLevelNodes[topLevelNodeIndex - 1]);
+    }
+
+    return null;
+  };
+
+  const focusNextNode = id => {
+    const nextNode = getNextNode(id);
+    if (nextNode && nextNode.id) {
+      focus(nextNode.id);
     }
   };
   const focusPreviousNode = id => {
-    const topLevelNodeIndex = topLevelNodes.current.indexOf(id);
-    if (topLevelNodeIndex !== -1 && topLevelNodeIndex !== 0) {
-      focus(topLevelNodes.current[topLevelNodeIndex - 1]);
+    const previousNode = getPreviousNode(id);
+    if (previousNode && previousNode.id) {
+      focus(previousNode.id);
     }
   };
   const focusFirstNode = () => {

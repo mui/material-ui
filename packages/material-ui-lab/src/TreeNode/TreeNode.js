@@ -55,7 +55,6 @@ function TreeNode(props) {
   const [nodes, setNodes] = React.useState([]);
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
-  const nodeMap = React.useRef({});
 
   let stateIcon = null;
 
@@ -112,8 +111,11 @@ function TreeNode(props) {
     switch (event.key) {
       case 'Enter':
       case ' ':
-        toggle();
-        flag = true;
+        if (nodeRef.current === event.currentTarget && expandable) {
+          toggle();
+          flag = true;
+        }
+        event.stopPropagation();
         break;
       case 'ArrowDown':
         focusNextNode(idProp);
@@ -193,7 +195,7 @@ TreeNode.propTypes = {
   collapseIcon: PropTypes.node,
   expandIcon: PropTypes.node,
   icon: PropTypes.node,
-  id: PropTypes.any.isRequired,
+  id: PropTypes.number.isRequired,
   label: PropTypes.node,
 };
 
