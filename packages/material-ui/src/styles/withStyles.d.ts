@@ -10,7 +10,6 @@ import {
   StyleRulesCallback,
   Styles,
   ClassKeyOfStyles,
-  PropsOfStyles,
 } from '@material-ui/styles/withStyles';
 
 export {
@@ -37,7 +36,7 @@ export type WithStyles<
   IncludeTheme extends boolean | undefined = false
 > = (IncludeTheme extends true ? { theme: Theme } : {}) & {
   classes: ClassNameMap<ClassKeyOfStyles<StylesOrClassKey>>;
-} & PropsOfStyles<StylesOrClassKey>;
+};
 
 export default function withStyles<
   ClassKey extends string,
