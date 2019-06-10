@@ -5,7 +5,9 @@ import {
   Styles,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
-import { IsAny } from '@material-ui/types';
+
+// https://stackoverflow.com/a/49928360/3406963 without generic branch types
+export type IsAny<T> = 0 extends (1 & T) ? true : false;
 
 export type Or<A, B, C = false> = A extends true
   ? true
@@ -30,10 +32,12 @@ export type And<A, B, C = true> = A extends true
  * 1. false if the given type has any members
  * 2. false if the type is `object` which is the only other type with no members
  *  {} is a top type so e.g. `string extends {}` but not `string extends object`
+ * 3. false if the given type is `unknown`
  */
 export type IsEmptyInterface<T> = And<
   keyof T extends never ? true : false,
-  string extends T ? true : false
+  string extends T ? true : false,
+  unknown extends T ? false : true
 >;
 
 /**
@@ -67,7 +71,7 @@ export type StylesHook<S extends Styles<any, any>> = StylesRequireProps<S> exten
 
 export default function makeStyles<
   Theme = unknown,
-  Props extends {} = {},
+  Props extends object = {},
   ClassKey extends string = string
 >(
   styles: Styles<Theme, Props, ClassKey>,
