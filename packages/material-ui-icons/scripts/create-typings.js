@@ -20,9 +20,11 @@ function createIconTyping(file) {
 
 function createIndexTyping(files) {
   const contents = `
-import SvgIcon from  '@material-ui/core/SvgIcon';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
-${files.map(file => `export const ${normalizeFileName(file)}: SvgIcon;`).join('\n')}
+type SvgIconType = typeof SvgIcon;
+
+${files.map(file => `export const ${normalizeFileName(file)}: SvgIconType;`).join('\n')}
 `;
 
   return fse.writeFile(path.resolve(TARGET_DIR, 'index.d.ts'), contents, 'utf8');
