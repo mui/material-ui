@@ -53,8 +53,8 @@ This property accepts the following keys:
 | <span class="prop-name">contained</span> | Styles applied to the root element if `variant="contained"`.
 | <span class="prop-name">containedPrimary</span> | Styles applied to the root element if `variant="contained"` and `color="primary"`.
 | <span class="prop-name">containedSecondary</span> | Styles applied to the root element if `variant="contained"` and `color="secondary"`.
-| <span class="prop-name">focusVisible</span> | Styles applied to the ButtonBase root element if the button is keyboard focused.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
 | <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">sizeLarge</span> | Styles applied to the root element if `size="large"`.

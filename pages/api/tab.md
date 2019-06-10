@@ -45,8 +45,8 @@ This property accepts the following keys:
 | <span class="prop-name">textColorInherit</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`.
 | <span class="prop-name">textColorPrimary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`.
 | <span class="prop-name">textColorSecondary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`.
-| <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}` (controlled by the Tabs component).
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}` (controlled by the Tabs component).
+| <span class="prop-name">selected</span> | Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component).
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component).
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component).
 | <span class="prop-name">wrapped</span> | Styles applied to the root element if `wrapped={true}`.
 | <span class="prop-name">wrapper</span> | Styles applied to the `icon` and `label`'s wrapper element.

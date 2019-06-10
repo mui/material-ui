@@ -46,7 +46,7 @@ This property accepts the following keys:
 | <span class="prop-name">labelPlacementStart</span> | Styles applied to the root element if `labelPlacement="start"`.
 | <span class="prop-name">labelPlacementTop</span> | Styles applied to the root element if `labelPlacement="top"`.
 | <span class="prop-name">labelPlacementBottom</span> | Styles applied to the root element if `labelPlacement="bottom"`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">label</span> | Styles applied to the label's Typography component.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section

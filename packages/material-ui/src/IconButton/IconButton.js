@@ -72,7 +72,7 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {

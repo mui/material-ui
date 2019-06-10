@@ -44,7 +44,7 @@ This property accepts the following keys:
 | <span class="prop-name">filled</span> | Styles applied to the `Input` component if `variant="filled"`.
 | <span class="prop-name">outlined</span> | Styles applied to the `Input` component if `variant="outlined"`.
 | <span class="prop-name">selectMenu</span> | Styles applied to the `Input` component `selectMenu` class.
-| <span class="prop-name">disabled</span> | Styles applied to the `Input` component `disabled` class.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the `Input` component `disabled` class.
 | <span class="prop-name">icon</span> | Styles applied to the `Input` component `icon` class.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section

@@ -38,8 +38,8 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">selected</span> | Styles applied to the root element if selected.
-| <span class="prop-name">iconOnly</span> | Styles applied to the root element if `showLabel={false}` and not selected.
+| <span class="prop-name">selected</span> | Pseudo-class applied to the root element if selected.
+| <span class="prop-name">iconOnly</span> | Pseudo-class applied to the root element if `showLabel={false}` and not selected.
 | <span class="prop-name">wrapper</span> | Styles applied to the span element that wraps the icon and label.
 | <span class="prop-name">label</span> | Styles applied to the label's span element.
 

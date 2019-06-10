@@ -48,8 +48,8 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">focusVisible</span> | Styles applied to the root element if keyboard focused.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the root element if keyboard focused.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ButtonBase/ButtonBase.js)

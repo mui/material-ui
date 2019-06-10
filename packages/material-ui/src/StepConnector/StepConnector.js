@@ -22,11 +22,11 @@ export const styles = theme => ({
     left: 'calc(-50% + 20px)',
     right: 'calc(50% + 20px)',
   },
-  /* Styles applied to the root element if `active={true}`. */
+  /* Pseudo-class applied to the root element if `active={true}`. */
   active: {},
-  /* Styles applied to the root element if `completed={true}`. */
+  /* Pseudo-class applied to the root element if `completed={true}`. */
   completed: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the line element. */
   line: {
