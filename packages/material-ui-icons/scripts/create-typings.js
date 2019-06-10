@@ -32,6 +32,7 @@ ${files.map(file => `export const ${normalizeFileName(file)}: SvgIconComponent;`
 
 // Generate TypeScript.
 async function run() {
+  await fse.ensureDir(TARGET_DIR);
   console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
   const files = glob.sync('!(index)*.js', { cwd: SRC_DIR });
   const typings = files.map(file => createIconTyping(file));

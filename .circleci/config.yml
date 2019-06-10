@@ -109,6 +109,8 @@ jobs:
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
               cd packages/material-ui-icons && yarn test
+              yarn build:typings
+              yarn test:built-typings
             else
               echo "no changes"
             fi
