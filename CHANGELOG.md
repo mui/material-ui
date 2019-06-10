@@ -8,8 +8,8 @@ A big thanks to the 26 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 💄 A new ButtonGroup component (#15751) @mbrookes
-- 📚 No more notification spam in the documentation! (#16070)
 - 💄 New system props (flex, fontStyle, letterSpacing, lineHeight) (#16045, #16109) @ljvanschie, @aditya1906
+- 📚 Fix the documentation notification spam (#16070)
 - 💄 A new fontWeightBold typography theme value (#16036) @aditya1906
 - 🚀 Reduce TypeScript compile time when using the icons (#16083) @phryneas
 - And many more 🐛 bug fixes 📚 improvements.
