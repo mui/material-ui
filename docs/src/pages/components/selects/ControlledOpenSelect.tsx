@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function ControlledOpenSelect() {
   const classes = useStyles();
-  const [age, setAge] = React.useState<string | number>('');
+  const [age, setAge] = React.useState<string>('');
   const [open, setOpen] = React.useState(false);
 
-  function handleChange(event: React.ChangeEvent<{ value: unknown }>) {
-    setAge(event.target.value as number);
+  function handleChange(event: React.ChangeEvent<{ value: string }>) {
+    setAge(event.target.value);
   }
 
   function handleClose() {
@@ -43,7 +43,7 @@ function ControlledOpenSelect() {
       </Button>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="demo-controlled-open-select">Age</InputLabel>
-        <Select
+        <Select<string>
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
@@ -57,9 +57,9 @@ function ControlledOpenSelect() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value="10">Ten</MenuItem>
+          <MenuItem value="20">Twenty</MenuItem>
+          <MenuItem value="30">Thirty</MenuItem>
         </Select>
       </FormControl>
     </form>

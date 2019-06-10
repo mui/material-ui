@@ -60,8 +60,8 @@ const useStyles = makeStyles((theme: Theme) =>
 function CustomizedSelects() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
+  const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
+    setAge(event.target.value);
   };
   return (
     <form className={classes.root} autoComplete="off">
@@ -71,7 +71,7 @@ function CustomizedSelects() {
       </FormControl>
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="age-customized-select">Age</InputLabel>
-        <Select
+        <Select<string>
           value={age}
           onChange={handleChange}
           input={<BootstrapInput name="age" id="age-customized-select" />}
@@ -79,9 +79,9 @@ function CustomizedSelects() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value="10">Ten</MenuItem>
+          <MenuItem value="20">Twenty</MenuItem>
+          <MenuItem value="30">Thirty</MenuItem>
         </Select>
       </FormControl>
       <FormControl className={classes.margin}>

@@ -38,7 +38,7 @@ function SimpleSelect() {
     setLabelWidth(inputLabel.current!.offsetWidth);
   }, []);
 
-  function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
+  function handleChange(event: React.ChangeEvent<{ name?: string; value: string }>) {
     setValues(oldValues => ({
       ...oldValues,
       [event.target.name as string]: event.target.value,
@@ -49,7 +49,7 @@ function SimpleSelect() {
     <form className={classes.root} autoComplete="off">
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="age-simple">Age</InputLabel>
-        <Select
+        <Select<string>
           value={values.age}
           onChange={handleChange}
           inputProps={{
@@ -60,14 +60,14 @@ function SimpleSelect() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value="10">Ten</MenuItem>
+          <MenuItem value="20">Twenty</MenuItem>
+          <MenuItem value="30">Thirty</MenuItem>
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="age-helper">Age</InputLabel>
-        <Select
+        <Select<string>
           value={values.age}
           onChange={handleChange}
           input={<Input name="age" id="age-helper" />}

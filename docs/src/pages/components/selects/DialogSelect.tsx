@@ -32,9 +32,9 @@ function DialogSelect() {
   });
 
   const handleChange = (name: keyof typeof state) => (
-    event: React.ChangeEvent<{ value: unknown }>,
+    event: React.ChangeEvent<{ value: string }>,
   ) => {
-    setState({ ...state, [name]: Number(event.target.value) });
+    setState({ ...state, [name]: event.target.value });
   };
 
   function handleClickOpen() {
@@ -54,16 +54,16 @@ function DialogSelect() {
           <form className={classes.container}>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="age-native-simple">Age</InputLabel>
-              <Select
+              <Select<string>
                 native
                 value={state.age}
                 onChange={handleChange('age')}
                 input={<Input id="age-native-simple" />}
               >
                 <option value="" />
-                <option value={10}>Ten</option>
-                <option value={20}>Twenty</option>
-                <option value={30}>Thirty</option>
+                <option value="10">Ten</option>
+                <option value="20">Twenty</option>
+                <option value="30">Thirty</option>
               </Select>
             </FormControl>
             <FormControl className={classes.formControl}>
