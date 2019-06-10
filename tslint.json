@@ -8,7 +8,6 @@
         "no-empty-interface": false,
         "no-unnecessary-callback-wrapper": false,
         "no-unnecessary-generics": false,
-        "no-unsafe-any": true,
         "semicolon": [true, "always", "ignore-bound-class-methods"]
     }
 }
