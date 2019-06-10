@@ -13,6 +13,15 @@ export const styles = theme => ({
     position: 'relative',
     width: '100%',
   },
+  /* Styles applied to the `Input` component if `variant="filled"`. */
+  filled: {
+    width: 'calc(100% - 44px)',
+  },
+  /* Styles applied to the `Input` component if `variant="outlined"`. */
+  outlined: {
+    width: 'calc(100% - 46px)',
+    borderRadius: theme.shape.borderRadius,
+  },
   /* Styles applied to the `Input` component `select` class. */
   select: {
     '-moz-appearance': 'none', // Reset
@@ -22,7 +31,7 @@ export const styles = theme => ({
     userSelect: 'none',
     paddingRight: 32,
     borderRadius: 0, // Reset
-    width: 'calc(100% - 32px) !important',
+    width: 'calc(100% - 32px)',
     minWidth: 16, // So it doesn't collapse.
     cursor: 'pointer',
     '&:focus': {
@@ -44,15 +53,6 @@ export const styles = theme => ({
     '&:not([multiple]) option, &:not([multiple]) optgroup': {
       backgroundColor: theme.palette.background.paper,
     },
-  },
-  /* Styles applied to the `Input` component if `variant="filled"`. */
-  filled: {
-    width: 'calc(100% - 44px)',
-  },
-  /* Styles applied to the `Input` component if `variant="outlined"`. */
-  outlined: {
-    width: 'calc(100% - 46px)',
-    borderRadius: theme.shape.borderRadius,
   },
   /* Styles applied to the `Input` component `selectMenu` class. */
   selectMenu: {
