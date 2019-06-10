@@ -76,6 +76,7 @@ import styled, { StyledProps } from '@material-ui/styles/styled';
   const useUnsafeProps = makeStyles(
     createStyles({
       root: (props: any) => ({
+        // tslint:disable-next-line no-unsafe-any
         backgroundColor: props.deep.color,
       }),
     }),
