@@ -58,13 +58,19 @@ The `withWidth()` higher-order component injects the screen width of the page.
 You can reproduce the same behavior with a `useWidth` hook:
 
 ```jsx
+/**
+ * Be careful using this hook. It only works because the number of
+ * breakpoints in theme is static. It will break once you change the number of
+ * breakpoints. See https://reactjs.org/docs/hooks-rules.html#only-call-hooks-at-the-top-level
+ */
 function useWidth() {
   const theme = useTheme();
   const keys = [...theme.breakpoints.keys].reverse();
-  const queries = useMediaQuery(keys.map(key => theme.breakpoints.only(key)));
   return (
-    queries.reduce((output, matches, index) => {
-      return !output && matches ? keys[index] : output;
+    keys.reduce((output, key) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const matches = useMediaQuery(theme.breakpoints.only(key));
+      return !output && matches ? key : output;
     }, null) || 'xs'
   );
 }
