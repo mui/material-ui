@@ -46,7 +46,7 @@ This property accepts the following keys:
 | <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">label</span> | Styles applied to the children container element.
 

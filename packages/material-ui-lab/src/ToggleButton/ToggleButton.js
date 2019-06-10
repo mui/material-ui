@@ -56,9 +56,9 @@ export const styles = theme => ({
       paddingLeft: 12,
     },
   },
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if `selected={true}`. */
+  /* Pseudo-class applied to the root element if `selected={true}`. */
   selected: {},
   /* Styles applied to the `label` wrapper element. */
   label: {

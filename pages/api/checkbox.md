@@ -47,9 +47,9 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">checked</span> | Styles applied to the root element if `checked={true}`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">indeterminate</span> | Styles applied to the root element if `indeterminate={true}`.
+| <span class="prop-name">checked</span> | Pseudo-class applied to the root element if `checked={true}`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">indeterminate</span> | Pseudo-class applied to the root element if `indeterminate={true}`.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 

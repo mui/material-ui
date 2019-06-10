@@ -62,7 +62,7 @@ export const styles = theme => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   },
-  /* Styles applied to the `Input` component `disabled` class. */
+  /* Pseudo-class applied to the `Input` component `disabled` class. */
   disabled: {},
   /* Styles applied to the `Input` component `icon` class. */
   icon: {

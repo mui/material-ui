@@ -43,12 +43,12 @@ This property accepts the following keys:
 | <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horizontal".
 | <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical".
 | <span class="prop-name">label</span> | Styles applied to the `Typography` component which wraps `children`.
-| <span class="prop-name">active</span> | Styles applied to the `Typography` component if `active={true}`.
-| <span class="prop-name">completed</span> | Styles applied to the `Typography` component if `completed={true}`.
-| <span class="prop-name">error</span> | Styles applied to the root element and `Typography` component if `error={true}`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element and `Typography` component if `disabled={true}`.
+| <span class="prop-name">active</span> | Pseudo-class applied to the `Typography` component if `active={true}`.
+| <span class="prop-name">completed</span> | Pseudo-class applied to the `Typography` component if `completed={true}`.
+| <span class="prop-name">error</span> | Pseudo-class applied to the root element and `Typography` component if `error={true}`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element and `Typography` component if `disabled={true}`.
 | <span class="prop-name">iconContainer</span> | Styles applied to the `icon` container element.
-| <span class="prop-name">alternativeLabel</span> | Styles applied to the root & icon container and `Typography` if `alternativeLabel={true}`.
+| <span class="prop-name">alternativeLabel</span> | Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`.
 | <span class="prop-name">labelContainer</span> | Styles applied to the container element which wraps `Typography` and `optional`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
