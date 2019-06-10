@@ -5,9 +5,7 @@ import {
   Styles,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
-
-// https://stackoverflow.com/a/49928360/3406963 without generic branch types
-export type IsAny<T> = 0 extends (1 & T) ? true : false;
+import { IsAny } from '@material-ui/types';
 
 export type Or<A, B, C = false> = A extends true
   ? true
