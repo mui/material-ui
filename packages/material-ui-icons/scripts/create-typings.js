@@ -22,9 +22,9 @@ function createIndexTyping(files) {
   const contents = `
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-type SvgIconType = typeof SvgIcon;
+type SvgIconComponent = typeof SvgIcon;
 
-${files.map(file => `export const ${normalizeFileName(file)}: SvgIconType;`).join('\n')}
+${files.map(file => `export const ${normalizeFileName(file)}: SvgIconComponent;`).join('\n')}
 `;
 
   return fse.writeFile(path.resolve(TARGET_DIR, 'index.d.ts'), contents, 'utf8');
