@@ -97,5 +97,5 @@ export default function withStyles<
   options?: Options,
 ): PropInjector<
   WithStyles<StylesType, Options['withTheme']>,
-  StyledComponentProps<ClassKeyOfStyles<StylesType>>
+  StyledComponentProps<ClassKeyOfStyles<StylesType>> & PropsOfStyles<StylesType>
 >;
