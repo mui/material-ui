@@ -22,7 +22,7 @@ export const styles = theme => ({
     userSelect: 'none',
     paddingRight: 32,
     borderRadius: 0, // Reset
-    width: 'calc(100% - 32px)',
+    width: 'calc(100% - 32px) !important',
     minWidth: 16, // So it doesn't collapse.
     cursor: 'pointer',
     '&:focus': {
