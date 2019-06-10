@@ -69,7 +69,7 @@ export type StylesHook<S extends Styles<any, any>> = StylesRequireProps<S> exten
 
 export default function makeStyles<
   Theme = unknown,
-  Props extends {} = any,
+  Props extends {} = unknown,
   ClassKey extends string = string
 >(
   styles: Styles<Theme, Props, ClassKey>,
