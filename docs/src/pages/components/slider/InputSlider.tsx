@@ -17,14 +17,14 @@ const useStyles = makeStyles({
 
 export default function InputSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number | number[]>(30);
+  const [value, setValue] = React.useState<number | string | Array<number | string>>(30);
 
   const handleSliderChange = (event: any, newValue: number | number[]) => {
     setValue(newValue);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(event.target.value));
+    setValue(event.target.value === '' ? '' : Number(event.target.value));
   };
 
   const handleBlur = () => {
@@ -45,7 +45,11 @@ export default function InputSlider() {
           <VolumeUp />
         </Grid>
         <Grid item xs>
-          <Slider value={value} onChange={handleSliderChange} aria-labelledby="input-slider" />
+          <Slider
+            value={typeof value === 'number' ? value : 0}
+            onChange={handleSliderChange}
+            aria-labelledby="input-slider"
+          />
         </Grid>
         <Grid item>
           <Input
