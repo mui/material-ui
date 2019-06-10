@@ -155,6 +155,9 @@ import styled, { StyledProps } from '@material-ui/styles/styled';
   interface MyTheme {
     fontFamily: string;
   }
+  const MyThemeInstance: MyTheme = {
+    fontFamily: 'monospace',
+  };
   // tslint:disable-next-line: no-empty-interface
   interface MyComponentProps extends StyledProps {
     defaulted: string;
@@ -176,7 +179,7 @@ import styled, { StyledProps } from '@material-ui/styles/styled';
   const renderedMyComponent = (
     <>
       <MyComponent className="test" />
-      <StyledMyComponent />
+      <StyledMyComponent theme={MyThemeInstance} />
     </>
   );
 }

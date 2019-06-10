@@ -1,4 +1,4 @@
-import { Omit } from '@material-ui/types';
+import { Omit, IsAny, CoerceEmptyInterface } from '@material-ui/types';
 import {
   CreateCSSProperties,
   StyledComponentProps,
@@ -19,7 +19,7 @@ export type ComponentCreator<Component extends React.ElementType> = <Theme, Prop
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
   > &
-    StyledComponentProps<'root'> & { className?: string }
+    StyledComponentProps<'root'> & { className?: string } & CoerceEmptyInterface<Props>
 >;
 
 export interface StyledProps {
