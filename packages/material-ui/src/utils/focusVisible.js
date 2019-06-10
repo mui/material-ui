@@ -75,7 +75,7 @@ function handleVisibilityChange() {
   }
 }
 
-export function prepare(ownerDocument) {
+function prepare(ownerDocument) {
   ownerDocument.addEventListener('keydown', handleKeyDown, true);
   ownerDocument.addEventListener('mousedown', handlePointerDown, true);
   ownerDocument.addEventListener('pointerdown', handlePointerDown, true);
@@ -91,7 +91,7 @@ export function teardown(ownerDocument) {
   ownerDocument.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-export function isFocusVisible(event) {
+function isFocusVisible(event) {
   const { target } = event;
   try {
     return target.matches(':focus-visible');
@@ -110,7 +110,7 @@ export function isFocusVisible(event) {
 /**
  * Should be called if a blur event is fired on a focus-visible element
  */
-export function handleBlurVisible() {
+function handleBlurVisible() {
   // To detect a tab/window switch, we look for a blur event followed
   // rapidly by a visibility change.
   // If we don't see a visibility change within 100ms, it's probably a

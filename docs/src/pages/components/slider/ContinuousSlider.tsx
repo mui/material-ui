@@ -14,6 +14,11 @@ const useStyles = makeStyles({
 
 export default function ContinuousSlider() {
   const classes = useStyles();
+  const [value, setValue] = React.useState<number | number[]>(30);
+
+  const handleChange = (event: any, newValue: number | number[]) => {
+    setValue(newValue);
+  };
 
   return (
     <div className={classes.root}>
@@ -25,7 +30,7 @@ export default function ContinuousSlider() {
           <VolumeDown />
         </Grid>
         <Grid item xs>
-          <Slider defaultValue={30} aria-labelledby="continuous-slider" />
+          <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
         </Grid>
         <Grid item>
           <VolumeUp />

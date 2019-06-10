@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useTheme, withStyles, fade, lighten } from '@material-ui/core/styles';
-import { useForkRef, ownerWindow } from '@material-ui/core/utils';
+import { useForkRef, ownerWindow, useIsFocusVisible } from '@material-ui/core/utils';
 import { chainPropTypes } from '@material-ui/utils';
 import ValueLabel from './ValueLabel';
 
@@ -163,9 +163,9 @@ export const styles = theme => ({
       marginRight: 20,
     },
   },
-  /* Styles applied to the root element if `orientation="vertical"`. */
+  /* Pseudo-class applied to the root element if `orientation="vertical"`. */
   vertical: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the rail element. */
   rail: {
@@ -174,7 +174,7 @@ export const styles = theme => ({
     height: 2,
     borderRadius: 1,
     backgroundColor: 'currentColor',
-    opacity: 0.24,
+    opacity: 0.38,
     '$vertical &': {
       height: '100%',
       width: 2,
@@ -207,8 +207,11 @@ export const styles = theme => ({
     transition: theme.transitions.create(['box-shadow'], {
       duration: theme.transitions.duration.shortest,
     }),
-    '&:focus,&:hover': {
+    '&$focusVisible,&:hover': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
+      '@media (hover: none)': {
+        boxShadow: 'none',
+      },
     },
     '&$active': {
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
@@ -219,7 +222,7 @@ export const styles = theme => ({
       height: 8,
       marginLeft: -4,
       marginTop: -3,
-      '&:focus,&:hover': {
+      '&:hover': {
         boxShadow: 'none',
       },
     },
@@ -232,8 +235,10 @@ export const styles = theme => ({
       marginBottom: -4,
     },
   },
-  /* Styles applied to the thumb element if it's active. */
+  /* Pseudo-class applied to the thumb element if it's active. */
   active: {},
+  /* Pseudo-class applied to the thumb element if keyboard focused. */
+  focusVisible: {},
   /* Styles applied to the thumb label element. */
   valueLabel: {},
   /* Styles applied to the mark element. */
@@ -320,11 +325,21 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     source: valueDerived, // Keep track of the input value to leverage immutable state comparison.
   };
 
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  const [focusVisible, setFocusVisible] = React.useState(-1);
+
   const handleFocus = useEventCallback(event => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
+    if (isFocusVisible(event)) {
+      setFocusVisible(index);
+    }
     setOpen(index);
   });
   const handleBlur = useEventCallback(() => {
+    if (focusVisible !== -1) {
+      setFocusVisible(-1);
+      onBlurVisible();
+    }
     setOpen(-1);
   });
   const handleMouseOver = useEventCallback(event => {
@@ -412,7 +427,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   const sliderRef = React.useRef();
-  const handleRef = useForkRef(sliderRef, ref);
+  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
+  const handleRef = useForkRef(ref, handleFocusRef);
   const previousIndex = React.useRef();
   let axis = orientation;
   if (theme.direction === 'rtl' && orientation === 'horizontal') {
@@ -663,6 +679,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             <ThumbComponent
               className={clsx(classes.thumb, {
                 [classes.active]: active === index,
+                [classes.focusVisible]: focusVisible === index,
               })}
               tabIndex={disabled ? null : 0}
               role="slider"
@@ -690,11 +707,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
 Slider.propTypes = {
   /**
-   * An alternative to `aria-labelledby`.
+   * The label of the slider.
    */
   'aria-label': PropTypes.string,
   /**
-   * Refers to the element containing the name of the slider.
+   * The id of the element containing a label for the slider.
    */
   'aria-labelledby': PropTypes.string,
   /**

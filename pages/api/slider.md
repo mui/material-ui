@@ -18,8 +18,8 @@ import Slider from '@material-ui/lab/Slider';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">aria-label</span> | <span class="prop-type">string</span> |  | An alternative to `aria-labelledby`. |
-| <span class="prop-name">aria-labelledby</span> | <span class="prop-type">string</span> |  | Refers to the element containing the name of the slider. |
+| <span class="prop-name">aria-label</span> | <span class="prop-type">string</span> |  | The label of the slider. |
+| <span class="prop-name">aria-labelledby</span> | <span class="prop-type">string</span> |  | The id of the element containing a label for the slider. |
 | <span class="prop-name">aria-valuetext</span> | <span class="prop-type">string</span> |  | A string value that provides a user-friendly name for the current value of the slider. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
@@ -54,12 +54,13 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">marked</span> | Styles applied to the root element if `marks` is provided with at least one label.
-| <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">vertical</span> | Pseudo-class applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">rail</span> | Styles applied to the rail element.
 | <span class="prop-name">track</span> | Styles applied to the track element.
 | <span class="prop-name">thumb</span> | Styles applied to the thumb element.
-| <span class="prop-name">active</span> | Styles applied to the thumb element if it's active.
+| <span class="prop-name">active</span> | Pseudo-class applied to the thumb element if it's active.
+| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the thumb element if keyboard focused.
 | <span class="prop-name">valueLabel</span> | Styles applied to the thumb label element.
 | <span class="prop-name">mark</span> | Styles applied to the mark element.
 | <span class="prop-name">markActive</span> | Styles applied to the mark element if active (depending on the value).

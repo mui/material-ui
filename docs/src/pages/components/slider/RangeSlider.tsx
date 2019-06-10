@@ -16,6 +16,11 @@ function valuetext(value: number) {
 
 export default function RangeSlider() {
   const classes = useStyles();
+  const [value, setValue] = React.useState<number | number[]>([20, 37]);
+
+  const handleChange = (event: any, newValue: number | number[]) => {
+    setValue(newValue);
+  };
 
   return (
     <div className={classes.root}>
@@ -23,7 +28,8 @@ export default function RangeSlider() {
         Temperature range
       </Typography>
       <Slider
-        defaultValue={[20, 37]}
+        value={value}
+        onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
