@@ -342,12 +342,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       document.body.addEventListener('touchstart', handleBodyTouchStart);
       document.body.addEventListener('touchmove', handleBodyTouchMove, { passive: false });
       document.body.addEventListener('touchend', handleBodyTouchEnd);
+
+      return () => {
+        document.body.removeEventListener('touchstart', handleBodyTouchStart);
+        document.body.removeEventListener('touchmove', handleBodyTouchMove, { passive: false });
+        document.body.removeEventListener('touchend', handleBodyTouchEnd);
+      };
     }
-    return () => {
-      document.body.removeEventListener('touchstart', handleBodyTouchStart);
-      document.body.removeEventListener('touchmove', handleBodyTouchMove, { passive: false });
-      document.body.removeEventListener('touchend', handleBodyTouchEnd);
-    };
+
+    return undefined;
   }, [variant, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);
 
   React.useEffect(
