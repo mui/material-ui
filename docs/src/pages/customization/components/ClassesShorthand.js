@@ -20,5 +20,5 @@ const StyledButton = withStyles({
 })(Button);
 
 export default function ClassesShorthand() {
-  return <StyledButton>Classes Shorthand</StyledButton>;
+  return <StyledButton>classes shorthand</StyledButton>;
 }
