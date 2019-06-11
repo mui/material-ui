@@ -1,30 +1,22 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useCallback, useState } from 'react';
+import { useCallback, useState, Dispatch, SetStateAction } from 'react';
 import { BasePickerProps } from '../../typings/BasePicker';
 
-function makeControlledOpenProps(props: BasePickerProps) {
-  return {
-    isOpen: props.open!,
-    setIsOpen: (newIsOpen: boolean) => {
-      return newIsOpen ? props.onOpen && props.onOpen() : props.onClose && props.onClose();
-    },
-  };
-}
-
-export function useOpenState(props: BasePickerProps) {
-  if (props.open !== undefined && props.open !== null) {
-    return makeControlledOpenProps(props);
+export function useOpenState({ open, onOpen, onClose }: BasePickerProps) {
+  let setIsOpenState: null | Dispatch<SetStateAction<boolean>> = null;
+  if (open === undefined || open === null) {
+    // The component is uncontrolled, so we need to give it its own state.
+    [open, setIsOpenState] = useState<boolean>(false);
   }
 
-  const [isOpen, setIsOpenState] = useState(false);
   // prettier-ignore
   const setIsOpen = useCallback((newIsOpen: boolean) => {
-    setIsOpenState(newIsOpen);
+    setIsOpenState && setIsOpenState(newIsOpen);
 
     return newIsOpen
-      ? props.onOpen && props.onOpen()
-      : props.onClose && props.onClose();
-  }, [props]);
+      ? onOpen && onOpen()
+      : onClose && onClose();
+  }, [onOpen, onClose, setIsOpenState]);
 
-  return { isOpen, setIsOpen };
+  return { isOpen: open, setIsOpen };
 }

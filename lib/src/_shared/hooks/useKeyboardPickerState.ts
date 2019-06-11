@@ -1,9 +1,9 @@
 import { useUtils } from './useUtils';
 import { Omit } from '@material-ui/core';
 import { IUtils } from '@date-io/core/IUtils';
-import { useEffect, useMemo, useState } from 'react';
 import { BasePickerProps } from '../../typings/BasePicker';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getDisplayDate } from '../../_helpers/text-field-helper';
 import { StateHookOptions, usePickerState } from './usePickerState';
 
@@ -23,28 +23,25 @@ function parseInputString(value: string, utils: IUtils<any>, format: string) {
 }
 
 export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: StateHookOptions) {
+  const { format = options.getDefaultFormat(), inputValue, onChange, value } = props;
   const utils = useUtils();
-  const format = props.format || options.getDefaultFormat();
 
-  const [innerInputValue, setInnerInputValue] = useState(
-    getDisplayDate(props.value, format, utils, props.value === null, props)
-  );
-
-  const dateValue = props.inputValue
-    ? parseInputString(props.inputValue, utils, format)
-    : props.value;
+  const displayDate = getDisplayDate(value, format, utils, value === null, props);
+  const [innerInputValue, setInnerInputValue] = useState(displayDate);
+  const dateValue = inputValue ? parseInputString(inputValue, utils, format) : value;
 
   useEffect(() => {
-    if (props.value === null || utils.isValid(props.value)) {
-      setInnerInputValue(getDisplayDate(props.value, format, utils, props.value === null, props));
+    if (value === null || utils.isValid(value)) {
+      setInnerInputValue(displayDate);
     }
-  }, [format, props, props.value, utils]);
+  }, [displayDate, setInnerInputValue, utils, value]);
 
-  function handleKeyboardChange(date: MaterialUiPickersDate) {
-    const dateString = date === null ? null : utils.format(date, format);
-
-    props.onChange(date, dateString);
-  }
+  const handleKeyboardChange = useCallback(
+    (date: MaterialUiPickersDate) => {
+      onChange(date, date === null ? null : utils.format(date, format));
+    },
+    [format, onChange, utils]
+  );
 
   const { inputProps: innerInputProps, wrapperProps, pickerProps } = usePickerState(
     // Extend props interface
@@ -56,15 +53,15 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
     () => ({
       ...innerInputProps, // reuse validation and open/close logic
       format: wrapperProps.format,
-      inputValue: props.inputValue || innerInputValue,
+      inputValue: inputValue || innerInputValue,
       onChange: (value: string) => {
         setInnerInputValue(value);
         const date = value === '' ? null : utils.parse(value, wrapperProps.format);
 
-        props.onChange(date, value);
+        onChange(date, value);
       },
     }),
-    [innerInputProps, innerInputValue, props, utils, wrapperProps.format]
+    [innerInputProps, innerInputValue, inputValue, onChange, utils, wrapperProps.format]
   );
 
   return {
