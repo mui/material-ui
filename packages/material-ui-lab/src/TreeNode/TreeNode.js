@@ -37,6 +37,10 @@ const useStyles = makeStyles({
   focused: {},
 });
 
+const isPrintableCharacter = str => {
+  return str.length === 1 && str.match(/\S/);
+};
+
 function TreeNode(props) {
   const { children, collapseIcon, expandIcon, icon, id: idProp, label, ...other } = props;
   const classes = useStyles(props);
@@ -53,6 +57,7 @@ function TreeNode(props) {
     isFocused,
     handleLeftArrow,
     expandAllSiblings,
+    setFocusByFirstCharacter,
   } = useTreeState();
   const [nodes, setNodes] = React.useState([]);
   const nodeRef = React.useRef(null);
@@ -109,51 +114,72 @@ function TreeNode(props) {
 
   const handleKeyDown = event => {
     let flag = false;
+    const key = event.key;
 
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-        if (nodeRef.current === event.currentTarget && expandable) {
-          toggle();
-          flag = true;
-        }
-        event.stopPropagation();
-        break;
-      case 'ArrowDown':
-        focusNextNode(idProp);
-        flag = true;
-        break;
-      case 'ArrowUp':
-        focusPreviousNode(idProp);
-        flag = true;
-        break;
-      case 'ArrowRight':
-        if (expandable) {
-          if (expanded) {
-            focusNextNode(idProp);
-          } else {
-            toggle();
-          }
-        }
-        flag = true;
-        break;
-      case 'ArrowLeft':
-        handleLeftArrow(idProp);
-        flag = true;
-        break;
-      case 'Home':
-        focusFirstNode();
-        flag = true;
-        break;
-      case 'End':
-        focusLastNode();
-        flag = true;
-        break;
-      case '*':
+    const printableCharacter = () => {
+      if (key === '*') {
         expandAllSiblings(idProp);
         flag = true;
-        break;
-      default:
+      } else if (isPrintableCharacter(key)) {
+        setFocusByFirstCharacter(idProp, key);
+        flag = true;
+      }
+    };
+
+    if (event.altKey || event.ctrlKey || event.metaKey) {
+      return;
+    }
+    if (event.shift) {
+      if (key === ' ' || key === 'Enter') {
+        event.stopPropagation();
+      } else if (isPrintableCharacter(key)) {
+        printableCharacter();
+      }
+    } else {
+      switch (key) {
+        case 'Enter':
+        case ' ':
+          if (nodeRef.current === event.currentTarget && expandable) {
+            toggle();
+            flag = true;
+          }
+          event.stopPropagation();
+          break;
+        case 'ArrowDown':
+          focusNextNode(idProp);
+          flag = true;
+          break;
+        case 'ArrowUp':
+          focusPreviousNode(idProp);
+          flag = true;
+          break;
+        case 'ArrowRight':
+          if (expandable) {
+            if (expanded) {
+              focusNextNode(idProp);
+            } else {
+              toggle();
+            }
+          }
+          flag = true;
+          break;
+        case 'ArrowLeft':
+          handleLeftArrow(idProp);
+          flag = true;
+          break;
+        case 'Home':
+          focusFirstNode();
+          flag = true;
+          break;
+        case 'End':
+          focusLastNode();
+          flag = true;
+          break;
+        default:
+          if (isPrintableCharacter(key)) {
+            printableCharacter();
+          }
+      }
     }
 
     if (flag) {

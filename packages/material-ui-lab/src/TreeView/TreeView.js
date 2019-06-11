@@ -21,6 +21,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const firstNode = React.useRef(null);
   const lastNode = React.useRef(null);
   const nodeMap = React.useRef({});
+  const firstCharMap = React.useRef([]);
 
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
   const isFocusable = id => focusable === id;
@@ -31,15 +32,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     return <TreeNode key={id} id={id} {...others} />;
   });
 
-  React.useEffect(() => {
-    if (items.length > 0) {
-      firstNode.current = items[0];
-    }
-
-    if (firstNode.current && firstNode.current.id) {
-      setFocusable(firstNode.current.id);
-    }
-  }, [items]);
+  const getLastNode = React.useCallback(
+    node => {
+      if (isExpanded(node.id) && node.children && node.children.length > 0) {
+        return getLastNode(node.children[node.children.length - 1]);
+      }
+      return node;
+    },
+    [isExpanded],
+  );
 
   React.useEffect(() => {
     const mapNodes = (parentNode, node) => {
@@ -58,30 +59,40 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       }
     };
 
-    nodeMap.current = {};
-    items.forEach(item => {
-      mapNodes(null, item);
-    });
-  }, [items]);
-
-  const getLastNode = React.useCallback(
-    node => {
-      if (isExpanded(node.id)) {
-        if (node.children && node.children.length > 0) {
-          return getLastNode(node.children[node.children.length - 1]);
-        }
+    const getFirstLabelChar = node => {
+      firstCharMap.current.push({
+        id: node.id,
+        firstChar: node.label.substring(0, 1).toLowerCase(),
+      });
+      if (isExpanded(node.id) && node.children) {
+        node.children.forEach(child => {
+          getFirstLabelChar(child);
+        });
       }
-      return node;
-    },
-    [isExpanded],
-  );
+    };
+
+    firstCharMap.current = [];
+
+    items.forEach((item, index) => {
+      if (index === items.length - 1) {
+        lastNode.current = getLastNode(items[items.length - 1]);
+      }
+
+      nodeMap.current = {};
+      mapNodes(null, item);
+      getFirstLabelChar(item);
+    });
+  }, [items, isExpanded, getLastNode]);
 
   React.useEffect(() => {
     if (items.length > 0) {
-      lastNode.current = getLastNode(items[items.length - 1]);
+      firstNode.current = items[0];
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(expanded), items, isExpanded, getLastNode]);
+
+    if (firstNode.current && firstNode.current.id) {
+      setFocusable(firstNode.current.id);
+    }
+  }, [items]);
 
   const focus = id => {
     if (id) {
@@ -207,6 +218,43 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
+  const getIndexFirstChars = (startIndex, char) => {
+    const firstChars = firstCharMap.current.map(node => node.firstChar);
+
+    for (let i = startIndex; i < firstChars.length; i += 1) {
+      if (char === firstChars[i]) {
+        return i;
+      }
+    }
+    return -1;
+  };
+
+  const setFocusByFirstCharacter = (id, char) => {
+    let start;
+    let index;
+    const lowercaseChar = char.toLowerCase();
+    const firstCharIds = firstCharMap.current.map(node => node.id);
+
+    // Get start index for search based on position of currentItem
+    start = firstCharIds.indexOf(id) + 1;
+    if (start === nodeMap.current.length) {
+      start = 0;
+    }
+
+    // Check remaining slots in the menu
+    index = getIndexFirstChars(start, lowercaseChar);
+
+    // If not found in remaining slots, check from beginning
+    if (index === -1) {
+      index = getIndexFirstChars(0, lowercaseChar);
+    }
+
+    // If match was found...
+    if (index > -1) {
+      focus(firstCharIds[index]);
+    }
+  };
+
   return (
     <TreeViewContext.Provider
       value={{
@@ -222,6 +270,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         isFocused,
         handleLeftArrow,
         expandAllSiblings,
+        setFocusByFirstCharacter,
       }}
     >
       <ul role="tree" className={classes.root} ref={ref} {...other}>
