@@ -58,7 +58,10 @@ export function css<Props>(
   styleFunction: StyleFunction<Props>,
 ): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
 
-export const display: SimpleStyleFunction<'display' | 'displayPrint'>;
+export const display: SimpleStyleFunction<
+  'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'whiteSpace'
+>;
+
 export type DisplayProps = PropsFor<typeof display>;
 
 export const flexbox: SimpleStyleFunction<
