@@ -3,6 +3,7 @@ import React from 'react';
 import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import { Omit } from '@material-ui/types';
 
 // required for react-router-dom < 6.0.0
 // see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
@@ -10,7 +11,6 @@ const AdapterLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props,
   <RouterLink innerRef={ref as any} {...props} />
 ));
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 const CollisionLink = React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'innerRef' | 'to'>>(
   (props, ref) => (
     <RouterLink innerRef={ref as any} to="/getting-started/installation/" {...props} />
