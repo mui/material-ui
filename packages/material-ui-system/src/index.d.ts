@@ -65,6 +65,7 @@ export const display: SimpleStyleFunction<
 export type DisplayProps = PropsFor<typeof display>;
 
 export const flexbox: SimpleStyleFunction<
+  | 'flexBasis'
   | 'flexDirection'
   | 'flexWrap'
   | 'justifyContent'
@@ -75,6 +76,8 @@ export const flexbox: SimpleStyleFunction<
   | 'flexGrow'
   | 'flexShrink'
   | 'alignSelf'
+  | 'justifyItems'
+  | 'justifySelf'
 >;
 export type FlexboxProps = PropsFor<typeof flexbox>;
 
