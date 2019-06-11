@@ -20,9 +20,9 @@ const useStyles = makeStyles(
         fontWeight: 'bolder',
       },
       body: {
-        ...theme.typography.body2,
         margin: 0, // Remove the margin in all browsers.
         color: theme.palette.text.primary,
+        ...theme.typography.body2,
         backgroundColor: theme.palette.background.default,
         '@media print': {
           // Save printer ink.
