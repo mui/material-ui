@@ -20,9 +20,11 @@ function createIconTyping(file) {
 
 function createIndexTyping(files) {
   const contents = `
-import SvgIcon from  '@material-ui/core/SvgIcon';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
-${files.map(file => `export const ${normalizeFileName(file)}: SvgIcon;`).join('\n')}
+type SvgIconComponent = typeof SvgIcon;
+
+${files.map(file => `export const ${normalizeFileName(file)}: SvgIconComponent;`).join('\n')}
 `;
 
   return fse.writeFile(path.resolve(TARGET_DIR, 'index.d.ts'), contents, 'utf8');
@@ -30,6 +32,7 @@ ${files.map(file => `export const ${normalizeFileName(file)}: SvgIcon;`).join('\
 
 // Generate TypeScript.
 async function run() {
+  await fse.ensureDir(TARGET_DIR);
   console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
   const files = glob.sync('!(index)*.js', { cwd: SRC_DIR });
   const typings = files.map(file => createIconTyping(file));
