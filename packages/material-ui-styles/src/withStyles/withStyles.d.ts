@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PropInjector } from '@material-ui/types';
+import { PropInjector, CoerceEmptyInterface } from '@material-ui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 
@@ -70,7 +70,9 @@ export type ClassKeyOfStyles<StylesOrClassKey> = StylesOrClassKey extends string
 /**
  * infers the type of the theme used in the styles
  */
-export type PropsOfStyles<StylesType> = StylesType extends Styles<any, infer Props> ? Props : {};
+export type PropsOfStyles<StylesType> = StylesType extends Styles<any, infer Props>
+  ? CoerceEmptyInterface<Props>
+  : {};
 /**
  * infers the type of the props used in the styles
  */
@@ -97,5 +99,5 @@ export default function withStyles<
   options?: Options,
 ): PropInjector<
   WithStyles<StylesType, Options['withTheme']>,
-  StyledComponentProps<ClassKeyOfStyles<StylesType>>
+  StyledComponentProps<ClassKeyOfStyles<StylesType>> & PropsOfStyles<StylesType>
 >;
