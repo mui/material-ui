@@ -247,7 +247,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <div
         className={clsx(
           classes.select,
@@ -308,7 +308,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       >
         {items}
       </Menu>
-    </div>
+    </React.Fragment>
   );
 });
 

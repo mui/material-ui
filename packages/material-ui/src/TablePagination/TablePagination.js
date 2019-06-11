@@ -34,11 +34,6 @@ export const styles = theme => ({
   caption: {
     flexShrink: 0,
   },
-  /* Styles applied to the Select component `root` class. */
-  selectRoot: {
-    marginRight: 32,
-    marginLeft: 8,
-  },
   /* Styles applied to the Select component `select` class. */
   select: {
     paddingLeft: 8,
@@ -52,6 +47,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the `InputBase` component. */
   input: {
+    marginRight: 32,
+    marginLeft: 8,
     color: 'inherit',
     fontSize: 'inherit',
     flexShrink: 0,
@@ -111,7 +108,6 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         {rowsPerPageOptions.length > 1 && (
           <Select
             classes={{
-              root: classes.selectRoot,
               select: classes.select,
               icon: classes.selectIcon,
             }}

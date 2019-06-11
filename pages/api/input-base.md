@@ -42,6 +42,7 @@ It contains a load of style reset and some state logic.
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be required. |
 | <span class="prop-name">rows</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |  | Number of rows to display when multiline option is set to true. |
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |  | Maximum number of rows to display when multiline option is set to true. |
+| <span class="prop-name">select</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Should be `true` when the component hosts a select. |
 | <span class="prop-name">startAdornment</span> | <span class="prop-type">node</span> |  | Start `InputAdornment` for this component. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> | <span class="prop-default">'text'</span> | Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types). |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the `input` element, required for a controlled component. |
@@ -70,6 +71,7 @@ This property accepts the following keys:
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">input</span> | Styles applied to the `input` element.
 | <span class="prop-name">inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputSelect</span> | Styles applied to the `input` element if `select={true}.
 | <span class="prop-name">inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
 | <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 | <span class="prop-name">inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.

@@ -36,6 +36,7 @@ export const styles = theme => {
       fontSize: theme.typography.pxToRem(16),
       lineHeight: '1.1875em', // Reset (19px), match the native input line-height
       boxSizing: 'border-box', // Prevent padding issue with fullWidth.
+      position: 'relative',
       cursor: 'text',
       display: 'inline-flex',
       alignItems: 'center',
@@ -119,6 +120,10 @@ export const styles = theme => {
     inputMarginDense: {
       paddingTop: 4 - 1,
     },
+    /* Styles applied to the `input` element if `select={true}. */
+    inputSelect: {
+      paddingRight: 32,
+    },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
       height: 'auto',
@@ -175,6 +180,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     renderPrefix,
     rows,
     rowsMax,
+    select = false,
     startAdornment,
     type = 'text',
     value,
@@ -380,6 +386,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
               [classes.disabled]: fcs.disabled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
+              [classes.inputSelect]: select,
               [classes.inputMarginDense]: fcs.margin === 'dense',
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
@@ -543,6 +550,10 @@ InputBase.propTypes = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Should be `true` when the component hosts a select.
+   */
+  select: PropTypes.bool,
   /**
    * Start `InputAdornment` for this component.
    */

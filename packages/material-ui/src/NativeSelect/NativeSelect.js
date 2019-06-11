@@ -8,30 +8,20 @@ import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
 export const styles = theme => ({
-  /* Styles applied to the `Input` component `root` class. */
-  root: {
-    position: 'relative',
-    width: '100%',
-  },
-  /* Styles applied to the `Input` component if `variant="filled"`. */
-  filled: {
-    width: 'calc(100% - 44px)',
-  },
-  /* Styles applied to the `Input` component if `variant="outlined"`. */
+  /* Styles applied to the select component if `variant="filled"`. */
+  filled: {},
+  /* Styles applied to the select component if `variant="outlined"`. */
   outlined: {
-    width: 'calc(100% - 46px)',
     borderRadius: theme.shape.borderRadius,
   },
-  /* Styles applied to the `Input` component `select` class. */
+  /* Styles applied to the select component `select` class. */
   select: {
     '-moz-appearance': 'none', // Reset
     '-webkit-appearance': 'none', // Reset
     // When interacting quickly, the text can end up selected.
     // Native select can't be selected either.
     userSelect: 'none',
-    paddingRight: 32,
     borderRadius: 0, // Reset
-    width: 'calc(100% - 32px)',
     minWidth: 16, // So it doesn't collapse.
     cursor: 'pointer',
     '&:focus': {
@@ -54,17 +44,16 @@ export const styles = theme => ({
       backgroundColor: theme.palette.background.paper,
     },
   },
-  /* Styles applied to the `Input` component `selectMenu` class. */
+  /* Styles applied to the select component `selectMenu` class. */
   selectMenu: {
-    width: 'auto', // Fix Safari textOverflow
     height: 'auto', // Reset
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   },
-  /* Pseudo-class applied to the `Input` component `disabled` class. */
+  /* Pseudo-class applied to the select component `disabled` class. */
   disabled: {},
-  /* Styles applied to the `Input` component `icon` class. */
+  /* Styles applied to the select component `icon` class. */
   icon: {
     // We use a position absolute over a flexbox in order to forward the pointer events
     // to the input.
@@ -101,6 +90,7 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
     // Most of the logic is implemented in `NativeSelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent: NativeSelectInput,
+    select: true,
     inputProps: {
       children,
       classes,

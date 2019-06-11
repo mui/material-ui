@@ -111,6 +111,10 @@ export const styles = theme => {
       paddingTop: 23,
       paddingBottom: 6,
     },
+    /* Styles applied to the `input` element if `select={true}. */
+    inputSelect: {
+      paddingRight: 32,
+    },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
       padding: 0,
