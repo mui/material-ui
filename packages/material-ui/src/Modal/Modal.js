@@ -23,7 +23,7 @@ function getHasTransition(props) {
   return props.children ? props.children.props.hasOwnProperty('in') : false;
 }
 
-export const styles = theme => ({
+const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     position: 'fixed',
