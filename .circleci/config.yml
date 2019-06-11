@@ -248,7 +248,7 @@ jobs:
               curl -X PUT --header "x-api-key: $CIRCLE_AWS_API_KEY" https://t6nulys5kl.execute-api.us-east-1.amazonaws.com/v1/persist-size-snapshot?build-id=$CIRCLE_BUILD_NUM
             else
               echo "pull request; let's run dangerJS"
-              yarn danger ci
+              yarn cross-env DANGER_DISABLE_TRANSPILATION=true danger ci
             fi
 workflows:
   version: 2
