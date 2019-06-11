@@ -22,27 +22,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const lastNode = React.useRef(null);
   const nodeMap = React.useRef({});
 
-  const toggle = (value = focused) => {
-    setExpanded(prevExpanded => {
-      let newExpanded;
-
-      if (prevExpanded.indexOf(value) !== -1) {
-        newExpanded = prevExpanded.filter(id => id !== value);
-        setFocusable(oldFocusable => {
-          const map = nodeMap.current[oldFocusable];
-          if (oldFocusable && (map && map.parent ? map.parent.id : null) === value) {
-            return value;
-          }
-          return oldFocusable;
-        });
-      } else {
-        newExpanded = [value, ...prevExpanded];
-      }
-
-      return newExpanded;
-    });
-  };
-
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
   const isFocusable = id => focusable === id;
   const isFocused = id => focused === id;
@@ -182,6 +161,41 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
+  const toggle = (value = focused) => {
+    setExpanded(prevExpanded => {
+      let newExpanded;
+
+      if (prevExpanded.indexOf(value) !== -1) {
+        newExpanded = prevExpanded.filter(id => id !== value);
+        setFocusable(oldFocusable => {
+          const map = nodeMap.current[oldFocusable];
+          if (oldFocusable && (map && map.parent ? map.parent.id : null) === value) {
+            return value;
+          }
+          return oldFocusable;
+        });
+      } else {
+        newExpanded = [value, ...prevExpanded];
+      }
+
+      return newExpanded;
+    });
+  };
+
+  const expandAllSiblings = id => {
+    const map = nodeMap.current[id];
+    const parent = map.parent;
+
+    let diff;
+    if (parent) {
+      diff = parent.children.filter(child => !isExpanded(child.id)).map(child => child.id);
+    } else {
+      const topLevelNodes = nodeMap.current[-1].children;
+      diff = topLevelNodes.filter(node => !isExpanded(node.id)).map(node => node.id);
+    }
+    setExpanded(oldExpanded => [...oldExpanded, ...diff]);
+  };
+
   const handleLeftArrow = id => {
     if (isExpanded(id)) {
       toggle(id);
@@ -207,6 +221,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         focusLastNode,
         isFocused,
         handleLeftArrow,
+        expandAllSiblings,
       }}
     >
       <ul role="tree" className={classes.root} ref={ref} {...other}>

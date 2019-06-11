@@ -52,6 +52,7 @@ function TreeNode(props) {
     focusLastNode,
     isFocused,
     handleLeftArrow,
+    expandAllSiblings,
   } = useTreeState();
   const [nodes, setNodes] = React.useState([]);
   const nodeRef = React.useRef(null);
@@ -148,10 +149,13 @@ function TreeNode(props) {
         focusLastNode();
         flag = true;
         break;
-      case 'Tab':
+      case '*':
+        expandAllSiblings(idProp);
+        flag = true;
         break;
       default:
     }
+
     if (flag) {
       event.preventDefault();
       event.stopPropagation();
