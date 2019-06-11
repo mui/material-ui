@@ -21,7 +21,7 @@ const useStyles = makeStyles(
       },
       body: {
         ...theme.typography.body2,
-	margin: 0, // Remove the margin in all browsers.
+        margin: 0, // Remove the margin in all browsers.
         color: theme.palette.text.primary,
         backgroundColor: theme.palette.background.default,
         '@media print': {
