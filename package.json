@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
-    "docs:api": "rimraf ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/api",
+    "docs:api": "rimraf ./pages/api && cross-env BABEL_ENV=test BABEL_DISABLE_CACHE=1 babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./pages/api && cross-env BABEL_ENV=test BABEL_DISABLE_CACHE=1 babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/api",
     "docs:build": "rimraf .next && cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:build-sw": "node ./docs/scripts/buildServiceWorker.js",
     "docs:deploy": "git push material-ui-docs master:latest",
@@ -89,6 +89,7 @@
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "babel-plugin-unwrap-createStyles": "link:packages/babel-plugin-unwrap-createStyles",
+    "babel-plugin-set-component-name": "link:packages/babel-plugin-set-component-name",
     "chai": "^4.1.2",
     "classnames": "^2.2.6",
     "clean-css": "^4.1.11",

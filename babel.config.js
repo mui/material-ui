@@ -53,13 +53,18 @@ module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
     'babel-plugin-optimize-clsx',
+    'babel-plugin-set-component-name',
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     '@babel/plugin-transform-runtime',
     // for IE 11 support
     '@babel/plugin-transform-object-assign',
   ],
-  ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
+  ignore: [
+    // Fix a Windows issue.
+    /@babel[\\|/]runtime/,
+    `${__dirname}/packages/babel-plugin-set-component-name/src`,
+  ],
   env: {
     cjs: {
       plugins: productionPlugins,

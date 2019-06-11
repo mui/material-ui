@@ -7,6 +7,7 @@
 /examples/preact/config
 /examples/preact/scripts
 /packages/babel-plugin-unwrap-createStyles/test/__fixtures__/
+/packages/babel-plugin-set-component-name/test/__fixtures__/
 /packages/material-ui-codemod/lib
 /packages/material-ui-codemod/src/*/*.test
 /packages/material-ui-codemod/src/*/*.test.js

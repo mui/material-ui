@@ -96,12 +96,12 @@ async function buildDocs(options) {
     descriptions: {},
   };
 
-  if (component.styles && component.default.options) {
+  if (component.styles && component.muiDisplayName) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
       className => !className.match(/^(@media|@keyframes)/),
     );
-    styles.name = component.default.options.name;
+    styles.name = component.muiDisplayName;
 
     let styleSrc = src;
     // Exception for Select where the classes are imported from NativeSelect
