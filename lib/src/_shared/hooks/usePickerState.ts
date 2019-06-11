@@ -30,6 +30,7 @@ function useDateValues(props: BasePickerProps, options: StateHookOptions) {
 
 export function usePickerState(props: BasePickerProps, options: StateHookOptions) {
   const { autoOk, disabled, onAccept, onChange, onError, value, variant } = props;
+
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
   const { date, format } = useDateValues(props, options);
@@ -46,7 +47,10 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
     (acceptedDate: MaterialUiPickersDate) => {
       setIsOpen(false);
       onChange(acceptedDate);
-      onAccept && onAccept(acceptedDate);
+
+      if (onAccept) {
+        onAccept(acceptedDate)
+      }
     },
     [onAccept, onChange, setIsOpen]
   );
@@ -55,14 +59,14 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
     () => ({
       format,
       open: isOpen,
-      onAccept: () => acceptDate(pickerDate),
       onClear: () => acceptDate(null),
-      onSetToday: () => onChange(utils.date()),
+      onAccept: () => acceptDate(pickerDate),
+      onSetToday: () => setPickerDate(utils.date()),
       onDismiss: () => {
         setIsOpen(false);
       },
     }),
-    [acceptDate, format, isOpen, onChange, pickerDate, setIsOpen, utils]
+    [acceptDate, format, isOpen, pickerDate, setIsOpen, utils]
   );
 
   const pickerProps = useMemo(
@@ -93,9 +97,9 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
   const inputValue = getDisplayDate(date, format, utils, value === null, props);
   const inputProps = useMemo(
     () => ({
+      inputValue,
       validationError,
       onClick: () => !disabled && setIsOpen(true),
-      inputValue,
     }),
     [disabled, inputValue, setIsOpen, validationError]
   );

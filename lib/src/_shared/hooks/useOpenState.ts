@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useCallback, useState, Dispatch, SetStateAction } from 'react';
 import { BasePickerProps } from '../../typings/BasePicker';
+import { useCallback, useState, Dispatch, SetStateAction } from 'react';
 
 export function useOpenState({ open, onOpen, onClose }: BasePickerProps) {
   let setIsOpenState: null | Dispatch<SetStateAction<boolean>> = null;
