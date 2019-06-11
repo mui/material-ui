@@ -21,3 +21,4 @@ export {
   StyledComponentProps,
 } from './withStyles';
 export { default as withTheme, WithTheme } from './withTheme';
+export { default as styled, ComponentCreator, StyledProps } from './styled';
