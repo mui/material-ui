@@ -49,7 +49,7 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
       onChange(acceptedDate);
 
       if (onAccept) {
-        onAccept(acceptedDate)
+        onAccept(acceptedDate);
       }
     },
     [onAccept, onChange, setIsOpen]
