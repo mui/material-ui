@@ -140,9 +140,6 @@ function Demo(props) {
 
   function handleCodeLanguageClick(event, clickedCodeVariant) {
     if (codeVariant !== clickedCodeVariant) {
-      document.cookie = `codeVariant=${clickedCodeVariant};path=/;max-age=31536000`;
-      window.ga('set', 'dimension1', clickedCodeVariant);
-
       dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
         payload: {
