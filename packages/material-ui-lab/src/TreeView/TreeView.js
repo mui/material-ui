@@ -21,7 +21,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const firstNode = React.useRef(null);
   const lastNode = React.useRef(null);
   const nodeMap = React.useRef({});
-  const firstCharMap = React.useRef([]);
+  const firstCharMap = React.useRef({});
 
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
   const isFocusable = id => focusable === id;
@@ -60,10 +60,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     };
 
     const getFirstLabelChar = node => {
-      firstCharMap.current.push({
-        id: node.id,
-        firstChar: node.label.substring(0, 1).toLowerCase(),
-      });
+      firstCharMap.current[node.id] = node.label.substring(0, 1).toLowerCase();
+
       if (isExpanded(node.id) && node.children) {
         node.children.forEach(child => {
           getFirstLabelChar(child);
@@ -71,7 +69,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       }
     };
 
-    firstCharMap.current = [];
+    firstCharMap.current = {};
     nodeMap.current = {};
 
     items.forEach((item, index) => {
@@ -219,7 +217,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const getIndexFirstChars = (startIndex, char) => {
-    const firstChars = firstCharMap.current.map(node => node.firstChar);
+    const firstChars = Object.values(firstCharMap.current);
 
     for (let i = startIndex; i < firstChars.length; i += 1) {
       if (char === firstChars[i]) {
@@ -233,7 +231,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     let start;
     let index;
     const lowercaseChar = char.toLowerCase();
-    const firstCharIds = firstCharMap.current.map(node => node.id);
+    // This really only works since the ids are strings
+    const firstCharIds = Object.keys(firstCharMap.current);
 
     // Get start index for search based on position of currentItem
     start = firstCharIds.indexOf(id) + 1;

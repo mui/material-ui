@@ -240,7 +240,7 @@ TreeNode.propTypes = {
   collapseIcon: PropTypes.node,
   expandIcon: PropTypes.node,
   icon: PropTypes.node,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   label: PropTypes.node,
 };
 
