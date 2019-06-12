@@ -184,7 +184,7 @@
     "rollup-plugin-terser": "^5.0.0",
     "sinon": "^7.0.0",
     "size-limit": "^0.21.0",
-    "styled-components": "^4.1.1",
+    "styled-components": "^5.0.0-alpha.2",
     "tslint": "5.14.0",
     "typescript": "3.2.2",
     "url-loader": "^1.0.1",

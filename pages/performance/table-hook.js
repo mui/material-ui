@@ -6,13 +6,15 @@ import NoSsr from '@material-ui/core/NoSsr';
 const createComponent = defaultComponent => {
   const useStyles = makeStyles({
     root: {
-      background: 'pink',
+      background: props => props.x,
     },
   });
 
   const MyComponent = React.forwardRef(function MyComponent(props, ref) {
     const { component: Component = defaultComponent, ...other } = props;
-    const classes = useStyles();
+    const classes = useStyles({
+      x: 'pink',
+    });
 
     return <Component ref={ref} {...other} className={classes.root} />;
   });
@@ -36,30 +38,32 @@ const rows = Array.from(new Array(100)).map(() => data);
 function TableHook() {
   return (
     <NoSsr defer>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell>Calories</TableCell>
-            <TableCell>Fat&nbsp;(g)</TableCell>
-            <TableCell>Carbs&nbsp;(g)</TableCell>
-            <TableCell>Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell>{row.calories}</TableCell>
-              <TableCell>{row.fat}</TableCell>
-              <TableCell>{row.carbs}</TableCell>
-              <TableCell>{row.protein}</TableCell>
+      <NoSsr defer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Dessert (100g serving)</TableCell>
+              <TableCell>Calories</TableCell>
+              <TableCell>Fat&nbsp;(g)</TableCell>
+              <TableCell>Carbs&nbsp;(g)</TableCell>
+              <TableCell>Protein&nbsp;(g)</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell>{row.calories}</TableCell>
+                <TableCell>{row.fat}</TableCell>
+                <TableCell>{row.carbs}</TableCell>
+                <TableCell>{row.protein}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </NoSsr>
     </NoSsr>
   );
 }

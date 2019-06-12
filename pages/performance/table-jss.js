@@ -1,22 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { createUseStyles } from 'react-jss';
 import NoSsr from '@material-ui/core/NoSsr';
 
 const createComponent = defaultComponent => {
+  const useStyles = createUseStyles({
+    root: {
+      background: props => props.x,
+    },
+  });
+
   const MyComponent = React.forwardRef(function MyComponent(props, ref) {
     const { component: Component = defaultComponent, ...other } = props;
+    const classes = useStyles({
+      x: 'pink',
+    });
 
-    return <Component ref={ref} {...other} />;
+    return <Component ref={ref} {...other} className={classes.root} />;
   });
 
   MyComponent.propTypes = {
     component: PropTypes.elementType,
   };
 
-  return styled(MyComponent)`
-    background: ${props => props.x || 'pink'};
-  `;
+  return MyComponent;
 };
 
 const Table = createComponent('table');
@@ -28,7 +35,7 @@ const TableBody = createComponent('tbody');
 const data = { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24, protein: 4.0 };
 const rows = Array.from(new Array(100)).map(() => data);
 
-function TableStyledComponents() {
+function TableHook() {
   return (
     <NoSsr defer>
       <NoSsr defer>
@@ -61,4 +68,4 @@ function TableStyledComponents() {
   );
 }
 
-export default TableStyledComponents;
+export default TableHook;

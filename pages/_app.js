@@ -31,7 +31,7 @@ function loadDependencies() {
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     document.querySelector('#material-icon-font'),
   );
-  loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
+  // loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
 }
 
 if (process.browser) {

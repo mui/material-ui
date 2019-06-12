@@ -7,7 +7,12 @@ import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';
 import { css } from '@emotion/core';
 import { renderStylesToString } from 'emotion-server';
-import injectSheet, { JssProvider, SheetsRegistry } from 'react-jss';
+import injectSheet, {
+  createGenerateId,
+  JssProvider,
+  SheetsRegistry,
+  createUseStyles,
+} from 'react-jss';
 import { styled as styledMui, withStyles, makeStyles, StylesProvider } from '@material-ui/styles';
 import jss, { getDynamicStyles } from 'jss';
 import Box from '@material-ui/core/Box';
@@ -44,7 +49,7 @@ const cssObject = {
     justifyContent: 'center',
     position: 'relative',
     WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent',
+    backgroundColor: props => props.backgroundColor,
     outline: 'none',
     border: 0,
     margin: 0,
@@ -79,9 +84,15 @@ const StyledMuiButton = styledMui('button')(cssObject.root);
 
 const StyledComponentsButton = styledComponents.button`${cssContent}`;
 
-const useStyles = makeStyles(cssObject);
+const useStyles1 = makeStyles(cssObject);
 function HookButton(props) {
-  const classes = useStyles();
+  const classes = useStyles1({ backgroundColor: 'pink' });
+  return <button type="button" className={classes.root} {...props} />;
+}
+
+const useStyles2 = createUseStyles(cssObject);
+function JSSHookButton(props) {
+  const classes = useStyles2({ backgroundColor: 'pink' });
   return <button type="button" className={classes.root} {...props} />;
 }
 
@@ -89,6 +100,28 @@ const NakedButton = props => <button type="submit" {...props} />;
 const EmotionCssButton = props => <button type="submit" css={emotionCss} {...props} />;
 
 suite
+  .add('JSSHookButton', () => {
+    const sheetsRegistry = new SheetsRegistry();
+    const generateId = createGenerateId();
+    ReactDOMServer.renderToString(
+      <JssProvider registry={sheetsRegistry} generateId={generateId}>
+        {Array.from(new Array(5)).map((_, index) => (
+          <JSSHookButton key={String(index)}>Material-UI</JSSHookButton>
+        ))}
+      </JssProvider>,
+    );
+    console.log(sheetsRegistry.toString());
+  })
+  .add('HookButton', () => {
+    const sheetsRegistry = new SheetsRegistry();
+    ReactDOMServer.renderToString(
+      <StylesProvider sheetsManager={new Map()} sheetsRegistry={sheetsRegistry}>
+        {Array.from(new Array(5)).map((_, index) => (
+          <HookButton key={String(index)}>Material-UI</HookButton>
+        ))}
+      </StylesProvider>,
+    );
+  })
   .add('StyledMuiButton', () => {
     const sheetsRegistry = new SheetsRegistry();
     ReactDOMServer.renderToString(
@@ -163,17 +196,6 @@ suite
       <StylesProvider sheetsManager={new Map()} sheetsRegistry={sheetsRegistry}>
         {Array.from(new Array(5)).map((_, index) => (
           <WithStylesButton key={String(index)}>Material-UI</WithStylesButton>
-        ))}
-      </StylesProvider>,
-    );
-    sheetsRegistry.toString();
-  })
-  .add('HookButton', () => {
-    const sheetsRegistry = new SheetsRegistry();
-    ReactDOMServer.renderToString(
-      <StylesProvider sheetsManager={new Map()} sheetsRegistry={sheetsRegistry}>
-        {Array.from(new Array(5)).map((_, index) => (
-          <HookButton key={String(index)}>Material-UI</HookButton>
         ))}
       </StylesProvider>,
     );

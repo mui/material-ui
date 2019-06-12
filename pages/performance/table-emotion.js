@@ -15,7 +15,7 @@ const createComponent = defaultComponent => {
   };
 
   return styled(MyComponent)`
-    background: pink;
+    background: ${props => props.x || 'pink'};
   `;
 };
 
