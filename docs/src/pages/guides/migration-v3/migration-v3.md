@@ -1,4 +1,4 @@
-# Migration From v3 to v4
+# Migration from v3 to v4
 
 <p class="description">Yeah, v4 has been released!</p>
 
@@ -19,7 +19,7 @@ We'll do our best to keep things easy to follow, and as sequential as possible s
 This documentation page covers the *how* of migrating from v3 to v4.
 The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
-## Updating Your Dependencies
+## Updating your dependencies
 
 The very first thing you will need to do is to update your dependencies.
 
@@ -237,7 +237,7 @@ yarn add @material-ui/styles@next
 
 - [List] Rework the list components to match the specification:
 
-  - The `ListItemAvatar` component is required when using an avatar`.
+  - The `ListItemAvatar` component is required when using an avatar.
   - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
 
@@ -254,7 +254,7 @@ yarn add @material-ui/styles@next
   the migration strategy.
 
   This also applies to `Dialog` and `Popover`.
-- [Modal] Remove the classes customization API for the Modal component(-74% bundle size reduction when used standalone).
+- [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
 - [Modal] event.defaultPrevented is now ignored.
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
