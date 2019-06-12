@@ -72,13 +72,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     };
 
     firstCharMap.current = [];
+    nodeMap.current = {};
 
     items.forEach((item, index) => {
       if (index === items.length - 1) {
         lastNode.current = getLastNode(items[items.length - 1]);
       }
 
-      nodeMap.current = {};
       mapNodes(null, item);
       getFirstLabelChar(item);
     });
