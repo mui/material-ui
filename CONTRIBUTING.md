@@ -27,7 +27,7 @@ However, in order to move fast, we will make API changes that your application m
 
 #### `master` is for 4.x
 
-Only important bug fixes should be applied to `master` at this point.
+Only important bug fixes should be applied to `3.x` at this point.
 
 ### How to increase the chance of being accepted?
 
