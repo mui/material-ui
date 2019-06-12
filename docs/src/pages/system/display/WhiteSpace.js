@@ -9,8 +9,8 @@ function WhiteSpace() {
         Lorem Ipsum is simply dummy text of the printing.
       </Box>
       <Box component="div" whiteSpace="normal" bgcolor="background.paper">
-      Lorem Ipsum is simply dummy text of the printing.
-      Lorem Ipsum is simply dummy text of the printing.
+        Lorem Ipsum is simply dummy text of the printing.
+        Lorem Ipsum is simply dummy text of the printing.
       </Box>
     </div>
   );
