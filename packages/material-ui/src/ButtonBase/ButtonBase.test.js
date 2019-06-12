@@ -76,10 +76,10 @@ describe('<ButtonBase />', () => {
     });
 
     it('should automatically change the button to an a element when href is provided', () => {
-      const wrapper = mount(<ButtonBase href="http://google.com">Hello</ButtonBase>);
+      const wrapper = mount(<ButtonBase href="https://google.com">Hello</ButtonBase>);
       const button = wrapper.find('[role="button"]');
       assert.strictEqual(button.type(), 'a');
-      assert.strictEqual(button.props().href, 'http://google.com');
+      assert.strictEqual(button.props().href, 'https://google.com');
     });
 
     it('should change the button type to a and set role="button"', () => {
@@ -92,13 +92,13 @@ describe('<ButtonBase />', () => {
 
     it('should not change the button to an a element', () => {
       const wrapper = mount(
-        <ButtonBase component="span" href="http://google.com">
+        <ButtonBase component="span" href="https://google.com">
           Hello
         </ButtonBase>,
       );
       const button = wrapper.find('[role="button"]');
       assert.strictEqual(button.name(), 'span');
-      assert.strictEqual(button.props().href, 'http://google.com');
+      assert.strictEqual(button.props().href, 'https://google.com');
     });
   });
 
