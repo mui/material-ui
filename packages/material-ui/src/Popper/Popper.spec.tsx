@@ -7,7 +7,7 @@ interface Props {
   value: number;
 }
 
-export default function ThumbLabelComponent(props: Props) {
+export default function ValueLabelComponent(props: Props) {
   const { children, value } = props;
 
   const popperRef = React.useRef<PopperJs | null>(null);

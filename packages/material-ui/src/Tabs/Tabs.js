@@ -463,7 +463,7 @@ Tabs.propTypes = {
    */
   ScrollButtonComponent: PropTypes.elementType,
   /**
-   * Determine behavior of scroll buttons when tabs are set to scroll
+   * Determine behavior of scroll buttons when tabs are set to scroll:
    *
    * - `auto` will only present them when not all the items are visible.
    * - `desktop` will only present them on medium and larger viewports.

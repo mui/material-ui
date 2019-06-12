@@ -145,7 +145,7 @@ OutlinedInput.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default `input` element value, useful when not controlling the component.
+   * The default `input` element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
