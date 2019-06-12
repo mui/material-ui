@@ -33,7 +33,6 @@ export default function createTypography(palette, typography) {
   const coef = fontSize / 14;
   const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
   const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
-    // color: palette.text.primary,
     fontFamily,
     fontWeight,
     fontSize: pxToRem(size),
