@@ -122,7 +122,7 @@ function useThrottledOnScroll(callback, delay) {
 
   React.useEffect(() => {
     if (throttledCallback === noop) {
-      return () => {};
+      return undefined;
     }
 
     window.addEventListener('scroll', throttledCallback);
