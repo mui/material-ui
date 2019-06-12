@@ -21,7 +21,7 @@ export interface TypographyProps
   noWrap?: boolean;
   paragraph?: boolean;
   variant?: Style | 'inherit';
-  variantMapping?: { [type in Style]: string };
+  variantMapping?: Partial<Record<Style, string>>;
 }
 
 export type TypographyClassKey =
