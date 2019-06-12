@@ -25,7 +25,7 @@ Patches or hotfix releases are prepared on an independent branch.
 We will do our best to keep `next` in good shape, with tests passing at all times.
 However, in order to move fast, we will make API changes that your application might not be compatible with.
 
-#### `master` is for 3.x
+#### `master` is for 4.x
 
 Only important bug fixes should be applied to `master` at this point.
 
