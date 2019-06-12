@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
-const withTM = require('next-plugin-transpile-modules');
+const withTM = require('next-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 const withTypescript = require('@zeit/next-typescript');
