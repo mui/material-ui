@@ -98,7 +98,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 </Box>
 ```
 
-{{"demo": "pages/system/display/TextOverflow.js"}}
+{{"demo": "pages/system/display/WhiteSpace.js"}}
 
 ## API
 

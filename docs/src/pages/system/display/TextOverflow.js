@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 
-function Overflow() {
+function TextOverflow() {
   return (
     <div style={{ width: 50 }}>
       <Box component="div" textOverflow="clip" bgcolor="background.paper">
@@ -13,3 +13,5 @@ function Overflow() {
     </div>
   );
 }
+
+export default TextOverflow;

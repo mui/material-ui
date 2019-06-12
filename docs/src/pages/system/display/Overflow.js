@@ -13,3 +13,5 @@ function Overflow() {
     </div>
   );
 }
+
+export default Overflow;

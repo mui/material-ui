@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 
-function Overflow() {
+function WhiteSpace() {
   return (
     <div>
       <Box component="div" overflow="scroll" whiteSpace="nowrap" bgcolor="background.paper">
@@ -15,3 +15,5 @@ function Overflow() {
     </div>
   );
 }
+
+export default WhiteSpace;
