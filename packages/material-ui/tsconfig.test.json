@@ -4,5 +4,5 @@
     "allowJs": true,
     "strict": true
   },
-  "include": ["src/**/*.test.js"]
+  "include": ["../../test/utils/createDOM.d.ts", "src/**/*.test.js"]
 }

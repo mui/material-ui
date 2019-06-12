@@ -35,7 +35,7 @@ describe('<Typography />', () => {
     classes,
     inheritComponent: 'p',
     mount,
-    refInstanceof: HTMLParagraphElement,
+    refInstanceof: window.HTMLParagraphElement,
   }));
 
   it('should render the text', () => {
