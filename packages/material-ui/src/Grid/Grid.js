@@ -1,6 +1,7 @@
 // A grid component using the following libs as inspiration.
 //
 // For the implementation:
+// - https://getbootstrap.com/docs/4.3/layout/grid/
 // - https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css
 // - https://github.com/roylee0704/react-flexbox-grid
 // - https://material.angularjs.org/latest/layout/introduction
