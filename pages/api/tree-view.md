@@ -22,9 +22,8 @@ import TreeView from '@material-ui/lab/TreeView';
 | <span class="prop-name">collapseIcon</span> | <span class="prop-type">node</span> |  |  |
 | <span class="prop-name">defaultLeafIcon</span> | <span class="prop-type">node</span> |  |  |
 | <span class="prop-name">defaultNodeIcon</span> | <span class="prop-type">node</span> |  |  |
-| <span class="prop-name">expanded</span> | <span class="prop-type">arrayOf</span> |  |  |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  |  |
-| <span class="prop-name">onExpanded</span> | <span class="prop-type">func</span> |  |  |
+| <span class="prop-name">items</span> | <span class="prop-type">array</span> |  |  |
 
 The component cannot hold a ref.
 

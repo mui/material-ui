@@ -18,7 +18,7 @@ import TreeNode from '@material-ui/lab/TreeNode';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  |  |
+| <span class="prop-name">children</span> | <span class="prop-type">array</span> |  |  |
 | <span class="prop-name">collapseIcon</span> | <span class="prop-type">node</span> |  |  |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  |  |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  |  |
