@@ -2,7 +2,8 @@
   "extends": "./tsconfig",
   "compilerOptions": {
     "allowJs": true,
-    "strict": true
+    "strict": true,
+    "types": ["mocha", "node", "react"]
   },
   "include": ["../../test/utils/createDOM.d.ts", "src/**/*.test.js"]
 }
