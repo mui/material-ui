@@ -15,8 +15,8 @@ import * as React from 'react';
  * @internal
  */
 export type ComponentCreator<Component extends React.ElementType> = <
-  Theme = DefaultTheme,
-  Props extends {} = any
+  Props extends {} = any,
+  Theme = DefaultTheme
 >(
   styles:
     | CreateCSSProperties<Props>
