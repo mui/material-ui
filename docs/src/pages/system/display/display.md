@@ -61,6 +61,45 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 {{"demo": "pages/system/display/Print.js"}}
 
+## Overflow
+
+```jsx
+<Box component="div" overflow="hidden">
+  Overflow Hidden
+</Box>
+<Box component="div" overflow="visible">
+  Overflow visible
+</Box>
+```
+
+{{"demo": "pages/system/display/Overflow.js"}}
+
+## Text Overflow
+
+```jsx
+<Box component="div" textOverflow="clip">
+  Text Overflow Clip
+</Box>
+<Box component="div" textOverflow="ellipsis">
+  Text Overflow Ellipsis
+</Box>
+```
+
+{{"demo": "pages/system/display/TextOverflow.js"}}
+
+## White Space
+
+```jsx
+<Box component="div" whiteSpace="nowrap">
+  White Space Nowrap
+</Box>
+<Box component="div" whiteSpace="normal">
+  White Space Normal
+</Box>
+```
+
+{{"demo": "pages/system/display/WhiteSpace.js"}}
+
 ## API
 
 ```js
@@ -71,3 +110,6 @@ import { display } from '@material-ui/system';
 |:-------------|:----------|:-------------|:----------|
 | `displayRaw` | `display` | `display` | none |
 | `displayPrint` | `displayPrint` | `display` | none |
+| `overflow` | `overflow` | `overflow` | none |
+| `textOverflow` | `textOverflow` | `text-overflow` | none |
+| `whiteSpace` | `whiteSpace` | `white-space` | none |

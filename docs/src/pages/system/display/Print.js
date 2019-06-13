@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 
-function Print() {
+export default function Print() {
   return (
     <div style={{ width: '100%' }}>
       <Box display="block" displayPrint="none" m={1}>
@@ -13,5 +13,3 @@ function Print() {
     </div>
   );
 }
-
-export default Print;
