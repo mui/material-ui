@@ -12,10 +12,17 @@ function useMediaQuery(queryInput, options = {}) {
   let queries = multiple ? queryInput : [queryInput];
   queries = queries.map(query => query.replace('@media ', ''));
 
+  // Wait for JSDOM to support the match media feature.
+  // All the browsers Material-UI support have this built-in.
+  // This defensive check is here for simplicity.
+  // Most of the time, the match media logic isn't central to people tests.
+  const supportMatchMedia =
+    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+
   const { defaultMatches = false, noSsr = false, ssrMatchMedia = null } = options;
 
   const [matches, setMatches] = React.useState(() => {
-    if (hydrationCompleted || noSsr) {
+    if ((hydrationCompleted || noSsr) && supportMatchMedia) {
       return queries.map(query => window.matchMedia(query).matches);
     }
     if (ssrMatchMedia) {
@@ -29,6 +36,10 @@ function useMediaQuery(queryInput, options = {}) {
 
   React.useEffect(() => {
     hydrationCompleted = true;
+
+    if (!supportMatchMedia) {
+      return undefined;
+    }
 
     const queryLists = queries.map(query => window.matchMedia(query));
     setMatches(prev => {
