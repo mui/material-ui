@@ -73,7 +73,7 @@ module.exports = function setKarmaConfig(config) {
       resolve: {
         alias: {
           // https://github.com/sinonjs/sinon/issues/1951
-          // use the cdn main field. module nor main are supported for browserbuilds
+          // use the cdn main field. Neither module nor main are supported for browserbuilds
           sinon: 'sinon/pkg/sinon.js',
         },
       },
