@@ -1,17 +1,15 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 
-function Overflow() {
+export default function Overflow() {
   return (
-    <div style={{ width: 50 }}>
-      <Box component="div" overflow="hidden" bgcolor="background.paper">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    <div style={{ width: 200, whiteSpace: 'nowrap' }}>
+      <Box component="div" my={2} overflow="hidden" bgcolor="background.paper">
+        Overflow Hidden. Overflow Hidden. Overflow Hidden.
       </Box>
-      <Box component="div" overflow="scroll" bgcolor="background.paper">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      <Box component="div" my={2} overflow="auto" bgcolor="background.paper">
+        Overflow Auto. Overflow Auto. Overflow Auto.
       </Box>
     </div>
   );
 }
-
-export default Overflow;

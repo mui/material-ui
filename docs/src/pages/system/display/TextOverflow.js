@@ -1,17 +1,21 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 
-function TextOverflow() {
+export default function TextOverflow() {
   return (
-    <div style={{ width: 50 }}>
-      <Box component="div" textOverflow="clip" bgcolor="background.paper">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    <div style={{ width: 200, whiteSpace: 'nowrap' }}>
+      <Box component="div" my={2} textOverflow="clip" overflow="hidden" bgcolor="background.paper">
+        Text Overflow Clip. Text Overflow Clip.
       </Box>
-      <Box component="div" textOverflow="ellipsis" bgcolor="background.paper">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      <Box
+        component="div"
+        my={2}
+        textOverflow="ellipsis"
+        overflow="hidden"
+        bgcolor="background.paper"
+      >
+        Text Overflow Ellipsis. Text Overflow Ellipsis
       </Box>
     </div>
   );
 }
-
-export default TextOverflow;

@@ -78,10 +78,10 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ```jsx
 <Box component="div" textOverflow="clip">
-  TextOverflow Clip
+  Text Overflow Clip
 </Box>
 <Box component="div" textOverflow="ellipsis">
-  TextOverflow Ellipsis
+  Text Overflow Ellipsis
 </Box>
 ```
 
@@ -91,10 +91,10 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ```jsx
 <Box component="div" whiteSpace="nowrap">
-  WhiteSpace Nowrap
+  White Space Nowrap
 </Box>
 <Box component="div" whiteSpace="normal">
-  WhiteSpace Normal
+  White Space Normal
 </Box>
 ```
 
