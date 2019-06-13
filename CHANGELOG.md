@@ -9,7 +9,7 @@ Here are some highlights ✨:
 
 - 🐛 Fix react-hot-loader regression (#16195).
 - 🐛 Fix TypeScript icons regression (#16139) @MayhemYDG.
-- 🐛 Fix withWith regression (#16196).
+- 🐛 Fix withWidth regression (#16196).
 - 💄 Add Slider range support (#15703).
 - And many more 📚 improvements.
 
@@ -45,7 +45,7 @@ Here are some highlights ✨:
 - [docs] Fix small typos in v3->v4 migration guide (#16174) @charlax
 - [docs] Improve the CssBaseline description (#16148) @levigunz
 - [docs] Lowercase text to demo text-transform (#16160) @blmoore
-- [docs] Pseudo-class: the style rules that require an increase of spec…#16120) @oliviertassinari
+- [docs] Pseudo-class: the style rules that require an increase of specificity (#16120) @oliviertassinari
 - [docs] Remove `CSS to MUI webpack Loader` (#16175) @sabrinaluo
 - [docs] import Omit Type from @material-ui/types (#16157) @aditya1906
 
