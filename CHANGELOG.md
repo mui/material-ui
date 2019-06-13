@@ -17,21 +17,22 @@ Here are some highlights ✨:
 
 - [ButtonBase] Fix riple not stoping on mouse up (#16142) @joaosilvalopes
 - [useMediaQuery] Defensive logic against matchMedia not available (#16196) @oliviertassinari
+- [Typography] Fix variantMapping rejecting partial type (#16187) @eps1lon
 
 ### `@material-ui/styles@v4.1.1`
 
 - [styles] Fix react-hot-loader regression (#16195) @oliviertassinari
 
-### `@material-ui/icons@v4.1.1`
+### `@material-ui/icons@v4.2.0`
 
 - [icons] Fix generated index.d.ts (#16139) @MayhemYDG
-- [icons] Update the icons (#16166) @oliviertassinari
+- [icons] Update and clean the icons (#16166) @oliviertassinari
 
 ### `@material-ui/lab@v4.0.0-alpha.16`
 
 - [Slider] Support range (#15703) @oliviertassinari
 
-### `@material-ui/system@v4.1.1`
+### `@material-ui/system@v4.2.0`
 
 - [system] Add overflow, textOverflow, whiteSpace properties (#16129) @aditya1906
 - [system] Add remaining flexbox properties (#16164) @aditya1906
@@ -62,7 +63,7 @@ A big thanks to the 26 contributors who made this release possible!
 
 Here are some highlights ✨:
 
-- 💄 A new ButtonGroup component (#15751) @mbrookes
+- 💄 A new ButtonGroup component (#15744) @mbrookes
 - 💄 New system props (flex, fontStyle, letterSpacing, lineHeight) (#16045, #16109) @ljvanschie, @aditya1906
 - 📚 Fix the documentation notification spam (#16070)
 - 💄 A new fontWeightBold typography theme value (#16036) @aditya1906
