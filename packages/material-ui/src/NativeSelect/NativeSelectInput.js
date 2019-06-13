@@ -12,6 +12,7 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
     <React.Fragment>
       <select
         className={clsx(
+          classes.root, // TODO v5: merge root and select
           classes.select,
           {
             [classes.filled]: variant === 'filled',

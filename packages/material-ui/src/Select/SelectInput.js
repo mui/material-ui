@@ -250,6 +250,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     <React.Fragment>
       <div
         className={clsx(
+          classes.root, // TODO v5: merge root and select
           classes.select,
           classes.selectMenu,
           {

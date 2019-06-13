@@ -52,13 +52,13 @@ describe('<Select />', () => {
         <Select
           {...defaultProps}
           inputProps={{
-            classes: { select: 'select' },
+            classes: { root: 'root' },
           }}
         />,
       );
       assert.deepEqual(wrapper.find(Input).props().inputProps.classes, {
         ...classes,
-        select: `${classes.select} select`,
+        root: `${classes.root} root`,
       });
     });
   });

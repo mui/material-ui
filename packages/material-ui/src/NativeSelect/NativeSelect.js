@@ -8,12 +8,8 @@ import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
 export const styles = theme => ({
-  /* Styles applied to the select component if `variant="filled"`. */
-  filled: {},
-  /* Styles applied to the select component if `variant="outlined"`. */
-  outlined: {
-    borderRadius: theme.shape.borderRadius,
-  },
+  /* Styles applied to the select component `root` class. */
+  root: {},
   /* Styles applied to the select component `select` class. */
   select: {
     '-moz-appearance': 'none', // Reset
@@ -43,6 +39,12 @@ export const styles = theme => ({
     '&:not([multiple]) option, &:not([multiple]) optgroup': {
       backgroundColor: theme.palette.background.paper,
     },
+  },
+  /* Styles applied to the select component if `variant="filled"`. */
+  filled: {},
+  /* Styles applied to the select component if `variant="outlined"`. */
+  outlined: {
+    borderRadius: theme.shape.borderRadius,
   },
   /* Styles applied to the select component `selectMenu` class. */
   selectMenu: {

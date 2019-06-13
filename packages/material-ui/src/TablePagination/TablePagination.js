@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -34,6 +35,12 @@ export const styles = theme => ({
   caption: {
     flexShrink: 0,
   },
+  /* Styles applied to the Select component root element. */
+  selectRoot: {
+    // `.selectRoot` should be merged with `.input` in v5.
+    marginRight: 32,
+    marginLeft: 8,
+  },
   /* Styles applied to the Select component `select` class. */
   select: {
     paddingLeft: 8,
@@ -47,8 +54,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the `InputBase` component. */
   input: {
-    marginRight: 32,
-    marginLeft: 8,
     color: 'inherit',
     fontSize: 'inherit',
     flexShrink: 0,
@@ -111,7 +116,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
               select: classes.select,
               icon: classes.selectIcon,
             }}
-            input={<InputBase className={classes.input} />}
+            input={<InputBase className={clsx(classes.input, classes.selectRoot)} />}
             value={rowsPerPage}
             onChange={onChangeRowsPerPage}
             {...SelectProps}
