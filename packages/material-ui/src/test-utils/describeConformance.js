@@ -156,13 +156,13 @@ const fullSuite = {
 
 /**
  * @typedef {Object} ConformanceOptions
- * @property {string} classes - `classes` of the component provided by `@material-ui/styles`
+ * @property {Record<string, string>} classes - `classes` of the component provided by `@material-ui/styles`
  * @property {string} inheritComponent - The element type that receives spread props.
  * @property {function} mount - Should be a return value from createMount
- * @property {(keyof typeof fullSuite)[]?} only - If specified only run the tests listed
- * @property {boolean} refInstanceof - `ref` will be an instanceof this constructor.
- * @property {keyof typeof fullSuite[]?} skip - Skip the specified tests
- * @property {string?} testComponentPropWith - The host component that should be rendered instead.
+ * @property {(keyof typeof fullSuite)[]} [only] - If specified only run the tests listed
+ * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
+ * @property {keyof typeof fullSuite[]} [skip] - Skip the specified tests
+ * @property {string} [testComponentPropWith] - The host component that should be rendered instead.
  */
 
 /**

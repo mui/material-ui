@@ -1,3 +1,4 @@
+// @ts-check
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
@@ -5,8 +6,19 @@ import describeConformance from '../test-utils/describeConformance';
 import Typography from './Typography';
 
 describe('<Typography />', () => {
+  /**
+   * @type {ReturnType<typeof createMount>}
+   */
   let mount;
+  /**
+   * @type {ReturnType<typeof createShallow>}
+   */
   let shallow;
+  /**
+   * // we test at runtime that this is equal to
+   * Record<import('./Typography').TypographyClassKey, string>
+   * @type {Record<string, string>}
+   */
   let classes;
 
   before(() => {
@@ -48,6 +60,7 @@ describe('<Typography />', () => {
   ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button'].forEach(
     variant => {
       it(`should render ${variant} text`, () => {
+        // @ts-ignore literal/tuple type widening
         const wrapper = shallow(<Typography variant={variant}>Hello</Typography>);
         assert.strictEqual(classes[variant] != null, true);
         assert.strictEqual(wrapper.hasClass(classes[variant]), true, `should be ${variant} text`);
@@ -63,6 +76,7 @@ describe('<Typography />', () => {
     ['error', 'colorError'],
   ].forEach(([color, className]) => {
     it(`should render ${color} color`, () => {
+      // @ts-ignore literal/tuple type widening
       const wrapper = shallow(<Typography color={color}>Hello</Typography>);
       assert.strictEqual(classes[className] != null, true);
       assert.strictEqual(wrapper.hasClass(classes[className]), true, `should be ${color} text`);
