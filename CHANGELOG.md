@@ -1,5 +1,60 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.1.1
+###### *June 13, 2019*
+
+Big thanks to the 10 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🐛 Fix react-hot-loader regression (#16195).
+- 🐛 Fix TypeScript icons regression (#16139) @MayhemYDG.
+- 🐛 Fix withWith regression (#16196).
+- 💄 Add Slider range support (#15703).
+- And many more 📚 improvements.
+
+### `@material-ui/core@v4.1.1`
+
+- [ButtonBase] Fix riple not stoping on mouse up (#16142) @joaosilvalopes
+- [useMediaQuery] Defensive logic against matchMedia not available (#16196) @oliviertassinari
+
+### `@material-ui/styles@v4.1.1`
+
+- [styles] Fix react-hot-loader regression (#16195) @oliviertassinari
+
+### `@material-ui/icons@v4.1.1`
+
+- [icons] Fix generated index.d.ts (#16139) @MayhemYDG
+- [icons] Update the icons (#16166) @oliviertassinari
+
+### `@material-ui/lab@v4.0.0-alpha.16`
+
+- [Slider] Support range (#15703) @oliviertassinari
+
+### `@material-ui/system@v4.1.1`
+
+- [system] Add overflow, textOverflow, whiteSpace properties (#16129) @aditya1906
+- [system] Add remaining flexbox properties (#16164) @aditya1906
+
+### Docs
+
+- [docs] Add 700 font weight support (#16141) @aditya1906
+- [docs] Change http to https part 2 (#16171) @aditya1906
+- [docs] Fix build on windows (#16154) @merceyz
+- [docs] Fix small typos in v3->v4 migration guide (#16174) @charlax
+- [docs] Improve the CssBaseline description (#16148) @levigunz
+- [docs] Lowercase text to demo text-transform (#16160) @blmoore
+- [docs] Pseudo-class: the style rules that require an increase of spec…#16120) @oliviertassinari
+- [docs] Remove `CSS to MUI webpack Loader` (#16175) @sabrinaluo
+- [docs] import Omit Type from @material-ui/types (#16157) @aditya1906
+
+### Core
+
+- [core] Add TypeScript types for styled (#16133) @merceyz
+- [core] Fix withStyles not including props (#16134) @merceyz
+- [core] Fix yarn docs:api removing <br> tags on windows (#16165) @merceyz
+- [core] Remove bootstrap v4-alpha (#16177) @aditya1906
+
 ## 4.1.0
 ###### *June 10, 2019*
 
