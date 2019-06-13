@@ -75,7 +75,9 @@ import { StepProps } from '../Step';
 import { SvgIconProps } from '../SvgIcon';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { SwitchProps } from '../Switch';
+import { TableBodyProps } from '../TableBody';
 import { TableCellProps } from '../TableCell';
+import { TableHeadProps } from '../TableHead';
 import { TablePaginationProps } from '../TablePagination';
 import { TableProps } from '../Table';
 import { TableRowProps } from '../TableRow';
@@ -88,8 +90,6 @@ import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
 import { WithWidthOptions } from '../withWidth';
-import { TableHeadProps } from '../TableHead';
-import { TableBodyProps } from '../TableBody';
 
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>
@@ -175,9 +175,9 @@ export interface ComponentsPropsList {
   MuiSwitchBase: SwitchBaseProps;
   MuiTab: TabProps;
   MuiTable: TableProps;
-  MuiTableHead: TableHeadProps;
   MuiTableBody: TableBodyProps;
   MuiTableCell: TableCellProps;
+  MuiTableHead: TableHeadProps;
   MuiTablePagination: TablePaginationProps;
   MuiTableRow: TableRowProps;
   MuiTableSortLabel: TableSortLabelProps;
