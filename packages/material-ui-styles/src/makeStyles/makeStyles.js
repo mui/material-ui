@@ -161,20 +161,16 @@ function detach({ state, theme, stylesOptions, stylesCreator }) {
 }
 
 function useSynchronousEffect(func, values) {
-  const ref = React.useRef([]);
+  const key = React.useRef([]);
   let output;
 
-  if (ref.current.length !== values.length) {
-    ref.current = values;
+  // Store "generation" key. Just returns a new object every time
+  const currentKey = React.useMemo(() => ({}), values); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // "the first render", or "memo dropped the value"
+  if (key.current !== currentKey) {
+    key.current = currentKey;
     output = func();
-  } else {
-    for (let i = 0; i < values.length; i += 1) {
-      if (values[i] !== ref.current[i]) {
-        ref.current = values;
-        output = func();
-        break;
-      }
-    }
   }
 
   React.useEffect(
@@ -183,7 +179,7 @@ function useSynchronousEffect(func, values) {
         output();
       }
     },
-    values, // eslint-disable-line react-hooks/exhaustive-deps
+    [currentKey], // eslint-disable-line react-hooks/exhaustive-deps
   );
 }
 
