@@ -14,48 +14,63 @@ const jss = create({
   insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
 });
 
-class SideEffectsRaw extends React.Component {
-  componentDidMount() {
-    const { options } = this.props;
-    const navigatedCodeVariantMatch = window.location.hash.match(/\.(js|tsx)$/);
-    const navigatedCodeVariant =
-      navigatedCodeVariantMatch !== null ? navigatedCodeVariantMatch[1] : undefined;
-    if (navigatedCodeVariant !== undefined) {
-      const navigatedCodeVariantAsPersistable = navigatedCodeVariant === 'tsx' ? 'TS' : 'JS';
-      document.cookie = `codeVariant=${navigatedCodeVariantAsPersistable};path=/;max-age=31536000`;
-      window.ga('set', 'dimension1', navigatedCodeVariantAsPersistable);
-    }
+function useFirstRender() {
+  const firstRenderRef = React.useRef(true);
+  React.useEffect(() => {
+    firstRenderRef.current = false;
+  }, []);
 
-    const codeVariant = getCookie('codeVariant');
-
-    if (codeVariant && options.codeVariant !== codeVariant) {
-      window.ga('set', 'dimension1', codeVariant);
-      this.props.dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          codeVariant,
-        },
-      });
-    } else {
-      window.ga('set', 'dimension1', CODE_VARIANTS.JS);
-    }
-
-    window.ga('set', 'dimension2', options.userLanguage);
-  }
-
-  render() {
-    return null;
-  }
+  return firstRenderRef.current;
 }
 
-SideEffectsRaw.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired,
-};
+/**
+ * Priority: on first render: navigated value, persisted value; otherwise initial value, 'JS'
+ * @param {string} initialCodeVariant
+ * @param {(nextCodeVariant: string) => void} codeVariantChanged
+ * @returns {string} - The persisted variant if the initial value is undefined
+ */
+function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVariantChanged) {
+  const isFirstRender = useFirstRender();
 
-const SideEffects = connect(state => ({
-  options: state.options,
-}))(SideEffectsRaw);
+  const navigatedCodeVariant = React.useMemo(() => {
+    const navigatedCodeVariantMatch =
+      typeof window !== 'undefined' ? window.location.hash.match(/\.(js|tsx)$/) : null;
+
+    if (navigatedCodeVariantMatch === null) {
+      return undefined;
+    }
+
+    return navigatedCodeVariantMatch[1] === 'tsx' ? CODE_VARIANTS.TS : CODE_VARIANTS.JS;
+  }, []);
+
+  const persistedCodeVariant = React.useMemo(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+    return getCookie('codeVariant');
+  }, []);
+
+  /**
+   * we initialize from navigation or cookies. on subsequent renders the store is the
+   * truth
+   */
+  const codeVariant =
+    isFirstRender === true
+      ? navigatedCodeVariant || persistedCodeVariant || initialCodeVariant
+      : initialCodeVariant;
+
+  React.useEffect(() => {
+    if (codeVariant !== initialCodeVariant) {
+      codeVariantChanged(codeVariant);
+    }
+  });
+
+  React.useEffect(() => {
+    document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
+  }, [codeVariant]);
+
+  return codeVariant;
+}
 
 // Inspired by
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
@@ -113,7 +128,19 @@ async function registerServiceWorker() {
 }
 
 function AppWrapper(props) {
-  const { children } = props;
+  const { children, dispatch, options } = props;
+
+  const codeVariant = usePersistCodeVariant(options.codeVariant, nextCodeVariant =>
+    dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
+  );
+
+  React.useEffect(() => {
+    window.ga('set', 'dimension1', codeVariant);
+  }, [codeVariant]);
+
+  React.useEffect(() => {
+    window.ga('set', 'dimension2', options.userLanguage);
+  }, [options.userLanguage]);
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -130,13 +157,16 @@ function AppWrapper(props) {
   return (
     <StylesProvider jss={jss}>
       <ThemeProvider>{children}</ThemeProvider>
-      <SideEffects />
     </StylesProvider>
   );
 }
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  options: PropTypes.object.isRequired,
 };
 
-export default AppWrapper;
+export default connect(state => ({
+  options: state.options,
+}))(AppWrapper);
