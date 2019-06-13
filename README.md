@@ -11,6 +11,7 @@
 [![npm package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
 [![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)](https://www.npmjs.com/package/@material-ui/core)
 [![CircleCI](https://img.shields.io/circleci/project/github/mui-org/material-ui/master.svg)](https://circleci.com/gh/mui-org/material-ui/tree/master)
+[![Build Status](https://dev.azure.com/mui-org/Material-UI/_apis/build/status/mui-org.material-ui?branchName=master)](https://dev.azure.com/mui-org/Material-UI/_build/latest?definitionId=1&branchName=master)
 [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/material-ui)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)

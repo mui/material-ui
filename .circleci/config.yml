@@ -159,35 +159,14 @@ jobs:
             else
               echo "no changes"
             fi
-  test_build:
+  test_production:
     <<: *defaults
     steps:
       - checkout
       - install_js
       - run:
-          name: Can we generate the @material-ui/core build?
-          command: cd packages/material-ui && yarn build
-      - run:
-          name: Can we generate the @material-ui/lab build?
-          command: cd packages/material-ui-lab && yarn build
-      - run:
-          name: Can we generate the @material-ui/styles build?
-          command: cd packages/material-ui-styles && yarn build
-      - run:
-          name: Can we generate the @material-ui/utils build?
-          command: cd packages/material-ui-utils && yarn build
-      - run:
-          name: Can we generate the @material-ui/system build?
-          command: cd packages/material-ui-system && yarn build
-      - run:
-          name: Prepare persisting workspace
-          command: tar cfvz builds.tar.gz packages/*/build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - builds.tar.gz
-            # rollup snapshot
-            - packages/material-ui/size-snapshot.json
+          name: Can we generate the @material-ui/core umd build?
+          command: yarn workspace @material-ui/core build:umd
       - prepare_chrome_headless
       - run:
           name: Test umd release
@@ -214,44 +193,6 @@ jobs:
           command: |
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
             yarn argos
-  size_snapshot:
-    <<: *defaults
-    steps:
-      - checkout
-      - install_js
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name: Restore build
-          command: |
-            mv /tmp/workspace/builds.tar.gz ./
-            tar xfvz builds.tar.gz
-            mv /tmp/workspace/packages/material-ui/size-snapshot.json packages/material-ui/size-snapshot.json
-      # Netlify already do it for us but we need to check the size.
-      - run:
-          name: Can we build the docs?
-          command: yarn docs:build
-      - run:
-          name: Create a size snapshot
-          command: yarn size:snapshot
-      # downloaded by aws lambda to s3 bucket
-      # lambda allowes us to limit this to mui-org-branches-only while hiding credentials
-      # that allow write access to s3
-      - store_artifacts:
-          path: size-snapshot.json
-      # for debugging purposes, this is created by webpack called from size:snapshot
-      - store_artifacts:
-          path: scripts/sizeSnapshot/build/stats.json
-      - run:
-          name: Possibly persist size snapshot
-          command: |
-            if [ -z "$CI_PULL_REQUEST" ]; then
-              echo "no pull request; lets persist the size snapshot"
-              curl -X PUT --header "x-api-key: $CIRCLE_AWS_API_KEY" https://t6nulys5kl.execute-api.us-east-1.amazonaws.com/v1/persist-size-snapshot?build-id=$CIRCLE_BUILD_NUM
-            else
-              echo "pull request; let's run dangerJS"
-              yarn danger ci
-            fi
 workflows:
   version: 2
   pipeline:
@@ -272,7 +213,7 @@ workflows:
       - test_browser:
           requires:
             - checkout
-      - test_build:
+      - test_production:
           requires:
             - checkout
       - test_regressions:
@@ -281,7 +222,4 @@ workflows:
             - test_unit
             - test_static
             - test_browser
-            - test_build
-      - size_snapshot:
-          requires:
-            - test_build
+            - test_production

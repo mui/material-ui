@@ -79,6 +79,7 @@
     "ast-types": "^0.12.4",
     "autoprefixer": "^9.0.0",
     "autosuggest-highlight": "^3.1.1",
+    "aws-sdk": "^2.471.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.0",
     "babel-loader": "^8.0.0",

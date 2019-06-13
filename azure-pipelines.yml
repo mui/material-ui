@@ -1,0 +1,63 @@
+trigger:
+  - azure-pipelines
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      yarn install
+    displayName: 'install dependencies'
+
+  - script: |
+      yarn workspace @material-ui/core build
+    displayName: 'build @material-ui/core'
+
+  - script: |
+      yarn workspace @material-ui/lab build
+    displayName: 'build @material-ui/lab'
+
+  - script: |
+      yarn workspace @material-ui/styles build
+    displayName: 'build @material-ui/styles'
+
+  - script: |
+      yarn workspace @material-ui/utils build
+    displayName: 'build @material-ui/utils'
+
+  - script: |
+      yarn workspace @material-ui/system build
+    displayName: 'build @material-ui/system'
+
+  - script: |
+      yarn docs:build
+    displayName: 'build docs'
+
+  - script: |
+      yarn size:snapshot
+    displayName: 'create a size snapshot'
+
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: 'size-snapshot'
+      targetPath: 'scripts/sizeSnapshot/build/stats.json'
+
+  - script: |
+      node scripts/sizeSnapshot/upload
+    displayName: 'persist size snapshot'
+    condition: ne(variables['Build.Reason'], 'PullRequest')
+    env:
+      AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
+      AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+
+  - script: |
+      yarn danger ci
+    displayName: 'run danger on PRs'
+    condition: eq(variables['Build.Reason'], 'PullRequest')
+    env:
+      DANGER_GITHUB_API_TOKEN: $(GITHUB_API_TOKEN)
