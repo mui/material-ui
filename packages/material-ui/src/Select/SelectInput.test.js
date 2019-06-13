@@ -41,7 +41,7 @@ describe('<SelectInput />', () => {
 
   it('should render a correct top element', () => {
     const wrapper = shallow(<SelectInput {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(wrapper.name(), 'Fragment');
     assert.strictEqual(
       wrapper
         .find(MenuItem)

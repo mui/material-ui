@@ -247,9 +247,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <div
         className={clsx(
+          classes.root, // TODO v5: merge root and select
           classes.select,
           classes.selectMenu,
           {
@@ -308,7 +309,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       >
         {items}
       </Menu>
-    </div>
+    </React.Fragment>
   );
 });
 

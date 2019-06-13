@@ -49,7 +49,7 @@ This property accepts the following keys:
 | <span class="prop-name">toolbar</span> | Styles applied to the Toolbar component.
 | <span class="prop-name">spacer</span> | Styles applied to the spacer element.
 | <span class="prop-name">caption</span> | Styles applied to the caption Typography components if `variant="caption"`.
-| <span class="prop-name">selectRoot</span> | Styles applied to the Select component `root` class.
+| <span class="prop-name">selectRoot</span> | Styles applied to the Select component root element.
 | <span class="prop-name">select</span> | Styles applied to the Select component `select` class.
 | <span class="prop-name">selectIcon</span> | Styles applied to the Select component `icon` class.
 | <span class="prop-name">input</span> | Styles applied to the `InputBase` component.

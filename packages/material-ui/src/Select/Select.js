@@ -47,6 +47,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent,
+    select: true,
     inputProps: {
       children,
       IconComponent,
