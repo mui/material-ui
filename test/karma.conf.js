@@ -62,14 +62,20 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.js$/,
             loader: 'babel-loader',
-            // https://github.com/sinonjs/sinon/issues/1951
-            exclude: /node_modules(\\|\/)(?!(sinon)(\\|\/)).*/,
+            exclude: /node_modules/,
           },
         ],
       },
       node: {
         // Some tests import fs
         fs: 'empty',
+      },
+      resolve: {
+        alias: {
+          // https://github.com/sinonjs/sinon/issues/1951
+          // use the cdn main field. Neither module nor main are supported for browserbuilds
+          sinon: 'sinon/pkg/sinon.js',
+        },
       },
     },
     webpackServer: {
