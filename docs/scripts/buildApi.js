@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 import { mkdir, readFileSync, writeFileSync } from 'fs';
+import { EOL } from 'os';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
@@ -77,6 +78,14 @@ function getInheritance(testInfo, src) {
   };
 }
 
+function getLineFeed(source) {
+  const match = source.match(/\r?\n/);
+  if (match === null) {
+    return EOL;
+  }
+  return match[0];
+}
+
 async function buildDocs(options) {
   const { component: componentObject, pagesMarkdown } = options;
   const src = readFileSync(componentObject.filename, 'utf8');
@@ -146,6 +155,7 @@ async function buildDocs(options) {
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
   reactAPI.spread = spread;
+  reactAPI.EOL = getLineFeed(src);
 
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
@@ -174,7 +184,10 @@ async function buildDocs(options) {
       return;
     }
 
-    writeFileSync(path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`), markdown);
+    writeFileSync(
+      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`),
+      markdown.replace(/\r?\n/g, reactAPI.EOL),
+    );
     writeFileSync(
       path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
       `import 'docs/src/modules/components/bootstrap';
@@ -188,7 +201,7 @@ function Page() {
 }
 
 export default Page;
-`,
+`.replace(/\r?\n/g, reactAPI.EOL),
     );
 
     console.log('Built markdown docs for', reactAPI.name);
