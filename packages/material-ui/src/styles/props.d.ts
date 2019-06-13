@@ -88,6 +88,8 @@ import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
 import { WithWidthOptions } from '../withWidth';
+import { TableHeadProps } from '../TableHead';
+import { TableBodyProps } from '../TableBody';
 
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>
@@ -173,6 +175,8 @@ export interface ComponentsPropsList {
   MuiSwitchBase: SwitchBaseProps;
   MuiTab: TabProps;
   MuiTable: TableProps;
+  MuiTableHead: TableHeadProps;
+  MuiTableBody: TableBodyProps;
   MuiTableCell: TableCellProps;
   MuiTablePagination: TablePaginationProps;
   MuiTableRow: TableRowProps;
