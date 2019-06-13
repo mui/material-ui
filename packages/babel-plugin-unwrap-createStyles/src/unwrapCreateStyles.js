@@ -18,7 +18,7 @@ function isCreateStylesCall({ callee }) {
  *
  * @param {babel.types.ImportSpecifier} param0
  */
-function isCreateStylesImportSepcifier({ imported }) {
+function isCreateStylesImportSpecifier({ imported }) {
   return imported.name === 'createStyles';
 }
 
@@ -42,8 +42,12 @@ module.exports = function unwrapCreateStyles({ types: t }) {
         }
       },
       ImportSpecifier(path) {
-        if (isImportFromStyles(path.parent) && isCreateStylesImportSepcifier(path.node)) {
+        if (isImportFromStyles(path.parent) && isCreateStylesImportSpecifier(path.node)) {
           path.remove();
+
+          if (path.parent.specifiers.length === 0) {
+            path.parentPath.remove();
+          }
         }
       },
     },
