@@ -1,5 +1,9 @@
 trigger:
-  - azure-pipelines
+  branches:
+    include:
+    - '*' 
+    exclude:
+    - l10n
 
 pool:
   vmImage: 'ubuntu-latest'
