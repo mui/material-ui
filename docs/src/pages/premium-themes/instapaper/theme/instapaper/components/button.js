@@ -63,5 +63,8 @@ export default ({ attach, nest, primary, theme, red, white, BUTTON, ICON }) => (
         opacity: 0.6,
       },
     },
+    containedSecondary: {
+      borderColor: theme.palette.secondary.main,
+    }
   },
 });
