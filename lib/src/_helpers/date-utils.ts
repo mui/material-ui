@@ -1,3 +1,4 @@
+import { arrayIncludes } from './utils';
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../typings/date';
 import { DatePickerView } from '../DatePicker/DatePicker';
@@ -76,7 +77,7 @@ export const isYearOnlyView = (views: DatePickerView[]) =>
   views.length === 1 && views[0] === 'year';
 
 export const isYearAndMonthViews = (views: DatePickerView[]) =>
-  views.length === 2 && views.includes('month') && views.includes('year');
+  views.length === 2 && arrayIncludes(views, 'month') && arrayIncludes(views, 'year');
 
 export const getFormatByViews = (views: DatePickerView[], utils: IUtils<MaterialUiPickersDate>) => {
   if (isYearOnlyView(views)) {

@@ -4,6 +4,7 @@ import ClockType from '../constants/ClockType';
 import ToolbarText from '../_shared/ToolbarText';
 import ToolbarButton from '../_shared/ToolbarButton';
 import PickerToolbar from '../_shared/PickerToolbar';
+import { arrayIncludes } from '../_helpers/utils';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../typings/date';
 import { ToolbarComponentProps } from '../Picker/Picker';
@@ -93,7 +94,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
       })}
     >
       <div className={hourMinuteClassName}>
-        {views.includes('hours') && (
+        {arrayIncludes(views, 'hours') && (
           <>
             <ToolbarButton
               variant="h2"
@@ -105,7 +106,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           </>
         )}
 
-        {views.includes('minutes') && (
+        {arrayIncludes(views, 'minutes') && (
           <ToolbarButton
             variant="h2"
             onClick={() => setOpenView(ClockType.MINUTES)}
@@ -114,7 +115,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           />
         )}
 
-        {views.includes('seconds') && (
+        {arrayIncludes(views, 'seconds') && (
           <>
             <ToolbarText variant="h2" label=":" selected={false} className={classes.separator} />
 
@@ -131,7 +132,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
       {ampm && (
         <div
           className={clsx(classes.ampmSelection, {
-            [classes.ampmSelectionWithSeconds]: views.includes('seconds'),
+            [classes.ampmSelectionWithSeconds]: arrayIncludes(views, 'seconds'),
           })}
         >
           <ToolbarButton

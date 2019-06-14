@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { MaterialUiPickersDate } from '../..';
 import { PickerView } from '../../Picker/Picker';
+import { arrayIncludes } from '../../_helpers/utils';
 
 export function useViews(
   views: PickerView[],
@@ -8,7 +9,7 @@ export function useViews(
   onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void
 ) {
   const [openView, setOpenView] = React.useState(
-    openTo && views.includes(openTo) ? openTo : views[0]
+    openTo && arrayIncludes(views, openTo) ? openTo : views[0]
   );
 
   const handleChangeAndOpenNext = React.useCallback(
