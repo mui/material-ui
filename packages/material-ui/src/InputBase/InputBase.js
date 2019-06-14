@@ -115,6 +115,11 @@ export const styles = theme => {
       '&$disabled': {
         opacity: 1, // Reset iOS opacity
       },
+      '&:-webkit-autofill': {
+        // hack to disable background-color. By making the transition slow we
+        // create the illusion no background-color is applied at all
+        'transition-delay': '4815162342s',
+      },
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
