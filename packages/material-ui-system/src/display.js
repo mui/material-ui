@@ -27,10 +27,15 @@ export const whiteSpace = style({
   prop: 'whiteSpace',
 });
 
+export const visibility = style({
+  prop: 'visibility',
+});
+
 export default compose(
   displayRaw,
   displayPrint,
   overflow,
   textOverflow,
   whiteSpace,
+  visibility,
 );
