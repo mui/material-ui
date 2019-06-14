@@ -326,7 +326,7 @@ Typography.propTypes = {
         return new Error(
           'Material-UI: you are using a deprecated typography variant: ' +
             `\`${props.variant}\` that will be removed in the next major release.\n` +
-            'Please read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2.',
+            'Please read the migration guide under https://v3.material-ui.com/style/typography#migration-to-typography-v2.',
         );
       }
 

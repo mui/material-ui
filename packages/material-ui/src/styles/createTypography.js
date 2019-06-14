@@ -39,7 +39,7 @@ export default function createTypography(palette, typography) {
     useNextVariants || suppressWarning,
     'Material-UI: you are using the deprecated typography variants ' +
       'that will be removed in the next major release.' +
-      '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2',
+      '\nPlease read the migration guide under https://v3.material-ui.com/style/typography#migration-to-typography-v2',
   );
 
   const coef = fontSize / 14;

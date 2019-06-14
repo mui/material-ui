@@ -79,7 +79,7 @@ function createMuiTheme(options = {}) {
                 2,
               ),
               '',
-              'https://material-ui.com/customization/overrides#internal-states',
+              'https://v3.material-ui.com/customization/overrides#internal-states',
             ].join('\n'),
           );
         }

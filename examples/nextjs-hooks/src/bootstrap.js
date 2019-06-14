@@ -9,5 +9,5 @@ import { install } from '@material-ui/styles';
 // Behind the scenes, the install() function switches the
 // styling engine the core components use.
 //
-// https://material-ui.com/css-in-js/basics/#migration-for-material-ui-core-users
+// https://v3.material-ui.com/css-in-js/basics/#migration-for-material-ui-core-users
 install();

@@ -13,22 +13,22 @@ function Head(props) {
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@MaterialUI" />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={`${title} [v3]`} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://material-ui.com/static/brand.png" />
+      <meta name="twitter:image" content="https://v3.material-ui.com/static/brand.png" />
       {/* Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta
         property="og:url"
-        content={`https://material-ui.com${_rewriteUrlForNextExport(router.asPath)}`}
+        content={`https://v3.material-ui.com${_rewriteUrlForNextExport(router.asPath)}`}
       />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://material-ui.com/static/brand.png" />
+      <meta property="og:image" content="https://v3.material-ui.com/static/brand.png" />
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content="en" />
-      <meta name="docsearch:version" content="master" />
+      <meta name="docsearch:version" content="v3" />
     </NextHead>
   );
 }
