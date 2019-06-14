@@ -35,6 +35,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@types/react": "^16.8.20"
+    "@types/react": "*"
   }
 }
