@@ -286,7 +286,7 @@ function Demo(props) {
                   onClick={handleClickCodeOpen}
                   color={demoHovered ? 'primary' : 'default'}
                 >
-                  <CodeIcon />
+                  <CodeIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip
@@ -302,7 +302,7 @@ function Demo(props) {
                   target="_blank"
                   rel="noopener nofollow"
                 >
-                  <GithubIcon />
+                  <GithubIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               {demoOptions.hideEditButton ? null : (
@@ -317,7 +317,7 @@ function Demo(props) {
                     data-ga-event-action="codesandbox"
                     onClick={handleClickCodeSandbox}
                   >
-                    <EditIcon />
+                    <EditIcon fontSize="small" />
                   </IconButton>
                 </Tooltip>
               )}
@@ -327,7 +327,7 @@ function Demo(props) {
                 aria-haspopup="true"
                 aria-label={t('seeMore')}
               >
-                <MoreVertIcon />
+                <MoreVertIcon fontSize="small" />
               </IconButton>
               <Menu
                 id="demo-menu-more"
