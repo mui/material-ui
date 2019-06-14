@@ -119,7 +119,7 @@ export const Picker: React.FunctionComponent<PickerProps> = props => {
         {openView === 'year' && (
           <YearSelection
             date={date}
-            onChange={handleChangeAndOpenNext('month')}
+            onChange={handleChangeAndOpenNext}
             minDate={minDate}
             maxDate={maxDate}
             disablePast={disablePast}
@@ -132,7 +132,7 @@ export const Picker: React.FunctionComponent<PickerProps> = props => {
         {openView === 'month' && (
           <MonthSelection
             date={date}
-            onChange={handleChangeAndOpenNext('date')}
+            onChange={handleChangeAndOpenNext}
             minDate={minDate}
             maxDate={maxDate}
             disablePast={disablePast}
@@ -144,7 +144,7 @@ export const Picker: React.FunctionComponent<PickerProps> = props => {
         {openView === 'date' && (
           <Calendar
             date={date}
-            onChange={handleChangeAndOpenNext('hours')}
+            onChange={handleChangeAndOpenNext}
             onMonthChange={onMonthChange}
             disablePast={disablePast}
             disableFuture={disableFuture}
@@ -167,9 +167,9 @@ export const Picker: React.FunctionComponent<PickerProps> = props => {
             ampm={ampm}
             type={openView}
             minutesStep={minutesStep}
-            onHourChange={handleChangeAndOpenNext('minutes')}
-            onMinutesChange={handleChangeAndOpenNext('seconds')}
-            onSecondsChange={handleChangeAndOpenNext(null)}
+            onHourChange={handleChangeAndOpenNext}
+            onMinutesChange={handleChangeAndOpenNext}
+            onSecondsChange={handleChangeAndOpenNext}
           />
         )}
       </div>
