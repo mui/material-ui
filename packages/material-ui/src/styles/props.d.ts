@@ -4,6 +4,7 @@ import { BackdropProps } from '../Backdrop';
 import { BadgeProps } from '../Badge';
 import { BottomNavigationActionProps } from '../BottomNavigationAction';
 import { BottomNavigationProps } from '../BottomNavigation';
+import { BoxProps } from '../Box';
 import { BreadcrumbsProps } from '../Breadcrumbs';
 import { ButtonBaseProps } from '../ButtonBase';
 import { ButtonProps } from '../Button';
@@ -102,6 +103,7 @@ export interface ComponentsPropsList {
   MuiBadge: BadgeProps;
   MuiBottomNavigation: BottomNavigationProps;
   MuiBottomNavigationAction: BottomNavigationActionProps;
+  MuiBox: BoxProps;
   MuiBreadcrumbs: BreadcrumbsProps;
   MuiButton: ButtonProps;
   MuiButtonBase: ButtonBaseProps;
