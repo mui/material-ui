@@ -9,7 +9,7 @@ import { ButtonBaseProps } from '../ButtonBase';
 import { ButtonProps } from '../Button';
 import { ButtonGroupProps } from '../ButtonGroup';
 import { CardActionsProps } from '../CardActions';
-import { CardActionAreaProps } from '../CardActionArea'
+import { CardActionAreaProps } from '../CardActionArea';
 import { CardContentProps } from '../CardContent';
 import { CardHeaderProps } from '../CardHeader';
 import { CardMediaProps } from '../CardMedia';
