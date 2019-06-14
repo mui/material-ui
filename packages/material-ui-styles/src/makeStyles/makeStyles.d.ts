@@ -5,7 +5,7 @@ import {
   Styles,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
-import { IsAny } from '@material-ui/types';
+import { IsAny, Omit } from '@material-ui/types';
 
 export type Or<A, B, C = false> = A extends true
   ? true
@@ -73,5 +73,5 @@ export default function makeStyles<
   ClassKey extends string = string
 >(
   styles: Styles<Theme, Props, ClassKey>,
-  options?: WithStylesOptions<Theme>,
+  options?: Omit<WithStylesOptions<Theme>, 'withTheme'>,
 ): StylesHook<Styles<Theme, Props, ClassKey>>;
