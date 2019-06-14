@@ -92,6 +92,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/core': 'latest',
     '@material-ui/icons': 'latest',
     '@material-ui/lab': 'latest',
+    '@material-ui/naked': 'latest',
     '@material-ui/styles': 'latest',
     '@material-ui/system': 'latest',
     '@material-ui/utils': 'latest',

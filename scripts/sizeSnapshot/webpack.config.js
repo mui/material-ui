@@ -138,6 +138,7 @@ module.exports = async function webpackConfig() {
       alias: {
         '@material-ui/core': path.join(workspaceRoot, 'packages/material-ui/build'),
         '@material-ui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
+        '@material-ui/naked': path.join(workspaceRoot, 'packages/material-ui-naked/build'),
         '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
         '@material-ui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
         '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
