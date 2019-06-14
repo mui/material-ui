@@ -1,3 +1,5 @@
+import React from 'react';
+
 // disable automatic export
 export {};
 
