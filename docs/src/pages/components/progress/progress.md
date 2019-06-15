@@ -5,7 +5,7 @@ components: CircularProgress, LinearProgress
 
 # Progress
 
-<p class="description">Progress indicators express an unspecified wait time or display the length of a process.</p>
+<p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process. The animation works with CSS, not JavaScript.</p>
 
 [Progress indicators](https://material.io/design/components/progress-indicators.html) inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
 
