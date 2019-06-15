@@ -55,7 +55,7 @@
     "@date-io/date-fns": "^1.0.0",
     "@emotion/core": "^10.0.0",
     "@emotion/styled": "^10.0.0",
-    "@material-ui/pickers": "^3.0.0",
+    "@material-ui/pickers": "^3.1.1",
     "@trendmicro/react-interpolate": "^0.5.5",
     "@types/autosuggest-highlight": "^3.1.0",
     "@types/chai": "^4.1.7",
