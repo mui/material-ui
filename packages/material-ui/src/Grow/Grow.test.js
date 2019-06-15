@@ -1,11 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Grow from './Grow';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import { Transition } from 'react-transition-group';
+import { useForkRef } from '../utils/reactHelpers';
 
 describe('<Grow />', () => {
   let mount;
@@ -174,42 +176,64 @@ describe('<Grow />', () => {
 
       it('should delay based on height when timeout is auto', () => {
         const handleEntered = spy();
-
         const theme = createMuiTheme({
           transitions: {
             getAutoHeightDuration: n => n,
           },
         });
+        const autoTransitionDuration = 10;
+        const FakeDiv = React.forwardRef(function FakeDiv(props, ref) {
+          const divRef = React.useRef(null);
+          const handleRef = useForkRef(ref, divRef);
 
-        const wrapper = mount(
-          <Grow timeout="auto" onEntered={handleEntered} theme={theme}>
-            <div />
-          </Grow>,
-        );
+          React.useEffect(() => {
+            // For jsdom
+            Object.defineProperty(divRef.current, 'clientHeight', {
+              value: autoTransitionDuration,
+            });
+          });
 
-        stub(wrapper.find('div').instance(), 'clientHeight').get(() => 10);
+          return (
+            <div
+              ref={handleRef}
+              style={{
+                height: autoTransitionDuration,
+              }}
+              {...props}
+            />
+          );
+        });
 
+        function MyTest(props) {
+          return (
+            <ThemeProvider theme={theme}>
+              <Grow timeout="auto" onEntered={handleEntered} {...props}>
+                <FakeDiv />
+              </Grow>
+            </ThemeProvider>
+          );
+        }
+
+        const wrapper = mount(<MyTest />);
         wrapper.setProps({
           in: true,
         });
-
-        const autoTransitionDuration = 10;
         assert.strictEqual(handleEntered.callCount, 0);
         clock.tick(0);
         assert.strictEqual(handleEntered.callCount, 0);
         clock.tick(autoTransitionDuration);
         assert.strictEqual(handleEntered.callCount, 1);
 
-        const next2 = spy();
+        const handleEntered2 = spy();
         mount(
-          <Grow in timeout="auto" onEntered={next2}>
+          <Grow in timeout="auto" onEntered={handleEntered2}>
             <div />
           </Grow>,
         );
 
-        assert.strictEqual(next2.callCount, 0);
+        assert.strictEqual(handleEntered2.callCount, 0);
         clock.tick(0);
-        assert.strictEqual(next2.callCount, 1);
+        assert.strictEqual(handleEntered2.callCount, 1);
       });
 
       it('should use timeout as delay when timeout is number', () => {

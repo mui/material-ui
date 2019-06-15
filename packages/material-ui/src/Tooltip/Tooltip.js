@@ -108,7 +108,7 @@ function Tooltip(props) {
   const [, forceUpdate] = React.useState(0);
   const [childNode, setChildNode] = React.useState();
   const ignoreNonTouchEvents = React.useRef(false);
-  const { current: isControlled } = React.useRef(props.open != null);
+  const { current: isControlled } = React.useRef(openProp != null);
   const defaultId = React.useRef();
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();

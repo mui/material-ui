@@ -90,9 +90,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     children,
     classes,
     container: containerProp,
-    elevation,
+    elevation = 8,
     getContentAnchorEl,
-    marginThreshold,
+    marginThreshold = 16,
     ModalClasses,
     onEnter,
     onEntered,
@@ -103,8 +103,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     open,
     PaperProps = {},
     transformOrigin,
-    TransitionComponent,
-    transitionDuration: transitionDurationProp,
+    TransitionComponent = Grow,
+    transitionDuration: transitionDurationProp = 'auto',
     TransitionProps = {},
     ...other
   } = props;
@@ -560,19 +560,15 @@ Popover.propTypes = {
 };
 
 Popover.defaultProps = {
-  anchorReference: 'anchorEl',
   anchorOrigin: {
     vertical: 'top',
     horizontal: 'left',
   },
-  elevation: 8,
-  marginThreshold: 16,
+  anchorReference: 'anchorEl',
   transformOrigin: {
     vertical: 'top',
     horizontal: 'left',
   },
-  TransitionComponent: Grow,
-  transitionDuration: 'auto',
 };
 
 export default withStyles(styles, { name: 'MuiPopover' })(Popover);

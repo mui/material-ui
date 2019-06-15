@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from 'packages/material-ui/src/MenuItem';
-import Select from 'packages/material-ui/src/Select';
-import Dialog from 'packages/material-ui/src/Dialog';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Dialog from '@material-ui/core/Dialog';
 
 class SelectAndDialog extends React.Component {
   state = {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
 import TestUtils from 'react-dom/test-utils';
-import { createMount } from 'packages/material-ui/src/test-utils';
-import Popover from 'packages/material-ui/src/Popover';
+import { createMount } from '@material-ui/core/test-utils';
+import Popover from '@material-ui/core/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
-import Menu from 'packages/material-ui/src/Menu';
-import MenuItem from 'packages/material-ui/src/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import { setRef } from '../../src/utils/reactHelpers';
 import { stub } from 'sinon';
 import PropTypes from 'prop-types';

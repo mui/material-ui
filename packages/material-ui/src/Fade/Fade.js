@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { duration } from '../styles/transitions';
-import withTheme from '../styles/withTheme';
+import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { useForkRef } from '../utils/reactHelpers';
 
@@ -31,10 +31,10 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     onEnter,
     onExit,
     style,
-    theme,
     timeout = defaultTimeout,
     ...other
   } = props;
+  const theme = useTheme();
   const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
@@ -117,10 +117,6 @@ Fade.propTypes = {
    */
   style: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
@@ -130,4 +126,4 @@ Fade.propTypes = {
   ]),
 };
 
-export default withTheme(Fade);
+export default Fade;

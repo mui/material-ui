@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
-import withTheme from '../styles/withTheme';
+import useTheme from '../styles/useTheme';
 import { getTransitionProps } from '../transitions/utils';
 import NoSsr from '../NoSsr';
 import SwipeArea from './SwipeArea';
@@ -49,26 +49,26 @@ const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect 
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   const {
-    anchor,
-    disableBackdropTransition,
-    disableDiscovery,
+    anchor = 'left',
+    disableBackdropTransition = false,
+    disableDiscovery = false,
     disableSwipeToOpen,
     hideBackdrop,
-    hysteresis,
-    minFlingVelocity,
+    hysteresis = 0.55,
+    minFlingVelocity = 400,
     ModalProps: { BackdropProps, ...ModalPropsProp } = {},
     onClose,
     onOpen,
     open,
     PaperProps = {},
     SwipeAreaProps,
-    swipeAreaWidth,
-    theme,
+    swipeAreaWidth = 20,
     transitionDuration,
-    variant,
+    variant = 'temporary', // Mobile first.
     ...other
   } = props;
 
+  const theme = useTheme();
   const [maybeSwiping, setMaybeSwiping] = React.useState(false);
   const swipeInstance = React.useRef({
     isSwiping: null,
@@ -494,10 +494,6 @@ SwipeableDrawer.propTypes = {
    */
   swipeAreaWidth: PropTypes.number,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
@@ -512,16 +508,9 @@ SwipeableDrawer.propTypes = {
 };
 
 SwipeableDrawer.defaultProps = {
-  anchor: 'left',
-  disableBackdropTransition: false,
-  disableDiscovery: false,
   disableSwipeToOpen:
     typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent),
-  hysteresis: 0.55,
-  minFlingVelocity: 400,
-  swipeAreaWidth: 20,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
-  variant: 'temporary', // Mobile first.
 };
 
-export default withTheme(SwipeableDrawer);
+export default SwipeableDrawer;
