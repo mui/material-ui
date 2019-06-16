@@ -56,7 +56,10 @@
     "**/build"
   ],
   "dependencies": {
+    "@cypress/webpack-preprocessor": "^4.1.0",
+    "@percy/cypress": "^1.0.9",
     "cypress": "^3.2.0",
+    "ts-loader": "^6.0.2",
     "wait-on": "^3.2.0"
   }
 }

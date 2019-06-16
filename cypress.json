@@ -2,6 +2,7 @@
   "baseUrl": "http://localhost:3000",
   "integrationFolder": "e2e/integration",
   "supportFile": "e2e/support/index.js",
+  "pluginsFile": "e2e/plugins/index.js",
   "chromeWebSecurity": false,
   "projectId": "qow28y"
 }

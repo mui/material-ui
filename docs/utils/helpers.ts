@@ -2,6 +2,10 @@ import dayjs, { Dayjs } from 'dayjs';
 import moment, { Moment } from 'moment';
 import { DateTime } from 'luxon';
 
+export function stringToTestId(string: string) {
+  return string.replace(/[&\/\\#,+()$~%.'":*?<>{}\s]/g, '');
+}
+
 export function makeJSDateObject(date: Date | Moment | DateTime | Dayjs) {
   if (date instanceof dayjs) {
     return (date as Dayjs).clone().toDate();

@@ -15,9 +15,13 @@ const icons = {
 };
 
 function getRandomIcon() {
-  const icon = getRandomItem(Object.keys(icons));
   // @ts-ignore
-  return icons[icon];
+  if (process.browser && window.Cypress) {
+    return icons.ghost;
+  }
+
+  const icon = getRandomItem(Object.keys(icons));
+  return icons[icon as keyof typeof icons];
 }
 
 interface KawaiiIconProps extends KawaiiProps {
@@ -27,8 +31,9 @@ interface KawaiiIconProps extends KawaiiProps {
 
 const KawaiiIcon: React.FunctionComponent<KawaiiIconProps> = ({ icon, size, ...other }) => {
   const theme = useTheme();
-  const dimensionXs = useMediaQuery(theme.breakpoints.down('xs'));
-  const calculatedSize = size || dimensionXs ? 230 : 320;
+  const isXs = useMediaQuery(theme.breakpoints.down('xs'));
+  const calculatedSize = size || isXs ? 230 : 320;
+
   const Component = React.useMemo(() => (icon ? icons[icon] : getRandomIcon()), [icon]);
 
   return (

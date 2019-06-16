@@ -12,6 +12,7 @@ import { withUtilsService, UtilsContext } from './UtilsServiceContext';
 import { makeStyles, IconButton, Collapse, Tooltip } from '@material-ui/core';
 
 interface Props extends InjectedNotistackProps {
+  testId: string;
   source: { raw: string; relativePath: string; default: React.FC<any> };
 }
 
@@ -60,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Example({ source, enqueueSnackbar }: Props) {
+function Example({ source, testId, enqueueSnackbar }: Props) {
   if (!source.default || !source.raw || !source.relativePath) {
     throw new Error(
       'Missing component or raw component code, you likely forgot to .example to your example extension'
@@ -116,7 +117,7 @@ function Example({ source, enqueueSnackbar }: Props) {
         </div>
       </Collapse>
 
-      <div className={classes.pickers}>
+      <div data-test-id={testId} className={classes.pickers}>
         <Tooltip title="Show/Hide the source">
           <IconButton className={classes.sourceBtn} onClick={() => setExpanded(!expanded)}>
             <CodeIcon />

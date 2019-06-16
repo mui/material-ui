@@ -78,6 +78,30 @@ jobs:
       - run: cd lib && yarn test:<<parameters.lib>> -- -- --runInBand
       - steps: << parameters.after-tests >>
 
+  cypress_tests:
+    description: Run cypress tests
+    executor: cypress/browsers-chrome69
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          name: Restore Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Additional yarn install
+          command: yarn install --frozen-lockfile
+      - run:
+          name: Install, if no cypress binary found
+          command: yarn cypress install
+      - run: yarn workspace docs build
+      - run:
+          background: true
+          name: Run docs in background
+          command: yarn workspace docs start
+      - run: npx wait-on http://localhost:3000
+      - run: yarn percy exec -- cypress run --record
+
 ####################
 # Workflow
 ####################
@@ -90,17 +114,10 @@ workflows:
           requires:
             - checkout_code
 
-      - cypress/run:
+      - cypress_tests:
           name: 'Cypress tests'
           requires:
-            - 'Install deps, lint and build'
-          executor: cypress/browsers-chrome69
-          build: 'yarn workspace docs build'
-          start: 'yarn workspace docs start'
-          wait-on: 'http://localhost:3000'
-          record: true
-          yarn: true
-          cache-key: yarn-packages-{{ checksum "yarn.lock" }}
+            - checkout_code
 
       - jest_tests:
           name: 'Date-fns jest tests'
