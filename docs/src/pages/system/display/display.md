@@ -87,6 +87,19 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 {{"demo": "pages/system/display/TextOverflow.js"}}
 
+## Visibility
+
+```jsx
+<Box component="div" visibility="visible">
+  Visibility Visible
+</Box>
+<Box component="div" visibility="hidden">
+  Visibility Hidden
+</Box>
+```
+
+{{"demo": "pages/system/display/Visibility.js"}}
+
 ## White Space
 
 ```jsx
@@ -108,8 +121,9 @@ import { display } from '@material-ui/system';
 
 | Import name  | Prop      | CSS property | Theme key |
 |:-------------|:----------|:-------------|:----------|
-| `displayRaw` | `display` | `display` | none |
 | `displayPrint` | `displayPrint` | `display` | none |
+| `displayRaw` | `display` | `display` | none |
 | `overflow` | `overflow` | `overflow` | none |
 | `textOverflow` | `textOverflow` | `text-overflow` | none |
+| `visibility` | `visibility` | `visibility` | none |
 | `whiteSpace` | `whiteSpace` | `white-space` | none |
