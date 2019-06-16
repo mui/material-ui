@@ -12,32 +12,28 @@ export interface MuiPickersUtilsProviderProps {
   libInstance?: any;
 }
 
-export default class MuiPickersUtilsProvider extends React.Component<MuiPickersUtilsProviderProps> {
-  public static propTypes: any = {
-    utils: PropTypes.func.isRequired,
-    locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    children: PropTypes.oneOfType([
-      PropTypes.element.isRequired,
-      PropTypes.arrayOf(PropTypes.element.isRequired),
-    ]).isRequired,
-    moment: PropTypes.func,
-  };
-
-  public static getDerivedStateFromProps({
-    locale,
+export const MuiPickersUtilsProvider: React.FC<MuiPickersUtilsProviderProps> = ({
+  utils: Utils,
+  children,
+  locale,
+  libInstance,
+}) => {
+  const utils = React.useMemo(() => new Utils({ locale, moment: libInstance }), [
+    Utils,
     libInstance,
-    utils: Utils,
-  }: MuiPickersUtilsProviderProps) {
-    return {
-      utils: new Utils({ locale, instance: libInstance }),
-    };
-  }
+    locale,
+  ]);
 
-  public state = {
-    utils: null,
-  };
+  return <MuiPickersContext.Provider value={utils} children={children} />;
+};
 
-  public render() {
-    return <MuiPickersContext.Provider value={this.state.utils} children={this.props.children} />;
-  }
-}
+MuiPickersUtilsProvider.propTypes = {
+  utils: PropTypes.func.isRequired,
+  locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  children: PropTypes.oneOfType([
+    PropTypes.element.isRequired,
+    PropTypes.arrayOf(PropTypes.element.isRequired),
+  ]).isRequired,
+};
+
+export default MuiPickersUtilsProvider;
