@@ -58,14 +58,15 @@ function TreeNode(props) {
     handleLeftArrow,
     expandAllSiblings,
     setFocusByFirstCharacter,
+    handleNodeMap,
+    handleFirstChars,
   } = useTreeState();
-  const [nodes, setNodes] = React.useState([]);
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
 
   let stateIcon = null;
 
-  const expandable = nodes.length > 0;
+  const expandable = Boolean(children);
   const expanded = isExpanded ? isExpanded(idProp) : false;
   const focused = isFocused ? isFocused(idProp) : false;
   const focusable = isFocusable ? isFocusable(idProp) : false;
@@ -195,15 +196,13 @@ function TreeNode(props) {
   };
 
   React.useEffect(() => {
-    if (children) {
-      setNodes(
-        children.map(item => {
-          const { id, ...others } = item;
-          return <TreeNode key={id} id={id} {...others} />;
-        }),
-      );
-    }
-  }, [children]);
+    const childIds = React.Children.map(children, child => child.props.id);
+    handleNodeMap(idProp, childIds);
+  }, [children, idProp, handleNodeMap]);
+
+  React.useEffect(() => {
+    handleFirstChars(idProp, label.substring(0, 1).toLowerCase());
+  }, [handleFirstChars, idProp, label]);
 
   if (focused) {
     nodeRef.current.focus();
@@ -226,9 +225,9 @@ function TreeNode(props) {
         {startAdornment}
         <Typography className={classes.title}>{label}</Typography>
       </div>
-      {nodes && (
+      {children && (
         <Collapse className={classes.nestedList} in={expanded} component="ul" role="group">
-          {nodes}
+          {children}
         </Collapse>
       )}
     </li>
@@ -236,7 +235,7 @@ function TreeNode(props) {
 }
 
 TreeNode.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.node,
   collapseIcon: PropTypes.node,
   expandIcon: PropTypes.node,
   icon: PropTypes.node,
