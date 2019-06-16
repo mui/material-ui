@@ -67,8 +67,15 @@ function percentToValue(percent, min, max) {
   return (max - min) * percent + min;
 }
 
+function ensurePrecision(value, step) {
+  const stepDecimalPart = step.toString().split('.')[1];
+  const stepPrecision = stepDecimalPart ? stepDecimalPart.length : 0;
+
+  return Number(value.toFixed(stepPrecision));
+}
+
 function roundValueToStep(value, step) {
-  return Math.round(value / step) * step;
+  return ensurePrecision(Math.round(value / step) * step, step);
 }
 
 function setValueIndex({ values, source, newValue, index }) {
