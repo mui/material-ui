@@ -12,8 +12,8 @@ import mkdirp from 'mkdirp';
 import SVGO from 'svgo';
 
 const globAsync = util.promisify(glob);
-const RENAME_FILTER_DEFAULT = './renameFilters/default';
-const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
+export const RENAME_FILTER_DEFAULT = './renameFilters/default';
+export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
 const svgo = new SVGO({
   floatPrecision: 4,
@@ -67,7 +67,7 @@ const svgo = new SVGO({
  * @param {string} destPath
  * @returns {string} class name
  */
-function getComponentName(destPath) {
+export function getComponentName(destPath) {
   const splitregex = new RegExp(`[\\${path.sep}-]+`);
 
   const parts = destPath
@@ -90,27 +90,10 @@ async function generateIndex(options) {
   await fse.writeFile(path.join(options.outputDir, 'index.js'), index);
 }
 
-async function worker({ svgPath, options, renameFilter, template }) {
-  process.stdout.write('.');
+// Noise introduced by Google by mistake
+const noises = ['M0 0h24v24H0V0zm0 0h24v24H0V0z', 'M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z'];
 
-  const normalizedSvgPath = path.normalize(svgPath);
-  const svgPathObj = path.parse(normalizedSvgPath);
-  const innerPath = path
-    .dirname(normalizedSvgPath)
-    .replace(options.svgDir, '')
-    .replace(path.relative(process.cwd(), options.svgDir), ''); // for relative dirs
-  const destPath = renameFilter(svgPathObj, innerPath, options);
-
-  const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
-  const exists2 = await fse.exists(outputFileDir);
-
-  if (!exists2) {
-    console.log(`Making dir: ${outputFileDir}`);
-    mkdirp.sync(outputFileDir);
-  }
-
-  const data = await fse.readFile(svgPath, { encoding: 'utf8' });
-
+export async function cleanPaths({ svgPath, data }) {
   // Remove hardcoded color fill before optimizing so that empty groups are removed
   const input = data
     .replace(/ fill="#010101"/g, '')
@@ -141,6 +124,42 @@ async function worker({ svgPath, options, renameFilter, template }) {
     paths = paths.replace(/<path /g, `<path transform="scale(${scale}, ${scale})" `);
   }
 
+  // Add a fragment when necessary.
+  if ((paths.match(/\/>/g) || []).length > 1) {
+    paths = `<React.Fragment>${paths}</React.Fragment>`;
+  }
+
+  noises.forEach(noise => {
+    if (paths.indexOf(noise) !== -1) {
+      paths = paths.replace(noise, '');
+    }
+  });
+
+  return paths;
+}
+
+async function worker({ svgPath, options, renameFilter, template }) {
+  process.stdout.write('.');
+
+  const normalizedSvgPath = path.normalize(svgPath);
+  const svgPathObj = path.parse(normalizedSvgPath);
+  const innerPath = path
+    .dirname(normalizedSvgPath)
+    .replace(options.svgDir, '')
+    .replace(path.relative(process.cwd(), options.svgDir), ''); // for relative dirs
+  const destPath = renameFilter(svgPathObj, innerPath, options);
+
+  const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
+  const exists2 = await fse.exists(outputFileDir);
+
+  if (!exists2) {
+    console.log(`Making dir: ${outputFileDir}`);
+    mkdirp.sync(outputFileDir);
+  }
+
+  const data = await fse.readFile(svgPath, { encoding: 'utf8' });
+  const paths = await cleanPaths({ svgPath, data });
+
   const fileString = Mustache.render(template, {
     paths,
     componentName: getComponentName(destPath),
@@ -150,7 +169,7 @@ async function worker({ svgPath, options, renameFilter, template }) {
   await fse.writeFile(absDestPath, fileString);
 }
 
-async function main(options) {
+export async function main(options) {
   try {
     let originalWrite;
 
@@ -237,10 +256,3 @@ if (require.main === module) {
     ).argv;
   main(argv);
 }
-
-export default {
-  getComponentName,
-  main,
-  RENAME_FILTER_DEFAULT,
-  RENAME_FILTER_MUI,
-};
