@@ -248,7 +248,7 @@ describe('<ButtonBase />', () => {
 
       it('should stop the ripple when dragging has finished', () => {
         act(() => {
-          wrapper.simulate('dragEnd');
+          wrapper.simulate('dragLeave');
         });
         wrapper.update();
 
