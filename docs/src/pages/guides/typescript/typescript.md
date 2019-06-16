@@ -261,10 +261,10 @@ There is an ongoing effort to fix this by making component props generic.
 
 Many components concerned with user input offer a `value` prop or event handlers
 which include the current `value`. In most situations that `value` is only handled
-within React which allows it be of any type like objects or arrays.
+within React which allows it be of any type, such as objects or arrays.
 
 However, that type cannot be verified at compile time in situations where it depends
-on the components children e.g. for `Select` or `RadioGroup`. This means that
+on the component's children e.g. for `Select` or `RadioGroup`. This means that
 the soundest option is to type it as `unknown` and let the developer decide
 how they want to narrow that type down. We do not offer the possibility to use a generic
 type in those cases for the same [reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
