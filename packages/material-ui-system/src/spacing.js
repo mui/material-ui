@@ -18,33 +18,24 @@ const directions = {
   y: ['Top', 'Bottom'],
 };
 
+const aliases = {
+  marginX: 'mx',
+  marginY: 'my',
+  paddingX: 'px',
+  paddingY: 'py',
+};
+
 // memoize() impact:
 // From 300,000 ops/sec
 // To 350,000 ops/sec
 const getCssProperties = memoize(prop => {
-  switch (prop) {
-    case 'marginX':
-      prop = 'mx';
-      break;
-
-    case 'marginY':
-      prop = 'mx';
-      break;
-
-    case 'paddingX':
-      prop = 'px';
-      break;
-
-    case 'paddingY':
-      prop = 'py';
-      break;
-
-    default:
-  }
-
   // It's not a shorthand notation.
   if (prop.length > 2) {
-    return [prop];
+    if (aliases[prop]) {
+      prop = aliases[prop];
+    } else {
+      return [prop];
+    }
   }
 
   const [a, b] = prop.split('');
