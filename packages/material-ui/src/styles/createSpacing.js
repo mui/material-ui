@@ -23,10 +23,19 @@ export default function createSpacing(spacingInput = 8) {
       ].join('\n'),
     );
     transform = factor => {
+      const factorType = typeof factor;
       warning(
-        typeof factor === 'number',
-        `Expected spacing argument to be a number, got ${factor}`,
+        factorType === 'number' || factorType === 'string',
+        `Expected spacing argument to be a number or string, got ${factor}`,
       );
+
+      if (factorType === 'string') {
+        if (factor.length === 0 || /^\d*$/.test(factor)) {
+          return Number(factor);
+        }
+
+        return factor;
+      }
       return spacingInput * factor;
     };
   }

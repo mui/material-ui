@@ -38,6 +38,11 @@ describe('createSpacing', () => {
     assert.strictEqual(spacing(1, 2), '0.25rem 0.5rem');
   });
 
+  it('should support string arguments', () => {
+    const spacing = createSpacing();
+    assert.strictEqual(spacing(1, '2', '', '3rem'), '8px 2px 0px 3rem');
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
