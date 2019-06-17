@@ -18,11 +18,11 @@ export const styles = theme => {
       },
       '&:hover $notchedOutline': {
         borderColor: theme.palette.text.primary,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          '&:hover $notchedOutline': {
-            borderColor,
-          },
+      },
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        '&:hover $notchedOutline': {
+          borderColor,
         },
       },
       '&$focused $notchedOutline': {
