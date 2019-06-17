@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PopperJS from 'popper.js';
+import PopperJS from 'Popper.js';
 import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
