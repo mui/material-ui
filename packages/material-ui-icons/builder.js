@@ -91,7 +91,13 @@ async function generateIndex(options) {
 }
 
 // Noise introduced by Google by mistake
-const noises = ['M0 0h24v24H0V0zm0 0h24v24H0V0z', 'M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z'];
+const noises = [
+  ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
+  ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
+  ['<path fill="none" d="M0 0h24v24H0z" />', ''],
+  ['="M0 0h24v24H0V0zm0 0h24v24H0V0z', '="'],
+  ['="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z', '="'],
+];
 
 export async function cleanPaths({ svgPath, data }) {
   // Remove hardcoded color fill before optimizing so that empty groups are removed
@@ -124,16 +130,16 @@ export async function cleanPaths({ svgPath, data }) {
     paths = paths.replace(/<path /g, `<path transform="scale(${scale}, ${scale})" `);
   }
 
+  noises.forEach(([search, replace]) => {
+    if (paths.indexOf(search) !== -1) {
+      paths = paths.replace(search, replace);
+    }
+  });
+
   // Add a fragment when necessary.
   if ((paths.match(/\/>/g) || []).length > 1) {
     paths = `<React.Fragment>${paths}</React.Fragment>`;
   }
-
-  noises.forEach(noise => {
-    if (paths.indexOf(noise) !== -1) {
-      paths = paths.replace(noise, '');
-    }
-  });
 
   return paths;
 }
