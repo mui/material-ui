@@ -171,15 +171,6 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
-  test_browser:
-    <<: *defaults
-    steps:
-      - checkout
-      - install_js
-      - prepare_chrome_headless
-      - run:
-          name: Tests real browsers
-          command: yarn test:karma
   test_regressions:
     <<: *defaults
     docker:
@@ -210,9 +201,6 @@ workflows:
       - test_material-ui-x:
           requires:
             - checkout
-      - test_browser:
-          requires:
-            - checkout
       - test_production:
           requires:
             - checkout
@@ -221,5 +209,4 @@ workflows:
             - test_material-ui-x
             - test_unit
             - test_static
-            - test_browser
             - test_production
