@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import spacing from './spacing';
 
-describe('spacing', () => {
+describe.only('spacing', () => {
   describe('themeTransformer', () => {
     it('should have a default unit value', () => {
       const output = spacing({
@@ -157,11 +157,19 @@ describe('spacing', () => {
   });
 
   it('should support full version', () => {
-    const output = spacing({
+    const output1 = spacing({
       theme: {},
       paddingTop: 1,
     });
-    assert.deepEqual(output, {
+    assert.deepEqual(output1, {
+      paddingTop: 8,
+    });
+    const output2 = spacing({
+      theme: {},
+      paddingY: 1,
+    });
+    assert.deepEqual(output2, {
+      paddingBottom: 8,
       paddingTop: 8,
     });
   });
