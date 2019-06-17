@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import spacing from './spacing';
 
-describe.only('spacing', () => {
+describe('spacing', () => {
   describe('themeTransformer', () => {
     it('should have a default unit value', () => {
       const output = spacing({
