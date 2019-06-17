@@ -2,8 +2,9 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import { createStyles } from '@material-ui/core/styles';
 
-const styles = {
+const styles = createStyles({
   button: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: 3,
@@ -17,12 +18,12 @@ const styles = {
     background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)',
     boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .30)',
   },
-};
+});
 
 export default function DynamicInlineStyle() {
   const [color, setColor] = React.useState('default');
 
-  const handleChange = event => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
 
