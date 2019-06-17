@@ -648,8 +648,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
         const markActive = range
-          ? percent >= values[0] && percent <= values[values.length - 1]
-          : percent <= values[0];
+          ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+          : mark.value <= values[0];
 
         return (
           <React.Fragment key={mark.value}>
