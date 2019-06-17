@@ -184,6 +184,39 @@ const AirbnbSlider = withStyles({
   },
 })(Slider);
 
+const Rating = withStyles({
+  root: {
+    width: 120,
+  },
+  rail: {
+    display: 'none',
+  },
+  thumb: { display: 'none' },
+  track: {
+    display: 'none',
+  },
+  mark: {
+    backgroundColor: 'transparent',
+    border: 'none',
+    height: 20,
+    width: 20,
+    '&:before': {
+      content: '"star_border"',
+      display: 'block',
+      fontFamily: 'Material Icons',
+      fontSize: 20,
+      height: 20,
+      transform: 'translate(-10px, -13px)',
+      width: 20,
+    },
+  },
+  markActive: {
+    '&:before': {
+      content: '"star"',
+    },
+  },
+})(Slider);
+
 function AirbnbThumbComponent(props) {
   return (
     <span {...props}>
@@ -218,6 +251,7 @@ export default function CustomizedSlider() {
         aria-label="Airbnb slider"
         defaultValue={[20, 40]}
       />
+      <Rating aria-label='Rate my abstraction "skills"' min={0} max={4} marks />
     </Paper>
   );
 }
