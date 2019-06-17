@@ -43,6 +43,11 @@ describe('createSpacing', () => {
     assert.strictEqual(spacing(1, '2', '', '3rem'), '8px 2px 0px 3rem');
   });
 
+  it('should support function arguments', () => {
+    const spacing = createSpacing();
+    assert.strictEqual(spacing(1, 1, 1, unit => unit + 1), '8px 8px 8px 9px');
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();

@@ -25,8 +25,8 @@ export default function createSpacing(spacingInput = 8) {
     transform = factor => {
       const factorType = typeof factor;
       warning(
-        factorType === 'number' || factorType === 'string',
-        `Expected spacing argument to be a number or string, got ${factor}`,
+        factorType === 'number' || factorType === 'string' || factorType === 'function',
+        `Expected spacing argument to be a number, string, or function, got ${factor}`,
       );
 
       if (factorType === 'string') {
@@ -36,6 +36,11 @@ export default function createSpacing(spacingInput = 8) {
 
         return factor;
       }
+
+      if (factorType === 'function') {
+        return factor(spacingInput);
+      }
+
       return spacingInput * factor;
     };
   }
