@@ -25,7 +25,7 @@ function TrapFocus(props) {
   const ignoreNextEnforceFocus = React.useRef();
   const sentinelStart = React.useRef(null);
   const sentinelEnd = React.useRef(null);
-  const lastFocus = React.useRef();
+  const nodeToRestore = React.useRef();
   const isEnabledRef = React.useRef();
   useEnhancedEffect(() => {
     isEnabledRef.current = isEnabled;
@@ -46,7 +46,7 @@ function TrapFocus(props) {
       return;
     }
 
-    lastFocus.current = getDoc().activeElement;
+    nodeToRestore.current = getDoc().activeElement;
   }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
@@ -73,7 +73,7 @@ function TrapFocus(props) {
       rootRef.current.focus();
     }
 
-    const enforceFocus = () => {
+    const contain = () => {
       if (disableEnforceFocus || !isEnabledRef.current() || ignoreNextEnforceFocus.current) {
         ignoreNextEnforceFocus.current = false;
         return;
@@ -92,7 +92,7 @@ function TrapFocus(props) {
 
       // Make sure the next tab starts from the right place.
       if (doc.activeElement === rootRef.current) {
-        // We need to ignore the next enforceFocus as
+        // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
         if (event.shiftKey) {
@@ -103,24 +103,24 @@ function TrapFocus(props) {
       }
     };
 
-    doc.addEventListener('focus', enforceFocus, true);
+    doc.addEventListener('focus', contain, true);
     doc.addEventListener('keydown', loopFocus, true);
 
     return () => {
-      doc.removeEventListener('focus', enforceFocus, true);
+      doc.removeEventListener('focus', contain, true);
       doc.removeEventListener('keydown', loopFocus, true);
 
       // restoreLastFocus()
       if (!disableRestoreFocus) {
         // In IE 11 it is possible for document.activeElement to be null resulting
-        // in lastFocus.current being null.
+        // in nodeToRestore.current being null.
         // Not all elements in IE 11 have a focus method.
         // Once IE 11 support is dropped the focus() call can be unconditional.
-        if (lastFocus.current && lastFocus.current.focus) {
-          lastFocus.current.focus();
+        if (nodeToRestore.current && nodeToRestore.current.focus) {
+          nodeToRestore.current.focus();
         }
 
-        lastFocus.current = null;
+        nodeToRestore.current = null;
       }
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, open]);
@@ -175,5 +175,40 @@ TrapFocus.propTypes = {
    */
   open: PropTypes.bool.isRequired,
 };
+
+/*
+
+In the future, we should be able to replace TrapFocus with:
+https://github.com/facebook/react/blob/master/packages/react-events/docs/FocusScope.md
+
+```jsx
+import FocusScope from 'react-dom/FocusScope';
+
+function TrapFocus(props) {
+  const {
+    children
+    disableAutoFocus = false,
+    disableEnforceFocus = false,
+    disableRestoreFocus = false,
+    open,
+  } = props;
+
+  if (!open) {
+    return children;
+  }
+
+  return (
+    <FocusScope
+      autoFocus={!disableAutoFocus}
+      contain={!disableEnforceFocus}
+      restoreFocus={!disableRestoreFocus}
+    >
+      {children}
+    </FocusScope>
+  );
+}
+```
+
+*/
 
 export default TrapFocus;
