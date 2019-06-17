@@ -65,4 +65,22 @@ describe('<Divider />', () => {
       });
     });
   });
+
+  describe('role', () => {
+    it('avoids adding implicit aria semantics', () => {
+      const wrapper = mount(<Divider />);
+      assert.strictEqual(wrapper.find('hr').props().role, undefined);
+    });
+
+    it('adds a proper role if none is specified', () => {
+      const wrapper = mount(<Divider component="div" />);
+      assert.strictEqual(wrapper.find('div').props().role, 'separator');
+    });
+
+    it('overrides the computed role with the provided one', () => {
+      // presentation is the only valid aria role
+      const wrapper = mount(<Divider role="presentation" />);
+      assert.strictEqual(wrapper.find('hr').props().role, 'presentation');
+    });
+  });
 });
