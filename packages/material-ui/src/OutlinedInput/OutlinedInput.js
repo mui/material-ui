@@ -21,9 +21,9 @@ export const styles = theme => {
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           '&:hover $notchedOutline': {
-              borderColor,
-            },
+            borderColor,
           },
+        },
       },
       '&$focused $notchedOutline': {
         borderColor: theme.palette.primary.main,
