@@ -19,24 +19,8 @@ steps:
     displayName: 'install dependencies'
 
   - script: |
-      yarn workspace @material-ui/core build
-    displayName: 'build @material-ui/core'
-
-  - script: |
-      yarn workspace @material-ui/lab build
-    displayName: 'build @material-ui/lab'
-
-  - script: |
-      yarn workspace @material-ui/styles build
-    displayName: 'build @material-ui/styles'
-
-  - script: |
-      yarn workspace @material-ui/utils build
-    displayName: 'build @material-ui/utils'
-
-  - script: |
-      yarn workspace @material-ui/system build
-    displayName: 'build @material-ui/system'
+      yarn lerna run --ignore @material-ui/icons --parallel --scope "@material-ui/*" build
+    displayName: 'build @material-ui packages'
 
   - script: |
       yarn docs:build
