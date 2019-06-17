@@ -77,7 +77,7 @@ describe('<Divider />', () => {
       assert.strictEqual(wrapper.find('div').props().role, 'separator');
     });
 
-    it('passed roles override', () => {
+    it('overrides the computed role with the provided one', () => {
       // presentation is the only valid aria role
       const wrapper = mount(<Divider role="presentation" />);
       assert.strictEqual(wrapper.find('hr').props().role, 'presentation');
