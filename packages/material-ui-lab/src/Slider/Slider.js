@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -335,6 +333,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(-1);
 
+  const sliderRef = React.useRef();
+  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
+  const handleRef = useForkRef(ref, handleFocusRef);
+
   const handleFocus = useEventCallback(event => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     if (isFocusVisible(event)) {
@@ -435,9 +437,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
   });
 
-  const sliderRef = React.useRef();
-  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
-  const handleRef = useForkRef(ref, handleFocusRef);
   const previousIndex = React.useRef();
   let axis = orientation;
   if (theme.direction === 'rtl' && orientation === 'horizontal') {
