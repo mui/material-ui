@@ -13,7 +13,7 @@ describe('<BottomNavigationAction />', () => {
   const icon = <Icon>restore</Icon>;
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
+    // StrictModeViolation: uses #StrictMode
     mount = createMount({ strict: false });
     classes = getClasses(<BottomNavigationAction />);
   });

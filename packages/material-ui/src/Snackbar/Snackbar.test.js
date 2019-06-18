@@ -12,7 +12,7 @@ describe('<Snackbar />', () => {
 
   before(() => {
     classes = getClasses(<Snackbar open />);
-    // StrictModeViolation: uses Slide
+    // StrictModeViolation: uses #simulate
     mount = createMount({ strict: false });
   });
 

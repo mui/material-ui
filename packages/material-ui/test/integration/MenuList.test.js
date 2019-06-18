@@ -105,7 +105,7 @@ describe('<MenuList> integration', () => {
   let mount;
 
   before(() => {
-    // StrictModeViolation: uses RootRef
+    // StrictModeViolation: uses #simulate
     mount = createMount({ strict: false });
   });
 

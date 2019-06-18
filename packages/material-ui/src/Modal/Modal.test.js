@@ -14,8 +14,7 @@ describe('<Modal />', () => {
   let savedBodyStyle;
 
   before(() => {
-    // StrictModeViolation: uses Backdrop
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     savedBodyStyle = document.body.style;
   });
 

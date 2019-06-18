@@ -26,8 +26,7 @@ describe('<Dialog />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Fade
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
   });
 
