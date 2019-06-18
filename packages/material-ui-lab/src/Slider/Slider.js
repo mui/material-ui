@@ -102,20 +102,20 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
 
 const axisProps = {
   horizontal: {
-    offset: value => ({ left: `${value}%` }),
-    leap: value => ({ width: `${value}%` }),
+    offset: percent => ({ left: `${percent}%` }),
+    leap: percent => ({ width: `${percent}%` }),
   },
   'horizontal-reverse': {
-    offset: value => ({ right: `${value}%` }),
-    leap: value => ({ width: `${value}%` }),
+    offset: percent => ({ right: `${percent}%` }),
+    leap: percent => ({ width: `${percent}%` }),
   },
   vertical: {
-    offset: value => ({ bottom: `${value}%` }),
-    leap: value => ({ height: `${value}%` }),
+    offset: percent => ({ bottom: `${percent}%` }),
+    leap: percent => ({ height: `${percent}%` }),
   },
   'vertical-reverse': {
-    offset: value => ({ top: `${value}%` }),
-    leap: value => ({ height: `${value}%` }),
+    offset: percent => ({ top: `${percent}%` }),
+    leap: percent => ({ height: `${percent}%` }),
   },
 };
 
@@ -321,8 +321,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   values = values.map(value => clamp(value, min, max));
   const marks =
     marksProp === true && step !== null
-      ? [...Array(Math.floor(max / step) + 1)].map((_, index) => ({
-          value: step * index,
+      ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
+          value: min + step * index,
         }))
       : marksProp;
 
@@ -618,11 +618,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     document.body.addEventListener('mouseup', handleTouchEnd);
   });
 
-  const offset = range ? valueToPercent(values[0], min, max) : 0;
-  const leap = valueToPercent(values[values.length - 1], min, max) - offset;
+  const trackOffset = valueToPercent(range ? values[0] : min, min, max);
+  const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
   const trackStyle = {
-    ...axisProps[axis].offset(offset),
-    ...axisProps[axis].leap(leap),
+    ...axisProps[axis].offset(trackOffset),
+    ...axisProps[axis].leap(trackLeap),
   };
 
   return (
