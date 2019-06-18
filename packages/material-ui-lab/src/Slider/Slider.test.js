@@ -53,17 +53,6 @@ describe('<Slider />', () => {
     return wrapper.find('[role="slider"]').filterWhere(wrapsIntrinsicElement);
   }
 
-  it('should render with the default and user classes', () => {
-    const wrapper = mount(<Slider value={0} className="mySliderClass" />);
-    assert.strictEqual(
-      wrapper
-        .find(`.${classes.root}`)
-        .first()
-        .hasClass('mySliderClass'),
-      true,
-    );
-  });
-
   it('should call handlers', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
