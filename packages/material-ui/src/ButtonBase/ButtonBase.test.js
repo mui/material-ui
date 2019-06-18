@@ -639,7 +639,7 @@ describe('<ButtonBase />', () => {
 
       assert.strictEqual(
         rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
-        3,
+        2,
       );
     });
   });

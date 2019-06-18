@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
+import { Transition } from '@material-ui/react-transition-group';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
@@ -36,7 +36,6 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     timeout = defaultTimeout,
     ...other
   } = props;
-  const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
@@ -70,6 +69,10 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     }
   };
 
+  const ownRef = React.useRef();
+  const userRef = useForkRef(children.ref, ref);
+  const handleRef = useForkRef(userRef, ownRef);
+
   return (
     <Transition
       appear
@@ -78,6 +81,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
       onExit={handleExit}
       timeout={timeout}
       {...other}
+      findDOMNode={() => ownRef.current}
     >
       {(state, childProps) => {
         return React.cloneElement(children, {

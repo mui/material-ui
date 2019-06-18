@@ -5,7 +5,7 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Collapse from './Collapse';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { Transition } from 'react-transition-group';
+import { Transition } from '@material-ui/react-transition-group';
 
 describe('<Collapse />', () => {
   let mount;
@@ -16,8 +16,7 @@ describe('<Collapse />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses react-transition-group
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<Collapse {...defaultProps} />);
   });
 
