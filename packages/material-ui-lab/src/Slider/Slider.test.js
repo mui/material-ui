@@ -264,19 +264,36 @@ describe('<Slider />', () => {
   });
 
   describe('markActive state', () => {
-    it('should set the mark active', () => {
-      function getActives(wrapper) {
-        return wrapper
-          .find(`.${classes.markLabel}`)
-          .map(node => node.hasClass(classes.markLabelActive));
-      }
+    function getActives(wrapper) {
+      return wrapper
+        .find(`.${classes.markLabel}`)
+        .map(node => node.hasClass(classes.markLabelActive));
+    }
+
+    it('sets the marks active that are `within` the value', () => {
       const marks = [{ value: 5 }, { value: 10 }, { value: 15 }];
 
-      const wrapper1 = mount(<Slider disabled value={12} marks={marks} />);
-      assert.deepEqual(getActives(wrapper1), [true, true, false]);
+      const singleValueWrapper = mount(
+        <Slider disabled min={0} max={20} value={12} marks={marks} />,
+      );
+      assert.deepEqual(getActives(singleValueWrapper), [true, true, false]);
 
-      const wrapper2 = mount(<Slider disabled value={[8, 12]} marks={marks} />);
-      assert.deepEqual(getActives(wrapper2), [false, true, false]);
+      const rangeValueWrapper = mount(
+        <Slider disabled min={0} max={20} value={[8, 12]} marks={marks} />,
+      );
+      assert.deepEqual(getActives(rangeValueWrapper), [false, true, false]);
+    });
+
+    it('uses closed intervals for the within check', () => {
+      const exactMarkWrapper = mount(
+        <Slider disabled value={10} min={0} max={10} marks step={5} />,
+      );
+      assert.deepEqual(getActives(exactMarkWrapper), [true, true, true]);
+
+      const ofByOneWrapper = mount(
+        <Slider disabled value={9.99999} min={0} max={10} marks step={5} />,
+      );
+      assert.deepEqual(getActives(ofByOneWrapper), [true, true, false]);
     });
   });
 });
