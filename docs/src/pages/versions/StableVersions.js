@@ -60,7 +60,7 @@ class StableVersions extends React.Component {
     });
     // Legacy documentation.
     docs.push({
-      version: 'v0.20.1',
+      version: 'v0',
       url: 'https://v0.material-ui.com',
     });
     docs = orderBy(docs, 'version', 'desc');
@@ -92,14 +92,16 @@ class StableVersions extends React.Component {
                   </Link>
                 </TableCell>
                 <TableCell>
-                  <Link
-                    variant="body2"
-                    color="secondary"
-                    rel="nofollow"
-                    href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
-                  >
-                    Release notes
-                  </Link>
+                  {doc.version.length === 6 ? (
+                    <Link
+                      variant="body2"
+                      color="secondary"
+                      rel="nofollow"
+                      href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
+                    >
+                      Release notes
+                    </Link>
+                  ) : null}
                 </TableCell>
               </TableRow>
             ))}

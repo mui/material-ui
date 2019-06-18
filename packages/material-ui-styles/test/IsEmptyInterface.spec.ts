@@ -1,7 +1,7 @@
 /**
  * unit testing for IsEmptyInterface utility type
  */
-import { IsEmptyInterface } from '@material-ui/styles/makeStyles';
+import { IsEmptyInterface } from '@material-ui/types';
 
 // $ExpectType true
 type EmptyInterfaceIsValid = IsEmptyInterface<{}>;

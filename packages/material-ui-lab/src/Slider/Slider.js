@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -67,8 +65,15 @@ function percentToValue(percent, min, max) {
   return (max - min) * percent + min;
 }
 
+function ensurePrecision(value, step) {
+  const stepDecimalPart = step.toString().split('.')[1];
+  const stepPrecision = stepDecimalPart ? stepDecimalPart.length : 0;
+
+  return Number(value.toFixed(stepPrecision));
+}
+
 function roundValueToStep(value, step) {
-  return Math.round(value / step) * step;
+  return ensurePrecision(Math.round(value / step) * step, step);
 }
 
 function setValueIndex({ values, source, newValue, index }) {
@@ -97,20 +102,20 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
 
 const axisProps = {
   horizontal: {
-    offset: value => ({ left: `${value}%` }),
-    leap: value => ({ width: `${value}%` }),
+    offset: percent => ({ left: `${percent}%` }),
+    leap: percent => ({ width: `${percent}%` }),
   },
   'horizontal-reverse': {
-    offset: value => ({ right: `${value}%` }),
-    leap: value => ({ width: `${value}%` }),
+    offset: percent => ({ right: `${percent}%` }),
+    leap: percent => ({ width: `${percent}%` }),
   },
   vertical: {
-    offset: value => ({ bottom: `${value}%` }),
-    leap: value => ({ height: `${value}%` }),
+    offset: percent => ({ bottom: `${percent}%` }),
+    leap: percent => ({ height: `${percent}%` }),
   },
   'vertical-reverse': {
-    offset: value => ({ top: `${value}%` }),
-    leap: value => ({ height: `${value}%` }),
+    offset: percent => ({ top: `${percent}%` }),
+    leap: percent => ({ height: `${percent}%` }),
   },
 };
 
@@ -316,8 +321,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   values = values.map(value => clamp(value, min, max));
   const marks =
     marksProp === true && step !== null
-      ? [...Array(Math.floor(max / step) + 1)].map((_, index) => ({
-          value: step * index,
+      ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
+          value: min + step * index,
         }))
       : marksProp;
 
@@ -327,6 +332,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(-1);
+
+  const sliderRef = React.useRef();
+  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
+  const handleRef = useForkRef(ref, handleFocusRef);
 
   const handleFocus = useEventCallback(event => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
@@ -428,9 +437,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
   });
 
-  const sliderRef = React.useRef();
-  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
-  const handleRef = useForkRef(ref, handleFocusRef);
   const previousIndex = React.useRef();
   let axis = orientation;
   if (theme.direction === 'rtl' && orientation === 'horizontal') {
@@ -612,11 +618,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     document.body.addEventListener('mouseup', handleTouchEnd);
   });
 
-  const offset = range ? valueToPercent(values[0], min, max) : 0;
-  const leap = valueToPercent(values[values.length - 1], min, max) - offset;
+  const trackOffset = valueToPercent(range ? values[0] : min, min, max);
+  const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
   const trackStyle = {
-    ...axisProps[axis].offset(offset),
-    ...axisProps[axis].leap(leap),
+    ...axisProps[axis].offset(trackOffset),
+    ...axisProps[axis].leap(trackLeap),
   };
 
   return (
@@ -641,8 +647,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
         const markActive = range
-          ? percent >= values[0] && percent <= values[values.length - 1]
-          : percent <= values[0];
+          ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+          : mark.value <= values[0];
 
         return (
           <React.Fragment key={mark.value}>

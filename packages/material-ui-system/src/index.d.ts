@@ -59,7 +59,7 @@ export function css<Props>(
 ): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
 
 export const display: SimpleStyleFunction<
-  'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'whiteSpace'
+  'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
 >;
 
 export type DisplayProps = PropsFor<typeof display>;

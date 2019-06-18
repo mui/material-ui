@@ -35,7 +35,6 @@ export default ({ attach, nest, primary, theme, red, white, BUTTON, ICON }) => (
       },
     },
     contained: {
-      borderColor: primary.main,
       boxShadow: theme.shadows[0],
       '&$focusVisible': {
         boxShadow: theme.shadows[0],
@@ -55,7 +54,6 @@ export default ({ attach, nest, primary, theme, red, white, BUTTON, ICON }) => (
       },
     },
     containedPrimary: {
-      color: theme.palette.common.white,
       '&:hover': {
         backgroundColor: primary.main,
       },

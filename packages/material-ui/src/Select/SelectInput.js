@@ -235,7 +235,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   // Avoid performing a layout computation in the render method.
   let menuMinWidth = menuMinWidthState;
 
-  if (!autoWidth && isOpenControlled.current && displayRef.current) {
+  if (!autoWidth && isOpenControlled && displayRef.current) {
     menuMinWidth = displayRef.current.clientWidth;
   }
 

@@ -16,7 +16,7 @@ export interface SnackbarProps
   > {
   action?: SnackbarContentProps['action'];
   anchorOrigin?: SnackbarOrigin;
-  autoHideDuration?: number;
+  autoHideDuration?: number | null;
   ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
   ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;

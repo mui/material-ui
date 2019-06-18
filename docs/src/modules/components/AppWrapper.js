@@ -72,6 +72,36 @@ function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVarian
   return codeVariant;
 }
 
+function Tracking(props) {
+  const { dispatch, options } = props;
+
+  const codeVariant = usePersistCodeVariant(options.codeVariant, nextCodeVariant =>
+    dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
+  );
+
+  React.useEffect(() => {
+    window.ga('set', 'dimension1', codeVariant);
+  }, [codeVariant]);
+
+  React.useEffect(() => {
+    window.ga('set', 'dimension2', options.userLanguage);
+  }, [options.userLanguage]);
+
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }, []);
+
+  return null;
+}
+
+const ConnectedTracking = connect(state => ({
+  options: state.options,
+}))(Tracking);
+
 // Inspired by
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
 function forcePageReload(registration) {
@@ -128,27 +158,7 @@ async function registerServiceWorker() {
 }
 
 function AppWrapper(props) {
-  const { children, dispatch, options } = props;
-
-  const codeVariant = usePersistCodeVariant(options.codeVariant, nextCodeVariant =>
-    dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
-  );
-
-  React.useEffect(() => {
-    window.ga('set', 'dimension1', codeVariant);
-  }, [codeVariant]);
-
-  React.useEffect(() => {
-    window.ga('set', 'dimension2', options.userLanguage);
-  }, [options.userLanguage]);
-
-  React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-  }, []);
+  const { children } = props;
 
   React.useEffect(() => {
     registerServiceWorker();
@@ -157,16 +167,13 @@ function AppWrapper(props) {
   return (
     <StylesProvider jss={jss}>
       <ThemeProvider>{children}</ThemeProvider>
+      <ConnectedTracking />
     </StylesProvider>
   );
 }
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired,
 };
 
-export default connect(state => ({
-  options: state.options,
-}))(AppWrapper);
+export default AppWrapper;

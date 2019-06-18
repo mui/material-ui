@@ -168,6 +168,26 @@ yarn add @material-ui/styles@next
   +import Container from '@material-ui/core/Container';
   ```
 
+### TypeScript
+
+#### `value` type 
+
+Normalized `value` prop type for input components to use `unknown`. This affects
+`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+
+```diff
+function MySelect({ children }) {
+-  function handleChange(event: any, value: string) {
++  function handleChange(event: any, value: unknown) {
+    // handle value
+  }
+
+  return <Select onChange={handleChange}>{children}</Select>
+}
+```
+
+This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+
 ### Button
 
 - [Button] Remove the deprecated button variants (flat, raised and fab):

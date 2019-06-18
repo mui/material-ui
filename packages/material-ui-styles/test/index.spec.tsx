@@ -177,9 +177,9 @@ import styled, { StyledProps } from '@material-ui/styles/styled';
     }),
   );
   const renderedMyComponent = (
-    <>
+    <React.Fragment>
       <MyComponent className="test" />
       <StyledMyComponent theme={MyThemeInstance} />
-    </>
+    </React.Fragment>
   );
 }

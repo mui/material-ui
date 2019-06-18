@@ -969,7 +969,7 @@ const ClickAwayListenerComponentTest = () => (
 );
 
 const TransitionTest = () => (
-  <>
+  <React.Fragment>
     <Fade in={false}>
       <div />
     </Fade>
@@ -979,7 +979,7 @@ const TransitionTest = () => (
     <Grow in={false} timeout="auto" onEnter={() => {}}>
       <div />
     </Grow>
-  </>
+  </React.Fragment>
 );
 
 const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
