@@ -84,15 +84,18 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   const {
     action,
     anchorEl,
-    anchorOrigin,
+    anchorOrigin = {
+      vertical: 'top',
+      horizontal: 'left',
+    },
     anchorPosition,
-    anchorReference,
+    anchorReference = 'anchorEl',
     children,
     classes,
     container: containerProp,
-    elevation,
+    elevation = 8,
     getContentAnchorEl,
-    marginThreshold,
+    marginThreshold = 16,
     ModalClasses,
     onEnter,
     onEntered,
@@ -102,9 +105,12 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     onExiting,
     open,
     PaperProps = {},
-    transformOrigin,
-    TransitionComponent,
-    transitionDuration: transitionDurationProp,
+    transformOrigin = {
+      vertical: 'top',
+      horizontal: 'left',
+    },
+    TransitionComponent = Grow,
+    transitionDuration: transitionDurationProp = 'auto',
     TransitionProps = {},
     ...other
   } = props;
@@ -383,7 +389,7 @@ Popover.propTypes = {
    * that may be used to set the position of the popover.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
-    if (props.open && props.anchorReference === 'anchorEl') {
+    if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
       if (resolvedAnchorEl instanceof Element) {
@@ -557,22 +563,6 @@ Popover.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-Popover.defaultProps = {
-  anchorReference: 'anchorEl',
-  anchorOrigin: {
-    vertical: 'top',
-    horizontal: 'left',
-  },
-  elevation: 8,
-  marginThreshold: 16,
-  transformOrigin: {
-    vertical: 'top',
-    horizontal: 'left',
-  },
-  TransitionComponent: Grow,
-  transitionDuration: 'auto',
 };
 
 export default withStyles(styles, { name: 'MuiPopover' })(Popover);

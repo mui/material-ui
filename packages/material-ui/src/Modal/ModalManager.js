@@ -71,7 +71,7 @@ function removeContainerStyle(data) {
  * Simplified, but inspired by react-overlay's ModalManager class.
  * Used by the Modal to ensure proper styling of containers.
  */
-class ModalManager {
+export default class ModalManager {
   constructor(options = {}) {
     const { hideSiblingNodes = true, handleContainerOverflow = true } = options;
 
@@ -178,5 +178,3 @@ class ModalManager {
     return !!this.modals.length && this.modals[this.modals.length - 1] === modal;
   }
 }
-
-export default ModalManager;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, getClasses } from 'packages/material-ui/src/test-utils';
-import TableFooter from 'packages/material-ui/src/TableFooter';
-import TableHead from 'packages/material-ui/src/TableHead';
-import TableRow from 'packages/material-ui/src/TableRow';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 describe('<TableRow> integration', () => {
   let classes;

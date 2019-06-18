@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount } from 'packages/material-ui/src/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import NestedMenu from './fixtures/menus/NestedMenu';
 
 describe('<NestedMenu> integration', () => {

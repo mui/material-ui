@@ -156,9 +156,16 @@ describe('<Portal />', () => {
   });
 
   it('should call onRendered', () => {
+    const ref = React.createRef();
     const handleRendered = spy();
     mount(
-      <Portal onRendered={handleRendered}>
+      <Portal
+        ref={ref}
+        onRendered={() => {
+          handleRendered();
+          assert.strictEqual(ref.current !== null, true);
+        }}
+      >
         <div />
       </Portal>,
     );
