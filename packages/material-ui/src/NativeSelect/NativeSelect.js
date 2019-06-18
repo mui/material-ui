@@ -63,7 +63,7 @@ export const styles = theme => ({
     right: 0,
     top: 'calc(50% - 12px)', // Center vertically
     color: theme.palette.action.active,
-    'pointer-events': 'none', // Don't block pointer events on the select under the icon.
+    pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   },
 });
 
