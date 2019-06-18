@@ -7,8 +7,6 @@ import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
 
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-
 /**
  * @ignore - internal component.
  */
@@ -26,10 +24,6 @@ function TrapFocus(props) {
   const sentinelStart = React.useRef(null);
   const sentinelEnd = React.useRef(null);
   const nodeToRestore = React.useRef();
-  const isEnabledRef = React.useRef();
-  useEnhancedEffect(() => {
-    isEnabledRef.current = isEnabled;
-  }, []);
 
   const rootRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
@@ -74,7 +68,7 @@ function TrapFocus(props) {
     }
 
     const contain = () => {
-      if (disableEnforceFocus || !isEnabledRef.current() || ignoreNextEnforceFocus.current) {
+      if (disableEnforceFocus || !isEnabled() || ignoreNextEnforceFocus.current) {
         ignoreNextEnforceFocus.current = false;
         return;
       }
@@ -86,7 +80,7 @@ function TrapFocus(props) {
 
     const loopFocus = event => {
       // 9 = Tab
-      if (disableEnforceFocus || !isEnabledRef.current() || event.keyCode !== 9) {
+      if (disableEnforceFocus || !isEnabled() || event.keyCode !== 9) {
         return;
       }
 
@@ -123,7 +117,7 @@ function TrapFocus(props) {
         nodeToRestore.current = null;
       }
     };
-  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, open]);
+  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
   return (
     <React.Fragment>
