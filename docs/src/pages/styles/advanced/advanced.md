@@ -271,7 +271,7 @@ export default function MyComponent() {
   const classesBase = useStyleBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, useStyleBase.root)
+  const className = clsx(classes.root, classesBase.root)
 
   // color: red 🔴 wins.
   return <div className={className} />;
