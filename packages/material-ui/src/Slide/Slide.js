@@ -13,7 +13,7 @@ const GUTTER = 24;
 
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
-// with `translate3d(0, 0, 0)`.`
+// with `none`.`
 function getTranslateValue(direction, node) {
   const rect = node.getBoundingClientRect();
 
