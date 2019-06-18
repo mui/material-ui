@@ -48,12 +48,14 @@ export default function DiscreteSlider() {
         Temperature
       </Typography>
       <Slider
-        defaultValue={20}
+        defaultValue={30}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
         step={10}
         marks
+        min={10}
+        max={110}
       />
       <div className={classes.margin} />
       <Typography id="discrete-slider-custom" gutterBottom>
