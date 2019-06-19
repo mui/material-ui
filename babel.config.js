@@ -35,7 +35,6 @@ const defaultAlias = {
   '@material-ui/styles': './packages/material-ui-styles/src',
   '@material-ui/system': './packages/material-ui-system/src',
   '@material-ui/utils': './packages/material-ui-utils/src',
-  classnames: 'clsx',
 };
 
 const productionPlugins = [
@@ -102,6 +101,7 @@ module.exports = {
               docs: './docs',
               modules: './modules',
               pages: './pages',
+              classnames: 'clsx',
             },
             transformFunctions: ['require', 'require.context'],
             resolvePath,
@@ -122,6 +122,7 @@ module.exports = {
               docs: './docs',
               modules: './modules',
               pages: './pages',
+              classnames: 'clsx',
             },
             transformFunctions: ['require', 'require.context'],
             resolvePath,
