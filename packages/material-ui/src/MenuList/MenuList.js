@@ -50,7 +50,11 @@ function textCriteriaMatches(nextFocus, textCriteria) {
 
 function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textCriteria) {
   let wrappedOnce = false;
-  let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
+  let nextFocus = traversalFunction(
+    list,
+    currentFocus,
+    currentFocus && currentFocus !== list ? disableListWrap : false,
+  );
 
   while (nextFocus) {
     // Prevent infinite loop.
@@ -80,7 +84,14 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 const MenuList = React.forwardRef(function MenuList(props, ref) {
-  const { actions, autoFocus, className, onKeyDown, disableListWrap = false, ...other } = props;
+  const {
+    actions,
+    autoFocus = false,
+    className,
+    disableListWrap = false,
+    onKeyDown,
+    ...other
+  } = props;
   const listRef = React.useRef(null);
   const textCriteriaRef = React.useRef({
     keys: [],
