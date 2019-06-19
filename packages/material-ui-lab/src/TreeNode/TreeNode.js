@@ -5,6 +5,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { makeStyles } from '@material-ui/core/styles';
+import { useForkRef } from '@material-ui/core/utils';
 import useTreeState from '../TreeView/useTreeState';
 
 const useStyles = makeStyles({
@@ -41,7 +42,7 @@ const isPrintableCharacter = str => {
   return str.length === 1 && str.match(/\S/);
 };
 
-function TreeNode(props) {
+const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   const { children, collapseIcon, expandIcon, icon, id: idProp, label, ...other } = props;
   const classes = useStyles(props);
   const {
@@ -62,6 +63,7 @@ function TreeNode(props) {
     handleFirstChars,
   } = useTreeState();
   const nodeRef = React.useRef(null);
+  const handleRef = useForkRef(nodeRef, ref);
   const contentRef = React.useRef(null);
 
   let stateIcon = null;
@@ -216,7 +218,7 @@ function TreeNode(props) {
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
       aria-expanded={expanded}
-      ref={nodeRef}
+      ref={handleRef}
       tabIndex={focusable ? 0 : -1}
       {...other}
     >
@@ -232,7 +234,7 @@ function TreeNode(props) {
       )}
     </li>
   );
-}
+});
 
 TreeNode.propTypes = {
   children: PropTypes.node,
