@@ -1,23 +1,15 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import { cleanup, render } from '@testing-library/react';
 
 function muiRender(element, options = {}) {
   const { disableUnnmount = false, strict } = options;
-  const Mode = strict ? React.StrictMode : React.Fragment;
-
-  function TestWrapper({ children }) {
-    return <Mode>{children}</Mode>;
-  }
-  TestWrapper.propTypes = {
-    children: PropTypes.node,
-  };
 
   if (!disableUnnmount) {
     cleanup();
   }
 
-  const result = render(element, { wrapper: TestWrapper });
+  const Mode = strict ? React.StrictMode : React.Fragment;
+  const result = render(element, { wrapper: Mode });
 
   /**
    * convenience helper. Better than repeating all props.
