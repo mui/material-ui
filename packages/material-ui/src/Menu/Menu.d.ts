@@ -7,13 +7,13 @@ import { TransitionHandlerProps, TransitionProps } from '../transitions/transiti
 
 export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
+  autoFocus?: boolean;
   disableAutoFocusItem?: boolean;
   MenuListProps?: Partial<MenuListProps>;
   PaperProps?: Partial<PaperProps>;
   PopoverClasses?: PopoverProps['classes'];
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   variant?: 'menu' | 'selectedMenu';
-  autoFocus?: boolean;
 }
 
 export type MenuClassKey = 'paper';
