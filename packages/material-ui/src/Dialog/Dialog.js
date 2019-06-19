@@ -20,13 +20,13 @@ export const styles = theme => ({
       position: 'absolute !important',
     },
   },
-  /* Styles applied to the root element if `scroll="paper"`. */
+  /* Styles applied to the container element if `scroll="paper"`. */
   scrollPaper: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  /* Styles applied to the root element if `scroll="body"`. */
+  /* Styles applied to the container element if `scroll="body"`. */
   scrollBody: {
     overflowY: 'auto',
     overflowX: 'hidden',
