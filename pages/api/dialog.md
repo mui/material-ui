@@ -55,8 +55,8 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">scrollPaper</span> | Styles applied to the root element if `scroll="paper"`.
-| <span class="prop-name">scrollBody</span> | Styles applied to the root element if `scroll="body"`.
+| <span class="prop-name">scrollPaper</span> | Styles applied to the container element if `scroll="paper"`.
+| <span class="prop-name">scrollBody</span> | Styles applied to the container element if `scroll="body"`.
 | <span class="prop-name">container</span> | Styles applied to the container element.
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 | <span class="prop-name">paperScrollPaper</span> | Styles applied to the `Paper` component if `scroll="paper"`.

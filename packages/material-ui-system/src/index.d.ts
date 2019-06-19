@@ -133,15 +133,19 @@ export const spacing: SimpleStyleFunction<
   | 'px'
   | 'py'
   | 'margin'
-  | 'marginLeft'
   | 'marginTop'
   | 'marginRight'
   | 'marginBottom'
+  | 'marginLeft'
+  | 'marginX'
+  | 'marginY'
   | 'padding'
   | 'paddingTop'
   | 'paddingRight'
   | 'paddingBottom'
   | 'paddingLeft'
+  | 'paddingX'
+  | 'paddingY'
 >;
 export type SpacingProps = PropsFor<typeof spacing>;
 

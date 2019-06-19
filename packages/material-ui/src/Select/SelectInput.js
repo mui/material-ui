@@ -49,7 +49,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   } = props;
   const displayRef = React.useRef(null);
   const ignoreNextBlur = React.useRef(false);
-  const { current: isOpenControlled } = React.useRef(props.open != null);
+  const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);

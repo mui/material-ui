@@ -66,14 +66,14 @@ function isPackageComparison(comparisonEntry) {
  * Generates a user-readable string from a percentage change
  * @param {number} change
  * @param {string} goodEmoji emoji on reduction
- * @param {string} badEmooji emoji on increase
+ * @param {string} badEmoji emoji on increase
  */
-function addPercent(change, goodEmoji = '', badEmooji = ':small_red_triangle:') {
+function addPercent(change, goodEmoji = '', badEmoji = ':small_red_triangle:') {
   const formatted = (change * 100).toFixed(2);
   if (/^-|^0(?:\.0+)$/.test(formatted)) {
     return `${formatted}% ${goodEmoji}`;
   }
-  return `+${formatted}% ${badEmooji}`;
+  return `+${formatted}% ${badEmoji}`;
 }
 
 /**

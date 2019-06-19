@@ -26,7 +26,7 @@ export const styles = {
  * @ignore - internal component.
  */
 const SimpleBackdrop = React.forwardRef(function SimpleBackdrop(props, ref) {
-  const { invisible, open, ...other } = props;
+  const { invisible = false, open, ...other } = props;
 
   return open ? (
     <div
@@ -53,10 +53,6 @@ SimpleBackdrop.propTypes = {
    * If `true`, the backdrop is open.
    */
   open: PropTypes.bool.isRequired,
-};
-
-SimpleBackdrop.defaultProps = {
-  invisible: false,
 };
 
 export default SimpleBackdrop;

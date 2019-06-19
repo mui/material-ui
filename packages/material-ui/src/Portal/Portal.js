@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { useForkRef } from '../utils/reactHelpers';
 import { exactProp } from '@material-ui/utils';
+import { useForkRef } from '../utils/reactHelpers';
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
@@ -17,7 +17,7 @@ const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect 
  * that exists outside the DOM hierarchy of the parent component.
  */
 const Portal = React.forwardRef(function Portal(props, ref) {
-  const { children, container, disablePortal, onRendered } = props;
+  const { children, container, disablePortal = false, onRendered } = props;
   const [mountNode, setMountNode] = React.useState(null);
   const childRef = React.useRef(null);
   const handleRef = useForkRef(children.ref, childRef);
@@ -28,13 +28,13 @@ const Portal = React.forwardRef(function Portal(props, ref) {
     }
   }, [container, disablePortal]);
 
+  React.useImperativeHandle(ref, () => mountNode || childRef.current, [mountNode]);
+
   useEnhancedEffect(() => {
     if (onRendered && mountNode) {
       onRendered();
     }
   }, [mountNode, onRendered]);
-
-  React.useImperativeHandle(ref, () => mountNode || childRef.current, [mountNode]);
 
   if (disablePortal) {
     React.Children.only(children);
@@ -67,10 +67,6 @@ Portal.propTypes = {
    * Callback fired once the children has been mounted into the `container`.
    */
   onRendered: PropTypes.func,
-};
-
-Portal.defaultProps = {
-  disablePortal: false,
 };
 
 if (process.env.NODE_ENV !== 'production') {

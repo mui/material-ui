@@ -25,11 +25,11 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 
 The component cannot hold a ref.
 
-Any other properties supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
+Any other properties supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props)).
 
 ## Inheritance
 
-The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
+The properties of the [Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props) component, from react-transition-group, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

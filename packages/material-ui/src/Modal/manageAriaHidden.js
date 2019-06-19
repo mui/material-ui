@@ -1,3 +1,11 @@
+export function ariaHidden(node, show) {
+  if (show) {
+    node.setAttribute('aria-hidden', 'true');
+  } else {
+    node.removeAttribute('aria-hidden');
+  }
+}
+
 const BLACKLIST = ['template', 'script', 'style'];
 
 function isHideable(node) {
@@ -12,14 +20,6 @@ function siblings(container, mount, currentNode, callback) {
       callback(node);
     }
   });
-}
-
-export function ariaHidden(node, show) {
-  if (show) {
-    node.setAttribute('aria-hidden', 'true');
-  } else {
-    node.removeAttribute('aria-hidden');
-  }
 }
 
 export function ariaHiddenSiblings(container, mountNode, currentNode, show) {

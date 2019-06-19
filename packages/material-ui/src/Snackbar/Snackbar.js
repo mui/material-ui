@@ -103,7 +103,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     className,
     ClickAwayListenerProps,
     ContentProps,
-    disableWindowBlurListener,
+    disableWindowBlurListener = false,
     message,
     onClose,
     onEnter,
@@ -116,7 +116,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     onMouseLeave,
     open,
     resumeHideDuration,
-    TransitionComponent,
+    TransitionComponent = Grow,
     transitionDuration,
     TransitionProps,
     ...other
@@ -388,8 +388,6 @@ Snackbar.defaultProps = {
     vertical: 'bottom',
     horizontal: 'center',
   },
-  disableWindowBlurListener: false,
-  TransitionComponent: Grow,
   transitionDuration: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,
