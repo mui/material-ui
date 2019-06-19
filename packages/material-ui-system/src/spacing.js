@@ -18,13 +18,24 @@ const directions = {
   y: ['Top', 'Bottom'],
 };
 
+const aliases = {
+  marginX: 'mx',
+  marginY: 'my',
+  paddingX: 'px',
+  paddingY: 'py',
+};
+
 // memoize() impact:
 // From 300,000 ops/sec
 // To 350,000 ops/sec
 const getCssProperties = memoize(prop => {
   // It's not a shorthand notation.
-  if (prop.length > 3) {
-    return [prop];
+  if (prop.length > 2) {
+    if (aliases[prop]) {
+      prop = aliases[prop];
+    } else {
+      return [prop];
+    }
   }
 
   const [a, b] = prop.split('');
@@ -49,15 +60,19 @@ const spacingKeys = [
   'px',
   'py',
   'margin',
-  'marginLeft',
   'marginTop',
   'marginRight',
   'marginBottom',
+  'marginLeft',
+  'marginX',
+  'marginY',
   'padding',
   'paddingTop',
   'paddingRight',
   'paddingBottom',
   'paddingLeft',
+  'paddingX',
+  'paddingY',
 ];
 
 function getTransformer(theme) {
@@ -130,7 +145,7 @@ function spacing(props) {
 
   return Object.keys(props)
     .map(prop => {
-      // Using a hash computation over an array iteration could be faster, but with only 14 items,
+      // Using a hash computation over an array iteration could be faster, but with only 28 items,
       // it's doesn't worth the bundle size.
       if (spacingKeys.indexOf(prop) === -1) {
         return null;
