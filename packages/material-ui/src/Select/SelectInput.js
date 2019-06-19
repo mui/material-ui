@@ -27,7 +27,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     disabled,
     displayEmpty,
     IconComponent,
-    inputRef,
+    inputRef: inputRefProp,
     MenuProps = {},
     multiple,
     name,
@@ -47,13 +47,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     variant,
     ...other
   } = props;
+
+  const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const ignoreNextBlur = React.useRef(false);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);
-  const handleRef = useForkRef(ref, inputRef);
+  const handleRef = useForkRef(ref, inputRefProp);
 
   React.useImperativeHandle(
     handleRef,
@@ -61,7 +63,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       focus: () => {
         displayRef.current.focus();
       },
-      node: inputRef ? inputRef.current : null,
+      node: inputRef.current,
       value,
     }),
     [inputRef, value],
@@ -94,6 +96,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       setMenuMinWidthState(autoWidth ? null : displayRef.current.clientWidth);
       setOpenState(open);
     }
+  };
+
+  const setInputRef = (element) => {
+    inputRef.current = element;
+    return handleRef;
   };
 
   const handleClick = event => {
@@ -204,7 +211,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (!Array.isArray(value)) {
         throw new Error(
           'Material-UI: the `value` property must be an array ' +
-            'when using the `Select` component with `multiple`.',
+          'when using the `Select` component with `multiple`.',
         );
       }
 
@@ -282,7 +289,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <input
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
-        ref={handleRef}
+        ref={setInputRef}
         type={type}
         autoFocus={autoFocus}
         {...other}
