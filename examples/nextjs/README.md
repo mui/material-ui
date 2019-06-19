@@ -19,6 +19,3 @@ npm run dev
 ## The idea behind the example
 
 [Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
-[Hooks](https://reactjs.org/docs/hooks-state.html) are a new addition in React 16.8. They let you use state and other React features without writing a class.
-
-
