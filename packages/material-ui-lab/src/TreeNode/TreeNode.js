@@ -4,11 +4,11 @@ import clsx from 'clsx';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import useTreeState from '../TreeView/useTreeState';
 
-const useStyles = makeStyles({
+const styles = {
   root: {
     listStyle: 'none',
     margin: 0,
@@ -36,15 +36,14 @@ const useStyles = makeStyles({
     justifyContent: 'center',
   },
   focused: {},
-});
+};
 
 const isPrintableCharacter = str => {
   return str.length === 1 && str.match(/\S/);
 };
 
 const TreeNode = React.forwardRef(function TreeNode(props, ref) {
-  const { children, collapseIcon, expandIcon, icon, id: idProp, label, ...other } = props;
-  const classes = useStyles(props);
+  const { classes, children, collapseIcon, expandIcon, icon, id: idProp, label, ...other } = props;
   const {
     icons,
     toggle,
@@ -238,6 +237,11 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
 
 TreeNode.propTypes = {
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
   collapseIcon: PropTypes.node,
   expandIcon: PropTypes.node,
   icon: PropTypes.node,
@@ -245,4 +249,4 @@ TreeNode.propTypes = {
   label: PropTypes.node,
 };
 
-export default TreeNode;
+export default withStyles(styles)(TreeNode);

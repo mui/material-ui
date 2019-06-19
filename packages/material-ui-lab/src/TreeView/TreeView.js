@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const styles = {
   root: {
     padding: 0,
     margin: 0,
     listStyle: 'none',
   },
-});
+};
 
 const TreeView = React.forwardRef(function TreeView(props, ref) {
-  const { children, collapseIcon, expandIcon, defaultLeafIcon, defaultNodeIcon, ...other } = props;
-  const classes = useStyles();
+  const { classes, children, collapseIcon, expandIcon, defaultLeafIcon, defaultNodeIcon, ...other } = props;
   const [expanded, setExpanded] = React.useState([]);
   const [focusable, setFocusable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
@@ -264,11 +263,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
 TreeView.propTypes = {
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
   collapseIcon: PropTypes.node,
   defaultLeafIcon: PropTypes.node,
   defaultNodeIcon: PropTypes.node,
   expandIcon: PropTypes.node,
-  items: PropTypes.array,
 };
 
-export default TreeView;
+export default withStyles(styles)(TreeView);
