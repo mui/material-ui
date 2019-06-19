@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
@@ -14,7 +13,7 @@ const styles = {
     margin: 0,
     padding: 0,
     outline: 0,
-    '&:focus $content$focused': {
+    '&:focus > $content': {
       outline: 'auto 1px',
     },
   },
@@ -35,7 +34,6 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
   },
-  focused: {},
 };
 
 const isPrintableCharacter = str => {
@@ -221,7 +219,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       tabIndex={focusable ? 0 : -1}
       {...other}
     >
-      <div className={clsx(classes.content, { [classes.focused]: focused })} ref={contentRef}>
+      <div className={classes.content} ref={contentRef}>
         {stateIconsProvided ? <div className={classes.iconRoot}>{stateIcon}</div> : null}
         {startAdornment}
         <Typography className={classes.title}>{label}</Typography>
