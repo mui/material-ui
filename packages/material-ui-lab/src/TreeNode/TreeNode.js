@@ -1,10 +1,11 @@
 import React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
-import { useForkRef } from '@material-ui/core/utils';
+import { useForkRef, useIsFocusVisible } from '@material-ui/core/utils';
 import useTreeState from '../TreeView/useTreeState';
 
 const styles = {
@@ -13,9 +14,6 @@ const styles = {
     margin: 0,
     padding: 0,
     outline: 0,
-    '&:focus > $content': {
-      outline: 'auto 1px',
-    },
   },
   nestedList: {
     margin: 0,
@@ -34,6 +32,11 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
   },
+  focusVisible: {
+    '& > $content': {
+      outline: 'auto 1px',
+    },
+  }
 };
 
 const isPrintableCharacter = str => {
@@ -41,7 +44,17 @@ const isPrintableCharacter = str => {
 };
 
 const TreeNode = React.forwardRef(function TreeNode(props, ref) {
-  const { classes, children, collapseIcon, expandIcon, icon, nodeId, label, ...other } = props;
+  const {
+    classes,
+    className,
+    children,
+    collapseIcon,
+    expandIcon,
+    icon,
+    nodeId,
+    label,
+    ...other
+  } = props;
   const {
     icons,
     toggle,
@@ -60,8 +73,11 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     handleFirstChars,
   } = useTreeState();
   const nodeRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, ref);
   const contentRef = React.useRef(null);
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  const handleNodeRef = useForkRef(nodeRef, ref);
+  const handleRef = useForkRef(focusVisibleRef, handleNodeRef);
 
   let stateIcon = null;
 
@@ -188,9 +204,25 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     }
   };
 
-  const handleFocus = () => {
-    if (!focused && focusable) {
-      focus(nodeId);
+  const handleFocus = event => {
+
+    if(event.target !== event.currentTarget){
+      return;
+    }
+
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+
+      if (!focused && focusable) {
+        focus(nodeId);
+      }
+    }
+  };
+
+  const handleBlur = event => {
+    if (focusVisible) {
+      onBlurVisible(event);
+      setFocusVisible(false);
     }
   };
 
@@ -209,11 +241,12 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
 
   return (
     <li
-      className={classes.root}
+      className={clsx(classes.root, { [classes.focusVisible]: focusVisible }, className)}
       role="treeitem"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
+      onBlur={handleBlur}
       aria-expanded={expanded}
       ref={handleRef}
       tabIndex={focusable ? 0 : -1}
@@ -240,6 +273,10 @@ TreeNode.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   collapseIcon: PropTypes.node,
   expandIcon: PropTypes.node,
   icon: PropTypes.node,

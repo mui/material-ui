@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,7 +13,16 @@ const styles = {
 };
 
 const TreeView = React.forwardRef(function TreeView(props, ref) {
-  const { classes, children, collapseIcon, expandIcon, defaultLeafIcon, defaultNodeIcon, ...other } = props;
+  const {
+    classes,
+    className,
+    children,
+    collapseIcon,
+    expandIcon,
+    defaultLeafIcon,
+    defaultNodeIcon,
+    ...other
+  } = props;
   const [expanded, setExpanded] = React.useState([]);
   const [focusable, setFocusable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
@@ -254,7 +264,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         handleFirstChars,
       }}
     >
-      <ul role="tree" className={classes.root} ref={ref} {...other}>
+      <ul role="tree" className={clsx(classes.root, className)} ref={ref} {...other}>
         {children}
       </ul>
     </TreeViewContext.Provider>
@@ -268,6 +278,10 @@ TreeView.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   collapseIcon: PropTypes.node,
   defaultLeafIcon: PropTypes.node,
   defaultNodeIcon: PropTypes.node,
