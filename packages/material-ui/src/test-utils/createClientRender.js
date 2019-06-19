@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 
-function muiRender(element, options = {}) {
+function clientRender(element, options = {}) {
   const { disableUnnmount = false, strict } = options;
 
   if (!disableUnnmount) {
@@ -22,15 +22,16 @@ function muiRender(element, options = {}) {
   return result;
 }
 
-export function createMuiRender(globalOptions = {}) {
+export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
-  return function configuredMuiRender(element, options = {}) {
+  return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;
 
-    return muiRender(element, { ...localOptions, strict });
+    return clientRender(element, { ...localOptions, strict });
   };
 }
 
 export * from '@testing-library/react';
-export { cleanup, muiRender as render };
+// in case someone accidentally imports `render`. we want to use a single API
+export { cleanup, clientRender as render };

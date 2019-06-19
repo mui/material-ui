@@ -2,7 +2,7 @@ import React from 'react';
 import { assert, expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
-import { cleanup, createMuiRender } from '@material-ui/core/test-utils/createMuiRender';
+import { cleanup, createClientRender } from '@material-ui/core/test-utils/createClientRender';
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 
@@ -12,7 +12,7 @@ describe('<Ripple />', () => {
 
   before(() => {
     classes = getClasses(<TouchRipple />);
-    mount = createMuiRender({ strict: undefined });
+    mount = createClientRender({ strict: undefined });
   });
 
   after(() => {
