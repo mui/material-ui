@@ -1,6 +1,5 @@
 export { default as createShallow } from './createShallow';
 export { default as createMount } from './createMount';
-export * from './createMuiRender';
 export { default as createRender } from './createRender';
 export { default as findOutermostIntrinsic, wrapsIntrinsicElement } from './findOutermostIntrinsic';
 export { default as getClasses } from './getClasses';
