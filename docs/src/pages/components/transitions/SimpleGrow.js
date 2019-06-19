@@ -26,11 +26,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Polygon() {
+function Polygon(props) {
   const classes = useStyles();
 
   return (
-    <Paper elevation={4} className={classes.paper}>
+    <Paper elevation={4} className={classes.paper} {...props}>
       <svg className={classes.svg}>
         <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
       </svg>

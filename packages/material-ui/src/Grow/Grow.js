@@ -17,7 +17,7 @@ const styles = {
   entered: {
     opacity: 1,
     // Use translateZ to scrolling issue on Chrome.
-    transform: `${getScale(1)} translateZ(0)`,
+    transform: 'none',
   },
 };
 
