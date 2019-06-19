@@ -8,10 +8,10 @@ import { useForkRef } from '../utils/reactHelpers';
 
 const styles = {
   entering: {
-    transform: 'scale(1)',
+    transform: 'none',
   },
   entered: {
-    transform: 'scale(1)',
+    transform: 'none',
   },
 };
 
