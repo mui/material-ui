@@ -27,7 +27,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   React.useEffect(() => {
     nodeMap.current = {};
-    const childIds = React.Children.map(children, child => child.props.id);
+    const childIds = React.Children.map(children, child => child.props.nodeId);
     nodeMap.current[-1] = { parent: null, children: childIds };
 
     childIds.forEach((id, index) => {

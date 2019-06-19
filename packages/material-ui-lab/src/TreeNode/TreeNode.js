@@ -43,7 +43,7 @@ const isPrintableCharacter = str => {
 };
 
 const TreeNode = React.forwardRef(function TreeNode(props, ref) {
-  const { classes, children, collapseIcon, expandIcon, icon, id: idProp, label, ...other } = props;
+  const { classes, children, collapseIcon, expandIcon, icon, nodeId, label, ...other } = props;
   const {
     icons,
     toggle,
@@ -68,9 +68,9 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   let stateIcon = null;
 
   const expandable = Boolean(children);
-  const expanded = isExpanded ? isExpanded(idProp) : false;
-  const focused = isFocused ? isFocused(idProp) : false;
-  const focusable = isFocusable ? isFocusable(idProp) : false;
+  const expanded = isExpanded ? isExpanded(nodeId) : false;
+  const focused = isFocused ? isFocused(nodeId) : false;
+  const focusable = isFocusable ? isFocusable(nodeId) : false;
 
   if (icons.expandIcon && expandable && !expanded) {
     stateIcon = icons.expandIcon;
@@ -110,7 +110,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     }
 
     if (expandable) {
-      toggle(idProp);
+      toggle(nodeId);
     }
   };
 
@@ -120,10 +120,10 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
 
     const printableCharacter = () => {
       if (key === '*') {
-        expandAllSiblings(idProp);
+        expandAllSiblings(nodeId);
         flag = true;
       } else if (isPrintableCharacter(key)) {
-        setFocusByFirstCharacter(idProp, key);
+        setFocusByFirstCharacter(nodeId, key);
         flag = true;
       }
     };
@@ -148,17 +148,17 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
           event.stopPropagation();
           break;
         case 'ArrowDown':
-          focusNextNode(idProp);
+          focusNextNode(nodeId);
           flag = true;
           break;
         case 'ArrowUp':
-          focusPreviousNode(idProp);
+          focusPreviousNode(nodeId);
           flag = true;
           break;
         case 'ArrowRight':
           if (expandable) {
             if (expanded) {
-              focusNextNode(idProp);
+              focusNextNode(nodeId);
             } else {
               toggle();
             }
@@ -166,7 +166,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
           flag = true;
           break;
         case 'ArrowLeft':
-          handleLeftArrow(idProp);
+          handleLeftArrow(nodeId);
           flag = true;
           break;
         case 'Home':
@@ -192,18 +192,18 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
 
   const handleFocus = () => {
     if (!focused && focusable) {
-      focus(idProp);
+      focus(nodeId);
     }
   };
 
   React.useEffect(() => {
-    const childIds = React.Children.map(children, child => child.props.id);
-    handleNodeMap(idProp, childIds);
-  }, [children, idProp, handleNodeMap]);
+    const childIds = React.Children.map(children, child => child.props.nodeId);
+    handleNodeMap(nodeId, childIds);
+  }, [children, nodeId, handleNodeMap]);
 
   React.useEffect(() => {
-    handleFirstChars(idProp, label.substring(0, 1).toLowerCase());
-  }, [handleFirstChars, idProp, label]);
+    handleFirstChars(nodeId, label.substring(0, 1).toLowerCase());
+  }, [handleFirstChars, nodeId, label]);
 
   if (focused) {
     nodeRef.current.focus();
@@ -245,8 +245,8 @@ TreeNode.propTypes = {
   collapseIcon: PropTypes.node,
   expandIcon: PropTypes.node,
   icon: PropTypes.node,
-  id: PropTypes.string.isRequired,
   label: PropTypes.node,
+  nodeId: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(TreeNode);
