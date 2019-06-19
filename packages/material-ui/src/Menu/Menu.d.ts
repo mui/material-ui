@@ -13,6 +13,7 @@ export interface MenuProps
   PopoverClasses?: PopoverProps['classes'];
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   variant?: 'menu' | 'selectedMenu';
+  autoFocus?: boolean;
 }
 
 export type MenuClassKey = 'paper';
