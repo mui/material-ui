@@ -104,7 +104,7 @@ describe('<Slide />', () => {
 
       describe('handleEntering()', () => {
         it('should reset the translate3d', () => {
-          assert.match(handleEntering.args[0][0].style.transform, /translate\(0(px)?, 0(px)?\)/);
+          assert.match(handleEntering.args[0][0].style.transform, /none/);
         });
 
         it('should call handleEntering', () => {
@@ -251,7 +251,10 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `left` direction', () => {
         wrapper.setProps({ direction: 'left' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateX(100vw) translateX(-300px)');
+        assert.strictEqual(
+          nodeEnterTransformStyle,
+          `translateX(${global.innerWidth}px) translateX(-300px)`,
+        );
       });
 
       it('should set element transform and transition in the `right` direction', () => {
@@ -263,7 +266,10 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `up` direction', () => {
         wrapper.setProps({ direction: 'up' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateY(100vh) translateY(-200px)');
+        assert.strictEqual(
+          nodeEnterTransformStyle,
+          `translateY(${global.innerHeight}px) translateY(-200px)`,
+        );
       });
 
       it('should set element transform and transition in the `down` direction', () => {
@@ -296,7 +302,10 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `left` direction', () => {
         wrapper.setProps({ direction: 'left' });
         wrapper.setProps({ in: false });
-        assert.strictEqual(nodeExitingTransformStyle, 'translateX(100vw) translateX(-300px)');
+        assert.strictEqual(
+          nodeExitingTransformStyle,
+          `translateX(${global.innerWidth}px) translateX(-300px)`,
+        );
       });
 
       it('should set element transform and transition in the `right` direction', () => {
@@ -308,7 +317,10 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `up` direction', () => {
         wrapper.setProps({ direction: 'up' });
         wrapper.setProps({ in: false });
-        assert.strictEqual(nodeExitingTransformStyle, 'translateY(100vh) translateY(-200px)');
+        assert.strictEqual(
+          nodeExitingTransformStyle,
+          `translateY(${global.innerHeight}px) translateY(-200px)`,
+        );
       });
 
       it('should set element transform and transition in the `down` direction', () => {
@@ -373,7 +385,10 @@ describe('<Slide />', () => {
         style: {},
       };
       setTranslateValue('up', element);
-      assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-780px)');
+      assert.strictEqual(
+        element.style.transform,
+        `translateY(${global.innerHeight}px) translateY(-780px)`,
+      );
     });
 
     it('should do nothing when visible', () => {

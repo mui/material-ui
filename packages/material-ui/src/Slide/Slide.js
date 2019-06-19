@@ -13,7 +13,7 @@ const GUTTER = 24;
 
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
-// with `translate3d(0, 0, 0)`.`
+// with `none`.`
 function getTranslateValue(direction, node) {
   const rect = node.getBoundingClientRect();
 
@@ -41,7 +41,7 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'left') {
-    return `translateX(100vw) translateX(-${rect.left - offsetX}px)`;
+    return `translateX(${window.innerWidth}px) translateX(-${rect.left - offsetX}px)`;
   }
 
   if (direction === 'right') {
@@ -49,7 +49,7 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'up') {
-    return `translateY(100vh) translateY(-${rect.top - offsetY}px)`;
+    return `translateY(${window.innerHeight}px) translateY(-${rect.top - offsetY}px)`;
   }
 
   // direction === 'down'
@@ -126,8 +126,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       ...transitionProps,
       easing: theme.transitions.easing.easeOut,
     });
-    node.style.webkitTransform = 'translate(0, 0)';
-    node.style.transform = 'translate(0, 0)';
+    node.style.webkitTransform = 'none';
+    node.style.transform = 'none';
     if (onEntering) {
       onEntering(node);
     }

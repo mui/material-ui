@@ -5,6 +5,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface ListItemTypeMap<P, D extends React.ElementType> {
   props: P & {
     alignItems?: 'flex-start' | 'center';
+    autoFocus?: boolean;
     button?: boolean;
     ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
