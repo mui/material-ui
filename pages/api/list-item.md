@@ -19,7 +19,7 @@ Uses an additional container component if `ListItemSecondaryAction` is the last 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">alignItems</span> | <span class="prop-type">enum:&nbsp;'flex-start'&nbsp;&#124;<br>&nbsp;'center'<br></span> | <span class="prop-default">'center'</span> | Defines the `align-items` style property. |
-| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the list item will be focused during the first mount. Focus will also be triggered if the value changes from false to true. |
+| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be focused during the first mount. Focus will also be triggered if the value changes from false to true. |
 | <span class="prop-name">button</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be a button (using `ButtonBase`). |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. If a `ListItemSecondaryAction` is used it must be the last child. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
