@@ -9,9 +9,17 @@ const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
 
 module.exports = withTypescript({
   webpack: (config, options) => {
-    // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
-      transpileModules: ['notistack', '@material-ui/pickers', 'material-table'],
+      transpileModules: [
+        // Alias @material-ui/core peer dependency imports from the following modules to our sources.
+        'notistack',
+        '@material-ui/pickers',
+        'material-table',
+        // Alias classnames to clsx
+        'react-draggable',
+        'react-select',
+        'recharts',
+      ],
     }).webpack(config, options);
 
     const plugins = config.plugins.concat([
