@@ -931,6 +931,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.4.5":
+  version "7.4.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
+  integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.1.2", "@babel/template@^7.4.0", "@babel/template@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.4.tgz#f4b88d1225689a08f5bc3a17483545be9e4ed237"
@@ -1857,6 +1864,25 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.1.tgz#8da5c6530915653f3a1f38fd5f101d8c3f8079c5"
   integrity sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==
 
+"@testing-library/dom@^5.0.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-5.2.0.tgz#450bd09f93ddd8865eec98fc5e81fceb2bccdf9c"
+  integrity sha512-nFaZes/bzDfMqwZpQXdiPyj3WXU16FYf5k5NCFu/qJM4JdRJLHEtSRYtrETmk7nCf+qLVoHCqRduGi/4KE83Gw==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    "@sheerun/mutationobserver-shim" "^0.3.2"
+    aria-query "3.0.0"
+    pretty-format "^24.8.0"
+    wait-for-expect "^1.2.0"
+
+"@testing-library/react@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-8.0.1.tgz#91c254adf855b13de50020613cb5d3915f9f7875"
+  integrity sha512-N/1pJfhEnNYkGyxuw4xbp03evaS0z/CT8o0QgTfJqGlukAcU15xf9uU1w03NHKZJcU69nOCBAoAkXHtHzYwMbg==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    "@testing-library/dom" "^5.0.0"
+
 "@trendmicro/react-interpolate@^0.5.5":
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/@trendmicro/react-interpolate/-/react-interpolate-0.5.5.tgz#70a5040524b46475ee0104939f371db201886a0d"
@@ -2703,7 +2729,7 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-aria-query@^3.0.0:
+aria-query@3.0.0, aria-query@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/aria-query/-/aria-query-3.0.0.tgz#65b3fcc1ca1155a8c9ae64d6eee297f15d5133cc"
   integrity sha1-ZbP8wcoRVajJrmTW7uKX8V1RM8w=
@@ -5302,16 +5328,6 @@ dom-serializer@0, dom-serializer@~0.1.0:
   dependencies:
     domelementtype "^1.3.0"
     entities "^1.1.1"
-
-dom-testing-library@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/dom-testing-library/-/dom-testing-library-4.1.0.tgz#273264e62e9e63f4e404f7349ddd7b9356aacd23"
-  integrity sha512-654GHd0oPC31S+ll1bJH9NUOBRzcHcrf23/XzJh41o6g67uGUpF9tn23qmbcwjNauoRqKQfAdHCDwr/Ez/Ot7A==
-  dependencies:
-    "@babel/runtime" "^7.4.3"
-    "@sheerun/mutationobserver-shim" "^0.3.2"
-    pretty-format "^24.7.0"
-    wait-for-expect "^1.1.1"
 
 domain-browser@^1.1.1:
   version "1.2.0"
@@ -10959,7 +10975,7 @@ pretty-format@^23.6.0:
     ansi-regex "^3.0.0"
     ansi-styles "^3.2.0"
 
-pretty-format@^24.7.0:
+pretty-format@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-24.8.0.tgz#8dae7044f58db7cb8be245383b565a963e3c27f2"
   integrity sha512-P952T7dkrDEplsR+TuY7q3VXDae5Sr7zmQb12JU/NDQa/3CH7/QW0yvqLcGN6jL+zQFKaoJcPc+yJxMTGmosqw==
@@ -11582,14 +11598,6 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.8.5:
     prop-types "^15.6.2"
     react-is "^16.8.6"
     scheduler "^0.13.6"
-
-react-testing-library@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-7.0.0.tgz#d3b535e44de94d7b0a83c56cd2e3cfed752dcec1"
-  integrity sha512-8SHqwG+uhN9VhAgNVkVa3f7VjTw/L5CIaoAxKmy+EZuDQ6O+VsfcpRAyUw3MDL1h8S/gGrEiazmHBVL/uXsftA==
-  dependencies:
-    "@babel/runtime" "^7.4.3"
-    dom-testing-library "^4.0.0"
 
 react-text-mask@^5.0.2:
   version "5.4.3"
@@ -14125,7 +14133,7 @@ w3c-xmlserializer@^1.1.2:
     webidl-conversions "^4.0.2"
     xml-name-validator "^3.0.0"
 
-wait-for-expect@^1.1.1:
+wait-for-expect@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/wait-for-expect/-/wait-for-expect-1.2.0.tgz#fdab6a26e87d2039101db88bff3d8158e5c3e13f"
   integrity sha512-EJhKpA+5UHixduMBEGhTFuLuVgQBKWxkFbefOdj2bbk2/OpA5Opsc4aUTGmF+qJ+v3kTGxDRNYwKaT4j6g5n8Q==

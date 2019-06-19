@@ -1,6 +1,6 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import { cleanup, render } from 'react-testing-library';
+import { cleanup, render } from '@testing-library/react';
 
 function muiRender(element, options = {}) {
   const { disableUnnmount = false, strict } = options;
@@ -40,5 +40,5 @@ export function createMuiRender(globalOptions = {}) {
   };
 }
 
-export * from 'react-test-renderer';
+export * from '@testing-library/react';
 export { cleanup, muiRender as render };
