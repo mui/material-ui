@@ -98,7 +98,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const setInputRef = (element) => {
+  const setInputRef = element => {
     inputRef.current = element;
     return handleRef;
   };
@@ -211,7 +211,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (!Array.isArray(value)) {
         throw new Error(
           'Material-UI: the `value` property must be an array ' +
-          'when using the `Select` component with `multiple`.',
+            'when using the `Select` component with `multiple`.',
         );
       }
 
