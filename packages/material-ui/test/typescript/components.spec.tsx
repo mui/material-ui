@@ -80,6 +80,8 @@ import {
 import { DialogProps } from '@material-ui/core/Dialog';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
+import { MenuItemProps } from '@material-ui/core/MenuItem/MenuItem';
+import { ButtonProps } from '@material-ui/core/Button';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -167,6 +169,20 @@ const BottomNavigationTest = () => {
       <BottomNavigationAction label="Favorites" />
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
     </BottomNavigation>
+  );
+};
+
+const ButtonTest = () => {
+  const p: ButtonProps = {
+    component: 'span',
+    role: 'checkbox',
+    'aria-checked': false,
+  };
+
+  return (
+    <div>
+      <Button {...p} />
+    </div>
   );
 };
 
@@ -537,6 +553,11 @@ const ListTest = () => (
     </ListItem>
   </List>
 );
+
+const MenuItemTest = () => {
+  const p: MenuItemProps = {};
+  return <MenuItem {...p} />;
+};
 
 const MenuTest = () => {
   const anchorEl = document.getElementById('foo')!;
