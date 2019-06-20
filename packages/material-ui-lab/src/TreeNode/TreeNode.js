@@ -179,8 +179,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
           flag = true;
           break;
         case 'ArrowLeft':
-          handleLeftArrow(nodeId);
-          flag = true;
+          handleLeftArrow(nodeId, event);
           break;
         case 'Home':
           focusFirstNode();

@@ -173,14 +173,22 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     setExpanded(oldExpanded => [...oldExpanded, ...diff]);
   };
 
-  const handleLeftArrow = id => {
+  const handleLeftArrow = (id, event) => {
+    let flag = false;
     if (isExpanded(id)) {
       toggle(id);
+      flag = true;
     } else {
       const parent = nodeMap.current[id].parent;
       if (parent) {
         focus(parent);
+        flag = true;
       }
+    }
+
+    if (flag && event) {
+      event.preventDefault();
+      event.stopPropagation();
     }
   };
 
