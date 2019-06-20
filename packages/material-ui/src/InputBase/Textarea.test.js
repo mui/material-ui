@@ -179,7 +179,6 @@ describe('<Textarea />', () => {
     });
 
     it('should update its height when the "rowsMax" prop changes', () => {
-      const rowsMax = 2;
       const lineHeight = 15;
       const wrapper = mount(<Textarea rowsMax={3} />);
       setLayout(wrapper, {
@@ -191,9 +190,10 @@ describe('<Textarea />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      wrapper.setProps({rowsMax});
+      assert.strictEqual(getHeight(wrapper), lineHeight * 3);
+      wrapper.setProps({ rowsMax: 2 });
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), lineHeight * rowsMax);
+      assert.strictEqual(getHeight(wrapper), lineHeight * 2);
     });
   });
 });
