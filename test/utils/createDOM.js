@@ -32,7 +32,8 @@ function createDOM() {
       }
     });
 
-  // required for react-testing-library
+  // required for wait-for-expect
+  // not added by jsdom by default
   window.Date = global.Date;
 }
 
