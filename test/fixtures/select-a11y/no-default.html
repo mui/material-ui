@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Select keyboard nav | Material-UI</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script
+      crossorigin
+      src="../../../packages/material-ui/build/umd/material-ui.development.js"
+    ></script>
+  </head>
+  <body>
+    <h1>Select keyboard navigation no default</h1>
+    <p>Keyboard navigation for the Select component with no value selected by default</p>
+    <h2>Instructions</h2>
+    In the initial state focus should be on the "ready!" link. If the link only displays
+    "initializing" something is broken. To reset the test click the link (or just reload). Based on
+    <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#menu"
+      >WAI-ARIA menu keyboard interaction</a
+    >
+    <table>
+      <thead>
+        <tr>
+          <th>Before</th>
+          <th>Act</th>
+          <th>After</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Initial state</td>
+          <td>Press tab</td>
+          <td>Focus on Select</td>
+        </tr>
+        <tr>
+          <td>Focus on Select</td>
+          <td>Press <em>Enter</em></td>
+          <td>Select menu opens, Focus is on the first item</td>
+        </tr>
+        <tr>
+          <td>Select focus or focus-within</td>
+          <td>Press <em>Down Arrow</em></td>
+          <td>Focus moves to the second item</td>
+        </tr>
+        <tr>
+          <td>Select focus or focus-within</td>
+          <td>Press <em>Up Arrow</em></td>
+          <td>Focus moves to the first item</td>
+        </tr>
+        <tr>
+          <td>Select focus or focus-within</td>
+          <td>Press <em>End</em></td>
+          <td>Focus moves to the last item</td>
+        </tr>
+        <tr>
+          <td>Select focus or focus-within</td>
+          <td>Press <em>Home</em></td>
+          <td>Focus moves to the first item</td>
+        </tr>
+        <tr>
+          <td>Select focus or focus-within</td>
+          <td>Press <em>Escape</em></td>
+          <td>Menu closes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="fixture"></div>
+
+    <script type="text/babel" data-presets="react">
+      const { MenuItem, TextField } = MaterialUI;
+
+      function Test() {
+        const [value, setValue] = React.useState(0);
+
+        function handleChange(event) {
+          setValue(event.target.value);
+        }
+
+        return (
+          <TextField id="age" label="Age" onChange={handleChange} select value={value}>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={40}>Forty</MenuItem>
+            <MenuItem value={50}>Fifty</MenuItem>
+            <MenuItem value={60}>Sixty</MenuItem>
+            <MenuItem value={70}>Seventy</MenuItem>
+            <MenuItem value={80}>Eighty</MenuItem>
+            <MenuItem value={Number.PositiveInfinity}>That's a lot of damage!</MenuItem>
+          </TextField>
+        );
+      }
+
+      function Fixture() {
+        // ready?, ready!
+        const [ready, isReady] = React.useReducer(() => true, false);
+
+        const buttonRef = React.useRef(null);
+        React.useEffect(() => {
+          buttonRef.current.focus();
+        }, []);
+
+        return (
+          <React.Fragment>
+            <a href="" onFocus={isReady} ref={buttonRef} style={{ display: 'block', margin: 20 }}>
+              {ready ? 'Ready!' : 'Initializing'}
+            </a>
+            <Test />
+          </React.Fragment>
+        );
+      }
+
+      ReactDOM.render(<Fixture />, document.querySelector('#fixture'));
+    </script>
+  </body>
+</html>
