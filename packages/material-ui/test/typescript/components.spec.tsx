@@ -82,6 +82,7 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 import { MenuItemProps } from '@material-ui/core/MenuItem/MenuItem';
 import { ButtonProps } from '@material-ui/core/Button';
+import { ListItemProps } from '@material-ui/core/ListItem';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -553,6 +554,11 @@ const ListTest = () => (
     </ListItem>
   </List>
 );
+
+const ListItemTest = () => {
+  const p: ListItemProps = {};
+  return <ListItem {...p} />;
+};
 
 const MenuItemTest = () => {
   const p: MenuItemProps = {};
