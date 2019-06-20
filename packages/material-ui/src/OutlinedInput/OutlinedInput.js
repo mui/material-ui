@@ -20,7 +20,6 @@ export const styles = theme => {
       '@media (hover: none)': {
         '&:hover $notchedOutline': {
           borderColor,
-          borderWidth,
         },
       },
       '&$focused $notchedOutline': {
@@ -61,7 +60,6 @@ export const styles = theme => {
     /* Styles applied to the `NotchedOutline` element. */
     notchedOutline: {
       borderColor,
-      borderWidth,
     },
     /* Styles applied to the `input` element. */
     input: {
