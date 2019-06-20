@@ -8,7 +8,7 @@ Before the instructions is a description of the initial state.
 
 ```bash
 # all commands in the workspace root
-$ yarn workspace @material-ui/core build:umd --watch
+$ yarn workspace @material-ui/core build:umd:dev-only --watch
 # in another terminal
 $ npx serve
 # goto http://localhost:5000/test/fixtures/ to find an overview of the fixtures

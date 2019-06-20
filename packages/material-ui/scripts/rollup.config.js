@@ -42,43 +42,44 @@ function onwarn(warning) {
   throw Error(warning.message);
 }
 
-export default [
-  {
-    input,
-    onwarn,
-    output: {
-      file: 'build/umd/material-ui.development.js',
-      format: 'umd',
-      name: 'MaterialUI',
-      globals,
-    },
-    external: Object.keys(globals),
-    plugins: [
-      nodeResolve(),
-      babel(babelOptions),
-      commonjs(commonjsOptions),
-      nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
-      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
-    ],
+const developmentBundle = {
+  input,
+  onwarn,
+  output: {
+    file: 'build/umd/material-ui.development.js',
+    format: 'umd',
+    name: 'MaterialUI',
+    globals,
   },
-  {
-    input,
-    onwarn,
-    output: {
-      file: 'build/umd/material-ui.production.min.js',
-      format: 'umd',
-      name: 'MaterialUI',
-      globals,
-    },
-    external: Object.keys(globals),
-    plugins: [
-      nodeResolve(),
-      babel(babelOptions),
-      commonjs(commonjsOptions),
-      nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
-      terser(),
-    ],
+  external: Object.keys(globals),
+  plugins: [
+    nodeResolve(),
+    babel(babelOptions),
+    commonjs(commonjsOptions),
+    nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
+    replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+  ],
+};
+
+const productionBundle = {
+  input,
+  onwarn,
+  output: {
+    file: 'build/umd/material-ui.production.min.js',
+    format: 'umd',
+    name: 'MaterialUI',
+    globals,
   },
-];
+  external: Object.keys(globals),
+  plugins: [
+    nodeResolve(),
+    babel(babelOptions),
+    commonjs(commonjsOptions),
+    nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
+    replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
+    terser(),
+  ],
+};
+
+export default (process.env.DEV_ONLY ? developmentBundle : [developmentBundle, productionBundle]);
