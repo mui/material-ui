@@ -43,7 +43,7 @@ TrackCommitCountMenuItem.propTypes = {
  * @param {any} wrapper - return from react-testing-library `render`
  * @param {number} focusableIndex - the index of the menuitem that should be focusable
  */
-function expectSingleMenuItemFocusable(wrapper, focusableIndex) {
+function expectSingleMenuItemTabFocusable(wrapper, focusableIndex) {
   const items = wrapper.getAllByRole('menuitem');
 
   items.forEach((item, index) => {
@@ -105,7 +105,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should have the first item tabIndexed', () => {
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(getCommitCount()).to.equal(1);
     });
 
@@ -115,14 +115,14 @@ describe('<MenuList> integration', () => {
 
     it('should select the last item when pressing up', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[3]).to.be.focused;
       expect(getCommitCount()).to.equal(1);
     });
 
     it('should select the first item when pressing down', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
       expect(getCommitCount()).to.equal(1);
     });
@@ -131,13 +131,13 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
       expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(getCommitCount()).to.equal(1);
     });
 
     it('should focus the second item', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[1]).to.be.focused;
       expect(getCommitCount()).to.equal(1);
     });
@@ -150,7 +150,7 @@ describe('<MenuList> integration', () => {
       document.activeElement.blur();
 
       expect(handleBlur.callCount).to.equal(1);
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')).to.satisfy(function noneFocused(items) {
         return items.every(item => item !== document.activeElement);
       });
@@ -159,19 +159,19 @@ describe('<MenuList> integration', () => {
     it('should reset to first item selected', () => {
       const firstItem = wrapper.getAllByRole('menuitem')[0];
       firstItem.focus();
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(firstItem).to.be.focused;
     });
 
     it('should focus the second item again', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[1]).to.be.focused;
     });
 
     it('should focus the third item', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[2]).to.be.focused;
     });
   });
@@ -193,13 +193,13 @@ describe('<MenuList> integration', () => {
     });
 
     it('should select/focus the second item', () => {
-      expectSingleMenuItemFocusable(wrapper, 1);
+      expectSingleMenuItemTabFocusable(wrapper, 1);
       expect(wrapper.getAllByRole('menuitem')[1]).to.be.focused;
     });
 
     it('should focus the third item', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expectSingleMenuItemFocusable(wrapper, 1);
+      expectSingleMenuItemTabFocusable(wrapper, 1);
       expect(wrapper.getAllByRole('menuitem')[2]).to.be.focused;
     });
   });
@@ -222,13 +222,13 @@ describe('<MenuList> integration', () => {
 
     it('should focus the first item if no item is focused when pressing ArrowDown', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expectSingleMenuItemFocusable(wrapper, 1);
+      expectSingleMenuItemTabFocusable(wrapper, 1);
       expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
     });
 
     it('should focus the first item if no item is focused when pressing ArrowUp', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-      expectSingleMenuItemFocusable(wrapper, 1);
+      expectSingleMenuItemTabFocusable(wrapper, 1);
       expect(wrapper.getAllByRole('menuitem')[3]).to.be.focused;
     });
   });
@@ -248,7 +248,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should have the 3rd item tabIndexed and focused', () => {
-      expectSingleMenuItemFocusable(wrapper, 2);
+      expectSingleMenuItemTabFocusable(wrapper, 2);
       expect(wrapper.getAllByRole('menuitem')[2]).to.be.focused;
     });
   });
@@ -273,11 +273,11 @@ describe('<MenuList> integration', () => {
 
       // First ArrowUp moves focus from MenuList to first item
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
     });
 
@@ -285,11 +285,11 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[3]).to.be.focused;
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expectSingleMenuItemFocusable(wrapper, 0);
+      expectSingleMenuItemTabFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[3]).to.be.focused;
     });
   });
