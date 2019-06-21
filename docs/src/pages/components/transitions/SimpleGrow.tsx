@@ -28,18 +28,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function Polygon() {
-  const classes = useStyles();
-
-  return (
-    <Paper elevation={4} className={classes.paper}>
-      <svg className={classes.svg}>
-        <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
-      </svg>
-    </Paper>
-  );
-}
-
 export default function SimpleGrow() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
@@ -56,7 +44,11 @@ export default function SimpleGrow() {
       />
       <div className={classes.container}>
         <Grow in={checked}>
-          <Polygon />
+          <Paper elevation={4} className={classes.paper}>
+            <svg className={classes.svg}>
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+            </svg>
+          </Paper>
         </Grow>
         {/* Conditionally applies the timeout property to change the entry speed. */}
         <Grow
@@ -64,7 +56,11 @@ export default function SimpleGrow() {
           style={{ transformOrigin: '0 0 0' }}
           {...(checked ? { timeout: 1000 } : {})}
         >
-          <Polygon />
+          <Paper elevation={4} className={classes.paper}>
+            <svg className={classes.svg}>
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+            </svg>
+          </Paper>
         </Grow>
       </div>
     </div>
