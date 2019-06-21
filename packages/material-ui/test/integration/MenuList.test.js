@@ -127,9 +127,10 @@ describe('<MenuList> integration', () => {
       expect(getCommitCount()).to.equal(1);
     });
 
-    it('should still have the first item tab focusable', () => {
+    it('should still be focused and focusable when going back and forth', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
       expectSingleMenuItemFocusable(wrapper, 0);
       expect(getCommitCount()).to.equal(1);
     });
@@ -275,9 +276,9 @@ describe('<MenuList> integration', () => {
       expectSingleMenuItemFocusable(wrapper, 0);
       expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
 
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
       expectSingleMenuItemFocusable(wrapper, 0);
-      expect(wrapper.getAllByRole('menuitem')[1]).to.be.focused;
+      expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
     });
 
     it('should not wrap focus with ArrowDown from last', () => {
