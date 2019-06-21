@@ -8,10 +8,9 @@ import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import { useForkRef } from '../utils/reactHelpers';
 import zIndex from '../styles/zIndex';
-import ModalManager from './ModalManager';
+import ModalManager, { ariaHidden } from './ModalManager';
 import TrapFocus from './TrapFocus';
 import SimpleBackdrop from './SimpleBackdrop';
-import { ariaHidden } from './manageAriaHidden';
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
