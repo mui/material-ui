@@ -4,7 +4,7 @@
 
 Einige Material-UI-Komponenten verwenden den `z-Index`. Es wird eine Standard-z-Index-Skala in Material-UI verwendet, die Schubladen, Modalen, Snackbars, QuickInfos und mehr ordentlich übereinander legt.
 
-[Diese Werte](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js) beginnen mit einer beliebigen Anzahl, hoch und spezifisch genug, um Konflikte idealerweise zu vermeiden.
+[Diese Werte](https://github.com/mui-org/material-ui/blob/6957c91608e7c9cc73f3b5b1085de0b37a5fb25d/packages/material-ui/src/styles/zIndex.js#L4) beginnen mit einer beliebigen Anzahl, hoch und spezifisch genug, um Konflikte idealerweise zu vermeiden.
 
 - mobile stepper: 1000
 - app bar: 1100
