@@ -253,7 +253,7 @@ describe('<MenuList> integration', () => {
   });
 
   // broken
-  describe.skip('MenuList with disableListWrap', () => {
+  describe('MenuList with disableListWrap', () => {
     let wrapper;
 
     before(() => {
@@ -273,11 +273,11 @@ describe('<MenuList> integration', () => {
       // First ArrowUp moves focus from MenuList to first item
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
       expectSingleMenuItemFocusable(wrapper, 0);
-      expect(wrapper.getByRole('menu')).to.be.focused;
+      expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       expectSingleMenuItemFocusable(wrapper, 0);
-      expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
+      expect(wrapper.getAllByRole('menuitem')[1]).to.be.focused;
     });
 
     it('should not wrap focus with ArrowDown from last', () => {
