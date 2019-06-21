@@ -1,21 +1,23 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles(theme => ({
-  typography: {
-    padding: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    typography: {
+      padding: theme.spacing(2),
+    },
+  }),
+);
 
 export default function NoTransitionPopper() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const classes = useStyles();
 
-  const handleClick = event => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setAnchorEl(prev => (prev ? null : event.currentTarget));
   };
 
