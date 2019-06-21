@@ -69,6 +69,11 @@ describe('<MenuList> integration', () => {
   let render;
 
   before(() => {
+    if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
+      // fails repeatedly on chrome 49 in karma but works when manually testing
+      // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
+      this.skip();
+    }
     // StrictModeViolation: uses #simulate
     mount = createMount({ strict: false });
     render = createClientRender({ strict: true });
@@ -84,13 +89,6 @@ describe('<MenuList> integration', () => {
     let getCommitCount;
 
     before(function prepare() {
-      console.log(window.navigator.userAgent);
-      if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
-        // fails repeatedly on chrome 49 in karma but works when manually testing
-        // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
-        this.skip();
-      }
-
       const actionsRef = React.createRef();
       wrapper = render(
         <MenuList>
