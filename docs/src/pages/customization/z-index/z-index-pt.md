@@ -4,7 +4,7 @@
 
 Vários componentes do Material-UI utiliza `z-index`, empregando uma escala z-index padrão em Material-UI, que foi projetada para adequar layer drawers, modals, snackbars, tooltips(dicas), e muito mais.
 
-[Estes valores](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js) começam em um número arbitrário, alto e específico, o suficiente para idealmente evitar conflitos.
+[Estes valores](https://github.com/mui-org/material-ui/blob/6957c91608e7c9cc73f3b5b1085de0b37a5fb25d/packages/material-ui/src/styles/zIndex.js#L4) começam em um número arbitrário, alto e específico, o suficiente para idealmente evitar conflitos.
 
 - mobile stepper: 1000
 - barras de aplicativos: 1100
