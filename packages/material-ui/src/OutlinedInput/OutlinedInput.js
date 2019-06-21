@@ -13,9 +13,6 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       position: 'relative',
-      '& $notchedOutline': {
-        borderColor,
-      },
       '&:hover $notchedOutline': {
         borderColor: theme.palette.text.primary,
       },
@@ -61,7 +58,9 @@ export const styles = theme => {
       },
     },
     /* Styles applied to the `NotchedOutline` element. */
-    notchedOutline: {},
+    notchedOutline: {
+      borderColor,
+    },
     /* Styles applied to the `input` element. */
     input: {
       padding: '18.5px 14px',
