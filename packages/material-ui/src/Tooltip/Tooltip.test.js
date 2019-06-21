@@ -33,8 +33,7 @@ describe('<Tooltip />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Grow and tests a lot of impl details
-    mount = createMount({ strict: undefined });
+    mount = createMount({ strict: true });
     classes = getClasses(<Tooltip {...defaultProps} />);
     clock = useFakeTimers();
   });
@@ -46,7 +45,7 @@ describe('<Tooltip />', () => {
 
   it('should render the correct structure', () => {
     const wrapper = mount(<Tooltip {...defaultProps} />);
-    const children = wrapper.childAt(0);
+    const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(children.childAt(1).type(), Popper);
     assert.strictEqual(children.childAt(1).hasClass(classes.popper), true);
   });

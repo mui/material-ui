@@ -57,8 +57,7 @@ describe('<Popover />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Grow
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(
       <Popover {...defaultProps}>
         <div />
@@ -318,7 +317,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(anchorElSpy.callCount, 1);
+      assert.strictEqual(anchorElSpy.callCount, 2); // 2 cause StrictMode
     });
   });
 

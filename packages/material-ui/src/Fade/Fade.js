@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
+import { Transition } from '@material-ui/react-transition-group';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
@@ -35,7 +35,6 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     ...other
   } = props;
   const theme = useTheme();
-  const handleRef = useForkRef(children.ref, ref);
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
@@ -69,6 +68,10 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     }
   };
 
+  const ownRef = React.useRef();
+  const userRef = useForkRef(children.ref, ref);
+  const handleRef = useForkRef(ownRef, userRef);
+
   return (
     <Transition
       appear
@@ -77,6 +80,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       onExit={handleExit}
       timeout={timeout}
       {...other}
+      findDOMNode={() => ownRef.current}
     >
       {(state, childProps) => {
         return React.cloneElement(children, {

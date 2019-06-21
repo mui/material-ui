@@ -20,8 +20,7 @@ describe('<IconButton />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<IconButton />);
   });
 

@@ -176,8 +176,7 @@ describe('<Popper />', () => {
 
     before(() => {
       clock = useFakeTimers();
-      // StrictModeViolation: uses Grow
-      looseMount = createMount({ strict: false });
+      looseMount = createMount({ strict: true });
     });
 
     after(() => {

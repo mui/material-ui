@@ -47,5 +47,5 @@ you need to use the following style sheet name: `MuiBackdrop`.
 
 ## Notes
 
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 

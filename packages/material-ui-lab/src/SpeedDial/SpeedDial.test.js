@@ -30,7 +30,7 @@ describe('<SpeedDial />', () => {
   }
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
+    // StrictModeViolation: uses #simulate
     mount = createMount({ strict: false });
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>

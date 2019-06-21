@@ -77,8 +77,7 @@ describe('<SwitchBase />', () => {
 
   before(() => {
     SwitchBaseNaked = unwrap(SwitchBase);
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<SwitchBase {...defaultProps} />);
   });
 
