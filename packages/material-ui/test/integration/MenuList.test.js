@@ -84,6 +84,7 @@ describe('<MenuList> integration', () => {
     let getCommitCount;
 
     before(function prepare() {
+      console.log(window.navigator.userAgent);
       if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
         // fails repeatedly on chrome 49 in karma but works when manually testing
         // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
