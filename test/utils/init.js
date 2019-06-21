@@ -5,6 +5,7 @@ import consoleError from './consoleError';
 import { useIsSsr } from '@material-ui/core/test-utils/RenderMode';
 import chai from 'chai';
 import chaiDom from 'chai-dom';
+import { prettyDOM } from '@testing-library/react';
 
 chai.use(chaiDom);
 chai.use((chaiAPI, utils) => {
@@ -15,8 +16,8 @@ chai.use((chaiAPI, utils) => {
       element === document.activeElement,
       'expected #{exp} to be focused, but #{act} was instead',
       'expected #{exp} not to be focused',
-      utils.elToString(element),
-      utils.elToString(document.activeElement),
+      prettyDOM(element),
+      prettyDOM(document.activeElement),
     );
   });
 });
