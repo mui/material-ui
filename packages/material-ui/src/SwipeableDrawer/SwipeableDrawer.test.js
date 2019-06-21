@@ -100,7 +100,7 @@ describe('<SwipeableDrawer />', () => {
   }));
 
   it('should render a Drawer and a SwipeArea', () => {
-    const wrapper = mount(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false} />); // unwrap withForwardedRef
+    const wrapper = mount(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false} />);
     assert.strictEqual(wrapper.find(Drawer).exists(), true);
     assert.strictEqual(wrapper.find(SwipeArea).exists(), true);
   });

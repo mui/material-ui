@@ -6,7 +6,9 @@ export {
   createStyles,
   makeStyles,
   MuiThemeProvider,
+  responsiveFontSizes,
   styled,
+  useTheme,
   withStyles,
   withTheme,
 } from './styles';

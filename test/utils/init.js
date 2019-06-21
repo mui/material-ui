@@ -3,6 +3,10 @@ import enzyme from 'enzyme/build/index';
 import Adapter from 'enzyme-adapter-react-16';
 import consoleError from './consoleError';
 import { useIsSsr } from '@material-ui/core/test-utils/RenderMode';
+import chai from 'chai';
+import chaiDom from 'chai-dom';
+
+chai.use(chaiDom);
 
 consoleError();
 

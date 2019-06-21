@@ -1,13 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createMount,
-  findOutermostIntrinsic,
-  getClasses,
-} from 'packages/material-ui/src/test-utils';
-import TableCell from 'packages/material-ui/src/TableCell';
-import TableFooter from 'packages/material-ui/src/TableFooter';
-import TableHead from 'packages/material-ui/src/TableHead';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableHead from '@material-ui/core/TableHead';
 
 describe('<TableRow> integration', () => {
   let classes;

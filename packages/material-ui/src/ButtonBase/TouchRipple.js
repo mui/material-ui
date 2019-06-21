@@ -230,7 +230,6 @@ class TouchRipple extends React.PureComponent {
 
   stop = (event, cb) => {
     clearTimeout(this.startTimer);
-    const { ripples } = this.state;
 
     // The touch interaction occurs too quickly.
     // We still want to show ripple effect.
@@ -246,14 +245,12 @@ class TouchRipple extends React.PureComponent {
 
     this.startTimerCommit = null;
 
-    if (ripples && ripples.length) {
-      this.setState(
-        {
-          ripples: ripples.slice(1),
-        },
-        cb,
-      );
-    }
+    this.setState(({ ripples }) => {
+      if (ripples && ripples.length) {
+        return { ripples: ripples.slice(1) };
+      }
+      return null;
+    }, cb);
   };
 
   render() {

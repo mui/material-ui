@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from '@material-ui/react-transition-group';
-import withTheme from '../styles/withTheme';
+import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { useForkRef } from '../utils/reactHelpers';
 
@@ -16,8 +16,7 @@ const styles = {
   },
   entered: {
     opacity: 1,
-    // Use translateZ to scrolling issue on Chrome.
-    transform: `${getScale(1)} translateZ(0)`,
+    transform: 'none',
   },
 };
 
@@ -27,9 +26,10 @@ const styles = {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
-  const { children, in: inProp, onEnter, onExit, style, theme, timeout = 'auto', ...other } = props;
+  const { children, in: inProp, onEnter, onExit, style, timeout = 'auto', ...other } = props;
   const timer = React.useRef();
   const autoTimeout = React.useRef();
+  const theme = useTheme();
 
   const handleEnter = node => {
     reflow(node); // So the animation always start from the start.
@@ -166,10 +166,6 @@ Grow.propTypes = {
    */
   style: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    *
@@ -184,4 +180,4 @@ Grow.propTypes = {
 
 Grow.muiSupportAuto = true;
 
-export default withTheme(Grow);
+export default Grow;

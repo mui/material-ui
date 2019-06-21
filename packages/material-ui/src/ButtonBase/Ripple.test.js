@@ -1,7 +1,8 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 
@@ -11,27 +12,20 @@ describe('<Ripple />', () => {
 
   before(() => {
     classes = getClasses(<TouchRipple />);
-    mount = createMount({ strict: undefined });
+    mount = createClientRender({ strict: undefined });
   });
 
   after(() => {
-    mount.cleanUp();
-  });
-
-  it('should render a Transition', () => {
-    const wrapper = mount(
-      <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={10} />,
-    );
-    assert.strictEqual(wrapper.find('Transition').exists(), true);
+    cleanup();
   });
 
   it('should have the ripple className', () => {
-    const wrapper = mount(
+    const { container } = mount(
       <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={11} />,
     );
-    const rippleWrapper = wrapper.find('span').first();
-    assert.strictEqual(rippleWrapper.hasClass(classes.ripple), true);
-    assert.strictEqual(rippleWrapper.hasClass(classes.fast), false);
+    const ripple = container.querySelector('span');
+    expect(ripple).to.have.class(classes.ripple);
+    expect(ripple).not.to.have.class(classes.fast);
   });
 
   describe('starting and stopping', () => {
@@ -51,17 +45,15 @@ describe('<Ripple />', () => {
 
     it('should start the ripple', () => {
       wrapper.setProps({ in: true });
-      wrapper.update();
-      const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(rippleWrapper.hasClass(classes.rippleVisible), true);
+      const ripple = wrapper.container.querySelector('span');
+      expect(ripple).to.have.class(classes.rippleVisible);
     });
 
     it('should stop the ripple', () => {
       wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
-      wrapper.update();
-      const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(childWrapper.hasClass(classes.childLeaving), true);
+      const child = wrapper.container.querySelector('span > span');
+      expect(child).to.have.class(classes.childLeaving);
     });
   });
 
@@ -83,29 +75,26 @@ describe('<Ripple />', () => {
     });
 
     it('should render the ripple inside a pulsating Ripple', () => {
-      assert.strictEqual(wrapper.name(), 'Ripple');
-      const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(rippleWrapper.hasClass(classes.ripple), true);
-      assert.strictEqual(rippleWrapper.hasClass(classes.ripplePulsate), true);
-      const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(childWrapper.hasClass(classes.childPulsate), true);
+      const ripple = wrapper.container.querySelector('span');
+      expect(ripple).to.have.class(classes.ripple);
+      expect(ripple).to.have.class(classes.ripplePulsate);
+      const child = wrapper.container.querySelector('span > span');
+      expect(child).to.have.class(classes.childPulsate);
     });
 
     it('should start the ripple', () => {
       wrapper.setProps({ in: true });
-      wrapper.update();
-      const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(rippleWrapper.hasClass(classes.rippleVisible), true);
-      const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(childWrapper.hasClass(classes.childPulsate), true);
+      const ripple = wrapper.container.querySelector('span');
+      expect(ripple).to.have.class(classes.rippleVisible);
+      const child = wrapper.container.querySelector('span > span');
+      expect(child).to.have.class(classes.childPulsate);
     });
 
     it('should stop the ripple', () => {
       wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
-      wrapper.update();
-      const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(childWrapper.hasClass(classes.childLeaving), true);
+      const child = wrapper.container.querySelector('span > span');
+      expect(child).to.have.class(classes.childLeaving);
     });
   });
 

@@ -7,6 +7,7 @@ import { TransitionHandlerProps, TransitionProps } from '../transitions/transiti
 
 export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
+  autoFocus?: boolean;
   disableAutoFocusItem?: boolean;
   MenuListProps?: Partial<MenuListProps>;
   PaperProps?: Partial<PaperProps>;

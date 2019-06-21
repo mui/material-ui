@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import withTheme from '../styles/withTheme';
+import useTheme from '../styles/useTheme';
 import IconButton from '../IconButton';
 
 /**
@@ -16,9 +16,10 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onChangePage,
     page,
     rowsPerPage,
-    theme,
     ...other
   } = props;
+
+  const theme = useTheme();
 
   const handleBackButtonClick = event => {
     onChangePage(event, page - 1);
@@ -78,10 +79,6 @@ TablePaginationActions.propTypes = {
    * The number of rows per page.
    */
   rowsPerPage: PropTypes.number.isRequired,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
 };
 
-export default withTheme(TablePaginationActions);
+export default TablePaginationActions;

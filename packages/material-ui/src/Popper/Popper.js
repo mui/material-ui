@@ -64,7 +64,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   }, [handlePopperRef]);
   React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
 
-  const [exited, setExited] = React.useState(!props.open);
+  const [exited, setExited] = React.useState(!open);
   const [placement, setPlacement] = React.useState();
 
   const handleOpen = React.useCallback(() => {
@@ -127,15 +127,15 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   };
 
   React.useEffect(() => {
+    // Let's update the popper position.
+    handleOpen();
+  }, [handleOpen]);
+
+  React.useEffect(() => {
     return () => {
       handleClose();
     };
   }, []);
-
-  React.useEffect(() => {
-    // Let's update the popper position.
-    handleOpen();
-  }, [handleOpen]);
 
   React.useEffect(() => {
     if (!open && !transition) {

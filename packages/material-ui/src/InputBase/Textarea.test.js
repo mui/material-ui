@@ -177,5 +177,23 @@ describe('<Textarea />', () => {
       wrapper.update();
       assert.strictEqual(getHeight(wrapper), lineHeight * rowsMax);
     });
+
+    it('should update its height when the "rowsMax" prop changes', () => {
+      const lineHeight = 15;
+      const wrapper = mount(<Textarea rowsMax={3} />);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: 100,
+        lineHeight,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), lineHeight * 3);
+      wrapper.setProps({ rowsMax: 2 });
+      wrapper.update();
+      assert.strictEqual(getHeight(wrapper), lineHeight * 2);
+    });
   });
 });

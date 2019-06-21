@@ -1,10 +1,10 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import MenuList from 'packages/material-ui/src/MenuList';
-import MenuItem from 'packages/material-ui/src/MenuItem';
-import Divider from 'packages/material-ui/src/Divider';
-import { createMount } from 'packages/material-ui/src/test-utils';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
+import { createMount } from '@material-ui/core/test-utils';
 import PropTypes from 'prop-types';
 
 function FocusOnMountMenuItem(props) {
