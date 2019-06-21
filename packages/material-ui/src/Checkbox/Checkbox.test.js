@@ -11,8 +11,7 @@ describe('<Checkbox />', () => {
 
   before(() => {
     classes = getClasses(<Checkbox />);
-    // StrictModeViolation: uses IconButton
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {

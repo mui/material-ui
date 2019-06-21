@@ -19,8 +19,7 @@ describe('<Menu />', () => {
 
   before(() => {
     classes = getClasses(<Menu {...defaultProps} />);
-    // StrictModeViolation: uses Popover
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {

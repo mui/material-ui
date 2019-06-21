@@ -17,7 +17,7 @@ describe('<ToggleButton />', () => {
   let classes;
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
+    // StrictModeViolation: uses #simulate
     mount = createMount({ strict: false });
     render = createRender();
     classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);

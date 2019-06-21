@@ -29,7 +29,7 @@ describe('<ButtonBase />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
-    // StrictModeViolation: uses TouchRipple
+    // StrictModeViolation: uses simulate
     mount = createMount({ strict: false });
     classes = getClasses(<ButtonBase />);
   });

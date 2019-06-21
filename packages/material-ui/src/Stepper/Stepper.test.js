@@ -18,8 +18,7 @@ describe('<Stepper />', () => {
   before(() => {
     classes = getClasses(<Stepper />);
     shallow = createShallow({ dive: true });
-    // StrictModeViolation: test uses StepContent
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
-import { Transition } from 'react-transition-group';
+import { Transition } from '@material-ui/react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { useForkRef } from '../utils/reactHelpers';
 import useTheme from '../styles/useTheme';
@@ -211,6 +211,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       in={inProp}
       timeout={timeout}
       {...other}
+      findDOMNode={() => childrenRef.current}
     >
       {(state, childProps) => {
         return React.cloneElement(children, {

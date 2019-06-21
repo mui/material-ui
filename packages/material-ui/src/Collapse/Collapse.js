@@ -1,10 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
+import { Transition } from '@material-ui/react-transition-group';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
+import { useForkRef } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   /* Styles applied to the container element. */
@@ -149,6 +150,9 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     }
   };
 
+  const ownRef = React.useRef();
+  const handleRef = useForkRef(ownRef, ref);
+
   return (
     <Transition
       in={inProp}
@@ -160,6 +164,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       addEndListener={addEndListener}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
+      findDOMNode={() => ownRef.current}
     >
       {(state, childProps) => (
         <Component
@@ -175,7 +180,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
             minHeight: collapsedHeight,
             ...style,
           }}
-          ref={ref}
+          ref={handleRef}
           {...childProps}
         >
           <div className={classes.wrapper} ref={wrapperRef}>
