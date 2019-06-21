@@ -15,19 +15,19 @@ function FocusOnMountMenuItem(props) {
   return <MenuItem {...props} ref={listItemRef} tabIndex={0} />;
 }
 
-function TrackRenderCountMenuItem({ actions, ...other }) {
-  const renderCountRef = React.useRef(0);
+function TrackCommitCountMenuItem({ actions, ...other }) {
+  const commitCountRef = React.useRef(0);
   React.useEffect(() => {
-    renderCountRef.current += 1;
+    commitCountRef.current += 1;
   });
   React.useImperativeHandle(actions, () => ({
     getRenderCount: () => {
-      return renderCountRef.current;
+      return commitCountRef.current;
     },
-  }));
+  }), []);
   return <MenuItem {...other} />;
 }
-TrackRenderCountMenuItem.propTypes = {
+TrackCommitCountMenuItem.propTypes = {
   /**
    * @ignore
    */
@@ -128,7 +128,7 @@ describe('<MenuList> integration', () => {
           </MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
-          <TrackRenderCountMenuItem actions={item4ActionsRef}>Menu Item 4</TrackRenderCountMenuItem>
+          <TrackCommitCountMenuItem actions={item4ActionsRef}>Menu Item 4</TrackCommitCountMenuItem>
         </MenuList>,
       );
     };
