@@ -27,7 +27,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     disabled,
     displayEmpty,
     IconComponent,
-    inputRef,
+    inputRef: inputRefProp,
     MenuProps = {},
     multiple,
     name,
@@ -47,13 +47,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     variant,
     ...other
   } = props;
+
+  const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const ignoreNextBlur = React.useRef(false);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);
-  const handleRef = useForkRef(ref, inputRef);
+  const handleInputRef = useForkRef(inputRef, inputRefProp);
+  const handleRef = useForkRef(ref, handleInputRef);
 
   React.useImperativeHandle(
     handleRef,
@@ -61,10 +64,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       focus: () => {
         displayRef.current.focus();
       },
-      node: inputRef ? inputRef.current : null,
+      node: inputRef.current,
       value,
     }),
-    [inputRef, value],
+    [value],
   );
 
   React.useEffect(() => {
