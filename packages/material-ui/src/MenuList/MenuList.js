@@ -63,13 +63,11 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
     ) {
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
-      break;
+      nextFocus.focus();
+      return true;
     }
   }
-  if (nextFocus) {
-    nextFocus.focus();
-    return true;
-  }
+
   return false;
 }
 
