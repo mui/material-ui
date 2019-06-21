@@ -4,7 +4,6 @@ import { spy } from 'sinon';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
-import { createMount } from '@material-ui/core/test-utils';
 import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import PropTypes from 'prop-types';
 
@@ -65,22 +64,19 @@ function expectFocusVisible(element, focusVisibleClass) {
 }
 
 describe('<MenuList> integration', () => {
-  let mount;
   let render;
 
+  if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
+    // fails repeatedly on chrome 49 in karma but works when manually testing
+    // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
+    return;
+  }
+
   before(() => {
-    if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
-      // fails repeatedly on chrome 49 in karma but works when manually testing
-      // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
-      this.skip();
-    }
-    // StrictModeViolation: uses #simulate
-    mount = createMount({ strict: false });
     render = createClientRender({ strict: true });
   });
 
   after(() => {
-    mount.cleanUp();
     cleanup();
   });
 
