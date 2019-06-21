@@ -518,6 +518,14 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
   });
 
+  const handleMouseEnter = useEventCallback(event => {
+    // If the slider was being interacted with but the mouse went off the window
+    // and then re-entered while unclicked then end the interaction.
+    if (event.buttons === 0) {
+      handleTouchEnd(event);
+    }
+  });
+
   const handleTouchEnd = useEventCallback(event => {
     const finger = trackFinger(event, touchId);
 
@@ -542,14 +550,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     document.body.removeEventListener('mouseenter', handleMouseEnter);
     document.body.removeEventListener('touchmove', handleTouchMove);
     document.body.removeEventListener('touchend', handleTouchEnd);
-  });
-
-  const handleMouseEnter = useEventCallback(event => {
-    // If the slider was being interacted with but the mouse went off the window
-    // and then re-entered while unclicked then end the interaction.
-    if (event.buttons === 0) {
-      handleTouchEnd(event);
-    }
   });
 
   const handleTouchStart = useEventCallback(event => {
