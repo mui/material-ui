@@ -53,7 +53,7 @@ const styles = theme => ({
     outline: 'none',
     margin: 'auto',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.background.level1,
+    backgroundColor: theme.palette.background.level2,
     display: 'flex',
     justifyContent: 'center',
     padding: 20,

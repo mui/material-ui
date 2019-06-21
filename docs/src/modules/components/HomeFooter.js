@@ -11,7 +11,7 @@ import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.background.level0,
+    backgroundColor: theme.palette.background.level2,
   },
   footer: {
     padding: theme.spacing(3, 0),

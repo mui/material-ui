@@ -8,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const styles = theme => ({
   root: {
@@ -28,10 +27,8 @@ const styles = theme => ({
     marginRight: 20,
   },
   code: {
-    marginTop: theme.spacing(1),
-    '& pre': {
-      margin: '0px !important',
-    },
+    margin: theme.spacing(2),
+    fontSize: 16,
   },
   fab: {
     position: 'absolute',
@@ -80,17 +77,14 @@ function ColorDemo(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-        <MarkdownElement
-          className={classes.code}
-          text={`\`\`\`jsx
-{
+        <pre className={classes.code}>
+          {`{
   palette: {
     primary: ${primary.output},
     secondary: ${secondary.output},
   },
-}
-\`\`\``}
-        />
+}`}
+        </pre>
         <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="Add">
           <AddIcon htmlColor={secondary.contrastText} />
         </Fab>

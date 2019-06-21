@@ -119,33 +119,32 @@ const styles = theme => ({
     '& pre': {
       margin: '24px 0',
       padding: '12px 18px',
-      backgroundColor: theme.palette.background.level1,
+      backgroundColor: '#333',
       direction: 'ltr',
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     },
-    '& code[class*="language-"]': {
-      boxShadow: 'none',
-    },
     '& code': {
       display: 'inline-block',
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
+      WebkitFontSmoothing: 'subpixel-antialiased',
       padding: '2px 6px',
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.level1,
+      backgroundColor:
+        theme.palette.type === 'dark' ? 'rgba(255,229,100,0.2)' : 'rgba(255,229,100,0.1)',
       fontSize: 14,
       borderRadius: 2,
+    },
+    '& code[class*="language-"]': {
+      backgroundColor: '#333',
+      color: '#fff',
     },
     '& p code, & ul code, & pre code': {
       fontSize: 14,
     },
     '& .token.operator': {
       background: 'transparent',
-    },
-    '& .token.property, .token.tag,.token.constant, .token.symbol, .token.deleted': {
-      // adjust prism-okaidia to reach AA ratio
-      color: theme.palette.type === 'dark' ? '#f483ad' : undefined,
     },
     '& h1': {
       ...theme.typography.h2,
@@ -217,12 +216,12 @@ const styles = theme => ({
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       },
       '& .required': {
-        color: theme.palette.type === 'light' ? '#006500' : '#9bc89b',
+        color: theme.palette.type === 'light' ? '#006500' : '#a5ffa5',
       },
       '& .prop-type': {
         fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        color: theme.palette.type === 'light' ? '#932981' : '#dbb0d0',
+        color: theme.palette.type === 'light' ? '#932981' : '#ffb6ec',
       },
       '& .prop-default': {
         fontSize: 13,
@@ -272,8 +271,8 @@ const styles = theme => ({
       height: 64,
     },
     '& blockquote': {
-      borderLeft: `5px solid ${theme.palette.text.hint}`,
-      backgroundColor: theme.palette.background.level1,
+      borderLeft: '5px solid #ffe564',
+      backgroundColor: 'rgba(255,229,100,0.2)',
       padding: '4px 24px',
       margin: '24px 0',
     },

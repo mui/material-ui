@@ -13,7 +13,6 @@ const backers = mapTranslations(req, 'md');
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
     minHeight: 600,
   },
   markdownElement: {

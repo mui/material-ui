@@ -28,7 +28,7 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.level1,
+    backgroundColor: theme.palette.background.level2,
     display: 'block',
   },
 });

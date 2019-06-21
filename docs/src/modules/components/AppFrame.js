@@ -86,6 +86,7 @@ export const languages = [
 const styles = theme => ({
   root: {
     display: 'flex',
+    backgroundColor: theme.palette.background.level1,
   },
   grow: {
     flex: '1 1 auto',
