@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
