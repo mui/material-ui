@@ -7,6 +7,19 @@ import chai from 'chai';
 import chaiDom from 'chai-dom';
 
 chai.use(chaiDom);
+chai.use((chaiAPI, utils) => {
+  // better diff view for expect(element).to.equal(document.activeElement)
+  chai.Assertion.addProperty('focused', function elementIsFocused() {
+    const element = utils.flag(this, 'object');
+    this.assert(
+      element === document.activeElement
+      , 'expected #{exp} to be focused, but #{act} was instead'
+      , 'expected #{exp} not to be focused'
+      , utils.elToString(element)
+      , utils.elToString(document.activeElement)
+    )
+  })
+})
 
 consoleError();
 
