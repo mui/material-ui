@@ -1,22 +1,24 @@
 import React from 'react';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  popover: {
-    pointerEvents: 'none',
-  },
-  paper: {
-    padding: theme.spacing(1),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    popover: {
+      pointerEvents: 'none',
+    },
+    paper: {
+      padding: theme.spacing(1),
+    },
+  }),
+);
 
 export default function MouseOverPopover() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  function handlePopoverOpen(event) {
+  function handlePopoverOpen(event: React.MouseEvent<HTMLElement, MouseEvent>) {
     setAnchorEl(event.currentTarget);
   }
 
