@@ -12,14 +12,14 @@ chai.use((chaiAPI, utils) => {
   chai.Assertion.addProperty('focused', function elementIsFocused() {
     const element = utils.flag(this, 'object');
     this.assert(
-      element === document.activeElement
-      , 'expected #{exp} to be focused, but #{act} was instead'
-      , 'expected #{exp} not to be focused'
-      , utils.elToString(element)
-      , utils.elToString(document.activeElement)
-    )
-  })
-})
+      element === document.activeElement,
+      'expected #{exp} to be focused, but #{act} was instead',
+      'expected #{exp} not to be focused',
+      utils.elToString(element),
+      utils.elToString(document.activeElement),
+    );
+  });
+});
 
 consoleError();
 
