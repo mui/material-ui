@@ -31,7 +31,7 @@ export default function createTypography(palette, typography) {
   } = typeof typography === 'function' ? typography(palette) : typography;
 
   if (typeof fontSize !== 'number') {
-    throw new Error(`Material-UI: The "fontSize" provided isn't a number`);
+    throw new Error(`Material-UI: the "fontSize" provided isn't a number`);
   }
 
   const coef = fontSize / 14;
