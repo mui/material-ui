@@ -30,6 +30,10 @@ export default function createTypography(palette, typography) {
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
+  if (typeof fontSize !== 'number') {
+    throw new Error(`Material-UI: The "fontSize" provided isn't a number`);
+  }
+
   const coef = fontSize / 14;
   const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
   const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
