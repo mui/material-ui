@@ -539,6 +539,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     touchId.current = undefined;
     document.body.removeEventListener('mousemove', handleTouchMove);
     document.body.removeEventListener('mouseup', handleTouchEnd);
+    // eslint-disable-next-line no-use-before-define
+    document.body.removeEventListener('mouseenter', handleMouseEnter);
     document.body.removeEventListener('touchmove', handleTouchMove);
     document.body.removeEventListener('touchend', handleTouchEnd);
   });
