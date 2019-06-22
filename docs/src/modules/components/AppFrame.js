@@ -118,6 +118,8 @@ const styles = theme => ({
     },
   },
   appBar: {
+    color: theme.palette.type === 'dark' ? '#fff' : null,
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.background.level2 : null,
     transition: theme.transitions.create('width'),
     '@media print': {
       position: 'absolute',

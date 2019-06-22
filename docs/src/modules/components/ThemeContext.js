@@ -1,19 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme, darken, lighten } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
 
-export const themeInitialOptions = {
+export const themeColor = blue[700];
+
+const themeInitialOptions = {
   direction: 'ltr',
-  paletteColors: {
-    primary: {
-      main: blue[700],
-    },
-  },
+  paletteColors: {},
 };
 
 export const DispatchContext = React.createContext(() => {
@@ -80,11 +78,10 @@ export function Provider(props) {
       },
       palette: {
         primary: {
-          main: paletteType === 'light' ? blue[700] : blue[500],
+          main: paletteType === 'light' ? blue[700] : blue[200],
         },
         secondary: {
-          // Darken / lighten so we reach the AA contrast ratio level.
-          main: paletteType === 'light' ? darken(pink.A400, 0.1) : lighten(pink.A400, 0.5),
+          main: paletteType === 'light' ? pink[600] : pink[200],
         },
         type: paletteType,
         background: {
