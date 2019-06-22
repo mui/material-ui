@@ -1,6 +1,11 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
-import { createMuiTheme, makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  makeStyles,
+  createStyles,
+  Theme as AugmentedTheme,
+} from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { orange } from '@material-ui/core/colors';
 
@@ -18,7 +23,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
 }
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme: AugmentedTheme) =>
   createStyles({
     root: {
       color: theme.status.danger,
