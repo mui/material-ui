@@ -6,7 +6,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-function SelectAlignment() {
+export default function SelectAlignment() {
   return (
     <div>
       <FormControl>
@@ -35,5 +35,3 @@ function SelectAlignment() {
     </div>
   );
 }
-
-export default SelectAlignment;
