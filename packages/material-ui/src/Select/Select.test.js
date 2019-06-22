@@ -105,5 +105,17 @@ describe('<Select />', () => {
       );
       assert.strictEqual(wrapper.find(`.${classes.select}`).text(), 'Twenty');
     });
+
+    it('should render a placeholder when the value is missing', () => {
+      const wrapper = mount(
+        <Select {...defaultProps} value={0}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+      const selectDisplay = wrapper.find('[role="button"]');
+      assert.strictEqual(selectDisplay.find('span').exists(), true);
+    });
   });
 });
