@@ -162,7 +162,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const handleBlur = useRippleHandler(
     'stop',
     event => {
-      if (focusVisible) {
+      /**
+       * If components set imperative focus a blur might be fired before the component
+       * has re-rendered e.g. Selects where an item is focused on opening that isn't selected
+       */
+      if (isFocusVisible(event)) {
         onBlurVisible(event);
         setFocusVisible(false);
       }

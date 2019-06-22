@@ -22,8 +22,8 @@ export const styles = theme => ({
     textAlign: 'left',
     paddingTop: 8,
     paddingBottom: 8,
-    '&$focusVisible': {
-      backgroundColor: theme.palette.action.selected,
+    '&$focusVisible, &$focusVisible$selected': {
+      backgroundColor: theme.palette.action.focusVisible,
     },
     '&$selected, &$selected:hover': {
       backgroundColor: theme.palette.action.selected,

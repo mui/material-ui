@@ -31,6 +31,8 @@ export const light = {
   action: {
     // The color of an active action like an icon button.
     active: 'rgba(0, 0, 0, 0.54)',
+    focusVisible: 'rgba(0, 0, 0, 0.3)',
+    focusVisibleOpacity: 0.3,
     // The color of an hovered action.
     hover: 'rgba(0, 0, 0, 0.08)',
     hoverOpacity: 0.08,
@@ -58,6 +60,8 @@ export const dark = {
   },
   action: {
     active: common.white,
+    focusVisible: 'rgba(255, 255, 255, 0.4)',
+    focusVisibleOpacity: 0.4,
     hover: 'rgba(255, 255, 255, 0.1)',
     hoverOpacity: 0.1,
     selected: 'rgba(255, 255, 255, 0.2)',
