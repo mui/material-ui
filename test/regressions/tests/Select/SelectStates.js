@@ -5,10 +5,10 @@ import Select from '@material-ui/core/Select';
 function SelectOverflow() {
   return (
     <div style={{ height: 130, width: 100 }}>
-      <Select MenuProps={{ transitionDuration: 0 }} open value="first">
-        <MenuItem value="first">First</MenuItem>
-        <MenuItem autoFocus value="second">
-          Second
+      <Select MenuProps={{ transitionDuration: 0 }} open value="selected">
+        <MenuItem value="selected">Selected</MenuItem>
+        <MenuItem autoFocus value="focused">
+          Focused
         </MenuItem>
       </Select>
     </div>
