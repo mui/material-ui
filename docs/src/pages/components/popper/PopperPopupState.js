@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Popper from '@material-ui/core/Popper';
@@ -8,14 +7,14 @@ import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   typography: {
     padding: theme.spacing(2),
   },
-});
+}));
 
-function PopperPopupState(props) {
-  const { classes } = props;
+export default function PopperPopupState() {
+  const classes = useStyles();
 
   return (
     <PopupState variant="popper" popupId="demo-popup-popper">
@@ -38,9 +37,3 @@ function PopperPopupState(props) {
     </PopupState>
   );
 }
-
-PopperPopupState.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(PopperPopupState);
