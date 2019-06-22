@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, darken } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -81,7 +81,7 @@ export function Provider(props) {
           main: paletteType === 'light' ? blue[700] : blue[200],
         },
         secondary: {
-          main: paletteType === 'light' ? pink[600] : pink[200],
+          main: paletteType === 'light' ? darken(pink.A400, 0.1) : pink[200],
         },
         type: paletteType,
         background: {
