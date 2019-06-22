@@ -1,28 +1,32 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Popper from '@material-ui/core/Popper';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Popper, { PopperPlacementType } from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: 500,
-  },
-  typography: {
-    padding: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: 500,
+    },
+    typography: {
+      padding: theme.spacing(2),
+    },
+  }),
+);
 
 export default function PositionedPopper() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const [open, setOpen] = React.useState(false);
-  const [placement, setPlacement] = React.useState();
+  const [placement, setPlacement] = React.useState<PopperPlacementType>();
   const classes = useStyles();
 
-  const handleClick = newPlacement => event => {
+  const handleClick = (newPlacement: PopperPlacementType) => (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     setAnchorEl(event.currentTarget);
     setOpen(prev => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
