@@ -5,7 +5,7 @@ import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-d
 import Link from '@material-ui/core/Link';
 import { Omit } from '@material-ui/types';
 
-// required for react-router-dom < 6.0.0
+// required for react-router-dom < 5.0.0
 // see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
 const AdapterLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) => (
   <RouterLink innerRef={ref as any} {...props} />
