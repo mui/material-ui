@@ -1,18 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import withMobileDialog, { WithMobileDialog } from '@material-ui/core/withMobileDialog';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
-export type ResponsiveDialogProps = WithMobileDialog;
-
-function ResponsiveDialog(props: ResponsiveDialogProps) {
-  const { fullScreen } = props;
+export default function ResponsiveDialog() {
   const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   function handleClickOpen() {
     setOpen(true);
@@ -52,9 +51,3 @@ function ResponsiveDialog(props: ResponsiveDialogProps) {
     </div>
   );
 }
-
-ResponsiveDialog.propTypes = {
-  fullScreen: PropTypes.bool.isRequired,
-};
-
-export default withMobileDialog()(ResponsiveDialog);
