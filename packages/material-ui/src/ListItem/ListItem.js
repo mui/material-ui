@@ -91,7 +91,7 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
 const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
     alignItems = 'center',
-    autoFocus,
+    autoFocus = false,
     button = false,
     children: childrenProp,
     classes,

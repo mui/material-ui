@@ -175,7 +175,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   delete other['aria-invalid'];
 
   let display;
-  let displaySingle = '';
+  let displaySingle;
   const displayMultiple = [];
   let computeDisplay = false;
 

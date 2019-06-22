@@ -1,7 +1,11 @@
 import { ponyfillGlobal } from '@material-ui/utils';
 
 /* Warning if there are several instances of @material-ui/styles */
-if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
+if (
+  process.env.NODE_ENV !== 'production' &&
+  process.env.NODE_ENV !== 'test' &&
+  typeof window !== 'undefined'
+) {
   ponyfillGlobal['__@material-ui/styles-init__'] =
     ponyfillGlobal['__@material-ui/styles-init__'] || 0;
 
