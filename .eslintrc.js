@@ -84,19 +84,21 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
   },
-  "overrides": [
+  overrides: [
     {
-      "files": [
-        "**/test-utils/**/*.js",
+      files: [
+        '**/test-utils/**/*.js',
         // matching the pattern of the test runner
-        "*.test.js",
+        '*.test.js',
       ],
       env: {
         mocha: true,
       },
-      "rules": {
+      rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': false,
+        // for expect style assertions
+        'no-unused-expressions': 'off',
 
         'mocha/handle-done-callback': 'error',
         'mocha/no-exclusive-tests': 'error',
@@ -109,7 +111,7 @@ module.exports = {
         'mocha/no-skipped-tests': 'error',
         'mocha/no-top-level-hooks': 'error',
         'mocha/valid-suite-description': 'error',
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
