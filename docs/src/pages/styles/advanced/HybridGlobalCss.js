@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-function HybridCss() {
+export default function HybridCss() {
   const classes = useStyles();
 
   return (
@@ -25,5 +25,3 @@ function HybridCss() {
     </div>
   );
 }
-
-export default HybridCss;
