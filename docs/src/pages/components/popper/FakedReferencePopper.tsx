@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Popper from '@material-ui/core/Popper';
+import Popper, { PopperProps } from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
@@ -13,15 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface AnchorType {
-  clientWidth: number;
-  clientHeight: number;
-  getBoundingClientRect(): ClientRect | DOMRect;
-}
-
 export default function FakedReferencePopper() {
   const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState<AnchorType | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<PopperProps['anchorEl']>(null);
   const classes = useStyles();
 
   const handleClose = () => {
