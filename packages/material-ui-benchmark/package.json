@@ -32,6 +32,6 @@
     "nodemod": "^1.5.19",
     "react": "^16.3.0",
     "react-jss": "^10.0.0-alpha.17",
-    "styled-system": "^4.0.5"
+    "styled-system": "latest"
   }
 }
