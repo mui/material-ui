@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,6 +8,7 @@ import { useForkRef } from '@material-ui/core/utils';
 import useTreeState from '../TreeView/useTreeState';
 
 const styles = {
+  /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
     margin: 0,
@@ -18,23 +18,28 @@ const styles = {
       outline: 'auto 1px',
     },
   },
-  nestedList: {
+  /* Styles applied to the `role="group"` element. */
+  group: {
     margin: 0,
     padding: 0,
     marginLeft: 26,
   },
+  /* Styles applied to the tree node content. */
   content: {
     width: '100%',
     display: 'flex',
     alignItems: 'center',
   },
-  iconRoot: {
+  /* Styles applied to the tree node icon and collapse/expand icon. */
+  iconContainer: {
     marginRight: 2,
     width: 24,
     minWidth: 24,
     display: 'flex',
     justifyContent: 'center',
   },
+  /* Styles applied to the label element. */
+  label: {},
 };
 
 const isPrintableCharacter = str => {
@@ -81,11 +86,11 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   const focused = isFocused ? isFocused(nodeId) : false;
   const focusable = isFocusable ? isFocusable(nodeId) : false;
 
-  if (icons.expandIcon && expandable && !expanded) {
-    stateIcon = icons.expandIcon;
+  if (icons.defaultExpandIcon && expandable && !expanded) {
+    stateIcon = icons.defaultExpandIcon;
   }
-  if (icons.collapseIcon && expandable && expanded) {
-    stateIcon = icons.collapseIcon;
+  if (icons.defaultCollapseIcon && expandable && expanded) {
+    stateIcon = icons.defaultCollapseIcon;
   }
 
   if (expandIcon && expandable && !expanded) {
@@ -96,24 +101,20 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     stateIcon = collapseIcon;
   }
 
-  const stateIconsProvided = icons && (icons.collapseIcon || icons.expandIcon);
+  const stateIconsProvided = icons && (icons.defaultCollapseIcon || icons.defaultExpandIcon);
 
   let startAdornment = null;
 
   if (expandable) {
-    if (icons.defaultNodeIcon || icon) {
-      startAdornment = (
-        <ListItemIcon className={classes.iconRoot}>{icon || icons.defaultNodeIcon}</ListItemIcon>
-      );
+    if (icons.defaultChildIcon || icon) {
+      startAdornment = icon || icons.defaultChildIcon;
     }
-  } else if (icons.defaultLeafIcon || icon) {
-    startAdornment = (
-      <ListItemIcon className={classes.iconRoot}>{icon || icons.defaultLeafIcon}</ListItemIcon>
-    );
+  } else if (icons.defaultEndIcon || icon) {
+    startAdornment = icon || icons.defaultEndIcon;
   }
 
   const handleClick = event => {
-    // only process click events that directly happened on this treeitem
+    // only process click events that directly happened on this tree item
     if (!contentRef.current.contains(event.target)) {
       return;
     }
@@ -234,12 +235,12 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       {...other}
     >
       <div className={classes.content} ref={contentRef}>
-        {stateIconsProvided ? <div className={classes.iconRoot}>{stateIcon}</div> : null}
-        {startAdornment}
-        <Typography className={classes.title}>{label}</Typography>
+        {stateIconsProvided ? <div className={classes.iconContainer}>{stateIcon}</div> : null}
+        {startAdornment ? <div className={classes.iconContainer}>{startAdornment}</div> : null}
+        <Typography className={classes.label}>{label}</Typography>
       </div>
       {children && (
-        <Collapse className={classes.nestedList} in={expanded} component="ul" role="group">
+        <Collapse className={classes.group} in={expanded} component="ul" role="group">
           {children}
         </Collapse>
       )}
@@ -248,6 +249,9 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
 });
 
 TreeNode.propTypes = {
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
@@ -258,10 +262,25 @@ TreeNode.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The icon used to collapse the node.
+   */
   collapseIcon: PropTypes.node,
+  /**
+   * The icon used to expand the node.
+   */
   expandIcon: PropTypes.node,
+  /**
+   * The icon to display next to the tree node's label.
+   */
   icon: PropTypes.node,
+  /**
+   * The tree node label.
+   */
   label: PropTypes.node,
+  /**
+   * The id of the node.
+   */
   nodeId: PropTypes.string.isRequired,
 };
 

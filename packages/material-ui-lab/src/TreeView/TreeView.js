@@ -5,6 +5,7 @@ import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
+  /* Styles applied to the root component. */
   root: {
     padding: 0,
     margin: 0,
@@ -17,10 +18,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     classes,
     className,
     children,
-    collapseIcon,
-    expandIcon,
-    defaultLeafIcon,
-    defaultNodeIcon,
+    defaultCollapseIcon,
+    defaultExpandIcon,
+    defaultChildIcon,
+    defaultEndIcon,
     ...other
   } = props;
   const [expanded, setExpanded] = React.useState([]);
@@ -255,7 +256,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   return (
     <TreeViewContext.Provider
       value={{
-        icons: { collapseIcon, defaultNodeIcon, defaultLeafIcon, expandIcon },
+        icons: { defaultCollapseIcon, defaultExpandIcon, defaultChildIcon, defaultEndIcon },
         toggle,
         isExpanded,
         isFocusable,
@@ -280,6 +281,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 });
 
 TreeView.propTypes = {
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
@@ -290,10 +294,24 @@ TreeView.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  collapseIcon: PropTypes.node,
-  defaultLeafIcon: PropTypes.node,
-  defaultNodeIcon: PropTypes.node,
-  expandIcon: PropTypes.node,
+  /**
+   * The default icon displayed next to a child node. This is applied to all
+   * tree nodes and can be overridden by the TreeNode `icon` prop.
+   */
+  defaultChildIcon: PropTypes.node,
+  /**
+   * The default icon used to collapse the node.
+   */
+  defaultCollapseIcon: PropTypes.node,
+  /**
+   * The default icon displayed next to a end node. This is applied to all
+   * tree nodes and can be overridden by the TreeNode `icon` prop.
+   */
+  defaultEndIcon: PropTypes.node,
+  /**
+   * The default icon used to expand the node.
+   */
+  defaultExpandIcon: PropTypes.node,
 };
 
 export default withStyles(styles)(TreeView);
