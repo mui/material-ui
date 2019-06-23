@@ -117,7 +117,7 @@ export default function MultipleSelect() {
         >
           {names.map(name => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
+              <Checkbox color="primary" checked={personName.indexOf(name) > -1} />
               <ListItemText primary={name} />
             </MenuItem>
           ))}

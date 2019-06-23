@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
+import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement, useForkRef } from '../utils/reactHelpers';
@@ -22,11 +23,12 @@ export const styles = theme => ({
     textAlign: 'left',
     paddingTop: 8,
     paddingBottom: 8,
-    '&$focusVisible, &$focusVisible$selected': {
-      backgroundColor: theme.palette.action.focusVisible,
+    '&$focusVisible': {
+      backgroundColor: theme.palette.action.hover,
     },
     '&$selected, &$selected:hover': {
-      backgroundColor: theme.palette.action.selected,
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      // backgroundColor: theme.palette.action.selected,
     },
     '&$disabled': {
       opacity: 0.5,
@@ -91,7 +93,7 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
 const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
     alignItems = 'center',
-    autoFocus,
+    autoFocus = false,
     button = false,
     children: childrenProp,
     classes,

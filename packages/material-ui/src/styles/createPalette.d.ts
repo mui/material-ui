@@ -12,8 +12,6 @@ export interface TypeText {
 
 export interface TypeAction {
   active: string;
-  focusVisible: string;
-  focusVisibleOpacity: number;
   hover: string;
   hoverOpacity: number;
   selected: string;

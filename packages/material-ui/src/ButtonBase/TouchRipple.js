@@ -29,7 +29,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the internal `Ripple` components `rippleVisible` class. */
   rippleVisible: {
-    opacity: theme.palette.action.focusVisibleOpacity,
+    opacity: 0.3,
     transform: 'scale(1)',
     animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
     // Backward compatible logic between JSS v9 and v10.
@@ -74,7 +74,7 @@ export const styles = theme => ({
     },
     '100%': {
       transform: 'scale(1)',
-      opacity: theme.palette.action.focusVisibleOpacity,
+      opacity: 0.3,
     },
   },
   '@keyframes mui-ripple-exit': {
