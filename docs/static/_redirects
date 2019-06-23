@@ -4,7 +4,7 @@
 /trash / 301
 /spam / 301
 
-/size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/next/latest/size-snapshot.json 200
+/size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/master/latest/size-snapshot.json 200
 
 # To remove when work starts on v5.
 https://next.material-ui.com/* https://material-ui.com/:splat 301!
