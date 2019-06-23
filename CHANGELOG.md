@@ -1,5 +1,96 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.1.2
+###### *June 23, 2019*
+
+Big thanks to the 30 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- ♿️ Fix Select and Menu keyboard behavior (#16323).
+- 🚀 Reduce the Modal bundle size by -22% (5 kB) (#15839, #16254, #16262).
+- 💄 Remove noise from the material.io generated icons (#16258).
+- ⚛️ Extend StrictMode compatiblity to 25 more components (#16283).
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.1.2`
+
+- [ButtonBase] Fix dragging issue (#16250) @LukasMirbt
+- [Dialog] Prepare deprecation of withMobileDialog (#14992) @oliviertassinari
+- [Divider] Add aria role if it's not implicit (#16256) @eps1lon
+- [Grow][Zoom] Remove transform value when entered (#16297) @gijsbotje
+- [MenuList] Fix keyboard a11y when no item is focused when opening (#16323) @eps1lon
+- [Menu] Add missing `autoFocus` TypeScript types (#16289) @BassT
+- [Modal] Fix aria-hidden restore logic (#15839) @mackersD
+- [Modal] Migrate to hooks (#16254) @oliviertassinari
+- [Modal] Refactor tests to remove internal accesses (#16262) @oliviertassinari
+- [Select] Fix autowidth not working with open controlled (#16214) @jobpaardekooper
+- [Select] Fix display when no value is selected (#16294) @ianschmitz
+- [Select] Fix forward ref logic (#16296) @ffjanhoeck
+- [Select] Fix specificity issue (#16137) @aditya1906
+- [Slide] Remove the transform property once open (#16281) @gijsbotje
+- [Snackbar] Fix type definition of autoHideDuration prop (#16257) @brunomonteirosud
+- [TextField] Fix media hover specificity issue (#16266) @arminydy
+- [TextField] Reduce specificity of notchedOutline (#16304) @romanr
+- [Textarea] Update height when maxRows prop changes (#16298) @tasinet
+- [TouchRipple] Fix ripple staying on fast updates (#16291) @eps1lon
+
+### `@material-ui/icons@v4.2.1`
+
+- [icons] Remove noise from Google source (#16258) @oliviertassinari
+
+### `@material-ui/system@v4.3.0`
+
+- [system] Add support for marginX, marginY, paddingX, and paddingY (#16169) @dimitropoulos
+- [system] Add visibility property to display (#16231) @aditya1906
+
+### `@material-ui/lab@v4.0.0-alpha.17`
+
+- [Slider] Fix onChangeCommitted firing on mouseenter (#16329) @cdcasey
+- [Slider] Fix various tick mark issues (#16275) @eps1lon
+- [Slider] Mitigate floating point errors (#16252) @joaosilvalopes
+
+### `@material-ui/styles@v4.1.2`
+
+- [styles] Make StyleRules backwards compatible (#16200) @merceyz
+- [styles] Only run the check on the client-side (#16284) @oliviertassinari
+- [styles] Remove withTheme type from makeStyles options (#16217) @merceyz
+
+### Docs
+
+- [docs] Add docs for Overflow, TextOverflow, WhiteSpace (#16170) @aditya1906
+- [docs] Batch of fixes (#16229) @oliviertassinari
+- [docs] Better react-router-dom version comment (#16335) @kyarik
+- [docs] Convert SideEffects to hooks (#16197) @eps1lon
+- [docs] Fix IE 11 rendering issue on the pickers page (#16246) @oliviertassinari
+- [docs] Fix code example (#16279) @maslowproject
+- [docs] Fix links that point to the next branch (#16326) @Maxim-Mazurok
+- [docs] Fix outdated react-transition-group docs link (#16274) @eps1lon
+- [docs] Improve codevariant switch perf (#16211) @eps1lon
+- [docs] Include and explain value type change in migration guide (#16226) @eps1lon
+- [docs] Instapaper, fix contained+secondary button border (#16236) @patelnav
+- [docs] Material Sense is only using v3 (#16267) @josiahbryan
+- [docs] Migrate batch of demos to hooks/typescript (#16322) @merceyz
+- [docs] Remove import if there are no specifiers left (#16199) @merceyz
+- [docs] Fix a typo emooji -> emoji (#16286) @sabrinaluo
+- [example] Hooks are standards now, no need to mention it (#16288) @obedparla
+- [examples] Fix the styled-jsx integration of the Next.js examples (#16268) @lifeiscontent
+
+### Core
+
+- [types] Explicitly use react types (#16230) @kdy1
+- [test] Introduce @testing-library/react (#15732) @eps1lon
+- [core] Add MuiCardActionArea prop (#16235) @aditya1906
+- [core] Add missing MuiTableHead and MuiTableBody type to theme.props (#16220) @merceyz
+- [core] Add missing exports from styles in core (#16311) @fzaninotto
+- [core] Change <> to <React.Fragment> (#16225) @aditya1906
+- [core] Extend StrictMode compatiblity (#16283) @eps1lon
+- [core] Move size tracking to azure pipelines (#16182) @eps1lon
+- [core] Remove string from SpacingArgument in theme.spacing (#16290) @merceyz
+- [ci] Build packages in parallel for size snapshot (#16261) @eps1lon
+- [ci] Run azure on master (#16207) @eps1lon
+- [ci] Use sinon browser build (#16208) @eps1lon
+
 ## 4.1.1
 ###### *June 13, 2019*
 
