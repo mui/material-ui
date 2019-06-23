@@ -10,7 +10,10 @@ function useMediaQueryTheme(query, options) {
     props: {},
   });
 
-  return useMediaQuery(query, { ...props, ...options });
+  return useMediaQuery(typeof query === 'function' ? query(theme) : query, {
+    ...props,
+    ...options,
+  });
 }
 
 export default useMediaQueryTheme;
