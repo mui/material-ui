@@ -1,4 +1,5 @@
-import { useTheme, getThemeProps } from '@material-ui/styles';
+import { useTheme } from '../styles';
+import { getThemeProps } from '@material-ui/styles';
 import useMediaQuery from './useMediaQuery';
 
 function useMediaQueryTheme(query, options) {
