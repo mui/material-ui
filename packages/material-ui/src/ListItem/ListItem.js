@@ -25,6 +25,8 @@ export const styles = theme => ({
     paddingBottom: 8,
     '&$focusVisible': {
       backgroundColor: theme.palette.action.hover,
+      outline: `${fade(theme.palette.primary.main, 0.5)} solid 2px`,
+      outlineOffset: -2,
     },
     '&$selected, &$selected:hover': {
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
