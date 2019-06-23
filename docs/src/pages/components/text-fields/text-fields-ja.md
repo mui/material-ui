@@ -1,39 +1,39 @@
 ---
-title: Text Field React component
+title: Text Field コンポーネント
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
 # Text Fields
 
-<p class="description">Text fields let users enter and edit text.</p>
+<p class="description">Text fieldを使用すると、ユーザーはテキストを入力および編集できます。</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+[Text field](https://material.io/design/components/text-fields.html) 、ユーザーはUIにテキストを入力できます。それらは通常フォームやダイアログに現れます。
 
 ## TextField
 
-The `TextField` wrapper component is a complete form control including a label, input and help text.
+`TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。
 
 {{"demo": "pages/components/text-fields/TextFields.js"}}
 
-> **Note:** This version of the text field is no longer documented in the Material Design documentation.
+> **注：** このバージョンのテキストフィールドは、Material Designのドキュメントには記載されていません。
 
 ## Outlined
 
-`TextField` supports outlined styling.
+`TextField` はアウトラインスタイルをサポートします。
 
 {{"demo": "pages/components/text-fields/OutlinedTextFields.js"}}
 
 ## Filled
 
-`TextField` supports filled styling.
+`TextField` はアウトラインスタイルをサポートします。
 
 {{"demo": "pages/components/text-fields/FilledTextFields.js"}}
 
 ## コンポーネント
 
-`TextField` is composed of smaller components ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) ) that you can leverage directly to significantly customize your form inputs.
+`TextField ` は小さなコンポーネントから構成されています。（ [`FormControl`](/api/form-control/)、 [`Input`](/api/input/)、 [`FilledInput`](/api/filled-input/)、 [`InputLabel`](/api/input-label/)、 [`OutlinedInput`](/api/outlined-input/)、 や [`FormHelperText`](/api/form-helper-text/)など ）また、フォーム入力を大幅にカスタマイズするために直接活用できます。
 
-You might also have noticed that some native HTML input properties are missing from the `TextField` component. This is on purpose. The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+いくつかのネイティブHTML入力プロパティが `TextField` コンポーネントにないことに気づいたかもしれません。 これは故意です。 コンポーネントは最も使用されているプロパティの面倒を見ます、そしてそれは以下のデモで示される基本的なコンポーネントを使うことはユーザー次第です。 それでも、あなたは使用することができます `inputProps` （及び `InputProps`、 `InputLabelProps` あなたには、いくつかの決まり文句を避けたい場合はプロパティ）。
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
@@ -43,23 +43,23 @@ You might also have noticed that some native HTML input properties are missing f
 
 ## Customized inputs
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
+コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [オーバライドドキュメントのページ](/customization/components/)。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
-Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+カスタマイズはCSSにとどまりません。コンポジションを使用してカスタムコンポーネントを作成し、アプリに独特の雰囲気を与えることができます。 以下は、Googleマップに触発された [`InputBase`](/api/input-base/) コンポーネントを使用した例です。
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
 
 ## Input Adornments
 
-`Input` allows the provision of `InputAdornment`. These can be used to add a prefix, a suffix or an action to an input. For instance, you can use an icon button to hide or reveal the password.
+`Input` は `InputAdornment `提供を許可します。 これらは、入力に接頭辞、接尾辞、またはアクションを追加するために使用できます。 たとえば、アイコンボタンを使用してパスワードを表示または非表示にすることができます。
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
-### With icon
+### アイコン付き
 
-Icons can be specified as prepended or appended.
+アイコンは、先頭または末尾として指定できます。
 
 {{"demo": "pages/components/text-fields/InputWithIcon.js"}}
 
@@ -73,13 +73,13 @@ Icons can be specified as prepended or appended.
 
 ## レイアウト
 
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter other styles to meet the specification.
+` TextField `、` FormControl `を使用すると、` margin `を指定して入力の縦方向の間隔を変更できます。 `none`（デフォルト）を使用すると`FormControl`に余白は適用されませんが、 `dense`と `normal`は他のスタイルを仕様に合わせて変更します。
 
 {{"demo": "pages/components/text-fields/TextFieldMargins.js"}}
 
-## Limitations
+## 制限
 
-The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+入力ラベルの「shrink」状態は必ずしも正しくありません。 入力が何かを表示しているとすぐに入力ラベルは縮小するはずです。 状況によっては、「shrink」状態（数値入力、日時入力、ストライプ入力）を判別できません。 重複があるかもしれません。
 
 ![shrink](/static/images/text-fields/shrink.png)
 

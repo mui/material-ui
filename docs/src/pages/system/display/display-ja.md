@@ -1,4 +1,4 @@
-# Display
+# ディスプレイ
 
 <p class="description">Quickly and responsively toggle the display value of components and more with our display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.</p>
 
@@ -60,13 +60,69 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 {{"demo": "pages/system/display/Print.js"}}
 
+## Overflow
+
+```jsx
+<Box component="div" overflow="hidden">
+  Overflow Hidden
+</Box>
+<Box component="div" overflow="visible">
+  Overflow visible
+</Box>
+```
+
+{{"demo": "pages/system/display/Overflow.js"}}
+
+## Text Overflow
+
+```jsx
+<Box component="div" textOverflow="clip">
+  Text Overflow Clip
+</Box>
+<Box component="div" textOverflow="ellipsis">
+  Text Overflow Ellipsis
+</Box>
+```
+
+{{"demo": "pages/system/display/TextOverflow.js"}}
+
+## Visibility
+
+```jsx
+<Box component="div" visibility="visible">
+  Visibility Visible
+</Box>
+<Box component="div" visibility="hidden">
+  Visibility Hidden
+</Box>
+```
+
+{{"demo": "pages/system/display/Visibility.js"}}
+
+## White Space
+
+```jsx
+<Box component="div" whiteSpace="nowrap">
+  White Space Nowrap
+</Box>
+<Box component="div" whiteSpace="normal">
+  White Space Normal
+</Box>
+```
+
+{{"demo": "pages/system/display/WhiteSpace.js"}}
+
 ## API
 
 ```js
 import { display } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property | Theme key |
-|:-------------- |:-------------- |:------------ |:--------- |
-| `displayRaw`   | `display`      | `display`    | none      |
-| `displayPrint` | `displayPrint` | `display`    | none      |
+| Import name    | Prop           | CSS property    | Theme key |
+|:-------------- |:-------------- |:--------------- |:--------- |
+| `displayPrint` | `displayPrint` | `display`       | none      |
+| `displayRaw`   | `display`      | `display`       | none      |
+| `overflow`     | `overflow`     | `overflow`      | none      |
+| `textOverflow` | `textOverflow` | `text-overflow` | none      |
+| `visibility`   | `visibility`   | `visibility`    | none      |
+| `whiteSpace`   | `whiteSpace`   | `white-space`   | none      |

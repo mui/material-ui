@@ -20,14 +20,7 @@ Der Quellcode für diese Dokumentationsseite ist auch im Repository enthalten. D
 
 Suchen Sie nach einem fortgeschritteneren Beispielprojekt?
 
-Wenn Sie mit einem vollständigeren und realistischeren Beispiel beginnen möchten, werfen Sie einen Blick auf Folgendes:
-
-- [Material Sense](https://github.com/alexanmtz/material-sense), welches beeinhaltet:
-  
-  - Diagramme mit recharts
-  - React Router mit einem Navigationsbeispiel
-  - Ein Docker-Container mit einem Nginx-Server für den Produktionsaufbau
-  - Erstellt mit [Create React App](https://facebook.github.io/create-react-app/)
+If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
 
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
   
@@ -35,3 +28,11 @@ Wenn Sie mit einem vollständigeren und realistischeren Beispiel beginnen möcht
   - Aufbauend auf Firebase mit Authentifizierung von Anfang an
   - Robustes Routing mit React Router inklusive Fehlerbehandlung (404)
   - Umfassender mobiler Support mit [react-swipeable-views](https://react-swipeable-views.com) für Tabs
+
+- [Material Sense](https://github.com/alexanmtz/material-sense), welches beeinhaltet:
+  
+  - Diagramme mit recharts
+  - React Router mit einem Navigationsbeispiel
+  - Ein Docker-Container mit einem Nginx-Server für den Produktionsaufbau
+  - Erstellt mit [Create React App](https://facebook.github.io/create-react-app/)
+  - *NOTE*: This project is using *v3* of the Material lib, not yet updated for v4

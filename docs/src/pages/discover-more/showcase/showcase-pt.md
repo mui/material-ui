@@ -6,6 +6,6 @@ Quer adicionar sua aplicação? Encontrou uma aplicação que não funciona mais
 
 - Sem customização Material Design
 - Alto tráfego
-- Código-fonte aberto
+- Código aberto
 
 {{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true}}

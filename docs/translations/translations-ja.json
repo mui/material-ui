@@ -64,8 +64,8 @@
   "codesandbox": "CodeSandboxで編集する",
   "seeMore": "もっと見る",
   "copySource": "ソースコードをコピーする",
-  "copySourceLinkJS": "Copy link to JavaScript source",
-  "copySourceLinkTS": "Copy link to TypeScript source",
+  "copySourceLinkJS": "JavaScriptソースへのリンクをコピーする",
+  "copySourceLinkTS": "TypeScriptソースへのリンクをコピーする",
   "stackblitz": "StackBlitz(JS only) で編集する",
   "headTitle": "世界で最も人気のあるReact UIフレームワーク - Material-UI",
   "pages": {

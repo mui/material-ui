@@ -10,7 +10,6 @@
 - [CSS Modules](#css-modules)
 - [Emotion](#css-modules)
 - [React JSS](#emotion)
-- [CSS 到 MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
 
 ## 纯 CSS
@@ -125,7 +124,7 @@ export default function StyledComponents() {
 
 ### 控制的优先权
 
-**Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`. 若想要 styled-components 的样式在最后加载，我们推荐的最佳方法是更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下演示：
+**请注意：** styled-components 和 JSS 都在 `<head>` 的底部注入其样式表。 若想要 styled-components 的样式在最后加载，我们推荐的最佳方法是更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下演示：
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';

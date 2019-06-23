@@ -18,5 +18,5 @@
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) 一个 React 和 Material-UI 的模糊搜索的组件。
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) 一款只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
 - [mui-downshift](https://github.com/techniq/mui-downshift) paypal 的 downshift 上薄薄的一层，这样可以使用 Material-UI 可视化组件。
-- [react-basket](https://github.com/mbrn/react-basket) A shopping basket components library based on Material-UI components.
+- [react-basket](https://github.com/mbrn/react-basket) 一个基于 Material-UI组件的购物车组件库。
 - [Wertarbyte](https://mui.wertarbyte.com/) 这是 Wertarbyte 开发的一个补充组件的集合。 Carousel，Image，Password，Rating，Icons，等等。

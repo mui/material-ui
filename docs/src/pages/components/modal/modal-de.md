@@ -60,7 +60,7 @@ Das Erstellen von React-Elementen ist jedoch ebenfalls mit Kosten verbunden. Bet
 </Modal>
 ```
 
-Wir erstellen viele React-Elemente, die niemals gemounted werden. Das ist verschwenderisch 
+We create a lot of React elements that will never be mounted. It's wasteful 
 
 ```jsx
 <Modal open={false}>

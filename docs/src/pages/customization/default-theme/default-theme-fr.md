@@ -10,7 +10,7 @@ Voici la documentation de l’objet de thème:
 
 > Astuce: vous pouvez jouer avec la documentation de l’objet de thème dans **la console**. We expose a documentation `theme` variable on all the documentation pages. Veuillez noter que cette documentation utilise un thème personnalisé.
 
-If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), and the related imports which `createMuiTheme` uses.
+If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js), and the related imports which `createMuiTheme` uses.
 
 ## @material-ui/core/styles vs @material-ui/styles
 

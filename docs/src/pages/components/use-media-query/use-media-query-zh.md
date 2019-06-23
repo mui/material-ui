@@ -38,30 +38,36 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
 
-## Using JavaScript syntax
+## 使用JavaScript语法
 
-[json2mq](https://github.com/akiran/json2mq) is used to generate media query string from a JavaScript object.
+[json2mq](https://github.com/akiran/json2mq) 用于将JavaScript对象转换生成媒体查询字符串。
 
 {{"demo": "pages/components/use-media-query/JavaScriptMedia.js", "defaultCodeOpen": true}}
 
 ## 服务器端呈现
 
-An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery). We also encourage the usage of the `useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
+服务器上需要实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ，我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery)。 我们还鼓励使用从主题中获取属性的 `useMediaQueryTheme` 版本的钩子。 这样，您可以提供一次 `ssrMatchMedia` 选项，所有的React树都适用。
 
 {{"demo": "pages/components/use-media-query/ServerSide.js"}}
 
-## Migrating from `withWidth()`
+## 迁徙自 `withWidth()`
 
-`withWidth()` 高阶组件注入页面的屏幕宽度。 You can reproduce the same behavior with a `useWidth` hook:
+`withWidth()` 高阶组件注入页面的屏幕宽度。 您可以对 `useWidth` 钩子重用相同的操作：
 
 ```jsx
+/**
+ * Be careful using this hook. It only works because the number of
+ * breakpoints in theme is static. It will break once you change the number of
+ * breakpoints. See https://reactjs.org/docs/hooks-rules.html#only-call-hooks-at-the-top-level
+ */
 function useWidth() {
   const theme = useTheme();
   const keys = [...theme.breakpoints.keys].reverse();
-  const queries = useMediaQuery(keys.map(key => theme.breakpoints.only(key)));
   return (
-    queries.reduce((output, matches, index) => {
-      return !output && matches ? keys[index] : output;
+    keys.reduce((output, key) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const matches = useMediaQuery(theme.breakpoints.only(key));
+      return !output && matches ? key : output;
     }, null) || 'xs'
   );
 }
@@ -83,7 +89,7 @@ function useWidth() {
 
 #### 返回结果
 
-`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
+` matches `：如果文档当前能够匹配这个媒体查询，Matches 是 `true` ，否则为 `false` 。
 
 #### 例子
 

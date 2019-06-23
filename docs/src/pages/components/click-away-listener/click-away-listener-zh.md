@@ -1,5 +1,5 @@
 ---
-title: Detect click outside React component
+title: 检测React组件外部的单击
 components: ClickAwayListener
 ---
 

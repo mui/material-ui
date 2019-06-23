@@ -9,42 +9,46 @@ components: Slider
 
 [Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
 
-Sliders podem ter ícones em ambos os extremos da barra para descrever de forma visual o intervalo de valores.
+- 
 
-#### Efeitos imediatos
+## Continuous sliders
 
-As alterações feitas com sliders são imediatas, permitindo que o usuário faça ajustes no slider até encontrar sua preferência. Eles não devem ser utilizados em conjunto com configurações que têm pequenos atrasos no fornecimento de feedback ao usuário.
+Continuous sliders allow users to select a value along a subjective range.
 
-#### Estado atual
+{{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-Os sliders refletem o estado atual das configurações que eles controlam.
+## Discrete sliders
 
-## Slider simples
+Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
 
-{{"demo": "pages/components/slider/SimpleSlider.js"}}
+1. You can generate a mark for each step with `marks={true}`.
+2. You can have custom marks by providing a rich array to the `marks` prop.
+3. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
+4. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
 
-## Slider com passos
+{{"demo": "pages/components/slider/DiscreteSlider.js"}}
 
-{{"demo": "pages/components/slider/StepSlider.js"}}
+## Range sliders
 
-## Slider desabilitado
-
-{{"demo": "pages/components/slider/DisabledSlider.js"}}
-
-## Slider vertical
-
-{{"demo": "pages/components/slider/VerticalSlider.js"}}
+{{"demo": "pages/components/slider/RangeSlider.js"}}
 
 ## Sliders customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
-## Slider com miniatura customizada
+## With input field
 
-{{"demo": "pages/components/slider/CustomIconSlider.js"}}
+{{"demo": "pages/components/slider/InputSlider.js"}}
 
-## Valor do reducer personalizado
+## Vertical sliders
 
-{{"demo": "pages/components/slider/CustomValueReducerSlider.js"}}
+{{"demo": "pages/components/slider/VerticalSlider.js"}}
+
+## Acessibilidade
+
+The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+
+- The slider, as a whole, has a label (`aria-label` or `aria-labelledby` prop).
+- Each thumb has a user-friendly name for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.

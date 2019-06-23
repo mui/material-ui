@@ -55,13 +55,19 @@ An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/A
 The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
 
 ```jsx
+/**
+ * Be careful using this hook. It only works because the number of
+ * breakpoints in theme is static. It will break once you change the number of
+ * breakpoints. See https://reactjs.org/docs/hooks-rules.html#only-call-hooks-at-the-top-level
+ */
 function useWidth() {
   const theme = useTheme();
   const keys = [...theme.breakpoints.keys].reverse();
-  const queries = useMediaQuery(keys.map(key => theme.breakpoints.only(key)));
   return (
-    queries.reduce((output, matches, index) => {
-      return !output && matches ? keys[index] : output;
+    keys.reduce((output, key) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const matches = useMediaQuery(theme.breakpoints.only(key));
+      return !output && matches ? key : output;
     }, null) || 'xs'
   );
 }
@@ -73,7 +79,7 @@ function useWidth() {
 
 ### `useMediaQuery(query, [options]) => matches`
 
-#### Arguments
+#### Argumentos
 
 1. `query` (*String*): A string representing the media query to handle.
 2. `options` (*Object* [optional]): 
@@ -81,7 +87,7 @@ function useWidth() {
     - `options.noSsr` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
     - `options.ssrMatchMedia` (*Function* [optional]) You might want to use an heuristic to approximate the screen of the client browser. For instance, you could be using the user-agent or the client-hint https://caniuse.com/#search=client%20hint. You can provide a global ponyfill using [`custom properties`](/customization/globals/#default-props) on the theme. Check the [server-side rendering example](#server-side-rendering).
 
-#### Returns
+#### Devuelve
 
 `matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
 

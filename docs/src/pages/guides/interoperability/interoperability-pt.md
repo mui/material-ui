@@ -10,7 +10,6 @@ Este guia tem como objetivo documentar as alternativas mais populares, mas você
 - [Módulos CSS](#styled-components)
 - [Emotion](#css-modules)
 - [React JSS](#react-jss)
-- [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
 
 ## CSS puro

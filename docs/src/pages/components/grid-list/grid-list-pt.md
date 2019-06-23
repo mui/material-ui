@@ -3,7 +3,7 @@ title: Componente React para Lista de Grade
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
 
-# Lista de grade
+# Lista de Grade
 
 <p class="description">As listas de grade exibem uma coleção de imagens em uma grade de forma organizada.</p>
 

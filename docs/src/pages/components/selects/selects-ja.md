@@ -47,4 +47,4 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 ## Text Fields
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/components/text-fields/#textfield).
+`TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。 You can find an example with the select mode [in this section](/components/text-fields/#textfield).

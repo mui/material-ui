@@ -109,9 +109,14 @@ import { spacing } from '@material-ui/system';
 | `spacing` | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing` | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 
-*有些人发现该属性简写令人困惑，如果您愿意，可以使用完整版：*
+*Some people find the prop shorthand confusing, you can use the full version if you prefer:*
 
 ```diff
 -<Box pt={2} />
 +<Box paddingTop={2} />
+```
+
+```diff
+-<Box px={2} />
++<Box paddingX={2} />
 ```
