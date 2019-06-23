@@ -72,7 +72,18 @@ Sie können die maximale Breite eines Dialogs festlegen, indem Sie die `maxWidth
 
 ## Responsive Vollbild
 
-Sie können einen Dialog im Vollbild responsive machen, indem Sie `withMobileDialog` verwenden. Standardmäßig wird `withMobileDialog()(Dialog)` gesetzt, wenn die [Bildschirmgröße](/customization/breakpoints/) *kleiner gleich* `sm` ist. Sie können Ihre eigene Bruchstelle z. B. `xs` auswählen, indem Sie das Argument `breakpoint` `withMobileDialog({breakpoint: 'xs'}) (Dialog)` sezten.
+You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+
+```jsx
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+function MyComponent() {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  return <Dialog fullScreen={fullScreen} />
+}
+```
 
 {{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 

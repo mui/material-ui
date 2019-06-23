@@ -7,7 +7,7 @@ components: Modal
 
 <p class="description">模态框组件可以用来快速创建对话框、弹出窗口，灯箱等任何你所需的组件。</p>
 
-The component renders its `children` node in front of a backdrop component. The `Modal` offers important features:
+该组件在背景组件之上渲染其children节点, 并提供如下重要功能:
 
 - 
 - 
@@ -68,11 +68,11 @@ We create a lot of React elements that will never be mounted. It's wasteful
 </Modal>
 ```
 
-This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
+上面的代码利用了[React 懒加载](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation)机制. 使得`TabComponent`的`render`方法只在模态框打开的时候才被执行.
 
 ## 无障碍功能
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
+- 记得用 `aria-labelledby="id..."` 属性来指向`Modal` 的标题. 另外, 你还可以使用 `aria-describedby="id..."` 属性来为 `Modal`增加描述.
 
 ```jsx
 <Modal
@@ -88,4 +88,4 @@ This way, you take advantage of [React render laziness evaluation](https://overr
 </Modal>
 ```
 
-- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
+- 这篇 [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法可以根据你的模态窗口里的内容, 为最合适的元素设置初始焦点.

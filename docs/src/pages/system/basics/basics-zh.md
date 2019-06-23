@@ -248,7 +248,7 @@ const Box = styled.div`
 
 #### 例子
 
-We can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` we can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+我们可以创建一个支持一些CSS网格属性的组件，比如` grid-gap ` 。 通过提供`spacing`作为` themeKey `我们可以重用逻辑来启用我们在其他间距属性（如`padding`）中看到的行为。
 
 ```jsx
 import styled from 'styled-components';
@@ -264,7 +264,7 @@ const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
 ```
 
-We can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
+我们还可以通过添加` prop `和` cssProperty `来定制属性名，还可以添加`transform`方法来转换它的值。
 
 ```jsx
 import styled from 'styled-components';
@@ -322,7 +322,7 @@ const palette = compose(textColor, bgcolor);
 
 ## 它是如何工作的
 
-styled-system has done a great job at [explaining how it works](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). It can help building a mental model for this "style function" concept.
+styled-system在[解释它如何工作](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works)方面做得很好 。 它可以协助为这种“style function”概念建立神经模型。
 
 ## 实际用例
 

@@ -1,4 +1,4 @@
-# Переход с v3 на v4
+# Migration from v3 to v4
 
 <p class="description">Да! Релиз v4 состоялся!</p>
 
@@ -14,7 +14,7 @@ This is a reference for upgrading your site from Material-UI v3 to v4. While the
 
 This documentation page covers the *how* of migrating from v3 to v4. The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
-## Updating Your Dependencies
+## Updating your dependencies
 
 The very first thing you will need to do is to update your dependencies.
 
@@ -72,14 +72,14 @@ yarn add @material-ui/styles@next
 
 - ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. Removing `react-jss` from your `package.json` can help. The StylesProvider component replaces the JssProvider one.
 - Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
-  
-  ```diff
+
+```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
+  It helps isolating the animation logic:
 
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase. It helps isolating the animation logic:
-  
   ```diff
     rippleVisible: {
       opacity: 0.3,
@@ -98,18 +98,19 @@ yarn add @material-ui/styles@next
 
 ### Theme
 
-- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color. To use it correctly, you have to use the returned value.
-  
+- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
+  To use it correctly, you have to use the returned value.
+
   ```diff
   -const background = { main: color };
   -theme.palette.augmentColor(background);
   +const background = theme.palette.augmentColor({ main: color });
-  
+
   console.log({ background });
   ```
 
 - You can safely remove the next variant from the theme creation:
-  
+
   ```diff
   typography: {
   - useNextVariants: true,
@@ -117,7 +118,7 @@ yarn add @material-ui/styles@next
   ```
 
 - `theme.spacing.unit` usage is deprecated, you can use the new API:
-  
+
   ```diff
   label: {
     [theme.breakpoints.up('sm')]: {
@@ -126,15 +127,15 @@ yarn add @material-ui/styles@next
     },
   }
   ```
-  
+
   *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
-  
+
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
-### Расположение
+### Layout
 
 - [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
-  
+
   ```diff
     /**
      * Defines the space between the type `item` component.
@@ -143,15 +144,33 @@ yarn add @material-ui/styles@next
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
-
 - [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
-  
+
   ```diff
   -import Container from '@material-ui/lab/Container';
   +import Container from '@material-ui/core/Container';
   ```
+
+### TypeScript
+
+#### `value` type 
+
+Normalized `value` prop type for input components to use `unknown`. This affects
+`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+
+```diff
+function MySelect({ children }) {
+-  function handleChange(event: any, value: string) {
++  function handleChange(event: any, value: unknown) {
+    // handle value
+  }
+
+  return <Select onChange={handleChange}>{children}</Select>
+}
+```
+
+This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -220,7 +239,7 @@ yarn add @material-ui/styles@next
 
 - [List] Rework the list components to match the specification:
   
-  - The `ListItemAvatar` component is required when using an avatar`.
+  - The `ListItemAvatar` component is required when using an avatar.
   - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
 
@@ -236,7 +255,7 @@ yarn add @material-ui/styles@next
   
   This also applies to `Dialog` and `Popover`.
 
-- [Modal] Remove the classes customization API for the Modal component(-74% bundle size reduction when used standalone).
+- [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
 
 - [Modal] event.defaultPrevented is now ignored. The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event. `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc. Only special HTML elements have these default behaviors. You should use `event.stopPropagation()` if you don't want to trigger an `onClose` event on the modal.
 

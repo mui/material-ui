@@ -1,4 +1,4 @@
-# Migration From v3 to v4
+# Migration from v3 to v4
 
 <p class="description">Ja, v4 wurde veröffentlicht!</p>
 
@@ -14,7 +14,7 @@ This is a reference for upgrading your site from Material-UI v3 to v4. While the
 
 This documentation page covers the *how* of migrating from v3 to v4. The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
-## Updating Your Dependencies
+## Updating your dependencies
 
 The very first thing you will need to do is to update your dependencies.
 
@@ -33,7 +33,7 @@ Oder führe aus
 ```sh
 npm install @material-ui/core@next
 
-or
+oder
 
 yarn add @material-ui/core@next
 ```
@@ -72,14 +72,14 @@ yarn add @material-ui/styles@next
 
 - ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. Removing `react-jss` from your `package.json` can help. The StylesProvider component replaces the JssProvider one.
 - Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
-  
-  ```diff
+
+```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Sie sollten die folgenden Änderungen in Ihrer Codebase anwenden.
+  It helps isolating the animation logic:
 
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Sie sollten die folgenden Änderungen in Ihrer Codebase anwenden. Es hilft, die Animationslogik zu isolieren:
-  
   ```diff
     rippleVisible: {
       opacity: 0.3,
@@ -98,18 +98,19 @@ yarn add @material-ui/styles@next
 
 ### Theme
 
-- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color. To use it correctly, you have to use the returned value.
-  
+- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
+  To use it correctly, you have to use the returned value.
+
   ```diff
   -const background = { main: color };
   -theme.palette.augmentColor(background);
   +const background = theme.palette.augmentColor({ main: color });
-  
+
   console.log({ background });
   ```
 
 - You can safely remove the next variant from the theme creation:
-  
+
   ```diff
   typography: {
   - useNextVariants: true,
@@ -117,7 +118,7 @@ yarn add @material-ui/styles@next
   ```
 
 - `theme.spacing.unit` usage is deprecated, you can use the new API:
-  
+
   ```diff
   label: {
     [theme.breakpoints.up('sm')]: {
@@ -126,15 +127,15 @@ yarn add @material-ui/styles@next
     },
   }
   ```
-  
+
   *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
-  
+
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
 ### Layout
 
 - [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
-  
+
   ```diff
     /**
      * Defines the space between the type `item` component.
@@ -143,15 +144,33 @@ yarn add @material-ui/styles@next
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
-
 - [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
-  
+
   ```diff
   -import Container from '@material-ui/lab/Container';
   +import Container from '@material-ui/core/Container';
   ```
+
+### TypeScript
+
+#### `value` type 
+
+Normalized `value` prop type for input components to use `unknown`. This affects
+`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+
+```diff
+function MySelect({ children }) {
+-  function handleChange(event: any, value: string) {
++  function handleChange(event: any, value: unknown) {
+    // handle value
+  }
+
+  return <Select onChange={handleChange}>{children}</Select>
+}
+```
+
+This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -220,7 +239,7 @@ yarn add @material-ui/styles@next
 
 - [List] Rework the list components to match the specification:
   
-  - The `ListItemAvatar` component is required when using an avatar`.
+  - The `ListItemAvatar` component is required when using an avatar.
   - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
 
@@ -236,7 +255,7 @@ yarn add @material-ui/styles@next
   
   This also applies to `Dialog` and `Popover`.
 
-- [Modal] Remove the classes customization API for the Modal component(-74% bundle size reduction when used standalone).
+- [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
 
 - [Modal] event.defaultPrevented is now ignored. Die neue Logik schließt das Modal, auch wenn `event.preventDefault()` beim Ereignis "key down escape" aufgerufen wird. `event.preventDefault()` soll Standardverhalten stoppen, z. B. das Aktivieren eines Kontrollkästchens, das Klicken auf eine Schaltfläche zum Senden eines Formulars und das Drücken des linken Pfeils, um den Cursor in einer Texteingabe zu bewegen usw. Nur spezielle HTML-Elemente weisen dieses Standardverhalten auf. You should use `event.stopPropagation()` if you don't want to trigger an `onClose` event on the modal.
 
@@ -290,7 +309,7 @@ yarn add @material-ui/styles@next
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity. This has allowed us to remove 2 intermediary DOM elements. You should be able to move the custom styles to the `root` class key.
   
-  ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+  ![Eine einfachere DOM-Struktur für Tabs](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Tabs] Remove deprecated fullWidth and scrollable props:
   
@@ -348,7 +367,7 @@ yarn add @material-ui/styles@next
 
 ### Typografie
 
-- [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements: 
+- [Typography] Entfernen der veralteten Typografievarianten. Sie können ein Upgrade durchführen, indem Sie die folgenden Ersetzungen vornehmen: 
   - display4 => h1
   - display3 => h2
   - display2 => h3
@@ -357,22 +376,22 @@ yarn add @material-ui/styles@next
   - title => h6
   - subheading => subtitle1
   - body2 => body1
-  - body1 (default) => body2 (default)
-- [Typography] Remove the opinionated `display: block` default typography style. You can use the new `display?: 'initial' | 'inline' | 'block';` property.
-- [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
+  - body1 (Standard) => body2 (Standard)
+- [Typography] Entfernen Sie den dogmenbehafteten `display: block` Standardtypografiestil. Sie können die neue `display?: 'initial' | 'inline' | 'block';` Eigenschaft benutzen.
+- [Typography] Benennen Sie die `headlineMapping` Eigenschaft zu `variantMapping` um sie besser ihren Zweck ausrichten.
   
   ```diff
   -<Typography headlineMapping={headlineMapping}>
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] Ändern der Standardvariante von `body2` auf `body1`. Eine Schriftgröße von 16px ist eine bessere Standardeinstellung als 14px. Bootstrap, material.io, and even our documentation use 16px as a default font size. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. We recommend 12px as the default font size for Japanese.
+- [Typography] Ändern der Standardvariante von `body2` auf `body1`. Eine Schriftgröße von 16px ist eine bessere Standardeinstellung als 14px. Bootstrap, material.io undnsogar unsere Dokumentation verwenden 16px als Standardschriftgröße. 14px wie Ant Design es verständlicherweise benutzt, da chinesische Benutzer ein anderes Alphabet haben. Wir empfehlen 12px als Standardschriftgröße für Japanisch.
 - [Typography] Entfernen der Standardfarbe aus den Typografievarianten. Die Farbe sollte die meiste Zeit erben. Dies ist das Standardverhalten des Webs.
 - [Typography] Umbennenung von `color="default"` auf `color="initial ` der Logik von #13028 folgend. Die Verwendung von *default* sollte vermieden werden, da es nicht semantisch ist.
 
 ### Node
 
-- [Drop node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
+- [node 6 wird nicht mehr unterstützt](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule); Sie sollten ein Upgrade auf node 8 durchführen.
 
 ### UMD
 
@@ -386,7 +405,7 @@ yarn add @material-ui/styles@next
   +} = MaterialUI;
   ```
   
-  It's consistent with other React projects:
+  Es stimmt mit anderen React-Projekten überein:
   
   - material-ui => MaterialUI
   - react-dom => ReactDOM

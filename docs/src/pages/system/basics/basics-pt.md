@@ -248,7 +248,7 @@ Nós não suportamos todas as propriedades CSS. É possível que você queira su
 
 #### Exemplos
 
-We can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` we can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+Podemos criar um componente que suporte algumas propriedades CSS na grade, como um `grid-gap`. Fornecendo `spacing` como `themeKey`, podemos reutilizar a lógica, permitindo o comportamento que vemos em outras propriedades de espaçamento, como `padding`.
 
 ```jsx
 import styled from 'styled-components';
@@ -264,7 +264,7 @@ const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
 ```
 
-We can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
+Nós também podemos customizar o nome da propriedade adicionando ambos, `prop` e `cssProperty` e transformando o valor, adicionando uma função `transform`.
 
 ```jsx
 import styled from 'styled-components';

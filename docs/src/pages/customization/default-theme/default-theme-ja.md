@@ -10,7 +10,7 @@
 
 > ヒント：あなたのコンソールでドキュメントのテーマオブジェクトで遊ぶことができます。 すべてのドキュメントページで可変なドキュメントのテーマを公開します。 ドキュメントサイトはカスタムテーマを使用していることに注意してください。
 
-テーマについてもっと知りたい場合は、[`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js)又は `createMuiTheme`に関連するものをインポートして使って下さい。
+テーマについてもっと知りたい場合は、[`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js)又は `createMuiTheme`に関連するものをインポートして使って下さい。
 
 ## @material-ui/core/styles と @material-ui/styles
 

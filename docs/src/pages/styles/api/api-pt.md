@@ -4,7 +4,7 @@
 
 ## `createGenerateClassName([options]) => class name generator`
 
-Uma função que retorna [uma função geradora de nome de classe](http://cssinjs.org/jss-api/#generate-your-class-names).
+Uma função que retorna [uma função geradora de nome de classe](https://cssinjs.org/jss-api/#generate-your-class-names).
 
 #### Argumentos
 
@@ -74,14 +74,13 @@ Vincula uma folha de estilo a um componente de função usando o padrão **hook*
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
 2. `options` (*Object* [opcional]): 
     - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
-    - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
     - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
     - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
-    - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+    - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Retornos
 
-`hook`: Um hook. Este hook pode ser usado em uma função que retorna o componente. Aceita um argumento: as propriedades que serão usadas para "interpolação" na folha de estilo.
+`hook`: Um hook. Este hook pode ser usado em uma função que retorna o componente. The documentation often calls this returned hook `useStyles`. Aceita um argumento: as propriedades que serão usadas para "interpolação" na folha de estilo.
 
 #### Exemplos
 
@@ -92,11 +91,12 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'red',
+    color: props => props.color,
   },
 });
 
-export default function MyComponent() {
-  const classes = useStyles();
+export default function MyComponent(props) {
+  const classes = useStyles(props);
   return <div className={classes.root} />;
 }
 ```
@@ -159,7 +159,7 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
     - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
     - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
     - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
-    - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+    - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Retornos
 
@@ -404,7 +404,7 @@ export default function MyComponent() {
           <code>options.flip</code> (<em>Boolean</em> [opcional]): Quando definido como <code>false</code>, está folha irá cancelar a transformação <code>rtl</code>. Quando definido para <code>true</code>, os estilos são invertidos. Quando definido para <code>null</code>, segue <code>theme.direction</code>.
         </li>
         <li>
-          As outras chaves são encaminhadas para o argumento de opções do <a href="http://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet ([styles], [options])</a>.
+          As outras chaves são encaminhadas para o argumento de opções do <a href="https://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet ([styles], [options])</a>.
         </li>
       </ul>
     </li>

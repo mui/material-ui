@@ -4,9 +4,9 @@ components: Link
 
 # Enlaces
 
-<p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
+<p class="description">El componente Link permite personalizar fácilmente el elemento de enlace con los colores de su Theme y estilos de tipografía.</p>
 
-## Simple links
+## Enlaces simples
 
 The Link component is built on top of the [Typography](/api/typography/) component. You can leverage its properties.
 

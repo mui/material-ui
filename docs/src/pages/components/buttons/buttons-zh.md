@@ -52,7 +52,7 @@ ButtonGroup组件可用于对描边按钮(默认) 或者实心按钮进行分组
 
 ## 分割按钮
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+按钮组也可用于构建分割按钮. 在分割按钮中, 下拉框既可以改变主按钮的行为(如本例所示), 又或是立刻触发相应的动作.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 

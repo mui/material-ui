@@ -47,7 +47,7 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 {{"demo": "pages/components/menus/LongMenu.js"}}
 
-## Limitations
+## 制限
 
 There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
 

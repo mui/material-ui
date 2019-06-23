@@ -3,7 +3,7 @@ title: Componente React para Botões de Opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 
-# Botões de Opção
+# Botões de opção
 
 <p class="description">Botões de opção permitem o usuário selecionar uma das opções de um conjunto.</p>
 

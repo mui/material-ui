@@ -52,7 +52,7 @@ export default theme;
 
 ### The server-side
 
-Ниже приведено описание того, как наша сторона сервера будет выглядеть. Мы настраиваем [Express middleware](http://expressjs.com/en/guide/using-middleware.html), используя [app.use](http://expressjs.com/en/api.html), чтобы обработать все запросы, которые приходят на наш сервер. Если вы не знакомы с Express или middleware, просто знайте, что наша функция handleRender будет вызвана каждый раз, когда сервер получает запрос.
+Ниже приведено описание того, как наша сторона сервера будет выглядеть. Мы настраиваем [Express middleware](https://expressjs.com/en/guide/using-middleware.html), используя [app.use](https://expressjs.com/en/api.html), чтобы обработать все запросы, которые приходят на наш сервер. Если вы не знакомы с Express или middleware, просто знайте, что наша функция handleRender будет вызвана каждый раз, когда сервер получает запрос.
 
 `server.js`
 

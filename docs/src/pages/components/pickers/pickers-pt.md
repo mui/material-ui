@@ -8,7 +8,7 @@ components: TextField
 <p class="description">Seletores fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
 
 - Em dispositivos móveis, seletores são melhores aplicados quando mostrados em diálogos de confirmação.
-- Para exibição in-line, como em um formulário, considere usar controles compactos, como botões suspensos segmentados.
+- Para exibição em linha, como em um formulário, considere usar controles compactos, como botões suspensos segmentados.
 
 ## Seletores nativos
 

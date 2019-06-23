@@ -33,10 +33,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Name of the component ⚛️
+    // Nome do componente ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      // As propriedades para aplicar
+      disableRipple: true, // Sem efeito cascata, em toda aplicação 
     },
   },
 });
@@ -66,13 +66,13 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   transitions: {
-    // So we have `transition: none;` everywhere
+    // Então temos `transition: none;` em todo lugar
     create: () => 'none',
   },
   overrides: {
-    // Name of the component ⚛️
+    // Nome do componente ⚛️
     MuiCssBaseline: {
-      // Name of the rule
+      // Nome da regra
       '@global': {
         '*, *::before, *::after': {
           transition: 'none !important',
@@ -82,10 +82,10 @@ const theme = createMuiTheme({
     },
   },
   props: {
-    // Name of the component ⚛️
+    // Nome do componente ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application!
+      // As propriedades para aplicar
+      disableRipple: true, // Sem efeito cascata, em toda aplicação!
     },
   },
 });
@@ -102,9 +102,9 @@ const theme = createMuiTheme({
 
 No entanto, talvez você esteja adicionando os componentes Material-UI para uma aplicação que já usa outra solução de estilos, ou já esta familiarizado com uma API diferente, e não quer aprender uma nova? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
 
-## Quando devo usar o estilo inline vs CSS?
+## Quando devo usar o estilo em linha vs CSS?
 
-Como regra geral, use apenas o estilo inline para propriedades de estilo dinâmicas. A alternativa de uso com CSS oferece mais vantagens, em:
+Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâmicas. A alternativa de uso com CSS oferece mais vantagens, em:
 
 - prefixação automática
 - melhor depuração
