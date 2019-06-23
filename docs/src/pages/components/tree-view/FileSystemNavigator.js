@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeNode from '@material-ui/lab/TreeNode';
 
-export default function SimpleTreeView() {
+export default function FileSystemNavigator() {
   return (
     <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
       <TreeNode nodeId="1" label="Applications: ">

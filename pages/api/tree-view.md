@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/TreeView/SimpleTreeView.js
+filename: /packages/material-ui-lab/src/TreeView/FileSystemNavigator.jsor.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
