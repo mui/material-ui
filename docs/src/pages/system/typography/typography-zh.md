@@ -34,7 +34,7 @@
 
 {{"demo": "pages/system/typography/FontSize.js"}}
 
-## Font Style
+## 字体样式
 
 ```jsx
 <Box fontStyle="normal">…
@@ -53,7 +53,7 @@
 
 {{"demo": "pages/system/typography/FontFamily.js"}}
 
-## Letter Spacing
+## 字符间距
 
 ```jsx
 <Box letterSpacing={6}>…
@@ -62,7 +62,7 @@
 
 {{"demo": "pages/system/typography/LetterSpacing.js"}}
 
-## Line Height
+## 行高
 
 ```jsx
 <Box lineHeight="normal">…

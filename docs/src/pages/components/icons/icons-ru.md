@@ -72,7 +72,7 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 
 ## Иконочный шрифт
 
-Компонент `Icon` отображает иконку из любого иконочного шрифта с поддержкой лигатур. Предварительно необходимо включить в проект шрифт, такой как [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web), с помощью, например, Google Web Fonts:
+Компонент `Icon` отображает иконку из любого иконочного шрифта с поддержкой лигатур. Предварительно необходимо включить в проект шрифт, такой как [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web), с помощью, например, Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

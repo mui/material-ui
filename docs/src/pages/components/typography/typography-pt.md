@@ -17,7 +17,7 @@ A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. O de
 Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de um CDN:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
 ## Instalar via npm
@@ -34,7 +34,7 @@ import 'typeface-roboto';
 
 Para mais informações confira o projeto [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto).
 
-⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Colocar todos os arquivos de fonte inline pode aumentar o tamanho do seu bundle significativamente. A configuração de tipografia padrão da Material-UI depende apenas dos font weights 300, 400 e 500.
+⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Colocar todos os arquivos de fonte em linha pode aumentar o tamanho do seu pacote significativamente. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Componente
 

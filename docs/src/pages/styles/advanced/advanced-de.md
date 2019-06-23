@@ -256,14 +256,14 @@ const useStyle = makeStyles({
 });
 
 export default function MyComponent() {
-  // Reihenfolge ist egal
+  // Order doesn't matter
   const classes = useStyles();
   const classesBase = useStyleBase();
 
-  //  Reihenfolge ist egal
-  const className = clsx(classes.root, useStyleBase.root)
+  // Order doesn't matter
+  const className = clsx(classes.root, classesBase.root)
 
-  // Farbe: rot 🔴 gewinnt.
+  // color: red 🔴 wins.
   return <div className={className} />;
 }
 ```

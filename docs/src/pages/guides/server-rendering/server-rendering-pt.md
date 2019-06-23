@@ -52,7 +52,7 @@ export default theme;
 
 ### O lado do servidor
 
-O seguinte é o esboço para o aspecto que o nosso servidor deve olhar. Vamos montar um [middleware Express](http://expressjs.com/en/guide/using-middleware.html) usando [app.use](http://expressjs.com/en/api.html) para lidar com todas as requisições que chegam ao nosso servidor. Se você não estiver familiarizado com o Express ou o middleware, saiba apenas, que nossa função handleRender será chamada toda vez que o servidor receber uma requisição.
+O seguinte é o esboço para o aspecto que o nosso servidor deve olhar. Vamos montar um [middleware Express](https://expressjs.com/en/guide/using-middleware.html) usando [app.use](https://expressjs.com/en/api.html) para lidar com todas as requisições que chegam ao nosso servidor. Se você não estiver familiarizado com o Express ou o middleware, saiba apenas, que nossa função handleRender será chamada toda vez que o servidor receber uma requisição.
 
 `server.js`
 

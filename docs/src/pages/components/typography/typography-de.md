@@ -17,7 +17,7 @@ Die *Roboto* Schriftart wird **nicht** automatisch durch Material UI geladen wer
 Unten ist ein Beispiel für ein Link-Markup zum Laden der Roboto-Schriftart von einem CDN dargestellt:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
 ## Mit npm installieren
@@ -34,7 +34,7 @@ import 'typeface-roboto';
 
 Weitere Informationen finden Sie im [Schriftprojekt](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto).
 
-⚠️ Seien Sie vorsichtig, wenn Sie diesen Ansatz verwenden. Stellen Sie sicher, dass Ihr Bundler nicht alle Schriftvarianten läd (100/300/400/500/700/900, kursiv / normal, SVG / woff). Durch das Einbetten aller Schriftdateien kann die Größe Ihres Bundles erheblich erhöht werden. Die Standard-Typografiekonfiguration für Material-UI basiert nur auf den Schriftstärken 300, 400 und 500.
+⚠️ Seien Sie vorsichtig, wenn Sie diesen Ansatz verwenden. Stellen Sie sicher, dass Ihr Bundler nicht alle Schriftvarianten läd (100/300/400/500/700/900, kursiv / normal, SVG / woff). Durch das Einbetten aller Schriftdateien kann die Größe Ihres Bundles erheblich erhöht werden. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Komponente
 

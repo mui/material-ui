@@ -10,7 +10,6 @@ In diesem Handbuch sollen die beliebtesten Alternativen dokumentiert werden, abe
 - [CSS Modules](#styled-components)
 - [Emotion](#css-modules)
 - [React JSS](#emotion)
-- [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
 
 ## Einfaches CSS
@@ -125,7 +124,7 @@ export default function StyledComponents() {
 
 ### Priorität kontrollieren
 
-**Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`. Um sicherzustellen, dass styled-components-Stile zuletzt geladen werden, ändern Sie die [CSS-Injektionsreihenfolge](/styles/advanced/#css-injection-order), wie in der Demo:
+**Hinweis:** Sowohl styled-components als auch JSS fügen ihre Stile unten in `<head>` ein. Um sicherzustellen, dass styled-components-Stile zuletzt geladen werden, ändern Sie die [CSS-Injektionsreihenfolge](/styles/advanced/#css-injection-order), wie in der Demo:
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';

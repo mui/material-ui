@@ -1,10 +1,10 @@
-# 从v3版本迁移到v4版本
+# Migration from v3 to v4
 
 <p class="description">是的，我们已经发布了v4版本！</p>
 
 您在找v3版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
+> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md)。
 
 ## 简介
 
@@ -14,9 +14,9 @@
 
 此文档介绍了*h如何*从v3版本迁移到v4版本。 关于迁移的*原因*，我们则在 [Medium上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)来详细解说。
 
-## 升级你的依赖包
+## Updating your dependencies
 
-The very first thing you will need to do is to update your dependencies.
+您需要做的第一件事，就是更新您的依赖包。
 
 ### 升级 Material-UI 的版本
 
@@ -44,7 +44,7 @@ yarn add @material-ui/core@next
 
 ### 更新 Material-UI Styles 的版本
 
-If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
+若您以前使用v3版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
 
 ```json
 "dependencies": {
@@ -70,16 +70,16 @@ yarn add @material-ui/styles@next
 
 ### Styles（样式表单）
 
-- ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 Removing `react-jss` from your `package.json` can help. StylesProvider 组件替代了 JssProvider 组件。
-- 请移除 `withTheme()` 中的第一个可选的参数。 第一个参数本是作为未来的可能的选项的一个占位符。 我们从未发现有需要它的情况。 该是删除这个参数的时候了。 It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
-  
-  ```diff
+- ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 在您的 `package.json` 中移除 `react-jss` 将会有所帮助。 StylesProvider 组件替代了 JssProvider 组件。
+- 请移除 `withTheme()` 中的第一个可选的参数。 第一个参数本是作为未来的可能的选项的一个占位符。 我们从未发现有需要它的情况。 该是删除这个参数的时候了。 它与[emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
+
+```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). 您应该在您的代码中做出以下改变。
+  It helps isolating the animation logic:
 
-- 仔细研究 [keyframes 的 API](https://cssinjs.org/jss-syntax/#keyframes-animation)。 您应该在您的代码中做出以下改变。 它能帮助分离动画效果的逻辑：
-  
   ```diff
     rippleVisible: {
       opacity: 0.3,
@@ -96,28 +96,29 @@ yarn add @material-ui/styles@next
     },
   ```
 
-### Theme（主题）
+### Theme
 
-- `theme.palette.augmentColor()` 方法不再对输入框的颜色产生副作用。 若想要正确地使用它，您必须使用返回的值。
-  
+- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
+  若想要正确地使用它，您必须使用返回的值。
+
   ```diff
   -const background = { main: color };
   -theme.palette.augmentColor(background);
   +const background = theme.palette.augmentColor({ main: color });
-  
+
   console.log({ background });
   ```
 
-- 您可以从创建主体中安全地删除下一个变体：
-  
+- You can safely remove the next variant from the theme creation:
+
   ```diff
   typography: {
   - useNextVariants: true,
   },
   ```
 
-- 我们已经不再使用 `theme.spacing.unit`，您可以用新的 API 了：
-  
+- `theme.spacing.unit` usage is deprecated, you can use the new API:
+
   ```diff
   label: {
     [theme.breakpoints.up('sm')]: {
@@ -126,32 +127,50 @@ yarn add @material-ui/styles@next
     },
   }
   ```
-  
+
   *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
-  
-  您可以在项目中使用[迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api)来让您的迁移流程更加顺畅。
 
-### Layout（布局）
+  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
-- [Grid] 为了支持任意的间距值，并且移除每次心算都需要数8，我们改变了间距的 API：
-  
+### Layout
+
+- [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
+
   ```diff
     /**
-     * 定义了类型为 `item` 组件之间的距离。
+     * Defines the space between the type `item` component.
      * 它只能用于类型为 `container` 的组件。
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  
-  接下来，您可以用主题来实现[一个自定义网格间距的转换功能](https://material-ui.com/system/spacing/#transformation)。
-
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
 - [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
-  
+
   ```diff
   -import Container from '@material-ui/lab/Container';
   +import Container from '@material-ui/core/Container';
   ```
+
+### TypeScript
+
+#### `value` type 
+
+Normalized `value` prop type for input components to use `unknown`. This affects
+`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+
+```diff
+function MySelect({ children }) {
+-  function handleChange(event: any, value: string) {
++  function handleChange(event: any, value: unknown) {
+    // handle value
+  }
+
+  return <Select onChange={handleChange}>{children}</Select>
+}
+```
+
+This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Buttons（按钮）
 
@@ -183,28 +202,28 @@ yarn add @material-ui/styles@next
 
 - [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
   
-  This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
+  在 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem` 上，若它们的 `button` 属性是 true，则也适用。
 
 ### Cards（卡片）
 
-- [CardActions] Rename the `disableActionSpacing` prop to `disableSpacing`.
+- [CardActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [CardActions] 移除 CSS类中的 `disableActionSpacing`。
-- [CardActions] Rename the `action` CSS class to `spacing`.
+- [CardActions] 将CSS类 `action` 重命名为 `spacing`。
 
-### ClickAwayListener（他处点击监听器）
+### ClickAwayListener
 
 - [ClickAwayListener] 隐藏 react-event-listener 的属性。
 
-### 对话框 (Dialog)
+### Dialog
 
-- [DialogActions] Rename the `disableActionSpacing` prop to `disableSpacing`.
-- [DialogActions] Rename the `action` CSS class to `spacing`.
+- [DialogActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
+- [DialogActions] 将CSS类 `action` 重命名为 `spacing`。
 - [DialogContentText] 不使用文字铸排变体 `subtitle1`，而使用 `body1`。
-- [Dialog] 子组件能够接受一个 ref。 The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Dialog] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Dividers（分隔线）
+### Divider
 
-- [Divider] Remove the deprecated `inset` prop.
+- [Divider] 移除了弃用的 ` inset ` 属性：
   
   ```diff
   -<Divider inset />
@@ -213,34 +232,34 @@ yarn add @material-ui/styles@next
 
 ### ExpansionPanel（扩展面板）
 
-- [ExpansionPanelActions] Rename the `action` CSS class to `spacing`.
+- [ExpansionPanelActions] 将 CSS 类 `action` 重命名为 `spacing`。
 - [ExpansionPanel] 加强 `disabled` 样式规则的 CSS 特性。
 
 ### Lists（列表）
 
 - [List] 为了符合规范，我们重新在列表组件上做了调整 ：
   
-  - The `ListItemAvatar` component is required when using an avatar`.
-  - The `ListItemIcon` component is required when using a left checkbox.
+  - The `ListItemAvatar` component is required when using an avatar.
+  - 当使用左边的复选框时，您必须使用 `ListItemIcon` 组件。
   - 您必须要在图标按钮上设置 `edge` 属性。
 
 - [ListItem] 加强 `disabled` 和 `focusVisible` 样式规则的 CSS 特性。
 
-### Menu（菜单）
+### Menu
 
 - [MenuItem] 删除 MenuItem 的固定高度。 浏览器将会自行根据间距和行高来计算高度。
 
-### Modal（模态框）
+### Modal
 
 - [Modal] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
   
   这也适用于 `Dialog` 和 `Popover` 。
 
-- [Modal] Remove the classes customization API for the Modal component(-74% bundle size reduction when used standalone).
+- [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
 
 - [Modal] 现在忽略了 event.defaultPrevented。 即使当向下离开事件调用了 `event.preventDefault()`，新的逻辑也会关闭模态框。 `event.preventDefault()` 旨在禁用一些默认的行为，如单击一个复选框来选中它；点击按钮来提交表单；以及点击左键来移除文本输入框的光标等等。 只有一些特殊的HTML元素才具有这些默认的行为。 若您不想触发模态框的 `onClose` 事件，您需要使用 `event.stopPropagation()`。
 
-### Paper（纸张）
+### Paper
 
 - [Paper] 减小默认的 elevation（阴影高度）。 为了适配卡片组件和扩展面板组件，请更改默认纸张的阴影高度：
   
@@ -251,11 +270,11 @@ yarn add @material-ui/styles@next
   
   这也会影响 `扩展面板`。
 
-### Portal（传送门）
+### Portal
 
 - [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Slide（滑块）
+### Slide（滑动）
 
 - [Slide] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
@@ -286,7 +305,7 @@ yarn add @material-ui/styles@next
   +<AddIcon htmlColor="#fff" />
   ```
 
-### Tabs（选项卡）
+### 选项卡
 
 - [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped`等类的 key。 这使得我们可以移走中间的两个 DOM 元素。 您应该将自定义的样式已到`根元素`的类的 key 上。
   
@@ -299,9 +318,9 @@ yarn add @material-ui/styles@next
   +<Tabs variant="scrollable" />
   ```
 
-### Table（表格）
+### Table
 
-- [TableCell] Remove the deprecated `numeric` property:
+- [TableCell] 移除了弃用的 `numeric` 属性：
   
   ```diff
   -<TableCell numeric>{row.calories}</TableCell>
@@ -318,7 +337,7 @@ yarn add @material-ui/styles@next
 
 - [TablePagination] 此组件不再修复无效的属性（`page`，`count`，`rowsPerPage`）组合。 相反的，它会给出一个警告。
 
-### 文本字段
+### TextField
 
 - [InputLabel] 凭借 InputLabel 组件的类 API，您应该可以覆盖 FormLabel 组件所有的样式表。 我们移除了 `FormLabelClasses` 属性。
   
@@ -341,12 +360,12 @@ yarn add @material-ui/styles@next
 
 - [InputBase] 从 `InputBase` 中移走了 `inputType` 类。
 
-### Tooltip（提示）
+### Tooltip
 
 - [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
-### Typography（文字铸排）
+### Typography
 
 - [Typography] 移除了各种弃用的铸排变体。 您可以通过执行以下的替换来升级： 
   - display4 => h1
@@ -359,7 +378,7 @@ yarn add @material-ui/styles@next
   - body2 => body1
   - body1 (default) => body2 (default)
 - [Typography] 移除了固定的 `display: block` 这个默认的铸排样式。 您现在可以使用新的 `display?: 'initial' | 'inline' | 'block';` 属性。
-- [Typography] 为了达到更好的排版效果，请重命名属性 `headlineMapping` 为 `variantMapping`。
+- [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
   
   ```diff
   -<Typography headlineMapping={headlineMapping}>

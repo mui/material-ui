@@ -1,5 +1,5 @@
 ---
-title: Radio buttons React component
+title: Radio buttons コンポーネント
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 

@@ -20,14 +20,7 @@ Le code source de ce site de documentation est également disponible sur GitHub.
 
 Vous recherchez un exemple de projet plus avancé ?
 
-Si vous souhaitez commencer par un exemple plus complet et plus réaliste, vous pouvez consulter :
-
-- [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
-  
-  - Graph using recharts
-  - React Router included with a navigation example
-  - A docker container with an Nginx server for production build
-  - Created with [Create React App](https://facebook.github.io/create-react-app/)
+If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
 
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
   
@@ -35,3 +28,11 @@ Si vous souhaitez commencer par un exemple plus complet et plus réaliste, vous 
   - Built on top of Firebase with authentication working from the start
   - Robust routing with React Router including error handling (404)
   - Extensive mobile support with [react-swipeable-views](https://react-swipeable-views.com) for tabs
+
+- [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
+  
+  - Graph using recharts
+  - React Router included with a navigation example
+  - A docker container with an Nginx server for production build
+  - Created with [Create React App](https://facebook.github.io/create-react-app/)
+  - *NOTE*: This project is using *v3* of the Material lib, not yet updated for v4

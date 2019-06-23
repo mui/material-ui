@@ -1,4 +1,4 @@
-# Pontos de quebra (Breakpoints)
+# Pontos de quebra
 
 <p class="description">API que permite o uso de pontos de quebra em uma ampla variedade de contextos.</p>
 

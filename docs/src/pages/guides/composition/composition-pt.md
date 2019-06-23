@@ -46,9 +46,9 @@ Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`
 
 Esse padrão é muito poderoso e permite uma grande flexibilidade, bem como uma maneira de interoperar com outras bibliotecas, como [`react-router`](#react-router-demo) ou sua biblioteca de formulários favorita. Mas também **vem com uma pequena advertência!**
 
-### Advertência com o uso de funções inline
+### Advertência com o uso de funções em linha
 
-Usando uma função inline como um argumento para a propriedade `component`, pode resultar em uma **montagem inesperada**, usando dessa forma, um novo componente será passado para a propriedade `component` toda vez que o React renderizar. Por exemplo, se você quiser cria um `ListItem` customizado que atua como link, você poderia fazer o seguinte:
+Usando uma função em linha como um argumento para a propriedade `component`, pode resultar em uma **montagem inesperada**, usando dessa forma, um novo componente será passado para a propriedade `component` toda vez que o React renderizar. Por exemplo, se você quiser cria um `ListItem` customizado que atua como link, você poderia fazer o seguinte:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -63,9 +63,9 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 );
 ```
 
-⚠️ No entanto, como estamos usando uma função inline para alterar o componente renderizado, o React desmontará o link toda vez que o `ListItemLink` é renderizado. Não só irá o React atualizar o DOM desnecessariamente, como o efeito cascata do `ListItem` também não funcionará corretamente.
+⚠️ No entanto, como estamos usando uma função em linha para alterar o componente renderizado, o React desmontará o link toda vez que o `ListItemLink` é renderizado. Não só irá o React atualizar o DOM desnecessariamente, como o efeito cascata do `ListItem` também não funcionará corretamente.
 
-A solução é simples: **evite funções inline e passe um componente estático para a propriedade `component`**. Vamos mudar nosso `ListItemLink` para o seguinte:
+A solução é simples: **evite funções em linha e passe um componente estático para a propriedade `component`**. Vamos mudar nosso `ListItemLink` para o seguinte:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom';

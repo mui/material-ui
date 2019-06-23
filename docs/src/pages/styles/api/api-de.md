@@ -4,7 +4,7 @@
 
 ## `createGenerateClassName([options]) => class name generator`
 
-Eine Funktion, die eine [Klassennamengeneratorfunktion](http://cssinjs.org/jss-api/#generate-your-class-names) zurückgibt.
+Eine Funktion, die eine [Klassennamengeneratorfunktion](https://cssinjs.org/jss-api/#generate-your-class-names) zurückgibt.
 
 #### Argumente
 
@@ -74,14 +74,13 @@ Verknüpfen Sie ein Stylesheet mit einer Funktionskomponente mit dem **Hook** Mu
 1. `styles` (* Function | Object *): Eine Funktion, die die Stile oder ein Stilobjekt generiert. Es wird mit der Komponente verknüpft. Verwenden Sie die Funktionssignatur, wenn Sie Zugriff auf das Theme benötigen. Es ist das erste Argument.
 2. `Optionen` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): Das Standarddesign, das verwendet werden soll, wenn ein Theme nicht über einen Theme Provider bereitgestellt wird.
-    - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
     - `options.name` (*String* [optional]): Der Name des Stylesheets. Nützlich zum Debuggen. Wenn der Wert nicht angegeben wird, wird versucht, auf den Namen der Komponente zurückzugreifen.
     - `options.flip` (*Boolean* [optional]): Wenn auf `false` gestellt, wird die `Rechts-Nach-Links` Transformation deaktiviert. Wenn es `true` ist sind die Stile invertiert. Wenn es `null` ist, folgt es der `theme.direction` Einstellung.
-    - Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
+    - Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
 
 #### Rückgabewerte
 
-`Hook`: Ein Hook. Dieser Hook kann in einer Funktionskomponente verwendet werden. Er akzeptiert ein Argument: die Eigenschaften, die für „Interpolation“ in das Stylesheet verwendet wird.
+`Hook`: Ein Hook. Dieser Hook kann in einer Funktionskomponente verwendet werden. The documentation often calls this returned hook `useStyles`. Er akzeptiert ein Argument: die Eigenschaften, die für „Interpolation“ in das Stylesheet verwendet wird.
 
 #### Beispiele
 
@@ -92,11 +91,12 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'red',
+    color: props => props.color,
   },
 });
 
-export default function MyComponent() {
-  const classes = useStyles();
+export default function MyComponent(props) {
+  const classes = useStyles(props);
   return <div className={classes.root} />;
 }
 ```
@@ -159,7 +159,7 @@ Verknüpfen Sie ein Stylesheet mit einer Funktionskomponente mit dem **styled co
     - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
     - `options.name` (*String* [optional]): Der Name des Stylesheets. Nützlich zum Debuggen. Wenn der Wert nicht angegeben wird, wird versucht, auf den Namen der Komponente zurückzugreifen.
     - `options.flip` (*Boolean* [optional]): Wenn auf `false` gestellt, wird die `Rechts-Nach-Links` Transformation deaktiviert. Wenn es `true` ist sind die Stile invertiert. Wenn es `null` ist, folgt es der `theme.direction` Einstellung.
-    - Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
+    - Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
 
 #### Rückgabewerte
 
@@ -404,7 +404,7 @@ export default function MyComponent() {
           <code>options.flip</code> (<em>Boolean</em> [optional]): Wenn auf <code>false</code> gestellt, wird die <code>Rechts-Nach-Links</code> Transformation deaktiviert. Wenn es <code>true</code> ist sind die Stile invertiert. Wenn es <code>null</code> ist, folgt es der <code>theme.direction</code> Einstellung.
         </li>
         <li>
-          Die anderen Schlüssel werden an das Optionsargument <a href="http://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet([styles], [options])</a> weitergeleitet.
+          Die anderen Schlüssel werden an das Optionsargument <a href="https://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet([styles], [options])</a> weitergeleitet.
         </li>
       </ul>
     </li>

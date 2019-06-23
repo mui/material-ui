@@ -1,4 +1,4 @@
-# Typography
+# Tipografia
 
 <p class="description">Documentação e exemplos de texto, utilizações comuns para controlar o alinhamento, quebra, peso e muito mais.</p>
 
@@ -34,7 +34,7 @@
 
 {{"demo": "pages/system/typography/FontSize.js"}}
 
-## Font Style
+## Estilo da fonte
 
 ```jsx
 <Box fontStyle="normal">…
@@ -53,7 +53,7 @@
 
 {{"demo": "pages/system/typography/FontFamily.js"}}
 
-## Letter Spacing
+## Espaçamento das letras
 
 ```jsx
 <Box letterSpacing={6}>…
@@ -62,7 +62,7 @@
 
 {{"demo": "pages/system/typography/LetterSpacing.js"}}
 
-## Line Height
+## Altura da linha
 
 ```jsx
 <Box lineHeight="normal">…
@@ -77,7 +77,7 @@
 import { typography } from '@material-ui/system';
 ```
 
-| Nome da importação | Prop            | Propriedade CSS  | Chave do tema                       |
+| Nome da importação | Propriedade     | Propriedade CSS  | Chave do tema                       |
 |:------------------ |:--------------- |:---------------- |:----------------------------------- |
 | `fontFamily`       | `fontFamily`    | `font-family`    | [`typography`](/system/typography/) |
 | `fontSize`         | `fontSize`      | `font-size`      | [`typography`](/system/typography/) |

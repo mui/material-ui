@@ -7,23 +7,23 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 <p class="description">データテーブルにはデータセットが表示されます。完全にカスタマイズすることができます。</p>
 
-[Data tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
+[Data tables](https://material.io/design/components/data-tables.html) は情報を見やすく表示する方法です。 Cardなどの他のプライマリーコンテンツを埋め込むことができます。
 
-Data tables can include:
+Data tables では次のものを含めることができます:
 
-- A corresponding visualization
-- Navigation
-- Tools to query and manipulate data
+- 対応の可視化
+- ナビゲーション
+- データを照会および操作するためのツール
 
-When including tools, they should be placed directly above or below the table.
+ツールを含めるときは、ツールをテーブルの真上、アタは真下に配置します。
 
 ## Structure
 
-A data table contains a header row at the top that lists column names, followed by rows for data.
+Data tableの上部には、列名をリストするヘッダー行があり、その後にデータ用の行が続きます。
 
-Checkboxes should accompany each row if the user needs to select or manipulate data.
+ユーザーがデータを選択または操作する必要がある場合は、チェックボックスを各行に付ける必要があります。
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"row"`. This enables screen readers to identify a cell's value by it's row and column name.
+アクセシビリティのために、最初の列は `<th>` 要素に設定され、 `スコープ` は `"row"`です。 これにより、スクリーンリーダーは行と列の名前でセルの値を識別できます。
 
 ## Simple Table
 
@@ -39,49 +39,49 @@ For accessibility, the first column is set to be a `<th>` element, with a `scope
 
 ## Sorting & Selecting
 
-This example demonstrates the use of `Checkbox` and clickable rows for selection, with a custom `Toolbar`. It uses the `TableSortLabel` component to help style column headings.
+この例では、カスタム ` Toolbar `使用して、 ` Checkbox ` とクリック可能な行を選択に使用する方法を示します。 列見出しのスタイル設定に役立つように `TableSortLabel` コンポーネントを使用します。
 
-The Table has been given a fixed width to demonstrate horizontal scrolling. In order to prevent the pagination controls from scrolling, the TablePagination component is used outside of the Table. (The ['Custom Table Pagination Action' example](#custom-table-pagination-action) below shows the pagination within the TableFooter.)
+テーブルは水平スクロールを示すために固定幅が与えられています。 ページ付けコントロールがスクロールするのを防ぐために、TablePaginationコンポーネントはTableの外側で使用されます。 （下記の ['カスタムテーブルページネーションアクション'の例](#custom-table-pagination-action) は、TableFooter内のページネーションを示しています。）
 
 {{"demo": "pages/components/tables/EnhancedTable.js"}}
 
 ## Customized tables
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 
 ## Custom Table Pagination Action
 
-The `Action` property of the `TablePagination` component allows the implementation of custom actions.
+`TablePagination` コンポーネントの `Action` プロパティにより、 カスタムアクションを実装することができます。
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
 ## Spanning Table
 
-A simple example with spanning rows & columns.
+行 & 列にまたがる単純な例です。
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
 
 ## Virtualized Table
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
+次の例では、 ` Table ` コンポーネントで [react-window](https://github.com/bvaughn/react-virtualized) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
 ## Complementary projects
 
-For more advanced use cases you might be able to take advantage of:
+より高度なユースケースのためにあなたは利用することができるかもしれません：
 
 ### material-table
 
 ![Stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+[material-table](https://github.com/mbrn/material-table) は、いくつかの追加機能を備えたMaterial-UI Tableを基にしたシンプルで強力なReact用データテーブルです。 それらは多くの異なるユースケース（編集可能、フィルタリング、グループ化、ソート、選択、i18n、ツリーデータなど）をサポートします。 参照するといいでしょう。
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js"}}
 
-### Other
+### その他
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) ページング、ソート、フィルタリング、グループ化、および編集機能を備えたMaterial-UI用のデータグリッド（[カスタムライセンス](https://js.devexpress.com/licensing/)）。
+- [mui-datatables](https://github.com/gregnb/mui-datatables) フィルタリング、ソート、検索などの機能を備えたMaterial-UIのレスポンシブデータテーブル。

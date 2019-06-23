@@ -39,5 +39,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Оформление текста
 
-- Font antialiasing is enabled for better display of the Roboto font.
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
+- Set the `theme.typography.body2` style on the `<body>` element.
+- Set the font-weight to "bolder" for the `<b>` and `<strong>` elements. Bolder is one font weight heavier than the parent element (among the available weights of the font).
+- Font antialiasing is enabled for better display of the Roboto font.

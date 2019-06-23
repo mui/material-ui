@@ -50,9 +50,9 @@ O componente ButtonGroup pode ser usado para agrupar os botões delineados (o pa
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## Split Button
+## Botão Dividido
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+O ButtonGroup também pode ser usado para criar um botão dividido. A lista suspensa pode alterar a ação do botão (como neste exemplo) ou ser usada para acionar imediatamente a ação relacionada.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -86,7 +86,7 @@ Botões extravagantes ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Icone
+## Botões de Ícone
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 

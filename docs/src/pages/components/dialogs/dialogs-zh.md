@@ -72,7 +72,18 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 响应式全屏
 
-您可以使用 `withMobileDialog` 显示响应式的全屏对话框。 默认情况下, `withMobileDialog() (Dialog)` 在 [屏幕大小](/customization/breakpoints/)*小于等于* `sm`时响应式全屏。 通过传递 `breakpoint`参数，您可以自主选择全屏切换点，比如使用`xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
+You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+
+```jsx
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+function MyComponent() {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  return <Dialog fullScreen={fullScreen} />
+}
+```
 
 {{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 

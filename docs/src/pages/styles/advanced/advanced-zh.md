@@ -230,8 +230,8 @@ const useStyles = makeStyles({
 import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Styled components can override Material-UI's styles. */}
+  {/* 你的组件树。
+      样式化组件可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```
 
@@ -261,7 +261,7 @@ export default function MyComponent() {
   const classesBase = useStyleBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, useStyleBase.root)
+  const className = clsx(classes.root, classesBase.root)
 
   // color: red 🔴 wins.
   return <div className={className} />;

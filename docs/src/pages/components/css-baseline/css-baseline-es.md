@@ -39,5 +39,7 @@ Los elementos `<html>` y `<body>` son actualizados para proveer mejores valores 
 
 ### Tipografía
 
-- El antialiasing de fuentes está habilitado para una mejor visualización de la fuente Roboto.
 - No se declara ningún tamaño de fuente de base en el elemento `<html>`, pero se asume 16px (el valor predeterminado del navegador). Puedes aprender más acerca de las implicaciones de cambiar el tamaño de fuente predeterminado de `<html>`, en la página [de documentación del tema](/customization/typography/#typography-html-font-size).
+- Set the `theme.typography.body2` style on the `<body>` element.
+- Set the font-weight to "bolder" for the `<b>` and `<strong>` elements. Bolder is one font weight heavier than the parent element (among the available weights of the font).
+- El antialiasing de fuentes está habilitado para una mejor visualización de la fuente Roboto.

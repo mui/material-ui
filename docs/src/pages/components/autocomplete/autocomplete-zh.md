@@ -33,4 +33,4 @@ Material-UI不提供任何高级 API 来解决此问题。我们鼓励大家参�
 
 在下面的示例中, 我们演示了如何使用 [react-autosuggest](https://github.com/moroshko/react-autosuggest)。 它还使用 [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight)完成了高亮的逻辑。
 
-emo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}
+{{"demo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}
