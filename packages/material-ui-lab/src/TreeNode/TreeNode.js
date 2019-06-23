@@ -1,11 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
-import useTreeState from '../TreeView/useTreeState';
+import TreeViewContext from '../TreeView/TreeViewContext';
 
 const styles = {
   /* Styles applied to the root element. */
@@ -74,7 +75,8 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     setFocusByFirstCharacter,
     handleNodeMap,
     handleFirstChars,
-  } = useTreeState();
+  } = React.useContext(TreeViewContext);
+
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
@@ -211,15 +213,24 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
 
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId);
-    handleNodeMap(nodeId, childIds);
+    if (handleNodeMap) {
+      handleNodeMap(nodeId, childIds);
+    }
   }, [children, nodeId, handleNodeMap]);
 
   React.useEffect(() => {
-    handleFirstChars(nodeId, label.substring(0, 1).toLowerCase());
+    if (handleFirstChars) {
+      handleFirstChars(nodeId, label.substring(0, 1).toLowerCase());
+    }
   }, [handleFirstChars, nodeId, label]);
 
   if (focused) {
     nodeRef.current.focus();
+  }
+
+  if (!handleFirstChars || !handleNodeMap || !isExpanded || !isFocused || !isFocusable) {
+    warning(false, 'Material-UI: A `TreeNode` must be rendered inside a `TreeView`.');
+    return null;
   }
 
   return (
