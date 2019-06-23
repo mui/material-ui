@@ -18,12 +18,13 @@ import TreeNode from '@material-ui/lab/TreeNode';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  |  |
-| <span class="prop-name">collapseIcon</span> | <span class="prop-type">node</span> |  |  |
-| <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  |  |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  |  |
-| <span class="prop-name required">id&nbsp;*</span> | <span class="prop-type">string</span> |  |  |
-| <span class="prop-name">label</span> | <span class="prop-type">node</span> |  |  |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">collapseIcon</span> | <span class="prop-type">node</span> |  | The icon used to collapse the node. |
+| <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon used to expand the node. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display next to the tree node's label. |
+| <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The tree node label. |
+| <span class="prop-name required">nodeId&nbsp;*</span> | <span class="prop-type">string</span> |  | The id of the node. |
 
 The component cannot hold a ref.
 
