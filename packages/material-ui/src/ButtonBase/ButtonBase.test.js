@@ -3,7 +3,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import rerender from 'test/utils/rerender';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import ButtonBase from './ButtonBase';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -31,10 +31,6 @@ describe('<ButtonBase />', () => {
    */
   let render;
   /**
-   * @type {ReturnType<typeof createShallow>}
-   */
-  let shallow;
-  /**
    * @type {ReturnType<typeof createMount>}
    */
   let mount;
@@ -44,7 +40,6 @@ describe('<ButtonBase />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     render = createClientRender({ strict: false });
     /**
      * StrictModeViolation: Uses TouchRipple
@@ -132,7 +127,7 @@ describe('<ButtonBase />', () => {
 
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
-      const events = [
+      const eventHandlerNames = [
         'onClick',
         'onFocus',
         'onBlur',
@@ -143,23 +138,34 @@ describe('<ButtonBase />', () => {
         'onMouseUp',
         'onDragEnd',
         'onTouchEnd',
-        'onTouchStart',
       ];
 
       /**
        * @type {Record<string, ReturnType<typeof spy>>}
        */
-      const handlers = events.reduce((result, n) => {
+      const handlers = eventHandlerNames.reduce((result, n) => {
         // @ts-ignore
         result[n] = spy();
         return result;
       }, {});
+      const onTouchStart = spy();
 
-      const wrapper = shallow(<ButtonBase {...handlers} />);
+      const { getByText } = render(
+        <ButtonBase {...handlers} onTouchStart={onTouchStart}>
+          Hello
+        </ButtonBase>,
+      );
+      const button = getByText('Hello');
 
-      events.forEach(n => {
-        const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { target: {}, persist: () => {} });
+      // touchStart requires additional mocking
+      fireEvent.touchStart(button, { touches: [{}] });
+      expect(onTouchStart.callCount).to.equal(1);
+
+      eventHandlerNames.forEach(n => {
+        // onKeyDown -> keyDown
+        const eventType = n.charAt(2).toLowerCase() + n.slice(3);
+        // @ts-ignore eventType isn't a literal here, need const expression
+        fireEvent[eventType](button);
         expect(handlers[n].callCount, `should have called the ${n} handler`).to.equal(1);
       });
     });
