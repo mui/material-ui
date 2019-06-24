@@ -88,9 +88,23 @@ async function transpileFile(tsxPath, ignoreCache = false) {
       }
     }
 
-    const { code } = await babel.transformFileAsync(tsxPath, babelConfig);
+    let inputCode = (await fse.readFile(tsxPath)).toString();
+
+    const findPragma = /\/\*{2} @jsx (.*) \*\/\r?\n/;
+    const codeHasPragma = findPragma.test(inputCode);
+
+    if (!codeHasPragma) {
+      inputCode = `/** @jsx React */${getLineFeed(inputCode)}${inputCode}`;
+    }
+
+    const { code } = await babel.transformAsync(inputCode, { ...babelConfig, filename: tsxPath });
     const prettified = prettier.format(code, { ...prettierConfig, filepath: tsxPath });
-    const formatted = fixBabelGeneratorIssues(prettified);
+    let formatted = fixBabelGeneratorIssues(prettified);
+
+    if (!codeHasPragma) {
+      // Remove pragma inserted before transpile
+      formatted = formatted.replace(findPragma, '');
+    }
 
     await fse.writeFile(jsPath, formatted);
     return TranspileResult.Success;
