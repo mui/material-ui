@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 // required for react-router-dom < 6.0.0
-// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
+// see https://github.com/ReactTraining/react-router/issues/6056
 const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
 
 const CollisionLink = React.forwardRef((props, ref) => (
