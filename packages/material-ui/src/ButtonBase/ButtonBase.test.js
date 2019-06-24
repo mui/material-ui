@@ -55,6 +55,7 @@ describe('<ButtonBase />', () => {
 
   after(() => {
     cleanup();
+    mount.cleanUp();
   });
 
   describeConformance(<ButtonBase />, () => ({
@@ -67,8 +68,6 @@ describe('<ButtonBase />', () => {
 
   describe('root node', () => {
     it('should change the button type', () => {
-      mount.cleanUp();
-
       const { getByText } = render(<ButtonBase type="submit">Hello</ButtonBase>);
       expect(getByText('Hello')).to.have.attribute('type', 'submit');
     });

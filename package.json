@@ -56,7 +56,7 @@
     "@emotion/core": "^10.0.0",
     "@emotion/styled": "^10.0.0",
     "@material-ui/pickers": "^3.1.1",
-    "@testing-library/react": "^8.0.1",
+    "@testing-library/react": "^8.0.2",
     "@trendmicro/react-interpolate": "^0.5.5",
     "@types/autosuggest-highlight": "^3.1.0",
     "@types/chai": "^4.1.7",
