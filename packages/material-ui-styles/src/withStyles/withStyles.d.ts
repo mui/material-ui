@@ -3,12 +3,10 @@ import { PropInjector, CoerceEmptyInterface, IsEmptyInterface } from '@material-
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 
-export interface BaseCSSProperties extends CSS.Properties<number | string> {
-  /**
-   * Used to control if the rule-set should be affected by rtl transformation
-   */
-  flip?: boolean;
-}
+/**
+ * Allows the user to augment the properties available
+ */
+export interface BaseCSSProperties extends CSS.Properties<number | string> {}
 
 export interface CSSProperties extends BaseCSSProperties {
   // Allow pseudo selectors and media queries

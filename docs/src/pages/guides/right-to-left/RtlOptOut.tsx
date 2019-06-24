@@ -1,6 +1,15 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
+declare module '@material-ui/core/styles/withStyles' {
+  interface BaseCSSProperties {
+    /**
+     * Used to control if the rule-set should be affected by rtl transformation
+     */
+    flip?: boolean;
+  }
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
