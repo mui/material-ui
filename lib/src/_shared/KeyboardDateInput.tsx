@@ -46,6 +46,8 @@ export interface KeyboardDateInputProps
    * @type {Partial<IconButtonProps>}
    */
   KeyboardButtonProps?: Partial<IconButtonProps>;
+  /** Custom formatter to be passed into Rifm component */
+  rifmFormatter?: (str: string) => string;
 }
 
 const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
@@ -63,6 +65,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   format,
   keyboardIcon,
   disabled,
+  rifmFormatter,
   TextFieldComponent = TextField,
   ...other
 }) => {
@@ -77,7 +80,12 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
     InputAdornmentProps && InputAdornmentProps.position ? InputAdornmentProps.position : 'end';
 
   return (
-    <Rifm value={inputValue} onChange={onChange} refuse={refuse} format={formatter}>
+    <Rifm
+      value={inputValue}
+      onChange={onChange}
+      refuse={refuse}
+      format={rifmFormatter || formatter}
+    >
       {({ onChange, value }) => (
         <TextFieldComponent
           disabled={disabled}

@@ -330,7 +330,7 @@
         "name": "DatePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "Array<'year' | 'date' | 'month'>" }
+      "type": { "name": " Array<'year' | 'date' | 'month'> " }
     },
     "openTo": {
       "defaultValue": null,
@@ -341,7 +341,7 @@
         "name": "DatePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "'year' | 'date' | 'month'" }
+      "type": { "name": " 'year' | 'date' | 'month' " }
     },
     "minDate": {
       "defaultValue": { "value": "Date(1900-01-01)" },
@@ -842,6 +842,17 @@
       "required": false,
       "type": { "name": "Partial<IconButtonProps>" }
     },
+    "rifmFormatter": {
+      "defaultValue": null,
+      "description": "Custom formatter to be passed into Rifm component",
+      "name": "rifmFormatter",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "(str: string) => string" }
+    },
     "views": {
       "defaultValue": null,
       "description": "Array of views to show",
@@ -851,7 +862,7 @@
         "name": "DatePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "Array<'year' | 'date' | 'month'>" }
+      "type": { "name": " Array<'year' | 'date' | 'month'> " }
     },
     "openTo": {
       "defaultValue": null,
@@ -862,7 +873,7 @@
         "name": "DatePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "'year' | 'date' | 'month'" }
+      "type": { "name": " 'year' | 'date' | 'month' " }
     },
     "minDate": {
       "defaultValue": { "value": "Date(1900-01-01)" },
@@ -1650,6 +1661,17 @@
       },
       "required": false,
       "type": { "name": "Partial<IconButtonProps>" }
+    },
+    "rifmFormatter": {
+      "defaultValue": null,
+      "description": "Custom formatter to be passed into Rifm component",
+      "name": "rifmFormatter",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "(str: string) => string" }
     },
     "views": {
       "defaultValue": null,
@@ -2514,6 +2536,17 @@
       },
       "required": false,
       "type": { "name": "Partial<IconButtonProps>" }
+    },
+    "rifmFormatter": {
+      "defaultValue": null,
+      "description": "Custom formatter to be passed into Rifm component",
+      "name": "rifmFormatter",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/KeyboardDateInput.tsx",
+        "name": "KeyboardDateInputProps"
+      },
+      "required": false,
+      "type": { "name": "(str: string) => string" }
     },
     "views": {
       "defaultValue": null,
