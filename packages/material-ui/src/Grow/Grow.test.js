@@ -5,8 +5,8 @@ import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Grow from './Grow';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { Transition } from '@material-ui/react-transition-group';
 import { ThemeProvider } from '@material-ui/styles';
+import { Transition } from 'react-transition-group';
 import { useForkRef } from '../utils/reactHelpers';
 
 describe('<Grow />', () => {
@@ -17,7 +17,8 @@ describe('<Grow />', () => {
   };
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses react-transition-group
+    mount = createMount({ strict: false });
   });
 
   after(() => {
