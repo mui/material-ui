@@ -1,17 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider, useTheme, makeStyles } from '@material-ui/styles';
+import { ThemeProvider, useTheme, makeStyles, createStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: props => ({
-    backgroundColor: props.backgroundColor,
-    color: theme.color,
+interface MyTheme {
+  color: string;
+}
+
+interface ComponentProps {
+  backgroundColor: string;
+}
+
+const useStyles = makeStyles((theme: MyTheme) =>
+  createStyles({
+    root: (props: ComponentProps) => ({
+      backgroundColor: props.backgroundColor,
+      color: theme.color,
+    }),
   }),
-}));
+);
 
-const Component = React.memo(props => {
+const Component = React.memo((props: ComponentProps) => {
   const classes = useStyles(props);
-  const theme = useTheme();
+  const theme = useTheme<MyTheme>();
 
   const rendered = React.useRef(1);
   React.useEffect(() => {
@@ -29,18 +39,18 @@ const Component = React.memo(props => {
   );
 });
 
-Component.propTypes = {
+(Component as any).propTypes = {
   backgroundColor: PropTypes.string.isRequired,
 };
 
 export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');
-  function handleBackgroundColorChange(event) {
+  function handleBackgroundColorChange(event: React.ChangeEvent<HTMLInputElement>) {
     setBackgroundColor(event.target.value);
   }
 
   const [color, setColor] = React.useState('#ffffff');
-  function handleColorChange(event) {
+  function handleColorChange(event: React.ChangeEvent<HTMLInputElement>) {
     setColor(event.target.value);
   }
 

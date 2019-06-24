@@ -1,18 +1,39 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  makeStyles,
+  createStyles,
+  Theme as AugmentedTheme,
+} from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { orange } from '@material-ui/core/colors';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    color: theme.status.danger,
-    '&$checked': {
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    status: {
+      danger: string;
+    };
+  }
+  // allow configuration using `createMuiTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+    };
+  }
+}
+
+const useStyles = makeStyles((theme: AugmentedTheme) =>
+  createStyles({
+    root: {
       color: theme.status.danger,
+      '&$checked': {
+        color: theme.status.danger,
+      },
     },
-  },
-  checked: {},
-}));
+    checked: {},
+  }),
+);
 
 function CustomCheckbox() {
   const classes = useStyles();

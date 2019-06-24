@@ -16,5 +16,6 @@ const useStyles = makeStyles({
 
 export default function Hook() {
   const classes = useStyles();
+
   return <Button className={classes.root}>Hook</Button>;
 }
