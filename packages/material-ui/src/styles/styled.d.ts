@@ -20,7 +20,7 @@ export type ComponentCreator<Component extends React.ElementType> = <
 >(
   styles:
     | CreateCSSProperties<Props>
-    | (({ theme, ...props }: { theme: Theme } & Props) => CreateCSSProperties<Props>),
+    | ((props: { theme: Theme } & CoerceEmptyInterface<Props>) => CreateCSSProperties<Props>),
   options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
   Omit<

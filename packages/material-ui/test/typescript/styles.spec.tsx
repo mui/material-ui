@@ -5,17 +5,15 @@ import {
   createMuiTheme,
   Theme,
   withTheme,
-  StyleRules,
   StyleRulesCallback,
-  StyledComponentProps,
   WithStyles,
   WithTheme,
   makeStyles,
+  styled,
 } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { blue } from '@material-ui/core/colors';
-import { StandardProps } from '@material-ui/core';
 
 // Shared types for examples
 interface ComponentProps extends WithStyles<typeof styles> {
@@ -562,4 +560,41 @@ withStyles(theme =>
       }),
     }));
   }
+}
+
+{
+  // Make sure theme and props have the correct types
+  // https://github.com/mui-org/material-ui/issues/16351
+
+  // Theme has default type
+  styled(Button)(({ theme }) => {
+    // $ExpectType Theme
+    theme;
+
+    return { padding: theme.spacing(1) };
+  });
+
+  interface myProps {
+    testValue: boolean;
+  }
+
+  // Type of props follow all the way to css properties
+  styled(Button)<Theme, myProps>(({ theme, testValue }) => {
+    // $ExpectType Theme
+    theme;
+
+    // $ExpectType boolean
+    testValue;
+
+    return {
+      padding: props => {
+        // $ExpectType myProps
+        props;
+
+        // $ExpectType boolean
+        props.testValue;
+        return theme.spacing(1);
+      },
+    };
+  });
 }
