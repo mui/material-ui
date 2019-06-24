@@ -94,7 +94,7 @@ async function getSizeLimitBundles() {
       // vs https://bundlephobia.com/result?p=react-autosize-textarea
       name: '@material-ui/core/Textarea',
       webpack: true,
-      path: 'packages/material-ui/build/esm/InputBase/Textarea.js',
+      path: 'packages/material-ui/build/esm/TextareaAutosize/index.js',
     },
     {
       // vs https://bundlephobia.com/result?p=rc-slider

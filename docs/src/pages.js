@@ -101,6 +101,7 @@ const pages = [
           { pathname: '/components/popover' },
           { pathname: '/components/popper' },
           { pathname: '/components/portal' },
+          { pathname: '/components/textarea-autosize' },
           { pathname: '/components/transitions' },
           { pathname: '/components/use-media-query', title: 'useMediaQuery' },
         ],

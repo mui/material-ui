@@ -22,38 +22,41 @@ const styles = {
   },
 };
 
-/**
- * @ignore - internal component.
- *
- * To make public in v4+.
- */
-const Textarea = React.forwardRef(function Textarea(props, ref) {
+const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
   const { onChange, rows, rowsMax, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef(null);
-  const [state, setState] = React.useState({});
-  const shadowRef = React.useRef(null);
   const handleRef = useForkRef(ref, inputRef);
+  const shadowRef = React.useRef(null);
+  const [state, setState] = React.useState({});
 
   const syncHeight = React.useCallback(() => {
     const input = inputRef.current;
-    const inputShallow = shadowRef.current;
-
     const computedStyle = window.getComputedStyle(input);
+
+    const inputShallow = shadowRef.current;
     inputShallow.style.width = computedStyle.width;
     inputShallow.value = input.value || props.placeholder || 'x';
 
+    const boxSizing = computedStyle['box-sizing'];
+    const padding =
+      getStyleValue(computedStyle, 'padding-bottom') + getStyleValue(computedStyle, 'padding-top');
+    const border =
+      getStyleValue(computedStyle, 'border-bottom-width') +
+      getStyleValue(computedStyle, 'border-top-width');
+
     // The height of the inner content
     const innerHeight = inputShallow.scrollHeight;
-    const boxSizing = computedStyle['box-sizing'];
 
     // Measure height of a textarea with a single row
     inputShallow.value = 'x';
-    const singleRowHeight = inputShallow.scrollHeight;
+    let singleRowHeight = inputShallow.scrollHeight;
+    singleRowHeight -= padding;
 
     // The height of the outer content
-    let outerHeight = innerHeight;
+    let outerHeight = innerHeight - padding;
+    // console.log(1, { singleRowHeight, boxSizing, outerHeight });
 
     if (rows != null) {
       outerHeight = Math.max(Number(rows) * singleRowHeight, outerHeight);
@@ -63,15 +66,9 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
     }
     outerHeight = Math.max(outerHeight, singleRowHeight);
 
-    if (boxSizing === 'content-box') {
-      outerHeight -=
-        getStyleValue(computedStyle, 'padding-bottom') +
-        getStyleValue(computedStyle, 'padding-top');
-    } else if (boxSizing === 'border-box') {
-      outerHeight +=
-        getStyleValue(computedStyle, 'border-bottom-width') +
-        getStyleValue(computedStyle, 'border-top-width');
-    }
+    outerHeight +=
+      (boxSizing === 'border-box' ? padding : 0) + (boxSizing === 'border-box' ? border : 0);
+    // console.log(2, { outerHeight });
 
     setState(prevState => {
       // Need a large enough different to update the height.
@@ -119,6 +116,8 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
         value={value}
         onChange={handleChange}
         ref={handleRef}
+        // Apply the rows prop to get a "correct" first SSR paint
+        rows={rows || 1}
         style={{
           height: state.outerHeight,
           // Need a large enough different to allow scrolling.
@@ -140,7 +139,7 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
   );
 });
 
-Textarea.propTypes = {
+TextareaAutosize.propTypes = {
   /**
    * @ignore
    */
@@ -171,4 +170,4 @@ Textarea.propTypes = {
   value: PropTypes.any,
 };
 
-export default Textarea;
+export default TextareaAutosize;
