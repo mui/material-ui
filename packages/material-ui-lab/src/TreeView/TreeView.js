@@ -19,12 +19,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     className,
     children,
     defaultCollapseIcon,
-    defaultExpandIcon,
-    defaultChildIcon,
     defaultEndIcon,
+    defaultExpandIcon,
+    defaultParentIcon,
+    expanded: expandedProp,
+    onNodeToggle,
     ...other
   } = props;
-  const [expanded, setExpanded] = React.useState([]);
+  const [expanded, setExpanded] = React.useState(expandedProp);
   const [focusable, setFocusable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
   const firstNode = React.useRef(null);
@@ -37,11 +39,17 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const isFocused = id => focused === id;
 
   React.useEffect(() => {
+    if (expanded.every(nodeId => expandedProp.indexOf(nodeId) !== -1)) {
+      setExpanded(expandedProp);
+    }
+  }, [expandedProp, expanded]);
+
+  React.useEffect(() => {
     nodeMap.current = {};
     const childIds = React.Children.map(children, child => child.props.nodeId);
     nodeMap.current[-1] = { parent: null, children: childIds };
 
-    childIds.forEach((id, index) => {
+    (childIds || []).forEach((id, index) => {
       if (index === 0) {
         firstNode.current = id;
         setFocusable(id);
@@ -156,6 +164,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         newExpanded = [value, ...prevExpanded];
       }
 
+      if (onNodeToggle) {
+        onNodeToggle(value, newExpanded.indexOf(value) !== -1);
+      }
+
       return newExpanded;
     });
   };
@@ -256,7 +268,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   return (
     <TreeViewContext.Provider
       value={{
-        icons: { defaultCollapseIcon, defaultExpandIcon, defaultChildIcon, defaultEndIcon },
+        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         toggle,
         isExpanded,
         isFocusable,
@@ -295,11 +307,6 @@ TreeView.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default icon displayed next to a child node. This is applied to all
-   * tree nodes and can be overridden by the TreeNode `icon` prop.
-   */
-  defaultChildIcon: PropTypes.node,
-  /**
    * The default icon used to collapse the node.
    */
   defaultCollapseIcon: PropTypes.node,
@@ -312,6 +319,22 @@ TreeView.propTypes = {
    * The default icon used to expand the node.
    */
   defaultExpandIcon: PropTypes.node,
+  /**
+   * The default icon displayed next to a parent node. This is applied to all
+   * parent nodes and can be overridden by the TreeNode `icon` prop.
+   */
+  defaultParentIcon: PropTypes.node,
+  /**
+   *  Expanded node ids.
+   */
+  expanded: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Callback fired when a `TreeNode` is expanded/collapsed.
+   *
+   * @param {string} nodeId The id of the toggled node.
+   * @param {boolean} expanded The node status - If `true` the node was expanded. If `false` the node was collapsed.
+   */
+  onNodeToggle: PropTypes.func,
 };
 
 export default withStyles(styles)(TreeView);

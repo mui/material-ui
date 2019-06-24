@@ -44,7 +44,7 @@ const styles = {
 };
 
 const isPrintableCharacter = str => {
-  return str.length === 1 && str.match(/\S/);
+  return str && str.length === 1 && str.match(/\S/);
 };
 
 const TreeNode = React.forwardRef(function TreeNode(props, ref) {
@@ -111,8 +111,8 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   let startAdornment = null;
 
   if (expandable) {
-    if (icons.defaultChildIcon || icon) {
-      startAdornment = icon || icons.defaultChildIcon;
+    if (icons.defaultParentIcon || icon) {
+      startAdornment = icon || icons.defaultParentIcon;
     }
   } else if (icons.defaultEndIcon || icon) {
     startAdornment = icon || icons.defaultEndIcon;
@@ -235,7 +235,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   }, [children, nodeId, handleNodeMap]);
 
   React.useEffect(() => {
-    if (handleFirstChars) {
+    if (handleFirstChars && label) {
       handleFirstChars(nodeId, label.substring(0, 1).toLowerCase());
     }
   }, [handleFirstChars, nodeId, label]);
@@ -256,7 +256,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
-      aria-expanded={expanded}
+      aria-expanded={expandable ? expanded : null}
       ref={handleRef}
       tabIndex={focusable ? 0 : -1}
       {...other}
