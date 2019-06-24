@@ -9,7 +9,7 @@ import {
 
 export interface ButtonBaseTypeMap {
   props: {
-    action?: (actions: ButtonBaseActions) => void;
+    action?: React.Ref<ButtonBaseActions>;
     /**
      * Prefer `ref` instead.
      */
