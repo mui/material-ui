@@ -61,6 +61,7 @@ export function makeKeyboardPicker<T extends any>({
       value,
       dateRangeIcon,
       emptyLabel,
+      invalidLabel,
       timeIcon,
       variant,
       disableToolbar,

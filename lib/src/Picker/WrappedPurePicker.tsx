@@ -51,6 +51,7 @@ export function makePurePicker<T extends any>({
       shouldDisableDate,
       dateRangeIcon,
       emptyLabel,
+      invalidLabel,
       timeIcon,
       value,
       variant,
