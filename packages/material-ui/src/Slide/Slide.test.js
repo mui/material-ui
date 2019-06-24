@@ -5,7 +5,7 @@ import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Slide, { setTranslateValue } from './Slide';
 import createMuiTheme from '../styles/createMuiTheme';
-import { Transition } from '@material-ui/react-transition-group';
+import { Transition } from 'react-transition-group';
 
 describe('<Slide />', () => {
   let mount;
@@ -16,7 +16,8 @@ describe('<Slide />', () => {
   };
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses react-transition-group
+    mount = createMount({ strict: false });
   });
 
   after(() => {

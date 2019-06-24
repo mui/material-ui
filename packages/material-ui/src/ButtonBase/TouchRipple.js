@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TransitionGroup } from '@material-ui/react-transition-group';
+import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Ripple from './Ripple';

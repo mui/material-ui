@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Transition } from '@material-ui/react-transition-group';
+import { Transition } from 'react-transition-group';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { useForkRef } from '../utils/reactHelpers';
@@ -29,6 +29,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const { children, in: inProp, onEnter, onExit, style, timeout = 'auto', ...other } = props;
   const timer = React.useRef();
   const autoTimeout = React.useRef();
+  const handleRef = useForkRef(children.ref, ref);
   const theme = useTheme();
 
   const handleEnter = node => {
@@ -111,10 +112,6 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     };
   }, []);
 
-  const ownRef = React.useRef();
-  const userRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(userRef, ownRef);
-
   return (
     <Transition
       appear
@@ -124,7 +121,6 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       addEndListener={addEndListener}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
-      findDOMNode={() => ownRef.current}
     >
       {(state, childProps) => {
         return React.cloneElement(children, {

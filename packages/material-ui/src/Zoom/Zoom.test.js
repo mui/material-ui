@@ -3,14 +3,15 @@ import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { Transition } from '@material-ui/react-transition-group';
+import { Transition } from 'react-transition-group';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
   let mount;
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses react-transition-group
+    mount = createMount({ strict: false });
   });
 
   after(() => {

@@ -17,7 +17,7 @@ describe('<SpeedDialAction />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses #simulate
+    // StrictModeViolation: uses ButtonBase
     mount = createMount({ strict: false });
     classes = getClasses(<SpeedDialAction {...defaultProps} />);
   });

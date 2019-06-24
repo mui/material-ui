@@ -34,7 +34,7 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Notes
 
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

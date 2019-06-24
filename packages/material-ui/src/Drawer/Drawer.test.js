@@ -13,7 +13,8 @@ describe('<Drawer />', () => {
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses Slide
+    mount = createMount({ strict: false });
     classes = getClasses(
       <Drawer>
         <div />

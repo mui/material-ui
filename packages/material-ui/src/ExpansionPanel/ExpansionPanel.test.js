@@ -16,7 +16,8 @@ describe('<ExpansionPanel />', () => {
   const minimalChildren = [<ExpansionPanelSummary key="header" />];
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses Collapse
+    mount = createMount({ strict: false });
     classes = getClasses(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
   });
 

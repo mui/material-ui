@@ -73,7 +73,8 @@ describe('<MenuList> integration', () => {
   }
 
   before(() => {
-    render = createClientRender({ strict: true });
+    // StrictModeViolation: Uses MenuItem
+    render = createClientRender({ strict: false });
   });
 
   after(() => {
