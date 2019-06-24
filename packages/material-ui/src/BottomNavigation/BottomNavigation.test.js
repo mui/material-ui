@@ -20,7 +20,8 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses BottomNavigationAction
+    mount = createMount({ strict: false });
   });
 
   after(() => {

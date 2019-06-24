@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
-    "@material-ui/react-transition-group": "^4.2.0",
     "@material-ui/styles": "^4.1.2",
     "@material-ui/system": "^4.3.0",
     "@material-ui/types": "^4.1.1",
@@ -54,6 +53,7 @@
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
     "react-event-listener": "^0.6.6",
+    "react-transition-group": "^4.0.0",
     "warning": "^4.0.1"
   },
   "sideEffects": false,

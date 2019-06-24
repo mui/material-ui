@@ -20,7 +20,8 @@ describe('<ListItem />', () => {
 
   before(() => {
     classes = getClasses(<ListItem />);
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
   });
 
   after(() => {

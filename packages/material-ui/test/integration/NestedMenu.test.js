@@ -7,7 +7,8 @@ describe('<NestedMenu> integration', () => {
   let mount;
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: test uses Popover
+    mount = createMount({ strict: false });
   });
 
   after(() => {

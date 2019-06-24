@@ -7,7 +7,8 @@ describe('<Select> integration', () => {
   let mount;
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses MenuItem
+    mount = createMount({ strict: false });
   });
 
   after(() => {

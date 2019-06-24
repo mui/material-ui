@@ -31,7 +31,8 @@ describe('<SelectInput />', () => {
 
   before(() => {
     shallow = createShallow();
-    mount = createMount({ strict: true });
+    // StrictModeViolation: test uses MenuItem
+    mount = createMount({ strict: false });
   });
 
   after(() => {

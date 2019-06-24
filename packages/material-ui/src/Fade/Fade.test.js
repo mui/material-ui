@@ -4,7 +4,7 @@ import { spy, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Fade from './Fade';
-import { Transition } from '@material-ui/react-transition-group';
+import { Transition } from 'react-transition-group';
 
 describe('<Fade />', () => {
   let mount;
@@ -15,7 +15,8 @@ describe('<Fade />', () => {
   };
 
   before(() => {
-    mount = createMount({ strict: true });
+    // StrictModeViolation: uses react-transition-group
+    mount = createMount({ strict: false });
   });
 
   after(() => {

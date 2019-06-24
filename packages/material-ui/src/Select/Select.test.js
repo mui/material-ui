@@ -25,7 +25,8 @@ describe('<Select />', () => {
 
   before(() => {
     classes = getClasses(<Select {...defaultProps} />);
-    mount = createMount({ strict: true });
+    // StrictModeViolation: test uses MenuItem
+    mount = createMount({ strict: false });
   });
 
   after(() => {

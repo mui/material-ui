@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Transition } from '@material-ui/react-transition-group';
+import { Transition } from 'react-transition-group';
 
 /**
  * @ignore - internal component.
@@ -40,16 +40,9 @@ function Ripple(props) {
     [classes.childPulsate]: pulsate,
   });
 
-  const rippleRef = React.useRef();
-
   return (
-    <Transition
-      onEnter={handleEnter}
-      onExit={handleExit}
-      {...other}
-      findDOMNode={() => rippleRef.current}
-    >
-      <span className={rippleClassName} ref={rippleRef} style={rippleStyles}>
+    <Transition onEnter={handleEnter} onExit={handleExit} {...other}>
+      <span className={rippleClassName} style={rippleStyles}>
         <span className={childClassName} />
       </span>
     </Transition>
