@@ -57,6 +57,9 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     icon,
     nodeId,
     label,
+    onClick,
+    onFocus,
+    onKeyDown,
     ...other
   } = props;
   const {
@@ -128,6 +131,11 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     if (expandable) {
       toggle(nodeId);
     }
+
+    if(onClick){
+      onClick(event);
+    }
+
   };
 
   const handleKeyDown = event => {
@@ -203,11 +211,19 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       event.preventDefault();
       event.stopPropagation();
     }
+
+    if(onKeyDown){
+      onKeyDown(event);
+    }
   };
 
-  const handleFocus = () => {
+  const handleFocus = event => {
     if (!focused && focusable) {
       focus(nodeId);
+    }
+
+    if(onFocus){
+      onFocus(event)
     }
   };
 
@@ -293,6 +309,18 @@ TreeNode.propTypes = {
    * The id of the node.
    */
   nodeId: PropTypes.string.isRequired,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
 };
 
 export default withStyles(styles)(TreeNode);
