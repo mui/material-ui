@@ -15,7 +15,7 @@ export interface YearProps {
 export const useStyles = makeStyles(
   theme => ({
     root: {
-      height: theme.spacing(5),
+      height: 40,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

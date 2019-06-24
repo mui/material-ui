@@ -44,7 +44,7 @@ export const useStyles = makeStyles(
     return {
       clockNumber: {
         width: size,
-        height: size,
+        height: 32,
         userSelect: 'none',
         position: 'absolute',
         left: `calc(50% - ${size / 2}px)`,

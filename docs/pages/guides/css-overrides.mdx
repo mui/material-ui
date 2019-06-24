@@ -3,6 +3,7 @@ import Example from '_shared/Example';
 import PageMeta from '_shared/PageMeta'
 import * as CssTheme from './CssTheme.example'
 import * as CssOverrides from './CssOverrides.example'
+import * as CssThemeSpacing from './CssThemeSpacing.example'
 
 <PageMeta title="CSS Overrides" />
 
@@ -31,6 +32,12 @@ overrides.
 
 <Example source={CssOverrides} />
 
+
+#### Custom spacing
+
+Pickers will also leverage `spacing` from the material-ui's theme
+
+<Example source={CssThemeSpacing} />
 
 #### Typescript
 For TypeScript users it's also required to extend default material-ui theme typings with pickers controls.
