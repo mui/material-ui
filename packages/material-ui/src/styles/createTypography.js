@@ -32,6 +32,10 @@ export default function createTypography(palette, typography) {
   } = typeof typography === 'function' ? typography(palette) : typography;
 
   warning(typeof fontSize === 'number', `Material-UI: 'fontSize' is required to be a number`);
+  warning(
+    typeof htmlFontSize === 'number',
+    `Material-UI: 'htmlFontSize' is required to be a number`,
+  );
 
   const coef = fontSize / 14;
   const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
