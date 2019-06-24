@@ -22,7 +22,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     defaultEndIcon,
     defaultExpandIcon,
     defaultParentIcon,
-    expanded: expandedProp,
+    expanded: expandedProp = [],
     onNodeToggle,
     ...other
   } = props;

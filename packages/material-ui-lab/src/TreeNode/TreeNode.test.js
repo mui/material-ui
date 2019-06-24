@@ -118,7 +118,7 @@ describe('<TreeNode />', () => {
 
     it('should have the attribute `aria-expanded=true` if expanded', () => {
       const wrapper = mount(
-        <TreeView expanded={["test"]} >
+        <TreeView expanded={['test']}>
           <TreeNode nodeId="test" label="test">
             <TreeNode nodeId="test2" label="test" />
           </TreeNode>
@@ -128,5 +128,14 @@ describe('<TreeNode />', () => {
       assert.strictEqual(wrapper.find('[aria-expanded=true]').exists(), true);
     });
 
+    it('should not have the attribute `aria-expanded` if no children are present', () => {
+      const wrapper = mount(
+        <TreeView>
+          <TreeNode nodeId="test" label="test" />
+        </TreeView>,
+      );
+
+      assert.strictEqual(wrapper.find('[aria-expanded]').exists(), false);
+    });
   });
 });

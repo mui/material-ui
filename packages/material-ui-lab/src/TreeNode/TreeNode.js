@@ -132,10 +132,9 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       toggle(nodeId);
     }
 
-    if(onClick){
+    if (onClick) {
       onClick(event);
     }
-
   };
 
   const handleKeyDown = event => {
@@ -212,7 +211,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       event.stopPropagation();
     }
 
-    if(onKeyDown){
+    if (onKeyDown) {
       onKeyDown(event);
     }
   };
@@ -222,8 +221,8 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       focus(nodeId);
     }
 
-    if(onFocus){
-      onFocus(event)
+    if (onFocus) {
+      onFocus(event);
     }
   };
 
