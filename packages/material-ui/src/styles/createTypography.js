@@ -31,10 +31,10 @@ export default function createTypography(palette, typography) {
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
-  warning(typeof fontSize === 'number', `Material-UI: 'fontSize' is required to be a number`);
+  warning(typeof fontSize === 'number', `Material-UI: 'fontSize' is required to be a number.`);
   warning(
     typeof htmlFontSize === 'number',
-    `Material-UI: 'htmlFontSize' is required to be a number`,
+    `Material-UI: 'htmlFontSize' is required to be a number.`,
   );
 
   const coef = fontSize / 14;
