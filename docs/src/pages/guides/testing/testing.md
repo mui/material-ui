@@ -17,19 +17,19 @@ While we have reached the 100% test coverage achievement, we don't encourage our
 
 What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose.
 
-### Shallow rendering
-
-Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components.
-Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
-
-The `createShallow()` function can be used for this situation. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
-
 ### Full DOM rendering
 
 Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (e.g., `componentDidMount` etc.).
 
 The `createMount()` function is provided for this situation.
 Aside from wrapping the enzyme API, it provides a `cleanUp` function.
+
+### Shallow rendering
+
+Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components.
+Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
+
+The `createShallow()` function can be used for this situation. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
 
 ### Render to string
 
@@ -39,42 +39,6 @@ You can take advantage of this to assert the generated HTML string.
 The `createRender()` function is ideal for this. This is just an alias for the enzyme API, which is only exposed for consistency.
 
 ## API
-
-### `createShallow([options]) => shallow`
-
-Generate an enhanced shallow function with the needed context.
-Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
-
-
-#### Arguments
-
-1. `options` (*Object* [optional])
-  - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
-  - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
-  - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
-  - The other keys are forwarded to the options argument of `enzyme.shallow()`.
-
-#### Returns
-
-`shallow` (*shallow*): A shallow function.
-
-#### Examples
-
-```jsx
-import { createShallow } from '@material-ui/core/test-utils';
-
-describe('<MyComponent />', () => {
-  let shallow;
-
-  before(() => {  // This is Mocha; in Jest, use beforeAll
-    shallow = createShallow();
-  });
-
-  it('should work', () => {
-    const wrapper = shallow(<MyComponent />);
-  });
-});
-```
 
 ### `createMount([options]) => mount`
 
@@ -109,6 +73,43 @@ describe('<MyComponent />', () => {
 
   it('should work', () => {
     const wrapper = mount(<MyComponent />);
+  });
+});
+```
+
+
+### `createShallow([options]) => shallow`
+
+Generate an enhanced shallow function with the needed context.
+Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
+
+
+#### Arguments
+
+1. `options` (*Object* [optional])
+  - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
+  - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
+  - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
+  - The other keys are forwarded to the options argument of `enzyme.shallow()`.
+
+#### Returns
+
+`shallow` (*shallow*): A shallow function.
+
+#### Examples
+
+```jsx
+import { createShallow } from '@material-ui/core/test-utils';
+
+describe('<MyComponent />', () => {
+  let shallow;
+
+  before(() => {  // This is Mocha; in Jest, use beforeAll
+    shallow = createShallow();
+  });
+
+  it('should work', () => {
+    const wrapper = shallow(<MyComponent />);
   });
 });
 ```
