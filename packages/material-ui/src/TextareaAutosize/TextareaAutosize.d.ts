@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaAutosizeProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   rowsMax?: string | number;
 }
 
