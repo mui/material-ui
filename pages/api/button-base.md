@@ -20,7 +20,7 @@ It contains a load of style reset and some focus/ripple logic.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">action</span> | <span class="prop-type">func</span> |  | Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It currently only supports `focusVisible()` action.<br><br>**Signature:**<br>`function(actions: object) => void`<br>*actions:* This object contains all possible actions that can be triggered programmatically. |
+| <span class="prop-name">action</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | A ref for imperative actions. It currently only supports `focusVisible()` action. |
 | <span class="prop-name">buttonRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | Use that property to pass a ref callback to the native button component. |
 | <span class="prop-name">centerRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
