@@ -14,9 +14,11 @@ import * as PropTypes from 'prop-types';
  * @param {HTMLElement} element
  */
 function focusVisible(element) {
-  element.blur();
-  fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
-  element.focus();
+  act(() => {
+    element.blur();
+    fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+    element.focus();
+  });
 }
 
 function simulatePointerDevice() {
@@ -209,17 +211,13 @@ describe('<ButtonBase />', () => {
       });
 
       it('should not have a focus ripple by default', () => {
-        act(() => {
-          focusVisible(button);
-        });
+        focusVisible(button);
 
         expect(button.querySelectorAll('.ripple-pulsate')).to.be.have.length(0);
       });
 
       it('should start the ripple when the mouse is pressed 1', () => {
-        act(() => {
-          fireEvent.mouseDown(button);
-        });
+        fireEvent.mouseDown(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.length(0);
         expect(
@@ -228,9 +226,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('should stop the ripple when the mouse is released', () => {
-        act(() => {
-          fireEvent.mouseUp(button);
-        });
+        fireEvent.mouseUp(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
         expect(
@@ -239,9 +235,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('should start the ripple when the mouse is pressed 2', () => {
-        act(() => {
-          fireEvent.mouseDown(button);
-        });
+        fireEvent.mouseDown(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
         expect(
@@ -250,9 +244,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('should stop the ripple when the button blurs', () => {
-        act(() => {
-          button.blur();
-        });
+        button.blur();
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(2);
         expect(
@@ -261,9 +253,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('should start the ripple when the mouse is pressed 3', () => {
-        act(() => {
-          fireEvent.mouseDown(button);
-        });
+        fireEvent.mouseDown(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(2);
         expect(
@@ -272,9 +262,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('should stop the ripple when the mouse leaves', () => {
-        act(() => {
-          fireEvent.mouseLeave(button);
-        });
+        fireEvent.mouseLeave(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(3);
         expect(
@@ -283,9 +271,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('should start the ripple when the mouse is pressed 4', () => {
-        act(() => {
-          fireEvent.mouseDown(button);
-        });
+        fireEvent.mouseDown(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(3);
         expect(
@@ -294,9 +280,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('should stop the ripple when dragging has finished', () => {
-        act(() => {
-          fireEvent.dragLeave(button);
-        });
+        fireEvent.dragLeave(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(4);
         expect(
@@ -309,18 +293,14 @@ describe('<ButtonBase />', () => {
       const { getByText } = render(<ButtonBase>Hello</ButtonBase>);
       const button = getByText('Hello');
 
-      act(() => {
-        fireEvent.click(button, {});
-      });
+      fireEvent.click(button, {});
     });
 
     it('can be centered on the button', () => {
       const { getByText } = render(<ButtonBase centerRipple>Hello</ButtonBase>);
       const button = getByText('Hello');
 
-      act(() => {
-        fireEvent.click(button, {});
-      });
+      fireEvent.click(button, {});
     });
   });
 
@@ -357,9 +337,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('should pulsate the ripple when focusVisible', () => {
-      act(() => {
-        focusVisible(button);
-      });
+      focusVisible(button);
 
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
     });
@@ -371,18 +349,14 @@ describe('<ButtonBase />', () => {
     });
 
     it('should stop pulsate and start a ripple when the space button is pressed', () => {
-      act(() => {
-        fireEvent.keyDown(button, { key: ' ' });
-      });
+      fireEvent.keyDown(button, { key: ' ' });
 
       expect(button.querySelectorAll('.ripple-pulsate .child-leaving')).to.have.lengthOf(1);
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(2);
     });
 
     it('should stop and re-pulsate when space bar is released', () => {
-      act(() => {
-        fireEvent.keyUp(button, { key: ' ' });
-      });
+      fireEvent.keyUp(button, { key: ' ' });
 
       expect(button.querySelectorAll('.ripple-pulsate .child-leaving')).to.have.lengthOf(1);
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(2);
@@ -495,7 +469,6 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event: keydown', () => {
-    // eslint-disable-next-line mocha/no-skipped-tests
     it('ripples on repeated keydowns', () => {
       const { container, getByText } = render(
         <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
@@ -504,19 +477,15 @@ describe('<ButtonBase />', () => {
       );
 
       const button = getByText('Hello');
-      button.focus();
 
-      act(() => {
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
-      });
+      button.focus();
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
 
-      act(() => {
-        // technically the second keydown should be fire with repeat: true
-        // but that isn't implemented in IE 11 so we shouldn't mock it here either
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
-      });
+      // technically the second keydown should be fire with repeat: true
+      // but that isn't implemented in IE 11 so we shouldn't mock it here either
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
     });
@@ -548,9 +517,7 @@ describe('<ButtonBase />', () => {
         );
         const button = getByText('Hello');
 
-        act(() => {
-          fireEvent.click(button);
-        });
+        fireEvent.click(button);
 
         expect(button).not.to.have.class('ripple-visible');
       });
