@@ -305,7 +305,10 @@ describe('<ButtonBase />', () => {
         ).to.have.lengthOf(1);
       });
 
-      it('should stop the ripple when dragging has finished', () => {
+      it('should stop the ripple when dragging has finished', function test() {
+        if (!canFireDragEvents) {
+          this.skip();
+        }
         fireEvent.dragLeave(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(4);
