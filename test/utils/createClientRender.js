@@ -66,6 +66,16 @@ const fireEvent = Object.assign(rtlFireEvent, {
 
     rtlFireEvent(element, event);
   },
+  keyUp(element, options = {}) {
+    const event = createEvent.keyUp(element, options);
+    Object.defineProperty(event, 'key', {
+      get() {
+        return options.key || '';
+      },
+    });
+
+    rtlFireEvent(element, event);
+  },
 });
 
 export * from '@testing-library/react';

@@ -40,10 +40,6 @@ describe('<ButtonBase />', () => {
    * @type {Record<string, string>}
    */
   let classes;
-  /**
-   * some tests fail in older browsers
-   */
-  let isChrome49 = false;
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;
 
@@ -55,7 +51,6 @@ describe('<ButtonBase />', () => {
     mount = createMount({ strict: false });
     classes = getClasses(<ButtonBase />);
     // browser testing config
-    isChrome49 = /Chrome\/49\.0/.test(window.navigator.userAgent);
     try {
       // eslint-disable-next-line no-new
       new DragEvent('');
@@ -388,10 +383,6 @@ describe('<ButtonBase />', () => {
 
     it('should stop and re-pulsate when space bar is released', function test() {
       fireEvent.keyUp(button, { key: ' ' });
-      if (isChrome49) {
-        // https://github.com/mui-org/material-ui/issues/16366
-        this.skip();
-      }
 
       expect(button.querySelectorAll('.ripple-pulsate .child-leaving')).to.have.lengthOf(1);
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(2);
@@ -404,10 +395,7 @@ describe('<ButtonBase />', () => {
         button.blur();
       });
 
-      expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(
-        // previous test fails in chrome 49. Remove branch once the prev test passes
-        isChrome49 ? 2 : 3,
-      );
+      expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(3);
     });
   });
 
