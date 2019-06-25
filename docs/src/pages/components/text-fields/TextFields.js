@@ -41,7 +41,7 @@ const currencies = [
   },
 ];
 
-function TextFields() {
+export default function TextFields() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     name: 'Cat in the Hat',
@@ -240,9 +240,8 @@ function TextFields() {
         className={classes.textField}
         defaultValue="Bare"
         margin="normal"
+        inputProps={{ 'aria-label': 'bare' }}
       />
     </form>
   );
 }
-
-export default TextFields;

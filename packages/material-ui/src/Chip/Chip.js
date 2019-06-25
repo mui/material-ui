@@ -12,6 +12,7 @@ import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
   const height = 32;
+  const smallHeight = 24;
   const backgroundColor =
     theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -39,6 +40,10 @@ export const styles = theme => {
       padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
       boxSizing: 'border-box',
+    },
+    /* Styles applied to the root element if `size="small"`. */
+    sizeSmall: {
+      height: smallHeight,
     },
     /* Styles applied to the root element if `color="primary"`. */
     colorPrimary: {
@@ -135,6 +140,11 @@ export const styles = theme => {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       fontSize: theme.typography.pxToRem(16),
     },
+    avatarSmall: {
+      width: smallHeight,
+      height: smallHeight,
+      fontSize: theme.typography.pxToRem(12),
+    },
     /* Styles applied to the `avatar` element if `color="primary"`. */
     avatarColorPrimary: {
       color: theme.palette.primary.contrastText,
@@ -147,14 +157,17 @@ export const styles = theme => {
     },
     /* Styles applied to the `avatar` elements children. */
     avatarChildren: {
-      width: 19,
-      height: 19,
+      height: 18,
     },
     /* Styles applied to the `icon` element. */
     icon: {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
-      marginLeft: 4,
+      marginLeft: 5,
       marginRight: -8,
+    },
+    iconSmall: {
+      width: 16,
+      marginRight: -5,
     },
     /* Styles applied to the `icon` element if `color="primary"`. */
     iconColorPrimary: {
@@ -174,6 +187,10 @@ export const styles = theme => {
       whiteSpace: 'nowrap',
       cursor: 'inherit',
     },
+    labelSmall: {
+      paddingLeft: 8,
+      paddingRight: 8,
+    },
     /* Styles applied to the `deleteIcon` element. */
     deleteIcon: {
       // Remove grey highlight
@@ -181,10 +198,14 @@ export const styles = theme => {
       color: deleteIconColor,
       cursor: 'pointer',
       height: 'auto',
-      margin: '0 4px 0 -8px',
+      margin: '0 5px 0 -8px',
       '&:hover': {
         color: fade(deleteIconColor, 0.4),
       },
+    },
+    deleteIconSmall: {
+      height: 16,
+      margin: '0 1px 0 -9px',
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`. */
     deleteIconColorPrimary: {
@@ -235,6 +256,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     onDelete,
     onKeyDown,
     onKeyUp,
+    size = 'medium',
     variant = 'default',
     ...other
   } = props;
@@ -292,10 +314,12 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   };
 
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
+  const small = size === 'small';
 
   const className = clsx(
     classes.root,
     {
+      [classes.sizeSmall]: small,
       [classes[`color${capitalize(color)}`]]: color !== 'default',
       [classes.clickable]: clickable,
       [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
@@ -311,6 +335,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   let deleteIcon = null;
   if (onDelete) {
     const customClasses = clsx({
+      [classes.deleteIconSmall]: small,
       [classes[`deleteIconColor${capitalize(color)}`]]:
         color !== 'default' && variant !== 'outlined',
       [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
@@ -335,6 +360,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   if (avatarProp && React.isValidElement(avatarProp)) {
     avatar = React.cloneElement(avatarProp, {
       className: clsx(classes.avatar, avatarProp.props.className, {
+        [classes.avatarSmall]: small,
         [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
       }),
       childrenClassName: clsx(classes.avatarChildren, avatarProp.props.childrenClassName),
@@ -345,6 +371,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   if (iconProp && React.isValidElement(iconProp)) {
     icon = React.cloneElement(iconProp, {
       className: clsx(classes.icon, iconProp.props.className, {
+        [classes.iconSmall]: small,
         [classes[`iconColor${capitalize(color)}`]]: color !== 'default',
       }),
     });
@@ -370,7 +397,13 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       {...other}
     >
       {avatar || icon}
-      <span className={classes.label}>{label}</span>
+      <span
+        className={clsx(classes.label, {
+          [classes.labelSmall]: small,
+        })}
+      >
+        {label}
+      </span>
       {deleteIcon}
     </Component>
   );
@@ -441,6 +474,10 @@ Chip.propTypes = {
    * @ignore
    */
   onKeyUp: PropTypes.func,
+  /**
+   * The size of the chip.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The variant to use.
    */

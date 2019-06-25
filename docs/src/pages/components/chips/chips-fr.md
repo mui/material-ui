@@ -32,6 +32,18 @@ Un exemple de rendu de plusieurs puces à partir d'un tableau de valeurs. Suppri
 
 {{"demo": "pages/components/chips/ChipsArray.js"}}
 
+## Small Chip
+
+You can use the `size` prop to define a small Chip.
+
+### Default variant
+
+{{"demo": "pages/components/chips/SmallChips.js"}}
+
+### Outlined variant
+
+{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+
 ## Terrain de jeu de puce
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

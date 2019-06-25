@@ -6,10 +6,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { Router } from 'next/router';
 import { LANGUAGES } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import getTheme from 'docs/src/modules/styles/getTheme';
-import themeInitialState from 'docs/src/modules/styles/themeInitialState';
-
-const theme = getTheme(themeInitialState);
+import { themeColor } from 'docs/src/modules/components/ThemeContext';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -38,7 +35,7 @@ class MyDocument extends Document {
     const { canonical, userLanguage } = this.props;
 
     return (
-      <html lang={userLanguage} dir="ltr">
+      <html lang={userLanguage}>
         <Head>
           {/* Use minimum-scale=1 to enable GPU rasterization. */}
           <meta
@@ -51,7 +48,7 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" content={themeColor} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* SEO */}
           <link
@@ -60,12 +57,17 @@ class MyDocument extends Document {
               `${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonical}`,
             )}`}
           />
+          <link
+            rel="alternate"
+            href={`https://material-ui.com${Router._rewriteUrlForNextExport(canonical)}`}
+            hrefLang="x-default"
+          />
           {LANGUAGES.map(userLanguage2 => (
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://material-ui.com/${Router._rewriteUrlForNextExport(
-                `${userLanguage2}${canonical}`,
+              href={`https://material-ui.com${Router._rewriteUrlForNextExport(
+                `${userLanguage2 === 'en' ? '' : `/${userLanguage2}`}${canonical}`,
               )}`}
               hrefLang={userLanguage2}
             />
@@ -79,6 +81,7 @@ class MyDocument extends Document {
           <style id="material-icon-font" />
           <style id="font-awesome-css" />
           <style id="app-search" />
+          <style id="prismjs" />
           <style id="insertion-point-jss" />
         </Head>
         <body>

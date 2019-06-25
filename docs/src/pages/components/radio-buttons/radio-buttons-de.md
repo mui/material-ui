@@ -7,7 +7,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 <p class="description">Optionsfelder ermöglichen die Auswahl einer einzelnen Option aus einem Set.</p>
 
-Use [radio buttons](https://material.io/design/components/selection-controls.html#radio-buttons) when the user needs to see all available options. Wenn verfügbare Optionen reduziert werden können, sollten Sie ein Dropdown-Menü in Betracht ziehen, da so weniger Platz benötigt wird.
+Verwenden Sie die [Optionsfelder](https://material.io/design/components/selection-controls.html#radio-buttons) wenn dem Benutzer alle verfügbaren Optionen anzeigt werden müssen. Wenn verfügbare Optionen reduziert werden können, sollten Sie ein Dropdown-Menü in Betracht ziehen, da so weniger Platz benötigt wird.
 
 Bei Optionsschaltflächen sollte die am häufigsten verwendete Option standardmäßig ausgewählt sein.
 

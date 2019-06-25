@@ -6,7 +6,9 @@ export {
   createStyles,
   makeStyles,
   MuiThemeProvider,
+  responsiveFontSizes,
   styled,
+  useTheme,
   withStyles,
   withTheme,
 } from './styles';
@@ -21,6 +23,7 @@ export { default as Box } from './Box';
 export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
+export { default as ButtonGroup } from './ButtonGroup';
 export { default as Card } from './Card';
 export { default as CardActionArea } from './CardActionArea';
 export { default as CardActions } from './CardActions';
@@ -117,6 +120,8 @@ export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
 export { default as Tooltip } from './Tooltip';
 export { default as Typography } from './Typography';
+export { default as useMediaQuery } from './useMediaQuery';
+export { default as useScrollTrigger } from './useScrollTrigger';
 export { default as withMobileDialog } from './withMobileDialog';
 export { default as withWidth } from './withWidth';
 export { default as Zoom } from './Zoom';

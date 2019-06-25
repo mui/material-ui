@@ -86,7 +86,7 @@ but [https://materialdesignicons.com](https://materialdesignicons.com/) provides
 
 The `Icon` component will display an icon from any icon font that supports ligatures.
 As a prerequisite, you must include one, such as the
-[Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
+[Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -122,7 +122,7 @@ Optionally, you can set the icon color using one of the theme color properties: 
 Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality.
 Whenever possible SVG is preferred as it allows code splitting, supports more icons, renders faster and better.
 
-For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://blog.github.com/2016-02-22-delivering-octicons-with-svg/).
+For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
 
 ## Accessibility
 

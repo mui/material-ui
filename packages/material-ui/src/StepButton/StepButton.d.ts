@@ -1,23 +1,27 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 import { Orientation } from '../Stepper';
-import { ButtonBaseProps } from '../ButtonBase';
+import { ButtonBaseTypeMap, ExtendButtonBase } from '../ButtonBase';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
 export type StepButtonIcon = React.ReactElement | string | number | null;
 
-export interface StepButtonProps extends StandardProps<ButtonBaseProps, StepButtonClasskey> {
-  active?: boolean;
-  alternativeLabel?: boolean;
-  completed?: boolean;
-  disabled?: boolean;
-  icon?: StepButtonIcon;
-  last?: boolean;
-  optional?: React.ReactNode;
-  orientation?: Orientation;
-}
+declare const StepButton: ExtendButtonBase<{
+  props: {
+    active?: boolean;
+    alternativeLabel?: boolean;
+    completed?: boolean;
+    disabled?: boolean;
+    icon?: StepButtonIcon;
+    last?: boolean;
+    optional?: React.ReactNode;
+    orientation?: Orientation;
+  };
+  defaultComponent: ButtonBaseTypeMap['defaultComponent'];
+  classKey: StepButtonClasskey;
+}>;
 
 export type StepButtonClasskey = 'root' | 'vertical' | 'touchRipple';
 
-declare const StepButton: React.ComponentType<StepButtonProps>;
+export type StepButtonProps = SimplifiedPropsOf<typeof StepButton>;
 
 export default StepButton;

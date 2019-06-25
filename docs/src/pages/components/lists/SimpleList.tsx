@@ -22,12 +22,12 @@ function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
   return <ListItem button component="a" {...props} />;
 }
 
-function SimpleList() {
+export default function SimpleList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <List component="nav">
+      <List component="nav" aria-label="Main mailbox folders">
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
@@ -42,7 +42,7 @@ function SimpleList() {
         </ListItem>
       </List>
       <Divider />
-      <List component="nav">
+      <List component="nav" aria-label="Secondary mailbox folders">
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>
@@ -53,5 +53,3 @@ function SimpleList() {
     </div>
   );
 }
-
-export default SimpleList;

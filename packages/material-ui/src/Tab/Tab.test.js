@@ -4,10 +4,10 @@ import { spy } from 'sinon';
 import {
   createShallow,
   createMount,
-  describeConformance,
   getClasses,
   findOutermostIntrinsic,
 } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
@@ -36,6 +36,26 @@ describe('<Tab />', () => {
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
   }));
+
+  it('should have a ripple by default', () => {
+    const wrapper = shallow(<Tab />);
+    assert.strictEqual(wrapper.props().disableRipple, undefined);
+  });
+
+  it('should pass disableRipple to ButtonBase', () => {
+    const wrapper = shallow(<Tab disableRipple />);
+    assert.strictEqual(wrapper.props().disableRipple, true);
+  });
+
+  it('should have a focusRipple by default', () => {
+    const wrapper = shallow(<Tab />);
+    assert.strictEqual(wrapper.props().focusRipple, true);
+  });
+
+  it('should pass disableFocusRipple to ButtonBase', () => {
+    const wrapper = shallow(<Tab disableFocusRipple />);
+    assert.strictEqual(wrapper.props().focusRipple, false);
+  });
 
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {

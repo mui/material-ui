@@ -1,5 +1,6 @@
 import React from 'react';
-import { createMount, getClasses, describeConformance } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import ListItemAvatar from './ListItemAvatar';
 
 describe('<ListItemAvatar />', () => {

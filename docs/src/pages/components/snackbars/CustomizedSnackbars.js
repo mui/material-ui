@@ -6,8 +6,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
-import green from '@material-ui/core/colors/green';
-import amber from '@material-ui/core/colors/amber';
+import { amber, green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
@@ -29,7 +28,7 @@ const useStyles1 = makeStyles(theme => ({
     backgroundColor: theme.palette.error.dark,
   },
   info: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.main,
   },
   warning: {
     backgroundColor: amber[700],
@@ -85,7 +84,7 @@ const useStyles2 = makeStyles(theme => ({
   },
 }));
 
-function CustomizedSnackbars() {
+export default function CustomizedSnackbars() {
   const classes = useStyles2();
   const [open, setOpen] = React.useState(false);
 
@@ -144,5 +143,3 @@ function CustomizedSnackbars() {
     </div>
   );
 }
-
-export default CustomizedSnackbars;

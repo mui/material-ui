@@ -1,5 +1,5 @@
 ---
-title: List React component
+title: Listコンポーネント
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
@@ -37,9 +37,9 @@ function ListItemLink(props) {
 
 {{"demo": "pages/components/lists/FolderList.js"}}
 
-## Interactive
+## インタラクティブ
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+以下は、さまざまな設定の視覚的な結果を調べることができるインタラクティブなデモです。
 
 {{"demo": "pages/components/lists/InteractiveList.js"}}
 
@@ -53,7 +53,7 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "pages/components/lists/AlignItemsList.js"}}
 
-## Listの操作
+## List Controls
 
 ### Checkbox
 
@@ -87,6 +87,8 @@ Switchは補助的なアクションであり異なるターゲットです。
 
 ## Virtualized List
 
-In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. It renders 200 rows and can easily handle more. Virtualization helps with performance issues.
+次の例では、 `リスト` コンポーネントで [react-window](https://github.com/bvaughn/react-window) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
+
+可能であれば、 [react-window](https://github.com/bvaughn/react-window) の使用をお勧めします。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。

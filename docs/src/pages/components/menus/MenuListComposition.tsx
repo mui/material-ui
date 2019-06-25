@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function MenuListComposition() {
+export default function MenuListComposition() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -48,13 +48,13 @@ function MenuListComposition() {
       <div>
         <Button
           ref={anchorRef}
-          aria-owns={open ? 'menu-list-grow' : undefined}
+          aria-controls="menu-list-grow"
           aria-haspopup="true"
           onClick={handleToggle}
         >
           Toggle Menu Grow
         </Button>
-        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
+        <Popper open={open} anchorEl={anchorRef.current} keepMounted transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
@@ -76,5 +76,3 @@ function MenuListComposition() {
     </div>
   );
 }
-
-export default MenuListComposition;

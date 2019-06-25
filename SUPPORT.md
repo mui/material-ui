@@ -2,7 +2,7 @@
 
 ## Asking Questions
 
-For how-to questions and other non-issues, please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui) or [Spectrum](https://spectrum.chat/material-ui) chat instead of Github issues. There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
+For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or [Spectrum](https://spectrum.chat/material-ui) chat instead of Github issues. There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
 
 ## Opening an Issue
 

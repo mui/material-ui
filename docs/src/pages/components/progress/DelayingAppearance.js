@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function DelayingAppearance() {
+export default function DelayingAppearance() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
@@ -87,5 +87,3 @@ function DelayingAppearance() {
     </div>
   );
 }
-
-export default DelayingAppearance;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(
   createStyles({
@@ -11,7 +11,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function Types() {
+export default function Types() {
   const classes = useStyles();
 
   return (
@@ -62,5 +62,3 @@ function Types() {
     </div>
   );
 }
-
-export default Types;

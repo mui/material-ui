@@ -25,7 +25,7 @@ Material-UI v4 has finally arrived. We are so excited about this release, as it 
 
 Material-UI v1 was [released](https://medium.com/material-ui/material-ui-v1-is-out-e73ce13463eb) one year ago. Version 4 is our most important major release since then. For those unfamiliar with the history of the project, we didn't release a v2, and v3 only introduced a slight browsers support change.
 
-This release happens within our [fixed frequency](/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/guides/migration-v3) 📚. It shouldn't take more than a few hours.
+This release happens within our [fixed frequency](/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/guides/migration-v3/) 📚. It shouldn't take more than a few hours.
 
 This release is influenced by two major factors. First, following the Developer Survey we ran in March, we have [analyzed the results](/blog/2019-developer-survey-results/) and used them to change [our priorities](/discover-more/roadmap/#our-priorities) for the coming year. Secondly, we needed to be up to date with the latest best practices in the React community and with the Material Design Specification.
 
@@ -121,7 +121,7 @@ Documentation was reported as the 3rd most critical pain point in the developer 
 
 - **i18n**. People come to Material-UI's documentation from all around the world. We want to include as many people as possible 🌎🌍🌏. We have completed the effort started in v3 by working on the Algolia search support, Google search indexing, Table Of Contents and Side Nav infrastructure.
 
-  We would like to thank [Danica Shen](https://github.com/Domino987) and [Dominik Engel](https://github.com/Domino987) for their heroic work on the 🇨🇳 and 🇩🇪 translations, while not forgetting the other 348 (and growing) translators.
+  We would like to thank [Danica Shen](https://github.com/DDDDDanica), [Dominik Engel](https://github.com/Domino987), and [Jairon Alves Lima](https://github.com/jaironalves) for their heroic work on the 🇨🇳, 🇩🇪 and 🇧🇷 translations, while not forgetting the other 348 (and growing) translators.
 - **Best practices**. We are now recommending the use of the hooks API over the classes API wherever possible. We have migrated a large portion of the demos to showcase a single approach.
 - **A better UX**. We have changed the menu organization to group all the components under a single navigation item. We have changed the background color to white to increase the text contrast and readability.
 
@@ -210,7 +210,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 <p class="blog-description">One example among others</p>
 
-- [Responsive font sizes.](http://material-ui.com/customization/typography/#responsive-font-sizes)
+- [Responsive font sizes.](/customization/typography/#responsive-font-sizes)
 
 ![font-size](/static/blog/material-ui-v4-is-out/font-size.png)
 
@@ -220,7 +220,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 An application example of the Box component.
 
-- [A better spacing helper.](http://material-ui.com/customization/spacing/)
+- [A better spacing helper.](/customization/spacing/)
 
 ![Spacing usage example](/static/blog/material-ui-v4-is-out/spacing.png)
 
@@ -260,7 +260,7 @@ export default function Hook() {
 }
 ```
 
-⚠️ Be aware of the difference between *@material-ui/styles* and *@material-ui/core/styles*. The latter contains the [default theme](http://material-ui.com/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
+⚠️ Be aware of the difference between *@material-ui/styles* and *@material-ui/core/styles*. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
 
 - A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for *@material-ui/styles*.
 - A [Cookbook](https://www.packtpub.com/application-development/react-material-ui-cookbook) published by Packt and written by Adam Boduch.
@@ -312,3 +312,7 @@ Within a few weeks, you should find a collection of the best Material-UI templat
 
 Finally, one last thank you to everyone who's contributed to Material-UI v4. 
 I'm so excited about this release! It's just the beginning. We will keep working hard on delivering the best possible React UI framework components.
+
+<hr />
+
+*You can find the [same post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).*

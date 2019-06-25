@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 
-function PositionedSnackbar() {
+export default function PositionedSnackbar() {
   const [state, setState] = React.useState({
     open: false,
     vertical: 'top',
@@ -44,5 +44,3 @@ function PositionedSnackbar() {
     </div>
   );
 }
-
-export default PositionedSnackbar;

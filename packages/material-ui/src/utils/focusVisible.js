@@ -1,5 +1,6 @@
 // based on https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
@@ -74,7 +75,7 @@ function handleVisibilityChange() {
   }
 }
 
-export function prepare(ownerDocument) {
+function prepare(ownerDocument) {
   ownerDocument.addEventListener('keydown', handleKeyDown, true);
   ownerDocument.addEventListener('mousedown', handlePointerDown, true);
   ownerDocument.addEventListener('pointerdown', handlePointerDown, true);
@@ -90,7 +91,7 @@ export function teardown(ownerDocument) {
   ownerDocument.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-export function isFocusVisible(event) {
+function isFocusVisible(event) {
   const { target } = event;
   try {
     return target.matches(':focus-visible');
@@ -109,7 +110,7 @@ export function isFocusVisible(event) {
 /**
  * Should be called if a blur event is fired on a focus-visible element
  */
-export function handleBlurVisible() {
+function handleBlurVisible() {
   // To detect a tab/window switch, we look for a blur event followed
   // rapidly by a visibility change.
   // If we don't see a visibility change within 100ms, it's probably a
@@ -122,13 +123,13 @@ export function handleBlurVisible() {
   }, 100);
 }
 
-export function useIsFocusVisible(getOwnerDocument) {
-  React.useEffect(() => {
-    const ownerDocument = getOwnerDocument();
-    if (ownerDocument != null) {
-      prepare(ownerDocument);
+export function useIsFocusVisible() {
+  const ref = React.useCallback(instance => {
+    const node = ReactDOM.findDOMNode(instance);
+    if (node != null) {
+      prepare(node.ownerDocument);
     }
-  }, [getOwnerDocument]);
+  }, []);
 
-  return { isFocusVisible, onBlurVisible: handleBlurVisible };
+  return { isFocusVisible, onBlurVisible: handleBlurVisible, ref };
 }

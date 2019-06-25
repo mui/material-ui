@@ -1,6 +1,6 @@
 ---
 title: Button React Komponente
-components: Button, Fab, IconButton, ButtonBase, Zoom
+components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons
@@ -44,6 +44,18 @@ Outlined Buttons sind auch eine Alternative mit geringerer Betonung als Containe
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Grouped Buttons
+
+Mit der ButtonGroup-Komponente können Sie umrissene (Standard) oder betonte Buttons gruppieren.
+
+{{"demo": "pages/components/buttons/GroupedButtons.js"}}
+
+## Split Button
+
+ButtonGroup kann auch zum Erstellen einer geteilten Schaltfläche verwendet werden. Das Dropdown-Menü kann die Aktion des Buttons ändern (wie in diesem Beispiel) oder verwendet werden, um sofort eine verwandte Aktion auszulösen.
+
+{{"demo": "pages/components/buttons/SplitButton.js"}}
+
 ## Floating Action Buttons
 
 Ein [Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) (FAB) führt die primäre oder gebräuchlichste Aktion auf einem Bildschirm aus. Es wird vor allen Bildschirminhalten angezeigt, normalerweise als Kreisform mit einem Symbol in der Mitte. Es gibt zwei Arten von FABs: normal und erweitert.
@@ -82,9 +94,9 @@ Icons eignen sich auch für Umschaltflächen, mit denen eine einzelne Auswahl au
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## Benutzerdefinierte Buttons
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 

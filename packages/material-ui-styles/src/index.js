@@ -1,7 +1,11 @@
 import { ponyfillGlobal } from '@material-ui/utils';
 
 /* Warning if there are several instances of @material-ui/styles */
-if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+if (
+  process.env.NODE_ENV !== 'production' &&
+  process.env.NODE_ENV !== 'test' &&
+  typeof window !== 'undefined'
+) {
   ponyfillGlobal['__@material-ui/styles-init__'] =
     ponyfillGlobal['__@material-ui/styles-init__'] || 0;
 
@@ -13,7 +17,7 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
         'This may cause theme propagation issues, broken class names ' +
           'and makes your application bigger without a good reason.',
         '',
-        'See https://material-ui.com/getting-started/faq#i-have-several-instances-of-styles-on-the-page for more info.',
+        'See https://material-ui.com/r/styles-instance-warning for more info.',
       ].join('\n'),
     );
   }

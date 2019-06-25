@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SwitchListSecondary() {
+export default function SwitchListSecondary() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(['wifi']);
 
@@ -41,12 +41,13 @@ function SwitchListSecondary() {
         <ListItemIcon>
           <WifiIcon />
         </ListItemIcon>
-        <ListItemText primary="Wi-Fi" />
+        <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
         <ListItemSecondaryAction>
           <Switch
             edge="end"
             onChange={handleToggle('wifi')}
             checked={checked.indexOf('wifi') !== -1}
+            inputProps={{ 'aria-labelledby': 'switch-list-label-wifi' }}
           />
         </ListItemSecondaryAction>
       </ListItem>
@@ -54,17 +55,16 @@ function SwitchListSecondary() {
         <ListItemIcon>
           <BluetoothIcon />
         </ListItemIcon>
-        <ListItemText primary="Bluetooth" />
+        <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
         <ListItemSecondaryAction>
           <Switch
             edge="end"
             onChange={handleToggle('bluetooth')}
             checked={checked.indexOf('bluetooth') !== -1}
+            inputProps={{ 'aria-labelledby': 'switch-list-label-bluetooth' }}
           />
         </ListItemSecondaryAction>
       </ListItem>
     </List>
   );
 }
-
-export default SwitchListSecondary;

@@ -51,35 +51,35 @@ La personnalisation ne se limite pas aux CSS, vous pouvez utiliser la compositio
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
 
-## Input Adornments
+## Ornements d'input
 
-`Input` allows the provision of `InputAdornment`. These can be used to add a prefix, a suffix or an action to an input. For instance, you can use an icon button to hide or reveal the password.
+`Input` permet de fournir `InputAdornment`. Ceux-ci peuvent être utilisés pour ajouter un préfixe, un suffixe ou une action à une entrée. Par exemple, vous pouvez utiliser un bouton icône pour masquer ou révéler le mot de passe.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
 ### Avec Icone
 
-Icons can be specified as prepended or appended.
+Les icônes peuvent être spécifiées comme prédéfinies ou ajoutées.
 
 {{"demo": "pages/components/text-fields/InputWithIcon.js"}}
 
-### Filled Input Adornments
+### Ornements d'input remplis
 
-{{"demo": "pages/components/text-fields/FilledInputAdornments.js"}}
+{{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
-### Outlined Input Adornments
+### Ornements d'input décrits
 
-{{"demo": "pages/components/text-fields/OutlinedInputAdornments.js"}}
+{{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
 ## Disposition
 
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter other styles to meet the specification.
+`TextField`, `FormControl` permettent de spécifier les `margin` pour modifier l'espacement vertical des entrées. L’utilisation de `none` (par défaut) n’appliquera pas les marges au `FormControl`, alors que `dense` et `normal` modifieront aussi les autres styles pour respecter les spécifications.
 
-{{"demo": "pages/components/text-fields/TextFieldMargins.js"}}
+{{"demo": "pages/components/text-fields/TextFields.js"}}
 
 ## Restrictions
 
-The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+Le label "shrink" n'est pas toujours correct. Le label d'input est supposé se réduire dès que l'input affiche quelque chose. Dans certaines circonstances, nous ne pouvons pas déterminer l'état de "réduction" (entrée de numéro, entrée de date / heure, entrée de bande). Vous remarquerez peut-être un chevauchement.
 
 ![shrink](/static/images/text-fields/shrink.png)
 
@@ -95,13 +95,13 @@ ou
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-## Formatted inputs
+## Input formatés
 
-You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property. The provided input component should handle the `inputRef` property. The property should be called with a value implementing the [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) interface.
+Vous pouvez utiliser des bibliothèques tierces pour formater un input. Vous devez fournir une implémentation personnalisée de l'élément `<input>` avec la propriété `inputComponent`. Le composantinput fourni doit gérer la propriété `inputRef`. La propriété doit être appelée avec une valeur implémentant l'interface [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+La démo suivante utilise les bibliothèques [react-text-mask](https://github.com/text-mask/text-mask) et [react-number-format](https://github.com/s-yadav/react-number-format).
 
-{{"demo": "pages/components/text-fields/FormattedInputs.js"}}
+{{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
 ## Accessibilité
 

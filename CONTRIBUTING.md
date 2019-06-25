@@ -10,35 +10,26 @@ When in doubt, keep your pull requests small. To give a PR the best chance of ge
 
 As with issues, please begin the title with [ComponentName].
 
-When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/next/test/README.md).
+When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
-When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-lab).
+When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
 
 ### Branch Structure
 
 All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)).
-At any given time, `next` represents the latest development version of the library.
+At any given time, `master` represents the latest development version of the library.
 Patches or hotfix releases are prepared on an independent branch.
 
-#### `next` is unsafe
+#### `master` is for 4.x
 
-We will do our best to keep `next` in good shape, with tests passing at all times.
-However, in order to move fast, we will make API changes that your application might not be compatible with.
-
-#### `master` is for 3.x
-
-Only important bug fixes should be applied to `master` at this point.
+We will do our best to keep `master` in good shape, with tests passing at all times.
 
 ### How to increase the chance of being accepted?
 
 We will only accept a pull request for which all tests pass. Make sure the following is true:
 - The branch is targeted at:
-  - `master` for important fixes.
-  - `next` for everything else including breaking changes.
+  - `master` for ongoing development.
 - The branch is not behind its target.
-- If a breaking change is introduced:
-  - There is an open RFC issue that the PR addresses.
-  - The issue and the PR should be included in [#13663](https://github.com/mui-org/material-ui/issues/13663).
 - If a feature is being added:
    - If the result was already achievable with the core library, explain why this
       feature needs to be added to the core.
@@ -48,7 +39,7 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - The code is formatted (run `yarn prettier`).
 - The code is linted (run `yarn lint`).
 - If API documentation is being changed in the source, `yarn docs:api` was run.
-- If prop types were changed, the TypeScript declarations were updated.
+- If props were added or prop types were changed, the TypeScript declarations were updated.
 - If TypeScript declarations were changed, `yarn typescript` passed.
 - If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
   See [About TypeScript demos](#about-typescript-demos).
@@ -67,8 +58,8 @@ Please create a new branch from an up to date master on your fork. (Note, urgent
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
 ```sh
 git remote add upstream git@github.com:mui-org/material-ui.git
-git checkout next
-git pull upstream next
+git checkout master
+git pull upstream master
 git checkout -b my-topic-branch
 yarn
 ```
@@ -201,7 +192,7 @@ these changes across the localized versions.
 
 ## Roadmap
 
-To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/mui-org/material-ui/blob/next/ROADMAP.md).
+To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/mui-org/material-ui/blob/master/ROADMAP.md).
 
 ## License
 

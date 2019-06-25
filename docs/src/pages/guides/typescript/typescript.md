@@ -2,9 +2,9 @@
 
 <p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to TypeScript.</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example. A minimum version of TypeScript 2.8 is required.
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. A minimum version of TypeScript 2.8 is required.
 
-Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json).
+Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json).
 Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
 
 ## Usage of `withStyles`
@@ -13,7 +13,7 @@ Using `withStyles` in TypeScript can be a little tricky, but there are some util
 
 ### Using `createStyles` to defeat type widening
 
-A frequent source of confusion is TypeScript's [type widening](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
 
 ```ts
 const styles = {
@@ -256,3 +256,20 @@ example concerning `Button` and `react-router-dom` checkout [this Button demo](/
 Not every component fully supports any component type you pass in. If you encounter a
 component that rejects its `component` props in TypeScript please open an issue.
 There is an ongoing effort to fix this by making component props generic.
+
+## Handling `value` and event handlers
+
+Many components concerned with user input offer a `value` prop or event handlers
+which include the current `value`. In most situations that `value` is only handled
+within React which allows it be of any type, such as objects or arrays.
+
+However, that type cannot be verified at compile time in situations where it depends
+on the component's children e.g. for `Select` or `RadioGroup`. This means that
+the soundest option is to type it as `unknown` and let the developer decide
+how they want to narrow that type down. We do not offer the possibility to use a generic
+type in those cases for the same [reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
+
+Our demos include typed variants that use type casting. It is an acceptable tradeoff
+because the types are all located in a single file and are very basic. You haven to decide for yourself
+if the same tradeoff is acceptable for you. We want our library types to be strict
+by default and loose via opt-in.

@@ -4,15 +4,15 @@ import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
-// required for react-router-dom < 6.0.0
-// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
+// The usage of React.forwardRef will no longer be required for react-router-dom v6.
+// see https://github.com/ReactTraining/react-router/issues/6056
 const AdapterLink = React.forwardRef((props, ref) => <RouterLink innerRef={ref} {...props} />);
 
 const CollisionLink = React.forwardRef((props, ref) => (
   <RouterLink innerRef={ref} to="/getting-started/installation/" {...props} />
 ));
 
-function LinkRouter() {
+export default function LinkRouter() {
   return (
     <Router>
       <div>
@@ -29,5 +29,3 @@ function LinkRouter() {
     </Router>
   );
 }
-
-export default LinkRouter;

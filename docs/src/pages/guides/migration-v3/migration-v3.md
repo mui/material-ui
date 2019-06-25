@@ -1,12 +1,12 @@
-# Migration From v3 to v4
+# Migration from v3 to v4
 
-<p class="description">Yeah, v4 alpha has been released!</p>
+<p class="description">Yeah, v4 has been released!</p>
 
 Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
 Have you upgraded your site and run into something that's not covered here?
-[Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md)
+[Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introduction
 
@@ -17,11 +17,11 @@ We'll do our best to keep things easy to follow, and as sequential as possible s
 ## Why you should migrate
 
 This documentation page covers the *how* of migrating from v3 to v4.
-The *why* is covered in the release blog post: [*Work in progress, on Medium*](https://medium.com/material-ui).
+The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
-## Updating Your Dependencies
+## Updating your dependencies
 
-The very first thing you will need to do is update your dependencies.
+The very first thing you will need to do is to update your dependencies.
 
 ### Update Material-UI version
 
@@ -50,7 +50,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we
 
 ### Update Material-UI Styles version
 
-If you are previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles
+If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
 
 ```json
 "dependencies": {
@@ -82,12 +82,13 @@ yarn add @material-ui/styles@next
 
 - ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9.
   Make sure JSS v9 is not installed in your environment.
-  Removing `react-jss` from your package.json can help.
+  Removing `react-jss` from your `package.json` can help.
+  The StylesProvider component replaces the JssProvider one.
 - Remove the first option argument of `withTheme()`.
   The first argument was a placeholder for a potential future option.
   We have never found a need for it.
   It's time to remove this argument.
-  It matches the emotion and styled-components API.
+  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -126,9 +127,9 @@ yarn add @material-ui/styles@next
   ```
 - You can safely remove the next variant from the theme creation:
 
-  ```js
+  ```diff
   typography: {
-    useNextVariants: true,
+  - useNextVariants: true,
   },
   ```
 
@@ -142,8 +143,10 @@ yarn add @material-ui/styles@next
     },
   }
   ```
+  
+  *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
 
-  *Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
+  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
 ### Layout
 
@@ -158,12 +161,32 @@ yarn add @material-ui/styles@next
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
-- [Container] Moved from `@material-ui/lab` to `@material-ui/core`
+- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Container from '@material-ui/lab/Container';
   +import Container from '@material-ui/core/Container';
   ```
+
+### TypeScript
+
+#### `value` type 
+
+Normalized `value` prop type for input components to use `unknown`. This affects
+`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+
+```diff
+function MySelect({ children }) {
+-  function handleChange(event: any, value: string) {
++  function handleChange(event: any, value: unknown) {
+    // handle value
+  }
+
+  return <Select onChange={handleChange}>{children}</Select>
+}
+```
+
+This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -186,17 +209,23 @@ yarn add @material-ui/styles@next
   +<Fab />
   ```
 
+  ```diff
+  -import Button from '@material-ui/core/Button';
+  -<Button variant="extendedFab" />
+  +import Fab from '@material-ui/core/Fab';
+  +<Fab variant="extended" />
+  ```
+
 - [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref.
   The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
-  This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop
-  is true
+  This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
 
 ### Card
 
-- [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
+- [CardActions] Rename the `disableActionSpacing` prop to `disableSpacing`.
 - [CardActions] Remove the `disableActionSpacing` CSS class.
-- [CardActions] Rename the `action` CSS class `spacing`.
+- [CardActions] Rename the `action` CSS class to `spacing`.
 
 ### ClickAwayListener
 
@@ -204,15 +233,15 @@ yarn add @material-ui/styles@next
 
 ### Dialog
 
-- [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
-- [DialogActions] Rename the `action` CSS class `spacing`.
+- [DialogActions] Rename the `disableActionSpacing` prop to `disableSpacing`.
+- [DialogActions] Rename the `action` CSS class to `spacing`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
-- [Dialog] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
-  the migration strategy.
+- [Dialog] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs)
+  explains the migration strategy.
 
 ### Divider
 
-- [Divider] Remove the deprecated inset prop.
+- [Divider] Remove the deprecated `inset` prop.
 
   ```diff
   -<Divider inset />
@@ -221,15 +250,15 @@ yarn add @material-ui/styles@next
 
 ### ExpansionPanel
 
-- [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
+- [ExpansionPanelActions] Rename the `action` CSS class to `spacing`.
 - [ExpansionPanel] Increase the CSS specificity of the `disabled` style rule.
 
 ### List
 
 - [List] Rework the list components to match the specification:
 
-  - The usage of the `ListItemAvatar` component is required when using an avatar
-  - The usage of the `ListItemIcon` component is required when using a left checkbox
+  - The `ListItemAvatar` component is required when using an avatar.
+  - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
 
 - [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
@@ -245,8 +274,7 @@ yarn add @material-ui/styles@next
   the migration strategy.
 
   This also applies to `Dialog` and `Popover`.
-- [Modal] Remove the classes customization API for the Modal component.
-  (-74% bundle size reduction when used standalone)
+- [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
 - [Modal] event.defaultPrevented is now ignored.
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
@@ -314,7 +342,7 @@ You should be able to move the custom styles to the `root` class key.
 
   ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
-- [Tabs] Remove deprecated fullWidth and scrollable props
+- [Tabs] Remove deprecated fullWidth and scrollable props:
 
   ```diff
   -<Tabs fullWidth scrollable />
@@ -323,7 +351,7 @@ You should be able to move the custom styles to the `root` class key.
 
 ### Table
 
-- [TableCell] Remove the deprecated `numeric` property.
+- [TableCell] Remove the deprecated `numeric` property:
 
   ```diff
   -<TableCell numeric>{row.calories}</TableCell>

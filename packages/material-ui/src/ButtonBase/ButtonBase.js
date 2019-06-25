@@ -41,9 +41,9 @@ export const styles = {
       cursor: 'default',
     },
   },
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if keyboard focused. */
+  /* Pseudo-class applied to the root element if keyboard focused. */
   focusVisible: {},
 };
 
@@ -92,6 +92,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     onTouchEnd,
     onTouchMove,
     onTouchStart,
+    onDragLeave,
     tabIndex = 0,
     TouchRippleProps,
     type = 'button',
@@ -110,20 +111,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-  const getOwnerDocument = React.useCallback(() => {
-    const button = getButtonNode();
-    if (button == null) {
-      throw new Error(
-        [
-          `Material-UI: expected an Element but found ${button}.`,
-          'Please check your console for additional warnings and try fixing those.',
-          'If the error persists please file an issue.',
-        ].join(' '),
-      );
-    }
-    return button.ownerDocument;
-  }, []);
-  const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
 
   React.useImperativeHandle(
     action,
@@ -158,6 +146,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   }
 
   const handleMouseDown = useRippleHandler('start', onMouseDown);
+  const handleDragLeave = useRippleHandler('stop', onDragLeave);
   const handleMouseUp = useRippleHandler('stop', onMouseUp);
   const handleMouseLeave = useRippleHandler('stop', event => {
     if (focusVisible) {
@@ -281,7 +270,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   }
 
   const handleUserRef = useForkRef(buttonRefProp, ref);
-  const handleRef = useForkRef(handleUserRef, buttonRef);
+  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
+  const handleRef = useForkRef(handleUserRef, handleOwnRef);
 
   return (
     <ComponentProp
@@ -294,6 +284,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
+      onDragLeave={handleDragLeave}
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
       onTouchStart={handleTouchStart}
@@ -388,6 +379,10 @@ ButtonBase.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onDragLeave: PropTypes.func,
   /**
    * @ignore
    */

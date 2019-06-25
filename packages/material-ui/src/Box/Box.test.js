@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, describeConformance } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Box from './Box';
 
 describe('<Box />', () => {

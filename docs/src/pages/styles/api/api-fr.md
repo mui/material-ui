@@ -4,12 +4,12 @@
 
 ## `createGenerateClassName([options]) => class name generator`
 
-A function which returns [a class name generator function](http://cssinjs.org/jss-api/#generate-your-class-names).
+A function which returns [a class name generator function](https://cssinjs.org/jss-api/#generate-your-class-names).
 
 #### Paramètres
 
 1. `options` (*Object* [optional]): 
-    - `options.disableGlobal` (*Boolan* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
+    - `options.disableGlobal` (*Boolean* [optional]): Valeur par défaut `false`. Disable the generation of deterministic class names.
     - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
     - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
@@ -51,7 +51,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 ```jsx
 import { makeStyles, createStyles } from '@material-ui/styles';
 
-const styles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     backgroundColor: theme.color.red,
   },
@@ -74,14 +74,13 @@ Link a style sheet with a function component using the **hook** pattern.
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Valeur de retour
 
-`hook`: A hook. This hook can be used in a function component. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
+`hook`: A hook. This hook can be used in a function component. The documentation often calls this returned hook `useStyles`. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
 
 #### Exemples
 
@@ -92,11 +91,12 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'red',
+    color: props => props.color,
   },
 });
 
-export default function MyComponent() {
-  const classes = useStyles();
+export default function MyComponent(props) {
+  const classes = useStyles(props);
   return <div className={classes.root} />;
 }
 ```
@@ -156,10 +156,10 @@ Link a style sheet with a function component using the **styled components** pat
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
 3. `options` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+    - `options.withTheme` (*Boolean* [optional]): Valeur par défaut `false`. Provide the `theme` object to the component as a property.
     - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
+    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Valeur de retour
 
@@ -395,7 +395,7 @@ export default function MyComponent() {
           <code>options.defaultTheme</code> (<em>Object</em> [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
         </li>
         <li>
-          <code>options.withTheme</code> (<em>Boolean</em> [optional]): Defaults to <code>false</code>. Provide the <code>theme</code> object to the component as a property.
+          <code>options.withTheme</code> (<em>Boolean</em> [optional]): Valeur par défaut <code>false</code>. Provide the <code>theme</code> object to the component as a property.
         </li>
         <li>
           <code>options.name</code> (<em>String</em> [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
@@ -404,7 +404,7 @@ export default function MyComponent() {
           <code>options.flip</code> (<em>Boolean</em> [optional]): When set to <code>false</code>, this sheet will opt-out the <code>rtl</code> transformation. When set to <code>true</code>, the styles are inversed. When set to <code>null</code>, it follows <code>theme.direction</code>.
         </li>
         <li>
-          The other keys are forwarded to the options argument of <a href="http://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet([styles], [options])</a>.
+          The other keys are forwarded to the options argument of <a href="https://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet([styles], [options])</a>.
         </li>
       </ul>
     </li>

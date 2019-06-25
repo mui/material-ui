@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-function TemporaryDrawer() {
+export default function TemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -111,5 +111,3 @@ function TemporaryDrawer() {
     </div>
   );
 }
-
-export default TemporaryDrawer;

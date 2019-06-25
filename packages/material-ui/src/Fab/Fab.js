@@ -99,9 +99,9 @@ export const styles = theme => ({
       height: 40,
     },
   },
-  /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
+  /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {

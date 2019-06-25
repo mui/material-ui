@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
-  describeConformance,
   getClasses,
   findOutermostIntrinsic,
 } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
@@ -75,6 +75,16 @@ describe('<IconButton />', () => {
   it('should pass centerRipple={true} to ButtonBase', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
     assert.strictEqual(wrapper.props().centerRipple, true);
+  });
+
+  it('should have a focusRipple by default', () => {
+    const wrapper = shallow(<IconButton>book</IconButton>);
+    assert.strictEqual(wrapper.props().focusRipple, true);
+  });
+
+  it('should pass disableFocusRipple to ButtonBase', () => {
+    const wrapper = shallow(<IconButton disableFocusRipple>book</IconButton>);
+    assert.strictEqual(wrapper.props().focusRipple, false);
   });
 
   describe('prop: size', () => {

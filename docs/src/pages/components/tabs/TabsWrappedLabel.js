@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function TabsWrappedLabel() {
+export default function TabsWrappedLabel() {
   const classes = useStyles();
   const [value, setValue] = React.useState('one');
 
@@ -48,5 +48,3 @@ function TabsWrappedLabel() {
     </div>
   );
 }
-
-export default TabsWrappedLabel;

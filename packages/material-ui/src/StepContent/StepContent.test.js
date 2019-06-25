@@ -1,11 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createShallow,
-  createMount,
-  describeConformance,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Collapse from '../Collapse';
 import StepContent from './StepContent';
 

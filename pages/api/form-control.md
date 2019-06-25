@@ -16,10 +16,21 @@ Provides context such as filled/focused/error/required for form inputs.
 Relying on the context provides high flexibility and ensures that the state always stays
 consistent across the children of the `FormControl`.
 This context is used by the following components:
+
  - FormLabel
  - FormHelperText
  - Input
  - InputLabel
+
+You can find one composition example below and more going to [the demos](/components/text-fields/#components).
+
+```jsx
+<FormControl>
+  <InputLabel htmlFor="my-input">Email address</InputLabel>
+  <Input id="my-input" aria-describedby="my-helper-text" />
+  <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+</FormControl>
+```
 
 ⚠️Only one input can be used within a FormControl.
 
@@ -55,7 +66,7 @@ This property accepts the following keys:
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/FormControl/FormControl.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormControl/FormControl.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

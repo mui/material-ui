@@ -12,7 +12,7 @@ import Dialog from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
-import blue from '@material-ui/core/colors/blue';
+import { blue } from '@material-ui/core/colors';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const useStyles = makeStyles({
@@ -68,7 +68,7 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string,
 };
 
-function SimpleDialogDemo() {
+export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
@@ -92,5 +92,3 @@ function SimpleDialogDemo() {
     </div>
   );
 }
-
-export default SimpleDialogDemo;

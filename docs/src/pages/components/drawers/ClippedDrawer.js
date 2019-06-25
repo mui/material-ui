@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
 }));
 
-function ClippedDrawer() {
+export default function ClippedDrawer() {
   const classes = useStyles();
 
   return (
@@ -104,5 +104,3 @@ function ClippedDrawer() {
     </div>
   );
 }
-
-export default ClippedDrawer;

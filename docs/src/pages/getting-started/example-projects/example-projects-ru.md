@@ -2,28 +2,37 @@
 
 <p class="description">Вы ищете пример проекта, чтобы начать?</p>
 
-We host some example projects which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) folder:
+We host some example projects which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-next)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
-- [Parcel](https://github.com/mui-org/material-ui/tree/next/examples/parcel-next)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
+- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
+- [Parcel](https://github.com/mui-org/material-ui/tree/master/examples/parcel)
+- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
+- [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - E mais
 
 Create React App - отличный проект для изучения React. Посмотрите на [доступные альтернативы](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) чтобы увидеть, какой проект лучше всего соответствует вашим потребностям.
 
-Исходный код этого сайта документации также включен в репозиторий. Это немного более сложный проект. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/next/docs) folder for build instructions.
+Исходный код этого сайта документации также включен в репозиторий. Это немного более сложный проект. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for build instructions.
 
 ## Более продвинутые примеры проектов
 
 Ищете более продвинутый пример проекта?
 
-Если вы хотите начать с более полного и реального примера, вы можете взглянуть на:
+If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), который включает в себя: 
+- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
+  
+  - Bootstrapped with Create React App, the same tooling works out of the box
+  - Built on top of Firebase with authentication working from the start
+  - Robust routing with React Router including error handling (404)
+  - Extensive mobile support with [react-swipeable-views](https://react-swipeable-views.com) for tabs
+
+- [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
+  
   - Graph using recharts
   - React Router включен с примером навигации
   - A docker container with an Nginx server for production build
   - Created with [Create React App](https://facebook.github.io/create-react-app/)
+  - *NOTE*: This project is using *v3* of the Material lib, not yet updated for v4

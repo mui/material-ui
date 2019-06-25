@@ -46,7 +46,7 @@ const ExpansionPanelDetails = withStyles(theme => ({
   },
 }))(MuiExpansionPanelDetails);
 
-function CustomizedExpansionPanels() {
+export default function CustomizedExpansionPanels() {
   const [expanded, setExpanded] = React.useState('panel1');
 
   const handleChange = panel => (event, newExpanded) => {
@@ -94,5 +94,3 @@ function CustomizedExpansionPanels() {
     </div>
   );
 }
-
-export default CustomizedExpansionPanels;

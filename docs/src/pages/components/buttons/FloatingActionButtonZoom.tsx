@@ -12,7 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import green from '@material-ui/core/colors/green';
+import { green } from '@material-ui/core/colors';
 
 interface TabContainerProps {
   children?: React.ReactNode;
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function FloatingActionButtonZoom() {
+export default function FloatingActionButtonZoom() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -80,16 +80,19 @@ function FloatingActionButtonZoom() {
       color: 'primary' as 'primary',
       className: classes.fab,
       icon: <AddIcon />,
+      label: 'Add',
     },
     {
       color: 'secondary' as 'secondary',
       className: classes.fab,
       icon: <EditIcon />,
+      label: 'Edit',
     },
     {
       color: 'inherit' as 'inherit',
       className: clsx(classes.fab, classes.fabGreen),
       icon: <UpIcon />,
+      label: 'Expand',
     },
   ];
 
@@ -127,7 +130,7 @@ function FloatingActionButtonZoom() {
           }}
           unmountOnExit
         >
-          <Fab className={fab.className} color={fab.color}>
+          <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
             {fab.icon}
           </Fab>
         </Zoom>
@@ -135,5 +138,3 @@ function FloatingActionButtonZoom() {
     </div>
   );
 }
-
-export default FloatingActionButtonZoom;

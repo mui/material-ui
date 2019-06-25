@@ -264,8 +264,8 @@ withStyles(theme =>
     content: {
       minHeight: '100vh',
     },
+    // $ExpectError
     '@media (min-width: 960px)': {
-      // $ExpectError
       content: {
         display: 'flex',
       },
@@ -396,7 +396,7 @@ withStyles(theme =>
 
 {
   // https://github.com/mui-org/material-ui/issues/11164
-  const style: StyleRulesCallback = theme => ({
+  const style: StyleRulesCallback<Theme, any, any> = theme => ({
     text: theme.typography.body2,
   });
 }
@@ -476,4 +476,90 @@ withStyles(theme =>
       },
     };
   });
+}
+
+{
+  // https://github.com/mui-org/material-ui/pull/15546
+  // Update type definition to let CSS properties be functions
+  interface testProps {
+    foo: boolean;
+  }
+
+  // makeStyles accepts properties as functions
+  {
+    const useStyles = makeStyles({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      }),
+    });
+
+    const styles = useStyles({ foo: true });
+    // $ExpectType string
+    const root = styles.root;
+    // $ExpectType string
+    const root2 = styles.root2;
+  }
+
+  // makeStyles accepts properties as functions using a callback
+  {
+    const useStyles = makeStyles(theme => ({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+        margin: theme.spacing(1),
+      }),
+    }));
+
+    const styles = useStyles({ foo: true });
+    // $ExpectType string
+    const root = styles.root;
+    // $ExpectType string
+    const root2 = styles.root2;
+  }
+
+  // createStyles accepts properties as functions
+  {
+    const styles = createStyles({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      }),
+    });
+
+    // $ExpectType string
+    const root = makeStyles(styles)({ foo: true }).root;
+  }
+
+  // withStyles accepts properties as functions
+  {
+    withStyles({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+        margin: 8,
+      }),
+    });
+  }
+
+  // withStyles accepts properties as functions using a callback
+  {
+    withStyles(theme => ({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+        height: theme.spacing(1),
+      }),
+    }));
+  }
 }

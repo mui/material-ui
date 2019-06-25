@@ -1,12 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  describeConformance,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';

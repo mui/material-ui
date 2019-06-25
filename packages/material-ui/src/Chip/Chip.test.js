@@ -2,12 +2,8 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import {
-  createMount,
-  describeConformance,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
@@ -561,6 +557,50 @@ describe('<Chip />', () => {
     it('should render the icon', () => {
       const wrapper = mount(<Chip icon={<span id="test-icon" />} />);
       assert.strictEqual(wrapper.find('span#test-icon').hasClass(classes.icon), true);
+    });
+  });
+
+  describe('prop: size', () => {
+    it('should render with the sizeSmall class', () => {
+      const wrapper = mount(<Chip size="small" />);
+      const chip = wrapper.find(`.${classes.root}`).hostNodes();
+
+      assert.strictEqual(chip.hasClass(classes.sizeSmall), true);
+    });
+
+    it('should render the label with the labelSmall class', () => {
+      const wrapper = mount(<Chip size="small" />);
+      const chip = wrapper.find(`.${classes.root}`).hostNodes();
+      const label = chip.find(`.${classes.label}`).hostNodes();
+
+      assert.strictEqual(label.hasClass(classes.labelSmall), true);
+    });
+
+    it('should render an avatar with the avatarSmall class', () => {
+      const wrapper = mount(
+        <Chip size="small" avatar={<Avatar className="my-Avatar">MB</Avatar>} />,
+      );
+      const chip = wrapper.find(`.${classes.root}`).hostNodes();
+      const avatar = chip.find('.my-Avatar').hostNodes();
+
+      assert.strictEqual(avatar.hasClass(classes.avatar), true);
+      assert.strictEqual(avatar.hasClass(classes.avatarSmall), true);
+    });
+
+    it('should render an icon with the icon and iconSmall classes', () => {
+      const wrapper = mount(<Chip size="small" icon={<span id="test-icon" />} />);
+      const icon = wrapper.find('span#test-icon');
+
+      assert.strictEqual(icon.hasClass(classes.icon), true);
+      assert.strictEqual(icon.hasClass(classes.iconSmall), true);
+    });
+
+    it('should render the delete icon with the deleteIcon and deleteIconSmall classes', () => {
+      const wrapper = mount(<Chip size="small" onDelete={() => {}} />);
+      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
+
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconSmall), true);
     });
   });
 });

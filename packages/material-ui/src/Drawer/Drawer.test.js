@@ -1,11 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createMount,
-  describeConformance,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Slide from '../Slide';
 import createMuiTheme from '../styles/createMuiTheme';
 import Paper from '../Paper';
@@ -114,7 +110,7 @@ describe('<Drawer />', () => {
         </Drawer>,
       );
 
-      const modal = wrapper.find('Modal');
+      const modal = wrapper.find(Modal);
 
       assert.strictEqual(modal.hasClass('woofDrawer'), true);
     });
@@ -137,7 +133,7 @@ describe('<Drawer />', () => {
         </Drawer>,
       );
 
-      const modal = wrapper.find('Modal');
+      const modal = wrapper.find(Modal);
 
       assert.strictEqual(modal.props().open, false);
     });
@@ -151,7 +147,7 @@ describe('<Drawer />', () => {
 
       it('should start closed', () => {
         const wrapper = mount(drawerElement);
-        assert.strictEqual(wrapper.find('Modal').props().open, false);
+        assert.strictEqual(wrapper.find(Modal).props().open, false);
       });
 
       it('should open and close', () => {

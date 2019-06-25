@@ -2,7 +2,7 @@
 
 <p class="description">A selection of basic page layouts to help you get started building your app.</p>
 
-They can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/next/examples) to form a complete starter.
+They can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
 
 Sections of each layout are clearly defined either by comments or use of separate files, making it simple to extract parts of a page (such as a "hero unit", or footer, for example) for reuse in other pages.
 

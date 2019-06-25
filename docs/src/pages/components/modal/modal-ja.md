@@ -7,11 +7,11 @@ components: Modal
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
 
-The component renders its `children` node in front of a backdrop component. The `Modal` offers a few helpful features over using just a [`Portal`](/utils/portal/) component and some styles:
+The component renders its `children` node in front of a backdrop component. The `Modal` offers important features:
 
-- Manages modal stacking when one-at-a-time just isn't enough.
-- Creates a backdrop, for disabling interaction below the modal.
-- It disables scrolling of the page content while open.
+- 
+- 
+- 
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 - 
@@ -70,7 +70,7 @@ We create a lot of React elements that will never be mounted. It's wasteful
 
 This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
 
-## Accessibility
+## アクセシビリティ
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
 

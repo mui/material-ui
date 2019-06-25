@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { rgbToHex, withStyles } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
@@ -11,12 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
-import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
-import { capitalize } from '@material-ui/core/utils/helpers';
+import { capitalize } from '@material-ui/core/utils';
 import ColorDemo from './ColorDemo';
-import themeInitialState from 'docs/src/modules/styles/themeInitialState';
-import { ACTION_TYPES } from 'docs/src/modules/constants';
-import compose from 'docs/src/modules/utils/compose';
+import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 
 const defaults = { primary: '#2196f3', secondary: '#f50057' };
 const hues = Object.keys(colors).slice(1, 17);
@@ -69,6 +65,8 @@ const styles = theme => ({
 });
 
 class ColorTool extends React.Component {
+  static contextType = DispatchContext;
+
   state = {
     primary: defaults.primary,
     secondary: defaults.secondary,
@@ -130,8 +128,8 @@ class ColorTool extends React.Component {
       secondary: { main: this.state.secondary },
     };
 
-    this.props.dispatch({
-      type: ACTION_TYPES.THEME_CHANGE,
+    this.context({
+      type: 'CHANGE',
       payload: { paletteColors },
     });
 
@@ -139,15 +137,7 @@ class ColorTool extends React.Component {
   };
 
   handleResetDocsColors = () => {
-    const paletteColors = {
-      primary: themeInitialState.paletteColors.primary,
-      secondary: themeInitialState.paletteColors.secondary,
-    };
-
-    this.props.dispatch({
-      type: ACTION_TYPES.THEME_CHANGE,
-      payload: { paletteColors },
-    });
+    this.context({ type: 'RESET_COLORS' });
 
     document.cookie = 'paletteColors=;path=/;max-age=0';
   };
@@ -269,13 +259,7 @@ class ColorTool extends React.Component {
 
 ColorTool.propTypes = {
   classes: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default compose(
-  withStyles(styles, { withTheme: true }),
-  connect(state => ({
-    uiTheme: state.theme,
-  })),
-)(ColorTool);
+export default withStyles(styles, { withTheme: true })(ColorTool);

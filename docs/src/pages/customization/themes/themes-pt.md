@@ -4,7 +4,7 @@
 
 O tema especifica a cor dos componentes, o escurecimento das superfícies, o nível de sombra, a opacidade apropriada dos elementos de tinta, etc.
 
-Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
+Temas permitem que você aplique um tom consistente na sua aplicação. Ele permite que você **customize todos os aspectos do design** do seu projeto, para atender as necessidades específicas do seu negócio ou marca.
 
 Para promover uma maior consistência entre os aplicativos, os temas claro e escuro estão disponíveis para escolha. Por padrão, os componentes usam o tema claro.
 
@@ -12,16 +12,16 @@ Para promover uma maior consistência entre os aplicativos, os temas claro e esc
 
 Se você deseja personalizar o tema, você precisa usar o ` ThemeProvider ` componente para injetar um tema em sua aplicação. No entanto, isso é opcional; Material-UI componentes vêm com um tema padrão.
 
-`ThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. Você pode aprender mais sobre isso na [ seção da API ](/styles/api/#themeprovider).
+O `ThemeProvider` depende do recurso de contexto do React para passar o tema para os componentes, então você precisa ter certeza de que `ThemeProvider` é um pai (parent) dos componentes que você está tentando customizar. Você pode aprender mais sobre isso na [ seção da API ](/styles/api/#themeprovider).
 
 ## Variáveis de configuração do tema
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
+Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
 - [Paleta de Cores](/customization/palette/)
-- [Typography](/customization/typography/)
+- [Tipografia](/customization/typography/)
 - [Espaçamento](/customization/spacing/)
-- [Pontos de interrupção](/customization/breakpoints/)
+- [Pontos de quebra](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [Globais](/customization/globals/)
 
@@ -29,17 +29,17 @@ Você pode conferir a [seção de tema padrão](/customization/default-theme/) p
 
 ### Variáveis customizáveis
 
-When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
+Quando usando o tema do Material-UI com nossa [solução de estilo](/styles/basics/) ou [quaisquer outras](/guides/interoperability/#themeprovider), surgem algumas necessidades de customização. Pode ser conveniente adicionar variáveis adicionais ao tema para que você possa usá-las em todos os lugares. Por exemplo:
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
 ## Acessando o tema em um componente
 
-You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
-## Nesting the theme
+## Aninhando o tema
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+[Você pode aninhar](/styles/advanced/#theme-nesting) vários provedores de tema.
 
 {{"demo": "pages/customization/themes/ThemeNesting.js"}}
 
@@ -47,26 +47,26 @@ O tema interno **sobrescreverá** o tema exterior. Você pode estender o tema ex
 
 {{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
 
-### A note on performance
+### Uma nota sobre desempenho
 
-The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
+As implicações de desempenho de aninhamento do componente `ThemeProvider`, estão ligados a forma como o JSS trabalha nos bastidores. O principal ponto a ser entendido é que o CSS injetado é armazenado em cache com a seguinte tupla `(styles, theme)`.
 
-- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
-- `styles`: The larger the styles object is, the more work is needed.
+- `theme`: Se você fornecer um novo tema em cada renderização, um novo objeto CSS será computado e injetado. Tanto para consistência quanto desempenho da UI, é melhor renderizar um número limitado de objetos de tema.
+- `styles`: Quanto maior é o objeto de estilos, mais trabalho é necessário.
 
 ## API
 
 ### `createMuiTheme(options) => theme`
 
-Generate a theme base on the options received.
+Gere uma base de temas sobre as opções recebidas.
 
 #### Argumentos
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
+1. `options` (*Object*): Recebe um objeto de tema incompleto e adiciona as partes ausentes.
 
 #### Retornos
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (*Object*): Um objeto de tema completo, pronto para uso.
 
 #### Exemplos
 
@@ -88,21 +88,21 @@ const theme = createMuiTheme({
 
 ### `responsiveFontSizes(theme, options) => theme`
 
-Generate responsive typography settings based on the options received.
+Gera configurações de tipografia responsivas com base nas opções recebidas.
 
 #### Argumentos
 
-1. `theme` (*Object*): The theme object to enhance.
-2. `options` (*Object* [optional]):
+1. `theme` (*Object*): O objeto de tema a ser aplicado as alterações.
+2. `options` (*Object* [opcional]):
 
-- `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
-- `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
-- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must me greater than 1.
-- `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
+- `breakpoints` (*Array<string>* [opcional]): Padrão `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
+- `disableAlign` (*Boolean* [opcional]): Padrão `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
+- `factor` (*Number* [opcional]): Padrão `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
+- `variants` (*Array<string>* [opcional]): Padrão todos. As variantes de tipografia para manipular.
 
 #### Retornos
 
-`theme` (*Object*): The new theme with a responsive typography.
+`theme` (*Object*): O novo tema com uma tipografia responsiva.
 
 #### Exemplos
 

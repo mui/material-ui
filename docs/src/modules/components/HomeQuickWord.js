@@ -43,7 +43,6 @@ const backers = [
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
     textAlign: 'center',
     minHeight: 60,
     paddingBottom: theme.spacing(2),

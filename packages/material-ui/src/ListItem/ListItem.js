@@ -36,7 +36,7 @@ export const styles = theme => ({
   container: {
     position: 'relative',
   },
-  /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
+  /* Pseudo-class applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
   focusVisible: {},
   /* Styles applied to the `component` element if dense. */
   dense: {
@@ -47,7 +47,7 @@ export const styles = theme => ({
   alignItemsFlexStart: {
     alignItems: 'flex-start',
   },
-  /* Styles applied to the inner `component` element if `disabled={true}`. */
+  /* Pseudo-class applied to the inner `component` element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the inner `component` element if `divider={true}`. */
   divider: {
@@ -79,7 +79,7 @@ export const styles = theme => ({
     // is absolutely positioned.
     paddingRight: 48,
   },
-  /* Styles applied to the root element if `selected={true}`. */
+  /* Pseudo-class applied to the root element if `selected={true}`. */
   selected: {},
 });
 
@@ -91,7 +91,7 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
 const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
     alignItems = 'center',
-    autoFocus,
+    autoFocus = false,
     button = false,
     children: childrenProp,
     classes,

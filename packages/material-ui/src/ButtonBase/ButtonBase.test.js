@@ -3,12 +3,8 @@ import { act } from 'react-dom/test-utils';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import rerender from 'test/utils/rerender';
-import {
-  createShallow,
-  createMount,
-  describeConformance,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -80,10 +76,10 @@ describe('<ButtonBase />', () => {
     });
 
     it('should automatically change the button to an a element when href is provided', () => {
-      const wrapper = mount(<ButtonBase href="http://google.com">Hello</ButtonBase>);
+      const wrapper = mount(<ButtonBase href="https://google.com">Hello</ButtonBase>);
       const button = wrapper.find('[role="button"]');
       assert.strictEqual(button.type(), 'a');
-      assert.strictEqual(button.props().href, 'http://google.com');
+      assert.strictEqual(button.props().href, 'https://google.com');
     });
 
     it('should change the button type to a and set role="button"', () => {
@@ -96,13 +92,13 @@ describe('<ButtonBase />', () => {
 
     it('should not change the button to an a element', () => {
       const wrapper = mount(
-        <ButtonBase component="span" href="http://google.com">
+        <ButtonBase component="span" href="https://google.com">
           Hello
         </ButtonBase>,
       );
       const button = wrapper.find('[role="button"]');
       assert.strictEqual(button.name(), 'span');
-      assert.strictEqual(button.props().href, 'http://google.com');
+      assert.strictEqual(button.props().href, 'https://google.com');
     });
   });
 
@@ -117,6 +113,7 @@ describe('<ButtonBase />', () => {
         'onMouseDown',
         'onMouseLeave',
         'onMouseUp',
+        'onDragEnd',
         'onTouchEnd',
         'onTouchStart',
       ];
@@ -130,7 +127,7 @@ describe('<ButtonBase />', () => {
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { persist: () => {} });
+        wrapper.simulate(event, { target: {}, persist: () => {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
@@ -236,6 +233,26 @@ describe('<ButtonBase />', () => {
         wrapper.update();
 
         assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 3);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 0);
+      });
+
+      it('should start the ripple when the mouse is pressed 4', () => {
+        act(() => {
+          wrapper.simulate('mouseDown');
+        });
+        wrapper.update();
+
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 3);
+        assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 1);
+      });
+
+      it('should stop the ripple when dragging has finished', () => {
+        act(() => {
+          wrapper.simulate('dragLeave');
+        });
+        wrapper.update();
+
+        assert.strictEqual(wrapper.find('.ripple-visible .child-leaving').length, 4);
         assert.strictEqual(wrapper.find('.ripple-visible .child:not(.child-leaving)').length, 0);
       });
     });
@@ -637,7 +654,7 @@ describe('<ButtonBase />', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('throws with additional warnings on invalid `component` prop', () => {
+    it('warns on invalid `component` prop', () => {
       // Only run the test on node. On the browser the thrown error is not caught
       if (!/jsdom/.test(window.navigator.userAgent)) {
         return;
@@ -648,18 +665,11 @@ describe('<ButtonBase />', () => {
       }
 
       // cant match the error message here because flakiness with mocha watchmode
-      assert.throws(() => mount(<ButtonBase component={Component} />));
+      mount(<ButtonBase component={Component} />);
 
       assert.include(
         consoleErrorMock.args()[0][0],
         'Invalid prop `component` supplied to `ForwardRef(ButtonBase)`. Expected an element type that can hold a ref',
-      );
-      // first mount includes React warning that isn't logged on subsequent calls
-      // in watchmode because it's cached
-      const customErrorIndex = consoleErrorMock.callCount() === 3 ? 1 : 2;
-      assert.include(
-        consoleErrorMock.args()[customErrorIndex][0],
-        'Error: Material-UI: expected an Element but found null. Please check your console for additional warnings and try fixing those.',
       );
     });
   });

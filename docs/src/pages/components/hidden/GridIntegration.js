@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
-import compose from 'docs/src/modules/utils/compose';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -17,15 +16,16 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-});
+}));
 
 function GridIntegration(props) {
-  const { classes } = props;
+  const classes = useStyles();
+  const { width } = props;
 
   return (
     <div className={classes.root}>
       <Typography variant="subtitle1" gutterBottom>
-        Current width: {props.width}
+        Current width: {width}
       </Typography>
       <Grid container spacing={3}>
         <Hidden xsUp>
@@ -59,11 +59,7 @@ function GridIntegration(props) {
 }
 
 GridIntegration.propTypes = {
-  classes: PropTypes.object.isRequired,
   width: PropTypes.string,
 };
 
-export default compose(
-  withStyles(styles),
-  withWidth(),
-)(GridIntegration);
+export default withWidth()(GridIntegration);

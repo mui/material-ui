@@ -22,15 +22,15 @@ export const styles = theme => ({
       color: theme.palette.error.main,
     },
   },
-  /* Styles applied to the root element if `focused={true}`. */
+  /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if `error={true}`. */
+  /* Pseudo-class applied to the root element if `error={true}`. */
   error: {},
-  /* Styles applied to the root element if `filled={true}`. */
+  /* Pseudo-class applied to the root element if `filled={true}`. */
   filled: {},
-  /* Styles applied to the root element if `required={true}`. */
+  /* Pseudo-class applied to the root element if `required={true}`. */
   required: {},
   /* Styles applied to the asterisk element. */
   asterisk: {

@@ -3,7 +3,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-function SwitchLabels() {
+export default function SwitchLabels() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -38,5 +38,3 @@ function SwitchLabels() {
     </FormGroup>
   );
 }
-
-export default SwitchLabels;

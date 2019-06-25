@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, describeConformance } from '@material-ui/core/test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import StepIcon from './StepIcon';
 import SvgIcon from '../SvgIcon';
 

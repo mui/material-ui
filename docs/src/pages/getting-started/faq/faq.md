@@ -77,7 +77,7 @@ const theme = createMuiTheme({
   },
   overrides: {
     // Name of the component ⚛️
-    CssBasline: {
+    MuiCssBaseline: {
       // Name of the rule
       '@global': {
         '*, *::before, *::after': {
@@ -144,7 +144,7 @@ const element = ref.current;
 ```
 
 If you're not sure if the Material-UI component in question forwards its ref you
-can check the API documentation under "Props" e.g. the [/api/button/#props](Button API)
+can check the API documentation under "Props" e.g. the [Button API](/api/button/#props)
 includes
 > The ref is forwarded to the root element.
 
@@ -325,7 +325,7 @@ page](/customization/themes/) to learn about theme customization.
 
 There are many ways to support Material-UI:
 
-- Improve [the documentation](https://github.com/mui-org/material-ui/tree/next/docs).
+- Improve [the documentation](https://github.com/mui-org/material-ui/tree/master/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
 - Answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or on [Spectrum](https://spectrum.chat/material-ui).

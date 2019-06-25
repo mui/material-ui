@@ -38,13 +38,13 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">active</span> | Styles applied to the root element if `active={true}`.
+| <span class="prop-name">active</span> | Pseudo-class applied to the root element if `active={true}`.
 | <span class="prop-name">icon</span> | Styles applied to the icon component.
 | <span class="prop-name">iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
 | <span class="prop-name">iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/TableSortLabel/TableSortLabel.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableSortLabel/TableSortLabel.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

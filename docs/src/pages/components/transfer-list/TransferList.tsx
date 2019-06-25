@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,19 +9,21 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    margin: 'auto',
-  },
-  paper: {
-    width: 200,
-    height: 230,
-    overflow: 'auto',
-  },
-  button: {
-    margin: theme.spacing(0.5, 0),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      margin: 'auto',
+    },
+    paper: {
+      width: 200,
+      height: 230,
+      overflow: 'auto',
+    },
+    button: {
+      margin: theme.spacing(0.5, 0),
+    },
+  }),
+);
 
 function not(a: number[], b: number[]) {
   return a.filter(value => b.indexOf(value) === -1);
@@ -31,7 +33,7 @@ function intersection(a: number[], b: number[]) {
   return a.filter(value => b.indexOf(value) !== -1);
 }
 
-function TransferList() {
+export default function TransferList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState<number[]>([]);
   const [left, setLeft] = React.useState<number[]>([0, 1, 2, 3]);
@@ -77,15 +79,24 @@ function TransferList() {
 
   const customList = (items: number[]) => (
     <Paper className={classes.paper}>
-      <List dense>
-        {items.map((value: number) => (
-          <ListItem key={value} role={undefined} button onClick={handleToggle(value)}>
-            <ListItemIcon>
-              <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
-            </ListItemIcon>
-            <ListItemText primary={`List item ${value + 1}`} />
-          </ListItem>
-        ))}
+      <List dense component="div" role="list">
+        {items.map((value: number) => {
+          const labelId = `transfer-list-item-${value}-label`;
+
+          return (
+            <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
+              <ListItemIcon>
+                <Checkbox
+                  checked={checked.indexOf(value) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{ 'aria-labelledby': labelId }}
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
+            </ListItem>
+          );
+        })}
         <ListItem />
       </List>
     </Paper>
@@ -142,5 +153,3 @@ function TransferList() {
     </Grid>
   );
 }
-
-export default TransferList;

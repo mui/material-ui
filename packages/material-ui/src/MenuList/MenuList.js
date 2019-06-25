@@ -7,6 +7,9 @@ import getScrollbarSize from '../utils/getScrollbarSize';
 import { useForkRef } from '../utils/reactHelpers';
 
 function nextItem(list, item, disableListWrap) {
+  if (list === item) {
+    return list.firstChild;
+  }
   if (item && item.nextElementSibling) {
     return item.nextElementSibling;
   }
@@ -14,6 +17,9 @@ function nextItem(list, item, disableListWrap) {
 }
 
 function previousItem(list, item, disableListWrap) {
+  if (list === item) {
+    return disableListWrap ? list.firstChild : list.lastChild;
+  }
   if (item && item.previousElementSibling) {
     return item.previousElementSibling;
   }
@@ -63,20 +69,25 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
     ) {
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
-      break;
+      nextFocus.focus();
+      return true;
     }
   }
-  if (nextFocus) {
-    nextFocus.focus();
-    return true;
-  }
+
   return false;
 }
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 const MenuList = React.forwardRef(function MenuList(props, ref) {
-  const { actions, autoFocus, className, onKeyDown, disableListWrap = false, ...other } = props;
+  const {
+    actions,
+    autoFocus = false,
+    className,
+    onKeyDown,
+    disableListWrap = false,
+    ...other
+  } = props;
   const listRef = React.useRef(null);
   const textCriteriaRef = React.useRef({
     keys: [],
@@ -114,14 +125,15 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   const handleKeyDown = event => {
     const list = listRef.current;
     const key = event.key;
+    /**
+     * @type {Element} - will always be defined since we are in a keydown handler
+     * attached to an element. A keydown event is either dispatched to the activeElement
+     * or document.body or document.documentElement. Only the first case will
+     * trigger this specific handler.
+     */
     const currentFocus = ownerDocument(list).activeElement;
 
-    if (
-      (key === 'ArrowUp' || key === 'ArrowDown') &&
-      (!currentFocus || (currentFocus && !list.contains(currentFocus)))
-    ) {
-      moveFocus(list, null, disableListWrap, nextItem);
-    } else if (key === 'ArrowDown') {
+    if (key === 'ArrowDown') {
       event.preventDefault();
       moveFocus(list, currentFocus, disableListWrap, nextItem);
     } else if (key === 'ArrowUp') {

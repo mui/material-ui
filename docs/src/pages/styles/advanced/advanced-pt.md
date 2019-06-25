@@ -195,7 +195,7 @@ export default App;
 
 ## String templates
 
-Se você preferir a sintaxe CSS sobre o JSS, você pode usar o plugin [jss-plugin-template ](https://cssinjs.org/jss-plugin-template).
+Se você preferir a sintaxe CSS sobre o JSS, você pode usar o plugin [jss-plugin-template ](https://cssinjs.org/jss-plugin-template/).
 
 ```jsx
 const useStyles = makeStyles({
@@ -256,14 +256,14 @@ const useStyle = makeStyles({
 });
 
 export default function MyComponent() {
-  // Ordem não importa
+  // Order doesn't matter
   const classes = useStyles();
   const classesBase = useStyleBase();
 
-  // Ordem não importa
-  const className = clsx(classes.root, useStyleBase.root)
+  // Order doesn't matter
+  const className = clsx(classes.root, classesBase.root)
 
-  // color: vermelho🔴 ganha.
+  // color: red 🔴 wins.
   return <div className={className} />;
 }
 ```
@@ -388,13 +388,13 @@ Você pode [seguir o guia lado do servidor](/guides/server-rendering/) para um e
 
 Nós temos [um plugin oficial](https://github.com/hupe1980/gatsby-plugin-material-ui) que permite a renderização do lado do servidor para `@material-ui/ styles`. Consulte a página do plugin para obter instruções de configuração e uso.
 
-Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next).
+Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/master/examples/gatsby).
 
 ### Next.js
 
-Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
+Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
 
-Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next).
+Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/master/examples/nextjs).
 
 ## Nomes de classes (Class names)
 
@@ -536,7 +536,7 @@ Você pode ler mais sobre o CSP no [MDN Web Docs](https://developer.mozilla.org/
 
 ### Como se implementa o CSP?
 
-Para usar o CSP com Material-UI (e JSS), você precisa usar um nonce. Um nonce é uma string gerada aleatoriamente que é usada apenas uma vez, portanto, você precisa adicionar um middleware de servidor para gerar um em cada solicitação. JSS tem um [ótimo tutorial](https://github.com/cssinjs/jss/blob/next/docs/csp.md) sobre como conseguir isso com Express and React Helmet. Para um resumo básico, continue lendo.
+Para usar o CSP com Material-UI (e JSS), você precisa usar um nonce. Um nonce é uma string gerada aleatoriamente que é usada apenas uma vez, portanto, você precisa adicionar um middleware de servidor para gerar um em cada solicitação. JSS tem um [ótimo tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) sobre como conseguir isso com Express and React Helmet. Para um resumo básico, continue lendo.
 
 Um nonce CSP é uma string codificada na Base 64. Você pode gerar um assim:
 

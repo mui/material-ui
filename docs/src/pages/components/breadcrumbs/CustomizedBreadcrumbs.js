@@ -1,6 +1,5 @@
 import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
@@ -39,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CustomizedBreadcrumbs() {
+export default function CustomizedBreadcrumbs() {
   const classes = useStyles();
 
   return (
@@ -67,5 +66,3 @@ function CustomizedBreadcrumbs() {
     </Paper>
   );
 }
-
-export default CustomizedBreadcrumbs;

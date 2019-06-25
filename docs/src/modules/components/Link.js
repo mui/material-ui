@@ -30,7 +30,6 @@ function Link(props) {
   const {
     activeClassName,
     className: classNameProps,
-    dispatch,
     innerRef,
     naked,
     router,
@@ -57,7 +56,6 @@ Link.propTypes = {
   activeClassName: PropTypes.string,
   as: PropTypes.string,
   className: PropTypes.string,
-  dispatch: PropTypes.func,
   href: PropTypes.string,
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
@@ -75,9 +73,12 @@ Link.defaultProps = {
 
 const RouterLink = compose(
   withRouter,
-  connect(state => ({
-    userLanguage: state.options.userLanguage,
-  })),
+  connect(
+    state => ({
+      userLanguage: state.options.userLanguage,
+    }),
+    {},
+  ),
 )(Link);
 
 export default React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />);

@@ -10,7 +10,7 @@ Explore a documentação do objeto tema:
 
 > Dica: você pode trabalhar com a documentação do objeto tema em **seu console**. Expomos uma variável `tema` de documentação em todas as páginas de documentação. Por favor, note que o site de documentação está usando um tema personalizado.
 
-Se você quiser aprender mais sobre como o tema é montado, dê uma olhada em [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), e as importações relacionadas que `createMuiTheme` usa.
+Se você quiser aprender mais sobre como o tema é montado, dê uma olhada em [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js), e as importações relacionadas que `createMuiTheme` usa.
 
 ## @material-ui/core/styles vs @material-ui/styles
 

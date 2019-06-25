@@ -21,7 +21,7 @@ Roboto Font has a few easy ways to get started. For more advanced configuration,
 Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
 ## Install with npm
@@ -41,7 +41,7 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 ⚠️ Be careful when using this approach.
 Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff).
 Inlining all the font files can significantly increase the size of your bundle.
-Material-UI default typography configuration only relies on 300, 400 and 500 font weights.
+Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Component
 

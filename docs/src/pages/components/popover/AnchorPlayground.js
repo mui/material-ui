@@ -8,7 +8,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
-import green from '@material-ui/core/colors/green';
+import { green } from '@material-ui/core/colors';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';

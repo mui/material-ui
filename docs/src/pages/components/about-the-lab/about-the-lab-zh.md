@@ -1,4 +1,4 @@
-# About the lab
+# 关于实验室
 
 <p class="description">这个包还在开发中, 尚未准备好添加到核心库中</p>
 

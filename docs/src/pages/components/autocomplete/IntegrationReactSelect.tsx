@@ -1,7 +1,7 @@
 import React, { CSSProperties, HTMLAttributes } from 'react';
 import clsx from 'clsx';
 import Select from 'react-select';
-import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
+import { createStyles, emphasize, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import TextField, { BaseTextFieldProps } from '@material-ui/core/TextField';
@@ -9,7 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import CancelIcon from '@material-ui/icons/Cancel';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import PropTypes from 'prop-types';
 import { ValueContainerProps } from 'react-select/lib/components/containers';
 import { ControlProps } from 'react-select/lib/components/Control';
@@ -146,19 +145,26 @@ inputComponent.propTypes = {
 } as any;
 
 function Control(props: ControlProps<OptionType>) {
+  const {
+    children,
+    innerProps,
+    innerRef,
+    selectProps: { classes, TextFieldProps },
+  } = props;
+
   return (
     <TextField
       fullWidth
       InputProps={{
         inputComponent,
         inputProps: {
-          className: props.selectProps.classes.input,
-          inputRef: props.innerRef,
-          children: props.children,
-          ...props.innerProps,
+          className: classes.input,
+          ref: innerRef,
+          children,
+          ...innerProps,
         },
       }}
-      {...props.selectProps.TextFieldProps}
+      {...TextFieldProps}
     />
   );
 }
@@ -281,7 +287,7 @@ const components = {
   ValueContainer,
 };
 
-function IntegrationReactSelect() {
+export default function IntegrationReactSelect() {
   const classes = useStyles();
   const theme = useTheme();
   const [single, setSingle] = React.useState<ValueType<OptionType>>(null);
@@ -311,32 +317,40 @@ function IntegrationReactSelect() {
         <Select
           classes={classes}
           styles={selectStyles}
+          inputId="react-select-single"
+          TextFieldProps={{
+            label: 'Country',
+            InputLabelProps: {
+              htmlFor: 'react-select-single',
+              shrink: true,
+            },
+            placeholder: 'Search a country (start with a)',
+          }}
           options={suggestions}
           components={components}
           value={single}
           onChange={handleChangeSingle}
-          placeholder="Search a country (start with a)"
         />
         <div className={classes.divider} />
         <Select
           classes={classes}
           styles={selectStyles}
+          inputId="react-select-multiple"
           TextFieldProps={{
-            label: 'Label',
+            label: 'Countries',
             InputLabelProps: {
+              htmlFor: 'react-select-multiple',
               shrink: true,
             },
+            placeholder: 'Select multiple countries',
           }}
           options={suggestions}
           components={components}
           value={multi}
           onChange={handleChangeMulti}
-          placeholder="Select multiple countries"
           isMulti
         />
       </NoSsr>
     </div>
   );
 }
-
-export default IntegrationReactSelect;

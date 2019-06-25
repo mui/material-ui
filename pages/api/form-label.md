@@ -40,15 +40,15 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">focused</span> | Styles applied to the root element if `focused={true}`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
-| <span class="prop-name">filled</span> | Styles applied to the root element if `filled={true}`.
-| <span class="prop-name">required</span> | Styles applied to the root element if `required={true}`.
+| <span class="prop-name">focused</span> | Pseudo-class applied to the root element if `focused={true}`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">error</span> | Pseudo-class applied to the root element if `error={true}`.
+| <span class="prop-name">filled</span> | Pseudo-class applied to the root element if `filled={true}`.
+| <span class="prop-name">required</span> | Pseudo-class applied to the root element if `required={true}`.
 | <span class="prop-name">asterisk</span> | Styles applied to the asterisk element.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/FormLabel/FormLabel.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormLabel/FormLabel.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

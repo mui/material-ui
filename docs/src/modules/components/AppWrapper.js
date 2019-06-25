@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { StylesProvider, ThemeProvider, jssPreset } from '@material-ui/styles';
-import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
-import getTheme from 'docs/src/modules/styles/getTheme';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { Provider as ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 import { create } from 'jss';
@@ -15,44 +14,93 @@ const jss = create({
   insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
 });
 
-function themeSideEffect(reduxTheme) {
-  setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);
-  document.body.dir = reduxTheme.direction;
+function useFirstRender() {
+  const firstRenderRef = React.useRef(true);
+  React.useEffect(() => {
+    firstRenderRef.current = false;
+  }, []);
+
+  return firstRenderRef.current;
 }
 
-class SideEffectsRaw extends React.Component {
-  componentDidMount() {
-    const { options } = this.props;
-    const codeVariant = getCookie('codeVariant');
+/**
+ * Priority: on first render: navigated value, persisted value; otherwise initial value, 'JS'
+ * @param {string} initialCodeVariant
+ * @param {(nextCodeVariant: string) => void} codeVariantChanged
+ * @returns {string} - The persisted variant if the initial value is undefined
+ */
+function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVariantChanged) {
+  const isFirstRender = useFirstRender();
 
-    if (codeVariant && options.codeVariant !== codeVariant) {
-      window.ga('set', 'dimension1', codeVariant);
-      this.props.dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          codeVariant,
-        },
-      });
-    } else {
-      window.ga('set', 'dimension1', CODE_VARIANTS.JS);
+  const navigatedCodeVariant = React.useMemo(() => {
+    const navigatedCodeVariantMatch =
+      typeof window !== 'undefined' ? window.location.hash.match(/\.(js|tsx)$/) : null;
+
+    if (navigatedCodeVariantMatch === null) {
+      return undefined;
     }
 
-    window.ga('set', 'dimension2', options.userLanguage);
-  }
+    return navigatedCodeVariantMatch[1] === 'tsx' ? CODE_VARIANTS.TS : CODE_VARIANTS.JS;
+  }, []);
 
-  render() {
-    return null;
-  }
+  const persistedCodeVariant = React.useMemo(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+    return getCookie('codeVariant');
+  }, []);
+
+  /**
+   * we initialize from navigation or cookies. on subsequent renders the store is the
+   * truth
+   */
+  const codeVariant =
+    isFirstRender === true
+      ? navigatedCodeVariant || persistedCodeVariant || initialCodeVariant
+      : initialCodeVariant;
+
+  React.useEffect(() => {
+    if (codeVariant !== initialCodeVariant) {
+      codeVariantChanged(codeVariant);
+    }
+  });
+
+  React.useEffect(() => {
+    document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
+  }, [codeVariant]);
+
+  return codeVariant;
 }
 
-SideEffectsRaw.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired,
-};
+function Tracking(props) {
+  const { dispatch, options } = props;
 
-const SideEffects = connect(state => ({
+  const codeVariant = usePersistCodeVariant(options.codeVariant, nextCodeVariant =>
+    dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
+  );
+
+  React.useEffect(() => {
+    window.ga('set', 'dimension1', codeVariant);
+  }, [codeVariant]);
+
+  React.useEffect(() => {
+    window.ga('set', 'dimension2', options.userLanguage);
+  }, [options.userLanguage]);
+
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }, []);
+
+  return null;
+}
+
+const ConnectedTracking = connect(state => ({
   options: state.options,
-}))(SideEffectsRaw);
+}))(Tracking);
 
 // Inspired by
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
@@ -109,86 +157,23 @@ async function registerServiceWorker() {
   }
 }
 
-class AppWrapper extends React.Component {
-  state = {};
+function AppWrapper(props) {
+  const { children } = props;
 
-  componentDidMount() {
-    themeSideEffect(this.props.reduxTheme);
-
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-
-    const { reduxTheme } = this.props;
-
-    const paletteType = getCookie('paletteType');
-    const paletteColors = getCookie('paletteColors');
-
-    if (
-      (paletteType && reduxTheme.paletteType !== paletteType) ||
-      (paletteColors && JSON.stringify(reduxTheme.paletteColors) !== paletteColors)
-    ) {
-      this.props.dispatch({
-        type: ACTION_TYPES.THEME_CHANGE,
-        payload: {
-          paletteType,
-          paletteColors: paletteColors ? JSON.parse(paletteColors) : null,
-        },
-      });
-    }
-
+  React.useEffect(() => {
     registerServiceWorker();
-  }
+  }, []);
 
-  componentDidUpdate() {
-    themeSideEffect(this.props.reduxTheme);
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.theme === 'undefined') {
-      return {
-        prevProps: nextProps,
-        theme: getTheme(nextProps.reduxTheme),
-      };
-    }
-
-    const { prevProps } = prevState;
-
-    if (
-      nextProps.reduxTheme.paletteType !== prevProps.reduxTheme.paletteType ||
-      nextProps.reduxTheme.paletteColors !== prevProps.reduxTheme.paletteColors ||
-      nextProps.reduxTheme.direction !== prevProps.reduxTheme.direction
-    ) {
-      return {
-        prevProps: nextProps,
-        theme: getTheme(nextProps.reduxTheme),
-      };
-    }
-
-    return null;
-  }
-
-  render() {
-    const { children } = this.props;
-    const { theme } = this.state;
-
-    return (
-      <StylesProvider jss={jss}>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        <SideEffects />
-      </StylesProvider>
-    );
-  }
+  return (
+    <StylesProvider jss={jss}>
+      <ThemeProvider>{children}</ThemeProvider>
+      <ConnectedTracking />
+    </StylesProvider>
+  );
 }
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  reduxTheme: PropTypes.object.isRequired,
 };
 
-export default connect(state => ({
-  reduxTheme: state.theme,
-}))(AppWrapper);
+export default AppWrapper;

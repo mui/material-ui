@@ -49,7 +49,7 @@ interface State {
   currency: string;
 }
 
-function FilledTextFields() {
+export default function FilledTextFields() {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     name: 'Cat in the Hat',
@@ -144,6 +144,15 @@ function FilledTextFields() {
         className={clsx(classes.textField, classes.dense)}
         margin="dense"
         variant="filled"
+      />
+      <TextField
+        id="filled-dense-multiline"
+        label="Dense multiline"
+        className={clsx(classes.textField, classes.dense)}
+        margin="dense"
+        variant="filled"
+        multiline
+        rowsMax="4"
       />
       <TextField
         id="filled-multiline-flexible"
@@ -278,9 +287,8 @@ function FilledTextFields() {
         defaultValue="Bare"
         margin="normal"
         variant="filled"
+        inputProps={{ 'aria-label': 'bare' }}
       />
     </form>
   );
 }
-
-export default FilledTextFields;

@@ -13,13 +13,12 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       position: 'relative',
-      '& $notchedOutline': {
-        borderColor,
-      },
       '&:hover $notchedOutline': {
         borderColor: theme.palette.text.primary,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
+      },
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        '&:hover $notchedOutline': {
           borderColor,
         },
       },
@@ -48,20 +47,32 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `error={true}`. */
     error: {},
+    /* Styles applied to the `input` element if `margin="dense"`. */
+    marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '18.5px 14px',
+      '&$marginDense': {
+        paddingTop: 10.5,
+        paddingBottom: 10.5,
+      },
     },
     /* Styles applied to the `NotchedOutline` element. */
-    notchedOutline: {},
+    notchedOutline: {
+      borderColor,
+    },
     /* Styles applied to the `input` element. */
     input: {
       padding: '18.5px 14px',
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
-      paddingTop: 15,
-      paddingBottom: 15,
+      paddingTop: 10.5,
+      paddingBottom: 10.5,
+    },
+    /* Styles applied to the `input` element if `select={true}. */
+    inputSelect: {
+      paddingRight: 32,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
@@ -139,7 +150,7 @@ OutlinedInput.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default `input` element value, useful when not controlling the component.
+   * The default `input` element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**

@@ -36,7 +36,7 @@ export const styles = theme => ({
       marginBottom: 6,
     },
   },
-  /* Styles applied to the root element if `textColor="inherit"`. */
+  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`. */
   textColorInherit: {
     color: 'inherit',
     opacity: 0.7,
@@ -47,7 +47,7 @@ export const styles = theme => ({
       opacity: 0.4,
     },
   },
-  /* Styles applied to the root element if `textColor="primary"`. */
+  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
   textColorPrimary: {
     color: theme.palette.text.secondary,
     '&$selected': {
@@ -57,7 +57,7 @@ export const styles = theme => ({
       color: theme.palette.text.disabled,
     },
   },
-  /* Styles applied to the root element if `textColor="secondary"`. */
+  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
   textColorSecondary: {
     color: theme.palette.text.secondary,
     '&$selected': {
@@ -67,9 +67,9 @@ export const styles = theme => ({
       color: theme.palette.text.disabled,
     },
   },
-  /* Styles applied to the root element if `selected={true}` (controlled by the Tabs component). */
+  /* Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component). */
   selected: {},
-  /* Styles applied to the root element if `disabled={true}` (controlled by the Tabs component). */
+  /* Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
   disabled: {},
   /* Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). */
   fullWidth: {
@@ -98,6 +98,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
     classes,
     className,
     disabled = false,
+    disableFocusRipple = false,
     fullWidth,
     icon,
     indicator,
@@ -123,7 +124,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
 
   return (
     <ButtonBase
-      focusRipple
+      focusRipple={!disableFocusRipple}
       className={clsx(
         classes.root,
         classes[`textColor${capitalize(textColor)}`],
@@ -171,6 +172,15 @@ Tab.propTypes = {
    * If `true`, the tab will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the  keyboard focus ripple will be disabled.
+   * `disableRipple` must also be true.
+   */
+  disableFocusRipple: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: PropTypes.bool,
   /**
    * @ignore
    */

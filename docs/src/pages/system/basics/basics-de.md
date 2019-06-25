@@ -12,7 +12,7 @@
 - 🦎 Arbeiten Sie mit beliebigen Themeobjekten.
 - 💅 Arbeite mit den bekanntesten CSS-in-JS Lösungen.
 - 📦 Weniger als [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
+- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
 
 Es ist wichtig zu verstehen, dass dieses Paket mit dieser Signatur reine (nebenwirkungsfreie) Stilfunktionen bereitstellt: `({ theme, ...style }) => style` ** das ist alles** .
 
@@ -224,6 +224,8 @@ const Box = styled.div`
  */
 ```
 
+{{"demo": "pages/system/basics/CollocationApi.js"}}
+
 ## Individuelle Stileigenschaften
 
 ### `style(options) => style function`
@@ -246,8 +248,27 @@ Wir unterstützen nicht alle CSS-Eigenschaften. Möglicherweise möchten Sie neu
 
 #### Beispiele
 
-```js
-import { style } from '@material-ui/system'
+We can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` we can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+
+```jsx
+import styled from 'styled-components';
+import { style } from '@material-ui/system';
+import { Box } from '@material-ui/core';
+
+const gridGap = style({
+  prop: 'gridGap',
+  themeKey: 'spacing',
+});
+
+const Grid = styled(Box)`${gridGap}`;
+const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
+```
+
+We can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
+
+```jsx
+import styled from 'styled-components';
+import { style } from '@material-ui/system';
 
 const borderColor = style({
   prop: 'bc',
@@ -255,6 +276,9 @@ const borderColor = style({
   themeKey: 'palette',
   transform: value => `${value} !important`,
 });
+
+const Colored = styled.div`${borderColor}`;
+const example = <Colored bc="primary.main">...</Colored>;
 ```
 
 ### `compose(...style functions) => style function`
@@ -315,7 +339,7 @@ In Praxis kann eine Box-Komponente viel Zeit sparen. In diesem Beispiel wird gez
 - [Twitter-Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) hat langsam atomare Klassennamen in v2, v3 und v4 eingeführt. Wir haben die Art, wie sie ihre "Helper-Klassen" gruppieren, als Inspiration genutzt.
 - In der Welt von React, war das [Styled System](https://github.com/jxnblk/styled-system) eins der ersten (2017), die Stilfunktionen unterstützte. Sie kann als generische Box-Komponente verwendet werden und ersetzt die atomaren CSS-Helfer sowie Helfer beim Schreiben neuer Komponenten.
 - Große Unternehmen wie Pinterest, GitHub und Segment.io verwenden denselben Ansatz in verschiedenen Geschmacksrichtungen: 
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
+  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - Die eigentliche Implementierung und die objektabhängige API wurden vom [System der Smooth-UI](https://smooth-ui.smooth-code.com/docs-basics-system) inspiriert.

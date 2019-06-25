@@ -39,5 +39,7 @@ export default MyApp;
 
 ### Typography（文字排版）
 
-- 字体抗锯齿功能可以更好地显示Roboto字体
 - 没有声明基础font-size在`<html>`上，但是假定是16px (浏览器的默认设置)。 您可以了解更多有关更改 `<html>` 默认字体大小的含义 [主题文档](/customization/typography/#typography-html-font-size) 页。
+- Set the `theme.typography.body2` style on the `<body>` element.
+- Set the font-weight to "bolder" for the `<b>` and `<strong>` elements. Bolder is one font weight heavier than the parent element (among the available weights of the font).
+- 字体抗锯齿功能可以更好地显示Roboto字体

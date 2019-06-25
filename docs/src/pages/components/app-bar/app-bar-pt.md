@@ -49,13 +49,13 @@ Uma barra de pesquisa na lateral.
 
 Uma barra de aplicativos que se esconde ao rolar.
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": "true", "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Barra de aplicativos elevada
 
 Uma barra de aplicativos que se mantém acima ao rolar.
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": "true", "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 

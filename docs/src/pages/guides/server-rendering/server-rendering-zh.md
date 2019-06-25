@@ -50,7 +50,7 @@ const theme = createMuiTheme({
 
 ### 服务器端
 
-下面的大纲可以大致展现一下我们的服务器端。 我们将使用 [app.use](http://expressjs.com/en/api.html) 来设置一个 [Express middleware](http://expressjs.com/en/guide/using-middleware.html) 从而处理来自我们服务器端的所有请求。 如果您对 Express 或者 middleware 不太熟悉，您只需要知道每次服务器收到了一个请求，都会调用我们的 handleRender 函数。
+下面的大纲可以大致展现一下我们的服务器端。 我们将使用 [app.use](https://expressjs.com/en/api.html) 来设置一个 [Express middleware](https://expressjs.com/en/guide/using-middleware.html) 从而处理来自我们服务器端的所有请求。 如果您对 Express 或者 middleware 不太熟悉，您只需要知道每次服务器收到了一个请求，都会调用我们的 handleRender 函数。
 
 `server.js`
 
@@ -177,11 +177,11 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## 参考实现
 
-您可以在 [GitHub 存储库中](https://github.com/mui-org/material-ui)的 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 的文件夹下面，找到我们托管的不同的范例项目：
+您可以在 [GitHub 存储库中](https://github.com/mui-org/material-ui)的 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 的文件夹下面，找到我们托管的不同的范例项目：
 
-- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
+- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 
 ## 故障排除（Troubleshooting）
 

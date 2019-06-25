@@ -6,7 +6,7 @@ const styles = theme => ({
   '@global': {
     '#carbonads': {
       overflow: 'hidden',
-      backgroundColor: theme.palette.background.level1,
+      backgroundColor: theme.palette.background.level2,
       padding: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(
         1,
       ) + 130}px`,

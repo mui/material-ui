@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import grey from '@material-ui/core/colors/grey';
+import { grey } from '@material-ui/core/colors';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
   },
@@ -25,53 +24,38 @@ const styles = theme => ({
       marginRight: theme.spacing(3),
     },
   },
-});
+}));
 
-class ClickAway extends React.Component {
-  state = {
-    open: false,
+export default function ClickAway() {
+  const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
+
+  const handleClick = () => {
+    setOpen(prev => !prev);
   };
 
-  handleClick = () => {
-    this.setState(state => ({
-      open: !state.open,
-    }));
+  const handleClickAway = () => {
+    setOpen(false);
   };
 
-  handleClickAway = () => {
-    this.setState({
-      open: false,
-    });
-  };
+  const fake = <div className={classes.fake} />;
 
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
-    const fake = <div className={classes.fake} />;
-
-    return (
-      <div className={classes.root}>
-        <ClickAwayListener onClickAway={this.handleClickAway}>
-          <div>
-            <Button onClick={this.handleClick}>Open menu</Button>
-            {open ? (
-              <Paper className={classes.paper}>
-                {fake}
-                {fake}
-                {fake}
-                {fake}
-                {fake}
-              </Paper>
-            ) : null}
-          </div>
-        </ClickAwayListener>
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      <ClickAwayListener onClickAway={handleClickAway}>
+        <div>
+          <Button onClick={handleClick}>Open menu</Button>
+          {open ? (
+            <Paper className={classes.paper}>
+              {fake}
+              {fake}
+              {fake}
+              {fake}
+              {fake}
+            </Paper>
+          ) : null}
+        </div>
+      </ClickAwayListener>
+    </div>
+  );
 }
-
-ClickAway.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ClickAway);

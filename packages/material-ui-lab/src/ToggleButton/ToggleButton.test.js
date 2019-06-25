@@ -6,8 +6,8 @@ import {
   createMount,
   findOutermostIntrinsic,
   getClasses,
-  testRef,
 } from '@material-ui/core/test-utils';
+import testRef from '@material-ui/core/test-utils/testRef';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ToggleButton from './ToggleButton';
 

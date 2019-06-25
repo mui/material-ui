@@ -1,5 +1,5 @@
 ---
-title: Componente React Listas
+title: Componente React para Listas
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
@@ -90,3 +90,5 @@ Este recurso está dependendo do posicionamento de sticky CSS. Infelizmente este
 No exemplo a seguir, nós demonstramos como usar [react-window](https://github.com/bvaughn/react-window) com o componente `List`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
+
+Nós recomendamos o uso de [react-window](https://github.com/bvaughn/react-window) quando possível. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).

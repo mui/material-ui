@@ -1,4 +1,4 @@
-# Style Library Interoperability
+# スタイルライブラリの相互運用性
 
 <p class="description">While it is simple to use the JSS based styling solution provided by Material-UI to style your application, it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.</p>
 
@@ -10,7 +10,6 @@ This guide aims to document the most popular alternatives, but you should find t
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
 - [React JSS](#react-jss)
-- [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
 
 ## Plain CSS
@@ -125,7 +124,7 @@ export default function StyledComponents() {
 
 ### Controlling Priority
 
-Both styled-components and JSS inject their styles at the bottom of the `<head>`. The best approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
+**Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`. The best approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
@@ -214,7 +213,7 @@ Material-UI has a rich theme structure that you can leverage for the color manip
 
 ### Portals
 
-The [Portal](/utils/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component. Because of the way styled-components scopes its CSS, you may run into issues where styling is not applied.
+The [Portal](/components/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component. Because of the way styled-components scopes its CSS, you may run into issues where styling is not applied.
 
 For example, if you attempt to style the [Menu](/components/menus/) of a [Select](/components/selects/) component using the property `MenuProps`, you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy. The following example shows a workaround:
 

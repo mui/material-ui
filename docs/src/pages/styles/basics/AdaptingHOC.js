@@ -29,12 +29,12 @@ function MyButtonRaw(props) {
 
 MyButtonRaw.propTypes = {
   classes: PropTypes.object.isRequired,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.oneOf(['red', 'blue']).isRequired,
 };
 
 const MyButton = withStyles(styles)(MyButtonRaw);
 
-function AdaptingHOC() {
+export default function AdaptingHOC() {
   return (
     <React.Fragment>
       <MyButton color="red">Red</MyButton>
@@ -42,5 +42,3 @@ function AdaptingHOC() {
     </React.Fragment>
   );
 }
-
-export default AdaptingHOC;

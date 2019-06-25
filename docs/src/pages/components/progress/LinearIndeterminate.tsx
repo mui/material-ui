@@ -10,7 +10,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function LinearIndeterminate() {
+export default function LinearIndeterminate() {
   const classes = useStyles();
 
   return (
@@ -21,5 +21,3 @@ function LinearIndeterminate() {
     </div>
   );
 }
-
-export default LinearIndeterminate;

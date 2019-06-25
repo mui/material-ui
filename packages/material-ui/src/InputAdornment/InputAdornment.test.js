@@ -1,11 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createMount,
-  getClasses,
-  describeConformance,
-  findOutermostIntrinsic,
-} from '@material-ui/core/test-utils';
+import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Typography from '../Typography';
 import InputAdornment from './InputAdornment';

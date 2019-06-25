@@ -4,7 +4,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import Zoom from '@material-ui/core/Zoom';
 
-function TransitionsTooltips() {
+export default function TransitionsTooltips() {
   return (
     <div>
       <Tooltip title="Add">
@@ -19,5 +19,3 @@ function TransitionsTooltips() {
     </div>
   );
 }
-
-export default TransitionsTooltips;

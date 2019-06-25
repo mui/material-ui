@@ -24,7 +24,7 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   alert('You clicked a breadcrumb.');
 }
 
-function CollapsedBreadcrumbs() {
+export default function CollapsedBreadcrumbs() {
   const classes = useStyles();
 
   return (
@@ -47,5 +47,3 @@ function CollapsedBreadcrumbs() {
     </Paper>
   );
 }
-
-export default CollapsedBreadcrumbs;

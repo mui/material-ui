@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ScrollableTabsButtonForce() {
+export default function ScrollableTabsButtonForce() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -71,5 +71,3 @@ function ScrollableTabsButtonForce() {
     </div>
   );
 }
-
-export default ScrollableTabsButtonForce;

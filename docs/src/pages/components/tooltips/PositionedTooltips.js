@@ -10,8 +10,9 @@ const useStyles = makeStyles({
   },
 });
 
-function PositionedTooltips() {
+export default function PositionedTooltips() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Grid container justify="center">
@@ -75,5 +76,3 @@ function PositionedTooltips() {
     </div>
   );
 }
-
-export default PositionedTooltips;

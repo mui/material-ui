@@ -1,6 +1,6 @@
 # Flow
 
-<p class="description">您可以向JavaScript添加静态类型，以提高开发人员的工作效率和代码质量。</p>
+<p class="description">借助 Flow，你可以为 JavaScript 添加静态类型，从而提高代码质量及开发者的工作效率。</p>
 
 ## flow-typed
 

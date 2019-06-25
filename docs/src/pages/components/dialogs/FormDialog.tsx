@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-function FormDialog() {
+export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {
@@ -51,5 +51,3 @@ function FormDialog() {
     </div>
   );
 }
-
-export default FormDialog;

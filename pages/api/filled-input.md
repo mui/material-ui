@@ -22,7 +22,7 @@ import FilledInput from '@material-ui/core/FilledInput';
 | <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be focused during the first mount. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">className</span> | <span class="prop-type">string</span> |  | The CSS class name of the wrapper element. |
-| <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default `input` element value, useful when not controlling the component. |
+| <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default `input` element value. Use when the component is not controlled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be disabled. |
 | <span class="prop-name">disableUnderline</span> | <span class="prop-type">bool</span> |  | If `true`, the input will not have an underline. |
 | <span class="prop-name">endAdornment</span> | <span class="prop-type">node</span> |  | End `InputAdornment` for this component. |
@@ -64,15 +64,17 @@ This property accepts the following keys:
 | <span class="prop-name">adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
 | <span class="prop-name">adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
 | <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">input</span> | Styles applied to the `input` element.
 | <span class="prop-name">inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputSelect</span> | Styles applied to the `input` element if `select={true}.
 | <span class="prop-name">inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
 | <span class="prop-name">inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
 | <span class="prop-name">inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/FilledInput/FilledInput.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FilledInput/FilledInput.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

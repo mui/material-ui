@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SimpleBadge() {
+export default function SimpleBadge() {
   const classes = useStyles();
 
   return (
@@ -60,5 +60,3 @@ function SimpleBadge() {
     </div>
   );
 }
-
-export default SimpleBadge;

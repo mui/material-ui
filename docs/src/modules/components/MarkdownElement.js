@@ -41,12 +41,7 @@ renderer.heading = (text, level) => {
   );
 };
 
-const externs = [
-  'https://material.io/',
-  'https://www.styled-components.com/',
-  'https://emotion.sh/',
-  'https://getbootstrap.com/',
-];
+const externs = ['https://material.io/', 'https://getbootstrap.com/'];
 
 renderer.link = (href, title, text) => {
   let more = '';
@@ -118,13 +113,14 @@ const styles = theme => ({
     fontSize: 16,
     color: theme.palette.text.primary,
     '& .anchor-link': {
-      marginTop: -96 - 29, // Offset for the anchor.
+      marginTop: -96, // Offset for the anchor.
       position: 'absolute',
     },
-    '& pre, & pre[class*="language-"]': {
+    '& pre': {
       margin: '24px 0',
       padding: '12px 18px',
-      backgroundColor: theme.palette.background.level1,
+      backgroundColor: '#333',
+      direction: 'ltr',
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
@@ -132,11 +128,17 @@ const styles = theme => ({
     '& code': {
       display: 'inline-block',
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
+      WebkitFontSmoothing: 'subpixel-antialiased',
       padding: '2px 6px',
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.level1,
+      backgroundColor:
+        theme.palette.type === 'dark' ? 'rgba(255,229,100,0.2)' : 'rgba(255,229,100,0.1)',
       fontSize: 14,
       borderRadius: 2,
+    },
+    '& code[class*="language-"]': {
+      backgroundColor: '#333',
+      color: '#fff',
     },
     '& p code, & ul code, & pre code': {
       fontSize: 14,
@@ -214,12 +216,12 @@ const styles = theme => ({
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       },
       '& .required': {
-        color: theme.palette.type === 'light' ? '#006500' : '#9bc89b',
+        color: theme.palette.type === 'light' ? '#006500' : '#a5ffa5',
       },
       '& .prop-type': {
         fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        color: theme.palette.type === 'light' ? '#932981' : '#dbb0d0',
+        color: theme.palette.type === 'light' ? '#932981' : '#ffb6ec',
       },
       '& .prop-default': {
         fontSize: 13,
@@ -269,8 +271,8 @@ const styles = theme => ({
       height: 64,
     },
     '& blockquote': {
-      borderLeft: `5px solid ${theme.palette.text.hint}`,
-      backgroundColor: theme.palette.background.level1,
+      borderLeft: '5px solid #ffe564',
+      backgroundColor: 'rgba(255,229,100,0.2)',
       padding: '4px 24px',
       margin: '24px 0',
     },
@@ -289,7 +291,7 @@ const styles = theme => ({
 });
 
 function MarkdownElement(props) {
-  const { classes, className, dispatch, text, userLanguage, ...other } = props;
+  const { classes, className, text, userLanguage, ...other } = props;
 
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;
@@ -308,14 +310,16 @@ function MarkdownElement(props) {
 MarkdownElement.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  dispatch: PropTypes.func,
   text: PropTypes.string,
   userLanguage: PropTypes.string.isRequired,
 };
 
 export default compose(
-  connect(state => ({
-    userLanguage: state.options.userLanguage,
-  })),
+  connect(
+    state => ({
+      userLanguage: state.options.userLanguage,
+    }),
+    {},
+  ),
   withStyles(styles, { flip: false }),
 )(MarkdownElement);

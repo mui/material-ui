@@ -55,7 +55,7 @@ function getStepContent(step) {
   }
 }
 
-function CustomizedSteppers() {
+export default function CustomizedSteppers() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -131,5 +131,3 @@ function CustomizedSteppers() {
     </div>
   );
 }
-
-export default CustomizedSteppers;

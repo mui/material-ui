@@ -29,7 +29,7 @@ Row.propTypes = {
   style: PropTypes.object,
 };
 
-function VirtualizedList() {
+export default function VirtualizedList() {
   const classes = useStyles();
 
   return (
@@ -40,5 +40,3 @@ function VirtualizedList() {
     </div>
   );
 }
-
-export default VirtualizedList;

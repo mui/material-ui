@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function TextMobileStepper() {
+export default function TextMobileStepper() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -101,5 +101,3 @@ function TextMobileStepper() {
     </div>
   );
 }
-
-export default TextMobileStepper;

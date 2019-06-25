@@ -36,7 +36,7 @@ const theme = createMuiTheme({
     // Nome do componente ⚛️
     MuiButtonBase: {
       // As propriedades para aplicar
-      disableRipple: true, // Sem efeito cascata, em toda aplicação!
+      disableRipple: true, // Sem efeito cascata, em toda aplicação 
     },
   },
 });
@@ -70,9 +70,9 @@ const theme = createMuiTheme({
     create: () => 'none',
   },
   overrides: {
-    // Name of the component ⚛️
-    CssBasline: {
-      // Name of the rule
+    // Nome do componente ⚛️
+    MuiCssBaseline: {
+      // Nome da regra
       '@global': {
         '*, *::before, *::after': {
           transition: 'none !important',
@@ -102,9 +102,9 @@ const theme = createMuiTheme({
 
 No entanto, talvez você esteja adicionando os componentes Material-UI para uma aplicação que já usa outra solução de estilos, ou já esta familiarizado com uma API diferente, e não quer aprender uma nova? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
 
-## Quando devo usar o estilo inline vs CSS?
+## Quando devo usar o estilo em linha vs CSS?
 
-Como regra geral, use apenas o estilo inline para propriedades de estilo dinâmicas. A alternativa de uso com CSS oferece mais vantagens, em:
+Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâmicas. A alternativa de uso com CSS oferece mais vantagens, em:
 
 - prefixação automática
 - melhor depuração
@@ -300,14 +300,14 @@ O site de documentação está usando um tema customizado. Assim, a paleta de co
 
 Existem muitas maneiras de apoiar o Material-UI:
 
-- Melhore [a documentação](https://github.com/mui-org/material-ui/tree/next/docs).
+- Melhore [a documentação](https://github.com/mui-org/material-ui/tree/master/docs).
 - Ajude os outros a começarem.
 - [Espalhe a palavra](https://twitter.com/MaterialUI).
 - Responda a perguntas no [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) ou no [Spectrum](https://spectrum.chat/material-ui).
 
 Se você usa o Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um **Patrocinador**, ou em um projeto paralelo ou passatempo e gostaria de se tornar um apoiador, você pode fazê-lo através do [OpenCollective](https://opencollective.com/material-ui).
 
-Todos os fundos conquistados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial da Material-UI.
+Todos os fundos conquistados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
 
 ## Por que o componente X requer um nó DOM em um prop em vez de um objeto ref?
 

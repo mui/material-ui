@@ -17,21 +17,24 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MuiLink from '@material-ui/core/Link';
 import ColorsIcon from '@material-ui/icons/InvertColors';
-import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
-import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
+import {
+  GitHub as GithubIcon,
+  LightbulbOutline as LightbulbOutlineIcon,
+  LightbulbFull as LightbulbFullIcon,
+} from '@material-ui/docs';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
-import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
-import { ACTION_TYPES, LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES } from 'docs/src/modules/constants';
 import compose from 'docs/src/modules/utils/compose';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -83,6 +86,7 @@ export const languages = [
 const styles = theme => ({
   root: {
     display: 'flex',
+    backgroundColor: theme.palette.background.level1,
   },
   grow: {
     flex: '1 1 auto',
@@ -109,8 +113,13 @@ const styles = theme => ({
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
+    '@media print': {
+      display: 'none',
+    },
   },
   appBar: {
+    color: theme.palette.type === 'dark' ? '#fff' : null,
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.background.level2 : null,
     transition: theme.transitions.create('width'),
     '@media print': {
       position: 'absolute',
@@ -142,229 +151,212 @@ const styles = theme => ({
   },
 });
 
-class AppFrame extends React.Component {
-  state = {
-    languageMenu: null,
-    mobileOpen: false,
-  };
+function AppFrame(props) {
+  const { children, classes, theme, t, userLanguage } = props;
 
-  componentDidMount() {
+  const [languageMenu, setLanguageMenu] = React.useState(null);
+  function handleLanguageIconClick(event) {
+    setLanguageMenu(event.currentTarget);
+  }
+  function handleLanguageMenuClose() {
+    setLanguageMenu(null);
+  }
+
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  function handleDrawerOpen() {
+    setMobileOpen(true);
+  }
+  function handleDrawerClose() {
+    setMobileOpen(false);
+  }
+
+  const changeTheme = useChangeTheme();
+  function handleTogglePaletteType() {
+    const paletteType = theme.palette.type === 'light' ? 'dark' : 'light';
+
+    changeTheme({ paletteType });
+  }
+  function handleToggleDirection() {
+    changeTheme({ direction: theme.direction === 'ltr' ? 'rtl' : 'ltr' });
+  }
+
+  const canonicalRef = React.useRef();
+  React.useEffect(() => {
     const { canonical } = pathnameToLanguage(window.location.pathname);
-    this.canonical = canonical;
-  }
+    canonicalRef.current = canonical;
+  }, []);
 
-  handleDrawerOpen = () => {
-    this.setState({ mobileOpen: true });
-  };
+  return (
+    <PageTitle t={t}>
+      {title => {
+        let disablePermanent = false;
+        let navIconClassName = '';
+        let appBarClassName = classes.appBar;
 
-  handleDrawerClose = () => {
-    this.setState({ mobileOpen: false });
-  };
+        if (title === null) {
+          // home route, don't shift app bar or dock drawer
+          disablePermanent = true;
+          appBarClassName += ` ${classes.appBarHome}`;
+        } else {
+          navIconClassName = classes.navIconHide;
+          appBarClassName += ` ${classes.appBarShift}`;
+        }
 
-  handleLanguageIconClick = event => {
-    this.setState({ languageMenu: event.currentTarget });
-  };
-
-  handleLanguageMenuClose = () => {
-    this.setState({ languageMenu: null });
-  };
-
-  handleTogglePaletteType = () => {
-    const paletteType = this.props.reduxTheme.paletteType === 'light' ? 'dark' : 'light';
-    document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
-
-    this.props.dispatch({
-      type: ACTION_TYPES.THEME_CHANGE,
-      payload: {
-        paletteType,
-      },
-    });
-  };
-
-  handleToggleDirection = () => {
-    this.props.dispatch({
-      type: ACTION_TYPES.THEME_CHANGE,
-      payload: {
-        direction: this.props.reduxTheme.direction === 'ltr' ? 'rtl' : 'ltr',
-      },
-    });
-  };
-
-  render() {
-    const { children, classes, reduxTheme, t, userLanguage } = this.props;
-    const { languageMenu } = this.state;
-
-    return (
-      <PageTitle t={t}>
-        {title => {
-          let disablePermanent = false;
-          let navIconClassName = '';
-          let appBarClassName = classes.appBar;
-
-          if (title === null) {
-            // home route, don't shift app bar or dock drawer
-            disablePermanent = true;
-            appBarClassName += ` ${classes.appBarHome}`;
-          } else {
-            navIconClassName = classes.navIconHide;
-            appBarClassName += ` ${classes.appBarShift}`;
-          }
-
-          return (
-            <div className={classes.root}>
-              <NProgressBar />
-              <CssBaseline />
-              <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
-                Skip to content
-              </MuiLink>
-              <Notifications />
-              <MarkdownLinks />
-              <AppBar className={appBarClassName}>
-                <Toolbar>
+        return (
+          <div className={classes.root}>
+            <NProgressBar />
+            <CssBaseline />
+            <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
+              Skip to content
+            </MuiLink>
+            <Notifications />
+            <MarkdownLinks />
+            <AppBar className={appBarClassName}>
+              <Toolbar>
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  aria-label="Open drawer"
+                  onClick={handleDrawerOpen}
+                  className={navIconClassName}
+                >
+                  <MenuIcon />
+                </IconButton>
+                {title !== null && (
+                  <Typography className={classes.title} variant="h6" noWrap>
+                    {title}
+                  </Typography>
+                )}
+                <div className={classes.grow} />
+                <AppSearch />
+                <Tooltip title="Change language" enterDelay={300}>
                   <IconButton
-                    edge="start"
                     color="inherit"
-                    aria-label="Open drawer"
-                    onClick={this.handleDrawerOpen}
-                    className={navIconClassName}
+                    aria-owns={languageMenu ? 'language-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-label="Change language"
+                    onClick={handleLanguageIconClick}
+                    data-ga-event-category="AppBar"
+                    data-ga-event-action="language"
                   >
-                    <MenuIcon />
+                    <LanguageIcon />
                   </IconButton>
-                  {title !== null && (
-                    <Typography className={classes.title} variant="h6" noWrap>
-                      {title}
-                    </Typography>
-                  )}
-                  <div className={classes.grow} />
-                  <AppSearch />
-                  <Tooltip title="Change language" enterDelay={300}>
-                    <IconButton
-                      color="inherit"
-                      aria-owns={languageMenu ? 'language-menu' : undefined}
-                      aria-haspopup="true"
-                      aria-label="Change language"
-                      onClick={this.handleLanguageIconClick}
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="language"
-                    >
-                      <LanguageIcon />
-                    </IconButton>
-                  </Tooltip>
-                  <NoSsr>
-                    <Menu
-                      id="language-menu"
-                      anchorEl={languageMenu}
-                      open={Boolean(languageMenu)}
-                      onClose={this.handleLanguageMenuClose}
-                    >
-                      {languages
-                        .filter(language => LANGUAGES.indexOf(language.code) !== -1)
-                        .map(language => (
-                          <MenuItem
-                            component="a"
-                            data-no-link="true"
-                            href={
-                              language.code === 'en'
-                                ? this.canonical
-                                : `/${language.code}${this.canonical}`
-                            }
-                            key={language.code}
-                            selected={userLanguage === language.code}
-                            onClick={this.handleLanguageMenuClose}
-                          >
-                            {language.text}
-                          </MenuItem>
-                        ))}
-                    </Menu>
-                  </NoSsr>
-                  <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
-                    <IconButton
-                      color="inherit"
-                      aria-label={t('editWebsiteColors')}
-                      component={Link}
-                      naked
-                      href="/customization/color/#color-tool"
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="colors"
-                    >
-                      <ColorsIcon />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={t('toggleTheme')} enterDelay={300}>
-                    <IconButton
-                      color="inherit"
-                      onClick={this.handleTogglePaletteType}
-                      aria-label={t('toggleTheme')}
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="dark"
-                    >
-                      {reduxTheme.paletteType === 'light' ? (
-                        <LightbulbOutlineIcon />
-                      ) : (
-                        <LightbulbFullIcon />
-                      )}
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={t('toggleRTL')} enterDelay={300}>
-                    <IconButton
-                      color="inherit"
-                      onClick={this.handleToggleDirection}
-                      aria-label={t('toggleRTL')}
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="rtl"
-                    >
-                      {reduxTheme.direction === 'rtl' ? (
-                        <FormatTextdirectionLToR />
-                      ) : (
-                        <FormatTextdirectionRToL />
-                      )}
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={t('github')} enterDelay={300}>
-                    <IconButton
-                      edge="end"
-                      component="a"
-                      color="inherit"
-                      href="https://github.com/mui-org/material-ui"
-                      aria-label={t('github')}
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="github"
-                    >
-                      <GithubIcon />
-                    </IconButton>
-                  </Tooltip>
-                </Toolbar>
-              </AppBar>
-              <AppDrawer
-                className={classes.drawer}
-                disablePermanent={disablePermanent}
-                onClose={this.handleDrawerClose}
-                onOpen={this.handleDrawerOpen}
-                mobileOpen={this.state.mobileOpen}
-              />
-              {children}
-            </div>
-          );
-        }}
-      </PageTitle>
-    );
-  }
+                </Tooltip>
+                <NoSsr>
+                  <Menu
+                    id="language-menu"
+                    anchorEl={languageMenu}
+                    open={Boolean(languageMenu)}
+                    onClose={handleLanguageMenuClose}
+                  >
+                    {languages
+                      .filter(language => LANGUAGES.indexOf(language.code) !== -1)
+                      .map(language => (
+                        <MenuItem
+                          component="a"
+                          data-no-link="true"
+                          href={
+                            language.code === 'en'
+                              ? canonicalRef.current
+                              : `/${language.code}${canonicalRef.current}`
+                          }
+                          key={language.code}
+                          selected={userLanguage === language.code}
+                          onClick={handleLanguageMenuClose}
+                        >
+                          {language.text}
+                        </MenuItem>
+                      ))}
+                  </Menu>
+                </NoSsr>
+                <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
+                  <IconButton
+                    color="inherit"
+                    aria-label={t('editWebsiteColors')}
+                    component={Link}
+                    naked
+                    href="/customization/color/#color-tool"
+                    data-ga-event-category="AppBar"
+                    data-ga-event-action="colors"
+                  >
+                    <ColorsIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={t('toggleTheme')} enterDelay={300}>
+                  <IconButton
+                    color="inherit"
+                    onClick={handleTogglePaletteType}
+                    aria-label={t('toggleTheme')}
+                    data-ga-event-category="AppBar"
+                    data-ga-event-action="dark"
+                  >
+                    {theme.palette.type === 'light' ? (
+                      <LightbulbOutlineIcon />
+                    ) : (
+                      <LightbulbFullIcon />
+                    )}
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={t('toggleRTL')} enterDelay={300}>
+                  <IconButton
+                    color="inherit"
+                    onClick={handleToggleDirection}
+                    aria-label={t('toggleRTL')}
+                    data-ga-event-category="AppBar"
+                    data-ga-event-action="rtl"
+                  >
+                    {theme.direction === 'rtl' ? (
+                      <FormatTextdirectionLToR />
+                    ) : (
+                      <FormatTextdirectionRToL />
+                    )}
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={t('github')} enterDelay={300}>
+                  <IconButton
+                    edge="end"
+                    component="a"
+                    color="inherit"
+                    href="https://github.com/mui-org/material-ui"
+                    aria-label={t('github')}
+                    data-ga-event-category="AppBar"
+                    data-ga-event-action="github"
+                  >
+                    <GithubIcon />
+                  </IconButton>
+                </Tooltip>
+              </Toolbar>
+            </AppBar>
+            <AppDrawer
+              className={classes.drawer}
+              disablePermanent={disablePermanent}
+              onClose={handleDrawerClose}
+              onOpen={handleDrawerOpen}
+              mobileOpen={mobileOpen}
+            />
+            {children}
+          </div>
+        );
+      }}
+    </PageTitle>
+  );
 }
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  reduxTheme: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
 
 export default compose(
-  connect(state => ({
-    reduxTheme: state.theme,
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  })),
-  withStyles(styles),
+  connect(
+    state => ({
+      t: state.options.t,
+      userLanguage: state.options.userLanguage,
+    }),
+    null,
+  ),
+  withStyles(styles, { withTheme: true }),
 )(AppFrame);

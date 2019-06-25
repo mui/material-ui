@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     height: 180,
   },
@@ -24,40 +24,31 @@ const styles = theme => ({
     stroke: theme.palette.divider,
     strokeWidth: 1,
   },
-});
+}));
 
-class SimpleFade extends React.Component {
-  state = {
-    checked: false,
-  };
+export default function SimpleFade() {
+  const classes = useStyles();
+  const [checked, setChecked] = React.useState(false);
 
-  handleChange = () => {
-    this.setState(state => ({ checked: !state.checked }));
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { checked } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
-        <div className={classes.container}>
-          <Fade in={checked}>
-            <Paper elevation={4} className={classes.paper}>
-              <svg className={classes.svg}>
-                <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
-              </svg>
-            </Paper>
-          </Fade>
-        </div>
-      </div>
-    );
+  function handleChange() {
+    setChecked(prev => !prev);
   }
+
+  return (
+    <div className={classes.root}>
+      <FormControlLabel
+        control={<Switch checked={checked} onChange={handleChange} />}
+        label="Show"
+      />
+      <div className={classes.container}>
+        <Fade in={checked}>
+          <Paper elevation={4} className={classes.paper}>
+            <svg className={classes.svg}>
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+            </svg>
+          </Paper>
+        </Fade>
+      </div>
+    </div>
+  );
 }
-
-SimpleFade.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleFade);

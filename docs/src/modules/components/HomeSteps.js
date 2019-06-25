@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
+import { FileDownload as FileDownloadIcon } from '@material-ui/docs';
 import BuildIcon from '@material-ui/icons/Build';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -25,9 +25,9 @@ const UsageLink = React.forwardRef((buttonProps, ref) => (
 
 const styles = theme => ({
   step: {
-    border: `12px solid ${theme.palette.background.paper}`,
+    border: `12px solid ${theme.palette.background.level1}`,
     padding: theme.spacing(3, 2),
-    backgroundColor: theme.palette.background.level0,
+    backgroundColor: theme.palette.background.level2,
     borderRightWidth: 0,
     borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {
@@ -58,21 +58,21 @@ const styles = theme => ({
     alignItems: 'center',
   },
   stepIcon: {
-    color: theme.palette.primary.dark,
+    color: theme.palette.primary.main,
     marginRight: theme.spacing(2),
     fontSize: 30,
   },
   stepBody: {
-    minHeight: 270,
+    minHeight: 290,
   },
   markdownElement: {
     maxWidth: `calc(100vw - ${(theme.spacing(5) + 1) * 2}px)`,
     '& pre, & pre[class*="language-"], & code': {
-      backgroundColor: 'transparent',
+      // backgroundColor: 'transparent',
     },
     '& pre, & pre[class*="language-"]': {
-      padding: theme.spacing(1),
-      margin: 0,
+      padding: theme.spacing(1, 0),
+      margin: theme.spacing(1, 0),
     },
   },
   divider: {
@@ -91,11 +91,12 @@ const styles = theme => ({
 });
 
 const PremiumThemesLink = React.forwardRef((props, ref) => {
-  return <Link href="/premium-themes" naked prefetch ref={ref} {...props} />;
+  return <Link href="https://themes.material-ui.com/" naked ref={ref} {...props} />;
 });
 
 function HomeSteps(props) {
   const { classes, t } = props;
+  const theme = useTheme();
 
   return (
     <Grid container>
@@ -120,9 +121,8 @@ function HomeSteps(props) {
           />
           <Link
             variant="subtitle1"
-            component="div"
             color="inherit"
-            href="https://github.com/mui-org/material-ui/tree/next/examples/cdn-next"
+            href="https://github.com/mui-org/material-ui/tree/master/examples/cdn-next"
             gutterBottom
           >
             {t('cdn')}
@@ -134,7 +134,7 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`html
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
   \`\`\`
                 `}
           />
@@ -183,9 +183,13 @@ function HomeSteps(props) {
           <Typography variant="subtitle1" component="div" gutterBottom>
             {t('themesDescr')}
           </Typography>
-          <Link prefetch href="/premium-themes" className={classes.link}>
+          <Link href="https://themes.material-ui.com/" className={classes.link}>
             <NoSsr>
-              <img className={classes.img} alt="themes" src="/static/images/themes.jpg" />
+              <img
+                className={classes.img}
+                alt="themes"
+                src={`/static/images/themes-${theme.palette.type}.jpg`}
+              />
             </NoSsr>
           </Link>
         </div>

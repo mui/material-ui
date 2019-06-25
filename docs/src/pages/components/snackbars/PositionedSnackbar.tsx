@@ -6,7 +6,7 @@ export interface State extends SnackbarOrigin {
   open: boolean;
 }
 
-function PositionedSnackbar() {
+export default function PositionedSnackbar() {
   const [state, setState] = React.useState<State>({
     open: false,
     vertical: 'top',
@@ -47,5 +47,3 @@ function PositionedSnackbar() {
     </div>
   );
 }
-
-export default PositionedSnackbar;

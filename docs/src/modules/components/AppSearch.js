@@ -4,10 +4,9 @@ import url from 'url';
 import { connect } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { fade, useTheme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 
@@ -52,7 +51,7 @@ function initDocsearch(userLanguage) {
       indexName: 'material-ui',
       inputSelector: '#docsearch-input',
       algoliaOptions: {
-        facetFilters: ['version:next', `language:${userLanguage}`],
+        facetFilters: ['version:master', `language:${userLanguage}`],
       },
       handleSelected: (input, event, suggestion) => {
         event.button = 0;
@@ -106,16 +105,19 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'none',
         backgroundColor: theme.palette.background.paper,
       },
-      '& .algolia-docsearch-suggestion--title': theme.typography.h6,
-      '& .algolia-docsearch-suggestion--text': theme.typography.body2,
+      '& .algolia-docsearch-suggestion--title': {
+        ...theme.typography.h6,
+        color: theme.palette.text.primary,
+      },
+      '& .algolia-docsearch-suggestion--text': {
+        ...theme.typography.body2,
+        color: theme.palette.text.secondary,
+      },
       '&& .algolia-docsearch-suggestion--no-results': {
         width: '100%',
         '&::before': {
           display: 'none',
         },
-      },
-      '& b': {
-        fontWeight: theme.typography.fontWeightMedium,
       },
     },
   },

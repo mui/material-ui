@@ -1,11 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createShallow,
-  createMount,
-  describeConformance,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import TableSortLabel from './TableSortLabel';
 import ButtonBase from '../ButtonBase';
 import Sort from '@material-ui/icons/Sort';

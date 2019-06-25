@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ClippedDrawer() {
+export default function ClippedDrawer() {
   const classes = useStyles();
 
   return (
@@ -106,5 +106,3 @@ function ClippedDrawer() {
     </div>
   );
 }
-
-export default ClippedDrawer;

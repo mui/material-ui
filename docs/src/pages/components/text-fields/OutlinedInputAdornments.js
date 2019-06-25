@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function OutlinedInputAdornments() {
+export default function OutlinedInputAdornments() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     amount: '',
@@ -130,5 +130,3 @@ function OutlinedInputAdornments() {
     </div>
   );
 }
-
-export default OutlinedInputAdornments;

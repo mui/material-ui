@@ -1,10 +1,10 @@
-# 全局变量
+# 全局样式
 
-<p class="description">The overrides key enables you to customize the appearance of all instances of a component type, while the props key enables you to change the default value(s) of a component's props.</p>
+<p class="description">Overrides使你可以统一修改某个组件所有对象的样式，而props则能修改某个组件的默认属性值。</p>
 
 ## CSS
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change **every single style** injected by Material-UI into the DOM. 这是一个十分强有力的特点。
+当配置变量不够强大的时候，您可以使用`theme`的`overrides`来让Material-UI隐式地为您注入**样式规则**。 这是一个非常强大的特性。
 
 ```js
 const theme = createMuiTheme({
@@ -20,19 +20,19 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-每个组件可自定义的部分列在文档的**Component API**部分。 例如，你可以看一下[Button](/api/button/#css)， 而且你总可以查阅 [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js)。
+每个组件可自定义的部分列在文档的**Component API**部分。 例如，你可以看一下[Button](/api/button/#css)， 而且你总可以查阅 [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
 
-## Default props
+## 默认属性
 
-You can change the default props of all the Material-UI components. 在`theme`上有一个键值`props`是用来作这个用途的。
+您可以更改所有Material-UI组件的默认属性。 在`theme`上有一个键值`props`是用来作这个用途的。
 
 ```js
 const theme = createMuiTheme({
   props: {
-    // Name of the component ⚛️
+    // 组件的名称 ⚛️
     MuiButtonBase: {
-      // The default props to change
-      disableRipple: true, // No more ripple, on the whole application 💣!
+      // 需要修改的默认属性
+      disableRipple: true, // 在整个程序中没有更多的ripple 💣!
     },
   },
 });

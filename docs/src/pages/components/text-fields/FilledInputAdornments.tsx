@@ -46,7 +46,7 @@ interface State {
   showPassword: boolean;
 }
 
-function FilledInputAdornments() {
+export default function FilledInputAdornments() {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     amount: '',
@@ -140,5 +140,3 @@ function FilledInputAdornments() {
     </div>
   );
 }
-
-export default FilledInputAdornments;

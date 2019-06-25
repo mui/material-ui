@@ -75,6 +75,7 @@ const blacklistFilename = [
 
   // Flaky
   'docs-components-grid-list/ImageGridList.png',
+  'docs-components-icons/FontAwesome.png',
 
   // Redux isolation
   'docs-components-chips/ChipsPlayground.png',

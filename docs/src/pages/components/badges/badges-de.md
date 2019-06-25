@@ -33,8 +33,8 @@ Das Badge versteckt sich automatisch, wenn `badgeContent` null ist. Dies kann mi
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Customized badges
+## Benutzerdefinierte Badges
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}

@@ -53,6 +53,7 @@ PersistScroll.propTypes = {
 const styles = theme => ({
   paper: {
     width: 240,
+    backgroundColor: theme.palette.background.level1,
   },
   title: {
     color: theme.palette.text.secondary,
@@ -156,7 +157,7 @@ function AppDrawer(props) {
   );
 
   return (
-    <nav className={className} role="navigation" aria-label="Main navigation">
+    <nav className={className} aria-label="Main navigation">
       <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{

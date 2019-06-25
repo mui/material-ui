@@ -5,7 +5,7 @@ import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce 
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { useForkRef } from '../utils/reactHelpers';
-import withTheme from '../styles/withTheme';
+import useTheme from '../styles/useTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 
@@ -13,7 +13,7 @@ const GUTTER = 24;
 
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
-// with `translate3d(0, 0, 0)`.`
+// with `none`.`
 function getTranslateValue(direction, node) {
   const rect = node.getBoundingClientRect();
 
@@ -41,7 +41,7 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'left') {
-    return `translateX(100vw) translateX(-${rect.left - offsetX}px)`;
+    return `translateX(${window.innerWidth}px) translateX(-${rect.left - offsetX}px)`;
   }
 
   if (direction === 'right') {
@@ -49,7 +49,7 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'up') {
-    return `translateY(100vh) translateY(-${rect.top - offsetY}px)`;
+    return `translateY(${window.innerHeight}px) translateY(-${rect.top - offsetY}px)`;
   }
 
   // direction === 'down'
@@ -84,11 +84,11 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     onExit,
     onExited,
     style,
-    theme,
     timeout = defaultTimeout,
     ...other
   } = props;
 
+  const theme = useTheme();
   const childrenRef = React.useRef(null);
   /**
    * used in cloneElement(children, { ref: handleRef })
@@ -126,8 +126,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       ...transitionProps,
       easing: theme.transitions.easing.easeOut,
     });
-    node.style.webkitTransform = 'translate(0, 0)';
-    node.style.transform = 'translate(0, 0)';
+    node.style.webkitTransform = 'none';
+    node.style.transform = 'none';
     if (onEntering) {
       onEntering(node);
     }
@@ -261,10 +261,6 @@ Slide.propTypes = {
    */
   style: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
@@ -274,4 +270,4 @@ Slide.propTypes = {
   ]),
 };
 
-export default withTheme(Slide);
+export default Slide;

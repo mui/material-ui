@@ -32,6 +32,18 @@ Un ejemplo de cómo renderizar múltiples Chips desde un array de valores. Elimi
 
 {{"demo": "pages/components/chips/ChipsArray.js"}}
 
+## Small Chip
+
+You can use the `size` prop to define a small Chip.
+
+### Default variant
+
+{{"demo": "pages/components/chips/SmallChips.js"}}
+
+### Outlined variant
+
+{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+
 ## Chip Playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

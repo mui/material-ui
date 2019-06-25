@@ -1,14 +1,8 @@
-import { CSSProperties } from '@material-ui/styles';
 import * as CSS from 'csstype';
 
 // disable automatic export
 export {};
 
-type ThemeOf<Props> = Props extends WithTheme<infer Theme> ? Theme : never;
-type WithThemeOfProps<Props> = WithTheme<ThemeOf<Props>>;
-interface WithTheme<Theme extends object> {
-  theme?: Theme;
-}
 export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
   ? Props
   : never;
@@ -35,13 +29,14 @@ export const borders: SimpleStyleFunction<
 export type BordersProps = PropsFor<typeof borders>;
 
 // breakpoints.js
+type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 /**
  *
  * @returns An enhanced stylefunction that considers breakpoints
  */
-export function breakpoints<Props extends { theme: { breakpoints?: unknown } }>(
+export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>,
-): StyleFunction<Props>;
+): StyleFunction<Partial<Record<Breakpoints, Props>>>;
 
 // compose.js
 /**
@@ -53,27 +48,36 @@ export function breakpoints<Props extends { theme: { breakpoints?: unknown } }>(
  */
 type ComposedArg<T> = T extends Array<(arg: infer P) => any> ? P : never;
 type ComposedStyleProps<T> = ComposedArg<T>;
-type Composed<T extends Array<StyleFunction<any>>> = StyleFunction<ComposedStyleProps<T>>;
-export function compose<T extends Array<StyleFunction<any>>>(...args: T): Composed<T>;
+export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFunction<
+  ComposedStyleProps<T>
+>;
+export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
 
 // css.js
 export function css<Props>(
   styleFunction: StyleFunction<Props>,
 ): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
 
-export const display: SimpleStyleFunction<'display' | 'displayPrint'>;
+export const display: SimpleStyleFunction<
+  'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
+>;
+
 export type DisplayProps = PropsFor<typeof display>;
 
 export const flexbox: SimpleStyleFunction<
-  | 'flexboxDirection'
+  | 'flexBasis'
+  | 'flexDirection'
   | 'flexWrap'
   | 'justifyContent'
   | 'alignItems'
   | 'alignContent'
   | 'order'
+  | 'flex'
   | 'flexGrow'
   | 'flexShrink'
   | 'alignSelf'
+  | 'justifyItems'
+  | 'justifySelf'
 >;
 export type FlexboxProps = PropsFor<typeof flexbox>;
 
@@ -129,15 +133,19 @@ export const spacing: SimpleStyleFunction<
   | 'px'
   | 'py'
   | 'margin'
-  | 'marginLeft'
   | 'marginTop'
   | 'marginRight'
   | 'marginBottom'
+  | 'marginLeft'
+  | 'marginX'
+  | 'marginY'
   | 'padding'
   | 'paddingTop'
   | 'paddingRight'
   | 'paddingBottom'
   | 'paddingLeft'
+  | 'paddingX'
+  | 'paddingY'
 >;
 export type SpacingProps = PropsFor<typeof spacing>;
 
@@ -158,10 +166,19 @@ export function style<PropKey extends string, Theme extends object>(
 // typography.js
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
 export const fontSize: SimpleStyleFunction<'fontSize'>;
+export const fontStyle: SimpleStyleFunction<'fontStyle'>;
 export const fontWeight: SimpleStyleFunction<'fontWeight'>;
+export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
+export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
 export const typography: SimpleStyleFunction<
-  'fontFamily' | 'fontSize' | 'fontWeight' | 'textAlign'
+  | 'fontFamily'
+  | 'fontSize'
+  | 'fontStyle'
+  | 'fontWeight'
+  | 'letterSpacing'
+  | 'lineHeight'
+  | 'textAlign'
 >;
 export type TypographyProps = PropsFor<typeof typography>;
 

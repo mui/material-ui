@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function InsetList() {
+export default function InsetList() {
   const classes = useStyles();
 
   return (
-    <List component="nav" className={classes.root}>
+    <List component="nav" className={classes.root} aria-label="Contacts">
       <ListItem button>
         <ListItemIcon>
           <StarIcon />
@@ -33,5 +33,3 @@ function InsetList() {
     </List>
   );
 }
-
-export default InsetList;

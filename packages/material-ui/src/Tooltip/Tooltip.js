@@ -17,6 +17,10 @@ export const styles = theme => ({
   popper: {
     zIndex: theme.zIndex.tooltip,
     pointerEvents: 'none',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    flip: false, // disable jss-rtl plugin
   },
   /* Styles applied to the Popper component if `interactive={true}`. */
   popperInteractive: {
@@ -104,18 +108,12 @@ function Tooltip(props) {
   const [, forceUpdate] = React.useState(0);
   const [childNode, setChildNode] = React.useState();
   const ignoreNonTouchEvents = React.useRef(false);
-  const { current: isControlled } = React.useRef(props.open != null);
+  const { current: isControlled } = React.useRef(openProp != null);
   const defaultId = React.useRef();
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
-  // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(instance => {
-    // #StrictMode ready
-    setChildNode(ReactDOM.findDOMNode(instance));
-  }, []);
-  const handleRef = useForkRef(children.ref, handleOwnRef);
 
   React.useEffect(() => {
     warning(
@@ -202,13 +200,7 @@ function Tooltip(props) {
     }
   };
 
-  const getOwnerDocument = React.useCallback(() => {
-    if (childNode == null) {
-      return null;
-    }
-    return childNode.ownerDocument;
-  }, [childNode]);
-  const { isFocusVisible, onBlurVisible } = useIsFocusVisible(getOwnerDocument);
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
   function handleBlur() {
     if (childIsFocusVisible) {
@@ -306,6 +298,16 @@ function Tooltip(props) {
       handleClose(event);
     }, leaveTouchDelay);
   };
+
+  // can be removed once we drop support for non ref forwarding class components
+  const handleOwnRef = useForkRef(
+    React.useCallback(instance => {
+      // #StrictMode ready
+      setChildNode(ReactDOM.findDOMNode(instance));
+    }, []),
+    focusVisibleRef,
+  );
+  const handleRef = useForkRef(children.ref, handleOwnRef);
 
   let open = isControlled ? openProp : openState;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Popper from '@material-ui/core/Popper';
 
-function MinimalPopper() {
+export default function MinimalPopper() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function handleClick(event) {
@@ -9,7 +9,7 @@ function MinimalPopper() {
   }
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : null;
+  const id = open ? 'simple-popper' : undefined;
 
   return (
     <div>
@@ -22,5 +22,3 @@ function MinimalPopper() {
     </div>
   );
 }
-
-export default MinimalPopper;

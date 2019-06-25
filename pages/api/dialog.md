@@ -55,8 +55,8 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">scrollPaper</span> | Styles applied to the root element if `scroll="paper"`.
-| <span class="prop-name">scrollBody</span> | Styles applied to the root element if `scroll="body"`.
+| <span class="prop-name">scrollPaper</span> | Styles applied to the container element if `scroll="paper"`.
+| <span class="prop-name">scrollBody</span> | Styles applied to the container element if `scroll="body"`.
 | <span class="prop-name">container</span> | Styles applied to the container element.
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 | <span class="prop-name">paperScrollPaper</span> | Styles applied to the `Paper` component if `scroll="paper"`.
@@ -71,7 +71,7 @@ This property accepts the following keys:
 | <span class="prop-name">paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Dialog/Dialog.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Dialog/Dialog.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

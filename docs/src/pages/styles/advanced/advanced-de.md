@@ -57,7 +57,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### Verschachtelung des Themes
 
-Sie können mehrere Theme Provider verschachteln. This can be really useful when dealing with different areas of your application that have distinct appearance from each other.
+Sie können mehrere Theme Provider verschachteln. Dies kann sehr nützlich sein, wenn Sie sich mit unterschiedlichen Bereichen Ihrer Anwendung befassen, die sich voneinander unterscheiden.
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -81,15 +81,15 @@ Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere
 </ThemeProvider>
 ```
 
-## Overriding styles - `classes` prop
+## Überschreiben der Styles `classes` Eigenschaft
 
-The `makeStyles` (hook generator) and `withStyles` (HOC) APIs allow the creation of multiple style rules per style sheet. Each style rule has its own class name. The class names are provided to the component with the `classes` variable. The is particularly useful when styling nested elements in a component.
+Die `makeStyle` (Hook-Generator) und `withStyles` (HOC) APIs ermöglichen die Erstellung mehrerer Stilregeln pro Stylesheet. Jede Stilregel hat einen eigenen Klassennamen. Die Klassennamen werden der Komponente mit der `classes` Variable zur Verfügung gestellt. Dies ist besonders nützlich, wenn Sie verschachtelte Elemente in einer Komponente formatieren.
 
 ```jsx
-// A style sheet
+// Ein Stylesheet
 const useStyles = makeStyles({
-  root: {}, // a style rule
-  label: {}, // a nested style rule
+  root: {}, // eine Stil Regel
+  label: {}, // eine verschachtelte Regel
 });
 
 function Nested(props) {
@@ -97,7 +97,7 @@ function Nested(props) {
   return (
     <button className={classes.root}> // 'jss1'
       <span className={classes.label}> // 'jss2'
-        nested
+        verschachtelt
       </span>
     </button>
   );
@@ -108,11 +108,11 @@ function Parent() {
 }
 ```
 
-However, the class names are often non-deterministic. How can a parent component override the style of a nested element?
+Die Klassennamen sind jedoch häufig nicht deterministisch. Wie kann eine übergeordnete Komponente den Stil eines verschachtelten Elements überschreiben?
 
 ### withStyles
 
-This is the simplest case. the wrapped component accepts a `classes` prop, it simply merges the class names provided with the style sheet.
+Dies ist der einfachste Fall. Die umschlossene Komponente akzeptiert die `classes` Eigenschaft, welches einfach die mit dem Stylesheet gelieferten Klassennamen zusammengeführt wird.
 
 ```jsx
 const Nested = withStyles({
@@ -133,7 +133,7 @@ function Parent() {
 
 ### makeStyles
 
-The hook API requires a bit more work. You have to forward the parent props to the hook as a first argument.
+Die Hook-API erfordert etwas mehr Arbeit. Sie müssen die übergeordneten Eigenschaften als erstes Argument an den Hook übergeben.
 
 ```jsx
 const useStyles = makeStyles({
@@ -195,7 +195,7 @@ export default App;
 
 ## String-Vorlagen
 
-Wenn Sie die CSS-Syntax gegenüber JSS bevorzugen, können Sie das [jss-plugin-template](https://cssinjs.org/jss-plugin-template) Plugin verwenden.
+Wenn Sie die CSS-Syntax gegenüber JSS bevorzugen, können Sie das [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) Plugin verwenden.
 
 ```jsx
 const useStyles = makeStyles({
@@ -256,14 +256,14 @@ const useStyle = makeStyles({
 });
 
 export default function MyComponent() {
-  // Reihenfolge ist egal
+  // Order doesn't matter
   const classes = useStyles();
   const classesBase = useStyleBase();
 
-  //  Reihenfolge ist egal
-  const className = clsx(classes.root, useStyleBase.root)
+  // Order doesn't matter
+  const className = clsx(classes.root, classesBase.root)
 
-  // Farbe: rot 🔴 gewinnt.
+  // color: red 🔴 wins.
   return <div className={className} />;
 }
 ```
@@ -388,13 +388,13 @@ Sie können der [serverseitigen Anleitung](/guides/server-rendering/) für ein d
 
 Wir haben [ein offizielles Plugin](https://github.com/hupe1980/gatsby-plugin-material-ui), welches serverseitiges Rendering für `@material-ui/styles` ermöglicht. Anleitungen zur Einrichtung und Verwendung finden Sie auf der Seite des Plugins.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next) for an up-to-date usage example.
+Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) für ein aktuelles Verwendungsbeispiel.
 
 ### Next.js
 
-Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
+Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next) for an up-to-date usage example.
+Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) für ein aktuelles Verwendungsbeispiel.
 
 ## Klassennamen
 
@@ -402,7 +402,7 @@ Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategener
 
 ### Standard
 
-By default, the class names generated by `@material-ui/styles` are **non-deterministic**; you can't rely on them to stay the same. Nehmen wir den folgenden Stil als Beispiel:
+Standardmäßig werden die Klassennamen von `@material-ui/styles`** nicht deterministisch** generiert; Man kann sich nicht darauf verlassen, dass sie gleich bleiben. Nehmen wir den folgenden Stil als Beispiel:
 
 ```js
 const useStyles = makeStyles({
@@ -412,11 +412,11 @@ const useStyles = makeStyles({
 });
 ```
 
-This will generate a class name such as `makeStyles-root-123`.
+Dadurch wird ein Klassenname wie `makeStyles-root-123` generiert.
 
-You have to use the `classes` prop of a component to override the styles. The non-deterministic nature of the class names enables style isolation.
+Sie müssen die `Klassen` Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben. Die nicht deterministische Natur der Klassennamen ermöglicht die Stilisolation.
 
-- In **development**, the class name is: `.makeStyles-root-123`, following this logic:
+- In der **Entwicklung** lauten der Klassenname: `.makeStyles-root-123` nach dieser Logik:
 
 ```js
 const sheetName = 'makeStyles';
@@ -426,7 +426,7 @@ const identifier = 123;
 const className = `${sheetName}-${ruleName}-${identifier}`;
 ```
 
-- In **production**, the class name is: `.jss123`, following this logic:
+- In der **Produktion** lauten der Klassenname: `.jss123` nach dieser Logik:
 
 ```js
 const productionPrefix = 'jss';
@@ -435,15 +435,15 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### With `@material-ui/core`
+### Mit `@material-ui/core`
 
-The generated class names of the `@material-ui/core` components behave differently. When the following conditions are met, the class names are **deterministic**:
+Die generierten Klassennamen der `@material-ui/core` Komponenten verhalten sich anders. Wenn die folgenden Bedingungen erfüllt sind, sind die Klassennamen **deterministisch**:
 
-- Only one theme provider is used (**No theme nesting**)
-- The style sheet has a name that starts with `Mui`. (All Material-UI components)
-- The `disableGlobal` option of the [class name generator](/styles/api/#creategenerateclassname-options-class-name-generator) is `false`. (The default)
+- Es wird nur ein Themeanbieter verwendet (**Keine Verschachtelung von Themes**)
+- Das Stylesheet hat einen Namen, der mit `Mui` beginnt. (Alle Material-UI-Komponenten)
+- Das `disableGlobal` Option des [Klassennamensgenerators ](/styles/api/#creategenerateclassname-options-class-name-generator) ist `false`. (Der Standard)
 
-These conditions are met with the most common use cases of `@material-ui/core`. For instance, this style sheet:
+Diese Bedingungen werden bei den häufigsten Anwendungsfällen von `@material-ui/core` erfüllt. Zum Beispiel dieses Stylesheet:
 
 ```jsx
 const useStyles = makeStyles({
@@ -461,7 +461,7 @@ const useStyles = makeStyles({
 }, { name: 'MuiButton' });
 ```
 
-generates the following class names you that can override:
+generiert die folgenden Klassennamen, die Sie überschreiben können:
 
 ```css
 .MuiButton-root { /* … */ }
@@ -472,9 +472,9 @@ generates the following class names you that can override:
 .MuiButton-outlinedPrimary:hover { /* … */ }
 ```
 
-*This is a simplification of the `@material-ui/core/Button` component's style sheet.*
+*Dies ist eine Vereinfachung des `@material-ui/core/Button` Stylesheet der Komponente.*
 
-Customization of the TextField can be cumbersome with the [`classes` API](#overriding-styles-classes-prop), where you have to define the the classes prop. It's easier to use the default values, as described above. For example:
+Die Anpassung des TextFields kann mit der [ `classes-`API ](#overriding-styles-classes-prop) mühsam sein, wo Sie die classes Eingenschaft definieren müssen. Die Standardwerte sind, wie oben beschrieben, einfacher zu verwenden. Zum Beispiel:
 
 ```jsx
 import styled from 'styled-components';
@@ -536,7 +536,7 @@ Weitere Informationen zu CSP finden Sie in den [MDN Web Docs](https://developer.
 
 ### Wie kann man CSP implementieren?
 
-Um CSP mit Material-UI (und JSS) verwenden zu können, müssen Sie eine Nonce verwenden. Eine Nonce ist eine zufällig generierte Zeichenfolge, die nur einmal verwendet wird. Daher müssen Sie eine Server-Middleware hinzufügen, um für jede Anforderung eine zu generieren. JSS hat ein [tolles Tutorial](https://github.com/cssinjs/jss/blob/next/docs/csp.md) wie man dies mit Express und React Helmet erreichen kann. Lesen Sie für einen grundlegenden Überblick weiter.
+Um CSP mit Material-UI (und JSS) verwenden zu können, müssen Sie eine Nonce verwenden. Eine Nonce ist eine zufällig generierte Zeichenfolge, die nur einmal verwendet wird. Daher müssen Sie eine Server-Middleware hinzufügen, um für jede Anforderung eine zu generieren. JSS hat ein [tolles Tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) wie man dies mit Express und React Helmet erreichen kann. Lesen Sie für einen grundlegenden Überblick weiter.
 
 Eine CSP-Nonce ist eine Base 64-codierte Zeichenfolge. Sie können diese so erstellen:
 

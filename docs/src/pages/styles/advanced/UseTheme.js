@@ -7,7 +7,7 @@ function DeepChild() {
   return <span>{`spacing ${theme.spacing}`}</span>;
 }
 
-function UseTheme() {
+export default function UseTheme() {
   return (
     <ThemeProvider
       theme={{
@@ -18,5 +18,3 @@ function UseTheme() {
     </ThemeProvider>
   );
 }
-
-export default UseTheme;

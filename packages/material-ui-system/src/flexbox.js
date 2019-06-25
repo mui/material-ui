@@ -1,6 +1,10 @@
 import style from './style';
 import compose from './compose';
 
+export const flexBasis = style({
+  prop: 'flexBasis',
+});
+
 export const flexDirection = style({
   prop: 'flexDirection',
 });
@@ -41,7 +45,16 @@ export const alignSelf = style({
   prop: 'alignSelf',
 });
 
+export const justifyItems = style({
+  prop: 'justifyItems',
+});
+
+export const justifySelf = style({
+  prop: 'justifySelf',
+});
+
 const flexbox = compose(
+  flexBasis,
   flexDirection,
   flexWrap,
   justifyContent,
@@ -52,6 +65,8 @@ const flexbox = compose(
   flexGrow,
   flexShrink,
   alignSelf,
+  justifyItems,
+  justifySelf,
 );
 
 export default flexbox;

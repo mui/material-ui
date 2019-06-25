@@ -143,7 +143,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function IntegrationAutosuggest() {
+export default function IntegrationAutosuggest() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [state, setState] = React.useState({
@@ -185,6 +185,8 @@ function IntegrationAutosuggest() {
         {...autosuggestProps}
         inputProps={{
           classes,
+          id: 'react-autosuggest-simple',
+          label: 'Country',
           placeholder: 'Search a country (start with a)',
           value: state.single,
           onChange: handleChange('single'),
@@ -206,7 +208,8 @@ function IntegrationAutosuggest() {
         {...autosuggestProps}
         inputProps={{
           classes,
-          label: 'Label',
+          id: 'react-autosuggest-popper',
+          label: 'Country',
           placeholder: 'With Popper',
           value: state.popper,
           onChange: handleChange('popper'),
@@ -236,5 +239,3 @@ function IntegrationAutosuggest() {
     </div>
   );
 }
-
-export default IntegrationAutosuggest;

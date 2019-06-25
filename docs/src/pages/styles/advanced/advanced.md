@@ -87,7 +87,7 @@ You can extend the outer theme by providing a function:
 
 The `makeStyles` (hook generator) and `withStyles` (HOC) APIs allow the creation of multiple style rules per style sheet. Each style rule has its own class name.
 The class names are provided to the component with the `classes` variable.
-The is particularly useful when styling nested elements in a component.
+This is particularly useful when styling nested elements in a component.
 
 ```jsx
 // A style sheet
@@ -202,7 +202,7 @@ export default App;
 
 ## String templates
 
-If you prefer CSS syntax over JSS, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template) plugin.
+If you prefer CSS syntax over JSS, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) plugin.
 
 ```jsx
 const useStyles = makeStyles({
@@ -271,7 +271,7 @@ export default function MyComponent() {
   const classesBase = useStyleBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, useStyleBase.root)
+  const className = clsx(classes.root, classesBase.root)
 
   // color: red 🔴 wins.
   return <div className={className} />;
@@ -402,13 +402,13 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 We have [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`.
 Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
 
 ## Class names
 
@@ -478,7 +478,7 @@ const useStyles = makeStyles({
 }, { name: 'MuiButton' });
 ```
 
-generates the following class names you that can override:
+generates the following class names that you can override:
 
 ```css
 .MuiButton-root { /* … */ }
@@ -556,7 +556,7 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### How does one implement CSP?
 
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/next/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
+In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
 
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
 

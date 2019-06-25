@@ -23,7 +23,7 @@ const options = [
   'Hide all notification content',
 ];
 
-function SimpleListMenu() {
+export default function SimpleListMenu() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -43,7 +43,7 @@ function SimpleListMenu() {
 
   return (
     <div className={classes.root}>
-      <List component="nav">
+      <List component="nav" aria-label="Device settings">
         <ListItem
           button
           aria-haspopup="true"
@@ -54,7 +54,13 @@ function SimpleListMenu() {
           <ListItemText primary="When device is locked" secondary={options[selectedIndex]} />
         </ListItem>
       </List>
-      <Menu id="lock-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+      <Menu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
         {options.map((option, index) => (
           <MenuItem
             key={option}
@@ -69,5 +75,3 @@ function SimpleListMenu() {
     </div>
   );
 }
-
-export default SimpleListMenu;

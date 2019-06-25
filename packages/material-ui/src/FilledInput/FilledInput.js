@@ -92,9 +92,15 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `error={true}`. */
     error: {},
+    /* Styles applied to the `input` element if `margin="dense"`. */
+    marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '27px 12px 10px',
+      '&$marginDense': {
+        paddingTop: 23,
+        paddingBottom: 6,
+      },
     },
     /* Styles applied to the `input` element. */
     input: {
@@ -102,8 +108,12 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
-      paddingTop: 24,
+      paddingTop: 23,
       paddingBottom: 6,
+    },
+    /* Styles applied to the `input` element if `select={true}. */
+    inputSelect: {
+      paddingRight: 32,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
@@ -171,7 +181,7 @@ FilledInput.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default `input` element value, useful when not controlling the component.
+   * The default `input` element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**

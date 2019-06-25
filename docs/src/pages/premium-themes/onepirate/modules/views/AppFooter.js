@@ -94,10 +94,10 @@ function AppFooter(props) {
             </Typography>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="/premium-themes/onepirate/terms">Terms</Link>
+                <Link href="/premium-themes/onepirate/terms/">Terms</Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="/premium-themes/onepirate/privacy">Privacy</Link>
+                <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
               </li>
             </ul>
           </Grid>
@@ -131,7 +131,7 @@ function AppFooter(props) {
               </Link>
               {' is licensed by '}
               <Link
-                href="http://creativecommons.org/licenses/by/3.0/"
+                href="https://creativecommons.org/licenses/by/3.0/"
                 title="Creative Commons BY 3.0"
                 target="_blank"
                 rel="noopener noreferrer"

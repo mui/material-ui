@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-function IconLabelTabs() {
+export default function IconLabelTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -38,5 +38,3 @@ function IconLabelTabs() {
     </Paper>
   );
 }
-
-export default IconLabelTabs;

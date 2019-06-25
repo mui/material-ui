@@ -33,7 +33,7 @@ Component.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
 };
 
-function StressTest() {
+export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');
   function handleBackgroundColorChange(event) {
     setBackgroundColor(event.target.value);
@@ -69,5 +69,3 @@ function StressTest() {
     </ThemeProvider>
   );
 }
-
-export default StressTest;

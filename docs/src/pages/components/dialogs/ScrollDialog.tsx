@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-function ScrollDialog() {
+export default function ScrollDialog() {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
 
@@ -54,5 +54,3 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
     </div>
   );
 }
-
-export default ScrollDialog;

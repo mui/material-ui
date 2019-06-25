@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     display: 'grid',
     gridTemplateColumns: 'repeat(12, 1fr)',
-    gridGap: `${theme.spacing(3)}px`,
+    gridGap: theme.spacing(3),
   },
   paper: {
     padding: theme.spacing(1),
@@ -22,10 +21,10 @@ const styles = theme => ({
   divider: {
     margin: theme.spacing(2, 0),
   },
-});
+}));
 
-function CSSGrid(props) {
-  const { classes } = props;
+export default function CSSGrid() {
+  const classes = useStyles();
 
   return (
     <div>
@@ -79,9 +78,3 @@ function CSSGrid(props) {
     </div>
   );
 }
-
-CSSGrid.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CSSGrid);

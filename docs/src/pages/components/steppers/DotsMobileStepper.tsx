@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-function DotsMobileStepper() {
+export default function DotsMobileStepper() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -47,5 +47,3 @@ function DotsMobileStepper() {
     />
   );
 }
-
-export default DotsMobileStepper;

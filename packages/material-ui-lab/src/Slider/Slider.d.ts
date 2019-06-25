@@ -1,46 +1,58 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
-/**
- * @param rawValue - the value inferred from the event in [min, max]
- */
-export type ValueReducer = (
-  rawValue: number,
-  props: SliderProps,
-  event: React.SyntheticEvent,
-) => number;
+export interface Mark {
+  value: number;
+  label?: React.ReactNode;
+}
 
-export const defaultValueReducer: ValueReducer;
+export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+  value: number;
+  open: boolean;
+  children: React.ReactElement;
+}
 
 export interface SliderProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange', false> {
+  extends StandardProps<
+    React.HTMLAttributes<HTMLSpanElement>,
+    SliderClassKey,
+    'defaultValue' | 'onChange'
+  > {
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-valuetext'?: string;
+  defaultValue?: number | number[];
   disabled?: boolean;
-  vertical?: boolean;
+  getAriaValueText?: (value: number, index: number) => string;
+  marks?: boolean | Mark[];
   max?: number;
   min?: number;
-  step?: number;
-  value?: number;
-  valueReducer?: ValueReducer;
-  thumb?: React.ReactElement;
-  onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
-  onDragEnd?: (event: React.ChangeEvent<{}>) => void;
-  onDragStart?: (event: React.ChangeEvent<{}>) => void;
+  name?: string;
+  onChange?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
+  onChangeCommitted?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
+  orientation?: 'horizontal' | 'vertical';
+  step?: number | null;
+  ThumbComponent?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
+  value?: number | number[];
+  ValueLabelComponent?: React.ElementType<ValueLabelProps>;
+  valueLabelDisplay?: 'on' | 'auto' | 'off';
+  valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }
 
 export type SliderClassKey =
   | 'root'
-  | 'container'
-  | 'track'
-  | 'trackBefore'
-  | 'trackAfter'
-  | 'thumb'
-  | 'thumbIconWrapper'
-  | 'thumbIcon'
-  | 'focused'
-  | 'activated'
-  | 'disabled'
+  | 'marked'
   | 'vertical'
-  | 'jumped';
+  | 'rtl'
+  | 'disabled'
+  | 'rail'
+  | 'track'
+  | 'thumb'
+  | 'valueLabel'
+  | 'mark'
+  | 'markActive'
+  | 'markLabel'
+  | 'markLabelActive';
 
 declare const Slider: React.ComponentType<SliderProps>;
 

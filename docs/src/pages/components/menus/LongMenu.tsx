@@ -23,7 +23,7 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-function LongMenu() {
+export default function LongMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -39,7 +39,7 @@ function LongMenu() {
     <div>
       <IconButton
         aria-label="More"
-        aria-owns={open ? 'long-menu' : undefined}
+        aria-controls="long-menu"
         aria-haspopup="true"
         onClick={handleClick}
       >
@@ -48,6 +48,7 @@ function LongMenu() {
       <Menu
         id="long-menu"
         anchorEl={anchorEl}
+        keepMounted
         open={open}
         onClose={handleClose}
         PaperProps={{
@@ -66,5 +67,3 @@ function LongMenu() {
     </div>
   );
 }
-
-export default LongMenu;

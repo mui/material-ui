@@ -1,10 +1,10 @@
 # 高级
 
-<p class="description">This section covers more advanced usage of @material-ui/styles.</p>
+<p class="description">本节包含了更多 @material-ui/styles 的进阶用法。</p>
 
 ## 主题
 
-Add a `ThemeProvider` to the top level of your app to pass the theme down the React component tree. Then, you can access the theme object in style functions.
+添加` ThemeProvider `到应用程序的顶层，将主题传递到React组件树。 然后，您可以在样式函数中访问主题对象。
 
 ```jsx
 import { ThemeProvider } from '@material-ui/styles';
@@ -26,7 +26,7 @@ function Theming() {
 
 ### 访问组件中的主题
 
-您可能需要访问React组件中的主题变量。
+在组件中访问 @material-ui/styles 主题。
 
 #### `useTheme` hook
 
@@ -57,7 +57,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### 主题嵌套
 
-您可以嵌套多个主题提供者。 This can be really useful when dealing with different areas of your application that have distinct appearance from each other.
+您可以嵌套多个主题提供者。 在应用程序的不同区域需要应用不同外观时，这非常有用。
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -70,7 +70,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-内的主题将 **倍率** 外的主题。 您可以通过提供一个函数来扩展外部主题：
+内部主题将 **覆盖** 外部主题。 您可以通过提供一个函数来扩展外部主题：
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -83,7 +83,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ## Overriding styles - `classes` prop
 
-The `makeStyles` (hook generator) and `withStyles` (HOC) APIs allow the creation of multiple style rules per style sheet. Each style rule has its own class name. The class names are provided to the component with the `classes` variable. The is particularly useful when styling nested elements in a component.
+` makeStyles ` (hook generator) 和` withStyles ` (HOC) API允许为每个样式表创建多个样式规则。 每个样式规则都有自己的类名。 类名通过` classes `变量传入组件。 在为组件中的嵌套元素设置样式时，这尤其有用。
 
 ```jsx
 // A style sheet
@@ -108,11 +108,11 @@ function Parent() {
 }
 ```
 
-However, the class names are often non-deterministic. How can a parent component override the style of a nested element?
+但是，类名通常是不确定的。 父组件如何覆盖嵌套元素的样式？
 
 ### withStyles
 
-This is the simplest case. the wrapped component accepts a `classes` prop, it simply merges the class names provided with the style sheet.
+这是最简单的情况。 包装组件接受` classes ` 属性， 它简单地合并了样式表提供的类名。
 
 ```jsx
 const Nested = withStyles({
@@ -133,7 +133,7 @@ function Parent() {
 
 ### makeStyles
 
-The hook API requires a bit more work. You have to forward the parent props to the hook as a first argument.
+Hook API需要多写一点模版代码。 您需要转发父级组件的属性到hook作为第一个参数。
 
 ```jsx
 const useStyles = makeStyles({
@@ -159,9 +159,9 @@ function Parent() {
 
 ## JSS plugins
 
-JSS uses plugins to extend its core, allowing you to cherry-pick the features you need, and only pay the performance overhead for what you are using.
+JSS使用插件来扩展其核心，允许您挑选所需的功能， 并且只为您正在使用的内容支付性能开销。
 
-Not all the plugins are available in Material-UI by default. The following (which is a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
+默认情况下，Material-UI不会启用所有插件。 以下（它是 [ jss-preset-default的子集](https://cssinjs.org/jss-preset-default/) ） 被包含在内：
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -171,7 +171,7 @@ Not all the plugins are available in Material-UI by default. The following (whic
 - [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
 - [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
-Of course, you are free to use additional plugins. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+当然，你可以自由的添加新插件。 我们有一个[](https://github.com/alitaheri/jss-rtl)jss-rtl插件的例子。
 
 ```jsx
 import { create } from 'jss';
@@ -193,9 +193,9 @@ function App() {
 export default App;
 ```
 
-## String templates
+## 字符串模板
 
-If you prefer CSS syntax over JSS, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template) plugin.
+如果您更喜欢CSS语法而不是JSS，则可以使用[ jss-plugin-template ](https://cssinjs.org/jss-plugin-template/)插入。
 
 ```jsx
 const useStyles = makeStyles({
@@ -212,32 +212,32 @@ const useStyles = makeStyles({
 });
 ```
 
-Note that this doesn't support selectors, or nested rules.
+请注意，这不支持选择器或嵌套规则。
 
 {{"demo": "pages/styles/advanced/StringTemplates.js"}}
 
 ## CSS 注入顺序
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser. It's one of the key elements to know when overriding styles. We **encourage** you to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> 了解浏览器如何计算CSS特异性**非常重要**。 这是重写样式时要知道的关键元素之一。 我们 **推荐**您要阅读此MDN资料：[如何计算特异性？ ](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
-By default, the style tags are injected **last** in the `<head>` element of the page. They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
+默认情况下，注入的style标签会被插入到页面`<head>`元素的最后。 它们比页面上任何其他样式标签更具特异性，例如CSS模块， styled components。
 
 ### injectFirst
 
-The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
+`StylesProvider`组件的属性 `injectFirst` 会把style标签注入到head的**前部**(意味着更低的权重)。
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Styled components can override Material-UI's styles. */}
+  {/* 你的组件树。
+      样式化组件可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
 
-The injection of style tags happens in the **same order** as the `makeStyles` / `withStyles` / `styled` invocations. For instance the color red wins in this case:
+使用 `makeStyles` / `withStyles` / `styled` 的注入顺序于调用顺序**相同**。 例如，在这种情况下，红色胜出：
 
 ```jsx
 import clsx from 'clsx';
@@ -261,18 +261,18 @@ export default function MyComponent() {
   const classesBase = useStyleBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, useStyleBase.root)
+  const className = clsx(classes.root, classesBase.root)
 
   // color: red 🔴 wins.
   return <div className={className} />;
 }
 ```
 
-The hook call order and the class name concatenation order **don't matter**.
+Hook 调用顺序和类名顺序**不影响**注入属性权重 。
 
 ### insertionPoint
 
-JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to control this situation. By adding an `insertionPoint` within the HTML you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point)控制这种情况。 通过添加`insertionPoint`到HTML中，你可以[控制](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order)组件中CSS的插入位置。
 
 #### HTML 注释
 
@@ -388,13 +388,13 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 We have [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/gatsby-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/nextjs-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
 
 ## Class names
 
@@ -461,7 +461,7 @@ const useStyles = makeStyles({
 }, { name: 'MuiButton' });
 ```
 
-generates the following class names you that can override:
+generates the following class names that you can override:
 
 ```css
 .MuiButton-root { /* … */ }
@@ -536,7 +536,7 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### 如何实现CSP？
 
-为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS有[一个很棒的教程](https://github.com/cssinjs/jss/blob/next/docs/csp.md)关于如何使用Express和React Helmet实现这一目标。 对于基本纲要，请继续阅读。
+为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS有[一个很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)关于如何使用Express和React Helmet实现这一目标。 对于基本纲要，请继续阅读。
 
 CSP nonce是Base 64编码的字符串。 你可以这样生成一个：
 

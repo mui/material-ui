@@ -7,7 +7,7 @@ import { Router } from 'next/router';
 import { pageToTitle } from './helpers';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
@@ -101,9 +101,8 @@ function generatePropDescription(prop) {
   // Two new lines result in a newline in the table.
   // All other new lines must be eliminated to prevent markdown mayhem.
   const jsDocText = escapeCell(parsed.description)
-    .replace(/\n\n/g, '<br>')
-    .replace(/\n/g, ' ')
-    .replace(/\r/g, '');
+    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/\r?\n/g, ' ');
 
   if (parsed.tags.some(tag => tag.title === 'ignore')) {
     return null;
@@ -365,10 +364,6 @@ function generateInheritance(reactAPI) {
   switch (inheritance.component) {
     case 'Transition':
       suffix = ', from react-transition-group,';
-      break;
-
-    case 'EventListener':
-      suffix = ', from react-event-listener,';
       break;
 
     default:

@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
-import { createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import orange from '@material-ui/core/colors/orange';
+import { orange } from '@material-ui/core/colors';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     color: theme.status.danger,
     '&$checked': {
@@ -13,37 +12,32 @@ const styles = theme => ({
     },
   },
   checked: {},
-});
+}));
 
-let CustomCheckbox = props => (
-  <Checkbox
-    defaultChecked
-    classes={{
-      root: props.classes.root,
-      checked: props.classes.checked,
-    }}
-  />
-);
+function CustomCheckbox() {
+  const classes = useStyles();
 
-CustomCheckbox.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-CustomCheckbox = withStyles(styles)(CustomCheckbox);
+  return (
+    <Checkbox
+      defaultChecked
+      classes={{
+        root: classes.root,
+        checked: classes.checked,
+      }}
+    />
+  );
+}
 
 const theme = createMuiTheme({
   status: {
-    // My business variables
     danger: orange[500],
   },
 });
 
-function CustomStyles() {
+export default function CustomStyles() {
   return (
     <ThemeProvider theme={theme}>
       <CustomCheckbox />
     </ThemeProvider>
   );
 }
-
-export default CustomStyles;

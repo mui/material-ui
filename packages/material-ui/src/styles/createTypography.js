@@ -1,4 +1,5 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import warning from 'warning';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -21,6 +22,7 @@ export default function createTypography(palette, typography) {
     fontWeightLight = 300,
     fontWeightRegular = 400,
     fontWeightMedium = 500,
+    fontWeightBold = 700,
     // Tell Material-UI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
@@ -29,14 +31,19 @@ export default function createTypography(palette, typography) {
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
+  warning(typeof fontSize === 'number', `Material-UI: 'fontSize' is required to be a number.`);
+  warning(
+    typeof htmlFontSize === 'number',
+    `Material-UI: 'htmlFontSize' is required to be a number.`,
+  );
+
   const coef = fontSize / 14;
   const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
   const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
-    // color: palette.text.primary,
     fontFamily,
     fontWeight,
     fontSize: pxToRem(size),
-    // Unitless following http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+    // Unitless following https://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
     lineHeight,
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
@@ -73,6 +80,7 @@ export default function createTypography(palette, typography) {
       fontWeightLight,
       fontWeightRegular,
       fontWeightMedium,
+      fontWeightBold,
       ...variants,
     },
     other,

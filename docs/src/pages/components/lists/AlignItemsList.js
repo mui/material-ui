@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AlignItemsList() {
+export default function AlignItemsList() {
   const classes = useStyles();
 
   return (
@@ -92,5 +92,3 @@ function AlignItemsList() {
     </List>
   );
 }
-
-export default AlignItemsList;

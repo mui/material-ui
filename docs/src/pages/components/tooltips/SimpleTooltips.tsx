@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SimpleTooltips() {
+export default function SimpleTooltips() {
   const classes = useStyles();
+
   return (
     <div>
       <Tooltip title="Delete">
@@ -41,5 +42,3 @@ function SimpleTooltips() {
     </div>
   );
 }
-
-export default SimpleTooltips;

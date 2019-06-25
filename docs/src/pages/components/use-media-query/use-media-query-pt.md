@@ -18,17 +18,7 @@ Algumas das principais características:
 
 Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A string de consulta de mídia pode ser feita por qualquer consulta de mídia CSS válida, por exemplo, `'print'`.
 
-```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-function MyComponent() {
-  const matches = useMediaQuery('(min-width:600px)');
-
-  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
-}
-```
-
-{{"demo": "pages/components/use-media-query/SimpleMediaQuery.js"}}
+{{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
 ## Usando helpers de ponto de quebra do Material-UI
 
@@ -48,6 +38,12 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
 
+## Usando a sintaxe JavaScript
+
+[json2mq](https://github.com/akiran/json2mq) é usado para gerar uma string de consulta de mídia a partir de um objeto JavaScript.
+
+{{"demo": "pages/components/use-media-query/JavaScriptMedia.js", "defaultCodeOpen": true}}
+
 ## Renderização no servidor (Server-Side Rendering)
 
 Uma implementação do [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) é necessária no servidor, recomendamos usar [css-mediaquery](https://github.com/ericf/css-mediaquery). Também incentivamos o uso da versão hook de `useMediaQueryTheme` que busca propriedades do tema. Dessa forma, você pode fornecer uma opção `ssrMatchMedia` uma vez para toda a sua árvore React.
@@ -56,19 +52,24 @@ Uma implementação do [matchMedia](https://developer.mozilla.org/en-US/docs/Web
 
 ## Migrando de `withWidth()`
 
-O componente de ordem superior `withWidth()` injeta a largura da tela da página. Você pode reproduzir o mesmo comportamento como segue:
+O componente de ordem superior `withWidth()` injeta a largura da tela da página. Você pode reproduzir o mesmo comportamento com o hook `useWidth`:
 
 ```jsx
-function MyComponent() {
+/**
+ * Be careful using this hook. It only works because the number of
+ * breakpoints in theme is static. It will break once you change the number of
+ * breakpoints. See https://reactjs.org/docs/hooks-rules.html#only-call-hooks-at-the-top-level
+ */
+function useWidth() {
   const theme = useTheme();
-  const width =
-    [...theme.breakpoints.keys].reverse().reduce((output, key) => {
+  const keys = [...theme.breakpoints.keys].reverse();
+  return (
+    keys.reduce((output, key) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const matches = useMediaQuery(theme.breakpoints.only(key));
-
       return !output && matches ? key : output;
-    }, null) || 'xs';
-
-  return <span>{width}</span>;
+    }, null) || 'xs'
+  );
 }
 ```
 

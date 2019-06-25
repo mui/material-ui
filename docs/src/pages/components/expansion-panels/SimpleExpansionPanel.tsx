@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function SimpleExpansionPanel() {
+export default function SimpleExpansionPanel() {
   const classes = useStyles();
 
   return (
@@ -65,5 +65,3 @@ function SimpleExpansionPanel() {
     </div>
   );
 }
-
-export default SimpleExpansionPanel;

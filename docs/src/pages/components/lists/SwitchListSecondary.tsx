@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -10,15 +10,17 @@ import Switch from '@material-ui/core/Switch';
 import WifiIcon from '@material-ui/icons/Wifi';
 import BluetoothIcon from '@material-ui/icons/Bluetooth';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
+    },
+  }),
+);
 
-function SwitchListSecondary() {
+export default function SwitchListSecondary() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(['wifi']);
 
@@ -41,12 +43,13 @@ function SwitchListSecondary() {
         <ListItemIcon>
           <WifiIcon />
         </ListItemIcon>
-        <ListItemText primary="Wi-Fi" />
+        <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
         <ListItemSecondaryAction>
           <Switch
             edge="end"
             onChange={handleToggle('wifi')}
             checked={checked.indexOf('wifi') !== -1}
+            inputProps={{ 'aria-labelledby': 'switch-list-label-wifi' }}
           />
         </ListItemSecondaryAction>
       </ListItem>
@@ -54,17 +57,16 @@ function SwitchListSecondary() {
         <ListItemIcon>
           <BluetoothIcon />
         </ListItemIcon>
-        <ListItemText primary="Bluetooth" />
+        <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
         <ListItemSecondaryAction>
           <Switch
             edge="end"
             onChange={handleToggle('bluetooth')}
             checked={checked.indexOf('bluetooth') !== -1}
+            inputProps={{ 'aria-labelledby': 'switch-list-label-bluetooth' }}
           />
         </ListItemSecondaryAction>
       </ListItem>
     </List>
   );
 }
-
-export default SwitchListSecondary;

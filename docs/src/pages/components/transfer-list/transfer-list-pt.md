@@ -3,7 +3,7 @@ title: Componente React para Transferência de Lista
 components: List, ListItem, Checkbox, Switch
 ---
 
-# Transferência de lista
+# Transferência de Lista
 
 <p class="description">Um transferência de lista (ou "shuttle") permite ao usuário mover um ou mais itens da lista entre as listas.</p>
 

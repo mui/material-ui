@@ -124,7 +124,7 @@ const useStyles2 = makeStyles((theme: Theme) =>
   }),
 );
 
-function CustomPaginationActionsTable() {
+export default function CustomPaginationActionsTable() {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -173,6 +173,7 @@ function CustomPaginationActionsTable() {
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{
+                  inputProps: { 'aria-label': 'Rows per page' },
                   native: true,
                 }}
                 onChangePage={handleChangePage}
@@ -186,5 +187,3 @@ function CustomPaginationActionsTable() {
     </Paper>
   );
 }
-
-export default CustomPaginationActionsTable;

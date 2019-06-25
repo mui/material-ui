@@ -1,11 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
-import blue from '@material-ui/core/colors/blue';
+import { makeStyles } from '@material-ui/core/styles';
+import { blue, red } from '@material-ui/core/colors';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -20,7 +18,7 @@ const styles = theme => ({
       color: red[800],
     },
   },
-});
+}));
 
 function HomeIcon(props) {
   return (
@@ -30,8 +28,9 @@ function HomeIcon(props) {
   );
 }
 
-function SvgIcons(props) {
-  const { classes } = props;
+export default function SvgIcons() {
+  const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <HomeIcon className={classes.icon} />
@@ -44,24 +43,22 @@ function SvgIcons(props) {
         className={classes.icon}
         color="primary"
         fontSize="large"
-        component={svgProps => (
-          <svg {...svgProps}>
-            <defs>
-              <linearGradient id="gradient1">
-                <stop offset="30%" stopColor={blue[400]} />
-                <stop offset="70%" stopColor={red[400]} />
-              </linearGradient>
-            </defs>
-            {React.cloneElement(svgProps.children[0], { fill: 'url(#gradient1)' })}
-          </svg>
-        )}
+        component={svgProps => {
+          return (
+            <svg {...svgProps}>
+              <defs>
+                <linearGradient id="gradient1">
+                  <stop offset="30%" stopColor={blue[400]} />
+                  <stop offset="70%" stopColor={red[400]} />
+                </linearGradient>
+              </defs>
+              {React.cloneElement(svgProps.children[0], {
+                fill: 'url(#gradient1)',
+              })}
+            </svg>
+          );
+        }}
       />
     </div>
   );
 }
-
-SvgIcons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SvgIcons);

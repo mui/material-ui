@@ -1,52 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   typography: {
     padding: theme.spacing(2),
   },
-});
+}));
 
-class NoTransitionPopper extends React.Component {
-  state = {
-    anchorEl: null,
+export default function NoTransitionPopper() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const classes = useStyles();
+
+  const handleClick = event => {
+    setAnchorEl(prev => (prev ? null : event.currentTarget));
   };
 
-  handleClick = event => {
-    const { currentTarget } = event;
-    this.setState(state => ({
-      anchorEl: state.anchorEl ? null : currentTarget,
-    }));
-  };
+  const open = Boolean(anchorEl);
+  const id = open ? 'no-transition-popper' : undefined;
 
-  render() {
-    const { classes } = this.props;
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
-    const id = open ? 'no-transition-popper' : null;
-
-    return (
-      <div>
-        <Button aria-describedby={id} variant="contained" onClick={this.handleClick}>
-          Toggle Popper
-        </Button>
-        <Popper id={id} open={open} anchorEl={anchorEl}>
-          <Paper>
-            <Typography className={classes.typography}>The content of the Popper.</Typography>
-          </Paper>
-        </Popper>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+        Toggle Popper
+      </Button>
+      <Popper id={id} open={open} anchorEl={anchorEl}>
+        <Paper>
+          <Typography className={classes.typography}>The content of the Popper.</Typography>
+        </Paper>
+      </Popper>
+    </div>
+  );
 }
-
-NoTransitionPopper.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(NoTransitionPopper);

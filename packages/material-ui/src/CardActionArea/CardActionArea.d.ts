@@ -1,14 +1,16 @@
-import * as React from 'react';
-import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { ButtonBaseTypeMap, ExtendButtonBase } from '../ButtonBase';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface CardActionAreaProps
-  extends StandardProps<ButtonBaseProps, CardActionAreaClassKey> {
-  focusVisibleClassName?: string;
-}
+declare const CardActionArea: ExtendButtonBase<{
+  props: {
+    focusVisibleClassName?: string;
+  };
+  defaultComponent: ButtonBaseTypeMap['defaultComponent'];
+  classKey: CardActionAreaClassKey;
+}>;
 
 export type CardActionAreaClassKey = 'root' | 'focusVisible' | 'focusHighlight';
 
-declare const CardActionArea: React.ComponentType<CardActionAreaProps>;
+export type CardActionAreaProps = SimplifiedPropsOf<typeof CardActionArea>;
 
 export default CardActionArea;

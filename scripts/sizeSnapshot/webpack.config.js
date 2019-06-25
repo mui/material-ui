@@ -97,6 +97,18 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/esm/InputBase/Textarea.js',
     },
     {
+      // vs https://bundlephobia.com/result?p=rc-slider
+      name: 'Slider',
+      webpack: true,
+      path: 'packages/material-ui-lab/build/esm/Slider/index.js',
+    },
+    {
+      // vs https://bundlephobia.com/result?p=react-portal
+      name: 'Portal',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/Portal/index.js',
+    },
+    {
       name: 'docs.main',
       webpack: false,
       path: main.path,

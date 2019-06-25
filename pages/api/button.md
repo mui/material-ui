@@ -53,15 +53,15 @@ This property accepts the following keys:
 | <span class="prop-name">contained</span> | Styles applied to the root element if `variant="contained"`.
 | <span class="prop-name">containedPrimary</span> | Styles applied to the root element if `variant="contained"` and `color="primary"`.
 | <span class="prop-name">containedSecondary</span> | Styles applied to the root element if `variant="contained"` and `color="secondary"`.
-| <span class="prop-name">focusVisible</span> | Styles applied to the ButtonBase root element if the button is keyboard focused.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
 | <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">sizeLarge</span> | Styles applied to the root element if `size="large"`.
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

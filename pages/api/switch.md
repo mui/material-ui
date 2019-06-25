@@ -51,14 +51,14 @@ This property accepts the following keys:
 | <span class="prop-name">switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
-| <span class="prop-name">checked</span> | Styles applied to the internal `SwitchBase` component's `checked` class.
-| <span class="prop-name">disabled</span> | Styles applied to the internal SwitchBase component's disabled class.
+| <span class="prop-name">checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
 | <span class="prop-name">input</span> | Styles applied to the internal SwitchBase component's input element.
 | <span class="prop-name">thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
 | <span class="prop-name">track</span> | Styles applied to the track element.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Switch/Switch.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Switch/Switch.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

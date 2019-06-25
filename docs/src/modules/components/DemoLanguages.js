@@ -4,8 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import JavaScriptIcon from '@material-ui/docs/svgIcons/JavaScript';
-import TypeScriptIcon from '@material-ui/docs/svgIcons/TypeScript';
+import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 const styles = {

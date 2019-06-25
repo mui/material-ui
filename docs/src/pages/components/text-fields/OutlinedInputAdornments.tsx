@@ -46,7 +46,7 @@ interface State {
   showPassword: boolean;
 }
 
-function OutlinedInputAdornments() {
+export default function OutlinedInputAdornments() {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     amount: '',
@@ -140,5 +140,3 @@ function OutlinedInputAdornments() {
     </div>
   );
 }
-
-export default OutlinedInputAdornments;

@@ -38,13 +38,13 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
-| <span class="prop-name">hover</span> | Styles applied to the root element if `hover={true}`.
+| <span class="prop-name">selected</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <span class="prop-name">hover</span> | Pseudo-class applied to the root element if `hover={true}`.
 | <span class="prop-name">head</span> | Styles applied to the root element if table variant="head".
 | <span class="prop-name">footer</span> | Styles applied to the root element if table variant="footer".
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/TableRow/TableRow.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableRow/TableRow.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

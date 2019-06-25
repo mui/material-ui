@@ -4,7 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 
-function FadeMenu() {
+export default function FadeMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -18,12 +18,13 @@ function FadeMenu() {
 
   return (
     <div>
-      <Button aria-owns={open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={handleClick}>
+      <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
         Open with fade transition
       </Button>
       <Menu
         id="fade-menu"
         anchorEl={anchorEl}
+        keepMounted
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}
@@ -35,5 +36,3 @@ function FadeMenu() {
     </div>
   );
 }
-
-export default FadeMenu;

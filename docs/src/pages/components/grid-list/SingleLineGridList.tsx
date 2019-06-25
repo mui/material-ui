@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-function SingleLineGridList() {
+export default function SingleLineGridList() {
   const classes = useStyles();
 
   return (
@@ -64,7 +64,7 @@ function SingleLineGridList() {
                 title: classes.title,
               }}
               actionIcon={
-                <IconButton>
+                <IconButton aria-label={`star ${tile.title}`}>
                   <StarBorderIcon className={classes.title} />
                 </IconButton>
               }
@@ -75,5 +75,3 @@ function SingleLineGridList() {
     </div>
   );
 }
-
-export default SingleLineGridList;

@@ -1,12 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import clsx from 'clsx';
-import {
-  createMount,
-  createShallow,
-  describeConformance,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
 

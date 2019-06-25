@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/styles';
-import ListItem from '@material-ui/core/ListItem/ListItem';
+import { makeStyles } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
 import Box from '@material-ui/core/Box';
 import atoms from '../atoms';
 
@@ -44,6 +44,7 @@ function Tweet() {
         <Grid item>
           <Avatar
             medium
+            alt="Avatar"
             src="https://pbs.twimg.com/profile_images/1096807971374448640/rVCDhxkG_200x200.png"
           />
         </Grid>

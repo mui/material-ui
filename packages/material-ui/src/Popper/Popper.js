@@ -31,6 +31,10 @@ function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
+const defaultPopperOptions = {};
+
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
  */
@@ -44,15 +48,24 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     modifiers,
     open,
     placement: placementProps = 'bottom',
-    popperOptions = {},
+    popperOptions = defaultPopperOptions,
+    popperRef: popperRefProp,
     transition = false,
     ...other
   } = props;
   const tooltipRef = React.useRef(null);
-  const popperRef = React.useRef();
-  const [exited, setExited] = React.useState(!props.open);
-  const [placement, setPlacement] = React.useState();
   const handleRef = useForkRef(tooltipRef, ref);
+
+  const popperRef = React.useRef(null);
+  const handlePopperRefRef = React.useRef();
+  const handlePopperRef = useForkRef(popperRef, popperRefProp);
+  useEnhancedEffect(() => {
+    handlePopperRefRef.current = handlePopperRef;
+  }, [handlePopperRef]);
+  React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
+
+  const [exited, setExited] = React.useState(!open);
+  const [placement, setPlacement] = React.useState();
 
   const handleOpen = React.useCallback(() => {
     const handlePopperUpdate = data => {
@@ -69,10 +82,10 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
     if (popperRef.current) {
       popperRef.current.destroy();
-      popperRef.current = null;
+      handlePopperRefRef.current(null);
     }
 
-    popperRef.current = new PopperJS(getAnchorEl(anchorEl), popperNode, {
+    const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
       placement: flipPlacement(placementProps),
       ...popperOptions,
       modifiers: {
@@ -92,6 +105,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
+    handlePopperRefRef.current(popper);
   }, [anchorEl, disablePortal, modifiers, open, placement, placementProps, popperOptions]);
 
   const handleEnter = () => {
@@ -104,7 +118,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     }
 
     popperRef.current.destroy();
-    popperRef.current = null;
+    handlePopperRefRef.current(null);
   };
 
   const handleExited = () => {
@@ -113,15 +127,15 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   };
 
   React.useEffect(() => {
+    // Let's update the popper position.
+    handleOpen();
+  }, [handleOpen]);
+
+  React.useEffect(() => {
     return () => {
       handleClose();
     };
   }, []);
-
-  React.useEffect(() => {
-    // Let's update the popper position.
-    handleOpen();
-  }, [handleOpen]);
 
   React.useEffect(() => {
     if (!open && !transition) {
@@ -165,10 +179,13 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
 Popper.propTypes = {
   /**
-   * This is the DOM element, or a function that returns the DOM element,
+   * This is the reference element, or a function that returns the reference element,
    * that may be used to set the position of the popover.
    * The return value will passed as the reference object of the Popper
    * instance.
+   *
+   * The reference element should be an HTML Element instance or a referenceObject:
+   * https://popper.js.org/popper-documentation.html#referenceObject.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
     if (props.open) {
@@ -187,15 +204,22 @@ Popper.propTypes = {
           return new Error(
             [
               'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-              'The node element should be visible.',
+              'The reference element should be part of the document layout.',
+              "Make sure the element is present in the document or that it's not display none.",
             ].join('\n'),
           );
         }
-      } else {
+      } else if (
+        !resolvedAnchorEl ||
+        typeof resolvedAnchorEl.clientWidth !== 'number' ||
+        typeof resolvedAnchorEl.clientHeight !== 'number' ||
+        typeof resolvedAnchorEl.getBoundingClientRect !== 'function'
+      ) {
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
+            'It should be an HTML Element instance or a referenceObject:',
+            'https://popper.js.org/popper-documentation.html#referenceObject.',
           ].join('\n'),
         );
       }
@@ -260,6 +284,10 @@ Popper.propTypes = {
    * Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance.
    */
   popperOptions: PropTypes.object,
+  /**
+   * Callback fired when a new popper instance is used.
+   */
+  popperRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Help supporting a react-transition-group/Transition component.
    */

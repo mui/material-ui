@@ -39,7 +39,7 @@ also contribute in the following ways.
 and [issues](https://github.com/mui-org/material-ui/issues).
 - Reporting bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
 - Fixing bugs, adding features, and
-[improving our documentation](https://github.com/mui-org/material-ui/tree/next/docs) by
+[improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by
 [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 
 ### Committers
@@ -95,6 +95,6 @@ until they step down or removed by a two thirds majority vote by the Core Team.
 
 ## Resources
 
-- Governance Models - [http://oss-watch.ac.uk/resources/governancemodels](http://oss-watch.ac.uk/resources/governancemodels)
+- Governance Models - [https://oss-watch.ac.uk/resources/governancemodels](https://oss-watch.ac.uk/resources/governancemodels)
 - Sustain OSS Report - [https://sustainoss.org/assets/pdf/SustainOSS-west-2017-report.pdf](https://sustainoss.org/assets/pdf/SustainOSS-west-2017-report.pdf)
-- Elinor Ostrom's 8 Principles for Managing A Commons - [http://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs](http://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs)
+- Elinor Ostrom's 8 Principles for Managing A Commons - [https://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs](https://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs)

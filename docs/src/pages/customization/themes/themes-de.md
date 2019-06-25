@@ -35,11 +35,11 @@ Wenn Sie das Material-UI-Theme mit unserer [Styling-Lösung](/styles/basics/) od
 
 ## Zugriff auf das Theme in einer Komponente
 
-You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+Sie können auf die Themenvariablen in Ihren React-Komponenten [zugreifen](/styles/advanced/#accessing-the-theme-in-a-component).
 
 ## Schachteln des Themes
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+Sie können mehrere Themenanbieter [verschachteln](/styles/advanced/#theme-nesting).
 
 {{"demo": "pages/customization/themes/ThemeNesting.js"}}
 
@@ -49,7 +49,7 @@ Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere
 
 ### Ein Hinweis zur Leistung
 
-Die Auswirkungen der Verschachtelung der `ThemeProviders` Komponente auf die Performanz sind mit der Arbeit von JSS hinter den Kulissen verbunden. The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
+Die Auswirkungen der Verschachtelung der `ThemeProviders` Komponente auf die Performanz sind mit der Arbeit von JSS hinter den Kulissen verbunden. Der wichtigste Punkt zu verstehen ist, dass das injizierte CSS mit dem folgenden Tupel `(styles, theme)` zwischengespeichert wird.
 
 - `Theme`: Wenn Sie bei jedem Rendering ein neues Themebereitstellen, wird ein neues CSS-Objekt berechnet und eingefügt. Sowohl für die Konsistenz der Benutzeroberfläche als auch für die Leistung ist es besser, eine begrenzte Anzahl von Themeobjekten wiederzugeben.
 - `styles`: Je größer das Styles-Objekt ist, desto mehr Arbeit ist erforderlich.
@@ -88,21 +88,21 @@ const theme = createMuiTheme({
 
 ### `responsiveFontSizes(theme, options) => theme`
 
-Generate responsive typography settings based on the options received.
+Generieren Sie responsive Typografieeinstellungen basierend auf den erhaltenen Optionen.
 
 #### Argumente
 
-1. `theme` (*Object*): The theme object to enhance.
+1. `theme` (*Object*): Das zu verbessernde Themeobjekt.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
-- `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
-- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must me greater than 1.
-- `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
+- ` Haltepunkte (Breakpoints)` (* Array <string> * [optional]): Standardmäßig auf ` ['sm', 'md', 'lg'] `. Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
+- `disableAlign` (*Boolean* [optional]): Standardmäßig auf `false`. Ob sich die Schriftgrößen geringfügig ändern, um die Höhen der Linie beizubehalten und an das 4px-Linienhöhenraster von Material Design anzupassent. Dies erfordert eine einheitlose Zeilenhöhe in den Stilen des Designs.
+- `factor` (*Nummer* [optional]): Standardmäßig auf `2`. Dieser Wert bestimmt die Stärke der Größenänderung der Schriftgröße. Je höher der Wert, desto geringer ist der Unterschied zwischen den Schriftgrößen auf kleinen Bildschirmen. Je niedriger der Wert, desto größer die Schriftgröße für kleine Bildschirme. The value must be greater than 1.
+- `variants` (*Array<string>* [optional]): Standardmäßig auf alle. Die zu behandelnden Typografie-Varianten.
 
 #### Rückgabewerte
 
-`theme` (*Object*): The new theme with a responsive typography.
+`theme` (*Object*): Das neue Theme mit einer responsiven Typografie.
 
 #### Beispiele
 

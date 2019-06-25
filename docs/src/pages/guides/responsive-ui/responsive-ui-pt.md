@@ -1,11 +1,11 @@
 # UI Responsiva
 
-<p class="description">Material Design layouts encourage consistency across platforms, environments, and screen sizes by using uniform elements and spacing.</p>
+<p class="description">Os leiautes de Material Design incentivam a consistência entre plataformas, ambientes e tamanhos de tela usando elementos uniformes e espaçamento.</p>
 
-[Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size. We provide the following helpers to make the UI responsive:
+[Leiautes responsivos](https://material.io/design/layout/responsive-layout-grid.html) em Material Design adaptam-se a qualquer tamanho de tela possível. Fornecemos os seguintes modos para tornar a interface do usuário responsiva:
 
-- [Grid](/components/grid/): The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.
-- [Container](/components/container/): The container centers your content horizontally. É o elemento de leiaute mais básico.
-- [Breakpoints](/customization/breakpoints/): API that enables the use of breakpoints in a wide variety of contexts.
-- [useMediaQuery](/components/use-media-query/): This is a CSS media query hook for React. Ele ouve correspondências para uma consulta de mídia no CSS.
-- [Hidden](/components/hidden/): Quickly and responsively toggle the visibility value of components and more with our hidden utilities.
+- [Grade](/components/grid/): O leiaute responsivo da grade do Material Design se adapta ao tamanho e orientação da tela, garantindo a consistência entre leiautes.
+- [Container](/components/container/): O contêiner centraliza seu conteúdo horizontalmente. É o elemento de leiaute mais básico.
+- [Pontos de quebra](/customization/breakpoints/): API que permite o uso de pontos de quebra em uma ampla variedade de contextos.
+- [useMediaQuery](/components/use-media-query/): Este é um hook CSS de consulta de mídia para React. Ele ouve correspondências para uma consulta de mídia no CSS.
+- [Hidden](/components/hidden/): Modifique rapidamente e de forma responsiva a visibilidade dos componentes e muito mais com nosso utilitário hidden.

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReferenceObject } from 'popper.js';
+import PopperJs, { ReferenceObject } from 'popper.js';
 import { PortalProps } from '../Portal';
 import { TransitionProps } from '../transitions/transition';
 
@@ -18,8 +18,7 @@ export type PopperPlacementType =
   | 'top';
 
 export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
-  transition?: boolean;
-  anchorEl?: null | Element | ReferenceObject | (() => Element);
+  anchorEl?: null | ReferenceObject | (() => ReferenceObject);
   children:
     | React.ReactNode
     | ((props: {
@@ -33,6 +32,8 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
   placement?: PopperPlacementType;
   popperOptions?: object;
+  popperRef?: React.Ref<PopperJs>;
+  transition?: boolean;
 }
 
 declare const Popper: React.ComponentType<PopperProps>;

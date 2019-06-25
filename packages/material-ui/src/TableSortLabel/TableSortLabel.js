@@ -33,7 +33,7 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `active={true}`. */
+  /* Pseudo-class applied to the root element if `active={true}`. */
   active: {},
   /* Styles applied to the icon component. */
   icon: {

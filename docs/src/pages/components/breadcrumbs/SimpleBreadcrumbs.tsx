@@ -22,8 +22,9 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   alert('You clicked a breadcrumb.');
 }
 
-function SimpleBreadcrumbs() {
+export default function SimpleBreadcrumbs() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Paper elevation={0} className={classes.paper}>
@@ -59,5 +60,3 @@ function SimpleBreadcrumbs() {
     </div>
   );
 }
-
-export default SimpleBreadcrumbs;

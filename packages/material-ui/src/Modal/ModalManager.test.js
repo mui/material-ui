@@ -239,5 +239,24 @@ describe('ModalManager', () => {
       modalManager.remove(modal, container2);
       assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
     });
+
+    it('should keep previous aria-hidden siblings hidden', () => {
+      const modal = { modalRef: container2.children[0] };
+      const sibling1 = document.createElement('div');
+      const sibling2 = document.createElement('div');
+
+      sibling1.setAttribute('aria-hidden', 'true');
+
+      container2.appendChild(sibling1);
+      container2.appendChild(sibling2);
+
+      modalManager.add(modal, container2);
+      modalManager.mount(modal);
+      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), null);
+      modalManager.remove(modal, container2);
+      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
+      assert.strictEqual(container2.children[1].getAttribute('aria-hidden'), 'true');
+      assert.strictEqual(container2.children[2].getAttribute('aria-hidden'), null);
+    });
   });
 });

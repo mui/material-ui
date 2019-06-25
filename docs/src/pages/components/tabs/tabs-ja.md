@@ -11,7 +11,7 @@ components: Tabs, Tab
 
 ## Simple Tabs
 
-A simple example with no frills.
+飾り気のないシンプルな例です。
 
 {{"demo": "pages/components/tabs/SimpleTabs.js"}}
 

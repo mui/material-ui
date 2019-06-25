@@ -538,7 +538,7 @@ const appList = [
       'illustrations, we have developed the shortest insurance contracts worldwide. ' +
       'And the simplest.',
     image: 'flink.jpg',
-    link: 'https://goflink.ch/',
+    link: 'https://www.goflink.ch/',
     dateAdded: '2019-01-01',
   },
   {
@@ -654,17 +654,6 @@ const appList = [
     source: 'https://github.com/DalerAsrorov/componofy',
     stars: 6,
     dateAdded: '2000-01-08',
-  },
-  {
-    title: 'Insights',
-    description:
-      '"Insights" by Just Ask Users helps user experience research teams ' +
-      "make sense of their user study findings. Teams can see their users' pains and needs " +
-      'easily so that they can enhance the product that they are designing. ' +
-      'Material-UI is used both on the website (with server-side rendering) and ' +
-      'within the interactive app itself.',
-    link: 'https://justaskusers.com/',
-    dateAdded: '2000-01-24',
   },
   {
     title: 'Persona',

@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ChipsArray() {
+export default function ChipsArray() {
   const classes = useStyles();
   const [chipData, setChipData] = React.useState([
     { key: 0, label: 'Angular' },
@@ -26,15 +26,13 @@ function ChipsArray() {
     { key: 4, label: 'Vue.js' },
   ]);
 
-  const handleDelete = data => () => {
-    if (data.label === 'React') {
+  const handleDelete = chipToDelete => () => {
+    if (chipToDelete.label === 'React') {
       alert('Why would you want to delete React?! :)');
       return;
     }
 
-    const chipToDelete = chipData.indexOf(data);
-    chipData.splice(chipToDelete, 1);
-    setChipData(chipData);
+    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
   };
 
   return (
@@ -59,5 +57,3 @@ function ChipsArray() {
     </Paper>
   );
 }
-
-export default ChipsArray;

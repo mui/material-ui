@@ -3,10 +3,10 @@ import { assert } from 'chai';
 import {
   createMount,
   createShallow,
-  describeConformance,
   findOutermostIntrinsic,
   getClasses,
 } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Toolbar from './Toolbar';
 
 describe('<Toolbar />', () => {

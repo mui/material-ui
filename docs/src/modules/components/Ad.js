@@ -28,22 +28,23 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.level1,
+    backgroundColor: theme.palette.background.level2,
     display: 'block',
   },
 });
 
 function getAdblock(classes, t) {
+  if (/Googlebot/.test(navigator.userAgent)) {
+    return null;
+  }
+
   return (
     <Paper component="span" elevation={0} className={classes.paper}>
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
       <Typography variant="body2" display="block" component="span" gutterBottom>
-        {t('adblock')}
-      </Typography>
-      <Typography variant="body2" display="block" component="span">
-        {t('thanks')}{' '}
+        {t('adblock')}{' '}
         <span role="img" aria-label="Love">
           ❤️
         </span>

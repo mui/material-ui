@@ -79,7 +79,7 @@ interface State {
   numberformat: string;
 }
 
-function FormattedInputs() {
+export default function FormattedInputs() {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     textmask: '(1  )    -    ',
@@ -117,5 +117,3 @@ function FormattedInputs() {
     </div>
   );
 }
-
-export default FormattedInputs;

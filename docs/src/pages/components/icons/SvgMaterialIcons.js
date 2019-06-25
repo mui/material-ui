@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,9 +14,9 @@ import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import FourKIcon from '@material-ui/icons/FourK';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     color: theme.palette.text.primary,
   },
@@ -25,10 +24,11 @@ const styles = theme => ({
     margin: theme.spacing(1),
     fontSize: 32,
   },
-});
+}));
 
-function SvgMaterialIcons(props) {
-  const { classes } = props;
+export default function SvgMaterialIcons() {
+  const classes = useStyles();
+
   return (
     <Grid container className={classes.root}>
       <Grid item xs={4}>
@@ -77,9 +77,3 @@ function SvgMaterialIcons(props) {
     </Grid>
   );
 }
-
-SvgMaterialIcons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SvgMaterialIcons);

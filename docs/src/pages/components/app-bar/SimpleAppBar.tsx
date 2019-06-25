@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-function SimpleAppBar() {
+export default function SimpleAppBar() {
   const classes = useStyles();
 
   return (
@@ -25,5 +25,3 @@ function SimpleAppBar() {
     </div>
   );
 }
-
-export default SimpleAppBar;

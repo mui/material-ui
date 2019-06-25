@@ -18,8 +18,8 @@ commands:
     steps:
       - restore_cache:
           keys:
-             - v2-yarn-sha-{{ checksum "yarn.lock" }}
-             - v2-yarn-sha-
+            - v2-yarn-sha-{{ checksum "yarn.lock" }}
+            - v2-yarn-sha-
       - run:
           name: Install js dependencies
           command: yarn
@@ -51,18 +51,6 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Check if yarn prettier was run
-          command: yarn prettier check-changed
-      - run:
-          name: Lint
-          command: yarn lint:ci
-      - run:
-          name: Lint JSON
-          command: yarn jsonlint
-      - run:
-          name: Tests TypeScript definitions
-          command: yarn typescript
-      - run:
           name: Tests fake browser
           command: yarn test:coverage
       - run:
@@ -75,6 +63,35 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
+  test_static:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Transpile TypeScript demos
+          command: yarn docs:typescript:formatted --disable-cache
+      - run:
+          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          command: git add -A && git diff --exit-code --staged
+      - run:
+          name: Can we generate the documentation?
+          command: yarn docs:api
+      - run:
+          name: '`yarn docs:api` changes committed?'
+          command: git diff --exit-code
+      - run:
+          name: Check if yarn prettier was run
+          command: yarn prettier check-changed
+      - run:
+          name: Lint
+          command: yarn lint:ci
+      - run:
+          name: Lint JSON
+          command: yarn jsonlint
+      - run:
+          name: Tests TypeScript definitions
+          command: yarn typescript
   test_material-ui-x:
     <<: *defaults
     steps:
@@ -92,6 +109,8 @@ jobs:
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
               cd packages/material-ui-icons && yarn test
+              yarn build:typings
+              yarn test:built-typings
             else
               echo "no changes"
             fi
@@ -140,47 +159,14 @@ jobs:
             else
               echo "no changes"
             fi
-  test_build:
+  test_production:
     <<: *defaults
     steps:
       - checkout
       - install_js
       - run:
-          name: Transpile TypeScript demos
-          command: yarn docs:typescript:formatted --disable-cache
-      - run:
-          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: Can we generate the documentation?
-          command: yarn docs:api
-      - run:
-          name: '`yarn docs:api` changes committed?'
-          command: git diff --exit-code
-      - run:
-          name: Can we generate the @material-ui/core build?
-          command: cd packages/material-ui && yarn build
-      - run:
-          name: Can we generate the @material-ui/lab build?
-          command: cd packages/material-ui-lab && yarn build
-      - run:
-          name: Can we generate the @material-ui/styles build?
-          command: cd packages/material-ui-styles && yarn build
-      - run:
-          name: Can we generate the @material-ui/utils build?
-          command: cd packages/material-ui-utils && yarn build
-      - run:
-          name: Can we generate the @material-ui/system build?
-          command: cd packages/material-ui-system && yarn build
-      - run:
-          name: Prepare persisting workspace
-          command: tar cfvz builds.tar.gz packages/*/build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - builds.tar.gz
-            # rollup snapshot
-            - packages/material-ui/size-snapshot.json
+          name: Can we generate the @material-ui/core umd build?
+          command: yarn workspace @material-ui/core build:umd
       - prepare_chrome_headless
       - run:
           name: Test umd release
@@ -207,44 +193,6 @@ jobs:
           command: |
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
             yarn argos
-  size_snapshot:
-    <<: *defaults
-    steps:
-      - checkout
-      - install_js
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name: Restore build
-          command: |
-            mv /tmp/workspace/builds.tar.gz ./
-            tar xfvz builds.tar.gz
-            mv /tmp/workspace/packages/material-ui/size-snapshot.json packages/material-ui/size-snapshot.json
-      # Netlify already do it for us but we need to check the size.
-      - run:
-          name: Can we build the docs?
-          command: yarn docs:build
-      - run:
-          name: Create a size snapshot
-          command: yarn size:snapshot
-      # downloaded by aws lambda to s3 bucket
-      # lambda allowes us to limit this to mui-org-branches-only while hiding credentials
-      # that allow write access to s3
-      - store_artifacts:
-          path: size-snapshot.json
-      # for debugging purposes, this is created by webpack called from size:snapshot
-      - store_artifacts:
-          path: scripts/sizeSnapshot/build/stats.json
-      - run:
-          name: Possibly persist size snapshot
-          command: |
-            if [ -z "$CI_PULL_REQUEST" ]; then
-              echo "no pull request; lets persist the size snapshot"
-              curl -X PUT --header "x-api-key: $CIRCLE_AWS_API_KEY" https://t6nulys5kl.execute-api.us-east-1.amazonaws.com/v1/persist-size-snapshot?build-id=$CIRCLE_BUILD_NUM
-            else
-              echo "pull request; let's run dangerJS"
-              yarn danger ci
-            fi
 workflows:
   version: 2
   pipeline:
@@ -256,21 +204,22 @@ workflows:
       - test_unit:
           requires:
             - checkout
+      - test_static:
+          requires:
+            - checkout
       - test_material-ui-x:
           requires:
             - checkout
       - test_browser:
           requires:
             - checkout
-      - test_build:
+      - test_production:
           requires:
             - checkout
       - test_regressions:
           requires:
             - test_material-ui-x
             - test_unit
+            - test_static
             - test_browser
-            - test_build
-      - size_snapshot:
-          requires:
-            - test_build
+            - test_production

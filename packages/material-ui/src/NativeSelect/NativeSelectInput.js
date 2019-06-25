@@ -6,23 +6,13 @@ import clsx from 'clsx';
  * @ignore - internal component.
  */
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
-  const {
-    classes,
-    className,
-    disabled,
-    IconComponent,
-    inputRef,
-    name,
-    onChange,
-    value,
-    variant,
-    ...other
-  } = props;
+  const { classes, className, disabled, IconComponent, inputRef, variant, ...other } = props;
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <select
         className={clsx(
+          classes.root, // TODO v5: merge root and select
           classes.select,
           {
             [classes.filled]: variant === 'filled',
@@ -31,15 +21,12 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
           },
           className,
         )}
-        name={name}
         disabled={disabled}
-        onChange={onChange}
-        value={value}
         ref={inputRef || ref}
         {...other}
       />
       <IconComponent className={classes.icon} />
-    </div>
+    </React.Fragment>
   );
 });
 

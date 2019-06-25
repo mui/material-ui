@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -45,7 +43,7 @@ function FrameDeferring() {
       </button>
       {state.open ? (
         <div className={classes.container}>
-          <span>Outisde NoSsr</span>
+          <span>Outside NoSsr</span>
           <NoSsr defer={state.defer}>
             ....Inside NoSsr
             <LargeTree />

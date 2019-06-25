@@ -29,7 +29,7 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
+Any other properties supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props)).
 
 ## CSS
 
@@ -46,7 +46,7 @@ This property accepts the following keys:
 | <span class="prop-name">wrapperInner</span> | Styles applied to the inner wrapper element.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Collapse/Collapse.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Collapse/Collapse.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
@@ -54,7 +54,7 @@ you need to use the following style sheet name: `MuiCollapse`.
 
 ## Inheritance
 
-The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
+The properties of the [Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props) component, from react-transition-group, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

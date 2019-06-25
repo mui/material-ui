@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function CustomizedTables() {
+export default function CustomizedTables() {
   const classes = useStyles();
 
   return (
@@ -86,5 +86,3 @@ function CustomizedTables() {
     </Paper>
   );
 }
-
-export default CustomizedTables;

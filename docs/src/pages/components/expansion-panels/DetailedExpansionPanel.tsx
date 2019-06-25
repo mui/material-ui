@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function DetailedExpansionPanel() {
+export default function DetailedExpansionPanel() {
   const classes = useStyles();
 
   return (
@@ -92,5 +92,3 @@ function DetailedExpansionPanel() {
     </div>
   );
 }
-
-export default DetailedExpansionPanel;

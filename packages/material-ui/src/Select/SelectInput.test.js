@@ -41,7 +41,7 @@ describe('<SelectInput />', () => {
 
   it('should render a correct top element', () => {
     const wrapper = shallow(<SelectInput {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(wrapper.name(), 'Fragment');
     assert.strictEqual(
       wrapper
         .find(MenuItem)
@@ -123,7 +123,7 @@ describe('<SelectInput />', () => {
         <SelectInput {...defaultProps} SelectDisplayProps={{ 'data-test': 'SelectDisplay' }} />,
       );
 
-      const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]');
+      const selectDisplay = wrapper.find('[role="button"]');
       assert.strictEqual(selectDisplay.props()['data-test'], 'SelectDisplay');
     });
   });
@@ -288,7 +288,7 @@ describe('<SelectInput />', () => {
   describe('prop: autoWidth', () => {
     it('should take the anchor width into account', () => {
       const wrapper = mount(<SelectInput {...defaultProps} />);
-      const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]').instance();
+      const selectDisplay = wrapper.find('[role="button"]').instance();
       stub(selectDisplay, 'clientWidth').get(() => 14);
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
@@ -296,7 +296,7 @@ describe('<SelectInput />', () => {
 
     it('should not take the anchor width into account', () => {
       const wrapper = mount(<SelectInput {...defaultProps} autoWidth />);
-      const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]').instance();
+      const selectDisplay = wrapper.find('[role="button"]').instance();
       stub(selectDisplay, 'clientWidth').get(() => 14);
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, null);
@@ -306,7 +306,7 @@ describe('<SelectInput />', () => {
   describe('prop: multiple', () => {
     it('should take precedence', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} disabled tabIndex={0} />);
-      assert.strictEqual(wrapper.find('[data-mui-test="SelectDisplay"]').props().tabIndex, 0);
+      assert.strictEqual(wrapper.find('[role="button"]').props().tabIndex, 0);
     });
 
     it('should serialize multiple select value', () => {
@@ -417,6 +417,12 @@ describe('<SelectInput />', () => {
         assert.strictEqual(document.activeElement.className, `${defaultProps.classes.select}`);
       });
     });
+  });
+
+  it('should be able to return the input node via a ref object', () => {
+    const ref = React.createRef();
+    mount(<SelectInput {...defaultProps} ref={ref} />);
+    assert.strictEqual(ref.current.node.tagName, 'INPUT');
   });
 
   describe('prop: inputRef', () => {

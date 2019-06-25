@@ -22,7 +22,7 @@ const styles = theme => ({
     flexShrink: 0,
     order: 2,
     position: 'sticky',
-    height: 'calc(100vh - 70px - 29px)',
+    height: 'calc(100vh - 70px)',
     overflowY: 'auto',
     padding: theme.spacing(2, 2, 2, 0),
     display: 'none',
@@ -122,7 +122,7 @@ function useThrottledOnScroll(callback, delay) {
 
   React.useEffect(() => {
     if (throttledCallback === noop) {
-      return () => {};
+      return undefined;
     }
 
     window.addEventListener('scroll', throttledCallback);
@@ -223,7 +223,7 @@ function AppTableOfContents(props) {
   );
 
   return (
-    <nav className={classes.root}>
+    <nav className={classes.root} aria-label="Page table of contents">
       {itemsServer.length > 0 ? (
         <React.Fragment>
           <Typography gutterBottom className={classes.contents}>

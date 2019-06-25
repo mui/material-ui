@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Inputs() {
+export default function Inputs() {
   const classes = useStyles();
 
   return (
@@ -50,5 +50,3 @@ function Inputs() {
     </div>
   );
 }
-
-export default Inputs;

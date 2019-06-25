@@ -2,9 +2,9 @@
 
 <p class="description">借助 TypeScript，你可以为 JavaScript 添加静态类型，从而提高代码质量及开发者的工作效率。</p>
 
-请查看 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。 此例子要求 TypeScript 版本大于 2.8。
+请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。 此例子要求 TypeScript 版本大于 2.8。
 
-我们的定义都通过[tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json) 进行测试。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。
+我们的定义都通过 [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json) 进行测试。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。
 
 ## `withStyles` 的使用
 
@@ -12,7 +12,7 @@
 
 ### 使用 `createStyles` 来杜绝类型扩展
 
-有一个造成混淆的常见原因是 TypeScript的 [类型扩展](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening)，因此这个示例不会像预期那样工作：
+有一个造成混淆的常见原因是 TypeScript的 [类型扩展](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)，因此这个示例不会像预期那样工作：
 
 ```ts
 const styles = {
@@ -97,7 +97,7 @@ const styles = createStyles({
 });
 ```
 
-However to allow these styles to pass TypeScript, the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. 由于类名称应与 CSS 属性相同，因此应避免使用。
+但是，为了允许这些样式传递 TypeScript，鉴于CSS 类的名称和实际的 CSS 属性名称不一致，定义必须是模糊的。 由于类名称应与 CSS 属性相同，因此应避免使用。
 
 ```ts
 // 这样是错误的，由于 TypeScript 认为 `@media (min-width: 960px)` 是一个类名
@@ -249,6 +249,14 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 ## `组件`属性的用法
 
-在 Material-UI 中，您可以用`组件`的属性来替换一个组件的根节点。 譬如，一个 `Button` 的根节点可以用一个 React Router 的`Link`来替换，而且 `Button` 的其余属性，例如 `to`，也可以运用到 `Link` 组件当中。 For a code example concerning `Button` and `react-router-dom` checkout [this Button demo](/components/buttons/#third-party-routing-library).
+在 Material-UI 中，您可以用`组件`的属性来替换一个组件的根节点。 譬如，一个 `Button` 的根节点可以用一个 React Router 的`Link`来替换，而且 `Button` 的其余属性，例如 `to`，也可以运用到 `Link` 组件当中。 若您想查看 `Button` 以及 `react-router-dom` 的例子，请查看 [this Button demo](/components/buttons/#third-party-routing-library)。
 
 但是，并不是每个组件都完全支持您传入的任何组件类型。 如果您在 TypeScript 中遇到一个不接受其 `component` 属性的组件，请新建一个 issue。 我们也一直在努力实现组件属性的通用化， 这样能够帮助我们解决这个问题。
+
+## Handling `value` and event handlers
+
+Many components concerned with user input offer a `value` prop or event handlers which include the current `value`. In most situations that `value` is only handled within React which allows it be of any type, such as objects or arrays.
+
+However, that type cannot be verified at compile time in situations where it depends on the component's children e.g. for `Select` or `RadioGroup`. This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down. We do not offer the possibility to use a generic type in those cases for the same [reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
+
+Our demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You haven to decide for yourself if the same tradeoff is acceptable for you. We want our library types to be strict by default and loose via opt-in.

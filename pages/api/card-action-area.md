@@ -34,11 +34,11 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">focusVisible</span> | Styles applied to the ButtonBase root element if the action area is keyboard focused.
+| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused.
 | <span class="prop-name">focusHighlight</span> | Styles applied to the overlay that covers the action area when it is keyboard focused.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/CardActionArea/CardActionArea.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CardActionArea/CardActionArea.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

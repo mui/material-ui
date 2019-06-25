@@ -40,6 +40,8 @@ If a title is required:
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
+## Transições
+
 You can also swap out the transition, the next example uses `Slide`.
 
 {{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
@@ -52,7 +54,7 @@ Form dialogs allow users to fill out form fields within a dialog. For example, i
 
 ## Customized dialogs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
 
 The dialog has a close button added to aide usability.
 
@@ -70,7 +72,18 @@ You can set a dialog maximum width by using the `maxWidth` enumerable in combina
 
 ## Responsive full-screen
 
-You may make a dialog responsively full screen using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/customization/breakpoints/). You can choose your own breakpoint for example `xs` by passing the `breakpoint` argument: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+
+```jsx
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+function MyComponent() {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  return <Dialog fullScreen={fullScreen} />
+}
+```
 
 {{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
@@ -82,7 +95,7 @@ Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the ac
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Accessibility
+## アクセシビリティ
 
 Follow the [Modal accessibility section](/components/modal/#accessibility).
 

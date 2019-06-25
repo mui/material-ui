@@ -9,42 +9,46 @@ components: Slider
 
 [滑块](https://material.io/design/components/sliders.html) 反映了条形图上的一系列值，用户可以从中选择单个值。 它们非常适合调整音量，亮度或应用图像滤镜等设置。
 
-滑块可以在条形图的两端具有反映一系列值的图标。
+- 
 
-#### 即时效果
+## Continuous sliders
 
-使用滑块进行的更改是即时的，允许用户进行滑块调整，直到找到他们的偏好。 它们不应与在提供用户反馈方面有轻微延迟的设置配对。
+Continuous sliders allow users to select a value along a subjective range.
 
-#### 当前状态
+{{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-滑块反映了它们控制的设置的当前状态。
+## Discrete sliders
 
-## 简单的滑块
+Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
 
-{{"demo": "pages/components/slider/SimpleSlider.js"}}
+1. You can generate a mark for each step with `marks={true}`.
+2. You can have custom marks by providing a rich array to the `marks` prop.
+3. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
+4. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
 
-## 滑块与步骤
+{{"demo": "pages/components/slider/DiscreteSlider.js"}}
 
-{{"demo": "pages/components/slider/StepSlider.js"}}
+## Range sliders
 
-## 禁用滑块
-
-{{"demo": "pages/components/slider/DisabledSlider.js"}}
-
-## 垂直滑块
-
-{{"demo": "pages/components/slider/VerticalSlider.js"}}
+{{"demo": "pages/components/slider/RangeSlider.js"}}
 
 ## Customized sliders
 
-以下是自定义组件的一个示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
-## Custom thumb
+## With input field
 
-{{"demo": "pages/components/slider/CustomIconSlider.js"}}
+{{"demo": "pages/components/slider/InputSlider.js"}}
 
-## 定制减价机
+## Vertical sliders
 
-{{"demo": "pages/components/slider/CustomValueReducerSlider.js"}}
+{{"demo": "pages/components/slider/VerticalSlider.js"}}
+
+## 无障碍功能
+
+The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+
+- The slider, as a whole, has a label (`aria-label` or `aria-labelledby` prop).
+- Each thumb has a user-friendly name for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.

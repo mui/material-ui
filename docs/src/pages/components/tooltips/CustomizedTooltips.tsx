@@ -187,13 +187,10 @@ const HtmlTooltip = withStyles((theme: Theme) => ({
     maxWidth: 220,
     fontSize: theme.typography.pxToRem(12),
     border: '1px solid #dadde9',
-    '& b': {
-      fontWeight: theme.typography.fontWeightMedium,
-    },
   },
 }))(Tooltip);
 
-function CustomizedTooltips() {
+export default function CustomizedTooltips() {
   return (
     <div>
       <LightTooltip title="Add">
@@ -219,5 +216,3 @@ function CustomizedTooltips() {
     </div>
   );
 }
-
-export default CustomizedTooltips;

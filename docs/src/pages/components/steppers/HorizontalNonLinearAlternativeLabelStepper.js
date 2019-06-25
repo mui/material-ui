@@ -42,7 +42,7 @@ function getStepContent(step) {
   }
 }
 
-function HorizontalNonLinearAlternativeLabelStepper() {
+export default function HorizontalNonLinearAlternativeLabelStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState(new Set());
@@ -212,5 +212,3 @@ function HorizontalNonLinearAlternativeLabelStepper() {
     </div>
   );
 }
-
-export default HorizontalNonLinearAlternativeLabelStepper;

@@ -1,11 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import {
-  createMount,
-  describeConformance,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import FilledInput from './FilledInput';
 import InputBase from '../InputBase';
 

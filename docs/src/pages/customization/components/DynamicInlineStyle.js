@@ -19,40 +19,34 @@ const styles = {
   },
 };
 
-class DynamicInlineStyle extends React.Component {
-  state = {
-    color: 'default',
+export default function DynamicInlineStyle() {
+  const [color, setColor] = React.useState('default');
+
+  const handleChange = event => {
+    setColor(event.target.checked ? 'blue' : 'default');
   };
 
-  handleChange = event => {
-    this.setState({ color: event.target.checked ? 'blue' : 'default' });
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={this.state.color === 'blue'}
-              onChange={this.handleChange}
-              color="primary"
-              value="dynamic-class-name"
-            />
-          }
-          label="Blue"
-        />
-        <Button
-          style={{
-            ...styles.button,
-            ...(this.state.color === 'blue' ? styles.buttonBlue : {}),
-          }}
-        >
-          {'dynamic inline-style'}
-        </Button>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={color === 'blue'}
+            onChange={handleChange}
+            color="primary"
+            value="dynamic-class-name"
+          />
+        }
+        label="Blue"
+      />
+      <Button
+        style={{
+          ...styles.button,
+          ...(color === 'blue' ? styles.buttonBlue : {}),
+        }}
+      >
+        {'dynamic inline-style'}
+      </Button>
+    </React.Fragment>
+  );
 }
-
-export default DynamicInlineStyle;

@@ -12,15 +12,15 @@ export const styles = theme => ({
     display: 'block',
     transformOrigin: 'top left',
   },
-  /* Styles applied to the root element if `focused={true}`. */
+  /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if `error={true}`. */
+  /* Pseudo-class applied to the root element if `error={true}`. */
   error: {},
-  /* Styles applied to the root element if `required={true}`. */
+  /* Pseudo-class applied to the root element if `required={true}`. */
   required: {},
-  /* Styles applied to the asterisk element. */
+  /* Pseudo-class applied to the asterisk element. */
   asterisk: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
@@ -73,7 +73,7 @@ export const styles = theme => ({
     pointerEvents: 'none',
     transform: 'translate(14px, 20px) scale(1)',
     '&$marginDense': {
-      transform: 'translate(14px, 17px) scale(1)',
+      transform: 'translate(14px, 12px) scale(1)',
     },
     '&$shrink': {
       transform: 'translate(14px, -6px) scale(0.75)',

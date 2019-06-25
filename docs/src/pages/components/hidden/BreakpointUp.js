@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
-import compose from 'docs/src/modules/utils/compose';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -21,14 +20,15 @@ const styles = theme => ({
     flex: '1 0 auto',
     margin: theme.spacing(1),
   },
-});
+}));
 
 function BreakpointUp(props) {
-  const { classes } = props;
+  const classes = useStyles();
+  const { width } = props;
 
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1">Current width: {props.width}</Typography>
+      <Typography variant="subtitle1">Current width: {width}</Typography>
       <div className={classes.container}>
         <Hidden xsUp>
           <Paper className={classes.paper}>xsUp</Paper>
@@ -51,11 +51,7 @@ function BreakpointUp(props) {
 }
 
 BreakpointUp.propTypes = {
-  classes: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired,
 };
 
-export default compose(
-  withStyles(styles),
-  withWidth(),
-)(BreakpointUp);
+export default withWidth()(BreakpointUp);

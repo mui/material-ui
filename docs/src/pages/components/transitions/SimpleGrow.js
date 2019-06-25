@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     height: 180,
   },
@@ -24,50 +24,43 @@ const styles = theme => ({
     stroke: theme.palette.divider,
     strokeWidth: 1,
   },
-});
+}));
 
-class SimpleGrow extends React.Component {
-  state = {
-    checked: false,
-  };
+export default function SimpleGrow() {
+  const classes = useStyles();
+  const [checked, setChecked] = React.useState(false);
 
-  handleChange = () => {
-    this.setState(state => ({ checked: !state.checked }));
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { checked } = this.state;
-
-    const polygon = (
-      <Paper elevation={4} className={classes.paper}>
-        <svg className={classes.svg}>
-          <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
-        </svg>
-      </Paper>
-    );
-
-    return (
-      <div className={classes.root}>
-        <Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
-        <div className={classes.container}>
-          <Grow in={checked}>{polygon}</Grow>
-          {/* Conditionally applies the timeout property to change the entry speed. */}
-          <Grow
-            in={checked}
-            style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 1000 } : {})}
-          >
-            {polygon}
-          </Grow>
-        </div>
-      </div>
-    );
+  function handleChange() {
+    setChecked(prev => !prev);
   }
+
+  return (
+    <div className={classes.root}>
+      <FormControlLabel
+        control={<Switch checked={checked} onChange={handleChange} />}
+        label="Show"
+      />
+      <div className={classes.container}>
+        <Grow in={checked}>
+          <Paper elevation={4} className={classes.paper}>
+            <svg className={classes.svg}>
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+            </svg>
+          </Paper>
+        </Grow>
+        {/* Conditionally applies the timeout property to change the entry speed. */}
+        <Grow
+          in={checked}
+          style={{ transformOrigin: '0 0 0' }}
+          {...(checked ? { timeout: 1000 } : {})}
+        >
+          <Paper elevation={4} className={classes.paper}>
+            <svg className={classes.svg}>
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+            </svg>
+          </Paper>
+        </Grow>
+      </div>
+    </div>
+  );
 }
-
-SimpleGrow.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleGrow);

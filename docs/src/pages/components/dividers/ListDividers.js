@@ -13,11 +13,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ListDividers() {
+export default function ListDividers() {
   const classes = useStyles();
 
   return (
-    <List component="nav" className={classes.root}>
+    <List component="nav" className={classes.root} aria-label="Mailbox folders">
       <ListItem button>
         <ListItemText primary="Inbox" />
       </ListItem>
@@ -35,5 +35,3 @@ function ListDividers() {
     </List>
   );
 }
-
-export default ListDividers;

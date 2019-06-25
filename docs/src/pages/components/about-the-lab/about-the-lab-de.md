@@ -1,4 +1,4 @@
-# About the lab
+# Über das Labor
 
 <p class="description">Dieses Paket enthält die Inkubator-Komponenten, die noch nicht bereit sind, in den Kern aufgenommen zu werden.</p>
 

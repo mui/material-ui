@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function NestedList() {
+export default function NestedList() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -35,7 +35,12 @@ function NestedList() {
   return (
     <List
       component="nav"
-      subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
+      aria-labelledby="nested-list-subheader"
+      subheader={
+        <ListSubheader component="div" id="nested-list-subheader">
+          Nested List Items
+        </ListSubheader>
+      }
       className={classes.root}
     >
       <ListItem button>
@@ -70,5 +75,3 @@ function NestedList() {
     </List>
   );
 }
-
-export default NestedList;

@@ -40,6 +40,8 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
+## 过渡动画
+
 当然你也可以换掉过渡效果，下面的示例使用了 ` Slide（幻灯片）`。
 
 {{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
@@ -70,11 +72,22 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 响应式全屏
 
-您可以使用 `withMobileDialog` 显示响应式的全屏对话框。 默认情况下, `withMobileDialog() (Dialog)` 在 [屏幕大小](/customization/breakpoints/)*小于等于* `sm`时响应式全屏。 通过传递 `breakpoint`参数，您可以自主选择全屏切换点，比如使用`xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
+You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+
+```jsx
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+function MyComponent() {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  return <Dialog fullScreen={fullScreen} />
+}
+```
 
 {{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
-## 确认型对话框
+## 确认对话框
 
 确认型对话框明确要求用户在提交选项之前确认他们的选择。 比如说，用户可以听到多种铃声，但只有在点击 “OK” 后才意味着做出了选择。
 
@@ -86,7 +99,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 参考[模态框可及性的部分](/components/modal/#accessibility)。
 
-## 冗长内容的滚动
+## 长内容滚动
 
 由于用户设备的不同或视图的大小，对话框会变得很长，此时对话框是可以滚动的。
 

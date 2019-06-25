@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimplePopper() {
+export default function SimplePopper() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -21,7 +21,7 @@ function SimplePopper() {
   }
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : null;
+  const id = open ? 'simple-popper' : undefined;
 
   return (
     <div>
@@ -40,5 +40,3 @@ function SimplePopper() {
     </div>
   );
 }
-
-export default SimplePopper;

@@ -24,9 +24,9 @@ export const styles = theme => ({
       color: theme.palette.primary.main,
     },
   },
-  /* Styles applied to the root element if selected. */
+  /* Pseudo-class applied to the root element if selected. */
   selected: {},
-  /* Styles applied to the root element if `showLabel={false}` and not selected. */
+  /* Pseudo-class applied to the root element if `showLabel={false}` and not selected. */
   iconOnly: {},
   /* Styles applied to the span element that wraps the icon and label. */
   wrapper: {

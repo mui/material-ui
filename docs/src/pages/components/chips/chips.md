@@ -40,6 +40,18 @@ gain depth while clicked or touched.
 
 {{"demo": "pages/components/chips/ChipsArray.js"}}
 
+## Small Chip
+
+You can use the `size` prop to define a small Chip. 
+
+### Default variant
+
+{{"demo": "pages/components/chips/SmallChips.js"}}
+
+### Outlined variant
+
+{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+
 ## Chip Playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

@@ -24,7 +24,7 @@ function DeepChild() {
   );
 }
 
-function ThemeNesting() {
+export default function ThemeNesting() {
   return (
     <div>
       <ThemeProvider
@@ -49,5 +49,3 @@ function ThemeNesting() {
     </div>
   );
 }
-
-export default ThemeNesting;

@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ResponsiveDrawer(props) {
+export default function ResponsiveDrawer(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -104,7 +104,7 @@ function ResponsiveDrawer(props) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer}>
+      <nav className={classes.drawer} aria-label="Mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
@@ -170,5 +170,3 @@ ResponsiveDrawer.propTypes = {
   // You won't need it on your project.
   container: PropTypes.object,
 };
-
-export default ResponsiveDrawer;

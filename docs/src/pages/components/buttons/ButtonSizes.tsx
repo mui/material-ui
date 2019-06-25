@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ButtonSizes() {
+export default function ButtonSizes() {
   const classes = useStyles();
+
   return (
     <div>
       <div>
@@ -110,5 +111,3 @@ function ButtonSizes() {
     </div>
   );
 }
-
-export default ButtonSizes;

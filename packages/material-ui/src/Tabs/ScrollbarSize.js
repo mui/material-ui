@@ -8,8 +8,6 @@ const styles = {
   position: 'absolute',
   top: -9999,
   overflow: 'scroll',
-  // TODO Do we need this style for IE 11 support?
-  msOverflowStyle: 'scrollbar',
 };
 
 /**
@@ -17,8 +15,8 @@ const styles = {
  * The component is originates from https://github.com/STORIS/react-scrollbar-size.
  * It has been moved into the core in order to minimize the bundle size.
  */
-function ScrollbarSize(props) {
-  const { onChange } = props;
+export default function ScrollbarSize(props) {
+  const { onChange, ...other } = props;
   const scrollbarHeight = React.useRef();
   const nodeRef = React.useRef(null);
 
@@ -49,11 +47,9 @@ function ScrollbarSize(props) {
     onChange(scrollbarHeight.current);
   }, [onChange]);
 
-  return <div style={styles} ref={nodeRef} />;
+  return <div style={styles} ref={nodeRef} {...other} />;
 }
 
 ScrollbarSize.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
-
-export default ScrollbarSize;

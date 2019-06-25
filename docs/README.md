@@ -14,7 +14,7 @@ If you do not have yarn installed, select your OS and follow the instructions on
 
 ## How can I add a new demo to the documentation?
 
-[You can follow this guide](https://github.com/mui-org/material-ui/blob/next/CONTRIBUTING.md)
+[You can follow this guide](https://github.com/mui-org/material-ui/blob/master/CONTRIBUTING.md)
 on how to get started contributing to Material-UI.
 
 ## How do I help improve to the translations?

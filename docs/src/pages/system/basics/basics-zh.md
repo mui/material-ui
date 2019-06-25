@@ -12,7 +12,7 @@
 - 🦎可以和任何主题对象 (theme object) 配合
 - 💅使用广为流行的 CSS-in-JS 样式方案
 - 📦体积小 [4KB gzipped](https://bundlephobia.com/result?p=@material-ui/system)
-- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
+- 🚀 [快速](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
 
 值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： `({ theme, ...style })=> style<、0>。</p>
 
@@ -224,6 +224,8 @@ const Box = styled.div`
  */
 ```
 
+{{"demo": "pages/system/basics/CollocationApi.js"}}
+
 ## 定制样式属性
 
 ### `style(options) => style function`
@@ -246,8 +248,27 @@ const Box = styled.div`
 
 #### 例子
 
-```js
-import { style } from '@material-ui/system'
+我们可以创建一个支持一些CSS网格属性的组件，比如` grid-gap ` 。 通过提供`spacing`作为` themeKey `我们可以重用逻辑来启用我们在其他间距属性（如`padding`）中看到的行为。
+
+```jsx
+import styled from 'styled-components';
+import { style } from '@material-ui/system';
+import { Box } from '@material-ui/core';
+
+const gridGap = style({
+  prop: 'gridGap',
+  themeKey: 'spacing',
+});
+
+const Grid = styled(Box)`${gridGap}`;
+const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
+```
+
+我们还可以通过添加` prop `和` cssProperty `来定制属性名，还可以添加`transform`方法来转换它的值。
+
+```jsx
+import styled from 'styled-components';
+import { style } from '@material-ui/system';
 
 const borderColor = style({
   prop: 'bc',
@@ -255,6 +276,9 @@ const borderColor = style({
   themeKey: 'palette',
   transform: value => `${value} !important`,
 });
+
+const Colored = styled.div`${borderColor}`;
+const example = <Colored bc="primary.main">...</Colored>;
 ```
 
 ### `compose(...style functions) => style function`
@@ -263,7 +287,7 @@ const borderColor = style({
 
 #### 返回结果
 
-`style function`：新的样式函数。
+`style function`：被创建的样式函数。
 
 #### 例子
 
@@ -298,7 +322,7 @@ const palette = compose(textColor, bgcolor);
 
 ## 它是如何工作的
 
-风格的系统已经做了很多工作在 [解释它是如何工作的](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works)的。 它可以帮助建设一个心理模型对于这种"风格的功能"概念。
+styled-system在[解释它如何工作](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works)方面做得很好 。 它可以协助为这种“style function”概念建立神经模型。
 
 ## 实际用例
 
@@ -315,7 +339,7 @@ const palette = compose(textColor, bgcolor);
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在v2，v3, 和v4中一步步介绍了原子类名 他们使用 `Helper classes` 聚合它们的方式给了我们启发。
 - 在 React 世界中， [Styled System](https://github.com/jxnblk/styled-system) (2017年) 是第一个推动样式函数的。 它可以做出一个通用的 Box 组件来已经衍生其他组件，这种方式可以替换原子CSS之中的辅助原子类的做法。
 - Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
+  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - 实际实现 和 对象响应API(object responsive API) 受到 [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system)的启发。

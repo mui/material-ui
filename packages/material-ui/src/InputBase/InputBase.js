@@ -36,6 +36,7 @@ export const styles = theme => {
       fontSize: theme.typography.pxToRem(16),
       lineHeight: '1.1875em', // Reset (19px), match the native input line-height
       boxSizing: 'border-box', // Prevent padding issue with fullWidth.
+      position: 'relative',
       cursor: 'text',
       display: 'inline-flex',
       alignItems: 'center',
@@ -61,6 +62,9 @@ export const styles = theme => {
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: `${8 - 2}px 0 ${8 - 1}px`,
+      '&$marginDense': {
+        paddingTop: 4 - 1,
+      },
     },
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {
@@ -115,6 +119,10 @@ export const styles = theme => {
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
       paddingTop: 4 - 1,
+    },
+    /* Styles applied to the `input` element if `select={true}. */
+    inputSelect: {
+      paddingRight: 32,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
@@ -172,6 +180,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     renderPrefix,
     rows,
     rowsMax,
+    select = false,
     startAdornment,
     type = 'text',
     value,
@@ -377,6 +386,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
               [classes.disabled]: fcs.disabled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
+              [classes.inputSelect]: select,
               [classes.inputMarginDense]: fcs.margin === 'dense',
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
@@ -430,7 +440,7 @@ InputBase.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default `input` element value, useful when not controlling the component.
+   * The default `input` element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
@@ -540,6 +550,10 @@ InputBase.propTypes = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Should be `true` when the component hosts a select.
+   */
+  select: PropTypes.bool,
   /**
    * Start `InputAdornment` for this component.
    */

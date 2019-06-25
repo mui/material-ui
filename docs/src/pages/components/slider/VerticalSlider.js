@@ -1,41 +1,67 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/Slider';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
-    display: 'flex',
     height: 300,
   },
-  slider: {
-    padding: '0px 22px',
-  },
-};
+});
 
-class VerticalSlider extends React.Component {
-  state = {
-    value: 50,
-  };
-
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <Slider className={classes.slider} value={value} onChange={this.handleChange} vertical />
-      </div>
-    );
-  }
+function valuetext(value) {
+  return `${value}°C`;
 }
 
-VerticalSlider.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+const marks = [
+  {
+    value: 0,
+    label: '0°C',
+  },
+  {
+    value: 20,
+    label: '20°C',
+  },
+  {
+    value: 37,
+    label: '37°C',
+  },
+  {
+    value: 100,
+    label: '100°C',
+  },
+];
 
-export default withStyles(styles)(VerticalSlider);
+export default function VerticalSlider() {
+  const classes = useStyles();
+
+  return (
+    <React.Fragment>
+      <Typography id="vertical-slider" gutterBottom>
+        Temperature
+      </Typography>
+      <div className={classes.root}>
+        <Slider
+          orientation="vertical"
+          getAriaValueText={valuetext}
+          defaultValue={30}
+          aria-labelledby="vertical-slider"
+        />
+        <Slider
+          disabled
+          orientation="vertical"
+          getAriaValueText={valuetext}
+          defaultValue={30}
+          aria-labelledby="vertical-slider"
+        />
+        <Slider
+          orientation="vertical"
+          defaultValue={[20, 37]}
+          aria-labelledby="vertical-slider"
+          getAriaValueText={valuetext}
+          marks={marks}
+        />
+      </div>
+    </React.Fragment>
+  );
+}

@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function FabIntegrationSnackbar() {
+export default function FabIntegrationSnackbar() {
   const classes = useStyles();
 
   return (
@@ -75,5 +75,3 @@ function FabIntegrationSnackbar() {
     </React.Fragment>
   );
 }
-
-export default FabIntegrationSnackbar;

@@ -23,7 +23,7 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   alert('You clicked a breadcrumb.');
 }
 
-function CustomSeparator() {
+export default function CustomSeparator() {
   const classes = useStyles();
 
   return (
@@ -66,5 +66,3 @@ function CustomSeparator() {
     </div>
   );
 }
-
-export default CustomSeparator;

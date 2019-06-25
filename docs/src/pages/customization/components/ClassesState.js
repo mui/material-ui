@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: 3,
@@ -22,10 +21,11 @@ const styles = {
     },
   },
   disabled: {},
-};
+});
 
-function ClassesState(props) {
-  const { classes } = props;
+export default function ClassesState() {
+  const classes = useStyles();
+
   return (
     <Button
       disabled
@@ -38,9 +38,3 @@ function ClassesState(props) {
     </Button>
   );
 }
-
-ClassesState.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ClassesState);

@@ -32,7 +32,14 @@ export default function createSpacing(spacingInput = 8) {
   }
 
   const spacing = (...args) => {
-    warning(args.length <= 4, `Too many arguments, expected [1, 4], got ${args.length}`);
+    warning(
+      args.length <= 4,
+      `Material-UI: Too many arguments provided, expected between 0 and 4, got ${args.length}`,
+    );
+
+    if (args.length === 0) {
+      return transform(1);
+    }
 
     if (args.length === 1) {
       return transform(args[0]);
@@ -56,6 +63,8 @@ export default function createSpacing(spacingInput = 8) {
             'Material-UI: theme.spacing.unit usage has been deprecated.',
             'It will be removed in v5.',
             'You can replace `theme.spacing.unit * y` with `theme.spacing(y)`.',
+            '',
+            'You can use the `https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api` migration helper to make the process smoother.',
           ].join('\n'),
         );
         warnOnce = true;

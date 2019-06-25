@@ -11,7 +11,7 @@ import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.background.level0,
+    backgroundColor: theme.palette.background.level2,
   },
   footer: {
     padding: theme.spacing(3, 0),
@@ -60,7 +60,7 @@ function HomeFooter(props) {
                   <li className={classes.listItem}>
                     <Link
                       color="inherit"
-                      href="https://github.com/mui-org/material-ui/tree/next/examples"
+                      href="https://github.com/mui-org/material-ui/tree/master/examples"
                     >
                       {t('examples')}
                     </Link>
@@ -99,7 +99,7 @@ function HomeFooter(props) {
                 license: (
                   <Link
                     color="inherit"
-                    href="https://github.com/mui-org/material-ui/blob/next/LICENSE"
+                    href="https://github.com/mui-org/material-ui/blob/master/LICENSE"
                   >
                     {t('license')}
                   </Link>

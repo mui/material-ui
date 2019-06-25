@@ -36,15 +36,15 @@ This property accepts the following keys:
 | <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
 | <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical"`.
 | <span class="prop-name">alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
-| <span class="prop-name">active</span> | Styles applied to the root element if `active={true}`.
-| <span class="prop-name">completed</span> | Styles applied to the root element if `completed={true}`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span class="prop-name">completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">line</span> | Styles applied to the line element.
 | <span class="prop-name">lineHorizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
 | <span class="prop-name">lineVertical</span> | Styles applied to the root element if `orientation="vertical"`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/StepConnector/StepConnector.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepConnector/StepConnector.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

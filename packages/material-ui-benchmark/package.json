@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-benchmark",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-benchmark",
   "scripts": {
     "core": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/core.js --inspect=0.0.0.0:9229",
     "docs": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/docs.js --inspect=0.0.0.0:9229",
@@ -19,7 +19,6 @@
     "system": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/system.js --inspect=0.0.0.0:9229",
     "test": "exit 0"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=8.0.0"
   },
@@ -31,7 +30,8 @@
     "emotion": "^10.0.9",
     "emotion-server": "^10.0.9",
     "nodemod": "^1.5.19",
-    "react-jss": "^10.0.0-alpha.12",
-    "styled-system": "^4.0.5"
+    "react": "^16.3.0",
+    "react-jss": "^10.0.0-alpha.17",
+    "styled-system": "latest"
   }
 }

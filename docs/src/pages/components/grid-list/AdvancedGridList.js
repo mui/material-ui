@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
  *   },
  * ];
  */
-function AdvancedGridList() {
+export default function AdvancedGridList() {
   const classes = useStyles();
 
   return (
@@ -62,7 +62,7 @@ function AdvancedGridList() {
               title={tile.title}
               titlePosition="top"
               actionIcon={
-                <IconButton className={classes.icon}>
+                <IconButton aria-label={`star ${tile.title}`} className={classes.icon}>
                   <StarBorderIcon />
                 </IconButton>
               }
@@ -75,5 +75,3 @@ function AdvancedGridList() {
     </div>
   );
 }
-
-export default AdvancedGridList;

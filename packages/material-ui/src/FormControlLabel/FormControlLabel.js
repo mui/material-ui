@@ -38,7 +38,7 @@ export const styles = theme => ({
     flexDirection: 'column',
     marginLeft: 16,
   },
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the label's Typography component. */
   label: {

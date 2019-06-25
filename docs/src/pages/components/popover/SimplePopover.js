@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimplePopover() {
+export default function SimplePopover() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -23,7 +23,7 @@ function SimplePopover() {
   }
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : null;
+  const id = open ? 'simple-popover' : undefined;
 
   return (
     <div>
@@ -49,5 +49,3 @@ function SimplePopover() {
     </div>
   );
 }
-
-export default SimplePopover;

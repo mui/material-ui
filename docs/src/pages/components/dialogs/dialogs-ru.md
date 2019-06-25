@@ -40,6 +40,8 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
+## Transições
+
 Вы также можете поменять анимацию, в следующем примере используется `Slide`.
 
 {{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
@@ -70,7 +72,18 @@ The dialog has a close button added to aide usability.
 
 ## Отзывчивый полноэкранный режим
 
-You may make a dialog responsively full screen using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/customization/breakpoints/). Вы можете выбрать собственную точку остановки, например `xs`, передав аргумент `breakpoint`: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+
+```jsx
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+function MyComponent() {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  return <Dialog fullScreen={fullScreen} />
+}
+```
 
 {{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 

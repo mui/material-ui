@@ -40,13 +40,13 @@ export const styles = theme => ({
       color: theme.palette.error.main,
     },
   },
-  /* Styles applied to the `Typography` component if `active={true}`. */
+  /* Pseudo-class applied to the `Typography` component if `active={true}`. */
   active: {},
-  /* Styles applied to the `Typography` component if `completed={true}`. */
+  /* Pseudo-class applied to the `Typography` component if `completed={true}`. */
   completed: {},
-  /* Styles applied to the root element and `Typography` component if `error={true}`. */
+  /* Pseudo-class applied to the root element and `Typography` component if `error={true}`. */
   error: {},
-  /* Styles applied to the root element and `Typography` component if `disabled={true}`. */
+  /* Pseudo-class applied to the root element and `Typography` component if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the `icon` container element. */
   iconContainer: {
@@ -57,7 +57,7 @@ export const styles = theme => ({
       paddingRight: 0,
     },
   },
-  /* Styles applied to the root & icon container and `Typography` if `alternativeLabel={true}`. */
+  /* Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`. */
   alternativeLabel: {},
   /* Styles applied to the container element which wraps `Typography` and `optional`. */
   labelContainer: {
@@ -148,7 +148,7 @@ StepLabel.propTypes = {
   active: PropTypes.bool,
   /**
    * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel property.
+   * Set internally by Stepper when it's supplied with the alternativeLabel prop.
    */
   alternativeLabel: PropTypes.bool,
   /**

@@ -1,15 +1,21 @@
-export const CODE_VARIANTS = {
+const CODE_VARIANTS = {
   JS: 'JS',
   TS: 'TS',
 };
 
-export const ACTION_TYPES = {
-  THEME_CHANGE: 'THEME_CHANGE',
+const ACTION_TYPES = {
   OPTIONS_CHANGE: 'OPTIONS_CHANGE',
 };
 
 // Active
-export const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
 
 // Work in progress
-export const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja'];
+const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja'];
+
+module.exports = {
+  CODE_VARIANTS,
+  ACTION_TYPES,
+  LANGUAGES,
+  LANGUAGES_IN_PROGRESS,
+};

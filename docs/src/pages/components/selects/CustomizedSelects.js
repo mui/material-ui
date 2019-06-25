@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -19,7 +19,6 @@ const BootstrapInput = withStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     border: '1px solid #ced4da',
     fontSize: 16,
-    width: 'auto',
     padding: '10px 26px 10px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
@@ -53,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function CustomizedSelects() {
+export default function CustomizedSelects() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
   const handleChange = event => {
@@ -62,8 +61,8 @@ function CustomizedSelects() {
   return (
     <form className={classes.root} autoComplete="off">
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="age-customized-select">Age</InputLabel>
-        <BootstrapInput />
+        <InputLabel htmlFor="age-customized-input">Age</InputLabel>
+        <BootstrapInput id="age-customized-input" />
       </FormControl>
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="age-customized-select">Age</InputLabel>
@@ -96,5 +95,3 @@ function CustomizedSelects() {
     </form>
   );
 }
-
-export default CustomizedSelects;

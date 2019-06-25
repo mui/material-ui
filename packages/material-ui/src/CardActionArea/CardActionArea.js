@@ -17,7 +17,7 @@ export const styles = theme => ({
       opacity: 0.12,
     },
   },
-  /* Styles applied to the ButtonBase root element if the action area is keyboard focused. */
+  /* Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused. */
   focusVisible: {},
   /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   focusHighlight: {

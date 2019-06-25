@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -25,10 +24,11 @@ const styles = theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
-});
+}));
 
-function ComplexGrid(props) {
-  const { classes } = props;
+export default function ComplexGrid() {
+  const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -66,9 +66,3 @@ function ComplexGrid(props) {
     </div>
   );
 }
-
-ComplexGrid.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ComplexGrid);

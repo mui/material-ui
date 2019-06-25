@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { ExtendButtonBase } from '../ButtonBase';
 import { IconButtonProps } from '../IconButton';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface ExpansionPanelSummaryProps
-  extends StandardProps<ButtonBaseProps, ExpansionPanelSummaryClassKey> {
-  disabled?: boolean;
-  expanded?: boolean;
-  expandIcon?: React.ReactNode;
-  IconButtonProps?: Partial<IconButtonProps>;
-  onChange?: React.ReactEventHandler<{}>;
-}
+declare const ExpansionPanelSummary: ExtendButtonBase<{
+  props: {
+    disabled?: boolean;
+    expanded?: boolean;
+    expandIcon?: React.ReactNode;
+    IconButtonProps?: Partial<IconButtonProps>;
+    onChange?: React.ReactEventHandler<{}>;
+  };
+  defaultComponent: 'div';
+  classKey: ExpansionPanelSummaryClassKey;
+}>;
 
 export type ExpansionPanelSummaryClassKey =
   | 'root'
@@ -20,6 +23,6 @@ export type ExpansionPanelSummaryClassKey =
   | 'content'
   | 'expandIcon';
 
-declare const ExpansionPanelSummary: React.ComponentType<ExpansionPanelSummaryProps>;
+export type ExpansionPanelSummaryProps = SimplifiedPropsOf<typeof ExpansionPanelSummary>;
 
 export default ExpansionPanelSummary;

@@ -872,7 +872,7 @@ const TabsTest = () => {
 
   type ClassKey = 'root' | 'button';
 
-  const styles: StyleRulesCallback<ClassKey> = theme => ({
+  const styles: StyleRulesCallback<Theme, any, ClassKey> = theme => ({
     root: {
       flexGrow: 1,
       marginTop: theme.spacing(3),
@@ -969,7 +969,7 @@ const ClickAwayListenerComponentTest = () => (
 );
 
 const TransitionTest = () => (
-  <>
+  <React.Fragment>
     <Fade in={false}>
       <div />
     </Fade>
@@ -979,7 +979,7 @@ const TransitionTest = () => (
     <Grow in={false} timeout="auto" onEnter={() => {}}>
       <div />
     </Grow>
-  </>
+  </React.Fragment>
 );
 
 const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;

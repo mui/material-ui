@@ -43,19 +43,19 @@ Cet exemple illustre l'utilisation de `Checkbox` et des lignes cliquables pour l
 
 La table a reçu une largeur fixe pour illustrer le défilement horizontal. Afin d'éviter le défilement des contrôles de pagination, le composant TablePagination est utilisé en dehors du tableau. (L'exemple ['Action de pagination de table personnalisée' ](#custom-table-pagination-action) ci-dessous montre la pagination dans TableFooter.)
 
-{{"demo": "pages/components/tables/EnhancedTable.js"}}
+{{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
-## Customized tables
+## Tableaux Personnalisés
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet sur la [page de documentation à propos personnalisation](/customization/components/).
 
-{{"demo": "pages/components/tables/CustomizedTables.js"}}
+{{"demo": "pages/components/tables/CustomizedTable.js"}}
 
 ## Action de pagination de table personnalisée
 
 La propriété `Action` du composant `TablePagination` permet l'implémentation d'actions personnalisées.
 
-{{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
+{{"démo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
 ## Spanning Table
 
@@ -77,7 +77,7 @@ Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti de
 
 ![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+[material-table](https://github.com/mbrn/material-table) est une table de données simple et puissante pour React basé sur les tables Material-UI avec quelques fonctionnalités supplémentaires. Ils prennent en charge de nombreux cas d'utilisation différents (éditable, filtrage, regroupement, tri, sélection, i18n, données arborescentes, etc.). Vous devriez y jeter un coup d'oeil.
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js"}}
 

@@ -30,7 +30,7 @@ const Transition = React.forwardRef<unknown, TransitionProps>(function Transitio
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function FullScreenDialog() {
+export default function FullScreenDialog() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -74,5 +74,3 @@ function FullScreenDialog() {
     </div>
   );
 }
-
-export default FullScreenDialog;
