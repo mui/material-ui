@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import debounce from '../utils/debounce';
 import { useForkRef } from '../utils/reactHelpers';
 
 function getStyleValue(computedStyle, property) {
@@ -87,7 +87,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   React.useEffect(() => {
     const handleResize = debounce(() => {
       syncHeight();
-    }, 166); // Corresponds to 10 frames at 60 Hz.
+    });
 
     window.addEventListener('resize', handleResize);
     return () => {

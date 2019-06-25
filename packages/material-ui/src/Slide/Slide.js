@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import debounce from '../utils/debounce';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { useForkRef } from '../utils/reactHelpers';
@@ -180,7 +180,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         if (childrenRef.current) {
           setTranslateValue(direction, childrenRef.current);
         }
-      }, 166); // Corresponds to 10 frames at 60 Hz.
+      });
 
       window.addEventListener('resize', handleResize);
 
