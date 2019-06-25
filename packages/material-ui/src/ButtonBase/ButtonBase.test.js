@@ -550,7 +550,6 @@ describe('<ButtonBase />', () => {
         button.focus();
         fireEvent.keyDown(document.activeElement || document.body, {
           key: ' ',
-          preventDefault: spy(),
         });
 
         expect(onClickSpy.calledOnce).to.be.true;
