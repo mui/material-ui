@@ -1,5 +1,11 @@
 import React from 'react';
-import { cleanup, render } from '@testing-library/react';
+import {
+  act,
+  cleanup,
+  createEvent,
+  fireEvent as rtlFireEvent,
+  render,
+} from '@testing-library/react';
 
 /**
  *
@@ -46,6 +52,22 @@ export function createClientRender(globalOptions = {}) {
   };
 }
 
+const fireEvent = Object.assign(rtlFireEvent, {
+  // polyfill event.key for chrome 49 (supported in Material-UI v4)
+  // for user-interactions react does the polyfilling but manually created
+  // events don't have this luxury
+  keyDown(element, options = {}) {
+    const event = createEvent.keyDown(element, options);
+    Object.defineProperty(event, 'key', {
+      get() {
+        return options.key || '';
+      },
+    });
+
+    rtlFireEvent(element, event);
+  },
+});
+
 export * from '@testing-library/react';
 // in case someone accidentally imports `render`. we want to use a single API
-export { cleanup, clientRender as render };
+export { act, cleanup, clientRender as render, fireEvent };
