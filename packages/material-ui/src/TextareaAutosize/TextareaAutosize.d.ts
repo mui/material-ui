@@ -6,4 +6,4 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
 
 declare const Textarea: React.ComponentType<TextareaProps>;
 
-export default Textarea;
+export default TextareaAutosize;
