@@ -179,7 +179,10 @@ describe('<ButtonBase />', () => {
         // onKeyDown -> keyDown
         const eventType = n.charAt(2).toLowerCase() + n.slice(3);
         // @ts-ignore eventType isn't a literal here, need const expression
-        fireEvent[eventType](button);
+        expect(() => fireEvent[eventType](button)).not.to.throw(
+          undefined,
+          `failed to fire event ${eventType}`,
+        );
         expect(handlers[n].callCount, `should have called the ${n} handler`).to.equal(1);
       });
     });
