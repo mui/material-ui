@@ -10,7 +10,7 @@ To solve this problem we tag some of our components when needed
 with a `muiName` static property.
 
 You may, however, need to wrap a component in order to enhance it,
-which can conflict with the `muiName` solution. If you wrap a component verify if
+which can conflict with the `muiName` solution. If you wrap a component, verify if
 that component has this static property set.
 
 If you encounter this issue, you need to use the same tag for your wrapping component

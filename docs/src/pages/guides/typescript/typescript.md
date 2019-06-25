@@ -267,9 +267,9 @@ However, that type cannot be verified at compile time in situations where it dep
 on the component's children e.g. for `Select` or `RadioGroup`. This means that
 the soundest option is to type it as `unknown` and let the developer decide
 how they want to narrow that type down. We do not offer the possibility to use a generic
-type in those cases for the same [reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
+type in those cases for [the same reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
 
 Our demos include typed variants that use type casting. It is an acceptable tradeoff
-because the types are all located in a single file and are very basic. You haven to decide for yourself
+because the types are all located in a single file and are very basic. You have to decide for yourself
 if the same tradeoff is acceptable for you. We want our library types to be strict
 by default and loose via opt-in.
