@@ -24,7 +24,7 @@ function focusVisible(element) {
 function simulatePointerDevice() {
   // first focus on a page triggers focus visible until a pointer event
   // has been dispatched
-  fireEvent(document.body, new window.Event('pointerdown'));
+  fireEvent.pointerDown(document.body);
 }
 
 describe('<ButtonBase />', () => {
