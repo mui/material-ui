@@ -370,6 +370,7 @@ describe('<ButtonBase />', () => {
     it('should stop and re-pulsate when space bar is released', function test() {
       fireEvent.keyUp(button, { key: ' ' });
       if (isChrome49) {
+        // https://github.com/mui-org/material-ui/issues/16366
         this.skip();
       }
 
