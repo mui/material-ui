@@ -1,4 +1,7 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["types", "src/pages/**/*"]
+  "include": ["types", "src/pages/**/*"],
+  "compilerOptions": {
+    "allowJs": false
+  }
 }
