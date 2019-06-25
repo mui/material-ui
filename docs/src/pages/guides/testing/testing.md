@@ -16,6 +16,9 @@ While we have reached the 100% test coverage achievement, we don't encourage our
 ## Userspace
 
 What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose.
+We use almost exclusively full DOM rendering APIs. We encourage you to do the same especially
+if your components rely on custom themes. Tests using shallow rendering APIs become more brittle
+with the amount of provider components they require.
 
 ### Full DOM rendering
 
@@ -59,9 +62,18 @@ Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api
 
 ```jsx
 import { createMount } from '@material-ui/core/test-utils';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
 describe('<MyComponent />', () => {
   let mount;
+
+  function MySuccessButton({ children }) {
+    return (
+      <MuiThemeProvider theme={{ success: { main: '#fff' } }}>
+        {children}
+      </MuiThemeProvider>
+    );
+  }
 
   before(() => {
     mount = createMount();
@@ -72,7 +84,7 @@ describe('<MyComponent />', () => {
   });
 
   it('should work', () => {
-    const wrapper = mount(<MyComponent />);
+    const wrapper = mount(<MockedTheme><MySuccessButton /></MockedTheme>);
   });
 });
 ```
