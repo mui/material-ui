@@ -144,7 +144,7 @@ const element = ref.current;
 ```
 
 If you're not sure if the Material-UI component in question forwards its ref you
-can check the API documentation under "Props" e.g. the [/api/button/#props](Button API)
+can check the API documentation under "Props" e.g. the [Button API](/api/button/#props)
 includes
 > The ref is forwarded to the root element.
 
