@@ -144,7 +144,6 @@ describe('<ButtonBase />', () => {
         'onMouseLeave',
         'onMouseUp',
         'onDragEnd',
-        'onTouchEnd',
       ];
 
       /**
@@ -156,18 +155,24 @@ describe('<ButtonBase />', () => {
         return result;
       }, {});
       const onTouchStart = spy();
+      const onTouchEnd = spy();
 
       const { getByText } = render(
-        <ButtonBase {...handlers} onTouchStart={onTouchStart}>
+        <ButtonBase {...handlers} onTouchEnd={onTouchEnd} onTouchStart={onTouchStart}>
           Hello
         </ButtonBase>,
       );
       const button = getByText('Hello');
 
-      // touchStart requires additional mocking
+      // only run in supported browsers
       if (typeof Touch !== 'undefined') {
-        fireEvent.touchStart(button, { touches: [new Touch({ identifier: 0, target: button })] });
+        const touch = new Touch({ identifier: 0, target: button });
+
+        fireEvent.touchStart(button, { touches: [touch] });
         expect(onTouchStart.callCount).to.equal(1);
+
+        fireEvent.touchEnd(button, { touches: [touch] });
+        expect(onTouchEnd.callCount).to.equal(1);
       }
 
       eventHandlerNames.forEach(n => {
