@@ -160,8 +160,10 @@ describe('<ButtonBase />', () => {
       const button = getByText('Hello');
 
       // touchStart requires additional mocking
-      fireEvent.touchStart(button, { touches: [{}] });
-      expect(onTouchStart.callCount).to.equal(1);
+      if (typeof Touch !== 'undefined') {
+        fireEvent.touchStart(button, { touches: [new Touch({ identifier: 0, target: button })] });
+        expect(onTouchStart.callCount).to.equal(1);
+      }
 
       eventHandlerNames.forEach(n => {
         // onKeyDown -> keyDown
