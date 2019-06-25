@@ -214,22 +214,20 @@ describe('<ButtonBase />', () => {
 
       before(() => {
         const { getByText } = render(
-          <React.Fragment>
-            <ButtonBase
-              TouchRippleProps={{
-                classes: {
-                  root: 'touch-ripple',
-                  ripple: 'ripple',
-                  ripplePulsate: 'ripple-pulsate',
-                  rippleVisible: 'ripple-visible',
-                  child: 'child',
-                  childLeaving: 'child-leaving',
-                },
-              }}
-            >
-              Hello
-            </ButtonBase>
-          </React.Fragment>,
+          <ButtonBase
+            TouchRippleProps={{
+              classes: {
+                root: 'touch-ripple',
+                ripple: 'ripple',
+                ripplePulsate: 'ripple-pulsate',
+                rippleVisible: 'ripple-visible',
+                child: 'child',
+                childLeaving: 'child-leaving',
+              },
+            }}
+          >
+            Hello
+          </ButtonBase>,
         );
         button = getByText('Hello');
 
@@ -341,23 +339,21 @@ describe('<ButtonBase />', () => {
 
     before(() => {
       const { getByText } = render(
-        <React.Fragment>
-          <ButtonBase
-            focusRipple
-            focusVisibleClassName="focus-visible"
-            TouchRippleProps={{
-              classes: {
-                root: 'touch-ripple',
-                ripple: 'ripple',
-                ripplePulsate: 'ripple-pulsate',
-                rippleVisible: 'ripple-visible',
-                childLeaving: 'child-leaving',
-              },
-            }}
-          >
-            Hello
-          </ButtonBase>
-        </React.Fragment>,
+        <ButtonBase
+          focusRipple
+          focusVisibleClassName="focus-visible"
+          TouchRippleProps={{
+            classes: {
+              root: 'touch-ripple',
+              ripple: 'ripple',
+              ripplePulsate: 'ripple-pulsate',
+              rippleVisible: 'ripple-visible',
+              childLeaving: 'child-leaving',
+            },
+          }}
+        >
+          Hello
+        </ButtonBase>,
       );
 
       button = getByText('Hello');
@@ -482,11 +478,9 @@ describe('<ButtonBase />', () => {
     it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
       const onFocusVisibleSpy = spy();
       const { getByRole } = render(
-        <React.Fragment>
-          <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy}>
-            Hello
-          </ButtonBase>
-        </React.Fragment>,
+        <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy}>
+          Hello
+        </ButtonBase>,
       );
       simulatePointerDevice();
 
