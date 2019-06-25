@@ -1,5 +1,27 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.1.3
+###### *June 25, 2019*
+
+Big thanks to the 4 contributors who made this release possible!
+This is a quick release after a regression that occured in 4.1.2.
+
+### `@material-ui/core@v4.1.3`
+
+- [core] Revert strict mode compatible transition components (#16348) @eps1lon
+- [theme] Validate fontSize in createTypography (#16321) @merceyz
+
+### `@material-ui/lab@v4.0.0-alpha.18`
+
+- [Slider] Fix label contrast color (#16350) @oliviertassinari
+
+### Docs
+
+- [docs] Improve colors reliably (#16324) @oliviertassinari
+- [docs] Migrate batch of demos to hooks/typescript (#16334) @merceyz
+- [docs] Some fixes to the Link component page (#16345) @kyarik
+- [docs] Use latest size snapshot from master (#16342) @eps1lon
+
 ## 4.1.2
 ###### *June 23, 2019*
 
