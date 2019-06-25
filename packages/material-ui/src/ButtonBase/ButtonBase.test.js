@@ -52,8 +52,9 @@ describe('<ButtonBase />', () => {
     classes = getClasses(<ButtonBase />);
     // browser testing config
     try {
+      const EventConstructor = window.DragEvent || window.Event;
       // eslint-disable-next-line no-new
-      new DragEvent('');
+      new EventConstructor('');
     } catch (err) {
       canFireDragEvents = false;
     }
