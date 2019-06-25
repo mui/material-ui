@@ -119,19 +119,14 @@ describe('<ButtonBase />', () => {
     });
 
     it('should not change the button to an a element', () => {
-      const Link = React.forwardRef((props, ref) => (
-        <a {...props} ref={ref}>
-          lint this
-        </a>
-      ));
       const { getByRole } = render(
         // @ts-ignore
-        <ButtonBase component={Link} href="https://google.com">
+        <ButtonBase component="span" href="https://google.com">
           Hello
         </ButtonBase>,
       );
       const button = getByRole('button');
-      expect(button).to.have.property('nodeName', 'A');
+      expect(button).to.have.property('nodeName', 'SPAN');
       expect(button).to.have.attribute('href', 'https://google.com');
     });
   });
