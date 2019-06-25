@@ -44,6 +44,8 @@ describe('<ButtonBase />', () => {
    * some tests fail in older browsers
    */
   let isChrome49 = false;
+  // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
+  let canFireDragEvents = true;
 
   before(() => {
     render = createClientRender({ strict: false });
@@ -52,7 +54,14 @@ describe('<ButtonBase />', () => {
      */
     mount = createMount({ strict: false });
     classes = getClasses(<ButtonBase />);
+    // browser testing config
     isChrome49 = /Chrome\/49\.0/.test(window.navigator.userAgent);
+    try {
+      // eslint-disable-next-line no-new
+      new DragEvent('');
+    } catch (err) {
+      canFireDragEvents = false;
+    }
   });
 
   after(() => {
@@ -143,7 +152,6 @@ describe('<ButtonBase />', () => {
         'onMouseDown',
         'onMouseLeave',
         'onMouseUp',
-        'onDragEnd',
       ];
 
       /**
@@ -154,11 +162,17 @@ describe('<ButtonBase />', () => {
         result[n] = spy();
         return result;
       }, {});
+      const onDragEnd = spy();
       const onTouchStart = spy();
       const onTouchEnd = spy();
 
       const { getByText } = render(
-        <ButtonBase {...handlers} onTouchEnd={onTouchEnd} onTouchStart={onTouchStart}>
+        <ButtonBase
+          {...handlers}
+          onDragEnd={onDragEnd}
+          onTouchEnd={onTouchEnd}
+          onTouchStart={onTouchStart}
+        >
           Hello
         </ButtonBase>,
       );
@@ -175,14 +189,16 @@ describe('<ButtonBase />', () => {
         expect(onTouchEnd.callCount).to.equal(1);
       }
 
+      if (canFireDragEvents) {
+        fireEvent.dragEnd(button);
+        expect(onDragEnd.callCount).to.equal(1);
+      }
+
       eventHandlerNames.forEach(n => {
         // onKeyDown -> keyDown
         const eventType = n.charAt(2).toLowerCase() + n.slice(3);
         // @ts-ignore eventType isn't a literal here, need const expression
-        expect(() => fireEvent[eventType](button)).not.to.throw(
-          undefined,
-          `failed to fire event ${eventType}`,
-        );
+        fireEvent[eventType](button);
         expect(handlers[n].callCount, `should have called the ${n} handler`).to.equal(1);
       });
     });
