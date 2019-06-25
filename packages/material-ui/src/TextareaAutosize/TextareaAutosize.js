@@ -56,7 +56,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
     // The height of the outer content
     let outerHeight = innerHeight - padding;
-    // console.log(1, { singleRowHeight, boxSizing, outerHeight });
 
     if (rows != null) {
       outerHeight = Math.max(Number(rows) * singleRowHeight, outerHeight);
@@ -66,9 +65,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     }
     outerHeight = Math.max(outerHeight, singleRowHeight);
 
-    outerHeight +=
-      (boxSizing === 'border-box' ? padding : 0) + (boxSizing === 'border-box' ? border : 0);
-    // console.log(2, { outerHeight });
+    outerHeight += boxSizing === 'border-box' ? padding + border : 0;
 
     setState(prevState => {
       // Need a large enough different to update the height.
