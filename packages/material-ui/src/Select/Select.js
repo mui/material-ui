@@ -101,6 +101,7 @@ Select.propTypes = {
   classes: PropTypes.object.isRequired,
   /**
    * If `true`, the selected item is displayed even if its value is empty.
+   * Use along with renderValue function property to render custom value in empty selected value case.
    * You can only use it when the `native` property is `false` (default).
    */
   displayEmpty: PropTypes.bool,
