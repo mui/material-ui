@@ -36,7 +36,7 @@ const styles = theme => ({
     transform: 'rotate(-45deg)',
   },
   label: {
-    color: 'white',
+    color: theme.palette.primary.contrastText,
     transform: 'rotate(45deg)',
   },
 });

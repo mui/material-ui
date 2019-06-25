@@ -30,15 +30,16 @@ const styledSystem = compose2(color, space, fontFamily, fontSize);
 
 const BoxStyles = styled('div')(styleFunction);
 const BoxStyleComponents = styledComponents('div')(styleFunction);
+const NakedStyleComponents = styledComponents('div')(spacing);
 const BoxEmotion = styledEmotion('div')(styleFunction);
 
-const BoxMaterialSystem = styledComponents.div`${materialSystem}`;
-const BoxStyledSystem = styledComponents.div`${styledSystem}`;
+const BoxMaterialSystem = styledComponents('div')(materialSystem);
+const BoxStyledSystem = styledComponents('div')(styledSystem);
 
 const materialSystemTheme = createMuiTheme();
 
 const styledSystemTheme = createMuiTheme();
-styledSystemTheme.breakpoints = null;
+styledSystemTheme.breakpoints = ['40em', '52em', '64em'];
 styledSystemTheme.colors = styledSystemTheme.palette;
 styledSystemTheme.fontSizes = styledSystemTheme.typography;
 styledSystemTheme.fonts = styledSystemTheme.typography;
@@ -136,7 +137,7 @@ suite
   // // ---
   .add('Box emotion', () => {
     ReactDOMServer.renderToString(
-      <EmotionTheme theme={styledSystemTheme}>
+      <EmotionTheme theme={materialSystemTheme}>
         <BoxEmotion
           color="primary.main"
           bgcolor="background.paper"
@@ -179,6 +180,22 @@ suite
         >
           styled-components
         </BoxStyleComponents>
+      </StyledComponentsThemeProvider>,
+    );
+  })
+  .add('Naked styled-components', () => {
+    ReactDOMServer.renderToString(
+      <StyledComponentsThemeProvider theme={materialSystemTheme}>
+        <NakedStyleComponents
+          color="primary.main"
+          bgcolor="background.paper"
+          fontFamily="h6.fontFamily"
+          fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+          p={[2, 3, 4]}
+          fuu={Math.round(Math.random() * 10000)}
+        >
+          styled-components
+        </NakedStyleComponents>
       </StyledComponentsThemeProvider>,
     );
   })
