@@ -5,19 +5,13 @@ import { createMuiTheme, darken } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
+import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
 
-export const themeInitialOptions = {
+export const themeColor = blue[700];
+
+const themeInitialOptions = {
   direction: 'ltr',
-  paletteColors: {
-    primary: {
-      main: blue[500],
-    },
-    secondary: {
-      // Darken so we reach the AA contrast ratio level.
-      main: darken(pink.A400, 0.08),
-    },
-  },
+  paletteColors: {},
 };
 
 export const DispatchContext = React.createContext(() => {
@@ -52,8 +46,8 @@ export function Provider(props) {
   const { direction, paletteColors, paletteType = preferredType } = themeOptions;
 
   React.useEffect(() => {
-    setPrismTheme(paletteType === 'light' ? lightTheme : darkTheme);
-  }, [paletteType]);
+    setPrismTheme(darkTheme);
+  }, []);
 
   React.useEffect(() => {
     if (process.browser) {
@@ -83,19 +77,25 @@ export function Provider(props) {
         color: paletteType === 'light' ? '#000' : '#fff',
       },
       palette: {
-        ...paletteColors,
+        primary: {
+          main: paletteType === 'light' ? blue[700] : blue[200],
+        },
+        secondary: {
+          main: paletteType === 'light' ? darken(pink.A400, 0.1) : pink[200],
+        },
         type: paletteType,
         background: {
-          default: paletteType === 'light' ? '#fff' : '#303030',
+          default: paletteType === 'light' ? '#fff' : '#121212',
         },
+        ...paletteColors,
       },
     });
 
-    nextTheme.palette.background.level1 =
-      paletteType === 'light' ? nextTheme.palette.grey[100] : nextTheme.palette.grey[900];
+    nextTheme.palette.background.level2 =
+      paletteType === 'light' ? nextTheme.palette.grey[100] : '#333';
 
-    nextTheme.palette.background.level0 =
-      paletteType === 'light' ? nextTheme.palette.grey[50] : nextTheme.palette.grey[900];
+    nextTheme.palette.background.level1 =
+      paletteType === 'light' ? '#fff' : nextTheme.palette.grey[900];
 
     return nextTheme;
   }, [direction, paletteColors, paletteType]);

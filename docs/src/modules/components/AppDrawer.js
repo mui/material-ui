@@ -53,6 +53,7 @@ PersistScroll.propTypes = {
 const styles = theme => ({
   paper: {
     width: 240,
+    backgroundColor: theme.palette.background.level1,
   },
   title: {
     color: theme.palette.text.secondary,

@@ -10,17 +10,14 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-tsx';
 
 let styleNode;
-let lightTheme;
 let darkTheme;
 
 if (process.browser) {
-  lightTheme = require('prismjs/themes/prism.css');
-  darkTheme = require('prismjs/themes/prism-okaidia.css');
-
+  darkTheme = require('./prism-okaidia.css');
   styleNode = document.querySelector('#prismjs');
 }
 
-export { lightTheme, darkTheme };
+export { darkTheme };
 
 export function setPrismTheme(theme) {
   styleNode.textContent = theme;

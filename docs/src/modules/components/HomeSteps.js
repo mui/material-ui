@@ -25,9 +25,9 @@ const UsageLink = React.forwardRef((buttonProps, ref) => (
 
 const styles = theme => ({
   step: {
-    border: `12px solid ${theme.palette.background.paper}`,
+    border: `12px solid ${theme.palette.background.level1}`,
     padding: theme.spacing(3, 2),
-    backgroundColor: theme.palette.background.level0,
+    backgroundColor: theme.palette.background.level2,
     borderRightWidth: 0,
     borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {
@@ -58,7 +58,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   stepIcon: {
-    color: theme.palette.primary.dark,
+    color: theme.palette.primary.main,
     marginRight: theme.spacing(2),
     fontSize: 30,
   },
@@ -68,11 +68,11 @@ const styles = theme => ({
   markdownElement: {
     maxWidth: `calc(100vw - ${(theme.spacing(5) + 1) * 2}px)`,
     '& pre, & pre[class*="language-"], & code': {
-      backgroundColor: 'transparent',
+      // backgroundColor: 'transparent',
     },
     '& pre, & pre[class*="language-"]': {
-      padding: theme.spacing(1),
-      margin: 0,
+      padding: theme.spacing(1, 0),
+      margin: theme.spacing(1, 0),
     },
   },
   divider: {

@@ -86,6 +86,7 @@ export const languages = [
 const styles = theme => ({
   root: {
     display: 'flex',
+    backgroundColor: theme.palette.background.level1,
   },
   grow: {
     flex: '1 1 auto',
@@ -117,6 +118,8 @@ const styles = theme => ({
     },
   },
   appBar: {
+    color: theme.palette.type === 'dark' ? '#fff' : null,
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.background.level2 : null,
     transition: theme.transitions.create('width'),
     '@media print': {
       position: 'absolute',

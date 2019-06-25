@@ -40,8 +40,7 @@ const styles = theme => ({
   },
   hero: {
     paddingTop: 64,
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
+    color: theme.palette.primary.main,
   },
   content: {
     display: 'flex',
@@ -83,7 +82,6 @@ const styles = theme => ({
     marginTop: theme.spacing(4),
   },
   social: {
-    backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(2, 0),
     display: 'flex',
     justifyContent: 'center',
