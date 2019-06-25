@@ -233,16 +233,16 @@ describe('<ButtonBase />', () => {
       it('should not have a focus ripple by default', () => {
         focusVisible(button);
 
-        expect(button.querySelectorAll('.ripple-pulsate')).to.be.have.length(0);
+        expect(button.querySelectorAll('.ripple-pulsate')).to.be.have.lengthOf(0);
       });
 
       it('should start the ripple when the mouse is pressed 1', () => {
         fireEvent.mouseDown(button);
 
-        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.length(0);
+        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
         expect(
           button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
-        ).to.have.length(1);
+        ).to.have.lengthOf(1);
       });
 
       it('should stop the ripple when the mouse is released', () => {
