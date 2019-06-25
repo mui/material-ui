@@ -98,7 +98,7 @@ describe('<ButtonBase />', () => {
       const { getByRole } = render(<ButtonBase component="span">Hello</ButtonBase>);
       const button = getByRole('button');
 
-      expect(button.nodeName).to.equal('SPAN');
+      expect(button).to.have.property('nodeName', 'SPAN');
       expect(button).to.not.have.attribute('type');
     });
 
