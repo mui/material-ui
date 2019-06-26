@@ -47,7 +47,9 @@ export default function SimpleModal() {
   return (
     <div>
       <p>Click to get the full Modal experience!</p>
-      <button onClick={handleOpen}>Open Modal</button>
+      <button type="button" onClick={handleOpen}>
+        Open Modal
+      </button>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -55,9 +57,7 @@ export default function SimpleModal() {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="modal-title">
-            Text in a modal
-          </h2>
+          <h2 id="modal-title">Text in a modal</h2>
           <p variant="subtitle1" id="simple-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>

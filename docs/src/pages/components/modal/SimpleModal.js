@@ -45,7 +45,9 @@ export default function SimpleModal() {
   return (
     <div>
       <p>Click to get the full Modal experience!</p>
-      <button onClick={handleOpen}>Open Modal</button>
+      <button type="button" onClick={handleOpen}>
+        Open Modal
+      </button>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
