@@ -171,6 +171,7 @@
     "/customization/components": "Components",
     "/customization/default-theme": "Default Theme",
     "/guides": "Guides",
+    "/guides/api": "API Design Approach",
     "/guides/typescript": "TypeScript",
     "/guides/interoperability": "Style Library Interoperability",
     "/guides/minimizing-bundle-size": "Minimizing Bundle Size",
