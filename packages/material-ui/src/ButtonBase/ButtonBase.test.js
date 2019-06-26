@@ -233,7 +233,7 @@ describe('<ButtonBase />', () => {
       it('should not have a focus ripple by default', () => {
         focusVisible(button);
 
-        expect(button.querySelectorAll('.ripple-pulsate')).to.be.have.lengthOf(0);
+        expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(0);
       });
 
       it('should start the ripple when the mouse is pressed 1', () => {
