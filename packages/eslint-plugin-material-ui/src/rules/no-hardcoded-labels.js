@@ -1,3 +1,5 @@
+const createEmojiRegex = require('emoji-regex');
+
 module.exports = {
   meta: {
     messages: {
@@ -7,6 +9,7 @@ module.exports = {
   },
   create(context) {
     const { allow = [] } = context.options[0] || {};
+    const emojiRegex = createEmojiRegex();
 
     return {
       Literal(node) {
@@ -15,7 +18,7 @@ module.exports = {
           (node.parent.type === 'JSXAttribute' && ['aria-label'].includes(node.parent.name.name));
 
         const sanitizedValue = typeof node.value === 'string' ? node.value.trim() : node.value;
-        const hasTranslateableContent = sanitizedValue !== '';
+        const hasTranslateableContent = sanitizedValue !== '' && !emojiRegex.test(sanitizedValue);
 
         if (canLabelComponent && hasTranslateableContent && !allow.includes(sanitizedValue)) {
           context.report({ messageId: 'literal-label', node });

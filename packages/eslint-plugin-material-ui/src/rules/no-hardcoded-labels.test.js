@@ -11,6 +11,7 @@ ruleTester.run('no-hardcoded-labels', rule, {
     '<button>{166}</button>',
     '<button> <TranslatedLabelAfterWhiteSpace /></button>',
     { code: '<a>Material-UI</a>', options: [{ allow: 'Material-UI' }] },
+    '<span> ❤️</span>',
   ],
   invalid: [
     { code: '<button aria-label="a" />', errors: [{ messageId: 'literal-label' }] },
