@@ -45,7 +45,7 @@ export const styles = theme => ({
     lineHeight: theme.typography.pxToRem(21),
     fontSize: theme.typography.pxToRem(12),
   },
-  /* Styles applied to the root element if `padding="dense"`. */
+  /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     padding: '6px 24px 6px 16px',
     '&:last-child': {
@@ -186,7 +186,7 @@ TableCell.propTypes = {
   component: PropTypes.elementType,
   /**
    * Sets the padding applied to the cell.
-   * By default, the Table parent component set the value.
+   * By default, the Table parent component set the value (`default`).
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
   /**
@@ -195,7 +195,7 @@ TableCell.propTypes = {
   scope: PropTypes.string,
   /**
    * Specify the size of the cell.
-   * By default, the Table parent component set the value (`normal`).
+   * By default, the Table parent component set the value (`medium`).
    */
   size: PropTypes.oneOf(['small', 'medium']),
   /**
