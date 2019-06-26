@@ -81,7 +81,7 @@ describe('<SpeedDialAction />', () => {
       const handleClick = spy();
       const wrapper = mount(<SpeedDialAction {...defaultProps} open onClick={handleClick} />);
       const buttonWrapper = wrapper.childAt(0);
-      buttonWrapper.simulate('click');
+      buttonWrapper.props().onClick();
       assert.strictEqual(handleClick.callCount, 1);
     });
   });
