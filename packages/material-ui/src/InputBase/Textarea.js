@@ -121,7 +121,9 @@ const Textarea = React.forwardRef(function Textarea(props, ref) {
         ref={handleRef}
         style={{
           height: state.outerHeight,
-          overflow: state.outerHeight === state.innerHeight ? 'hidden' : null,
+          // Need a large enough different to allow scrolling.
+          // This prevents infinite rendering loop.
+          overflow: Math.abs(state.outerHeight - state.innerHeight) <= 1 ? 'hidden' : null,
           ...style,
         }}
         {...other}
