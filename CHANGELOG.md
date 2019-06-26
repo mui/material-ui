@@ -4,7 +4,7 @@
 ###### *June 25, 2019*
 
 Big thanks to the 4 contributors who made this release possible!
-This is a quick release after a regression that occured in 4.1.2.
+This is a quick release after a regression that occurred in 4.1.2.
 
 ### `@material-ui/core@v4.1.3`
 
