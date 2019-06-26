@@ -59,7 +59,7 @@ export default function SimpleModal() {
       >
         <div style={modalStyle} className={classes.paper}>
           <h2 id="modal-title">Text in a modal</h2>
-          <p variant="subtitle1" id="simple-modal-description">
+          <p id="simple-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
           <SimpleModal />
