@@ -11,7 +11,7 @@ const theme = createMuiTheme({
   },
 });
 
-function Palette() {
+export default function Palette() {
   return (
     <ThemeProvider theme={theme}>
       <Button color="primary">Primary</Button>
@@ -19,5 +19,3 @@ function Palette() {
     </ThemeProvider>
   );
 }
-
-export default Palette;

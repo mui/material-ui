@@ -1,7 +1,33 @@
 import React from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { useTheme, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import WithTheme from '../themes/WithTheme';
+
+function WithTheme() {
+  const theme = useTheme();
+  const primaryText = theme.palette.text.primary;
+  const primaryColor = theme.palette.primary.main;
+
+  const styles = {
+    primaryText: {
+      backgroundColor: theme.palette.background.default,
+      padding: theme.spacing(1, 2),
+      color: primaryText,
+    },
+    primaryColor: {
+      backgroundColor: primaryColor,
+      padding: theme.spacing(1, 2),
+      color: theme.palette.common.white,
+    },
+  };
+
+  return (
+    <div style={{ width: 300 }}>
+      <Typography style={styles.primaryColor}>{`Primary color ${primaryColor}`}</Typography>
+      <Typography style={styles.primaryText}>{`Primary text ${primaryText}`}</Typography>
+    </div>
+  );
+}
 
 const theme = createMuiTheme({
   palette: {
@@ -9,12 +35,10 @@ const theme = createMuiTheme({
   },
 });
 
-function DarkTheme() {
+export default function DarkTheme() {
   return (
     <ThemeProvider theme={theme}>
       <WithTheme />
     </ThemeProvider>
   );
 }
-
-export default DarkTheme;
