@@ -116,7 +116,7 @@ const SpeedDialAction = ({
       </Fab>
     </Tooltip>
   );
-}
+};
 
 SpeedDialAction.propTypes = {
   /**
