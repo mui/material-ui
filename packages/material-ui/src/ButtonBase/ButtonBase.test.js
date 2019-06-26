@@ -484,6 +484,14 @@ describe('<ButtonBase />', () => {
       expect(onFocusVisibleSpy.calledOnce).to.be.true;
       expect(onFocusVisibleSpy.firstCall.args).to.have.lengthOf(1);
     });
+
+    it('can be autoFocused', () => {
+      // as of react@16.8.6 autoFocus causes focus to be emitted before refs
+      // so we need to check if we're resilient against it
+      const { getByText } = render(<ButtonBase autoFocus>Hello</ButtonBase>);
+
+      expect(getByText('Hello')).to.be.focused;
+    });
   });
 
   describe('event: keydown', () => {
