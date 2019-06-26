@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import compose from 'docs/src/modules/utils/compose';
@@ -19,9 +20,7 @@ const styles = theme => ({
     marginBottom: theme.spacing(3),
   },
   info: {
-    ...theme.typography.caption,
     position: 'absolute',
-    padding: theme.spacing(1),
     cursor: 'default',
     bottom: 0,
     right: 0,
@@ -45,7 +44,7 @@ function getAdblock(classes, t) {
       </Typography>
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('adblock')}{' '}
-        <span role="img" aria-label="Love">
+        <span role="img" aria-label={t('emojiLove')}>
           ❤️
         </span>
       </Typography>
@@ -107,7 +106,7 @@ class Ad extends React.Component {
         {adblock === true ? getAdblock(classes, t) : null}
         {adblock === false ? (
           <Tooltip id="ad-info" title={t('adTitle')} placement="left">
-            <span className={classes.info}>i</span>
+            <InfoIcon className={classes.info} />
           </Tooltip>
         ) : null}
       </span>

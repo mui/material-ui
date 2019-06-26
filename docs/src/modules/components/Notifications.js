@@ -85,6 +85,7 @@ class Notifications extends React.Component {
 
   render() {
     const { message, open } = this.state;
+    const { t } = this.props;
 
     return (
       <Snackbar
@@ -96,7 +97,7 @@ class Notifications extends React.Component {
         }
         action={
           <Button size="small" color="secondary" onClick={this.handleClose}>
-            Close
+            {t('close')}
           </Button>
         }
         open={open}
@@ -109,9 +110,11 @@ class Notifications extends React.Component {
 }
 
 Notifications.propTypes = {
+  t: PropTypes.func.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
 
 export default connect(state => ({
+  t: state.options.t,
   userLanguage: state.options.userLanguage,
 }))(Notifications);

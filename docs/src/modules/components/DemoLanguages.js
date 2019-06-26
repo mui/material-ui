@@ -6,6 +6,8 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import compose from 'docs/src/modules/utils/compose';
+import { connect } from 'react-redux';
 
 const styles = {
   toggleButtonGroup: {
@@ -17,7 +19,7 @@ const styles = {
 };
 
 function DemoLanguages(props) {
-  const { classes, codeOpen, codeVariant, demo, gaEventCategory, onLanguageClick } = props;
+  const { classes, codeOpen, codeVariant, demo, gaEventCategory, onLanguageClick, t } = props;
   const hasTSVariant = demo.rawTS;
 
   function renderedCodeVariant() {
@@ -38,7 +40,7 @@ function DemoLanguages(props) {
         <ToggleButton
           className={classes.toggleButton}
           value={CODE_VARIANTS.JS}
-          aria-label="Show JavaScript source"
+          aria-label={t('showJSSource')}
           data-ga-event-category={gaEventCategory}
           data-ga-event-action="source-js"
         >
@@ -48,7 +50,7 @@ function DemoLanguages(props) {
           className={classes.toggleButton}
           value={CODE_VARIANTS.TS}
           disabled={!hasTSVariant}
-          aria-label="Show TypeScript source"
+          aria-label={t('showTSSource')}
           data-ga-event-category={gaEventCategory}
           data-ga-event-action="source-ts"
         >
@@ -66,6 +68,15 @@ DemoLanguages.propTypes = {
   demo: PropTypes.object.isRequired,
   gaEventCategory: PropTypes.string.isRequired,
   onLanguageClick: PropTypes.func,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(DemoLanguages);
+export default compose(
+  connect(
+    state => ({
+      t: state.options.t,
+    }),
+    {},
+  ),
+  withStyles(styles),
+)(DemoLanguages);

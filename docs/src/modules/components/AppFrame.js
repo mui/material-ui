@@ -207,7 +207,7 @@ function AppFrame(props) {
             <NProgressBar />
             <CssBaseline />
             <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
-              Skip to content
+              {t('skipToContent')}
             </MuiLink>
             <Notifications />
             <MarkdownLinks />
@@ -216,7 +216,7 @@ function AppFrame(props) {
                 <IconButton
                   edge="start"
                   color="inherit"
-                  aria-label="Open drawer"
+                  aria-label={t('openDrawer')}
                   onClick={handleDrawerOpen}
                   className={navIconClassName}
                 >
@@ -234,7 +234,7 @@ function AppFrame(props) {
                     color="inherit"
                     aria-owns={languageMenu ? 'language-menu' : undefined}
                     aria-haspopup="true"
-                    aria-label="Change language"
+                    aria-label={t('changeLanguage')}
                     onClick={handleLanguageIconClick}
                     data-ga-event-category="AppBar"
                     data-ga-event-action="language"
