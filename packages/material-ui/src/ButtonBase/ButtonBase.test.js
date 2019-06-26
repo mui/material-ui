@@ -5,6 +5,7 @@ import { spy } from 'sinon';
 import rerender from 'test/utils/rerender';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
@@ -311,19 +312,17 @@ describe('<ButtonBase />', () => {
         ).to.have.lengthOf(0);
       });
     });
+  });
 
-    it('is centered on the click by default', () => {
-      const { getByText } = render(<ButtonBase>Hello</ButtonBase>);
-      const button = getByText('Hello');
-
-      fireEvent.click(button, {});
+  describe('prop: centerRipple', () => {
+    it('centers the TouchRipple', () => {
+      const wrapper = mount(<ButtonBase centerRipple>Hello</ButtonBase>);
+      expect(wrapper.find(TouchRipple).props()).to.have.property('center', true);
     });
 
-    it('can be centered on the button', () => {
-      const { getByText } = render(<ButtonBase centerRipple>Hello</ButtonBase>);
-      const button = getByText('Hello');
-
-      fireEvent.click(button, {});
+    it('is disabled by default', () => {
+      const wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+      expect(wrapper.find(TouchRipple).props()).to.have.property('center', false);
     });
   });
 
