@@ -16,13 +16,9 @@ While we have reached the 100% test coverage achievement, we don't encourage our
 ## Userspace
 
 What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose.
-
-### Shallow rendering
-
-Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components.
-Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
-
-The `createShallow()` function can be used for this situation. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
+We use almost exclusively full DOM rendering APIs. We encourage you to do the same especially
+if your components rely on custom themes. Tests using shallow rendering APIs become more brittle
+with the amount of provider components they require.
 
 ### Full DOM rendering
 
@@ -30,6 +26,13 @@ Full DOM rendering is ideal for use cases where you have components that may int
 
 The `createMount()` function is provided for this situation.
 Aside from wrapping the enzyme API, it provides a `cleanUp` function.
+
+### Shallow rendering
+
+Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components.
+Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
+
+The `createShallow()` function can be used for this situation. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
 
 ### Render to string
 
@@ -39,6 +42,53 @@ You can take advantage of this to assert the generated HTML string.
 The `createRender()` function is ideal for this. This is just an alias for the enzyme API, which is only exposed for consistency.
 
 ## API
+
+### `createMount([options]) => mount`
+
+Generate an enhanced mount function with the needed context.
+Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
+
+#### Arguments
+
+1. `options` (*Object* [optional])
+  - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
+  - The other keys are forwarded to the options argument of `enzyme.mount()`.
+
+#### Returns
+
+`mount` (*mount*): A mount function.
+
+#### Examples
+
+```jsx
+import { createMount } from '@material-ui/core/test-utils';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+
+describe('<MyComponent />', () => {
+  let mount;
+
+  function MySuccessButton({ children }) {
+    return (
+      <MuiThemeProvider theme={{ success: { main: '#fff' } }}>
+        {children}
+      </MuiThemeProvider>
+    );
+  }
+
+  before(() => {
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  it('should work', () => {
+    const wrapper = mount(<MockedTheme><MySuccessButton /></MockedTheme>);
+  });
+});
+```
+
 
 ### `createShallow([options]) => shallow`
 
@@ -72,43 +122,6 @@ describe('<MyComponent />', () => {
 
   it('should work', () => {
     const wrapper = shallow(<MyComponent />);
-  });
-});
-```
-
-### `createMount([options]) => mount`
-
-Generate an enhanced mount function with the needed context.
-Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
-
-#### Arguments
-
-1. `options` (*Object* [optional])
-  - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
-  - The other keys are forwarded to the options argument of `enzyme.mount()`.
-
-#### Returns
-
-`mount` (*mount*): A mount function.
-
-#### Examples
-
-```jsx
-import { createMount } from '@material-ui/core/test-utils';
-
-describe('<MyComponent />', () => {
-  let mount;
-
-  before(() => {
-    mount = createMount();
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
-
-  it('should work', () => {
-    const wrapper = mount(<MyComponent />);
   });
 });
 ```
