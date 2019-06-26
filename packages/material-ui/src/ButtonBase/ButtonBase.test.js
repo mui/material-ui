@@ -376,7 +376,7 @@ describe('<ButtonBase />', () => {
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(2);
     });
 
-    it('should stop and re-pulsate when space bar is released', function test() {
+    it('should stop and re-pulsate when space bar is released', () => {
       fireEvent.keyUp(button, { key: ' ' });
 
       expect(button.querySelectorAll('.ripple-pulsate .child-leaving')).to.have.lengthOf(1);
@@ -384,7 +384,7 @@ describe('<ButtonBase />', () => {
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(3);
     });
 
-    it('should stop on blur and set focusVisible to false', function test() {
+    it('should stop on blur and set focusVisible to false', () => {
       expect(button).to.match('.focus-visible');
       act(() => {
         button.blur();
