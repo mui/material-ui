@@ -223,7 +223,7 @@ function AppTableOfContents(props) {
   );
 
   return (
-    <nav className={classes.root} aria-label="Page table of contents">
+    <nav className={classes.root} aria-label={t('pageTOC')}>
       {itemsServer.length > 0 ? (
         <React.Fragment>
           <Typography gutterBottom className={classes.contents}>

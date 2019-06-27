@@ -207,12 +207,13 @@ function MarkdownDocs(props) {
                   warning(false, errorMessage);
 
                   const warnIcon = (
-                    <span role="img" aria-label="warning">
+                    <span role="img" aria-label={t('emojiWarning')}>
                       ⚠️
                     </span>
                   );
                   return (
                     <div key={content}>
+                      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
                       {warnIcon} Missing demo `{name}` {warnIcon}
                     </div>
                   );
