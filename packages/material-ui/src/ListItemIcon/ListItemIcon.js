@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import ListContext from '../List/ListContext';
+import { useListContext } from '../List/ListContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -22,14 +22,14 @@ export const styles = theme => ({
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
   const { classes, className, ...other } = props;
-  const context = React.useContext(ListContext);
+  const {alignItems} = useListContext();
 
   return (
     <div
       className={clsx(
         classes.root,
         {
-          [classes.alignItemsFlexStart]: context.alignItems === 'flex-start',
+          [classes.alignItemsFlexStart]: alignItems === 'flex-start',
         },
         className,
       )}
