@@ -55,8 +55,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);
-  const handleInputRef = useForkRef(inputRef, inputRefProp);
-  const handleRef = useForkRef(ref, handleInputRef);
+  const handleRef = useForkRef(ref, inputRefProp);
 
   React.useImperativeHandle(
     handleRef,
@@ -285,7 +284,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <input
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
-        ref={handleRef}
+        ref={inputRef}
         type={type}
         autoFocus={autoFocus}
         {...other}
