@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import { emphasize, withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-import { withForwardedRef } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the `Button` component. */
@@ -29,34 +28,33 @@ export const styles = theme => ({
   },
 });
 
-const SpeedDialAction = ({
-  ButtonProps,
-  classes,
-  className,
-  delay,
-  icon,
-  id,
-  innerRef,
-  onClick,
-  onKeyDown,
-  open,
-  tooltipTitle,
-  TooltipClasses,
-  tooltipPlacement,
-  tooltipOpen: tooltipOpenProp,
-  ...other
-}) => {
+const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
+  const {
+    ButtonProps,
+    classes,
+    className,
+    delay,
+    icon,
+    id,
+    onClick,
+    onKeyDown,
+    open,
+    tooltipTitle,
+    TooltipClasses,
+    tooltipPlacement,
+    tooltipOpen: tooltipOpenProp,
+    ...other
+  } = props;
+
   const [tooltipOpen, setTooltipOpen] = React.useState(tooltipOpenProp);
   const timeout = React.useRef();
   const [prevPropOpen, setPreviousOpen] = React.useState(null);
 
   // getDerivedStateFromProps alternate
-  React.useEffect(() => {
-    if (!open && tooltipOpen) {
-      setTooltipOpen(false);
-    }
+  if (!open && tooltipOpen) {
+    setTooltipOpen(false);
     setPreviousOpen(open);
-  }, [open, tooltipOpen]);
+  }
 
   React.useEffect(() => {
     if (!tooltipOpenProp || prevPropOpen === open) return;
@@ -94,6 +92,7 @@ const SpeedDialAction = ({
   return (
     <Tooltip
       id={id}
+      ref={ref}
       title={tooltipTitle}
       placement={tooltipPlacement}
       onClose={handleTooltipClose}
@@ -116,7 +115,7 @@ const SpeedDialAction = ({
       </Fab>
     </Tooltip>
   );
-};
+});
 
 SpeedDialAction.propTypes = {
   /**
@@ -144,11 +143,6 @@ SpeedDialAction.propTypes = {
    * @ignore
    */
   id: PropTypes.string,
-  /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
@@ -199,6 +193,4 @@ SpeedDialAction.defaultProps = {
   tooltipOpen: false,
 };
 
-export default withStyles(styles, { name: 'MuiSpeedDialAction' })(
-  withForwardedRef(SpeedDialAction),
-);
+export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);
