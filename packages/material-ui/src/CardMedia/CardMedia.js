@@ -26,11 +26,12 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
   const { classes, className, component: Component = 'div', image, src, style, ...other } = props;
 
   warning(
-    Boolean(image || src),
-    'Material-UI: either `image` or `src` property must be specified.',
+    'children' in other || Boolean(image || src),
+    'Material-UI: either `children`, `image` or `src` property must be specified.',
   );
 
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
+  const isPictureComponent = Component === 'picture';
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url("${image}")`, ...style } : style;
 
@@ -45,7 +46,7 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
       )}
       ref={ref}
       style={composedStyle}
-      src={isMediaComponent ? image || src : undefined}
+      src={isMediaComponent && !isPictureComponent ? image || src : undefined}
       {...other}
     />
   );

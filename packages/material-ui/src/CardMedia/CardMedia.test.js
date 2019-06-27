@@ -56,6 +56,11 @@ describe('<CardMedia />', () => {
       assert.strictEqual(wrapper.props().src, '/foo.jpg');
     });
 
+    it('should not have `src` prop when picture media component specified', () => {
+      const wrapper = shallow(<CardMedia image="/foo.jpg" component="picture" />);
+      assert.strictEqual(wrapper.props().src, undefined);
+    });
+
     it('should not have default inline style when media component specified', () => {
       const wrapper = shallow(<CardMedia src="/foo.jpg" component="picture" />);
       assert.strictEqual(wrapper.props().style, undefined);
