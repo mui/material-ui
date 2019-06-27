@@ -20,6 +20,36 @@ chai.use((chaiAPI, utils) => {
       prettyDOM(document.activeElement),
     );
   });
+
+  chai.Assertion.addProperty('accessible', function elementIsAccessible() {
+    const element = utils.flag(this, 'object');
+
+    new chai.Assertion(element).to.be.visible;
+
+    // "An element is considered hidden if it, or any of its ancestors are not
+    // rendered or have their aria-hidden attribute value set to true."
+    // -- https://www.w3.org/TR/wai-aria-1.1/#aria-hidden
+    let previousNode = element;
+    let currentNode = element;
+    let ariaHidden = false;
+    while (
+      currentNode !== null &&
+      currentNode !== document.documentElement &&
+      ariaHidden === false
+    ) {
+      ariaHidden = element.getAttribute('aria-hidden') === 'true';
+      previousNode = currentNode;
+      currentNode = currentNode.parentElement;
+    }
+
+    this.assert(
+      ariaHidden === false,
+      `expected ${utils.elToString(element)} to not be aria-hidden, but ${utils.elToString(
+        previousNode,
+      )} had aria-hidden="true" instead\n${prettyDOM(previousNode)}`,
+      `expected ${utils.elToString(element)} to be aria-hidden\n${prettyDOM(previousNode)}`,
+    );
+  });
 });
 
 consoleError();
