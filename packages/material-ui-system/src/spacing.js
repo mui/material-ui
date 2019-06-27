@@ -2,7 +2,7 @@ import warning from 'warning';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 
-const spacingKeys = {
+const shortSpacingKeys = {
   m: 'margin',
   mt: 'marginTop',
   mr: 'marginRight',
@@ -13,11 +13,25 @@ const spacingKeys = {
   pr: 'paddingRight',
   pb: 'paddingBottom',
   pl: 'paddingLeft',
+};
+
+// { margin: 'margin', marginTop: 'marginTop' }
+const longSpacingKeys = {};
+const keys = Object.keys(shortSpacingKeys);
+for (let i = 0, length = keys.length; i < length; i +=1) {
+  const value = shortSpacingKeys[keys[i]]
+  longSpacingKeys[value] = value;
+}
+
+const spacingKeys = {
+  ...shortSpacingKeys,
+  ...longSpacingKeys,
   px: ['paddingLeft', 'paddingRight'],
   py: ['marginTop', 'marginBottom'],
   mx: ['marginLeft', 'marginRight'],
   my: ['marginTop', 'marginBottom'],
-};
+}
+
 
 function getTransformer(theme) {
   const themeSpacing = theme.spacing || 8;
@@ -77,15 +91,15 @@ function getValue(propValue, theme) {
 }
 
 const getCssPropertyHandler = (cssProperty) => {
-  if (Array.isArray(cssProperty)) {
-    return  (value) => {
+  if (!Array.isArray(cssProperty)) {
+    return  (value, theme) => {
       return {
         [cssProperty]: getValue(value, theme),
       };
     };
   }
   const [firstProperty, secondProperty] = cssProperty
-  return (value) => {
+  return (value, theme) => {
     const finalValue = getValue(value, theme);
     return {
       [firstProperty]: finalValue,
