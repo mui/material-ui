@@ -268,7 +268,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     buttonProps.type = type;
     buttonProps.disabled = disabled;
   } else {
-    buttonProps.role = 'button';
+    if (ComponentProp !== 'a' || !other.href) {
+      buttonProps.role = 'button';
+    }
     buttonProps['aria-disabled'] = disabled;
   }
 
