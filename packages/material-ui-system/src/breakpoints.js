@@ -1,4 +1,6 @@
 import warning from 'warning';
+import PropTypes from 'prop-types';	
+import merge from './merge';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -24,7 +26,7 @@ export function handleBreakpoints(theme, propValue, styleFromPropValue) {
   );
 
   if (Array.isArray(propValue)) {
-    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return propValue.reduce((acc, item, index) => {
       acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);
       return acc;
@@ -32,7 +34,7 @@ export function handleBreakpoints(theme, propValue, styleFromPropValue) {
   }
 
   if (typeof propValue === 'object') {
-    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return Object.keys(propValue).reduce((acc, breakpoint) => {
       acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
       return acc;
@@ -43,3 +45,38 @@ export function handleBreakpoints(theme, propValue, styleFromPropValue) {
 
   return output;
 }
+
+function breakpoints(styleFunction) {	
+  const newStyleFunction = props => {	
+    const base = styleFunction(props);	
+    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;	
+
+     const extended = themeBreakpoints.keys.reduce((acc, key) => {	
+      if (props[key]) {	
+        acc = acc || {};	
+        acc[themeBreakpoints.up(key)] = styleFunction({ theme: props.theme, ...props[key] });	
+      }	
+      return acc;	
+    }, null);	
+
+     return merge(base, extended);	
+  };	
+
+   newStyleFunction.propTypes =	
+    process.env.NODE_ENV !== 'production'	
+      ? {	
+          ...styleFunction.propTypes,	
+          xs: PropTypes.object,	
+          sm: PropTypes.object,	
+          md: PropTypes.object,	
+          lg: PropTypes.object,	
+          xl: PropTypes.object,	
+        }	
+      : {};	
+
+   newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl', ...styleFunction.filterProps];	
+
+   return newStyleFunction;	
+}	
+
+export default breakpoints;

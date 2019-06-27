@@ -1,5 +1,6 @@
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
+import convertStyleToFunction from './convertStyleToFunction';
 
 function getPath(obj, path) {
   if (!path || typeof path !== 'string') {
@@ -38,9 +39,11 @@ function style(options) {
       };
     };
 
-    return handleBreakpoints(props, propValue, styleFromPropValue);
+    return handleBreakpoints(theme, propValue, styleFromPropValue);
   };
 
+  fn.styleFunction =  convertStyleToFunction(prop, fn);
+  
   fn.propTypes =
     process.env.NODE_ENV !== 'production'
       ? {
