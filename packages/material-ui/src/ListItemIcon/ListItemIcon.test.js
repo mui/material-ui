@@ -1,6 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, createShallow, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  getClasses,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import ListItemIcon from './ListItemIcon';
 
@@ -48,7 +53,7 @@ describe('<ListItemIcon />', () => {
 
   it('should not use alignItemsFlexStart class when the align-items different from flex start', () => {
     React.createContext({
-      alignItems: 'flex-start'
+      alignItems: 'flex-start',
     });
     const wrapper = shallow(
       <ListItemIcon>

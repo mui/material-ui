@@ -22,7 +22,7 @@ export const styles = theme => ({
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
   const { classes, className, ...other } = props;
-  const {alignItems} = useListContext();
+  const { alignItems } = useListContext();
 
   return (
     <div
