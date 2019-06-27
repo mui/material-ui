@@ -295,12 +295,15 @@ describe('<Modal />', () => {
 
     it('does not include the children in the a11y tree', () => {
       const modalRef = React.createRef();
-      mount(
+      const wrapper = mount(
         <Modal keepMounted open={false} ref={modalRef}>
-          <div />
+          <div>ModalContent</div>
         </Modal>,
       );
       const modalNode = modalRef.current;
+      expect(modalNode).to.be.ariaHidden;
+
+      wrapper.setProps({ open: true });
       expect(modalNode).not.to.be.ariaHidden;
     });
 
