@@ -327,8 +327,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-        value: min + step * index,
-      }))
+          value: min + step * index,
+        }))
       : marksProp;
 
   instanceRef.current = {
