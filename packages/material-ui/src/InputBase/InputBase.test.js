@@ -182,6 +182,21 @@ describe('<InputBase />', () => {
       expect(typeof injectedProps.onBlur).to.equal('function');
       expect(typeof injectedProps.onFocus).to.equal('function');
     });
+
+    it('throws on change if `inputRef` isnt forwarded', () => {
+      // eslint-disable-next-line react/prop-types
+      const BadInputComponent = React.forwardRef(({ inputRef, ...props }, ref) => {
+        // `inputRef` belongs into `ref`
+        return <input {...props} ref={ref} />;
+      });
+
+      const wrapper = mount(<InputBase inputComponent={BadInputComponent} />);
+      assert.throws(
+        // simulating e.g. react-stripe-elements that hides the event target
+        () => wrapper.find('input').simulate('change', { target: null }),
+        'Material-UI: Expected valid input target',
+      );
+    });
   });
 
   describe('with FormControl', () => {
