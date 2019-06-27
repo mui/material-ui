@@ -102,7 +102,7 @@ Select.propTypes = {
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
-   * If you want to show a meaningful display, the `renderValue` property must be used to check for the case of an empty selected value and provide a custom render value.
+   * In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected.
    * You can only use it when the `native` property is `false` (default).
    */
   displayEmpty: PropTypes.bool,
