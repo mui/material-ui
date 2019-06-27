@@ -21,10 +21,8 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addProperty('accessible', function elementIsAccessible() {
+  chai.Assertion.addProperty('ariaHidden', function elementIsAccessible() {
     const element = utils.flag(this, 'object');
-
-    new chai.Assertion(element).to.be.visible;
 
     // "An element is considered hidden if it, or any of its ancestors are not
     // rendered or have their aria-hidden attribute value set to true."
@@ -43,11 +41,11 @@ chai.use((chaiAPI, utils) => {
     }
 
     this.assert(
-      ariaHidden === false,
+      ariaHidden === true,
+      `expected ${utils.elToString(element)} to be aria-hidden\n${prettyDOM(previousNode)}`,
       `expected ${utils.elToString(element)} to not be aria-hidden, but ${utils.elToString(
         previousNode,
       )} had aria-hidden="true" instead\n${prettyDOM(previousNode)}`,
-      `expected ${utils.elToString(element)} to be aria-hidden\n${prettyDOM(previousNode)}`,
     );
   });
 });

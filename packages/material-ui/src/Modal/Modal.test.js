@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -301,7 +301,7 @@ describe('<Modal />', () => {
         </Modal>,
       );
       const modalNode = modalRef.current;
-      assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
+      expect(modalNode).not.to.be.ariaHidden;
     });
 
     // Test case for https://github.com/mui-org/material-ui/issues/15180
