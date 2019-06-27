@@ -1858,9 +1858,9 @@
   integrity sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==
 
 "@testing-library/dom@^5.0.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-5.2.0.tgz#450bd09f93ddd8865eec98fc5e81fceb2bccdf9c"
-  integrity sha512-nFaZes/bzDfMqwZpQXdiPyj3WXU16FYf5k5NCFu/qJM4JdRJLHEtSRYtrETmk7nCf+qLVoHCqRduGi/4KE83Gw==
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-5.4.0.tgz#49f41c99473286a4102721242bc47571fb7efef0"
+  integrity sha512-0OQsquNYfbxgqqoGf9RZ9lglXEYgKlhSe+W9UFQGDAvT554Y9PG6hGe0RHYggAXe/GoNPccSsl65nn+qq0cFKw==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@sheerun/mutationobserver-shim" "^0.3.2"
@@ -1868,10 +1868,10 @@
     pretty-format "^24.8.0"
     wait-for-expect "^1.2.0"
 
-"@testing-library/react@^8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-8.0.1.tgz#91c254adf855b13de50020613cb5d3915f9f7875"
-  integrity sha512-N/1pJfhEnNYkGyxuw4xbp03evaS0z/CT8o0QgTfJqGlukAcU15xf9uU1w03NHKZJcU69nOCBAoAkXHtHzYwMbg==
+"@testing-library/react@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-8.0.2.tgz#e5df2102fca261b887ca5da803f3e520fe5eb8aa"
+  integrity sha512-CPne8wzJGs3mcUA4W7Mo/WVtjsZto4/54s6vIfgWQSDIxBGbJ3qipikSq3c9Jg8Sbncj3bTIoIrzbg+NYpQphA==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@testing-library/dom" "^5.0.0"
@@ -1889,7 +1889,14 @@
   resolved "https://registry.yarnpkg.com/@types/autosuggest-highlight/-/autosuggest-highlight-3.1.0.tgz#62045417c2f6d841f9f12e715336218e4db0fcb1"
   integrity sha512-rJWvrDFKf2NkB3CkeJPcnX3oD0XAQriJOhYC5DUwiK6X/KTM96e1rW+1/PgI0U4tL6GQ2K7dvoiYFhMnAaNLUw==
 
-"@types/chai@^4.1.7":
+"@types/chai-dom@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-0.0.7.tgz#c27722501b36fff7c0642a342dbeddf48b8bfca0"
+  integrity sha512-2zF94t06jMQaEG+1EyaTVFiC2hSD6pQSGzqKge+z9XWozqot8nLaSSSxK8VdAA4tnQhCREuizvAoT6dAgxxxHA==
+  dependencies:
+    "@types/chai" "*"
+
+"@types/chai@*", "@types/chai@^4.1.7":
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.1.7.tgz#1b8e33b61a8c09cbe1f85133071baa0dbf9fa71a"
   integrity sha512-2Y8uPt0/jwjhQ6EiluT0XCri1Dbplr0ZxfFXUz+ye13gaqE8u5gL5ppao1JrUYr9cIip5S6MvQzBS7Kke7U9VA==
@@ -2095,6 +2102,11 @@
   integrity sha512-auApPaJf3NPfe18hSoJkp8EbZzer2ISk7o8mCC3M9he/a04+gbMF97NkpD2S8riMGvm4BMRI59/SZQSaLTKpsQ==
   dependencies:
     "@types/node" "*"
+
+"@types/sinon@^7.0.13":
+  version "7.0.13"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-7.0.13.tgz#ca039c23a9e27ebea53e0901ef928ea2a1a6d313"
+  integrity sha512-d7c/C/+H/knZ3L8/cxhicHUiTDxdgap0b/aNJfsmLwFu/iOP17mdgbQsbHA3SJmrzsjD0l3UEE5SN4xxuz5ung==
 
 "@types/styled-components@4.1.12":
   version "4.1.12"

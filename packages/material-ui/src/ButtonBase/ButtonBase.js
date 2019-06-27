@@ -195,6 +195,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
   });
 
+  /**
+   * IE 11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
+   */
   const keydownRef = React.useRef(false);
   const handleKeyDown = useEventCallback(event => {
     // Check if key is already down to avoid repeats being counted as multiple activations
@@ -306,14 +309,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 
 ButtonBase.propTypes = {
   /**
-   * Callback fired when the component mounts.
-   * This is useful when you want to trigger an action programmatically.
+   * A ref for imperative actions.
    * It currently only supports `focusVisible()` action.
-   *
-   * @param {object} actions This object contains all possible actions
-   * that can be triggered programmatically.
    */
-  action: PropTypes.func,
+  action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Use that property to pass a ref callback to the native button component.
    * @deprecated Use `ref` instead

@@ -9,18 +9,20 @@
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
-    "baseUrl": "./packages",
+    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": true,
+    "allowJs": true,
     "paths": {
-      "@material-ui/core": ["./material-ui/src"],
-      "@material-ui/core/*": ["./material-ui/src/*"],
-      "@material-ui/lab": ["./material-ui-lab/src"],
-      "@material-ui/lab/*": ["./material-ui-lab/src/*"],
-      "@material-ui/styles": ["./material-ui-styles/src"],
-      "@material-ui/styles/*": ["./material-ui-styles/src/*"],
-      "@material-ui/system": ["./material-ui-system/src"],
-      "@material-ui/types": ["./material-ui-types"]
+      "@material-ui/core": ["./packages/material-ui/src"],
+      "@material-ui/core/*": ["./packages/material-ui/src/*"],
+      "@material-ui/lab": ["./packages/material-ui-lab/src"],
+      "@material-ui/lab/*": ["./packages/material-ui-lab/src/*"],
+      "@material-ui/styles": ["./packages/material-ui-styles/src"],
+      "@material-ui/styles/*": ["./packages/material-ui-styles/src/*"],
+      "@material-ui/system": ["./packages/material-ui-system/src"],
+      "@material-ui/types": ["./packages/material-ui-types"],
+      "test/*": ["./test/*"]
     }
   },
   "exclude": ["**/build/"]

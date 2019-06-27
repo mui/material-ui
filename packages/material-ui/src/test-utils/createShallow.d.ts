@@ -1,6 +1,6 @@
-import { shallow, EnzymeSelector } from 'enzyme';
+import { shallow, EnzymeSelector, ShallowRendererProps } from 'enzyme';
 
-export interface ShallowOptions {
+export interface ShallowOptions extends ShallowRendererProps {
   shallow: typeof shallow;
   dive: boolean;
   untilSelector: EnzymeSelector;
