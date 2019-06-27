@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { withTheme } from '@material-ui/core/styles';
+import { useTheme, Theme, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 
-function WithTheme(props) {
-  const { theme } = props;
+function WithTheme() {
+  const theme = useTheme();
   const primaryText = theme.palette.text.primary;
   const primaryColor = theme.palette.primary.main;
 
@@ -29,8 +29,16 @@ function WithTheme(props) {
   );
 }
 
-WithTheme.propTypes = {
-  theme: PropTypes.object.isRequired,
-};
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark', // Switching the dark mode on is a single property value change.
+  },
+});
 
-export default withTheme(WithTheme); // Let's get the theme as a property
+export default function DarkTheme() {
+  return (
+    <ThemeProvider theme={theme}>
+      <WithTheme />
+    </ThemeProvider>
+  );
+}

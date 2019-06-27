@@ -34,7 +34,7 @@ function loadDependencies() {
   loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
 }
 
-if (process.browser) {
+if (process.browser && process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line no-console
   console.log(
     `%c
