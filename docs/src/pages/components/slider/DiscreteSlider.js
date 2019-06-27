@@ -58,6 +58,20 @@ export default function DiscreteSlider() {
         max={110}
       />
       <div className={classes.margin} />
+      <Typography id="discrete-slider-small-steps" gutterBottom>
+        Small Steps
+      </Typography>
+      <Slider
+        defaultValue={0.00000005}
+        getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider-small-steps"
+        step={0.00000001}
+        marks
+        min={-0.00000005}
+        max={0.0000001}
+        valueLabelDisplay="auto"
+      />
+      <div className={classes.margin} />
       <Typography id="discrete-slider-custom" gutterBottom>
         Custom marks
       </Typography>
