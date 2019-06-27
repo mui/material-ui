@@ -66,6 +66,8 @@ function percentToValue(percent, min, max) {
 }
 
 function getDecimalPrecision(num) {
+  // This handles the case when num is very small (0.00000001), js will turn this into 1e-8.
+  // When num is bigger than 1 or less than -1 it won't get converted to this notation so it's fine.
   if (Math.abs(num) < 1) {
     const parts = num.toExponential().split('e-');
     const matissaDecimalPart = parts[0].split('.')[1];
