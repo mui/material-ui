@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import ListContext from '../List/ListContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -11,6 +12,10 @@ export const styles = theme => ({
     flexShrink: 0,
     display: 'inline-flex',
   },
+  /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
+  alignItemsFlexStart: {
+    marginTop: 8,
+  },
 });
 
 /**
@@ -18,8 +23,21 @@ export const styles = theme => ({
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
   const { classes, className, ...other } = props;
+  const context = React.useContext(ListContext);
 
-  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
+  return (
+    <div
+      className={clsx(
+        classes.root,
+        {
+          [classes.alignItemsFlexStart]: context.alignItems === 'flex-start',
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
+  );
 });
 
 ListItemIcon.propTypes = {
