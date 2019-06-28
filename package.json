@@ -144,7 +144,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "lerna": "^3.4.3",
+    "lerna": "^3.15.0",
     "lodash": "^4.17.11",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^6.8.3",
