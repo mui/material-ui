@@ -261,6 +261,20 @@ describe('<Slider />', () => {
       thumb.simulate('keydown', moveRightEvent);
       assert.strictEqual(wrapper.props().value, 0.3);
     });
+
+    it('should not fail to round value to step precision when step is very small', () => {
+      wrapper.setProps({ value: 0.00000002, step: 0.00000001, min: 0, max: 0.00000005 });
+      const thumb = findThumb(wrapper);
+      thumb.simulate('keydown', moveRightEvent);
+      assert.strictEqual(wrapper.props().value, 0.00000003);
+    });
+
+    it('should not fail to round value to step precision when step is very small and negative', () => {
+      wrapper.setProps({ value: -0.00000002, step: 0.00000001, min: -0.00000005, max: 0 });
+      const thumb = findThumb(wrapper);
+      thumb.simulate('keydown', moveLeftEvent);
+      assert.strictEqual(wrapper.props().value, -0.00000003);
+    });
   });
 
   describe('markActive state', () => {

@@ -65,15 +65,22 @@ function percentToValue(percent, min, max) {
   return (max - min) * percent + min;
 }
 
-function ensurePrecision(value, step) {
-  const stepDecimalPart = step.toString().split('.')[1];
-  const stepPrecision = stepDecimalPart ? stepDecimalPart.length : 0;
+function getDecimalPrecision(num) {
+  // This handles the case when num is very small (0.00000001), js will turn this into 1e-8.
+  // When num is bigger than 1 or less than -1 it won't get converted to this notation so it's fine.
+  if (Math.abs(num) < 1) {
+    const parts = num.toExponential().split('e-');
+    const matissaDecimalPart = parts[0].split('.')[1];
+    return (matissaDecimalPart ? matissaDecimalPart.length : 0) + parseInt(parts[1], 10);
+  }
 
-  return Number(value.toFixed(stepPrecision));
+  const decimalPart = num.toString().split('.')[1];
+  return decimalPart ? decimalPart.length : 0;
 }
 
 function roundValueToStep(value, step) {
-  return ensurePrecision(Math.round(value / step) * step, step);
+  const nearest = Math.round(value / step) * step;
+  return Number(nearest.toFixed(getDecimalPrecision(step)));
 }
 
 function setValueIndex({ values, source, newValue, index }) {
