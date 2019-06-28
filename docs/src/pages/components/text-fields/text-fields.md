@@ -119,6 +119,7 @@ The property should be called with a value that implements the following interfa
 ```ts
 interface InputElement {
   focus(): void;
+  value?: string;
 }
 ```
 
@@ -131,6 +132,7 @@ function MyInputComponent(props) {
     focus: () => {
       // logic to focus the rendered component from 3rd party belongs here
     },
+    // hiding the value e.g. react-stripe-elements
   }));
 
   // `Component` will be your `SomeThirdPartyComponent` from below
