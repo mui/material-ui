@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -295,13 +295,16 @@ describe('<Modal />', () => {
 
     it('does not include the children in the a11y tree', () => {
       const modalRef = React.createRef();
-      mount(
+      const wrapper = mount(
         <Modal keepMounted open={false} ref={modalRef}>
-          <div />
+          <div>ModalContent</div>
         </Modal>,
       );
       const modalNode = modalRef.current;
-      assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
+      expect(modalNode).to.be.ariaHidden;
+
+      wrapper.setProps({ open: true });
+      expect(modalNode).not.to.be.ariaHidden;
     });
 
     // Test case for https://github.com/mui-org/material-ui/issues/15180

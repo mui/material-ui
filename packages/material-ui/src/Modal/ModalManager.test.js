@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import ModalManager from './ModalManager';
 
@@ -161,17 +161,17 @@ describe('ModalManager', () => {
       const modal2 = {};
       modalManager.add(modal1, container3);
       modalManager.mount(modal1);
-      assert.strictEqual(container3.children[0].getAttribute('aria-hidden'), 'true');
+      expect(container3.children[0]).to.be.ariaHidden;
 
       modalManager.add(modal2, container4);
       modalManager.mount(modal2);
-      assert.strictEqual(container4.children[0].getAttribute('aria-hidden'), 'true');
+      expect(container4.children[0]).to.be.ariaHidden;
 
       modalManager.remove(modal2);
-      assert.strictEqual(container4.children[0].getAttribute('aria-hidden'), null);
+      expect(container4.children[0]).not.to.be.ariaHidden;
 
       modalManager.remove(modal1);
-      assert.strictEqual(container3.children[0].getAttribute('aria-hidden'), null);
+      expect(container3.children[0]).not.to.be.ariaHidden;
     });
 
     afterEach(() => {
@@ -202,14 +202,14 @@ describe('ModalManager', () => {
       const modal2 = document.createElement('div');
       modal2.setAttribute('aria-hidden', 'true');
 
-      assert.strictEqual(modal2.getAttribute('aria-hidden'), 'true');
+      expect(modal2).to.be.ariaHidden;
       modalManager.add({ modalRef: modal2 }, container2);
-      assert.strictEqual(modal2.getAttribute('aria-hidden'), null);
+      expect(modal2).not.to.be.ariaHidden;
     });
 
     it('should add aria-hidden to container siblings', () => {
       modalManager.add({}, container2);
-      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
+      expect(container2.children[0]).to.be.ariaHidden;
     });
 
     it('should add aria-hidden to previous modals', () => {
@@ -221,13 +221,13 @@ describe('ModalManager', () => {
 
       modalManager.add({ modalRef: modal2 }, container2);
       // Simulate the main React DOM true.
-      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
-      assert.strictEqual(container2.children[1].getAttribute('aria-hidden'), null);
+      expect(container2.children[0]).to.be.ariaHidden;
+      expect(container2.children[1]).not.to.be.ariaHidden;
 
       modalManager.add({ modalRef: modal3 }, container2);
-      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
-      assert.strictEqual(container2.children[1].getAttribute('aria-hidden'), 'true');
-      assert.strictEqual(container2.children[2].getAttribute('aria-hidden'), null);
+      expect(container2.children[0]).to.be.ariaHidden;
+      expect(container2.children[1]).to.be.ariaHidden;
+      expect(container2.children[2]).not.to.be.ariaHidden;
     });
 
     it('should remove aria-hidden on siblings', () => {
@@ -235,9 +235,9 @@ describe('ModalManager', () => {
 
       modalManager.add(modal, container2);
       modalManager.mount(modal);
-      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), null);
+      expect(container2.children[0]).not.to.be.ariaHidden;
       modalManager.remove(modal, container2);
-      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
+      expect(container2.children[0]).to.be.ariaHidden;
     });
 
     it('should keep previous aria-hidden siblings hidden', () => {
@@ -252,11 +252,11 @@ describe('ModalManager', () => {
 
       modalManager.add(modal, container2);
       modalManager.mount(modal);
-      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), null);
+      expect(container2.children[0]).not.to.be.ariaHidden;
       modalManager.remove(modal, container2);
-      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
-      assert.strictEqual(container2.children[1].getAttribute('aria-hidden'), 'true');
-      assert.strictEqual(container2.children[2].getAttribute('aria-hidden'), null);
+      expect(container2.children[0]).to.be.ariaHidden;
+      expect(container2.children[1]).to.be.ariaHidden;
+      expect(container2.children[2]).not.to.be.ariaHidden;
     });
   });
 });

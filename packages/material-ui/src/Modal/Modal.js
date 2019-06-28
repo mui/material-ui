@@ -24,7 +24,7 @@ function getHasTransition(props) {
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const defaultManager = new ModalManager();
 
-function getModal(modal, modalRef, mountNodeRef) {
+function getModal(modal, mountNodeRef, modalRef) {
   modal.current.modalRef = modalRef.current;
   modal.current.mountNode = mountNodeRef.current;
   return modal.current;
