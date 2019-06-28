@@ -8,7 +8,7 @@ import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
 import { useForkRef } from '../utils/reactHelpers';
-import Textarea from './Textarea';
+import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 
 export const styles = theme => {
@@ -337,7 +337,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         rowsMax,
         ...inputProps,
       };
-      InputComponent = Textarea;
+      InputComponent = TextareaAutosize;
     }
   } else {
     inputProps = {

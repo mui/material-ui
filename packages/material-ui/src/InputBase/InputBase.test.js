@@ -6,7 +6,7 @@ import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/co
 import describeConformance from '../test-utils/describeConformance';
 import FormControlContext from '../FormControl/FormControlContext';
 import InputAdornment from '../InputAdornment';
-import Textarea from './Textarea';
+import TextareaAutosize from '../TextareaAutosize';
 import InputBase from './InputBase';
 import TextField from '../TextField';
 import Select from '../Select';
@@ -42,9 +42,9 @@ describe('<InputBase />', () => {
   });
 
   describe('multiline', () => {
-    it('should render an <Textarea /> when passed the multiline prop', () => {
+    it('should render an <TextareaAutosize /> when passed the multiline prop', () => {
       const wrapper = mount(<InputBase multiline />);
-      assert.strictEqual(wrapper.find(Textarea).length, 1);
+      assert.strictEqual(wrapper.find(TextareaAutosize).length, 1);
     });
 
     it('should render an <textarea /> when passed the multiline and rows props', () => {
@@ -52,9 +52,9 @@ describe('<InputBase />', () => {
       assert.strictEqual(wrapper.find('textarea').length, 1);
     });
 
-    it('should forward the value to the Textarea', () => {
+    it('should forward the value to the TextareaAutosize', () => {
       const wrapper = mount(<InputBase multiline rowsMax="4" value="" />);
-      assert.strictEqual(wrapper.find(Textarea).props().value, '');
+      assert.strictEqual(wrapper.find(TextareaAutosize).props().value, '');
     });
   });
 

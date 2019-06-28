@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import Textarea from './Textarea';
+import TextareaAutosize from './TextareaAutosize';
 
 function getHeight(wrapper) {
   return wrapper
@@ -12,7 +12,7 @@ function getHeight(wrapper) {
     .props().style.height;
 }
 
-describe('<Textarea />', () => {
+describe('<TextareaAutosize />', () => {
   let mount;
 
   before(() => {
@@ -23,7 +23,7 @@ describe('<Textarea />', () => {
     mount.cleanUp();
   });
 
-  describeConformance(<Textarea />, () => ({
+  describeConformance(<TextareaAutosize />, () => ({
     inheritComponent: 'textarea',
     mount,
     refInstanceof: window.HTMLTextAreaElement,
@@ -77,7 +77,7 @@ describe('<Textarea />', () => {
       });
 
       it('should handle the resize event', () => {
-        const wrapper = mount(<Textarea />);
+        const wrapper = mount(<TextareaAutosize />);
         assert.strictEqual(getHeight(wrapper), undefined);
         setLayout(wrapper, {
           getComputedStyle: {
@@ -95,7 +95,7 @@ describe('<Textarea />', () => {
 
     it('should update when uncontrolled', () => {
       const handleChange = spy();
-      const wrapper = mount(<Textarea onChange={handleChange} />);
+      const wrapper = mount(<TextareaAutosize onChange={handleChange} />);
       assert.strictEqual(getHeight(wrapper), undefined);
       setLayout(wrapper, {
         getComputedStyle: {
@@ -115,7 +115,7 @@ describe('<Textarea />', () => {
 
     it('should take the border into account with border-box', () => {
       const border = 5;
-      const wrapper = mount(<Textarea />);
+      const wrapper = mount(<TextareaAutosize />);
       assert.strictEqual(getHeight(wrapper), undefined);
       setLayout(wrapper, {
         getComputedStyle: {
@@ -132,7 +132,7 @@ describe('<Textarea />', () => {
 
     it('should take the padding into account with content-box', () => {
       const padding = 5;
-      const wrapper = mount(<Textarea />);
+      const wrapper = mount(<TextareaAutosize />);
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
@@ -149,7 +149,7 @@ describe('<Textarea />', () => {
     it('should have at least height of "rows"', () => {
       const rows = 3;
       const lineHeight = 15;
-      const wrapper = mount(<Textarea rows={rows} />);
+      const wrapper = mount(<TextareaAutosize rows={rows} />);
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
@@ -165,7 +165,7 @@ describe('<Textarea />', () => {
     it('should have at max "rowsMax" rows', () => {
       const rowsMax = 3;
       const lineHeight = 15;
-      const wrapper = mount(<Textarea rowsMax={rowsMax} />);
+      const wrapper = mount(<TextareaAutosize rowsMax={rowsMax} />);
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
@@ -180,7 +180,7 @@ describe('<Textarea />', () => {
 
     it('should update its height when the "rowsMax" prop changes', () => {
       const lineHeight = 15;
-      const wrapper = mount(<Textarea rowsMax={3} />);
+      const wrapper = mount(<TextareaAutosize rowsMax={3} />);
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',

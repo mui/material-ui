@@ -142,7 +142,7 @@ MyDocument.getInitialProps = async ctx => {
   return {
     ...initialProps,
     canonical: pathnameToLanguage(ctx.req.url).canonical,
-    userLanguage: ctx.query.userLanguage,
+    userLanguage: ctx.query.userLanguage || 'en',
     styles: (
       <style
         id="jss-server-side"

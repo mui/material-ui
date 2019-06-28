@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import debounce from '../utils/debounce';
 import withStyles from '../styles/withStyles';
 import { isMuiElement } from '../utils/reactHelpers';
 
@@ -85,7 +85,7 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   React.useEffect(() => {
     const handleResize = debounce(() => {
       fit(imgRef.current, classes);
-    }, 166); // Corresponds to 10 frames at 60 Hz.
+    });
 
     window.addEventListener('resize', handleResize);
     return () => {
