@@ -37,7 +37,7 @@ export const demoRegexp = /^"demo": "(.*)"/;
 export function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{|}}$/gm) // Split markdown into an array, separating demos
+    .split(/^{{("demo":[^}]*)}}$/gm) // Split markdown into an array, separating demos
     .filter(content => !emptyRegExp.test(content)); // Remove empty lines
 }
 
