@@ -5,6 +5,6 @@
   "author": "Material-UI Team",
   "license": "MIT",
   "scripts": {
-    "typescript": "tslint -p tsconfig.json"
+    "typescript": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\""
   }
 }
