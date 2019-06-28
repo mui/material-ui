@@ -64,7 +64,7 @@ const LightTooltip = withStyles((theme: Theme) => ({
 const useStylesArrow = makeStyles((theme: Theme) =>
   createStyles({
     tooltip: {
-      position: 'relative'
+      position: 'relative',
     },
     arrow: {
       position: 'absolute',
