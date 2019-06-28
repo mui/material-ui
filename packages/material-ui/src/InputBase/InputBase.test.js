@@ -191,11 +191,14 @@ describe('<InputBase />', () => {
       });
 
       const wrapper = mount(<InputBase inputComponent={BadInputComponent} />);
-      assert.throws(
-        // simulating e.g. react-stripe-elements that hides the event target
-        () => wrapper.find('input').simulate('change', { target: null }),
-        'Material-UI: Expected valid input target',
-      );
+      // assert.throws causes uncaught error in the browser
+      let errorMessage = null;
+      try {
+        wrapper.find('input').simulate('change', { target: null });
+      } catch (error) {
+        errorMessage = String(error);
+      }
+      assert.include(errorMessage, 'Material-UI: Expected valid input target');
     });
   });
 
