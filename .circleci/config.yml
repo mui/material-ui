@@ -85,12 +85,6 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Transpile TypeScript demos
-          command: yarn docs:typescript:formatted --disable-cache
-      - run:
-          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
-          command: git add -A && git diff --exit-code --staged
-      - run:
           name: Can we generate the documentation?
           command: yarn docs:api
       - run:
@@ -105,6 +99,17 @@ jobs:
       - run:
           name: Lint JSON
           command: yarn jsonlint
+  test_types:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Transpile TypeScript demos
+          command: yarn docs:typescript:formatted --disable-cache
+      - run:
+          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
@@ -169,5 +174,6 @@ workflows:
           requires:
             - test_unit
             - test_static
+            - test_types
             - test_browser
             - test_production
