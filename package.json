@@ -14,7 +14,7 @@
     "docs:start": "next start",
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
     "docs:typescript": "node docs/scripts/formattedTSDemos --watch",
-    "docs:typescript:check": "tslint -p docs/tsconfig.json",
+    "docs:typescript:check": "yarn workspace material-ui-docs typescript",
     "docs:typescript:formatted": "node docs/scripts/formattedTSDemos",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
@@ -34,7 +34,7 @@
     "test:umd": "yarn node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' --exclude '**/node_modules/**'",
     "test:watch": "yarn test:unit --watch",
-    "typescript": "lerna run typescript && yarn docs:typescript:check"
+    "typescript": "lerna run typescript --parallel"
   },
   "peerDependencies": {
     "react": "*",
@@ -218,6 +218,7 @@
     "instrument": false
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "docs"
   ]
 }
