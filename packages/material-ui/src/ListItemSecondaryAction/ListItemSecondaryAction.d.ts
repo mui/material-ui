@@ -1,7 +1,9 @@
 import { StandardProps } from '..';
 
 export interface ListItemSecondaryActionProps
-  extends StandardProps<{}, ListItemSecondaryActionClassKey> {}
+  extends StandardProps<{}, ListItemSecondaryActionClassKey> {
+  children: React.ReactElement;
+}
 
 export type ListItemSecondaryActionClassKey = 'root';
 
