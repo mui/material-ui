@@ -27,6 +27,9 @@ function usingHighDensity(themeOptions) {
   return {
     ...themeOptions,
     props: {
+      MuiButton: {
+        size: 'small',
+      },
       MuiFilledInput: {
         margin: 'dense',
       },
@@ -35,6 +38,9 @@ function usingHighDensity(themeOptions) {
       },
       MuiFormHelperText: {
         margin: 'dense',
+      },
+      MuiIconButton: {
+        size: 'small',
       },
       MuiInputBase: {
         margin: 'dense',
@@ -48,6 +54,9 @@ function usingHighDensity(themeOptions) {
       MuiOutlinedInput: {
         margin: 'dense',
       },
+      MuiFab: {
+        size: 'small',
+      },
       MuiTable: {
         size: 'small',
       },
@@ -56,6 +65,14 @@ function usingHighDensity(themeOptions) {
       },
       MuiToolbar: {
         variant: 'dense',
+      },
+    },
+    overrides: {
+      MuiIconButton: {
+        sizeSmall: {
+          // minimal touch target hit spacing
+          padding: 8,
+        },
       },
     },
   };
