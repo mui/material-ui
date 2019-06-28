@@ -109,7 +109,7 @@
     "date-fns": "^2.0.0-alpha.21",
     "doctrine": "^3.0.0",
     "downshift": "^3.0.0",
-    "dtslint": "^0.4.0",
+    "dtslint": "^0.8.0",
     "emotion-theming": "^10.0.5",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
