@@ -59,7 +59,9 @@ export default function createMount(options = {}) {
   mountWithContext.attachTo = attachTo;
   mountWithContext.cleanUp = () => {
     ReactDOM.unmountComponentAtNode(attachTo);
-    attachTo.parentNode.removeChild(attachTo);
+    if (attachTo.parentNode) {
+      attachTo.parentNode.removeChild(attachTo);
+    }
   };
 
   return mountWithContext;

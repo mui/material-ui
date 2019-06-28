@@ -1,0 +1,470 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { spy, stub } from 'sinon';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import Slider from './Slider';
+
+function touchList(touchArray) {
+  touchArray.item = idx => touchArray[idx];
+  return touchArray;
+}
+
+function fireBodyMouseEvent(name, properties = {}) {
+  const event = document.createEvent('MouseEvents');
+  event.initEvent(name, true, true);
+  Object.keys(properties).forEach(key => {
+    event[key] = properties[key];
+  });
+  document.body.dispatchEvent(event);
+  return event;
+}
+
+describe('<Slider />', () => {
+  let mount;
+  let render;
+  let classes;
+
+  before(() => {
+    render = createClientRender({ strict: true });
+    classes = getClasses(<Slider value={0} />);
+    mount = createMount({ strict: true });
+  });
+
+  after(() => {
+    cleanup();
+    mount.cleanUp();
+  });
+
+  describeConformance(<Slider value={0} />, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: 'span',
+  }));
+
+  it('should call handlers', () => {
+    const handleChange = spy();
+    const handleChangeCommitted = spy();
+
+    const { container, getByRole } = render(
+      <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+    );
+
+    fireEvent.mouseDown(container.firstChild);
+    document.body.dispatchEvent(new window.MouseEvent('mouseup'));
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChangeCommitted.callCount).to.equal(1);
+
+    fireEvent.keyDown(getByRole('slider'), {
+      key: 'Home',
+    });
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChangeCommitted.callCount).to.equal(2);
+  });
+
+  it('should only listen to changes from the same touchpoint', () => {
+    const handleChange = spy();
+    const handleChangeCommitted = spy();
+    const { container } = render(
+      <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+    );
+
+    const event = fireBodyMouseEvent('touchstart', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    container.firstChild.dispatchEvent(event);
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChangeCommitted.callCount).to.equal(0);
+
+    fireBodyMouseEvent('touchend', {
+      changedTouches: touchList([{ identifier: 2 }]),
+    });
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChangeCommitted.callCount).to.equal(0);
+
+    fireBodyMouseEvent('touchmove', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChangeCommitted.callCount).to.equal(0);
+
+    fireBodyMouseEvent('touchmove', {
+      changedTouches: touchList([{ identifier: 2 }]),
+    });
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChangeCommitted.callCount).to.equal(0);
+
+    fireBodyMouseEvent('touchend', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChangeCommitted.callCount).to.equal(1);
+  });
+
+  describe('when mouse reenters window', () => {
+    it('should update if mouse is still clicked', () => {
+      const handleChange = spy();
+      const { container } = render(<Slider onChange={handleChange} value={50} />);
+
+      fireEvent.mouseDown(container.firstChild);
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+      const mouseEnter = new window.Event('mouseenter');
+      mouseEnter.buttons = 1;
+      document.body.dispatchEvent(mouseEnter);
+      expect(handleChange.callCount).to.equal(1);
+
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+      expect(handleChange.callCount).to.equal(2);
+    });
+
+    it('should not update if mouse is not clicked', () => {
+      const handleChange = spy();
+      const { container } = render(<Slider onChange={handleChange} value={50} />);
+
+      fireEvent.mouseDown(container.firstChild);
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+      const mouseEnter = new window.Event('mouseenter');
+      mouseEnter.buttons = 0;
+      document.body.dispatchEvent(mouseEnter);
+      expect(handleChange.callCount).to.equal(1);
+
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+      expect(handleChange.callCount).to.equal(1);
+    });
+  });
+
+  describe('prop: orientation', () => {
+    it('should render with the default and vertical classes', () => {
+      const { container } = render(<Slider orientation="vertical" value={0} />);
+      expect(container.firstChild).to.have.class(classes.vertical);
+    });
+
+    it('should report the right position', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Slider orientation="vertical" defaultValue={20} onChange={handleChange} />,
+      );
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 10,
+        height: 100,
+        bottom: 100,
+        left: 0,
+      }));
+
+      const event = fireBodyMouseEvent('touchstart', {
+        changedTouches: touchList([{ identifier: 1, pageX: 0, pageY: 20 }]),
+      });
+      container.firstChild.dispatchEvent(event);
+
+      fireBodyMouseEvent('touchmove', {
+        changedTouches: touchList([{ identifier: 1, pageX: 0, pageY: 22 }]),
+      });
+
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[0][1]).to.equal(80);
+      expect(handleChange.args[1][1]).to.equal(78);
+    });
+  });
+
+  describe('range', () => {
+    it('should support keyboard', () => {
+      const { container } = render(<Slider defaultValue={[20, 30]} />);
+      const thumb1 = container.querySelectorAll('[role="slider"]')[0];
+      const thumb2 = container.querySelectorAll('[role="slider"]')[1];
+
+      fireEvent.keyDown(thumb1, {
+        key: 'ArrowRight',
+      });
+      expect(thumb1.getAttribute('aria-valuenow')).to.equal('21');
+
+      fireEvent.keyDown(thumb2, {
+        key: 'ArrowLeft',
+      });
+      expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
+    });
+
+    it('should support mouse events', () => {
+      const handleChange = spy();
+      const { container } = render(<Slider defaultValue={[20, 30]} onChange={handleChange} />);
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      const event = fireBodyMouseEvent('touchstart', {
+        changedTouches: touchList([{ identifier: 1, pageX: 21, pageY: 0 }]),
+      });
+      container.firstChild.dispatchEvent(event);
+
+      fireBodyMouseEvent('touchmove', {
+        changedTouches: touchList([{ identifier: 1, pageX: 22, pageY: 0 }]),
+      });
+      fireBodyMouseEvent('touchmove', {
+        changedTouches: touchList([{ identifier: 1, pageX: 22, pageY: 0 }]),
+      });
+
+      expect(handleChange.callCount).to.equal(3);
+      expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
+      expect(handleChange.args[1][1]).to.deep.equal([22, 30]);
+      expect(handleChange.args[2][1]).to.equal(handleChange.args[1][1]);
+    });
+  });
+
+  describe('prop: step', () => {
+    it('should handle a null step', () => {
+      const { getByRole, container } = render(
+        <Slider
+          step={null}
+          marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
+          defaultValue={0}
+        />,
+      );
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+      const thumb = getByRole('slider');
+
+      const event = fireBodyMouseEvent('touchstart', {
+        changedTouches: touchList([{ identifier: 1, pageX: 21, pageY: 0 }]),
+      });
+      container.firstChild.dispatchEvent(event);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
+
+      fireEvent.keyDown(thumb, {
+        key: 'ArrowUp',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('30');
+
+      fireEvent.keyDown(thumb, {
+        key: 'ArrowDown',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
+    });
+  });
+
+  describe('prop: disabled', () => {
+    it('should render the disabled classes', () => {
+      const { container } = render(<Slider disabled value={0} />);
+      expect(container.firstChild).to.have.class(classes.disabled);
+    });
+  });
+
+  describe('keyboard', () => {
+    it('should handle all the keys', () => {
+      const { getByRole } = render(<Slider defaultValue={50} />);
+      const thumb = getByRole('slider');
+
+      fireEvent.keyDown(thumb, {
+        key: 'Home',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('0');
+
+      fireEvent.keyDown(thumb, {
+        key: 'End',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
+
+      fireEvent.keyDown(thumb, {
+        key: 'PageDown',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
+
+      fireEvent.keyDown(thumb, {
+        key: 'Escape',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
+
+      fireEvent.keyDown(thumb, {
+        key: 'PageUp',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
+    });
+
+    const moveLeftEvent = {
+      key: 'ArrowLeft',
+    };
+    const moveRightEvent = {
+      key: 'ArrowRight',
+    };
+
+    it('should reach right edge value', () => {
+      const { getByRole } = render(<Slider defaultValue={90} min={6} max={108} step={10} />);
+      const thumb = getByRole('slider');
+
+      fireEvent.keyDown(thumb, moveRightEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
+
+      fireEvent.keyDown(thumb, moveRightEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('108');
+
+      fireEvent.keyDown(thumb, moveLeftEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
+
+      fireEvent.keyDown(thumb, moveLeftEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
+    });
+
+    it('should reach left edge value', () => {
+      const { getByRole } = render(<Slider defaultValue={20} min={6} max={108} step={10} />);
+      const thumb = getByRole('slider');
+
+      fireEvent.keyDown(thumb, moveLeftEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('10');
+
+      fireEvent.keyDown(thumb, moveLeftEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('6');
+
+      fireEvent.keyDown(thumb, moveRightEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
+
+      fireEvent.keyDown(thumb, moveRightEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('30');
+    });
+
+    it('should round value to step precision', () => {
+      const { getByRole } = render(<Slider defaultValue={0.2} min={0} max={1} step={0.1} />);
+      const thumb = getByRole('slider');
+
+      fireEvent.keyDown(thumb, moveRightEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('0.3');
+    });
+
+    it('should not fail to round value to step precision when step is very small', () => {
+      const { getByRole } = render(
+        <Slider defaultValue={0.00000002} min={0} max={0.00000005} step={0.00000001} />,
+      );
+      const thumb = getByRole('slider');
+
+      fireEvent.keyDown(thumb, moveRightEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('3e-8');
+    });
+
+    it('should not fail to round value to step precision when step is very small and negative', () => {
+      const { getByRole } = render(
+        <Slider defaultValue={-0.00000002} min={-0.00000005} max={0} step={0.00000001} />,
+      );
+      const thumb = getByRole('slider');
+
+      fireEvent.keyDown(thumb, moveLeftEvent);
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('-3e-8');
+    });
+  });
+
+  describe('prop: valueLabelDisplay', () => {
+    it('should always display the value label', () => {
+      const { getByRole, setProps } = render(<Slider valueLabelDisplay="auto" value={50} />);
+      const thumb = getByRole('slider');
+      expect(thumb.textContent).to.equal('50');
+      setProps({
+        valueLabelDisplay: 'off',
+      });
+      expect(thumb.textContent).to.equal('');
+    });
+  });
+
+  describe('markActive state', () => {
+    function getActives(container) {
+      return Array.from(container.querySelectorAll(`.${classes.markLabel}`)).map(node =>
+        node.classList.contains(classes.markLabelActive),
+      );
+    }
+
+    it('sets the marks active that are `within` the value', () => {
+      const marks = [{ value: 5 }, { value: 10 }, { value: 15 }];
+
+      const { container: container1 } = render(
+        <Slider disabled min={0} max={20} value={12} marks={marks} />,
+      );
+      expect(getActives(container1)).to.deep.equal([true, true, false]);
+
+      const { container: container2 } = render(
+        <Slider disabled min={0} max={20} value={[8, 12]} marks={marks} />,
+      );
+      expect(getActives(container2)).to.deep.equal([false, true, false]);
+    });
+
+    it('uses closed intervals for the within check', () => {
+      const { container: container1 } = render(
+        <Slider disabled value={10} min={0} max={10} marks step={5} />,
+      );
+      expect(getActives(container1)).to.deep.equal([true, true, true]);
+
+      const { container: container2 } = render(
+        <Slider disabled value={9.99999} min={0} max={10} marks step={5} />,
+      );
+      expect(getActives(container2)).to.deep.equal([true, true, false]);
+    });
+  });
+
+  it('should forward mouseDown', () => {
+    const handleMouseDown = spy();
+    const { container } = render(<Slider disabled onMouseDown={handleMouseDown} value={0} />);
+    fireEvent.mouseDown(container.firstChild);
+    expect(handleMouseDown.callCount).to.equal(1);
+  });
+
+  it('should handle RTL', () => {
+    const handleChange = spy();
+    const { container, getByRole } = render(
+      <MuiThemeProvider
+        theme={createMuiTheme({
+          direction: 'rtl',
+        })}
+      >
+        <Slider value={30} onChange={handleChange} />
+      </MuiThemeProvider>,
+    );
+    const thumb = getByRole('slider');
+    expect(thumb.style.right).to.equal('30%');
+
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+
+    const event = fireBodyMouseEvent('touchstart', {
+      changedTouches: touchList([{ identifier: 1, pageX: 20, pageY: 0 }]),
+    });
+    container.firstChild.dispatchEvent(event);
+
+    fireBodyMouseEvent('touchmove', {
+      changedTouches: touchList([{ identifier: 1, pageX: 22, pageY: 0 }]),
+    });
+
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChange.args[0][1]).to.equal(80);
+    expect(handleChange.args[1][1]).to.equal(78);
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('should warn if aria-valuetext is a string', () => {
+      render(<Slider value={[20, 50]} aria-valuetext="hot" />);
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'you need to use the `getAriaValueText` prop instead of',
+      );
+    });
+  });
+});

@@ -38,6 +38,7 @@ const pages = [
           { pathname: '/components/pickers' },
           { pathname: '/components/radio-buttons' },
           { pathname: '/components/selects' },
+          { pathname: '/components/slider' },
           { pathname: '/components/switches' },
           { pathname: '/components/text-fields' },
           { pathname: '/components/transfer-list' },
@@ -111,7 +112,6 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab' },
-          { pathname: '/components/slider' },
           { pathname: '/components/speed-dial' },
           { pathname: '/components/toggle-button' },
         ],

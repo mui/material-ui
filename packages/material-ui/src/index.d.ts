@@ -153,6 +153,7 @@ export { default as RadioGroup } from './RadioGroup';
 export { default as RootRef } from './RootRef';
 export { default as Select } from './Select';
 export { default as Slide } from './Slide';
+export { default as Slider } from './Slider';
 export { default as Snackbar } from './Snackbar';
 export { default as SnackbarContent } from './SnackbarContent';
 export { default as Step } from './Step';

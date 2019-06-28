@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/Slider/Slider.js
+filename: /packages/material-ui/src/Slider/Slider.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/Slider/Slider.js
 <p class="description">The API documentation of the Slider React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Slider from '@material-ui/lab/Slider';
+import Slider from '@material-ui/core/Slider';
 ```
 
 
@@ -68,7 +68,7 @@ This property accepts the following keys:
 | <span class="prop-name">markLabelActive</span> | Styles applied to the mark label element if active (depending on the value).
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/Slider/Slider.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Slider/Slider.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
@@ -76,7 +76,7 @@ you need to use the following style sheet name: `MuiSlider`.
 
 ## Notes
 
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 
