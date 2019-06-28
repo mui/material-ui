@@ -64,6 +64,10 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
+## Vertical Stepper - Non-linear
+
+{{"demo": "pages/components/steppers/VerticalNonLinearStepper.js"}}
+
 ## Customized Stepper
 
 Here is an example of customizing the component. You can learn more about this in the

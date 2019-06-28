@@ -41,7 +41,7 @@ const Step = React.forwardRef(function Step(props, ref) {
     disabled = false,
     index,
     last,
-    orientation,
+    orientation = 'horizontal',
     ...other
   } = props;
 

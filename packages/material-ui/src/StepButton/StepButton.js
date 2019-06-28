@@ -10,14 +10,17 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     width: '100%',
-    padding: '24px 16px',
-    margin: '-24px -16px',
     boxSizing: 'content-box',
   },
   /* Styles applied to the root element if `orientation="horizontal"`. */
-  horizontal: {},
+  horizontal: {
+    padding: '24px 16px',
+    margin: '-24px -16px',
+  },
   /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
+    paddingTop: 8,
+    paddingBottom: 8,
     justifyContent: 'flex-start',
   },
   /* Styles applied to the `ButtonBase` touch-ripple. */
@@ -38,7 +41,7 @@ const StepButton = React.forwardRef(function StepButton(props, ref) {
     icon,
     last,
     optional,
-    orientation,
+    orientation = 'horizontal',
     ...other
   } = props;
 
