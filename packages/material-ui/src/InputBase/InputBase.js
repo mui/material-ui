@@ -282,7 +282,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         throw new TypeError(
           'Material-UI: Expected valid input target. ' +
             'Did you use a custom `inputComponent` and forget to forward refs? ' +
-            'See https://material-ui.com/r/inputComponent-ref-interface for more info.',
+            'See https://material-ui.com/r/input-component-ref-interface for more info.',
         );
       }
 
