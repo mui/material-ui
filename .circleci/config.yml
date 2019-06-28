@@ -61,6 +61,22 @@ jobs:
               exit 1
             fi
       - run:
+          name: material-ui-icons
+          command: |
+            # latest commit
+            LATEST_COMMIT=$(git rev-parse HEAD)
+
+            # latest commit where packages/material-ui-icons was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-icons)
+
+            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
+              echo "changes, let's run the tests"
+              yarn workspace @material-ui/icons build:typings
+              yarn workspace @material-ui/icons test:built-typings
+            else
+              echo "no changes"
+            fi
+      - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
   test_static:
@@ -68,12 +84,6 @@ jobs:
     steps:
       - checkout
       - install_js
-      - run:
-          name: Transpile TypeScript demos
-          command: yarn docs:typescript:formatted --disable-cache
-      - run:
-          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
-          command: git add -A && git diff --exit-code --staged
       - run:
           name: Can we generate the documentation?
           command: yarn docs:api
@@ -89,76 +99,20 @@ jobs:
       - run:
           name: Lint JSON
           command: yarn jsonlint
-      - run:
-          name: Tests TypeScript definitions
-          command: yarn typescript
-  test_material-ui-x:
+  test_types:
     <<: *defaults
     steps:
       - checkout
       - install_js
       - run:
-          name: material-ui-icons
-          command: |
-            # latest commit
-            LATEST_COMMIT=$(git rev-parse HEAD)
-
-            # latest commit where packages/material-ui-icons was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-icons)
-
-            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
-              echo "changes, let's run the tests"
-              cd packages/material-ui-icons && yarn test
-              yarn build:typings
-              yarn test:built-typings
-            else
-              echo "no changes"
-            fi
+          name: Transpile TypeScript demos
+          command: yarn docs:typescript:formatted --disable-cache
       - run:
-          name: material-ui-codemod
-          command: |
-            # latest commit
-            LATEST_COMMIT=$(git rev-parse HEAD)
-
-            # latest commit where packages/material-ui-codemod was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-codemod)
-
-            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
-              echo "changes, let's run the tests"
-              cd packages/material-ui-codemod && yarn test
-            else
-              echo "no changes"
-            fi
+          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          command: git add -A && git diff --exit-code --staged
       - run:
-          name: material-ui-lab
-          command: |
-            # latest commit
-            LATEST_COMMIT=$(git rev-parse HEAD)
-
-            # latest commit where packages/material-ui-lab was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-lab)
-
-            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
-              echo "changes, let's run the tests"
-              cd packages/material-ui-lab && yarn test
-            else
-              echo "no changes"
-            fi
-      - run:
-          name: eslint-plugin-material-ui
-          command: |
-            # latest commit
-            LATEST_COMMIT=$(git rev-parse HEAD)
-
-            # latest commit where packages/eslint-plugin-material-ui was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/eslint-plugin-material-ui)
-
-            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
-              echo "changes, let's run the tests"
-              cd packages/eslint-plugin-material-ui && yarn test
-            else
-              echo "no changes"
-            fi
+          name: Tests TypeScript definitions
+          command: yarn typescript
   test_production:
     <<: *defaults
     steps:
@@ -207,7 +161,7 @@ workflows:
       - test_static:
           requires:
             - checkout
-      - test_material-ui-x:
+      - test_types:
           requires:
             - checkout
       - test_browser:
@@ -218,8 +172,8 @@ workflows:
             - checkout
       - test_regressions:
           requires:
-            - test_material-ui-x
             - test_unit
             - test_static
+            - test_types
             - test_browser
             - test_production
