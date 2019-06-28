@@ -161,7 +161,7 @@ workflows:
       - test_static:
           requires:
             - checkout
-      - test_material-ui-x:
+      - test_types:
           requires:
             - checkout
       - test_browser:
