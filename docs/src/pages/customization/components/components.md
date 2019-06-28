@@ -2,7 +2,7 @@
 
 <p class="description">You can easily customize the appearance of a Material-UI component.</p>
 
-As components can be used in different contexts, the are several approaches to this. Going from the narrowest use-case to the broadest, these are:
+As components can be used in different contexts, there are several approaches to this. Going from the narrowest use-case to the broadest, these are:
 
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
 1. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
