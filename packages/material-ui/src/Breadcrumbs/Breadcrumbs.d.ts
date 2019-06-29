@@ -12,7 +12,7 @@ declare const Breadcrumbs: OverridableComponent<{
   classKey: BreadcrumbsClassKey;
 }>;
 
-export type BreadcrumbsClassKey = 'root' | 'ol' | 'separator';
+export type BreadcrumbsClassKey = 'root' | 'ol' | 'li' | 'separator';
 
 export type BreadcrumbsProps = SimplifiedPropsOf<typeof Breadcrumbs>;
 
