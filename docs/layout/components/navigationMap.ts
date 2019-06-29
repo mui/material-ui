@@ -14,7 +14,7 @@ export const navItems = [
     children: [
       { title: 'Using date-fns', href: '/localization/date-fns' },
       { title: 'Using moment', href: '/localization/moment' },
-      { title: 'Persian Calendar System', href: '/localization/persian' },
+      { title: 'Additional Calendar Systems', href: '/localization/calendar-systems' },
     ],
   },
   {

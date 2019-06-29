@@ -1151,6 +1151,11 @@
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.3.7.tgz#c65d2979ee7696c0551d8f24df618b21b83cde4a"
   integrity sha512-oHFBOjQskqrFngyDnJPOM1o4FVpKPyNe/aDtkj1HQEfCe7BV3cggwuTll0AOchNdiYY0yJEVyUl8Vi63HZxfBA==
 
+"@date-io/core@^1.3.8":
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.3.8.tgz#a20da7125f1444631dd96a6e8baa8982665aaa95"
+  integrity sha512-XlvpzhipF/badZEJPAfgXRX9bFG2UpFl1T6O0hn1RzWJf3yexf9/M2wcEm6jh7RVyrlSayttkXtGPqVPdoJQ7Q==
+
 "@date-io/date-fns@^1.3.0":
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-1.3.6.tgz#556fa6d324361258b7fab02d9327f80a989a7ef0"
@@ -1171,6 +1176,13 @@
   integrity sha512-kxV1ekE8UySlf1e8KvTrWzs64RNz+4+9lBDHkaabcgDYjz6ub9wOhrg6WpUtOp6sdYolXHBP7LHJCxH9W2LxqQ==
   dependencies:
     "@date-io/core" "^1.3.7"
+
+"@date-io/hijri@^1.3.8":
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/@date-io/hijri/-/hijri-1.3.8.tgz#4279b9401630eacfd54e73341be1a63de18ce8ce"
+  integrity sha512-k5/BbEn+SVezEKZmBGZLuUZh/7SeoS8/jqhaVkE2Kx2iUmRJI41vx9eqYhhpAiAxWYllGvzXp2ZGxYXQoG/6pw==
+  dependencies:
+    "@date-io/moment" "^1.3.8"
 
 "@date-io/jalaali@^1.3.7":
   version "1.3.7"
@@ -1204,6 +1216,13 @@
   integrity sha512-DpXK6s5f9HOoPPURmqSUN0mwFTTorSXfJyJA42PspJ8ZTJLIeuWUXRkjJKS6hdXUfy3PmshEQTzWbhoOiDwjfw==
   dependencies:
     "@date-io/core" "^1.3.7"
+
+"@date-io/moment@^1.3.8":
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-1.3.8.tgz#e0d4599891782ac811be763d514408949b3e09b0"
+  integrity sha512-1caePZfVFeL8bJLQVZVBqYQfgF+4SVJZBTDC1o7bMTtId7/yfIFm3ySxHJrfpJa4ACdF667Ld4wXEfvZz98tuA==
+  dependencies:
+    "@date-io/core" "^1.3.8"
 
 "@emotion/hash@^0.7.1":
   version "0.7.1"
@@ -8268,6 +8287,13 @@ mkdirp@0.5.1, mkdirp@0.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+moment-hijri@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/moment-hijri/-/moment-hijri-2.1.2.tgz#ed95fa4f1fec45b41da132c9d4103b2726215225"
+  integrity sha512-p5ZOA1UzBHAAXiePh37XRjjwuyH78+1ShYZ7R6jogxketewG7kTCUjUmcP9c4Qsx8D8cqxwUWrESjtgdT6tNoA==
+  dependencies:
+    moment "^2.24.0"
 
 moment-jalaali@^0.8.3:
   version "0.8.3"
