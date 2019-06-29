@@ -1,0 +1,10 @@
+{
+  "name": "docs",
+  "version": "4.1.2",
+  "private": true,
+  "author": "Material-UI Team",
+  "license": "MIT",
+  "scripts": {
+    "typescript": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\""
+  }
+}
