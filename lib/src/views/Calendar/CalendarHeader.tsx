@@ -33,20 +33,12 @@ export const useStyles = makeStyles(
     },
     transitionContainer: {
       width: '100%',
-      height: 20,
+      overflow: 'hidden',
+      height: 23,
     },
     iconButton: {
-      zIndex: 2,
+      zIndex: 1,
       backgroundColor: theme.palette.background.paper,
-      '& > *': {
-        // label
-        backgroundColor: theme.palette.background.paper,
-        '& > *': {
-          // icon
-          zIndex: 1,
-          overflow: 'visible',
-        },
-      },
     },
     daysHeader: {
       display: 'flex',
