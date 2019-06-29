@@ -14,7 +14,7 @@
     "docs:start": "next start",
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
     "docs:typescript": "node docs/scripts/formattedTSDemos --watch",
-    "docs:typescript:check": "tslint -p docs/tsconfig.json",
+    "docs:typescript:check": "yarn workspace material-ui-docs typescript",
     "docs:typescript:formatted": "node docs/scripts/formattedTSDemos",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
@@ -34,7 +34,7 @@
     "test:umd": "yarn node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' --exclude '**/node_modules/**'",
     "test:watch": "yarn test:unit --watch",
-    "typescript": "lerna run typescript && yarn docs:typescript:check"
+    "typescript": "lerna run typescript --parallel"
   },
   "peerDependencies": {
     "react": "*",
@@ -109,7 +109,7 @@
     "date-fns": "^2.0.0-alpha.21",
     "doctrine": "^3.0.0",
     "downshift": "^3.0.0",
-    "dtslint": "^0.4.0",
+    "dtslint": "^0.8.0",
     "emotion-theming": "^10.0.5",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
@@ -144,7 +144,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "lerna": "^3.4.3",
+    "lerna": "^3.15.0",
     "lodash": "^4.17.11",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^6.8.3",
@@ -218,6 +218,7 @@
     "instrument": false
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "docs"
   ]
 }

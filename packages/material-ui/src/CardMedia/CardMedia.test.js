@@ -1,17 +1,15 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import CardMedia from './CardMedia';
 
 describe('<CardMedia />', () => {
   let mount;
-  let shallow;
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
-    shallow = createShallow({ untilSelector: 'CardMedia' });
     classes = getClasses(<CardMedia image="/foo.jpg" />);
   });
 
@@ -28,42 +26,56 @@ describe('<CardMedia />', () => {
   }));
 
   it('should have the backgroundImage specified', () => {
-    const wrapper = shallow(<CardMedia image="/foo.jpg" />);
-    assert.strictEqual(wrapper.props().style.backgroundImage, 'url("/foo.jpg")');
+    const wrapper = mount(<CardMedia image="/foo.jpg" />);
+    assert.strictEqual(
+      findOutermostIntrinsic(wrapper).props().style.backgroundImage,
+      'url("/foo.jpg")',
+    );
   });
 
   it('should have backgroundImage specified even though custom styles got passed', () => {
-    const wrapper = shallow(<CardMedia image="/foo.jpg" style={{ height: 200 }} />);
-    assert.strictEqual(wrapper.props().style.backgroundImage, 'url("/foo.jpg")');
-    assert.strictEqual(wrapper.props().style.height, 200);
+    const wrapper = mount(<CardMedia image="/foo.jpg" style={{ height: 200 }} />);
+    assert.strictEqual(
+      findOutermostIntrinsic(wrapper).props().style.backgroundImage,
+      'url("/foo.jpg")',
+    );
+    assert.strictEqual(findOutermostIntrinsic(wrapper).props().style.height, 200);
   });
 
   it('should be possible to overwrite backgroundImage via custom styles', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <CardMedia image="/foo.jpg" style={{ backgroundImage: 'url(/bar.jpg)' }} />,
     );
-    assert.strictEqual(wrapper.props().style.backgroundImage, 'url(/bar.jpg)');
+    assert.strictEqual(
+      findOutermostIntrinsic(wrapper).props().style.backgroundImage,
+      'url(/bar.jpg)',
+    );
   });
 
   describe('prop: component', () => {
-    it('should render `img` component when `img` specified', () => {
-      const wrapper = shallow(<CardMedia image="/foo.jpg" component="img" />);
-      assert.strictEqual(wrapper.type(), 'img');
+    it('should have `src` prop when media component specified', () => {
+      const wrapper = mount(<CardMedia image="/foo.jpg" component="iframe" />);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).props().src, '/foo.jpg');
     });
 
-    it('should have `src` prop when media component specified', () => {
-      const wrapper = shallow(<CardMedia image="/foo.jpg" component="iframe" />);
-      assert.strictEqual(wrapper.props().src, '/foo.jpg');
+    it('should not have `src` prop when picture media component specified', () => {
+      const wrapper = mount(
+        <CardMedia component="picture">
+          <source media="(min-width: 600px)" srcSet="big-cat.jpg" />
+          <img src="cat.jpg" alt="hello" />
+        </CardMedia>,
+      );
+      assert.strictEqual(findOutermostIntrinsic(wrapper).props().src, undefined);
     });
 
     it('should not have default inline style when media component specified', () => {
-      const wrapper = shallow(<CardMedia src="/foo.jpg" component="picture" />);
-      assert.strictEqual(wrapper.props().style, undefined);
+      const wrapper = mount(<CardMedia src="/foo.jpg" component="picture" />);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).props().style, undefined);
     });
 
     it('should not have `src` prop if not media component specified', () => {
-      const wrapper = shallow(<CardMedia image="/foo.jpg" component="table" />);
-      assert.strictEqual(wrapper.props().src, undefined);
+      const wrapper = mount(<CardMedia image="/foo.jpg" component="table" />);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).props().src, undefined);
     });
   });
 });

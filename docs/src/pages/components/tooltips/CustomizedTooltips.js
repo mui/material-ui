@@ -62,6 +62,9 @@ const LightTooltip = withStyles(theme => ({
 }))(Tooltip);
 
 const useStylesArrow = makeStyles(theme => ({
+  tooltip: {
+    position: 'relative',
+  },
   arrow: {
     position: 'absolute',
     fontSize: 6,
@@ -128,6 +131,7 @@ const useStylesBootstrap = makeStyles(theme => ({
   },
   popper: arrowGenerator(theme.palette.common.black),
   tooltip: {
+    position: 'relative',
     backgroundColor: theme.palette.common.black,
   },
   tooltipPlacementLeft: {
