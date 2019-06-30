@@ -244,45 +244,80 @@ describe('makeStyles', () => {
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root' });
     });
 
-    it('should support the overrides key', () => {
-      const useStyles = makeStyles(
-        {
-          root: {
-            padding: 8,
-            margin: [1, 3],
+    describe('overrides', () => {
+      it('should support the overrides key', () => {
+        const useStyles = makeStyles(
+          {
+            root: {
+              padding: 8,
+              margin: [1, 3],
+            },
           },
-        },
-        {
-          name: 'MuiTextField',
-        },
-      );
-      const StyledComponent = () => {
-        useStyles();
-        return <div />;
-      };
+          {
+            name: 'MuiTextField',
+          },
+        );
+        const StyledComponent = () => {
+          useStyles();
+          return <div />;
+        };
 
-      mount(
-        <ThemeProvider
-          theme={createMuiTheme({
-            overrides: {
-              MuiTextField: {
-                root: {
-                  padding: 9,
-                  margin: [2, 2, 3],
+        mount(
+          <ThemeProvider
+            theme={createMuiTheme({
+              overrides: {
+                MuiTextField: {
+                  root: {
+                    padding: 9,
+                    margin: [2, 2, 3],
+                  },
                 },
               },
-            },
-          })}
-        >
-          <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
-            <StyledComponent />
-          </StylesProvider>
-        </ThemeProvider>,
-      );
+            })}
+          >
+            <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+              <StyledComponent />
+            </StylesProvider>
+          </ThemeProvider>,
+        );
 
-      assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
-        root: { padding: 9, margin: [2, 2, 3] },
+        assert.strictEqual(sheetsRegistry.registry.length, 1);
+        assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+          root: { padding: 9, margin: [2, 2, 3] },
+        });
+      });
+
+      it('can be used to remove styles', () => {
+        const theme = {
+          overrides: {
+            Test: {
+              root: {
+                margin: null,
+              },
+            },
+          },
+        };
+
+        const useStyles = makeStyles({ root: { margin: 5, padding: 3 } }, { name: 'Test' });
+        function Test() {
+          const classes = useStyles();
+          return <div className={classes.root} />;
+        }
+
+        const wrapper = mount(
+          <ThemeProvider theme={theme}>
+            <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+              <Test />
+            </StylesProvider>
+          </ThemeProvider>,
+        );
+
+        const div = wrapper.find('div').instance();
+
+        assert.strictEqual(sheetsRegistry.registry.length, 1);
+        assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+          root: { margin: null, padding: 3 },
+        });
       });
     });
 
