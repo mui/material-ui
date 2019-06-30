@@ -115,14 +115,14 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`sh
-  $ npm install @material-ui/core@next
+  $ npm install @material-ui/core
   \`\`\`
                 `}
           />
           <Link
             variant="subtitle1"
             color="inherit"
-            href="https://github.com/mui-org/material-ui/tree/master/examples/cdn-next"
+            href="https://github.com/mui-org/material-ui/tree/master/examples/cdn"
             gutterBottom
           >
             {t('cdn')}

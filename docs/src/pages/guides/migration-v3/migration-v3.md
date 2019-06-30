@@ -36,11 +36,11 @@ You need to update your `package.json` to use the latest version of Material-UI.
 Or run
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core
 
 or
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 ### Update React version
@@ -61,11 +61,11 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 Or run
 
 ```sh
-npm install @material-ui/styles@next
+npm install @material-ui/styles
 
 or
 
-yarn add @material-ui/styles@next
+yarn add @material-ui/styles
 ```
 
 ## Handling breaking changes
@@ -143,7 +143,7 @@ yarn add @material-ui/styles@next
     },
   }
   ```
-  
+
   *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
 
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
@@ -170,7 +170,7 @@ yarn add @material-ui/styles@next
 
 ### TypeScript
 
-#### `value` type 
+#### `value` type
 
 Normalized `value` prop type for input components to use `unknown`. This affects
 `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
