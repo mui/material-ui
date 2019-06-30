@@ -22,6 +22,7 @@ function EditPage(props) {
       }
       target="_blank"
       rel="noopener"
+      size="small"
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}

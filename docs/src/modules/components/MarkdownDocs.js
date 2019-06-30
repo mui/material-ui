@@ -32,6 +32,8 @@ import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   header: {
+    position: 'absolute',
+    right: 16,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',

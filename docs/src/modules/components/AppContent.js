@@ -8,6 +8,7 @@ const styles = theme => ({
   root: {
     paddingTop: 80 + 16,
     flex: '1 1 100%',
+    position: 'relative',
     maxWidth: '100%',
     margin: '0 auto',
     [theme.breakpoints.up('sm')]: {

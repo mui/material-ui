@@ -91,10 +91,6 @@ const styles = theme => ({
   grow: {
     flex: '1 1 auto',
   },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: '0 1 auto',
-  },
   skipNav: {
     position: 'fixed',
     padding: theme.spacing(1),
@@ -222,11 +218,6 @@ function AppFrame(props) {
                 >
                   <MenuIcon />
                 </IconButton>
-                {title !== null && (
-                  <Typography className={classes.title} variant="h6" noWrap>
-                    {title}
-                  </Typography>
-                )}
                 <div className={classes.grow} />
                 <AppSearch />
                 <Tooltip title="Change language" enterDelay={300}>

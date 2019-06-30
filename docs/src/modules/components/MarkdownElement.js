@@ -149,7 +149,7 @@ const styles = theme => ({
     '& h1': {
       ...theme.typography.h3,
       fontSize: 40,
-      margin: '32px 0 16px',
+      margin: '24px 0 16px',
     },
     '& .description': {
       ...theme.typography.h5,
@@ -280,6 +280,9 @@ const styles = theme => ({
       backgroundColor: 'rgba(255,229,100,0.2)',
       padding: '4px 24px',
       margin: '24px 0',
+      '& p': {
+        marginTop: '16px',
+      },
     },
     '& a, & a code': {
       // Style taken from the Link component
