@@ -31,11 +31,11 @@ Você precisa atualizar seu `package.json` para usar a versão mais recente do M
 Ou execute
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core
 
 ou
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 ### Atualize a versão do React

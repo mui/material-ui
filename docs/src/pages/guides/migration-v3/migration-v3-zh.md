@@ -31,11 +31,11 @@
 或者运行
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core
 
 或者
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 ### 更新 React 的版本
