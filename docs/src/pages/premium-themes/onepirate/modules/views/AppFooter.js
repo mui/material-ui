@@ -1,14 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
-import compose from 'docs/src/modules/utils/compose';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     backgroundColor: theme.palette.secondary.light,
@@ -49,7 +47,7 @@ const styles = theme => ({
     marginTop: theme.spacing(1),
     width: 150,
   },
-});
+}));
 
 const LANGUAGES = [
   {
@@ -62,8 +60,8 @@ const LANGUAGES = [
   },
 ];
 
-function AppFooter(props) {
-  const { classes } = props;
+export default function AppFooter() {
+  const classes = useStyles();
 
   return (
     <Typography component="footer" className={classes.root}>
@@ -145,12 +143,3 @@ function AppFooter(props) {
     </Typography>
   );
 }
-
-AppFooter.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default compose(
-  React.memo,
-  withStyles(styles),
-)(AppFooter);

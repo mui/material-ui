@@ -5,8 +5,7 @@ import clsx from 'clsx';
 import { withRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
-import { connect } from 'react-redux';
-import compose from 'docs/src/modules/utils/compose';
+import { useSelector } from 'react-redux';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
   const { as, href, prefetch, ...other } = props;
@@ -34,10 +33,10 @@ function Link(props) {
     naked,
     role: roleProp,
     router,
-    userLanguage,
     ...other
   } = props;
 
+  const { userLanguage } = useSelector(state => ({ userLanguage: state.options.userLanguage }));
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === props.href && activeClassName,
   });
@@ -71,21 +70,12 @@ Link.propTypes = {
   router: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
-  userLanguage: PropTypes.string.isRequired,
 };
 
 Link.defaultProps = {
   activeClassName: 'active',
 };
 
-const RouterLink = compose(
-  withRouter,
-  connect(
-    state => ({
-      userLanguage: state.options.userLanguage,
-    }),
-    {},
-  ),
-)(Link);
+const RouterLink = withRouter(Link);
 
 export default React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />);

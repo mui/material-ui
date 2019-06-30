@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import marked from 'marked';
 import { withStyles } from '@material-ui/core/styles';
 import textToHash from 'docs/src/modules/utils/textToHash';
-import compose from 'docs/src/modules/utils/compose';
 import prism from 'docs/src/modules/components/prism';
 
 // Monkey patch to preserve non-breaking spaces
@@ -299,7 +298,11 @@ const styles = theme => ({
 });
 
 function MarkdownElement(props) {
-  const { classes, className, text, userLanguage, ...other } = props;
+  const { classes, className, text, ...other } = props;
+
+  const { userLanguage } = useSelector(state => ({
+    userLanguage: state.options.userLanguage,
+  }));
 
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;
@@ -319,15 +322,6 @@ MarkdownElement.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   text: PropTypes.string,
-  userLanguage: PropTypes.string.isRequired,
 };
 
-export default compose(
-  connect(
-    state => ({
-      userLanguage: state.options.userLanguage,
-    }),
-    {},
-  ),
-  withStyles(styles, { flip: false }),
-)(MarkdownElement);
+export default withStyles(styles, { flip: false })(MarkdownElement);

@@ -3,7 +3,7 @@ import LZString from 'lz-string';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
@@ -18,7 +18,6 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
-import compose from 'docs/src/modules/utils/compose';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
@@ -126,7 +125,12 @@ function getDemoData(codeVariant, demo, githubLocation) {
 }
 
 function Demo(props) {
-  const { classes, codeVariant, demo, demoOptions, dispatch, githubLocation, t } = props;
+  const { classes, demo, demoOptions, githubLocation } = props;
+  const dispatch = useDispatch();
+  const { t, codeVariant } = useSelector(state => ({
+    t: state.options.t,
+    codeVariant: state.options.codeVariant,
+  }));
   const demoData = getDemoData(codeVariant, demo, githubLocation);
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
@@ -407,18 +411,9 @@ function Demo(props) {
 
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
-  codeVariant: PropTypes.string.isRequired,
   demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({
-    codeVariant: state.options.codeVariant,
-    t: state.options.t,
-  })),
-  withStyles(styles),
-)(Demo);
+export default withStyles(styles)(Demo);

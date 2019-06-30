@@ -6,14 +6,13 @@ import marked from 'marked';
 import warning from 'warning';
 import throttle from 'lodash/throttle';
 import clsx from 'clsx';
-import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import Link from 'docs/src/modules/components/Link';
-import compose from 'docs/src/modules/utils/compose';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     top: 70,
     // Fix IE 11 position sticky issue.
@@ -59,7 +58,7 @@ const styles = theme => ({
     paddingLeft: theme.spacing(2.5),
   },
   active: {},
-});
+}));
 
 const renderer = new marked.Renderer();
 
@@ -133,8 +132,12 @@ function useThrottledOnScroll(callback, delay) {
   }, [throttledCallback]);
 }
 
-function AppTableOfContents(props) {
-  const { classes, contents, t } = props;
+export default function AppTableOfContents(props) {
+  const { contents } = props;
+  const classes = useStyles();
+  const { t } = useSelector(state => ({
+    t: state.options.t,
+  }));
 
   const itemsServer = React.useMemo(() => {
     const itemsCollectorRef = { current: [] };
@@ -250,14 +253,5 @@ function AppTableOfContents(props) {
 }
 
 AppTableOfContents.propTypes = {
-  classes: PropTypes.object.isRequired,
   contents: PropTypes.array.isRequired,
-  t: PropTypes.func.isRequired,
 };
-
-export default compose(
-  connect(state => ({
-    t: state.options.t,
-  })),
-  withStyles(styles),
-)(AppTableOfContents);

@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,7 +12,6 @@ import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
-import compose from 'docs/src/modules/utils/compose';
 
 let savedScrollTop = null;
 function PersistScroll(props) {
@@ -134,8 +133,11 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 function AppDrawer(props) {
-  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen, t } = props;
+  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
+  const { t } = useSelector(state => ({
+    t: state.options.t,
+  }));
 
   const drawer = (
     <PersistScroll>
@@ -199,12 +201,6 @@ AppDrawer.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({
-    t: state.options.t,
-  })),
-  withStyles(styles),
-)(AppDrawer);
+export default withStyles(styles)(AppDrawer);

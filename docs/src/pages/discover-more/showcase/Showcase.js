@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -12,7 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { GitHub as GithubIcon } from '@material-ui/docs';
 import Link from 'docs/src/modules/components/Link';
-import compose from 'docs/src/modules/utils/compose';
 import appList from './appList';
 
 const styles = theme => ({
@@ -76,9 +75,10 @@ const sortFunctions = {
 };
 
 function Showcase(props) {
-  const { classes, t } = props;
+  const { classes } = props;
   const [sortFunctionName, setSortFunctionName] = React.useState('dateAdded');
   const sortFunction = sortFunctions[sortFunctionName];
+  const { t } = useSelector(state => ({ t: state.options.t }));
 
   function handleChangeSort(event) {
     setSortFunctionName(event.target.value);
@@ -150,10 +150,6 @@ function Showcase(props) {
 
 Showcase.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(Showcase);
+export default withStyles(styles)(Showcase);

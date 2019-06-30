@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -13,7 +13,6 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
-import compose from 'docs/src/modules/utils/compose';
 
 const InstallationLink = React.forwardRef((buttonProps, ref) => (
   <Link naked prefetch href="/getting-started/installation" ref={ref} {...buttonProps} />
@@ -95,7 +94,8 @@ const PremiumThemesLink = React.forwardRef((props, ref) => {
 });
 
 function HomeSteps(props) {
-  const { classes, t } = props;
+  const { classes } = props;
+  const { t } = useSelector(state => ({ t: state.options.t }));
   const theme = useTheme();
 
   return (
@@ -202,10 +202,6 @@ function HomeSteps(props) {
 
 HomeSteps.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(HomeSteps);
+export default withStyles(styles)(HomeSteps);

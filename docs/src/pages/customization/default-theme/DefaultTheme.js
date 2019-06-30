@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import url from 'url';
 import Inspector from 'react-inspector';
 import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
@@ -22,13 +21,13 @@ const styles = theme => ({
   },
 });
 
-class DefaultTheme extends React.Component {
-  state = {
-    checked: false,
-    expandPaths: null,
-  };
+function DefaultTheme(props) {
+  const { classes, theme: docsTheme } = props;
+  const [checked, setChecked] = React.useState(false);
+  const [expandPaths, setExpandPaths] = React.useState(null);
+  const { t } = useSelector(state => ({ t: state.options.t }));
 
-  componentDidMount() {
+  React.useEffect(() => {
     const URL = url.parse(document.location.href, true);
     const expandPath = URL.query['expend-path'];
 
@@ -36,57 +35,50 @@ class DefaultTheme extends React.Component {
       return;
     }
 
-    this.setState({
-      expandPaths: expandPath.split('.').reduce((acc, path) => {
+    setExpandPaths(
+      expandPath.split('.').reduce((acc, path) => {
         const last = acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
         acc.push(last + path);
         return acc;
       }, []),
-    });
-  }
-
-  render() {
-    const { classes, t, theme: docsTheme } = this.props;
-    const { checked, expandPaths } = this.state;
-
-    const theme = createMuiTheme({
-      palette: {
-        type: docsTheme.palette.type,
-      },
-      direction: docsTheme.direction,
-    });
-
-    return (
-      <div className={classes.root}>
-        <FormControlLabel
-          className={classes.switch}
-          control={
-            <Switch
-              checked={checked}
-              onChange={(event, value) => this.setState({ checked: value })}
-            />
-          }
-          label={t('expandAll')}
-        />
-        <Inspector
-          theme={theme.palette.type === 'light' ? 'chromeLight' : 'chromeDark'}
-          data={theme}
-          expandPaths={expandPaths}
-          expandLevel={checked ? 100 : 1}
-          key={`${checked}-${theme.palette.type}`} // Remount
-        />
-      </div>
     );
-  }
+  }, []);
+
+  const theme = createMuiTheme({
+    palette: {
+      type: docsTheme.palette.type,
+    },
+    direction: docsTheme.direction,
+  });
+
+  return (
+    <div className={classes.root}>
+      <FormControlLabel
+        className={classes.switch}
+        control={
+          <Switch
+            checked={checked}
+            onChange={(event, value) => {
+              setChecked(value);
+            }}
+          />
+        }
+        label={t('expandAll')}
+      />
+      <Inspector
+        theme={theme.palette.type === 'light' ? 'chromeLight' : 'chromeDark'}
+        data={theme}
+        expandPaths={expandPaths}
+        expandLevel={checked ? 100 : 1}
+        key={`${checked}-${theme.palette.type}`} // Remount
+      />
+    </div>
+  );
 }
 
 DefaultTheme.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default compose(
-  withStyles(styles, { withTheme: true }),
-  connect(state => ({ t: state.options.t })),
-)(DefaultTheme);
+export default withStyles(styles, { withTheme: true })(DefaultTheme);
