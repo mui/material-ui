@@ -10,8 +10,6 @@ const pages = [
       { pathname: '/getting-started/page-layout-examples' },
       { pathname: '/getting-started/learn' },
       { pathname: '/getting-started/faq', title: 'FAQs' },
-      { pathname: '/getting-started/supported-components' },
-      { pathname: '/getting-started/supported-platforms' },
     ],
   },
   {
@@ -192,6 +190,8 @@ const pages = [
       { pathname: '/discover-more/related-projects' },
       { pathname: '/discover-more/roadmap' },
       { pathname: '/discover-more/backers', title: 'Sponsors & Backers' },
+      { pathname: '/discover-more/supported-platforms' },
+      { pathname: '/discover-more/supported-components' },
       { pathname: '/discover-more/vision' },
       { pathname: '/discover-more/team' },
       { pathname: '/discover-more/community' },

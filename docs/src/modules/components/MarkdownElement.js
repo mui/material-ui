@@ -213,6 +213,7 @@ const styles = theme => ({
       overflowX: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
       borderCollapse: 'collapse',
+      marginBottom: '16px',
       borderSpacing: 0,
       overflow: 'hidden',
       '& .prop-name': {

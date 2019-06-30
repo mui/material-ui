@@ -4,16 +4,16 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
 const req = require.context(
-  'docs/src/pages/getting-started/supported-components',
+  'docs/src/pages/discover-more/supported-platforms',
   true,
   /\.md|\.js$/,
 );
 const reqSource = require.context(
-  '!raw-loader!../../docs/src/pages/getting-started/supported-components',
+  '!raw-loader!../../docs/src/pages/discover-more/supported-platforms',
   false,
   /\.(js|tsx)$/,
 );
-const reqPrefix = 'pages/getting-started/supported-components';
+const reqPrefix = 'pages/discover-more/supported-platforms';
 
 function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
