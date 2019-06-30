@@ -38,7 +38,7 @@ steps:
   - script: |
       node scripts/sizeSnapshot/upload
     displayName: 'persist size snapshot'
-    condition: ne(variables['Build.Reason'], 'PullRequest')
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     env:
       AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
       AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
@@ -46,6 +46,6 @@ steps:
   - script: |
       yarn danger ci
     displayName: 'run danger on PRs'
-    condition: eq(variables['Build.Reason'], 'PullRequest')
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     env:
       DANGER_GITHUB_API_TOKEN: $(GITHUB_API_TOKEN)
