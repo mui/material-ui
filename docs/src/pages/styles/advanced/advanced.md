@@ -504,7 +504,7 @@ const StyledTextField = styled(TextField)`
   }
   .MuiOutlinedInput-root {
     fieldset {
-      border-color: red; ❤️
+      border-color: red; 🔴
     }
     &:hover fieldset {
       border-color: yellow; 💛
