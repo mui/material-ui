@@ -1,5 +1,21 @@
 import * as colors from './colors';
 
+if (
+  process.env.NODE_ENV !== 'production' &&
+  process.env.NODE_ENV !== 'test' &&
+  typeof window !== 'undefined'
+) {
+  // eslint-disable-next-line no-console
+  console.warn(
+    [
+      'It looks like you are importing the whole `@material-ui/core` package.',
+      'This may cause significant performance issues.',
+      '',
+      'See https://material-ui.com/r/minimize for more info.',
+    ].join('\n'),
+  );
+}
+
 export { colors };
 export {
   createMuiTheme,
