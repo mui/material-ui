@@ -80,6 +80,7 @@ const styles = theme => ({
   code: {
     display: 'none',
     padding: 0,
+    marginBottom: theme.spacing(1),
     marginRight: 0,
     [theme.breakpoints.up('sm')]: {
       display: 'block',

@@ -3,9 +3,9 @@ title: Date Picker, Time Picker React components
 components: TextField
 ---
 
-# Pickers
+# Date/Time inputs
 
-<p class="description">Pickers provide a simple way to select a single value from a pre-determined set.</p>
+<p class="description">Date/Time inputs (short: pickers) provide a simple way to select a single value from a pre-determined set.</p>
 
 - On mobile, pickers are best suited for display in confirmation dialog.
 - For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.
