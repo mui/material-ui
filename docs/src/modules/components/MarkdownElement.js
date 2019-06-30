@@ -147,7 +147,8 @@ const styles = theme => ({
       background: 'transparent',
     },
     '& h1': {
-      ...theme.typography.h2,
+      ...theme.typography.h3,
+      fontSize: 40,
       margin: '32px 0 16px',
     },
     '& .description': {
@@ -156,22 +157,25 @@ const styles = theme => ({
     },
     '& h2': {
       ...theme.typography.h4,
-      margin: '32px 0 24px',
+      fontSize: 30,
+      margin: '40px 0 16px',
     },
     '& h3': {
       ...theme.typography.h5,
-      margin: '32px 0 24px',
+      margin: '40px 0 16px',
     },
     '& h4': {
       ...theme.typography.h6,
-      margin: '24px 0 16px',
+      margin: '32px 0 16px',
     },
     '& h5': {
       ...theme.typography.subtitle2,
-      margin: '24px 0 16px',
+      margin: '32px 0 16px',
     },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
+      marginTop: 0,
+      marginBottom: '16px',
     },
     '& ul': {
       paddingLeft: 30,
