@@ -12,7 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
-describe.only('<SpeedDial />', () => {
+describe('<SpeedDial />', () => {
   let mount;
   let classes;
 
@@ -272,7 +272,10 @@ describe.only('<SpeedDial />', () => {
       if (actionIndex === -1) {
         return getDialButton();
       }
-      return wrapper.find(SpeedDialAction).at(actionIndex);
+      return wrapper
+        .find(SpeedDialAction)
+        .at(actionIndex)
+        .find(Fab);
     };
     /**
      * @returns true if the button of the nth action is focused
