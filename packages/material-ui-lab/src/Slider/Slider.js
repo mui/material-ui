@@ -182,6 +182,7 @@ export const styles = theme => ({
   /* Styles applied to the rail element. */
   rail: {
     position: 'absolute',
+    left: 0,
     width: '100%',
     height: 2,
     borderRadius: 1,
