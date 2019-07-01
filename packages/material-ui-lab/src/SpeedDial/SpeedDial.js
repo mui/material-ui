@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import keycode from 'keycode';
 import warning from 'warning';
 import { duration, withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
@@ -152,11 +151,11 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
   };
 
   const handleKeyboardNavigation = event => {
-    const key = keycode(event);
+    const key = event.key.replace('Arrow', '').toLowerCase();
     const { current: nextItemArrowKeyCurrent = key } = nextItemArrowKey;
 
-    if (key === 'esc') {
-      closeActions(event, key);
+    if (event.key === 'Escape') {
+      closeActions(event, 'esc');
     } else if (utils.sameOrientation(key, direction)) {
       event.preventDefault();
 

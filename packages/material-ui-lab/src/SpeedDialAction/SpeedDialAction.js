@@ -33,16 +33,16 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
     ButtonProps,
     classes,
     className,
-    delay,
+    delay = 0,
     icon,
     id,
     onClick,
     onKeyDown,
-    open,
-    tooltipTitle,
+    open = false,
     TooltipClasses,
-    tooltipPlacement,
-    tooltipOpen: tooltipOpenProp,
+    tooltipOpen: tooltipOpenProp = false,
+    tooltipPlacement = 'left',
+    tooltipTitle,
     ...other
   } = props;
 
@@ -57,10 +57,18 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
   }
 
   React.useEffect(() => {
-    if (!tooltipOpenProp || prevPropOpen === open) return;
+    if (!tooltipOpenProp || prevPropOpen === open) {
+      return undefined;
+    }
+
     if (!tooltipOpen) {
       timeout.current = setTimeout(() => setTooltipOpen(true), delay + 100);
+      return () => {
+        clearTimeout(timeout.current);
+      };
     }
+
+    return undefined;
   });
 
   const handleTooltipClose = () => {
@@ -184,13 +192,6 @@ SpeedDialAction.propTypes = {
    * Label to display in the tooltip.
    */
   tooltipTitle: PropTypes.node.isRequired,
-};
-
-SpeedDialAction.defaultProps = {
-  delay: 0,
-  open: false,
-  tooltipPlacement: 'left',
-  tooltipOpen: false,
 };
 
 export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);
