@@ -71,7 +71,9 @@ function usingHighDensity(themeOptions) {
       MuiIconButton: {
         sizeSmall: {
           // minimal touch target hit spacing
-          padding: 8,
+          marginLeft: 4,
+          marginRight: 4,
+          padding: 12
         },
       },
     },
