@@ -1,5 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -7,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 
@@ -24,8 +23,6 @@ const styles = theme => ({
     cursor: 'default',
     bottom: 0,
     right: 0,
-    ...theme.typography.caption,
-    padding: theme.spacing(1),
   },
   paper: {
     padding: theme.spacing(1),
@@ -104,7 +101,7 @@ function Ad(props) {
       {adblock === true ? getAdblock(classes, t) : null}
       {adblock === false ? (
         <Tooltip id="ad-info" title={t('adTitle')} placement="left">
-          <span className={classes.info}>i</span>
+          <InfoIcon className={classes.info} />
         </Tooltip>
       ) : null}
     </span>
