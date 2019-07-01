@@ -6,6 +6,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
+import deepmerge from 'deepmerge';
 
 export const themeColor = blue[700];
 
@@ -23,9 +24,7 @@ const themeInitialOptions = {
  * @returns {ThemeOptions}
  */
 function usingHighDensity(themeOptions) {
-  // TODO merge strategy ala webpack-merge?
-  return {
-    ...themeOptions,
+  return deepmerge(themeOptions, {
     props: {
       MuiButton: {
         size: 'small',
@@ -73,11 +72,11 @@ function usingHighDensity(themeOptions) {
           // minimal touch target hit spacing
           marginLeft: 4,
           marginRight: 4,
-          padding: 12
+          padding: 12,
         },
       },
     },
-  };
+  });
 }
 
 function usingIdentity(themeOptions) {
