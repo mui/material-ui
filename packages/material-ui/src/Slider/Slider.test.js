@@ -57,12 +57,13 @@ describe('<Slider />', () => {
     );
 
     fireEvent.mouseDown(container.firstChild);
-    document.body.dispatchEvent(new window.MouseEvent('mouseup'));
+    fireEvent.mouseUp(document.body);
 
     expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(1);
 
-    fireEvent.keyDown(getByRole('slider'), {
+    getByRole('slider').focus();
+    fireEvent.keyDown(document.activeElement, {
       key: 'Home',
     });
     expect(handleChange.callCount).to.equal(2);
@@ -141,9 +142,10 @@ describe('<Slider />', () => {
   });
 
   describe('prop: orientation', () => {
-    it('should render with the default and vertical classes', () => {
-      const { container } = render(<Slider orientation="vertical" value={0} />);
+    it('should render with the vertical classes', () => {
+      const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
       expect(container.firstChild).to.have.class(classes.vertical);
+      expect(getByRole('slider').getAttribute('aria-orientation')).to.equal('vertical');
     });
 
     it('should report the right position', () => {
@@ -175,16 +177,18 @@ describe('<Slider />', () => {
 
   describe('range', () => {
     it('should support keyboard', () => {
-      const { container } = render(<Slider defaultValue={[20, 30]} />);
-      const thumb1 = container.querySelectorAll('[role="slider"]')[0];
-      const thumb2 = container.querySelectorAll('[role="slider"]')[1];
+      const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
+      const thumb1 = getAllByRole('slider')[0];
+      const thumb2 = getAllByRole('slider')[1];
 
-      fireEvent.keyDown(thumb1, {
+      thumb1.focus();
+      fireEvent.keyDown(document.activeElement, {
         key: 'ArrowRight',
       });
       expect(thumb1.getAttribute('aria-valuenow')).to.equal('21');
 
-      fireEvent.keyDown(thumb2, {
+      thumb2.focus();
+      fireEvent.keyDown(document.activeElement, {
         key: 'ArrowLeft',
       });
       expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
@@ -242,12 +246,13 @@ describe('<Slider />', () => {
       container.firstChild.dispatchEvent(event);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
 
-      fireEvent.keyDown(thumb, {
+      thumb.focus();
+      fireEvent.keyDown(document.activeElement, {
         key: 'ArrowUp',
       });
       expect(thumb.getAttribute('aria-valuenow')).to.equal('30');
 
-      fireEvent.keyDown(thumb, {
+      fireEvent.keyDown(document.activeElement, {
         key: 'ArrowDown',
       });
       expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
@@ -256,8 +261,9 @@ describe('<Slider />', () => {
 
   describe('prop: disabled', () => {
     it('should render the disabled classes', () => {
-      const { container } = render(<Slider disabled value={0} />);
+      const { container, getByRole } = render(<Slider disabled value={0} />);
       expect(container.firstChild).to.have.class(classes.disabled);
+      expect(getByRole('slider').getAttribute('tabIndex')).to.equal(null);
     });
   });
 
@@ -265,28 +271,29 @@ describe('<Slider />', () => {
     it('should handle all the keys', () => {
       const { getByRole } = render(<Slider defaultValue={50} />);
       const thumb = getByRole('slider');
+      thumb.focus();
 
-      fireEvent.keyDown(thumb, {
+      fireEvent.keyDown(document.activeElement, {
         key: 'Home',
       });
       expect(thumb.getAttribute('aria-valuenow')).to.equal('0');
 
-      fireEvent.keyDown(thumb, {
+      fireEvent.keyDown(document.activeElement, {
         key: 'End',
       });
       expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
 
-      fireEvent.keyDown(thumb, {
+      fireEvent.keyDown(document.activeElement, {
         key: 'PageDown',
       });
       expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
 
-      fireEvent.keyDown(thumb, {
+      fireEvent.keyDown(document.activeElement, {
         key: 'Escape',
       });
       expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
 
-      fireEvent.keyDown(thumb, {
+      fireEvent.keyDown(document.activeElement, {
         key: 'PageUp',
       });
       expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
@@ -302,42 +309,45 @@ describe('<Slider />', () => {
     it('should reach right edge value', () => {
       const { getByRole } = render(<Slider defaultValue={90} min={6} max={108} step={10} />);
       const thumb = getByRole('slider');
+      thumb.focus();
 
-      fireEvent.keyDown(thumb, moveRightEvent);
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
 
-      fireEvent.keyDown(thumb, moveRightEvent);
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('108');
 
-      fireEvent.keyDown(thumb, moveLeftEvent);
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
 
-      fireEvent.keyDown(thumb, moveLeftEvent);
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
     });
 
     it('should reach left edge value', () => {
       const { getByRole } = render(<Slider defaultValue={20} min={6} max={108} step={10} />);
       const thumb = getByRole('slider');
+      thumb.focus();
 
-      fireEvent.keyDown(thumb, moveLeftEvent);
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('10');
 
-      fireEvent.keyDown(thumb, moveLeftEvent);
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('6');
 
-      fireEvent.keyDown(thumb, moveRightEvent);
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
 
-      fireEvent.keyDown(thumb, moveRightEvent);
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('30');
     });
 
     it('should round value to step precision', () => {
       const { getByRole } = render(<Slider defaultValue={0.2} min={0} max={1} step={0.1} />);
       const thumb = getByRole('slider');
+      thumb.focus();
 
-      fireEvent.keyDown(thumb, moveRightEvent);
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('0.3');
     });
 
@@ -346,8 +356,9 @@ describe('<Slider />', () => {
         <Slider defaultValue={0.00000002} min={0} max={0.00000005} step={0.00000001} />,
       );
       const thumb = getByRole('slider');
+      thumb.focus();
 
-      fireEvent.keyDown(thumb, moveRightEvent);
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('3e-8');
     });
 
@@ -356,8 +367,9 @@ describe('<Slider />', () => {
         <Slider defaultValue={-0.00000002} min={-0.00000005} max={0} step={0.00000001} />,
       );
       const thumb = getByRole('slider');
+      thumb.focus();
 
-      fireEvent.keyDown(thumb, moveLeftEvent);
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb.getAttribute('aria-valuenow')).to.equal('-3e-8');
     });
   });
