@@ -15,7 +15,7 @@ import {
  * @param {boolean} [options.baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
  * @param {boolean} [options.disableUnnmount] - if true does not cleanup before mount
  * @param {boolean} [options.strict] - wrap in React.StrictMode?
- * @returns {import('@testing-library/react').RenderResult & { setProps(props: object): void}}
+ * @returns {import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}
  * TODO: type return RenderResult in setProps
  */
 function clientRender(element, options = {}) {
@@ -26,7 +26,10 @@ function clientRender(element, options = {}) {
   }
 
   const Mode = strict ? React.StrictMode : React.Fragment;
-  const result = render(element, { baseElement, wrapper: Mode });
+  const result = render(element, {
+    baseElement,
+    wrapper: Mode,
+  });
 
   /**
    * convenience helper. Better than repeating all props.
