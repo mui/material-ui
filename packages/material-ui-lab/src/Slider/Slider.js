@@ -181,6 +181,7 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the rail element. */
   rail: {
+    display: 'block',
     position: 'absolute',
     width: '100%',
     height: 2,
@@ -194,6 +195,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the track element. */
   track: {
+    display: 'block',
     position: 'absolute',
     height: 2,
     borderRadius: 1,
