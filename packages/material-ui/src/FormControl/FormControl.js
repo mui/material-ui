@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
 import FormControlContext from './FormControlContext';
@@ -60,6 +61,7 @@ export const styles = {
  * ⚠️Only one input can be used within a FormControl.
  */
 const FormControl = React.forwardRef(function FormControl(props, ref) {
+  const theme = useTheme();
   const {
     children,
     classes,
@@ -68,7 +70,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     disabled = false,
     error = false,
     fullWidth = false,
-    margin = 'none',
+    margin = theme.dense ? 'dense' : 'none',
     required = false,
     variant = 'standard',
     ...other

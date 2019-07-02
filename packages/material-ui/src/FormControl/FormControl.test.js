@@ -6,6 +6,7 @@ import describeConformance from '../test-utils/describeConformance';
 import { act, cleanup, createClientRender } from 'test/utils/createClientRender';
 import Input from '../Input';
 import Select from '../Select';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 import FormControl from './FormControl';
 import FormControlContext from './FormControlContext';
 
@@ -48,6 +49,18 @@ describe('<FormControl />', () => {
 
       expect(root).not.to.have.class(classes.marginNormal);
       expect(root).not.to.have.class(classes.marginDense);
+    });
+
+    it('should have dense margin in a dense theme', () => {
+      const { container } = render(
+        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+          <FormControl />
+        </MuiThemeProvider>,
+      );
+      const root = container.firstChild;
+
+      expect(root).to.have.class(classes.marginDense);
+      expect(root).not.to.have.class(classes.marginNormal);
     });
 
     it('can have the margin normal class', () => {
