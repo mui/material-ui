@@ -150,18 +150,18 @@ export const spacing: SimpleStyleFunction<
 export type SpacingProps = PropsFor<typeof spacing>;
 
 // style.js
-export interface StyleOptions<PropKey, Theme extends object> {
+export interface StyleOptions<PropKey, Theme extends object, PropType> {
   cssProperty?: PropKey | keyof CSS.Properties | false;
   prop: PropKey;
   /**
    * dot access in `Theme`
    */
   themeKey?: string;
-  transform?: (cssValue: unknown) => number | string | {[k: string]: any};
+  transform?: (cssValue: PropType) => number | string | { [k: string]: any };
 }
-export function style<PropKey extends string, Theme extends object>(
-  options: StyleOptions<PropKey, Theme>,
-): StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme }>;
+export function style<PropKey extends string, Theme extends object, PropType>(
+  options: StyleOptions<PropKey, Theme, PropType>,
+): StyleFunction<{ [K in PropKey]?: PropType } & { theme?: Theme }>;
 
 // typography.js
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
