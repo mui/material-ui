@@ -29,10 +29,10 @@ function style(options) {
         value = themeMapping[propValueFinal];
       } else {
         value = getPath(themeMapping, propValueFinal) || propValueFinal;
+      }
 
-        if (transform) {
-          value = transform(value);
-        }
+      if (transform) {
+        value = transform(value);
       }
 
       if (cssProperty === false) {
