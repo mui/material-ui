@@ -53,7 +53,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     ...other
   } = props;
 
-  const autoFocus = autoFocusProp !== undefined ? autoFocusProp : !disableAutoFocusItem;
+  const autoFocus = (autoFocusProp !== undefined ? autoFocusProp : !disableAutoFocusItem) && open;
 
   const menuListActionsRef = React.useRef(null);
   const firstValidItemRef = React.useRef(null);
