@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -43,6 +44,7 @@ export const styles = theme => ({
 });
 
 const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
+  const theme = useTheme();
   const {
     classes,
     className: classNameProp,
@@ -51,7 +53,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
     error,
     filled,
     focused,
-    margin,
+    margin = theme.dense ? 'dense' : undefined,
     muiFormControl,
     required,
     variant,
@@ -59,7 +61,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   } = props;
 
   const fcs = formControlState({
-    props,
+    props: { ...props, margin },
     muiFormControl,
     states: ['variant', 'margin', 'disabled', 'error', 'filled', 'focused', 'required'],
   });

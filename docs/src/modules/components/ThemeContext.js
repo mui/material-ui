@@ -27,9 +27,6 @@ function usingHighDensity(themeOptions) {
   return deepmerge(themeOptions, {
     dense: true,
     props: {
-      MuiFormHelperText: {
-        margin: 'dense',
-      },
       MuiIconButton: {
         size: 'small',
       },

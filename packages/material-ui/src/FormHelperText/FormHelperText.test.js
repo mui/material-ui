@@ -6,6 +6,7 @@ import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import FormHelperText from './FormHelperText';
 import FormControlContext from '../FormControl/FormControlContext';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<FormHelperText />', () => {
   let mount;
@@ -106,5 +107,15 @@ describe('<FormHelperText />', () => {
         expect(wrapper.container.firstChild).to.have.class(classes.marginDense);
       });
     });
+  });
+
+  it('has dense margin in a dense theme', () => {
+    const { container } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <FormHelperText>Hello, World!</FormHelperText>
+      </MuiThemeProvider>,
+    );
+
+    expect(container.firstChild).to.have.class(classes.marginDense);
   });
 });
