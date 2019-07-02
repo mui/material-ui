@@ -44,6 +44,16 @@ function styleTransformTest() {
       },
     }),
   });
+
+  // transform value typing must be possible
+  const customStyle = style({
+    prop: 'border',
+    transform: (value: number) => `${value}px solid #fff`,
+  });
+
+  const StyledComponent = muiStyled('div')(customStyle);
+  // Type 'string' is not assignable to type 'number | undefined'.
+  <StyledComponent border={'invalid value'} theme={{}} />; // $ExpectError
 }
 
 function cssTest() {
