@@ -1,18 +1,23 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Table from './Table';
 import TableContext from './TableContext';
-import findOutermostIntrinsic from '../test-utils/findOutermostIntrinsic';
 
 describe('<Table />', () => {
   let mount;
+  const render = createClientRender({ strict: true });
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<Table>foo</Table>);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -35,22 +40,26 @@ describe('<Table />', () => {
 
   describe('prop: component', () => {
     it('can render a different component', () => {
-      const wrapper = mount(<Table component="div">foo</Table>);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
+      const { container } = render(<Table component="div">foo</Table>);
+      expect(container.firstChild).to.have.property('nodeName', 'DIV');
     });
   });
 
   it('should render children', () => {
-    const children = <tbody className="test" />;
-    const wrapper = mount(<Table>{children}</Table>);
-    assert.strictEqual(wrapper.contains(children), true);
+    const { getByTestId } = render(
+      <Table>
+        <tbody data-testid="children" />
+      </Table>,
+    );
+
+    expect(getByTestId('children')).to.be.ok;
   });
 
   it('should define table in the child context', () => {
     let context;
 
     // TODO test integration with TableCell
-    mount(
+    render(
       <Table>
         <TableContext.Consumer>
           {value => {
@@ -61,7 +70,7 @@ describe('<Table />', () => {
       </Table>,
     );
 
-    assert.deepEqual(context, {
+    expect(context).to.deep.equal({
       size: 'medium',
       padding: 'default',
     });
