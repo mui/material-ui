@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Interpolate from '@trendmicro/react-interpolate';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Link from 'docs/src/modules/components/Link';
-import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
@@ -34,7 +33,8 @@ const styles = theme => ({
 });
 
 function HomeFooter(props) {
-  const { classes, t } = props;
+  const { classes } = props;
+  const { t } = useSelector(state => ({ t: state.options.t }));
 
   return (
     <div className={classes.root}>
@@ -117,10 +117,6 @@ function HomeFooter(props) {
 
 HomeFooter.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(HomeFooter);
+export default withStyles(styles)(HomeFooter);

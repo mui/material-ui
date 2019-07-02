@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import Divider from '@material-ui/core/Divider';
@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import compose from 'docs/src/modules/utils/compose';
 
 const users = [
   {
@@ -53,7 +52,8 @@ const styles = theme => ({
 });
 
 function HomeUsers(props) {
-  const { classes, t } = props;
+  const { classes } = props;
+  const { t } = useSelector(state => ({ t: state.options.t }));
 
   return (
     <div className={classes.root}>
@@ -97,10 +97,6 @@ function HomeUsers(props) {
 
 HomeUsers.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(HomeUsers);
+export default withStyles(styles)(HomeUsers);

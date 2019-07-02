@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import NProgress from 'nprogress';
 import Router from 'next/router';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -31,7 +31,6 @@ import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
 import { LANGUAGES } from 'docs/src/modules/constants';
-import compose from 'docs/src/modules/utils/compose';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 
@@ -147,7 +146,12 @@ const styles = theme => ({
 });
 
 function AppFrame(props) {
-  const { children, classes, theme, t, userLanguage } = props;
+  const { children, classes } = props;
+  const theme = useTheme();
+  const { t, userLanguage } = useSelector(state => ({
+    t: state.options.t,
+    userLanguage: state.options.userLanguage,
+  }));
 
   const [languageMenu, setLanguageMenu] = React.useState(null);
   function handleLanguageIconClick(event) {
@@ -335,18 +339,6 @@ function AppFrame(props) {
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired,
-  userLanguage: PropTypes.string.isRequired,
 };
 
-export default compose(
-  connect(
-    state => ({
-      t: state.options.t,
-      userLanguage: state.options.userLanguage,
-    }),
-    null,
-  ),
-  withStyles(styles, { withTheme: true }),
-)(AppFrame);
+export default withStyles(styles)(AppFrame);

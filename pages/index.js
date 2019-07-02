@@ -1,9 +1,8 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -16,7 +15,6 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
 import loadScript from 'docs/src/modules/utils/loadScript';
-import compose from 'docs/src/modules/utils/compose';
 
 let dependenciesLoaded = false;
 
@@ -31,7 +29,7 @@ function loadDependencies() {
   loadScript('https://platform.twitter.com/widgets.js', document.querySelector('head'));
 }
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flex: '1 0 100%',
   },
@@ -96,89 +94,90 @@ const styles = theme => ({
       color: theme.palette.background.paper,
     },
   },
-});
+}));
 
 const GettingStartedLink = React.forwardRef((props, ref) => {
   return <Link href="/getting-started/installation" naked prefetch ref={ref} {...props} />;
 });
 
-class HomePage extends React.Component {
-  componentDidMount() {
+export default function HomePage() {
+  React.useEffect(() => {
     if (window.location.hash !== '' && window.location.hash !== '#main=content') {
       window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
     }
 
     loadDependencies();
-  }
+  }, []);
+  const { t } = useSelector(state => ({
+    t: state.options.t,
+  }));
+  const classes = useStyles();
 
-  render() {
-    const { classes, t } = this.props;
-
-    return (
-      <AppFrame classes={{ drawer: classes.drawer }}>
-        <div className={classes.root}>
-          <Head />
-          <main id="main-content" tabIndex="-1">
-            <div className={classes.hero}>
-              <Container maxWidth="md" className={classes.content}>
-                <img
-                  src="/static/images/material-ui-logo.svg"
-                  alt="Material-UI Logo"
-                  className={classes.logo}
-                />
-                <div>
-                  <Typography
-                    variant="h3"
-                    component="h1"
-                    color="inherit"
-                    gutterBottom
-                    className={classes.title}
-                  >
-                    {'MATERIAL-UI'}
-                  </Typography>
-                  <Typography variant="h5" component="h2" color="inherit">
-                    {t('strapline')}
-                  </Typography>
-                  <Button
-                    component={GettingStartedLink}
-                    className={classes.button}
-                    variant="outlined"
-                    color="primary"
-                  >
-                    {t('getStarted')}
-                  </Button>
-                </div>
-              </Container>
-            </div>
-            <div className={classes.social}>
-              <a
-                className="github-button"
-                href="https://github.com/mui-org/material-ui"
-                data-icon="octicon-star"
-                data-show-count="true"
-              >
-                Star
-              </a>
-              <a
-                className="twitter-follow-button"
-                href="https://twitter.com/@materialui"
-                data-show-screen-name="false"
-              >
-                Follow
-              </a>
-            </div>
-            <HomeQuickWord />
-            <HomeSteps />
-            <HomeBackers />
-            <HomeUsers />
-          </main>
-          <HomeFooter />
-        </div>
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: `
+  return (
+    <AppFrame classes={{ drawer: classes.drawer }}>
+      <div className={classes.root}>
+        <Head />
+        <main id="main-content" tabIndex="-1">
+          <div className={classes.hero}>
+            <Container maxWidth="md" className={classes.content}>
+              <img
+                src="/static/images/material-ui-logo.svg"
+                alt="Material-UI Logo"
+                className={classes.logo}
+              />
+              <div>
+                <Typography
+                  variant="h3"
+                  component="h1"
+                  color="inherit"
+                  gutterBottom
+                  className={classes.title}
+                >
+                  {'MATERIAL-UI'}
+                </Typography>
+                <Typography variant="h5" component="h2" color="inherit">
+                  {t('strapline')}
+                </Typography>
+                <Button
+                  component={GettingStartedLink}
+                  className={classes.button}
+                  variant="outlined"
+                  color="primary"
+                >
+                  {t('getStarted')}
+                </Button>
+              </div>
+            </Container>
+          </div>
+          <div className={classes.social}>
+            <a
+              className="github-button"
+              href="https://github.com/mui-org/material-ui"
+              data-icon="octicon-star"
+              data-show-count="true"
+            >
+              Star
+            </a>
+            <a
+              className="twitter-follow-button"
+              href="https://twitter.com/@materialui"
+              data-show-screen-name="false"
+            >
+              Follow
+            </a>
+          </div>
+          <HomeQuickWord />
+          <HomeSteps />
+          <HomeBackers />
+          <HomeUsers />
+        </main>
+        <HomeFooter />
+      </div>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -192,21 +191,8 @@ class HomePage extends React.Component {
   ]
 }
           `,
-          }}
-        />
-      </AppFrame>
-    );
-  }
+        }}
+      />
+    </AppFrame>
+  );
 }
-
-HomePage.propTypes = {
-  classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-};
-
-export default compose(
-  connect(state => ({
-    t: state.options.t,
-  })),
-  withStyles(styles),
-)(HomePage);

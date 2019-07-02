@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Router } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -12,7 +12,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import compose from 'docs/src/modules/utils/compose';
 
 const styles = {
   item: {
@@ -111,7 +110,8 @@ function layouts(t) {
 }
 
 function PageLayoutExamples(props) {
-  const { classes, t } = props;
+  const { classes } = props;
+  const { t } = useSelector(state => ({ t: state.options.t }));
 
   return (
     <Grid container spacing={2}>
@@ -146,10 +146,6 @@ function PageLayoutExamples(props) {
 
 PageLayoutExamples.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(PageLayoutExamples);
+export default withStyles(styles)(PageLayoutExamples);

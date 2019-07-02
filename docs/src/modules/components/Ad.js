@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -8,7 +8,6 @@ import Paper from '@material-ui/core/Paper';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
-import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
@@ -52,74 +51,65 @@ function getAdblock(classes, t) {
   );
 }
 
-class Ad extends React.Component {
-  random = Math.random();
+// const disable = process.env.NODE_ENV !== 'production';
+const disable = false;
 
-  state = {
-    disable: process.env.NODE_ENV !== 'production',
-    adblock: null,
-  };
+function Ad(props) {
+  const { classes } = props;
+  const { current: random } = React.useRef(Math.random());
+  const timerAdblock = React.useRef();
+  const { t } = useSelector(state => ({
+    t: state.options.t,
+  }));
+  const [adblock, setAdblock] = React.useState(null);
 
-  componentDidMount() {
-    if (this.state.disable) {
-      return;
-    }
-    this.checkAdblock();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timerAdblock);
-  }
-
-  checkAdblock = (attempt = 1) => {
+  const checkAdblock = React.useCallback((attempt = 1) => {
     if (document.querySelector('.cf-wrapper') || document.querySelector('#carbonads')) {
-      this.setState({
-        adblock: false,
-      });
+      setAdblock(false);
       return;
     }
 
     if (attempt < 30) {
-      this.timerAdblock = setTimeout(() => {
-        this.checkAdblock(attempt + 1);
+      timerAdblock.current = setTimeout(() => {
+        checkAdblock(attempt + 1);
       }, 500);
     }
 
-    if (attempt > 6 && this.state.adblock !== true) {
-      this.setState({
-        adblock: true,
-      });
+    if (attempt > 6) {
+      setAdblock(true);
     }
-  };
+  }, []);
 
-  render() {
-    const { classes, t } = this.props;
-    const { adblock, disable } = this.state;
-
+  React.useEffect(() => {
     if (disable) {
-      return <span className={classes.root}>{getAdblock(classes, t)}</span>;
+      return undefined;
     }
+    checkAdblock();
 
-    return (
-      <span className={classes.root}>
-        {this.random >= 0.8 ? <AdCodeFund /> : <AdCarbon />}
-        {adblock === true ? getAdblock(classes, t) : null}
-        {adblock === false ? (
-          <Tooltip id="ad-info" title={t('adTitle')} placement="left">
-            <InfoIcon className={classes.info} />
-          </Tooltip>
-        ) : null}
-      </span>
-    );
+    return () => {
+      clearTimeout(timerAdblock.current);
+    };
+  }, [checkAdblock]);
+
+  if (disable) {
+    return <span className={classes.root}>{getAdblock(classes, t)}</span>;
   }
+
+  return (
+    <span className={classes.root}>
+      {random >= 0.8 ? <AdCodeFund /> : <AdCarbon />}
+      {adblock === true ? getAdblock(classes, t) : null}
+      {adblock === false ? (
+        <Tooltip id="ad-info" title={t('adTitle')} placement="left">
+          <InfoIcon className={classes.info} />
+        </Tooltip>
+      ) : null}
+    </span>
+  );
 }
 
 Ad.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(Ad);
+export default withStyles(styles)(Ad);

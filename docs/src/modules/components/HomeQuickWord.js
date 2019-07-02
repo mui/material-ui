@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
-import compose from 'docs/src/modules/utils/compose';
 
 const backers = [
   {
@@ -50,8 +49,8 @@ const styles = theme => ({
 });
 
 function HomeQuickWord(props) {
-  const { classes, t } = props;
-
+  const { classes } = props;
+  const { t } = useSelector(state => ({ t: state.options.t }));
   const backer = backers[Math.round((backers.length - 1) * Math.random())];
 
   return (
@@ -77,10 +76,6 @@ function HomeQuickWord(props) {
 
 HomeQuickWord.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(HomeQuickWord);
+export default withStyles(styles)(HomeQuickWord);

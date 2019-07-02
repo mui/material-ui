@@ -4,11 +4,14 @@ import React from 'react';
 import NextHead from 'next/head';
 import { Router, withRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import compose from 'docs/src/modules/utils/compose';
+import { useSelector } from 'react-redux';
 
 function Head(props) {
-  const { t, description = t('strapline'), router, title = t('headTitle'), userLanguage } = props;
+  const { t, userLanguage } = useSelector(state => ({
+    t: state.options.t,
+    userLanguage: state.options.userLanguage,
+  }));
+  const { description = t('strapline'), router, title = t('headTitle') } = props;
 
   return (
     <NextHead>
@@ -40,15 +43,7 @@ function Head(props) {
 Head.propTypes = {
   description: PropTypes.string,
   router: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
   title: PropTypes.string,
-  userLanguage: PropTypes.string.isRequired,
 };
 
-export default compose(
-  withRouter,
-  connect(state => ({
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  })),
-)(Head);
+export default withRouter(Head);
