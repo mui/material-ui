@@ -14,7 +14,7 @@ function style(options) {
 
   const fn = props => {
     if (props[prop] == null) {
-      return null;
+      return {};
     }
 
     const propValue = props[prop];
