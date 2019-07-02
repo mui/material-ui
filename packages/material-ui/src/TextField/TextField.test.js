@@ -1,7 +1,8 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
 import Input from '../Input';
 import OutlinedInput from '../OutlinedInput';
@@ -10,10 +11,15 @@ import TextField from './TextField';
 describe('<TextField />', () => {
   let classes;
   let mount;
+  const render = createClientRender({ strict: true });
 
   before(() => {
     classes = getClasses(<TextField />);
     mount = createMount({ strict: true });
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -28,100 +34,91 @@ describe('<TextField />', () => {
     skip: ['componentProp'],
   }));
 
-  describe('mount', () => {
-    let wrapper;
+  describe('structure', () => {
+    it('should have an input as the only child', () => {
+      const { getAllByRole } = render(<TextField />);
 
-    beforeEach(() => {
-      wrapper = mount(<TextField />);
+      expect(getAllByRole('textbox')).to.have.lengthOf(1);
     });
 
-    describe('structure', () => {
-      it('should have an input as the only child', () => {
-        assert.strictEqual(wrapper.find(Input).length, 1);
-      });
+    it('should forward the multiline prop to Input', () => {
+      const wrapper = mount(<TextField multiline />);
 
-      it('should forward the multiline prop to Input', () => {
-        wrapper = mount(<TextField multiline />);
-        assert.strictEqual(wrapper.find(Input).props().multiline, true);
-      });
-
-      it('should forward the fullWidth prop to Input', () => {
-        wrapper = mount(<TextField fullWidth />);
-        assert.strictEqual(wrapper.find(Input).props().fullWidth, true);
-      });
+      expect(wrapper.find(Input).props()).to.have.property('multiline', true);
     });
 
-    describe('with a label', () => {
-      beforeEach(() => {
-        wrapper.setProps({ id: 'label-test', label: 'Foo bar' });
-      });
+    it('should forward the fullWidth prop to Input', () => {
+      const wrapper = mount(<TextField fullWidth />);
 
-      it('label the input', () => {
-        const input = wrapper.find('input#label-test');
-        const label = wrapper.find('label[htmlFor="label-test"]');
+      expect(wrapper.find(Input).props()).to.have.property('fullWidth', true);
+    });
+  });
 
-        assert.strictEqual(input.exists(), true);
-        assert.strictEqual(label.exists(), true);
-        assert.strictEqual(label.text(), 'Foo bar');
-      });
+  describe('with a label', () => {
+    it('label the input', () => {
+      const { getByLabelText } = render(<TextField id="labelled" label="Foo bar" />);
 
-      it('should apply the className to the label', () => {
-        wrapper.setProps({ InputLabelProps: { className: 'foo' } });
-        assert.strictEqual(wrapper.find('label').hasClass('foo'), true);
-      });
+      expect(getByLabelText('Foo bar')).to.be.ok;
     });
 
-    describe('with a helper text', () => {
-      let helperTextId;
-      /**
-       * @return {ReactWrapper} holding the DOM node with the helper text
-       */
-      function findHelperTextWrapper() {
-        return wrapper.find(`#${helperTextId}`).hostNodes();
-      }
+    it('should apply the className to the label', () => {
+      const { container } = render(
+        <TextField id="labelled" label="Foo bar" InputLabelProps={{ className: 'foo' }} />,
+      );
 
-      beforeEach(() => {
-        wrapper.setProps({ id: 'aria-test', helperText: 'Foo bar' });
-        helperTextId = wrapper.find('input').props()['aria-describedby'];
-      });
+      expect(container.querySelector('label')).to.have.class('foo');
+    });
+  });
 
-      it('should apply the className to the FormHelperText', () => {
-        wrapper.setProps({ FormHelperTextProps: { className: 'foo' } });
-        assert.strictEqual(findHelperTextWrapper().hasClass('foo'), true);
-      });
+  describe('with a helper text', () => {
+    it('should apply the className to the FormHelperText', () => {
+      const { getDescriptionOf, getByRole } = render(
+        <TextField
+          id="aria-test"
+          helperText="Foo bar"
+          FormHelperTextProps={{ className: 'foo' }}
+        />,
+      );
 
-      it('should add accessibility labels to the input', () => {
-        assert.strictEqual(helperTextId.length > 0, true);
-        assert.strictEqual(findHelperTextWrapper().text(), 'Foo bar');
-      });
+      expect(getDescriptionOf(getByRole('textbox'))).to.have.class('foo');
     });
 
-    describe('with an outline', () => {
-      it('should set outline props', () => {
-        wrapper = mount(<TextField variant="outlined" />);
-        assert.strictEqual(wrapper.find(OutlinedInput).props().labelWidth, 0);
-      });
+    it('should add accessibility labels to the input', () => {
+      const { getDescriptionOf, getByRole } = render(
+        <TextField
+          id="aria-test"
+          helperText="Foo bar"
+          FormHelperTextProps={{ className: 'foo' }}
+        />,
+      );
 
-      it('should set shrink prop on outline from label', () => {
-        wrapper = mount(
-          <TextField variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
-        );
-        assert.strictEqual(wrapper.find(OutlinedInput).props().notched, true);
-      });
+      expect(getDescriptionOf(getByRole('textbox'))).to.have.text('Foo bar');
+    });
+  });
+
+  describe('with an outline', () => {
+    it('should set outline props', () => {
+      const wrapper = mount(<TextField variant="outlined" />);
+
+      expect(wrapper.find(OutlinedInput).props()).to.have.property('labelWidth', 0);
     });
 
-    describe('prop: InputProps', () => {
-      it('should apply additional properties to the Input component', () => {
-        wrapper.setProps({ InputProps: { inputclassname: 'fullWidth' } });
-        assert.strictEqual(wrapper.find(Input).props().inputclassname, 'fullWidth');
-      });
+    it('should set shrink prop on outline from label', () => {
+      const wrapper = mount(
+        <TextField variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
+      );
+
+      expect(wrapper.find(OutlinedInput).props()).to.have.property('notched', true);
     });
   });
 
   describe('prop: InputProps', () => {
     it('should apply additional properties to the Input component', () => {
-      const wrapper = mount(<TextField InputProps={{ readOnly: true }} />);
-      assert.strictEqual(wrapper.find('input').props().readOnly, true);
+      const { getByTestId } = render(
+        <TextField InputProps={{ 'data-testid': 'InputComponent' }} />,
+      );
+
+      expect(getByTestId('InputComponent')).to.be.ok;
     });
   });
 
@@ -129,7 +126,7 @@ describe('<TextField />', () => {
     it('should be able to render a select as expected', () => {
       const currencies = [{ value: 'USD', label: '$' }, { value: 'BTC', label: '฿' }];
 
-      const wrapper = mount(
+      const { getByRole } = render(
         <TextField select SelectProps={{ native: true }}>
           {currencies.map(option => (
             <option key={option.value} value={option.value}>
@@ -139,10 +136,10 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      const select = wrapper.find('select');
+      const select = getByRole('listbox');
 
-      assert.strictEqual(select.exists(), true);
-      assert.strictEqual(select.children().every('option'), true);
+      expect(select).to.be.ok;
+      expect(select.querySelectorAll('option')).to.have.lengthOf(2);
     });
   });
 });

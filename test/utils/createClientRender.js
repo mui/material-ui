@@ -2,11 +2,28 @@
 import React from 'react';
 import {
   act,
+  buildQueries,
   cleanup,
   createEvent,
   fireEvent as rtlFireEvent,
+  queries,
   render,
 } from '@testing-library/react';
+
+// holes are *All* selectors which aren't necessary for id selectors
+const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
+  function queryAllDescriptionsOf(container, element) {
+    return container.querySelectorAll(`#${element.getAttribute('aria-describedby')}`);
+  },
+  function getMultipleError() {
+    return `Found multiple descriptions. An element should be described by a unique element.`;
+  },
+  function getMissingError() {
+    return `Found no describing element.`;
+  },
+);
+
+const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf };
 
 /**
  *
@@ -28,6 +45,7 @@ function clientRender(element, options = {}) {
   const Mode = strict ? React.StrictMode : React.Fragment;
   const result = render(element, {
     baseElement,
+    queries: { ...queries, ...customQueries },
     wrapper: Mode,
   });
 
