@@ -163,4 +163,23 @@ describe('style', () => {
       },
     });
   });
+
+  it('should should handle missing property correctly', () => {
+    const output1 = vSpacing({
+      theme: {},
+    });
+    assert.deepEqual(output1, {});
+
+    const output2 = vSpacing({
+      theme: {},
+      vSpacing: null,
+    });
+    assert.deepEqual(output2, {});
+
+    const output3 = vSpacing({
+      theme: {},
+      vSpacing: undefined,
+    });
+    assert.deepEqual(output3, {});
+  });
 });
