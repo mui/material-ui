@@ -15,6 +15,7 @@ export type Direction = 'ltr' | 'rtl';
 export interface ThemeOptions {
   shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
+  dense?: boolean;
   direction?: Direction;
   mixins?: MixinsOptions;
   overrides?: Overrides;

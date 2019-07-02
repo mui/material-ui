@@ -5,6 +5,7 @@ import describeConformance from '../test-utils/describeConformance';
 import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<Button />', () => {
   let mount;
@@ -188,6 +189,20 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.text);
     expect(button).not.to.have.class(classes.sizeSmall);
     expect(button).to.have.class(classes.sizeLarge);
+  });
+
+  it('renders a small button by default in a dense theme', () => {
+    const { getByRole } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <Button>Hello World</Button>
+      </MuiThemeProvider>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(button).to.have.class(classes.sizeSmall);
+    expect(button).not.to.have.class(classes.sizeLarge);
   });
 
   it('should have a ripple by default', () => {

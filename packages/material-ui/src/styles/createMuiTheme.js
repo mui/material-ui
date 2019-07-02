@@ -28,6 +28,7 @@ function createMuiTheme(options = {}) {
 
   const muiTheme = {
     breakpoints,
+    dense: false,
     direction: 'ltr',
     mixins: createMixins(breakpoints, spacing, mixinsInput),
     overrides: {}, // Inject custom styles
