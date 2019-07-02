@@ -147,8 +147,9 @@ const styles = theme => ({
       background: 'transparent',
     },
     '& h1': {
-      ...theme.typography.h2,
-      margin: '32px 0 16px',
+      ...theme.typography.h3,
+      fontSize: 40,
+      margin: '24px 0 16px',
     },
     '& .description': {
       ...theme.typography.h5,
@@ -156,22 +157,25 @@ const styles = theme => ({
     },
     '& h2': {
       ...theme.typography.h4,
-      margin: '32px 0 24px',
+      fontSize: 30,
+      margin: '40px 0 16px',
     },
     '& h3': {
       ...theme.typography.h5,
-      margin: '32px 0 24px',
+      margin: '40px 0 16px',
     },
     '& h4': {
       ...theme.typography.h6,
-      margin: '24px 0 16px',
+      margin: '32px 0 16px',
     },
     '& h5': {
       ...theme.typography.subtitle2,
-      margin: '24px 0 16px',
+      margin: '32px 0 16px',
     },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
+      marginTop: 0,
+      marginBottom: '16px',
     },
     '& ul': {
       paddingLeft: 30,
@@ -209,6 +213,7 @@ const styles = theme => ({
       overflowX: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
       borderCollapse: 'collapse',
+      marginBottom: '16px',
       borderSpacing: 0,
       overflow: 'hidden',
       '& .prop-name': {
@@ -275,6 +280,9 @@ const styles = theme => ({
       backgroundColor: 'rgba(255,229,100,0.2)',
       padding: '4px 24px',
       margin: '24px 0',
+      '& p': {
+        marginTop: '16px',
+      },
     },
     '& a, & a code': {
       // Style taken from the Link component

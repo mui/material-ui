@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -90,10 +89,6 @@ const styles = theme => ({
   },
   grow: {
     flex: '1 1 auto',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: '0 1 auto',
   },
   skipNav: {
     position: 'fixed',
@@ -222,11 +217,6 @@ function AppFrame(props) {
                 >
                   <MenuIcon />
                 </IconButton>
-                {title !== null && (
-                  <Typography className={classes.title} variant="h6" noWrap>
-                    {title}
-                  </Typography>
-                )}
                 <div className={classes.grow} />
                 <AppSearch />
                 <Tooltip title="Change language" enterDelay={300}>

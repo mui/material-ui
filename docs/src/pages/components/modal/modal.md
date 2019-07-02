@@ -88,12 +88,12 @@ Additionally, you may give a description of your modal with the `aria-describedb
   aria-labelledby="simple-modal-title"
   aria-describedby="simple-modal-description"
 >
-  <Typography variant="h6" id="modal-title">
+  <h6 id="modal-title">
     My Title
-  </Typography>
-  <Typography variant="subtitle1" id="simple-modal-description">
+  </h6>
+  <p id="simple-modal-description">
     My Description
-  </Typography>
+  </p>
 </Modal>
 ```
 
