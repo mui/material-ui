@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useTheme, withStyles, fade, lighten } from '@material-ui/core/styles';
-import { useForkRef, ownerWindow, useIsFocusVisible } from '@material-ui/core/utils';
+import {
+  useEventCallback,
+  useForkRef,
+  ownerWindow,
+  useIsFocusVisible,
+} from '@material-ui/core/utils';
 import { chainPropTypes } from '@material-ui/utils';
 import ValueLabel from './ValueLabel';
 
@@ -128,20 +133,6 @@ const axisProps = {
 
 const defaultMarks = [];
 const Identity = x => x;
-
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-/**
- * https://github.com/facebook/react/issues/14099#issuecomment-440013892
- *
- * @param {function} fn
- */
-function useEventCallback(fn) {
-  const ref = React.useRef(fn);
-  useEnhancedEffect(() => {
-    ref.current = fn;
-  });
-  return React.useCallback(event => (0, ref.current)(event), []);
-}
 
 export const styles = theme => ({
   /* Styles applied to the root element. */

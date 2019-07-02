@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
+import useEventCallback from '../utils/useEventCallback';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
 
 function useMountedRef() {
@@ -38,42 +39,39 @@ function ClickAwayListener(props) {
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
-  const handleClickAway = React.useCallback(
-    event => {
-      // Ignore events that have been `event.preventDefault()` marked.
-      if (event.defaultPrevented) {
-        return;
-      }
+  const handleClickAway = useEventCallback(event => {
+    // Ignore events that have been `event.preventDefault()` marked.
+    if (event.defaultPrevented) {
+      return;
+    }
 
-      // IE 11 support, which trigger the handleClickAway even after the unbind
-      if (!mountedRef.current) {
-        return;
-      }
+    // IE 11 support, which trigger the handleClickAway even after the unbind
+    if (!mountedRef.current) {
+      return;
+    }
 
-      // Do not act if user performed touchmove
-      if (movedRef.current) {
-        movedRef.current = false;
-        return;
-      }
+    // Do not act if user performed touchmove
+    if (movedRef.current) {
+      movedRef.current = false;
+      return;
+    }
 
-      const { current: node } = nodeRef;
-      // The child might render null.
-      if (!node) {
-        return;
-      }
+    const { current: node } = nodeRef;
+    // The child might render null.
+    if (!node) {
+      return;
+    }
 
-      const doc = ownerDocument(node);
+    const doc = ownerDocument(node);
 
-      if (
-        doc.documentElement &&
-        doc.documentElement.contains(event.target) &&
-        !node.contains(event.target)
-      ) {
-        onClickAway(event);
-      }
-    },
-    [mountedRef, onClickAway],
-  );
+    if (
+      doc.documentElement &&
+      doc.documentElement.contains(event.target) &&
+      !node.contains(event.target)
+    ) {
+      onClickAway(event);
+    }
+  });
 
   const handleTouchMove = React.useCallback(() => {
     movedRef.current = true;

@@ -7,6 +7,7 @@ import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import { useForkRef } from '../utils/reactHelpers';
+import useEventCallback from '../utils/useEventCallback';
 import zIndex from '../styles/zIndex';
 import ModalManager, { ariaHidden } from './ModalManager';
 import TrapFocus from './TrapFocus';
@@ -28,20 +29,6 @@ function getModal(modal, mountNodeRef, modalRef) {
   modal.current.modalRef = modalRef.current;
   modal.current.mountNode = mountNodeRef.current;
   return modal.current;
-}
-
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-/**
- * https://github.com/facebook/react/issues/14099#issuecomment-440013892
- *
- * @param {function} fn
- */
-function useEventCallback(fn) {
-  const ref = React.useRef(fn);
-  useEnhancedEffect(() => {
-    ref.current = fn;
-  });
-  return React.useCallback(event => (0, ref.current)(event), []);
 }
 
 export const styles = theme => ({
