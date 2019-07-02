@@ -1,3 +1,4 @@
+export { default as Rating } from './Rating';
 export { default as Slider } from './Slider';
 export { default as SpeedDial } from './SpeedDial';
 export { default as SpeedDialAction } from './SpeedDialAction';

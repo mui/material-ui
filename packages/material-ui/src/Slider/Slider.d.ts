@@ -21,6 +21,7 @@ export interface SliderProps
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-valuetext'?: string;
+  component?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
   defaultValue?: number | number[];
   disabled?: boolean;
   getAriaValueText?: (value: number, index: number) => string;
