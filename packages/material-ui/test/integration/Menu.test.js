@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import TestUtils from 'react-dom/test-utils';
 import { createMount } from '@material-ui/core/test-utils';
 import Popover from '@material-ui/core/Popover';
@@ -10,6 +10,7 @@ import { setRef } from '../../src/utils/reactHelpers';
 import { stub } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { cleanup, render, fireEvent } from 'test/utils/createClientRender';
 
 describe('<Menu> integration', () => {
   let mount;
@@ -17,10 +18,12 @@ describe('<Menu> integration', () => {
   before(() => {
     // StrictModeViolation: test uses simulate
     mount = createMount({ strict: false });
+    // StrictModeViolation: Uses MenuItem
   });
 
   after(() => {
     mount.cleanUp();
+    cleanup();
   });
 
   describe('mounted open', () => {
@@ -144,6 +147,28 @@ describe('<Menu> integration', () => {
       wrapper.find('button').simulate('click');
       const portalLayer = document.querySelector('[data-mui-test="Modal"]');
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
+    });
+  });
+
+  describe('render with keepMounted', () => {
+    let wrapper;
+
+    before(() => {
+      // Using render instead of createClientRender because createClientRender specifies an explicit
+      // base element that is the starting point for queries, but the menu would be rendered outside
+      // of that base element.
+      wrapper = render(<SimpleMenu transitionDuration={0} keepMounted />);
+    });
+
+    it('should focus the list on open', () => {
+      const button = wrapper.getByLabelText('When device is locked');
+      const menu = wrapper.getByRole('menu');
+      expect(menu).to.not.be.focused;
+      button.focus();
+      fireEvent.click(button);
+      expect(menu).to.be.focused;
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
     });
   });
 
