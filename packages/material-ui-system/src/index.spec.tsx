@@ -1,6 +1,7 @@
-import { compose, css, palette, StyleFunction, spacing } from '@material-ui/system';
+import { compose, css, palette, StyleFunction, spacing, style } from '@material-ui/system';
 import * as React from 'react';
 import styled from 'styled-components';
+import { styled as muiStyled } from '@material-ui/styles';
 
 function composeTest() {
   function first(props: { color: string }) {
@@ -20,6 +21,29 @@ function composeTest() {
   // missing `color`
   styler({ spacing: 1 }); // $ExpectError
   styler({ color: 'test', spacing: 1 });
+}
+
+function styleOptionalPropsTest() {
+  const customStyle = style({ prop: 'fontColor', cssProperty: 'color' });
+  const StyledComponent = muiStyled('div')(customStyle);
+
+  // prop 'fontColor' must not be required
+  <StyledComponent />;
+  // prop 'theme' must not be required - it can be passed via context, or by styled enhancer via defaultTheme
+  <StyledComponent fontColor="limegreen" />;
+}
+
+function styleTransformTest() {
+  // styles's implementation does support this kind of transform
+  style({
+    prop: 'vSpacing',
+    cssProperty: false,
+    transform: value => ({
+      '& > :not(:last-child)': {
+        marginBottom: value,
+      },
+    }),
+  });
 }
 
 function cssTest() {

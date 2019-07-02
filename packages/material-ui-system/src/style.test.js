@@ -87,6 +87,16 @@ describe('style', () => {
     transform: value => (typeof value === 'number' && value > 0 ? `${value}px solid` : value),
   });
 
+  const vSpacing = style({
+    prop: 'vSpacing',
+    cssProperty: false,
+    transform: value => ({
+      '& > :not(:last-child)': {
+        marginBottom: value,
+      },
+    }),
+  });
+
   it('should transform the property correctly', () => {
     const output1 = border({
       theme: {},
@@ -116,6 +126,16 @@ describe('style', () => {
     });
     assert.deepEqual(output3, {
       border: '4px solid',
+    });
+
+    const output4 = vSpacing({
+      theme: {},
+      vSpacing: 8,
+    });
+    assert.deepEqual(output4, {
+      '& > :not(:last-child)': {
+        marginBottom: 8,
+      },
     });
   });
 });
