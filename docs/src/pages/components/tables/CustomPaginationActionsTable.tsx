@@ -142,6 +142,7 @@ export default function CustomPaginationActionsTable() {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
   }
 
   return (
