@@ -53,8 +53,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function ResponsiveDrawer(props) {
   const { container } = props;
-  const classes = useStyles();
   const theme = useTheme();
+  const classes = useStyles(theme);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   function handleDrawerToggle() {
