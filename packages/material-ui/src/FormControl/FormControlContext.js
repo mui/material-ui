@@ -5,4 +5,8 @@ import React from 'react';
  */
 const FormControlContext = React.createContext();
 
+export function useFormControl() {
+  return React.useContext(FormControlContext);
+}
+
 export default FormControlContext;
