@@ -12,7 +12,7 @@ import * as React from 'react';
 export type ComponentCreator<Component extends React.ElementType> = <Theme, Props extends {} = any>(
   styles:
     | CreateCSSProperties<Props>
-    | (({ theme, ...props }: { theme: Theme } & Props) => CreateCSSProperties<Props>),
+    | ((props: { theme: Theme } & CoerceEmptyInterface<Props>) => CreateCSSProperties<Props>),
   options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
   Omit<
