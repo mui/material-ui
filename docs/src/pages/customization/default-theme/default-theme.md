@@ -24,3 +24,5 @@ To remove the need for injecting a theme in the React's context **systematically
 - `@material-ui/core/styles/makeStyles` wraps `@material-ui/styles/makeStyles`.
 - `@material-ui/core/styles/withStyles` wraps `@material-ui/styles/withStyles`.
 - `@material-ui/core/styles/styled` wraps `@material-ui/styles/styled`.
+
+For practical usage (such as styling a Material-UI component instance), please import the style modules (`makeStyles`, `withStyles` and `styled`) from `@material-ui/core/styles`.
