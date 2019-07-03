@@ -35,7 +35,7 @@ describe('<Tabs />', () => {
 
   let mount;
   let classes;
-  let render;
+  const render = createClientRender({ strict: false });
   let serverRender;
 
   before(() => {
@@ -43,7 +43,6 @@ describe('<Tabs />', () => {
     // StrictModeViolation: uses ButtonBase
     mount = createMount({ strict: false });
     serverRender = createRender();
-    render = createClientRender({ strict: false });
   });
 
   after(() => {
@@ -117,7 +116,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      expect(getAllByRole('tab').length).to.equal(1);
+      expect(getAllByRole('tab')).to.have.lengthOf(1);
     });
 
     it('should support empty children', () => {
@@ -136,8 +135,8 @@ describe('<Tabs />', () => {
     it('should pass selected prop to children', () => {
       const { getAllByRole } = render(tabs);
       const tabElements = getAllByRole('tab');
-      expect(tabElements[0].getAttribute('aria-selected')).to.equal('false');
-      expect(tabElements[1].getAttribute('aria-selected')).to.equal('true');
+      expect(tabElements[0]).to.have.attribute('aria-selected', 'false');
+      expect(tabElements[1]).to.have.attribute('aria-selected', 'true');
     });
 
     it('should accept any value as selected tab value', () => {
@@ -152,8 +151,8 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       const tabElements = getAllByRole('tab');
-      expect(tabElements[0].getAttribute('aria-selected')).to.equal('true');
-      expect(tabElements[1].getAttribute('aria-selected')).to.equal('false');
+      expect(tabElements[0]).to.have.attribute('aria-selected', 'true');
+      expect(tabElements[1]).to.have.attribute('aria-selected', 'false');
     });
 
     describe('indicator', () => {
@@ -175,7 +174,7 @@ describe('<Tabs />', () => {
           </Tabs>,
         );
         const indicator = markup.find(`button > .${classes.indicator}`);
-        expect(indicator.length).to.equal(1);
+        expect(indicator).to.have.lengthOf(1);
       });
 
       it('should render the indicator', () => {
@@ -296,7 +295,7 @@ describe('<Tabs />', () => {
       const { container } = render(tabs);
       const selector = `.${classes.scroller}.${classes.scrollable}`;
       expect(container.querySelector(selector).tagName).to.equal('DIV');
-      expect(container.querySelectorAll(selector).length).to.equal(1);
+      expect(container.querySelectorAll(selector)).to.have.lengthOf(1);
     });
 
     it('should response to scroll events', () => {
@@ -373,7 +372,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      expect(container.querySelectorAll(`.${classes.scrollButtons}`).length).to.equal(2);
+      expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
     });
 
     it('should handle window resize event', () => {
