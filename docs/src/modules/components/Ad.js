@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
-import InfoIcon from '@material-ui/icons/InfoOutlined';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 
@@ -17,12 +15,6 @@ const styles = theme => ({
     display: 'block',
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(3),
-  },
-  info: {
-    position: 'absolute',
-    cursor: 'default',
-    bottom: 0,
-    right: 0,
   },
   paper: {
     padding: theme.spacing(1),
@@ -99,11 +91,6 @@ function Ad(props) {
     <span className={classes.root}>
       {random >= 0.8 ? <AdCodeFund /> : <AdCarbon />}
       {adblock === true ? getAdblock(classes, t) : null}
-      {adblock === false ? (
-        <Tooltip id="ad-info" title={t('adTitle')} placement="left">
-          <InfoIcon className={classes.info} />
-        </Tooltip>
-      ) : null}
     </span>
   );
 }
