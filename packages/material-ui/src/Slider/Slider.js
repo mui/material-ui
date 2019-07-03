@@ -47,8 +47,8 @@ function trackFinger(event, touchId) {
       const touch = event.changedTouches[i];
       if (touch.identifier === touchId.current) {
         return {
-          x: event.changedTouches[i].pageX,
-          y: event.changedTouches[i].pageY,
+          x: touch.pageX,
+          y: touch.pageY,
         };
       }
     }
@@ -552,7 +552,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleTouchStart = useEventCallback(event => {
     // Workaround as Safari has partial support for touchAction: 'none'.
     event.preventDefault();
-    const touch = event.changedTouches.item(0);
+    const touch = event.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
       touchId.current = touch.identifier;

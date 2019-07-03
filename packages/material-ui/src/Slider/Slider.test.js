@@ -9,28 +9,29 @@ import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientR
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Slider from './Slider';
 
-function touchList(touchArray) {
-  touchArray.item = idx => touchArray[idx];
-  return touchArray;
-}
-
-function fireBodyMouseEvent(name, properties = {}) {
-  const event = document.createEvent('MouseEvents');
-  event.initEvent(name, true, true);
-  Object.keys(properties).forEach(key => {
-    event[key] = properties[key];
-  });
-  document.body.dispatchEvent(event);
-  return event;
+function createTouches(touches) {
+  return {
+    changedTouches: touches.map(
+      touch =>
+        new Touch({
+          target: document.body,
+          ...touch,
+        }),
+    ),
+  };
 }
 
 describe('<Slider />', () => {
+  // Not support by IE 11
+  if (typeof Touch === 'undefined') {
+    return;
+  }
+
   let mount;
-  let render;
   let classes;
+  const render = createClientRender({ strict: true });
 
   before(() => {
-    render = createClientRender({ strict: true });
     classes = getClasses(<Slider value={0} />);
     mount = createMount({ strict: true });
   });
@@ -77,75 +78,32 @@ describe('<Slider />', () => {
       <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
     );
 
-    const event = fireBodyMouseEvent('touchstart', {
-      changedTouches: touchList([{ identifier: 1 }]),
-    });
-    container.firstChild.dispatchEvent(event);
+    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1 }]));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
-    fireBodyMouseEvent('touchend', {
-      changedTouches: touchList([{ identifier: 2 }]),
-    });
+    fireEvent.touchEnd(document.body, createTouches([{ identifier: 2 }]));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
-    fireBodyMouseEvent('touchmove', {
-      changedTouches: touchList([{ identifier: 1 }]),
-    });
+    fireEvent.touchMove(document.body, createTouches([{ identifier: 1 }]));
     expect(handleChange.callCount).to.equal(2);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
-    fireBodyMouseEvent('touchmove', {
-      changedTouches: touchList([{ identifier: 2 }]),
-    });
+    fireEvent.touchMove(document.body, createTouches([{ identifier: 2 }]));
     expect(handleChange.callCount).to.equal(2);
     expect(handleChangeCommitted.callCount).to.equal(0);
 
-    fireBodyMouseEvent('touchend', {
-      changedTouches: touchList([{ identifier: 1 }]),
-    });
+    fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
     expect(handleChange.callCount).to.equal(2);
     expect(handleChangeCommitted.callCount).to.equal(1);
-  });
-
-  describe('when mouse reenters window', () => {
-    it('should update if mouse is still clicked', () => {
-      const handleChange = spy();
-      const { container } = render(<Slider onChange={handleChange} value={50} />);
-
-      fireEvent.mouseDown(container.firstChild);
-      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
-      const mouseEnter = new window.Event('mouseenter');
-      mouseEnter.buttons = 1;
-      document.body.dispatchEvent(mouseEnter);
-      expect(handleChange.callCount).to.equal(1);
-
-      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-      expect(handleChange.callCount).to.equal(2);
-    });
-
-    it('should not update if mouse is not clicked', () => {
-      const handleChange = spy();
-      const { container } = render(<Slider onChange={handleChange} value={50} />);
-
-      fireEvent.mouseDown(container.firstChild);
-      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
-      const mouseEnter = new window.Event('mouseenter');
-      mouseEnter.buttons = 0;
-      document.body.dispatchEvent(mouseEnter);
-      expect(handleChange.callCount).to.equal(1);
-
-      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-      expect(handleChange.callCount).to.equal(1);
-    });
   });
 
   describe('prop: orientation', () => {
     it('should render with the vertical classes', () => {
       const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
       expect(container.firstChild).to.have.class(classes.vertical);
-      expect(getByRole('slider').getAttribute('aria-orientation')).to.equal('vertical');
+      expect(getByRole('slider')).to.have.attribute('aria-orientation', 'vertical');
     });
 
     it('should report the right position', () => {
@@ -160,14 +118,11 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      const event = fireBodyMouseEvent('touchstart', {
-        changedTouches: touchList([{ identifier: 1, pageX: 0, pageY: 20 }]),
-      });
-      container.firstChild.dispatchEvent(event);
-
-      fireBodyMouseEvent('touchmove', {
-        changedTouches: touchList([{ identifier: 1, pageX: 0, pageY: 22 }]),
-      });
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, pageX: 0, pageY: 20 }]),
+      );
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 0, pageY: 22 }]));
 
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.equal(80);
@@ -204,17 +159,13 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      const event = fireBodyMouseEvent('touchstart', {
-        changedTouches: touchList([{ identifier: 1, pageX: 21, pageY: 0 }]),
-      });
-      container.firstChild.dispatchEvent(event);
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, pageX: 21, pageY: 0 }]),
+      );
 
-      fireBodyMouseEvent('touchmove', {
-        changedTouches: touchList([{ identifier: 1, pageX: 22, pageY: 0 }]),
-      });
-      fireBodyMouseEvent('touchmove', {
-        changedTouches: touchList([{ identifier: 1, pageX: 22, pageY: 0 }]),
-      });
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
 
       expect(handleChange.callCount).to.equal(3);
       expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
@@ -240,22 +191,22 @@ describe('<Slider />', () => {
       }));
       const thumb = getByRole('slider');
 
-      const event = fireBodyMouseEvent('touchstart', {
-        changedTouches: touchList([{ identifier: 1, pageX: 21, pageY: 0 }]),
-      });
-      container.firstChild.dispatchEvent(event);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, pageX: 21, pageY: 0 }]),
+      );
+      expect(thumb).to.have.attribute('aria-valuenow', '20');
 
       thumb.focus();
       fireEvent.keyDown(document.activeElement, {
         key: 'ArrowUp',
       });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('30');
+      expect(thumb).to.have.attribute('aria-valuenow', '30');
 
       fireEvent.keyDown(document.activeElement, {
         key: 'ArrowDown',
       });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
+      expect(thumb).to.have.attribute('aria-valuenow', '20');
     });
   });
 
@@ -263,7 +214,7 @@ describe('<Slider />', () => {
     it('should render the disabled classes', () => {
       const { container, getByRole } = render(<Slider disabled value={0} />);
       expect(container.firstChild).to.have.class(classes.disabled);
-      expect(getByRole('slider').getAttribute('tabIndex')).to.equal(null);
+      expect(getByRole('slider')).to.not.have.attribute('tabIndex');
     });
   });
 
@@ -276,27 +227,27 @@ describe('<Slider />', () => {
       fireEvent.keyDown(document.activeElement, {
         key: 'Home',
       });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('0');
+      expect(thumb).to.have.attribute('aria-valuenow', '0');
 
       fireEvent.keyDown(document.activeElement, {
         key: 'End',
       });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
+      expect(thumb).to.have.attribute('aria-valuenow', '100');
 
       fireEvent.keyDown(document.activeElement, {
         key: 'PageDown',
       });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
+      expect(thumb).to.have.attribute('aria-valuenow', '90');
 
       fireEvent.keyDown(document.activeElement, {
         key: 'Escape',
       });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
+      expect(thumb).to.have.attribute('aria-valuenow', '90');
 
       fireEvent.keyDown(document.activeElement, {
         key: 'PageUp',
       });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
+      expect(thumb).to.have.attribute('aria-valuenow', '100');
     });
 
     const moveLeftEvent = {
@@ -312,16 +263,16 @@ describe('<Slider />', () => {
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
+      expect(thumb).to.have.attribute('aria-valuenow', '100');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('108');
+      expect(thumb).to.have.attribute('aria-valuenow', '108');
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('100');
+      expect(thumb).to.have.attribute('aria-valuenow', '100');
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('90');
+      expect(thumb).to.have.attribute('aria-valuenow', '90');
     });
 
     it('should reach left edge value', () => {
@@ -330,16 +281,16 @@ describe('<Slider />', () => {
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('10');
+      expect(thumb).to.have.attribute('aria-valuenow', '10');
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('6');
+      expect(thumb).to.have.attribute('aria-valuenow', '6');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
+      expect(thumb).to.have.attribute('aria-valuenow', '20');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('30');
+      expect(thumb).to.have.attribute('aria-valuenow', '30');
     });
 
     it('should round value to step precision', () => {
@@ -348,7 +299,7 @@ describe('<Slider />', () => {
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('0.3');
+      expect(thumb).to.have.attribute('aria-valuenow', '0.3');
     });
 
     it('should not fail to round value to step precision when step is very small', () => {
@@ -359,7 +310,7 @@ describe('<Slider />', () => {
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('3e-8');
+      expect(thumb).to.have.attribute('aria-valuenow', '3e-8');
     });
 
     it('should not fail to round value to step precision when step is very small and negative', () => {
@@ -370,7 +321,7 @@ describe('<Slider />', () => {
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('-3e-8');
+      expect(thumb).to.have.attribute('aria-valuenow', '-3e-8');
     });
   });
 
@@ -448,14 +399,12 @@ describe('<Slider />', () => {
       left: 0,
     }));
 
-    const event = fireBodyMouseEvent('touchstart', {
-      changedTouches: touchList([{ identifier: 1, pageX: 20, pageY: 0 }]),
-    });
-    container.firstChild.dispatchEvent(event);
+    fireEvent.touchStart(
+      container.firstChild,
+      createTouches([{ identifier: 1, pageX: 20, pageY: 0 }]),
+    );
 
-    fireBodyMouseEvent('touchmove', {
-      changedTouches: touchList([{ identifier: 1, pageX: 22, pageY: 0 }]),
-    });
+    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
 
     expect(handleChange.callCount).to.equal(2);
     expect(handleChange.args[0][1]).to.equal(80);

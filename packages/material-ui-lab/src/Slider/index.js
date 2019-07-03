@@ -7,6 +7,9 @@ export default React.forwardRef(function DeprecatedSlider(props, ref) {
     false,
     [
       'Material-UI: the Slider component was moved from the lab to the core.',
+      '',
+      'Yay, the component is stable! 🎉',
+      '',
       "You should use `import { Slider } from '@material-ui/core'`",
       "or `import Slider from '@material-ui/core/Slider'`",
     ].join('\n'),

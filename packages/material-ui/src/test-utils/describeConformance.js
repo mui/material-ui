@@ -1,6 +1,5 @@
 import { assert } from 'chai';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 import testRef from './testRef';
 
@@ -177,13 +176,6 @@ const fullSuite = {
 export default function describeConformance(minimalElement, getOptions) {
   const { only = Object.keys(fullSuite), skip = [] } = getOptions();
   describe('Material-UI component API', () => {
-    after(() => {
-      const { mount } = getOptions();
-      if (mount.attachTo) {
-        ReactDOM.unmountComponentAtNode(mount.attachTo);
-      }
-    });
-
     Object.keys(fullSuite)
       .filter(testKey => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
       .forEach(testKey => {
