@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
@@ -93,6 +94,7 @@ export const styles = theme => ({
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(props, ref) {
+  const theme = useTheme();
   const {
     edge = false,
     children,
@@ -101,7 +103,7 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
     color = 'default',
     disabled = false,
     disableFocusRipple = false,
-    size = 'medium',
+    size = theme.dense ? 'small' : 'medium',
     ...other
   } = props;
 
