@@ -143,6 +143,8 @@ export const styles = theme => {
   };
 };
 
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
@@ -236,7 +238,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     [muiFormControl],
   );
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     if (isControlled) {
       checkDirty({ value });
     }
