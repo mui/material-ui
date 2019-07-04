@@ -1,23 +1,22 @@
 import React from 'react';
-import { assert } from 'chai';
-import {
-  createMount,
-  createShallow,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Toolbar from './Toolbar';
 
 describe('<Toolbar />', () => {
   let mount;
-  let shallow;
+  const render = createClientRender({ strict: true });
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Toolbar>foo</Toolbar>);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -32,17 +31,20 @@ describe('<Toolbar />', () => {
   }));
 
   it('should render with gutters class', () => {
-    const wrapper = mount(<Toolbar className="woofToolbar">foo</Toolbar>);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.gutters), true);
+    const { container } = render(<Toolbar className="woofToolbar">foo</Toolbar>);
+
+    expect(container.firstChild).to.have.class(classes.gutters);
   });
 
   it('can disable the gutters', () => {
-    const wrapper = shallow(<Toolbar disableGutters>foo</Toolbar>);
-    assert.strictEqual(wrapper.hasClass(classes.gutters), false);
+    const { container } = render(<Toolbar disableGutters>foo</Toolbar>);
+
+    expect(container.firstChild).not.to.have.class(classes.gutters);
   });
 
   it('can condense itself', () => {
-    const wrapper = shallow(<Toolbar variant="dense">foo</Toolbar>);
-    assert.strictEqual(wrapper.hasClass(classes.dense), true);
+    const { container } = render(<Toolbar variant="dense">foo</Toolbar>);
+
+    expect(container.firstChild).to.have.class(classes.dense);
   });
 });

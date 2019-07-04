@@ -1,22 +1,25 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createMount, createShallow, createRender, getClasses } from '../test-utils';
+import { expect } from 'chai';
+import { createMount, createRender, getClasses } from '../test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
 describe('<Fab />', () => {
   let mount;
-  let shallow;
-  let render;
+  const render = createClientRender({ strict: false });
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
-    shallow = createShallow({ dive: true });
-    render = createRender();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     classes = getClasses(<Fab>Fab</Fab>);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -32,82 +35,98 @@ describe('<Fab />', () => {
   }));
 
   it('should render with the root class but no others', () => {
-    const wrapper = shallow(<Fab>Fab</Fab>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.primary), false);
-    assert.strictEqual(wrapper.hasClass(classes.secondary), false);
-    assert.strictEqual(wrapper.hasClass(classes.extended), false);
-    assert.strictEqual(wrapper.hasClass(classes.focusVisible), false);
-    assert.strictEqual(wrapper.hasClass(classes.disabled), false);
-    assert.strictEqual(wrapper.hasClass(classes.colorInherit), false);
-    assert.strictEqual(wrapper.hasClass(classes.mini), false);
-    assert.strictEqual(wrapper.hasClass(classes.fullWidth), false);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
-    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), false);
+    const { getByRole } = render(<Fab>Fab</Fab>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.primary);
+    expect(button).not.to.have.class(classes.secondary);
+    expect(button).not.to.have.class(classes.extended);
+    expect(button).not.to.have.class(classes.focusVisible);
+    expect(button).not.to.have.class(classes.disabled);
+    expect(button).not.to.have.class(classes.colorInherit);
+    expect(button).not.to.have.class(classes.mini);
+    expect(button).not.to.have.class(classes.fullWidth);
+    expect(button).not.to.have.class(classes.sizeSmall);
+    expect(button).not.to.have.class(classes.sizeMedium);
   });
 
   it('should render an extended floating action button', () => {
-    const wrapper = shallow(<Fab variant="extended">Fab</Fab>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.extended), true);
+    const { getByRole } = render(<Fab variant="extended">Fab</Fab>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.extended);
   });
 
   it('should render a primary floating action button', () => {
-    const wrapper = shallow(<Fab color="primary">Fab</Fab>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.primary), true);
-    assert.strictEqual(wrapper.hasClass(classes.secondary), false);
+    const { getByRole } = render(<Fab color="primary">Fab</Fab>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.primary);
+    expect(button).not.to.have.class(classes.secondary);
   });
 
   it('should render a secondary floating action button', () => {
-    const wrapper = shallow(<Fab color="secondary">Fab</Fab>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.primary), false);
-    assert.strictEqual(wrapper.hasClass(classes.secondary), true);
+    const { getByRole } = render(<Fab color="secondary">Fab</Fab>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.primary);
+    expect(button).to.have.class(classes.secondary);
   });
 
   it('should render a small floating action button', () => {
-    const wrapper = shallow(<Fab size="small">Fab</Fab>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), false);
+    const { getByRole } = render(<Fab size="small">Fab</Fab>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.sizeSmall);
+    expect(button).not.to.have.class(classes.sizeMedium);
   });
 
   it('should render a medium floating action button', () => {
-    const wrapper = shallow(<Fab size="medium">Fab</Fab>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
-    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), true);
+    const { getByRole } = render(<Fab size="medium">Fab</Fab>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.sizeSmall);
+    expect(button).to.have.class(classes.sizeMedium);
   });
 
   it('should have a ripple by default', () => {
-    const wrapper = shallow(<Fab>Fab</Fab>);
-    assert.strictEqual(wrapper.props().disableRipple, undefined);
+    const wrapper = mount(<Fab>Fab</Fab>);
+
+    expect(wrapper.find(ButtonBase).props()).not.to.have.property('disableRipple');
   });
 
   it('should pass disableRipple to ButtonBase', () => {
-    const wrapper = shallow(<Fab disableRipple>Fab</Fab>);
-    assert.strictEqual(wrapper.props().disableRipple, true);
+    const wrapper = mount(<Fab disableRipple>Fab</Fab>);
+
+    expect(wrapper.find(ButtonBase).props()).to.have.property('disableRipple', true);
   });
 
   it('should have a focusRipple by default', () => {
-    const wrapper = shallow(<Fab>Fab</Fab>);
-    assert.strictEqual(wrapper.props().focusRipple, true);
+    const wrapper = mount(<Fab>Fab</Fab>);
+
+    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', true);
   });
 
   it('should pass disableFocusRipple to ButtonBase', () => {
-    const wrapper = shallow(<Fab disableFocusRipple>Fab</Fab>);
-    assert.strictEqual(wrapper.props().focusRipple, false);
+    const wrapper = mount(<Fab disableFocusRipple>Fab</Fab>);
+
+    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', false);
   });
 
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
-    const iconChild = <Icon className={childClassName} />;
-    const wrapper = shallow(<Fab>{iconChild}</Fab>);
-    const label = wrapper.childAt(0);
-    const renderedIconChild = label.childAt(0);
-    assert.strictEqual(renderedIconChild.type(), Icon);
-    assert.strictEqual(renderedIconChild.hasClass(childClassName), true);
+    const iconChild = <Icon data-testid="icon" className={childClassName} />;
+    const { getByTestId } = render(<Fab>{iconChild}</Fab>);
+    const renderedIconChild = getByTestId('icon');
+
+    expect(renderedIconChild).to.be.ok;
+    expect(renderedIconChild).to.have.class(childClassName);
   });
 
   describe('server-side', () => {
@@ -116,9 +135,14 @@ describe('<Fab />', () => {
       return;
     }
 
+    let serverRender;
+    before(() => {
+      serverRender = createRender();
+    });
+
     it('should server-side render', () => {
-      const markup = render(<Fab>Fab</Fab>);
-      assert.strictEqual(markup.text(), 'Fab');
+      const markup = serverRender(<Fab>Fab</Fab>);
+      expect(markup.text()).to.equal('Fab');
     });
   });
 });

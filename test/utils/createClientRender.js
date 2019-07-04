@@ -2,11 +2,28 @@
 import React from 'react';
 import {
   act,
+  buildQueries,
   cleanup,
   createEvent,
   fireEvent as rtlFireEvent,
+  queries,
   render,
 } from '@testing-library/react';
+
+// holes are *All* selectors which aren't necessary for id selectors
+const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
+  function queryAllDescriptionsOf(container, element) {
+    return container.querySelectorAll(`#${element.getAttribute('aria-describedby')}`);
+  },
+  function getMultipleError() {
+    return `Found multiple descriptions. An element should be described by a unique element.`;
+  },
+  function getMissingError() {
+    return `Found no describing element.`;
+  },
+);
+
+const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf };
 
 /**
  *
@@ -15,7 +32,7 @@ import {
  * @param {boolean} [options.baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
  * @param {boolean} [options.disableUnnmount] - if true does not cleanup before mount
  * @param {boolean} [options.strict] - wrap in React.StrictMode?
- * @returns {import('@testing-library/react').RenderResult & { setProps(props: object): void}}
+ * @returns {import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}
  * TODO: type return RenderResult in setProps
  */
 function clientRender(element, options = {}) {
@@ -26,7 +43,11 @@ function clientRender(element, options = {}) {
   }
 
   const Mode = strict ? React.StrictMode : React.Fragment;
-  const result = render(element, { baseElement, wrapper: Mode });
+  const result = render(element, {
+    baseElement,
+    queries: { ...queries, ...customQueries },
+    wrapper: Mode,
+  });
 
   /**
    * convenience helper. Better than repeating all props.

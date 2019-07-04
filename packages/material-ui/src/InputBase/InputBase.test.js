@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import FormControlContext from '../FormControl/FormControlContext';
 import InputAdornment from '../InputAdornment';
 import TextareaAutosize from '../TextareaAutosize';
@@ -14,10 +15,15 @@ import Select from '../Select';
 describe('<InputBase />', () => {
   let classes;
   let mount;
+  const render = createClientRender({ strict: true });
 
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<InputBase />);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -33,95 +39,125 @@ describe('<InputBase />', () => {
   }));
 
   it('should render an <input /> inside the div', () => {
-    const wrapper = mount(<InputBase />);
-    const input = wrapper.find('input');
-    assert.strictEqual(input.name(), 'input');
-    assert.strictEqual(input.props().type, 'text');
-    assert.strictEqual(input.hasClass(classes.input), true);
-    assert.strictEqual(input.props().required, undefined);
+    const { container } = render(<InputBase />);
+    const input = container.querySelector('input');
+    expect(input).to.have.attribute('type', 'text');
+    expect(input).to.have.class(classes.input);
+    expect(input).not.to.have.attribute('required');
   });
 
   describe('multiline', () => {
     it('should render an <TextareaAutosize /> when passed the multiline prop', () => {
       const wrapper = mount(<InputBase multiline />);
-      assert.strictEqual(wrapper.find(TextareaAutosize).length, 1);
+      expect(wrapper.find(TextareaAutosize)).to.have.lengthOf(1);
     });
 
     it('should render an <textarea /> when passed the multiline and rows props', () => {
-      const wrapper = mount(<InputBase multiline rows="4" />);
-      assert.strictEqual(wrapper.find('textarea').length, 1);
+      const { container } = render(<InputBase multiline rows="4" />);
+      expect(container.querySelectorAll('textarea')).to.have.lengthOf(1);
     });
 
     it('should forward the value to the TextareaAutosize', () => {
       const wrapper = mount(<InputBase multiline rowsMax="4" value="" />);
-      assert.strictEqual(wrapper.find(TextareaAutosize).props().value, '');
+      expect(wrapper.find(TextareaAutosize).props()).to.have.property('value', '');
     });
   });
 
   describe('prop: disabled', () => {
     it('should render a disabled <input />', () => {
-      const wrapper = mount(<InputBase disabled />);
-      const input = wrapper.find('input');
-      assert.strictEqual(input.name(), 'input');
-      assert.strictEqual(input.hasClass(classes.input), true);
-      assert.strictEqual(input.hasClass(classes.disabled), true);
+      const { container } = render(<InputBase disabled />);
+      const input = container.querySelector('input');
+      expect(input).to.have.class(classes.input);
+      expect(input).to.have.class(classes.disabled);
     });
 
-    it('should reset the focused state', () => {
+    it('should reset the focused state if getting disabled', () => {
       const handleBlur = spy();
       const handleFocus = spy();
-      const ref = React.createRef();
-      const wrapper = mount(<InputBase inputRef={ref} onBlur={handleBlur} onFocus={handleFocus} />);
+      const { container, setProps } = render(
+        <InputBase onBlur={handleBlur} onFocus={handleFocus} />,
+      );
 
-      // We simulate a focused input that is getting disabled.'
-      wrapper.find('input').simulate('focus');
-      // check if focus called
-      assert.strictEqual(handleFocus.callCount, 1);
-      // set input to disable
-      wrapper.setProps({ disabled: true });
-      // check if blur called
-      assert.strictEqual(handleBlur.callCount, 1);
+      act(() => {
+        container.querySelector('input').focus();
+      });
+      expect(handleFocus.callCount).to.equal(1);
+
+      setProps({ disabled: true });
+      expect(handleBlur.callCount).to.equal(1);
       // check if focus not initiated again
-      assert.strictEqual(handleFocus.callCount, 1);
+      expect(handleFocus.callCount).to.equal(1);
     });
 
     // IE 11 bug
     it('should not respond the focus event when disabled', () => {
-      const wrapper = mount(<InputBase disabled />);
-      const event = {
-        stopPropagation: spy(),
-      };
-      wrapper.find('input').simulate('focus', event);
-      assert.strictEqual(event.stopPropagation.callCount, 1);
+      const handleFocus = spy();
+      // non-native input simulating how IE11 treats disabled inputs
+      const { getByRole } = render(
+        <div onFocus={handleFocus}>
+          <InputBase
+            disabled
+            inputComponent="div"
+            inputProps={{ role: 'textbox', tabIndex: -1 }}
+            onFocus={handleFocus}
+          />
+        </div>,
+      );
+
+      act(() => {
+        getByRole('textbox').focus();
+      });
+      expect(handleFocus.called).to.be.false;
     });
   });
 
   it('should fire event callbacks', () => {
-    const events = ['onChange', 'onFocus', 'onBlur', 'onKeyUp', 'onKeyDown'];
-    const handlers = events.reduce((result, n) => {
-      result[n] = spy();
-      return result;
-    }, {});
+    const handleChange = spy();
+    const handleFocus = spy();
+    const handleBlur = spy();
+    const handleKeyUp = spy();
+    const handleKeyDown = spy();
+    const { getByRole } = render(
+      <InputBase
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onKeyUp={handleKeyUp}
+        onKeyDown={handleKeyDown}
+      />,
+    );
+    const input = getByRole('textbox');
 
-    const wrapper = mount(<InputBase {...handlers} />);
+    // simulating user input: gain focus, key input (keydown, (input), change, keyup), blur
 
-    events.forEach(n => {
-      const event = n.charAt(2).toLowerCase() + n.slice(3);
-      wrapper.find('input').simulate(event);
-      assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
+    act(() => {
+      input.focus();
     });
+    expect(handleFocus.callCount).to.equal(1);
+
+    fireEvent.keyDown(document.activeElement, { key: 'a' });
+    expect(handleKeyDown.callCount).to.equal(1);
+
+    fireEvent.change(input, { target: { value: 'a' } });
+    expect(handleChange.callCount).to.equal(1);
+
+    fireEvent.keyUp(document.activeElement, { key: 'a' });
+    expect(handleKeyUp.callCount).to.equal(1);
+
+    act(() => {
+      input.blur();
+    });
+    expect(handleBlur.callCount).to.equal(1);
   });
 
   describe('controlled', () => {
     it('should considered [] as controlled', () => {
-      const initialValue = [];
-      const stubValue = 'do not work';
-      const wrapper = mount(<InputBase value={initialValue} />);
-      const inputEl = wrapper.find('input');
-      inputEl.instance().value = stubValue;
-      inputEl.simulate('change', { target: { value: stubValue } });
+      const { getByRole } = render(<InputBase value={[]} />);
+      const input = getByRole('textbox');
 
-      assert.strictEqual(inputEl.props().value, initialValue);
+      expect(input).to.have.property('value', '');
+      fireEvent.change(input, { target: { value: 'do not work' } });
+      expect(input).to.have.property('value', '');
     });
 
     ['', 0].forEach(value => {
@@ -133,7 +169,7 @@ describe('<InputBase />', () => {
         before(() => {
           handleEmpty = spy();
           handleFilled = spy();
-          wrapper = mount(
+          wrapper = render(
             <InputBase value={value} onFilled={handleFilled} onEmpty={handleEmpty} />,
           );
         });
@@ -141,19 +177,19 @@ describe('<InputBase />', () => {
         // don't test number because zero is a empty state, whereas '' is not
         if (typeof value !== 'number') {
           it('should have called the handleEmpty callback', () => {
-            assert.strictEqual(handleEmpty.callCount, 1);
+            expect(handleEmpty.callCount).to.equal(1);
           });
 
           it('should fire the onFilled callback when dirtied', () => {
-            assert.strictEqual(handleFilled.callCount, 0);
+            expect(handleFilled.callCount).to.equal(0);
             wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
-            assert.strictEqual(handleFilled.callCount, 1);
+            expect(handleFilled.callCount).to.equal(1);
           });
 
           it('should fire the onEmpty callback when dirtied', () => {
-            assert.strictEqual(handleEmpty.callCount, 1);
+            expect(handleEmpty.callCount).to.equal(1);
             wrapper.setProps({ value });
-            assert.strictEqual(handleEmpty.callCount, 2);
+            expect(handleEmpty.callCount).to.equal(2);
           });
         }
       });
@@ -162,8 +198,10 @@ describe('<InputBase />', () => {
 
   describe('prop: inputComponent', () => {
     it('should accept any html component', () => {
-      const wrapper = mount(<InputBase inputComponent="span" />);
-      assert.strictEqual(wrapper.find('span').length, 1);
+      const { getByTestId } = render(
+        <InputBase inputComponent="span" inputProps={{ 'data-testid': 'input-component' }} />,
+      );
+      expect(getByTestId('input-component')).to.have.property('nodeName', 'SPAN');
     });
 
     it('should inject onBlur and onFocus', () => {
@@ -178,281 +216,230 @@ describe('<InputBase />', () => {
         inputRef: PropTypes.func.isRequired,
       };
 
-      mount(<InputBase inputComponent={MyInputBase} />);
-      assert.strictEqual(typeof injectedProps.onBlur, 'function');
-      assert.strictEqual(typeof injectedProps.onFocus, 'function');
+      render(<InputBase inputComponent={MyInputBase} />);
+      expect(typeof injectedProps.onBlur).to.equal('function');
+      expect(typeof injectedProps.onFocus).to.equal('function');
     });
   });
 
   // Note the initial callback when
   // uncontrolled only fires for a full mount
   describe('uncontrolled', () => {
-    function setup() {
-      const handleEmpty = spy();
-      const handleFilled = spy();
-      const wrapper = mount(
-        <InputBase onFilled={handleFilled} defaultValue="hell" onEmpty={handleEmpty} />,
-      );
-      return { wrapper, handleEmpty, handleFilled };
-    }
-
     it('should fire the onFilled callback when dirtied', () => {
-      const { wrapper, handleFilled } = setup();
-      assert.strictEqual(handleFilled.callCount, 1);
-      wrapper.find('input').simulate('change');
-      assert.strictEqual(handleFilled.callCount, 2);
+      const handleFilled = spy();
+      const { container } = render(<InputBase onFilled={handleFilled} defaultValue="hell" />);
+      expect(handleFilled.callCount, 1);
+
+      fireEvent.change(container.querySelector('input'), { target: { value: 'heaven' } });
+      expect(handleFilled.callCount, 2);
     });
 
     it('should fire the onEmpty callback when cleaned', () => {
-      const { wrapper, handleEmpty } = setup();
-      // Because of mount() this hasn't fired since there is no mounting
-      assert.strictEqual(handleEmpty.callCount, 0);
-      wrapper.find('input').instance().value = '';
-      wrapper.find('input').simulate('change', {
-        target: {
-          value: '',
-        },
-      });
-      assert.strictEqual(handleEmpty.callCount, 1);
+      const handleEmpty = spy();
+      const { container } = render(<InputBase onEmpty={handleEmpty} defaultValue="hell" />);
+      expect(handleEmpty.callCount, 0);
+
+      fireEvent.change(container.querySelector('input'), { target: { value: '' } });
+      expect(handleEmpty.callCount, 1);
     });
   });
 
   describe('with muiFormControl context', () => {
-    let wrapper;
-    let muiFormControl;
+    function InputBaseWithContext(props) {
+      const { context, ...other } = props;
 
-    function setFormControlContext(muiFormControlContext) {
-      muiFormControl = muiFormControlContext;
-      wrapper.setProps({ context: muiFormControlContext });
+      return (
+        <FormControlContext.Provider value={context}>
+          <InputBase {...other} />
+        </FormControlContext.Provider>
+      );
     }
-
-    beforeEach(() => {
-      // we need a class for enzyme otherwise: "Can't call ::setState on functional component"
-      // eslint-disable-next-line react/prefer-stateless-function
-      class Provider extends React.Component {
-        render() {
-          const { context, ...other } = this.props;
-
-          return (
-            <FormControlContext.Provider value={context}>
-              <InputBase {...other} />
-            </FormControlContext.Provider>
-          );
-        }
-      }
-      Provider.propTypes = {
-        context: PropTypes.object,
-      };
-
-      wrapper = mount(<Provider />);
-    });
+    InputBaseWithContext.propTypes = {
+      context: PropTypes.object,
+    };
 
     it('should have the formControl class', () => {
-      setFormControlContext({});
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.formControl), true);
+      const { container } = render(<InputBaseWithContext context={{}} />);
+      expect(container.firstChild).to.have.class(classes.formControl);
     });
 
     describe('callbacks', () => {
-      let focus;
-
-      beforeEach(() => {
-        focus = spy();
-        wrapper.find('input').instance().focus = focus;
-        setFormControlContext({
-          onFilled: spy(),
-          onEmpty: spy(),
-          onFocus: spy(),
-          onBlur: spy(),
-        });
-      });
-
       it('should fire the onFilled muiFormControl and props callback when dirtied', () => {
         const handleFilled = spy();
-        wrapper.setProps({
-          onFilled: handleFilled,
-        });
+        const muiFormControl = { onFilled: spy() };
+        const { container } = render(
+          <InputBaseWithContext context={muiFormControl} onFilled={handleFilled} />,
+        );
 
-        wrapper.find('input').instance().value = 'hello';
-        wrapper.find('input').simulate('change', { target: { value: 'hello' } });
-        assert.strictEqual(handleFilled.callCount, 1);
-        assert.strictEqual(muiFormControl.onFilled.callCount, 1);
+        fireEvent.change(container.querySelector('input'), { target: { value: 'hello' } });
+        expect(handleFilled.callCount).to.equal(1);
+        expect(muiFormControl.onFilled.callCount).to.equal(1);
       });
 
       it('should fire the onEmpty muiFormControl and props callback when cleaned', () => {
         const handleEmpty = spy();
+        const muiFormControl = { onEmpty: spy() };
+        const { container } = render(
+          <InputBaseWithContext context={muiFormControl} onEmpty={handleEmpty} />,
+        );
 
         // Set value to be cleared
-        wrapper.find('input').instance().value = 'test';
-        wrapper.find('input').simulate('change', {
-          target: {
-            value: 'test',
-          },
-        });
-        wrapper.setProps({
-          onEmpty: handleEmpty,
-        });
-        assert.strictEqual(handleEmpty.callCount, 0);
+        fireEvent.change(container.querySelector('input'), { target: { value: 'test' } });
+        expect(handleEmpty.callCount, 0);
+
         // Clear value
-        wrapper.find('input').instance().value = '';
-        wrapper.find('input').simulate('change', {
-          target: { value: '' },
-        });
-        assert.strictEqual(handleEmpty.callCount, 1);
-        assert.strictEqual(muiFormControl.onEmpty.callCount, 2);
+        fireEvent.change(container.querySelector('input'), { target: { value: '' } });
+        expect(handleEmpty.callCount).to.equal(2);
+        expect(muiFormControl.onEmpty.callCount).to.equal(2);
       });
 
       it('should fire the onFocus muiFormControl', () => {
         const handleFocus = spy();
-        wrapper.setProps({
-          onFocus: handleFocus,
-        });
+        const muiFormControl = { onFocus: spy() };
+        const { container } = render(
+          <InputBaseWithContext context={muiFormControl} onFocus={handleFocus} />,
+        );
 
-        wrapper.find('input').simulate('focus');
-        assert.strictEqual(handleFocus.callCount, 1);
-        assert.strictEqual(muiFormControl.onFocus.callCount, 1);
+        act(() => {
+          container.querySelector('input').focus();
+        });
+        expect(handleFocus.callCount).to.equal(1);
+        expect(muiFormControl.onFocus.callCount).to.equal(1);
       });
 
       it('should fire the onBlur muiFormControl', () => {
         const handleBlur = spy();
-        wrapper.setProps({
-          onBlur: handleBlur,
-        });
+        const muiFormControl = { onBlur: spy() };
+        const { container } = render(
+          <InputBaseWithContext context={muiFormControl} onBlur={handleBlur} />,
+        );
 
-        wrapper.find('input').simulate('blur');
-        assert.strictEqual(handleBlur.callCount, 1);
-        assert.strictEqual(muiFormControl.onBlur.callCount, 1);
+        act(() => {
+          container.querySelector('input').focus();
+          container.querySelector('input').blur();
+        });
+        expect(handleBlur.callCount).to.equal(1);
+        expect(muiFormControl.onBlur.callCount).to.equal(1);
       });
 
-      it('should focus and fire the onClick prop', () => {
-        const event = {};
+      it('should fire the onClick prop', () => {
         const handleClick = spy();
-        wrapper.setProps({
-          onClick: handleClick,
-        });
+        const handleFocus = spy();
+        const { container } = render(
+          <InputBaseWithContext onClick={handleClick} onFocus={handleFocus} />,
+        );
 
-        wrapper.find('div').simulate('click', event);
-        assert.strictEqual(handleClick.callCount, 1);
-        assert.strictEqual(focus.callCount, 1);
+        fireEvent.click(container.firstChild);
+        expect(handleClick.callCount).to.equal(1);
+        expect(handleFocus.callCount).to.equal(1);
       });
     });
 
     describe('error', () => {
-      beforeEach(() => {
-        setFormControlContext({ error: true });
-      });
-
-      it('should have the error class', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), true);
-      });
-
       it('should be overridden by props', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), true);
-        wrapper.setProps({ error: false });
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), false);
-        wrapper.setProps({ error: true });
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), true);
+        const { container, setProps } = render(<InputBaseWithContext context={{ error: true }} />);
+        expect(container.firstChild).to.have.class(classes.error);
+
+        setProps({ error: false });
+        expect(container.firstChild).not.to.have.class(classes.error);
+
+        setProps({ error: true });
+        expect(container.firstChild).to.have.class(classes.error);
       });
     });
 
     describe('margin', () => {
       describe('context margin: dense', () => {
-        beforeEach(() => {
-          setFormControlContext({ margin: 'dense' });
-        });
-
         it('should have the inputMarginDense class', () => {
-          assert.strictEqual(wrapper.find('input').hasClass(classes.inputMarginDense), true);
+          const { container } = render(<InputBaseWithContext context={{ margin: 'dense' }} />);
+          expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
         });
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.find('input').hasClass(classes.inputMarginDense), false);
-        wrapper.setProps({ margin: 'dense' });
-        assert.strictEqual(wrapper.find('input').hasClass(classes.inputMarginDense), true);
+        const { container, setProps } = render(
+          <InputBaseWithContext context={{ margin: 'none' }} />,
+        );
+        expect(container.querySelector('input')).not.to.have.class(classes.inputMarginDense);
+
+        setProps({ margin: 'dense' });
+        expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
       });
     });
 
     describe('required', () => {
       it('should have the aria-required prop with value true', () => {
-        setFormControlContext({ required: true });
-        const input = wrapper.find('input');
-        assert.strictEqual(input.props().required, true);
+        const { container } = render(<InputBaseWithContext context={{ required: true }} />);
+        const input = container.querySelector('input');
+        expect(input).to.have.property('required', true);
       });
     });
 
     describe('focused', () => {
       it('prioritizes context focus', () => {
-        wrapper.find('input').simulate('focus');
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.focused), true);
+        const { container, setProps } = render(<InputBaseWithContext />);
 
-        setFormControlContext({ focused: false });
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.focused), false);
+        act(() => {
+          container.querySelector('input').focus();
+        });
+        expect(container.firstChild).to.have.class(classes.focused);
 
-        setFormControlContext({ focused: true });
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.focused), true);
+        setProps({ context: { focused: false } });
+        expect(container.firstChild).not.to.have.class(classes.focused);
+
+        setProps({ context: { focused: true } });
+        expect(container.firstChild).to.have.class(classes.focused);
       });
-    });
-  });
-
-  describe('mount', () => {
-    it('should be able to access the native input', () => {
-      const handleRef = spy();
-      mount(<InputBase inputRef={handleRef} />);
-      assert.strictEqual(handleRef.callCount, 1);
-    });
-
-    it('should be able to access the native textarea', () => {
-      const handleRef = spy();
-      mount(<InputBase multiline inputRef={handleRef} />);
-      assert.strictEqual(handleRef.callCount, 1);
     });
   });
 
   describe('prop: inputProps', () => {
     it('should apply the props on the input', () => {
-      const wrapper = mount(<InputBase inputProps={{ className: 'foo', maxLength: 5 }} />);
-      const input = wrapper.find('input');
-      assert.strictEqual(input.hasClass('foo'), true);
-      assert.strictEqual(input.hasClass(classes.input), true);
-      assert.strictEqual(input.props().maxLength, 5);
+      const { container } = render(<InputBase inputProps={{ className: 'foo', maxLength: 5 }} />);
+      const input = container.querySelector('input');
+      expect(input).to.have.class('foo');
+      expect(input).to.have.class(classes.input);
+      expect(input).to.have.property('maxLength', 5);
     });
 
     it('should be able to get a ref', () => {
-      const handleRef = spy();
-      mount(<InputBase inputProps={{ ref: handleRef }} />);
-      assert.strictEqual(handleRef.callCount, 1);
+      const inputRef = React.createRef();
+      const { container } = render(<InputBase inputProps={{ ref: inputRef }} />);
+      expect(inputRef.current).to.equal(container.querySelector('input'));
     });
   });
 
   describe('prop: startAdornment, prop: endAdornment', () => {
     it('should render adornment before input', () => {
-      const wrapper = mount(
-        <InputBase startAdornment={<InputAdornment position="start">$</InputAdornment>} />,
+      const { getByTestId } = render(
+        <InputBase
+          startAdornment={
+            <InputAdornment data-testid="adornment" position="start">
+              $
+            </InputAdornment>
+          }
+        />,
       );
 
-      assert.strictEqual(
-        findOutermostIntrinsic(wrapper)
-          .childAt(0)
-          .type(),
-        InputAdornment,
-      );
+      expect(getByTestId('adornment')).to.be.ok;
     });
 
     it('should render adornment after input', () => {
-      const wrapper = mount(
-        <InputBase endAdornment={<InputAdornment position="end">$</InputAdornment>} />,
+      const { getByTestId } = render(
+        <InputBase
+          endAdornment={
+            <InputAdornment data-testid="adornment" position="end">
+              $
+            </InputAdornment>
+          }
+        />,
       );
 
-      assert.strictEqual(
-        findOutermostIntrinsic(wrapper)
-          .childAt(1)
-          .type(),
-        InputAdornment,
-      );
+      expect(getByTestId('adornment')).to.be.ok;
     });
 
     it('should allow a Select as an adornment', () => {
-      mount(
+      render(
         <TextField
           value=""
           name="text"
@@ -469,16 +456,16 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: inputRef', () => {
-    it('should be able to return the input node via a ref object', () => {
-      const ref = React.createRef();
-      mount(<InputBase inputRef={ref} />);
-      assert.strictEqual(ref.current.tagName, 'INPUT');
+    it('should be able to access the native input', () => {
+      const inputRef = React.createRef();
+      const { container } = render(<InputBase inputRef={inputRef} />);
+      expect(inputRef.current).to.equal(container.querySelector('input'));
     });
 
-    it('should be able to return the textarea node via a ref object', () => {
-      const ref = React.createRef();
-      mount(<InputBase multiline inputRef={ref} />);
-      assert.strictEqual(ref.current.tagName, 'TEXTAREA');
+    it('should be able to access the native textarea', () => {
+      const inputRef = React.createRef();
+      const { container } = render(<InputBase multiline inputRef={inputRef} />);
+      expect(inputRef.current).to.equal(container.querySelector('textarea'));
     });
   });
 });
