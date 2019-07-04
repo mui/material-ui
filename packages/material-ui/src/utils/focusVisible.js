@@ -63,8 +63,8 @@ function handlePointerDown() {
   hadKeyboardEvent = false;
 }
 
-function handleVisibilityChange(event) {
-  if (event.target.visibilityState === 'hidden') {
+function handleVisibilityChange() {
+  if (document.visibilityState === 'hidden') {
     // If the tab becomes active again, the browser will handle calling focus
     // on the element (Safari actually calls it twice).
     // If this tab change caused a blur on an element with focus-visible,
