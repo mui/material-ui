@@ -12,14 +12,16 @@ import * as React from 'react';
 export type ComponentCreator<Component extends React.ElementType> = <Theme, Props extends {} = any>(
   styles:
     | CreateCSSProperties<Props>
-    | ((props: { theme: Theme } & CoerceEmptyInterface<Props>) => CreateCSSProperties<Props>),
+    | (({ theme, ...props }: { theme: Theme } & Props) => CreateCSSProperties<Props>),
   options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
   Omit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
   > &
-    StyledComponentProps<'root'> & { className?: string } & CoerceEmptyInterface<Props>
+    StyledComponentProps<'root'> & { className?: string } & CoerceEmptyInterface<
+      Props extends { theme: Theme } ? Omit<Props, 'theme'> & { theme?: Theme } : Props
+    >
 >;
 
 export interface StyledProps {
