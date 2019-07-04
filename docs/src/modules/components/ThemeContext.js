@@ -26,35 +26,6 @@ const themeInitialOptions = {
 function usingHighDensity(themeOptions) {
   return deepmerge(themeOptions, {
     dense: true,
-    props: {
-      MuiIconButton: {
-        size: 'small',
-      },
-      MuiInputBase: {
-        margin: 'dense',
-      },
-      MuiInputLabel: {
-        margin: 'dense',
-      },
-      MuiListItem: {
-        dense: true,
-      },
-      MuiOutlinedInput: {
-        margin: 'dense',
-      },
-      MuiFab: {
-        size: 'small',
-      },
-      MuiTable: {
-        size: 'small',
-      },
-      MuiTextField: {
-        margin: 'dense',
-      },
-      MuiToolbar: {
-        variant: 'dense',
-      },
-    },
     overrides: {
       MuiIconButton: {
         sizeSmall: {
