@@ -5,6 +5,7 @@ import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import OutlinedInput from './OutlinedInput';
 import InputBase from '../InputBase';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<OutlinedInput />', () => {
   let classes;
@@ -38,5 +39,31 @@ describe('<OutlinedInput />', () => {
     );
 
     expect(container.querySelector('.notched-outlined')).to.be.ok;
+  });
+
+  it('can use dense margin', () => {
+    const { container } = render(<OutlinedInput margin="dense" />);
+
+    expect(container.firstChild).to.have.class(classes.marginDense);
+  });
+
+  it('uses dense margin in a dense theme', () => {
+    const { container } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <OutlinedInput />
+      </MuiThemeProvider>,
+    );
+
+    expect(container.firstChild).to.have.class(classes.marginDense);
+  });
+
+  it('can render undense in a dense theme', () => {
+    const { container } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <OutlinedInput margin="none" />
+      </MuiThemeProvider>,
+    );
+
+    expect(container.firstChild).not.to.have.class(classes.marginDense);
   });
 });

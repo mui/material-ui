@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import InputBase from '../InputBase';
 import NotchedOutline from './NotchedOutline';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => {
   const borderColor =
@@ -90,11 +91,13 @@ export const styles = theme => {
 };
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
+  const theme = useTheme();
   const {
     classes,
     fullWidth = false,
     inputComponent = 'input',
     labelWidth = 0,
+    margin = theme.dense ? 'dense' : undefined,
     multiline = false,
     notched,
     type = 'text',
@@ -121,6 +124,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
       }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
+      margin={margin}
       multiline={multiline}
       ref={ref}
       type={type}
