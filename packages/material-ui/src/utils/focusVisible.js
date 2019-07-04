@@ -63,8 +63,16 @@ function handlePointerDown() {
   hadKeyboardEvent = false;
 }
 
-function handleVisibilityChange() {
-
+const handleVisibilityChange = event => {
+  if (event.target.visibilityState === 'hidden') {
+    // If the tab becomes active again, the browser will handle calling focus
+    // on the element (Safari actually calls it twice).
+    // If this tab change caused a blur on an element with focus-visible,
+    // re-apply the class when the user switches back to the tab.
+    if (hadFocusVisibleRecently) {
+      hadKeyboardEvent = true;
+    }
+  }
 }
 
 function prepare(ownerDocument) {
@@ -72,7 +80,7 @@ function prepare(ownerDocument) {
   ownerDocument.addEventListener('mousedown', handlePointerDown, true);
   ownerDocument.addEventListener('pointerdown', handlePointerDown, true);
   ownerDocument.addEventListener('touchstart', handlePointerDown, true);
-  ownerDocument.addEventListener('visibilitychange', handleVisibilityChange);
+  ownerDocument.addEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
 export function teardown(ownerDocument) {
