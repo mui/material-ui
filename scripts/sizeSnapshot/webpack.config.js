@@ -100,7 +100,7 @@ async function getSizeLimitBundles() {
       // vs https://bundlephobia.com/result?p=rc-slider
       name: 'Slider',
       webpack: true,
-      path: 'packages/material-ui-lab/build/esm/Slider/index.js',
+      path: 'packages/material-ui/build/esm/Slider/index.js',
     },
     {
       // vs https://bundlephobia.com/result?p=react-portal

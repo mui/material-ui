@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useTheme, withStyles, fade, lighten } from '@material-ui/core/styles';
-import {
-  useEventCallback,
-  useForkRef,
-  ownerWindow,
-  useIsFocusVisible,
-} from '@material-ui/core/utils';
 import { chainPropTypes } from '@material-ui/utils';
+import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
+import { fade, lighten } from '../styles/colorManipulator';
+import { useIsFocusVisible } from '../utils/focusVisible';
+import ownerWindow from '../utils/ownerWindow';
+import useEventCallback from '../utils/useEventCallback';
+import { useForkRef } from '../utils/reactHelpers';
 import ValueLabel from './ValueLabel';
 
 function asc(a, b) {
@@ -47,8 +47,8 @@ function trackFinger(event, touchId) {
       const touch = event.changedTouches[i];
       if (touch.identifier === touchId.current) {
         return {
-          x: event.changedTouches[i].pageX,
-          y: event.changedTouches[i].pageY,
+          x: touch.pageX,
+          y: touch.pageY,
         };
       }
     }
@@ -123,10 +123,6 @@ const axisProps = {
   },
   vertical: {
     offset: percent => ({ bottom: `${percent}%` }),
-    leap: percent => ({ height: `${percent}%` }),
-  },
-  'vertical-reverse': {
-    offset: percent => ({ top: `${percent}%` }),
     leap: percent => ({ height: `${percent}%` }),
   },
 };
@@ -443,7 +439,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     axis += '-reverse';
   }
 
-  const getNewValue = React.useCallback(
+  const getFingerNewValue = React.useCallback(
     ({ finger, move = false, values: values2, source }) => {
       const { current: slider } = sliderRef;
       const { width, height, bottom, left } = slider.getBoundingClientRect();
@@ -502,7 +498,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       return;
     }
 
-    const { newValue, activeIndex } = getNewValue({
+    const { newValue, activeIndex } = getFingerNewValue({
       finger,
       move: true,
       values,
@@ -525,7 +521,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       return;
     }
 
-    const { newValue } = getNewValue({ finger, values, source: valueDerived });
+    const { newValue } = getFingerNewValue({ finger, values, source: valueDerived });
 
     setActive(-1);
     if (event.type === 'touchend') {
@@ -556,13 +552,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleTouchStart = useEventCallback(event => {
     // Workaround as Safari has partial support for touchAction: 'none'.
     event.preventDefault();
-    const touch = event.changedTouches.item(0);
+    const touch = event.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
       touchId.current = touch.identifier;
     }
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getNewValue({ finger, values, source: valueDerived });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     if (!isControlled) {
@@ -605,7 +601,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     event.preventDefault();
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getNewValue({ finger, values, source: valueDerived });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     if (!isControlled) {

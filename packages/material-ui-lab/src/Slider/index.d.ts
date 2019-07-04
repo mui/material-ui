@@ -1,2 +1,3 @@
-export { default } from './Slider';
-export * from './Slider';
+import { Slider } from '@material-ui/core';
+
+export default Slider;
