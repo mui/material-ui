@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils/reactHelpers';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
@@ -149,6 +150,7 @@ export const styles = theme => {
  * It contains a load of style reset and some state logic.
  */
 const InputBase = React.forwardRef(function InputBase(props, ref) {
+  const theme = useTheme();
   const {
     'aria-describedby': ariaDescribedby,
     autoComplete,
@@ -164,7 +166,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     inputComponent = 'input',
     inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
     inputRef: inputRefProp,
-    margin,
+    margin = theme.dense ? 'dense' : undefined,
     multiline = false,
     name,
     onBlur,
@@ -213,6 +215,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     states: ['disabled', 'error', 'margin', 'required', 'filled'],
   });
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
+  fcs.margin = fcs.margin === undefined ? margin : fcs.margin;
 
   // The blur won't fire when the disabled state is set on a focused input.
   // We need to book keep the focused state manually.
