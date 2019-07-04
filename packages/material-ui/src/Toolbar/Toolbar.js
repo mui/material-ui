@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -28,12 +29,13 @@ export const styles = theme => ({
 });
 
 const Toolbar = React.forwardRef(function Toolbar(props, ref) {
+  const theme = useTheme();
   const {
     classes,
     className: classNameProp,
     component: Component = 'div',
     disableGutters = false,
-    variant = 'regular',
+    variant = theme.dense ? 'dense' : 'regular',
     ...other
   } = props;
 

@@ -4,6 +4,7 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Toolbar from './Toolbar';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<Toolbar />', () => {
   let mount;
@@ -46,5 +47,25 @@ describe('<Toolbar />', () => {
     const { container } = render(<Toolbar variant="dense">foo</Toolbar>);
 
     expect(container.firstChild).to.have.class(classes.dense);
+  });
+
+  it('condenses itself in a dense theme', () => {
+    const { container } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <Toolbar variant="dense">foo</Toolbar>
+      </MuiThemeProvider>,
+    );
+
+    expect(container.firstChild).to.have.class(classes.dense);
+  });
+
+  it('prefers the variant prop over theme density', () => {
+    const { container } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <Toolbar variant="regular">foo</Toolbar>
+      </MuiThemeProvider>,
+    );
+
+    expect(container.firstChild).not.to.have.class(classes.dense);
   });
 });
