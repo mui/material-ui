@@ -10,6 +10,7 @@ import {
   StyleRulesCallback,
   Styles,
   ClassKeyOfStyles,
+  BaseCSSProperties,
 } from '@material-ui/styles/withStyles';
 
 export {
@@ -20,6 +21,7 @@ export {
   Styles,
   WithStylesOptions,
   StyleRulesCallback,
+  BaseCSSProperties,
 };
 
 /**

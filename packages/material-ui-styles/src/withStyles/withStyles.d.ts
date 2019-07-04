@@ -3,15 +3,18 @@ import { PropInjector, CoerceEmptyInterface, IsEmptyInterface } from '@material-
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 
-export interface CSSProperties extends CSS.Properties<number | string> {
+/**
+ * Allows the user to augment the properties available
+ */
+export interface BaseCSSProperties extends CSS.Properties<number | string> {}
+
+export interface CSSProperties extends BaseCSSProperties {
   // Allow pseudo selectors and media queries
-  [k: string]: CSS.Properties<number | string>[keyof CSS.Properties] | CSSProperties;
+  [k: string]: BaseCSSProperties[keyof BaseCSSProperties] | CSSProperties;
 }
 
 export type BaseCreateCSSProperties<Props extends object = {}> = {
-  [P in keyof CSS.Properties<number | string>]:
-    | CSS.Properties<number | string>[P]
-    | ((props: Props) => CSS.Properties<number | string>[P])
+  [P in keyof BaseCSSProperties]: BaseCSSProperties[P] | ((props: Props) => BaseCSSProperties[P])
 };
 
 export interface CreateCSSProperties<Props extends object = {}>
