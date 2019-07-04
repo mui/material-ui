@@ -277,7 +277,7 @@ describe('<InputBase />', () => {
 
         // Clear value
         fireEvent.change(container.querySelector('input'), { target: { value: '' } });
-        expect(handleEmpty.callCount).to.equal(2);
+        expect(handleEmpty.callCount).to.equal(1);
       });
 
       it('should fire the onClick prop', () => {
