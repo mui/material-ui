@@ -1,19 +1,24 @@
 import * as React from 'react';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-declare const Breadcrumbs: OverridableComponent<{
-  props: {
+export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
+  props: P & {
     itemsAfterCollapse?: number;
     itemsBeforeCollapse?: number;
     maxItems?: number;
     separator?: React.ReactNode;
   };
-  defaultComponent: 'nav';
+  defaultComponent: D;
   classKey: BreadcrumbsClassKey;
-}>;
+}
+
+declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 
 export type BreadcrumbsClassKey = 'root' | 'ol' | 'li' | 'separator';
 
-export type BreadcrumbsProps = SimplifiedPropsOf<typeof Breadcrumbs>;
+export type BreadcrumbsProps<
+  D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<BreadcrumbsTypeMap<P, D>, D>;
 
 export default Breadcrumbs;

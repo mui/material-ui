@@ -1,17 +1,25 @@
-import { ExtendButtonBase } from '../ButtonBase';
-import { SimplifiedPropsOf } from '../OverridableComponent';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
 
-declare const TabScrollButton: ExtendButtonBase<{
-  props: {
+export type TabScrollButtonTypeMap<
+  P = {},
+  D extends React.ElementType = 'div'
+> = ExtendButtonBaseTypeMap<{
+  props: P & {
     direction?: 'left' | 'right';
     visible?: boolean;
   };
-  defaultComponent: 'div';
+  defaultComponent: D;
   classKey: TabScrollButtonClassKey;
 }>;
 
+declare const TabScrollButton: ExtendButtonBase<TabScrollButtonTypeMap>;
+
 export type TabScrollButtonClassKey = 'root';
 
-export type TabScrollButtonProps = SimplifiedPropsOf<typeof TabScrollButton>;
+export type TabScrollButtonProps<
+  D extends React.ElementType = TabScrollButtonTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TabScrollButtonTypeMap<P, D>, D>;
 
 export default TabScrollButton;

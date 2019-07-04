@@ -1,20 +1,25 @@
 import { PropTypes } from '..';
-import { ExtendButtonBase } from '../ButtonBase';
-import { SimplifiedPropsOf } from '../OverridableComponent';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
 
-declare const Fab: ExtendButtonBase<{
-  props: {
+export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
+  props: P & {
     color?: PropTypes.Color;
     disableFocusRipple?: boolean;
     href?: string;
     size?: 'small' | 'medium' | 'large';
     variant?: 'round' | 'extended';
   };
-  defaultComponent: 'button';
+  defaultComponent: D;
   classKey: FabClassKey;
 }>;
 
-export type FabProps = SimplifiedPropsOf<typeof Fab>;
+declare const Fab: ExtendButtonBase<FabTypeMap>;
+
+export type FabProps<
+  D extends React.ElementType = FabTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<FabTypeMap<P, D>, D>;
 
 export type FabClassKey =
   | 'root'
