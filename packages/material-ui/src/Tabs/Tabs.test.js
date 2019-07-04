@@ -186,7 +186,7 @@ describe('<Tabs />', () => {
         );
         const tabElements = getAllByRole('tab');
         expect(tabElements[0].querySelector(`.${classes.indicator}`)).to.not.be.ok;
-        expect(tabElements[0].querySelector(`.${classes.indicator}`)).to.not.be.ok;
+        expect(tabElements[1].querySelector(`.${classes.indicator}`)).to.not.be.ok;
         expect(container.querySelector(`.${classes.indicator}`)).to.be.ok;
       });
 
