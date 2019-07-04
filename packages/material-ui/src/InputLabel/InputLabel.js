@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 import FormLabel from '../FormLabel';
 
 export const styles = theme => ({
@@ -82,11 +83,12 @@ export const styles = theme => ({
 });
 
 const InputLabel = React.forwardRef(function InputLabel(props, ref) {
+  const theme = useTheme();
   const {
     classes,
     className,
     disableAnimation = false,
-    margin,
+    margin = theme.dense ? 'dense' : undefined,
     muiFormControl,
     shrink: shrinkProp,
     variant,
@@ -103,6 +105,7 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
     muiFormControl,
     states: ['margin', 'variant'],
   });
+  fcs.margin = fcs.margin === undefined ? margin : fcs.margin;
 
   return (
     <FormLabel

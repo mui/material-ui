@@ -7,6 +7,7 @@ import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import FormControlContext from '../FormControl/FormControlContext';
 import InputLabel from './InputLabel';
 import FormLabel from '../FormLabel';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<InputLabel />', () => {
   let mount;
@@ -72,7 +73,27 @@ describe('<InputLabel />', () => {
       expect(container.firstChild).to.have.class(classes.marginDense);
     });
 
-    ['filled', 'focused'].forEach(state => {
+    it('uses dense margin in a dense theme', () => {
+      const { container } = render(
+        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+          <InputLabelWithContext context={{}} />
+        </MuiThemeProvider>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.marginDense);
+    });
+
+    it('prefers the form control context', () => {
+      const { container } = render(
+        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+          <InputLabelWithContext context={{ margin: 'none' }} />
+        </MuiThemeProvider>,
+      );
+
+      expect(container.firstChild).not.to.have.class(classes.marginDense);
+    });
+
+    [('filled', 'focused')].forEach(state => {
       describe(state, () => {
         it('should be overridden by the shrink prop', () => {
           const { container, setProps } = render(
