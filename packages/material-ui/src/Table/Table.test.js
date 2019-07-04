@@ -4,7 +4,11 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Table from './Table';
+import TableBody from '../TableBody';
+import TableRow from '../TableRow';
+import TableCell from '../TableCell';
 import TableContext from './TableContext';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<Table />', () => {
   let mount;
@@ -74,5 +78,37 @@ describe('<Table />', () => {
       size: 'medium',
       padding: 'default',
     });
+  });
+
+  it('applies small size table cells in a dense theme', () => {
+    const { getByRole } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell classes={{ sizeSmall: 'small' }}>cell</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </MuiThemeProvider>,
+    );
+
+    expect(getByRole('cell')).to.have.class('small');
+  });
+
+  it('prefers size props over theme density', () => {
+    const { getByRole } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <Table size="medium">
+          <TableBody>
+            <TableRow>
+              <TableCell classes={{ sizeSmall: 'small' }}>cell</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </MuiThemeProvider>,
+    );
+
+    expect(getByRole('cell')).not.to.have.class('small');
   });
 });
