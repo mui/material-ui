@@ -255,6 +255,31 @@ describe('<InputBase />', () => {
     });
 
     describe('callbacks', () => {
+      it('should fire the onFilled muiFormControl and props callback when dirtied', () => {
+        const handleFilled = spy();
+        const { container } = render(
+          <InputBase onFilled={handleFilled} />,
+        );
+
+        fireEvent.change(container.querySelector('input'), { target: { value: 'hello' } });
+        expect(handleFilled.callCount).to.equal(1);
+      });
+
+      it('should fire the onEmpty muiFormControl and props callback when cleaned', () => {
+        const handleEmpty = spy();
+        const { container } = render(
+          <InputBase onEmpty={handleEmpty} />,
+        );
+
+        // Set value to be cleared
+        fireEvent.change(container.querySelector('input'), { target: { value: 'test' } });
+        expect(handleEmpty.callCount, 0);
+
+        // Clear value
+        fireEvent.change(container.querySelector('input'), { target: { value: '' } });
+        expect(handleEmpty.callCount).to.equal(2);
+      });
+
       it('should fire the onClick prop', () => {
         const handleClick = spy();
         const handleFocus = spy();
