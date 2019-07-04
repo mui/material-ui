@@ -6,6 +6,7 @@ import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<Fab />', () => {
   let mount;
@@ -77,7 +78,7 @@ describe('<Fab />', () => {
     expect(button).to.have.class(classes.secondary);
   });
 
-  it('should render a small floating action button', () => {
+  it('can render a small floating action button', () => {
     const { getByRole } = render(<Fab size="small">Fab</Fab>);
     const button = getByRole('button');
 
@@ -86,13 +87,39 @@ describe('<Fab />', () => {
     expect(button).not.to.have.class(classes.sizeMedium);
   });
 
-  it('should render a medium floating action button', () => {
+  it('can render a medium floating action button', () => {
     const { getByRole } = render(<Fab size="medium">Fab</Fab>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.sizeSmall);
     expect(button).to.have.class(classes.sizeMedium);
+  });
+
+  it('renders a small FAB in a dense theme', () => {
+    const { getByRole } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <Fab>Fab</Fab>
+      </MuiThemeProvider>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.sizeSmall);
+    expect(button).not.to.have.class(classes.sizeMedium);
+  });
+
+  it('prefers size props over dense theme', () => {
+    const { getByRole } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <Fab size="large">Fab</Fab>
+      </MuiThemeProvider>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.sizeSmall);
+    expect(button).not.to.have.class(classes.sizeMedium);
   });
 
   it('should have a ripple by default', () => {

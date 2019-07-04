@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
 
@@ -120,6 +121,7 @@ export const styles = theme => ({
 });
 
 const Fab = React.forwardRef(function Fab(props, ref) {
+  const theme = useTheme();
   const {
     children,
     classes,
@@ -129,7 +131,7 @@ const Fab = React.forwardRef(function Fab(props, ref) {
     disabled = false,
     disableFocusRipple = false,
     focusVisibleClassName,
-    size = 'large',
+    size = theme.dense ? 'small' : 'large',
     variant = 'round',
     ...other
   } = props;
