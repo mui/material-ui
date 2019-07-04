@@ -170,8 +170,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     onBlur,
     onChange,
     onClick,
-    onEmpty,
-    onFilled,
     onFocus,
     onKeyDown,
     onKeyUp,
@@ -231,20 +229,11 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         if (muiFormControl && muiFormControl.onFilled) {
           muiFormControl.onFilled();
         }
-        if (onFilled) {
-          onFilled();
-        }
-        return;
-      }
-
-      if (muiFormControl && muiFormControl.onEmpty) {
+      } else if (muiFormControl && muiFormControl.onEmpty) {
         muiFormControl.onEmpty();
       }
-      if (onEmpty) {
-        onEmpty();
-      }
     },
-    [muiFormControl, onEmpty, onFilled],
+    [muiFormControl],
   );
 
   React.useEffect(() => {
@@ -499,14 +488,6 @@ InputBase.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onEmpty: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFilled: PropTypes.func,
   /**
    * @ignore
    */
