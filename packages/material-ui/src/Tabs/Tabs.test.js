@@ -1,14 +1,14 @@
 import React from 'react';
-import { assert } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { expect, assert } from 'chai';
+import { spy, useFakeTimers } from 'sinon';
 import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, createRender, getClasses } from '@material-ui/core/test-utils';
+import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Tab from '../Tab';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
-import TabIndicator from './TabIndicator';
 
 function AccessibleTabScrollButton(props) {
   return <TabScrollButton data-direction={props.direction} {...props} />;
@@ -17,48 +17,40 @@ AccessibleTabScrollButton.propTypes = {
   direction: PropTypes.string.isRequired,
 };
 
-const findScrollButton = (wrapper, direction) => wrapper.find(`div[data-direction="${direction}"]`);
-const hasLeftScrollButton = wrapper => findScrollButton(wrapper, 'left').exists();
-const hasRightScrollButton = wrapper => findScrollButton(wrapper, 'right').exists();
+const findScrollButton = (container, direction) =>
+  container.querySelector(`div[data-direction="${direction}"]`);
+const hasLeftScrollButton = container => findScrollButton(container, 'left') != null;
+const hasRightScrollButton = container => findScrollButton(container, 'right') != null;
 
 describe('<Tabs />', () => {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  // The test fails on Safari with just:
+  //
+  // container.scrollLeft = 200;
+  // assert.strictEqual(container.scrollLeft, 200); 💥
+  if (isSafari) {
+    return;
+  }
+
   let mount;
   let classes;
-  let render;
-  const noop = () => {};
-  const fakeTabs = {
-    getBoundingClientRect: () => ({}),
-    children: [
-      {
-        children: [
-          {
-            getBoundingClientRect: () => ({}),
-          },
-        ],
-      },
-    ],
-  };
-  const setFakeTabs = (wrapper, tabs) => {
-    const instance = wrapper.find('Tabs').instance();
-    instance.tabsRef = { ...tabs, ...fakeTabs };
-    // fake componentDidUpdate
-    instance.updateScrollButtonState();
-    // rerender
-    wrapper.update();
-  };
+  const render = createClientRender({ strict: false });
+  let serverRender;
 
   before(() => {
-    classes = getClasses(<Tabs onChange={noop} value={0} />);
+    classes = getClasses(<Tabs value={0} />);
     // StrictModeViolation: uses ButtonBase
     mount = createMount({ strict: false });
-    render = createRender();
+    serverRender = createRender();
   });
 
   after(() => {
     mount.cleanUp();
+    cleanup();
   });
 
-  describeConformance(<Tabs onChange={noop} value={0} />, () => ({
+  describeConformance(<Tabs value={0} />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
@@ -75,7 +67,7 @@ describe('<Tabs />', () => {
     });
 
     it('should warn if the input is invalid', () => {
-      mount(<Tabs onChange={noop} value={0} centered variant="scrollable" />);
+      render(<Tabs value={0} centered variant="scrollable" />);
       assert.match(
         consoleErrorMock.args()[0][0],
         /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
@@ -86,12 +78,9 @@ describe('<Tabs />', () => {
   describe('prop: action', () => {
     it('should be able to access updateIndicator function', () => {
       let tabsActions = {};
-      mount(
+      render(
         <Tabs
-          width="md"
-          onChange={noop}
           value={0}
-          className="woofTabs"
           action={actions => {
             tabsActions = actions;
           }}
@@ -101,158 +90,141 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      assert.strictEqual(
-        typeof tabsActions.updateIndicator === 'function',
-        true,
-        'Should be a function.',
-      );
+      expect(typeof tabsActions.updateIndicator).to.equal('function');
       tabsActions.updateIndicator();
     });
   });
 
   describe('prop: centered', () => {
     it('should render with the centered class', () => {
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} centered>
+      const { container } = render(
+        <Tabs value={0} centered>
           <Tab />
           <Tab />
         </Tabs>,
       );
       const selector = `.${classes.flexContainer}.${classes.centered}`;
-      assert.strictEqual(wrapper.find(selector).type(), 'div');
+      expect(container.querySelector(selector).nodeName).to.equal('DIV');
     });
   });
 
   describe('prop: children', () => {
     it('should accept a null child', () => {
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0}>
+      const { getAllByRole } = render(
+        <Tabs value={0}>
           {null}
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(wrapper.find(Tab).length, 1);
+      expect(getAllByRole('tab')).to.have.lengthOf(1);
     });
 
     it('should support empty children', () => {
-      mount(<Tabs width="md" onChange={noop} value={1} />);
+      render(<Tabs value={1} />);
     });
   });
 
   describe('prop: value', () => {
     const tabs = (
-      <Tabs width="md" onChange={noop} value={1}>
+      <Tabs value={1}>
         <Tab />
         <Tab />
       </Tabs>
     );
 
     it('should pass selected prop to children', () => {
-      const wrapper = mount(tabs);
-      const tabWrappers = wrapper.find('[role="tab"]').hostNodes();
-
-      assert.isNotOk(tabWrappers.at(0).props()['aria-selected']);
-      assert.isOk(tabWrappers.at(1).props()['aria-selected']);
+      const { getAllByRole } = render(tabs);
+      const tabElements = getAllByRole('tab');
+      expect(tabElements[0]).to.have.attribute('aria-selected', 'false');
+      expect(tabElements[1]).to.have.attribute('aria-selected', 'true');
     });
 
     it('should accept any value as selected tab value', () => {
       const tab0 = {};
       const tab1 = {};
-      assert.notStrictEqual(tab0, tab1);
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={tab0}>
+      expect(tab0).to.not.equal(tab1);
+
+      const { getAllByRole } = render(
+        <Tabs value={tab0}>
           <Tab value={tab0} />
           <Tab value={tab1} />
         </Tabs>,
       );
-      const tabWrappers = wrapper.find('[role="tab"]').hostNodes();
-
-      assert.isOk(tabWrappers.at(0).props()['aria-selected']);
-      assert.isNotOk(tabWrappers.at(1).props()['aria-selected']);
-    });
-
-    it('should switch from the original value', () => {
-      const wrapper = mount(tabs);
-      wrapper.setProps({ value: 0 });
-
-      const tabWrappers = wrapper.find('[role="tab"]').hostNodes();
-
-      assert.isOk(tabWrappers.at(0).props()['aria-selected']);
-      assert.isNotOk(tabWrappers.at(1).props()['aria-selected']);
+      const tabElements = getAllByRole('tab');
+      expect(tabElements[0]).to.have.attribute('aria-selected', 'true');
+      expect(tabElements[1]).to.have.attribute('aria-selected', 'false');
     });
 
     describe('indicator', () => {
       it('should accept a false value', () => {
-        const wrapper = mount(
-          <Tabs width="md" onChange={noop} value={false}>
+        const { container } = render(
+          <Tabs value={false}>
             <Tab />
             <Tab />
           </Tabs>,
         );
-        assert.strictEqual(wrapper.find(TabIndicator).props().style.width, 0);
+        expect(container.querySelector(`.${classes.indicator}`).style.width).to.equal('0px');
       });
 
       it('should let the selected <Tab /> render the indicator server-side', () => {
-        const markup = render(
-          <Tabs width="md" onChange={noop} value={1}>
+        const markup = serverRender(
+          <Tabs value={1}>
             <Tab />
             <Tab />
           </Tabs>,
         );
         const indicator = markup.find(`button > .${classes.indicator}`);
-        assert.strictEqual(indicator.length, 1);
+        expect(indicator).to.have.lengthOf(1);
       });
 
       it('should render the indicator', () => {
-        const wrapper = mount(
-          <Tabs width="md" onChange={noop} value={1}>
+        const { container, getAllByRole } = render(
+          <Tabs value={1}>
             <Tab />
             <Tab />
           </Tabs>,
         );
-        assert.strictEqual(
-          wrapper
-            .find(Tab)
-            .at(0)
-            .props().indicator,
-          false,
-        );
-        assert.strictEqual(
-          wrapper
-            .find(Tab)
-            .at(1)
-            .props().indicator,
-          false,
-        );
-        assert.strictEqual(wrapper.find(TabIndicator).length, 1);
+        const tabElements = getAllByRole('tab');
+        expect(tabElements[0].querySelector(`.${classes.indicator}`)).to.not.be.ok;
+        expect(tabElements[1].querySelector(`.${classes.indicator}`)).to.not.be.ok;
+        expect(container.querySelector(`.${classes.indicator}`)).to.be.ok;
       });
 
-      it('should update the indicator state no matter what', () => {
-        const wrapper = mount(
-          <Tabs width="md" onChange={noop} value={1}>
+      it('should update the indicator at each render', () => {
+        const { setProps, container, getByRole } = render(
+          <Tabs value={1}>
             <Tab />
             <Tab />
           </Tabs>,
         );
-        const tabsWrapper = wrapper.find('Tabs');
-        const instance = tabsWrapper.instance();
-        stub(instance, 'scrollSelectedIntoView');
+        const tablist = getByRole('tablist');
+        const tab = tablist.children[0].children[1];
 
-        tabsWrapper.setState({
-          indicatorStyle: {
-            left: 10,
-            width: 40,
-          },
+        Object.defineProperty(tablist, 'clientWidth', { value: 100 });
+        Object.defineProperty(tablist, 'scrollWidth', { value: 100 });
+        tablist.getBoundingClientRect = () => ({
+          left: 0,
+          right: 100,
         });
-        wrapper.setProps({
-          value: 0,
+        tab.getBoundingClientRect = () => ({
+          left: 50,
+          width: 50,
+          right: 100,
         });
-
-        assert.strictEqual(
-          instance.scrollSelectedIntoView.callCount >= 2,
-          true,
-          'should have called scrollSelectedIntoView',
-        );
+        setProps();
+        let style;
+        style = container.querySelector(`.${classes.indicator}`).style;
+        expect(style.left).to.equal('50px');
+        expect(style.width).to.equal('50px');
+        tab.getBoundingClientRect = () => ({
+          left: 60,
+          width: 50,
+          right: 110,
+        });
+        setProps();
+        style = container.querySelector(`.${classes.indicator}`).style;
+        expect(style.left).to.equal('60px');
+        expect(style.width).to.equal('50px');
       });
     });
 
@@ -266,16 +238,15 @@ describe('<Tabs />', () => {
       });
 
       it('warns when the value is not present in any tab', () => {
-        mount(
-          <Tabs width="md" onChange={noop} value={2}>
+        render(
+          <Tabs value={2}>
             <Tab value={1} />
             <Tab value={3} />
           </Tabs>,
         );
-        assert.strictEqual(consoleErrorMock.callCount(), 3);
-        assert.match(
-          consoleErrorMock.args()[0][0],
-          /You can provide one of the following values: 1, 3/,
+        expect(consoleErrorMock.callCount()).to.equal(4);
+        expect(consoleErrorMock.args()[0][0]).to.include(
+          'You can provide one of the following values: 1, 3',
         );
       });
     });
@@ -284,29 +255,29 @@ describe('<Tabs />', () => {
   describe('prop: onChange', () => {
     it('should call onChange when clicking', () => {
       const handleChange = spy();
-      // use mount to ensure that click event on Tab can be fired
-      const wrapper = mount(
-        <Tabs width="md" value={0} onChange={handleChange}>
+      const { getAllByRole } = render(
+        <Tabs value={0} onChange={handleChange}>
           <Tab />
           <Tab />
         </Tabs>,
       );
 
-      wrapper
-        .find(Tab)
-        .at(1)
-        .simulate('click');
-      wrapper.setProps({ value: 1 });
-
-      assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
-      assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with value 1');
+      fireEvent.click(getAllByRole('tab')[1]);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(1);
     });
   });
 
   describe('prop: variant="scrollable"', () => {
     let clock;
     const tabs = (
-      <Tabs width="md" onChange={noop} value={0} variant="scrollable">
+      <Tabs
+        value={0}
+        style={{ width: 200 }}
+        variant="scrollable"
+        ScrollButtonComponent={AccessibleTabScrollButton}
+      >
+        <Tab />
         <Tab />
         <Tab />
       </Tabs>
@@ -321,53 +292,65 @@ describe('<Tabs />', () => {
     });
 
     it('should render with the scrollable class', () => {
-      const wrapper = mount(tabs);
+      const { container } = render(tabs);
       const selector = `.${classes.scroller}.${classes.scrollable}`;
-      assert.strictEqual(wrapper.find(selector).name(), 'div');
-      assert.strictEqual(wrapper.find(selector).length, 1);
+      expect(container.querySelector(selector).tagName).to.equal('DIV');
+      expect(container.querySelectorAll(selector)).to.have.lengthOf(1);
     });
 
     it('should response to scroll events', () => {
-      const wrapper = mount(tabs);
-      const instance = wrapper.find('Tabs').instance();
-      instance.tabsRef = { scrollLeft: 100, ...fakeTabs };
-      spy(instance, 'updateScrollButtonState');
+      const { container, setProps, getByRole } = render(tabs);
+      const tablist = getByRole('tablist');
 
-      const selector = `.${classes.scroller}.${classes.scrollable}`;
-      wrapper.find(selector).simulate('scroll');
+      Object.defineProperty(tablist, 'clientWidth', { value: 120 });
+      tablist.scrollLeft = 10;
+      Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
+      Object.defineProperty(tablist, 'getBoundingClientRect', {
+        value: () => ({
+          left: 0,
+          right: 50,
+        }),
+      });
+      setProps();
+      clock.tick(1000);
+      expect(hasLeftScrollButton(container)).to.equal(true);
+      expect(hasRightScrollButton(container)).to.equal(true);
+      tablist.scrollLeft = 0;
+      fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollable}`));
       clock.tick(166);
 
-      assert.strictEqual(
-        instance.updateScrollButtonState.called,
-        true,
-        'should have called updateScrollButtonState',
-      );
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(true);
     });
 
     it('should get a scrollbar size listener', () => {
-      // use mount to ensure that handleScrollbarSizeChange gets covered
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} variant="scrollable">
+      const { setProps, getByRole } = render(
+        <Tabs value={0}>
           <Tab />
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(wrapper.find('ScrollbarSize').length, 1);
+      const tablist = getByRole('tablist');
+      expect(tablist.style.overflow).to.equal('hidden');
+      setProps({
+        variant: 'scrollable',
+      });
+      expect(tablist.style.overflow).to.equal('');
     });
   });
 
   describe('prop: !variant="scrollable"', () => {
     it('should not render with the scrollable class', () => {
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0}>
+      const { container } = render(
+        <Tabs value={0}>
           <Tab />
           <Tab />
         </Tabs>,
       );
       const baseSelector = `.${classes.scroller}`;
       const selector = `.${classes.scroller}.${classes.scrollable}`;
-      assert.strictEqual(wrapper.find(baseSelector).length, 1);
-      assert.strictEqual(wrapper.find(selector).length, 0);
+      expect(container.querySelector(baseSelector)).to.be.ok;
+      expect(container.querySelector(selector)).to.not.be.ok;
     });
   });
 
@@ -383,241 +366,248 @@ describe('<Tabs />', () => {
     });
 
     it('should render scroll buttons', () => {
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
+      const { container } = render(
+        <Tabs value={0} variant="scrollable" scrollButtons="on">
           <Tab />
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be two');
-    });
-
-    it('should render scroll buttons automatically', () => {
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="desktop">
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-      assert.strictEqual(wrapper.find(TabScrollButton).length, 2);
-      assert.strictEqual(
-        wrapper
-          .find(TabScrollButton)
-          .everyWhere(node => node.hasClass(classes.scrollButtonsDesktop)),
-        true,
-      );
+      expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
     });
 
     it('should handle window resize event', () => {
-      const wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-      const instance = wrapper.find('Tabs').instance();
-      stub(instance, 'updateScrollButtonState');
-      stub(instance, 'updateIndicatorState');
-
-      window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
-
-      assert.strictEqual(instance.updateScrollButtonState.called, true);
-      assert.strictEqual(instance.updateIndicatorState.called, true);
-    });
-
-    describe('scroll button visibility states', () => {
-      const tabs = (
+      const { container, setProps, getByRole } = render(
         <Tabs
-          width="md"
-          onChange={noop}
           value={0}
           variant="scrollable"
           scrollButtons="on"
           ScrollButtonComponent={AccessibleTabScrollButton}
+          style={{ width: 200 }}
         >
           <Tab />
           <Tab />
-        </Tabs>
+          <Tab />
+        </Tabs>,
       );
 
+      const tablist = getByRole('tablist');
+
+      Object.defineProperty(tablist, 'clientWidth', { value: 120 });
+      tablist.scrollLeft = 10;
+      Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
+      Object.defineProperty(tablist, 'getBoundingClientRect', {
+        value: () => ({
+          left: 0,
+          right: 100,
+        }),
+      });
+      setProps();
+      clock.tick(1000);
+      expect(hasLeftScrollButton(container)).to.equal(true);
+      expect(hasRightScrollButton(container)).to.equal(true);
+      tablist.scrollLeft = 0;
+
+      window.dispatchEvent(new window.Event('resize', {}));
+      clock.tick(166);
+
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(true);
+    });
+
+    describe('scroll button visibility states', () => {
       it('should set neither left nor right scroll button state', () => {
-        const wrapper = mount(tabs);
-        const instanceWrapper = wrapper.find('Tabs');
-        const instance = instanceWrapper.instance();
+        const { container, setProps, getByRole } = render(
+          <Tabs
+            value={0}
+            variant="scrollable"
+            scrollButtons="on"
+            ScrollButtonComponent={AccessibleTabScrollButton}
+            style={{ width: 200 }}
+          >
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+        const tablist = getByRole('tablist');
 
-        instance.tabsRef = {
-          scrollLeft: 0,
-          scrollWidth: 90,
-          clientWidth: 100,
-          ...fakeTabs,
-        };
-        instance.updateScrollButtonState();
-        wrapper.update();
+        Object.defineProperty(tablist, 'clientWidth', { value: 200 });
+        Object.defineProperty(tablist, 'scrollWidth', { value: 200 });
 
-        assert.strictEqual(hasLeftScrollButton(wrapper), false);
-        assert.strictEqual(hasRightScrollButton(wrapper), false);
+        setProps();
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(false);
       });
 
       it('should set only left scroll button state', () => {
-        const wrapper = mount(tabs);
+        const { container, setProps, getByRole } = render(
+          <Tabs
+            value={0}
+            variant="scrollable"
+            scrollButtons="on"
+            ScrollButtonComponent={AccessibleTabScrollButton}
+            style={{ width: 200 }}
+          >
+            <Tab />
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+        const tablist = getByRole('tablist');
 
-        setFakeTabs(wrapper, { scrollLeft: 2 });
+        Object.defineProperty(tablist, 'clientWidth', { value: 120 });
+        Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
+        tablist.scrollLeft = 96;
 
-        assert.strictEqual(hasLeftScrollButton(wrapper), true);
-        assert.strictEqual(hasRightScrollButton(wrapper), false);
+        setProps();
+        expect(hasLeftScrollButton(container)).to.equal(true);
+        expect(hasRightScrollButton(container)).to.equal(false);
       });
 
       it('should set only right scroll button state', () => {
-        const wrapper = mount(tabs);
+        const { container, setProps, getByRole } = render(
+          <Tabs
+            value={0}
+            variant="scrollable"
+            scrollButtons="on"
+            ScrollButtonComponent={AccessibleTabScrollButton}
+            style={{ width: 200 }}
+          >
+            <Tab />
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+        const tablist = getByRole('tablist');
 
-        setFakeTabs(wrapper, {
-          scrollLeft: 0,
-          scrollWidth: 110,
-          clientWidth: 100,
-        });
+        Object.defineProperty(tablist, 'clientWidth', { value: 120 });
+        Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
+        tablist.scrollLeft = 0;
 
-        assert.strictEqual(hasLeftScrollButton(wrapper), false);
-        assert.strictEqual(hasRightScrollButton(wrapper), true);
+        setProps();
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(true);
       });
 
       it('should set both left and right scroll button state', () => {
-        const wrapper = mount(tabs);
+        const { container, setProps, getByRole } = render(
+          <Tabs
+            value={0}
+            variant="scrollable"
+            scrollButtons="on"
+            ScrollButtonComponent={AccessibleTabScrollButton}
+            style={{ width: 200 }}
+          >
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+        const tablist = getByRole('tablist');
 
-        setFakeTabs(wrapper, {
-          scrollLeft: 2,
-          scrollWidth: 110,
-          clientWidth: 100,
-        });
+        Object.defineProperty(tablist, 'clientWidth', { value: 120 });
+        Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
+        tablist.scrollLeft = 5;
 
-        assert.strictEqual(hasLeftScrollButton(wrapper), true);
-        assert.strictEqual(hasRightScrollButton(wrapper), true);
-      });
-
-      it('should not set scroll button states if difference is only one pixel', () => {
-        const wrapper = mount(tabs);
-
-        setFakeTabs(wrapper, {
-          scrollLeft: 0,
-          scrollWidth: 101,
-          clientWidth: 100,
-        });
-
-        assert.strictEqual(hasLeftScrollButton(wrapper), false);
-        assert.strictEqual(hasRightScrollButton(wrapper), false);
+        setProps();
+        expect(hasLeftScrollButton(container)).to.equal(true);
+        expect(hasRightScrollButton(container)).to.equal(true);
       });
     });
   });
 
   describe('scroll button behavior', () => {
-    let instance;
-    let wrapper;
-    let scrollSpy;
-    const dimensions = { scrollLeft: 100, clientWidth: 200, scrollWidth: 1000, ...fakeTabs };
+    let clock;
 
-    beforeEach(() => {
-      wrapper = mount(
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should call moveTabsScroll', () => {
+      const { container, setProps, getByRole } = render(
         <Tabs
-          width="md"
-          onChange={noop}
           value={0}
           variant="scrollable"
           scrollButtons="on"
           ScrollButtonComponent={AccessibleTabScrollButton}
+          style={{ width: 200 }}
         >
+          <Tab />
           <Tab />
           <Tab />
         </Tabs>,
       );
-      instance = wrapper.find('Tabs').instance();
+      const tablist = getByRole('tablist');
+      Object.defineProperty(tablist, 'clientWidth', { value: 120 });
+      Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
+      tablist.scrollLeft = 20;
+      setProps();
+      clock.tick(1000);
+      expect(hasLeftScrollButton(container)).to.equal(true);
+      expect(hasRightScrollButton(container)).to.equal(true);
 
-      setFakeTabs(wrapper, dimensions);
+      fireEvent.click(findScrollButton(container, 'left'));
+      clock.tick(1000);
+      expect(tablist.scrollLeft).not.to.be.above(0);
 
-      scrollSpy = spy(instance, 'moveTabsScroll');
-    });
-
-    afterEach(() => {
-      wrapper.detach();
-    });
-
-    it('should call moveTabsScroll', () => {
-      findScrollButton(wrapper, 'left').simulate('click');
-      assert.strictEqual(
-        scrollSpy.args[0][0],
-        -dimensions.clientWidth,
-        `should be called with -${dimensions.clientWidth}`,
-      );
-
-      findScrollButton(wrapper, 'right').simulate('click');
-      assert.strictEqual(
-        scrollSpy.args[1][0],
-        dimensions.clientWidth,
-        `should be called with ${dimensions.clientWidth}`,
-      );
+      tablist.scrollLeft = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
+      clock.tick(1000);
+      expect(tablist.scrollLeft).not.to.be.below(tablist.scrollWidth - tablist.clientWidth);
     });
   });
 
   describe('scroll into view behavior', () => {
-    let scrollStub;
-    let instance;
-    let metaStub;
-    let wrapper;
+    let clock;
 
-    beforeEach(() => {
-      wrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} variant="scrollable">
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should scroll left tab into view', () => {
+      const { setProps, getByRole } = render(
+        <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
+          <Tab />
           <Tab />
           <Tab />
         </Tabs>,
       );
-      instance = wrapper.find('Tabs').instance();
-      scrollStub = stub(instance, 'scroll');
-      metaStub = stub(instance, 'getTabsMeta');
-    });
+      const tablist = getByRole('tablist');
+      const tab = tablist.children[0].children[0];
 
-    afterEach(() => {
-      wrapper.detach();
-    });
-
-    it('should scroll left tab into view', () => {
-      metaStub.returns({
-        tabsMeta: { left: 0, right: 100, scrollLeft: 10 },
-        tabMeta: { left: -10, right: 10 },
+      Object.defineProperty(tablist, 'clientWidth', { value: 120 });
+      Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
+      tablist.scrollLeft = 20;
+      tablist.getBoundingClientRect = () => ({
+        left: 0,
+        right: 100,
       });
-
-      instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[0][0], 0);
-    });
-
-    it('should scroll right tab into view', () => {
-      metaStub.returns({
-        tabsMeta: { left: 0, right: 100, scrollLeft: 0 },
-        tabMeta: { left: 90, right: 110 },
+      tab.getBoundingClientRect = () => ({
+        left: -20,
+        width: 50,
+        right: 30,
       });
-
-      instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[0][0], 10);
-    });
-
-    it('should support value=false', () => {
-      metaStub.returns({
-        tabsMeta: { left: 0, right: 100, scrollLeft: 0 },
-        tabMeta: undefined,
-      });
-
-      instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.callCount, 0);
+      setProps();
+      clock.tick(1000);
+      expect(tablist.scrollLeft).to.equal(0);
     });
   });
 
   describe('prop: TabIndicatorProps', () => {
     it('should merge the style', () => {
-      const wrapper = mount(
-        <Tabs onChange={noop} value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
+      const { container } = render(
+        <Tabs value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(wrapper.find(TabIndicator).props().style.backgroundColor, 'green');
+      const style = container.querySelector(`.${classes.indicator}`).style;
+      expect(style.backgroundColor).to.equal('green');
     });
   });
 });
