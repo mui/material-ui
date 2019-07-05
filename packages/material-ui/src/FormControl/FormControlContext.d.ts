@@ -1,9 +1,12 @@
 import { Context } from 'react';
 import { FormControlProps } from './FormControl';
 
+// shut off automatic exporting
+export {};
+
 type ContextFromPropsKey = 'disabled' | 'error' | 'margin' | 'required' | 'variant';
 
-export interface FormControlContextProps extends Pick<FormControlProps, ContextFromPropsKey> {
+export interface FormControl extends Pick<FormControlProps, ContextFromPropsKey> {
   adornedStart: boolean;
   filled: boolean;
   focused: boolean;
@@ -13,6 +16,4 @@ export interface FormControlContextProps extends Pick<FormControlProps, ContextF
   onFocus: () => void;
 }
 
-declare const FormControlContext: Context<FormControlContextProps | null | undefined>;
-
-export default FormControlContext;
+export function useFormControl(): FormControl;

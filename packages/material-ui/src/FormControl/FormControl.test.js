@@ -7,7 +7,7 @@ import { act, cleanup, createClientRender } from 'test/utils/createClientRender'
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
-import FormControlContext from './FormControlContext';
+import FormControlContext, { useFormControl } from './FormControlContext';
 
 describe('<FormControl />', () => {
   let mount;
@@ -15,7 +15,7 @@ describe('<FormControl />', () => {
   let classes;
 
   function TestComponent(props) {
-    const context = React.useContext(FormControlContext);
+    const context = useFormControl();
     props.contextCallback(context);
     return null;
   }

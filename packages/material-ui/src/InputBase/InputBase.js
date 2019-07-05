@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
 import { useForkRef } from '../utils/reactHelpers';
 import TextareaAutosize from '../TextareaAutosize';
@@ -205,7 +205,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const handleInputRef = useForkRef(inputRef, handleInputRefProp);
 
   const [focused, setFocused] = React.useState(false);
-  const muiFormControl = React.useContext(FormControlContext);
+  const muiFormControl = useFormControl();
 
   const fcs = formControlState({
     props,

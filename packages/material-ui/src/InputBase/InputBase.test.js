@@ -5,7 +5,7 @@ import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
 import TextareaAutosize from '../TextareaAutosize';
 import InputBase from './InputBase';
@@ -244,44 +244,28 @@ describe('<InputBase />', () => {
     });
   });
 
-  describe('with muiFormControl context', () => {
-    function InputBaseWithContext(props) {
-      const { context, ...other } = props;
-
-      return (
-        <FormControlContext.Provider value={context}>
-          <InputBase {...other} />
-        </FormControlContext.Provider>
-      );
-    }
-    InputBaseWithContext.propTypes = {
-      context: PropTypes.object,
-    };
-
+  describe('with FormControl', () => {
     it('should have the formControl class', () => {
-      const { container } = render(<InputBaseWithContext context={{}} />);
-      expect(container.firstChild).to.have.class(classes.formControl);
+      const { getByTestId } = render(
+        <FormControl>
+          <InputBase data-testid="root" />
+        </FormControl>,
+      );
+      expect(getByTestId('root')).to.have.class(classes.formControl);
     });
 
     describe('callbacks', () => {
-      it('should fire the onFilled muiFormControl and props callback when dirtied', () => {
+      it('should fire the onFilled props callback when dirtied', () => {
         const handleFilled = spy();
-        const muiFormControl = { onFilled: spy() };
-        const { container } = render(
-          <InputBaseWithContext context={muiFormControl} onFilled={handleFilled} />,
-        );
+        const { container } = render(<InputBase onFilled={handleFilled} />);
 
         fireEvent.change(container.querySelector('input'), { target: { value: 'hello' } });
         expect(handleFilled.callCount).to.equal(1);
-        expect(muiFormControl.onFilled.callCount).to.equal(1);
       });
 
-      it('should fire the onEmpty muiFormControl and props callback when cleaned', () => {
+      it('should fire the and props callback when cleaned', () => {
         const handleEmpty = spy();
-        const muiFormControl = { onEmpty: spy() };
-        const { container } = render(
-          <InputBaseWithContext context={muiFormControl} onEmpty={handleEmpty} />,
-        );
+        const { container } = render(<InputBase onEmpty={handleEmpty} />);
 
         // Set value to be cleared
         fireEvent.change(container.querySelector('input'), { target: { value: 'test' } });
@@ -290,46 +274,18 @@ describe('<InputBase />', () => {
         // Clear value
         fireEvent.change(container.querySelector('input'), { target: { value: '' } });
         expect(handleEmpty.callCount).to.equal(2);
-        expect(muiFormControl.onEmpty.callCount).to.equal(2);
-      });
-
-      it('should fire the onFocus muiFormControl', () => {
-        const handleFocus = spy();
-        const muiFormControl = { onFocus: spy() };
-        const { container } = render(
-          <InputBaseWithContext context={muiFormControl} onFocus={handleFocus} />,
-        );
-
-        act(() => {
-          container.querySelector('input').focus();
-        });
-        expect(handleFocus.callCount).to.equal(1);
-        expect(muiFormControl.onFocus.callCount).to.equal(1);
-      });
-
-      it('should fire the onBlur muiFormControl', () => {
-        const handleBlur = spy();
-        const muiFormControl = { onBlur: spy() };
-        const { container } = render(
-          <InputBaseWithContext context={muiFormControl} onBlur={handleBlur} />,
-        );
-
-        act(() => {
-          container.querySelector('input').focus();
-          container.querySelector('input').blur();
-        });
-        expect(handleBlur.callCount).to.equal(1);
-        expect(muiFormControl.onBlur.callCount).to.equal(1);
       });
 
       it('should fire the onClick prop', () => {
         const handleClick = spy();
         const handleFocus = spy();
-        const { container } = render(
-          <InputBaseWithContext onClick={handleClick} onFocus={handleFocus} />,
+        const { getByTestId } = render(
+          <FormControl>
+            <InputBase data-testid="root" onClick={handleClick} onFocus={handleFocus} />
+          </FormControl>,
         );
 
-        fireEvent.click(container.firstChild);
+        fireEvent.click(getByTestId('root'));
         expect(handleClick.callCount).to.equal(1);
         expect(handleFocus.callCount).to.equal(1);
       });
@@ -337,29 +293,44 @@ describe('<InputBase />', () => {
 
     describe('error', () => {
       it('should be overridden by props', () => {
-        const { container, setProps } = render(<InputBaseWithContext context={{ error: true }} />);
-        expect(container.firstChild).to.have.class(classes.error);
+        function InputBaseInErrorForm(props) {
+          return (
+            <FormControl error>
+              <InputBase data-testid="root" {...props} />
+            </FormControl>
+          );
+        }
+
+        const { getByTestId, setProps } = render(<InputBaseInErrorForm />);
+        expect(getByTestId('root')).to.have.class(classes.error);
 
         setProps({ error: false });
-        expect(container.firstChild).not.to.have.class(classes.error);
+        expect(getByTestId('root')).not.to.have.class(classes.error);
 
         setProps({ error: true });
-        expect(container.firstChild).to.have.class(classes.error);
+        expect(getByTestId('root')).to.have.class(classes.error);
       });
     });
 
     describe('margin', () => {
-      describe('context margin: dense', () => {
-        it('should have the inputMarginDense class', () => {
-          const { container } = render(<InputBaseWithContext context={{ margin: 'dense' }} />);
-          expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
-        });
+      it('should have the inputMarginDense class in a dense context', () => {
+        const { container } = render(
+          <FormControl margin="dense">
+            <InputBase />
+          </FormControl>,
+        );
+        expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
       });
 
       it('should be overridden by props', () => {
-        const { container, setProps } = render(
-          <InputBaseWithContext context={{ margin: 'none' }} />,
-        );
+        function InputBaseInFormWithMargin(props) {
+          return (
+            <FormControl margin="none">
+              <InputBase {...props} />
+            </FormControl>
+          );
+        }
+        const { container, setProps } = render(<InputBaseInFormWithMargin />);
         expect(container.querySelector('input')).not.to.have.class(classes.inputMarginDense);
 
         setProps({ margin: 'dense' });
@@ -369,7 +340,11 @@ describe('<InputBase />', () => {
 
     describe('required', () => {
       it('should have the aria-required prop with value true', () => {
-        const { container } = render(<InputBaseWithContext context={{ required: true }} />);
+        const { container } = render(
+          <FormControl required>
+            <InputBase />
+          </FormControl>,
+        );
         const input = container.querySelector('input');
         expect(input).to.have.property('required', true);
       });
@@ -377,19 +352,105 @@ describe('<InputBase />', () => {
 
     describe('focused', () => {
       it('prioritizes context focus', () => {
-        const { container, setProps } = render(<InputBaseWithContext />);
+        const FormController = React.forwardRef((props, ref) => {
+          const { onBlur, onFocus } = useFormControl();
+
+          React.useImperativeHandle(ref, () => ({ onBlur, onFocus }), [onBlur, onFocus]);
+
+          return null;
+        });
+        const controlRef = React.createRef();
+        const { getByRole, getByTestId } = render(
+          <FormControl>
+            <FormController ref={controlRef} />
+            <InputBase data-testid="root" />
+          </FormControl>,
+        );
 
         act(() => {
-          container.querySelector('input').focus();
+          getByRole('textbox').focus();
         });
-        expect(container.firstChild).to.have.class(classes.focused);
+        expect(getByTestId('root')).to.have.class(classes.focused);
 
-        setProps({ context: { focused: false } });
-        expect(container.firstChild).not.to.have.class(classes.focused);
+        controlRef.current.onBlur();
+        expect(getByTestId('root')).not.to.have.class(classes.focused);
 
-        setProps({ context: { focused: true } });
-        expect(container.firstChild).to.have.class(classes.focused);
+        controlRef.current.onFocus();
+        expect(getByTestId('root')).to.have.class(classes.focused);
       });
+
+      it('propagates focused state', () => {
+        function FocusedStateLabel(props) {
+          const { focused } = useFormControl();
+          return <label {...props}>focused: {String(focused)}</label>;
+        }
+        const { getByRole, getByTestId } = render(
+          <FormControl>
+            <FocusedStateLabel data-testid="label" htmlFor="input" />
+            <InputBase id="input" />
+          </FormControl>,
+        );
+        expect(getByTestId('label')).to.have.text('focused: false');
+
+        act(() => {
+          getByRole('textbox').focus();
+        });
+        expect(getByTestId('label')).to.have.text('focused: true');
+
+        act(() => {
+          getByRole('textbox').blur();
+        });
+        expect(getByTestId('label')).to.have.text('focused: false');
+      });
+    });
+
+    it('propagates filled state when uncontrolled', () => {
+      function FilledStateLabel(props) {
+        const { filled } = useFormControl();
+        return <label {...props}>filled: {String(filled)}</label>;
+      }
+      const { getByRole, getByTestId } = render(
+        <FormControl>
+          <FilledStateLabel data-testid="label" />
+          <InputBase />
+        </FormControl>,
+      );
+      expect(getByTestId('label')).to.have.text('filled: false');
+
+      fireEvent.change(getByRole('textbox'), { target: { value: 'material' } });
+      expect(getByTestId('label')).to.have.text('filled: true');
+
+      fireEvent.change(getByRole('textbox'), { target: { value: '0' } });
+      expect(getByTestId('label')).to.have.text('filled: true');
+
+      fireEvent.change(getByRole('textbox'), { target: { value: '' } });
+      expect(getByTestId('label')).to.have.text('filled: false');
+    });
+
+    it('propagates filled state when controlled', () => {
+      function FilledStateLabel(props) {
+        const { filled } = useFormControl();
+        return <label {...props}>filled: {String(filled)}</label>;
+      }
+      function ControlledInputBase(props) {
+        return (
+          <FormControl>
+            <FilledStateLabel data-testid="label" />
+            <InputBase {...props} />
+          </FormControl>
+        );
+      }
+      const { getByTestId, setProps } = render(<ControlledInputBase value="" />);
+      expect(getByTestId('label')).to.have.text('filled: false');
+
+      setProps({ value: 'material' });
+      expect(getByTestId('label')).to.have.text('filled: true');
+
+      setProps({ value: 0 });
+      expect(getByTestId('label')).to.have.text('filled: true');
+
+      setProps({ value: '' });
+      expect(getByTestId('label')).to.have.text('filled: false');
     });
   });
 
