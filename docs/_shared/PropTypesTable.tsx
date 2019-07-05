@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Code from './Code';
 import FuzzySearch from 'fuzzy-search';
 import PropTypesDoc from '../prop-types.json';
 import SearchBar from 'material-ui-search-bar';
@@ -122,10 +123,17 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
                     [classes.required]: prop.required,
                   })}
                 >
-                  {prop.required ? `${prop.name} *` : prop.name}
+                  <Typography variant="body2">
+                    {prop.required ? `${prop.name} *` : prop.name}{' '}
+                  </Typography>
                 </TableCell>
 
-                <TableCell className={classes.type}>{prop.type.name}</TableCell>
+                <TableCell>
+                  <Code inline language="typescript">
+                    {prop.type.name}
+                  </Code>
+                </TableCell>
+
                 <TableCell className={classes.defaultValue}>
                   <Typography align="center" variant="body1" component="span">
                     {prop.defaultValue && prop.defaultValue.value}

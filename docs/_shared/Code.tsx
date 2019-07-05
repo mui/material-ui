@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import React from 'react';
 import { highlight } from '../utils/prism';
-import { withStyles, Theme, WithStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
-const styles = (theme: Theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    margin: '0',
+    margin: 0,
     fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
     color: theme.palette.text.primary,
@@ -19,23 +19,45 @@ const styles = (theme: Theme) => ({
       backgroundColor: theme.palette.background.paper + ' !important',
     },
   },
+  inlineRoot: {
+    padding: 0,
+    '& pre': {
+      padding: 0,
+    },
+  },
+  inlineCode: {
+    fontSize: 14,
+    // color: theme.palette.secondary.main,
+    whiteSpace: 'pre-wrap',
+  },
   margin: {
     margin: '10px 0 30px',
   },
-});
+}));
 
-type CodeProps = {
+interface CodeProps {
   children: string;
+  inline?: boolean;
   withMargin?: boolean;
   language?: 'jsx' | 'typescript' | 'markup';
-} & WithStyles<typeof styles>;
+}
 
-const Code: React.SFC<CodeProps> = ({ classes, language = 'jsx', children, withMargin }) => {
+const Code: React.SFC<CodeProps> = ({ language = 'jsx', inline, children, withMargin }) => {
+  const classes = useStyles();
   const highlightedCode = highlight(children, language);
+
   return (
-    <div className={clsx(classes.root, { [classes.margin]: withMargin })}>
+    <div
+      className={clsx(classes.root, {
+        [classes.margin]: withMargin,
+        [classes.inlineRoot]: inline,
+      })}
+    >
       <pre>
-        <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+        <code
+          className={clsx({ [classes.inlineCode]: inline })}
+          dangerouslySetInnerHTML={{ __html: highlightedCode }}
+        />
       </pre>
     </div>
   );
@@ -46,4 +68,4 @@ Code.defaultProps = {
   language: 'jsx',
 };
 
-export default withStyles(styles)(Code);
+export default Code;

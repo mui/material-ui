@@ -49,13 +49,10 @@ export interface BaseDatePickerProps extends OutterCalendarProps {
 export interface DatePickerViewsProps extends BaseDatePickerProps {
   /**
    * Array of views to show
-   * @type { Array<'year' | 'date' | 'month'> }
+   * @type {Array<"year" | "date" | "month">}
    */
   views?: DatePickerView[];
-  /**
-   * Open to DatePicker
-   * @type { 'year' | 'date' | 'month' }
-   */
+  /** Open to DatePicker */
   openTo?: DatePickerView;
 }
 
