@@ -70,6 +70,9 @@ export {
   WithStyles,
   withTheme,
   WithTheme,
+  MuiThemeProvider,
+  responsiveFontSizes,
+  styled,
 } from './styles';
 
 export { default as AppBar } from './AppBar';
