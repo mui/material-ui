@@ -53,7 +53,7 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
 
       <Popover
         open={open}
-        onClose={onAccept}
+        onClose={onDismiss}
         anchorEl={ref.current}
         classes={{
           paper: clsx(classes.popoverPaper, { [classes.popoverPaperWider]: wider }),
