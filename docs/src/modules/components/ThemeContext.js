@@ -11,9 +11,10 @@ import deepmerge from 'deepmerge';
 export const themeColor = blue[700];
 
 const themeInitialOptions = {
-  dense: true,
+  dense: false,
   direction: 'ltr',
   paletteColors: {},
+  spacing: 8, // spacing unit
 };
 
 /**
@@ -54,10 +55,33 @@ export function ThemeProvider(props) {
 
   const [themeOptions, dispatch] = React.useReducer((state, action) => {
     switch (action.type) {
+      case 'SET_SPACING':
+        return {
+          ...state,
+          spacing: action.payload,
+        };
+      case 'INCREASE_SPACING': {
+        return {
+          ...state,
+          spacing: state.spacing + 1,
+        };
+      }
+      case 'DECREASE_SPACING': {
+        return {
+          ...state,
+          spacing: state.spacing - 1,
+        };
+      }
       case 'SET_DENSE':
         return {
           ...state,
           dense: action.payload,
+        };
+      case 'RESET_DENSITY':
+        return {
+          ...state,
+          dense: themeInitialOptions.dense,
+          spacing: themeInitialOptions.spacing,
         };
       case 'CHANGE':
         return {
@@ -73,7 +97,7 @@ export function ThemeProvider(props) {
 
   const prefersDarkMode = useMediaQuery('@media (prefers-color-scheme: dark)');
   const preferredType = prefersDarkMode ? 'dark' : 'light';
-  const { dense, direction, paletteColors, paletteType = preferredType } = themeOptions;
+  const { dense, direction, paletteColors, paletteType = preferredType, spacing } = themeOptions;
 
   React.useEffect(() => {
     setPrismTheme(darkTheme);
@@ -121,6 +145,7 @@ export function ThemeProvider(props) {
           },
           ...paletteColors,
         },
+        spacing,
       }),
     );
 
@@ -131,7 +156,7 @@ export function ThemeProvider(props) {
       paletteType === 'light' ? '#fff' : nextTheme.palette.grey[900];
 
     return nextTheme;
-  }, [dense, direction, paletteColors, paletteType]);
+  }, [dense, direction, paletteColors, paletteType, spacing]);
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
