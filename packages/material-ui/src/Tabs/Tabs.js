@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
 import debounce from '../utils/debounce';
+import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
@@ -273,10 +274,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       updateScrollButtonState();
     });
 
-    window.addEventListener('resize', handleResize);
+    const win = ownerWindow(tabsRef.current);
+    win.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
-      window.removeEventListener('resize', handleResize);
+      win.removeEventListener('resize', handleResize);
     };
   }, [updateIndicatorState, updateScrollButtonState]);
 
