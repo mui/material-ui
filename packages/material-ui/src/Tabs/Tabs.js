@@ -99,8 +99,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     overflow: 'hidden',
     marginBottom: null,
   });
-  const valueToIndex = React.useRef();
-  valueToIndex.current = new Map();
+  const valueToIndex = new Map();
   const tabsRef = React.useRef(null);
 
   const getTabsMeta = () => {
@@ -124,15 +123,15 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       const children = tabsNode.children[0].children;
 
       if (children.length > 0) {
-        const tab = children[valueToIndex.current.get(value)];
+        const tab = children[valueToIndex.get(value)];
         warning(
           tab,
           [
             `Material-UI: the value provided \`${value}\` to the Tabs component is invalid.`,
             'None of the Tabs children have this value.',
-            valueToIndex.current.keys
+            valueToIndex.keys
               ? `You can provide one of the following values: ${Array.from(
-                  valueToIndex.current.keys(),
+                  valueToIndex.keys(),
                 ).join(', ')}.`
               : null,
           ].join('\n'),
@@ -341,7 +340,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     );
 
     const childValue = child.props.value === undefined ? childIndex : child.props.value;
-    valueToIndex.current.set(childValue, childIndex);
+    valueToIndex.set(childValue, childIndex);
     const selected = childValue === value;
 
     childIndex += 1;
