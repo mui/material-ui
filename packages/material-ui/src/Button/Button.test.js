@@ -205,6 +205,20 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.sizeLarge);
   });
 
+  it('prefers size props over dense theme', () => {
+    const { getByRole } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <Button size="medium">Hello World</Button>
+      </MuiThemeProvider>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.sizeSmall);
+    expect(button).not.to.have.class(classes.sizeLarge);
+  });
+
   it('should have a ripple by default', () => {
     const { getByRole } = render(
       <Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>,

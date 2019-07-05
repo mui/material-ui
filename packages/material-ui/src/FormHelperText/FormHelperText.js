@@ -61,10 +61,11 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   } = props;
 
   const fcs = formControlState({
-    props: { ...props, margin },
+    props,
     muiFormControl,
     states: ['variant', 'margin', 'disabled', 'error', 'filled', 'focused', 'required'],
   });
+  fcs.margin = fcs.margin === undefined ? margin : fcs.margin;
 
   return (
     <Component

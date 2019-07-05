@@ -63,6 +63,18 @@ describe('<FormControl />', () => {
       expect(root).not.to.have.class(classes.marginNormal);
     });
 
+    it('prefers margin props over dense theme', () => {
+      const { container } = render(
+        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+          <FormControl margin="normal" />
+        </MuiThemeProvider>,
+      );
+      const root = container.firstChild;
+
+      expect(root).not.to.have.class(classes.marginDense);
+      expect(root).to.have.class(classes.marginNormal);
+    });
+
     it('can have the margin normal class', () => {
       const { container } = render(<FormControl margin="normal" />);
       const root = container.firstChild;

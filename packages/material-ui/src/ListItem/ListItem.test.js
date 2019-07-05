@@ -117,8 +117,8 @@ describe('<ListItem />', () => {
 
     it('can be applied with a prop', () => {
       const { getByRole } = render(
-        <List dense>
-          <ListItem />
+        <List>
+          <ListItem dense />
         </List>,
       );
 

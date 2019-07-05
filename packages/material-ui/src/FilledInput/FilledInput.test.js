@@ -54,4 +54,14 @@ describe('<FilledInput />', () => {
     const root = container.firstChild;
     expect(root).to.have.class(classes.marginDense);
   });
+
+  it('prefers margin prop over dense theme', () => {
+    const { container } = render(
+      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
+        <FilledInput margin="none" />
+      </MuiThemeProvider>,
+    );
+    const root = container.firstChild;
+    expect(root).not.to.have.class(classes.marginDense);
+  });
 });
