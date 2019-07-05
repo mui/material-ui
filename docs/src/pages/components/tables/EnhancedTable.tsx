@@ -300,6 +300,7 @@ export default function EnhancedTable() {
 
   function handleChangeRowsPerPage(event: React.ChangeEvent<HTMLInputElement>) {
     setRowsPerPage(+event.target.value);
+    setPage(0);
   }
 
   function handleChangeDense(event: React.ChangeEvent<HTMLInputElement>) {

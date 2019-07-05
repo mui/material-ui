@@ -126,6 +126,7 @@ export default function CustomPaginationActionsTable() {
 
   function handleChangeRowsPerPage(event) {
     setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
   }
 
   return (

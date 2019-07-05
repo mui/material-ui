@@ -257,6 +257,7 @@ export default function EnhancedTable() {
 
   function handleChangeRowsPerPage(event) {
     setRowsPerPage(+event.target.value);
+    setPage(0);
   }
 
   function handleChangeDense(event) {
