@@ -95,15 +95,16 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
     >
       <div className={hourMinuteClassName}>
         {arrayIncludes(views, 'hours') && (
-          <>
-            <ToolbarButton
-              variant="h2"
-              onClick={() => setOpenView(ClockType.HOURS)}
-              selected={openView === ClockType.HOURS}
-              label={utils.getHourText(date, Boolean(ampm))}
-            />
-            <ToolbarText variant="h2" label=":" selected={false} className={classes.separator} />
-          </>
+          <ToolbarButton
+            variant="h2"
+            onClick={() => setOpenView(ClockType.HOURS)}
+            selected={openView === ClockType.HOURS}
+            label={utils.getHourText(date, Boolean(ampm))}
+          />
+        )}
+
+        {arrayIncludes(views, ['hours', 'minutes']) && (
+          <ToolbarText variant="h2" label=":" selected={false} className={classes.separator} />
         )}
 
         {arrayIncludes(views, 'minutes') && (
@@ -115,17 +116,17 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           />
         )}
 
-        {arrayIncludes(views, 'seconds') && (
-          <>
-            <ToolbarText variant="h2" label=":" selected={false} className={classes.separator} />
+        {arrayIncludes(views, ['minutes', 'seconds']) && (
+          <ToolbarText variant="h2" label=":" selected={false} className={classes.separator} />
+        )}
 
-            <ToolbarButton
-              variant="h2"
-              onClick={() => setOpenView(ClockType.SECONDS)}
-              selected={openView === ClockType.SECONDS}
-              label={utils.getSecondText(date)}
-            />
-          </>
+        {arrayIncludes(views, 'seconds') && (
+          <ToolbarButton
+            variant="h2"
+            onClick={() => setOpenView(ClockType.SECONDS)}
+            selected={openView === ClockType.SECONDS}
+            label={utils.getSecondText(date)}
+          />
         )}
       </div>
 
