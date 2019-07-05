@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
+import oneOfWithString from '../utils/oneOfWithString';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -221,7 +222,7 @@ Typography.propTypes = {
   /**
    * Applies the theme typography styles.
    */
-  variant: PropTypes.oneOf([
+  variant: oneOfWithString([
     'h1',
     'h2',
     'h3',

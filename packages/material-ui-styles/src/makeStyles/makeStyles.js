@@ -1,6 +1,7 @@
 import React from 'react';
 import warning from 'warning';
 import { getDynamicStyles } from 'jss';
+import { getDisplayName } from '@material-ui/utils';
 import mergeClasses from '../mergeClasses';
 import multiKeyStore from './multiKeyStore';
 import useTheme from '../useTheme';
@@ -44,6 +45,33 @@ function getClasses({ state, stylesOptions }, classes, Component) {
       newClasses: classes,
       Component,
     });
+
+    if (process.env.NODE_ENV !== 'production' && typeof Proxy !== 'undefined') {
+      state.cacheClasses.value = new Proxy(state.cacheClasses.value, {
+        get(target, styleRule) {
+          if (
+            !(styleRule in target) &&
+            styleRule !== '@@toStringTag' &&
+            typeof styleRule !== 'symbol' &&
+            styleRule !== 'inspect'
+          ) {
+            const name = state.name || getDisplayName(Component);
+            warning(
+              false,
+              [
+                `Material-UI: you access a style rule \`${styleRule}\` that does not exist.`,
+                styleRule && `The style was definied on the \`${name}\` component.`,
+                '',
+                'Instead, the following classes keys are available:',
+                JSON.stringify(target, null, 2),
+              ].join('\n'),
+            );
+          }
+
+          return target[styleRule];
+        },
+      });
+    }
   }
 
   return state.cacheClasses.value;

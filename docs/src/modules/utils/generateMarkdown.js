@@ -74,6 +74,10 @@ function escapeCell(value) {
     .replace(/\|/g, '\\|');
 }
 
+function isOneOfWithString(type) {
+  return type.raw.indexOf('oneOfWithString') === 0;
+}
+
 function isElementTypeAcceptingRefProp(type) {
   return type.raw === 'elementTypeAcceptingRef';
 }
@@ -169,6 +173,18 @@ function generatePropType(type) {
       }
       if (isElementAcceptingRefProp(type)) {
         return `element`;
+      }
+      if (isOneOfWithString(type)) {
+        return generatePropType({
+          name: 'enum',
+          value: type.raw
+            .replace('oneOfWithString([', '')
+            .replace('])', '')
+            .split(',')
+            .map(x => x.trim())
+            .filter(x => x)
+            .map(x => ({ value: x, computed: false })),
+        });
       }
 
       const deprecatedInfo = getDeprecatedInfo(type);

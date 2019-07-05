@@ -178,7 +178,7 @@ function MarkdownDocs(props) {
             </Portal>
           )}
 
-          <AppContent disableToc={disableToc} className={classes.root}>
+          <AppContent disableToc={disableToc}>
             {!disableEdit ? (
               <div className={classes.header}>
                 <EditPage
