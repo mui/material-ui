@@ -1,20 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Checkbox from '../Checkbox';
 import FormControlLabel from './FormControlLabel';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControl from '../FormControl';
 
 describe('<FormControlLabel />', () => {
   let mount;
+  const render = createClientRender({ strict: false });
   let classes;
 
   before(() => {
     // StrictModeViolation: uses Checkbox in test
     mount = createMount({ strict: false });
     classes = getClasses(<FormControlLabel label="Pizza" control={<div />} />);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -30,126 +35,141 @@ describe('<FormControlLabel />', () => {
   }));
 
   it('should render the label text inside an additional element', () => {
-    const wrapper = findOutermostIntrinsic(
-      mount(<FormControlLabel label="Pizza" control={<div />} />),
-    );
-    assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(wrapper.text(), 'Pizza');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const { container, getByText } = render(<FormControlLabel label="Pizza" control={<div />} />);
+    const root = container.firstChild;
+
+    expect(root).to.have.property('nodeName', 'LABEL');
+    expect(root).to.have.class(classes.root);
+    expect(getByText(/Pizza/)).not.to.have.class(classes.root);
+    expect(getByText(/Pizza/)).to.have.class(classes.label);
   });
 
   describe('prop: disabled', () => {
     it('should disable everything 1', () => {
-      const wrapper = findOutermostIntrinsic(
-        mount(<FormControlLabel label="Pizza" disabled control={<div />} />),
+      const { container, getByTestId, getByText } = render(
+        <FormControlLabel label="Pizza" disabled control={<div data-testid="control" />} />,
       );
-      const label = wrapper.find('span').last();
-      assert.strictEqual(wrapper.hasClass(classes.disabled), true);
-      assert.strictEqual(wrapper.find('div').props().disabled, true);
-      assert.strictEqual(label.hasClass(classes.disabled), true);
+      const root = container.firstChild;
+      const control = getByTestId('control');
+      const label = getByText(/Pizza/);
+
+      expect(root).to.have.class(classes.disabled);
+      expect(control).to.have.attribute('disabled');
+      expect(label).to.have.class(classes.disabled);
     });
 
     it('should disable everything 2', () => {
-      const wrapper = findOutermostIntrinsic(
-        mount(<FormControlLabel label="Pizza" control={<div disabled />} />),
+      const { container, getByTestId, getByText } = render(
+        <FormControlLabel
+          label="Pizza"
+          disabled
+          control={<div data-testid="control" disabled />}
+        />,
       );
-      const label = wrapper.find('span').last();
-      assert.strictEqual(wrapper.hasClass(classes.disabled), true);
-      assert.strictEqual(wrapper.find('div').props().disabled, true);
-      assert.strictEqual(label.hasClass(classes.disabled), true);
+      const root = container.firstChild;
+      const control = getByTestId('control');
+      const label = getByText(/Pizza/);
+
+      expect(root).to.have.class(classes.disabled);
+      expect(control).to.have.attribute('disabled');
+      expect(label).to.have.class(classes.disabled);
     });
   });
 
   describe('prop: labelPlacement', () => {
     it('should have the `start` class', () => {
-      const wrapper = findOutermostIntrinsic(
-        mount(<FormControlLabel label="Pizza" labelPlacement="start" control={<div />} />),
+      const { container } = render(
+        <FormControlLabel label="Pizza" labelPlacement="start" control={<div />} />,
       );
-      assert.strictEqual(wrapper.hasClass(classes.labelPlacementStart), true);
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementStart);
     });
 
     it('should have the `top` class', () => {
-      const wrapper = mount(
+      const { container } = render(
         <FormControlLabel label="Pizza" labelPlacement="top" control={<div />} />,
       );
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.labelPlacementTop), true);
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementTop);
     });
 
     it('should have the `bottom` class', () => {
-      const wrapper = mount(
+      const { container } = render(
         <FormControlLabel label="Pizza" labelPlacement="bottom" control={<div />} />,
       );
-      assert.strictEqual(
-        findOutermostIntrinsic(wrapper).hasClass(classes.labelPlacementBottom),
-        true,
-      );
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementBottom);
     });
   });
 
-  describe('with muiFormControl context', () => {
-    let wrapper;
-
-    function setFormControlContext(muiFormControlContext) {
-      wrapper.setProps({ context: muiFormControlContext });
-    }
-
-    beforeEach(() => {
-      function Provider(props) {
-        const { context, ...other } = props;
-        return (
-          <FormControlContext.Provider value={context}>
-            <FormControlLabel label="Pizza" control={<div />} {...other} />
-          </FormControlContext.Provider>
-        );
-      }
-      Provider.propTypes = {
-        context: PropTypes.object,
-      };
-
-      wrapper = mount(<Provider />);
-    });
-
+  describe('with FormControl', () => {
     describe('enabled', () => {
-      beforeEach(() => {
-        setFormControlContext({});
-      });
-
       it('should not have the disabled class', () => {
-        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        const { getByTestId } = render(
+          <FormControl>
+            <FormControlLabel data-testid="FormControlLabel" control={<div />} label="Pizza" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).not.to.have.class(classes.disabled);
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), false);
-        wrapper.setProps({ disabled: true });
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
+        const { getByTestId } = render(
+          <FormControl>
+            <FormControlLabel
+              data-testid="FormControlLabel"
+              control={<div />}
+              disabled
+              label="Pizza"
+            />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).to.have.class(classes.disabled);
       });
     });
 
     describe('disabled', () => {
-      beforeEach(() => {
-        setFormControlContext({ disabled: true });
-      });
-
       it('should have the disabled class', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
+        const { getByTestId } = render(
+          <FormControl disabled>
+            <FormControlLabel data-testid="FormControlLabel" control={<div />} label="Pizza" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).to.have.class(classes.disabled);
       });
 
-      it('should honor props', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
-        wrapper.setProps({ disabled: false });
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), false);
+      it('should be overridden by props', () => {
+        const { getByTestId } = render(
+          <FormControl disabled>
+            <FormControlLabel
+              data-testid="FormControlLabel"
+              control={<div />}
+              disabled={false}
+              label="Pizza"
+            />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).not.to.have.class(classes.disabled);
       });
     });
   });
 
   it('should not inject extra properties', () => {
-    const Control = props => <div name="name" {...props} />;
-    const wrapper = mount(<FormControlLabel label="Pizza" control={<Control />} />);
-    assert.strictEqual(wrapper.find('div').props().name, 'name');
+    const Control = props => <div data-testid="control" name="Dave" {...props} />;
+    const { getByTestId } = render(<FormControlLabel label="Pizza" control={<Control />} />);
+
+    expect(getByTestId('control')).to.have.attribute('name', 'Dave');
   });
 
   it('should forward some properties', () => {
-    const wrapper = mount(<FormControlLabel value="value" label="Pizza" control={<div />} />);
-    assert.strictEqual(wrapper.find('div').props().value, 'value');
+    const { getByTestId } = render(
+      <FormControlLabel value="test" label="Pizza" control={<div data-testid="control" />} />,
+    );
+
+    expect(getByTestId('control')).to.have.attribute('value', 'test');
   });
 });
