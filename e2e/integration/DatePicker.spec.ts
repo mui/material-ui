@@ -57,13 +57,27 @@ describe('DatePicker', () => {
     cy.get(`input${ids.clearable}`).should('have.value', '');
   });
 
-  it('Should not accept invalid date format', () => {
-    cy.get(ids.maskedKeyboard)
-      .clear()
-      .type('01');
-    cy.get(`${ids.maskedKeyboard}-helper-text`).should('have.text', 'Invalid Date Format');
+  context('Masked input', () => {
+    it('Should not accept invalid date format', () => {
+      cy.get(ids.maskedKeyboard)
+        .clear()
+        .type('01');
+      cy.get(`${ids.maskedKeyboard}-helper-text`).should('have.text', 'Invalid Date Format');
 
-    cy.get(ids.maskedKeyboard).clear();
+      cy.get(ids.maskedKeyboard).clear();
+    });
+
+    it('Should clear mask input when removing all text', () => {
+      cy.get(ids.maskedKeyboard).clear();
+
+      cy.get(`${ids.maskedKeyboard}-helper-text`).should('not.be.visible');
+    });
+
+    it('Should clear mask input when removing symbols one by one', () => {
+      cy.get(ids.maskedKeyboard).type('1{backspace}');
+
+      cy.get(`${ids.maskedKeyboard}-helper-text`).should('not.be.visible');
+    });
   });
 
   it('Should accept date entered from keyboard', () => {

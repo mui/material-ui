@@ -54,9 +54,9 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
       ...innerInputProps, // reuse validation and open/close logic
       format: wrapperProps.format,
       inputValue: inputValue || innerInputValue,
-      onChange: (value: string) => {
-        setInnerInputValue(value);
-        const date = value === '' ? null : utils.parse(value, wrapperProps.format);
+      onChange: (value: string | null) => {
+        setInnerInputValue(value || '');
+        const date = value === null ? null : utils.parse(value, wrapperProps.format);
 
         onChange(date, value);
       },

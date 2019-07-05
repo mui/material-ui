@@ -11,7 +11,7 @@ import { makeMaskFromFormat, maskedDateFormatter } from '../_helpers/text-field-
 export interface KeyboardDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
   format: string;
-  onChange: (value: string) => void;
+  onChange: (value: string | null) => void;
   onClick?: () => void;
   validationError?: React.ReactNode;
   inputValue: string;
@@ -79,10 +79,15 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   const position =
     InputAdornmentProps && InputAdornmentProps.position ? InputAdornmentProps.position : 'end';
 
+  const handleChange = (text: string) => {
+    const finalString = text === '' || text === inputMask ? null : text;
+    onChange(finalString);
+  };
+
   return (
     <Rifm
       value={inputValue}
-      onChange={onChange}
+      onChange={handleChange}
       refuse={refuse}
       format={rifmFormatter || formatter}
     >
