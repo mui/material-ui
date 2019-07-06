@@ -1,5 +1,5 @@
 {
-  "version": "4.1.3",
+  "version": "4.2.0",
   "private": true,
   "scripts": {
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
