@@ -78,5 +78,3 @@ InlineWrapper.propTypes = {
   onClose: PropTypes.func,
   PopoverProps: PropTypes.object,
 } as any;
-
-export default InlineWrapper;

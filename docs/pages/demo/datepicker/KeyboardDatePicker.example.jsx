@@ -9,6 +9,7 @@ function KeyboardDatePickerExample(props) {
       <KeyboardDatePicker
         clearable
         value={selectedDate}
+        placeholder="10/10/2018"
         onChange={date => handleDateChange(date)}
         minDate={new Date()}
         format={props.__willBeReplacedGetFormatString({
@@ -18,7 +19,7 @@ function KeyboardDatePickerExample(props) {
       />
 
       <KeyboardDatePicker
-        placeholder="10/10/2018"
+        placeholder="2018/10/10"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         format={props.__willBeReplacedGetFormatString({

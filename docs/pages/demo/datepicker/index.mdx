@@ -5,8 +5,9 @@ import LinkedComponents from '_shared/LinkedComponents'
 
 import * as CustomDay from './CustomDay.example'
 import * as ServerRequest from './ServerRequest.example'
-import * as BasicDatePicker from './BasicDatePicker.example'
 import * as ViewsDatePicker from './ViewsDatePicker.example'
+import * as BasicDatePicker from './BasicDatePicker.example'
+import * as StaticDatePicker from './StaticDatePicker.example'
 import * as InlineDatePicker from './InlineDatePicker.example'
 import * as KeyboardDatePicker from './KeyboardDatePicker.example'
 
@@ -44,6 +45,13 @@ Thus you can easily create
 #### Inline mode
 
 <Example source={InlineDatePicker} />
+
+#### Static mode
+
+It is possible to render any picker inline. This will be really helpful to build cutom popover/modal containers.
+For that use `variant="static"`.
+
+<Example paddingBottom source={StaticDatePicker} />
 
 #### Customization
 

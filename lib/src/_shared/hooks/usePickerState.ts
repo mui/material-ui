@@ -75,7 +75,7 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
       onChange: (newDate: MaterialUiPickersDate, isFinish = true) => {
         setPickerDate(newDate);
 
-        if (variant === 'inline') {
+        if (variant === 'inline' || variant === 'static') {
           onChange(newDate);
         }
 

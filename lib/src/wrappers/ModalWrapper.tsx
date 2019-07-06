@@ -111,5 +111,3 @@ ModalWrapper.defaultProps = {
   clearable: false,
   showTodayButton: false,
 };
-
-export default ModalWrapper;

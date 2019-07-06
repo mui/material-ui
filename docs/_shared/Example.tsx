@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import Code from './Code';
 import CodeIcon from '@material-ui/icons/Code';
 import CopyIcon from '@material-ui/icons/FileCopy';
@@ -12,6 +13,7 @@ import { makeStyles, IconButton, Collapse, Tooltip } from '@material-ui/core';
 
 interface Props extends InjectedNotistackProps {
   testId: string;
+  paddingBottom?: boolean;
   source: { raw: string; relativePath: string; default: React.FC<any> };
 }
 
@@ -44,6 +46,9 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  paddingBottom: {
+    paddingBottom: 40,
+  },
   sourceToolbar: {
     display: 'flex',
   },
@@ -60,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Example({ source, testId, enqueueSnackbar }: Props) {
+function Example({ source, testId, paddingBottom, enqueueSnackbar }: Props) {
   if (!source.default || !source.raw || !source.relativePath) {
     throw new Error(
       'Missing component or raw component code, you likely forgot to .example to your example extension'
@@ -118,7 +123,10 @@ function Example({ source, testId, enqueueSnackbar }: Props) {
         </div>
       </Collapse>
 
-      <div data-test-id={testId} className={classes.pickers}>
+      <div
+        data-test-id={testId}
+        className={clsx(classes.pickers, { [classes.paddingBottom]: paddingBottom })}
+      >
         <Tooltip title="Show/Hide the source">
           <IconButton className={classes.sourceBtn} onClick={() => setExpanded(!expanded)}>
             <CodeIcon />

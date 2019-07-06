@@ -3,6 +3,7 @@ import Year from './Year';
 import { DateType } from '@date-io/type';
 import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
+import { VariantContext } from '../../wrappers/Wrapper';
 import { MaterialUiPickersDate } from '../../typings/date';
 
 export interface YearSelectionProps {
@@ -38,11 +39,13 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 }) => {
   const utils = useUtils();
   const classes = useStyles();
+  const currentVariant = React.useContext(VariantContext);
   const selectedYearRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     if (selectedYearRef.current && selectedYearRef.current.scrollIntoView) {
       selectedYearRef.current.scrollIntoView({
+        block: currentVariant === 'static' ? 'nearest' : 'center',
         behavior: animateYearScrolling ? 'smooth' : 'auto',
       });
     }

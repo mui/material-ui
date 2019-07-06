@@ -1,11 +1,12 @@
 import * as React from 'react';
-import ModalWrapper, { ModalWrapperProps } from './ModalWrapper';
-import InlineWrapper, { InlineWrapperProps } from './InlineWrapper';
 import { Omit } from '@material-ui/core';
+import { StaticWrapper } from './StaticWrapper';
 import { PureDateInputProps } from '../_shared/PureDateInput';
+import { ModalWrapper, ModalWrapperProps } from './ModalWrapper';
+import { InlineWrapper, InlineWrapperProps } from './InlineWrapper';
 import { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 
-export type WrapperVariant = 'dialog' | 'inline';
+export type WrapperVariant = 'dialog' | 'inline' | 'static';
 
 export interface WrapperProps<T> {
   open: boolean;
@@ -34,17 +35,20 @@ export type ExtendWrapper<TInput extends PureDateInputProps | KeyboardDateInputP
    * Displaying variant
    * @default 'dialog'
    */
-  variant?: 'dialog' | 'inline'; // not WrapperVariant for docgen
+  variant?: WrapperVariant
 } & ModalRoot
   & InlineRoot
   & Omit<TInput, 'inputValue' | 'onChange' | 'format' | 'validationError' | 'format' | 'forwardedRef'>
 
 export function getWrapperFromVariant<T>(
   variant?: WrapperVariant
-): React.ComponentClass<InlineWrapperProps<T> | ModalWrapperProps<T>> {
+): React.ComponentType<InlineWrapperProps<T> | ModalWrapperProps<T>> {
   switch (variant) {
     case 'inline':
       return InlineWrapper as any;
+
+    case 'static':
+      return StaticWrapper as any;
 
     default:
       return ModalWrapper as any;
@@ -56,10 +60,16 @@ type Props<T> = {
   children?: React.ReactChild;
 } & (ModalWrapperProps<T> | InlineWrapperProps<T>);
 
+export const VariantContext = React.createContext<WrapperVariant | null>(null);
+
 export const Wrapper: <T extends KeyboardDateInputProps | PureDateInputProps>(
   p: Props<T>
 ) => React.ReactElement<Props<T>> = ({ variant, ...props }) => {
   const Component = getWrapperFromVariant<typeof props.DateInputProps>(variant);
 
-  return <Component {...props} />;
+  return (
+    <VariantContext.Provider value={variant || 'dialog'}>
+      <Component {...props} />
+    </VariantContext.Provider>
+  );
 };
