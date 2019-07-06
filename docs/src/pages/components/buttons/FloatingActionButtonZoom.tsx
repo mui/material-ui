@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
@@ -38,13 +37,6 @@ function TabPanel(props: TabPanelProps) {
     </Typography>
   );
 }
-
-TabPanel.propTypes = {
-  children: PropTypes.node.isRequired,
-  dir: PropTypes.string.isRequired,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
 
 function a11yProps(index: any) {
   return {

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +8,10 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 
 interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
   window?: () => Window;
   children: React.ReactElement;
 }
@@ -28,13 +31,6 @@ function ElevationScroll(props: Props) {
     elevation: trigger ? 4 : 0,
   });
 }
-
-ElevationScroll.propTypes = {
-  children: PropTypes.node.isRequired,
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
-  window: PropTypes.func,
-};
 
 export default function ElevateAppBar(props: Props) {
   return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
@@ -125,14 +124,6 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
     );
   }
 }
-
-(MuiVirtualizedTable as any).propTypes = {
-  classes: PropTypes.object.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
-  headerHeight: PropTypes.number,
-  onRowClick: PropTypes.func,
-  rowHeight: PropTypes.number,
-};
 
 const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 

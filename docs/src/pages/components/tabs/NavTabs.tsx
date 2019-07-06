@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -29,12 +28,6 @@ function TabPanel(props: TabPanelProps) {
     </Typography>
   );
 }
-
-TabPanel.propTypes = {
-  children: PropTypes.node.isRequired,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
 
 function a11yProps(index: any) {
   return {

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -59,9 +58,5 @@ function GridIntegration(props: WithWidth) {
     </div>
   );
 }
-
-(GridIntegration as any).propTypes = {
-  width: PropTypes.string,
-};
 
 export default withWidth()(GridIntegration);

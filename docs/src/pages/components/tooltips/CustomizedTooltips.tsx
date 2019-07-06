@@ -3,7 +3,6 @@ import { withStyles, Theme, makeStyles, createStyles } from '@material-ui/core/s
 import Button from '@material-ui/core/Button';
 import Tooltip, { TooltipProps } from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 
 function arrowGenerator(color: string) {
   return {
@@ -112,10 +111,6 @@ function ArrowTooltip(props: TooltipProps) {
   );
 }
 
-ArrowTooltip.propTypes = {
-  title: PropTypes.node,
-};
-
 const useStylesBootstrap = makeStyles((theme: Theme) =>
   createStyles({
     arrow: {
@@ -179,10 +174,6 @@ function BootstrapTooltip(props: TooltipProps) {
     />
   );
 }
-
-BootstrapTooltip.propTypes = {
-  title: PropTypes.node,
-};
 
 const HtmlTooltip = withStyles((theme: Theme) => ({
   tooltip: {
