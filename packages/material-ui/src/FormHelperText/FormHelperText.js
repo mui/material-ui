@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -52,12 +52,12 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
     filled,
     focused,
     margin,
-    muiFormControl,
     required,
     variant,
     ...other
   } = props;
 
+  const muiFormControl = useFormControl();
   const fcs = formControlState({
     props,
     muiFormControl,
@@ -126,10 +126,6 @@ FormHelperText.propTypes = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
-  /**
    * If `true`, the helper text should use required classes key.
    */
   required: PropTypes.bool,
@@ -139,6 +135,4 @@ FormHelperText.propTypes = {
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-export default withStyles(styles, { name: 'MuiFormHelperText' })(
-  withFormControlContext(FormHelperText),
-);
+export default withStyles(styles, { name: 'MuiFormHelperText' })(FormHelperText);

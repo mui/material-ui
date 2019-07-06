@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { mergeClasses } from '@material-ui/styles';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
@@ -24,7 +24,6 @@ const Select = React.forwardRef(function Select(props, ref) {
     input = defaultInput,
     inputProps,
     MenuProps,
-    muiFormControl,
     multiple = false,
     native = false,
     onClose,
@@ -37,6 +36,8 @@ const Select = React.forwardRef(function Select(props, ref) {
   } = props;
 
   const inputComponent = native ? NativeSelectInput : SelectInput;
+
+  const muiFormControl = useFormControl();
   const fcs = formControlState({
     props,
     muiFormControl,
@@ -124,11 +125,6 @@ Select.propTypes = {
    */
   MenuProps: PropTypes.object,
   /**
-   * @ignore
-   * from `withFormControlContext`
-   */
-  muiFormControl: PropTypes.object,
-  /**
    * If true, `value` must be an array and the menu will support multiple selections.
    */
   multiple: PropTypes.bool,
@@ -188,4 +184,4 @@ Select.propTypes = {
 
 Select.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiSelect' })(withFormControlContext(Select));
+export default withStyles(styles, { name: 'MuiSelect' })(Select);

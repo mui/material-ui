@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 
@@ -40,7 +40,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     id,
     inputProps,
     inputRef,
-    muiFormControl,
     name,
     onBlur,
     onChange,
@@ -54,6 +53,8 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
   } = props;
   const { current: isControlled } = React.useRef(checkedProp != null);
   const [checkedState, setCheckedState] = React.useState(Boolean(defaultChecked));
+
+  const muiFormControl = useFormControl();
 
   const handleFocus = event => {
     if (onFocus) {
@@ -187,10 +188,6 @@ SwitchBase.propTypes = {
    * This property can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
   /*
    * @ignore
    */
@@ -234,6 +231,4 @@ SwitchBase.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'PrivateSwitchBase' })(
-  withFormControlContext(SwitchBase),
-);
+export default withStyles(styles, { name: 'PrivateSwitchBase' })(SwitchBase);
