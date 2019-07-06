@@ -1,9 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 
 function arrowGenerator(color) {
   return {
@@ -110,9 +110,7 @@ function ArrowTooltip(props) {
   );
 }
 
-ArrowTooltip.propTypes = {
-  title: PropTypes.node,
-};
+ArrowTooltip.propTypes = { title: PropTypes.node.isRequired };
 
 const useStylesBootstrap = makeStyles(theme => ({
   arrow: {
@@ -176,9 +174,7 @@ function BootstrapTooltip(props) {
   );
 }
 
-BootstrapTooltip.propTypes = {
-  title: PropTypes.node,
-};
+BootstrapTooltip.propTypes = { title: PropTypes.node.isRequired };
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {

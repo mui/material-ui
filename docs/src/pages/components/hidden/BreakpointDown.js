@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
@@ -50,8 +50,6 @@ function BreakpointDown(props) {
   );
 }
 
-BreakpointDown.propTypes = {
-  width: PropTypes.string.isRequired,
-};
+BreakpointDown.propTypes = { width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']).isRequired };
 
 export default withWidth()(BreakpointDown);

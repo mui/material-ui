@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ResponsiveDrawer(props) {
+function ResponsiveDrawer(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -166,7 +166,11 @@ export default function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
-  container: PropTypes.object,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  container: PropTypes.object.isRequired,
 };
+
+export default ResponsiveDrawer;

@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import deburr from 'lodash/deburr';
 import Downshift from 'downshift';
 import { makeStyles } from '@material-ui/core/styles';
@@ -64,6 +64,12 @@ function renderInput(inputProps) {
   );
 }
 
+renderInput.propTypes = {
+  classes: PropTypes.object.isRequired,
+  InputProps: PropTypes.object,
+  ref: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.func, PropTypes.object]),
+};
+
 function renderSuggestion(suggestionProps) {
   const { suggestion, index, itemProps, highlightedIndex, selectedItem } = suggestionProps;
   const isHighlighted = highlightedIndex === index;
@@ -83,12 +89,13 @@ function renderSuggestion(suggestionProps) {
     </MenuItem>
   );
 }
+
 renderSuggestion.propTypes = {
-  highlightedIndex: PropTypes.number,
-  index: PropTypes.number,
-  itemProps: PropTypes.object,
-  selectedItem: PropTypes.string,
-  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
+  highlightedIndex: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.number]).isRequired,
+  index: PropTypes.number.isRequired,
+  itemProps: PropTypes.object.isRequired,
+  selectedItem: PropTypes.string.isRequired,
+  suggestion: PropTypes.object.isRequired,
 };
 
 function getSuggestions(value, { showEmpty = false } = {}) {
@@ -208,9 +215,7 @@ function DownshiftMultiple(props) {
   );
 }
 
-DownshiftMultiple.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+DownshiftMultiple.propTypes = { classes: PropTypes.object.isRequired };
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 
@@ -20,8 +20,6 @@ function HigherOrderComponent(props) {
   return <Button className={classes.root}>Higher-order component</Button>;
 }
 
-HigherOrderComponent.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+HigherOrderComponent.propTypes = { classes: PropTypes.object.isRequired };
 
 export default withStyles(styles)(HigherOrderComponent);

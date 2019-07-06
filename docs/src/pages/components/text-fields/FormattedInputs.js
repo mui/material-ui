@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -34,9 +34,7 @@ function TextMaskCustom(props) {
   );
 }
 
-TextMaskCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
-};
+TextMaskCustom.propTypes = { inputRef: PropTypes.func.isRequired };
 
 function NumberFormatCustom(props) {
   const { inputRef, onChange, ...other } = props;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import clsx from 'clsx';
 import Select from 'react-select';
@@ -9,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import CancelIcon from '@material-ui/icons/Cancel';
-import PropTypes from 'prop-types';
 
 const suggestions = [
   { label: 'Afghanistan' },
@@ -114,8 +114,14 @@ function NoOptionsMessage(props) {
 }
 
 NoOptionsMessage.propTypes = {
-  children: PropTypes.node,
-  innerProps: PropTypes.object,
+  /**
+   * The children to be rendered.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Props to be passed on to the wrapper.
+   */
+  innerProps: PropTypes.object.isRequired,
   selectProps: PropTypes.object.isRequired,
 };
 
@@ -124,7 +130,7 @@ function inputComponent({ inputRef, ...props }) {
 }
 
 inputComponent.propTypes = {
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.func, PropTypes.object]),
 };
 
 function Control(props) {
@@ -153,9 +159,16 @@ function Control(props) {
 }
 
 Control.propTypes = {
-  children: PropTypes.node,
-  innerProps: PropTypes.object,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * Children to render.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * The mouse down event and the innerRef to pass down to the controller element.
+   */
+  innerProps: PropTypes.object.isRequired,
+  innerRef: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.func, PropTypes.object])
+    .isRequired,
   selectProps: PropTypes.object.isRequired,
 };
 
@@ -176,11 +189,27 @@ function Option(props) {
 }
 
 Option.propTypes = {
-  children: PropTypes.node,
-  innerProps: PropTypes.object,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  isFocused: PropTypes.bool,
-  isSelected: PropTypes.bool,
+  /**
+   * The children to be rendered.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * props passed to the wrapping element for the group.
+   */
+  innerProps: PropTypes.object.isRequired,
+  /**
+   * Inner ref to DOM Node
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.func, PropTypes.object])
+    .isRequired,
+  /**
+   * Whether the option is focused.
+   */
+  isFocused: PropTypes.bool.isRequired,
+  /**
+   * Whether the option is selected.
+   */
+  isSelected: PropTypes.bool.isRequired,
 };
 
 function Placeholder(props) {
@@ -196,8 +225,14 @@ function Placeholder(props) {
 }
 
 Placeholder.propTypes = {
-  children: PropTypes.node,
-  innerProps: PropTypes.object,
+  /**
+   * The children to be rendered.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * props passed to the wrapping element for the group.
+   */
+  innerProps: PropTypes.object.isRequired,
   selectProps: PropTypes.object.isRequired,
 };
 
@@ -210,8 +245,14 @@ function SingleValue(props) {
 }
 
 SingleValue.propTypes = {
-  children: PropTypes.node,
-  innerProps: PropTypes.object,
+  /**
+   * The children to be rendered.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Props passed to the wrapping element for the group.
+   */
+  innerProps: PropTypes.any.isRequired,
   selectProps: PropTypes.object.isRequired,
 };
 
@@ -220,7 +261,10 @@ function ValueContainer(props) {
 }
 
 ValueContainer.propTypes = {
-  children: PropTypes.node,
+  /**
+   * The children to be rendered.
+   */
+  children: PropTypes.node.isRequired,
   selectProps: PropTypes.object.isRequired,
 };
 
@@ -239,8 +283,8 @@ function MultiValue(props) {
 }
 
 MultiValue.propTypes = {
-  children: PropTypes.node,
-  isFocused: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  isFocused: PropTypes.bool.isRequired,
   removeProps: PropTypes.object.isRequired,
   selectProps: PropTypes.object.isRequired,
 };
@@ -254,9 +298,15 @@ function Menu(props) {
 }
 
 Menu.propTypes = {
-  children: PropTypes.node,
-  innerProps: PropTypes.object,
-  selectProps: PropTypes.object,
+  /**
+   * The children to be rendered.
+   */
+  children: PropTypes.element.isRequired,
+  /**
+   * Props to be passed to the menu wrapper.
+   */
+  innerProps: PropTypes.object.isRequired,
+  selectProps: PropTypes.object.isRequired,
 };
 
 const components = {

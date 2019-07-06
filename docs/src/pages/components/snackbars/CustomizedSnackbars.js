@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -73,9 +73,9 @@ function MySnackbarContentWrapper(props) {
 
 MySnackbarContentWrapper.propTypes = {
   className: PropTypes.string,
-  message: PropTypes.node,
+  message: PropTypes.string,
   onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
+  variant: PropTypes.oneOf(['error', 'success', 'warning', 'info']).isRequired,
 };
 
 const useStyles2 = makeStyles(theme => ({

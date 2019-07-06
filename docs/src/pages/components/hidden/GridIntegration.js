@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -58,8 +58,6 @@ function GridIntegration(props) {
   );
 }
 
-GridIntegration.propTypes = {
-  width: PropTypes.string,
-};
+GridIntegration.propTypes = { width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']).isRequired };
 
 export default withWidth()(GridIntegration);

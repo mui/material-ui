@@ -1,7 +1,6 @@
-/* eslint-disable no-nested-ternary */
+import PropTypes from 'prop-types'; /* eslint-disable no-nested-ternary */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
@@ -37,10 +36,7 @@ function ListItemLink(props) {
   );
 }
 
-ListItemLink.propTypes = {
-  open: PropTypes.bool,
-  to: PropTypes.string.isRequired,
-};
+ListItemLink.propTypes = { open: PropTypes.bool, to: PropTypes.string.isRequired };
 
 const styles = theme => ({
   root: {
@@ -118,9 +114,5 @@ class RouterBreadcrumbs extends React.Component {
     );
   }
 }
-
-RouterBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(RouterBreadcrumbs);
