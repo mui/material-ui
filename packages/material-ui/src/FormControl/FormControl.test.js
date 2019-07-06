@@ -7,7 +7,7 @@ import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
-import { useFormControl } from './FormControlContext';
+import useFormControl from './useFormControl';
 
 describe('<FormControl />', () => {
   let mount;

@@ -1,3 +1,3 @@
 export { default } from './FormControl';
 export * from './FormControl';
-export { useFormControl, FormControl } from './FormControlContext';
+export { default as useFormControl, FormControl } from './useFormControl';
