@@ -50,6 +50,6 @@ function BreakpointUp(props) {
   );
 }
 
-BreakpointUp.propTypes = { width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']).isRequired };
+BreakpointUp.propTypes = { width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired };
 
 export default withWidth()(BreakpointUp);
