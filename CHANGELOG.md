@@ -1,6 +1,83 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.2.0
+###### *July 6, 2019*
+
+Big thanks to the 24 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- ♿️ Fix the persisting aria-hidden logic of the Modal (#16392) @eps1lon
+- 💄 Move the Slider component to the core (#16416).
+- 💄 Introduce a new TextareaAutosize component (#16362).
+- ⚛️ Migrate a few components to testing-library.
+- 🚀 Remove two dependencies (react-event-listener and debounce).
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.2.0`
+
+- [Tabs] Use the correct window reference (#16497) @NMinhNguyen
+- [Breadcrumbs] Add li to BreadcrumbsClassKey type (#16425) @le0nik
+- [ButtonBase] Fix anchors with href having a button role (#16397) @eps1lon
+- [ButtonBase] Improve test coverage (#16361) @eps1lon
+- [CardMedia] Change prop requirements to conform html picture semantics (#16396) @maeertin
+- [ClickAwayListener] Don't miss any click away events (#16446) @NMinhNguyen
+- [FormControl] Add useFormControlState (#16467) @eps1lon
+- [ListItemIcon] Add margin to line up when using flex-start (#16398) @slim-hmidi
+- [ListItemSecondaryAction] Add missing types for props spread (#16411) @nsams
+- [MenuItem] Fix type deceleration not using MenuItemClassKey (#16358) @merceyz
+- [Menu] Fix autoFocus to work correctly with keepMounted (#16450) @ryancogswell
+- [Modal] Fix persisting aria-hidden (#16392) @eps1lon
+- [Modal] Make the modal demo style more "agnostic" (#16385) @oliviertassinari
+- [Select] Fix node reference (#16401) @ffjanhoeck
+- [Slider] Fix small step regression (#16395) @alitaheri
+- [Slider] Fix textAlign prop affecting Slider rail (#16440) @mohan-cao
+- [Slider] Move to core (#16416) @oliviertassinari
+- [Tabs] Migrate to hooks (#16427) @oliviertassinari
+- [TextareaAutosize] Fix one possible case of infinite render loop (#16387) @ZYinMD
+- [TextareaAutosize] New public component (#16362) @oliviertassinari
+- [Tooltip] Fix arrow demos (#16412) @Favna
+
+### `@material-ui/styles@v4.2.0`
+
+- [styles] Add test for removing styles via `overrides` (#16420) @eps1lon
+- [styles] Handle props of type any in styled (#16356) @merceyz
+- [styles] Support augmenting CSS properties (#16333) @merceyz
+
+### `@material-ui/lab@v4.0.0-alpha.19`
+
+- [Slider] Move to core (#16416) @oliviertassinari
+
+### Docs
+
+- [docs] Fix typo in TypeScript doc (#16365) @DDDDDanica
+- [docs] Add missing page title for translations (#16375) @jaironalves
+- [docs] Correct spelling imporant -> important (#16388) @rlfarman
+- [docs] Fix typo in customizing components (#16404) @YipinXiong
+- [docs] Fix typo in docs server (#16406) @thanasis00
+- [docs] Fixed link to Button API in FAQ (#16370) @kxlow
+- [docs] Improve example of Custom Pagination Actions Table (#16472) @bigtone1284
+- [docs] Minor improvements (#16423) @eps1lon
+- [docs] Reduce the headers font-size (#16433) @oliviertassinari
+- [docs] Remove compose helper (#16429) @oliviertassinari
+- [docs] Remove outdated references to the @next release (#16428) @davidoffyuy
+- [docs] Replace hardcoded content with translation (#16380) @eps1lon
+- [docs] Small ad information icon (#16438) @oliviertassinari
+- [docs] Update displayEmpty prop description in Select API docs (#16376) @bigtone1284
+- [docs] Update testing guide (#16368) @eps1lon
+- [docs] Use full text of the code of conduct (#16417) @mbrookes
+- [docs] [TableCell] Fix padding and size property descriptions (#16378) @the-question
+
+### Core
+
+- [test] Simpler createClientRender (#16461) @eps1lon
+- [ci] Move TypeScript tests into separate job (#16405) @eps1lon
+- [ci] Persist/Report only if previous steps succeeded (#16432) @eps1lon
+- [core] Improve test coverage (#16453) @eps1lon
+- [core] Speed-up typechecking (#16413) @merceyz
+
 ## 4.1.3
+
 ###### *June 25, 2019*
 
 Big thanks to the 4 contributors who made this release possible!
