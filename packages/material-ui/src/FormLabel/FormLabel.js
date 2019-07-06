@@ -83,7 +83,6 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
           className={clsx(classes.asterisk, {
             [classes.error]: fcs.error,
           })}
-          data-mui-test="FormLabelAsterisk"
         >
           &thinsp;{'*'}
         </span>

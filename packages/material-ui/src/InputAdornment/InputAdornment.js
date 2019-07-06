@@ -4,8 +4,7 @@ import clsx from 'clsx';
 import warning from 'warning';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
-import withFormControlContext from '../FormControl/withFormControlContext';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -43,11 +42,11 @@ const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
     className,
     disablePointerEvents = false,
     disableTypography = false,
-    muiFormControl,
     position,
     variant: variantProp,
     ...other
   } = props;
+  const muiFormControl = useFormControl();
 
   let variant = variantProp;
 
@@ -133,6 +132,4 @@ InputAdornment.propTypes = {
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-export default withStyles(styles, { name: 'MuiInputAdornment' })(
-  withFormControlContext(InputAdornment),
-);
+export default withStyles(styles, { name: 'MuiInputAdornment' })(InputAdornment);

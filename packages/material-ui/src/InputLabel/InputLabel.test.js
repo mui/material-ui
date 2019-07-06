@@ -4,7 +4,8 @@ import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControl from '../FormControl';
+import Input from '../Input';
 import InputLabel from './InputLabel';
 import FormLabel from '../FormLabel';
 
@@ -49,43 +50,75 @@ describe('<InputLabel />', () => {
     expect(container.firstChild).not.to.have.class(classes.animated);
   });
 
-  describe('with muiFormControl context', () => {
-    function InputLabelWithContext(props) {
-      const { context, ...other } = props;
-      return (
-        <FormControlContext.Provider value={context}>
-          <InputLabel {...other} />
-        </FormControlContext.Provider>
-      );
-    }
-    InputLabelWithContext.propTypes = {
-      context: PropTypes.object,
-    };
-
+  describe('with FormControl', () => {
     it('should have the formControl class', () => {
-      const { container } = render(<InputLabelWithContext context={{}} />);
-      expect(container.firstChild).to.have.class(classes.formControl);
+      const { getByTestId } = render(
+        <FormControl>
+          <InputLabel data-testid="root" />
+        </FormControl>,
+      );
+      expect(getByTestId('root')).to.have.class(classes.formControl);
     });
 
     it('should have the labelDense class when margin is dense', () => {
-      const { container } = render(<InputLabelWithContext context={{ margin: 'dense' }} />);
-      expect(container.firstChild).to.have.class(classes.marginDense);
+      const { getByTestId } = render(
+        <FormControl margin="dense">
+          <InputLabel data-testid="root" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.marginDense);
     });
 
-    ['filled', 'focused'].forEach(state => {
-      describe(state, () => {
-        it('should be overridden by the shrink prop', () => {
-          const { container, setProps } = render(
-            <InputLabelWithContext context={{ [state]: true }} />,
+    describe('filled', () => {
+      it('applies a shrink class that can be controlled by props', () => {
+        function Wrapper({ children }) {
+          return (
+            <FormControl>
+              <Input defaultValue="Dave" />
+              {children}
+            </FormControl>
           );
-          expect(container.firstChild).to.have.class(classes.shrink);
-
-          setProps({ shrink: false });
-          expect(container.firstChild).not.to.have.class(classes.shrink);
-
-          setProps({ shrink: true });
-          expect(container.firstChild).to.have.class(classes.shrink);
+        }
+        Wrapper.propTypes = { children: PropTypes.node };
+        const { getByTestId, setProps } = render(<InputLabel data-testid="root">name</InputLabel>, {
+          wrapper: Wrapper,
         });
+
+        expect(getByTestId('root')).to.have.class(classes.shrink);
+
+        setProps({ shrink: false });
+        expect(getByTestId('root')).not.to.have.class(classes.shrink);
+
+        setProps({ shrink: true });
+        expect(getByTestId('root')).to.have.class(classes.shrink);
+      });
+    });
+
+    describe('focused', () => {
+      it('applies a shrink class that can be controlled by props', () => {
+        function Wrapper({ children }) {
+          return (
+            <FormControl>
+              <Input />
+              {children}
+            </FormControl>
+          );
+        }
+        Wrapper.propTypes = { children: PropTypes.node };
+
+        const { container, getByTestId, setProps } = render(<InputLabel data-testid="root" />, {
+          wrapper: Wrapper,
+        });
+        container.querySelector('input').focus();
+
+        expect(getByTestId('root')).to.have.class(classes.shrink);
+
+        setProps({ shrink: false });
+        expect(getByTestId('root')).not.to.have.class(classes.shrink);
+
+        setProps({ shrink: true });
+        expect(getByTestId('root')).to.have.class(classes.shrink);
       });
     });
   });
