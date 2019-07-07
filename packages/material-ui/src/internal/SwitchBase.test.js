@@ -293,7 +293,7 @@ describe('<SwitchBase />', () => {
     });
 
     describe('disabled', () => {
-      it('should not have the disabled class', () => {
+      it('should have the disabled class', () => {
         const { getByTestId } = render(
           <FormControl disabled>
             <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
