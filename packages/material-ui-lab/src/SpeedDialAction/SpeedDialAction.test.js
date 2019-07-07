@@ -11,7 +11,7 @@ describe('<SpeedDialAction />', () => {
   let mount;
   let classes;
   const icon = <Icon>add</Icon>;
-  const defaultProps = {
+  const props = {
     icon,
     tooltipTitle: 'placeholder',
   };
@@ -19,7 +19,7 @@ describe('<SpeedDialAction />', () => {
   before(() => {
     // StrictModeViolation: uses ButtonBase
     mount = createMount({ strict: false });
-    classes = getClasses(<SpeedDialAction {...defaultProps} />);
+    classes = getClasses(<SpeedDialAction {...props} />);
   });
 
   after(() => {
@@ -27,13 +27,11 @@ describe('<SpeedDialAction />', () => {
   });
 
   it('should render its component tree without warnings', () => {
-    mount(<SpeedDialAction {...defaultProps} />);
+    mount(<SpeedDialAction {...props} />);
   });
 
   it('should render a Tooltip', () => {
-    const wrapper = mount(
-      <SpeedDialAction {...defaultProps} open tooltipOpen tooltipTitle="An Action" />,
-    );
+    const wrapper = mount(<SpeedDialAction {...props} open tooltipOpen tooltipTitle="An Action" />);
 
     assert.strictEqual(
       wrapper
@@ -45,25 +43,23 @@ describe('<SpeedDialAction />', () => {
   });
 
   it('should be able to change the Tooltip classes', () => {
-    const wrapper = mount(
-      <SpeedDialAction {...defaultProps} TooltipClasses={{ tooltip: 'bar' }} />,
-    );
+    const wrapper = mount(<SpeedDialAction {...props} TooltipClasses={{ tooltip: 'bar' }} />);
     assert.include(wrapper.find(Tooltip).props().classes.tooltip, 'bar');
   });
 
   it('should render a Fab', () => {
-    const wrapper = mount(<SpeedDialAction {...defaultProps} />);
+    const wrapper = mount(<SpeedDialAction {...props} />);
     assert.strictEqual(wrapper.find(Fab).exists(), true);
   });
 
   it('should render the Button with the button class', () => {
-    const wrapper = mount(<SpeedDialAction {...defaultProps} open />);
+    const wrapper = mount(<SpeedDialAction {...props} open />);
     const buttonWrapper = wrapper.find('button');
     assert.strictEqual(buttonWrapper.hasClass(classes.button), true);
   });
 
   it('should render the Button with the button and buttonClosed classes', () => {
-    const wrapper = mount(<SpeedDialAction {...defaultProps} />);
+    const wrapper = mount(<SpeedDialAction {...props} />);
     const buttonWrapper = wrapper.find('button');
     assert.strictEqual(buttonWrapper.hasClass(classes.button), true);
     assert.strictEqual(buttonWrapper.hasClass(classes.buttonClosed), true);
@@ -71,7 +67,7 @@ describe('<SpeedDialAction />', () => {
 
   it('passes the className to the Button', () => {
     const className = 'my-speeddialaction';
-    const wrapper = mount(<SpeedDialAction {...defaultProps} className={className} />);
+    const wrapper = mount(<SpeedDialAction {...props} className={className} />);
     const buttonWrapper = wrapper.find('button');
     assert.strictEqual(buttonWrapper.hasClass(className), true);
   });
@@ -79,8 +75,8 @@ describe('<SpeedDialAction />', () => {
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const wrapper = mount(<SpeedDialAction {...defaultProps} open onClick={handleClick} />);
-      const buttonWrapper = wrapper.childAt(0);
+      const wrapper = mount(<SpeedDialAction {...props} open onClick={handleClick} />);
+      const buttonWrapper = wrapper.find('button');
       buttonWrapper.simulate('click');
       assert.strictEqual(handleClick.callCount, 1);
     });
