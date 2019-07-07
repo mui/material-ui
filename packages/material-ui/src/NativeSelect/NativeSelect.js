@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NativeSelectInput from './NativeSelectInput';
 import withStyles from '../styles/withStyles';
 import formControlState from '../FormControl/formControlState';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
@@ -78,10 +78,11 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
     IconComponent = ArrowDropDownIcon,
     input = defaultInput,
     inputProps,
-    muiFormControl,
     variant,
     ...other
   } = props;
+
+  const muiFormControl = useFormControl();
   const fcs = formControlState({
     props,
     muiFormControl,
@@ -131,10 +132,6 @@ NativeSelect.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
-  /**
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
@@ -153,6 +150,4 @@ NativeSelect.propTypes = {
 
 NativeSelect.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiNativeSelect' })(
-  withFormControlContext(NativeSelect),
-);
+export default withStyles(styles, { name: 'MuiNativeSelect' })(NativeSelect);

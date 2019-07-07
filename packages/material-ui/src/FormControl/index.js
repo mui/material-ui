@@ -1,2 +1,2 @@
 export { default } from './FormControl';
-export { useFormControl } from './FormControlContext';
+export { default as useFormControl } from './useFormControl';

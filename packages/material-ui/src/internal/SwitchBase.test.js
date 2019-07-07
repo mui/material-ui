@@ -1,445 +1,358 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  findOutermostIntrinsic,
-  getClasses,
-  unwrap,
-} from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import SwitchBase from './SwitchBase';
-import FormControlContext from '../FormControl/FormControlContext';
-import Icon from '../Icon';
-import ButtonBase from '../ButtonBase';
-
-function assertIsChecked(wrapper) {
-  const iconButton = wrapper.find('span').at(0);
-
-  assert.strictEqual(
-    iconButton.hasClass('test-class-checked'),
-    true,
-    'should have the checked class on the root node',
-  );
-
-  const input = wrapper.find('input');
-  assert.strictEqual(input.instance().checked, true);
-
-  const label = iconButton.childAt(0);
-  const icon = label.childAt(0);
-  assert.strictEqual(icon.name(), 'h2');
-}
-
-function assertIsNotChecked(wrapper) {
-  const iconButton = wrapper.find('span').at(0);
-
-  assert.strictEqual(
-    iconButton.hasClass('test-class-checked'),
-    false,
-    'should not have the checked class on the root node',
-  );
-
-  const input = wrapper.find('input');
-  assert.strictEqual(input.instance().checked, false);
-
-  const label = iconButton.childAt(0);
-  const icon = label.childAt(0);
-  assert.strictEqual(icon.name(), 'h1');
-}
+import FormControl, { useFormControl } from '../FormControl';
+import IconButton from '../IconButton';
 
 const shouldSuccessOnce = name => func => () => {
   global.successOnce = global.successOnce || {};
 
   if (!global.successOnce[name]) {
-    global.successOnce[name] = false;
-  }
-
-  try {
     func();
     global.successOnce[name] = true;
-  } catch (err) {
-    if (!global.successOnce[name]) {
-      throw err;
-    }
   }
 };
 
 describe('<SwitchBase />', () => {
+  const render = createClientRender({ strict: false });
   let mount;
   let classes;
-  let SwitchBaseNaked;
-  const defaultProps = {
-    type: 'checkbox',
-    icon: <h1>h1</h1>,
-    checkedIcon: <h2>h2</h2>,
-  };
 
   before(() => {
-    SwitchBaseNaked = unwrap(SwitchBase);
     // StrictModeViolation: uses ButtonBase
     mount = createMount({ strict: false });
-    classes = getClasses(<SwitchBase {...defaultProps} />);
+    classes = getClasses(<SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
     mount.cleanUp();
   });
 
+  describeConformance(
+    <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
+    () => ({
+      classes,
+      inheritComponent: IconButton,
+      mount,
+      refInstanceof: window.HTMLSpanElement,
+      testComponentPropWith: 'div',
+    }),
+  );
+
   it('should render a span', () => {
-    const wrapper = mount(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'span');
+    const { container } = render(
+      <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
+    );
+
+    expect(container.firstChild).to.have.property('nodeName', 'SPAN');
   });
 
   it('should render an icon and input inside the button by default', () => {
-    const wrapper = mount(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(
-      wrapper.containsMatchingElement(
-        <span>
-          {defaultProps.icon}
-          <input type="checkbox" />
-        </span>,
-      ),
-      true,
+    const { container, getByRole } = render(
+      <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
     );
+    const buttonInside = container.firstChild.firstChild;
+
+    expect(buttonInside).to.have.property('nodeName', 'SPAN');
+    expect(buttonInside.childNodes[0]).to.have.text('unchecked');
+    expect(buttonInside.childNodes[1]).to.equal(getByRole('checkbox'));
   });
 
   it('should have a ripple by default', () => {
-    const wrapper = mount(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(wrapper.find('TouchRipple').exists(), true);
+    const { getByTestId } = render(
+      <SwitchBase
+        checkedIcon="checked"
+        icon="unchecked"
+        type="checkbox"
+        TouchRippleProps={{ 'data-testid': 'TouchRipple' }}
+      />,
+    );
+
+    expect(getByTestId('TouchRipple')).to.be.ok;
   });
 
   it('can disable the ripple ', () => {
-    const wrapper = mount(<SwitchBase {...defaultProps} disableRipple />);
-    assert.strictEqual(wrapper.find('TouchRipple').exists(), false);
-  });
-
-  // className is put on the root node, this is a special case!
-  it('should render with the user and root classes', () => {
-    const wrapper = mount(<SwitchBase {...defaultProps} className="woofSwitchBase" />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofSwitchBase'), true);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-  });
-
-  it('should spread custom props on the root node', () => {
-    const wrapper = mount(<SwitchBase {...defaultProps} data-my-prop="woofSwitchBase" />);
-    assert.strictEqual(
-      findOutermostIntrinsic(wrapper).props()['data-my-prop'],
-      'woofSwitchBase',
-      'custom prop should be woofSwitchBase',
+    const { queryByTestId } = render(
+      <SwitchBase
+        checkedIcon="checked"
+        icon="unchecked"
+        type="checkbox"
+        disableRipple
+        TouchRippleProps={{ 'data-testid': 'TouchRipple' }}
+      />,
     );
+
+    expect(queryByTestId('TouchRipple')).to.be.null;
   });
 
   it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {
-    const wrapper = mount(<SwitchBase {...defaultProps} tabIndex={-1} />);
-    const input = wrapper.find('input');
-    assert.strictEqual(input.props().tabIndex, -1);
+    const { getByRole } = render(
+      <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" tabIndex={-1} />,
+    );
+
+    expect(getByRole('checkbox')).to.have.attribute('tabIndex', '-1');
   });
 
   it('should pass value, disabled, checked, and name to the input', () => {
-    const props = { name: 'gender', disabled: true, value: 'male' };
+    const { getByRole } = render(
+      <SwitchBase
+        icon="unchecked"
+        checkedIcon="checked"
+        type="checkbox"
+        name="gender"
+        disabled
+        value="male"
+      />,
+    );
+    const input = getByRole('checkbox');
 
-    const wrapper = mount(<SwitchBase {...defaultProps} {...props} />);
-    const input = wrapper.find('input');
-
-    Object.keys(props).forEach(n => {
-      assert.strictEqual(input.props()[n], props[n]);
-    });
+    expect(input).to.have.attribute('name', 'gender');
+    expect(input).to.have.attribute('disabled');
+    expect(input).to.have.attribute('value', 'male');
   });
 
-  it('should disable the components, and render the IconButton with the disabled className', () => {
-    const wrapper = mount(<SwitchBase {...defaultProps} disabled />);
-    assert.strictEqual(wrapper.find(ButtonBase).props().disabled, true);
-    assert.strictEqual(wrapper.find(ButtonBase).hasClass(classes.disabled), true);
-  });
-
-  it('should apply the custom disabled className when disabled', () => {
-    const disabledClassName = 'foo';
-    const wrapperA = mount(
-      <SwitchBase {...defaultProps} disabled classes={{ disabled: disabledClassName }} />,
+  it('can disable the components, and render the IconButton with the disabled className', () => {
+    const { container } = render(
+      <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" disabled />,
     );
 
-    assert.strictEqual(
-      findOutermostIntrinsic(wrapperA).hasClass(disabledClassName),
-      true,
-      'should have the custom disabled class',
-    );
-
-    wrapperA.setProps({ disabled: false });
-
-    assert.strictEqual(
-      wrapperA.hasClass(disabledClassName),
-      false,
-      'should not have the custom disabled class',
-    );
+    // to.be.disabled
+    expect(container.firstChild).to.have.attribute('aria-disabled', 'true');
+    expect(container.firstChild).to.have.class(classes.disabled);
   });
 
   describe('controlled', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = mount(
-        <SwitchBaseNaked
-          {...defaultProps}
-          classes={{
-            checked: 'test-class-checked',
-          }}
-          className="test-class"
+    it('should check the checkbox', () => {
+      const { container, getByRole, getByTestId, setProps } = render(
+        <SwitchBase
+          icon="unchecked"
+          checkedIcon={<span data-testid="checked-icon" />}
+          type="checkbox"
           checked={false}
         />,
       );
-    });
+      setProps({ checked: true });
 
-    it('should check the checkbox', () => {
-      wrapper.setProps({ checked: true });
-      assertIsChecked(wrapper);
+      expect(container.firstChild).to.have.class(classes.checked);
+      expect(getByRole('checkbox')).to.have.property('checked', true);
+      expect(getByTestId('checked-icon')).to.be.ok;
     });
 
     it('should uncheck the checkbox', () => {
-      wrapper.setProps({ checked: true });
-      wrapper.setProps({ checked: false });
-      assertIsNotChecked(wrapper);
-    });
-  });
-
-  describe('prop: defaultChecked', () => {
-    it('should work uncontrolled', () => {
-      const wrapper = mount(<SwitchBaseNaked {...defaultProps} classes={{}} defaultChecked />);
-      wrapper
-        .find('input')
-        .instance()
-        .click();
-      wrapper.update();
-      assertIsNotChecked(wrapper);
-    });
-  });
-
-  describe('uncontrolled', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = mount(
-        <SwitchBaseNaked
-          {...defaultProps}
-          classes={{
-            checked: 'test-class-checked',
-          }}
-          className="test-class"
+      const { container, getByRole, getByTestId, setProps } = render(
+        <SwitchBase
+          icon={<span data-testid="unchecked-icon" />}
+          checkedIcon="checked"
+          type="checkbox"
+          checked
         />,
       );
-    });
+      setProps({ checked: false });
 
-    it('should check the checkbox', () => {
-      wrapper
-        .find('input')
-        .instance()
-        .click();
-      wrapper.update();
-      assertIsChecked(wrapper);
-    });
-
-    it('should uncheck the checkbox', () => {
-      wrapper
-        .find('input')
-        .instance()
-        .click();
-      wrapper
-        .find('input')
-        .instance()
-        .click();
-      wrapper.update();
-      assertIsNotChecked(wrapper);
+      expect(container.firstChild).not.to.have.class(classes.checked);
+      expect(getByRole('checkbox')).to.have.property('checked', false);
+      expect(getByTestId('unchecked-icon')).to.be.ok;
     });
   });
 
-  describe('prop: icon', () => {
-    it('should render an Icon', () => {
-      const wrapper = mount(<SwitchBase {...defaultProps} icon={<Icon>heart</Icon>} />);
-      assert.strictEqual(wrapper.contains(Icon), true);
-    });
+  it('can change checked state uncontrolled starting from defaultChecked', () => {
+    const { container, getByRole, getByTestId } = render(
+      <SwitchBase
+        icon={<span data-testid="unchecked-icon" />}
+        checkedIcon={<span data-testid="checked-icon" />}
+        type="checkbox"
+        defaultChecked
+      />,
+    );
+
+    expect(container.firstChild).to.have.class(classes.checked);
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(getByTestId('checked-icon')).to.be.ok;
+
+    getByRole('checkbox').click();
+
+    expect(container.firstChild).not.to.have.class(classes.checked);
+    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByTestId('unchecked-icon')).to.be.ok;
+
+    getByRole('checkbox').click();
+
+    expect(container.firstChild).to.have.class(classes.checked);
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(getByTestId('checked-icon')).to.be.ok;
   });
 
   describe('handleInputChange()', () => {
-    const eventMock = 'something-to-match';
-    const event = {
-      target: {
-        checked: false,
-      },
-      eventMock,
-    };
-
-    it('should call onChange exactly once with event', () => {
-      const handleChange = spy();
-      const wrapper = mount(
-        <SwitchBaseNaked {...defaultProps} classes={{}} onChange={handleChange} />,
+    it('should call onChange when uncontrolled', () => {
+      const handleChange = spy(event => event.target.checked);
+      const { getByRole } = render(
+        <SwitchBase
+          icon="unchecked"
+          checkedIcon="checked"
+          type="checkbox"
+          onChange={handleChange}
+        />,
       );
 
-      const input = wrapper.find('input');
-      input.simulate('change', event);
+      getByRole('checkbox').click();
 
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.calledWithMatch(event), true);
-
-      handleChange.resetHistory();
+      expect(handleChange.callCount).to.equal(1);
+      // event.target.check is true
+      expect(handleChange.firstCall.returnValue).to.be.true;
     });
 
-    describe('controlled', () => {
-      it('should call onChange once', () => {
-        const checked = true;
-        const handleChange = spy();
-        const wrapper = mount(
-          <SwitchBaseNaked
-            {...defaultProps}
-            classes={{}}
-            checked={checked}
-            onChange={handleChange}
-          />,
-        );
-        const input = wrapper.find('input');
-        input.simulate('change', event);
+    it('should call onChange when controlled', () => {
+      const checked = true;
+      const handleChange = spy((event, newChecked) => newChecked);
+      const { getByRole } = render(
+        <SwitchBase
+          icon="unchecked"
+          checkedIcon="checked"
+          type="checkbox"
+          checked={checked}
+          onChange={handleChange}
+        />,
+      );
 
-        assert.strictEqual(handleChange.callCount, 1);
-        assert.strictEqual(
-          handleChange.calledWithMatch(event, !checked),
-          true,
-          'call onChange with event and !props.checked',
-        );
-      });
-    });
+      getByRole('checkbox').click();
 
-    describe('not controlled no input', () => {
-      let checkedMock;
-      let wrapper;
-      let handleChange;
-
-      before(() => {
-        handleChange = spy();
-        wrapper = mount(<SwitchBaseNaked {...defaultProps} classes={{}} onChange={handleChange} />);
-        checkedMock = true;
-        const input = wrapper.find('input');
-        input.simulate('change', { target: { checked: checkedMock }, eventMock });
-        handleChange.resetHistory();
-        input.simulate('change', event);
-      });
-
-      it('should call onChange exactly once', () => {
-        assert.strictEqual(handleChange.callCount, 1);
-      });
-
-      it('should call onChange with right params', () => {
-        assert.strictEqual(handleChange.calledWithMatch(event, !checkedMock), true);
-      });
-
-      it('should change state.checked !checkedMock', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.checked), !checkedMock);
-      });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.firstCall.returnValue).to.equal(!checked);
     });
 
     describe('prop: inputProps', () => {
       it('should be able to add aria', () => {
-        const wrapper2 = mount(
-          <SwitchBase {...defaultProps} inputProps={{ 'aria-label': 'foo' }} />,
+        const { getByLabelText } = render(
+          <SwitchBase
+            icon="unchecked"
+            checkedIcon="checked"
+            type="checkbox"
+            inputProps={{ 'aria-label': 'foo' }}
+          />,
         );
-        assert.strictEqual(wrapper2.find('input').props()['aria-label'], 'foo');
+
+        expect(getByLabelText('foo')).to.have.property('type', 'checkbox');
       });
     });
 
     describe('prop: id', () => {
       it('should be able to add id to a checkbox input', () => {
-        const wrapper2 = mount(<SwitchBase {...defaultProps} type="checkbox" id="foo" />);
-        assert.strictEqual(wrapper2.find('input').props().id, 'foo');
+        const { getByRole } = render(
+          <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" id="foo" />,
+        );
+
+        expect(getByRole('checkbox')).to.have.attribute('id', 'foo');
       });
 
       it('should be able to add id to a radio input', () => {
-        const wrapper2 = mount(<SwitchBase {...defaultProps} type="radio" id="foo" />);
-        assert.strictEqual(wrapper2.find('input').props().id, 'foo');
+        const { getByRole } = render(
+          <SwitchBase icon="unchecked" checkedIcon="checked" type="radio" id="foo" />,
+        );
+
+        expect(getByRole('radio')).to.have.attribute('id', 'foo');
       });
     });
   });
 
-  describe('with muiFormControl context', () => {
-    let wrapper;
-
-    function setFormControlContext(muiFormControlContext) {
-      wrapper.setProps({ context: muiFormControlContext });
-    }
-
-    beforeEach(() => {
-      function Provider(props) {
-        const { context, ...other } = props;
-        return (
-          <FormControlContext.Provider value={context}>
-            <SwitchBase {...defaultProps} {...other} />
-          </FormControlContext.Provider>
-        );
-      }
-      Provider.propTypes = {
-        context: PropTypes.object,
-      };
-
-      wrapper = mount(<Provider />);
-    });
-
+  describe('with FormControl', () => {
     describe('enabled', () => {
-      beforeEach(() => {
-        setFormControlContext({});
-      });
-
       it('should not have the disabled class', () => {
-        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        const { getByTestId } = render(
+          <FormControl>
+            <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).not.to.have.class(classes.disabled);
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), false);
-        wrapper.setProps({ disabled: true });
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
+        const { getByTestId } = render(
+          <FormControl>
+            <SwitchBase
+              disabled
+              data-testid="root"
+              icon="unchecked"
+              checkedIcon="checked"
+              type="checkbox"
+            />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).to.have.class(classes.disabled);
       });
     });
 
     describe('disabled', () => {
-      beforeEach(() => {
-        setFormControlContext({ disabled: true });
-      });
-
       it('should have the disabled class', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
+        const { getByTestId } = render(
+          <FormControl disabled>
+            <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).to.have.class(classes.disabled);
       });
 
-      it('should honor props', () => {
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
-        wrapper.setProps({ disabled: false });
-        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), false);
+      it('should be overridden by props', () => {
+        const { getByTestId } = render(
+          <FormControl>
+            <SwitchBase
+              disabled={false}
+              data-testid="root"
+              icon="unchecked"
+              checkedIcon="checked"
+              type="checkbox"
+            />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).not.to.have.class(classes.disabled);
       });
     });
   });
 
-  describe('prop: onFocus', () => {
-    it('should work', () => {
-      const handleFocusProps = spy();
-      const handleFocusContext = spy();
-      const wrapper = mount(
-        <FormControlContext.Provider value={{ onFocus: handleFocusContext }}>
-          <SwitchBaseNaked {...defaultProps} classes={{}} onFocus={handleFocusProps} />
-        </FormControlContext.Provider>,
-      );
-      wrapper.find('input').simulate('focus');
-      assert.strictEqual(handleFocusProps.callCount, 1);
-      assert.strictEqual(handleFocusContext.callCount, 1);
-    });
-  });
+  describe('focus/blur', () => {
+    it('forwards focus/blur events and notifies the FormControl', () => {
+      function FocusMonitor(props) {
+        const { focused } = useFormControl();
 
-  describe('prop: onBlur', () => {
-    it('should work', () => {
-      const handleFocusProps = spy();
-      const handleFocusContext = spy();
-      const wrapper = mount(
-        <FormControlContext.Provider value={{ onBlur: handleFocusContext }}>
-          <SwitchBaseNaked {...defaultProps} classes={{}} onBlur={handleFocusProps} />
-        </FormControlContext.Provider>,
+        return <span {...props}>focused: {String(focused)}</span>;
+      }
+      const handleBlur = spy();
+      const handleFocus = spy();
+      const { getByRole, getByTestId } = render(
+        <FormControl>
+          <FocusMonitor data-testid="focus-monitor" />
+          <SwitchBase
+            data-testid="root"
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            icon="unchecked"
+            checkedIcon="checked"
+            type="checkbox"
+          />
+        </FormControl>,
       );
-      wrapper.find('input').simulate('blur');
-      assert.strictEqual(handleFocusProps.callCount, 1);
-      assert.strictEqual(handleFocusContext.callCount, 1);
+
+      getByRole('checkbox').focus();
+
+      expect(getByTestId('focus-monitor')).to.have.text('focused: true');
+      expect(handleFocus.callCount).to.equal(1);
+
+      getByRole('checkbox').blur();
+
+      expect(getByTestId('focus-monitor')).to.have.text('focused: false');
+      expect(handleBlur.callCount).to.equal(1);
     });
   });
 
@@ -455,12 +368,15 @@ describe('<SwitchBase />', () => {
     it(
       'should error when uncontrolled and changed to controlled',
       shouldSuccessOnce('didWarnUncontrolledToControlled')(() => {
-        const wrapper = mount(<SwitchBase {...defaultProps} type="checkbox" />);
-        wrapper.setProps({ checked: true });
+        const wrapper = render(
+          <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />,
+        );
 
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(
-          consoleErrorMock.args()[0][0],
+        expect(consoleErrorMock.callCount()).to.equal(0);
+
+        wrapper.setProps({ checked: true });
+        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.args()[0][0]).to.include(
           'A component is changing an uncontrolled input of type %s to be controlled.',
         );
       }),
@@ -469,12 +385,14 @@ describe('<SwitchBase />', () => {
     it(
       'should error when controlled and changed to uncontrolled',
       shouldSuccessOnce('didWarnControlledToUncontrolled')(() => {
-        const wrapper = mount(<SwitchBase {...defaultProps} type="checkbox" checked={false} />);
-        wrapper.setProps({ checked: undefined });
+        const { setProps } = render(
+          <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" checked={false} />,
+        );
+        expect(consoleErrorMock.callCount()).to.equal(0);
 
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(
-          consoleErrorMock.args()[0][0],
+        setProps({ checked: undefined });
+        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.args()[0][0]).to.include(
           'A component is changing a controlled input of type %s to be uncontrolled.',
         );
       }),

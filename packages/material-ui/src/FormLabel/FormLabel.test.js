@@ -1,18 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import FormLabel from './FormLabel';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControl, { useFormControl } from '../FormControl';
 
 describe('<FormLabel />', () => {
   let mount;
+  const render = createClientRender({ strict: true });
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<FormLabel />);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -29,103 +35,127 @@ describe('<FormLabel />', () => {
 
   describe('prop: required', () => {
     it('should show an asterisk if required is set', () => {
-      const labelRef = React.createRef();
-      const wrapper = mount(<FormLabel ref={labelRef} required />);
-      const text = labelRef.current.textContent;
-      assert.strictEqual(text.slice(-1), '*');
-      assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
+      const { container } = render(<FormLabel required>name</FormLabel>);
+
+      expect(container.querySelector('label')).to.have.text('name\u2009*');
+      expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
     });
 
     it('should not show an asterisk by default', () => {
-      const labelRef = React.createRef();
-      const wrapper = mount(<FormLabel ref={labelRef} />);
+      const { container } = render(<FormLabel>name</FormLabel>);
 
-      assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 0);
-      assert.strictEqual(labelRef.current.textContent.indexOf('*'), -1);
+      expect(container.querySelector('label')).to.have.text('name');
+      expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(0);
     });
   });
 
   describe('prop: error', () => {
     it('should have an error class', () => {
-      const wrapper = mount(<FormLabel required error />);
-      const asteriskWrapper = wrapper.find('[data-mui-test="FormLabelAsterisk"]');
-      assert.strictEqual(asteriskWrapper.length, 1);
-      assert.strictEqual(asteriskWrapper.hasClass(classes.error), true);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), true);
+      const { container } = render(<FormLabel required error />);
+
+      expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
+      expect(container.querySelector(`.${classes.asterisk}`)).to.have.class(classes.error);
+      expect(container.firstChild).to.have.class(classes.error);
     });
   });
 
-  describe('with muiFormControl context', () => {
-    let wrapper;
-
-    function setFormControlContext(muiFormControlContext) {
-      wrapper.setProps({ context: muiFormControlContext });
-    }
-
-    beforeEach(() => {
-      function Provider(props) {
-        const { context, ...other } = props;
-
-        return (
-          <FormControlContext.Provider value={context}>
-            <FormLabel {...other}>Foo</FormLabel>
-          </FormControlContext.Provider>
-        );
+  describe('with FormControl', () => {
+    describe('error', () => {
+      function Wrapper(props) {
+        return <FormControl error {...props} />;
       }
-      Provider.propTypes = {
-        context: PropTypes.object,
-      };
 
-      wrapper = mount(<Provider />);
+      it(`should have the error class`, () => {
+        const { container } = render(<FormLabel />, {
+          wrapper: Wrapper,
+        });
+
+        expect(container.querySelector('label')).to.have.class(classes.error);
+      });
+
+      it('should be overridden by props', () => {
+        const { container, setProps } = render(
+          <FormLabel data-testid="FormLabel" error={false} />,
+          {
+            wrapper: Wrapper,
+          },
+        );
+
+        expect(container.querySelector('label')).not.to.have.class(classes.error);
+
+        setProps({ error: true });
+        expect(container.querySelector('label')).to.have.class(classes.error);
+      });
     });
 
-    ['error', 'focused'].forEach(visualState => {
-      describe(visualState, () => {
-        beforeEach(() => {
-          setFormControlContext({ [visualState]: true });
-        });
+    describe('focused', () => {
+      const FormController = React.forwardRef((_, ref) => {
+        const formControl = useFormControl();
+        React.useImperativeHandle(ref, () => formControl, [formControl]);
+        return null;
+      });
 
-        it(`should have the ${visualState} class`, () => {
-          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
-        });
+      it(`should have the focused class`, () => {
+        const formControlRef = React.createRef();
+        const { container } = render(
+          <FormControl error>
+            <FormLabel data-testid="FormLabel" />
+            <FormController ref={formControlRef} />
+          </FormControl>,
+        );
 
-        it('should be overridden by props', () => {
-          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
-          wrapper.setProps({ [visualState]: false });
-          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), false);
-          wrapper.setProps({ [visualState]: true });
-          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
+        expect(container.querySelector('label')).not.to.have.class(classes.focused);
+
+        formControlRef.current.onFocus();
+        expect(container.querySelector('label')).to.have.class(classes.focused);
+      });
+
+      it('should be overridden by props', () => {
+        const formControlRef = React.createRef();
+        function Wrapper({ children }) {
+          return (
+            <FormControl error>
+              {children}
+              <FormController ref={formControlRef} />
+            </FormControl>
+          );
+        }
+        Wrapper.propTypes = { children: PropTypes.node };
+        const { container, setProps } = render(<FormLabel data-testid="FormLabel" />, {
+          wrapper: Wrapper,
         });
+        formControlRef.current.onFocus();
+
+        expect(container.querySelector('label')).to.have.class(classes.focused);
+
+        setProps({ focused: false });
+        expect(container.querySelector('label')).not.to.have.class(classes.focused);
+
+        setProps({ focused: true });
+        expect(container.querySelector('label')).to.have.class(classes.focused);
       });
     });
 
     describe('required', () => {
-      beforeEach(() => {
-        setFormControlContext({ required: true });
-      });
-
       it('should show an asterisk', () => {
-        assert.strictEqual(
-          findOutermostIntrinsic(wrapper).find('[data-mui-test="FormLabelAsterisk"]').length,
-          1,
+        const { container } = render(
+          <FormControl required>
+            <FormLabel>name</FormLabel>
+          </FormControl>,
         );
+
+        expect(container).to.have.text('name\u2009*');
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(
-          findOutermostIntrinsic(wrapper).find('[data-mui-test="FormLabelAsterisk"]').length,
-          1,
-        );
-        wrapper.setProps({ required: false });
-        assert.strictEqual(
-          findOutermostIntrinsic(wrapper).find('[data-mui-test="FormLabelAsterisk"]').length,
-          0,
-        );
-        wrapper.setProps({ required: true });
-        assert.strictEqual(
-          findOutermostIntrinsic(wrapper).find('[data-mui-test="FormLabelAsterisk"]').length,
-          1,
-        );
+        const { container, setProps } = render(<FormLabel required={false}>name</FormLabel>, {
+          wrapper: props => <FormControl required {...props} />,
+        });
+
+        expect(container).to.have.text('name');
+
+        setProps({ required: true });
+        expect(container).to.have.text('name\u2009*');
       });
     });
   });

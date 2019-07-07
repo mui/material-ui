@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import FormHelperText from './FormHelperText';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControl from '../FormControl';
 
 describe('<FormHelperText />', () => {
   let mount;
@@ -40,70 +39,69 @@ describe('<FormHelperText />', () => {
     });
   });
 
-  describe('with muiFormControl context', () => {
-    /**
-     * @type {ReturnType<typeof render>}
-     */
-    let wrapper;
-
-    function setFormControlContext(muiFormControlContext) {
-      wrapper.setProps({ context: muiFormControlContext });
-    }
-
-    beforeEach(() => {
-      function ConnectedFormHelperText(props) {
-        const { context, ...other } = props;
-
-        return (
-          <FormControlContext.Provider value={context}>
-            <FormHelperText {...other}>Foo</FormHelperText>
-          </FormControlContext.Provider>
-        );
-      }
-      ConnectedFormHelperText.propTypes = {
-        context: PropTypes.object,
-      };
-
-      wrapper = render(<ConnectedFormHelperText />);
-    });
-
+  describe('with FormControl', () => {
     ['error', 'disabled'].forEach(visualState => {
       describe(visualState, () => {
-        beforeEach(() => {
-          setFormControlContext({ [visualState]: true });
-        });
+        function FormHelperTextInFormControl(props) {
+          return (
+            <FormControl {...{ [visualState]: true }}>
+              <FormHelperText {...props}>Foo</FormHelperText>
+            </FormControl>
+          );
+        }
 
         it(`should have the ${visualState} class`, () => {
-          expect(wrapper.container.firstChild).to.have.class(classes[visualState]);
+          const { getByText } = render(
+            <FormHelperTextInFormControl>Foo</FormHelperTextInFormControl>,
+          );
+
+          expect(getByText(/Foo/)).to.have.class(classes[visualState]);
         });
 
         it('should be overridden by props', () => {
-          expect(wrapper.container.firstChild).to.have.class(classes[visualState]);
+          const { getByText, setProps } = render(
+            <FormHelperTextInFormControl {...{ [visualState]: false }}>
+              Foo
+            </FormHelperTextInFormControl>,
+          );
 
-          wrapper.setProps({ [visualState]: false });
-          expect(wrapper.container.firstChild).not.to.have.class(classes[visualState]);
+          expect(getByText(/Foo/)).not.to.have.class(classes[visualState]);
 
-          wrapper.setProps({ [visualState]: true });
-          expect(wrapper.container.firstChild).to.have.class(classes[visualState]);
+          setProps({ [visualState]: true });
+          expect(getByText(/Foo/)).to.have.class(classes[visualState]);
         });
       });
     });
 
     describe('margin', () => {
-      describe('context margin: dense', () => {
-        beforeEach(() => {
-          setFormControlContext({ margin: 'dense' });
-        });
-
+      describe('dense margin FormControl', () => {
         it('should have the dense class', () => {
-          expect(wrapper.container.firstChild).to.have.class(classes.marginDense);
+          const { getByText } = render(
+            <FormControl margin="dense">
+              <FormHelperText>Foo</FormHelperText>
+            </FormControl>,
+          );
+
+          expect(getByText(/Foo/)).to.have.class(classes.marginDense);
         });
       });
 
       it('should be overridden by props', () => {
-        expect(wrapper.container.firstChild).not.to.have.class(classes.marginDense);
-        wrapper.setProps({ margin: 'dense' });
-        expect(wrapper.container.firstChild).to.have.class(classes.marginDense);
+        function FormHelperTextInFormControl(props) {
+          return (
+            <FormControl dense="none">
+              <FormHelperText {...props}>Foo</FormHelperText>
+            </FormControl>
+          );
+        }
+
+        const { getByText, setProps } = render(
+          <FormHelperTextInFormControl>Foo</FormHelperTextInFormControl>,
+        );
+
+        expect(getByText(/Foo/)).not.to.have.class(classes.marginDense);
+        setProps({ margin: 'dense' });
+        expect(getByText(/Foo/)).to.have.class(classes.marginDense);
       });
     });
   });

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import { useFormControl } from '../FormControl';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import { capitalize } from '../utils/helpers';
@@ -62,12 +62,12 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
     inputRef,
     label,
     labelPlacement = 'end',
-    muiFormControl,
     name,
     onChange,
     value,
     ...other
   } = props;
+  const muiFormControl = useFormControl();
 
   let disabled = disabledProp;
   if (typeof disabled === 'undefined' && typeof control.props.disabled !== 'undefined') {
@@ -144,10 +144,6 @@ FormControlLabel.propTypes = {
    * The position of the label.
    */
   labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
-  /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
   /*
    * @ignore
    */
@@ -166,6 +162,4 @@ FormControlLabel.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiFormControlLabel' })(
-  withFormControlContext(FormControlLabel),
-);
+export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);

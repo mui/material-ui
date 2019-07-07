@@ -1,8 +1,9 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Typography from '../Typography';
 import InputAdornment from './InputAdornment';
 import TextField from '../TextField';
@@ -11,11 +12,16 @@ import Input from '../Input';
 
 describe('<InputAdornment />', () => {
   let mount;
+  const render = createClientRender({ strict: true });
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<InputAdornment position="start">foo</InputAdornment>);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -31,56 +37,33 @@ describe('<InputAdornment />', () => {
   }));
 
   it('should wrap text children in a Typography', () => {
-    const wrapper = mount(<InputAdornment position="start">foo</InputAdornment>);
-    const adornment = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(adornment.childAt(0).type(), Typography);
+    const { container } = render(<InputAdornment position="start">foo</InputAdornment>);
+    const typographyClasses = getClasses(<Typography />);
+    const typography = container.querySelector(`.${typographyClasses.root}`);
+
+    expect(typography).to.be.ok;
+    expect(typography).to.have.text('foo');
   });
 
   it('should have the root and start class when position is start', () => {
-    const wrapper = mount(<InputAdornment position="start">foo</InputAdornment>);
-    const adornment = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(adornment.hasClass(classes.root), true);
-    assert.strictEqual(adornment.hasClass(classes.positionStart), true);
+    const { container } = render(<InputAdornment position="start">foo</InputAdornment>);
+    const adornment = container.firstChild;
+
+    expect(adornment).to.have.class(classes.root);
+    expect(adornment).to.have.class(classes.positionStart);
   });
 
   it('should have the root and end class when position is end', () => {
-    const wrapper = mount(<InputAdornment position="end">foo</InputAdornment>);
-    const adornment = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(adornment.hasClass(classes.root), true);
-    assert.strictEqual(adornment.hasClass(classes.positionEnd), true);
+    const { container } = render(<InputAdornment position="end">foo</InputAdornment>);
+    const adornment = container.firstChild;
+
+    expect(adornment).to.have.class(classes.root);
+    expect(adornment).to.have.class(classes.positionEnd);
   });
 
   describe('prop: variant', () => {
     it("should inherit the TextField's variant", () => {
-      const wrapper = mount(
-        <TextField
-          fullWidth
-          placeholder="Search"
-          label="Search"
-          variant="filled"
-          InputProps={{ startAdornment: <InputAdornment position="start">foo</InputAdornment> }}
-        />,
-      );
-      const adornment = findOutermostIntrinsic(wrapper.find(InputAdornment));
-      assert.strictEqual(adornment.hasClass(classes.root), true);
-      assert.strictEqual(adornment.hasClass(classes.positionStart), true);
-      assert.strictEqual(adornment.hasClass(classes.filled), true);
-    });
-
-    it("should inherit the FormControl's variant", () => {
-      const wrapper = mount(
-        <FormControl variant="filled">
-          <Input startAdornment={<InputAdornment position="start">foo</InputAdornment>} />
-        </FormControl>,
-      );
-      const adornment = findOutermostIntrinsic(wrapper.find(InputAdornment));
-      assert.strictEqual(adornment.hasClass(classes.root), true);
-      assert.strictEqual(adornment.hasClass(classes.positionStart), true);
-      assert.strictEqual(adornment.hasClass(classes.filled), true);
-    });
-
-    it('should override the inherited variant', () => {
-      const wrapper = mount(
+      const { getByTestId } = render(
         <TextField
           fullWidth
           placeholder="Search"
@@ -88,29 +71,69 @@ describe('<InputAdornment />', () => {
           variant="filled"
           InputProps={{
             startAdornment: (
-              <InputAdornment variant="standard" position="start">
+              <InputAdornment data-testid="InputAdornment" position="start">
                 foo
               </InputAdornment>
             ),
           }}
         />,
       );
-      const adornment = findOutermostIntrinsic(wrapper.find(InputAdornment));
-      assert.strictEqual(adornment.hasClass(classes.root), true);
-      assert.strictEqual(adornment.hasClass(classes.positionStart), true);
-      assert.strictEqual(adornment.hasClass(classes.filled), false);
+      const adornment = getByTestId('InputAdornment');
+
+      expect(adornment).to.have.class(classes.root);
+      expect(adornment).to.have.class(classes.positionStart);
+      expect(adornment).to.have.class(classes.filled);
+    });
+
+    it("should inherit the FormControl's variant", () => {
+      const { getByTestId } = render(
+        <FormControl variant="filled">
+          <InputAdornment data-testid="InputAdornment" position="start">
+            foo
+          </InputAdornment>
+        </FormControl>,
+      );
+      const adornment = getByTestId('InputAdornment');
+
+      expect(adornment).to.have.class(classes.root);
+      expect(adornment).to.have.class(classes.positionStart);
+      expect(adornment).to.have.class(classes.filled);
+    });
+
+    it('should override the inherited variant', () => {
+      const { getByTestId } = render(
+        <TextField
+          fullWidth
+          placeholder="Search"
+          label="Search"
+          variant="filled"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment data-testid="InputAdornment" variant="standard" position="start">
+                foo
+              </InputAdornment>
+            ),
+          }}
+        />,
+      );
+      const adornment = getByTestId('InputAdornment');
+
+      expect(adornment).to.have.class(classes.root);
+      expect(adornment).to.have.class(classes.positionStart);
+      expect(adornment).not.to.have.class(classes.filled);
     });
 
     it('should have the filled root and class when variant is filled', () => {
-      const wrapper = mount(
+      const { container } = render(
         <InputAdornment variant="filled" position="start">
           foo
         </InputAdornment>,
       );
-      const adornment = findOutermostIntrinsic(wrapper);
-      assert.strictEqual(adornment.hasClass(classes.root), true);
-      assert.strictEqual(adornment.hasClass(classes.positionStart), true);
-      assert.strictEqual(adornment.hasClass(classes.filled), true);
+      const adornment = container.firstChild;
+
+      expect(adornment).to.have.class(classes.root);
+      expect(adornment).to.have.class(classes.positionStart);
+      expect(adornment).to.have.class(classes.filled);
     });
 
     describe('warnings', () => {
@@ -123,7 +146,7 @@ describe('<InputAdornment />', () => {
       });
 
       it('should warn if the variant supplied is equal to the variant inferred', () => {
-        mount(
+        render(
           <FormControl variant="filled">
             <Input
               startAdornment={
@@ -134,9 +157,8 @@ describe('<InputAdornment />', () => {
             />
           </FormControl>,
         );
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.strictEqual(
-          consoleErrorMock.args()[0][0],
+        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.args()[0][0]).to.equal(
           'Warning: Material-UI: The `InputAdornment` variant infers the variant ' +
             'property you do not have to provide one.',
         );
@@ -145,32 +167,35 @@ describe('<InputAdornment />', () => {
   });
 
   it('should have the disabled pointer events class when disabledPointerEvents true', () => {
-    const wrapper = mount(
+    const { container } = render(
       <InputAdornment disablePointerEvents position="start">
         foo
       </InputAdornment>,
     );
-    const adornment = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(adornment.hasClass(classes.disablePointerEvents), true);
+    const adornment = container.firstChild;
+
+    expect(adornment).to.have.class(classes.disablePointerEvents);
   });
 
   it('should not wrap text children in a Typography when disableTypography true', () => {
-    const wrapper = mount(
+    const { container } = render(
       <InputAdornment disableTypography position="start">
         foo
       </InputAdornment>,
     );
-    const adornment = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(adornment.text(), 'foo');
+    const typographyClasses = getClasses(<Typography />);
+
+    expect(container.querySelector(`.${typographyClasses.root}`)).to.be.null;
   });
 
   it('should render children', () => {
-    const wrapper = mount(
+    const { container } = render(
       <InputAdornment position="start">
         <div>foo</div>
       </InputAdornment>,
     );
-    const adornment = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(adornment.childAt(0).name(), 'div');
+    const adornment = container.firstChild;
+
+    expect(adornment.firstChild).to.have.property('nodeName', 'DIV');
   });
 });

@@ -16,4 +16,4 @@ export interface FormControl extends Pick<FormControlProps, ContextFromPropsKey>
   onFocus: () => void;
 }
 
-export function useFormControl(): FormControl;
+export default function useFormControl(): FormControl;

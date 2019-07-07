@@ -3,11 +3,11 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { act, cleanup, createClientRender } from 'test/utils/createClientRender';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
-import FormControlContext, { useFormControl } from './FormControlContext';
+import useFormControl from './useFormControl';
 
 describe('<FormControl />', () => {
   let mount;
@@ -105,9 +105,7 @@ describe('<FormControl />', () => {
       );
       expect(readContext.args[0][0]).to.have.property('focused', false);
 
-      act(() => {
-        container.querySelector('input').focus();
-      });
+      container.querySelector('input').focus();
       expect(readContext.args[1][0]).to.have.property('focused', true);
 
       setProps({ disabled: true });
@@ -185,83 +183,113 @@ describe('<FormControl />', () => {
     });
   });
 
-  describe('muiFormControl child context', () => {
-    let wrapper;
-    let muiFormControlContext;
+  describe('useFormControl', () => {
+    const FormController = React.forwardRef((_, ref) => {
+      const formControl = useFormControl();
+      React.useImperativeHandle(ref, () => formControl, [formControl]);
+      return null;
+    });
 
-    beforeEach(() => {
-      wrapper = render(
-        <FormControl>
-          <FormControlContext.Consumer>
-            {context => {
-              muiFormControlContext = context;
-            }}
-          </FormControlContext.Consumer>
-        </FormControl>,
+    const FormControlled = React.forwardRef(function FormControlled(props, ref) {
+      return (
+        <FormControl {...props}>
+          <FormController ref={ref} />
+        </FormControl>
       );
     });
 
     describe('from props', () => {
       it('should have the required prop from the instance', () => {
-        expect(muiFormControlContext).to.have.property('required', false);
-        wrapper.setProps({ required: true });
-        expect(muiFormControlContext).to.have.property('required', true);
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('required', false);
+
+        setProps({ required: true });
+        expect(formControlRef.current).to.have.property('required', true);
       });
 
       it('should have the error prop from the instance', () => {
-        expect(muiFormControlContext).to.have.property('error', false);
-        wrapper.setProps({ error: true });
-        expect(muiFormControlContext).to.have.property('error', true);
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('error', false);
+
+        setProps({ error: true });
+        expect(formControlRef.current).to.have.property('error', true);
       });
 
       it('should have the margin prop from the instance', () => {
-        expect(muiFormControlContext).to.have.property('margin', 'none');
-        wrapper.setProps({ margin: 'dense' });
-        expect(muiFormControlContext).to.have.property('margin', 'dense');
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('margin', 'none');
+
+        setProps({ margin: 'dense' });
+        expect(formControlRef.current).to.have.property('margin', 'dense');
       });
     });
 
     describe('callbacks', () => {
       describe('onFilled', () => {
         it('should set the filled state', () => {
-          expect(muiFormControlContext).to.have.property('filled', false);
-          muiFormControlContext.onFilled();
-          expect(muiFormControlContext).to.have.property('filled', true);
-          muiFormControlContext.onFilled();
-          expect(muiFormControlContext).to.have.property('filled', true);
+          const formControlRef = React.createRef();
+          render(<FormControlled ref={formControlRef} />);
+
+          expect(formControlRef.current).to.have.property('filled', false);
+
+          formControlRef.current.onFilled();
+          expect(formControlRef.current).to.have.property('filled', true);
+
+          formControlRef.current.onFilled();
+          expect(formControlRef.current).to.have.property('filled', true);
         });
       });
 
       describe('onEmpty', () => {
         it('should clean the filled state', () => {
-          muiFormControlContext.onFilled();
-          expect(muiFormControlContext).to.have.property('filled', true);
-          muiFormControlContext.onEmpty();
-          expect(muiFormControlContext).to.have.property('filled', false);
-          muiFormControlContext.onEmpty();
-          expect(muiFormControlContext).to.have.property('filled', false);
+          const formControlRef = React.createRef();
+          render(<FormControlled ref={formControlRef} />);
+
+          formControlRef.current.onFilled();
+          expect(formControlRef.current).to.have.property('filled', true);
+
+          formControlRef.current.onEmpty();
+          expect(formControlRef.current).to.have.property('filled', false);
+
+          formControlRef.current.onEmpty();
+          expect(formControlRef.current).to.have.property('filled', false);
         });
       });
 
       describe('handleFocus', () => {
         it('should set the focused state', () => {
-          expect(muiFormControlContext).to.have.property('focused', false);
-          muiFormControlContext.onFocus();
-          expect(muiFormControlContext).to.have.property('focused', true);
-          muiFormControlContext.onFocus();
-          expect(muiFormControlContext).to.have.property('focused', true);
+          const formControlRef = React.createRef();
+          render(<FormControlled ref={formControlRef} />);
+          expect(formControlRef.current).to.have.property('focused', false);
+
+          formControlRef.current.onFocus();
+          expect(formControlRef.current).to.have.property('focused', true);
+
+          formControlRef.current.onFocus();
+          expect(formControlRef.current).to.have.property('focused', true);
         });
       });
 
       describe('handleBlur', () => {
         it('should clear the focused state', () => {
-          expect(muiFormControlContext).to.have.property('focused', false);
-          muiFormControlContext.onFocus();
-          expect(muiFormControlContext).to.have.property('focused', true);
-          muiFormControlContext.onBlur();
-          expect(muiFormControlContext).to.have.property('focused', false);
-          muiFormControlContext.onBlur();
-          expect(muiFormControlContext).to.have.property('focused', false);
+          const formControlRef = React.createRef();
+          render(<FormControlled ref={formControlRef} />);
+          expect(formControlRef.current).to.have.property('focused', false);
+
+          formControlRef.current.onFocus();
+          expect(formControlRef.current).to.have.property('focused', true);
+
+          formControlRef.current.onBlur();
+          expect(formControlRef.current).to.have.property('focused', false);
+
+          formControlRef.current.onBlur();
+          expect(formControlRef.current).to.have.property('focused', false);
         });
       });
     });
