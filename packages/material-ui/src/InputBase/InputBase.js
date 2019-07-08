@@ -102,7 +102,7 @@ export const styles = theme => {
         '-webkit-appearance': 'none',
       },
       // Show and hide the placeholder logic
-      'label[data-shrink=false] + $formControl &': {
+      'label[data-shrink=false]:not([hidden]) + $formControl &': {
         '&::-webkit-input-placeholder': placeholderHidden,
         '&::-moz-placeholder': placeholderHidden, // Firefox 19+
         '&:-ms-input-placeholder': placeholderHidden, // IE 11
@@ -140,6 +140,8 @@ export const styles = theme => {
     inputAdornedStart: {},
     /* Styles applied to the `input` element if `endAdornment` is provided. */
     inputAdornedEnd: {},
+    /* Styles applied to the `input` element if `hiddenLabel={true}`. */
+    inputHiddenLabel: {},
   };
 };
 
@@ -210,7 +212,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['disabled', 'error', 'margin', 'required', 'filled'],
+    states: ['disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
   });
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 
@@ -382,6 +384,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
               [classes.inputMultiline]: multiline,
               [classes.inputSelect]: select,
               [classes.inputMarginDense]: fcs.margin === 'dense',
+              [classes.inputHiddenLabel]: fcs.hiddenLabel,
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
             },

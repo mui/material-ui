@@ -146,6 +146,15 @@ export default function FilledTextFields() {
         variant="filled"
       />
       <TextField
+        id="filled-dense-hidden-label"
+        label="dense with visually hidden label"
+        className={clsx(classes.textField, classes.dense)}
+        margin="dense"
+        variant="filled"
+        hiddenLabel
+        placeholder="visually hidden label"
+      />
+      <TextField
         id="filled-dense-multiline"
         label="Dense multiline"
         className={clsx(classes.textField, classes.dense)}

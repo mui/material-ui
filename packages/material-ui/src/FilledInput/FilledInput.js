@@ -110,8 +110,14 @@ export const styles = theme => {
     inputMarginDense: {
       paddingTop: 23,
       paddingBottom: 6,
+      '&$inputHiddenLabel': {
+        paddingTop: 10,
+        paddingBottom: 11,
+      },
     },
-    /* Styles applied to the `input` element if `select={true}`. */
+    /* Styles applied to the `input` if in `<FormControl hiddenLabel />` */
+    inputHiddenLabel: {},
+    /* Styles applied to the `input` element if `select={true}. */
     inputSelect: {
       paddingRight: 32,
     },
