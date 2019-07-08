@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es5",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "dist",
+    "jsx": "react"
+  },
+  "include": ["src"]
+}
