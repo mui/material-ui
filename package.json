@@ -1,7 +1,7 @@
 {
   "name": "typescript-to-proptypes",
   "version": "1.0.0",
-  "description": "Creates proptypes for your React components from typescript declarations",
+  "description": "Generate proptypes from typescript declarations",
   "main": "dist/index.js",
   "files": [
     "dist"
