@@ -96,7 +96,7 @@ There are 3 available workarounds:
     </div>
   </body>
 ```
-3. Adding `overflow-x: hidden;` to the parent.
+3. Adding `overflow-y: hidden;` to the parent.
 
 ### white-space: nowrap;
 
