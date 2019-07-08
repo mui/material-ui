@@ -281,6 +281,8 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
 
 const TouchRippleMemo = React.memo(TouchRipple);
 
+TouchRippleMemo.muiName = 'MuiTouchRipple';
+
 TouchRipple.propTypes = {
   /**
    * If `true`, the ripple starts at the center of the component
