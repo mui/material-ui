@@ -26,7 +26,47 @@ const themeInitialOptions = {
  */
 function usingHighDensity(themeOptions) {
   return deepmerge(themeOptions, {
-    dense: true,
+    props: {
+      MuiButton: {
+        size: 'small',
+      },
+      MuiFilledInput: {
+        margin: 'dense',
+      },
+      MuiFormControl: {
+        margin: 'dense',
+      },
+      MuiFormHelperText: {
+        margin: 'dense',
+      },
+      MuiIconButton: {
+        size: 'small',
+      },
+      MuiInputBase: {
+        margin: 'dense',
+      },
+      MuiInputLabel: {
+        margin: 'dense',
+      },
+      MuiListItem: {
+        dense: true,
+      },
+      MuiOutlinedInput: {
+        margin: 'dense',
+      },
+      MuiFab: {
+        size: 'small',
+      },
+      MuiTable: {
+        size: 'small',
+      },
+      MuiTextField: {
+        margin: 'dense',
+      },
+      MuiToolbar: {
+        variant: 'dense',
+      },
+    },
     overrides: {
       MuiIconButton: {
         sizeSmall: {
@@ -40,8 +80,8 @@ function usingHighDensity(themeOptions) {
   });
 }
 
-function usingLowDensity(themeOptions) {
-  return { ...themeOptions, dense: false };
+function usingIdentity(themeOptions) {
+  return themeOptions;
 }
 
 export const DispatchContext = React.createContext(() => {
@@ -125,7 +165,7 @@ export function ThemeProvider(props) {
   }, [direction]);
 
   const theme = React.useMemo(() => {
-    const themeDecorator = dense ? usingHighDensity : usingLowDensity;
+    const themeDecorator = dense ? usingHighDensity : usingIdentity;
     const nextTheme = createMuiTheme(
       themeDecorator({
         direction,

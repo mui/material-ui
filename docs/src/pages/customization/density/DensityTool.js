@@ -54,11 +54,7 @@ export default function DensityTool() {
               color="secondary"
             />
           }
-          label={
-            <code className="language-js">
-              createMuiTheme({`{ dense: ${String(theme.dense)} }`})
-            </code>
-          }
+          label={t('useHighDensity')}
         />
       </Grid>
       <Grid container item alignItems="center" spacing={2}>

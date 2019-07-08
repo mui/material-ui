@@ -15,12 +15,7 @@ have at least one example using the respective component with higher density app
 Depending on the component density is applied either via lower spacing or simply by
 reducing the size.
 
-If you want apply density across your whole application you can create a custom
-theme with higher density by using a theme created with `dense` set to `true` e.g.
-`createMuiTheme({ dense: true })`. See [Themes](/customization/themes) for how
-to use a custom theme for your application.
-
-The following components apply a higher density if this option is used:
+The following components have props applying higher density:
 
 - [Button](/api/button)
 - [Fab](/api/fab)
@@ -38,11 +33,70 @@ The following components apply a higher density if this option is used:
 
 ## Explore theme density
 
-This tool allows you to apply density via spacing and the `dense` option for the
-theme used for this website. You can browse around and see how this applies to the
-overall feel of Material-UI components.
+This tool allows you to apply density via spacing and component props. You can browse
+around and see how this applies to the overall feel of Material-UI components.
 
-If you set `dense` to `true` we apply additional padding to `IconButton` to reach
-the [touch hit target](https://material.io/design/layout/applying-density.html#touch-click-targets) for those buttons.
+If you enable high density we apply a custom theme to our docs. This theme is only
+for demonstration purposes. You _should not_ apply this theme to your whole application
+as this might impact user experience negatively. The [Material design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples
+for when not to apply density.
+
+The theme is configured with the following options:
+
+```js
+const theme = createMuiTheme({
+  props: {
+    MuiButton: {
+      size: 'small',
+    },
+    MuiFilledInput: {
+      margin: 'dense',
+    },
+    MuiFormControl: {
+      margin: 'dense',
+    },
+    MuiFormHelperText: {
+      margin: 'dense',
+    },
+    MuiIconButton: {
+      size: 'small',
+    },
+    MuiInputBase: {
+      margin: 'dense',
+    },
+    MuiInputLabel: {
+      margin: 'dense',
+    },
+    MuiListItem: {
+      dense: true,
+    },
+    MuiOutlinedInput: {
+      margin: 'dense',
+    },
+    MuiFab: {
+      size: 'small',
+    },
+    MuiTable: {
+      size: 'small',
+    },
+    MuiTextField: {
+      margin: 'dense',
+    },
+    MuiToolbar: {
+      variant: 'dense',
+    },
+  },
+  overrides: {
+    MuiIconButton: {
+      sizeSmall: {
+        // Adjust spacing to reach minimal touch target hitbox
+        marginLeft: 4,
+        marginRight: 4,
+        padding: 12,
+      },
+    },
+  },
+});
+```
 
 {{"demo": "pages/customization/density/DensityTool.js", "hideHeader": true}}

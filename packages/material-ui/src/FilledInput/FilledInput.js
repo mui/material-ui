@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import InputBase from '../InputBase';
 import withStyles from '../styles/withStyles';
-import useTheme from '../styles/useTheme';
 
 export const styles = theme => {
   const light = theme.palette.type === 'light';
@@ -132,13 +131,11 @@ export const styles = theme => {
 };
 
 const FilledInput = React.forwardRef(function FilledInput(props, ref) {
-  const theme = useTheme();
   const {
     disableUnderline,
     classes,
     fullWidth = false,
     inputComponent = 'input',
-    margin = theme.dense ? 'dense' : undefined,
     multiline = false,
     type = 'text',
     ...other
@@ -155,7 +152,6 @@ const FilledInput = React.forwardRef(function FilledInput(props, ref) {
       }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
-      margin={margin}
       multiline={multiline}
       ref={ref}
       type={type}

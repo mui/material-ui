@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import useTheme from '../styles/useTheme';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement, useForkRef } from '../utils/reactHelpers';
 import ListContext from '../List/ListContext';
@@ -90,7 +89,6 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
 const ListItem = React.forwardRef(function ListItem(props, ref) {
-  const theme = useTheme();
   const {
     alignItems = 'center',
     autoFocus = false,
@@ -112,10 +110,9 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 
   const context = React.useContext(ListContext);
   const childContext = {
-    dense: dense || context.dense,
+    dense: dense || context.dense || false,
     alignItems,
   };
-  childContext.dense = childContext.dense === undefined ? theme.dense : childContext.dense;
   const listItemRef = React.useRef(null);
   useEnhancedEffect(() => {
     if (autoFocus) {

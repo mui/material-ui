@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import FormHelperText from './FormHelperText';
-import FormControl from '../FormControl';
-import { createMuiTheme, MuiThemeProvider } from '../styles';
+import FormControlContext from '../FormControl/FormControlContext';
 
 describe('<FormHelperText />', () => {
   let mount;
@@ -40,86 +40,71 @@ describe('<FormHelperText />', () => {
     });
   });
 
-  describe('with FormControl', () => {
+  describe('with muiFormControl context', () => {
+    /**
+     * @type {ReturnType<typeof render>}
+     */
+    let wrapper;
+
+    function setFormControlContext(muiFormControlContext) {
+      wrapper.setProps({ context: muiFormControlContext });
+    }
+
+    beforeEach(() => {
+      function ConnectedFormHelperText(props) {
+        const { context, ...other } = props;
+
+        return (
+          <FormControlContext.Provider value={context}>
+            <FormHelperText {...other}>Foo</FormHelperText>
+          </FormControlContext.Provider>
+        );
+      }
+      ConnectedFormHelperText.propTypes = {
+        context: PropTypes.object,
+      };
+
+      wrapper = render(<ConnectedFormHelperText />);
+    });
+
     ['error', 'disabled'].forEach(visualState => {
       describe(visualState, () => {
+        beforeEach(() => {
+          setFormControlContext({ [visualState]: true });
+        });
+
         it(`should have the ${visualState} class`, () => {
-          const { getByText } = render(
-            <FormControl {...{ [visualState]: true }}>
-              <FormHelperText>Foo</FormHelperText>
-            </FormControl>,
-          );
-          expect(getByText(/Foo/)).to.have.class(classes[visualState]);
+          expect(wrapper.container.firstChild).to.have.class(classes[visualState]);
         });
 
         it('should be overridden by props', () => {
-          function FormHelperTextInFormControl(props) {
-            return (
-              <FormControl {...{ [visualState]: true }}>
-                <FormHelperText {...props}>Foo</FormHelperText>
-              </FormControl>
-            );
-          }
+          expect(wrapper.container.firstChild).to.have.class(classes[visualState]);
 
-          const { getByText, setProps } = render(
-            <FormHelperTextInFormControl>Foo</FormHelperTextInFormControl>,
-          );
+          wrapper.setProps({ [visualState]: false });
+          expect(wrapper.container.firstChild).not.to.have.class(classes[visualState]);
 
-          expect(getByText(/Foo/)).to.have.class(classes[visualState]);
-
-          setProps({ [visualState]: false });
-          expect(getByText(/Foo/)).not.to.have.class(classes[visualState]);
-
-          setProps({ [visualState]: true });
-          expect(getByText(/Foo/)).to.have.class(classes[visualState]);
+          wrapper.setProps({ [visualState]: true });
+          expect(wrapper.container.firstChild).to.have.class(classes[visualState]);
         });
       });
     });
-  });
 
-  describe('margin', () => {
-    it('has no dense margin by default', () => {
-      const { getByText } = render(<FormHelperText>Foo</FormHelperText>);
+    describe('margin', () => {
+      describe('context margin: dense', () => {
+        beforeEach(() => {
+          setFormControlContext({ margin: 'dense' });
+        });
 
-      expect(getByText(/Foo/)).not.to.have.class(classes.marginDense);
-    });
+        it('should have the dense class', () => {
+          expect(wrapper.container.firstChild).to.have.class(classes.marginDense);
+        });
+      });
 
-    it('has dense margin in a dense theme', () => {
-      const { getByText } = render(
-        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-          <FormHelperText>Foo</FormHelperText>
-        </MuiThemeProvider>,
-      );
-
-      expect(getByText(/Foo/)).to.have.class(classes.marginDense);
-    });
-
-    it('has dense margin in a dense FormControl', () => {
-      const { getByText } = render(
-        <FormControl margin="dense">
-          <FormHelperText>Foo</FormHelperText>
-        </FormControl>,
-      );
-
-      expect(getByText(/Foo/)).to.have.class(classes.marginDense);
-    });
-
-    it('can have dense margin via props', () => {
-      const { getByText } = render(<FormHelperText margin="dense">Foo</FormHelperText>);
-
-      expect(getByText(/Foo/)).to.have.class(classes.marginDense);
-    });
-
-    it('prefers FormControl margin over dense theme', () => {
-      const { getByText } = render(
-        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-          <FormControl margin="none">
-            <FormHelperText>Foo</FormHelperText>
-          </FormControl>
-        </MuiThemeProvider>,
-      );
-
-      expect(getByText(/Foo/)).not.to.have.class(classes.marginDense);
+      it('should be overridden by props', () => {
+        expect(wrapper.container.firstChild).not.to.have.class(classes.marginDense);
+        wrapper.setProps({ margin: 'dense' });
+        expect(wrapper.container.firstChild).to.have.class(classes.marginDense);
+      });
     });
   });
 });

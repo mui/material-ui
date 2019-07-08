@@ -5,7 +5,6 @@ import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import FilledInput from './FilledInput';
 import InputBase from '../InputBase';
-import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<FilledInput />', () => {
   let classes;
@@ -43,25 +42,5 @@ describe('<FilledInput />', () => {
     const { container } = render(<FilledInput disableUnderline />);
     const root = container.firstChild;
     expect(root).not.to.have.class(classes.underline);
-  });
-
-  it('has dense margin in a dense theme', () => {
-    const { container } = render(
-      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-        <FilledInput />
-      </MuiThemeProvider>,
-    );
-    const root = container.firstChild;
-    expect(root).to.have.class(classes.marginDense);
-  });
-
-  it('prefers margin prop over dense theme', () => {
-    const { container } = render(
-      <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-        <FilledInput margin="none" />
-      </MuiThemeProvider>,
-    );
-    const root = container.firstChild;
-    expect(root).not.to.have.class(classes.marginDense);
   });
 });

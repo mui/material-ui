@@ -77,6 +77,7 @@
   "showJSSource": "Show JavaScript source",
   "showTSSource": "Show TypeScript source",
   "close": "Close",
+  "useHighDensity": "Apply higher density via props",
   "spacingUnit": "Spacing unit",
   "resetDensity": "Reset density",
   "increaseSpacing": "increase spacing",

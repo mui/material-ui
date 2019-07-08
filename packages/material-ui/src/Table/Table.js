@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import useTheme from '../styles/useTheme';
 import TableContext from './TableContext';
 
 export const styles = {
@@ -16,13 +15,12 @@ export const styles = {
 };
 
 const Table = React.forwardRef(function Table(props, ref) {
-  const theme = useTheme();
   const {
     classes,
     className,
     component: Component = 'table',
     padding = 'default',
-    size = theme.dense ? 'small' : 'medium',
+    size = 'medium',
     ...other
   } = props;
   const table = React.useMemo(() => ({ padding, size }), [padding, size]);

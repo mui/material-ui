@@ -11,7 +11,6 @@ import TextareaAutosize from '../TextareaAutosize';
 import InputBase from './InputBase';
 import TextField from '../TextField';
 import Select from '../Select';
-import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<InputBase />', () => {
   let classes;
@@ -365,26 +364,6 @@ describe('<InputBase />', () => {
 
         setProps({ margin: 'dense' });
         expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
-      });
-
-      it('uses dense margin in a dense theme', () => {
-        const { container } = render(
-          <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-            <InputBaseWithContext context={{}} />
-          </MuiThemeProvider>,
-        );
-
-        expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
-      });
-
-      it('prefers context inputMarginDense over theme density', () => {
-        const { container } = render(
-          <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-            <InputBaseWithContext context={{ margin: 'none' }} />
-          </MuiThemeProvider>,
-        );
-
-        expect(container.querySelector('input')).not.to.have.class(classes.inputMarginDense);
       });
     });
 

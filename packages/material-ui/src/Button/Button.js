@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import useTheme from '../styles/useTheme';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
@@ -184,7 +183,6 @@ export const styles = theme => ({
 });
 
 const Button = React.forwardRef(function Button(props, ref) {
-  const theme = useTheme();
   const {
     children,
     classes,
@@ -195,7 +193,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     disableFocusRipple = false,
     focusVisibleClassName,
     fullWidth = false,
-    size = theme.dense ? 'small' : 'medium',
+    size = 'medium',
     type = 'button',
     variant = 'text',
     ...other

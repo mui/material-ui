@@ -14,9 +14,7 @@ import {
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import ListItem from './ListItem';
-import List from '../List';
 import ListContext from '../List/ListContext';
-import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 const NoContent = React.forwardRef(() => {
   return null;
@@ -85,66 +83,6 @@ describe('<ListItem />', () => {
       expect(context).to.have.property('dense', false);
       setProps({ dense: true });
       expect(context).to.have.property('dense', true);
-    });
-  });
-
-  describe('density', () => {
-    it('can be applied by wrapping in a dense theme', () => {
-      const { getByRole } = render(
-        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-          <ListItem />
-        </MuiThemeProvider>,
-      );
-
-      expect(getByRole('listitem')).to.have.class(classes.dense);
-    });
-
-    it('applies no density by default', () => {
-      const { getByRole } = render(<ListItem />);
-
-      expect(getByRole('listitem')).not.to.have.class(classes.dense);
-    });
-
-    it('can be applied by wrapping in a dense List', () => {
-      const { getByRole } = render(
-        <List dense>
-          <ListItem />
-        </List>,
-      );
-
-      expect(getByRole('listitem')).to.have.class(classes.dense);
-    });
-
-    it('can be applied with a prop', () => {
-      const { getByRole } = render(
-        <List>
-          <ListItem dense />
-        </List>,
-      );
-
-      expect(getByRole('listitem')).to.have.class(classes.dense);
-    });
-
-    it('prefers a dense List over an "undense" ListItem', () => {
-      const { getByRole } = render(
-        <List dense>
-          <ListItem dense={false} />
-        </List>,
-      );
-
-      expect(getByRole('listitem')).to.have.class(classes.dense);
-    });
-
-    it('prefers density from the List over theme density', () => {
-      const { getByRole } = render(
-        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-          <List dense={false}>
-            <ListItem />
-          </List>
-        </MuiThemeProvider>,
-      );
-
-      expect(getByRole('listitem')).not.to.have.class(classes.dense);
     });
   });
 

@@ -8,7 +8,6 @@ import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
-import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 describe('<IconButton />', () => {
   let classes;
@@ -102,28 +101,6 @@ describe('<IconButton />', () => {
 
       root = render(<IconButton>book</IconButton>).container.firstChild;
       expect(root).not.to.have.class(classes.sizeSmall);
-    });
-
-    it('renders a small icon button by default in a dense theme', () => {
-      const { getByRole } = render(
-        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-          <IconButton>Hello World</IconButton>
-        </MuiThemeProvider>,
-      );
-      const button = getByRole('button');
-
-      expect(button).to.have.class(classes.sizeSmall);
-    });
-
-    it('prefers size props over theme density', () => {
-      const { getByRole } = render(
-        <MuiThemeProvider theme={createMuiTheme({ dense: true })}>
-          <IconButton size="medium">Hello World</IconButton>
-        </MuiThemeProvider>,
-      );
-      const button = getByRole('button');
-
-      expect(button).not.to.have.class(classes.sizeSmall);
     });
   });
 
