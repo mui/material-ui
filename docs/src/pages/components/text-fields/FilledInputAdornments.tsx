@@ -137,6 +137,17 @@ export default function FilledInputAdornments() {
           ),
         }}
       />
+      <TextField
+        id="filled-adornment-dense"
+        className={clsx(classes.margin, classes.textField)}
+        variant="filled"
+        margin="dense"
+        label="amount in Euro"
+        hiddenLabel
+        InputProps={{
+          startAdornment: <InputAdornment position="start">€</InputAdornment>,
+        }}
+      />
     </div>
   );
 }

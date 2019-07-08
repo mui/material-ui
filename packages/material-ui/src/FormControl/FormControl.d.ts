@@ -7,6 +7,7 @@ declare const FormControl: OverridableComponent<{
     disabled?: boolean;
     error?: boolean;
     fullWidth?: boolean;
+    hiddenLabel?: boolean;
     margin?: PropTypes.Margin;
     onBlur?: React.EventHandler<any>;
     onFocus?: React.EventHandler<any>;

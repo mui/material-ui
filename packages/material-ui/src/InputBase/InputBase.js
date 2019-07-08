@@ -102,7 +102,7 @@ export const styles = theme => {
         '-webkit-appearance': 'none',
       },
       // Show and hide the placeholder logic
-      'label[data-shrink=false] + $formControl &': {
+      'label[data-shrink=false]:not([hidden]) + $formControl &': {
         '&::-webkit-input-placeholder': placeholderHidden,
         '&::-moz-placeholder': placeholderHidden, // Firefox 19+
         '&:-ms-input-placeholder': placeholderHidden, // IE 11

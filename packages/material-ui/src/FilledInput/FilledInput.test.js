@@ -4,6 +4,7 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import FilledInput from './FilledInput';
+import FormControl from '../FormControl';
 import InputBase from '../InputBase';
 
 describe('<FilledInput />', () => {
@@ -42,5 +43,15 @@ describe('<FilledInput />', () => {
     const { container } = render(<FilledInput disableUnderline />);
     const root = container.firstChild;
     expect(root).not.to.have.class(classes.underline);
+  });
+
+  it('applies an additional class in if inside <FormControl hiddenLabel /> and margin dense', () => {
+    const { getByRole } = render(
+      <FormControl hiddenLabel margin="dense">
+        <FilledInput />
+      </FormControl>,
+    );
+
+    expect(getByRole('textbox')).to.have.class(classes.inputMarginDenseHiddenLabel);
   });
 });

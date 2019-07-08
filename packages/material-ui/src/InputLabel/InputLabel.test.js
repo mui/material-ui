@@ -121,5 +121,27 @@ describe('<InputLabel />', () => {
         expect(getByTestId('root')).to.have.class(classes.shrink);
       });
     });
+
+    describe('inside <FormControl hiddenLabel />', () => {
+      it('will be hidden by default', () => {
+        const { getByTestId } = render(
+          <FormControl hiddenLabel>
+            <InputLabel data-testid="root" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).to.have.property('hidden', true);
+      });
+
+      it('can be forced into visiblity', () => {
+        const { getByTestId } = render(
+          <FormControl hiddenLabel>
+            <InputLabel data-testid="root" hidden={false} />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).to.have.property('hidden', false);
+      });
+    });
   });
 });
