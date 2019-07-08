@@ -130,7 +130,7 @@ describe('<TouchRipple />', () => {
       const { instance, container } = createTouchRipple({ center: true });
       const clientX = 1;
       const clientY = 1;
-      instance.start({ clientX, clientY }, {}, cb);
+      instance.start({ clientX, clientY }, { fakeElement:true }, cb);
       checkRipples(container, 1, 0)
       expect(container.querySelector('.ripple').style).to.have.property('top', '-0.5px');
       expect(container.querySelector('.ripple').style).to.have.property('left', '-0.5px');
