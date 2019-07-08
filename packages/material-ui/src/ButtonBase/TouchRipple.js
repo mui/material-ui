@@ -98,170 +98,188 @@ export const styles = theme => ({
   },
 });
 
-class TouchRipple extends React.PureComponent {
-  // Used to filter out mouse emulated events on mobile.
-  // ignoringMouseDown = false;
+const TouchRipple = React.memo(
+  React.forwardRef(function TouchRipple(props, ref) {
+    const { center: centerProp = false, classes, className, ...other } = props;
+    const [ripples, setRipples] = React.useState([]);
+    const nextKey = React.useRef(0);
+    const rippleCallback = React.useRef(null);
 
-  // We use a timer in order to only show the ripples for touch "click" like events.
-  // We don't want to display the ripple for touch scroll events.
-  // startTimer = null;
-
-  // This is the hook called once the previous timeout is ready.
-  // startTimerCommit = null;
-
-  state = {
-    nextKey: 0,
-    ripples: [],
-  };
-
-  container = React.createRef();
-
-  componentWillUnmount() {
-    clearTimeout(this.startTimer);
-  }
-
-  pulsate = () => {
-    this.start({}, { pulsate: true });
-  };
-
-  start = (event = {}, options = {}, cb) => {
-    const {
-      pulsate = false,
-      center = this.props.center || options.pulsate,
-      fakeElement = false, // For test purposes
-    } = options;
-
-    if (event.type === 'mousedown' && this.ignoringMouseDown) {
-      this.ignoringMouseDown = false;
-      return;
-    }
-
-    if (event.type === 'touchstart') {
-      this.ignoringMouseDown = true;
-    }
-
-    const element = fakeElement ? null : this.container.current;
-    const rect = element
-      ? element.getBoundingClientRect()
-      : {
-          width: 0,
-          height: 0,
-          left: 0,
-          top: 0,
-        };
-
-    // Get the size of the ripple
-    let rippleX;
-    let rippleY;
-    let rippleSize;
-
-    if (
-      center ||
-      (event.clientX === 0 && event.clientY === 0) ||
-      (!event.clientX && !event.touches)
-    ) {
-      rippleX = Math.round(rect.width / 2);
-      rippleY = Math.round(rect.height / 2);
-    } else {
-      const clientX = event.clientX ? event.clientX : event.touches[0].clientX;
-      const clientY = event.clientY ? event.clientY : event.touches[0].clientY;
-      rippleX = Math.round(clientX - rect.left);
-      rippleY = Math.round(clientY - rect.top);
-    }
-
-    if (center) {
-      rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
-
-      // For some reason the animation is broken on Mobile Chrome if the size if even.
-      if (rippleSize % 2 === 0) {
-        rippleSize += 1;
+    React.useEffect(() => {
+      if (rippleCallback.current) {
+        rippleCallback.current();
+        rippleCallback.current = null;
       }
-    } else {
-      const sizeX =
-        Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
-      const sizeY =
-        Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
-      rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2);
-    }
+    }, [ripples]);
 
-    // Touche devices
-    if (event.touches) {
-      // Prepare the ripple effect.
-      this.startTimerCommit = () => {
-        this.startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
+    // Used to filter out mouse emulated events on mobile.
+    const ignoringMouseDown = React.useRef(false);
+    // We use a timer in order to only show the ripples for touch "click" like events.
+    // We don't want to display the ripple for touch scroll events.
+    const startTimer = React.useRef(null);
+
+    // This is the hook called once the previous timeout is ready.
+    const startTimerCommit = React.useRef(null);
+    const container = React.useRef(null);
+
+    React.useEffect(() => {
+      return () => {
+        clearTimeout(startTimer.current);
       };
-      // Delay the execution of the ripple effect.
-      this.startTimer = setTimeout(() => {
-        if (this.startTimerCommit) {
-          this.startTimerCommit();
-          this.startTimerCommit = null;
-        }
-      }, DELAY_RIPPLE); // We have to make a tradeoff with this value.
-    } else {
-      this.startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
-    }
-  };
+    }, []);
 
-  startCommit = params => {
-    const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
+    const startCommit = React.useCallback(
+      params => {
+        const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
 
-    this.setState(
-      state => ({
-        nextKey: state.nextKey + 1,
-        ripples: [
-          ...state.ripples,
+        setRipples(oldRipples => [
+          ...oldRipples,
           <Ripple
-            key={state.nextKey}
-            classes={this.props.classes}
+            key={nextKey.current}
+            classes={classes}
             timeout={DURATION}
             pulsate={pulsate}
             rippleX={rippleX}
             rippleY={rippleY}
             rippleSize={rippleSize}
           />,
-        ],
-      }),
-      cb,
+        ]);
+        nextKey.current += 1;
+        rippleCallback.current = cb;
+      },
+      [classes],
     );
-  };
 
-  stop = (event, cb) => {
-    clearTimeout(this.startTimer);
+    const start = React.useCallback(
+      (event = {}, options = {}, cb) => {
+        const {
+          pulsate = false,
+          center = centerProp || options.pulsate,
+          fakeElement = false, // For test purposes
+        } = options;
 
-    // The touch interaction occurs too quickly.
-    // We still want to show ripple effect.
-    if (event.type === 'touchend' && this.startTimerCommit) {
-      event.persist();
-      this.startTimerCommit();
-      this.startTimerCommit = null;
-      this.startTimer = setTimeout(() => {
-        this.stop(event, cb);
-      });
-      return;
-    }
+        if (event.type === 'mousedown' && ignoringMouseDown.current) {
+          ignoringMouseDown.current = false;
+          return;
+        }
 
-    this.startTimerCommit = null;
+        if (event.type === 'touchstart') {
+          ignoringMouseDown.current = true;
+        }
 
-    this.setState(({ ripples }) => {
-      if (ripples && ripples.length) {
-        return { ripples: ripples.slice(1) };
+        const element = fakeElement ? null : container.current;
+        const rect = element
+          ? element.getBoundingClientRect()
+          : {
+              width: 0,
+              height: 0,
+              left: 0,
+              top: 0,
+            };
+
+        // Get the size of the ripple
+        let rippleX;
+        let rippleY;
+        let rippleSize;
+
+        if (
+          center ||
+          (event.clientX === 0 && event.clientY === 0) ||
+          (!event.clientX && !event.touches)
+        ) {
+          rippleX = Math.round(rect.width / 2);
+          rippleY = Math.round(rect.height / 2);
+        } else {
+          const clientX = event.clientX ? event.clientX : event.touches[0].clientX;
+          const clientY = event.clientY ? event.clientY : event.touches[0].clientY;
+          rippleX = Math.round(clientX - rect.left);
+          rippleY = Math.round(clientY - rect.top);
+        }
+
+        if (center) {
+          rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
+
+          // For some reason the animation is broken on Mobile Chrome if the size if even.
+          if (rippleSize % 2 === 0) {
+            rippleSize += 1;
+          }
+        } else {
+          const sizeX =
+            Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
+          const sizeY =
+            Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
+          rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2);
+        }
+
+        // Touche devices
+        if (event.touches) {
+          // Prepare the ripple effect.
+          startTimerCommit.current = () => {
+            startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
+          };
+          // Delay the execution of the ripple effect.
+          startTimer.current = setTimeout(() => {
+            if (startTimerCommit.current) {
+              startTimerCommit.current();
+              startTimerCommit.current = null;
+            }
+          }, DELAY_RIPPLE); // We have to make a tradeoff with this value.
+        } else {
+          startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
+        }
+      },
+      [centerProp, startCommit],
+    );
+
+    const pulsate = React.useCallback(() => {
+      start({}, { pulsate: true });
+    }, [start]);
+
+    const stop = React.useCallback((event, cb) => {
+      clearTimeout(startTimer.current);
+
+      // The touch interaction occurs too quickly.
+      // We still want to show ripple effect.
+      if (event.type === 'touchend' && startTimerCommit.current) {
+        event.persist();
+        startTimerCommit.current();
+        startTimerCommit.current = null;
+        startTimer.current = setTimeout(() => {
+          stop(event, cb);
+        });
+        return;
       }
-      return null;
-    }, cb);
-  };
 
-  render() {
-    const { center, classes, className, ...other } = this.props;
+      startTimerCommit.current = null;
+
+      setRipples(oldRipples => {
+        if (oldRipples.length > 0) {
+          return oldRipples.slice(1);
+        }
+        return oldRipples;
+      });
+      rippleCallback.current = cb;
+    }, []);
+
+    React.useImperativeHandle(
+      ref,
+      () => ({
+        pulsate,
+        start,
+        stop,
+      }),
+      [pulsate, start, stop],
+    );
 
     return (
-      <span className={clsx(classes.root, className)} ref={this.container} {...other}>
+      <span className={clsx(classes.root, className)} ref={container} {...other}>
         <TransitionGroup component={null} exit>
-          {this.state.ripples}
+          {ripples}
         </TransitionGroup>
       </span>
     );
-  }
-}
+  }),
+);
 
 TouchRipple.propTypes = {
   /**
@@ -278,10 +296,6 @@ TouchRipple.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-};
-
-TouchRipple.defaultProps = {
-  center: false,
 };
 
 export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(TouchRipple);
