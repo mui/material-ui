@@ -4,15 +4,15 @@
 
 ## Applying density
 
-We won't cover possible use cases or considerations for density in your applications.
-The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering those topics in more detail.
+We won't cover possible use cases, or considerations for using density in your application.
+The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
 
 ## Implementing density
 
 Higher density can be applied to some components via props. The component pages
 have at least one example using the respective component with higher density applied.
 
-Depending on the component density is applied either via lower spacing or simply by
+Depending on the component, density is applied either via lower spacing, or simply by
 reducing the size.
 
 The following components have props applying higher density:
