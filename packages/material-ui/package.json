@@ -45,7 +45,7 @@
     "@types/react-transition-group": "^2.0.16",
     "clsx": "^1.0.2",
     "convert-css-length": "^2.0.0",
-    "deepmerge": "^3.0.0",
+    "deepmerge": "^4.0.0",
     "hoist-non-react-statics": "^3.2.1",
     "is-plain-object": "^3.0.0",
     "normalize-scroll-left": "^0.2.0",

@@ -44,7 +44,7 @@
     "@material-ui/utils": "^4.1.0",
     "clsx": "^1.0.2",
     "csstype": "^2.5.2",
-    "deepmerge": "^3.0.0",
+    "deepmerge": "^4.0.0",
     "hoist-non-react-statics": "^3.2.1",
     "jss": "10.0.0-alpha.17",
     "jss-plugin-camel-case": "10.0.0-alpha.17",
