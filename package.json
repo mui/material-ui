@@ -1,0 +1,34 @@
+{
+  "name": "typescript-to-proptypes",
+  "version": "1.0.0",
+  "description": "Creates proptypes for your React components from typescript declarations",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/merceyz/typescript-to-proptypes.git",
+  "author": "merceyz <merceyz@users.noreply.github.com>",
+  "license": "MIT",
+  "keywords": [
+    "proptypes",
+    "typescript",
+    "react"
+  ],
+  "scripts": {
+    "release": "yarn build && standard-version"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "husky": "^3.0.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "standard-version": "^6.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
