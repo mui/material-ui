@@ -1,6 +1,6 @@
 # Density
 
-<p class="description">We explain how to apply density to Material-UI components</p>
+<p class="description">How to apply density to Material-UI components.</p>
 
 ## Applying density
 
@@ -36,9 +36,9 @@ The following components have props applying higher density:
 This tool allows you to apply density via spacing and component props. You can browse
 around and see how this applies to the overall feel of Material-UI components.
 
-If you enable high density we apply a custom theme to our docs. This theme is only
+If you enable high density a custom theme is applied to the docs. This theme is only
 for demonstration purposes. You _should not_ apply this theme to your whole application
-as this might impact user experience negatively. The [Material design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples
+as this might negatively impact user experience. The [Material design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples
 for when not to apply density.
 
 The theme is configured with the following options:
