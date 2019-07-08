@@ -17,6 +17,9 @@ const path = require('path');
 const babel = require('@babel/core');
 const prettier = require('prettier');
 const os = require('os');
+const typescriptToProptypes = require('typescript-to-proptypes');
+
+const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
@@ -68,7 +71,18 @@ function getLineFeed(source) {
 
 const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r?\n){2}/g);
 function fixBabelGeneratorIssues(source) {
-  return source.replace(fixBabelIssuesRegExp, getLineFeed(source));
+  const lf = getLineFeed(source);
+
+  return (
+    source
+      .replace(fixBabelIssuesRegExp, lf)
+      // Linefeed after commentblock
+      .replace(/\*\/ (\w+)/g, `*/${lf}  $1`)
+      // empty line before proptypes
+      .replace(/^(}(\);)?)(\r?\n\w+\.propTypes)/gm, `$1${lf}$3`)
+      // empty line after proptypes
+      .replace(/^(};)(\r?\n\w+)/gm, `$1${lf}$2`)
+  );
 }
 
 const TranspileResult = {
@@ -77,7 +91,7 @@ const TranspileResult = {
   Failed: 2,
 };
 
-async function transpileFile(tsxPath, ignoreCache = false) {
+async function transpileFile(tsxPath, program, ignoreCache = false) {
   const jsPath = tsxPath.replace('.tsx', '.js');
   try {
     if (!cacheDisabled && !ignoreCache && (await fse.exists(jsPath))) {
@@ -89,13 +103,15 @@ async function transpileFile(tsxPath, ignoreCache = false) {
     }
 
     const { code } = await babel.transformFileAsync(tsxPath, babelConfig);
-    const prettified = prettier.format(code, { ...prettierConfig, filepath: tsxPath });
+    const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program);
+    const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
+    const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: tsxPath });
     const formatted = fixBabelGeneratorIssues(prettified);
 
     await fse.writeFile(jsPath, formatted);
     return TranspileResult.Success;
   } catch (err) {
-    console.error(err);
+    console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err);
     return TranspileResult.Failed;
   }
 }
@@ -103,10 +119,12 @@ async function transpileFile(tsxPath, ignoreCache = false) {
 (async () => {
   const tsxFiles = await getFiles(path.join(workspaceRoot, 'docs/src/pages'));
 
+  const program = typescriptToProptypes.createProgram(tsxFiles, tsConfig);
+
   let successful = 0;
   let failed = 0;
   let skipped = 0;
-  (await Promise.all(tsxFiles.map(file => transpileFile(file)))).forEach(result => {
+  (await Promise.all(tsxFiles.map(file => transpileFile(file, program)))).forEach(result => {
     switch (result) {
       case TranspileResult.Success: {
         successful += 1;
@@ -147,7 +165,7 @@ async function transpileFile(tsxPath, ignoreCache = false) {
 
   tsxFiles.forEach(filePath => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
-      if ((await transpileFile(filePath, true)) === 0) {
+      if ((await transpileFile(filePath, program, true)) === 0) {
         console.log('Success - %s', filePath);
       }
     });
