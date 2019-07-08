@@ -21,7 +21,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Menu item contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">dense</span> | <span class="prop-type">bool</span> |  |  |
+| <span class="prop-name">dense</span> | <span class="prop-type">bool</span> |  | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 
 The `ref` is forwarded to the root element.

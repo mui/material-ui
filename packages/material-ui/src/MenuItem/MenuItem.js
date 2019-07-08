@@ -87,6 +87,9 @@ MenuItem.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   */
   dense: PropTypes.bool,
   /**
    * @ignore
