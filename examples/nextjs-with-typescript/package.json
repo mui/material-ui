@@ -19,7 +19,6 @@
     "@types/next": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@types/styled-jsx": "latest",
     "typescript": "latest"
   }
 }

@@ -13,7 +13,10 @@ interface NextLinkProps {
 
 type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & NextLinkProps;
 
-const NextComposed = React.forwardRef(function NextComposed(props: NextComposedProps, ref: React.Ref<any>) {
+const NextComposed = React.forwardRef(function NextComposed(
+  props: NextComposedProps,
+  ref: React.Ref<any>,
+) {
   const { as, href, prefetch, ...other } = props;
 
   return (
@@ -32,7 +35,13 @@ interface LinkProps extends MuiLinkProps, NextLinkProps {
 // https://nextjs.org/docs/#with-link
 function RouterLink(props: LinkProps) {
   const router = useRouter();
-  const { activeClassName = 'active', className: classNameProps, innerRef, naked, ...other } = props;
+  const {
+    activeClassName = 'active',
+    className: classNameProps,
+    innerRef,
+    naked,
+    ...other
+  } = props;
 
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === props.href && activeClassName,
@@ -45,4 +54,6 @@ function RouterLink(props: LinkProps) {
   return <MuiLink component={NextComposed} className={className} ref={innerRef} {...other} />;
 }
 
-export default React.forwardRef((props: LinkProps, ref) => <RouterLink {...props} innerRef={ref} />);
+export default React.forwardRef((props: LinkProps, ref) => (
+  <RouterLink {...props} innerRef={ref} />
+));
