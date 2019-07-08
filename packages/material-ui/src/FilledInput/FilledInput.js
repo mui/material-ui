@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import InputBase from '../InputBase';
 import withStyles from '../styles/withStyles';
-import { useFormControl } from '../FormControl/FormControlContext';
 
 export const styles = theme => {
   const light = theme.palette.type === 'light';
@@ -111,12 +110,13 @@ export const styles = theme => {
     inputMarginDense: {
       paddingTop: 23,
       paddingBottom: 6,
+      '&$inputHiddenLabel': {
+        paddingTop: 10,
+        paddingBottom: 11,
+      },
     },
-    /* Styles applied to the `input` if in `<FormControl hiddenLabel />` and `margin="dense"` */
-    inputMarginDenseHiddenLabel: {
-      paddingTop: 10,
-      paddingBottom: 11,
-    },
+    /* Styles applied to the `input` if in `<FormControl hiddenLabel />` */
+    inputHiddenLabel: {},
     /* Styles applied to the `input` element if `select={true}. */
     inputSelect: {
       paddingRight: 32,
@@ -146,7 +146,6 @@ const FilledInput = React.forwardRef(function FilledInput(props, ref) {
     type = 'text',
     ...other
   } = props;
-  const { hiddenLabel } = useFormControl() || {};
 
   return (
     <InputBase
@@ -155,10 +154,6 @@ const FilledInput = React.forwardRef(function FilledInput(props, ref) {
         root: clsx(classes.root, {
           [classes.underline]: !disableUnderline,
         }),
-        inputMarginDense: clsx(classes.inputMarginDense, {
-          [classes.inputMarginDenseHiddenLabel]: hiddenLabel,
-        }),
-        inputMarginDenseHiddenLabel: null,
         underline: null,
       }}
       fullWidth={fullWidth}
