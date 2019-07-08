@@ -294,6 +294,13 @@ const styles = theme => ({
     '& img': {
       maxWidth: '100%',
     },
+    '& hr': {
+      height: 1,
+      margin: theme.spacing(6, 0),
+      border: 'none',
+      flexShrink: 0,
+      backgroundColor: theme.palette.divider,
+    },
   },
 });
 
