@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { ThemeProvider, useTheme, makeStyles } from '@material-ui/styles';
 
@@ -27,6 +28,8 @@ const Component = React.memo(props => {
     </div>
   );
 });
+
+Component.propTypes = { backgroundColor: PropTypes.string.isRequired };
 
 export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');

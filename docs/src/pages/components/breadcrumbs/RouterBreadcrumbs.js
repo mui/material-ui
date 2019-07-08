@@ -115,4 +115,6 @@ class RouterBreadcrumbs extends React.Component {
   }
 }
 
+RouterBreadcrumbs.propTypes = { classes: PropTypes.object.isRequired };
+
 export default withStyles(styles)(RouterBreadcrumbs);

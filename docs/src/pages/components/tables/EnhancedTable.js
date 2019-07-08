@@ -186,6 +186,8 @@ const EnhancedTableToolbar = props => {
   );
 };
 
+EnhancedTableToolbar.propTypes = { numSelected: PropTypes.number.isRequired };
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',

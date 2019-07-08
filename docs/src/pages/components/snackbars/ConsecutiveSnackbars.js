@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -94,5 +95,7 @@ class ConsecutiveSnackbars extends React.Component {
     );
   }
 }
+
+ConsecutiveSnackbars.propTypes = { classes: PropTypes.object.isRequired };
 
 export default withStyles(styles)(ConsecutiveSnackbars);
