@@ -16,7 +16,7 @@ export const styles = {
   },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {
-    '&$positionStart:not($marginDense):not($hiddenLabel)': {
+    '&$positionStart:not($hiddenLabel)': {
       marginTop: 16,
     },
   },
