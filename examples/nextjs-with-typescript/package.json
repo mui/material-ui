@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/styles": "latest",
-    "@zeit/next-typescript": "latest",
+    "clsx": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
