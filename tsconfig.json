@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "incremental": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "target": "es5",
