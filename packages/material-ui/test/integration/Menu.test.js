@@ -6,7 +6,7 @@ import Popover from '@material-ui/core/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { setRef } from '../../src/utils/reactHelpers';
+import { useForkRef } from '@material-ui/core/utils';
 import { stub } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -154,27 +154,28 @@ describe('<Menu> integration', () => {
     let menuListFocusTracker = false;
     const tabIndexTracker = [false, false, false];
     const TrackingMenuItem = React.forwardRef(({ itemIndex, ...other }, ref) => {
+      const handleRef = useForkRef(ref, instance => {
+        if (instance && !instance.stubbed) {
+          if (instance.tabIndex === 0) {
+            tabIndexTracker[itemIndex] = true;
+          } else if (instance.tabIndex > 0) {
+            tabIndexTracker[itemIndex] = instance.tabIndex;
+          }
+          const offsetTop = instance.offsetTop;
+          stub(instance, 'offsetTop').get(() => {
+            contentAnchorTracker[itemIndex] = true;
+            return offsetTop;
+          });
+          instance.stubbed = true;
+        }
+      });
+
       return (
         <MenuItem
           onFocus={() => {
             focusTracker[itemIndex] = true;
           }}
-          ref={instance => {
-            setRef(ref, instance);
-            if (instance && !instance.stubbed) {
-              if (instance.tabIndex === 0) {
-                tabIndexTracker[itemIndex] = true;
-              } else if (instance.tabIndex > 0) {
-                tabIndexTracker[itemIndex] = instance.tabIndex;
-              }
-              const offsetTop = instance.offsetTop;
-              stub(instance, 'offsetTop').get(() => {
-                contentAnchorTracker[itemIndex] = true;
-                return offsetTop;
-              });
-              instance.stubbed = true;
-            }
-          }}
+          ref={handleRef}
           {...other}
         />
       );
