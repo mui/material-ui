@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types'; /* eslint-disable no-nested-ternary */
+/* eslint-disable no-nested-ternary */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
