@@ -1,26 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Transition } from 'react-transition-group';
+import useEventCallback from '../utils/useEventCallback';
+
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
  * @ignore - internal component.
  */
 function Ripple(props) {
-  const { classes, pulsate = false, rippleX, rippleY, rippleSize, ...other } = props;
+  const {
+    classes,
+    pulsate = false,
+    rippleX,
+    rippleY,
+    rippleSize,
+    in: inProp,
+    onExited = () => {},
+    timeout,
+  } = props;
   const [leaving, setLeaving] = React.useState(false);
 
-  const handleExit = () => {
-    setLeaving(true);
-  };
-
-  const rippleClassName = clsx(
-    classes.ripple,
-    classes.rippleVisible,
-    {
-      [classes.ripplePulsate]: pulsate,
-    },
-  );
+  const rippleClassName = clsx(classes.ripple, classes.rippleVisible, {
+    [classes.ripplePulsate]: pulsate,
+  });
 
   const rippleStyles = {
     width: rippleSize,
@@ -34,12 +37,24 @@ function Ripple(props) {
     [classes.childPulsate]: pulsate,
   });
 
+  const handleExited = useEventCallback(onExited);
+  // Ripple is used for user feedback (e.g. click or press) so we want to apply styles with the highest priority
+  useEnhancedEffect(() => {
+    if (!inProp) {
+      // react-transition-group#onExit
+      setLeaving(true);
+
+      // react-transition-group#onExited
+      const timeoutId = setTimeout(handleExited, timeout);
+      return () => clearTimeout(timeoutId);
+    }
+    return undefined;
+  }, [handleExited, inProp, timeout]);
+
   return (
-    <Transition onExit={handleExit} {...other}>
-      <span className={rippleClassName} style={rippleStyles}>
-        <span className={childClassName} />
-      </span>
-    </Transition>
+    <span className={rippleClassName} style={rippleStyles}>
+      <span className={childClassName} />
+    </span>
   );
 }
 
@@ -49,6 +64,14 @@ Ripple.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore - injected from TransitionGroup
+   */
+  in: PropTypes.bool,
+  /**
+   * @ignore - injected from TransitionGroup
+   */
+  onExited: PropTypes.func,
   /**
    * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
    */
@@ -65,6 +88,10 @@ Ripple.propTypes = {
    * Vertical position of the ripple center.
    */
   rippleY: PropTypes.number,
+  /**
+   * exit delay
+   */
+  timeout: PropTypes.number.isRequired,
 };
 
 export default Ripple;

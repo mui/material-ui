@@ -21,7 +21,7 @@ describe('<Ripple />', () => {
 
   it('should have the ripple className', () => {
     const { container } = mount(
-      <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={11} />,
+      <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
     );
     const ripple = container.querySelector('span');
     expect(ripple).to.have.class(classes.ripple);
@@ -33,13 +33,7 @@ describe('<Ripple />', () => {
 
     before(() => {
       wrapper = mount(
-        <Ripple
-          classes={classes}
-          timeout={{ exit: 0, enter: 0 }}
-          rippleX={0}
-          rippleY={0}
-          rippleSize={11}
-        />,
+        <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
       );
     });
 
@@ -64,7 +58,7 @@ describe('<Ripple />', () => {
       wrapper = mount(
         <Ripple
           classes={classes}
-          timeout={{ enter: 0, exit: 0 }}
+          timeout={0}
           in={false}
           rippleX={0}
           rippleY={0}
@@ -108,7 +102,7 @@ describe('<Ripple />', () => {
       wrapper = mount(
         <Ripple
           classes={classes}
-          timeout={{ exit: 550 }}
+          timeout={550}
           in
           onExited={callbackSpy}
           rippleX={0}
