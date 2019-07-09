@@ -32,11 +32,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const [state, setState] = React.useState({});
 
   const syncHeight = React.useCallback(() => {
-    const input = inputRef.current;
-    if (input === null) {
+    if (process.env.NODE_ENV === 'test' && inputRef.current === null) {
       return;
     }
 
+    const input = inputRef.current;
     const computedStyle = window.getComputedStyle(input);
 
     const inputShallow = shadowRef.current;
