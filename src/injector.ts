@@ -3,10 +3,20 @@ import * as babelTypes from '@babel/types';
 import * as t from './types/index';
 import { generate, GenerateOptions } from './generator';
 
-type InjectOptions = {
+export type InjectOptions = {
+  /**
+   * By default all unused props are omitted from the result.
+   * Set this to true to include them instead.
+   */
   includeUnusedProps?: boolean;
 } & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc'>;
 
+/**
+ * Injects the PropTypes from `parse` into the provided JavaScript code
+ * @param propTypes Result from `parse` to inject into the JavaScript code
+ * @param target The JavaScript code to add the PropTypes to
+ * @param options Options controlling the final result
+ */
 export function inject(
   propTypes: t.ProgramNode,
   target: string,

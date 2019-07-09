@@ -1,13 +1,18 @@
 import * as ts from 'typescript';
 import * as t from './types';
 
+/**
+ * A wrapper for `ts.createProgram`
+ * @param files The files to later be parsed with `parseFromProgram`
+ * @param options The options to pass to the compiler
+ */
 export function createProgram(files: string[], options: ts.CompilerOptions) {
   return ts.createProgram(files, options);
 }
 
 /**
- * Parses a single file and returns the proptypes, if you need to parse more than one file
- * use `parseFromProgram` instead.
+ * Creates a program, parses the specified file and returns the PropTypes as an AST, if you need to parse more than one file
+ * use `createProgram` and `parseFromProgram` for better performance
  * @param filePath The file to parse
  * @param options The options from `loadConfig`
  */
@@ -16,6 +21,11 @@ export function parseFile(filePath: string, options: ts.CompilerOptions) {
   return parseFromProgram(filePath, program);
 }
 
+/**
+ * Parses the specified file and returns the PropTypes as an AST
+ * @param filePath The file to get the proptypes from
+ * @param program The program object returned by `createProgram`
+ */
 export function parseFromProgram(filePath: string, program: ts.Program) {
   const checker = program.getTypeChecker();
   const sourceFile = program.getSourceFile(filePath);

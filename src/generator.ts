@@ -20,9 +20,18 @@ export interface GenerateOptions {
    */
   includeJSDoc?: boolean;
 
+  /**
+   * Control which PropTypes are included in the final result
+   * @param proptype The current PropType about to be converted to text
+   */
   shouldInclude?(proptype: t.PropTypeNode): boolean;
 }
 
+/**
+ * Generates code from the given node
+ * @param node The node to convert to code
+ * @param options The options used to control the way the code gets generated
+ */
 export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptions = {}): string {
   const {
     sortProptypes = true,
