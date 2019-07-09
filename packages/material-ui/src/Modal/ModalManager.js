@@ -22,8 +22,12 @@ export function ariaHidden(node, show) {
   }
 }
 
+function getPaddingRightRaw(node) {
+  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || '';
+}
+
 function getPaddingRight(node) {
-  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
+  return getPaddingRightRaw(node) || 0;
 }
 
 const BLACKLIST = ['template', 'script', 'style'];
@@ -62,7 +66,7 @@ function handleNewContainer(containerInfo) {
   // We are only interested in the actual `style` here because we will override it.
   const restoreStyle = {
     overflow: containerInfo.container.style.overflow,
-    paddingRight: containerInfo.container.style.paddingRight,
+    'padding-right': containerInfo.container.style.paddingRight,
   };
 
   const style = {
@@ -83,7 +87,7 @@ function handleNewContainer(containerInfo) {
 
     [].forEach.call(fixedNodes, node => {
       const paddingRight = getPaddingRight(node);
-      restorePaddings.push(paddingRight);
+      restorePaddings.push(getPaddingRightRaw(node));
       node.style.paddingRight = `${paddingRight + scrollbarSize}px`;
     });
   }
@@ -95,12 +99,20 @@ function handleNewContainer(containerInfo) {
   const restore = () => {
     if (fixedNodes) {
       [].forEach.call(fixedNodes, (node, i) => {
-        node.style.paddingRight = `${restorePaddings[i]}px`;
+        if (restorePaddings[i]) {
+          node.style.setProperty('padding-right', `${restorePaddings[i]}px`);
+        } else {
+          node.style.removeProperty('padding-right');
+        }
       });
     }
 
     Object.keys(restoreStyle).forEach(key => {
-      containerInfo.container.style[key] = restoreStyle[key];
+      if (restoreStyle[key]) {
+        containerInfo.container.style.setProperty(key, restoreStyle[key]);
+      } else {
+        containerInfo.container.style.removeProperty(key);
+      }
     });
   };
 

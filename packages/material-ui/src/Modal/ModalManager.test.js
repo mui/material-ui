@@ -109,7 +109,6 @@ describe('ModalManager', () => {
     beforeEach(() => {
       fixedNode = document.createElement('div');
       fixedNode.classList.add('mui-fixed');
-      fixedNode.style.padding = '14px';
       document.body.appendChild(fixedNode);
       window.innerWidth += 1; // simulate a scrollbar
     });
@@ -120,6 +119,7 @@ describe('ModalManager', () => {
     });
 
     it('should handle the scroll', () => {
+      fixedNode.style.padding = '14px';
       const modal = {};
       const paddingRightBefore = container1.style.paddingRight;
       const paddingFixedRightBefore = fixedNode.style.paddingRight;
@@ -138,6 +138,28 @@ describe('ModalManager', () => {
       assert.strictEqual(container1.style.overflow, '');
       assert.strictEqual(container1.style.paddingRight, paddingRightBefore);
       assert.strictEqual(fixedNode.style.paddingRight, paddingFixedRightBefore);
+    });
+
+    it('should restore styles correctly if none existed before', () => {
+      // reset padding on containers
+      fixedNode.style.setProperty('padding', '');
+      container1.style.setProperty('padding', '');
+      const modal = {};
+      const paddingRightBefore = container1.style.paddingRight;
+      const paddingFixedRightBefore = fixedNode.style.paddingRight;
+      modalManager.add(modal, container1);
+      modalManager.mount(modal);
+
+      assert.strictEqual(container1.style.overflow, 'hidden');
+      assert.strictEqual(container1.style.paddingRight, `${0 + getScrollbarSize()}px`);
+      assert.strictEqual(fixedNode.style.paddingRight, `${0 + getScrollbarSize()}px`);
+      modalManager.remove(modal);
+
+      assert.strictEqual(container1.style.overflow, '');
+      assert.strictEqual(container1.style.paddingRight, paddingRightBefore);
+      assert.strictEqual(fixedNode.style.paddingRight, paddingFixedRightBefore);
+
+      container1.style.setProperty('padding', '20px');
     });
   });
 
