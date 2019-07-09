@@ -1,18 +1,88 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles';
 import { createMuiTheme, darken } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
+import deepmerge from 'deepmerge';
 
 export const themeColor = blue[700];
 
 const themeInitialOptions = {
+  dense: false,
   direction: 'ltr',
   paletteColors: {},
+  spacing: 8, // spacing unit
 };
+
+/**
+ * @typedef {import('@material-ui/core/src/styles/createMuiTheme').ThemeOptions} ThemeOptions
+ *
+ *
+ * @param {ThemeOptions} themeOptions
+ * @returns {ThemeOptions}
+ */
+function usingHighDensity(themeOptions) {
+  return deepmerge(themeOptions, {
+    props: {
+      MuiButton: {
+        size: 'small',
+      },
+      MuiFilledInput: {
+        margin: 'dense',
+      },
+      MuiFormControl: {
+        margin: 'dense',
+      },
+      MuiFormHelperText: {
+        margin: 'dense',
+      },
+      MuiIconButton: {
+        size: 'small',
+      },
+      MuiInputBase: {
+        margin: 'dense',
+      },
+      MuiInputLabel: {
+        margin: 'dense',
+      },
+      MuiListItem: {
+        dense: true,
+      },
+      MuiOutlinedInput: {
+        margin: 'dense',
+      },
+      MuiFab: {
+        size: 'small',
+      },
+      MuiTable: {
+        size: 'small',
+      },
+      MuiTextField: {
+        margin: 'dense',
+      },
+      MuiToolbar: {
+        variant: 'dense',
+      },
+    },
+    overrides: {
+      MuiIconButton: {
+        sizeSmall: {
+          // minimal touch target hit spacing
+          marginLeft: 4,
+          marginRight: 4,
+          padding: 12,
+        },
+      },
+    },
+  });
+}
+
+function usingIdentity(themeOptions) {
+  return themeOptions;
+}
 
 export const DispatchContext = React.createContext(() => {
   throw new Error('Forgot to wrap component in ThemeContext.Provider');
@@ -20,18 +90,42 @@ export const DispatchContext = React.createContext(() => {
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
-export function Provider(props) {
+export function ThemeProvider(props) {
   const { children } = props;
 
   const [themeOptions, dispatch] = React.useReducer((state, action) => {
     switch (action.type) {
-      case 'RESET_COLORS':
+      case 'SET_SPACING':
         return {
           ...state,
-          paletteColors: themeInitialOptions.paletteColors,
+          spacing: action.payload,
+        };
+      case 'INCREASE_SPACING': {
+        return {
+          ...state,
+          spacing: state.spacing + 1,
+        };
+      }
+      case 'DECREASE_SPACING': {
+        return {
+          ...state,
+          spacing: state.spacing - 1,
+        };
+      }
+      case 'SET_DENSE':
+        return {
+          ...state,
+          dense: action.payload,
+        };
+      case 'RESET_DENSITY':
+        return {
+          ...state,
+          dense: themeInitialOptions.dense,
+          spacing: themeInitialOptions.spacing,
         };
       case 'CHANGE':
         return {
+          ...state,
           paletteType: action.payload.paletteType || state.paletteType,
           direction: action.payload.direction || state.direction,
           paletteColors: action.payload.paletteColors || state.paletteColors,
@@ -43,7 +137,7 @@ export function Provider(props) {
 
   const prefersDarkMode = useMediaQuery('@media (prefers-color-scheme: dark)');
   const preferredType = prefersDarkMode ? 'dark' : 'light';
-  const { direction, paletteColors, paletteType = preferredType } = themeOptions;
+  const { dense, direction, paletteColors, paletteType = preferredType, spacing } = themeOptions;
 
   React.useEffect(() => {
     setPrismTheme(darkTheme);
@@ -71,25 +165,29 @@ export function Provider(props) {
   }, [direction]);
 
   const theme = React.useMemo(() => {
-    const nextTheme = createMuiTheme({
-      direction,
-      nprogress: {
-        color: paletteType === 'light' ? '#000' : '#fff',
-      },
-      palette: {
-        primary: {
-          main: paletteType === 'light' ? blue[700] : blue[200],
+    const themeDecorator = dense ? usingHighDensity : usingIdentity;
+    const nextTheme = createMuiTheme(
+      themeDecorator({
+        direction,
+        nprogress: {
+          color: paletteType === 'light' ? '#000' : '#fff',
         },
-        secondary: {
-          main: paletteType === 'light' ? darken(pink.A400, 0.1) : pink[200],
+        palette: {
+          primary: {
+            main: paletteType === 'light' ? blue[700] : blue[200],
+          },
+          secondary: {
+            main: paletteType === 'light' ? darken(pink.A400, 0.1) : pink[200],
+          },
+          type: paletteType,
+          background: {
+            default: paletteType === 'light' ? '#fff' : '#121212',
+          },
+          ...paletteColors,
         },
-        type: paletteType,
-        background: {
-          default: paletteType === 'light' ? '#fff' : '#121212',
-        },
-        ...paletteColors,
-      },
-    });
+        spacing,
+      }),
+    );
 
     nextTheme.palette.background.level2 =
       paletteType === 'light' ? nextTheme.palette.grey[100] : '#333';
@@ -98,7 +196,7 @@ export function Provider(props) {
       paletteType === 'light' ? '#fff' : nextTheme.palette.grey[900];
 
     return nextTheme;
-  }, [direction, paletteColors, paletteType]);
+  }, [dense, direction, paletteColors, paletteType, spacing]);
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
@@ -108,13 +206,13 @@ export function Provider(props) {
   }, [theme]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 }
 
-Provider.propTypes = {
+ThemeProvider.propTypes = {
   children: PropTypes.node,
 };
 

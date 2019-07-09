@@ -82,6 +82,7 @@ const blacklistFilename = [
   'docs-components-popover/AnchorPlayground.png',
   'docs-components-popper/ScrollPlayground.png',
   'docs-components-grid/InteractiveGrid.png',
+  'docs-customization-density/DensityTool.png',
 ];
 
 // Also use some of the demos to avoid code duplication.

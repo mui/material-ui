@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
-import { Provider as ThemeProvider } from 'docs/src/modules/components/ThemeContext';
+import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 import { create } from 'jss';

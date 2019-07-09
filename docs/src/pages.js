@@ -155,6 +155,7 @@ const pages = [
           { pathname: '/customization/typography' },
           { pathname: '/customization/spacing' },
           { pathname: '/customization/breakpoints' },
+          { pathname: '/customization/density' },
           { pathname: '/customization/z-index', title: 'z-index' },
           { pathname: '/customization/globals' },
         ],
