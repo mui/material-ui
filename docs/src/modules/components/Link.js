@@ -27,7 +27,7 @@ NextComposed.propTypes = {
 // https://nextjs.org/docs/#with-link
 function Link(props) {
   const {
-    activeClassName,
+    activeClassName = 'active',
     className: classNameProps,
     innerRef,
     naked,
@@ -70,10 +70,6 @@ Link.propTypes = {
   router: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
-};
-
-Link.defaultProps = {
-  activeClassName: 'active',
 };
 
 const RouterLink = withRouter(Link);
