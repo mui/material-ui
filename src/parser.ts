@@ -23,7 +23,7 @@ export function parseFile(filePath: string, options: ts.CompilerOptions) {
 
 /**
  * Parses the specified file and returns the PropTypes as an AST
- * @param filePath The file to get the proptypes from
+ * @param filePath The file to get the PropTypes from
  * @param program The program object returned by `createProgram`
  */
 export function parseFromProgram(filePath: string, program: ts.Program) {
