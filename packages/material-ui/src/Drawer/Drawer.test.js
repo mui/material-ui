@@ -35,7 +35,7 @@ describe('<Drawer />', () => {
       inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      skip: ['componentProp', 'jsonRendered'],
     }),
   );
 

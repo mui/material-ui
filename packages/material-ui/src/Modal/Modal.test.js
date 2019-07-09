@@ -35,7 +35,7 @@ describe('<Modal />', () => {
       inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['rootClass', 'componentProp'],
+      skip: ['rootClass', 'componentProp', 'jsonRendered'],
     }),
   );
 

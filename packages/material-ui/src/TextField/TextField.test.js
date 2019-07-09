@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -138,12 +137,6 @@ describe('<TextField />', () => {
 
       expect(select).to.be.ok;
       expect(select.querySelectorAll('option')).to.have.lengthOf(2);
-    });
-  });
-
-  describe('prop: multiline', () => {
-    it('should render without errors in ReactTestRenderer', () => {
-      ReactTestRenderer.create(<TextField multililne />);
     });
   });
 });

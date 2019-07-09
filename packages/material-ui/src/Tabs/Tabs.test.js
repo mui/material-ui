@@ -22,7 +22,7 @@ const findScrollButton = (container, direction) =>
 const hasLeftScrollButton = container => findScrollButton(container, 'left') != null;
 const hasRightScrollButton = container => findScrollButton(container, 'right') != null;
 
-describe('<Tabs />', () => {
+describe.only('<Tabs />', () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   // The test fails on Safari with just:

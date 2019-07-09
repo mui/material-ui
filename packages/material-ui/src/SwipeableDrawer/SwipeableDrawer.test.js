@@ -96,7 +96,7 @@ describe('<SwipeableDrawer />', () => {
     inheritComponent: Drawer,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'jsonRendered'],
   }));
 
   it('should render a Drawer and a SwipeArea', () => {

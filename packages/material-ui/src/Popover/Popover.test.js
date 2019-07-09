@@ -75,7 +75,7 @@ describe('<Popover />', () => {
     inheritComponent: Modal,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'jsonRendered'],
   }));
 
   describe('root node', () => {

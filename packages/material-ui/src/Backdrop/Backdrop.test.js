@@ -25,7 +25,7 @@ describe('<Backdrop />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'jsonRendered'],
   }));
 
   it('should render a backdrop div', () => {

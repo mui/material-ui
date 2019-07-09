@@ -30,7 +30,7 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'jsonRendered'],
   }));
 
   describe('prop: placement', () => {

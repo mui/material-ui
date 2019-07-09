@@ -32,7 +32,7 @@ describe('<Menu />', () => {
     inheritComponent: Popover,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'jsonRendered'],
   }));
 
   describe('event callbacks', () => {

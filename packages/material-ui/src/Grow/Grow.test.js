@@ -34,7 +34,7 @@ describe('<Grow />', () => {
       inheritComponent: Transition,
       mount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      skip: ['componentProp', 'jsonRendered'],
     }),
   );
 

@@ -44,7 +44,7 @@ describe('<Dialog />', () => {
       inheritComponent: Modal,
       mount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      skip: ['componentProp', 'jsonRendered'],
     }),
   );
 

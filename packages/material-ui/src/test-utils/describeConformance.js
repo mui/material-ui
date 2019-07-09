@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import React from 'react';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
+import ReactTestRenderer from 'react-test-renderer';
 import testRef from './testRef';
 
 /**
@@ -146,12 +147,25 @@ function testRootClass(element, getOptions) {
   });
 }
 
+function testJsonRenderer(element) {
+  it('should render without errors in ReactTestRenderer', () => {
+    ReactTestRenderer.act(() => {
+      ReactTestRenderer.create(element, {
+        createNodeMock: node => {
+          return document.createElement(node.type);
+        },
+      });
+    });
+  });
+}
+
 const fullSuite = {
   componentProp: testComponentProp,
   mergeClassName: testClassName,
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
   rootClass: testRootClass,
+  jsonRendered: testJsonRenderer,
 };
 
 /**
