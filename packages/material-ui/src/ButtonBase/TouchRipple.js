@@ -258,7 +258,7 @@ class TouchRipple extends React.PureComponent {
 
     return (
       <span className={clsx(classes.root, className)} ref={this.container} {...other}>
-        <TransitionGroup component={null} enter exit>
+        <TransitionGroup component={null} exit>
           {this.state.ripples}
         </TransitionGroup>
       </span>

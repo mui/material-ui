@@ -8,12 +8,7 @@ import { Transition } from 'react-transition-group';
  */
 function Ripple(props) {
   const { classes, pulsate = false, rippleX, rippleY, rippleSize, ...other } = props;
-  const [visible, setVisible] = React.useState(false);
   const [leaving, setLeaving] = React.useState(false);
-
-  const handleEnter = () => {
-    setVisible(true);
-  };
 
   const handleExit = () => {
     setLeaving(true);
@@ -21,8 +16,8 @@ function Ripple(props) {
 
   const rippleClassName = clsx(
     classes.ripple,
+    classes.rippleVisible,
     {
-      [classes.rippleVisible]: visible,
       [classes.ripplePulsate]: pulsate,
     },
   );
@@ -40,7 +35,7 @@ function Ripple(props) {
   });
 
   return (
-    <Transition onEnter={handleEnter} onExit={handleExit} {...other}>
+    <Transition onExit={handleExit} {...other}>
       <span className={rippleClassName} style={rippleStyles}>
         <span className={childClassName} />
       </span>
