@@ -38,7 +38,6 @@ export interface InputBaseProps
   startAdornment?: React.ReactNode;
   type?: string;
   value?: unknown;
-  onFilled?: () => void;
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
    * which by default is an input or textarea. Since these handlers differ from the

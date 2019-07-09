@@ -159,41 +159,6 @@ describe('<InputBase />', () => {
       fireEvent.change(input, { target: { value: 'do not work' } });
       expect(input).to.have.property('value', '');
     });
-
-    ['', 0].forEach(value => {
-      describe(`${typeof value} value`, () => {
-        let wrapper;
-        let handleFilled;
-        let handleEmpty;
-
-        before(() => {
-          handleEmpty = spy();
-          handleFilled = spy();
-          wrapper = render(
-            <InputBase value={value} onFilled={handleFilled} onEmpty={handleEmpty} />,
-          );
-        });
-
-        // don't test number because zero is a empty state, whereas '' is not
-        if (typeof value !== 'number') {
-          it('should have called the handleEmpty callback', () => {
-            expect(handleEmpty.callCount).to.equal(1);
-          });
-
-          it('should fire the onFilled callback when dirtied', () => {
-            expect(handleFilled.callCount).to.equal(0);
-            wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
-            expect(handleFilled.callCount).to.equal(1);
-          });
-
-          it('should fire the onEmpty callback when dirtied', () => {
-            expect(handleEmpty.callCount).to.equal(1);
-            wrapper.setProps({ value });
-            expect(handleEmpty.callCount).to.equal(2);
-          });
-        }
-      });
-    });
   });
 
   describe('prop: inputComponent', () => {
@@ -222,28 +187,6 @@ describe('<InputBase />', () => {
     });
   });
 
-  // Note the initial callback when
-  // uncontrolled only fires for a full mount
-  describe('uncontrolled', () => {
-    it('should fire the onFilled callback when dirtied', () => {
-      const handleFilled = spy();
-      const { container } = render(<InputBase onFilled={handleFilled} defaultValue="hell" />);
-      expect(handleFilled.callCount, 1);
-
-      fireEvent.change(container.querySelector('input'), { target: { value: 'heaven' } });
-      expect(handleFilled.callCount, 2);
-    });
-
-    it('should fire the onEmpty callback when cleaned', () => {
-      const handleEmpty = spy();
-      const { container } = render(<InputBase onEmpty={handleEmpty} defaultValue="hell" />);
-      expect(handleEmpty.callCount, 0);
-
-      fireEvent.change(container.querySelector('input'), { target: { value: '' } });
-      expect(handleEmpty.callCount, 1);
-    });
-  });
-
   describe('with FormControl', () => {
     it('should have the formControl class', () => {
       const { getByTestId } = render(
@@ -255,27 +198,6 @@ describe('<InputBase />', () => {
     });
 
     describe('callbacks', () => {
-      it('should fire the onFilled props callback when dirtied', () => {
-        const handleFilled = spy();
-        const { container } = render(<InputBase onFilled={handleFilled} />);
-
-        fireEvent.change(container.querySelector('input'), { target: { value: 'hello' } });
-        expect(handleFilled.callCount).to.equal(1);
-      });
-
-      it('should fire the and props callback when cleaned', () => {
-        const handleEmpty = spy();
-        const { container } = render(<InputBase onEmpty={handleEmpty} />);
-
-        // Set value to be cleared
-        fireEvent.change(container.querySelector('input'), { target: { value: 'test' } });
-        expect(handleEmpty.callCount, 0);
-
-        // Clear value
-        fireEvent.change(container.querySelector('input'), { target: { value: '' } });
-        expect(handleEmpty.callCount).to.equal(2);
-      });
-
       it('should fire the onClick prop', () => {
         const handleClick = spy();
         const handleFocus = spy();

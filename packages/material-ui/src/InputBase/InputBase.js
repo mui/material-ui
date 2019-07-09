@@ -143,6 +143,8 @@ export const styles = theme => {
   };
 };
 
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
@@ -170,8 +172,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     onBlur,
     onChange,
     onClick,
-    onEmpty,
-    onFilled,
     onFocus,
     onKeyDown,
     onKeyUp,
@@ -231,33 +231,18 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         if (muiFormControl && muiFormControl.onFilled) {
           muiFormControl.onFilled();
         }
-        if (onFilled) {
-          onFilled();
-        }
-        return;
-      }
-
-      if (muiFormControl && muiFormControl.onEmpty) {
+      } else if (muiFormControl && muiFormControl.onEmpty) {
         muiFormControl.onEmpty();
       }
-      if (onEmpty) {
-        onEmpty();
-      }
     },
-    [muiFormControl, onEmpty, onFilled],
+    [muiFormControl],
   );
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     if (isControlled) {
       checkDirty({ value });
     }
   }, [value, checkDirty, isControlled]);
-
-  React.useEffect(() => {
-    if (!isControlled) {
-      checkDirty(inputRef.current);
-    }
-  }, [checkDirty, isControlled]);
 
   const handleFocus = event => {
     // Fix a bug with IE 11 where the focus/blur events are triggered
@@ -505,14 +490,6 @@ InputBase.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onEmpty: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFilled: PropTypes.func,
   /**
    * @ignore
    */
