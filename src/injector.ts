@@ -103,10 +103,8 @@ function plugin(propTypes: t.ProgramNode, options: InjectOptions = {}): babel.Pl
         needImport = true;
 
         // Prevent visiting again
-        if ((node as any).hasBeenVisited) {
-          path.skip();
-          return;
-        }
+        (node as any).hasBeenVisited = true;
+        path.skip();
 
         injectPropTypes({
           nodeName: node.id.name,
