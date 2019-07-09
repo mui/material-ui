@@ -61,6 +61,7 @@ import * as colors from './colors';
 export { colors };
 export {
   createMuiTheme,
+  MuiThemeProvider,
   createStyles,
   makeStyles,
   StyleRulesCallback,
@@ -142,6 +143,7 @@ export { default as ListSubheader } from './ListSubheader';
 export { default as Menu } from './Menu';
 export { default as MenuItem } from './MenuItem';
 export { default as MenuList } from './MenuList';
+export { default as MuiThemeProvider } from './styles/MuiThemeProvider'
 export { default as MobileStepper } from './MobileStepper';
 export { default as Modal, ModalManager } from './Modal';
 export { default as NativeSelect } from './NativeSelect';
