@@ -35,6 +35,7 @@ function plugin(propTypes: t.ProgramNode, options: InjectOptions = {}): babel.Pl
 
   let importName = '';
   let needImport = false;
+  let alreadyImported = false;
 
   return {
     visitor: {
@@ -48,6 +49,7 @@ function plugin(propTypes: t.ProgramNode, options: InjectOptions = {}): babel.Pl
                 n.specifiers.length
               ) {
                 importName = n.specifiers[0].local.name;
+                alreadyImported = true;
                 return true;
               }
             })
@@ -56,7 +58,7 @@ function plugin(propTypes: t.ProgramNode, options: InjectOptions = {}): babel.Pl
           }
         },
         exit(path) {
-          if (!needImport) return;
+          if (alreadyImported || !needImport) return;
 
           const x = babel.template.ast(`import ${importName} from 'prop-types'`);
 
