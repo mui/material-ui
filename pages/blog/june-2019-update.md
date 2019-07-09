@@ -13,7 +13,7 @@ Here are the most significant changes in June:
 - 💄 We have introduced a new [ButtonGroup](/components/buttons/#grouped-buttons) component.
   ![ButtonGroup](/static/blog/june-2019-update/button-group.png)
 
-- 💄 We have introduced a new [Slider](/components/slider/) component.
+- 💄 The [Slider](/components/slider/) component has been overhauled and enhanced with range support. It was also moved from the lab to the core.
   ![Slider](/static/blog/june-2019-update/slider.png)
 
 - 💄 We have introduced a new [TextareaAutosize](/components/textarea-autosize/) component.
@@ -32,11 +32,6 @@ But this summary is just scratching the surface. We have accepted 198 commits fr
 - We will keep working on a new Rating component.
   You can already [preview it](https://deploy-preview-16455--material-ui.netlify.com/components/rating/).
   ![Rating](/static/blog/june-2019-update/rating.png)
-
-- We will consider working on one of the following components:
-  - Autocomplete, Combo Box, Multi Select, Advanced Select
-  - Upload / Dropzone
-  - Carousel
 
 <hr />
 
