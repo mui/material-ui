@@ -9,8 +9,6 @@ import useTheme from '../styles/useTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 
-const GUTTER = 24;
-
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
 // with `none`.`
@@ -45,7 +43,7 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'right') {
-    return `translateX(-${rect.left + rect.width + GUTTER - offsetX}px)`;
+    return `translateX(-${rect.left + rect.width - offsetX}px)`;
   }
 
   if (direction === 'up') {
@@ -53,7 +51,7 @@ function getTranslateValue(direction, node) {
   }
 
   // direction === 'down'
-  return `translateY(-${rect.top + rect.height + GUTTER - offsetY}px)`;
+  return `translateY(-${rect.top + rect.height - offsetY}px)`;
 }
 
 export function setTranslateValue(direction, node) {
