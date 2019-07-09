@@ -1,13 +1,15 @@
 import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import describeConformance from '../test-utils/describeConformance';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
+  let classes;
   let mount;
   const render = createClientRender({ strict: true });
 
@@ -46,6 +48,7 @@ describe('<TouchRipple />', () => {
   }
 
   before(() => {
+    classes = getClasses(<TouchRipple />);
     mount = createMount({ strict: true });
   });
 
@@ -54,14 +57,13 @@ describe('<TouchRipple />', () => {
     mount.cleanUp();
   });
 
-/* Breaks due to ref being used for an imperative handle
   describeConformance(<TouchRipple />, () => ({
     classes,
     inheritComponent: 'span',
     mount,
-    refInstanceof: React.Component,
+    refInstanceof: Object,
     skip: ['componentProp'],
-  })); */
+  }));
 
   describe('prop: center', () => {
     it('should should compute the right ripple dimensions', () => {
@@ -130,8 +132,8 @@ describe('<TouchRipple />', () => {
       const { instance, container } = createTouchRipple({ center: true });
       const clientX = 1;
       const clientY = 1;
-      instance.start({ clientX, clientY }, { fakeElement:true }, cb);
-      checkRipples(container, 1, 0)
+      instance.start({ clientX, clientY }, { fakeElement: true }, cb);
+      checkRipples(container, 1, 0);
       expect(container.querySelector('.ripple').style).to.have.property('top', '-0.5px');
       expect(container.querySelector('.ripple').style).to.have.property('left', '-0.5px');
     });
