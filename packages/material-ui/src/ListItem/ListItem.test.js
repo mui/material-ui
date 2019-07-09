@@ -27,8 +27,7 @@ describe('<ListItem />', () => {
 
   before(() => {
     classes = getClasses(<ListItem />);
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   afterEach(() => {

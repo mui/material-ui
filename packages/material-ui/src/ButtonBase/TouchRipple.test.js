@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Ripple from './Ripple';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
@@ -12,11 +12,10 @@ describe('<TouchRipple />', () => {
   let shallow;
   let mount;
   let classes;
-  const TouchRippleNaked = unwrap(TouchRipple);
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount({ strict: undefined });
+    mount = createMount({ strict: true });
     classes = getClasses(<TouchRipple />);
   });
 
@@ -55,28 +54,28 @@ describe('<TouchRipple />', () => {
   });
 
   it('should create individual ripples', () => {
-    const wrapper = mount(<TouchRippleNaked classes={{}} />);
-    const instance = wrapper.instance();
+    const wrapper = mount(<TouchRipple />);
+    const instance = wrapper.find('TouchRipple').instance();
 
-    assert.strictEqual(wrapper.state().ripples.length, 0);
-
-    instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 1);
+    assert.strictEqual(instance.state.ripples.length, 0);
 
     instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 2);
+    assert.strictEqual(instance.state.ripples.length, 1);
 
     instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 3);
+    assert.strictEqual(instance.state.ripples.length, 2);
+
+    instance.start({ clientX: 0, clientY: 0 }, cb);
+    assert.strictEqual(instance.state.ripples.length, 3);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 2);
+    assert.strictEqual(instance.state.ripples.length, 2);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 1);
+    assert.strictEqual(instance.state.ripples.length, 1);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 0);
+    assert.strictEqual(instance.state.ripples.length, 0);
   });
 
   describe('creating unique ripples', () => {
