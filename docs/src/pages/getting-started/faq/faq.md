@@ -155,7 +155,7 @@ indicating that you can access the DOM element with a ref.
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
 
 > It looks like there are several instances of `@material-ui/styles` initialized in this application.
-This may cause theme propagation issues, broken class names and makes your application bigger without a good reason.
+This may cause theme propagation issues, broken class names, specificity issues, and makes your application bigger without a good reason.
 
 ### Possible reasons
 
