@@ -1,16 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-export default function HalfRating() {
-  return (
-    <div>
-      <Typography gutterBottom>value=2.5</Typography>
-      <Rating name="half-rating" value={2.5} />
-      <Box mt={3} />
-      <Typography gutterBottom>precision=0.5</Typography>
-      <Rating name="half-rating-precision" value={2.5} precision={0.5} />
-    </div>
-  );
+const req = require.context('docs/src/pages/components/rating', false, /\.(md|js|tsx)$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/components/rating',
+  false,
+  /\.(js|tsx)$/,
+);
+const reqPrefix = 'pages/components/rating';
+
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
+
+export default Page;

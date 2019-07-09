@@ -9,16 +9,17 @@ export interface RatingProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, RatingClassKey, 'onChange'> {
   component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   disabled?: boolean;
+  emptyIcon?: React.ReactElement;
   icon?: React.ReactElement;
   IconContainerComponent?: React.ElementType<IconContainerProps>;
   max?: number;
+  name?: string;
   onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
   onChangeHover?: (event: React.ChangeEvent<{}>, value: number) => void;
   precision?: number;
   readOnly?: boolean;
   size?: 'small' | 'medium' | 'large';
-  emptyIcon?: React.ReactElement;
-  value: number;
+  value: number | null;
 }
 
 export type RatingClassKey =

@@ -7,15 +7,16 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 const labels: { [index: string]: string } = {
-  1: 'Useless',
-  1.5: 'Useless+',
-  2: 'Poor',
-  2.5: 'Poor+',
-  3: 'Ok',
-  3.5: 'Ok+',
-  4: 'Good',
-  4.5: 'Good+',
-  5: 'Excellent',
+  0.5: 'Useless',
+  1: 'Useless+',
+  1.5: 'Poor',
+  2: 'Poor+',
+  2.5: 'Ok',
+  3: 'Ok+',
+  3.5: 'Good',
+  4: 'Good+',
+  4.5: 'Excellent',
+  5: 'Excellent+',
 };
 
 function IconContainer(props: IconContainerProps) {
@@ -48,7 +49,8 @@ export default function HoverRating() {
     <div>
       <Typography gutterBottom>Side</Typography>
       <div className={classes.rating1}>
-        <Rating name="hover-side"
+        <Rating
+          name="hover-side"
           value={value}
           precision={0.5}
           onChangeHover={(event, newHover) => {
@@ -59,7 +61,12 @@ export default function HoverRating() {
       </div>
       <Box mt={3} />
       <Typography gutterBottom>Tooltip</Typography>
-      <Rating name="hover-tooltip" value={value} precision={0.5} IconContainerComponent={IconContainer} />
+      <Rating
+        name="hover-tooltip"
+        value={value}
+        precision={0.5}
+        IconContainerComponent={IconContainer}
+      />
     </div>
   );
 }

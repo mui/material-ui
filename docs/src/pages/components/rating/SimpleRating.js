@@ -23,7 +23,7 @@ export default function SimpleRating() {
       <Typography gutterBottom>Disabled</Typography>
       <Rating value={value} disabled />
       <Box mt={3} />
-      <Typography gutterBottom>Pristin</Typography>
+      <Typography gutterBottom>Pristine</Typography>
       <Rating name="pristin" value={null} />
     </div>
   );

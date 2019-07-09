@@ -161,7 +161,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   const handleChange = event => {
-    console.log('handleChange', parseFloat(event.target.value));
     if (onChange) {
       onChange(event, parseFloat(event.target.value));
     }
@@ -201,25 +200,18 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           propsItem.className,
         )}
       >
+        <span className={classes.visuallyhidden}>{getLabelText(propsItem.value)}</span>
         {emptyIcon && !state.filled ? emptyIcon : icon}
       </IconContainerComponent>
     );
 
     if (readOnly || disabled) {
-      return (
-        <React.Fragment key={propsItem.value}>
-          <span className={classes.visuallyhidden}>{getLabelText(propsItem.value)}</span>
-          {container}
-        </React.Fragment>
-      );
+      return <React.Fragment key={propsItem.value}>{container}</React.Fragment>;
     }
 
     return (
       <React.Fragment key={propsItem.value}>
-        <label htmlFor={id}>
-          <span className={classes.visuallyhidden}>{getLabelText(propsItem.value)}</span>
-          {container}
-        </label>
+        <label htmlFor={id}>{container}</label>
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
