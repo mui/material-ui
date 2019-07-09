@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
  * @ignore - internal component.
  */
 function Ripple(props) {
-  const { classes, className, pulsate = false, rippleX, rippleY, rippleSize, ...other } = props;
+  const { classes, pulsate = false, rippleX, rippleY, rippleSize, ...other } = props;
   const [visible, setVisible] = React.useState(false);
   const [leaving, setLeaving] = React.useState(false);
 
@@ -25,7 +25,6 @@ function Ripple(props) {
       [classes.rippleVisible]: visible,
       [classes.ripplePulsate]: pulsate,
     },
-    className,
   );
 
   const rippleStyles = {
@@ -55,10 +54,6 @@ Ripple.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
    */
