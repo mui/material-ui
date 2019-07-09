@@ -60,9 +60,20 @@ function plugin(propTypes: t.ProgramNode, options: InjectOptions = {}): babel.Pl
         exit(path) {
           if (alreadyImported || !needImport) return;
 
-          const x = babel.template.ast(`import ${importName} from 'prop-types'`);
+          const propTypesImport = babel.template.ast(
+            `import ${importName} from 'prop-types'`,
+          ) as babel.types.ImportDeclaration;
 
-          path.node.body = [x as babel.types.ImportDeclaration, ...path.node.body];
+          const firstImport = path
+            .get('body')
+            .find(nodePath => babelTypes.isImportDeclaration(nodePath.node));
+
+          // Insert import after the first one to avoid issues with comment flags
+          if (firstImport) {
+            firstImport.insertAfter(propTypesImport);
+          } else {
+            path.node.body = [propTypesImport, ...path.node.body];
+          }
         },
       },
       FunctionDeclaration(path) {
