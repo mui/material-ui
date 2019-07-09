@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTestRenderer from 'react-test-renderer';
 import { assert } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
@@ -194,6 +195,12 @@ describe('<TextareaAutosize />', () => {
       wrapper.setProps({ rowsMax: 2 });
       wrapper.update();
       assert.strictEqual(getHeight(wrapper), lineHeight * 2);
+    });
+  });
+
+  describe('ReactTestRenderer behavior', () => {
+    it('should render without errors in ReactTestRenderer', () => {
+      ReactTestRenderer.create(<TextareaAutosize />);
     });
   });
 });
