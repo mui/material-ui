@@ -45,7 +45,6 @@ describe('<Tabs />', () => {
   });
 
   after(() => {
-    mount.cleanUp();
     cleanup();
   });
 
@@ -54,6 +53,7 @@ describe('<Tabs />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
+    after: () => mount.cleanUp(),
   }));
 
   describe('warnings', () => {

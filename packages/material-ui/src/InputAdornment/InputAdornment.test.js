@@ -24,16 +24,13 @@ describe('<InputAdornment />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<InputAdornment position="start">foo</InputAdornment>, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    after: () => mount.cleanUp(),
   }));
 
   it('should wrap text children in a Typography', () => {

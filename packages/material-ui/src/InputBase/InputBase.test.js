@@ -26,16 +26,13 @@ describe('<InputBase />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<InputBase />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render an <input /> inside the div', () => {

@@ -174,8 +174,10 @@ const fullSuite = {
  *
  */
 export default function describeConformance(minimalElement, getOptions) {
-  const { only = Object.keys(fullSuite), skip = [] } = getOptions();
+  const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
   describe('Material-UI component API', () => {
+    after(runAfterHook);
+
     Object.keys(fullSuite)
       .filter(testKey => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
       .forEach(testKey => {

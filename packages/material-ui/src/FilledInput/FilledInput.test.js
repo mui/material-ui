@@ -20,16 +20,13 @@ describe('<FilledInput />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<FilledInput open />, () => ({
     classes,
     inheritComponent: InputBase,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should have the underline class', () => {

@@ -21,16 +21,13 @@ describe('<FormLabel />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<FormLabel />, () => ({
     classes,
     inheritComponent: 'label',
     mount,
     refInstanceof: window.HTMLLabelElement,
     testComponentPropWith: 'div',
+    after: () => mount.cleanUp(),
   }));
 
   describe('prop: required', () => {
