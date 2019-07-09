@@ -96,7 +96,7 @@ export const styles = theme => {
 const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
-    anchorOrigin: { vertical = 'bottom', horizontal = 'center' },
+    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration,
     children,
     classes,
