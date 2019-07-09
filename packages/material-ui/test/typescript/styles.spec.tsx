@@ -563,6 +563,47 @@ withStyles(theme =>
 }
 
 {
+  // Make theme property on styled components optional
+  // https://github.com/mui-org/material-ui/issues/16379#issuecomment-507209971
+  const style = (props: { value: number }) => ({});
+  const styleWithTheme = (props: { value: number; theme: Theme }) => ({});
+  const Component: React.FC = () => null;
+  const ComponentWithTheme: React.FC<{ theme: { zIndex: { [k: string]: number } } }> = () => null;
+
+  const ComponentStyled = styled(Component)(style);
+  const ComponentStyledWithTheme = styled(Component)(styleWithTheme);
+  const ComponentWithThemeStyled = styled(ComponentWithTheme)(style);
+  const ComponentWithThemeStyledWithTheme = styled(ComponentWithTheme)(styleWithTheme);
+
+  // prop 'theme' must not be required
+  <ComponentStyled value={1} />;
+  <ComponentStyledWithTheme value={1} />;
+  // error: type {} is missing properties from 'Theme' ...
+  <ComponentStyledWithTheme value={1} theme={{}} />; // $ExpectError
+  // error: property 'theme' is missing in type ... (because the component requires it)
+  <ComponentWithThemeStyled value={1} />; // $ExpectError
+  <ComponentWithThemeStyledWithTheme value={1} />; // $ExpectError
+  // error: type {} is not assignable to type ...
+  <ComponentWithThemeStyledWithTheme value={1} theme={{}} />; // $ExpectError
+  // error: missing properties from type 'ZIndex' ...
+  <ComponentWithThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />; // $ExpectError
+
+  const ComponentWithOptionalTheme: React.FC<{
+    theme?: { zIndex: { [k: string]: number } };
+  }> = () => null;
+  const ComponentWithOptionalThemeStyledWithTheme = styled(ComponentWithOptionalTheme)(
+    styleWithTheme,
+  );
+
+  // prop 'theme' must not be required
+  <ComponentWithOptionalThemeStyledWithTheme value={1} />;
+  // error: property 'zIndex' is missing in type {}
+  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{}} />; // $ExpectError
+  // error: missing properties from type 'Theme' ...
+  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />; // $ExpectError
+}
+
+{
   // Make sure theme and props have the correct types
   // https://github.com/mui-org/material-ui/issues/16351
 
