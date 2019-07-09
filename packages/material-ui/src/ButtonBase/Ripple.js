@@ -46,7 +46,9 @@ function Ripple(props) {
 
       // react-transition-group#onExited
       const timeoutId = setTimeout(handleExited, timeout);
-      return () => clearTimeout(timeoutId);
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
     return undefined;
   }, [handleExited, inProp, timeout]);
