@@ -260,7 +260,7 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `right` direction', () => {
         wrapper.setProps({ direction: 'right' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateX(-824px)');
+        assert.strictEqual(nodeEnterTransformStyle, 'translateX(-800px)');
       });
 
       it('should set element transform and transition in the `up` direction', () => {
@@ -275,14 +275,14 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `down` direction', () => {
         wrapper.setProps({ direction: 'down' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateY(-524px)');
+        assert.strictEqual(nodeEnterTransformStyle, 'translateY(-500px)');
       });
 
       it('should reset the previous transition if needed', () => {
-        child.style.transform = 'translateX(-824px)';
+        child.style.transform = 'translateX(-800px)';
         wrapper.setProps({ direction: 'right' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateX(-824px)');
+        assert.strictEqual(nodeEnterTransformStyle, 'translateX(-800px)');
       });
     });
 
@@ -311,7 +311,7 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `right` direction', () => {
         wrapper.setProps({ direction: 'right' });
         wrapper.setProps({ in: false });
-        assert.strictEqual(nodeExitingTransformStyle, 'translateX(-824px)');
+        assert.strictEqual(nodeExitingTransformStyle, 'translateX(-800px)');
       });
 
       it('should set element transform and transition in the `up` direction', () => {
@@ -326,7 +326,7 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `down` direction', () => {
         wrapper.setProps({ direction: 'down' });
         wrapper.setProps({ in: false });
-        assert.strictEqual(nodeExitingTransformStyle, 'translateY(-524px)');
+        assert.strictEqual(nodeExitingTransformStyle, 'translateY(-500px)');
       });
     });
   });
