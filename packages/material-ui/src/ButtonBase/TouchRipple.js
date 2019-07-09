@@ -279,9 +279,11 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
   );
 });
 
-const TouchRippleMemo = React.memo(TouchRipple);
-
-TouchRippleMemo.muiName = 'MuiTouchRipple';
+// TODO cleanup after https://github.com/reactjs/react-docgen/pull/378 is released
+function withMuiName(Component) {
+  Component.muiName = 'MuiTouchRipple';
+  return Component
+}
 
 TouchRipple.propTypes = {
   /**
@@ -300,4 +302,4 @@ TouchRipple.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(TouchRippleMemo);
+export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(withMuiName(React.memo(TouchRipple)));
