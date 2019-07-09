@@ -21,6 +21,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Menu item contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">dense</span> | <span class="prop-type">bool</span> |  | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 
 The `ref` is forwarded to the root element.
@@ -38,6 +39,7 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">gutters</span> | Styles applied to the root element if `disableGutters={false}`.
 | <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
+| <span class="prop-name">dense</span> | Styles applied to the root element if dense.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/MenuItem/MenuItem.js)
