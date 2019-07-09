@@ -15,8 +15,7 @@ describe('<IconButton />', () => {
   const render = createClientRender({ strict: false });
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<IconButton />);
   });
 

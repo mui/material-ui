@@ -7,7 +7,7 @@ describe('<Select> integration', () => {
   let mount;
 
   before(() => {
-    // StrictModeViolation: uses MenuItem
+    // StrictModeViolation: unknown
     mount = createMount({ strict: false });
   });
 

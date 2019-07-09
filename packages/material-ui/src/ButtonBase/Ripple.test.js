@@ -8,8 +8,7 @@ import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
   let classes;
-  // StrictModeViolation: uses react-transition-group
-  const mount = createClientRender({ strict: false });
+  const mount = createClientRender({ strict: true });
 
   before(() => {
     classes = getClasses(<TouchRipple />);

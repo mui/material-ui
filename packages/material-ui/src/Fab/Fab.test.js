@@ -13,8 +13,7 @@ describe('<Fab />', () => {
   let classes;
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<Fab>Fab</Fab>);
   });
 

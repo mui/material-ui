@@ -29,7 +29,7 @@ function simulatePointerDevice() {
 }
 
 describe('<ButtonBase />', () => {
-  const render = createClientRender({ strict: false });
+  const render = createClientRender({ strict: true });
   /**
    * @type {ReturnType<typeof createMount>}
    */
@@ -42,10 +42,7 @@ describe('<ButtonBase />', () => {
   let canFireDragEvents = true;
 
   before(() => {
-    /**
-     * StrictModeViolation: Uses TouchRipple
-     */
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<ButtonBase />);
     // browser testing config
     try {

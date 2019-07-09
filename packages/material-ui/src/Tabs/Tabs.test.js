@@ -35,13 +35,12 @@ describe('<Tabs />', () => {
 
   let mount;
   let classes;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender({ strict: true });
   let serverRender;
 
   before(() => {
     classes = getClasses(<Tabs value={0} />);
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     serverRender = createRender();
   });
 

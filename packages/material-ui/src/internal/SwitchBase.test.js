@@ -19,13 +19,12 @@ const shouldSuccessOnce = name => func => () => {
 };
 
 describe('<SwitchBase />', () => {
-  const render = createClientRender({ strict: false });
+  const render = createClientRender({ strict: true });
   let mount;
   let classes;
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />);
   });
 
