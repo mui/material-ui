@@ -50,6 +50,11 @@ steps:
 
   - script: |
       yarn docs:build
+      mkdir -p scripts/sizeSnapshot/build
+    displayName: 'prepare size snapshot of built docs'
+
+  - script: |
+      yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
     displayName: 'build docs'
 
   - script: |
