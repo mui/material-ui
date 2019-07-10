@@ -308,7 +308,7 @@ export default function IntegrationReactSelect() {
               shrink: true,
             },
           }}
-          placeholder: 'Search a country (start with a)',
+          placeholder='Search a country (start with a)',
           options={suggestions}
           components={components}
           value={single}
