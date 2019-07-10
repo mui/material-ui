@@ -1,22 +1,9 @@
-const fse = require('fs-extra');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getSizeLimitBundles() {
-  const nextDir = path.join(workspaceRoot, 'docs/.next');
-  const buildId = await fse.readFile(path.join(nextDir, 'BUILD_ID'), 'utf8');
-
-  const dirname = path.join(nextDir, 'static/chunks');
-  const [main] = (await fse.readdir(dirname)).reduce((result, filename) => {
-    if (filename.length === 31) {
-      return [...result, { path: `${dirname}/${filename}` }];
-    }
-
-    return result;
-  }, []);
-
   return [
     {
       name: '@material-ui/core/Paper',
@@ -113,16 +100,6 @@ async function getSizeLimitBundles() {
       name: 'Portal',
       webpack: true,
       path: 'packages/material-ui/build/esm/Portal/index.js',
-    },
-    {
-      name: 'docs.main',
-      webpack: false,
-      path: path.relative(workspaceRoot, main.path),
-    },
-    {
-      name: 'docs.landing',
-      webpack: false,
-      path: path.relative(workspaceRoot, path.join(nextDir, `static/${buildId}/pages/index.js`)),
     },
   ];
 }
