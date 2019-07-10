@@ -1,22 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
+import React, { Ref, FunctionComponent, ReactNode } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
-import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
+import MuiLink from '@material-ui/core/Link';
+import { TypographyProps } from '@material-ui/core/Typography';
 
 interface NextLinkProps {
   as?: string;
   href?: string;
   prefetch?: boolean;
+  className?: string;
 }
 
-type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & NextLinkProps;
-
-const NextComposed = React.forwardRef(function NextComposed(
-  props: NextComposedProps,
-  ref: React.Ref<any>,
-) {
+const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkProps>((props, ref) => {
   const { as, href, prefetch, ...other } = props;
 
   return (
@@ -26,14 +23,17 @@ const NextComposed = React.forwardRef(function NextComposed(
   );
 });
 
-interface LinkProps extends MuiLinkProps, NextLinkProps {
-  activeClassName?: string;
-  naked?: boolean;
-}
+type LinkProps = LinkPropsBase & Pick<TypographyProps, 'align' | 'color' | 'display' | 'variant'>;
 
+interface LinkPropsBase extends NextLinkProps {
+  activeClassName?: string;
+  innerRef?: Ref<HTMLAnchorElement>;
+  naked?: boolean;
+  children?: ReactNode;
+}
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-function RouterLink(props: LinkProps) {
+const RouterLink: FunctionComponent<LinkProps> = props => {
   const router = useRouter();
   const {
     activeClassName = 'active',
@@ -52,8 +52,8 @@ function RouterLink(props: LinkProps) {
   }
 
   return <MuiLink component={NextComposed} className={className} ref={innerRef} {...other} />;
-}
+};
 
-export default React.forwardRef((props: LinkProps, ref) => (
+export default React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
   <RouterLink {...props} innerRef={ref} />
 ));
