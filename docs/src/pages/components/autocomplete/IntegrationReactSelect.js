@@ -325,8 +325,8 @@ export default function IntegrationReactSelect() {
               htmlFor: 'react-select-multiple',
               shrink: true,
             },
-            placeholder: 'Select multiple countries',
           }}
+          placeholder='Select multiple countries',
           options={suggestions}
           components={components}
           value={multi}
