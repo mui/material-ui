@@ -102,7 +102,7 @@ async function getNextPagesSize() {
       snapshotId,
       {
         parsed: prettyBytesInverse(sizeFormatted, sizeUnit),
-        gzip: Number.NaN,
+        gzip: -1,
         files: +files,
         packages: +packages,
       },
