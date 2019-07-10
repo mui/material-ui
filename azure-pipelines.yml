@@ -56,6 +56,8 @@ steps:
   - script: |
       yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
     displayName: 'build docs'
+    # piping to tee will swallow the exit code
+    failOnStderr: true
 
   - script: |
       yarn size:snapshot
