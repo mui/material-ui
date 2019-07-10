@@ -34,7 +34,9 @@ function TextMaskCustom(props) {
   );
 }
 
-TextMaskCustom.propTypes = { inputRef: PropTypes.func.isRequired };
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
 
 function NumberFormatCustom(props) {
   const { inputRef, onChange, ...other } = props;

@@ -28,7 +28,9 @@ function MyButton(props) {
   return <Button className={classes.root} {...other} />;
 }
 
-MyButton.propTypes = { color: PropTypes.oneOf(['blue', 'red']).isRequired };
+MyButton.propTypes = {
+  color: PropTypes.oneOf(['blue', 'red']).isRequired,
+};
 
 export default function AdaptingHook() {
   return (

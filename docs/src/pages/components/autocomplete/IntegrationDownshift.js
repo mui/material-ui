@@ -215,7 +215,9 @@ function DownshiftMultiple(props) {
   );
 }
 
-DownshiftMultiple.propTypes = { classes: PropTypes.object.isRequired };
+DownshiftMultiple.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 const useStyles = makeStyles(theme => ({
   root: {

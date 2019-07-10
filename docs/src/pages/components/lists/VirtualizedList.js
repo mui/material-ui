@@ -24,7 +24,10 @@ function Row(props) {
   );
 }
 
-Row.propTypes = { index: PropTypes.number.isRequired, style: PropTypes.object.isRequired };
+Row.propTypes = {
+  index: PropTypes.number.isRequired,
+  style: PropTypes.object.isRequired,
+};
 
 export default function VirtualizedList() {
   const classes = useStyles();

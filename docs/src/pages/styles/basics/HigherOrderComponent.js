@@ -20,6 +20,8 @@ function HigherOrderComponent(props) {
   return <Button className={classes.root}>Higher-order component</Button>;
 }
 
-HigherOrderComponent.propTypes = { classes: PropTypes.object.isRequired };
+HigherOrderComponent.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(HigherOrderComponent);

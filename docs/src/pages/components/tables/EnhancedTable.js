@@ -186,7 +186,9 @@ const EnhancedTableToolbar = props => {
   );
 };
 
-EnhancedTableToolbar.propTypes = { numSelected: PropTypes.number.isRequired };
+EnhancedTableToolbar.propTypes = {
+  numSelected: PropTypes.number.isRequired,
+};
 
 const useStyles = makeStyles(theme => ({
   root: {

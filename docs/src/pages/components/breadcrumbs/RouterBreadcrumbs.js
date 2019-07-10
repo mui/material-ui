@@ -37,7 +37,10 @@ function ListItemLink(props) {
   );
 }
 
-ListItemLink.propTypes = { open: PropTypes.bool, to: PropTypes.string.isRequired };
+ListItemLink.propTypes = {
+  open: PropTypes.bool,
+  to: PropTypes.string.isRequired,
+};
 
 const styles = theme => ({
   root: {
@@ -116,6 +119,8 @@ class RouterBreadcrumbs extends React.Component {
   }
 }
 
-RouterBreadcrumbs.propTypes = { classes: PropTypes.object.isRequired };
+RouterBreadcrumbs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(RouterBreadcrumbs);

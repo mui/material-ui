@@ -71,18 +71,7 @@ function getLineFeed(source) {
 
 const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r?\n){2}/g);
 function fixBabelGeneratorIssues(source) {
-  const lf = getLineFeed(source);
-
-  return (
-    source
-      .replace(fixBabelIssuesRegExp, lf)
-      // Linefeed after commentblock
-      .replace(/\*\/ (\w+)/g, `*/${lf}  $1`)
-      // empty line before proptypes
-      .replace(/^(}(\);)?)(\r?\n\w+\.propTypes)/gm, `$1${lf}$3`)
-      // empty line after proptypes
-      .replace(/^(};)(\r?\n\w+)/gm, `$1${lf}$2`)
-  );
+  return source.replace(fixBabelIssuesRegExp, getLineFeed(source));
 }
 
 const TranspileResult = {
@@ -103,8 +92,10 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
     }
 
     const { code } = await babel.transformFileAsync(tsxPath, babelConfig);
+
     const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program);
     const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
+
     const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: tsxPath });
     const formatted = fixBabelGeneratorIssues(prettified);
 

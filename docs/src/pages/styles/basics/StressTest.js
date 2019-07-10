@@ -29,7 +29,9 @@ const Component = React.memo(props => {
   );
 });
 
-Component.propTypes = { backgroundColor: PropTypes.string.isRequired };
+Component.propTypes = {
+  backgroundColor: PropTypes.string.isRequired,
+};
 
 export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');

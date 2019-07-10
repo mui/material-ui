@@ -252,7 +252,7 @@
     "@babel/traverse" "^7.1.0"
     "@babel/types" "^7.2.0"
 
-"@babel/helpers@^7.1.2", "@babel/helpers@^7.4.4", "@babel/helpers@^7.5.0":
+"@babel/helpers@^7.1.2", "@babel/helpers@^7.5.0":
   version "7.5.2"
   resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.5.2.tgz#97424dc82fc0041f4c751119b4d2b1ec68cdb5ba"
   integrity sha512-NDkkTqDvgFUeo8djXBOiwO/mFjownznOWvmP9hvNdfiFUmx0nwNOqxuaTTbxjH744eQsD9M5ubC7gdANBvIWPw==
@@ -13882,10 +13882,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-to-proptypes@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.0.2.tgz#e5cd215200be11d976798c9f4febb0cef4e763bd"
-  integrity sha512-mDrmPtB2DGDoEIIMESPQGhTkK74nTH9ZXPYWVZFy5X1GI+/FcPg15hEiShu+USFJ5Zg2r3hTKbuO+NrEzhJNFg==
+typescript-to-proptypes@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.0.3.tgz#50a82675b80b006d57d932edfbb19d8ec212091f"
+  integrity sha512-PCUCwxtNn+x/dtlseY61S8NkxykT7qMbFaj7SoABwF6hCC3TrLqUHHhUuL9eF5WTnYQupTdt8l9u++pjTuxvxQ==
   dependencies:
     "@babel/core" "^7.5.0"
     "@babel/plugin-syntax-class-properties" "^7.2.0"
@@ -13893,6 +13893,7 @@ typescript-to-proptypes@^1.0.2:
     "@babel/types" "^7.5.0"
     lodash "^4.17.11"
     typescript "3.5.2"
+    uuid "^3.3.2"
 
 typescript@3.2.2:
   version "3.2.2"

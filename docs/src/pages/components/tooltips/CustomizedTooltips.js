@@ -110,7 +110,9 @@ function ArrowTooltip(props) {
   );
 }
 
-ArrowTooltip.propTypes = { title: PropTypes.node.isRequired };
+ArrowTooltip.propTypes = {
+  title: PropTypes.node.isRequired,
+};
 
 const useStylesBootstrap = makeStyles(theme => ({
   arrow: {
@@ -174,7 +176,9 @@ function BootstrapTooltip(props) {
   );
 }
 
-BootstrapTooltip.propTypes = { title: PropTypes.node.isRequired };
+BootstrapTooltip.propTypes = {
+  title: PropTypes.node.isRequired,
+};
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
