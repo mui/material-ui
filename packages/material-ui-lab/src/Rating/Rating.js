@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useTheme, withStyles } from '@material-ui/core/styles';
-import { capitalize, useForkRef, ownerWindow } from '@material-ui/core/utils';
+import { capitalize, useForkRef, ownerWindow, useIsFocusVisible } from '@material-ui/core/utils';
 import Star from '../internal/svg-icons/Star';
 
 function clamp(value, min, max) {
@@ -19,12 +19,16 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
+    position: 'relative',
     fontSize: theme.typography.pxToRem(24),
     color: '#ffb400',
     cursor: 'pointer',
     '&$disabled': {
       opacity: 0.4,
       pointerEvents: 'none',
+    },
+    '&$focusVisible $iconActive': {
+      outline: '1px solid #999',
     },
   },
   /* Styles applied to the root element if `size="small"`. */
@@ -35,12 +39,15 @@ export const styles = theme => ({
   sizeLarge: {
     fontSize: theme.typography.pxToRem(30),
   },
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `readOnly={true}`. */
+  /* Styles applied to the root element if `readOnly={true}`. */
   readOnly: {
     pointerEvents: 'none',
   },
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
+  disabled: {},
+  /* Pseudo-class applied to the root element if keyboard focused. */
+  focusVisible: {},
+  /* Visually hide an element. */
   visuallyhidden: {
     border: 0,
     clip: 'rect(0 0 0 0)',
@@ -52,26 +59,42 @@ export const styles = theme => ({
     top: 20,
     width: 1,
   },
-  /* Pseudo-class applied to the icon wrapping elements. */
+  /* Styles applied to the pristine label. */
+  pristine: {
+    'input:focus ~ &': {
+      top: 0,
+      bottom: 0,
+      position: 'absolute',
+      outline: '1px solid #999',
+      width: '100%',
+    },
+  },
+  /* Styles applied to the label elements. */
+  label: {
+    cursor: 'inherit',
+  },
+  /* Styles applied to the icon wrapping elements. */
   icon: {
     display: 'flex',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
-  /* Pseudo-class applied to the icon wrapping elements when empty. */
+  /* Styles applied to the icon wrapping elements when empty. */
   iconEmpty: {
     color: theme.palette.action.disabled,
   },
-  /* Pseudo-class applied to the icon wrapping elements when filled. */
+  /* Styles applied to the icon wrapping elements when filled. */
   iconFilled: {},
-  /* Pseudo-class applied to the icon wrapping elements when hover. */
+  /* Styles applied to the icon wrapping elements when hover. */
   iconHover: {},
-  /* Pseudo-class applied to the icon wrapping elements when active. */
+  /* Styles applied to the icon wrapping elements when focus. */
+  iconFocus: {},
+  /* Styles applied to the icon wrapping elements when active. */
   iconActive: {
     transform: 'scale(1.2)',
   },
-  /* Pseudo-class applied to the icon wrapping elements when decimals are necessary. */
+  /* Styles applied to the icon wrapping elements when decimals are necessary. */
   decimal: {
     position: 'relative',
   },
@@ -105,7 +128,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     max = 5,
     name,
     onChange,
-    onChangeHover,
+    onChangeActive,
     onMouseLeave,
     onMouseMove,
     precision = 1,
@@ -116,11 +139,25 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   } = props;
 
   const theme = useTheme();
-  const [hover, setHover] = React.useState(-1);
-  const value = hover !== -1 ? hover : valueProp;
+  const [{ hover, focus }, setState] = React.useState({
+    hover: -1,
+    focus: -1,
+  });
+
+  let value = valueProp;
+  if (hover !== -1) {
+    value = hover;
+  }
+  if (focus !== -1) {
+    value = focus;
+  }
+
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
-  const handleRef = useForkRef(rootRef, ref);
+  const handleFocusRef = useForkRef(focusVisibleRef, rootRef);
+  const handleRef = useForkRef(handleFocusRef, ref);
 
   const handleMouseMove = event => {
     if (onMouseMove) {
@@ -140,10 +177,19 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
     let newHover = Math.ceil((max * percent) / precision) * precision;
     newHover = clamp(newHover, precision, max);
+    setState(prev =>
+      prev.hover === newHover && prev.focus === newHover
+        ? prev
+        : {
+            hover: newHover,
+            focus: newHover,
+          },
+    );
 
-    setHover(newHover);
-    if (onChangeHover && hover !== newHover) {
-      onChangeHover(event, newHover);
+    setFocusVisible(false);
+
+    if (onChangeActive && hover !== newHover) {
+      onChangeActive(event, newHover);
     }
   };
 
@@ -153,10 +199,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
 
     const newHover = -1;
+    setState({
+      hover: newHover,
+      focus: newHover,
+    });
 
-    setHover(newHover);
-    if (onChangeHover && hover !== newHover) {
-      onChangeHover(event, newHover);
+    if (onChangeActive && hover !== newHover) {
+      onChangeActive(event, newHover);
     }
   };
 
@@ -167,20 +216,39 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   const handleFocus = event => {
-    const newHover = parseFloat(event.target.value);
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+    }
 
-    setHover(newHover);
-    if (onChangeHover && hover !== newHover) {
-      onChangeHover(event, newHover);
+    const newFocus = parseFloat(event.target.value);
+    setState(prev => ({
+      hover: prev.hover,
+      focus: newFocus,
+    }));
+
+    if (onChangeActive && focus !== newFocus) {
+      onChangeActive(event, newFocus);
     }
   };
 
   const handleBlur = event => {
-    const newHover = -1;
+    if (hover !== -1) {
+      return;
+    }
 
-    setHover(newHover);
-    if (onChangeHover && hover !== newHover) {
-      onChangeHover(event, newHover);
+    if (focusVisible !== false) {
+      setFocusVisible(false);
+      onBlurVisible();
+    }
+
+    const newFocus = -1;
+    setState(prev => ({
+      hover: prev.hover,
+      focus: newFocus,
+    }));
+
+    if (onChangeActive && focus !== newFocus) {
+      onChangeActive(event, newFocus);
     }
   };
 
@@ -189,18 +257,14 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     const container = (
       <IconContainerComponent
         {...propsItem}
-        className={clsx(
-          classes.icon,
-          {
-            [classes.iconEmpty]: !state.filled,
-            [classes.iconFilled]: state.filled,
-            [classes.iconHover]: state.hover,
-            [classes.iconActive]: state.active,
-          },
-          propsItem.className,
-        )}
+        className={clsx(classes.icon, {
+          [classes.iconEmpty]: !state.filled,
+          [classes.iconFilled]: state.filled,
+          [classes.iconHover]: state.hover,
+          [classes.iconFocus]: state.focus,
+          [classes.iconActive]: state.active,
+        })}
       >
-        <span className={classes.visuallyhidden}>{getLabelText(propsItem.value)}</span>
         {emptyIcon && !state.filled ? emptyIcon : icon}
       </IconContainerComponent>
     );
@@ -211,7 +275,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
     return (
       <React.Fragment key={propsItem.value}>
-        <label htmlFor={id}>{container}</label>
+        <label className={classes.label} htmlFor={id}>
+          {container}
+          <span className={classes.visuallyhidden}>{getLabelText(propsItem.value)}</span>
+        </label>
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -237,6 +304,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
         {
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.disabled]: disabled,
+          [classes.focusVisible]: focusVisible,
           [classes.readOnly]: readOnly,
         },
         className,
@@ -244,55 +312,57 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       {...other}
     >
       {!readOnly && !disabled && value == null && (
-        <input
-          value="0"
-          id={`${name}-0`}
-          type="radio"
-          name={name}
-          defaultChecked
-          className={classes.visuallyhidden}
-        />
+        <React.Fragment>
+          <input
+            value="0"
+            id={`${name}-0`}
+            type="radio"
+            name={name}
+            defaultChecked
+            className={classes.visuallyhidden}
+          />
+          <label htmlFor={`${name}-0`} className={classes.pristine}>
+            <span className={classes.visuallyhidden}>{getLabelText(0)}</span>
+          </label>
+        </React.Fragment>
       )}
       {Array.from(new Array(max)).map((_, index) => {
         const itemValue = index + 1;
-        const items = Array.from(new Array(1 / precision));
 
         if (precision < 1) {
+          const items = Array.from(new Array(1 / precision));
           return (
             <div
               key={itemValue}
               className={clsx(classes.decimal, {
-                [classes.iconActive]: itemValue === Math.ceil(hover),
+                [classes.iconActive]:
+                  itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1),
               })}
             >
               {items.map(($, indexDecimal) => {
-                let width = `${(itemValue - value) * 100}%`;
-
-                if (itemValue - value <= 0) {
-                  width = '100%';
-                }
-
-                if (itemValue - value >= 1) {
-                  width = '0%';
-                }
+                const itemDeciamlValue = itemValue - 1 + (indexDecimal + 1) * precision;
 
                 return item(
                   {
-                    value: itemValue - 1 + (indexDecimal + 1) * precision,
+                    value: itemDeciamlValue,
                     style:
                       items.length - 1 === indexDecimal
                         ? {}
                         : {
-                            width,
+                            width:
+                              itemDeciamlValue === value
+                                ? `${(indexDecimal + 1) * precision * 100}%`
+                                : '0%',
                             overflow: 'hidden',
                             zIndex: 1,
                             position: 'absolute',
                           },
                   },
                   {
-                    filled: itemValue <= Math.ceil(value) && indexDecimal === 0,
-                    hover: itemValue <= Math.ceil(hover) && indexDecimal === 0,
-                    checked: itemValue - 1 + (indexDecimal + 1) * precision === valueProp,
+                    filled: itemDeciamlValue <= value,
+                    hover: itemDeciamlValue <= hover,
+                    focus: itemDeciamlValue <= focus,
+                    checked: itemDeciamlValue === valueProp,
                   },
                 );
               })}
@@ -305,10 +375,11 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             value: itemValue,
           },
           {
+            active: itemValue === value && (hover !== -1 || focus !== -1),
             filled: itemValue <= value,
             hover: itemValue <= hover,
+            focus: itemValue <= focus,
             checked: itemValue === Math.round(valueProp),
-            active: itemValue === hover,
           },
         );
       })}
@@ -374,7 +445,7 @@ Rating.propTypes = {
    * @param {object} event The event source of the callback
    * @param {any} value The new value
    */
-  onChangeHover: PropTypes.func,
+  onChangeActive: PropTypes.func,
   /**
    * @ignore
    */

@@ -10,12 +10,13 @@ export interface RatingProps
   component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   disabled?: boolean;
   emptyIcon?: React.ReactElement;
+  getLabelText?: (value: number) => string;
   icon?: React.ReactElement;
   IconContainerComponent?: React.ElementType<IconContainerProps>;
   max?: number;
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
-  onChangeHover?: (event: React.ChangeEvent<{}>, value: number) => void;
+  onChangeActive?: (event: React.ChangeEvent<{}>, value: number) => void;
   precision?: number;
   readOnly?: boolean;
   size?: 'small' | 'medium' | 'large';
@@ -26,12 +27,17 @@ export type RatingClassKey =
   | 'root'
   | 'sizeSmall'
   | 'sizeLarge'
-  | 'disabled'
   | 'readOnly'
+  | 'disabled'
+  | 'focusVisible'
+  | 'visuallyhidden'
+  | 'pristine'
+  | 'label'
   | 'icon'
   | 'iconEmpty'
   | 'iconFilled'
   | 'iconHover'
+  | 'iconFocus'
   | 'iconActive'
   | 'decimal';
 

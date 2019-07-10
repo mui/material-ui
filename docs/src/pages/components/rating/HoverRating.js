@@ -53,7 +53,7 @@ export default function HoverRating() {
           name="hover-side"
           value={value}
           precision={0.5}
-          onChangeHover={(event, newHover) => {
+          onChangeActive={(event, newHover) => {
             setHover(newHover);
           }}
         />

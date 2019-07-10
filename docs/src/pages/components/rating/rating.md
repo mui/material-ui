@@ -36,6 +36,6 @@ Fancy larger or smaller ratings? Use the `size` property.
 ## Hover feedback
 
 You can display a label on hover to help users pick the correct rating value.
-The first demo uses the `onChangeHover` prop while the last one uses the `IconContainerComponent` prop.
+The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
