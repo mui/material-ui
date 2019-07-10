@@ -204,6 +204,7 @@ const pages = [
   {
     pathname: '/blog',
     children: [
+      { pathname: '/blog/june-2019-update' },
       { pathname: '/blog/may-2019-update' },
       {
         pathname: '/blog/material-ui-v4-is-out',
