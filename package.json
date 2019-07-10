@@ -8,7 +8,7 @@
     "docs:build-sw": "node ./docs/scripts/buildServiceWorker.js",
     "docs:deploy": "git push material-ui-docs master:latest",
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development node docs/src/server.js",
-    "docs:export": "rimraf docs/export && next export -o docs/export && yarn docs:build-sw && cp -r docs/static/. docs/export",
+    "docs:export": "rimraf docs/export && next export -o docs/export && yarn docs:build-sw",
     "docs:icons": "rimraf static/icons/* && node ./docs/scripts/buildIcons.js",
     "docs:size-why": "cross-env DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:start": "next start",
