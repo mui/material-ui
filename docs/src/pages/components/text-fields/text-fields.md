@@ -150,3 +150,4 @@ For more advanced use cases you might be able to take advantage of:
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.
+- [rjsf-material-ui](https://github.com/cybertec-postgresql/rjsf-material-ui) A Material UI theme for react-jsonschema-form.
