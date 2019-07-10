@@ -211,7 +211,7 @@ export function parseFromProgram(filePath: string, program: ts.Program) {
           return t.elementNode('element');
         }
         case 'React.ReactNode': {
-          return t.elementNode('node');
+          return t.unionNode([t.elementNode('node'), t.undefinedNode()]);
         }
       }
     }

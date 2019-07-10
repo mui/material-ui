@@ -7,9 +7,23 @@ export interface UnionNode extends Node {
 }
 
 export function unionNode(types: Node[]): UnionNode {
+  const flatTypes: Node[] = [];
+
+  flattenTypes(types);
+
+  function flattenTypes(nodes: Node[]) {
+    nodes.forEach(x => {
+      if (isUnionNode(x)) {
+        flattenTypes(x.types);
+      } else {
+        flatTypes.push(x);
+      }
+    });
+  }
+
   return {
     type: typeString,
-    types: types,
+    types: flatTypes,
   };
 }
 
