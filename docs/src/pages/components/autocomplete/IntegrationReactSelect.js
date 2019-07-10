@@ -308,7 +308,7 @@ export default function IntegrationReactSelect() {
               shrink: true,
             },
           }}
-          placeholder='Search a country (start with a)',
+          placeholder='Search a country (start with a)'
           options={suggestions}
           components={components}
           value={single}
@@ -326,7 +326,7 @@ export default function IntegrationReactSelect() {
               shrink: true,
             },
           }}
-          placeholder='Select multiple countries',
+          placeholder='Select multiple countries'
           options={suggestions}
           components={components}
           value={multi}
