@@ -82,7 +82,9 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 
     if (t.isUnionNode(propType) && propType.types.some(t.isUndefinedNode)) {
       isOptional = true;
-      propType.types = propType.types.filter(prop => !t.isUndefinedNode(prop));
+      propType.types = propType.types.filter(
+        prop => !t.isUndefinedNode(prop) && !(t.isLiteralNode(prop) && prop.value === 'null'),
+      );
       if (propType.types.length === 1 && t.isLiteralNode(propType.types[0]) === false) {
         propType = propType.types[0];
       }
