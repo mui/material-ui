@@ -53,11 +53,11 @@ steps:
       mkdir -p scripts/sizeSnapshot/build
     displayName: 'prepare size snapshot of built docs'
 
-  - script: |
+  - bash: |
+      set -o pipefail
       yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
+      set +o pipefail
     displayName: 'build docs'
-    # piping to tee will swallow the exit code
-    failOnStderr: true
 
   - script: |
       yarn size:snapshot
