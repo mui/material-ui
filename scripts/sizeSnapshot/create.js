@@ -90,7 +90,7 @@ async function getNextPagesSize() {
   // legacy ids
   const pageUrlIdMappings = {
     '/': 'docs.landing',
-    _app: 'docs.main',
+    '/_app': 'docs.main',
   };
 
   return Array.from(matchAll(consoleOutput, pageRegex), match => {
@@ -101,8 +101,8 @@ async function getNextPagesSize() {
     return [
       snapshotId,
       {
-        gzip: prettyBytesInverse(sizeFormatted, sizeUnit),
-        parsed: Number.NaN,
+        parsed: prettyBytesInverse(sizeFormatted, sizeUnit),
+        gzip: Number.NaN,
         files: +files,
         packages: +packages,
       },
