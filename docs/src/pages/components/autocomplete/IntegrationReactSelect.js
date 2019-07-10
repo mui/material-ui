@@ -117,7 +117,7 @@ NoOptionsMessage.propTypes = {
   /**
    * The children to be rendered.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Props to be passed on to the wrapper.
    */
@@ -130,7 +130,7 @@ function inputComponent({ inputRef, ...props }) {
 }
 
 inputComponent.propTypes = {
-  inputRef: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.func, PropTypes.object]),
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 function Control(props) {
@@ -162,7 +162,7 @@ Control.propTypes = {
   /**
    * Children to render.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * The mouse down event and the innerRef to pass down to the controller element.
    */
@@ -192,7 +192,7 @@ Option.propTypes = {
   /**
    * The children to be rendered.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * props passed to the wrapping element for the group.
    */
@@ -228,7 +228,7 @@ Placeholder.propTypes = {
   /**
    * The children to be rendered.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * props passed to the wrapping element for the group.
    */
@@ -248,7 +248,7 @@ SingleValue.propTypes = {
   /**
    * The children to be rendered.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Props passed to the wrapping element for the group.
    */
@@ -264,7 +264,7 @@ ValueContainer.propTypes = {
   /**
    * The children to be rendered.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   selectProps: PropTypes.object.isRequired,
 };
 
@@ -283,7 +283,7 @@ function MultiValue(props) {
 }
 
 MultiValue.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   isFocused: PropTypes.bool.isRequired,
   removeProps: PropTypes.object.isRequired,
   selectProps: PropTypes.object.isRequired,

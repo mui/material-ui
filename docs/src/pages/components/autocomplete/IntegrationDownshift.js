@@ -67,7 +67,7 @@ function renderInput(inputProps) {
 renderInput.propTypes = {
   classes: PropTypes.object.isRequired,
   InputProps: PropTypes.object,
-  ref: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.func, PropTypes.object]),
+  ref: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 function renderSuggestion(suggestionProps) {
