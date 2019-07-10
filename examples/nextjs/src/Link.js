@@ -25,7 +25,14 @@ NextComposed.propTypes = {
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
 function Link(props) {
-  const { activeClassName, router, className: classNameProps, innerRef, naked, ...other } = props;
+  const {
+    activeClassName = 'active',
+    router,
+    className: classNameProps,
+    innerRef,
+    naked,
+    ...other
+  } = props;
 
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === props.href && activeClassName,
@@ -50,10 +57,6 @@ Link.propTypes = {
   router: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
-};
-
-Link.defaultProps = {
-  activeClassName: 'active',
 };
 
 const RouterLink = withRouter(Link);

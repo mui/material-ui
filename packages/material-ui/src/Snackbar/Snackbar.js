@@ -96,7 +96,7 @@ export const styles = theme => {
 const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
-    anchorOrigin: { vertical, horizontal },
+    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration,
     children,
     classes,
@@ -117,7 +117,10 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     open,
     resumeHideDuration,
     TransitionComponent = Grow,
-    transitionDuration,
+    transitionDuration = {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
     TransitionProps,
     ...other
   } = props;
@@ -381,17 +384,6 @@ Snackbar.propTypes = {
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-Snackbar.defaultProps = {
-  anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'center',
-  },
-  transitionDuration: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);

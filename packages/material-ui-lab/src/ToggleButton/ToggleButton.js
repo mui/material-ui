@@ -86,12 +86,13 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
     children,
     classes,
     className,
-    disabled,
-    disableFocusRipple,
+    disabled = false,
+    disableFocusRipple = false,
+    disableRipple = false,
     onChange,
     onClick,
     selected,
-    size,
+    size = 'medium',
     value,
     ...other
   } = props;
@@ -126,6 +127,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
       onClick={handleChange}
       onChange={onChange}
       value={value}
+      disableRipple={disableRipple}
       {...other}
     >
       <span className={classes.label}>{children}</span>
@@ -181,13 +183,6 @@ ToggleButton.propTypes = {
    * ToggleButtonGroup.
    */
   value: PropTypes.any.isRequired,
-};
-
-ToggleButton.defaultProps = {
-  disabled: false,
-  disableFocusRipple: false,
-  disableRipple: false,
-  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);

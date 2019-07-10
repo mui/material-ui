@@ -46,7 +46,7 @@ const variantMapping = {
 };
 
 function Typography(props) {
-  const { children, classes, marked, variant, ...other } = props;
+  const { children, classes, marked = false, variant, ...other } = props;
 
   return (
     <MuiTypography variantMapping={variantMapping} variant={variant} {...other}>
@@ -63,10 +63,6 @@ Typography.propTypes = {
   classes: PropTypes.object.isRequired,
   marked: PropTypes.oneOf([false, 'center', 'left']),
   variant: PropTypes.string,
-};
-
-Typography.defaultProps = {
-  marked: false,
 };
 
 export default withStyles(styles)(Typography);

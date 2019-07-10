@@ -101,8 +101,4 @@ if (process.env.NODE_ENV !== 'production') {
   NProgressBar.propTypes = exactProp(NProgressBar.propTypes);
 }
 
-NProgressBar.defaultProps = {
-  children: null,
-};
-
 export default NProgressBar;
