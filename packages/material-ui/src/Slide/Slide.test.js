@@ -32,8 +32,8 @@ describe('<Slide />', () => {
       classes: {},
       inheritComponent: Transition,
       mount,
-      refInstanceof: React.Component,
-      skip: ['componentProp', 'refForwarding'],
+      refInstanceof: window.HTMLDivElement,
+      skip: ['componentProp'],
     }),
   );
 
