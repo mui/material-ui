@@ -20,16 +20,13 @@ describe('<OutlinedInput />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<OutlinedInput labelWidth={0} />, () => ({
     classes,
     inheritComponent: InputBase,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render a NotchedOutline', () => {

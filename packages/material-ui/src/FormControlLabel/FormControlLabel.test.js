@@ -21,16 +21,13 @@ describe('<FormControlLabel />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({
     classes,
     inheritComponent: 'label',
     mount,
     refInstanceof: window.HTMLLabelElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render the label text inside an additional element', () => {

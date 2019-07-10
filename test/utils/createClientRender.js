@@ -77,23 +77,11 @@ function clientRender(element, options = {}) {
 
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
-  let baseElement;
-
-  before(() => {
-    baseElement = document.createElement('div');
-    baseElement.className = 'rtl--baseElement';
-    document.body.appendChild(baseElement);
-  });
-
-  after(() => {
-    baseElement.parentNode.removeChild(baseElement);
-    baseElement = null;
-  });
 
   return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;
 
-    return clientRender(element, { ...localOptions, baseElement, strict });
+    return clientRender(element, { ...localOptions, strict });
   };
 }
 

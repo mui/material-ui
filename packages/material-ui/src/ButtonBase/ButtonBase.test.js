@@ -56,7 +56,6 @@ describe('<ButtonBase />', () => {
 
   after(() => {
     cleanup();
-    mount.cleanUp();
   });
 
   describeConformance(<ButtonBase />, () => ({
@@ -65,6 +64,7 @@ describe('<ButtonBase />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
+    after: () => mount.cleanUp(),
   }));
 
   describe('root node', () => {

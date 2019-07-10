@@ -38,7 +38,6 @@ describe('<Slider />', () => {
 
   after(() => {
     cleanup();
-    mount.cleanUp();
   });
 
   describeConformance(<Slider value={0} />, () => ({
@@ -47,6 +46,7 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'span',
+    after: () => mount.cleanUp(),
   }));
 
   it('should call handlers', () => {

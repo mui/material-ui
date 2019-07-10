@@ -21,16 +21,13 @@ describe('<Fab />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<Fab>Conformance?</Fab>, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render with the root class but no others', () => {

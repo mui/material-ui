@@ -23,16 +23,13 @@ describe('<IconButton />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<IconButton>book</IconButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render an inner label span (bloody safari)', () => {

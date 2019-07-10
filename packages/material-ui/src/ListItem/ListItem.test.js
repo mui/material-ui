@@ -34,15 +34,12 @@ describe('<ListItem />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<ListItem />, () => ({
     classes,
     inheritComponent: 'li',
     mount,
     refInstanceof: window.HTMLLIElement,
+    after: () => mount.cleanUp(),
   }));
 
   it('should render with gutters classes', () => {

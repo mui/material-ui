@@ -22,16 +22,13 @@ describe('<TextField />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TextField />, () => ({
     classes,
     inheritComponent: FormControl,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   describe('structure', () => {

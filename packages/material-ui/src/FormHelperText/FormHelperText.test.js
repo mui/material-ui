@@ -20,16 +20,13 @@ describe('<FormHelperText />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<FormHelperText />, () => ({
     classes,
     inheritComponent: 'p',
     mount,
     refInstanceof: window.HTMLParagraphElement,
     testComponentPropWith: 'div',
+    after: () => mount.cleanUp(),
   }));
 
   describe('prop: error', () => {

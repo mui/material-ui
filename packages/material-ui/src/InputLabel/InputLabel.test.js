@@ -23,16 +23,13 @@ describe('<InputLabel />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<InputLabel>Foo</InputLabel>, () => ({
     classes,
     inheritComponent: FormLabel,
     mount,
     refInstanceof: window.HTMLLabelElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render a label with text', () => {

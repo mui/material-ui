@@ -32,10 +32,6 @@ describe('<SwitchBase />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(
     <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
     () => ({
@@ -44,6 +40,7 @@ describe('<SwitchBase />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
+      after: () => mount.cleanUp(),
     }),
   );
 

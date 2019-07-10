@@ -20,10 +20,6 @@ describe('<Table />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(
     <Table>
       <tbody />
@@ -35,6 +31,7 @@ describe('<Table />', () => {
       refInstanceof: window.HTMLTableElement,
       // can't test another component with tbody as a child
       testComponentPropWith: 'table',
+      after: () => mount.cleanUp(),
     }),
   );
 
