@@ -29,7 +29,7 @@ export interface SimpleDialogProps {
 
 function SimpleDialog(props: SimpleDialogProps) {
   const classes = useStyles();
-  const { onClose, selectedValue, ...other } = props;
+  const { onClose, selectedValue, open } = props;
 
   function handleClose() {
     onClose(selectedValue);
@@ -40,7 +40,7 @@ function SimpleDialog(props: SimpleDialogProps) {
   }
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
       <List>
         {emails.map(email => (
