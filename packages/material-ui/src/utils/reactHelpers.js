@@ -4,6 +4,7 @@ export function isMuiElement(element, muiNames) {
   return React.isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
 }
 
+// TODO: Make it private only in v5
 export function setRef(ref, value) {
   if (typeof ref === 'function') {
     ref(value);
