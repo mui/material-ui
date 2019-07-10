@@ -24,7 +24,7 @@ export default function SimpleRating() {
       <Rating value={value} disabled />
       <Box mt={3} />
       <Typography gutterBottom>Pristine</Typography>
-      <Rating name="pristin" value={null} />
+      <Rating name="pristine" value={null} />
     </div>
   );
 }
