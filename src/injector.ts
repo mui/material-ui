@@ -2,6 +2,7 @@ import * as babel from '@babel/core';
 import * as babelTypes from '@babel/types';
 import * as t from './types/index';
 import { generate, GenerateOptions } from './generator';
+import { v4 as uuid } from 'uuid';
 
 export type InjectOptions = {
   /**
@@ -26,21 +27,38 @@ export function inject(
     return target;
   }
 
+  const propTypesToInject = new Map<string, string>();
+
   const result = babel.transformSync(target, {
     plugins: [
       '@babel/plugin-syntax-class-properties',
       '@babel/plugin-syntax-jsx',
-      plugin(propTypes, options),
+      plugin(propTypes, options, propTypesToInject),
     ],
     configFile: false,
     babelrc: false,
     retainLines: true,
   });
 
-  return (result && result.code) || null;
+  let code = result && result.code;
+  if (!code) {
+    return null;
+  }
+
+  // Replace the placeholders with the generated prop-types
+  // Workaround for issues with comments getting removed and malformed
+  propTypesToInject.forEach((value, key) => {
+    code = code!.replace(key, `\n\n${value}\n\n`);
+  });
+
+  return code;
 }
 
-function plugin(propTypes: t.ProgramNode, options: InjectOptions = {}): babel.PluginObj {
+function plugin(
+  propTypes: t.ProgramNode,
+  options: InjectOptions = {},
+  mapOfPropTypes: Map<string, string>,
+): babel.PluginObj {
   const { includeUnusedProps = false, includeJSDoc = true, sortProptypes } = options;
 
   let importName = '';
@@ -220,43 +238,21 @@ function plugin(propTypes: t.ProgramNode, options: InjectOptions = {}): babel.Pl
       includeJSDoc,
     });
 
-    const ast = babel.template.ast(source, { preserveComments: includeJSDoc });
+    const placeholder = `const a${uuid().replace(/\-/g, '_')} = null;`;
 
-    // TODO: Need to add comments to the AST since template.ast removes them from the source
-    // https://github.com/babel/babel/issues/9684
-    // Once fixed, this block can be removed
-    if (
-      includeJSDoc &&
-      babelTypes.isExpressionStatement(ast) &&
-      babelTypes.isAssignmentExpression(ast.expression) &&
-      babelTypes.isObjectExpression(ast.expression.right)
-    ) {
-      for (const prop of ast.expression.right.properties) {
-        if (babelTypes.isObjectProperty(prop) && babelTypes.isIdentifier(prop.key)) {
-          const originalProp = props.types.find(x => x.name === prop.key.name);
-
-          if (originalProp && originalProp.jsDoc) {
-            prop.leadingComments = prop.leadingComments || [];
-            (prop.leadingComments as babelTypes.Comment[]).push({
-              type: 'CommentBlock',
-              value: `*\n * ${originalProp.jsDoc} \n`,
-            } as babelTypes.CommentBlock);
-          }
-        }
-      }
-    }
+    mapOfPropTypes.set(placeholder, source);
 
     // Insert prop types
     if (babelTypes.isExportNamedDeclaration(path.parent)) {
       path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
-      path.insertAfter(ast);
+      path.insertAfter(babel.template.ast(placeholder));
       path.parentPath.replaceWith(path.node);
     } else if (babelTypes.isExportDefaultDeclaration(path.parent)) {
-      path.insertAfter(babel.template(`export default ${nodeName};`)());
-      path.insertAfter(ast);
+      path.insertAfter(babel.template.ast(`export default ${nodeName};`));
+      path.insertAfter(babel.template.ast(placeholder));
       path.parentPath.replaceWith(path.node);
     } else {
-      path.insertAfter(ast);
+      path.insertAfter(babel.template.ast(placeholder));
     }
   }
 }
