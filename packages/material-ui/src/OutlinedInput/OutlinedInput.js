@@ -70,7 +70,7 @@ export const styles = theme => {
       paddingTop: 10.5,
       paddingBottom: 10.5,
     },
-    /* Styles applied to the `input` element if `select={true}. */
+    /* Styles applied to the `input` element if `select={true}`. */
     inputSelect: {
       paddingRight: 32,
     },

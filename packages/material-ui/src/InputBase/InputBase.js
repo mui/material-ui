@@ -120,7 +120,7 @@ export const styles = theme => {
     inputMarginDense: {
       paddingTop: 4 - 1,
     },
-    /* Styles applied to the `input` element if `select={true}. */
+    /* Styles applied to the `input` element if `select={true}`. */
     inputSelect: {
       paddingRight: 32,
     },
