@@ -15,6 +15,10 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
+function getLabelText(value) {
+  return `${value} Heart${value !== 1 ? 's' : ''}`;
+}
+
 export default function CustomizedRatings() {
   return (
     <div>
@@ -30,6 +34,7 @@ export default function CustomizedRatings() {
       <StyledRating
         name="customized-color"
         value={2}
+        getLabelText={getLabelText}
         precision={0.5}
         icon={<FavoriteIcon fontSize="inherit" />}
       />

@@ -112,14 +112,13 @@ IconContainer.propTypes = {
 const defaultIcon = <Star fontSize="inherit" />;
 
 function defaultLabelText(value) {
-  return `${value} star${value !== 1 ? 's' : ''}`;
+  return `${value} Star${value !== 1 ? 's' : ''}`;
 }
 
 const Rating = React.forwardRef(function Rating(props, ref) {
   const {
     classes,
     className,
-    component: Component = 'div',
     disabled = false,
     emptyIcon,
     getLabelText = defaultLabelText,
@@ -295,7 +294,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   return (
-    <Component
+    <div
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -309,6 +308,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
         },
         className,
       )}
+      role={readOnly ? 'img' : null}
+      aria-label={readOnly ? getLabelText(value) : null}
       {...other}
     >
       {!readOnly && !disabled && value == null && (
@@ -383,7 +384,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           },
         );
       })}
-    </Component>
+    </div>
   );
 });
 
@@ -397,11 +398,6 @@ Rating.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the rating will be disabled.
    */

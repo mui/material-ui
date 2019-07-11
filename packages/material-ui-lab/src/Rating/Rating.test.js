@@ -31,6 +31,7 @@ describe('<Rating />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
   }));
 
   it('should render', () => {

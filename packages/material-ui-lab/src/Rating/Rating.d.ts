@@ -7,7 +7,6 @@ export interface IconContainerProps extends React.HTMLAttributes<HTMLDivElement>
 
 export interface RatingProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, RatingClassKey, 'onChange'> {
-  component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   disabled?: boolean;
   emptyIcon?: React.ReactElement;
   getLabelText?: (value: number) => string;
