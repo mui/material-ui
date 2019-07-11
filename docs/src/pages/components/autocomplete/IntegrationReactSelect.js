@@ -301,13 +301,13 @@ export default function IntegrationReactSelect() {
           classes={classes}
           styles={selectStyles}
           inputId="react-select-single"
+          placeholder="Search a country (start with a)"
           TextFieldProps={{
             label: 'Country',
             InputLabelProps: {
               htmlFor: 'react-select-single',
               shrink: true,
-            },
-            placeholder: 'Search a country (start with a)',
+            }
           }}
           options={suggestions}
           components={components}
@@ -319,13 +319,13 @@ export default function IntegrationReactSelect() {
           classes={classes}
           styles={selectStyles}
           inputId="react-select-multiple"
+          placeholder="Select multiple countries"
           TextFieldProps={{
             label: 'Countries',
             InputLabelProps: {
               htmlFor: 'react-select-multiple',
               shrink: true,
             },
-            placeholder: 'Select multiple countries',
           }}
           options={suggestions}
           components={components}
