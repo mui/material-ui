@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React, { Ref, FunctionComponent, ReactNode } from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
@@ -27,13 +27,13 @@ type LinkProps = LinkPropsBase & Pick<TypographyProps, 'align' | 'color' | 'disp
 
 interface LinkPropsBase extends NextLinkProps {
   activeClassName?: string;
-  innerRef?: Ref<HTMLAnchorElement>;
+  innerRef?: React.Ref<HTMLAnchorElement>;
   naked?: boolean;
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-const RouterLink: FunctionComponent<LinkProps> = props => {
+const RouterLink: React.FunctionComponent<LinkProps> = props => {
   const router = useRouter();
   const {
     activeClassName = 'active',
