@@ -9,7 +9,7 @@ describe('ModalManager', () => {
   before(() => {
     modalManager = new ModalManager();
     container1 = document.createElement('div');
-    container1.style.padding = '20px';
+    container1.style.paddingRight = '20px';
     Object.defineProperty(container1, 'scrollHeight', {
       value: 100,
       writable: false,
@@ -107,6 +107,8 @@ describe('ModalManager', () => {
     let fixedNode;
 
     beforeEach(() => {
+      container1.style.paddingRight = '20px';
+
       fixedNode = document.createElement('div');
       fixedNode.classList.add('mui-fixed');
       document.body.appendChild(fixedNode);
@@ -119,47 +121,31 @@ describe('ModalManager', () => {
     });
 
     it('should handle the scroll', () => {
-      fixedNode.style.padding = '14px';
+      fixedNode.style.paddingRight = '14px';
+
       const modal = {};
-      const paddingRightBefore = container1.style.paddingRight;
-      const paddingFixedRightBefore = fixedNode.style.paddingRight;
       modalManager.add(modal, container1);
       modalManager.mount(modal);
       assert.strictEqual(container1.style.overflow, 'hidden');
-      assert.strictEqual(
-        container1.style.paddingRight,
-        `${parseInt(paddingRightBefore, 10) + getScrollbarSize()}px`,
-      );
-      assert.strictEqual(
-        fixedNode.style.paddingRight,
-        `${parseInt(paddingFixedRightBefore, 10) + getScrollbarSize()}px`,
-      );
+      assert.strictEqual(container1.style.paddingRight, `${20 + getScrollbarSize()}px`);
+      assert.strictEqual(fixedNode.style.paddingRight, `${14 + getScrollbarSize()}px`);
       modalManager.remove(modal);
       assert.strictEqual(container1.style.overflow, '');
-      assert.strictEqual(container1.style.paddingRight, paddingRightBefore);
-      assert.strictEqual(fixedNode.style.paddingRight, paddingFixedRightBefore);
+      assert.strictEqual(container1.style.paddingRight, '20px');
+      assert.strictEqual(fixedNode.style.paddingRight, '14px');
     });
 
     it('should restore styles correctly if none existed before', () => {
-      // reset padding on containers
-      fixedNode.style.setProperty('padding', '');
-      container1.style.setProperty('padding', '');
       const modal = {};
-      const paddingRightBefore = container1.style.paddingRight;
-      const paddingFixedRightBefore = fixedNode.style.paddingRight;
       modalManager.add(modal, container1);
       modalManager.mount(modal);
-
       assert.strictEqual(container1.style.overflow, 'hidden');
-      assert.strictEqual(container1.style.paddingRight, `${0 + getScrollbarSize()}px`);
+      assert.strictEqual(container1.style.paddingRight, `${20 + getScrollbarSize()}px`);
       assert.strictEqual(fixedNode.style.paddingRight, `${0 + getScrollbarSize()}px`);
       modalManager.remove(modal);
-
       assert.strictEqual(container1.style.overflow, '');
-      assert.strictEqual(container1.style.paddingRight, paddingRightBefore);
-      assert.strictEqual(fixedNode.style.paddingRight, paddingFixedRightBefore);
-
-      container1.style.setProperty('padding', '20px');
+      assert.strictEqual(container1.style.paddingRight, '20px');
+      assert.strictEqual(fixedNode.style.paddingRight, '');
     });
   });
 

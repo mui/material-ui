@@ -22,12 +22,8 @@ export function ariaHidden(node, show) {
   }
 }
 
-function getPaddingRightRaw(node) {
-  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || '';
-}
-
 function getPaddingRight(node) {
-  return getPaddingRightRaw(node) || 0;
+  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
 }
 
 const BLACKLIST = ['template', 'script', 'style'];
@@ -80,15 +76,13 @@ function handleNewContainer(containerInfo) {
     const scrollbarSize = getScrollbarSize();
 
     // Use computed style, here to get the real padding to add our scrollbar width.
-    style.paddingRight = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
+    style['padding-right'] = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
 
     // .mui-fixed is a global helper.
     fixedNodes = ownerDocument(containerInfo.container).querySelectorAll('.mui-fixed');
-
     [].forEach.call(fixedNodes, node => {
-      const paddingRight = getPaddingRight(node);
-      restorePaddings.push(getPaddingRightRaw(node));
-      node.style.paddingRight = `${paddingRight + scrollbarSize}px`;
+      restorePaddings.push(node.style.paddingRight);
+      node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
     });
   }
 
@@ -100,7 +94,7 @@ function handleNewContainer(containerInfo) {
     if (fixedNodes) {
       [].forEach.call(fixedNodes, (node, i) => {
         if (restorePaddings[i]) {
-          node.style.setProperty('padding-right', `${restorePaddings[i]}px`);
+          node.style.paddingRight = restorePaddings[i];
         } else {
           node.style.removeProperty('padding-right');
         }
