@@ -47,7 +47,7 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "pages/components/lists/SelectedListItem.js"}}
 
-## Align List Items
+## Align list items
 
 You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
 
