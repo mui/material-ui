@@ -504,6 +504,34 @@ describe('<Modal />', () => {
       });
       assert.strictEqual(document.activeElement.getAttribute('data-test'), 'sentinelEnd');
     });
+
+    it.only('contains the focus if the active element is removed', () => {
+      function WithRemovableElement({ open = false, hideButton = false }) {
+        return (
+          <Modal open={open}>
+            <div data-testid="modal">{!hideButton && <button>I'm going to disappear</button>}</div>
+          </Modal>
+        );
+      }
+
+      wrapper = mount(<WithRemovableElement />);
+
+      wrapper.setProps({ open: true });
+      wrapper.update();
+      assert.strictEqual(document.activeElement.nodeName, 'DIV');
+      assert.strictEqual(document.activeElement.getAttribute('data-testid'), 'modal');
+
+      wrapper
+        .find('button')
+        .instance()
+        .focus();
+      assert.strictEqual(document.activeElement.nodeName, 'BUTTON');
+
+      wrapper.setProps({ hideButton: true });
+      wrapper.update();
+      assert.strictEqual(document.activeElement.nodeName, 'DIV');
+      assert.strictEqual(document.activeElement.getAttribute('data-testid'), 'modal');
+    });
   });
 
   describe('prop: onRendered', () => {
