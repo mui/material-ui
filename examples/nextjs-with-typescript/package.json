@@ -6,7 +6,7 @@
     "@material-ui/core": "latest",
     "@material-ui/styles": "latest",
     "clsx": "latest",
-    "next": "next",
+    "next": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
