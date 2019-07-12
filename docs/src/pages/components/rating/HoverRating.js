@@ -47,26 +47,29 @@ export default function HoverRating() {
 
   return (
     <div>
-      <Typography gutterBottom>Side</Typography>
-      <div className={classes.rating1}>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Side</Typography>
+        <div className={classes.rating1}>
+          <Rating
+            name="hover-side"
+            value={value}
+            precision={0.5}
+            onChangeActive={(event, newHover) => {
+              setHover(newHover);
+            }}
+          />
+          <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
+        </div>
+      </Box>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Tooltip</Typography>
         <Rating
-          name="hover-side"
+          name="hover-tooltip"
           value={value}
           precision={0.5}
-          onChangeActive={(event, newHover) => {
-            setHover(newHover);
-          }}
+          IconContainerComponent={IconContainer}
         />
-        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-      </div>
-      <Box mt={3} />
-      <Typography gutterBottom>Tooltip</Typography>
-      <Rating
-        name="hover-tooltip"
-        value={value}
-        precision={0.5}
-        IconContainerComponent={IconContainer}
-      />
+      </Box>
     </div>
   );
 }

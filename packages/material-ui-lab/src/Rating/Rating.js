@@ -133,7 +133,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     precision = 1,
     readOnly = false,
     size = 'medium',
-    value: valueProp,
+    value: valueProp = null,
     ...other
   } = props;
 

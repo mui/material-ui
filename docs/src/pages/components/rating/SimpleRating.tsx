@@ -8,23 +8,28 @@ export default function SimpleRating() {
 
   return (
     <div>
-      <Typography gutterBottom>Controlled</Typography>
-      <Rating
-        name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
-      <Box mt={3} />
-      <Typography gutterBottom>Read only</Typography>
-      <Rating value={value} readOnly />
-      <Box mt={3} />
-      <Typography gutterBottom>Disabled</Typography>
-      <Rating value={value} disabled />
-      <Box mt={3} />
-      <Typography gutterBottom>Pristine</Typography>
-      <Rating name="pristine" value={null} />
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Controlled</Typography>
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+      </Box>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Read only</Typography>
+        <Rating value={value} readOnly />
+      </Box>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Disabled</Typography>
+        <Rating value={value} disabled />
+      </Box>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Pristine</Typography>
+        <Rating name="pristine" value={null} />
+      </Box>
     </div>
   );
 }

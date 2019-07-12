@@ -31,7 +31,7 @@ import Rating from '@material-ui/lab/Rating';
 | <span class="prop-name">precision</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The minimum increment value change allowed. |
 | <span class="prop-name">readOnly</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Removes all hover effects and pointer events. |
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br></span> | <span class="prop-default">'medium'</span> | The size of the rating. |
-| <span class="prop-name">value</span> | <span class="prop-type">number</span> |  | The rating value. |
+| <span class="prop-name">value</span> | <span class="prop-type">number</span> | <span class="prop-default">null</span> | The rating value. |
 
 The `ref` is forwarded to the root element.
 
