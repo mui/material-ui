@@ -3,6 +3,7 @@ import { assert, expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { act, cleanup, createClientRender } from 'test/utils/createClientRender';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Fade from '../Fade';
@@ -11,6 +12,7 @@ import Modal from './Modal';
 
 describe('<Modal />', () => {
   let mount;
+  const render = createClientRender({ strict: false });
   let savedBodyStyle;
 
   before(() => {
@@ -21,6 +23,10 @@ describe('<Modal />', () => {
 
   beforeEach(() => {
     document.body.setAttribute('style', savedBodyStyle);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -511,31 +517,26 @@ describe('<Modal />', () => {
     });
 
     it.only('contains the focus if the active element is removed', () => {
-      function WithRemovableElement({ open = false, hideButton = false }) {
+      function WithRemovableElement({ hideButton = false }) {
         return (
-          <Modal open={open}>
-            <div data-testid="modal">{!hideButton && <button>I'm going to disappear</button>}</div>
+          <Modal open>
+            <div>{!hideButton && <button>I'm going to disappear</button>}</div>
           </Modal>
         );
       }
 
-      wrapper = mount(<WithRemovableElement />);
+      // remove once .only remvoved
+      wrapper = { unmount() {} };
 
-      wrapper.setProps({ open: true });
-      wrapper.update();
-      assert.strictEqual(document.activeElement.nodeName, 'DIV');
-      assert.strictEqual(document.activeElement.getAttribute('data-testid'), 'modal');
+      const { getByRole, setProps } = render(<WithRemovableElement />);
 
-      wrapper
-        .find('button')
-        .instance()
-        .focus();
-      assert.strictEqual(document.activeElement.nodeName, 'BUTTON');
+      expect(getByRole('document')).to.be.focused;
 
-      wrapper.setProps({ hideButton: true });
-      wrapper.update();
-      assert.strictEqual(document.activeElement.nodeName, 'DIV');
-      assert.strictEqual(document.activeElement.getAttribute('data-testid'), 'modal');
+      getByRole('button').focus();
+      expect(getByRole('button')).to.be.focused;
+
+      setProps({ hideButton: true });
+      expect(getByRole('document')).to.be.focused;
     });
   });
 

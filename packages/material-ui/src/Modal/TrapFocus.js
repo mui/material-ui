@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
-import { contains } from '../utils';
 
 /**
  * @ignore - internal component.
@@ -59,7 +58,7 @@ function TrapFocus(props) {
           [
             'Material-UI: the modal content node does not accept focus.',
             'For the benefit of assistive technologies, ' +
-            'the tabIndex of the node is being set to "-1".',
+              'the tabIndex of the node is being set to "-1".',
           ].join('\n'),
         );
         rootRef.current.setAttribute('tabIndex', -1);
