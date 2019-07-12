@@ -2,14 +2,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import NextLink from 'next/link';
+import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
-
-interface NextLinkProps {
-  as?: string;
-  href?: string;
-  prefetch?: boolean;
-}
 
 type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & NextLinkProps;
 
@@ -26,10 +20,12 @@ const NextComposed = React.forwardRef(function NextComposed(
   );
 });
 
-interface LinkProps extends MuiLinkProps, NextLinkProps {
+interface LinkPropsBase {
   activeClassName?: string;
   naked?: boolean;
 }
+
+type LinkProps = LinkPropsBase & NextLinkProps & MuiLinkProps;
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
