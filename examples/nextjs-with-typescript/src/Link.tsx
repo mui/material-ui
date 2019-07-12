@@ -2,22 +2,29 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import NextLink from 'next/link';
+import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 import { TypographyProps } from '@material-ui/core/Typography';
 
-interface NextLinkProps {
-  as?: string;
-  href?: string;
-  prefetch?: boolean;
+interface NextLinkPropsExtended extends Omit<NextLinkProps, 'href'> {
   className?: string;
+  href: string;
 }
 
-const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkProps>((props, ref) => {
-  const { as, href, prefetch, ...other } = props;
+const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkPropsExtended>((props, ref) => {
+  const { as, href, replace, scroll, passHref, shallow, onError, prefetch, ...other } = props;
 
   return (
-    <NextLink href={href} prefetch={prefetch} as={as}>
+    <NextLink
+      href={href}
+      prefetch={prefetch}
+      as={as}
+      replace={replace}
+      scroll={scroll}
+      shallow={shallow}
+      passHref={passHref}
+      onError={onError}
+    >
       <a ref={ref} {...other} />
     </NextLink>
   );
@@ -25,7 +32,7 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkProps>((props, 
 
 type LinkProps = LinkPropsBase & Pick<TypographyProps, 'align' | 'color' | 'display' | 'variant'>;
 
-interface LinkPropsBase extends NextLinkProps {
+interface LinkPropsBase extends NextLinkPropsExtended {
   activeClassName?: string;
   innerRef?: React.Ref<HTMLAnchorElement>;
   naked?: boolean;
