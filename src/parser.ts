@@ -216,6 +216,13 @@ export function parseFromProgram(filePath: string, program: ts.Program) {
       }
     }
 
+    // @ts-ignore - Private method
+    if (checker.isArrayType(type)) {
+      // @ts-ignore - Private method
+      const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
+      return t.arrayNode(checkType(arrayType));
+    }
+
     if (type.isUnion()) {
       return t.unionNode(type.types.map(checkType));
     }
@@ -233,20 +240,6 @@ export function parseFromProgram(filePath: string, program: ts.Program) {
     }
 
     if (type.flags & ts.TypeFlags.Object) {
-      const objType = type as ts.ObjectType;
-
-      // TODO: Use the API once it has something for this
-      if (
-        objType.objectFlags & ts.ObjectFlags.Reference &&
-        objType.symbol.escapedName === 'Array'
-      ) {
-        const arrayTypes: ts.Type[] = (objType as any)['typeArguments'];
-        if (arrayTypes.length === 1) {
-          return t.arrayNode(checkType(arrayTypes[0]));
-        }
-        return t.arrayNode(t.unionNode(arrayTypes.map(checkType)));
-      }
-
       return type.getCallSignatures().length === 0 ? t.objectNode() : t.functionNode();
     }
 
