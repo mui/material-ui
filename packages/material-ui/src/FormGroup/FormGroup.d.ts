@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface FormGroupProps
-  extends StandardProps<React.HtmlHTMLAttributes<HTMLDivElement>, FormGroupClassKey> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, FormGroupClassKey> {
   row?: boolean;
 }
 
