@@ -26,7 +26,7 @@ export type GridJustification =
 
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-export type GridSize = false | 'auto' | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 export type GridProps = SimplifiedPropsOf<typeof Grid>;
 
@@ -77,20 +77,15 @@ export type GridClassKey =
   | 'grid-xs-12';
 
 declare const Grid: OverridableComponent<{
-  props: {
+  props: Partial<Record<Breakpoint, boolean | GridSize>> & {
     alignContent?: GridContentAlignment;
     alignItems?: GridItemsAlignment;
     container?: boolean;
     direction?: GridDirection;
     item?: boolean;
     justify?: GridJustification;
-    lg?: GridSize;
-    md?: GridSize;
-    sm?: GridSize;
     spacing?: GridSpacing;
     wrap?: GridWrap;
-    xl?: GridSize;
-    xs?: GridSize;
     zeroMinWidth?: boolean;
   };
   defaultComponent: 'div';
