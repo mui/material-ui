@@ -97,11 +97,11 @@ function TrapFocus(props) {
       }
     };
 
-    doc.addEventListener('focus', contain, true);
+    doc.addEventListener('focusout', contain, true);
     doc.addEventListener('keydown', loopFocus, true);
 
     return () => {
-      doc.removeEventListener('focus', contain, true);
+      doc.removeEventListener('focusout', contain, true);
       doc.removeEventListener('keydown', loopFocus, true);
 
       // restoreLastFocus()
