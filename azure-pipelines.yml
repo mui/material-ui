@@ -23,7 +23,7 @@ steps:
     displayName: 'build @material-ui packages'
 
   - script: |
-      cd packages/material-ui && tar cfvz build.tgz ./build
+      cd packages/material-ui && tar cfv build.tar ./build
     displayName: 'create @material-ui/core tarball'
 
   - task: PublishPipelineArtifact@0
