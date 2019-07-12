@@ -62,7 +62,7 @@ function handleNewContainer(containerInfo) {
   // We are only interested in the actual `style` here because we will override it.
   const restoreStyle = {
     overflow: containerInfo.container.style.overflow,
-    paddingRight: containerInfo.container.style.paddingRight,
+    'padding-right': containerInfo.container.style.paddingRight,
   };
 
   const style = {
@@ -76,15 +76,13 @@ function handleNewContainer(containerInfo) {
     const scrollbarSize = getScrollbarSize();
 
     // Use computed style, here to get the real padding to add our scrollbar width.
-    style.paddingRight = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
+    style['padding-right'] = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
 
     // .mui-fixed is a global helper.
     fixedNodes = ownerDocument(containerInfo.container).querySelectorAll('.mui-fixed');
-
     [].forEach.call(fixedNodes, node => {
-      const paddingRight = getPaddingRight(node);
-      restorePaddings.push(paddingRight);
-      node.style.paddingRight = `${paddingRight + scrollbarSize}px`;
+      restorePaddings.push(node.style.paddingRight);
+      node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
     });
   }
 
@@ -95,12 +93,20 @@ function handleNewContainer(containerInfo) {
   const restore = () => {
     if (fixedNodes) {
       [].forEach.call(fixedNodes, (node, i) => {
-        node.style.paddingRight = `${restorePaddings[i]}px`;
+        if (restorePaddings[i]) {
+          node.style.paddingRight = restorePaddings[i];
+        } else {
+          node.style.removeProperty('padding-right');
+        }
       });
     }
 
     Object.keys(restoreStyle).forEach(key => {
-      containerInfo.container.style[key] = restoreStyle[key];
+      if (restoreStyle[key]) {
+        containerInfo.container.style.setProperty(key, restoreStyle[key]);
+      } else {
+        containerInfo.container.style.removeProperty(key);
+      }
     });
   };
 
