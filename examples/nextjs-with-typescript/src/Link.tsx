@@ -6,13 +6,13 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 import { TypographyProps } from '@material-ui/core/Typography';
 
-interface NextLinkExtendedProps extends Omit<NextLinkProps, 'href'> {
+interface NextLinkExtendedProps extends Omit<NextLinkProps, 'href' | 'onError'> {
   className?: string;
   href: string;
 }
 
 const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkExtendedProps>((props, ref) => {
-  const { as, href, replace, scroll, passHref, shallow, onError, prefetch, ...other } = props;
+  const { as, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
 
   return (
     <NextLink
@@ -23,7 +23,6 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkExtendedProps>(
       scroll={scroll}
       shallow={shallow}
       passHref={passHref}
-      onError={onError}
     >
       <a ref={ref} {...other} />
     </NextLink>
@@ -47,7 +46,6 @@ const RouterLink: React.FunctionComponent<LinkProps> = props => {
     className: classNameProps,
     innerRef,
     naked,
-    onError,
     ...other
   } = props;
 
@@ -56,7 +54,7 @@ const RouterLink: React.FunctionComponent<LinkProps> = props => {
   });
 
   if (naked) {
-    return <NextComposed className={className} onError={onError} ref={innerRef} {...other} />;
+    return <NextComposed className={className} ref={innerRef} {...other} />;
   }
 
   return <MuiLink component={NextComposed} className={className} ref={innerRef} {...other} />;
