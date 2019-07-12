@@ -15,8 +15,8 @@ chai.use((chaiAPI, utils) => {
 
     this.assert(
       element === document.activeElement,
-      'expected #{exp} to be focused, but #{act} was instead',
-      'expected #{exp} not to be focused',
+      'focus expected #{exp}, but #{act} was instead',
+      'unexpected focus on #{exp}',
       element == null ? String(element) : prettyDOM(element),
       prettyDOM(document.activeElement),
     );
