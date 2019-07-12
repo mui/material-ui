@@ -98,6 +98,7 @@ export const styles = theme => ({
   },
 });
 
+// TODO v5: Make private
 const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
   const { center: centerProp = false, classes, className, ...other } = props;
   const [ripples, setRipples] = React.useState([]);
