@@ -1,4 +1,5 @@
 import * as colors from './colors';
+import React from 'react';
 
 export { colors };
 export {
@@ -126,3 +127,7 @@ export { default as useScrollTrigger } from './useScrollTrigger';
 export { default as withMobileDialog } from './withMobileDialog';
 export { default as withWidth } from './withWidth';
 export { default as Zoom } from './Zoom';
+
+export function Canary() {
+  return <h1>Did the canary survive?</h1>;
+}
