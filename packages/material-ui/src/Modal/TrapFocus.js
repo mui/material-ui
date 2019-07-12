@@ -20,7 +20,6 @@ function TrapFocus(props) {
     isEnabled,
     open,
   } = props;
-  const ignoreNextEnforceFocus = React.useRef();
   const sentinelStart = React.useRef(null);
   const sentinelEnd = React.useRef(null);
   const nodeToRestore = React.useRef();
@@ -68,8 +67,7 @@ function TrapFocus(props) {
     }
 
     const contain = nativeFocusOutEvent => {
-      if (disableEnforceFocus || !isEnabled() || ignoreNextEnforceFocus.current) {
-        ignoreNextEnforceFocus.current = false;
+      if (disableEnforceFocus || !isEnabled()) {
         return;
       }
 
@@ -86,9 +84,6 @@ function TrapFocus(props) {
 
       // Make sure the next tab starts from the right place.
       if (doc.activeElement === rootRef.current) {
-        // We need to ignore the next contain as
-        // it will try to move the focus back to the rootRef element.
-        ignoreNextEnforceFocus.current = true;
         if (event.shiftKey) {
           sentinelEnd.current.focus();
         } else {
