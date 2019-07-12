@@ -67,13 +67,13 @@ function TrapFocus(props) {
       rootRef.current.focus();
     }
 
-    const contain = () => {
+    const contain = nativeFocusOutEvent => {
       if (disableEnforceFocus || !isEnabled() || ignoreNextEnforceFocus.current) {
         ignoreNextEnforceFocus.current = false;
         return;
       }
 
-      if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
+      if (rootRef.current && !rootRef.current.contains(nativeFocusOutEvent.relatedTarget)) {
         rootRef.current.focus();
       }
     };
