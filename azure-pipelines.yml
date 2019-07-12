@@ -23,14 +23,14 @@ steps:
     displayName: 'build @material-ui packages'
 
   - script: |
-      cd packages/material-ui && tar cfv build.tar ./build/*
+      tar cfvz core.tgz -C packages/material-ui/build/ .
     displayName: 'create @material-ui/core tarball'
 
   - task: PublishPipelineArtifact@0
     inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)/node_modules/@material-ui'
-      artifactName: 'core.tar'
-      targetPath: 'packages/material-ui/build.tar'
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'packages'
+      targetPath: 'core.tgz'
 
   - script: |
       yarn docs:build
