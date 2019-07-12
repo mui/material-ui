@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - '*' 
+    - '*'
     exclude:
     - l10n
 
@@ -21,6 +21,15 @@ steps:
   - script: |
       yarn lerna run --ignore @material-ui/icons --parallel --scope "@material-ui/*" build
     displayName: 'build @material-ui packages'
+
+  - script: |
+      cd packages/material-ui && tar cfvz build.tgz ./build
+    displayName: 'create @material-ui/core tarball'
+
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: '@material-ui/core.tgz'
+      targetPath: 'packages/material-ui/build.tgz'
 
   - script: |
       yarn docs:build
