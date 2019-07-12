@@ -28,8 +28,9 @@ steps:
 
   - task: PublishPipelineArtifact@0
     inputs:
-      artifactName: '@material-ui/core.tgz'
-      targetPath: 'packages/material-ui/build.tgz'
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/node_modules/@material-ui'
+      artifactName: 'core.tar'
+      targetPath: 'packages/material-ui/build.tar'
 
   - script: |
       yarn docs:build
