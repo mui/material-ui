@@ -68,7 +68,7 @@ function useMediaQuery(queryInput, options = {}) {
     return () => {
       queryList.removeListener(handleMatchesChange);
     };
-  }, [query]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [query, supportMatchMedia]);
 
   return match;
 }
