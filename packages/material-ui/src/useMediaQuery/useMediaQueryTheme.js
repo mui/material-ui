@@ -1,19 +1,8 @@
-import { useTheme } from '../styles';
-import { getThemeProps } from '@material-ui/styles';
 import useMediaQuery from './useMediaQuery';
 
-function useMediaQueryTheme(query, options) {
-  const theme = useTheme();
-  const props = getThemeProps({
-    theme,
-    name: 'MuiUseMediaQuery',
-    props: {},
-  });
-
-  return useMediaQuery(typeof query === 'function' ? query(theme) : query, {
-    ...props,
-    ...options,
-  });
+// TODO to deprecate in v4.x and remove in v5
+function useMediaQueryTheme(...args) {
+  return useMediaQuery(...args);
 }
 
 export default useMediaQueryTheme;
