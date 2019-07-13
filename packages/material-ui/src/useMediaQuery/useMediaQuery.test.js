@@ -49,7 +49,7 @@ describe('useMediaQuery', () => {
     values = spy();
   });
 
-  after(() => {
+  afterEach(() => {
     cleanup();
   });
 

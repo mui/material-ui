@@ -16,7 +16,7 @@ export interface Options {
   ssrMatchMedia?: (query: string) => MuiMediaQueryList;
 }
 
-export default function useMediaQuery(
-  query: string | ((theme: any) => string),
+export default function useMediaQuery<Theme = unknown>(
+  query: string | ((theme: Theme) => string),
   options?: Options,
 ): boolean;
