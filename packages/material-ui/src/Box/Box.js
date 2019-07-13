@@ -30,6 +30,6 @@ export const styleFunction = css(
 /**
  * @ignore - do not document.
  */
-const Box = styled('div')(styleFunction, { name: 'MuiBox' });
+const Box = styled('div')(styleFunction, { name: 'MuiBox', index: 1 });
 
 export default Box;
