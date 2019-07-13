@@ -32,10 +32,10 @@ steps:
     inputs:
       regionName: 'eu-central-1'
       bucketName: 'eps1lon-material-ui'
-      globExpressions: '*.tgz'
+      globExpressions: 'packages/*/build/*.tgz'
       targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)'
       filesAcl: 'public-read'
-    displayName: "Upload @material-ui/core canary to S3"
+    displayName: "Upload distributables to S3"
     env:
       AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
       AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
