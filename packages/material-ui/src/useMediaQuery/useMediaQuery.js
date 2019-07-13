@@ -23,7 +23,7 @@ function useMediaQuery(queryInput, options = {}) {
   );
 
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
-  query = query.replace('@media ', '');
+  query = query.replace(/^@media( ?)/m, '');
 
   // Wait for jsdom to support the match media feature.
   // All the browsers Material-UI support have this built-in.
