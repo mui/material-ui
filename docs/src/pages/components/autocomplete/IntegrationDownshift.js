@@ -65,9 +65,22 @@ function renderInput(inputProps) {
 }
 
 renderInput.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({
+    chip: PropTypes.string.isRequired,
+    container: PropTypes.string.isRequired,
+    divider: PropTypes.string.isRequired,
+    inputInput: PropTypes.string.isRequired,
+    inputRoot: PropTypes.string.isRequired,
+    paper: PropTypes.string.isRequired,
+    root: PropTypes.string.isRequired,
+  }).isRequired,
   InputProps: PropTypes.object,
-  ref: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  ref: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object]).isRequired,
+    }),
+  ]),
 };
 
 function renderSuggestion(suggestionProps) {
@@ -95,7 +108,9 @@ renderSuggestion.propTypes = {
   index: PropTypes.number.isRequired,
   itemProps: PropTypes.object.isRequired,
   selectedItem: PropTypes.string.isRequired,
-  suggestion: PropTypes.object.isRequired,
+  suggestion: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 function getSuggestions(value, { showEmpty = false } = {}) {
@@ -216,7 +231,15 @@ function DownshiftMultiple(props) {
 }
 
 DownshiftMultiple.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({
+    chip: PropTypes.string.isRequired,
+    container: PropTypes.string.isRequired,
+    divider: PropTypes.string.isRequired,
+    inputInput: PropTypes.string.isRequired,
+    inputRoot: PropTypes.string.isRequired,
+    paper: PropTypes.string.isRequired,
+    root: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const useStyles = makeStyles(theme => ({

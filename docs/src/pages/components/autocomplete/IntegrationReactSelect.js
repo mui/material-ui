@@ -130,7 +130,12 @@ function inputComponent({ inputRef, ...props }) {
 }
 
 inputComponent.propTypes = {
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.any.isRequired,
+    }),
+  ]),
 };
 
 function Control(props) {
@@ -166,9 +171,16 @@ Control.propTypes = {
   /**
    * The mouse down event and the innerRef to pass down to the controller element.
    */
-  innerProps: PropTypes.object.isRequired,
-  innerRef: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.func, PropTypes.object])
-    .isRequired,
+  innerProps: PropTypes.shape({
+    onMouseDown: PropTypes.func.isRequired,
+  }).isRequired,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.oneOf([null]),
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.any.isRequired,
+    }),
+  ]).isRequired,
   selectProps: PropTypes.object.isRequired,
 };
 
@@ -196,12 +208,24 @@ Option.propTypes = {
   /**
    * props passed to the wrapping element for the group.
    */
-  innerProps: PropTypes.object.isRequired,
+  innerProps: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    key: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    onMouseMove: PropTypes.func.isRequired,
+    onMouseOver: PropTypes.func.isRequired,
+    tabIndex: PropTypes.number.isRequired,
+  }).isRequired,
   /**
    * Inner ref to DOM Node
    */
-  innerRef: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.func, PropTypes.object])
-    .isRequired,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.oneOf([null]),
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.any.isRequired,
+    }),
+  ]).isRequired,
   /**
    * Whether the option is focused.
    */
@@ -285,7 +309,11 @@ function MultiValue(props) {
 MultiValue.propTypes = {
   children: PropTypes.node,
   isFocused: PropTypes.bool.isRequired,
-  removeProps: PropTypes.object.isRequired,
+  removeProps: PropTypes.shape({
+    onClick: PropTypes.func.isRequired,
+    onMouseDown: PropTypes.func.isRequired,
+    onTouchEnd: PropTypes.func.isRequired,
+  }).isRequired,
   selectProps: PropTypes.object.isRequired,
 };
 

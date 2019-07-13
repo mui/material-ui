@@ -120,7 +120,11 @@ class RouterBreadcrumbs extends React.Component {
 }
 
 RouterBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({
+    lists: PropTypes.string.isRequired,
+    nested: PropTypes.string.isRequired,
+    root: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default withStyles(styles)(RouterBreadcrumbs);
