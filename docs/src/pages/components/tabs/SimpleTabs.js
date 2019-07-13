@@ -5,20 +5,37 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function TabPanel(props) {
-  const { children, ...other } = props;
+  const { children, value, index, ...other } = props;
 
   return (
-    <Typography component="div" role="tabpanel" style={{ padding: 8 * 3 }} {...other}>
-      {children}
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
     </Typography>
   );
 }
 
 TabPanel.propTypes = {
   children: PropTypes.node.isRequired,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
 };
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,18 +56,18 @@ export default function SimpleTabs() {
     <div className={classes.root}>
       <AppBar position="static" aria-label="Simple tabs example">
         <Tabs value={value} onChange={handleChange}>
-          <Tab label="Item One" id="simple-tab-1" aria-controls="simple-tabpanel-1" />
-          <Tab label="Item Two" id="simple-tab-2" aria-controls="simple-tabpanel-2" />
-          <Tab label="Item Three" id="simple-tab-3" aria-controls="simple-tabpanel-3" />
+          <Tab label="Item One" {...a11yProps(0)} />
+          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel hidden={value !== 0} id="simple-tabpanel-1" aria-labelledby="simple-tab-1">
+      <TabPanel value={value} index={0}>
         Item One
       </TabPanel>
-      <TabPanel hidden={value !== 1} id="simple-tabpanel-2" aria-labelledby="simple-tab-2">
+      <TabPanel value={value} index={1}>
         Item Two
       </TabPanel>
-      <TabPanel hidden={value !== 2} id="simple-tabpanel-3" aria-labelledby="simple-tab-3">
+      <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
     </div>

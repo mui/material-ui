@@ -196,8 +196,8 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
-        const tab = tablist.children[0].children[1];
+        const tablist = getByRole('tablist').parentNode;
+        const tab = getByRole('tablist').children[1];
 
         Object.defineProperty(tablist, 'clientWidth', { value: 100 });
         Object.defineProperty(tablist, 'scrollWidth', { value: 100 });
@@ -299,7 +299,7 @@ describe('<Tabs />', () => {
 
     it('should response to scroll events', () => {
       const { container, setProps, getByRole } = render(tabs);
-      const tablist = getByRole('tablist');
+      const tablist = getByRole('tablist').parentNode;
 
       Object.defineProperty(tablist, 'clientWidth', { value: 120 });
       tablist.scrollLeft = 10;
@@ -329,7 +329,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablist = getByRole('tablist');
+      const tablist = getByRole('tablist').parentNode;
       expect(tablist.style.overflow).to.equal('hidden');
       setProps({
         variant: 'scrollable',
@@ -389,7 +389,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      const tablist = getByRole('tablist');
+      const tablist = getByRole('tablist').parentNode;
 
       Object.defineProperty(tablist, 'clientWidth', { value: 120 });
       tablist.scrollLeft = 10;
@@ -427,7 +427,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
+        const tablist = getByRole('tablist').parentNode;
 
         Object.defineProperty(tablist, 'clientWidth', { value: 200 });
         Object.defineProperty(tablist, 'scrollWidth', { value: 200 });
@@ -451,7 +451,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
+        const tablist = getByRole('tablist').parentNode;
 
         Object.defineProperty(tablist, 'clientWidth', { value: 120 });
         Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
@@ -476,7 +476,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
+        const tablist = getByRole('tablist').parentNode;
 
         Object.defineProperty(tablist, 'clientWidth', { value: 120 });
         Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
@@ -500,7 +500,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
+        const tablist = getByRole('tablist').parentNode;
 
         Object.defineProperty(tablist, 'clientWidth', { value: 120 });
         Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
@@ -538,7 +538,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablist = getByRole('tablist');
+      const tablist = getByRole('tablist').parentNode;
       Object.defineProperty(tablist, 'clientWidth', { value: 120 });
       Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
       tablist.scrollLeft = 20;
@@ -577,8 +577,8 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablist = getByRole('tablist');
-      const tab = tablist.children[0].children[0];
+      const tablist = getByRole('tablist').parentNode;
+      const tab = getByRole('tablist').children[0];
 
       Object.defineProperty(tablist, 'clientWidth', { value: 120 });
       Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
