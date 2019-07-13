@@ -23,14 +23,22 @@ steps:
     displayName: 'build @material-ui packages'
 
   - script: |
-      tar cfvz core.tgz -C packages/material-ui/build/ .
-    displayName: 'create @material-ui/core tarball'
+      cd packages/material-ui/build
+      npm version 0.0.0-canary.$(Build.SourceVersion) --no-git-tag-version
+      npm pack
+    displayName: 'create @material-ui/core canary distributable'
 
-  - task: PublishPipelineArtifact@0
+  - task: S3Upload@1
     inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      artifactName: 'packages'
-      targetPath: 'core.tgz'
+      regionName: 'eu-central-1'
+      bucketName: 'eps1lon-material-ui'
+      globExpressions: '*.tgz'
+      targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)'
+      filesAcl: 'public-read'
+    displayName: "Upload @material-ui/core canary to S3"
+    env:
+      AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
+      AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
 
   - script: |
       yarn docs:build
