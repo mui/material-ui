@@ -383,8 +383,8 @@ You should be able to move the custom styles to the `root` class key.
 
   ```diff
   <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' } }
-  + classes={{ asterisk: 'bar' } }
+  - FormLabelClasses={{ asterisk: 'bar' }}
+  + classes={{ asterisk: 'bar' }}
   >
     Foo
   </InputLabel>

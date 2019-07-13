@@ -49,6 +49,6 @@ In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-l
 ```jsx
 <Switch
   value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' } }
+  inputProps={{ 'aria-label': 'Switch A' }}
 />
 ```

@@ -113,6 +113,11 @@ or
 
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
+
+The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+
+{{"demo": "pages/components/text-fields/FormattedInputs.js"}}
+
 The provided input component should handle the `inputRef` property.
 The property should be called with a value that implements the following interface:
 
@@ -147,11 +152,6 @@ function MyInputComponent(props) {
   }}
 />;
 ```
-
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could
-be applied to e.g. `react-stripe-element`.
-
-{{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
 ## Accessibility
 

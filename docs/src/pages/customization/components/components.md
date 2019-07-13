@@ -190,7 +190,7 @@ compiles to:
   classes={{
     root: classes.root, // class name, e.g. `root-x`
     disabled: classes.disabled, // class name, e.g. `disabled-x`
-  } }
+  }}
 >
 ```
 

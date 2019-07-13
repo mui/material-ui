@@ -184,21 +184,32 @@ describe('<InputBase />', () => {
     });
 
     it('throws on change if `inputRef` isnt forwarded', () => {
-      // eslint-disable-next-line react/prop-types
-      const BadInputComponent = React.forwardRef(({ inputRef, ...props }, ref) => {
+      const BadInputComponent = React.forwardRef(({ action, inputRef, ...props }, ref) => {
+        React.useImperativeHandle(action, () => ({
+          trigger: () => {
+            props.onChange({}, {});
+          },
+        }));
+
         // `inputRef` belongs into `ref`
         return <input {...props} ref={ref} />;
       });
 
-      const wrapper = mount(<InputBase inputComponent={BadInputComponent} />);
-      // assert.throws causes uncaught error in the browser
+      BadInputComponent.propTypes = {
+        action: PropTypes.object.isRequired,
+        inputRef: PropTypes.func.isRequired,
+        onChange: PropTypes.func.isRequired,
+      };
+
+      const handleRef = React.createRef();
+      render(<InputBase inputProps={{ action: handleRef }} inputComponent={BadInputComponent} />);
       let errorMessage = null;
       try {
-        wrapper.find('input').simulate('change', { target: null });
+        handleRef.current.trigger();
       } catch (error) {
         errorMessage = String(error);
       }
-      assert.include(errorMessage, 'Material-UI: Expected valid input target');
+      expect(errorMessage).to.include('Material-UI: Expected valid input target');
     });
   });
 

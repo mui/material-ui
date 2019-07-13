@@ -38,7 +38,7 @@ In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-l
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' } }
+  inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
 
