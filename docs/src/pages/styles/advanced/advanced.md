@@ -267,7 +267,7 @@ const useStyle = makeStyles({
 
 export default function MyComponent() {
   // Order doesn't matter
-  const classes = useStyles();
+  const classes = useStyle();
   const classesBase = useStyleBase();
 
   // Order doesn't matter
