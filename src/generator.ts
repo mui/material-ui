@@ -96,7 +96,10 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
   }
 
   if (t.isInterfaceNode(node)) {
-    return `${importedName}.shape({\n${generate(node.types, options)}\n})`;
+    return `${importedName}.shape({\n${generate(node.types, {
+      ...options,
+      shouldInclude: undefined,
+    })}\n})`;
   }
 
   if (t.isFunctionNode(node)) {
