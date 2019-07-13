@@ -26,13 +26,14 @@ steps:
       cd packages/material-ui/build
       npm version 0.0.0-canary.$(Build.SourceVersion) --no-git-tag-version
       npm pack
+      mv *.tgz ../../../
     displayName: 'create @material-ui/core canary distributable'
 
   - task: S3Upload@1
     inputs:
       regionName: 'eu-central-1'
       bucketName: 'eps1lon-material-ui'
-      globExpressions: 'packages/*/build/*.tgz'
+      globExpressions: '*.tgz'
       targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)'
       filesAcl: 'public-read'
     displayName: "Upload distributables to S3"
