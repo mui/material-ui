@@ -147,7 +147,13 @@ function testRootClass(element, getOptions) {
   });
 }
 
-function testJsonRenderer(element) {
+/**
+ * Tests that the component can be rendered with react-test-renderer.
+ * This is important for snapshot testing with Jest (even if we don't encourage it).
+ *
+ * @param {React.ReactElement} element
+ */
+function testReactTestRenderer(element) {
   it('should render without errors in ReactTestRenderer', () => {
     ReactTestRenderer.act(() => {
       ReactTestRenderer.create(element, {
@@ -165,7 +171,7 @@ const fullSuite = {
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
   rootClass: testRootClass,
-  jsonRendered: testJsonRenderer,
+  reactTestRenderer: testReactTestRenderer,
 };
 
 /**

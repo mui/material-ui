@@ -30,7 +30,7 @@ describe('<ExpansionPanel />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'jsonRendered'],
+    skip: ['componentProp'],
   }));
 
   it('should render and not be controlled', () => {

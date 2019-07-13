@@ -35,7 +35,12 @@ describe('<Modal />', () => {
       inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['rootClass', 'componentProp', 'jsonRendered'],
+      skip: [
+        'rootClass',
+        'componentProp',
+        // https://github.com/facebook/react/issues/11565
+        'reactTestRenderer',
+      ],
     }),
   );
 

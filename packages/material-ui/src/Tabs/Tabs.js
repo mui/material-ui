@@ -23,7 +23,9 @@ export const styles = theme => ({
     display: 'flex',
   },
   /* Styles applied to the flex container element. */
-  flexContainer: {},
+  flexContainer: {
+    display: 'flex',
+  },
   /* Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered: {
     justifyContent: 'center',
@@ -359,11 +361,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const conditionalElements = getConditionalElements();
 
   return (
-    <Component
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
       {conditionalElements.scrollButtonLeft}
       {conditionalElements.scrollbarSizeListener}
       <div

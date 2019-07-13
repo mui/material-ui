@@ -29,7 +29,7 @@ describe('<StepContent />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'jsonRendered'],
+    skip: ['componentProp'],
   }));
 
   it('merges styles and other props into the root node', () => {
