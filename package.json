@@ -23,7 +23,7 @@
     "@commitlint/config-conventional": "^8.0.0",
     "@types/babel__core": "^7.1.2",
     "@types/lodash": "^4.14.136",
-    "@types/node": "^12.6.0",
+    "@types/node": "^12.6.2",
     "@types/uuid": "^3.4.5",
     "husky": "^3.0.0",
     "prettier": "^1.18.2",
@@ -31,11 +31,11 @@
     "standard-version": "^6.0.1"
   },
   "dependencies": {
-    "@babel/core": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-syntax-class-properties": "^7.2.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@babel/types": "^7.5.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "typescript": "3.5.2",
     "uuid": "^3.3.2"
   },
