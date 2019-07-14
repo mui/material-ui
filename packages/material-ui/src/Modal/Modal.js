@@ -112,7 +112,9 @@ const Modal = React.forwardRef(function Modal(props, ref) {
     }
   });
 
-  const handleRendered = useEventCallback(() => {
+  const handlePortalRef = useEventCallback(node => {
+    mountNodeRef.current = node;
+
     if (onRendered) {
       onRendered();
     }
@@ -216,12 +218,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   }
 
   return (
-    <Portal
-      ref={mountNodeRef}
-      container={container}
-      disablePortal={disablePortal}
-      onRendered={handleRendered}
-    >
+    <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
       {/*
           Marking an element with the role presentation indicates to assistive technology
           that this element should be ignored; it exists to support the web application and

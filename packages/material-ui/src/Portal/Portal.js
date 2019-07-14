@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import { useForkRef } from '../utils/reactHelpers';
+import { setRef, useForkRef } from '../utils/reactHelpers';
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
@@ -28,13 +28,21 @@ const Portal = React.forwardRef(function Portal(props, ref) {
     }
   }, [container, disablePortal]);
 
-  React.useImperativeHandle(ref, () => mountNode || childRef.current, [mountNode]);
+  useEnhancedEffect(() => {
+    if (mountNode || disablePortal) {
+      setRef(ref, mountNode || childRef.current);
+    }
+
+    return () => {
+      setRef(null);
+    };
+  }, [ref, mountNode]);
 
   useEnhancedEffect(() => {
-    if (onRendered && mountNode) {
+    if (onRendered && (mountNode || disablePortal)) {
       onRendered();
     }
-  }, [mountNode, onRendered]);
+  }, [mountNode, onRendered, disablePortal]);
 
   if (disablePortal) {
     React.Children.only(children);
@@ -66,7 +74,7 @@ Portal.propTypes = {
   /**
    * Callback fired once the children has been mounted into the `container`.
    */
-  onRendered: PropTypes.func,
+  onRendered: PropTypes.func, // TODO v5: to remove
 };
 
 if (process.env.NODE_ENV !== 'production') {

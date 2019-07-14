@@ -54,7 +54,7 @@ describe('<Portal />', () => {
         <h1>Foo</h1>
       </Portal>,
     );
-    assert.deepEqual(refSpy1.args, [[null], [null], [document.body]]);
+    assert.deepEqual(refSpy1.args, [[document.body]]);
     const refSpy2 = spy();
     mount(
       <Portal disablePortal ref={refSpy2}>
