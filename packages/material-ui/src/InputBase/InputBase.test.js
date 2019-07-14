@@ -184,6 +184,64 @@ describe('<InputBase />', () => {
       expect(typeof injectedProps.onFocus).to.equal('function');
     });
 
+    describe('target mock implementations', () => {
+      it('can just mock the value', () => {
+        function MockedValue(props) {
+          const { onChange } = props;
+
+          function handleChange(event) {
+            onChange({ target: { value: event.target.value } });
+          }
+
+          return <input onChange={handleChange} />;
+        }
+        MockedValue.propTypes = { onChange: PropTypes.func.isRequired };
+
+        function FilledState(props) {
+          const { filled } = useFormControl();
+          return <span {...props}>filled: {String(filled)}</span>;
+        }
+
+        const { getByRole, getByTestId } = render(
+          <FormControl>
+            <FilledState data-testid="filled" />
+            <InputBase inputComponent={MockedValue} />
+          </FormControl>,
+        );
+        expect(getByTestId('filled')).to.have.text('filled: false');
+
+        fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
+        expect(getByTestId('filled')).to.have.text('filled: true');
+      });
+
+      it('can expose the full target with `inputRef`', () => {
+        function FullTarget(props) {
+          const { inputRef, ...other } = props;
+
+          return <input ref={inputRef} {...other} />;
+        }
+        FullTarget.propTypes = {
+          inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        };
+
+        function FilledState(props) {
+          const { filled } = useFormControl();
+          return <span {...props}>filled: {String(filled)}</span>;
+        }
+
+        const { getByRole, getByTestId } = render(
+          <FormControl>
+            <FilledState data-testid="filled" />
+            <InputBase inputComponent={FullTarget} />
+          </FormControl>,
+        );
+        expect(getByTestId('filled')).to.have.text('filled: false');
+
+        fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
+        expect(getByTestId('filled')).to.have.text('filled: true');
+      });
+    });
+
     describe('errors', () => {
       beforeEach(() => {
         consoleErrorMock.spy();
