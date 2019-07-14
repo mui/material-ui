@@ -253,11 +253,7 @@ export function parseFromProgram(filePath: string, program: ts.Program) {
       return t.undefinedNode();
     }
 
-    if (type.flags & ts.TypeFlags.Object) {
-      return type.getCallSignatures().length === 0 ? t.objectNode() : t.functionNode();
-    }
-
-    if (type.flags & ts.TypeFlags.Any) {
+    if (type.flags & ts.TypeFlags.Any || type.flags & ts.TypeFlags.Unknown) {
       return t.anyNode();
     }
 
@@ -271,21 +267,25 @@ export function parseFromProgram(filePath: string, program: ts.Program) {
       return t.literalNode(checker.typeToString(type));
     }
 
-    if (type.flags & ts.TypeFlags.NonPrimitive && checker.typeToString(type) === 'object') {
-      return t.objectNode();
-    }
-
     if (type.flags & ts.TypeFlags.Null) {
       return t.literalNode('null');
     }
 
-    // {foo: string} & {bar: string}
-    if (type.isIntersection()) {
+    if (type.getCallSignatures().length) {
+      return t.functionNode();
+    }
+
+    // Object-like type
+    if (type.getProperties().length) {
       return t.objectNode();
     }
 
-    if (type.flags & ts.TypeFlags.Unknown) {
-      return t.anyNode();
+    // Object without properties or object keyword
+    if (
+      type.flags & ts.TypeFlags.Object ||
+      (type.flags & ts.TypeFlags.NonPrimitive && checker.typeToString(type) === 'object')
+    ) {
+      return t.objectNode();
     }
 
     console.warn(
