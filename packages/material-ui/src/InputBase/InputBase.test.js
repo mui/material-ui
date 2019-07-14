@@ -4,6 +4,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
@@ -183,33 +184,38 @@ describe('<InputBase />', () => {
       expect(typeof injectedProps.onFocus).to.equal('function');
     });
 
-    it('throws on change if `inputRef` isnt forwarded', () => {
-      const BadInputComponent = React.forwardRef(({ action, inputRef, ...props }, ref) => {
-        React.useImperativeHandle(action, () => ({
-          trigger: () => {
-            props.onChange({}, {});
-          },
-        }));
-
-        // `inputRef` belongs into `ref`
-        return <input {...props} ref={ref} />;
+    describe('errors', () => {
+      beforeEach(() => {
+        consoleErrorMock.spy();
       });
 
-      BadInputComponent.propTypes = {
-        action: PropTypes.object.isRequired,
-        inputRef: PropTypes.func.isRequired,
-        onChange: PropTypes.func.isRequired,
-      };
+      afterEach(() => {
+        consoleErrorMock.reset();
+      });
 
-      const handleRef = React.createRef();
-      render(<InputBase inputProps={{ action: handleRef }} inputComponent={BadInputComponent} />);
-      let errorMessage = null;
-      try {
-        handleRef.current.trigger();
-      } catch (error) {
-        errorMessage = String(error);
-      }
-      expect(errorMessage).to.include('Material-UI: Expected valid input target');
+      it('throws on change if `inputRef` isnt forwarded', () => {
+        /**
+         * This component simulates a custom input component that hides the inner
+         * input value for security reasons e.g. react-stripe-element
+         */
+        function BadInputComponent(props) {
+          const { onChange } = props;
+
+          function handleChange() {
+            onChange({});
+          }
+
+          return <input onChange={handleChange} />;
+        }
+        BadInputComponent.propTypes = { onChange: PropTypes.func.isRequired };
+
+        const { getByRole } = render(<InputBase inputComponent={BadInputComponent} />);
+
+        fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
+
+        const errorMessage = consoleErrorMock.args()[0][0];
+        expect(errorMessage).to.include('Material-UI: Expected valid input target');
+      });
     });
   });
 
