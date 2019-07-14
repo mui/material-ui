@@ -2,6 +2,18 @@ import * as ts from 'typescript';
 import * as t from './types';
 
 /**
+ * Options that specify how the parser should act
+ */
+interface ParserOptions {
+  /**
+   * Called before a PropType is added to a component
+   * @return true to include the PropType, false to skip it
+   * @default () => true
+   */
+  shouldInclude?: (data: { name: string }) => boolean;
+}
+
+/**
  * A wrapper for `ts.createProgram`
  * @param files The files to later be parsed with `parseFromProgram`
  * @param options The options to pass to the compiler
@@ -15,18 +27,30 @@ export function createProgram(files: string[], options: ts.CompilerOptions) {
  * use `createProgram` and `parseFromProgram` for better performance
  * @param filePath The file to parse
  * @param options The options from `loadConfig`
+ * @param parserOptions Options that specify how the parser should act
  */
-export function parseFile(filePath: string, options: ts.CompilerOptions) {
+export function parseFile(
+  filePath: string,
+  options: ts.CompilerOptions,
+  parserOptions: ParserOptions = {},
+) {
   const program = ts.createProgram([filePath], options);
-  return parseFromProgram(filePath, program);
+  return parseFromProgram(filePath, program, parserOptions);
 }
 
 /**
  * Parses the specified file and returns the PropTypes as an AST
  * @param filePath The file to get the PropTypes from
  * @param program The program object returned by `createProgram`
+ * @param parserOptions Options that specify how the parser should act
  */
-export function parseFromProgram(filePath: string, program: ts.Program) {
+export function parseFromProgram(
+  filePath: string,
+  program: ts.Program,
+  parserOptions: ParserOptions = {},
+) {
+  const { shouldInclude = () => true } = parserOptions;
+
   const checker = program.getTypeChecker();
   const sourceFile = program.getSourceFile(filePath);
 
@@ -178,7 +202,9 @@ export function parseFromProgram(filePath: string, program: ts.Program) {
   }
 
   function parsePropsType(name: string, type: ts.Type) {
-    const properties = type.getProperties();
+    const properties = type
+      .getProperties()
+      .filter(symbol => shouldInclude({ name: symbol.getName() }));
     if (properties.length === 0) {
       return;
     }
