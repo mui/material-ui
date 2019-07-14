@@ -4,7 +4,6 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
@@ -243,35 +242,40 @@ describe('<InputBase />', () => {
     });
 
     describe('errors', () => {
-      beforeEach(() => {
-        consoleErrorMock.spy();
-      });
-
-      afterEach(() => {
-        consoleErrorMock.reset();
-      });
-
-      it('throws on change if `inputRef` isnt forwarded', () => {
+      it('throws on change if the target isnt mocked', () => {
         /**
          * This component simulates a custom input component that hides the inner
-         * input value for security reasons e.g. react-stripe-element
+         * input value for security reasons e.g. react-stripe-element.
+         *
+         * A ref is exposed to trigger a change event instead of using fireEvent.change
          */
         function BadInputComponent(props) {
-          const { onChange } = props;
+          const { onChange, triggerChangeRef } = props;
 
-          function handleChange() {
-            onChange({});
-          }
+          // simulates const handleChange = () => onChange({}) and passing that
+          // handler to the onChange prop of `input`
+          React.useImperativeHandle(triggerChangeRef, () => () => onChange({}));
 
-          return <input onChange={handleChange} />;
+          return <input />;
         }
-        BadInputComponent.propTypes = { onChange: PropTypes.func.isRequired };
+        BadInputComponent.propTypes = {
+          onChange: PropTypes.func.isRequired,
+          triggerChangeRef: PropTypes.object,
+        };
 
-        const { getByRole } = render(<InputBase inputComponent={BadInputComponent} />);
+        const triggerChangeRef = React.createRef();
+        render(<InputBase inputProps={{ triggerChangeRef }} inputComponent={BadInputComponent} />);
 
-        fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
+        // mocking fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
+        // using dispatchEvents prevents us from catching the error in the browser
+        // in test:karma neither try-catch nor consoleErrorMock.spy catches the error
+        let errorMessage = '';
+        try {
+          triggerChangeRef.current();
+        } catch (error) {
+          errorMessage = String(error);
+        }
 
-        const errorMessage = consoleErrorMock.args()[0][0];
         expect(errorMessage).to.include('Material-UI: Expected valid input target');
       });
     });
