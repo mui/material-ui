@@ -88,8 +88,12 @@ function isStrictMount(mountIdentifier, program) {
  * @param {import('@babel/core').Node} valueNode
  */
 function getRefInstance(valueNode) {
-  if (!babel.types.isMemberExpression(valueNode)) {
+  if (!babel.types.isMemberExpression(valueNode) && valueNode.name !== 'Object') {
     throw new Error('Expected a member expression in refInstanceof');
+  }
+
+  if (!valueNode.object && valueNode.name === 'Object') {
+    return valueNode.name;
   }
 
   switch (valueNode.object.name) {

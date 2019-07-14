@@ -288,6 +288,10 @@ function generateProps(reactAPI) {
     refHint = 'The component cannot hold a ref.';
   } else if (reactAPI.forwardsRefTo === 'React.Component') {
     refHint = 'The `ref` is attached to a component class.';
+  } else if (reactAPI.forwardsRefTo === 'Object') {
+    refHint = `The \`ref\` is attached to an Imperative Handle. Have a look at the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
+      reactAPI.filename,
+    )}) for more detail.`;
   }
   text = `${text}\n${refHint}\n`;
 
