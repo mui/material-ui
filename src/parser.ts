@@ -183,23 +183,37 @@ export function parseFromProgram(filePath: string, program: ts.Program) {
       return;
     }
 
-    programNode.body.push(t.componentNode(name, properties.map(checkSymbol)));
+    programNode.body.push(
+      t.componentNode(name, properties.map(x => checkSymbol(x, [(type as any).id]))),
+    );
   }
 
-  function checkSymbol(symbol: ts.Symbol): t.PropTypeNode {
-    const locations = symbol.getDeclarations();
-    if (!locations) {
-      console.error('No types found');
-      return t.propTypeNode(symbol.getName(), getDocumentation(symbol), t.anyNode());
+  function checkSymbol(symbol: ts.Symbol, typeStack: number[]): t.PropTypeNode {
+    const declarations = symbol.getDeclarations();
+
+    const type = declarations
+      ? // The proptypes aren't detailed enough that we need all the different combinations
+        // so we just pick the first and ignore the rest
+        checker.getTypeOfSymbolAtLocation(symbol, declarations[0])
+      : // The properties of Record<..., ...> don't have a declaration, but the symbol has a type property
+        ((symbol as any).type as ts.Type);
+
+    if (!type) {
+      throw new Error('No types found');
     }
 
-    // The proptypes aren't detailed enough that we need all the different combinations
-    // So we just pick the first and ignore the rest
-    const type = checker.getTypeOfSymbolAtLocation(symbol, locations[0]);
-    return t.propTypeNode(symbol.getName(), getDocumentation(symbol), checkType(type));
+    return t.propTypeNode(
+      symbol.getName(),
+      getDocumentation(symbol),
+      // If the typeStack contains type.id we're dealing with a type that references itself.
+      // To prevent getting stuck in an infinite loop we just set it to an objectNode
+      typeStack.includes((type as any).id)
+        ? t.objectNode()
+        : checkType(type, [...typeStack, (type as any).id]),
+    );
   }
 
-  function checkType(type: ts.Type): t.Node {
+  function checkType(type: ts.Type, typeStack: number[]): t.Node {
     {
       const typeNode = type as any;
 
@@ -220,11 +234,11 @@ export function parseFromProgram(filePath: string, program: ts.Program) {
     if (checker.isArrayType(type)) {
       // @ts-ignore - Private method
       const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
-      return t.arrayNode(checkType(arrayType));
+      return t.arrayNode(checkType(arrayType, typeStack));
     }
 
     if (type.isUnion()) {
-      return t.unionNode(type.types.map(checkType));
+      return t.unionNode(type.types.map(x => checkType(x, typeStack)));
     }
 
     if (type.flags & ts.TypeFlags.String) {
