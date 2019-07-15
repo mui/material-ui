@@ -32,7 +32,7 @@ steps:
   - task: S3Upload@1
     inputs:
       regionName: 'eu-central-1'
-      bucketName: 'eps1lon-material-ui'
+      bucketName: 'eps1lon-mui-scripts'
       globExpressions: '*.tgz'
       targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)'
       filesAcl: 'public-read'
