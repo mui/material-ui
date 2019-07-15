@@ -63,7 +63,7 @@
     "build:typescript": "tsc --project tsconfig.json",
     "build": "npm run build:typescript && npm run build:bundle && npm run build:copy",
     "build:analyze": "npm run build",
-    "release": "yarn test && yarn version && yarn build && npm run publish",
+    "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive",
     "publish": "npm publish build"
   },
   "devDependencies": {
