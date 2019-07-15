@@ -12,22 +12,43 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-interface TabContainerProps {
+interface TabPanelProps {
   children?: React.ReactNode;
+  index: any;
+  value: any;
 }
 
-function TabContainer(props: TabContainerProps) {
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-prevent-tabpanel-${index}`}
+      aria-labelledby={`scrollable-prevent-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
     </Typography>
   );
 }
 
-TabContainer.propTypes = {
+TabPanel.propTypes = {
   children: PropTypes.node.isRequired,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
+
+function a11yProps(index: any) {
+  return {
+    id: `scrollable-prevent-tab-${index}`,
+    'aria-controls': `scrollable-prevent-tabpanel-${index}`,
+  };
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,23 +71,43 @@ export default function ScrollableTabsButtonPrevent() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="off">
-          <Tab icon={<PhoneIcon />} aria-label="Phone" />
-          <Tab icon={<FavoriteIcon />} aria-label="Favorite" />
-          <Tab icon={<PersonPinIcon />} aria-label="Person" />
-          <Tab icon={<HelpIcon />} aria-label="Help" />
-          <Tab icon={<ShoppingBasket />} aria-label="Shopping" />
-          <Tab icon={<ThumbDown />} aria-label="Up" />
-          <Tab icon={<ThumbUp />} aria-label="Down" />
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="off"
+          aria-label="Scrollable prevent tabs example"
+        >
+          <Tab icon={<PhoneIcon />} aria-label="Phone" {...a11yProps(0)} />
+          <Tab icon={<FavoriteIcon />} aria-label="Favorite" {...a11yProps(1)} />
+          <Tab icon={<PersonPinIcon />} aria-label="Person" {...a11yProps(2)} />
+          <Tab icon={<HelpIcon />} aria-label="Help" {...a11yProps(3)} />
+          <Tab icon={<ShoppingBasket />} aria-label="Shopping" {...a11yProps(4)} />
+          <Tab icon={<ThumbDown />} aria-label="Up" {...a11yProps(5)} />
+          <Tab icon={<ThumbUp />} aria-label="Down" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer>Item One</TabContainer>}
-      {value === 1 && <TabContainer>Item Two</TabContainer>}
-      {value === 2 && <TabContainer>Item Three</TabContainer>}
-      {value === 3 && <TabContainer>Item Four</TabContainer>}
-      {value === 4 && <TabContainer>Item Five</TabContainer>}
-      {value === 5 && <TabContainer>Item Six</TabContainer>}
-      {value === 6 && <TabContainer>Item Seven</TabContainer>}
+      <TabPanel value={value} index={0}>
+        Item One
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Item Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Item Four
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        Item Five
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        Item Six
+      </TabPanel>
+      <TabPanel value={value} index={6}>
+        Item Seven
+      </TabPanel>
     </div>
   );
 }

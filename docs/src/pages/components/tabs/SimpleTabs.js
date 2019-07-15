@@ -26,8 +26,8 @@ function TabPanel(props) {
 
 TabPanel.propTypes = {
   children: PropTypes.node.isRequired,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
 
 function a11yProps(index) {
@@ -54,8 +54,8 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" aria-label="Simple tabs example">
-        <Tabs value={value} onChange={handleChange}>
+      <AppBar position="static">
+        <Tabs value={value} onChange={handleChange} aria-label="Simple tabs example">
           <Tab label="Item One" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
