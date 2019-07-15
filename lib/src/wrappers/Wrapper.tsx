@@ -32,7 +32,7 @@ export type InlineRoot = OmitInnerWrapperProps<InlineWrapperProps>;
 // prettier-ignore
 export type ExtendWrapper<TInput extends PureDateInputProps | KeyboardDateInputProps> = {
   /**
-   * Displaying variant
+   * Picker container option
    * @default 'dialog'
    */
   variant?: WrapperVariant

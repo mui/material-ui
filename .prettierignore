@@ -3,3 +3,4 @@ build/
 coverage/
 *.mp4
 .next
+docs/prop-types.json

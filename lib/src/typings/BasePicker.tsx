@@ -17,12 +17,12 @@ export interface BasePickerProps {
   format?: string;
   /** Disable datepicker and text field */
   disabled?: boolean;
-  /** Dynamic formatter of text field label */
+  /** Dynamic formatter of text field value */
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
-  /** Date that will be initially highlighted */
+  /** Date that will be initially highlighted if null was passed */
   initialFocusedDate?: ParsableDate;
   /**
-   * Message displaying in text field, if date is invalid (doesn't work in keyboard mode)
+   * Message displaying in text field if date is invalid (doesn't work in keyboard mode)
    * @default 'unknown'
    */
   invalidLabel?: string;
@@ -31,7 +31,7 @@ export interface BasePickerProps {
    * @default ' '
    */
   emptyLabel?: string;
-  /** Callback fired when date isAccepted */
+  /** Callback fired when date is accepted */
   onAccept?: (date: MaterialUiPickersDate) => void;
   /** Callback fired when new error should be displayed */
   onError?: (error: React.ReactNode, value: MaterialUiPickersDate | ParsableDate) => void;
@@ -54,6 +54,4 @@ export interface BasePickerProps {
   /* Component that will replace default toolbar renderer */
   ToolbarComponent?: React.ComponentType<ToolbarComponentProps>;
   variant?: WrapperVariant;
-  mergePreviousDateOnChange?: boolean;
-  forwardedRef?: any;
 }

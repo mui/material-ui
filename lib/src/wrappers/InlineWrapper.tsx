@@ -60,11 +60,11 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
         }}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: true ? 'right' : 'center',
+          horizontal: 'center',
         }}
         transformOrigin={{
           vertical: 'top',
-          horizontal: true ? 'right' : 'center',
+          horizontal: 'center',
         }}
         children={children}
         {...PopoverProps}

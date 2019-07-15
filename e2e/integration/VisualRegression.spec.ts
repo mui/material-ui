@@ -62,7 +62,7 @@ describe('Visual Regression', () => {
   pages.forEach(page => {
     context(page.name, () => {
       before(() => {
-        const now = new Date(2019, 1, 1);
+        const now = new Date('2019-01-01T09:41:00.000Z');
         cy.clock(now.getTime());
 
         cy.visit(page.url);

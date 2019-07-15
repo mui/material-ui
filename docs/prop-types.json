@@ -219,7 +219,7 @@
     },
     "labelFunc": {
       "defaultValue": null,
-      "description": "Dynamic formatter of text field label",
+      "description": "Dynamic formatter of text field value",
       "name": "labelFunc",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -232,7 +232,7 @@
     },
     "initialFocusedDate": {
       "defaultValue": null,
-      "description": "Date that will be initially highlighted",
+      "description": "Date that will be initially highlighted if null was passed",
       "name": "initialFocusedDate",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -247,7 +247,7 @@
       "defaultValue": {
         "value": "'unknown'"
       },
-      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -275,7 +275,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback fired when date isAccepted",
+      "description": "Callback fired when date is accepted",
       "name": "onAccept",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -372,7 +372,7 @@
       "defaultValue": {
         "value": "'dialog'"
       },
-      "description": "Displaying variant",
+      "description": "Picker container option",
       "name": "variant",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -445,7 +445,7 @@
       },
       "required": false,
       "type": {
-        "name": "\"year\" | \"date\" | \"month\""
+        "name": "\"date\" | \"year\" | \"month\""
       }
     },
     "minDate": {
@@ -743,19 +743,6 @@
         "name": "(date: any, value?: string | null) => void"
       }
     },
-    "value": {
-      "defaultValue": null,
-      "description": "Picker value",
-      "name": "value",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": {
-        "name": "ParsableDate"
-      }
-    },
     "open": {
       "defaultValue": null,
       "description": "Controlled picker open state",
@@ -771,7 +758,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback fired when date isAccepted",
+      "description": "Callback fired when date is accepted",
       "name": "onAccept",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -799,7 +786,7 @@
       "defaultValue": {
         "value": "'dialog'"
       },
-      "description": "Displaying variant",
+      "description": "Picker container option",
       "name": "variant",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -821,6 +808,19 @@
       "required": false,
       "type": {
         "name": "(error: ReactNode, value: any) => void"
+      }
+    },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": {
+        "name": "ParsableDate"
       }
     },
     "disabled": {
@@ -853,7 +853,7 @@
     },
     "labelFunc": {
       "defaultValue": null,
-      "description": "Dynamic formatter of text field label",
+      "description": "Dynamic formatter of text field value",
       "name": "labelFunc",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -866,7 +866,7 @@
     },
     "initialFocusedDate": {
       "defaultValue": null,
-      "description": "Date that will be initially highlighted",
+      "description": "Date that will be initially highlighted if null was passed",
       "name": "initialFocusedDate",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -881,7 +881,7 @@
       "defaultValue": {
         "value": "'unknown'"
       },
-      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1045,7 +1045,7 @@
     },
     "refuse": {
       "defaultValue": {
-        "value": "/[^\\dap]+/gi"
+        "value": "/[^\\d]+/gi"
       },
       "description": "Refuse values regexp",
       "name": "refuse",
@@ -1120,7 +1120,7 @@
       },
       "required": false,
       "type": {
-        "name": "\"year\" | \"date\" | \"month\""
+        "name": "\"date\" | \"year\" | \"month\""
       }
     },
     "minDate": {
@@ -1461,7 +1461,7 @@
     },
     "labelFunc": {
       "defaultValue": null,
-      "description": "Dynamic formatter of text field label",
+      "description": "Dynamic formatter of text field value",
       "name": "labelFunc",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1474,7 +1474,7 @@
     },
     "initialFocusedDate": {
       "defaultValue": null,
-      "description": "Date that will be initially highlighted",
+      "description": "Date that will be initially highlighted if null was passed",
       "name": "initialFocusedDate",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1489,7 +1489,7 @@
       "defaultValue": {
         "value": "'unknown'"
       },
-      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1517,7 +1517,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback fired when date isAccepted",
+      "description": "Callback fired when date is accepted",
       "name": "onAccept",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1614,7 +1614,7 @@
       "defaultValue": {
         "value": "'dialog'"
       },
-      "description": "Displaying variant",
+      "description": "Picker container option",
       "name": "variant",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1808,7 +1808,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback fired when date isAccepted",
+      "description": "Callback fired when date is accepted",
       "name": "onAccept",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1836,7 +1836,7 @@
       "defaultValue": {
         "value": "'dialog'"
       },
-      "description": "Displaying variant",
+      "description": "Picker container option",
       "name": "variant",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1916,7 +1916,7 @@
     },
     "labelFunc": {
       "defaultValue": null,
-      "description": "Dynamic formatter of text field label",
+      "description": "Dynamic formatter of text field value",
       "name": "labelFunc",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1929,7 +1929,7 @@
     },
     "initialFocusedDate": {
       "defaultValue": null,
-      "description": "Date that will be initially highlighted",
+      "description": "Date that will be initially highlighted if null was passed",
       "name": "initialFocusedDate",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1944,7 +1944,7 @@
       "defaultValue": {
         "value": "'unknown'"
       },
-      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -2095,7 +2095,7 @@
     },
     "refuse": {
       "defaultValue": {
-        "value": "/[^\\dap]+/gi"
+        "value": "/[^\\d]+/gi"
       },
       "description": "Refuse values regexp",
       "name": "refuse",
@@ -2319,7 +2319,7 @@
     },
     "labelFunc": {
       "defaultValue": null,
-      "description": "Dynamic formatter of text field label",
+      "description": "Dynamic formatter of text field value",
       "name": "labelFunc",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -2332,7 +2332,7 @@
     },
     "initialFocusedDate": {
       "defaultValue": null,
-      "description": "Date that will be initially highlighted",
+      "description": "Date that will be initially highlighted if null was passed",
       "name": "initialFocusedDate",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -2347,7 +2347,7 @@
       "defaultValue": {
         "value": "'unknown'"
       },
-      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -2375,7 +2375,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback fired when date isAccepted",
+      "description": "Callback fired when date is accepted",
       "name": "onAccept",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -2472,7 +2472,7 @@
       "defaultValue": {
         "value": "'dialog'"
       },
-      "description": "Displaying variant",
+      "description": "Picker container option",
       "name": "variant",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -2927,7 +2927,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback fired when date isAccepted",
+      "description": "Callback fired when date is accepted",
       "name": "onAccept",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -2955,7 +2955,7 @@
       "defaultValue": {
         "value": "'dialog'"
       },
-      "description": "Displaying variant",
+      "description": "Picker container option",
       "name": "variant",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -3035,7 +3035,7 @@
     },
     "labelFunc": {
       "defaultValue": null,
-      "description": "Dynamic formatter of text field label",
+      "description": "Dynamic formatter of text field value",
       "name": "labelFunc",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -3048,7 +3048,7 @@
     },
     "initialFocusedDate": {
       "defaultValue": null,
-      "description": "Date that will be initially highlighted",
+      "description": "Date that will be initially highlighted if null was passed",
       "name": "initialFocusedDate",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -3063,7 +3063,7 @@
       "defaultValue": {
         "value": "'unknown'"
       },
-      "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
+      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -3214,7 +3214,7 @@
     },
     "refuse": {
       "defaultValue": {
-        "value": "/[^\\dap]+/gi"
+        "value": "/[^\\d]+/gi"
       },
       "description": "Refuse values regexp",
       "name": "refuse",
