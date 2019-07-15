@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { act } from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
-import { createMount } from '@material-ui/core/test-utils';
+import { ThemeProvider } from '@material-ui/styles';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { act, cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createRender } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import useMediaQuery, { testReset } from './useMediaQuery';
 
@@ -34,27 +35,27 @@ function createMatchMedia(width, ref) {
 }
 
 describe('useMediaQuery', () => {
-  let matchMediaInstances;
-  let mount;
-  let values;
-
   // Only run the test on node.
   // Waiting for https://github.com/facebook/react/issues/14050
   if (!/jsdom/.test(window.navigator.userAgent)) {
     return;
   }
 
-  before(() => {
-    mount = createMount({ strict: true });
+  const render = createClientRender({ strict: true });
+  let values;
+
+  beforeEach(() => {
+    testReset();
+    values = spy();
   });
 
-  after(() => {
-    mount.cleanUp();
+  afterEach(() => {
+    cleanup();
   });
 
   describe('without feature', () => {
     it('should work without window.matchMedia available', () => {
-      assert.strictEqual(typeof window.matchMedia, 'undefined');
+      expect(typeof window.matchMedia).to.equal('undefined');
       const ref = React.createRef();
       const text = () => ref.current.textContent;
       const Test = () => {
@@ -62,15 +63,15 @@ describe('useMediaQuery', () => {
         return <span ref={ref}>{`${matches}`}</span>;
       };
 
-      mount(<Test />);
-      assert.strictEqual(text(), 'false');
+      render(<Test />);
+      expect(text()).to.equal('false');
     });
   });
 
   describe('with feature', () => {
+    let matchMediaInstances;
+
     beforeEach(() => {
-      testReset();
-      values = spy();
       matchMediaInstances = [];
       window.matchMedia = createMatchMedia(1200, matchMediaInstances);
     });
@@ -85,9 +86,9 @@ describe('useMediaQuery', () => {
           return <span ref={ref}>{`${matches}`}</span>;
         };
 
-        mount(<Test />);
-        assert.strictEqual(text(), 'false');
-        assert.strictEqual(values.callCount, 1);
+        render(<Test />);
+        expect(text()).to.equal('false');
+        expect(values.callCount).to.equal(1);
       });
 
       it('should take the option into account', () => {
@@ -101,9 +102,9 @@ describe('useMediaQuery', () => {
           return <span ref={ref}>{`${matches}`}</span>;
         };
 
-        mount(<Test />);
-        assert.strictEqual(text(), 'false');
-        assert.strictEqual(values.callCount, 2);
+        render(<Test />);
+        expect(text()).to.equal('false');
+        expect(values.callCount).to.equal(2);
       });
     });
 
@@ -119,9 +120,9 @@ describe('useMediaQuery', () => {
           return <span ref={ref}>{`${matches}`}</span>;
         };
 
-        mount(<Test />);
-        assert.strictEqual(text(), 'false');
-        assert.strictEqual(values.callCount, 1);
+        render(<Test />);
+        expect(text()).to.equal('false');
+        expect(values.callCount).to.equal(1);
       });
 
       it('should render twice if the default value does not match the expectation', () => {
@@ -135,9 +136,9 @@ describe('useMediaQuery', () => {
           return <span ref={ref}>{`${matches}`}</span>;
         };
 
-        mount(<Test />);
-        assert.strictEqual(text(), 'false');
-        assert.strictEqual(values.callCount, 2);
+        render(<Test />);
+        expect(text()).to.equal('false');
+        expect(values.callCount).to.equal(2);
       });
 
       it('should render once if the default value does not match the expectation', () => {
@@ -152,9 +153,9 @@ describe('useMediaQuery', () => {
           return <span ref={ref}>{`${matches}`}</span>;
         };
 
-        mount(<Test />);
-        assert.strictEqual(text(), 'false');
-        assert.strictEqual(values.callCount, 1);
+        render(<Test />);
+        expect(text()).to.equal('false');
+        expect(values.callCount).to.equal(1);
       });
     });
 
@@ -169,15 +170,15 @@ describe('useMediaQuery', () => {
         return <span ref={ref}>{`${matches}`}</span>;
       };
 
-      mount(<Test />);
-      assert.strictEqual(text(), 'false');
-      assert.strictEqual(values.callCount, 2);
+      const { unmount } = render(<Test />);
+      expect(text()).to.equal('false');
+      expect(values.callCount).to.equal(2);
 
-      ReactDOM.unmountComponentAtNode(mount.attachTo);
+      unmount();
 
-      mount(<Test />);
-      assert.strictEqual(text(), 'false');
-      assert.strictEqual(values.callCount, 3);
+      render(<Test />);
+      expect(text()).to.equal('false');
+      expect(values.callCount).to.equal(3);
     });
 
     it('should be able to change the query dynamically', () => {
@@ -194,12 +195,12 @@ describe('useMediaQuery', () => {
         query: PropTypes.string.isRequired,
       };
 
-      const wrapper = mount(<Test query="(min-width:2000px)" />);
-      assert.strictEqual(text(), 'false');
-      assert.strictEqual(values.callCount, 2);
-      wrapper.setProps({ query: '(min-width:100px)' });
-      assert.strictEqual(text(), 'true');
-      assert.strictEqual(values.callCount, 4);
+      const { setProps } = render(<Test query="(min-width:2000px)" />);
+      expect(text()).to.equal('false');
+      expect(values.callCount).to.equal(2);
+      setProps({ query: '(min-width:100px)' });
+      expect(text()).to.equal('true');
+      expect(values.callCount).to.equal(4);
     });
 
     it('should observe the media query', () => {
@@ -214,16 +215,72 @@ describe('useMediaQuery', () => {
         query: PropTypes.string.isRequired,
       };
 
-      mount(<Test query="(min-width:2000px)" />);
-      assert.strictEqual(values.callCount, 1);
-      assert.strictEqual(text(), 'false');
+      render(<Test query="(min-width:2000px)" />);
+      expect(values.callCount).to.equal(1);
+      expect(text()).to.equal('false');
 
       act(() => {
         matchMediaInstances[0].instance.matches = true;
         matchMediaInstances[0].listeners[0]();
       });
-      assert.strictEqual(text(), 'true');
-      assert.strictEqual(values.callCount, 2);
+      expect(text()).to.equal('true');
+      expect(values.callCount).to.equal(2);
+    });
+  });
+
+  describe('server-side', () => {
+    let serverRender;
+
+    before(() => {
+      serverRender = createRender();
+    });
+
+    it('should use the ssr match media ponyfill', () => {
+      const ref = React.createRef();
+      function MyComponent() {
+        const matches = useMediaQuery('(min-width:2000px)');
+        values(matches);
+        return <span ref={ref}>{`${matches}`}</span>;
+      }
+
+      const Test = () => {
+        const ssrMatchMedia = query => ({
+          matches: mediaQuery.match(query, {
+            width: 3000,
+          }),
+        });
+
+        return (
+          <ThemeProvider theme={{ props: { MuiUseMediaQuery: { ssrMatchMedia } } }}>
+            <MyComponent />
+          </ThemeProvider>
+        );
+      };
+
+      const markup = serverRender(<Test />);
+      expect(markup.text()).to.equal('true');
+      expect(values.callCount).to.equal(1);
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('warns on invalid `query` argument', () => {
+      function MyComponent() {
+        useMediaQuery(() => '(min-width:2000px)');
+        return null;
+      }
+
+      render(<MyComponent />);
+      expect(consoleErrorMock.args()[0][0]).to.include('the `query` argument provided is invalid');
     });
   });
 });
