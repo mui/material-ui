@@ -103,6 +103,11 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/esm/Slider/index.js',
     },
     {
+      name: 'Rating',
+      webpack: true,
+      path: 'packages/material-ui-lab/build/esm/Rating/index.js',
+    },
+    {
       // vs https://bundlephobia.com/result?p=react-portal
       name: 'Portal',
       webpack: true,
