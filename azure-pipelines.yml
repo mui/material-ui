@@ -26,7 +26,7 @@ steps:
       cd packages/material-ui/build
       npm version 0.0.0-canary.$(Build.SourceVersion) --no-git-tag-version
       npm pack
-      mv *.tgz ../../../
+      mv *.tgz ../../../material-ui-core.tgz
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     displayName: 'create @material-ui/core canary distributable'
 
@@ -47,7 +47,7 @@ steps:
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: 'canaries'
-      targetPath: 'material-ui-core-0.0.0-canary.$(Build.SourceVersion).tgz'
+      targetPath: 'material-ui-core.tgz'
 
   - script: |
       yarn docs:build
