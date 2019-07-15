@@ -24,7 +24,6 @@ function PersianExample() {
         labelFunc={date => (date ? date.format('jYYYY/jMM/jDD') : '')}
         value={selectedDate}
         onChange={handleDateChange}
-        animateYearScrolling={false}
       />
 
       <TimePicker

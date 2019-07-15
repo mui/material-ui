@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from '../test-utils';
+import { DatePicker } from '../../DatePicker';
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import { DateTimePicker } from '../../DateTimePicker/DateTimePicker';
@@ -15,6 +16,14 @@ test('Should renders without crash in dark theme', () => {
     <ThemeProvider theme={theme}>
       <DateTimePicker open openTo="hours" value={null} onChange={jest.fn()} />
     </ThemeProvider>
+  );
+
+  expect(component).toBeTruthy();
+});
+
+test('Should render component with different orientation', () => {
+  const component = mount(
+    <DatePicker open orientation="landscape" value={null} onChange={jest.fn()} />
   );
 
   expect(component).toBeTruthy();

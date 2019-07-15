@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-const useIsomorphicEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+export const useIsomorphicEffect =
+  typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 type KeyHandlers = Record<KeyboardEvent['key'], () => void>;
 

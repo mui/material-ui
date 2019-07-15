@@ -9,9 +9,15 @@ import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
 
 export const useStyles = makeStyles(
   {
-    toolbarCenter: {
-      flexDirection: 'row',
-      alignItems: 'center',
+    toolbar: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+    },
+    toolbarLandscape: {
+      padding: 16,
+    },
+    dateLandscape: {
+      marginRight: 16,
     },
   },
   { name: 'MuiPickersDatePickerRoot' }
@@ -21,6 +27,7 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
   date,
   views,
   setOpenView,
+  isLandscape,
   openView,
 }) => {
   const utils = useUtils();
@@ -30,7 +37,13 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
   const isYearAndMonth = React.useMemo(() => isYearAndMonthViews(views as any), [views]);
 
   return (
-    <PickerToolbar className={clsx({ [classes.toolbarCenter]: isYearOnly })}>
+    <PickerToolbar
+      isLandscape={isLandscape}
+      className={clsx({
+        [classes.toolbar]: !isYearOnly,
+        [classes.toolbarLandscape]: isLandscape,
+      })}
+    >
       <ToolbarButton
         variant={isYearOnly ? 'h3' : 'subtitle1'}
         onClick={() => setOpenView('year')}
@@ -41,9 +54,11 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
       {!isYearOnly && !isYearAndMonth && (
         <ToolbarButton
           variant="h4"
-          onClick={() => setOpenView('date')}
           selected={openView === 'date'}
+          onClick={() => setOpenView('date')}
+          align={isLandscape ? 'left' : 'center'}
           label={utils.getDatePickerHeaderText(date)}
+          className={clsx({ [classes.dateLandscape]: isLandscape })}
         />
       )}
 

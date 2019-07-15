@@ -31,12 +31,17 @@ export type KeyboardDateTimePickerProps = WrappedKeyboardPickerProps & DateTimeP
 const defaultProps = {
   ...dateTimePickerDefaultProps,
   wider: true,
+  orientation: 'portrait' as const,
   openTo: 'date' as DateTimePickerView,
   views: ['year', 'date', 'hours', 'minutes'] as DateTimePickerView[],
 };
 
 function useOptions(props: DateTimePickerProps | KeyboardDateTimePickerProps) {
   const utils = useUtils();
+
+  if (props.orientation !== 'portrait') {
+    throw new Error('We are not supporting custom orientation for DateTimePicker yet :(');
+  }
 
   return {
     getDefaultFormat: () =>

@@ -63,6 +63,7 @@ export function makeKeyboardPicker<T extends any>({
       emptyLabel,
       invalidLabel,
       timeIcon,
+      orientation,
       variant,
       disableToolbar,
       loadingIndicator,
@@ -85,6 +86,7 @@ export function makeKeyboardPicker<T extends any>({
           ToolbarComponent={ToolbarComponent}
           disableToolbar={disableToolbar}
           hideTabs={hideTabs}
+          orientation={orientation}
           ampm={ampm}
           views={views}
           openTo={openTo}

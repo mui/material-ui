@@ -22,7 +22,6 @@ function HijriExample() {
         labelFunc={date => (date ? date.format('iYYYY/iMM/iDD') : '')}
         value={selectedDate}
         onChange={handleDateChange}
-        animateYearScrolling={false}
         minDate="1937-03-14"
         maxDate="2076-11-26"
       />

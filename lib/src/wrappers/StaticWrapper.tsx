@@ -6,7 +6,7 @@ const useStyles = makeStyles(
   theme => ({
     staticWrapperRoot: {
       overflow: 'hidden',
-      width: DIALOG_WIDTH,
+      minWidth: DIALOG_WIDTH,
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: theme.palette.background.paper,

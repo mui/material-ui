@@ -55,6 +55,7 @@ export function makePurePicker<T extends any>({
       timeIcon,
       value,
       variant,
+      orientation,
       disableToolbar,
       loadingIndicator,
       ...other
@@ -73,6 +74,7 @@ export function makePurePicker<T extends any>({
       >
         <Picker
           {...pickerProps}
+          orientation={orientation}
           disableToolbar={disableToolbar}
           ToolbarComponent={ToolbarComponent}
           hideTabs={hideTabs}

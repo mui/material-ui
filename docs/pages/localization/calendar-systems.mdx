@@ -1,8 +1,8 @@
 import Ad from '_shared/Ad';
-import Example from '_shared/Example'
-import PageMeta from '_shared/PageMeta'
-import * as PersianExample from './Persian.example.jsx'
-import * as HijriExample from './Hijri.example.jsx'
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta';
+import * as PersianExample from './Persian.example.jsx';
+import * as HijriExample from './Hijri.example.jsx';
 
 <PageMeta title="Additional Calendar Systems - @material-ui/pickers" />
 
@@ -15,7 +15,7 @@ material-ui documentation page before proceeding.
 
 Install the specified npm packages below for Jalaali or Hijri depending on which calendar system you will be using.
 
-#### Persian calendar system
+#### Jalaali calendar system
 
 Install `@date-io/jalaali` package from npm.
 
@@ -23,13 +23,13 @@ Install `@date-io/jalaali` package from npm.
 npm install @date-io/jalaali
 ```
 
-##### Example
+#### Example
 
 You can use the examples below. It is recommended that you change the font.
 
 <Example source={PersianExample} />
 
-<hr/>
+<hr />
 
 #### Hijri calendar system
 
@@ -41,21 +41,23 @@ npm install @date-io/hijri moment-hijri
 
 To use it with Arabic locale, make sure to import `moment/locale/ar-sa`
 
-```
+```javascript
 import 'moment/locale/ar-sa';
 ```
 
-By default, the `DatePicker` uses 1900-01-01 for minDate and 2100-01-01 for maxDate. `moment-hijri` only supports dates from 1356-01-01 H (1937-03-14) to 1499-12-29 H (2076-11-26) so you will need to set `minDate` and `maxDate` on your `DatePicker` component otherwise your component will not work properly.
+By default, the `DatePicker` uses `1900-01-01` for minDate and `2100-01-01` for maxDate.
+`moment-hijri` only supports dates from `1356-01-01` H (1937-03-14) to `1499-12-29` H (2076-11-26)
+so you will need to set `minDate` and `maxDate` on your `DatePicker` component otherwise your component will not work properly.
 
-```
+```jsx
 <DatePicker
-    ...
-    minDate="1937-03-14"
-    maxDate="2076-11-26"
+  // your props
+  minDate="1937-03-14"
+  maxDate="2076-11-26"
 />
 ```
 
-##### Example
+#### Example
 
 You can use the examples below. It is recommended that you change the font.
 

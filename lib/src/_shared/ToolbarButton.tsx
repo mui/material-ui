@@ -13,6 +13,7 @@ export interface ToolbarButtonProps
   variant: TypographyProps['variant'];
   selected: boolean;
   label: string;
+  align?: TypographyProps['align'];
   typographyClassName?: string;
 }
 
@@ -22,12 +23,14 @@ const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
   label,
   selected,
   variant,
+  align,
   typographyClassName,
   ...other
 }) => {
   return (
     <Button variant="text" className={clsx(classes.toolbarBtn, className)} {...other}>
       <ToolbarText
+        align={align}
         className={typographyClassName}
         variant={variant}
         label={label}

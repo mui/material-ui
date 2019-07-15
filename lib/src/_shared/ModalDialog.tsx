@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog, { DialogProps } from '@material-ui/core/Dialog';
-import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
+import { DIALOG_WIDTH } from '../constants/dimensions';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 
 export interface ModalDialogProps extends DialogProps {
@@ -90,15 +90,12 @@ ModalDialog.displayName = 'ModalDialog';
 export const styles = createStyles({
   dialogRoot: {
     minWidth: DIALOG_WIDTH,
-    maxWidth: DIALOG_WIDTH_WIDER,
+    // maxWidth: DIALOG_WIDTH_WIDER,
   },
   dialogRootWider: {
-    minWidth: DIALOG_WIDTH_WIDER,
+    // minWidth: DIALOG_WIDTH_WIDER,
   },
   dialog: {
-    // minHeight: dialogHeight,
-    overflow: 'hidden',
-
     '&:first-child': {
       padding: 0,
     },
