@@ -6,11 +6,23 @@ import * as t from './types';
  */
 interface ParserOptions {
   /**
-   * Called before a PropType is added to a component
-   * @return true to include the PropType, false to skip it
-   * @default () => true
+   * Called before a PropType is added to a component/object
+   * @return true to include the PropType, false to skip it, or undefined to
+   * use the default behaviour
+   * @default name !== 'ref'
    */
-  shouldInclude?: (data: { name: string }) => boolean;
+  shouldInclude: (data: { name: string; depth: number }) => boolean | undefined;
+  /**
+   * Called before the shape of an object is resolved
+   * @return true to resolve the shape of the object, false to just use a object, or undefined to
+   * use the default behaviour
+   * @default propertyCount <= 50 && depth <= 3
+   */
+  shouldResolveObject: (data: {
+    name: string;
+    propertyCount: number;
+    depth: number;
+  }) => boolean | undefined;
 }
 
 /**
@@ -32,7 +44,7 @@ export function createProgram(files: string[], options: ts.CompilerOptions) {
 export function parseFile(
   filePath: string,
   options: ts.CompilerOptions,
-  parserOptions: ParserOptions = {},
+  parserOptions: Partial<ParserOptions> = {},
 ) {
   const program = ts.createProgram([filePath], options);
   return parseFromProgram(filePath, program, parserOptions);
@@ -47,9 +59,29 @@ export function parseFile(
 export function parseFromProgram(
   filePath: string,
   program: ts.Program,
-  parserOptions: ParserOptions = {},
+  parserOptions: Partial<ParserOptions> = {},
 ) {
-  const { shouldInclude = () => true } = parserOptions;
+  const shouldInclude: ParserOptions['shouldInclude'] = data => {
+    if (parserOptions.shouldInclude) {
+      const result = parserOptions.shouldInclude(data);
+      if (result !== undefined) {
+        return result;
+      }
+    }
+
+    return data.name !== 'ref';
+  };
+
+  const shouldResolveObject: ParserOptions['shouldResolveObject'] = data => {
+    if (parserOptions.shouldResolveObject) {
+      const result = parserOptions.shouldResolveObject(data);
+      if (result !== undefined) {
+        return result;
+      }
+    }
+
+    return data.propertyCount <= 50 && data.depth <= 3;
+  };
 
   const checker = program.getTypeChecker();
   const sourceFile = program.getSourceFile(filePath);
@@ -204,7 +236,7 @@ export function parseFromProgram(
   function parsePropsType(name: string, type: ts.Type) {
     const properties = type
       .getProperties()
-      .filter(symbol => shouldInclude({ name: symbol.getName() }));
+      .filter(symbol => shouldInclude({ name: symbol.getName(), depth: 1 }));
     if (properties.length === 0) {
       return;
     }
@@ -231,15 +263,17 @@ export function parseFromProgram(
     return t.propTypeNode(
       symbol.getName(),
       getDocumentation(symbol),
-      // If the typeStack contains type.id we're dealing with a type that references itself.
-      // To prevent getting stuck in an infinite loop we just set it to an objectNode
-      typeStack.includes((type as any).id)
-        ? t.objectNode()
-        : checkType(type, [...typeStack, (type as any).id]),
+      checkType(type, typeStack, symbol.getName()),
     );
   }
 
-  function checkType(type: ts.Type, typeStack: number[]): t.Node {
+  function checkType(type: ts.Type, typeStack: number[], name: string): t.Node {
+    // If the typeStack contains type.id we're dealing with an object that references itself.
+    // To prevent getting stuck in an infinite loop we just set it to an objectNode
+    if (typeStack.includes((type as any).id)) {
+      return t.objectNode();
+    }
+
     {
       const typeNode = type as any;
 
@@ -260,11 +294,11 @@ export function parseFromProgram(
     if (checker.isArrayType(type)) {
       // @ts-ignore - Private method
       const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
-      return t.arrayNode(checkType(arrayType, typeStack));
+      return t.arrayNode(checkType(arrayType, typeStack, name));
     }
 
     if (type.isUnion()) {
-      return t.unionNode(type.types.map(x => checkType(x, typeStack)));
+      return t.unionNode(type.types.map(x => checkType(x, typeStack, name)));
     }
 
     if (type.flags & ts.TypeFlags.String) {
@@ -302,8 +336,24 @@ export function parseFromProgram(
     }
 
     // Object-like type
-    if (type.getProperties().length) {
-      return t.objectNode();
+    {
+      const properties = type.getProperties();
+      if (properties.length) {
+        if (
+          shouldResolveObject({ name, propertyCount: properties.length, depth: typeStack.length })
+        ) {
+          const filtered = properties.filter(symbol =>
+            shouldInclude({ name: symbol.getName(), depth: typeStack.length + 1 }),
+          );
+          if (filtered.length > 0) {
+            return t.interfaceNode(
+              filtered.map(x => checkSymbol(x, [...typeStack, (type as any).id])),
+            );
+          }
+        }
+
+        return t.objectNode();
+      }
     }
 
     // Object without properties or object keyword
