@@ -29,7 +29,18 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkExtendedProps>(
   );
 });
 
-type LinkProps = LinkPropsBase & Pick<TypographyProps, 'align' | 'color' | 'display' | 'variant'>;
+type LinkProps = LinkPropsBase &
+  Pick<
+    TypographyProps,
+    | 'align'
+    | 'color'
+    | 'display'
+    | 'gutterBottom'
+    | 'noWrap'
+    | 'paragraph'
+    | 'variant'
+    | 'variantMapping'
+  >;
 
 interface LinkPropsBase extends NextLinkExtendedProps {
   activeClassName?: string;
