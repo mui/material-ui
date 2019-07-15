@@ -39,7 +39,7 @@ interface LinkPropsBase extends NextLinkExtendedProps {
 }
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-const RouterLink: React.FunctionComponent<LinkProps> = props => {
+function RouterLink(props: LinkProps) {
   const router = useRouter();
   const {
     activeClassName = 'active',
@@ -58,7 +58,7 @@ const RouterLink: React.FunctionComponent<LinkProps> = props => {
   }
 
   return <MuiLink component={NextComposed} className={className} ref={innerRef} {...other} />;
-};
+}
 
 export default React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
   <RouterLink {...props} innerRef={ref} />
