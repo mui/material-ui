@@ -40,7 +40,7 @@ type LinkProps = LinkPropsBase &
     | 'paragraph'
     | 'variant'
     | 'variantMapping'
-  >;
+  > & { underline?: 'none' | 'hover' | 'always' };
 
 interface LinkPropsBase extends NextLinkExtendedProps {
   activeClassName?: string;
