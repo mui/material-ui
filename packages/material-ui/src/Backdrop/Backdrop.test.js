@@ -25,7 +25,11 @@ describe('<Backdrop />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: [
+      'componentProp',
+      // react-transition-group issue
+      'reactTestRenderer',
+    ],
   }));
 
   it('should render a backdrop div', () => {

@@ -27,7 +27,11 @@ describe('<Zoom />', () => {
       inheritComponent: Transition,
       mount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      skip: [
+        'componentProp',
+        // react-transition-group issue
+        'reactTestRenderer',
+      ],
     }),
   );
 
