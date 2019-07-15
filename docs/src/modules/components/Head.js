@@ -11,7 +11,11 @@ function Head(props) {
     t: state.options.t,
     userLanguage: state.options.userLanguage,
   }));
-  const { description = t('strapline'), router, title = t('headTitle') } = props;
+  const {
+    description = t('headDescription') || t('strapline'),
+    router,
+    title = t('headTitle'),
+  } = props;
 
   return (
     <NextHead>
