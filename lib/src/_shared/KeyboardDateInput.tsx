@@ -33,7 +33,7 @@ export interface KeyboardDateInputProps
   maskChar?: string;
   /**
    * Refuse values regexp
-   * @default /[^\dap]+/gi
+   * @default /[^\d]+/gi
    */
   refuse?: RegExp;
   /**
@@ -61,7 +61,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   InputProps,
   mask,
   maskChar = '_',
-  refuse = /[^\dap]+/gi,
+  refuse = /[^\d]+/gi,
   format,
   keyboardIcon,
   disabled,

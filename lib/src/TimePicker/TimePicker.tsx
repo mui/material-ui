@@ -57,6 +57,9 @@ export const TimePicker = makePurePicker<TimePickerViewsProps>({
 export const KeyboardTimePicker = makeKeyboardPicker<TimePickerViewsProps>({
   useOptions,
   DefaultToolbarComponent: TimePickerToolbar,
+  getCustomProps: props => ({
+    refuse: props.ampm ? /[^\dap]+/gi : /[^\d]+/gi,
+  }),
 });
 
 TimePicker.defaultProps = defaultProps;

@@ -13,8 +13,9 @@ export type WrappedKeyboardPickerProps = DateValidationProps &
   BaseKeyboardPickerProps &
   ExtendWrapper<KeyboardDateInputProps>;
 
-export interface MakePickerOptions {
+export interface MakePickerOptions<T> {
   useOptions: (props: any) => StateHookOptions;
+  getCustomProps?: (props: T) => Partial<T>;
   DefaultToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }
 
@@ -22,8 +23,9 @@ export interface MakePickerOptions {
 // TODO investigate how to reduce duplications
 export function makeKeyboardPicker<T extends any>({
   useOptions,
+  getCustomProps,
   DefaultToolbarComponent,
-}: MakePickerOptions): React.FC<WrappedKeyboardPickerProps & T> {
+}: MakePickerOptions<WrappedKeyboardPickerProps & T>): React.FC<WrappedKeyboardPickerProps & T> {
   function WrappedKeyboardPicker(props: WrappedKeyboardPickerProps & T) {
     const {
       allowKeyboardControl,
@@ -71,6 +73,8 @@ export function makeKeyboardPicker<T extends any>({
       ...other
     } = props;
 
+    const injectedProps = getCustomProps ? getCustomProps(props) : {};
+
     const options = useOptions(props);
     const { pickerProps, inputProps, wrapperProps } = useKeyboardPickerState(props, options);
 
@@ -79,6 +83,7 @@ export function makeKeyboardPicker<T extends any>({
         variant={variant}
         InputComponent={KeyboardDateInput}
         DateInputProps={inputProps}
+        {...injectedProps}
         {...wrapperProps}
         {...other}
       >
