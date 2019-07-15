@@ -51,12 +51,12 @@ function useOptions(props: TimePickerProps | KeyboardTimePickerProps) {
 
 export const TimePicker = makePurePicker<TimePickerViewsProps>({
   useOptions,
-  ToolbarComponent: TimePickerToolbar,
+  DefaultToolbarComponent: TimePickerToolbar,
 });
 
 export const KeyboardTimePicker = makeKeyboardPicker<TimePickerViewsProps>({
   useOptions,
-  ToolbarComponent: TimePickerToolbar,
+  DefaultToolbarComponent: TimePickerToolbar,
 });
 
 TimePicker.defaultProps = defaultProps;

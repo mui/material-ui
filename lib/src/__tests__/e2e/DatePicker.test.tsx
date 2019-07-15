@@ -218,3 +218,16 @@ describe('e2e - DatePicker month change async', () => {
     ).toEqual(0);
   });
 });
+
+test('Custom toolbar component', () => {
+  const component = mount(
+    <DatePicker
+      open
+      value={new Date()}
+      onChange={jest.fn()}
+      ToolbarComponent={() => <div id="custom-toolbar" />}
+    />
+  );
+
+  expect(component.find('#custom-toolbar').length).toBe(1);
+});

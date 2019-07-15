@@ -1,7 +1,9 @@
 {
   "ModalWrapper": {
     "okLabel": {
-      "defaultValue": { "value": "'OK'" },
+      "defaultValue": {
+        "value": "\"OK\""
+      },
       "description": "\"OK\" label message",
       "name": "okLabel",
       "parent": {
@@ -9,10 +11,14 @@
         "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "cancelLabel": {
-      "defaultValue": { "value": "'CANCEL'" },
+      "defaultValue": {
+        "value": "\"CANCEL\""
+      },
       "description": "\"CANCEL\" label message",
       "name": "cancelLabel",
       "parent": {
@@ -20,10 +26,14 @@
         "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "clearLabel": {
-      "defaultValue": { "value": "'CLEAR'" },
+      "defaultValue": {
+        "value": "\"CLEAR\""
+      },
       "description": "\"CLEAR\" label message",
       "name": "clearLabel",
       "parent": {
@@ -31,10 +41,14 @@
         "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "todayLabel": {
-      "defaultValue": { "value": "'TODAY'" },
+      "defaultValue": {
+        "value": "\"TODAY\""
+      },
       "description": "\"TODAY\" label message",
       "name": "todayLabel",
       "parent": {
@@ -42,10 +56,14 @@
         "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "showTodayButton": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "If true today button will be displayed <b>Note*</b> that clear button has higher priority",
       "name": "showTodayButton",
       "parent": {
@@ -53,10 +71,14 @@
         "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "clearable": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Show clear action in picker dialog",
       "name": "clearable",
       "parent": {
@@ -64,7 +86,9 @@
         "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "DialogProps": {
       "defaultValue": null,
@@ -75,12 +99,16 @@
         "name": "ModalWrapperProps"
       },
       "required": false,
-      "type": { "name": "Partial<MuiDialogProps>" }
+      "type": {
+        "name": "Partial<MuiDialogProps>"
+      }
     }
   },
   "DatePicker": {
     "minDateMessage": {
-      "defaultValue": { "value": "'Date should not be before minimal date'" },
+      "defaultValue": {
+        "value": "'Date should not be before minimal date'"
+      },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -88,10 +116,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maxDateMessage": {
-      "defaultValue": { "value": "'Date should not be after maximal date'" },
+      "defaultValue": {
+        "value": "'Date should not be after maximal date'"
+      },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -99,10 +131,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "invalidDateMessage": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": {
+        "value": "'Invalid Date Format'"
+      },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -110,7 +146,9 @@
         "name": "BaseValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "value": {
       "defaultValue": null,
@@ -121,7 +159,9 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "onChange": {
       "defaultValue": null,
@@ -132,10 +172,14 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "autoOk": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -143,7 +187,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "format": {
       "defaultValue": null,
@@ -154,7 +200,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "disabled": {
       "defaultValue": null,
@@ -165,7 +213,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "labelFunc": {
       "defaultValue": null,
@@ -176,7 +226,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any, invalidLabel: string) => string" }
+      "type": {
+        "name": "(date: any, invalidLabel: string) => string"
+      }
     },
     "initialFocusedDate": {
       "defaultValue": null,
@@ -187,10 +239,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'unknown'" },
+      "defaultValue": {
+        "value": "'unknown'"
+      },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -198,10 +254,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "emptyLabel": {
-      "defaultValue": { "value": "' '" },
+      "defaultValue": {
+        "value": "' '"
+      },
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
@@ -209,7 +269,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onAccept": {
       "defaultValue": null,
@@ -220,7 +282,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "onError": {
       "defaultValue": null,
@@ -231,7 +295,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
+      "type": {
+        "name": "(error: ReactNode, value: any) => void"
+      }
     },
     "onOpen": {
       "defaultValue": null,
@@ -242,7 +308,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "onClose": {
       "defaultValue": null,
@@ -253,7 +321,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "open": {
       "defaultValue": null,
@@ -264,10 +334,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disableToolbar": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Hide toolbar and show only date/time views",
       "name": "disableToolbar",
       "parent": {
@@ -275,10 +349,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "orientation": {
-      "defaultValue": { "value": "\"portrait\"" },
+      "defaultValue": {
+        "value": "\"portrait\""
+      },
       "description": "Force rendering in particular orientation",
       "name": "orientation",
       "parent": {
@@ -286,10 +364,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"portrait\" | \"landscape\"" }
+      "type": {
+        "name": "\"portrait\" | \"landscape\""
+      }
     },
     "variant": {
-      "defaultValue": { "value": "'dialog'" },
+      "defaultValue": {
+        "value": "'dialog'"
+      },
       "description": "Displaying variant",
       "name": "variant",
       "parent": {
@@ -297,7 +379,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\" | \"static\"" }
+      "type": {
+        "name": "\"dialog\" | \"inline\" | \"static\""
+      }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -308,7 +392,9 @@
         "name": "InlineWrapperProps"
       },
       "required": false,
-      "type": { "name": "Partial<PopoverProps>" }
+      "type": {
+        "name": "Partial<PopoverProps>"
+      }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -319,7 +405,9 @@
         "name": "PureDateInputProps"
       },
       "required": false,
-      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+      "type": {
+        "name": "\"standard\" | \"outlined\" | \"filled\""
+      }
     },
     "TextFieldComponent": {
       "defaultValue": null,
@@ -330,7 +418,9 @@
         "name": "PureDateInputProps"
       },
       "required": false,
-      "type": { "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>" }
+      "type": {
+        "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
+      }
     },
     "views": {
       "defaultValue": null,
@@ -341,7 +431,9 @@
         "name": "DatePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "Array<\"year\" | \"date\" | \"month\">" }
+      "type": {
+        "name": "Array<\"year\" | \"date\" | \"month\">"
+      }
     },
     "openTo": {
       "defaultValue": null,
@@ -352,10 +444,14 @@
         "name": "DatePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "\"year\" | \"date\" | \"month\"" }
+      "type": {
+        "name": "\"year\" | \"date\" | \"month\""
+      }
     },
     "minDate": {
-      "defaultValue": { "value": "Date(1900-01-01)" },
+      "defaultValue": {
+        "value": "Date(1900-01-01)"
+      },
       "description": "Min selectable date",
       "name": "minDate",
       "parent": {
@@ -363,10 +459,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "maxDate": {
-      "defaultValue": { "value": "Date(2100-01-01)" },
+      "defaultValue": {
+        "value": "Date(2100-01-01)"
+      },
       "description": "Max selectable date",
       "name": "maxDate",
       "parent": {
@@ -374,10 +474,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "strictCompareDates": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Compare dates by the exact timestamp, instead of start/end of date",
       "name": "strictCompareDates",
       "parent": {
@@ -385,10 +489,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disablePast": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Disable past dates",
       "name": "disablePast",
       "parent": {
@@ -396,10 +504,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disableFuture": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Disable future dates",
       "name": "disableFuture",
       "parent": {
@@ -407,18 +519,24 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "animateYearScrolling": {
-      "defaultValue": { "value": "false" },
-      "description": "To animate scrolling to current year (with scrollIntoView)",
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "To animate scrolling to current year (using scrollIntoView)",
       "name": "animateYearScrolling",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onYearChange": {
       "defaultValue": null,
@@ -429,7 +547,9 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "leftArrowIcon": {
       "defaultValue": null,
@@ -440,7 +560,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "rightArrowIcon": {
       "defaultValue": null,
@@ -451,7 +573,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "renderDay": {
       "defaultValue": null,
@@ -467,7 +591,9 @@
       }
     },
     "allowKeyboardControl": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
       "parent": {
@@ -475,7 +601,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "leftArrowButtonProps": {
       "defaultValue": null,
@@ -486,7 +614,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
@@ -497,7 +627,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "shouldDisableDate": {
       "defaultValue": null,
@@ -508,7 +640,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(day: any) => boolean" }
+      "type": {
+        "name": "(day: any) => boolean"
+      }
     },
     "onMonthChange": {
       "defaultValue": null,
@@ -519,7 +653,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void | Promise<void>" }
+      "type": {
+        "name": "(date: any) => void | Promise<void>"
+      }
     },
     "loadingIndicator": {
       "defaultValue": null,
@@ -530,12 +666,16 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Element" }
+      "type": {
+        "name": "Element"
+      }
     }
   },
   "KeyboardDatePicker": {
     "minDateMessage": {
-      "defaultValue": { "value": "'Date should not be before minimal date'" },
+      "defaultValue": {
+        "value": "'Date should not be before minimal date'"
+      },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -543,10 +683,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maxDateMessage": {
-      "defaultValue": { "value": "'Date should not be after maximal date'" },
+      "defaultValue": {
+        "value": "'Date should not be after maximal date'"
+      },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -554,10 +698,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "invalidDateMessage": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": {
+        "value": "'Invalid Date Format'"
+      },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -565,7 +713,9 @@
         "name": "BaseValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "inputValue": {
       "defaultValue": null,
@@ -576,7 +726,9 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onChange": {
       "defaultValue": null,
@@ -587,7 +739,9 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any, value?: string | null) => void" }
+      "type": {
+        "name": "(date: any, value?: string | null) => void"
+      }
     },
     "value": {
       "defaultValue": null,
@@ -598,7 +752,9 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "open": {
       "defaultValue": null,
@@ -609,7 +765,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onAccept": {
       "defaultValue": null,
@@ -620,7 +778,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "format": {
       "defaultValue": null,
@@ -631,10 +791,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "variant": {
-      "defaultValue": { "value": "'dialog'" },
+      "defaultValue": {
+        "value": "'dialog'"
+      },
       "description": "Displaying variant",
       "name": "variant",
       "parent": {
@@ -642,7 +806,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\" | \"static\"" }
+      "type": {
+        "name": "\"dialog\" | \"inline\" | \"static\""
+      }
     },
     "onError": {
       "defaultValue": null,
@@ -653,7 +819,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
+      "type": {
+        "name": "(error: ReactNode, value: any) => void"
+      }
     },
     "disabled": {
       "defaultValue": null,
@@ -664,10 +832,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "autoOk": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -675,7 +847,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "labelFunc": {
       "defaultValue": null,
@@ -686,7 +860,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any, invalidLabel: string) => string" }
+      "type": {
+        "name": "(date: any, invalidLabel: string) => string"
+      }
     },
     "initialFocusedDate": {
       "defaultValue": null,
@@ -697,10 +873,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'unknown'" },
+      "defaultValue": {
+        "value": "'unknown'"
+      },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -708,10 +888,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "emptyLabel": {
-      "defaultValue": { "value": "' '" },
+      "defaultValue": {
+        "value": "' '"
+      },
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
@@ -719,7 +903,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onOpen": {
       "defaultValue": null,
@@ -730,7 +916,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "onClose": {
       "defaultValue": null,
@@ -741,10 +929,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "disableToolbar": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Hide toolbar and show only date/time views",
       "name": "disableToolbar",
       "parent": {
@@ -752,10 +944,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "orientation": {
-      "defaultValue": { "value": "\"portrait\"" },
+      "defaultValue": {
+        "value": "\"portrait\""
+      },
       "description": "Force rendering in particular orientation",
       "name": "orientation",
       "parent": {
@@ -763,7 +959,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"portrait\" | \"landscape\"" }
+      "type": {
+        "name": "\"portrait\" | \"landscape\""
+      }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -774,7 +972,9 @@
         "name": "InlineWrapperProps"
       },
       "required": false,
-      "type": { "name": "Partial<PopoverProps>" }
+      "type": {
+        "name": "Partial<PopoverProps>"
+      }
     },
     "mask": {
       "defaultValue": null,
@@ -785,7 +985,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -796,7 +998,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+      "type": {
+        "name": "\"standard\" | \"outlined\" | \"filled\""
+      }
     },
     "TextFieldComponent": {
       "defaultValue": null,
@@ -807,7 +1011,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>" }
+      "type": {
+        "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
+      }
     },
     "keyboardIcon": {
       "defaultValue": null,
@@ -818,10 +1024,14 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maskChar": {
-      "defaultValue": { "value": "'_'" },
+      "defaultValue": {
+        "value": "'_'"
+      },
       "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
       "name": "maskChar",
       "parent": {
@@ -829,10 +1039,14 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "refuse": {
-      "defaultValue": { "value": "/[^\\dap]+/gi" },
+      "defaultValue": {
+        "value": "/[^\\dap]+/gi"
+      },
       "description": "Refuse values regexp",
       "name": "refuse",
       "parent": {
@@ -840,7 +1054,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "RegExp" }
+      "type": {
+        "name": "RegExp"
+      }
     },
     "InputAdornmentProps": {
       "defaultValue": null,
@@ -851,7 +1067,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "Partial<InputAdornmentProps>" }
+      "type": {
+        "name": "Partial<InputAdornmentProps>"
+      }
     },
     "KeyboardButtonProps": {
       "defaultValue": null,
@@ -862,7 +1080,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "rifmFormatter": {
       "defaultValue": null,
@@ -873,7 +1093,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "(str: string) => string" }
+      "type": {
+        "name": "(str: string) => string"
+      }
     },
     "views": {
       "defaultValue": null,
@@ -884,7 +1106,9 @@
         "name": "DatePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "Array<\"year\" | \"date\" | \"month\">" }
+      "type": {
+        "name": "Array<\"year\" | \"date\" | \"month\">"
+      }
     },
     "openTo": {
       "defaultValue": null,
@@ -895,10 +1119,14 @@
         "name": "DatePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "\"year\" | \"date\" | \"month\"" }
+      "type": {
+        "name": "\"year\" | \"date\" | \"month\""
+      }
     },
     "minDate": {
-      "defaultValue": { "value": "Date(1900-01-01)" },
+      "defaultValue": {
+        "value": "Date(1900-01-01)"
+      },
       "description": "Min selectable date",
       "name": "minDate",
       "parent": {
@@ -906,10 +1134,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "maxDate": {
-      "defaultValue": { "value": "Date(2100-01-01)" },
+      "defaultValue": {
+        "value": "Date(2100-01-01)"
+      },
       "description": "Max selectable date",
       "name": "maxDate",
       "parent": {
@@ -917,10 +1149,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "strictCompareDates": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Compare dates by the exact timestamp, instead of start/end of date",
       "name": "strictCompareDates",
       "parent": {
@@ -928,10 +1164,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disablePast": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Disable past dates",
       "name": "disablePast",
       "parent": {
@@ -939,10 +1179,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disableFuture": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Disable future dates",
       "name": "disableFuture",
       "parent": {
@@ -950,18 +1194,24 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "animateYearScrolling": {
-      "defaultValue": { "value": "false" },
-      "description": "To animate scrolling to current year (with scrollIntoView)",
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "To animate scrolling to current year (using scrollIntoView)",
       "name": "animateYearScrolling",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onYearChange": {
       "defaultValue": null,
@@ -972,7 +1222,9 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "leftArrowIcon": {
       "defaultValue": null,
@@ -983,7 +1235,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "rightArrowIcon": {
       "defaultValue": null,
@@ -994,7 +1248,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "renderDay": {
       "defaultValue": null,
@@ -1010,7 +1266,9 @@
       }
     },
     "allowKeyboardControl": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
       "parent": {
@@ -1018,7 +1276,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "leftArrowButtonProps": {
       "defaultValue": null,
@@ -1029,7 +1289,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
@@ -1040,7 +1302,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "shouldDisableDate": {
       "defaultValue": null,
@@ -1051,7 +1315,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(day: any) => boolean" }
+      "type": {
+        "name": "(day: any) => boolean"
+      }
     },
     "onMonthChange": {
       "defaultValue": null,
@@ -1062,7 +1328,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void | Promise<void>" }
+      "type": {
+        "name": "(date: any) => void | Promise<void>"
+      }
     },
     "loadingIndicator": {
       "defaultValue": null,
@@ -1073,12 +1341,16 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Element" }
+      "type": {
+        "name": "Element"
+      }
     }
   },
   "TimePicker": {
     "minDateMessage": {
-      "defaultValue": { "value": "'Date should not be before minimal date'" },
+      "defaultValue": {
+        "value": "'Date should not be before minimal date'"
+      },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -1086,10 +1358,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maxDateMessage": {
-      "defaultValue": { "value": "'Date should not be after maximal date'" },
+      "defaultValue": {
+        "value": "'Date should not be after maximal date'"
+      },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -1097,10 +1373,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "invalidDateMessage": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": {
+        "value": "'Invalid Date Format'"
+      },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -1108,7 +1388,9 @@
         "name": "BaseValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "value": {
       "defaultValue": null,
@@ -1119,7 +1401,9 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "onChange": {
       "defaultValue": null,
@@ -1130,10 +1414,14 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "autoOk": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -1141,7 +1429,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "format": {
       "defaultValue": null,
@@ -1152,7 +1442,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "disabled": {
       "defaultValue": null,
@@ -1163,7 +1455,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "labelFunc": {
       "defaultValue": null,
@@ -1174,7 +1468,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any, invalidLabel: string) => string" }
+      "type": {
+        "name": "(date: any, invalidLabel: string) => string"
+      }
     },
     "initialFocusedDate": {
       "defaultValue": null,
@@ -1185,10 +1481,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'unknown'" },
+      "defaultValue": {
+        "value": "'unknown'"
+      },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -1196,10 +1496,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "emptyLabel": {
-      "defaultValue": { "value": "' '" },
+      "defaultValue": {
+        "value": "' '"
+      },
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
@@ -1207,7 +1511,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onAccept": {
       "defaultValue": null,
@@ -1218,7 +1524,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "onError": {
       "defaultValue": null,
@@ -1229,7 +1537,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
+      "type": {
+        "name": "(error: ReactNode, value: any) => void"
+      }
     },
     "onOpen": {
       "defaultValue": null,
@@ -1240,7 +1550,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "onClose": {
       "defaultValue": null,
@@ -1251,7 +1563,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "open": {
       "defaultValue": null,
@@ -1262,10 +1576,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disableToolbar": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Hide toolbar and show only date/time views",
       "name": "disableToolbar",
       "parent": {
@@ -1273,10 +1591,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "orientation": {
-      "defaultValue": { "value": "\"portrait\"" },
+      "defaultValue": {
+        "value": "\"portrait\""
+      },
       "description": "Force rendering in particular orientation",
       "name": "orientation",
       "parent": {
@@ -1284,10 +1606,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"portrait\" | \"landscape\"" }
+      "type": {
+        "name": "\"portrait\" | \"landscape\""
+      }
     },
     "variant": {
-      "defaultValue": { "value": "'dialog'" },
+      "defaultValue": {
+        "value": "'dialog'"
+      },
       "description": "Displaying variant",
       "name": "variant",
       "parent": {
@@ -1295,7 +1621,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\" | \"static\"" }
+      "type": {
+        "name": "\"dialog\" | \"inline\" | \"static\""
+      }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -1306,7 +1634,9 @@
         "name": "InlineWrapperProps"
       },
       "required": false,
-      "type": { "name": "Partial<PopoverProps>" }
+      "type": {
+        "name": "Partial<PopoverProps>"
+      }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -1317,7 +1647,9 @@
         "name": "PureDateInputProps"
       },
       "required": false,
-      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+      "type": {
+        "name": "\"standard\" | \"outlined\" | \"filled\""
+      }
     },
     "TextFieldComponent": {
       "defaultValue": null,
@@ -1328,7 +1660,9 @@
         "name": "PureDateInputProps"
       },
       "required": false,
-      "type": { "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>" }
+      "type": {
+        "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
+      }
     },
     "views": {
       "defaultValue": null,
@@ -1339,7 +1673,9 @@
         "name": "TimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "(\"hours\" | \"minutes\" | \"seconds\")[]" }
+      "type": {
+        "name": "(\"hours\" | \"minutes\" | \"seconds\")[]"
+      }
     },
     "openTo": {
       "defaultValue": null,
@@ -1350,10 +1686,14 @@
         "name": "TimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "\"hours\" | \"minutes\" | \"seconds\"" }
+      "type": {
+        "name": "\"hours\" | \"minutes\" | \"seconds\""
+      }
     },
     "ampm": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
       "parent": {
@@ -1361,10 +1701,14 @@
         "name": "BaseTimePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "minutesStep": {
-      "defaultValue": { "value": "1" },
+      "defaultValue": {
+        "value": "1"
+      },
       "description": "Step over minutes",
       "name": "minutesStep",
       "parent": {
@@ -1372,12 +1716,16 @@
         "name": "BaseTimePickerProps"
       },
       "required": false,
-      "type": { "name": "number" }
+      "type": {
+        "name": "number"
+      }
     }
   },
   "KeyboardTimePicker": {
     "minDateMessage": {
-      "defaultValue": { "value": "'Date should not be before minimal date'" },
+      "defaultValue": {
+        "value": "'Date should not be before minimal date'"
+      },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -1385,10 +1733,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maxDateMessage": {
-      "defaultValue": { "value": "'Date should not be after maximal date'" },
+      "defaultValue": {
+        "value": "'Date should not be after maximal date'"
+      },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -1396,10 +1748,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "invalidDateMessage": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": {
+        "value": "'Invalid Date Format'"
+      },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -1407,7 +1763,9 @@
         "name": "BaseValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "inputValue": {
       "defaultValue": null,
@@ -1418,7 +1776,9 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onChange": {
       "defaultValue": null,
@@ -1429,7 +1789,9 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any, value?: string | null) => void" }
+      "type": {
+        "name": "(date: any, value?: string | null) => void"
+      }
     },
     "open": {
       "defaultValue": null,
@@ -1440,7 +1802,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onAccept": {
       "defaultValue": null,
@@ -1451,7 +1815,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "format": {
       "defaultValue": null,
@@ -1462,10 +1828,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "variant": {
-      "defaultValue": { "value": "'dialog'" },
+      "defaultValue": {
+        "value": "'dialog'"
+      },
       "description": "Displaying variant",
       "name": "variant",
       "parent": {
@@ -1473,7 +1843,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\" | \"static\"" }
+      "type": {
+        "name": "\"dialog\" | \"inline\" | \"static\""
+      }
     },
     "onError": {
       "defaultValue": null,
@@ -1484,7 +1856,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
+      "type": {
+        "name": "(error: ReactNode, value: any) => void"
+      }
     },
     "value": {
       "defaultValue": null,
@@ -1495,7 +1869,9 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "disabled": {
       "defaultValue": null,
@@ -1506,7 +1882,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onClose": {
       "defaultValue": null,
@@ -1517,10 +1895,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "autoOk": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -1528,7 +1910,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "labelFunc": {
       "defaultValue": null,
@@ -1539,7 +1923,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any, invalidLabel: string) => string" }
+      "type": {
+        "name": "(date: any, invalidLabel: string) => string"
+      }
     },
     "initialFocusedDate": {
       "defaultValue": null,
@@ -1550,10 +1936,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'unknown'" },
+      "defaultValue": {
+        "value": "'unknown'"
+      },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -1561,10 +1951,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "emptyLabel": {
-      "defaultValue": { "value": "' '" },
+      "defaultValue": {
+        "value": "' '"
+      },
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
@@ -1572,7 +1966,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onOpen": {
       "defaultValue": null,
@@ -1583,10 +1979,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "disableToolbar": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Hide toolbar and show only date/time views",
       "name": "disableToolbar",
       "parent": {
@@ -1594,10 +1994,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "orientation": {
-      "defaultValue": { "value": "\"portrait\"" },
+      "defaultValue": {
+        "value": "\"portrait\""
+      },
       "description": "Force rendering in particular orientation",
       "name": "orientation",
       "parent": {
@@ -1605,7 +2009,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"portrait\" | \"landscape\"" }
+      "type": {
+        "name": "\"portrait\" | \"landscape\""
+      }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -1616,7 +2022,9 @@
         "name": "InlineWrapperProps"
       },
       "required": false,
-      "type": { "name": "Partial<PopoverProps>" }
+      "type": {
+        "name": "Partial<PopoverProps>"
+      }
     },
     "mask": {
       "defaultValue": null,
@@ -1627,7 +2035,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -1638,7 +2048,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+      "type": {
+        "name": "\"standard\" | \"outlined\" | \"filled\""
+      }
     },
     "TextFieldComponent": {
       "defaultValue": null,
@@ -1649,7 +2061,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>" }
+      "type": {
+        "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
+      }
     },
     "keyboardIcon": {
       "defaultValue": null,
@@ -1660,10 +2074,14 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maskChar": {
-      "defaultValue": { "value": "'_'" },
+      "defaultValue": {
+        "value": "'_'"
+      },
       "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
       "name": "maskChar",
       "parent": {
@@ -1671,10 +2089,14 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "refuse": {
-      "defaultValue": { "value": "/[^\\dap]+/gi" },
+      "defaultValue": {
+        "value": "/[^\\dap]+/gi"
+      },
       "description": "Refuse values regexp",
       "name": "refuse",
       "parent": {
@@ -1682,7 +2104,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "RegExp" }
+      "type": {
+        "name": "RegExp"
+      }
     },
     "InputAdornmentProps": {
       "defaultValue": null,
@@ -1693,7 +2117,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "Partial<InputAdornmentProps>" }
+      "type": {
+        "name": "Partial<InputAdornmentProps>"
+      }
     },
     "KeyboardButtonProps": {
       "defaultValue": null,
@@ -1704,7 +2130,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "rifmFormatter": {
       "defaultValue": null,
@@ -1715,7 +2143,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "(str: string) => string" }
+      "type": {
+        "name": "(str: string) => string"
+      }
     },
     "views": {
       "defaultValue": null,
@@ -1726,7 +2156,9 @@
         "name": "TimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "(\"hours\" | \"minutes\" | \"seconds\")[]" }
+      "type": {
+        "name": "(\"hours\" | \"minutes\" | \"seconds\")[]"
+      }
     },
     "openTo": {
       "defaultValue": null,
@@ -1737,10 +2169,14 @@
         "name": "TimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "\"hours\" | \"minutes\" | \"seconds\"" }
+      "type": {
+        "name": "\"hours\" | \"minutes\" | \"seconds\""
+      }
     },
     "ampm": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
       "parent": {
@@ -1748,10 +2184,14 @@
         "name": "BaseTimePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "minutesStep": {
-      "defaultValue": { "value": "1" },
+      "defaultValue": {
+        "value": "1"
+      },
       "description": "Step over minutes",
       "name": "minutesStep",
       "parent": {
@@ -1759,12 +2199,16 @@
         "name": "BaseTimePickerProps"
       },
       "required": false,
-      "type": { "name": "number" }
+      "type": {
+        "name": "number"
+      }
     }
   },
   "DateTimePicker": {
     "minDateMessage": {
-      "defaultValue": { "value": "'Date should not be before minimal date'" },
+      "defaultValue": {
+        "value": "'Date should not be before minimal date'"
+      },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -1772,10 +2216,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maxDateMessage": {
-      "defaultValue": { "value": "'Date should not be after maximal date'" },
+      "defaultValue": {
+        "value": "'Date should not be after maximal date'"
+      },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -1783,10 +2231,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "invalidDateMessage": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": {
+        "value": "'Invalid Date Format'"
+      },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -1794,7 +2246,9 @@
         "name": "BaseValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "value": {
       "defaultValue": null,
@@ -1805,7 +2259,9 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "onChange": {
       "defaultValue": null,
@@ -1816,10 +2272,14 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "autoOk": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -1827,7 +2287,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "format": {
       "defaultValue": null,
@@ -1838,7 +2300,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "disabled": {
       "defaultValue": null,
@@ -1849,7 +2313,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "labelFunc": {
       "defaultValue": null,
@@ -1860,7 +2326,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any, invalidLabel: string) => string" }
+      "type": {
+        "name": "(date: any, invalidLabel: string) => string"
+      }
     },
     "initialFocusedDate": {
       "defaultValue": null,
@@ -1871,10 +2339,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'unknown'" },
+      "defaultValue": {
+        "value": "'unknown'"
+      },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -1882,10 +2354,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "emptyLabel": {
-      "defaultValue": { "value": "' '" },
+      "defaultValue": {
+        "value": "' '"
+      },
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
@@ -1893,7 +2369,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onAccept": {
       "defaultValue": null,
@@ -1904,7 +2382,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "onError": {
       "defaultValue": null,
@@ -1915,7 +2395,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
+      "type": {
+        "name": "(error: ReactNode, value: any) => void"
+      }
     },
     "onOpen": {
       "defaultValue": null,
@@ -1926,7 +2408,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "onClose": {
       "defaultValue": null,
@@ -1937,7 +2421,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "open": {
       "defaultValue": null,
@@ -1948,10 +2434,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disableToolbar": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Hide toolbar and show only date/time views",
       "name": "disableToolbar",
       "parent": {
@@ -1959,10 +2449,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "orientation": {
-      "defaultValue": { "value": "\"portrait\"" },
+      "defaultValue": {
+        "value": "\"portrait\""
+      },
       "description": "Force rendering in particular orientation",
       "name": "orientation",
       "parent": {
@@ -1970,10 +2464,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"portrait\" | \"landscape\"" }
+      "type": {
+        "name": "\"portrait\" | \"landscape\""
+      }
     },
     "variant": {
-      "defaultValue": { "value": "'dialog'" },
+      "defaultValue": {
+        "value": "'dialog'"
+      },
       "description": "Displaying variant",
       "name": "variant",
       "parent": {
@@ -1981,7 +2479,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\" | \"static\"" }
+      "type": {
+        "name": "\"dialog\" | \"inline\" | \"static\""
+      }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -1992,7 +2492,9 @@
         "name": "InlineWrapperProps"
       },
       "required": false,
-      "type": { "name": "Partial<PopoverProps>" }
+      "type": {
+        "name": "Partial<PopoverProps>"
+      }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -2003,7 +2505,9 @@
         "name": "PureDateInputProps"
       },
       "required": false,
-      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+      "type": {
+        "name": "\"standard\" | \"outlined\" | \"filled\""
+      }
     },
     "TextFieldComponent": {
       "defaultValue": null,
@@ -2014,7 +2518,9 @@
         "name": "PureDateInputProps"
       },
       "required": false,
-      "type": { "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>" }
+      "type": {
+        "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
+      }
     },
     "views": {
       "defaultValue": null,
@@ -2025,7 +2531,9 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "(\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\")[]" }
+      "type": {
+        "name": "(\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\")[]"
+      }
     },
     "openTo": {
       "defaultValue": null,
@@ -2036,7 +2544,9 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\"" }
+      "type": {
+        "name": "\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\""
+      }
     },
     "hideTabs": {
       "defaultValue": null,
@@ -2047,7 +2557,9 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "dateRangeIcon": {
       "defaultValue": null,
@@ -2058,7 +2570,9 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "timeIcon": {
       "defaultValue": null,
@@ -2069,10 +2583,14 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "ampm": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
       "parent": {
@@ -2080,10 +2598,14 @@
         "name": "BaseTimePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "minutesStep": {
-      "defaultValue": { "value": "1" },
+      "defaultValue": {
+        "value": "1"
+      },
       "description": "Step over minutes",
       "name": "minutesStep",
       "parent": {
@@ -2091,10 +2613,14 @@
         "name": "BaseTimePickerProps"
       },
       "required": false,
-      "type": { "name": "number" }
+      "type": {
+        "name": "number"
+      }
     },
     "minDate": {
-      "defaultValue": { "value": "Date(1900-01-01)" },
+      "defaultValue": {
+        "value": "Date(1900-01-01)"
+      },
       "description": "Min selectable date",
       "name": "minDate",
       "parent": {
@@ -2102,10 +2628,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "maxDate": {
-      "defaultValue": { "value": "Date(2100-01-01)" },
+      "defaultValue": {
+        "value": "Date(2100-01-01)"
+      },
       "description": "Max selectable date",
       "name": "maxDate",
       "parent": {
@@ -2113,10 +2643,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "strictCompareDates": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Compare dates by the exact timestamp, instead of start/end of date",
       "name": "strictCompareDates",
       "parent": {
@@ -2124,10 +2658,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disablePast": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Disable past dates",
       "name": "disablePast",
       "parent": {
@@ -2135,10 +2673,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disableFuture": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Disable future dates",
       "name": "disableFuture",
       "parent": {
@@ -2146,18 +2688,24 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "animateYearScrolling": {
-      "defaultValue": { "value": "false" },
-      "description": "To animate scrolling to current year (with scrollIntoView)",
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "To animate scrolling to current year (using scrollIntoView)",
       "name": "animateYearScrolling",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onYearChange": {
       "defaultValue": null,
@@ -2168,7 +2716,9 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "leftArrowIcon": {
       "defaultValue": null,
@@ -2179,7 +2729,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "rightArrowIcon": {
       "defaultValue": null,
@@ -2190,7 +2742,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "renderDay": {
       "defaultValue": null,
@@ -2206,7 +2760,9 @@
       }
     },
     "allowKeyboardControl": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
       "parent": {
@@ -2214,7 +2770,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "leftArrowButtonProps": {
       "defaultValue": null,
@@ -2225,7 +2783,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
@@ -2236,7 +2796,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "shouldDisableDate": {
       "defaultValue": null,
@@ -2247,7 +2809,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(day: any) => boolean" }
+      "type": {
+        "name": "(day: any) => boolean"
+      }
     },
     "onMonthChange": {
       "defaultValue": null,
@@ -2258,7 +2822,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void | Promise<void>" }
+      "type": {
+        "name": "(date: any) => void | Promise<void>"
+      }
     },
     "loadingIndicator": {
       "defaultValue": null,
@@ -2269,12 +2835,16 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Element" }
+      "type": {
+        "name": "Element"
+      }
     }
   },
   "KeyboardDateTimePicker": {
     "minDateMessage": {
-      "defaultValue": { "value": "'Date should not be before minimal date'" },
+      "defaultValue": {
+        "value": "'Date should not be before minimal date'"
+      },
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
@@ -2282,10 +2852,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maxDateMessage": {
-      "defaultValue": { "value": "'Date should not be after maximal date'" },
+      "defaultValue": {
+        "value": "'Date should not be after maximal date'"
+      },
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
@@ -2293,10 +2867,14 @@
         "name": "DateValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "invalidDateMessage": {
-      "defaultValue": { "value": "'Invalid Date Format'" },
+      "defaultValue": {
+        "value": "'Invalid Date Format'"
+      },
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
@@ -2304,7 +2882,9 @@
         "name": "BaseValidationProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "inputValue": {
       "defaultValue": null,
@@ -2315,7 +2895,9 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onChange": {
       "defaultValue": null,
@@ -2326,7 +2908,9 @@
         "name": "BaseKeyboardPickerProps"
       },
       "required": true,
-      "type": { "name": "(date: any, value?: string | null) => void" }
+      "type": {
+        "name": "(date: any, value?: string | null) => void"
+      }
     },
     "open": {
       "defaultValue": null,
@@ -2337,7 +2921,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onAccept": {
       "defaultValue": null,
@@ -2348,7 +2934,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "format": {
       "defaultValue": null,
@@ -2359,10 +2947,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "variant": {
-      "defaultValue": { "value": "'dialog'" },
+      "defaultValue": {
+        "value": "'dialog'"
+      },
       "description": "Displaying variant",
       "name": "variant",
       "parent": {
@@ -2370,7 +2962,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"dialog\" | \"inline\" | \"static\"" }
+      "type": {
+        "name": "\"dialog\" | \"inline\" | \"static\""
+      }
     },
     "onError": {
       "defaultValue": null,
@@ -2381,7 +2975,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(error: ReactNode, value: any) => void" }
+      "type": {
+        "name": "(error: ReactNode, value: any) => void"
+      }
     },
     "value": {
       "defaultValue": null,
@@ -2392,7 +2988,9 @@
         "name": "BasePickerProps"
       },
       "required": true,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "disabled": {
       "defaultValue": null,
@@ -2403,7 +3001,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onClose": {
       "defaultValue": null,
@@ -2414,10 +3014,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "autoOk": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
@@ -2425,7 +3029,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "labelFunc": {
       "defaultValue": null,
@@ -2436,7 +3042,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any, invalidLabel: string) => string" }
+      "type": {
+        "name": "(date: any, invalidLabel: string) => string"
+      }
     },
     "initialFocusedDate": {
       "defaultValue": null,
@@ -2447,10 +3055,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "invalidLabel": {
-      "defaultValue": { "value": "'unknown'" },
+      "defaultValue": {
+        "value": "'unknown'"
+      },
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
@@ -2458,10 +3070,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "emptyLabel": {
-      "defaultValue": { "value": "' '" },
+      "defaultValue": {
+        "value": "' '"
+      },
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
@@ -2469,7 +3085,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "onOpen": {
       "defaultValue": null,
@@ -2480,10 +3098,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "() => void" }
+      "type": {
+        "name": "() => void"
+      }
     },
     "disableToolbar": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Hide toolbar and show only date/time views",
       "name": "disableToolbar",
       "parent": {
@@ -2491,10 +3113,14 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "orientation": {
-      "defaultValue": { "value": "\"portrait\"" },
+      "defaultValue": {
+        "value": "\"portrait\""
+      },
       "description": "Force rendering in particular orientation",
       "name": "orientation",
       "parent": {
@@ -2502,7 +3128,9 @@
         "name": "BasePickerProps"
       },
       "required": false,
-      "type": { "name": "\"portrait\" | \"landscape\"" }
+      "type": {
+        "name": "\"portrait\" | \"landscape\""
+      }
     },
     "PopoverProps": {
       "defaultValue": null,
@@ -2513,7 +3141,9 @@
         "name": "InlineWrapperProps"
       },
       "required": false,
-      "type": { "name": "Partial<PopoverProps>" }
+      "type": {
+        "name": "Partial<PopoverProps>"
+      }
     },
     "mask": {
       "defaultValue": null,
@@ -2524,7 +3154,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "inputVariant": {
       "defaultValue": null,
@@ -2535,7 +3167,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "\"standard\" | \"outlined\" | \"filled\"" }
+      "type": {
+        "name": "\"standard\" | \"outlined\" | \"filled\""
+      }
     },
     "TextFieldComponent": {
       "defaultValue": null,
@@ -2546,7 +3180,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>" }
+      "type": {
+        "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
+      }
     },
     "keyboardIcon": {
       "defaultValue": null,
@@ -2557,10 +3193,14 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "maskChar": {
-      "defaultValue": { "value": "'_'" },
+      "defaultValue": {
+        "value": "'_'"
+      },
       "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
       "name": "maskChar",
       "parent": {
@@ -2568,10 +3208,14 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "string" }
+      "type": {
+        "name": "string"
+      }
     },
     "refuse": {
-      "defaultValue": { "value": "/[^\\dap]+/gi" },
+      "defaultValue": {
+        "value": "/[^\\dap]+/gi"
+      },
       "description": "Refuse values regexp",
       "name": "refuse",
       "parent": {
@@ -2579,7 +3223,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "RegExp" }
+      "type": {
+        "name": "RegExp"
+      }
     },
     "InputAdornmentProps": {
       "defaultValue": null,
@@ -2590,7 +3236,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "Partial<InputAdornmentProps>" }
+      "type": {
+        "name": "Partial<InputAdornmentProps>"
+      }
     },
     "KeyboardButtonProps": {
       "defaultValue": null,
@@ -2601,7 +3249,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "rifmFormatter": {
       "defaultValue": null,
@@ -2612,7 +3262,9 @@
         "name": "KeyboardDateInputProps"
       },
       "required": false,
-      "type": { "name": "(str: string) => string" }
+      "type": {
+        "name": "(str: string) => string"
+      }
     },
     "views": {
       "defaultValue": null,
@@ -2623,7 +3275,9 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "(\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\")[]" }
+      "type": {
+        "name": "(\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\")[]"
+      }
     },
     "openTo": {
       "defaultValue": null,
@@ -2634,7 +3288,9 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\"" }
+      "type": {
+        "name": "\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\""
+      }
     },
     "hideTabs": {
       "defaultValue": null,
@@ -2645,7 +3301,9 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "dateRangeIcon": {
       "defaultValue": null,
@@ -2656,7 +3314,9 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "timeIcon": {
       "defaultValue": null,
@@ -2667,10 +3327,14 @@
         "name": "DateTimePickerViewsProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "ampm": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
       "parent": {
@@ -2678,10 +3342,14 @@
         "name": "BaseTimePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "minutesStep": {
-      "defaultValue": { "value": "1" },
+      "defaultValue": {
+        "value": "1"
+      },
       "description": "Step over minutes",
       "name": "minutesStep",
       "parent": {
@@ -2689,10 +3357,14 @@
         "name": "BaseTimePickerProps"
       },
       "required": false,
-      "type": { "name": "number" }
+      "type": {
+        "name": "number"
+      }
     },
     "minDate": {
-      "defaultValue": { "value": "Date(1900-01-01)" },
+      "defaultValue": {
+        "value": "Date(1900-01-01)"
+      },
       "description": "Min selectable date",
       "name": "minDate",
       "parent": {
@@ -2700,10 +3372,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "maxDate": {
-      "defaultValue": { "value": "Date(2100-01-01)" },
+      "defaultValue": {
+        "value": "Date(2100-01-01)"
+      },
       "description": "Max selectable date",
       "name": "maxDate",
       "parent": {
@@ -2711,10 +3387,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "ParsableDate" }
+      "type": {
+        "name": "ParsableDate"
+      }
     },
     "strictCompareDates": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Compare dates by the exact timestamp, instead of start/end of date",
       "name": "strictCompareDates",
       "parent": {
@@ -2722,10 +3402,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disablePast": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Disable past dates",
       "name": "disablePast",
       "parent": {
@@ -2733,10 +3417,14 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "disableFuture": {
-      "defaultValue": { "value": "false" },
+      "defaultValue": {
+        "value": "false"
+      },
       "description": "Disable future dates",
       "name": "disableFuture",
       "parent": {
@@ -2744,18 +3432,24 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "animateYearScrolling": {
-      "defaultValue": { "value": "false" },
-      "description": "To animate scrolling to current year (with scrollIntoView)",
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "To animate scrolling to current year (using scrollIntoView)",
       "name": "animateYearScrolling",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "onYearChange": {
       "defaultValue": null,
@@ -2766,7 +3460,9 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void" }
+      "type": {
+        "name": "(date: any) => void"
+      }
     },
     "leftArrowIcon": {
       "defaultValue": null,
@@ -2777,7 +3473,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "rightArrowIcon": {
       "defaultValue": null,
@@ -2788,7 +3486,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "ReactNode" }
+      "type": {
+        "name": "ReactNode"
+      }
     },
     "renderDay": {
       "defaultValue": null,
@@ -2804,7 +3504,9 @@
       }
     },
     "allowKeyboardControl": {
-      "defaultValue": { "value": "true" },
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
       "parent": {
@@ -2812,7 +3514,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "boolean" }
+      "type": {
+        "name": "boolean"
+      }
     },
     "leftArrowButtonProps": {
       "defaultValue": null,
@@ -2823,7 +3527,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "rightArrowButtonProps": {
       "defaultValue": null,
@@ -2834,7 +3540,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Partial<IconButtonProps>" }
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
     },
     "shouldDisableDate": {
       "defaultValue": null,
@@ -2845,7 +3553,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(day: any) => boolean" }
+      "type": {
+        "name": "(day: any) => boolean"
+      }
     },
     "onMonthChange": {
       "defaultValue": null,
@@ -2856,7 +3566,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "(date: any) => void | Promise<void>" }
+      "type": {
+        "name": "(date: any) => void | Promise<void>"
+      }
     },
     "loadingIndicator": {
       "defaultValue": null,
@@ -2867,7 +3579,9 @@
         "name": "OutterCalendarProps"
       },
       "required": false,
-      "type": { "name": "Element" }
+      "type": {
+        "name": "Element"
+      }
     }
   }
 }

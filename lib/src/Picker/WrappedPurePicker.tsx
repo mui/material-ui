@@ -13,7 +13,7 @@ export type WrappedPurePickerProps = DateValidationProps &
 
 export function makePurePicker<T extends any>({
   useOptions,
-  ToolbarComponent,
+  DefaultToolbarComponent,
 }: MakePickerOptions): React.FC<WrappedPurePickerProps & T> {
   function WrappedPurePicker(props: WrappedPurePickerProps & T) {
     const {
@@ -58,6 +58,7 @@ export function makePurePicker<T extends any>({
       orientation,
       disableToolbar,
       loadingIndicator,
+      ToolbarComponent = DefaultToolbarComponent,
       ...other
     } = props;
 

@@ -38,7 +38,7 @@ export interface BaseDatePickerProps extends OutterCalendarProps {
    */
   disableFuture?: boolean;
   /**
-   * To animate scrolling to current year (with scrollIntoView)
+   * To animate scrolling to current year (using scrollIntoView)
    * @default false
    */
   animateYearScrolling?: boolean;
@@ -76,12 +76,12 @@ function useOptions(props: DatePickerViewsProps) {
 
 export const DatePicker = makePurePicker<DatePickerViewsProps>({
   useOptions,
-  ToolbarComponent: DatePickerToolbar,
+  DefaultToolbarComponent: DatePickerToolbar,
 });
 
 export const KeyboardDatePicker = makeKeyboardPicker<DatePickerViewsProps>({
   useOptions,
-  ToolbarComponent: DatePickerToolbar,
+  DefaultToolbarComponent: DatePickerToolbar,
 });
 
 DatePicker.defaultProps = defaultProps;

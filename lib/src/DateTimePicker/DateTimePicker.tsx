@@ -54,12 +54,12 @@ function useOptions(props: DateTimePickerProps | KeyboardDateTimePickerProps) {
 
 export const DateTimePicker = makePurePicker<DateTimePickerProps>({
   useOptions,
-  ToolbarComponent: DateTimePickerToolbar,
+  DefaultToolbarComponent: DateTimePickerToolbar,
 });
 
 export const KeyboardDateTimePicker = makeKeyboardPicker<KeyboardDateTimePickerProps>({
   useOptions,
-  ToolbarComponent: DateTimePickerToolbar,
+  DefaultToolbarComponent: DateTimePickerToolbar,
 });
 
 DateTimePicker.defaultProps = defaultProps;

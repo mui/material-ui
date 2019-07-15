@@ -15,14 +15,14 @@ export type WrappedKeyboardPickerProps = DateValidationProps &
 
 export interface MakePickerOptions {
   useOptions: (props: any) => StateHookOptions;
-  ToolbarComponent: React.ComponentType<ToolbarComponentProps>;
+  DefaultToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }
 
 // Mostly duplicate of ./WrappedPurePicker.tsx to enable tree-shaking of keyboard logic
 // TODO investigate how to reduce duplications
 export function makeKeyboardPicker<T extends any>({
   useOptions,
-  ToolbarComponent,
+  DefaultToolbarComponent,
 }: MakePickerOptions): React.FC<WrappedKeyboardPickerProps & T> {
   function WrappedKeyboardPicker(props: WrappedKeyboardPickerProps & T) {
     const {
@@ -67,6 +67,7 @@ export function makeKeyboardPicker<T extends any>({
       variant,
       disableToolbar,
       loadingIndicator,
+      ToolbarComponent = DefaultToolbarComponent,
       ...other
     } = props;
 

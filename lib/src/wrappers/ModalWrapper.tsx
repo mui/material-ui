@@ -9,22 +9,22 @@ import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
   /**
    * "OK" label message
-   * @default 'OK'
+   * @default "OK"
    */
   okLabel?: React.ReactNode;
   /**
    * "CANCEL" label message
-   * @default 'CANCEL'
+   * @default "CANCEL"
    */
   cancelLabel?: React.ReactNode;
   /**
    * "CLEAR" label message
-   * @default 'CLEAR'
+   * @default "CLEAR"
    */
   clearLabel?: React.ReactNode;
   /**
    * "TODAY" label message
-   * @default 'TODAY'
+   * @default "TODAY"
    */
   todayLabel?: React.ReactNode;
   /**

@@ -85,4 +85,4 @@ components.forEach(filePart => {
   });
 });
 
-fs.writeFileSync(path.resolve(__dirname, '..', 'prop-types.json'), JSON.stringify(doc));
+fs.writeFileSync(path.resolve(__dirname, '..', 'prop-types.json'), JSON.stringify(doc, null, 2));

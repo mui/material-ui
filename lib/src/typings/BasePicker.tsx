@@ -1,6 +1,7 @@
 import { MaterialUiPickersDate } from './date';
 import { WrapperVariant } from '../wrappers/Wrapper';
 import { ParsableDate } from '../constants/prop-types';
+import { ToolbarComponentProps } from '../Picker/Picker';
 
 export interface BasePickerProps {
   /** Picker value */
@@ -50,6 +51,8 @@ export interface BasePickerProps {
    * @default "portrait"
    */
   orientation?: 'portrait' | 'landscape';
+  /* Component that will replace default toolbar renderer */
+  ToolbarComponent?: React.ComponentType<ToolbarComponentProps>;
   variant?: WrapperVariant;
   mergePreviousDateOnChange?: boolean;
   forwardedRef?: any;
