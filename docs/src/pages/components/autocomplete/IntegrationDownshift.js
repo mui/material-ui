@@ -65,22 +65,8 @@ function renderInput(inputProps) {
 }
 
 renderInput.propTypes = {
-  classes: PropTypes.shape({
-    chip: PropTypes.string.isRequired,
-    container: PropTypes.string.isRequired,
-    divider: PropTypes.string.isRequired,
-    inputInput: PropTypes.string.isRequired,
-    inputRoot: PropTypes.string.isRequired,
-    paper: PropTypes.string.isRequired,
-    root: PropTypes.string.isRequired,
-  }).isRequired,
+  classes: PropTypes.object.isRequired,
   InputProps: PropTypes.object,
-  ref: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object]).isRequired,
-    }),
-  ]),
 };
 
 function renderSuggestion(suggestionProps) {
@@ -231,15 +217,7 @@ function DownshiftMultiple(props) {
 }
 
 DownshiftMultiple.propTypes = {
-  classes: PropTypes.shape({
-    chip: PropTypes.string.isRequired,
-    container: PropTypes.string.isRequired,
-    divider: PropTypes.string.isRequired,
-    inputInput: PropTypes.string.isRequired,
-    inputRoot: PropTypes.string.isRequired,
-    paper: PropTypes.string.isRequired,
-    root: PropTypes.string.isRequired,
-  }).isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
 const useStyles = makeStyles(theme => ({

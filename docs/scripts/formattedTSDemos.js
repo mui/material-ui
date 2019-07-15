@@ -93,7 +93,15 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
 
     const { code } = await babel.transformFileAsync(tsxPath, babelConfig);
 
-    const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program);
+    const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
+      shouldResolveObject: ({ name }) => {
+        if (name === 'classes') {
+          return false;
+        }
+
+        return undefined;
+      },
+    });
     const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
 
     const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: tsxPath });

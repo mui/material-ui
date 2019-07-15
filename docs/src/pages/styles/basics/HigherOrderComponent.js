@@ -21,9 +21,7 @@ function HigherOrderComponent(props) {
 }
 
 HigherOrderComponent.propTypes = {
-  classes: PropTypes.shape({
-    root: PropTypes.string.isRequired,
-  }).isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(HigherOrderComponent);

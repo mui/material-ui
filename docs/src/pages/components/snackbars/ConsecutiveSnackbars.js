@@ -97,9 +97,7 @@ class ConsecutiveSnackbars extends React.Component {
 }
 
 ConsecutiveSnackbars.propTypes = {
-  classes: PropTypes.shape({
-    close: PropTypes.string.isRequired,
-  }).isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ConsecutiveSnackbars);

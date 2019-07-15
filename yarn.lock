@@ -46,14 +46,14 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.1.6", "@babel/core@^7.2.2", "@babel/core@^7.4.4", "@babel/core@^7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.5.0.tgz#6ed6a2881ad48a732c5433096d96d1b0ee5eb734"
-  integrity sha512-6Isr4X98pwXqHvtigw71CKgmhL1etZjPs5A67jL/w0TkLM9eqmFR40YrnJvEc1WnMZFsskjsmid8bHZyxKEAnw==
+"@babel/core@^7.1.6", "@babel/core@^7.2.2", "@babel/core@^7.4.4", "@babel/core@^7.5.4":
+  version "7.5.4"
+  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.5.4.tgz#4c32df7ad5a58e9ea27ad025c11276324e0b4ddd"
+  integrity sha512-+DaeBEpYq6b2+ZmHx3tHspC+ZRflrvLqwfv8E3hNr5LVQoyBnL8RPKSBCg+rK2W2My9PWlujBiqd0ZPsR9Q6zQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/generator" "^7.5.0"
-    "@babel/helpers" "^7.5.0"
+    "@babel/helpers" "^7.5.4"
     "@babel/parser" "^7.5.0"
     "@babel/template" "^7.4.4"
     "@babel/traverse" "^7.5.0"
@@ -252,10 +252,10 @@
     "@babel/traverse" "^7.1.0"
     "@babel/types" "^7.2.0"
 
-"@babel/helpers@^7.1.2", "@babel/helpers@^7.5.0":
-  version "7.5.2"
-  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.5.2.tgz#97424dc82fc0041f4c751119b4d2b1ec68cdb5ba"
-  integrity sha512-NDkkTqDvgFUeo8djXBOiwO/mFjownznOWvmP9hvNdfiFUmx0nwNOqxuaTTbxjH744eQsD9M5ubC7gdANBvIWPw==
+"@babel/helpers@^7.1.2", "@babel/helpers@^7.5.0", "@babel/helpers@^7.5.4":
+  version "7.5.4"
+  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.5.4.tgz#2f00608aa10d460bde0ccf665d6dcf8477357cf0"
+  integrity sha512-6LJ6xwUEJP51w0sIgKyfvFMJvIb9mWAfohJp0+m6eHJigkFdcH8duZ1sfhn0ltJRzwUIT/yqqhdSfRpCpL7oow==
   dependencies:
     "@babel/template" "^7.4.4"
     "@babel/traverse" "^7.5.0"
@@ -8988,10 +8988,10 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@~4.17.4, lodash@~4.17.5:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@~4.17.4, lodash@~4.17.5:
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -9777,12 +9777,7 @@ node-fetch@^1.0.1:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@^2.3.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.5.0.tgz#8028c49fc1191bba56a07adc6e2a954644a48501"
-  integrity sha512-YuZKluhWGJwCcUu4RlZstdAxr8bFfOVHakc1mplwHkk8J+tqM1Y5yraYvIUpeX8aY7+crCwiELJq7Vl0o0LWXw==
-
-node-fetch@^2.5.0:
+node-fetch@^2.3.0, node-fetch@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
@@ -13882,16 +13877,16 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-to-proptypes@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.0.4.tgz#2193a0410a9724a0a61b06a1363daa619f7504ee"
-  integrity sha512-fnfevgH0o+XaFT43npETojRFQ5Cq4PZu+UB4mBde3vsbYd1P6ZhzvBGrsrLYBA45B5/vIVTvkqFf34UukEHyoA==
+typescript-to-proptypes@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.1.0.tgz#31306953bb5fda8d46f679ed6ca99860874226f4"
+  integrity sha512-U57VzFJ9t5wl4d7V48AmD7YPWD0YCilZqvCz12hCRxtE2kd1yKVfs2Eo+9NAEUkzzcDCc5U8MktgfV4FgFNgew==
   dependencies:
-    "@babel/core" "^7.5.0"
+    "@babel/core" "^7.5.4"
     "@babel/plugin-syntax-class-properties" "^7.2.0"
     "@babel/plugin-syntax-jsx" "^7.2.0"
     "@babel/types" "^7.5.0"
-    lodash "^4.17.11"
+    lodash "^4.17.14"
     typescript "3.5.2"
     uuid "^3.3.2"
 

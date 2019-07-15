@@ -113,13 +113,7 @@ class MuiVirtualizedTable extends React.PureComponent {
 }
 
 MuiVirtualizedTable.propTypes = {
-  classes: PropTypes.shape({
-    flexContainer: PropTypes.string.isRequired,
-    noClick: PropTypes.string.isRequired,
-    tableCell: PropTypes.string.isRequired,
-    tableRow: PropTypes.string.isRequired,
-    tableRowHover: PropTypes.string.isRequired,
-  }).isRequired,
+  classes: PropTypes.object.isRequired,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       dataKey: PropTypes.string.isRequired,
