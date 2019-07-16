@@ -106,6 +106,9 @@ The `withWidth()` higher-order component injects the screen width of the page.
 You can reproduce the same behavior with a `useWidth` hook:
 
 ```jsx
+
+  /** null can be return from useWidth **/
+  
   const useWidth = () => {
     const theme = useTheme();
     const isXs = useMediaQuery(theme.breakpoints.up('xs'));
