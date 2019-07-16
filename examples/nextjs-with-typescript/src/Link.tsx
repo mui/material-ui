@@ -31,20 +31,7 @@ interface LinkPropsBase {
   naked?: boolean;
 }
 
-type LinkProps = LinkPropsBase &
-  NextComposedProps &
-  Pick<
-    MuiLinkProps,
-    | 'align'
-    | 'color'
-    | 'display'
-    | 'gutterBottom'
-    | 'noWrap'
-    | 'paragraph'
-    | 'variant'
-    | 'variantMapping'
-    | 'underline'
-  >;
+type LinkProps = LinkPropsBase & NextComposedProps & Omit<MuiLinkProps, 'ref'>;
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
