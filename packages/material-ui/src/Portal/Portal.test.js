@@ -48,20 +48,39 @@ describe('<Portal />', () => {
   });
 
   it('should have access to the mountNode', () => {
+    let wrapper;
+    let mountNode;
     const refSpy1 = spy();
-    mount(
+    wrapper = mount(
       <Portal ref={refSpy1}>
         <h1>Foo</h1>
       </Portal>,
     );
-    assert.deepEqual(refSpy1.args, [[document.body]]);
+    wrapper.unmount();
+    assert.deepEqual(refSpy1.args, [[document.body], [null]]);
+
     const refSpy2 = spy();
-    mount(
+    wrapper = mount(
       <Portal disablePortal ref={refSpy2}>
         <h1 className="woofPortal">Foo</h1>
       </Portal>,
     );
-    assert.deepEqual(refSpy2.args, [[document.querySelector('.woofPortal')]]);
+    mountNode = document.querySelector('.woofPortal');
+    wrapper.unmount();
+    assert.deepEqual(refSpy2.args, [[mountNode], [null]]);
+
+    const refSpy3 = spy();
+    wrapper = mount(
+      <Portal disablePortal ref={refSpy3}>
+        <h1 className="woofPortal">Foo</h1>
+      </Portal>,
+    );
+    mountNode = document.querySelector('.woofPortal');
+    wrapper.setProps({
+      disablePortal: false,
+    });
+    wrapper.unmount();
+    assert.deepEqual(refSpy3.args, [[mountNode], [null], [document.body], [null]]);
   });
 
   it('should render in a different node', () => {

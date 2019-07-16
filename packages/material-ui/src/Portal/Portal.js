@@ -19,8 +19,7 @@ const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect 
 const Portal = React.forwardRef(function Portal(props, ref) {
   const { children, container, disablePortal = false, onRendered } = props;
   const [mountNode, setMountNode] = React.useState(null);
-  const childRef = React.useRef(null);
-  const handleRef = useForkRef(children.ref, childRef);
+  const handleRef = useForkRef(children.ref, ref);
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
@@ -29,20 +28,21 @@ const Portal = React.forwardRef(function Portal(props, ref) {
   }, [container, disablePortal]);
 
   useEnhancedEffect(() => {
-    if (mountNode || disablePortal) {
-      setRef(ref, mountNode || childRef.current);
+    if (mountNode && !disablePortal) {
+      setRef(ref, mountNode);
+      return () => {
+        setRef(ref, null);
+      };
     }
 
-    return () => {
-      setRef(null);
-    };
-  }, [ref, mountNode]);
+    return undefined;
+  }, [ref, mountNode, disablePortal]);
 
   useEnhancedEffect(() => {
     if (onRendered && (mountNode || disablePortal)) {
       onRendered();
     }
-  }, [mountNode, onRendered, disablePortal]);
+  }, [onRendered, mountNode, disablePortal]);
 
   if (disablePortal) {
     React.Children.only(children);
@@ -73,8 +73,10 @@ Portal.propTypes = {
   disablePortal: PropTypes.bool,
   /**
    * Callback fired once the children has been mounted into the `container`.
+   *
+   * This prop will be deprecated and removed in v5, the ref can be used instead.
    */
-  onRendered: PropTypes.func, // TODO v5: to remove
+  onRendered: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {

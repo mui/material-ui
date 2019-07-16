@@ -115,6 +115,10 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   const handlePortalRef = useEventCallback(node => {
     mountNodeRef.current = node;
 
+    if (!node) {
+      return;
+    }
+
     if (onRendered) {
       onRendered();
     }
@@ -324,8 +328,7 @@ Modal.propTypes = {
   /**
    * @ignore
    *
-   * A modal manager used to track and manage the state of open
-   * Modals. This enables customizing how modals interact within a container.
+   * A modal manager used to track and manage the state of open Modals.
    */
   manager: PropTypes.object,
   /**
@@ -348,6 +351,8 @@ Modal.propTypes = {
   /**
    * Callback fired once the children has been mounted into the `container`.
    * It signals that the `open={true}` prop took effect.
+   *
+   * This prop will be deprecated and removed in v5, the ref can be used instead.
    */
   onRendered: PropTypes.func,
   /**
