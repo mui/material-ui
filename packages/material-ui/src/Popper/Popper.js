@@ -69,9 +69,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
   const handleOpen = React.useCallback(() => {
     const handlePopperUpdate = data => {
-      if (data.placement !== placement) {
-        setPlacement(data.placement);
-      }
+      setPlacement(data.placement);
     };
 
     const popperNode = tooltipRef.current;
@@ -106,7 +104,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
     handlePopperRefRef.current(popper);
-  }, [anchorEl, disablePortal, modifiers, open, placement, placementProps, popperOptions]);
+  }, [anchorEl, disablePortal, modifiers, open, placementProps, popperOptions]);
 
   const handleEnter = () => {
     setExited(false);
