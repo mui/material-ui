@@ -1,9 +1,9 @@
 import React from 'react';
 import { assert, expect } from 'chai';
-import { spy } from 'sinon';
+import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { act, cleanup, createClientRender } from 'test/utils/createClientRender';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Fade from '../Fade';
@@ -511,27 +511,44 @@ describe('<Modal />', () => {
       assert.strictEqual(document.activeElement.getAttribute('data-test'), 'sentinelEnd');
     });
 
-    it.only('contains the focus if the active element is removed', () => {
-      function WithRemovableElement({ hideButton = false }) {
-        return (
-          <Modal open>
-            <div>{!hideButton && <button>I'm going to disappear</button>}</div>
-          </Modal>
-        );
-      }
+    describe('', () => {
+      let clock;
 
-      // remove once .only remvoved
-      wrapper = { unmount() {} };
+      before(() => {
+        clock = useFakeTimers();
+      });
 
-      const { getByRole, setProps } = render(<WithRemovableElement />);
+      after(() => {
+        clock.restore();
+      });
 
-      expect(getByRole('document')).to.be.focused;
+      it('contains the focus if the active element is removed', () => {
+        function WithRemovableElement({ hideButton = false }) {
+          return (
+            <Modal open>
+              <div>{!hideButton && <button type="button">I am going to disappear</button>}</div>
+            </Modal>
+          );
+        }
+        WithRemovableElement.propTypes = {
+          hideButton: PropTypes.bool,
+        };
 
-      getByRole('button').focus();
-      expect(getByRole('button')).to.be.focused;
+        wrapper = {
+          unmount() {},
+        };
 
-      setProps({ hideButton: true });
-      expect(getByRole('document')).to.be.focused;
+        const { getByRole, setProps } = render(<WithRemovableElement />);
+        expect(getByRole('document')).to.be.focused;
+
+        getByRole('button').focus();
+        expect(getByRole('button')).to.be.focused;
+
+        setProps({ hideButton: true });
+        expect(getByRole('document')).to.not.be.focused;
+        clock.tick(500); // wait for the interval check to kick in.
+        expect(getByRole('document')).to.be.focused;
+      });
     });
   });
 

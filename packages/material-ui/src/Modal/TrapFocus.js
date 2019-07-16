@@ -20,6 +20,7 @@ function TrapFocus(props) {
     isEnabled,
     open,
   } = props;
+  const ignoreNextEnforceFocus = React.useRef();
   const sentinelStart = React.useRef(null);
   const sentinelEnd = React.useRef(null);
   const nodeToRestore = React.useRef();
@@ -66,12 +67,13 @@ function TrapFocus(props) {
       rootRef.current.focus();
     }
 
-    const contain = nativeFocusOutEvent => {
-      if (disableEnforceFocus || !isEnabled()) {
+    const contain = () => {
+      if (disableEnforceFocus || !isEnabled() || ignoreNextEnforceFocus.current) {
+        ignoreNextEnforceFocus.current = false;
         return;
       }
 
-      if (rootRef.current && !rootRef.current.contains(nativeFocusOutEvent.relatedTarget)) {
+      if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
         rootRef.current.focus();
       }
     };
@@ -84,6 +86,9 @@ function TrapFocus(props) {
 
       // Make sure the next tab starts from the right place.
       if (doc.activeElement === rootRef.current) {
+        // We need to ignore the next contain as
+        // it will try to move the focus back to the rootRef element.
+        ignoreNextEnforceFocus.current = true;
         if (event.shiftKey) {
           sentinelEnd.current.focus();
         } else {
@@ -92,12 +97,17 @@ function TrapFocus(props) {
       }
     };
 
-    const { current: trapNode } = rootRef;
-    trapNode.addEventListener('focusout', contain);
+    doc.addEventListener('focus', contain, true);
     doc.addEventListener('keydown', loopFocus, true);
 
+    const interval = setInterval(() => {
+      contain();
+    }, 500);
+
     return () => {
-      trapNode.removeEventListener('focusout', contain);
+      clearInterval(interval);
+
+      doc.removeEventListener('focus', contain, true);
       doc.removeEventListener('keydown', loopFocus, true);
 
       // restoreLastFocus()
