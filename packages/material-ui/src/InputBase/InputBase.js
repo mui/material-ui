@@ -277,8 +277,17 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const handleChange = (event, ...args) => {
     if (!isControlled) {
+      const element = event.target || inputRef.current;
+      if (element == null) {
+        throw new TypeError(
+          'Material-UI: Expected valid input target. ' +
+            'Did you use a custom `inputComponent` and forget to forward refs? ' +
+            'See https://material-ui.com/r/input-component-ref-interface for more info.',
+        );
+      }
+
       checkDirty({
-        value: (event.target || inputRef.current).value,
+        value: element.value,
       });
     }
 

@@ -182,6 +182,103 @@ describe('<InputBase />', () => {
       expect(typeof injectedProps.onBlur).to.equal('function');
       expect(typeof injectedProps.onFocus).to.equal('function');
     });
+
+    describe('target mock implementations', () => {
+      it('can just mock the value', () => {
+        function MockedValue(props) {
+          const { onChange } = props;
+
+          function handleChange(event) {
+            onChange({ target: { value: event.target.value } });
+          }
+
+          return <input onChange={handleChange} />;
+        }
+        MockedValue.propTypes = { onChange: PropTypes.func.isRequired };
+
+        function FilledState(props) {
+          const { filled } = useFormControl();
+          return <span {...props}>filled: {String(filled)}</span>;
+        }
+
+        const { getByRole, getByTestId } = render(
+          <FormControl>
+            <FilledState data-testid="filled" />
+            <InputBase inputComponent={MockedValue} />
+          </FormControl>,
+        );
+        expect(getByTestId('filled')).to.have.text('filled: false');
+
+        fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
+        expect(getByTestId('filled')).to.have.text('filled: true');
+      });
+
+      it('can expose the full target with `inputRef`', () => {
+        function FullTarget(props) {
+          const { inputRef, ...other } = props;
+
+          return <input ref={inputRef} {...other} />;
+        }
+        FullTarget.propTypes = {
+          inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        };
+
+        function FilledState(props) {
+          const { filled } = useFormControl();
+          return <span {...props}>filled: {String(filled)}</span>;
+        }
+
+        const { getByRole, getByTestId } = render(
+          <FormControl>
+            <FilledState data-testid="filled" />
+            <InputBase inputComponent={FullTarget} />
+          </FormControl>,
+        );
+        expect(getByTestId('filled')).to.have.text('filled: false');
+
+        fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
+        expect(getByTestId('filled')).to.have.text('filled: true');
+      });
+    });
+
+    describe('errors', () => {
+      it('throws on change if the target isnt mocked', () => {
+        /**
+         * This component simulates a custom input component that hides the inner
+         * input value for security reasons e.g. react-stripe-element.
+         *
+         * A ref is exposed to trigger a change event instead of using fireEvent.change
+         */
+        function BadInputComponent(props) {
+          const { onChange, triggerChangeRef } = props;
+
+          // simulates const handleChange = () => onChange({}) and passing that
+          // handler to the onChange prop of `input`
+          React.useImperativeHandle(triggerChangeRef, () => () => onChange({}));
+
+          return <input />;
+        }
+        BadInputComponent.propTypes = {
+          onChange: PropTypes.func.isRequired,
+          triggerChangeRef: PropTypes.object,
+        };
+
+        const triggerChangeRef = React.createRef();
+        render(<InputBase inputProps={{ triggerChangeRef }} inputComponent={BadInputComponent} />);
+
+        // mocking fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
+        // using dispatchEvents prevents us from catching the error in the browser
+        // in test:karma neither try-catch nor consoleErrorMock.spy catches the error
+        let errorMessage = '';
+        try {
+          triggerChangeRef.current();
+        } catch (error) {
+          errorMessage = String(error);
+        }
+
+        expect(errorMessage).to.include('Material-UI: Expected valid input target');
+      });
+    });
   });
 
   describe('with FormControl', () => {

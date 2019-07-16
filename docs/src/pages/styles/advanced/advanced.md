@@ -580,7 +580,7 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
 />
 ```
 

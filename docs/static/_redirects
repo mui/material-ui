@@ -41,6 +41,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
 /r/caveat-with-refs-guide /guides/composition/#caveat-with-refs 302
 /r/pseudo-classes-guide /customization/components/#pseudo-classes 302
+/r/input-component-ref-interface /components/text-fields/#integration-with-3rd-party-input-libraries 302
 
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0

@@ -109,16 +109,49 @@ or
 <InputLabel shrink>Count</InputLabel>
 ```
 
-## Formatted inputs
+## Integration with 3rd party input libraries
 
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
-The provided input component should handle the `inputRef` property.
-The property should be called with a value implementing the [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) interface.
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
+
+The provided input component should handle the `inputRef` property.
+The property should be called with a value that implements the following interface:
+
+```ts
+interface InputElement {
+  focus(): void;
+  value?: string;
+}
+```
+
+```jsx
+function MyInputComponent(props) {
+  const { component: Component, inputRef, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(inputRef, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+}
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: { component: SomeThirdPartyComponent },
+  }}
+/>;
+```
 
 ## Accessibility
 

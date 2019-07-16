@@ -41,7 +41,7 @@ In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-l
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
+  inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
 
