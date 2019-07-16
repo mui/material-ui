@@ -4,7 +4,7 @@ import { BackdropProps } from '../Backdrop';
 import { PortalProps } from '../Portal';
 
 export interface ModalProps
-  extends StandardProps<React.HtmlHTMLAttributes<HTMLDivElement>, ModalClassKey, 'children'> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ModalClassKey, 'children'> {
   BackdropComponent?: React.ElementType<BackdropProps>;
   BackdropProps?: Partial<BackdropProps>;
   children: React.ReactElement;

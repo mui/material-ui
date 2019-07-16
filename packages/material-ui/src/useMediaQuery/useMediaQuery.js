@@ -1,37 +1,53 @@
 import React from 'react';
+import warning from 'warning';
+import { getThemeProps, useTheme } from '@material-ui/styles';
 
 // This variable will be true once the server-side hydration is completed.
 let hydrationCompleted = false;
 
-function deepEqual(a, b) {
-  return a.length === b.length && a.every((item, index) => item === b[index]);
-}
-
 function useMediaQuery(queryInput, options = {}) {
-  const multiple = Array.isArray(queryInput);
-  let queries = multiple ? queryInput : [queryInput];
-  queries = queries.map(query => query.replace('@media ', ''));
+  const theme = useTheme();
+  const props = getThemeProps({
+    theme,
+    name: 'MuiUseMediaQuery',
+    props: {},
+  });
 
-  // Wait for JSDOM to support the match media feature.
+  warning(
+    typeof queryInput !== 'function' || theme !== null,
+    [
+      'Material-UI: the `query` argument provided is invalid.',
+      'You are providing a function without a theme in the context.',
+      'One of the parent elements needs to use a ThemeProvider.',
+    ].join('\n'),
+  );
+
+  let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
+  query = query.replace(/^@media( ?)/m, '');
+
+  // Wait for jsdom to support the match media feature.
   // All the browsers Material-UI support have this built-in.
   // This defensive check is here for simplicity.
   // Most of the time, the match media logic isn't central to people tests.
   const supportMatchMedia =
     typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
 
-  const { defaultMatches = false, noSsr = false, ssrMatchMedia = null } = options;
+  const { defaultMatches = false, noSsr = false, ssrMatchMedia = null } = {
+    ...props,
+    ...options,
+  };
 
-  const [matches, setMatches] = React.useState(() => {
+  const [match, setMatch] = React.useState(() => {
     if ((hydrationCompleted || noSsr) && supportMatchMedia) {
-      return queries.map(query => window.matchMedia(query).matches);
+      return window.matchMedia(query).matches;
     }
     if (ssrMatchMedia) {
-      return queries.map(query => ssrMatchMedia(query).matches);
+      return ssrMatchMedia(query).matches;
     }
 
     // Once the component is mounted, we rely on the
     // event listeners to return the correct matches value.
-    return queries.map(() => defaultMatches);
+    return defaultMatches;
   });
 
   React.useEffect(() => {
@@ -41,27 +57,20 @@ function useMediaQuery(queryInput, options = {}) {
       return undefined;
     }
 
-    const queryLists = queries.map(query => window.matchMedia(query));
-    setMatches(prev => {
-      const next = queryLists.map(queryList => queryList.matches);
-      return deepEqual(prev, next) ? prev : next;
-    });
+    const queryList = window.matchMedia(query);
+    setMatch(queryList.matches);
 
     function handleMatchesChange() {
-      setMatches(queryLists.map(queryList => queryList.matches));
+      setMatch(queryList.matches);
     }
 
-    queryLists.forEach(queryList => {
-      queryList.addListener(handleMatchesChange);
-    });
+    queryList.addListener(handleMatchesChange);
     return () => {
-      queryLists.forEach(queryList => {
-        queryList.removeListener(handleMatchesChange);
-      });
+      queryList.removeListener(handleMatchesChange);
     };
-  }, queries); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [query, supportMatchMedia]);
 
-  return multiple ? matches : matches[0];
+  return match;
 }
 
 export function testReset() {

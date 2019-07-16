@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
-import { StandardProps } from '..';
 import { Breakpoint } from '../styles/createBreakpoints';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
 
@@ -29,22 +28,7 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-export interface GridProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLElement> & Partial<Record<Breakpoint, boolean | GridSize>>,
-    GridClassKey
-  > {
-  alignContent?: GridContentAlignment;
-  alignItems?: GridItemsAlignment;
-  component?: string | React.ComponentType<Omit<GridProps, StrippedProps>>;
-  container?: boolean;
-  direction?: GridDirection;
-  item?: boolean;
-  justify?: GridJustification;
-  spacing?: GridSpacing;
-  wrap?: GridWrap;
-  zeroMinWidth?: boolean;
-}
+export type GridProps = SimplifiedPropsOf<typeof Grid>;
 
 export type GridClassKey =
   | 'container'
@@ -92,7 +76,21 @@ export type GridClassKey =
   | 'grid-xs-11'
   | 'grid-xs-12';
 
-declare const Grid: React.ComponentType<GridProps>;
+declare const Grid: OverridableComponent<{
+  props: Partial<Record<Breakpoint, boolean | GridSize>> & {
+    alignContent?: GridContentAlignment;
+    alignItems?: GridItemsAlignment;
+    container?: boolean;
+    direction?: GridDirection;
+    item?: boolean;
+    justify?: GridJustification;
+    spacing?: GridSpacing;
+    wrap?: GridWrap;
+    zeroMinWidth?: boolean;
+  };
+  defaultComponent: 'div';
+  classKey: GridClassKey;
+}>;
 
 export default Grid;
 

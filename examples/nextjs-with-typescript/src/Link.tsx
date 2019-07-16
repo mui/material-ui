@@ -5,12 +5,9 @@ import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
 
-interface NextLinkExtendedProps extends Omit<NextLinkProps, 'href' | 'onError'> {
-  className?: string;
-  href: string;
-}
+type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & NextLinkProps;
 
-const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkExtendedProps>((props, ref) => {
+const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>((props, ref) => {
   const { as, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
 
   return (
@@ -28,7 +25,14 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkExtendedProps>(
   );
 });
 
+interface LinkPropsBase {
+  activeClassName?: string;
+  innerRef?: React.Ref<HTMLAnchorElement>;
+  naked?: boolean;
+}
+
 type LinkProps = LinkPropsBase &
+  NextComposedProps &
   Pick<
     MuiLinkProps,
     | 'align'
@@ -42,12 +46,6 @@ type LinkProps = LinkPropsBase &
     | 'underline'
   >;
 
-interface LinkPropsBase extends NextLinkExtendedProps {
-  activeClassName?: string;
-  innerRef?: React.Ref<HTMLAnchorElement>;
-  naked?: boolean;
-  children?: React.ReactNode;
-}
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
 function RouterLink(props: LinkProps) {

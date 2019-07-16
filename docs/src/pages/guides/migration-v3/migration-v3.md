@@ -303,6 +303,15 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 - [Slide] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains
   the migration strategy.
 
+### Slider
+
+- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
+
+  ```diff
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
+  ```
+
 ### Switch
 
 - [Switch] Refactor the implementation to make it easier to override the styles.
@@ -423,7 +432,7 @@ You should be able to move the custom styles to the `root` class key.
 - [Typography] Remove the default color from the typography variants.
   The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028.
-  The usage of *default* should be avoided, it lakes semantic.
+  The usage of *default* should be avoided, it lacks semantic.
 
 ### Node
 

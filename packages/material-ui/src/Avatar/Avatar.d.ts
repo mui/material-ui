@@ -5,7 +5,7 @@ declare const Avatar: OverridableComponent<{
   props: {
     alt?: string;
     childrenClassName?: string;
-    imgProps?: React.HtmlHTMLAttributes<HTMLImageElement>;
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     sizes?: string;
     src?: string;
     srcSet?: string;

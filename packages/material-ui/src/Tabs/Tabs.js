@@ -20,6 +20,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     minHeight: 48,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    display: 'flex',
   },
   /* Styles applied to the flex container element. */
   flexContainer: {
@@ -102,6 +103,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   });
   const valueToIndex = new Map();
   const tabsRef = React.useRef(null);
+  const childrenWrapperRef = React.useRef(null);
 
   const getTabsMeta = () => {
     const tabsNode = tabsRef.current;
@@ -121,7 +123,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
     let tabMeta;
     if (tabsNode && value !== false) {
-      const children = tabsNode.children[0].children;
+      const children = childrenWrapperRef.current.children;
 
       if (children.length > 0) {
         const tab = children[valueToIndex.get(value)];
@@ -360,30 +362,29 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
   return (
     <Component className={clsx(classes.root, className)} ref={ref} {...other}>
-      <div className={classes.flexContainer}>
-        {conditionalElements.scrollButtonLeft}
-        {conditionalElements.scrollbarSizeListener}
+      {conditionalElements.scrollButtonLeft}
+      {conditionalElements.scrollbarSizeListener}
+      <div
+        className={clsx(classes.scroller, {
+          [classes.fixed]: !scrollable,
+          [classes.scrollable]: scrollable,
+        })}
+        style={scrollerStyle}
+        ref={tabsRef}
+        role="tablist"
+        onScroll={handleTabsScroll}
+      >
         <div
-          className={clsx(classes.scroller, {
-            [classes.fixed]: !scrollable,
-            [classes.scrollable]: scrollable,
+          className={clsx(classes.flexContainer, {
+            [classes.centered]: centered && !scrollable,
           })}
-          style={scrollerStyle}
-          ref={tabsRef}
-          role="tablist"
-          onScroll={handleTabsScroll}
+          ref={childrenWrapperRef}
         >
-          <div
-            className={clsx(classes.flexContainer, {
-              [classes.centered]: centered && !scrollable,
-            })}
-          >
-            {children}
-          </div>
-          {mounted && indicator}
+          {children}
         </div>
-        {conditionalElements.scrollButtonRight}
+        {mounted && indicator}
       </div>
+      {conditionalElements.scrollButtonRight}
     </Component>
   );
 });

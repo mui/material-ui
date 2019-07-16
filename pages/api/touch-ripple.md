@@ -21,7 +21,7 @@ import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 | <span class="prop-name">center</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the ripple starts at the center of the component rather than at the point of interaction. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
-The `ref` is attached to a component class.
+The `ref` is attached to an Imperative Handle. Have a look at the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ButtonBase/TouchRipple.js) for more detail.
 
 Any other properties supplied will be provided to the root element (native element).
 

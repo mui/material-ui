@@ -88,9 +88,9 @@ Additionally, you may give a description of your modal with the `aria-describedb
   aria-labelledby="simple-modal-title"
   aria-describedby="simple-modal-description"
 >
-  <h6 id="modal-title">
+  <h2 id="modal-title">
     My Title
-  </h6>
+  </h2>
   <p id="simple-modal-description">
     My Description
   </p>

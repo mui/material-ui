@@ -30,7 +30,11 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: [
+      'componentProp',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
   }));
 
   describe('prop: placement', () => {
