@@ -3,8 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-import MuiLink from '@material-ui/core/Link';
-import { TypographyProps } from '@material-ui/core/Typography';
+import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
 
 interface NextLinkExtendedProps extends Omit<NextLinkProps, 'href' | 'onError'> {
   className?: string;
@@ -31,7 +30,7 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextLinkExtendedProps>(
 
 type LinkProps = LinkPropsBase &
   Pick<
-    TypographyProps,
+    MuiLinkProps,
     | 'align'
     | 'color'
     | 'display'
@@ -40,7 +39,8 @@ type LinkProps = LinkPropsBase &
     | 'paragraph'
     | 'variant'
     | 'variantMapping'
-  > & { underline?: 'none' | 'hover' | 'always' };
+    | 'underline'
+  >;
 
 interface LinkPropsBase extends NextLinkExtendedProps {
   activeClassName?: string;
