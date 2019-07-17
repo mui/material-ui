@@ -93,6 +93,10 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
 
     const { code } = await babel.transformFileAsync(tsxPath, babelConfig);
 
+    if (/import \w* from 'prop-types'/.test(code)) {
+      throw new Error('TypeScript demo contains prop-types, please remove them');
+    }
+
     const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
       shouldResolveObject: ({ name }) => {
         if (name === 'classes') {
