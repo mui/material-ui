@@ -1,49 +1,42 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import TreeView from './TreeView';
 import TreeNode from '../TreeNode';
 
 describe('<TreeView />', () => {
-  let mount;
+  const render = createClientRender({ strict: false });
 
-  before(() => {
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
+  afterEach(() => {
+    cleanup();
   });
 
   describe('onNodeToggle', () => {
     it('should be called when a parent node is clicked', () => {
       const handleNodeToggle = spy();
 
-      const wrapper = mount(
+      const { getByText } = render(
         <TreeView onNodeToggle={handleNodeToggle}>
-          <TreeNode nodeId="1">
-            <TreeNode nodeId="2" />
+          <TreeNode nodeId="1" label="outer">
+            <TreeNode nodeId="2" label="inner" />
           </TreeNode>
         </TreeView>,
       );
 
-      wrapper
-        .find('[role="treeitem"] > *')
-        .at(0)
-        .simulate('click');
+      fireEvent.click(getByText('outer'));
 
-      assert.strictEqual(handleNodeToggle.callCount, 1);
-      assert.strictEqual(handleNodeToggle.args[0][0], '1');
-      assert.strictEqual(handleNodeToggle.args[0][1], true);
+      expect(handleNodeToggle.callCount).to.equal(1);
+      expect(handleNodeToggle.args[0][0]).to.equal('1');
+      expect(handleNodeToggle.args[0][1]).to.equal(true);
     });
   });
 
   describe('Accessibility', () => {
     it('(TreeView) should have the role `tree`', () => {
-      const wrapper = mount(<TreeView />);
+      const { container } = render(<TreeView />);
 
-      assert.strictEqual(wrapper.find('[role="tree"]').exists(), true);
+      expect(container.querySelector('[role="tree"]')).to.be.ok;
     });
   });
 });

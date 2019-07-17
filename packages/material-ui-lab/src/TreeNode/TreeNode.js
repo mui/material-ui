@@ -322,4 +322,4 @@ TreeNode.propTypes = {
   onKeyDown: PropTypes.func,
 };
 
-export default withStyles(styles)(TreeNode);
+export default withStyles(styles, { name: 'MuiTreeView' })(TreeNode);
