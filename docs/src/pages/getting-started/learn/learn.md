@@ -38,6 +38,9 @@ We maintain a list of commonly recommended resources, some of which are free.
 ### Paid
 
 - **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI.
-  - 📘 [The book](https://www.packtpub.com/application-development/react-material-ui-cookbook)
+  - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
+
+[![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
+
 - **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI.
   - 📘 [The book](https://builderbook.org/book)
