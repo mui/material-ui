@@ -6,6 +6,10 @@ import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import { useForkRef } from '../utils/reactHelpers';
 
+/**
+ * Flips placement if in <body dir="rtl" />
+ * @param {string} placement
+ */
 function flipPlacement(placement) {
   const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
 
@@ -47,7 +51,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     keepMounted = false,
     modifiers,
     open,
-    placement: placementProps = 'bottom',
+    placement: initialPlacement = 'bottom',
     popperOptions = defaultPopperOptions,
     popperRef: popperRefProp,
     transition = false,
@@ -65,13 +69,20 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
 
   const [exited, setExited] = React.useState(!open);
-  const [placement, setPlacement] = React.useState();
+
+  const rtlPlacement = flipPlacement(initialPlacement);
+  /**
+   * placement initialized from prop but can change during lifetime if modifiers.flip.
+   * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
+   */
+  const [placement, setPlacement] = React.useState(rtlPlacement);
+  if (rtlPlacement !== placement) {
+    setPlacement(rtlPlacement);
+  }
 
   const handleOpen = React.useCallback(() => {
     const handlePopperUpdate = data => {
-      if (data.placement !== placement) {
-        setPlacement(data.placement);
-      }
+      setPlacement(data.placement);
     };
 
     const popperNode = tooltipRef.current;
@@ -86,7 +97,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     }
 
     const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
-      placement: flipPlacement(placementProps),
+      placement: rtlPlacement,
       ...popperOptions,
       modifiers: {
         ...(disablePortal
@@ -102,11 +113,10 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       },
       // We could have been using a custom modifier like react-popper is doing.
       // But it seems this is the best public API for this use case.
-      onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
     handlePopperRefRef.current(popper);
-  }, [anchorEl, disablePortal, modifiers, open, placement, placementProps, popperOptions]);
+  }, [anchorEl, disablePortal, modifiers, open, rtlPlacement, popperOptions]);
 
   const handleEnter = () => {
     setExited(false);
@@ -148,9 +158,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     return null;
   }
 
-  const childProps = {
-    placement: placement || flipPlacement(placementProps),
-  };
+  const childProps = { placement };
 
   if (transition) {
     childProps.TransitionProps = {
