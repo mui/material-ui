@@ -1,5 +1,81 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.2.1
+###### *July 17, 2019*
+
+Big thanks to the 25 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- ♿️ Improve Dialog header accessibility (#16576) @dayander
+- ⚛️ Fix more strict mode warnings (#16525) @eps1lon
+- 🐛 Fix menu dense support (#16510) @sumedhan
+- ⭐️ Introduce a new Rating component in the lab
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.2.1`
+
+- [Autocomplete] Use placeholder prop (#16568) @himanshupathakpwd
+- [DialogTitle] Update default element from h6 to h2 (#16576) @dayander
+- [Grid] Generify props with component property (#16590) @JipingWang
+- [InputBase] Fix inconsistent filled state (#16526) @eps1lon
+- [InputBase] Improve documentation for custom `inputComponent` (#16399) @eps1lon
+- [Input] Add missing class keys in TypeScript (#16529) @dskiba
+- [MenuItem] Fix dense prop support (#16510) @sumedhan
+- [Modal] Use computed key to restore style (#16540) @neeschit
+- [Popper] Refactor to more commonly known react patterns (#16613) @eps1lon
+- [Ripple] Use custom transition logic (#16525) @eps1lon
+- [Slide] Remove gutter (#16533) @User195
+- [TouchRipple] Convert to function component (#16522) @joshwooding
+- [Transition] The ref forwarding works (#16531) @oliviertassinari
+- [useMediaQuery] Accept function as argument & more (#16343) @merceyz
+
+### `@material-ui/styles@v4.2.1`
+
+- [styles] Make theme optional for `styled` components (#16379) (#16478) @akomm
+- [core] Upgrade deepmerge (#16520) @TrySound
+
+### `@material-ui/system@v4.3.1`
+
+- [core] Upgrade deepmerge (#16520) @TrySound
+
+### `@material-ui/lab@v4.0.0-alpha.20`
+
+- [Rating] Add a new component (#16455) @oliviertassinari
+- [SpeedDialAction] Convert to hook (#16386) @adeelibr
+
+### Docs
+
+- [docs] Add density guide to customizations (#16410) @eps1lon
+- [docs] Add sidebar alias to Drawer demo description (#16535) @mbrookes
+- [docs] Fix dead link (#16567) @sharils
+- [docs] Fix typo (#16561) @siowyisheng
+- [docs] Fix typo in advanced styles guide (#16593) @elquimista
+- [docs] Fix typo: change lakes to lacks (#16553) @davinakano
+- [docs] Remove <any> from nextjs-with-typescript example (#16555) @virzak
+- [docs] Remove duplicate alts (#16564) @williammalone
+- [docs] Update migration v3 guide, slider in core (#16589) @elquimista
+- [docs] Update typo in docs - portals (#16592) @siowyisheng
+- [docs] Use LinkProps from next in examples (#16583) @Janpot
+- [example] Fix "@zeit/next-typescript" dependency missing (#16603) @nb256
+- [examples] Update to support Next.js v9 (#16519) @Janpot
+- [blog] June 2019 Update (#16516) @oliviertassinari
+
+### Core
+
+- [core] Fix docs:typescript:check (#16607) @merceyz
+- [core] Fix incorrect usage of HtmlHTMLAttributes (#16579) @whitneyit
+- [core] Re-export missing typings (#16490) @merceyz
+- [core] Remove all .defaultProps usages (#16542) @joshwooding
+- [core] Restrict setRef usage to ref callback (#16539) @eps1lon
+- [core] Upgrade convert-css-length (#16530) @TrySound
+- [core] Upgrade deepmerge (#16520) @TrySound
+- [core] Use useFormControl instead of withFormControlState (#16503) @eps1lon
+- [core] Batch small changes (#16532) @oliviertassinari
+- [test] Run queries on document.body (#16538) @eps1lon
+- [test] react-test-renderer coverage (#16523) @dondi
+- [ci] Create canaries (#16587) @eps1lon
+
 ## 4.2.0
 ###### *July 6, 2019*
 
