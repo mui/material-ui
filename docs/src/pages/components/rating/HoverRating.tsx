@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating, { IconContainerProps } from '@material-ui/lab/Rating';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -27,10 +26,6 @@ function IconContainer(props: IconContainerProps) {
     </Tooltip>
   );
 }
-
-IconContainer.propTypes = {
-  value: PropTypes.number.isRequired,
-} as any;
 
 const useStyles = makeStyles({
   rating1: {
