@@ -157,7 +157,7 @@ describe('<InputAdornment />', () => {
         expect(consoleErrorMock.callCount()).to.equal(1);
         expect(consoleErrorMock.args()[0][0]).to.equal(
           'Warning: Material-UI: The `InputAdornment` variant infers the variant ' +
-            'property you do not have to provide one.',
+            'prop you do not have to provide one.',
         );
       });
     });

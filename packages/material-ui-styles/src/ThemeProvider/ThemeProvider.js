@@ -37,8 +37,7 @@ function ThemeProvider(props) {
   warning(
     outerTheme !== null || typeof localTheme !== 'function',
     [
-      'Material-UI: you are providing a theme function prop ' +
-        'to the ThemeProvider component:',
+      'Material-UI: you are providing a theme function prop to the ThemeProvider component:',
       '<ThemeProvider theme={outerTheme => outerTheme} />',
       '',
       'However, no outer theme is present.',
