@@ -23,6 +23,9 @@ commands:
       - run:
           name: Install js dependencies
           command: yarn
+      - run:
+          name: Check for duplicated packages
+          command: yarn deduplicate
   prepare_chrome_headless:
     steps:
       - run:
