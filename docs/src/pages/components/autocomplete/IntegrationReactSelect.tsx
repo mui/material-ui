@@ -17,6 +17,7 @@ import { OptionProps } from 'react-select/lib/components/Option';
 import { PlaceholderProps } from 'react-select/lib/components/Placeholder';
 import { SingleValueProps } from 'react-select/lib/components/SingleValue';
 import { ValueType } from 'react-select/lib/types';
+import { Omit } from '@material-ui/types';
 
 interface OptionType {
   label: string;
@@ -174,14 +175,13 @@ function Option(props: OptionProps<OptionType>) {
   );
 }
 
-function Placeholder(props: PlaceholderProps<OptionType>) {
+type MuiPlaceholderProps = Omit<PlaceholderProps<OptionType>, 'innerProps'> &
+  Partial<Pick<PlaceholderProps<OptionType>, 'innerProps'>>;
+function Placeholder(props: MuiPlaceholderProps) {
+  const { selectProps, innerProps = {}, children } = props;
   return (
-    <Typography
-      color="textSecondary"
-      className={props.selectProps.classes.placeholder}
-      {...props.innerProps}
-    >
-      {props.children}
+    <Typography color="textSecondary" className={selectProps.classes.placeholder} {...innerProps}>
+      {children}
     </Typography>
   );
 }

@@ -237,13 +237,10 @@ Option.propTypes = {
 };
 
 function Placeholder(props) {
+  const { selectProps, innerProps = {}, children } = props;
   return (
-    <Typography
-      color="textSecondary"
-      className={props.selectProps.classes.placeholder}
-      {...props.innerProps}
-    >
-      {props.children}
+    <Typography color="textSecondary" className={selectProps.classes.placeholder} {...innerProps}>
+      {children}
     </Typography>
   );
 }
@@ -256,7 +253,7 @@ Placeholder.propTypes = {
   /**
    * props passed to the wrapping element for the group.
    */
-  innerProps: PropTypes.object.isRequired,
+  innerProps: PropTypes.object,
   selectProps: PropTypes.object.isRequired,
 };
 
