@@ -66,12 +66,15 @@ function TrapFocus(props) {
       rootRef.current.focus();
     }
 
-    const contain = nativeFocusOutEvent => {
+    const contain = nativeBlurEvent => {
       if (disableEnforceFocus || !isEnabled()) {
         return;
       }
 
-      if (rootRef.current && !rootRef.current.contains(nativeFocusOutEvent.relatedTarget)) {
+      // related target of blur is target of next focus
+      // when an element stops being the focusable area a blur event is fired on it
+      // but no focus on document.body
+      if (rootRef.current && !rootRef.current.contains(nativeBlurEvent.relatedTarget)) {
         rootRef.current.focus();
       }
     };
@@ -92,12 +95,11 @@ function TrapFocus(props) {
       }
     };
 
-    const { current: trapNode } = rootRef;
-    trapNode.addEventListener('focusout', contain);
+    doc.addEventListener('blur', contain, true);
     doc.addEventListener('keydown', loopFocus, true);
 
     return () => {
-      trapNode.removeEventListener('focusout', contain);
+      doc.removeEventListener('blur', contain, true);
       doc.removeEventListener('keydown', loopFocus, true);
 
       // restoreLastFocus()
