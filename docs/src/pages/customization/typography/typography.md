@@ -2,8 +2,8 @@
 
 <p class="description">The theme provides a set of type sizes that work well together, and also with the layout grid.</p>
 
-The following example demonstrates how to change the typography default values – in this case, the font family.
-If you want to learn more about typography, you can check out [the typography component](/components/typography/).
+The following example demonstrates how to change the [default values](/customization/default-theme/?expend-path=$.typography) of the typography in the theme.
+You can learn more about how to use the [Typography component](/components/typography/) by checking out the dedicated page.
 
 {{"demo": "pages/customization/typography/TypographyTheme.js"}}
 
