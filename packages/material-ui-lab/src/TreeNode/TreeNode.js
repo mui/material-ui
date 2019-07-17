@@ -239,9 +239,11 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     }
   }, [handleFirstChars, nodeId, label]);
 
-  if (focused) {
-    nodeRef.current.focus();
-  }
+  React.useEffect(() => {
+    if (focused && document.activeElement !== nodeRef.current) {
+      nodeRef.current.focus();
+    }
+  }, [focused]);
 
   if (!handleFirstChars || !handleNodeMap || !isExpanded || !isFocused || !isFocusable) {
     warning(false, 'Material-UI: A `TreeNode` must be rendered inside a `TreeView`.');
