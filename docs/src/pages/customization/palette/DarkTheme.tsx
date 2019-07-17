@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { useTheme, Theme, createMuiTheme } from '@material-ui/core/styles';
+import { useTheme, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 function WithTheme() {
