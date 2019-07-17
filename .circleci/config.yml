@@ -23,9 +23,6 @@ commands:
       - run:
           name: Install js dependencies
           command: yarn
-      - run:
-          name: Check for duplicated packages
-          command: yarn deduplicate
   prepare_chrome_headless:
     steps:
       - run:
@@ -44,6 +41,9 @@ jobs:
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
+      - run:
+          name: Check for duplicated packages
+          command: yarn deduplicate
       - save_cache:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
