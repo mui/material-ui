@@ -205,7 +205,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (multiple) {
       if (!Array.isArray(value)) {
         throw new Error(
-          'Material-UI: the `value` property must be an array ' +
+          'Material-UI: the `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );
       }
@@ -352,7 +352,7 @@ SelectInput.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
-   * Use that property to pass a ref callback to the native select element.
+   * Use that prop to pass a ref callback to the native select element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**

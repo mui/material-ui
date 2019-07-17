@@ -36,8 +36,8 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` property.
-This property accepts the following keys:
+You can override all the class names injected by Material-UI thanks to the `classes` prop.
+This prop accepts the following keys:
 
 
 | Name | Description |

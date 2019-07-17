@@ -32,7 +32,7 @@ import Menu from '@material-ui/core/Menu';
 | <span class="prop-name">onExited</span> | <span class="prop-type">func</span> |  | Callback fired when the Menu has exited. |
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |  | Callback fired when the Menu is exiting. |
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the menu is visible. |
-| <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object</span> |  | `classes` property applied to the [`Popover`](/api/popover/) element. |
+| <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object</span> |  | `classes` prop applied to the [`Popover`](/api/popover/) element. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br></span> | <span class="prop-default">'auto'</span> | The length of the transition in `ms`, or 'auto' |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'menu'&nbsp;&#124;<br>&nbsp;'selectedMenu'<br></span> | <span class="prop-default">'selectedMenu'</span> | The variant to use. Use `menu` to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element. |
 
@@ -42,8 +42,8 @@ Any other properties supplied will be provided to the root element ([Popover](/a
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` property.
-This property accepts the following keys:
+You can override all the class names injected by Material-UI thanks to the `classes` prop.
+This prop accepts the following keys:
 
 
 | Name | Description |

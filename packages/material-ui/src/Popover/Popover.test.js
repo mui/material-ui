@@ -898,7 +898,7 @@ describe('<Popover />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it('should apply the auto property if supported', () => {
+    it('should apply the auto prop if supported', () => {
       const wrapper = mount(
         <Popover {...defaultProps} open>
           <div />
@@ -907,7 +907,7 @@ describe('<Popover />', () => {
       assert.strictEqual(wrapper.find(Grow).props().timeout, 'auto');
     });
 
-    it('should not apply the auto property if not supported', () => {
+    it('should not apply the auto prop if not supported', () => {
       const TransitionComponent = React.forwardRef((_, ref) => <div ref={ref} tabIndex="-1" />);
       const wrapper = mount(
         <Popover {...defaultProps} open TransitionComponent={TransitionComponent}>

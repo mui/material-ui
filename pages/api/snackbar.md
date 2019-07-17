@@ -26,7 +26,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 | <span class="prop-name">ClickAwayListenerProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `ClickAwayListener` element. |
 | <span class="prop-name">ContentProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element. |
 | <span class="prop-name">disableWindowBlurListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the `autoHideDuration` timer will expire even if the window is not focused. |
-| <span class="prop-name">key</span> | <span class="prop-type">any</span> |  | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key property to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
+| <span class="prop-name">key</span> | <span class="prop-type">any</span> |  | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key prop to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | <span class="prop-name">message</span> | <span class="prop-type">node</span> |  | The message to display. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed. Typically `onClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop. The `reason` parameter can optionally be used to control the response to `onClose`, for example ignoring `clickaway`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"` |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |  | Callback fired before the transition is entering. |
@@ -36,7 +36,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 | <span class="prop-name">onExited</span> | <span class="prop-type">func</span> |  | Callback fired when the transition has exited. |
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |  | Callback fired when the transition is exiting. |
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> |  | If true, `Snackbar` is open. |
-| <span class="prop-name">resumeHideDuration</span> | <span class="prop-type">number</span> |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` property isn't specified, it does nothing. If `autoHideDuration` property is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
+| <span class="prop-name">resumeHideDuration</span> | <span class="prop-type">number</span> |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` prop isn't specified, it does nothing. If `autoHideDuration` prop is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `Transition` element. |
@@ -47,8 +47,8 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` property.
-This property accepts the following keys:
+You can override all the class names injected by Material-UI thanks to the `classes` prop.
+This prop accepts the following keys:
 
 
 | Name | Description |

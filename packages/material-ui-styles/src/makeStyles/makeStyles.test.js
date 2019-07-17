@@ -50,7 +50,7 @@ describe('makeStyles', () => {
     mount.cleanUp();
   });
 
-  it('should accept a classes property', () => {
+  it('should accept a classes prop', () => {
     const styles = { root: {} };
     const mountWithProps = createGetClasses(styles);
     const output = mountWithProps();
@@ -62,7 +62,7 @@ describe('makeStyles', () => {
     assert.strictEqual(extendedClasses.root, `${baseClasses.root} h1`);
   });
 
-  it('should ignore undefined property', () => {
+  it('should ignore undefined prop', () => {
     const styles = { root: {} };
     const mountWithProps = createGetClasses(styles);
     const output = mountWithProps();
@@ -94,7 +94,7 @@ describe('makeStyles', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Material-UI: the key `bar` provided to the classes property is not implemented',
+        'Material-UI: the key `bar` provided to the classes prop is not implemented',
       );
     });
 
@@ -105,7 +105,7 @@ describe('makeStyles', () => {
       const args = consoleErrorMock.args();
       assert.include(
         consoleErrorMock.args()[args.length - 1][0],
-        'You might want to use the className property instead',
+        'You might want to use the className prop instead',
       );
     });
 
@@ -118,7 +118,7 @@ describe('makeStyles', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Material-UI: the key `root` provided to the classes property is not valid',
+        'Material-UI: the key `root` provided to the classes prop is not valid',
       );
     });
 
@@ -141,7 +141,7 @@ describe('makeStyles', () => {
       mountWithProps = createGetClasses(styles);
     });
 
-    it('should recycle with no classes property', () => {
+    it('should recycle with no classes prop', () => {
       const output = mountWithProps();
       const classes1 = output.classes;
       output.wrapper.update();
@@ -149,7 +149,7 @@ describe('makeStyles', () => {
       assert.strictEqual(classes1, classes2);
     });
 
-    it('should recycle even when a classes property is provided', () => {
+    it('should recycle even when a classes prop is provided', () => {
       const inputClasses = { root: 'foo' };
       const output = mountWithProps({ classes: inputClasses });
       const classes1 = output.classes;

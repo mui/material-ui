@@ -132,7 +132,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       if (anchorReference === 'anchorPosition') {
         warning(
           anchorPosition,
-          'Material-UI: you need to provide a `anchorPosition` property when using ' +
+          'Material-UI: you need to provide a `anchorPosition` prop when using ' +
             '<Popover anchorReference="anchorPosition" />.',
         );
         return anchorPosition;
@@ -174,7 +174,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           anchorOrigin.vertical === 'top',
           [
             'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
-            'when also providing the `getContentAnchorEl` property to the popover component.',
+            'when also providing the `getContentAnchorEl` prop to the popover component.',
             'Only use one of the two properties.',
             'Set `getContentAnchorEl` to `null | undefined`' +
               ' or leave `anchorOrigin.vertical` unchanged.',
@@ -312,7 +312,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
   React.useEffect(() => {
     handleResizeRef.current = debounce(() => {
-      // Because we debounce the event, the open property might no longer be true
+      // Because we debounce the event, the open prop might no longer be true
       // when the callback resolves.
       if (!open) {
         return;
@@ -376,7 +376,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
 Popover.propTypes = {
   /**
-   * This is callback property. It's called by the component on mount.
+   * This is callback prop. It's called by the component on mount.
    * This is useful when you want to trigger an action programmatically.
    * It currently only supports updatePosition() action.
    *
@@ -475,7 +475,7 @@ Popover.propTypes = {
   elevation: PropTypes.number,
   /**
    * This function is called in order to retrieve the content anchor element.
-   * It's the opposite of the `anchorEl` property.
+   * It's the opposite of the `anchorEl` prop.
    * The content anchor element should be an element inside the popover.
    * It's used to correctly scroll and set the position of the popover.
    * The positioning strategy tries to make the content anchor element just above the
@@ -487,7 +487,7 @@ Popover.propTypes = {
    */
   marginThreshold: PropTypes.number,
   /**
-   * `classes` property applied to the [`Modal`](/api/modal/) element.
+   * `classes` prop applied to the [`Modal`](/api/modal/) element.
    */
   ModalClasses: PropTypes.object,
   /**

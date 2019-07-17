@@ -227,7 +227,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
     } else {
       warning(
         false,
-        'Material-UI: you need to provide a value property ' +
+        'Material-UI: you need to provide a value prop ' +
           'when using the determinate or buffer variant of LinearProgress .',
       );
     }
@@ -242,7 +242,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
     } else {
       warning(
         false,
-        'Material-UI: you need to provide a valueBuffer property ' +
+        'Material-UI: you need to provide a valueBuffer prop ' +
           'when using the buffer variant of LinearProgress.',
       );
     }

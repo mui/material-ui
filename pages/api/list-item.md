@@ -38,15 +38,15 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` property.
-This property accepts the following keys:
+You can override all the class names injected by Material-UI thanks to the `classes` prop.
+This prop accepts the following keys:
 
 
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
 | <span class="prop-name">container</span> | Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
-| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the `component`'s `focusVisibleClassName` property if `button={true}`.
+| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.
 | <span class="prop-name">dense</span> | Styles applied to the `component` element if dense.
 | <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
 | <span class="prop-name">disabled</span> | Pseudo-class applied to the inner `component` element if `disabled={true}`.

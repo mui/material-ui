@@ -253,7 +253,7 @@ Popper.propTypes = {
   disablePortal: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
-   * This property can be useful in SEO situation or
+   * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Popper.
    */
   keepMounted: PropTypes.bool,

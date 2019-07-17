@@ -260,7 +260,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
 
 Modal.propTypes = {
   /**
-   * A backdrop component. This property enables custom backdrop rendering.
+   * A backdrop component. This prop enables custom backdrop rendering.
    */
   BackdropComponent: PropTypes.elementType,
   /**
@@ -320,7 +320,7 @@ Modal.propTypes = {
   hideBackdrop: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
-   * This property can be useful in SEO situation or
+   * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
    */
   keepMounted: PropTypes.bool,
@@ -350,7 +350,7 @@ Modal.propTypes = {
   onEscapeKeyDown: PropTypes.func,
   /**
    * Callback fired once the children has been mounted into the `container`.
-   * It signals that the `open={true}` property took effect.
+   * It signals that the `open={true}` prop took effect.
    */
   onRendered: PropTypes.func,
   /**

@@ -104,7 +104,7 @@ Select.propTypes = {
    * If `true`, a value is displayed even if no items are selected.
    *
    * In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected.
-   * You can only use it when the `native` property is `false` (default).
+   * You can only use it when the `native` prop is `false` (default).
    */
   displayEmpty: PropTypes.bool,
   /**
@@ -156,12 +156,12 @@ Select.propTypes = {
   onOpen: PropTypes.func,
   /**
    * Control `select` open state.
-   * You can only use it when the `native` property is `false` (default).
+   * You can only use it when the `native` prop is `false` (default).
    */
   open: PropTypes.bool,
   /**
    * Render the selected value.
-   * You can only use it when the `native` property is `false` (default).
+   * You can only use it when the `native` prop is `false` (default).
    *
    * @param {*} value The `value` provided to the component.
    * @returns {ReactElement}
@@ -173,7 +173,7 @@ Select.propTypes = {
   SelectDisplayProps: PropTypes.object,
   /**
    * The input value.
-   * This property is required when the `native` property is `false` (default).
+   * This prop is required when the `native` prop is `false` (default).
    */
   value: PropTypes.any,
   /**

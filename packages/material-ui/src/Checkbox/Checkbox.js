@@ -143,7 +143,7 @@ Checkbox.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -155,7 +155,7 @@ Checkbox.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The input component property `type`.
+   * The input component prop `type`.
    */
   type: PropTypes.string,
   /**

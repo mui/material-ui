@@ -47,7 +47,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">autoComplete</span> | <span class="prop-type">string</span> |  | This property helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill). |
+| <span class="prop-name">autoComplete</span> | <span class="prop-type">string</span> |  | This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill). |
 | <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be focused during the first mount. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default value of the `input` element. |
@@ -56,11 +56,11 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">FormHelperTextProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`FormHelperText`](/api/form-helper-text/) element. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> |  | If `true`, the input will take up the full width of its container. |
 | <span class="prop-name">helperText</span> | <span class="prop-type">node</span> |  | The helper text content. |
-| <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The id of the `input` element. Use this property to make `label` and `helperText` accessible for screen readers. |
+| <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The id of the `input` element. Use this prop to make `label` and `helperText` accessible for screen readers. |
 | <span class="prop-name">InputLabelProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`InputLabel`](/api/input-label/) element. |
 | <span class="prop-name">InputProps</span> | <span class="prop-type">object</span> |  | Properties applied to the Input element. It will be a [`FilledInput`](/api/filled-input/), [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/) component depending on the `variant` prop value. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. |
-| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | This property can be used to pass a ref callback to the `input` element. |
+| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | This prop can be used to pass a ref callback to the `input` element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label content. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'none'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'normal'<br></span> |  | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool</span> |  | If `true`, a textarea element will be rendered instead of an input. |

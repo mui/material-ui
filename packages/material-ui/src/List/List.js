@@ -83,7 +83,7 @@ List.propTypes = {
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
    * the list and list items.
-   * The property is available to descendant components as the `dense` context.
+   * The prop is available to descendant components as the `dense` context.
    */
   dense: PropTypes.bool,
   /**

@@ -106,7 +106,7 @@ SvgIcon.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * You can use the `htmlColor` property to apply a color attribute to the SVG element.
+   * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**

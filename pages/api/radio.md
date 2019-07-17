@@ -27,10 +27,10 @@ import Radio from '@material-ui/core/Radio';
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display when the component is unchecked. |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The id of the `input` element. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. |
-| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | This property can be used to pass a ref callback to the `input` element. |
+| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | This prop can be used to pass a ref callback to the `input` element. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | Name attribute of the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`.<br>*checked:* The `checked` value of the switch |
-| <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | The input component property `type`. |
+| <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | The input component prop `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the component. |
 
 The `ref` is forwarded to the root element.
@@ -39,8 +39,8 @@ Any other properties supplied will be provided to the root element ([IconButton]
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` property.
-This property accepts the following keys:
+You can override all the class names injected by Material-UI thanks to the `classes` prop.
+This prop accepts the following keys:
 
 
 | Name | Description |

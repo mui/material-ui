@@ -155,8 +155,8 @@ const Tab = React.forwardRef(function Tab(props, ref) {
 
 Tab.propTypes = {
   /**
-   * This property isn't supported.
-   * Use the `component` property if you need to change the children structure.
+   * This prop isn't supported.
+   * Use the `component` prop if you need to change the children structure.
    */
   children: unsupportedProp,
   /**

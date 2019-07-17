@@ -175,7 +175,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
 
 TextField.propTypes = {
   /**
-   * This property helps users to fill forms faster, especially on mobile devices.
+   * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
@@ -223,7 +223,7 @@ TextField.propTypes = {
   helperText: PropTypes.node,
   /**
    * The id of the `input` element.
-   * Use this property to make `label` and `helperText` accessible for screen readers.
+   * Use this prop to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
@@ -242,7 +242,7 @@ TextField.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**

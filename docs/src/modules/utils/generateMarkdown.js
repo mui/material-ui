@@ -241,7 +241,7 @@ function generateProps(reactAPI) {
     const prop = getProp(reactAPI.props, propRaw);
 
     if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propRaw}" property is missing a description`);
+      throw new Error(`The "${propRaw}" prop is missing a description`);
     }
 
     const description = generatePropDescription(prop);
@@ -339,8 +339,8 @@ function generateClasses(reactAPI) {
 
   return `## CSS
 
-You can override all the class names injected by Material-UI thanks to the \`classes\` property.
-This property accepts the following keys:
+You can override all the class names injected by Material-UI thanks to the \`classes\` prop.
+This prop accepts the following keys:
 
 ${text}
 

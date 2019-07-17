@@ -357,8 +357,8 @@ function Tooltip(props) {
   warning(
     !children.props.title,
     [
-      'Material-UI: you have provided a `title` property to the child of <Tooltip />.',
-      `Remove this title property \`${children.props.title}\` or the Tooltip component.`,
+      'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
+      `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
     ].join('\n'),
   );
 
@@ -425,7 +425,7 @@ Tooltip.propTypes = {
   disableTouchListener: PropTypes.bool,
   /**
    * The number of milliseconds to wait before showing the tooltip.
-   * This property won't impact the enter touch delay (`enterTouchDelay`).
+   * This prop won't impact the enter touch delay (`enterTouchDelay`).
    */
   enterDelay: PropTypes.number,
   /**
@@ -434,8 +434,8 @@ Tooltip.propTypes = {
   enterTouchDelay: PropTypes.number,
   /**
    * The relationship between the tooltip and the wrapper component is not clear from the DOM.
-   * This property is used with aria-describedby to solve the accessibility issue.
-   * If you don't provide this property. It falls back to a randomly generated id.
+   * This prop is used with aria-describedby to solve the accessibility issue.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**
@@ -445,7 +445,7 @@ Tooltip.propTypes = {
   interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
-   * This property won't impact the leave touch delay (`leaveTouchDelay`).
+   * This prop won't impact the leave touch delay (`leaveTouchDelay`).
    */
   leaveDelay: PropTypes.number,
   /**

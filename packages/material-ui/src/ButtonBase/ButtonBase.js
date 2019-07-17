@@ -303,7 +303,7 @@ ButtonBase.propTypes = {
    */
   action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Use that property to pass a ref callback to the native button component.
+   * Use that prop to pass a ref callback to the native button component.
    * @deprecated Use `ref` instead
    */
   buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -351,7 +351,7 @@ ButtonBase.propTypes = {
    */
   focusRipple: PropTypes.bool,
   /**
-   * This property can help a person know which element has the keyboard focus.
+   * This prop can help a person know which element has the keyboard focus.
    * The class name will be applied when the element gain the focus through a keyboard interaction.
    * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
    * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
@@ -426,7 +426,7 @@ ButtonBase.propTypes = {
   TouchRippleProps: PropTypes.object,
   /**
    * Used to control the button's purpose.
-   * This property passes the value to the `type` attribute of the native button component.
+   * This prop passes the value to the `type` attribute of the native button component.
    */
   type: PropTypes.oneOf(['submit', 'reset', 'button']),
 };
