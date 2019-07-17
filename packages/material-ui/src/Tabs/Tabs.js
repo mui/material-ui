@@ -371,7 +371,6 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         })}
         style={scrollerStyle}
         ref={tabsRef}
-        role="tablist"
         onScroll={handleTabsScroll}
       >
         <div
@@ -379,6 +378,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
             [classes.centered]: centered && !scrollable,
           })}
           ref={childrenWrapperRef}
+          role="tablist"
         >
           {children}
         </div>

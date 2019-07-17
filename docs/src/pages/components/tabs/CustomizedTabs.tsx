@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
-    typography: {
+    padding: {
       padding: theme.spacing(3),
     },
     demo1: {
@@ -113,20 +113,20 @@ export default function CustomizedTabs() {
   return (
     <div className={classes.root}>
       <div className={classes.demo1}>
-        <AntTabs value={value} onChange={handleChange}>
+        <AntTabs value={value} onChange={handleChange} aria-label="Ant example">
           <AntTab label="Tab 1" />
           <AntTab label="Tab 2" />
           <AntTab label="Tab 3" />
         </AntTabs>
-        <Typography className={classes.typography} />
+        <Typography className={classes.padding} />
       </div>
       <div className={classes.demo2}>
-        <StyledTabs value={value} onChange={handleChange}>
+        <StyledTabs value={value} onChange={handleChange} aria-label="Styled tabs example">
           <StyledTab label="Workflows" />
           <StyledTab label="Datasets" />
           <StyledTab label="Connections" />
         </StyledTabs>
-        <Typography className={classes.typography} />
+        <Typography className={classes.padding} />
       </div>
     </div>
   );

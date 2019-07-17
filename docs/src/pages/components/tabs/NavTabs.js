@@ -5,18 +5,37 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-function TabContainer(props) {
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`nav-tabpanel-${index}`}
+      aria-labelledby={`nav-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
     </Typography>
   );
 }
 
-TabContainer.propTypes = {
+TabPanel.propTypes = {
   children: PropTypes.node.isRequired,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
+
+function a11yProps(index) {
+  return {
+    id: `nav-tab-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
+  };
+}
 
 function LinkTab(props) {
   return (
@@ -48,15 +67,26 @@ export default function NavTabs() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Tabs variant="fullWidth" value={value} onChange={handleChange}>
-          <LinkTab label="Page One" href="/drafts" />
-          <LinkTab label="Page Two" href="/trash" />
-          <LinkTab label="Page Three" href="/spam" />
+        <Tabs
+          variant="fullWidth"
+          value={value}
+          onChange={handleChange}
+          aria-label="Nav tabs example"
+        >
+          <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
+          <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
+          <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer>Page One</TabContainer>}
-      {value === 1 && <TabContainer>Page Two</TabContainer>}
-      {value === 2 && <TabContainer>Page Three</TabContainer>}
+      <TabPanel value={value} index={0}>
+        Page One
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Page Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Page Three
+      </TabPanel>
     </div>
   );
 }

@@ -30,6 +30,7 @@ export default function IconTabs() {
         variant="fullWidth"
         indicatorColor="primary"
         textColor="primary"
+        aria-label="Icon tabs example"
       >
         <Tab icon={<PhoneIcon />} aria-label="Phone" />
         <Tab icon={<FavoriteIcon />} aria-label="Favorite" />

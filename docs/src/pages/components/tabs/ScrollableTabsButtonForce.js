@@ -12,18 +12,37 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-function TabContainer(props) {
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-force-tabpanel-${index}`}
+      aria-labelledby={`scrollable-force-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
     </Typography>
   );
 }
 
-TabContainer.propTypes = {
+TabPanel.propTypes = {
   children: PropTypes.node.isRequired,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-force-tab-${index}`,
+    'aria-controls': `scrollable-force-tabpanel-${index}`,
+  };
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,23 +70,38 @@ export default function ScrollableTabsButtonForce() {
           scrollButtons="on"
           indicatorColor="primary"
           textColor="primary"
+          aria-label="Scrollable force tabs example"
         >
-          <Tab label="Item One" icon={<PhoneIcon />} />
-          <Tab label="Item Two" icon={<FavoriteIcon />} />
-          <Tab label="Item Three" icon={<PersonPinIcon />} />
-          <Tab label="Item Four" icon={<HelpIcon />} />
-          <Tab label="Item Five" icon={<ShoppingBasket />} />
-          <Tab label="Item Six" icon={<ThumbDown />} />
-          <Tab label="Item Seven" icon={<ThumbUp />} />
+          <Tab label="Item One" icon={<PhoneIcon />} {...a11yProps(0)} />
+          <Tab label="Item Two" icon={<FavoriteIcon />} {...a11yProps(1)} />
+          <Tab label="Item Three" icon={<PersonPinIcon />} {...a11yProps(2)} />
+          <Tab label="Item Four" icon={<HelpIcon />} {...a11yProps(3)} />
+          <Tab label="Item Five" icon={<ShoppingBasket />} {...a11yProps(4)} />
+          <Tab label="Item Six" icon={<ThumbDown />} {...a11yProps(5)} />
+          <Tab label="Item Seven" icon={<ThumbUp />} {...a11yProps(6)} />
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer>Item One</TabContainer>}
-      {value === 1 && <TabContainer>Item Two</TabContainer>}
-      {value === 2 && <TabContainer>Item Three</TabContainer>}
-      {value === 3 && <TabContainer>Item Four</TabContainer>}
-      {value === 4 && <TabContainer>Item Five</TabContainer>}
-      {value === 5 && <TabContainer>Item Six</TabContainer>}
-      {value === 6 && <TabContainer>Item Seven</TabContainer>}
+      <TabPanel value={value} index={0}>
+        Item One
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Item Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Item Four
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        Item Five
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        Item Six
+      </TabPanel>
+      <TabPanel value={value} index={6}>
+        Item Seven
+      </TabPanel>
     </div>
   );
 }

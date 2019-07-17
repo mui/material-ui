@@ -5,22 +5,43 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-interface TabContainerProps {
+interface TabPanelProps {
   children?: React.ReactNode;
+  index: any;
+  value: any;
 }
 
-function TabContainer(props: TabContainerProps) {
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`wrapped-tabpanel-${index}`}
+      aria-labelledby={`wrapped-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
     </Typography>
   );
 }
 
-TabContainer.propTypes = {
+TabPanel.propTypes = {
   children: PropTypes.node.isRequired,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
+
+function a11yProps(index: any) {
+  return {
+    id: `wrapped-tab-${index}`,
+    'aria-controls': `wrapped-tabpanel-${index}`,
+  };
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,15 +63,26 @@ export default function TabsWrappedLabel() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Tabs value={value} onChange={handleChange}>
-          <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction" wrapped />
-          <Tab value="two" label="Item Two" />
-          <Tab value="three" label="Item Three" />
+        <Tabs value={value} onChange={handleChange} aria-label="Wrapped label tabs example">
+          <Tab
+            value="one"
+            label="New Arrivals in the Longest Text of Nonfiction"
+            wrapped
+            {...a11yProps('one')}
+          />
+          <Tab value="two" label="Item Two" {...a11yProps('two')} />
+          <Tab value="three" label="Item Three" {...a11yProps('three')} />
         </Tabs>
       </AppBar>
-      {value === 'one' && <TabContainer>Item One</TabContainer>}
-      {value === 'two' && <TabContainer>Item Two</TabContainer>}
-      {value === 'three' && <TabContainer>Item Three</TabContainer>}
+      <TabPanel value={value} index="one">
+        Item One
+      </TabPanel>
+      <TabPanel value={value} index="two">
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index="three">
+        Item Three
+      </TabPanel>
     </div>
   );
 }

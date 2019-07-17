@@ -196,12 +196,12 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
-        const tab = tablist.children[0].children[1];
+        const tablistContainer = getByRole('tablist').parentNode;
+        const tab = getByRole('tablist').children[1];
 
-        Object.defineProperty(tablist, 'clientWidth', { value: 100 });
-        Object.defineProperty(tablist, 'scrollWidth', { value: 100 });
-        tablist.getBoundingClientRect = () => ({
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
+        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 });
+        tablistContainer.getBoundingClientRect = () => ({
           left: 0,
           right: 100,
         });
@@ -299,12 +299,12 @@ describe('<Tabs />', () => {
 
     it('should response to scroll events', () => {
       const { container, setProps, getByRole } = render(tabs);
-      const tablist = getByRole('tablist');
+      const tablistContainer = getByRole('tablist').parentNode;
 
-      Object.defineProperty(tablist, 'clientWidth', { value: 120 });
-      tablist.scrollLeft = 10;
-      Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
-      Object.defineProperty(tablist, 'getBoundingClientRect', {
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
+      tablistContainer.scrollLeft = 10;
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
+      Object.defineProperty(tablistContainer, 'getBoundingClientRect', {
         value: () => ({
           left: 0,
           right: 50,
@@ -314,7 +314,7 @@ describe('<Tabs />', () => {
       clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
-      tablist.scrollLeft = 0;
+      tablistContainer.scrollLeft = 0;
       fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollable}`));
       clock.tick(166);
 
@@ -329,12 +329,12 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablist = getByRole('tablist');
-      expect(tablist.style.overflow).to.equal('hidden');
+      const tablistContainer = getByRole('tablist').parentNode;
+      expect(tablistContainer.style.overflow).to.equal('hidden');
       setProps({
         variant: 'scrollable',
       });
-      expect(tablist.style.overflow).to.equal('');
+      expect(tablistContainer.style.overflow).to.equal('');
     });
   });
 
@@ -389,12 +389,12 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      const tablist = getByRole('tablist');
+      const tablistContainer = getByRole('tablist').parentNode;
 
-      Object.defineProperty(tablist, 'clientWidth', { value: 120 });
-      tablist.scrollLeft = 10;
-      Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
-      Object.defineProperty(tablist, 'getBoundingClientRect', {
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
+      tablistContainer.scrollLeft = 10;
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
+      Object.defineProperty(tablistContainer, 'getBoundingClientRect', {
         value: () => ({
           left: 0,
           right: 100,
@@ -404,7 +404,7 @@ describe('<Tabs />', () => {
       clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
-      tablist.scrollLeft = 0;
+      tablistContainer.scrollLeft = 0;
 
       window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
@@ -427,10 +427,10 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
+        const tablistContainer = getByRole('tablist').parentNode;
 
-        Object.defineProperty(tablist, 'clientWidth', { value: 200 });
-        Object.defineProperty(tablist, 'scrollWidth', { value: 200 });
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 200 });
 
         setProps();
         expect(hasLeftScrollButton(container)).to.equal(false);
@@ -451,11 +451,11 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
+        const tablistContainer = getByRole('tablist').parentNode;
 
-        Object.defineProperty(tablist, 'clientWidth', { value: 120 });
-        Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
-        tablist.scrollLeft = 96;
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
+        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
+        tablistContainer.scrollLeft = 96;
 
         setProps();
         expect(hasLeftScrollButton(container)).to.equal(true);
@@ -476,11 +476,11 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
+        const tablistContainer = getByRole('tablist').parentNode;
 
-        Object.defineProperty(tablist, 'clientWidth', { value: 120 });
-        Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
-        tablist.scrollLeft = 0;
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
+        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
+        tablistContainer.scrollLeft = 0;
 
         setProps();
         expect(hasLeftScrollButton(container)).to.equal(false);
@@ -500,11 +500,11 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablist = getByRole('tablist');
+        const tablistContainer = getByRole('tablist').parentNode;
 
-        Object.defineProperty(tablist, 'clientWidth', { value: 120 });
-        Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
-        tablist.scrollLeft = 5;
+        Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
+        Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
+        tablistContainer.scrollLeft = 5;
 
         setProps();
         expect(hasLeftScrollButton(container)).to.equal(true);
@@ -538,10 +538,10 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablist = getByRole('tablist');
-      Object.defineProperty(tablist, 'clientWidth', { value: 120 });
-      Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
-      tablist.scrollLeft = 20;
+      const tablistContainer = getByRole('tablist').parentNode;
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
+      tablistContainer.scrollLeft = 20;
       setProps();
       clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
@@ -549,12 +549,14 @@ describe('<Tabs />', () => {
 
       fireEvent.click(findScrollButton(container, 'left'));
       clock.tick(1000);
-      expect(tablist.scrollLeft).not.to.be.above(0);
+      expect(tablistContainer.scrollLeft).not.to.be.above(0);
 
-      tablist.scrollLeft = 0;
+      tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
       clock.tick(1000);
-      expect(tablist.scrollLeft).not.to.be.below(tablist.scrollWidth - tablist.clientWidth);
+      expect(tablistContainer.scrollLeft).not.to.be.below(
+        tablistContainer.scrollWidth - tablistContainer.clientWidth,
+      );
     });
   });
 
@@ -577,13 +579,13 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablist = getByRole('tablist');
-      const tab = tablist.children[0].children[0];
+      const tablistContainer = getByRole('tablist').parentNode;
+      const tab = getByRole('tablist').children[0];
 
-      Object.defineProperty(tablist, 'clientWidth', { value: 120 });
-      Object.defineProperty(tablist, 'scrollWidth', { value: 216 });
-      tablist.scrollLeft = 20;
-      tablist.getBoundingClientRect = () => ({
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
+      tablistContainer.scrollLeft = 20;
+      tablistContainer.getBoundingClientRect = () => ({
         left: 0,
         right: 100,
       });
@@ -594,7 +596,7 @@ describe('<Tabs />', () => {
       });
       setProps();
       clock.tick(1000);
-      expect(tablist.scrollLeft).to.equal(0);
+      expect(tablistContainer.scrollLeft).to.equal(0);
     });
   });
 

@@ -12,7 +12,13 @@ export default function DisabledTabs() {
 
   return (
     <Paper square>
-      <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={handleChange}>
+      <Tabs
+        value={value}
+        indicatorColor="primary"
+        textColor="primary"
+        onChange={handleChange}
+        aria-label="Disabled tabs example"
+      >
         <Tab label="Active" />
         <Tab label="Disabled" disabled />
         <Tab label="Active" />
