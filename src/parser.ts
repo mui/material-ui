@@ -376,9 +376,6 @@ export function parseFromProgram(
     }
 
     const comment = ts.displayPartsToString(symbol.getDocumentationComment(checker));
-    if (comment) {
-      return comment.replace(/(\r?\n)/, '$1* ');
-    }
-    return undefined;
+    return comment ? comment : undefined;
   }
 }
