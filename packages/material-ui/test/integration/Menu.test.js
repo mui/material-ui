@@ -189,20 +189,6 @@ describe('<Menu /> integration', () => {
       getAllByRole('menuitem').forEach(item => expect(item).to.have.property('tabIndex', -1));
     });
 
-    // no case for variant=menu
-    it('[variant=selectedMenu] nothing selected, first index invalid', () => {
-      const { getAllByRole, getByRole } = render(
-        <OpenMenu variant="selectedMenu">
-          {null}
-          <MenuItem />
-          <MenuItem />
-        </OpenMenu>,
-      );
-
-      expect(getByRole('menu')).to.be.focused;
-      getAllByRole('menuitem').forEach(item => expect(item).to.have.property('tabIndex', -1));
-    });
-
     it('[variant=menu] second item selected', () => {
       const { getAllByRole, getByRole } = render(
         <OpenMenu variant="menu">
