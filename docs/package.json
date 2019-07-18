@@ -11,6 +11,7 @@
     "deploy": "git push material-ui-docs master:latest",
     "export": "rimraf docs/export && next export -o export && yarn build-sw && cp -r netlify/. export",
     "icons": "rimraf static/icons/* && node ./scripts/buildIcons.js",
+    "start": "next start",
     "typescript": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\""
   },
   "dependencies": {
