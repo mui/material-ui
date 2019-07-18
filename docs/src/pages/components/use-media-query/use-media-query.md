@@ -105,26 +105,6 @@ describe('MyTests', () => {
 The `withWidth()` higher-order component injects the screen width of the page.
 You can reproduce the same behavior with a `useWidth` hook:
 
-```jsx
-
-  /** null can be return from useWidth **/
-  
-  const useWidth = () => {
-    const theme = useTheme();
-    const isXs = useMediaQuery(theme.breakpoints.up('xs'));
-    const isSm = useMediaQuery(theme.breakpoints.up('sm'));
-    const isMd = useMediaQuery(theme.breakpoints.up('md'));
-    const isLg = useMediaQuery(theme.breakpoints.up('lg'));
-    const isXl = useMediaQuery(theme.breakpoints.up('xl'));
-    if (isXl) return 'xl';
-    if (isLg) return 'lg';
-    if (isMd) return 'md';
-    if (isSm) return 'sm';
-    if (isXs) return 'xs';
-    return null;
-  }
-```
-
 {{"demo": "pages/components/use-media-query/UseWidth.js"}}
 
 ## API
