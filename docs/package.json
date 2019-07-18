@@ -8,6 +8,7 @@
     "build": "rimraf .next && cross-env NODE_ENV=production next build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "rimraf ../node_modules/.cache/babel-loader && cross-env NODE_ENV=development node src/server.js",
+    "deploy": "git push material-ui-docs master:latest",
     "export": "rimraf docs/export && next export -o export && yarn build-sw && cp -r netlify/. export",
     "typescript": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\""
   },
