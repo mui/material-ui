@@ -339,4 +339,4 @@ TreeView.propTypes = {
   onNodeToggle: PropTypes.func,
 };
 
-export default withStyles(styles)(TreeView);
+export default withStyles(styles, { name: 'MuiTreeView' })(TreeView);
