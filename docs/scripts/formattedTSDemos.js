@@ -20,7 +20,7 @@ const os = require('os');
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
-  plugins: ['unwrap-createStyles'],
+  plugins: ['unwrap-createstyles'],
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
