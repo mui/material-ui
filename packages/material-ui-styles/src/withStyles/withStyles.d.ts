@@ -3,10 +3,17 @@ import { PropInjector, CoerceEmptyInterface, IsEmptyInterface } from '@material-
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 
+// Disable automatic export
+export {};
+
+type JSSFontface = CSS.FontFace & { fallbacks?: CSS.FontFace[] };
+
 /**
  * Allows the user to augment the properties available
  */
-export interface BaseCSSProperties extends CSS.Properties<number | string> {}
+export interface BaseCSSProperties extends CSS.Properties<number | string> {
+  '@font-face'?: JSSFontface | JSSFontface[];
+}
 
 export interface CSSProperties extends BaseCSSProperties {
   // Allow pseudo selectors and media queries
