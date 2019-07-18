@@ -2,6 +2,7 @@
   "extends": "../tsconfig.json",
   "include": ["types", "src/pages/**/*"],
   "compilerOptions": {
-    "allowJs": false
+    "allowJs": false,
+    "noUnusedLocals": true
   }
 }
