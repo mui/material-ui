@@ -15,6 +15,13 @@ export type InjectOptions = {
    * to have them removed before injecting the PropTypes
    */
   removeExistingPropTypes?: boolean;
+  /**
+   * Used to control which props are includes in the result
+   * @return true to include the prop, false to skip it, or undefined to
+   * use the default behaviour
+   * @default includeUnusedProps ? true : data.usedProps.includes(`${data.prop.name}`)
+   */
+  shouldInclude?(data: { prop: t.PropTypeNode; usedProps: string[] }): boolean | undefined;
 } & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc'>;
 
 /**
@@ -70,6 +77,17 @@ function plugin(
     sortProptypes,
     removeExistingPropTypes = false,
   } = options;
+
+  const shouldInclude: InjectOptions['shouldInclude'] = data => {
+    if (options.shouldInclude) {
+      const result = options.shouldInclude(data);
+      if (result !== undefined) {
+        return result;
+      }
+    }
+
+    return includeUnusedProps ? true : data.usedProps.includes(`${data.prop.name}`);
+  };
 
   let importName = '';
   let needImport = false;
@@ -257,7 +275,7 @@ function plugin(
 
     const source = generate(props, {
       importedName: importName,
-      shouldInclude: includeUnusedProps ? undefined : prop => usedProps.includes(`${prop.name}`),
+      shouldInclude: prop => shouldInclude!({ prop, usedProps }),
       sortProptypes,
       includeJSDoc,
     });

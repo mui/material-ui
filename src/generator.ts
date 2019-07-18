@@ -24,7 +24,7 @@ export interface GenerateOptions {
    * Control which PropTypes are included in the final result
    * @param proptype The current PropType about to be converted to text
    */
-  shouldInclude?(proptype: t.PropTypeNode): boolean;
+  shouldInclude?(proptype: t.PropTypeNode): boolean | undefined;
 }
 
 /**
