@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
@@ -48,11 +47,6 @@ function ListItemLink(props: Omit<ListItemLinkProps, 'ref'>) {
     </li>
   );
 }
-
-ListItemLink.propTypes = {
-  open: PropTypes.bool,
-  to: PropTypes.string.isRequired,
-};
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -136,12 +130,5 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
     );
   }
 }
-
-(RouterBreadcrumbs as React.ComponentClass<
-  RouterBreadcrumbsProp,
-  RouterBreadcrumbsState
->).propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
 
 export default withStyles(styles)(RouterBreadcrumbs);

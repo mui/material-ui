@@ -59,7 +59,7 @@ function GridIntegration(props) {
 }
 
 GridIntegration.propTypes = {
-  width: PropTypes.string,
+  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
 };
 
 export default withWidth()(GridIntegration);

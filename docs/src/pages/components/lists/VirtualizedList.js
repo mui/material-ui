@@ -25,8 +25,8 @@ function Row(props) {
 }
 
 Row.propTypes = {
-  index: PropTypes.number,
-  style: PropTypes.object,
+  index: PropTypes.number.isRequired,
+  style: PropTypes.object.isRequired,
 };
 
 export default function VirtualizedList() {

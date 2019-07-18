@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -103,12 +102,6 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
     </Dialog>
   );
 }
-
-ConfirmationDialogRaw.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired,
-};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

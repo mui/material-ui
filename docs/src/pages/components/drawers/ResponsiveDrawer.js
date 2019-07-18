@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ResponsiveDrawer(props) {
+function ResponsiveDrawer(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -166,7 +166,11 @@ export default function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
   container: PropTypes.object,
 };
+
+export default ResponsiveDrawer;

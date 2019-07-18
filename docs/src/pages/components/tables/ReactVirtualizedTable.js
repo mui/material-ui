@@ -76,11 +76,18 @@ class MuiVirtualizedTable extends React.PureComponent {
   };
 
   render() {
-    const { classes, columns, ...tableProps } = this.props;
+    const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
     return (
       <AutoSizer>
         {({ height, width }) => (
-          <Table height={height} width={width} {...tableProps} rowClassName={this.getRowClassName}>
+          <Table
+            height={height}
+            width={width}
+            rowHeight={rowHeight}
+            headerHeight={headerHeight}
+            {...tableProps}
+            rowClassName={this.getRowClassName}
+          >
             {columns.map(({ dataKey, ...other }, index) => {
               return (
                 <Column
@@ -107,7 +114,14 @@ class MuiVirtualizedTable extends React.PureComponent {
 
 MuiVirtualizedTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      dataKey: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      numeric: PropTypes.bool,
+      width: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   headerHeight: PropTypes.number,
   onRowClick: PropTypes.func,
   rowHeight: PropTypes.number,

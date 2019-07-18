@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Slider from '@material-ui/core/Slider';
@@ -49,12 +48,6 @@ function ValueLabelComponent(props: Props) {
     </Tooltip>
   );
 }
-
-ValueLabelComponent.propTypes = {
-  children: PropTypes.element.isRequired,
-  open: PropTypes.bool.isRequired,
-  value: PropTypes.number.isRequired,
-};
 
 const iOSBoxShadow =
   '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';

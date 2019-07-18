@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
@@ -45,9 +44,5 @@ function BreakpointOnly(props: WithWidth) {
     </div>
   );
 }
-
-(BreakpointOnly as any).propTypes = {
-  width: PropTypes.string.isRequired,
-};
 
 export default withWidth()(BreakpointOnly);

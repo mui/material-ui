@@ -73,9 +73,9 @@ function MySnackbarContentWrapper(props) {
 
 MySnackbarContentWrapper.propTypes = {
   className: PropTypes.string,
-  message: PropTypes.node,
+  message: PropTypes.string,
   onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
+  variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
 };
 
 const useStyles2 = makeStyles(theme => ({

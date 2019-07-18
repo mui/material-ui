@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -145,15 +144,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-};
-
 const useToolbarStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -225,10 +215,6 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       </div>
     </Toolbar>
   );
-};
-
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
 };
 
 const useStyles = makeStyles((theme: Theme) =>
