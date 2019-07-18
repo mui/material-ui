@@ -9,7 +9,7 @@
     "docs:deploy": "yarn workspace docs deploy",
     "docs:dev": "yarn workspace docs dev",
     "docs:export": "yarn workspace docs export",
-    "docs:icons": "rimraf static/icons/* && node ./docs/scripts/buildIcons.js",
+    "docs:icons": "yarn workspace docs icons",
     "docs:size-why": "cross-env DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:start": "next start",
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
