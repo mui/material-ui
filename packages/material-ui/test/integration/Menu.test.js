@@ -159,7 +159,9 @@ describe('<Menu /> integration', () => {
       );
 
       expect(getByRole('menu')).to.be.focused;
-      getAllByRole('menuitem').forEach(item => expect(item).to.have.property('tabIndex', -1));
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
     it('[variant=selectedMenu] nothing selected', () => {
@@ -172,7 +174,9 @@ describe('<Menu /> integration', () => {
       );
 
       expect(getByRole('menu')).to.be.focused;
-      getAllByRole('menuitem').forEach(item => expect(item).to.have.property('tabIndex', -1));
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
     // no case for variant=selectedMenu
@@ -186,7 +190,9 @@ describe('<Menu /> integration', () => {
       );
 
       expect(getByRole('menu')).to.be.focused;
-      getAllByRole('menuitem').forEach(item => expect(item).to.have.property('tabIndex', -1));
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
     it('[variant=menu] second item selected', () => {
@@ -199,7 +205,9 @@ describe('<Menu /> integration', () => {
       );
 
       expect(getByRole('menu')).to.be.focused;
-      getAllByRole('menuitem').forEach(item => expect(item).to.have.property('tabIndex', -1));
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
     it('[variant=selectedMenu] second item selected', () => {
