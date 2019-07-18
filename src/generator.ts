@@ -44,7 +44,7 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
     if (!includeJSDoc || !node.jsDoc) {
       return '';
     }
-    return `/**\n* ${node.jsDoc}\n*/\n`;
+    return `/**\n* ${node.jsDoc.split(/\r?\n/).reduce((prev, curr) => prev + '\n* ' + curr)}\n*/\n`;
   }
 
   if (Array.isArray(node)) {
