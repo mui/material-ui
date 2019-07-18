@@ -69,6 +69,10 @@ export const styles = theme => ({
   },
   /* Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component). */
   selected: {},
+  verticalSelected: {
+    color: theme.palette.primary.main,
+    borderRight: `2px solid ${theme.palette.primary.main}`,
+  },
   /* Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
   disabled: {},
   /* Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). */
@@ -106,6 +110,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
     onChange,
     onClick,
     selected,
+    vertical = false,
     textColor = 'inherit',
     value,
     wrapped = false,
@@ -130,7 +135,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
         classes[`textColor${capitalize(textColor)}`],
         {
           [classes.disabled]: disabled,
-          [classes.selected]: selected,
+          [vertical ? classes.verticalSelected : classes.selected]: selected,
           [classes.labelIcon]: label && icon,
           [classes.fullWidth]: fullWidth,
           [classes.wrapped]: wrapped,
@@ -219,6 +224,10 @@ Tab.propTypes = {
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
   value: PropTypes.any,
+  /**
+   * Determines is tab layout is vertical or horizontal.
+   */
+  vertical: PropTypes.bool,
   /**
    * Tab labels appear in a single row.
    * They can use a second line if needed.

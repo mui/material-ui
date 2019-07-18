@@ -26,6 +26,10 @@ export const styles = theme => ({
   flexContainer: {
     display: 'flex',
   },
+  flexContainerVertical: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   /* Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered: {
     justifyContent: 'center',
@@ -80,6 +84,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     theme,
     value,
     variant = 'standard',
+    vertical = false,
     ...other
   } = props;
   const scrollable = variant === 'scrollable';
@@ -321,6 +326,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     <TabIndicator
       className={classes.indicator}
       color={indicatorColor}
+      vertical={vertical}
       {...TabIndicatorProps}
       style={{
         ...indicatorStyle,
@@ -376,6 +382,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         <div
           className={clsx(classes.flexContainer, {
             [classes.centered]: centered && !scrollable,
+            [classes.flexContainerVertical]: vertical,
           })}
           ref={childrenWrapperRef}
           role="tablist"
@@ -473,6 +480,10 @@ Tabs.propTypes = {
    *  - `standard` will render the default state.
    */
   variant: PropTypes.oneOf(['standard', 'scrollable', 'fullWidth']),
+  /**
+   * Determines is tab layout is vertical or horizontal.
+   */
+  vertical: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(Tabs);

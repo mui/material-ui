@@ -21,17 +21,25 @@ export const styles = theme => ({
   colorSecondary: {
     backgroundColor: theme.palette.secondary.main,
   },
+  vertical: {
+    display: 'none',
+  },
 });
 
 /**
  * @ignore - internal component.
  */
 const TabIndicator = React.forwardRef(function TabIndicator(props, ref) {
-  const { classes, className, color, ...other } = props;
+  const { classes, className, color, vertical = false, ...other } = props;
 
   return (
     <span
-      className={clsx(classes.root, classes[`color${capitalize(color)}`], className)}
+      className={clsx(
+        classes.root,
+        classes[`color${capitalize(color)}`],
+        { [classes.vertical]: vertical },
+        className,
+      )}
       ref={ref}
       {...other}
     />
@@ -53,6 +61,10 @@ TabIndicator.propTypes = {
    * The color of the tab indicator.
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * Determines is tab layout is vertical or horizontal.
+   */
+  vertical: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'PrivateTabIndicator' })(TabIndicator);
