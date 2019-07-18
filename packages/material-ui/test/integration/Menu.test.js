@@ -149,7 +149,7 @@ describe('<Menu /> integration', () => {
       return <Menu anchorEl={document.body} open {...props} />;
     }
 
-    test('[variant=menu] will focus the menu if nothing is selected', () => {
+    specify('[variant=menu] will focus the menu if nothing is selected', () => {
       const { getAllByRole, getByRole } = render(
         <OpenMenu variant="menu">
           <MenuItem />
@@ -164,7 +164,7 @@ describe('<Menu /> integration', () => {
       expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
-    test('[variant=selectedMenu] will focus the menu if nothing is selected', () => {
+    specify('[variant=selectedMenu] will focus the menu if nothing is selected', () => {
       const { getAllByRole, getByRole } = render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
@@ -180,7 +180,7 @@ describe('<Menu /> integration', () => {
     });
 
     // no case for variant=selectedMenu
-    test('[variant=menu] ignores `autoFocus` on `MenuItem`', () => {
+    specify('[variant=menu] ignores `autoFocus` on `MenuItem`', () => {
       const { getAllByRole, getByRole } = render(
         <OpenMenu variant="menu">
           <MenuItem />
@@ -195,7 +195,7 @@ describe('<Menu /> integration', () => {
       expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
-    test('[variant=menu] ignores `selected` on `MenuItem`', () => {
+    specify('[variant=menu] ignores `selected` on `MenuItem`', () => {
       const { getAllByRole, getByRole } = render(
         <OpenMenu variant="menu">
           <MenuItem />
@@ -210,7 +210,7 @@ describe('<Menu /> integration', () => {
       expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
-    test('[variant=selectedMenu] focuses the `selected` `MenuItem`', () => {
+    specify('[variant=selectedMenu] focuses the `selected` `MenuItem`', () => {
       const { getAllByRole } = render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
@@ -225,7 +225,7 @@ describe('<Menu /> integration', () => {
       expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
-    test('[variant=selectedMenu] allows overriding `tabIndex` on `MenuItem`', () => {
+    specify('[variant=selectedMenu] allows overriding `tabIndex` on `MenuItem`', () => {
       const { getAllByRole } = render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
@@ -241,7 +241,7 @@ describe('<Menu /> integration', () => {
     });
 
     // no case for menu
-    test('[variant=selectedMenu] focuses the menu if the selected menuitem is disabled', () => {
+    specify('[variant=selectedMenu] focuses the menu if the selected menuitem is disabled', () => {
       const { getAllByRole, getByRole } = render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
@@ -257,7 +257,7 @@ describe('<Menu /> integration', () => {
     });
 
     // no case for menu
-    test('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', () => {
+    specify('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', () => {
       const { getAllByRole, getByTestId } = render(
         <OpenMenu autoFocus={false} variant="selectedMenu" PaperProps={{ 'data-testid': 'Paper' }}>
           <MenuItem />
