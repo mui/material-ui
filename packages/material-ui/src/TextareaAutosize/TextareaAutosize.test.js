@@ -5,11 +5,11 @@ import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import TextareaAutosize from './TextareaAutosize';
 
-function getHeight(wrapper) {
+function getStyle(wrapper) {
   return wrapper
     .find('textarea')
     .at(0)
-    .props().style.height;
+    .props().style;
 }
 
 describe('<TextareaAutosize />', () => {
@@ -78,7 +78,10 @@ describe('<TextareaAutosize />', () => {
 
       it('should handle the resize event', () => {
         const wrapper = mount(<TextareaAutosize />);
-        assert.strictEqual(getHeight(wrapper), undefined);
+        assert.deepEqual(getStyle(wrapper), {
+          height: undefined,
+          overflow: null,
+        });
         setLayout(wrapper, {
           getComputedStyle: {
             'box-sizing': 'content-box',
@@ -89,14 +92,17 @@ describe('<TextareaAutosize />', () => {
         window.dispatchEvent(new window.Event('resize', {}));
         clock.tick(166);
         wrapper.update();
-        assert.strictEqual(getHeight(wrapper), 30);
+        assert.deepEqual(getStyle(wrapper), {
+          height: 30,
+          overflow: 'hidden',
+        });
       });
     });
 
     it('should update when uncontrolled', () => {
       const handleChange = spy();
       const wrapper = mount(<TextareaAutosize onChange={handleChange} />);
-      assert.strictEqual(getHeight(wrapper), undefined);
+      assert.deepEqual(getStyle(wrapper), { height: undefined, overflow: null });
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
@@ -109,14 +115,14 @@ describe('<TextareaAutosize />', () => {
         .at(0)
         .simulate('change');
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), 30);
+      assert.deepEqual(getStyle(wrapper), { height: 30, overflow: 'hidden' });
       assert.strictEqual(handleChange.callCount, 1);
     });
 
     it('should take the border into account with border-box', () => {
       const border = 5;
       const wrapper = mount(<TextareaAutosize />);
-      assert.strictEqual(getHeight(wrapper), undefined);
+      assert.deepEqual(getStyle(wrapper), { height: undefined, overflow: null });
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'border-box',
@@ -127,7 +133,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), 30 + border);
+      assert.deepEqual(getStyle(wrapper), { height: 30 + border, overflow: 'hidden' });
     });
 
     it('should take the padding into account with content-box', () => {
@@ -143,7 +149,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), 30 - padding);
+      assert.deepEqual(getStyle(wrapper), { height: 30 - padding, overflow: 'hidden' });
     });
 
     it('should have at least height of "rows"', () => {
@@ -159,7 +165,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), lineHeight * rows);
+      assert.deepEqual(getStyle(wrapper), { height: lineHeight * rows, overflow: null });
     });
 
     it('should have at max "rowsMax" rows', () => {
@@ -175,7 +181,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), lineHeight * rowsMax);
+      assert.deepEqual(getStyle(wrapper), { height: lineHeight * rowsMax, overflow: null });
     });
 
     it('should update its height when the "rowsMax" prop changes', () => {
@@ -190,10 +196,10 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), lineHeight * 3);
+      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 3, overflow: null });
       wrapper.setProps({ rowsMax: 2 });
       wrapper.update();
-      assert.strictEqual(getHeight(wrapper), lineHeight * 2);
+      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 2, overflow: null });
     });
   });
 });
