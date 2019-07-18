@@ -7,7 +7,7 @@
 *.log
 .DS_STORE
 /.eslintcache
-/.next
+/docs/.next
 /.nyc_output
 /coverage
 /docs/export

@@ -23,7 +23,7 @@ const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../ts
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
-  plugins: ['unwrap-createStyles'],
+  plugins: ['unwrap-createstyles'],
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,

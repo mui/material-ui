@@ -1,5 +1,5 @@
 /.git
-/.next
+/docs/.next
 /coverage
 /docs/export
 /examples/create-react-app*/src/serviceWorker.js
