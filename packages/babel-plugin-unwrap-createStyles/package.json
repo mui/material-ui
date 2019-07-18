@@ -1,5 +1,5 @@
 {
-  "name": "babel-plugin-unwrap-createStyles",
+  "name": "babel-plugin-unwrap-createstyles",
   "private": true,
   "version": "4.1.0",
   "description": "unwraps createStyles call",
