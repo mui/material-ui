@@ -10,6 +10,11 @@ export type InjectOptions = {
    * Set this to true to include them instead.
    */
   includeUnusedProps?: boolean;
+  /**
+   * By default existing PropTypes are left alone, set this to true
+   * to have them removed before injecting the PropTypes
+   */
+  removeExistingPropTypes?: boolean;
 } & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc'>;
 
 /**
@@ -59,7 +64,12 @@ function plugin(
   options: InjectOptions = {},
   mapOfPropTypes: Map<string, string>,
 ): babel.PluginObj {
-  const { includeUnusedProps = false, includeJSDoc = true, sortProptypes } = options;
+  const {
+    includeUnusedProps = false,
+    includeJSDoc = true,
+    sortProptypes,
+    removeExistingPropTypes = false,
+  } = options;
 
   let importName = '';
   let needImport = false;
@@ -83,6 +93,20 @@ function plugin(
             })
           ) {
             importName = 'PropTypes';
+          }
+
+          if (removeExistingPropTypes) {
+            path.get('body').forEach(nodePath => {
+              const { node } = nodePath;
+              if (
+                babelTypes.isExpressionStatement(node) &&
+                babelTypes.isAssignmentExpression(node.expression, { operator: '=' }) &&
+                babelTypes.isMemberExpression(node.expression.left) &&
+                babelTypes.isIdentifier(node.expression.left.property, { name: 'propTypes' })
+              ) {
+                nodePath.remove();
+              }
+            });
           }
         },
         exit(path) {
