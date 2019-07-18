@@ -15,7 +15,7 @@
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
     "docs:typescript": "yarn workspace docs typescript",
     "docs:typescript:check": "yarn workspace docs typescript:check",
-    "docs:typescript:formatted": "node docs/scripts/formattedTSDemos",
+    "docs:typescript:formatted": "yarn workspace docs typescript:formatted",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
     "lint": "eslint . --cache --report-unused-disable-directives",

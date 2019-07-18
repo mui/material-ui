@@ -13,7 +13,8 @@
     "icons": "rimraf static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",
     "typescript": "node scripts/formattedTSDemos --watch",
-    "typescript:check": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\""
+    "typescript:check": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\"",
+    "typescript:formatted": "node scripts/formattedTSDemos"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.0.0",
