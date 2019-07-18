@@ -12,7 +12,8 @@
     "export": "rimraf docs/export && next export -o export && yarn build-sw && cp -r netlify/. export",
     "icons": "rimraf static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",
-    "typescript": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\""
+    "typescript": "node scripts/formattedTSDemos --watch",
+    "typescript:check": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@date-io/date-fns": "^1.0.0",
@@ -40,7 +41,6 @@
     "address": "^1.0.3",
     "ast-types": "^0.12.4",
     "autosuggest-highlight": "^3.1.1",
-    "babel-plugin-unwrap-createstyles": "^4.1.0",
     "classnames": "^2.2.6",
     "clean-css": "^4.1.11",
     "clipboard-copy": "^3.0.0",
@@ -92,6 +92,8 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.1.0",
+    "babel-plugin-unwrap-createstyles": "^4.1.0",
     "gm": "^1.23.0"
   }
 }
