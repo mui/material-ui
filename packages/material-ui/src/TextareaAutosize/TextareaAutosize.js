@@ -47,15 +47,14 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
       getStyleValue(computedStyle, 'border-top-width');
 
     // The height of the inner content
-    const innerHeight = inputShallow.scrollHeight;
+    const innerHeight = inputShallow.scrollHeight - padding;
 
     // Measure height of a textarea with a single row
     inputShallow.value = 'x';
-    let singleRowHeight = inputShallow.scrollHeight;
-    singleRowHeight -= padding;
+    const singleRowHeight = inputShallow.scrollHeight - padding;
 
     // The height of the outer content
-    let outerHeight = innerHeight - padding;
+    let outerHeight = innerHeight;
 
     if (rows != null) {
       outerHeight = Math.max(Number(rows) * singleRowHeight, outerHeight);
@@ -65,15 +64,20 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     }
     outerHeight = Math.max(outerHeight, singleRowHeight);
 
-    outerHeight += boxSizing === 'border-box' ? padding + border : 0;
+    // Take the box sizing into account for applying this value as a style.
+    const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
 
     setState(prevState => {
       // Need a large enough different to update the height.
       // This prevents infinite rendering loop.
-      if (outerHeight > 0 && Math.abs((prevState.outerHeight || 0) - outerHeight) > 1) {
+      if (
+        outerHeightStyle > 0 &&
+        Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1
+      ) {
         return {
           innerHeight,
           outerHeight,
+          outerHeightStyle,
         };
       }
 
@@ -116,7 +120,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         // Apply the rows prop to get a "correct" first SSR paint
         rows={rows || 1}
         style={{
-          height: state.outerHeight,
+          height: state.outerHeightStyle,
           // Need a large enough different to allow scrolling.
           // This prevents infinite rendering loop.
           overflow: Math.abs(state.outerHeight - state.innerHeight) <= 1 ? 'hidden' : null,
