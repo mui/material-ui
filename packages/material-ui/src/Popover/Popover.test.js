@@ -609,6 +609,8 @@ describe('<Popover />', () => {
     let wrapper;
 
     before(() => {
+      clock = useFakeTimers();
+
       innerHeightContainer = window.innerHeight;
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
@@ -629,8 +631,6 @@ describe('<Popover />', () => {
         </Popover>,
       );
       element = handleEntering.args[0][0];
-
-      clock = useFakeTimers();
     });
 
     after(() => {
