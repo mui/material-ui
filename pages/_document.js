@@ -50,6 +50,8 @@ class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={themeColor} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
+          {/* iOS Icon */}
+          <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
           {/* SEO */}
           <link
             rel="canonical"
