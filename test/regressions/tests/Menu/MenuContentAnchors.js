@@ -40,12 +40,12 @@ SimpleMenu.propTypes = { selectedItem: PropTypes.number };
 export default function MenuContentAnchors() {
   return (
     <Grid container>
-      <SimpleMenu />
       <SimpleMenu variant="selectedMenu" />
-      <SimpleMenu selectedItem={1} />
+      <SimpleMenu variant="menu" />
       <SimpleMenu selectedItem={1} variant="selectedMenu" />
-      <SimpleMenu selectedItem={2} />
+      <SimpleMenu selectedItem={1} variant="menu" />
       <SimpleMenu selectedItem={2} variant="selectedMenu" />
+      <SimpleMenu selectedItem={2} variant="menu" />
     </Grid>
   );
 }
