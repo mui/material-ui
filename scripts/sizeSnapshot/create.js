@@ -60,20 +60,25 @@ function* matchAll(string, regex) {
 }
 
 /**
+ * Inverse to `pretty-bytes`
+ *
  * @param {string} n
  * @param {'B', 'kB' | 'mB' | 'gB' | 'tB' | 'pB'} unit
+ * @returns {number}
  */
 function prettyBytesInverse(n, unit) {
   const metrixPrefix = unit.length < 2 ? '' : unit[0];
   const metricPrefixes = ['', 'k', 'm', 'g', 't', 'p'];
-  const power = metricPrefixes.indexOf(metrixPrefix) * 3;
-  if (power === -1) {
-    throw new Error(
+  const metrixPrefixIndex = metricPrefixes.indexOf(metrixPrefix);
+  if (metrixPrefixIndex === -1) {
+    throw new TypeError(
       `unrecognized metric prefix '${metrixPrefix}' in unit '${unit}'. only '${metricPrefixes.join(
         "', '",
       )}' are allowed`,
     );
   }
+
+  const power = metrixPrefixIndex * 3;
   return n * 10 ** power;
 }
 
