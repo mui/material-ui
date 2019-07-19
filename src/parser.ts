@@ -278,8 +278,8 @@ export function parseFromProgram(
       const typeNode = type as any;
 
       const symbol = typeNode.aliasSymbol ? typeNode.aliasSymbol : typeNode.symbol;
-      const name = symbol ? checker.getFullyQualifiedName(symbol) : null;
-      switch (name) {
+      const typeName = symbol ? checker.getFullyQualifiedName(symbol) : null;
+      switch (typeName) {
         case 'global.JSX.Element':
         case 'React.ReactElement': {
           return t.elementNode('element');
