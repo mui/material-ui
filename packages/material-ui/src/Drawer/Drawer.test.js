@@ -97,7 +97,7 @@ describe('<Drawer />', () => {
       });
     });
 
-    it("should override Modal's BackdropTransitionDuration from property when specified", () => {
+    it("should override Modal's BackdropTransitionDuration from prop when specified", () => {
       const testDuration = 335;
       const wrapper = mount(
         <Drawer BackdropTransitionDuration={testDuration}>

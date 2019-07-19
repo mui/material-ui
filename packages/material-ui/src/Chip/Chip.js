@@ -380,7 +380,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   warning(
     !avatar || !icon,
     'Material-UI: the Chip component can not handle the avatar ' +
-      'and the icon property at the same time. Pick one.',
+      'and the icon prop at the same time. Pick one.',
   );
 
   const handleRef = useForkRef(chipRef, ref);
@@ -415,8 +415,8 @@ Chip.propTypes = {
    */
   avatar: PropTypes.element,
   /**
-   * This property isn't supported.
-   * Use the `component` property if you need to change the children structure.
+   * This prop isn't supported.
+   * Use the `component` prop if you need to change the children structure.
    */
   children: unsupportedProp,
   /**
@@ -430,10 +430,10 @@ Chip.propTypes = {
   className: PropTypes.string,
   /**
    * If true, the chip will appear clickable, and will raise when pressed,
-   * even if the onClick property is not defined.
-   * If false, the chip will not be clickable, even if onClick property is defined.
+   * even if the onClick prop is not defined.
+   * If false, the chip will not be clickable, even if onClick prop is defined.
    * This can be used, for example,
-   * along with the component property to indicate an anchor Chip is clickable.
+   * along with the component prop to indicate an anchor Chip is clickable.
    */
   clickable: PropTypes.bool,
   /**

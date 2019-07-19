@@ -152,7 +152,7 @@ Link.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * `classes` property applied to the [`Typography`](/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
   /**

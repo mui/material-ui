@@ -53,7 +53,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
   if (variantProp && muiFormControl) {
     warning(
       variantProp !== muiFormControl.variant,
-      'Material-UI: The `InputAdornment` variant infers the variant property ' +
+      'Material-UI: The `InputAdornment` variant infers the variant prop ' +
         'you do not have to provide one.',
     );
   }

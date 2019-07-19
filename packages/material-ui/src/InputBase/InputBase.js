@@ -195,8 +195,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       !instance || instance instanceof HTMLInputElement || instance.focus,
       [
         'Material-UI: you have provided a `inputComponent` to the input component',
-        'that does not correctly handle the `inputRef` property.',
-        'Make sure the `inputRef` property is called with a HTMLInputElement.',
+        'that does not correctly handle the `inputRef` prop.',
+        'Make sure the `inputRef` prop is called with a HTMLInputElement.',
       ].join('\n'),
     );
   }, []);
@@ -415,7 +415,7 @@ InputBase.propTypes = {
    */
   'aria-describedby': PropTypes.string,
   /**
-   * This property helps users to fill forms faster, especially on mobile devices.
+   * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
@@ -468,7 +468,7 @@ InputBase.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**

@@ -162,7 +162,7 @@ const FilledInput = React.forwardRef(function FilledInput(props, ref) {
 
 FilledInput.propTypes = {
   /**
-   * This property helps users to fill forms faster, especially on mobile devices.
+   * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
@@ -219,7 +219,7 @@ FilledInput.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**

@@ -133,7 +133,7 @@ FormControlLabel.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref callback to the `input` element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**

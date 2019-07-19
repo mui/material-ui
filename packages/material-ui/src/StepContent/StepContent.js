@@ -75,7 +75,7 @@ StepContent.propTypes = {
   active: PropTypes.bool,
   /**
    * @ignore
-   * Set internally by Step when it's supplied with the alternativeLabel property.
+   * Set internally by Step when it's supplied with the alternativeLabel prop.
    */
   alternativeLabel: PropTypes.bool,
   /**
@@ -101,7 +101,7 @@ StepContent.propTypes = {
   last: PropTypes.bool,
   /**
    * @ignore
-   * Set internally by Step when it's supplied with the optional property.
+   * Set internally by Step when it's supplied with the optional prop.
    */
   optional: PropTypes.bool,
   /**
@@ -114,7 +114,7 @@ StepContent.propTypes = {
   TransitionComponent: PropTypes.elementType,
   /**
    * Adjust the duration of the content expand transition.
-   * Passed as a property to the transition component.
+   * Passed as a prop to the transition component.
    *
    * Set to 'auto' to automatically calculate transition time based on height.
    */

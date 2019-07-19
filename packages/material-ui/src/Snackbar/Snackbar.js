@@ -305,7 +305,7 @@ Snackbar.propTypes = {
   disableWindowBlurListener: PropTypes.bool,
   /**
    * When displaying multiple consecutive Snackbars from a parent rendering a single
-   * <Snackbar/>, add the key property to ensure independent treatment of each message.
+   * <Snackbar/>, add the key prop to ensure independent treatment of each message.
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
    */
@@ -363,8 +363,8 @@ Snackbar.propTypes = {
   open: PropTypes.bool,
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
-   * If `autoHideDuration` property isn't specified, it does nothing.
-   * If `autoHideDuration` property is specified but `resumeHideDuration` isn't,
+   * If `autoHideDuration` prop isn't specified, it does nothing.
+   * If `autoHideDuration` prop is specified but `resumeHideDuration` isn't,
    * we default to `autoHideDuration / 2` ms.
    */
   resumeHideDuration: PropTypes.number,

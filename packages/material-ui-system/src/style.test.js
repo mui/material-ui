@@ -87,7 +87,7 @@ describe('style', () => {
     transform: value => (typeof value === 'number' && value > 0 ? `${value}px solid` : value),
   });
 
-  it('should transform the property correctly', () => {
+  it('should transform the prop correctly', () => {
     const output1 = border({
       theme: {},
       border: 1,

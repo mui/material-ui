@@ -235,7 +235,7 @@ Menu.propTypes = {
    */
   PaperProps: PropTypes.object,
   /**
-   * `classes` property applied to the [`Popover`](/api/popover/) element.
+   * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
   /**

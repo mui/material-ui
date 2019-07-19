@@ -8,7 +8,7 @@ import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
   let classes;
-  const mount = createClientRender({ strict: true });
+  const render = createClientRender({ strict: true });
 
   before(() => {
     classes = getClasses(<TouchRipple />);
@@ -19,7 +19,7 @@ describe('<Ripple />', () => {
   });
 
   it('should have the ripple className', () => {
-    const { container } = mount(
+    const { container } = render(
       <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
     );
     const ripple = container.querySelector('span');
@@ -31,7 +31,7 @@ describe('<Ripple />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = mount(
+      wrapper = render(
         <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
       );
     });
@@ -54,7 +54,7 @@ describe('<Ripple />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = mount(
+      wrapper = render(
         <Ripple
           classes={classes}
           timeout={0}
@@ -98,7 +98,7 @@ describe('<Ripple />', () => {
 
     beforeEach(() => {
       callbackSpy = spy();
-      wrapper = mount(
+      wrapper = render(
         <Ripple
           classes={classes}
           timeout={550}

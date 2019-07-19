@@ -161,7 +161,7 @@ TrapFocus.propTypes = {
   getDoc: PropTypes.func.isRequired,
   /**
    * Do we still want to enforce the focus?
-   * This property helps nesting TrapFocus elements.
+   * This prop helps nesting TrapFocus elements.
    */
   isEnabled: PropTypes.func.isRequired,
   /**

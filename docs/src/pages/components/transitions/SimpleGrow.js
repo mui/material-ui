@@ -48,7 +48,7 @@ export default function SimpleGrow() {
             </svg>
           </Paper>
         </Grow>
-        {/* Conditionally applies the timeout property to change the entry speed. */}
+        {/* Conditionally applies the timeout prop to change the entry speed. */}
         <Grow
           in={checked}
           style={{ transformOrigin: '0 0 0' }}

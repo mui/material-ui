@@ -154,7 +154,7 @@ describe('<SelectInput />', () => {
   });
 
   describe('prop: renderValue', () => {
-    it('should use the property to render the value', () => {
+    it('should use the prop to render the value', () => {
       const renderValue = x => String(-x);
       const wrapper = shallow(<SelectInput {...defaultProps} renderValue={renderValue} />);
       assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).text(), '-10');
@@ -361,7 +361,7 @@ describe('<SelectInput />', () => {
     it('should throw if non array', () => {
       assert.throw(() => {
         shallow(<SelectInput {...defaultProps} multiple />);
-      }, /the `value` property must be an array/);
+      }, /the `value` prop must be an array/);
     });
 
     describe('prop: onChange', () => {

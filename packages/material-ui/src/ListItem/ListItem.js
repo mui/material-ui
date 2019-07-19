@@ -36,7 +36,7 @@ export const styles = theme => ({
   container: {
     position: 'relative',
   },
-  /* Pseudo-class applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
+  /* Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
   focusVisible: {},
   /* Styles applied to the `component` element if dense. */
   dense: {

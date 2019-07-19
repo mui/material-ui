@@ -25,7 +25,7 @@ export function withThemeCreator(options = {}) {
 
     WithTheme.propTypes = {
       /**
-       * Use that property to pass a ref callback to the decorated component.
+       * Use that prop to pass a ref callback to the decorated component.
        * @deprecated
        */
       innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), props => {
@@ -57,7 +57,7 @@ export function withThemeCreator(options = {}) {
   return withTheme;
 }
 
-// Provide the theme object as a property to the input component.
+// Provide the theme object as a prop to the input component.
 // It's an alternative API to useTheme().
 // We encourage the usage of useTheme() where possible.
 const withTheme = withThemeCreator();

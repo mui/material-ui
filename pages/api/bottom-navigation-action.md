@@ -18,7 +18,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp</span> |  | This property isn't supported. Use the `component` property if you need to change the children structure. |
+| <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp</span> |  | This prop isn't supported. Use the `component` prop if you need to change the children structure. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label element. |
@@ -31,8 +31,8 @@ Any other properties supplied will be provided to the root element ([ButtonBase]
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` property.
-This property accepts the following keys:
+You can override all the class names injected by Material-UI thanks to the `classes` prop.
+This prop accepts the following keys:
 
 
 | Name | Description |
