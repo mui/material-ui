@@ -13,6 +13,17 @@
  */
 const appList = [
   {
+    title: 'Cervezapedia',
+    description:
+      'Cervezapedia helps you to explore the world of beer. ' +
+      'Learn about styles, find thousands of beers ratings, track your personal beer list, ' +
+      'create your restaurant or bar menu online.',
+    image: 'cervezapedia.png',
+    link: 'https://cervezapedia.com/beer-tracker',
+    similarWebVisits: 2800,
+    dateAdded: '2019-07-19',
+  },
+  {
     title: 'QuintoAndar',
     description:
       'QuintoAndar is a company that uses technology and ' +
