@@ -284,6 +284,9 @@ export function parseFromProgram(
         case 'React.ReactElement': {
           return t.elementNode('element');
         }
+        case 'React.ElementType': {
+          return t.elementNode('elementType');
+        }
         case 'React.ReactNode': {
           return t.unionNode([t.elementNode('node'), t.undefinedNode()]);
         }

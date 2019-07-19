@@ -1,7 +1,7 @@
 import { Node } from '../nodes/baseNodes';
 
 const typeString = 'ElementNode';
-type ElementType = 'element' | 'node';
+type ElementType = 'element' | 'node' | 'elementType';
 
 interface ElementNode extends Node {
   elementType: ElementType;
