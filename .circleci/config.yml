@@ -41,6 +41,9 @@ jobs:
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
+      - run:
+          name: Check for duplicated packages
+          command: yarn deduplicate
       - save_cache:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:

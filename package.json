@@ -2,6 +2,7 @@
   "version": "4.2.1",
   "private": true,
   "scripts": {
+    "deduplicate": "node scripts/deduplicate.js",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
     "docs:api": "rimraf ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/api",
     "docs:build": "rimraf .next && cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
@@ -201,7 +202,8 @@
     "webfontloader": "^1.6.28",
     "webpack": "^4.28.4",
     "webpack-bundle-analyzer": "^3.0.0",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "yarn-deduplicate": "^1.1.1"
   },
   "resolutions": {
     "**/hoist-non-react-statics": "^3.2.1"
