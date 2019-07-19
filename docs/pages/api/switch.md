@@ -52,12 +52,12 @@ This prop accepts the following keys:
 | <span class="prop-name">switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
 | <span class="prop-name">disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
 | <span class="prop-name">input</span> | Styles applied to the internal SwitchBase component's input element.
 | <span class="prop-name">thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
 | <span class="prop-name">track</span> | Styles applied to the track element.
-| <span class="prop-name">sizeSmall</span> | Small size
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Switch/Switch.js)

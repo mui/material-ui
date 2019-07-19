@@ -93,6 +93,19 @@ export const styles = theme => ({
         theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    width: 40,
+    height: 24,
+    padding: 7,
+    '& $thumb': {
+      width: 16,
+      height: 16,
+    },
+    '& $switchBase': {
+      padding: 4,
+    },
+  },
   /* Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */
   checked: {},
   /* Pseudo-class applied to the internal SwitchBase component's disabled class. */
@@ -122,19 +135,6 @@ export const styles = theme => ({
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     opacity: theme.palette.type === 'light' ? 0.38 : 0.3,
-  },
-  /* Small size */
-  sizeSmall: {
-    width: 30 + 10 * 2,
-    height: 10 + 10 * 2,
-    padding: 10,
-    '& $thumb': {
-      width: 18,
-      height: 18,
-    },
-    '& $switchBase': {
-      padding: 6,
-    },
   },
 });
 
@@ -173,7 +173,6 @@ const Switch = React.forwardRef(function Switch(props, ref) {
           disabled: classes.disabled,
         }}
         ref={ref}
-        size={size}
         {...other}
       />
       <span className={classes.track} />

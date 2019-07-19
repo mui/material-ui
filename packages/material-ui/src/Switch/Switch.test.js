@@ -1,12 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import clsx from 'clsx';
-import {
-  createMount,
-  createShallow,
-  getClasses,
-  findOutermostIntrinsic,
-} from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
@@ -72,15 +67,6 @@ describe('<Switch />', () => {
       const track = wrapper.childAt(1);
       assert.strictEqual(track.name(), 'span');
       assert.strictEqual(track.hasClass(classes.track), true);
-    });
-  });
-
-  describe('prop: size', () => {
-    it('should render the right class in root element', () => {
-      let wrapper = mount(<Switch size="small" />);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), true);
-      wrapper = mount(<Switch />);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), false);
     });
   });
 });

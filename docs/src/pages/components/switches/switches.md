@@ -35,7 +35,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## Sizes
 
-Use the `size` property.
+Fancy smaller switches? Use the `size` property.
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 
