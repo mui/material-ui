@@ -3,6 +3,9 @@
   "include": ["types", "src/pages/**/*"],
   "compilerOptions": {
     "allowJs": false,
-    "noUnusedLocals": true
+    "isolatedModules": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": false
   }
 }
