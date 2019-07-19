@@ -12,11 +12,12 @@ chai.use((chaiAPI, utils) => {
   // better diff view for expect(element).to.equal(document.activeElement)
   chai.Assertion.addProperty('focused', function elementIsFocused() {
     const element = utils.flag(this, 'object');
+
     this.assert(
       element === document.activeElement,
-      'expected #{exp} to be focused, but #{act} was instead',
-      'expected #{exp} not to be focused',
-      prettyDOM(element),
+      'focus expected #{exp}, but #{act} was instead',
+      'unexpected focus on #{exp}',
+      element == null ? String(element) : prettyDOM(element),
       prettyDOM(document.activeElement),
     );
   });
