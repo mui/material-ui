@@ -48,13 +48,9 @@ steps:
       artifactName: 'canaries'
       targetPath: 'material-ui-core.tgz'
 
-  - script: |
-      yarn docs:build
-      mkdir -p scripts/sizeSnapshot/build
-    displayName: 'prepare size snapshot of built docs'
-
   - bash: |
       set -o pipefail
+      mkdir -p scripts/sizeSnapshot/build
       yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
       set +o pipefail
     displayName: 'build docs'
