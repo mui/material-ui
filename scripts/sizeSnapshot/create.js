@@ -87,17 +87,10 @@ async function getNextPagesSize() {
   });
   const pageRegex = /^(?<treeViewPresentation>┌|├|└)\s*(?<fileType>σ|⚡|)\s*(?<pageUrl>[^\s]+)\s*(?<sizeFormatted>[0-9.]+)\s*(?<sizeUnit>\w+)\s*(?<files>\d+)\s*(?<packages>\d+)/gm;
 
-  // legacy ids
-  const pageUrlIdMappings = {
-    '/': 'docs.landing',
-    '/_app': 'docs.main',
-  };
-
   return Array.from(matchAll(consoleOutput, pageRegex), match => {
     const { pageUrl, sizeFormatted, sizeUnit, files, packages } = match.groups;
 
-    const snapshotId = pageUrlIdMappings[pageUrl] || `docs-${pageUrl}`;
-
+    const snapshotId = `docs-${pageUrl}`;
     return [
       snapshotId,
       {
