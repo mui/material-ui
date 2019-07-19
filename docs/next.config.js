@@ -4,14 +4,17 @@ const withTM = require('next-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./src/modules/utils/find');
 const withTypescript = require('@zeit/next-typescript');
+const path = require('path');
 
 const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
+
+const workspaceRoot = path.join(__dirname, '../');
 
 module.exports = withTypescript({
   webpack: (config, options) => {
     // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
-      transpileModules: ['notistack', '@material-ui', 'material-table'],
+      transpileModules: ['notistack', '@material-ui/pickers', 'material-table'],
     }).webpack(config, options);
 
     const plugins = config.plugins.concat([
@@ -54,6 +57,13 @@ module.exports = withTypescript({
           {
             test: /\.(css|md)$/,
             loader: 'raw-loader',
+          },
+          // required to transpile ../packages/
+          {
+            test: /\.(js|mjs|jsx)$/,
+            include: [workspaceRoot],
+            exclude: /node_modules/,
+            use: options.defaultLoaders.babel,
           },
         ]),
       }),
