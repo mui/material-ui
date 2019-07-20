@@ -15,3 +15,4 @@ export * from './props/any';
 export * from './props/object';
 export * from './props/array';
 export * from './props/element';
+export * from './props/instanceOf';

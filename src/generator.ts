@@ -134,6 +134,10 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
     return `${importedName}.${node.elementType}`;
   }
 
+  if (t.isInstanceOfNode(node)) {
+    return `${importedName}.instanceOf(${node.instance})`;
+  }
+
   if (t.isArrayNode(node)) {
     if (t.isAnyNode(node.arrayType)) {
       return `${importedName}.array`;
@@ -145,10 +149,14 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
   if (t.isUnionNode(node)) {
     let [literals, rest] = _.partition(node.types, t.isLiteralNode);
     literals = _.uniqBy(literals, x => x.value);
-    rest = _.uniqBy(rest, x => x.type);
+    rest = _.uniqBy(rest, x => (t.isInstanceOfNode(x) ? `${x.type}.${x.instance}` : x.type));
 
     literals = literals.sort((a, b) => a.value.localeCompare(b.value));
-    rest = rest.sort((a, b) => a.type.localeCompare(b.type));
+    rest = rest.sort((a, b) =>
+      (t.isInstanceOfNode(a) ? `${a.type}.${a.instance}` : a.type).localeCompare(
+        t.isInstanceOfNode(b) ? `${b.type}.${b.instance}` : b.type,
+      ),
+    );
 
     if (literals.find(x => x.value === 'true') && literals.find(x => x.value === 'false')) {
       rest.push(t.booleanNode());
