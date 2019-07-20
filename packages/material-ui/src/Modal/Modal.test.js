@@ -1,8 +1,9 @@
 import React from 'react';
 import { assert, expect } from 'chai';
-import { spy } from 'sinon';
+import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Fade from '../Fade';
@@ -11,6 +12,7 @@ import Modal from './Modal';
 
 describe('<Modal />', () => {
   let mount;
+  const render = createClientRender({ strict: false });
   let savedBodyStyle;
 
   before(() => {
@@ -21,6 +23,10 @@ describe('<Modal />', () => {
 
   beforeEach(() => {
     document.body.setAttribute('style', savedBodyStyle);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -508,6 +514,46 @@ describe('<Modal />', () => {
         shiftKey: true,
       });
       assert.strictEqual(document.activeElement.getAttribute('data-test'), 'sentinelEnd');
+    });
+
+    describe('', () => {
+      let clock;
+
+      before(() => {
+        clock = useFakeTimers();
+      });
+
+      after(() => {
+        clock.restore();
+      });
+
+      it('contains the focus if the active element is removed', () => {
+        function WithRemovableElement({ hideButton = false }) {
+          return (
+            <Modal open>
+              <div>{!hideButton && <button type="button">I am going to disappear</button>}</div>
+            </Modal>
+          );
+        }
+        WithRemovableElement.propTypes = {
+          hideButton: PropTypes.bool,
+        };
+
+        wrapper = {
+          unmount() {},
+        };
+
+        const { getByRole, setProps } = render(<WithRemovableElement />);
+        expect(getByRole('document')).to.be.focused;
+
+        getByRole('button').focus();
+        expect(getByRole('button')).to.be.focused;
+
+        setProps({ hideButton: true });
+        expect(getByRole('document')).to.not.be.focused;
+        clock.tick(500); // wait for the interval check to kick in.
+        expect(getByRole('document')).to.be.focused;
+      });
     });
   });
 
