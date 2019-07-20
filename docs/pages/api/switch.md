@@ -30,6 +30,7 @@ import Switch from '@material-ui/core/Switch';
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. |
 | <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | This prop can be used to pass a ref callback to the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.<br>*checked:* The `checked` value of the switch |
+| <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'<br></span> | <span class="prop-default">'medium'</span> | The size of the switch. `small` is equivalent to the dense switch styling. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | The input component prop `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the component. |
 
@@ -51,6 +52,7 @@ This prop accepts the following keys:
 | <span class="prop-name">switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
 | <span class="prop-name">disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
 | <span class="prop-name">input</span> | Styles applied to the internal SwitchBase component's input element.

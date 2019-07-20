@@ -33,6 +33,12 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
+## Sizes
+
+Fancy smaller switches? Use the `size` property.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
 ## Label placement
 
 You can change the placement of the label:

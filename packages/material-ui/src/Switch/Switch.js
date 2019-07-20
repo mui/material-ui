@@ -37,11 +37,13 @@ export const styles = theme => ({
     left: 0,
     zIndex: 1, // Render above the focus ripple.
     color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
-    transition: theme.transitions.create('transform', {
+    transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
+    willChange: 'left, transform',
     '&$checked': {
-      transform: 'translateX(50%)',
+      left: '100%',
+      transform: 'translateX(-100%)',
     },
     '&$disabled': {
       color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
@@ -91,6 +93,19 @@ export const styles = theme => ({
         theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    width: 40,
+    height: 24,
+    padding: 7,
+    '& $thumb': {
+      width: 16,
+      height: 16,
+    },
+    '& $switchBase': {
+      padding: 4,
+    },
+  },
   /* Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */
   checked: {},
   /* Pseudo-class applied to the internal SwitchBase component's disabled class. */
@@ -124,7 +139,15 @@ export const styles = theme => ({
 });
 
 const Switch = React.forwardRef(function Switch(props, ref) {
-  const { classes, className, color = 'secondary', edge = false, ...other } = props;
+  const {
+    classes,
+    className,
+    color = 'secondary',
+    edge = false,
+    size = 'medium',
+    ...other
+  } = props;
+
   const icon = <span className={classes.thumb} />;
 
   return (
@@ -134,6 +157,7 @@ const Switch = React.forwardRef(function Switch(props, ref) {
         {
           [classes.edgeStart]: edge === 'start',
           [classes.edgeEnd]: edge === 'end',
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
         className,
       )}
@@ -221,6 +245,11 @@ Switch.propTypes = {
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
+  /**
+   * The size of the switch.
+   * `small` is equivalent to the dense switch styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The input component prop `type`.
    */

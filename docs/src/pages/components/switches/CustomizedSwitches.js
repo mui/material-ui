@@ -31,7 +31,6 @@ const IOSSwitch = withStyles(theme => ({
   switchBase: {
     padding: 1,
     '&$checked': {
-      transform: 'translateX(16px)',
       color: theme.palette.common.white,
       '& + $track': {
         backgroundColor: '#52d869',
@@ -85,7 +84,6 @@ const AntSwitch = withStyles(theme => ({
     padding: 2,
     color: theme.palette.grey[500],
     '&$checked': {
-      transform: 'translateX(12px)',
       color: theme.palette.common.white,
       '& + $track': {
         opacity: 1,
