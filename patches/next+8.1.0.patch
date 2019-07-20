@@ -1,0 +1,13 @@
+diff --git a/node_modules/next/dist/build/webpack-config.js b/node_modules/next/dist/build/webpack-config.js
+index e856363..90d8f31 100644
+--- a/node_modules/next/dist/build/webpack-config.js
++++ b/node_modules/next/dist/build/webpack-config.js
+@@ -107,7 +107,7 @@ function getBaseWebpackConfig(dir, { dev = false, debug = false, isServer = fals
+                         return callback();
+                     }
+                     if (res.match(/node_modules[/\\].*\.js$/)) {
+-                        return callback(undefined, `commonjs ${request}`);
++                        return callback();
+                     }
+                     callback();
+                 });

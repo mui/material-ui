@@ -10,26 +10,13 @@ function resolvePath(sourcePath, currentFile, opts) {
 }
 
 const alias = {
-  '@material-ui/core': '../packages/material-ui/src',
-  '@material-ui/docs': '../packages/material-ui-docs/src',
-  '@material-ui/icons': '../packages/material-ui-icons/src',
-  '@material-ui/lab': '../packages/material-ui-lab/src',
-  '@material-ui/styles': '../packages/material-ui-styles/src',
-  '@material-ui/system': '../packages/material-ui-system/src',
-  '@material-ui/utils': '../packages/material-ui-utils/src',
   docs: './',
   modules: '../modules',
   pages: './pages',
 };
 
 module.exports = {
-  presets: [
-    // TODO figure out how to make it work with dependencies that have this repo as a
-    // peer,
-    // false causes 'Attempted import error: 'KeyboardTimePicker' is not exported from '@material-ui/pickers'.'
-    ['next/babel', { 'preset-env': { modules: 'commonjs' } }],
-    '@zeit/next-typescript/babel',
-  ],
+  presets: ['next/babel', '@zeit/next-typescript/babel'],
   plugins: [
     'babel-plugin-optimize-clsx',
     // for IE 11 support

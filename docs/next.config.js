@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
-const withTM = require('next-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./src/modules/utils/find');
 const path = require('path');
@@ -11,11 +10,6 @@ const workspaceRoot = path.join(__dirname, '../');
 
 module.exports = {
   webpack: (config, options) => {
-    // Alias @material-ui/core peer dependency imports form the following modules to our sources.
-    config = withTM({
-      transpileModules: ['notistack', '@material-ui/pickers', 'material-table'],
-    }).webpack(config, options);
-
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {
@@ -38,6 +32,19 @@ module.exports = {
 
     config.resolve.alias['react-dom$'] = 'react-dom/profiling';
     config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
+
+    if (options.isServer) {
+      config.externals = ['react-dom', 'react'];
+    }
+
+    config.resolve.alias['@material-ui/core'] = '@material-ui/core/src';
+    config.resolve.alias['@material-ui/docs'] = '@material-ui/docs/src';
+    config.resolve.alias['@material-ui/icons'] = '@material-ui/icons/src';
+    config.resolve.alias['@material-ui/lab'] = '@material-ui/lab/src';
+    config.resolve.alias['@material-ui/styles'] = '@material-ui/styles/src';
+    config.resolve.alias['@material-ui/system'] = '@material-ui/system/src';
+    config.resolve.alias['@material-ui/types'] = '@material-ui/types/src';
+    config.resolve.alias['@material-ui/utils'] = '@material-ui/utils/src';
 
     return Object.assign({}, config, {
       plugins,
