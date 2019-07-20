@@ -80,6 +80,23 @@ The `ref` is forwarded to the root element.
 
 Any other properties supplied will be provided to the root element ([FormControl](/api/form-control/)).
 
+## CSS
+
+You can override all the class names injected by Material-UI thanks to the `classes` prop.
+This prop accepts the following keys:
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TextField/TextField.js)
+for more detail.
+
+If using the `overrides` [key of the theme](/customization/themes/#css),
+you need to use the following style sheet name: `MuiTextField`.
+
 ## Inheritance
 
 The properties of the [FormControl](/api/form-control/) component are also available.
