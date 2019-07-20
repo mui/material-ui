@@ -18,7 +18,7 @@ const variantComponent = {
   outlined: OutlinedInput,
 };
 
-const styles = {
+export const styles = {
   /* Styles applied to the root element. */
   root: {},
 };
