@@ -1,3 +1,6 @@
+# v1
+https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
+
 # For Google
 /drafts / 301
 /inbox* / 301
@@ -42,9 +45,6 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/caveat-with-refs-guide /guides/composition/#caveat-with-refs 302
 /r/pseudo-classes-guide /customization/components/#pseudo-classes 302
 /r/input-component-ref-interface /components/text-fields/#integration-with-3rd-party-input-libraries 302
-
-# v1
-https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
 
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0
