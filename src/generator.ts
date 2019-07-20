@@ -152,11 +152,20 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
     rest = _.uniqBy(rest, x => (t.isInstanceOfNode(x) ? `${x.type}.${x.instance}` : x.type));
 
     literals = literals.sort((a, b) => a.value.localeCompare(b.value));
-    rest = rest.sort((a, b) =>
-      (t.isInstanceOfNode(a) ? `${a.type}.${a.instance}` : a.type).localeCompare(
-        t.isInstanceOfNode(b) ? `${b.type}.${b.instance}` : b.type,
-      ),
-    );
+
+    const nodeToStringName = (obj: t.Node): string => {
+      if (t.isInstanceOfNode(obj)) {
+        return `${obj.type}.${obj.instance}`;
+      } else if (t.isInterfaceNode(obj)) {
+        // An interface is PropTypes.shape
+        // Use `ShapeNode` to get it sorted in the correct order
+        return `ShapeNode`;
+      }
+
+      return obj.type;
+    };
+
+    rest = rest.sort((a, b) => nodeToStringName(a).localeCompare(nodeToStringName(b)));
 
     if (literals.find(x => x.value === 'true') && literals.find(x => x.value === 'false')) {
       rest.push(t.booleanNode());
