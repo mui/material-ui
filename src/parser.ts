@@ -290,6 +290,10 @@ export function parseFromProgram(
         case 'React.ReactNode': {
           return t.unionNode([t.elementNode('node'), t.undefinedNode()]);
         }
+        case 'React.Component':
+        case 'Element': {
+          return t.instanceOfNode(typeName);
+        }
       }
     }
 
