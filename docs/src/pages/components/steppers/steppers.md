@@ -24,7 +24,7 @@ Steppers may display a transient feedback message after a step is saved.
 - Linear
 - Non-linear
 
-> **Note:** Steppers are no longer documented in the Material Design documentation.
+> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
 ## Horizontal Linear
 
