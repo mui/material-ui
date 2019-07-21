@@ -27,7 +27,6 @@ import Tab from '@material-ui/core/Tab';
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label element. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 | <span class="prop-name">wrapped</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Tab labels appear in a single row. They can use a second line if needed. |
-| <span class="prop-name">vertical</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Tab layout is displayed in a column if true |
 
 The `ref` is forwarded to the root element.
 
@@ -71,3 +70,4 @@ The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-m
 ## Demos
 
 - [Tabs](/components/tabs/)
+
