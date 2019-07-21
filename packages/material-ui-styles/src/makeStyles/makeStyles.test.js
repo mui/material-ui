@@ -537,8 +537,7 @@ describe('makeStyles', () => {
       assert.strictEqual(sheetsRegistry.registry.length, 2);
       assert.strictEqual(
         sheetsRegistry.toString(),
-        `
-.makeStyles-root-2 {
+        `.makeStyles-root-2 {
   color: white;
   background-color: black;
 }`,
@@ -549,8 +548,7 @@ describe('makeStyles', () => {
       });
       assert.strictEqual(
         sheetsRegistry.toString(),
-        `
-.makeStyles-root-4 {
+        `.makeStyles-root-4 {
   color: blue;
   background-color: black;
 }`,
@@ -560,8 +558,7 @@ describe('makeStyles', () => {
       });
       assert.strictEqual(
         sheetsRegistry.toString(),
-        `
-.makeStyles-root-4 {
+        `.makeStyles-root-4 {
   color: blue;
   background-color: green;
 }`,
