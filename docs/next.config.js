@@ -33,14 +33,6 @@ module.exports = {
     config.resolve.alias['react-dom$'] = 'react-dom/profiling';
     config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
 
-    config.resolve.alias['@material-ui/docs'] = '@material-ui/docs/src';
-    config.resolve.alias['@material-ui/icons'] = '@material-ui/icons/src';
-    config.resolve.alias['@material-ui/lab'] = '@material-ui/lab/src';
-    config.resolve.alias['@material-ui/styles'] = '@material-ui/styles/src';
-    config.resolve.alias['@material-ui/system'] = '@material-ui/system/src';
-    config.resolve.alias['@material-ui/types'] = '@material-ui/types/src';
-    config.resolve.alias['@material-ui/utils'] = '@material-ui/utils/src';
-
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
     // We need tell webpack to not consider those packages as externals.
@@ -60,9 +52,8 @@ module.exports = {
             'material-table',
             '@material-ui/pickers',
           ].includes(request);
-          const isRepositoryPackage = request.startsWith('@material-ui/');
 
-          if (hasDependencyOnRepoPackages || isRepositoryPackage) {
+          if (hasDependencyOnRepoPackages) {
             return callback(null);
           }
           return nextExternals(context, request, callback);
@@ -87,6 +78,30 @@ module.exports = {
           {
             test: /\.(css|md)$/,
             loader: 'raw-loader',
+          },
+          // transpile 3rd party packages with dependencies in this repository
+          {
+            test: /\.(js|mjs|jsx)$/,
+            include: /node_modules\/(material-table|notistack|@material-ui\/pickers)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                // on the server we use the transpiled commonJS build, on client ES6 modules
+                // babel needs to figure out in what context to parse the file
+                sourceType: 'unambiguous',
+                plugins: [
+                  [
+                    'babel-plugin-module-resolver',
+                    {
+                      alias: {
+                        '@material-ui/core': '../packages/material-ui/src',
+                      },
+                      transformFunctions: ['require'],
+                    },
+                  ],
+                ],
+              },
+            },
           },
           // required to transpile ../packages/
           {
