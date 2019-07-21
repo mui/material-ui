@@ -58,7 +58,7 @@ Portal.propTypes = {
   /**
    * The children to render into the `container`.
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
