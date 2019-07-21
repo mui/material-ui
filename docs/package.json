@@ -62,7 +62,7 @@
     "markdown-to-jsx": "^6.8.3",
     "material-table": "^1.39.0",
     "material-ui-popup-state": "^1.0.1",
-    "next": "8.1.0",
+    "next": "^9.0.2",
     "next-transpile-modules": "^2.3.1",
     "notistack": "^0.8.6",
     "postcss": "^7.0.0",

@@ -3,14 +3,13 @@ const pkg = require('./package.json');
 const withTM = require('next-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./src/modules/utils/find');
-const withTypescript = require('@zeit/next-typescript');
 const path = require('path');
 
 const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
 
 const workspaceRoot = path.join(__dirname, '../');
 
-module.exports = withTypescript({
+module.exports = {
   webpack: (config, options) => {
     // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
@@ -111,4 +110,4 @@ module.exports = withTypescript({
     // Number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 3, // default 2
   },
-});
+};
