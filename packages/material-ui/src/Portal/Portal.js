@@ -67,8 +67,8 @@ Portal.propTypes = {
    */
   container: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.instanceOf(Element),
     PropTypes.instanceOf(React.Component),
+    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
   ]),
   /**
    * Disable the portal behavior.
