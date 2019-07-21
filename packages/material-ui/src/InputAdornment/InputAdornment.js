@@ -20,7 +20,6 @@ export const styles = {
       marginTop: 16,
     },
   },
-
   /* Styles applied to the root element if `position="start"`. */
   positionStart: {
     marginRight: 8,
@@ -33,18 +32,18 @@ export const styles = {
   disablePointerEvents: {
     pointerEvents: 'none',
   },
-  /* Styles applied if the adornment is used inside <FormControl hiddenLabel /> */
+  /* Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
   hiddenLabel: {},
-  /* Styles applied if the adornment is used inside <FormControl margin="dense" /> */
+  /* Styles applied if the adornment is used inside <FormControl margin="dense" />. */
   marginDense: {},
 };
 
 const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
   const {
     children,
-    component: Component = 'div',
     classes,
     className,
+    component: Component = 'div',
     disablePointerEvents = false,
     disableTypography = false,
     position,

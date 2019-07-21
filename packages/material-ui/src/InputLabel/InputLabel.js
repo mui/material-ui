@@ -65,9 +65,6 @@ export const styles = theme => ({
         transform: 'translate(12px, 7px) scale(0.75)',
       },
     },
-    '&[hidden]': {
-      display: 'none',
-    },
   },
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
@@ -89,7 +86,6 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
     classes,
     className,
     disableAnimation = false,
-    hidden,
     margin,
     shrink: shrinkProp,
     variant,
@@ -104,9 +100,9 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   }
 
   const fcs = formControlState({
-    props: { ...props, hiddenLabel: hidden },
+    props,
     muiFormControl,
-    states: ['hiddenLabel', 'margin', 'variant'],
+    states: ['margin', 'variant'],
   });
 
   return (
@@ -131,7 +127,6 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
         required: classes.required,
         asterisk: classes.asterisk,
       }}
-      hidden={fcs.hiddenLabel}
       ref={ref}
       {...other}
     />
@@ -168,10 +163,6 @@ InputLabel.propTypes = {
    * If `true`, the input of this label is focused.
    */
   focused: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  hidden: PropTypes.bool,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.

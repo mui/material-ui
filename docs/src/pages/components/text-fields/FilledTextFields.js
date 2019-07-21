@@ -130,6 +130,14 @@ export default function FilledTextFields() {
         variant="filled"
       />
       <TextField
+        id="filled-hidden-label"
+        className={clsx(classes.textField, classes.dense)}
+        hiddenLabel
+        variant="filled"
+        placeholder="Hidden label"
+        inputProps={{ 'aria-label': 'hidden label' }}
+      />
+      <TextField
         id="filled-dense"
         label="Dense"
         className={clsx(classes.textField, classes.dense)}
@@ -138,12 +146,12 @@ export default function FilledTextFields() {
       />
       <TextField
         id="filled-dense-hidden-label"
-        label="dense with visually hidden label"
         className={clsx(classes.textField, classes.dense)}
         margin="dense"
-        variant="filled"
         hiddenLabel
-        placeholder="visually hidden label"
+        variant="filled"
+        placeholder="Dense hidden label"
+        inputProps={{ 'aria-label': 'dense hidden label' }}
       />
       <TextField
         id="filled-dense-multiline"

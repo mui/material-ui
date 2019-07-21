@@ -137,7 +137,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       onChange={onChange}
       onFocus={onFocus}
       placeholder={placeholder}
-      inputProps={{ 'aria-label': hiddenLabel ? label : undefined, ...inputProps }}
+      inputProps={inputProps}
       {...InputMore}
       {...InputProps}
     />

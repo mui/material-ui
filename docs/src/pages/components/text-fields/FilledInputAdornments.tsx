@@ -139,22 +139,24 @@ export default function FilledInputAdornments() {
       />
       <TextField
         id="filled-adornment-dense"
-        label="amount in Euro"
         className={clsx(classes.margin, classes.textField)}
         variant="filled"
         margin="dense"
+        label="Amount in Euro"
         InputProps={{
           startAdornment: <InputAdornment position="start">€</InputAdornment>,
         }}
       />
       <TextField
         id="filled-adornment-extra-dense"
-        label="amount in Euro"
         className={clsx(classes.margin, classes.textField)}
         variant="filled"
         margin="dense"
         hiddenLabel
         InputProps={{
+          inputProps: {
+            'aria-label': 'amount in Euro',
+          },
           startAdornment: <InputAdornment position="start">€</InputAdornment>,
         }}
       />

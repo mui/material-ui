@@ -184,7 +184,7 @@ export default function PrimarySearchAppBar() {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'Search' }}
+              inputProps={{ 'aria-label': 'search' }}
             />
           </div>
           <div className={classes.grow} />

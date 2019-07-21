@@ -23,14 +23,14 @@ export default function Inputs() {
         defaultValue="Hello world"
         className={classes.input}
         inputProps={{
-          'aria-label': 'Description',
+          'aria-label': 'description',
         }}
       />
       <Input
         placeholder="Placeholder"
         className={classes.input}
         inputProps={{
-          'aria-label': 'Description',
+          'aria-label': 'description',
         }}
       />
       <Input
@@ -38,7 +38,7 @@ export default function Inputs() {
         className={classes.input}
         disabled
         inputProps={{
-          'aria-label': 'Description',
+          'aria-label': 'description',
         }}
       />
       <Input
@@ -46,7 +46,7 @@ export default function Inputs() {
         className={classes.input}
         error
         inputProps={{
-          'aria-label': 'Description',
+          'aria-label': 'description',
         }}
       />
     </div>

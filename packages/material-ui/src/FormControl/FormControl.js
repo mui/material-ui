@@ -209,9 +209,9 @@ FormControl.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * If `true`, the label will be hidden. This is used to increase density for a
-   * `FilledInput` with `margin="dense"`. Be sure to add `aria-label` to `input`
-   * if you're using this component directly instead of `TextField`.
+   * If `true`, the label will be hidden.
+   * This is used to increase density for a `FilledInput`.
+   * Be sure to add `aria-label` to the `input` element.
    */
   hiddenLabel: PropTypes.bool,
   /**
