@@ -95,7 +95,7 @@ async function getNextPagesSize() {
   return Array.from(matchAll(consoleOutput, pageRegex), match => {
     const { pageUrl, sizeFormatted, sizeUnit, files, packages } = match.groups;
 
-    const snapshotId = `docs-${pageUrl}`;
+    const snapshotId = `docs: ${pageUrl}`;
     return [
       snapshotId,
       {
