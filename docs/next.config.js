@@ -33,11 +33,6 @@ module.exports = {
     config.resolve.alias['react-dom$'] = 'react-dom/profiling';
     config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
 
-    if (options.isServer) {
-      config.externals = ['react-dom', 'react'];
-    }
-
-    config.resolve.alias['@material-ui/core'] = '@material-ui/core/src';
     config.resolve.alias['@material-ui/docs'] = '@material-ui/docs/src';
     config.resolve.alias['@material-ui/icons'] = '@material-ui/icons/src';
     config.resolve.alias['@material-ui/lab'] = '@material-ui/lab/src';
@@ -45,6 +40,35 @@ module.exports = {
     config.resolve.alias['@material-ui/system'] = '@material-ui/system/src';
     config.resolve.alias['@material-ui/types'] = '@material-ui/types/src';
     config.resolve.alias['@material-ui/utils'] = '@material-ui/utils/src';
+
+    // next includes node_modules in webpack externals. Some of those have dependencies
+    // on the aliases defined above. If a module is an external those aliases won't be used.
+    // We need tell webpack to not consider those packages as externals.
+    if (options.isServer) {
+      const [nextExternals, ...externals] = config.externals;
+
+      if (externals.length > 0) {
+        // currently not the case but other next plugins might introduce additional
+        // rules for externals. We would need to handle those in the callback
+        throw new Error('There are other externals in the webpack config.');
+      }
+
+      config.externals = [
+        (context, request, callback) => {
+          const hasDependencyOnRepoPackages = [
+            'notistack',
+            'material-table',
+            '@material-ui/pickers',
+          ].includes(request);
+          const isRepositoryPackage = request.startsWith('@material-ui/');
+
+          if (hasDependencyOnRepoPackages || isRepositoryPackage) {
+            return callback(null);
+          }
+          return nextExternals(context, request, callback);
+        },
+      ];
+    }
 
     return Object.assign({}, config, {
       plugins,
