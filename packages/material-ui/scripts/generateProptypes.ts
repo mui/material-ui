@@ -5,7 +5,6 @@ import * as prettier from 'prettier';
 import * as glob from 'glob';
 import * as _ from 'lodash';
 import { fixBabelGeneratorIssues, fixLineEndings } from '../../../docs/scripts/helpers';
-import console = require('console');
 
 const ignoreCache = process.argv.includes('--disable-cache');
 const verbose = process.argv.includes('--verbose');
