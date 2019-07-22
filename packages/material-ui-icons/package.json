@@ -46,7 +46,7 @@
     "@babel/runtime": "^7.2.0"
   },
   "devDependencies": {
-    "fs-extra": "^7.0.0",
+    "fs-extra": "^8.1.0",
     "mkdirp": "^0.5.0",
     "mustache": "^3.0.0",
     "svgo": "^1.0.5",
