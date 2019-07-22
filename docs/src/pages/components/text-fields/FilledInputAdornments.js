@@ -118,7 +118,7 @@ export default function FilledInputAdornments() {
             <InputAdornment position="end">
               <IconButton
                 edge="end"
-                aria-label="Toggle password visibility"
+                aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
               >
                 {values.showPassword ? <VisibilityOff /> : <Visibility />}

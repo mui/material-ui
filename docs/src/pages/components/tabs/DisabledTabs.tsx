@@ -17,7 +17,7 @@ export default function DisabledTabs() {
         indicatorColor="primary"
         textColor="primary"
         onChange={handleChange}
-        aria-label="Disabled tabs example"
+        aria-label="disabled tabs example"
       >
         <Tab label="Active" />
         <Tab label="Disabled" disabled />

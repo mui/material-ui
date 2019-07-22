@@ -74,7 +74,7 @@ export default function SearchAppBar() {
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="Open drawer"
+            aria-label="open drawer"
           >
             <MenuIcon />
           </IconButton>

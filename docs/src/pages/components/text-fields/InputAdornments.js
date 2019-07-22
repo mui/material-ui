@@ -118,7 +118,7 @@ export default function InputAdornments() {
           onChange={handleChange('password')}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton aria-label="Toggle password visibility" onClick={handleClickShowPassword}>
+              <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>

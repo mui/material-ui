@@ -17,7 +17,7 @@ export default function ListDividers() {
   const classes = useStyles();
 
   return (
-    <List component="nav" className={classes.root} aria-label="Mailbox folders">
+    <List component="nav" className={classes.root} aria-label="mailbox folders">
       <ListItem button>
         <ListItemText primary="Inbox" />
       </ListItem>

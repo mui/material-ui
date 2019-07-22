@@ -73,7 +73,7 @@ export default function CircularIntegration() {
     <div className={classes.root}>
       <div className={classes.wrapper}>
         <Fab
-          aria-label="Save"
+          aria-label="save"
           color="primary"
           className={buttonClassname}
           onClick={handleButtonClick}

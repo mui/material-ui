@@ -37,7 +37,7 @@ function SimpleMenu({ selectedIndex: selectedIndexProp, ...props }) {
       <Button
         aria-haspopup="true"
         aria-controls="lock-menu"
-        aria-label="Open menu"
+        aria-label="open menu"
         onClick={handleClickListItem}
       >
         {`selectedIndex: ${selectedIndex}, open: ${open}`}

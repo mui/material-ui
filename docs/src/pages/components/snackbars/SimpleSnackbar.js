@@ -48,7 +48,7 @@ export default function SimpleSnackbar() {
           </Button>,
           <IconButton
             key="close"
-            aria-label="Close"
+            aria-label="close"
             color="inherit"
             className={classes.close}
             onClick={handleClose}

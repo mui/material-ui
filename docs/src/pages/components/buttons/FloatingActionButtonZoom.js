@@ -114,7 +114,7 @@ export default function FloatingActionButtonZoom() {
           indicatorColor="primary"
           textColor="primary"
           variant="fullWidth"
-          aria-label="Action tabs example"
+          aria-label="action tabs example"
         >
           <Tab label="Item One" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />
