@@ -29,7 +29,7 @@
     "@material-ui/system": "^4.3.0",
     "@trendmicro/react-interpolate": "^0.5.5",
     "@types/autosuggest-highlight": "^3.1.0",
-    "@types/react-autosuggest": "^9.3.7",
+    "@types/react-autosuggest": "^9.3.9",
     "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-select": "^2.0.14",
