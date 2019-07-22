@@ -23,7 +23,7 @@ const alias = {
 };
 
 module.exports = {
-  presets: ['next/babel', '@zeit/next-typescript/babel'],
+  presets: ['next/babel'],
   plugins: [
     'babel-plugin-optimize-clsx',
     // for IE 11 support
