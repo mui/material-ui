@@ -8979,10 +8979,10 @@ marked@^0.7.0:
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
   integrity sha512-c+yYdCZJQrsRjTPhUx7VKkApw9bwDkNbHUKo1ovgcfDjb2kc8rLuRbIFyXL5WOEUwzSSKo3IXpph2K6DqB/KZg==
 
-material-table@^1.39.0:
-  version "1.39.0"
-  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.39.0.tgz#27024acf3a8856605d91f53524efe7760b0f11dd"
-  integrity sha512-k6xpMlW1MbxyxgjSfWqKxoV+P6/YgpH/mntgUjjl3Yqf644ti8pqde86HfaObP08oTYIh9s5oWNwuyfnf7sJsw==
+material-table@^1.40.1:
+  version "1.40.1"
+  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.40.1.tgz#988418b3996a0d15a7172188c17b0e4687f630f7"
+  integrity sha512-rZuGhNpXFzROlqJUVLH+E5yzt9MxaYVZfDNuHWtM9EWlbUGQJWuGQNcsSmdr0XeTCZkQvVnZYbEkRcUu+71rfQ==
   dependencies:
     "@date-io/date-fns" "^1.1.0"
     "@material-ui/core" "^4.0.1"
