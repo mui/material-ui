@@ -58,7 +58,7 @@
     "jss-rtl": "^0.2.3",
     "lodash": "^4.17.15",
     "lz-string": "^1.4.4",
-    "markdown-to-jsx": "^6.8.3",
+    "markdown-to-jsx": "^6.10.2",
     "material-table": "^1.40.1",
     "material-ui-popup-state": "^1.0.1",
     "next": "^9.0.2",
