@@ -106,7 +106,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "lerna": "^3.15.0",
+    "lerna": "^3.16.1",
     "mocha": "^6.2.0",
     "nyc": "^13.0.0",
     "prettier": "^1.8.2",
