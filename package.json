@@ -93,7 +93,7 @@
     "eslint-plugin-mocha": "^5.0.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-hooks": "^1.2.0",
-    "expect-puppeteer": "^3.5.1",
+    "expect-puppeteer": "^4.3.0",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
