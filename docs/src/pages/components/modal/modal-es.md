@@ -79,12 +79,12 @@ This way, you take advantage of [React render laziness evaluation](https://overr
   aria-labelledby="simple-modal-title"
   aria-describedby="simple-modal-description"
 >
-  <Typography variant="h6" id="modal-title">
+  <h2 id="modal-title">
     My Title
-  </Typography>
-  <Typography variant="subtitle1" id="simple-modal-description">
+  </h2>
+  <p id="simple-modal-description">
     My Description
-  </Typography>
+  </p>
 </Modal>
 ```
 

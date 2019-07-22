@@ -8,7 +8,7 @@ title: Box React component
 
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/styles`.
 
-## Example
+## 例
 
 [The palette](/system/palette/) style function.
 

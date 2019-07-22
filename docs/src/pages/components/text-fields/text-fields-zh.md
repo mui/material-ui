@@ -15,7 +15,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/TextFields.js"}}
 
-> **注意：** Material Design 文档中不再记录此版本的文本框。
+> **Note:** This version of the text field is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
 ## Outlined（轮廓）
 
@@ -95,17 +95,51 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 <InputLabel shrink>计数</InputLabel>
 ```
 
-## 格式化输入
+## Integration with 3rd party input libraries
 
-您可以使用第三方库格式化输入。 您必须提供一个带有 `inputComponent` 属性的 `<input>` 元素的自定义实现。 提供的输入组件应该处理 `inputRef` 属性。 您应调用实现 [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) 接口的值。
+您可以使用第三方库来格式化输入.您必须使用` inputComponent `属性提供`<input>` 元素的自定义实现.
 
-下面的演示使用了 [react-text-mask](https://github.com/text-mask/text-mask) 和 [react-number-format](https://github.com/s-yadav/react-number-format) 库。
+下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask)和 [react-number-format](https://github.com/s-yadav/react-number-format) 库。 The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+
+```ts
+interface InputElement {
+  focus(): void;
+  value?: string;
+}
+```
+
+```jsx
+function MyInputComponent(props) {
+  const { component: Component, inputRef, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(inputRef, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+}
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: { component: SomeThirdPartyComponent },
+  }}
+/>;
+```
+
 ## 可及性
 
-为了能够访问文本框， **输入框应该和标签和辅助文本链接在一起**。底层的 DOM 节点应具有此结构。
+为了使文本字段可访问， **输入要链接到标签和辅助文本**。底层DOM节点应具有此结构。
 
 ```jsx
 <div class="form-control">
@@ -128,7 +162,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## 补充项目
 
-对于更高级的用例，您可以利用：
+对于更高级的用例，您可以使用：
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：一组用于更加方便地与 Redux Form 配搭来使用 Material UI 的封装组件。
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用 formil 来绑定 Material-UI。

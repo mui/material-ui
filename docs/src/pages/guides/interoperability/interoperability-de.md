@@ -135,7 +135,7 @@ import { StylesProvider } from '@material-ui/styles';
 </StylesProvider>
 ```
 
-Ein anderer Ansatz ist die Verwendung von `&&` Zeichen in Stilkomponenten, um, durch Wiederholen des Klassennamens, die [Spezifität zu erhöhen ](https://www.styled-components.com/docs/advanced#issues-with-specificity). Sie sollten die Verwendung von `!imporant` vermeiden.
+Ein anderer Ansatz ist die Verwendung von `&&` Zeichen in Stilkomponenten, um, durch Wiederholen des Klassennamens, die [Spezifität zu erhöhen ](https://www.styled-components.com/docs/advanced#issues-with-specificity). You should avoid the usage of `!important`.
 
 ### Tiefere Elemente
 

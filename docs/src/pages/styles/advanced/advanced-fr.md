@@ -243,13 +243,13 @@ The injection of style tags happens in the **same order** as the `makeStyles` / 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyleBase = makeStyles({
+const useStylesBase = makeStyles({
   root: {
     color: 'blue', // 🔵
   },
 });
 
-const useStyle = makeStyles({
+const useStyles = makeStyles({
   root: {
     color: 'red', // 🔴
   },
@@ -258,7 +258,7 @@ const useStyle = makeStyles({
 export default function MyComponent() {
   // Order doesn't matter
   const classes = useStyles();
-  const classesBase = useStyleBase();
+  const classesBase = useStylesBase();
 
   // Order doesn't matter
   const className = clsx(classes.root, classesBase.root)
@@ -486,7 +486,7 @@ const StyledTextField = styled(TextField)`
   }
   .MuiOutlinedInput-root {
     fieldset {
-      border-color: red; ❤️
+      border-color: red; 🔴
     }
     &:hover fieldset {
       border-color: yellow; 💛
@@ -559,11 +559,11 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
 />
 ```
 
-Ensuite, vous devez transmettre ce nonce à JSS afin qu’il puisse l’ajouter aux balises `<style>` suivantes. Le côté client obtient le nonce à partir d'un en-tête. Vous devez inclure cet en-tête, que le SSR soit utilisé ou non.
+Ensuite, vous devez transmettre ce nonce à JSS afin qu’il puisse l’ajouter aux balises `<style>` suivantes. The client-side gets the nonce from a header. Vous devez inclure cet en-tête, que le SSR soit utilisé ou non.
 
 ```jsx
 <meta property="csp-nonce" content={nonce} />

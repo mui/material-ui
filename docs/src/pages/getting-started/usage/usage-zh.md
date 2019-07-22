@@ -47,7 +47,7 @@ Material-UI 是先在移动设备上开发的，我们采用了首先为移动�
 
 ### CssBaseline
 
-Material-UI 提供了可选的 [CssBaseline](/components/css-baseline/) 组件。 It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI 提供了可选的 [CssBaseline](/components/css-baseline/) 组件。 它修复了浏览器和设备之间的一些不一致性，同时为常见的HTML元素提供了更多不同方式的的重置。
 
 ## 不同版本的文档
 

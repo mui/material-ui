@@ -135,7 +135,7 @@ import { StylesProvider } from '@material-ui/styles';
 </StylesProvider>
 ```
 
-Outra abordagem é usar os caracteres `&&` em styled-components para [aumentar a especificidade](https://www.styled-components.com/docs/advanced#issues-with-specificity) repetindo o nome da classe. Você deve evitar o uso de `!imporant`.
+Outra abordagem é usar os caracteres `&&` em styled-components para [aumentar a especificidade](https://www.styled-components.com/docs/advanced#issues-with-specificity) repetindo o nome da classe. Você deve evitar o uso de `!important`.
 
 ### Elementos mais profundos
 

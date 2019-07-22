@@ -31,11 +31,11 @@ You need to update your `package.json` to use the latest version of Material-UI.
 Oder führe aus
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core
 
-oder
+or
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 ### Update React version
@@ -55,11 +55,11 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 Oder führe aus
 
 ```sh
-npm install @material-ui/styles@next
+npm install @material-ui/styles
 
 or
 
-yarn add @material-ui/styles@next
+yarn add @material-ui/styles
 ```
 
 ## Handling breaking changes
@@ -154,7 +154,7 @@ yarn add @material-ui/styles@next
 
 ### TypeScript
 
-#### `value` type 
+#### `value` type
 
 Normalized `value` prop type for input components to use `unknown`. This affects
 `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
@@ -278,6 +278,15 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [Slide] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
+### Slider
+
+- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
+  
+  ```diff
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
+  ```
+
 ### Switch
 
 - [Switch] Refactor the implementation to make it easier to override the styles. Rename the class names to match the specification wording:
@@ -343,8 +352,8 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   
   ```diff
   <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' } }
-  + classes={{ asterisk: 'bar' } }
+  - FormLabelClasses={{ asterisk: 'bar' }}
+  + classes={{ asterisk: 'bar' }}
   >
     Foo
   </InputLabel>
@@ -387,7 +396,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [Typography] Ändern der Standardvariante von `body2` auf `body1`. Eine Schriftgröße von 16px ist eine bessere Standardeinstellung als 14px. Bootstrap, material.io undnsogar unsere Dokumentation verwenden 16px als Standardschriftgröße. 14px wie Ant Design es verständlicherweise benutzt, da chinesische Benutzer ein anderes Alphabet haben. Wir empfehlen 12px als Standardschriftgröße für Japanisch.
 - [Typography] Entfernen der Standardfarbe aus den Typografievarianten. Die Farbe sollte die meiste Zeit erben. Dies ist das Standardverhalten des Webs.
-- [Typography] Umbennenung von `color="default"` auf `color="initial ` der Logik von #13028 folgend. Die Verwendung von *default* sollte vermieden werden, da es nicht semantisch ist.
+- [Typography] Umbennenung von `color="default"` auf `color="initial ` der Logik von #13028 folgend. The usage of *default* should be avoided, it lacks semantic.
 
 ### Node
 

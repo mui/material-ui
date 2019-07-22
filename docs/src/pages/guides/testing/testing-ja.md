@@ -1,4 +1,4 @@
-# Testing
+# テスト中
 
 <p class="description">Write tests to prevent regressions and write better code.</p>
 
@@ -12,19 +12,19 @@ While we have reached the 100% test coverage achievement, we don't encourage our
 
 ## Userspace
 
-What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose.
-
-### Shallow rendering
-
-Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components. Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
-
-The `createShallow()` function can be used for this situation. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
+What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose. We use almost exclusively full DOM rendering APIs. We encourage you to do the same especially if your components rely on custom themes. Tests using shallow rendering APIs become more brittle with the amount of provider components they require.
 
 ### Full DOM rendering
 
 Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (e.g., `componentDidMount` etc.).
 
 The `createMount()` function is provided for this situation. Aside from wrapping the enzyme API, it provides a `cleanUp` function.
+
+### Shallow rendering
+
+Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components. Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
+
+The `createShallow()` function can be used for this situation. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
 
 ### Render to string
 
@@ -34,11 +34,56 @@ The `createRender()` function is ideal for this. This is just an alias for the e
 
 ## API
 
+### `createMount([options]) => mount`
+
+Generate an enhanced mount function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
+
+#### 引数
+
+1. `options` (*Object* [optional]) 
+    - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
+    - The other keys are forwarded to the options argument of `enzyme.mount()`.
+
+#### 戻り値
+
+`mount` (*mount*): A mount function.
+
+#### 例
+
+```jsx
+import { createMount } from '@material-ui/core/test-utils';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+
+describe('<MyComponent />', () => {
+  let mount;
+
+  function MySuccessButton({ children }) {
+    return (
+      <MuiThemeProvider theme={{ success: { main: '#fff' } }}>
+        {children}
+      </MuiThemeProvider>
+    );
+  }
+
+  before(() => {
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  it('should work', () => {
+    const wrapper = mount(<MockedTheme><MySuccessButton /></MockedTheme>);
+  });
+});
+```
+
 ### `createShallow([options]) => shallow`
 
 Generate an enhanced shallow function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
 
-#### Arguments
+#### 引数
 
 1. `options` (*Object* [optional]) 
     - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
@@ -46,7 +91,7 @@ Generate an enhanced shallow function with the needed context. Please refer to t
     - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
     - The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
-#### Returns
+#### 戻り値
 
 `shallow` (*shallow*): A shallow function.
 
@@ -68,53 +113,17 @@ describe('<MyComponent />', () => {
 });
 ```
 
-### `createMount([options]) => mount`
-
-Generate an enhanced mount function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
-
-#### Arguments
-
-1. `options` (*Object* [optional]) 
-    - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
-    - The other keys are forwarded to the options argument of `enzyme.mount()`.
-
-#### Returns
-
-`mount` (*mount*): A mount function.
-
-#### 例
-
-```jsx
-import { createMount } from '@material-ui/core/test-utils';
-
-describe('<MyComponent />', () => {
-  let mount;
-
-  before(() => {
-    mount = createMount();
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
-
-  it('should work', () => {
-    const wrapper = mount(<MyComponent />);
-  });
-});
-```
-
 ### `createRender([options]) => render`
 
 Generate a render to string function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/render.html) for further details on the `render` function.
 
-#### Arguments
+#### 引数
 
 1. `options` (*Object* [optional]) 
     - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.
     - The other keys are forwarded to the options argument of `enzyme.render()`.
 
-#### Returns
+#### 戻り値
 
 `render` (*Function*): A render to string function.
 

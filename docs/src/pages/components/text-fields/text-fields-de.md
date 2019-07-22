@@ -15,7 +15,7 @@ Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement,
 
 {{"demo": "pages/components/text-fields/TextFields.js"}}
 
-> **Hinweis:** Diese Version des Textfelds ist nicht mehr in der Material Design-Dokumentation dokumentiert.
+> **Note:** This version of the text field is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
 ## Umrandung
 
@@ -95,13 +95,47 @@ oder
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-## Formatierte Eingabe
+## Integration with 3rd party input libraries
 
-Sie können Bibliotheken von Drittanbietern verwenden, um eine Eingabe zu formatieren. Sie müssen eine benutzerdefinierte Implementierung des `<input>` -Elements mit der `inputComponent` -Eigenschaft bereitstellen. Die bereitgestellte Eingabekomponente sollte die Eigenschaft `inputRef` haben. Die Eigenschaft sollte mit einem Wert aufgerufen werden, der die [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) Schnittstelle implementiert.
+You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-Die folgende Demo verwendet die Bibliotheken [react-text-mask](https://github.com/text-mask/text-mask) und [react-number-format](https://github.com/s-yadav/react-number-format).
+Die folgende Demo verwendet die Bibliotheken [react-text-mask](https://github.com/text-mask/text-mask) und [react-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
+
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+
+```ts
+interface InputElement {
+  focus(): void;
+  value?: string;
+}
+```
+
+```jsx
+function MyInputComponent(props) {
+  const { component: Component, inputRef, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(inputRef, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+}
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: { component: SomeThirdPartyComponent },
+  }}
+/>;
+```
 
 ## Barrierefreiheit
 

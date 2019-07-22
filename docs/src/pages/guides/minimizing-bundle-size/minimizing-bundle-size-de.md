@@ -1,22 +1,22 @@
-# Packetgröße minimieren
+# Paketgröße minimieren
 
 <p class="description">Erfahren Sie mehr über die Tools, mit denen Sie die Paketgröße reduzieren können.</p>
 
-## Packetgröße zählt
+## Paketgröße zählt
 
-Die Paketgröße der Material-UI wird sehr ernst genommen. Bei jedem Commit werden für jedes Paket und für kritische Teile dieser Pakete Größen-Snapshots erstellt ([siehe letzten Snapshot](/size-snapshot)). Wir können, kombiniert mit [dangerJS](https://danger.systems/js/), [detaillierte Änderungen der Bündelgröße](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) bei jedem Pull Request prüfen.
+Die Paketgröße von Material-UI wird sehr ernst genommen. Bei jedem Commit werden für jedes Paket und für kritische Teile dieser Pakete Größen-Snapshots erstellt ([siehe letzten Snapshot](/size-snapshot)). Wir können, kombiniert mit [dangerJS](https://danger.systems/js/), [detaillierte Änderungen der Bündelgröße](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) bei jedem Pull Request prüfen.
 
-## Wie kann ich die Packetgröße reduzieren?
+## Wie kann ich die Paketgröße reduzieren?
 
-Der Einfachheit halber stellt Material-UI seine vollständige API auf der oberste Ebene des `material-ui` Imports zur Verfügung. Wenn Sie ES 6-Module und einen Bundler verwenden, der Tree-Shaking unterstützt ([`webpack` >= 2.x ](https://webpack.js.org/guides/tree-shaking/), [ ` parcel` mit einer Flagge](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)), können Sie sicher benannte Importe verwenden und nur einen minimalen Satz von Material-UI-Komponenten in Ihrem Bundles erwarten:
+Der Einfachheit halber stellt Material-UI seine vollständige API auf der oberste Ebene des `material-ui` Imports zur Verfügung. Wenn Sie ES6 Module und einen Bundler verwenden, der Tree-Shaking unterstützt ([`webpack` >= 2.x ](https://webpack.js.org/guides/tree-shaking/), [ ` parcel` mit zusätzlicher Konfiguration](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)), können Sie sicher benannte Importe verwenden und nur einen minimalen Satz von Material-UI-Komponenten in Ihrem Bundles erwarten:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-Beachten Sie, dass das Tree-Shacking eine Optimierung darstellt, die normalerweise nur für die Produktion von Bundles angewendet wird. Entwicklung-Bundles wird die gesamte Bibliothek enthalten, was zu langsamen Startzeiten führen kann. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
+Beachten Sie, dass das Tree-Shacking eine Optimierung darstellt, die normalerweise nicht in der Entwicklungsumgebung angewendet wird. Bundles in der Entwicklungsumgebung werden die gesamte Bibliothek enthalten, was zu langsamen Startzeiten führen kann. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
 
-Wenn dies ein Problem für Sie ist, haben Sie verschiedene Möglichkeiten:
+If this is an issue for you, you have various options:
 
 ### Option 1
 
@@ -35,7 +35,7 @@ import TextField from '@material-ui/core/TextField';
 
 Beim direkten Importieren auf diese Weise werden die Exporte in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js) nicht verwendet. Diese Datei kann trotzdem als praktische Referenz für die öffentlichen Module dienen.
 
-Beachten Sie, dass wir nur Importe der ersten und zweiten Ebene unterstützen. Alles drunter wird als privat betrachtet und kann zu einer Duplizierung des Moduls in Ihrem Bundle führen.
+Be aware that we only support first and second level imports. Alles drunter wird als privat betrachtet und kann zu einer Duplizierung des Moduls in Ihrem Bundle führen.
 
 ```js
 // OK
@@ -89,6 +89,6 @@ Wählen Sie eines der folgenden Plugins:
 
 Das auf npm veröffentlichte Paket ist mit [Babel](https://github.com/babel/babel) **transpiliert**, um die [ unterstützten Plattformen](/getting-started/supported-platforms/) zu berücksichtigen.
 
-Wir veröffentlichen auch eine zweite Version der Komponenten. Sie finden diese Version unter den [`/es` Ordner](https://unpkg.com/@material-ui/core@next/es/). Die gesamte nicht offizielle Syntax wird auf den [ECMA-262 Standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm) transpiliert, nichts mehr. Dies kann verwendet werden, um separate Bundles für verschiedene Browser zu erstellen. Ältere Browser erfordern mehr transpilierte JavaScript-Funktionen. Dies erhöht die Größe des Packets. Für die Laufzeitfunktionen von ES2015 sind keine polyfills enthalten. IE11 + und Evergreen-Browser unterstützen alle erforderlichen Funktionen. Wenn Sie Unterstützung für andere Browser benötigen, sollten Sie [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill) in Betracht ziehen.
+Wir veröffentlichen auch eine zweite Version der Komponenten. Sie finden diese Version unter den [`/es` Ordner](https://unpkg.com/@material-ui/core/es/). Die gesamte nicht offizielle Syntax wird auf den [ECMA-262 Standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm) transpiliert, nichts mehr. Dies kann verwendet werden, um separate Bundles für verschiedene Browser zu erstellen. Ältere Browser erfordern mehr transpilierte JavaScript-Funktionen. Dies erhöht die Größe des Packets. Für die Laufzeitfunktionen von ES2015 sind keine polyfills enthalten. IE11 + und Evergreen-Browser unterstützen alle erforderlichen Funktionen. Wenn Sie Unterstützung für andere Browser benötigen, sollten Sie [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill) in Betracht ziehen.
 
 ⚠️ Um die Duplizierung von Code in Benutzerpaketen zu minimieren, raten wir **dringend davon ab** den `/es` Ordner zu benutzten.

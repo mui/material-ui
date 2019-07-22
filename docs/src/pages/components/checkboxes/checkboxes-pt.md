@@ -38,7 +38,7 @@ Quando um rótulo não pode ser usado, é necessário adicionar um atributo dire
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Caixa de seleção A' } }
+  inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
 

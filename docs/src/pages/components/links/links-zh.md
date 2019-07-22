@@ -12,25 +12,25 @@ components: Link
 
 {{"demo": "pages/components/links/Links.js"}}
 
-然而，链接（Link）组件有着不同于版面设计（Typography）的默认属性
+However, the Link component has different default properties than the Typography component:
 
 - 当链接需要突出显示，使用 `color="primary"`
-- 链接在多数的情况下，将被用于作为版面设计（Typograpy）的子组件，这种情况使用`variant="inherit"`
+- `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
 
 ## 无障碍功能
 
 - 当提供链接对应的内容时，避免使用泛泛的描述，比如“点击这里”或“跳转”之类的词语 相反的，请使用 [具体详细的描述](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)说明.
-- 对于最佳用户体验的链接来说，应该凸显他在页面上的文字
+- For the best user experience, links should stand out from the text on the page.
 - 如果一个链接没有赋予一个有意义的href值, [它应该用一个 `<按钮>` 元素](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)表示
 
 {{"demo": "pages/components/links/ButtonLink.js"}}
 
 ## 安全
 
-当你在使用Link组件下的 `target="_blank"`时 ，并同时在关联第三方内容的情况下， [推荐](https://developers. google. com/web/tools/lighthouse/audits/noopener) 始终配置 `rel ="noopener"` 或 `的rel ="noreferrer"` 。
+When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
 
-- `rel="noopener"` 阻止新页面访问window.opener属性并确保它分开在不同的进程中运行。 若不如此，目标页面有潜在可能性将你的页面重定向至一个恶意网址
-- `rel ="noreferrer"` 具有相同的效果，但同时也阻止了 *Referer* header被发送到新的页面。 ⚠️ 去除referrer header会影响分析统计
+- `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process. Without this, the target page can potentially redirect your page to a malicious URL.
+- `rel="noreferrer"` has the same effect, but also prevents the *Referer* header from being sent to the new page. ⚠️ 去除referrer header会影响分析统计
 
 ## 第三方路由库
 

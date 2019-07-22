@@ -2,7 +2,7 @@
 
 <p class="description">Vous pouvez facilement personnaliser l'apparence d'un composant Material-UI.</p>
 
-Comme les composants peuvent être utilisés dans différents contextes, plusieurs approches sont possibles. Du plus étroit cas d'utilisation au plus large, il s'agit des suivants :
+As components can be used in different contexts, there are several approaches to this. Du plus étroit cas d'utilisation au plus large, il s'agit des suivants :
 
 1. [Variation spécifique pour une situation ponctuelle](#1-specific-variation-for-a-one-time-situation)
 2. [Variation dynamique pour une situation ponctuelle](#2-dynamic-variation-for-a-one-time-situation)
@@ -166,7 +166,7 @@ compile vers :
   classes={{
     root: classes.root, // class name, e.g. `root-x`
     disabled: classes.disabled, // class name, e.g. `disabled-x`
-  } }
+  }}
 >
 ```
 

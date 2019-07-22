@@ -48,18 +48,18 @@ import 'typeface-roboto';
 
 ## 改变语义元素
 
-The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
+Typography组件使用 `variantMapping` 属性将某一种UI变体与某一种语义元素标签相关联。 有一点需要意识到： 一个Typography的style是独立于其底层语义化标签的
 
-- You can change the underlying element for a one time occassion with the `component` property:
+- You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* We already have an h1 in the page, let's not duplicate it. */}
+{/* 在这个页面里，我们已经有了一个h1标签；所以避免重复*/}
 <Typography variant="h1" component="h2">
   h1. Heading
 </Typography>
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- 你也可以通过theme[全局改变](/customization/globals/#default-props)对应关联:
 
 ```js
 const theme = createMuiTheme({

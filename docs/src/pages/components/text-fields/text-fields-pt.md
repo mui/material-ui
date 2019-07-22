@@ -15,7 +15,7 @@ O componente wrapper `TextField` é um controle de formulário completo, incluin
 
 {{"demo": "pages/components/text-fields/TextFields.js"}}
 
-> **Nota:** Esta versão do campo de texto não está mais documentada na documentação do Material Design.
+> **Note:** This version of the text field is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
 ## Delineado
 
@@ -95,13 +95,47 @@ ou
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-## Inputs Formatados
+## Integration with 3rd party input libraries
 
-Você pode usar bibliotecas de terceiros para formatar uma entrada. Você precisa fornecer uma implementação personalizada do elemento `<input>` com a propriedade `inputComponent`. O componente de entrada fornecido deve manipular a propriedade `inputRef`. A propriedade deve ser chamada com um valor que implementa a interface [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
+You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format).
+A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
+
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+
+```ts
+interface InputElement {
+  focus(): void;
+  value?: string;
+}
+```
+
+```jsx
+function MyInputComponent(props) {
+  const { component: Component, inputRef, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(inputRef, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+}
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: { component: SomeThirdPartyComponent },
+  }}
+/>;
+```
 
 ## Acessibilidade
 
@@ -128,7 +162,7 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao l
 
 ## Projetos Complementares
 
-Para caso de usos mais avançados, você é capaz de aproveitar de:
+Para os usos mais avançados, você é capaz de aproveita:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Um conjunto de componentes do wrapper para facilitar o uso do Material UI com Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Ligações para usar Mateiral-UI com formik.

@@ -65,7 +65,7 @@ const styles = theme => ({
 
 ### withWidth()
 
-> ⚠️当React Hooks成为稳定版本时，此高阶组件将被弃用并使用[ useMediaQuery](/components/use-media-query/) hook代替。
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/components/use-media-query/) hook.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';

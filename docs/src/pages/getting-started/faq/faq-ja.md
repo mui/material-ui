@@ -2,7 +2,7 @@
 
 <p class="description">特定の問題で立ち往生していますか？ よくある質問でこれらのよくある問題のいくつかを最初に確認してください。</p>
 
-If you still can't find what you're looking for, you can ask the community in [Spectrum](https://spectrum.chat/material-ui). 使い方の質問やその他重要ではない問題は、Github issuesではなく[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui)を使ってください。 `material-ui`というStackOverflowタグがあります。 質問にはそのタグをつけてください。
+もし探しているものがまだ見つからない場合、 [Spectrum](https://spectrum.chat/material-ui)にある我々のコミュニティに質問ができます 使い方の質問やその他重要ではない問題は、Github issuesではなく[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui)を使ってください。 `material-ui`というStackOverflowタグがあります。 質問にはそのタグをつけてください。
 
 ## productionビルドでコンポーネントが正しくレンダリングされないのはなぜですか？
 
@@ -14,7 +14,7 @@ If you still can't find what you're looking for, you can ask the community in [S
 
 - 誤ってMaterial-UIの2つのバージョンを**bundle**してしまっている場合、 依存関係がMaterial-UIを対の依存関係として正しく設定されていない可能性があります
 - Reactツリーの**サブセット**に`StylesProvider`を使用している場合
-- You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
+- バンドラーを使用していて、それが原因で複数のクラス名ジェネレータインスタンスが作成されるようにコードを分割している場合。
 
 > If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 
@@ -113,7 +113,7 @@ It's recommended:
 
 ## react-routerの使い方は？
 
-私達は[サードパーティ製ルーティングライブラリ](/components/buttons/#third-party-routing-library)で`ButtonBase`コンポーネントの使い方をドキュメント化しました。 A lot of our interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. それらの例を参考にしてください。
+私達は[サードパーティ製ルーティングライブラリ](/components/buttons/#third-party-routing-library)で`ButtonBase`コンポーネントの使い方をドキュメント化しました。 多くのインタラクティブなコンポーネントを内部的に使っています：`Button`, `MenuItem`, `<ListItem button />`, `Tab` それらの例を参考にしてください。
 
 ## どうやってDOM要素にアクセスできますか？
 
@@ -128,7 +128,7 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-If you're not sure if the Material-UI component in question forwards its ref you can check the API documentation under "Props" e.g. the [/api/button/#props](Button API) includes
+If you're not sure if the Material-UI component in question forwards its ref you can check the API documentation under "Props" e.g. the [Button API](/api/button/#props) includes
 
 > The ref is forwarded to the root element.
 
@@ -138,7 +138,7 @@ indicating that you can access the DOM element with a ref.
 
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names and makes your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and makes your application bigger without a good reason.
 
 ### Possible reasons
 

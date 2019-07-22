@@ -36,7 +36,7 @@ Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attri
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' } }
+  inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
 

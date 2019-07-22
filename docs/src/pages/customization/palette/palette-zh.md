@@ -8,7 +8,7 @@ A color intention is a mapping of a palette to a given intention within your app
 
 The theme exposes the following color intentions:
 
-- primary - used to represent primary interface elements for a user.
+- primary - 用来表示用户界面的主要元素
 - secondary - used to represent secondary interface elements for a user.
 - error - used to represent interface elements that the user should be made aware of.
 
@@ -16,13 +16,13 @@ The default palette uses the shades prefixed with `A` (`A200`, etc.) for the sec
 
 If you want to learn more about color, you can check out [the color section](/customization/color/).
 
-## Custom palette
+## 自定义调色板
 
 您可以通过在主题中包含 `palette` 对象来覆盖默认调色板值。
 
-If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'intention' objects are provided, they will replace the defaults.
+如果存在任何一个 "intention" 对象 [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary) ，[`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) 或 [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 都会替换默认值
 
-The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
+意图值可以是一个[color](/customization/color/) 对象，也可以是通过下面的TypeScript接口指定的包含一个或多个键的对象
 
 ```ts
 interface PaletteIntention {
@@ -33,7 +33,7 @@ interface PaletteIntention {
 };
 ```
 
-**Using a color object**
+**使用颜色对象**
 
 The simplest way to customize an intention is to import one or more of the provided colors and apply them to a palette intention:
 
@@ -162,4 +162,4 @@ const theme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "hideEditButton": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js"}}

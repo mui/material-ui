@@ -5,9 +5,9 @@ components: TextField, Paper, MenuItem, Popper
 
 # Autocomplete
 
-<p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
+<p class="description">オートコンプリートは、推奨オプションのパネルによって強化された通常のテキスト入力です。</p>
 
-Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
+Material-UIはこの問題を解決するための高度なAPIを提供していません。 Reactコミュニティが構築したソリューションを奨励します。
 
 ## downshift
 
@@ -15,9 +15,9 @@ Material-UI doesn't provide any high-level API for solving this problem. We enco
 
 In the following example, we demonstrate how to use [downshift](https://github.com/downshift-js/downshift).
 
-The last demo allow to clear the input and show a number of options on focus.
+最後のデモでは、ユーザーが入力をクリアしてフォーカスのある多くのオプションを表示することができます。
 
-{{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
+{{"demo":"pages/components/autocomplete/IntegrationDownshift.js"}}
 
 ## react-select
 
@@ -31,6 +31,6 @@ In the following example, we demonstrate how to use [react-select](https://githu
 
 ![Stars](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/react-autosuggest.svg)
 
-In the following example, we demonstrate how to use [react-autosuggest](https://github.com/moroshko/react-autosuggest). It's also using [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) for the highlighting logic.
+次の例では、 リスト コンポーネントで [react-window](https://github.com/moroshko/react-autosuggest) を使用する方法を示します。 強調表示ロジックに [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) も使用されています 。
 
-{{"demo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}
+{{"demo":"pages/components/autocomplete/IntegrationAutosuggest.js"}}

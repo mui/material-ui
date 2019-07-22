@@ -6,7 +6,7 @@ Material-UIは[ npmパッケージ](https://www.npmjs.com/package/@material-ui/c
 
 ## npm
 
-インストールして`package.json` のdependenciesに保存します。次を実行してください。
+次のコマンドを実行してください。これで、あなたの`package.json` に保存できます。
 
 ```sh
 // npmの場合
@@ -16,7 +16,7 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-[react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0がpeer dependenciesであることに注意してください。
+[react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0が peer dependencies であることに注意してください。
 
 ## Robotoフォント
 
@@ -28,13 +28,13 @@ Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを�
 
 ## フォントアイコン
 
-フォント`アイコン`を使うには、最初に[Material icons](https://material.io/tools/icons/)を追加します。 こちらは、その時の[手続き](/components/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
+フォント`アイコン`を使うには、最初に[Material icons](https://material.io/tools/icons/)を追加する必要があります。 こちらは、その時の[手続き](/components/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-あるいは、headタグをレンダリングするJSXを用いている場合は、
+あるいは、headタグをレンダリングするJSXを用いる場合は、
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -42,7 +42,7 @@ Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを�
 
 ## SVGアイコン
 
-In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+[component demos](/components/icons/)にあるような事前にビルドされたSVG Material iconsを使う為には、[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)パッケージをインストールする必要があります。
 
 ```sh
 // with npm
@@ -56,7 +56,7 @@ yarn add @material-ui/icons
 
 プロトタイピングには最適な最小限のフロントエンド構造でMaterial-UIを使い始めることができます。
 
-We are providing two Universal Module Definition (**UMD**) files:
+私たちは以下2種類の (**UMD**) ファイルを提供しています。
 
 - 開発用: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
 - 本番用: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js

@@ -23,7 +23,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 - 线性的步骤条
 - 非线性的步骤条
 
-> **请注意：** Material Design 文档中不再记录步骤条。
+> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
 ## 水平的线性步骤条
 

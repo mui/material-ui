@@ -3,7 +3,7 @@ title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Switches
+# スイッチ
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
 
@@ -25,9 +25,15 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## Customized switches
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
+
+## サイズ
+
+Fancy smaller switches? Use the `size` property.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
 
 ## ラベルの配置
 
@@ -44,6 +50,6 @@ Here are some examples of customizing the component. You can learn more about th
 ```jsx
 <Switch
   value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' } }
+  inputProps={{ 'aria-label': 'Switch A' }}
 />
 ```

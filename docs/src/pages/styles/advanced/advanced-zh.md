@@ -243,13 +243,13 @@ import { StylesProvider } from '@material-ui/styles';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyleBase = makeStyles({
+const useStylesBase = makeStyles({
   root: {
     color: 'blue', // 🔵
   },
 });
 
-const useStyle = makeStyles({
+const useStyles = makeStyles({
   root: {
     color: 'red', // 🔴
   },
@@ -258,7 +258,7 @@ const useStyle = makeStyles({
 export default function MyComponent() {
   // Order doesn't matter
   const classes = useStyles();
-  const classesBase = useStyleBase();
+  const classesBase = useStylesBase();
 
   // Order doesn't matter
   const className = clsx(classes.root, classesBase.root)
@@ -486,7 +486,7 @@ const StyledTextField = styled(TextField)`
   }
   .MuiOutlinedInput-root {
     fieldset {
-      border-color: red; ❤️
+      border-color: red; 🔴
     }
     &:hover fieldset {
       border-color: yellow; 💛
@@ -559,11 +559,11 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
 />
 ```
 
-然后，您必须将此随机数传递给JSS，以便将其添加到后续`<style>`标记中。 客户端从头部获取nonce。 无论是否使用SSR，都必须包含此标头。
+然后，您必须将此随机数传递给JSS，以便将其添加到后续`<style>`标记中。 The client-side gets the nonce from a header. 无论是否使用SSR，都必须包含此标头。
 
 ```jsx
 <meta property="csp-nonce" content={nonce} />
