@@ -51,7 +51,7 @@
     "mustache": "^3.0.0",
     "svgo": "^1.0.5",
     "temp": "^0.9.0",
-    "yargs": "^12.0.0"
+    "yargs": "^13.3.0"
   },
   "sideEffects": false,
   "publishConfig": {
