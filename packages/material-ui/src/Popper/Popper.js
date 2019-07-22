@@ -4,7 +4,7 @@ import PopperJS from 'popper.js';
 import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
-import { useForkRef } from '../utils/reactHelpers';
+import { setRef, useForkRef } from '../utils/reactHelpers';
 
 /**
  * Flips placement if in <body dir="rtl" />
@@ -58,7 +58,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     ...other
   } = props;
   const tooltipRef = React.useRef(null);
-  const handleRef = useForkRef(tooltipRef, ref);
+  const ownRef = useForkRef(tooltipRef, ref);
 
   const popperRef = React.useRef(null);
   const handlePopperRefRef = React.useRef();
@@ -81,10 +81,6 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   }
 
   const handleOpen = React.useCallback(() => {
-    const handlePopperUpdate = data => {
-      setPlacement(data.placement);
-    };
-
     const popperNode = tooltipRef.current;
 
     if (!popperNode || !anchorEl || !open) {
@@ -95,6 +91,10 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       popperRef.current.destroy();
       handlePopperRefRef.current(null);
     }
+
+    const handlePopperUpdate = data => {
+      setPlacement(data.placement);
+    };
 
     const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
       placement: rtlPlacement,
@@ -117,6 +117,14 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     });
     handlePopperRefRef.current(popper);
   }, [anchorEl, disablePortal, modifiers, open, rtlPlacement, popperOptions]);
+
+  const handleRef = React.useCallback(
+    node => {
+      setRef(ownRef, node);
+      handleOpen();
+    },
+    [ownRef, handleOpen],
+  );
 
   const handleEnter = () => {
     setExited(false);
@@ -169,7 +177,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   }
 
   return (
-    <Portal onRendered={handleOpen} disablePortal={disablePortal} container={container}>
+    <Portal disablePortal={disablePortal} container={container}>
       <div
         ref={handleRef}
         role="tooltip"
