@@ -290,9 +290,12 @@ export function parseFromProgram(
         case 'React.ReactNode': {
           return t.unionNode([t.elementNode('node'), t.undefinedNode()]);
         }
-        case 'React.Component':
-        case 'Element': {
+        case 'React.Component': {
           return t.instanceOfNode(typeName);
+        }
+        case 'Element': {
+          // Nextjs: Element isn't defined on the server
+          return t.instanceOfNode("typeof Element === 'undefined' ? Object : Element");
         }
       }
     }
