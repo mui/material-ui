@@ -5,8 +5,7 @@ import { expect } from 'chai';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { useFakeTimers } from 'sinon';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { cleanup, createClientRender, fireEvent, wait } from 'test/utils/createClientRender';
 
 const options = [
   'Show some love to Material-UI',
@@ -61,21 +60,9 @@ function SimpleMenu({ selectedIndex: selectedIndexProp, ...props }) {
 SimpleMenu.propTypes = { selectedIndex: PropTypes.number };
 
 describe('<Menu /> integration', () => {
-  let clock;
   const render = createClientRender({ strict: false });
 
-  function waitForExited(transitionDuration) {
-    // transitions can't disappear instantly because of react-transition-group
-    // exited is only reached on the next commit
-    clock.tick(transitionDuration);
-  }
-
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
   afterEach(() => {
-    clock.restore();
     cleanup();
   });
 
@@ -273,7 +260,7 @@ describe('<Menu /> integration', () => {
     });
   });
 
-  it('closes the menu when Tabbing while the list is active', () => {
+  it('closes the menu when Tabbing while the list is active', async () => {
     const { queryByRole, getByLabelText } = render(<SimpleMenu transitionDuration={0} />);
     const button = getByLabelText('Open menu');
 
@@ -284,11 +271,12 @@ describe('<Menu /> integration', () => {
     expect(queryByRole('menu')).to.be.focused;
 
     fireEvent.keyDown(document.activeElement, { key: 'Tab' });
-    waitForExited(0);
-    expect(queryByRole('menu')).to.be.null;
+
+    // react-transition-group uses one commit per state transition so we need to wait a bit
+    await wait(() => expect(queryByRole('menu')).to.be.null, { timeout: 10 });
   });
 
-  it('closes the menu when the backdrop is clicked', () => {
+  it('closes the menu when the backdrop is clicked', async () => {
     const { queryByRole, getByLabelText } = render(<SimpleMenu transitionDuration={0} />);
     const button = getByLabelText('Open menu');
 
@@ -299,8 +287,7 @@ describe('<Menu /> integration', () => {
     expect(queryByRole('menu')).to.be.focused;
 
     fireEvent.click(document.querySelector('[data-mui-test="Backdrop"]'));
-    waitForExited(0);
 
-    expect(queryByRole('menu')).to.be.null;
+    await wait(() => expect(queryByRole('menu')).to.be.null, { timeout: 10 });
   });
 });
