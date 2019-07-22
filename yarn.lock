@@ -5752,10 +5752,6 @@ eslint-plugin-jsx-a11y@^6.0.3:
     has "^1.0.3"
     jsx-ast-utils "^2.0.1"
 
-"eslint-plugin-material-ui@link:packages/eslint-plugin-material-ui":
-  version "0.0.0"
-  uid ""
-
 eslint-plugin-mocha@^5.0.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-mocha/-/eslint-plugin-mocha-5.3.0.tgz#cf3eb18ae0e44e433aef7159637095a7cb19b15b"

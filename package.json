@@ -90,7 +90,6 @@
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-material-ui": "link:packages/eslint-plugin-material-ui",
     "eslint-plugin-mocha": "^5.0.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-hooks": "^1.2.0",
