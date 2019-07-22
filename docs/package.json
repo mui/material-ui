@@ -80,7 +80,7 @@
     "react-swipeable-views": "^0.13.3",
     "react-test-renderer": "^16.8.5",
     "react-text-mask": "^5.0.2",
-    "react-virtualized": "^9.21.0",
+    "react-virtualized": "^9.21.1",
     "react-window": "^1.7.1",
     "recast": "^0.18.1",
     "recharts": "^1.1.0",
