@@ -248,11 +248,30 @@ export function parseFromProgram(
 
   function checkSymbol(symbol: ts.Symbol, typeStack: number[]): t.PropTypeNode {
     const declarations = symbol.getDeclarations();
+    const declaration = declarations && declarations[0];
 
-    const type = declarations
+    // TypeChecker keeps the name for { a: React.ElementType } but not
+    // { a?: React.ElementType } can get around this by not using the typechecker
+    if (
+      declaration &&
+      ts.isPropertySignature(declaration) &&
+      declaration.type &&
+      ts.isTypeReferenceNode(declaration.type) &&
+      declaration.type.typeName.getText() === 'React.ElementType'
+    ) {
+      return t.propTypeNode(
+        symbol.getName(),
+        getDocumentation(symbol),
+        declaration.questionToken
+          ? t.unionNode([t.undefinedNode(), t.elementNode('elementType')])
+          : t.elementNode('elementType'),
+      );
+    }
+
+    const type = declaration
       ? // The proptypes aren't detailed enough that we need all the different combinations
         // so we just pick the first and ignore the rest
-        checker.getTypeOfSymbolAtLocation(symbol, declarations[0])
+        checker.getTypeOfSymbolAtLocation(symbol, declaration)
       : // The properties of Record<..., ...> don't have a declaration, but the symbol has a type property
         ((symbol as any).type as ts.Type);
 
