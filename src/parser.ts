@@ -279,11 +279,19 @@ export function parseFromProgram(
       throw new Error('No types found');
     }
 
-    return t.propTypeNode(
-      symbol.getName(),
-      getDocumentation(symbol),
-      checkType(type, typeStack, symbol.getName()),
-    );
+    // Typechecker only gives the type "any" if it's present in a union
+    // This means the type of "a" in {a?:any} isn't "any | undefined"
+    // So instead we check for the questionmark to detect optional types
+    let parsedType: t.Node | undefined = undefined;
+    if (type.flags & ts.TypeFlags.Any && declaration && ts.isPropertySignature(declaration)) {
+      parsedType = declaration.questionToken
+        ? t.unionNode([t.undefinedNode(), t.anyNode()])
+        : t.anyNode();
+    } else {
+      parsedType = checkType(type, typeStack, symbol.getName());
+    }
+
+    return t.propTypeNode(symbol.getName(), getDocumentation(symbol), parsedType);
   }
 
   function checkType(type: ts.Type, typeStack: number[], name: string): t.Node {
