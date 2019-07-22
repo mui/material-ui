@@ -33,16 +33,6 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'Better Business Bureau',
-    description:
-      'Better Business Bureau helps United States consumers find businesses and charities they ' +
-      'can trust.',
-    image: 'bbb.jpg',
-    link: 'https://www.bbb.org/',
-    similarWebVisits: 11000,
-    dateAdded: '2019-01-01',
-  },
-  {
     title: 'OpenClassrooms',
     description:
       'OpenClassrooms is an online platform offering top quality, ' +
