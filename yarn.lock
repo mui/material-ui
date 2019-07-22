@@ -863,17 +863,17 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@date-io/core@^1.2.0":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.3.6.tgz#5c518cee6fa011e754293aebc6f1192360061797"
-  integrity sha512-cihiu8YaTHh7IqrzekbZcA7dh+7uhViHgWyxcKAO2cg1DYGYC5J7z4/rnGGL7swrK5xFVLIeyoxJ+sacziIRKg==
+"@date-io/core@^1.3.8":
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.3.8.tgz#a20da7125f1444631dd96a6e8baa8982665aaa95"
+  integrity sha512-XlvpzhipF/badZEJPAfgXRX9bFG2UpFl1T6O0hn1RzWJf3yexf9/M2wcEm6jh7RVyrlSayttkXtGPqVPdoJQ7Q==
 
-"@date-io/date-fns@^1.0.0", "@date-io/date-fns@^1.1.0":
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-1.3.5.tgz#a4815500211c0ca7151729c17e12ba46520a373f"
-  integrity sha512-PVmvjF9ZsyK2nItwS+0iUTKadvZP7o2vWRRMwdcwo6HKMenWjgU3KbTyiKLoZuG0IlON4k9v8GRHvI0VVFxziA==
+"@date-io/date-fns@^1.1.0", "@date-io/date-fns@^1.3.8":
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-1.3.8.tgz#820553ba0136027b20d3a696ab9b300f2fa23c5c"
+  integrity sha512-vlMRbaCIC1NTjGXL8QWsc9v/7EJwtciUYWCYw1+PXkmpPr1W4GbckvLYvFhGSlQ8ibIh0JKB1yP4bozSb3Tu+w==
   dependencies:
-    "@date-io/core" "^1.2.0"
+    "@date-io/core" "^1.3.8"
 
 "@emotion/babel-utils@^0.6.4":
   version "0.6.10"
@@ -1780,10 +1780,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@material-ui/pickers@^3.0.0", "@material-ui/pickers@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.1.1.tgz#f81f2a71b995beb604d07a0cff6cc83908f3b62a"
-  integrity sha512-YLVGMN4/TkixRzhjNR+Fd/m4+8wHyH1SJw3aEKtTa6tlq6Sw9LGzN630NiQScWNxokw7bI10Q8lWyDIGDgrt8g==
+"@material-ui/pickers@^3.0.0", "@material-ui/pickers@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.2.0.tgz#1a10be67211b9348b87e8354af041c1f1a56f060"
+  integrity sha512-/bn90Vl6U22/Od2QGirSg1U9fk/YjzLtkHdwmS4crE6HjVzApi5l8kcOC2j+gDHggs3J6zO+4eq3DK5kGYN6Jg==
   dependencies:
     "@types/styled-jsx" "^2.2.8"
     clsx "^1.0.2"
