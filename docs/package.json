@@ -49,7 +49,7 @@
     "date-fns": "^2.0.0-alpha.21",
     "doctrine": "^3.0.0",
     "downshift": "^3.0.0",
-    "emotion-theming": "^10.0.5",
+    "emotion-theming": "^10.0.14",
     "fg-loadcss": "^2.0.1",
     "final-form": "^4.11.0",
     "isomorphic-fetch": "^2.2.1",

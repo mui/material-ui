@@ -1043,11 +1043,6 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
-"@emotion/weak-memoize@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
-  integrity sha512-n/VQ4mbfr81aqkx/XmVicOLjviMuy02eenSdJY33SVA7S2J42EU0P1H0mOogfYedb3wXA0d/LVtBrgTSm04WEA==
-
 "@emotion/weak-memoize@0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.3.tgz#dfa0c92efe44a1d1a7974fb49ffeb40ef2da5a27"
@@ -5518,14 +5513,14 @@ emotion-server@^10.0.9:
   dependencies:
     create-emotion-server "10.0.0"
 
-emotion-theming@^10.0.5:
-  version "10.0.10"
-  resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-10.0.10.tgz#efe8751119751bdc70fdc1795fe4cde0fb0cf14c"
-  integrity sha512-E4SQ3Y91avxxydDgubi/po/GaC5MM1XHm8kcClKg1PA/TeOye0PiLBzAzlgt9dBzDRV9+qHDunsayPvzVYIYng==
+emotion-theming@^10.0.14:
+  version "10.0.14"
+  resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-10.0.14.tgz#e548d388493d07bedbb0d9d3bbe221766174b1f4"
+  integrity sha512-zMGhPSYz48AAR6DYjQVaZHeO42cYKPq4VyB1XjxzgR62/NmO99679fx8qDDB1QZVYGkRWZtsOe+zJE/e30XdbA==
   dependencies:
-    "@emotion/weak-memoize" "0.2.2"
+    "@babel/runtime" "^7.4.3"
+    "@emotion/weak-memoize" "0.2.3"
     hoist-non-react-statics "^3.3.0"
-    object-assign "^4.1.1"
 
 emotion@^10.0.14:
   version "10.0.14"
