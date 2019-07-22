@@ -385,6 +385,25 @@ export function parseFromProgram(
       return undefined;
     }
 
+    const decl = symbol.getDeclarations();
+    if (decl) {
+      // @ts-ignore - Private method
+      const comments = ts.getJSDocCommentsAndTags(decl[0]) as any[];
+      if (comments && comments.length === 1) {
+        const commentNode = comments[0];
+        if (ts.isJSDoc(commentNode) && commentNode.comment && commentNode.tags) {
+          return (
+            commentNode
+              // Full comment text
+              .getText()
+              // Remove markers (/**\n* */)
+              .replace(/(^\/\*\*.*$)|(^ *\*\/)|(^ *\* ?)/gm, '')
+              .trim()
+          );
+        }
+      }
+    }
+
     const comment = ts.displayPartsToString(symbol.getDocumentationComment(checker));
     return comment ? comment : undefined;
   }
