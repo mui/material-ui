@@ -77,7 +77,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-select": "^2.0.0",
-    "react-swipeable-views": "^0.13.0",
+    "react-swipeable-views": "^0.13.3",
     "react-test-renderer": "^16.8.5",
     "react-text-mask": "^5.0.2",
     "react-virtualized": "^9.21.0",
