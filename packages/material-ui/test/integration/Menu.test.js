@@ -67,15 +67,15 @@ describe('<Menu /> integration', () => {
   function waitForExited(transitionDuration) {
     // transitions can't disappear instantly because of react-transition-group
     // exited is only reached on the next commit
-    clock.tick(transitionDuration + 1);
+    //clock.tick(transitionDuration + 1);
   }
 
   beforeEach(() => {
-    clock = useFakeTimers();
+    //clock = useFakeTimers();
   });
 
   afterEach(() => {
-    clock.restore();
+    //clock.restore();
     cleanup();
   });
 
