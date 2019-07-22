@@ -83,7 +83,7 @@
     "react-virtualized": "^9.21.1",
     "react-window": "^1.7.1",
     "recast": "^0.18.1",
-    "recharts": "^1.1.0",
+    "recharts": "^1.6.2",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "styled-components": "^4.1.1",
