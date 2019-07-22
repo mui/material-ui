@@ -418,7 +418,7 @@ export function parseFromProgram(
       const comments = ts.getJSDocCommentsAndTags(decl[0]) as any[];
       if (comments && comments.length === 1) {
         const commentNode = comments[0];
-        if (ts.isJSDoc(commentNode) && commentNode.comment && commentNode.tags) {
+        if (ts.isJSDoc(commentNode)) {
           return (
             commentNode
               // Full comment text
