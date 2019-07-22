@@ -788,7 +788,7 @@
     "@babel/plugin-transform-react-jsx-self" "^7.0.0"
     "@babel/plugin-transform-react-jsx-source" "^7.0.0"
 
-"@babel/preset-typescript@7.3.3", "@babel/preset-typescript@^7.0.0", "@babel/preset-typescript@^7.1.0":
+"@babel/preset-typescript@7.3.3", "@babel/preset-typescript@^7.1.0":
   version "7.3.3"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.3.3.tgz#88669911053fa16b2b276ea2ede2ca603b3f307a"
   integrity sha512-mzMVuIP4lqtn4du2ynEfdO0+RYcslwrZiJHXu4MGaC1ctJiW2fyaeDrtjJGs7R/KebZ1sgowcIoWf4uRpEfKEg==
@@ -2405,13 +2405,6 @@
   resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
   integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
-"@zeit/next-typescript@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@zeit/next-typescript/-/next-typescript-1.1.1.tgz#0b0ddfbb13ca04cde52ac2718473f1b9c40ba0ee"
-  integrity sha512-EUcHCASftz1Bc80djkf3cKJrFgvFQyODOH1kty7ShVLLdXMaZpRLj+z7RxrCoNo1bP06w0vtXEDU0cKa0HmGgg==
-  dependencies:
-    "@babel/preset-typescript" "^7.0.0"
-
 JSONStream@^1.0.4, JSONStream@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-1.3.5.tgz#3208c1f08d3a4d99261ab64f92302bc15e111ca0"
@@ -2442,11 +2435,6 @@ accepts@~1.3.4, accepts@~1.3.5:
   dependencies:
     mime-types "~2.1.24"
     negotiator "0.6.2"
-
-acorn-dynamic-import@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/acorn-dynamic-import/-/acorn-dynamic-import-4.0.0.tgz#482210140582a36b83c3e342e1cfebcaa9240948"
-  integrity sha512-d3OEjQV4ROpoflsnUA8HozoIR504TFxNivYEUi6uwz0IYhBkTDXGuWlNdMtybRt3nqVx/L6XqMt0FxkXuWKZhw==
 
 acorn-globals@^4.3.0:
   version "4.3.0"
@@ -3718,9 +3706,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000957, caniuse-lite@^1.0.30000981:
-  version "1.0.30000983"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000983.tgz#ab3c70061ca2a3467182a10ac75109b199b647f8"
-  integrity sha512-/llD1bZ6qwNkt41AsvjsmwNOoA4ZB+8iqmf5LVyeSXuBODT/hAMFNVOh84NdUzoiYiSKqo5vQ3ZzeYHSi/olDQ==
+  version "1.0.30000984"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000984.tgz#dc96c3c469e9bcfc6ad5bdd24c77ec918ea76fe0"
+  integrity sha512-n5tKOjMaZ1fksIpQbjERuqCyfgec/m9pferkFQbLmWtqLUdmt12hNhjSwsmPdqeiG2NkITOQhr1VYIwWSAceiA==
 
 capture-stack-trace@^1.0.0:
   version "1.0.1"
@@ -9379,12 +9367,7 @@ next-server@9.0.2:
     styled-jsx "3.2.1"
     url "0.11.0"
 
-next-transpile-modules@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-2.3.1.tgz#8977c070912fbc3e927c662431fc4e91ae335b43"
-  integrity sha512-euNOBAk/CXZA6binwL47+QpcxAmK1pzH2zjF7XnRN55f2iuN/ecpUw5p3x4bikFu0yDPtSLS92nv9fcgcCo0vg==
-
-next@9.0.2:
+next@^9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/next/-/next-9.0.2.tgz#4de9da7ca64d89dd1759ad2b5d9d23a9dc3ca63b"
   integrity sha512-ICZWI4a7oqjGIf3qoq8amCSeF+mP00azqODqFWSwFGCxm3SnBZu4xqNr5QmeOMFCML8J/eRlI6o8vE7aE0yTTw==

@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
-const withTM = require('next-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./src/modules/utils/find');
 const path = require('path');
@@ -11,11 +10,6 @@ const workspaceRoot = path.join(__dirname, '../');
 
 module.exports = {
   webpack: (config, options) => {
-    // Alias @material-ui/core peer dependency imports form the following modules to our sources.
-    config = withTM({
-      transpileModules: ['notistack', '@material-ui/pickers', 'material-table'],
-    }).webpack(config, options);
-
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {
@@ -39,6 +33,34 @@ module.exports = {
     config.resolve.alias['react-dom$'] = 'react-dom/profiling';
     config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
 
+    // next includes node_modules in webpack externals. Some of those have dependencies
+    // on the aliases defined above. If a module is an external those aliases won't be used.
+    // We need tell webpack to not consider those packages as externals.
+    if (options.isServer) {
+      const [nextExternals, ...externals] = config.externals;
+
+      if (externals.length > 0) {
+        // currently not the case but other next plugins might introduce additional
+        // rules for externals. We would need to handle those in the callback
+        throw new Error('There are other externals in the webpack config.');
+      }
+
+      config.externals = [
+        (context, request, callback) => {
+          const hasDependencyOnRepoPackages = [
+            'notistack',
+            'material-table',
+            '@material-ui/pickers',
+          ].includes(request);
+
+          if (hasDependencyOnRepoPackages) {
+            return callback(null);
+          }
+          return nextExternals(context, request, callback);
+        },
+      ];
+    }
+
     return Object.assign({}, config, {
       plugins,
       node: {
@@ -56,6 +78,30 @@ module.exports = {
           {
             test: /\.(css|md)$/,
             loader: 'raw-loader',
+          },
+          // transpile 3rd party packages with dependencies in this repository
+          {
+            test: /\.(js|mjs|jsx)$/,
+            include: /node_modules\/(material-table|notistack|@material-ui\/pickers)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                // on the server we use the transpiled commonJS build, on client ES6 modules
+                // babel needs to figure out in what context to parse the file
+                sourceType: 'unambiguous',
+                plugins: [
+                  [
+                    'babel-plugin-module-resolver',
+                    {
+                      alias: {
+                        '@material-ui/core': '../packages/material-ui/src',
+                      },
+                      transformFunctions: ['require'],
+                    },
+                  ],
+                ],
+              },
+            },
           },
           // required to transpile ../packages/
           {
