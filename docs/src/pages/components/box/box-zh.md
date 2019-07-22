@@ -14,7 +14,7 @@ title: Box React组件
 
 ## 覆盖Material-UI组件
 
-Box组件包装您的组件。 它创建了一个新的DOM元素，默认情况下为 `<div>` ，可以使用 `组件` 属性进行更改。 假设您想使用 `<span>` 代替：
+Box组件做为你的组件容器。 它创建了一个新的DOM元素，默认情况下为 `<div>` ，可以使用 `组件` 属性进行更改。 假设您想使用 `<span>` 代替：
 
 ```jsx
 <Box component="span" m={1}>
@@ -24,11 +24,11 @@ Box组件包装您的组件。 它创建了一个新的DOM元素，默认情况�
 
 当更改可以隔离到新的DOM元素时，这很有用。 例如，您可以通过这种方式更改边距。
 
-但是，有时您必须定位底层DOM元素。 例如，您想要更改按钮的文本颜色。 Button组件定义自己的颜色。 CSS继承没有帮助。 要解决此问题，您有两种选择：
+但是，有时您必须定位底层DOM元素。 例如，您想要更改按钮的文本颜色。 Button组件定义自己的颜色。 CSS继承没有用。 要解决此问题，您有两种选择：
 
 1. 使用 [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
 
-Box组件具有 `clone` 属性，以允许使用React的clone元素方法。
+Box 组件有一个 `clone` 属性来启用 React 克隆元素。
 
 ```jsx
 <Box color="text.primary" clone>
@@ -36,9 +36,9 @@ Box组件具有 `clone` 属性，以允许使用React的clone元素方法。
 </Box>
 ```
 
-1. 使用渲染道具
+1. 使用 render props
 
-Box可以将函数作为子组件。 你可以拉出 `className`。
+Box可以将函数作为子组件。 你可以不使用默认 `className`。
 
 ```jsx
 <Box color="text.primary">
@@ -54,10 +54,10 @@ Box可以将函数作为子组件。 你可以拉出 `className`。
 import Box from '@material-ui/core/Box';
 ```
 
-| 名称                                                      | 类型                                                                                                                | 默认                                      | 描述                                                         |
-|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:---------------------------------------------------------- |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | 框渲染功能或节点。                                                  |
-| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | 如果设置为 `true`，盒子将会重新循环其子DOM元素。 它在内部使用 `React.cloneElement`。 |
-| <span class="prop-name">组件</span>                       | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | 用于根节点的组件。 要么是使用DOM元素的字符串，要么是组件。                            |
+| 名称                                                      | 类型                                                                                                                | 默认                                      | 描述                                                       |
+|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:-------------------------------------------------------- |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | 节点或返回节点的函数                                               |
+| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | 如果设置为 `true`，盒子将会回收其子DOM元素。 它在内部使用 `React.cloneElement`。 |
+| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | 用于根节点的组件。 要么是使用DOM元素的字符串，要么是组件。                          |
 
 所提供的任何其它性质将被使用 [的样式功能](/system/basics/#all-inclusive) 或扩散到根元素。

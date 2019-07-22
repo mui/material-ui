@@ -29,7 +29,13 @@ Aqui esta um exemplo de customização do componente. Você pode aprender mais s
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
-## Posicionamento do rótulo
+## Tamanhos
+
+Fancy smaller switches? Use the `size` property.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
+## Posicionamento do Rótulo
 
 Você pode alterar o posicionamento do rótulo:
 
@@ -37,13 +43,13 @@ Você pode alterar o posicionamento do rótulo:
 
 ## Acessibilidade
 
-Todos os controles de formulário devem ter rótulos, e isso inclui botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando `<label>` ([FormControlLabel](/api/form-control-label/)).
+Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e seletores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
 
 Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (e.g.`aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
 <Switch
   value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' } }
+  inputProps={{ 'aria-label': 'Switch A' }}
 />
 ```

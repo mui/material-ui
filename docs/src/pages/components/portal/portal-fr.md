@@ -11,7 +11,7 @@ components: Portal
 
 Les enfants du composant Portal seront ajoutés au `container` fournit.
 
-The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components. Sur le serveur, le contenu ne sera pas rendu. You have to wait for the client side hydratation to see the children.
+The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components. Sur le serveur, le contenu ne sera pas rendu. You have to wait for the client-side hydration to see the children.
 
 ## Téléportation simple
 

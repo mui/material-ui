@@ -3,9 +3,9 @@ title: React Date Picker（日期选择器）和 Time Picker（时间选择器�
 components: TextField
 ---
 
-# Pickers（选择器）
+# Date/Time inputs
 
-<p class="description">选择器提供了一种从预先设定的集合中选取单个值的简单方法。</p>
+<p class="description">Date/Time inputs (short: pickers) provide a simple way to select a single value from a pre-determined set.</p>
 
 - 在移动端，选择器最适合在确认对话框中展示。
 - 对于内联显示（如在一个表单中），请考虑使用紧凑型控件，如分段下拉按钮。

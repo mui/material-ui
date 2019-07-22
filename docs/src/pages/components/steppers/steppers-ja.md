@@ -23,7 +23,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 - Linear
 - Non-linear
 
-> **Note:** Steppers are no longer documented in the Material Design documentation.
+> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
 ## Horizontal Linear
 
@@ -63,7 +63,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 
 ## Customized Stepper
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例をいくつか示します。あなたは[上書きドキュメントのページ](/customization/components/)でこれについてもっと詳しく知ることができます。
 
 This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
 

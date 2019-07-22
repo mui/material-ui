@@ -6,7 +6,7 @@
 
 Um maximale Flexibilität und Leistung zu gewährleisten, benötigen wir einen Weg, um die Art der untergeordneten Elemente einer Komponente zu kennen. Zur Lösung dieses Problems haben wir einige unserer Komponenten, wenn nötig, mit der statische Eigenschaft ` muiName ` markiert.
 
-You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. Wenn Sie eine Komponente umschließen, überprüfen Sie, ob für diese Komponente diese statische Eigenschaft festgelegt ist.
+You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component, verify if that component has this static property set.
 
 If you encounter this issue, you need to use the same tag for your wrapping component that is used with the wrapped component. In addition, you should forward the properties, as the parent component may need to control the wrapped components props.
 

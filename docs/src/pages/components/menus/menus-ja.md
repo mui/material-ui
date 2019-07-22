@@ -35,7 +35,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 ## Customized menus
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例をいくつか示します。あなたは[上書きドキュメントのページ](/customization/components/)でこれについてもっと詳しく知ることができます。
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 

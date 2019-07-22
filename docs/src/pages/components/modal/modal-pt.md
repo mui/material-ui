@@ -60,7 +60,7 @@ Porém, criar elementos React tem um preço também. Considere o caso a seguir:
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+Criamos muitos elementos React que nunca serão montados. É um desperdício 🐢. Você pode ** acelerar ** a renderização movendo o corpo do modal para seu próprio componente. 
 
 ```jsx
 <Modal open={false}>
@@ -79,12 +79,12 @@ Desta forma, você tem a vantagem do [React render laziness evaluation](https://
   aria-labelledby="simple-modal-title"
   aria-describedby="simple-modal-description"
 >
-  <Typography variant="h6" id="modal-title">
+  <h2 id="modal-title">
     Meu título
-  </Typography>
-  <Typography variant="subtitle1" id="simple-modal-description">
+  </h2>
+  <p id="simple-modal-description">
     Minha descrição
-  </Typography>
+  </p>
 </Modal>
 ```
 

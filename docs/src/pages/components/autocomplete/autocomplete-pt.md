@@ -15,7 +15,7 @@ O Material-UI não fornece nenhuma API de alto nível para resolver esse problem
 
 No exemplo a seguir, demonstramos como usar [downshift](https://github.com/downshift-js/downshift).
 
-A última demonstração permite que em um campo vazio com o foco, seja exibido várias opções.
+A última demonstração permite ao usuário limpar a entrada e mostrar várias opções em foco.
 
 {{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
 

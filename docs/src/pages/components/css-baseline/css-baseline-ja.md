@@ -4,9 +4,9 @@ components: CssBaseline
 
 # CSSベースライン
 
-<p class="description">Material-UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">Material-UIはCssBaselineコンポーネントを提供することで、エレガントで一貫性のあるシンプルなベースラインを構築します。</p>
 
-You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), a collection of HTML element and attribute style-normalizations.
+貴方はもしかしたら、HTMLの要素と属性のスタイル正規化のコレクションである [normalize.css](https://github.com/necolas/normalize.css)精通しているかもしれません。
 
 ```jsx
 import React from 'react';
@@ -19,19 +19,16 @@ function MyApp() {
       {/* The rest of your application */}
     </React.Fragment>
   );
-}
-
-export default MyApp;
 ```
 
-## Approach
+## アプローチ
 
-### Page
+### ページ
 
-The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。具体的には：
 
-- The margin in all browsers is removed.
-- The default Material Design background color is applied. It's using [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) for standard devices and a white background for print devices.
+- すべてのブラウザの余白が削除されています。
+- デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) が使われています。
 
 ### レイアウト
 

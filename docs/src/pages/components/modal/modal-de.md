@@ -79,12 +79,12 @@ Auf diese Weise nutzen Sie [React Rendering Laziness Evaluation](https://overrea
   aria-labelledby="simple-modal-title"
   aria-describedby="simple-modal-description"
 >
-  <Typography variant="h6" id="modal-title">
-    Mein Titel
-  </Typography>
-  <Typography variant="subtitle1" id="simple-modal-description">
-    Meine Beschreibung
-  </Typography>
+  <h2 id="modal-title">
+    My Title
+  </h2>
+  <p id="simple-modal-description">
+    My Description
+  </p>
 </Modal>
 ```
 

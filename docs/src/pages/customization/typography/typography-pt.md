@@ -2,7 +2,7 @@
 
 <p class="description">O tema fornece um conjunto de tamanhos de tipos que funcionam bem juntos e também com a grade de leiaute.</p>
 
-O exemplo a seguir demonstra como alterar os valores padrão da tipografia - nesse caso, a família da fonte. Se você quiser aprender mais sobre tipografia, você pode conferir a seção do [componente tipografia](/components/typography/).
+The following example demonstrates how to change the [default values](/customization/default-theme/?expend-path=$.typography) of the typography in the theme. You can learn more about how to use the [Typography component](/components/typography/) by checking out the dedicated page.
 
 {{"demo": "pages/customization/typography/TypographyTheme.js"}}
 

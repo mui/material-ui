@@ -7,7 +7,7 @@ components: Drawer, SwipeableDrawer
 
 <p class="description">Навигационные панели предназначены для предоставления ссылок на различные части вашего приложения. Боковые панели содержат дополнительную информацию и закрепляются по левую или правую сторону окна браузера.</p>
 
-[Навигационные панели](https://material.io/design/components/navigation-drawer.html) позволяют легко получить доступ к основному функционалу вашего приложения, к примеру перейти в раздел смены аккаунта. Они могут либо находится всегда в открытом состоянии либо контролироватся с помощью навигационного меню.
+[Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. Они могут либо находится всегда в открытом состоянии либо контролироватся с помощью навигационного меню.
 
 [Боковые панели](https://material. io/design/components/sheets-side.html) являются дополнительными элементами, в основном используемыми на планшетах и ПК.
 

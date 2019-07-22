@@ -11,44 +11,44 @@ components: Slider
 
 - 
 
-## Continuous sliders
+## Sliders contínuos
 
-Continuous sliders allow users to select a value along a subjective range.
+Os sliders contínuos permitem que os usuários selecionem um valor ao longo de um intervalo subjetivo.
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-## Discrete sliders
+## Sliders discretos
 
-Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
+Os sliders discretos podem ser ajustados para um valor específico, fazendo referência ao seu indicador de valor. Por ordem de demonstrações:
 
-1. You can generate a mark for each step with `marks={true}`.
-2. You can have custom marks by providing a rich array to the `marks` prop.
-3. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
-4. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
+1. Você pode gerar uma marca para cada etapa com `marks={true}`.
+2. Você pode ter marcas customizadas, fornecendo uma matriz para a propriedade `marks`.
+3. Você pode restringir os valores selecionáveis fornecidos na propriedade `marks` configurando a propriedade `step={null}`.
+4. Você pode forçar o marcador a ficar sempre visível com `valueLabelDisplay="on"`.
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}
 
-## Range sliders
+## Sliders com intervalo
 
 {{"demo": "pages/components/slider/RangeSlider.js"}}
 
 ## Sliders customizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
-## With input field
+## Com campo de entrada
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
 
-## Vertical sliders
+## Sliders verticais
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
 ## Acessibilidade
 
-The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
 
-- The slider, as a whole, has a label (`aria-label` or `aria-labelledby` prop).
-- Each thumb has a user-friendly name for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
+- O slider, como um todo, tem um rótulo (propriedades `aria-label` ou `aria-labelledby`).
+- Cada marcador tem um nome amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.

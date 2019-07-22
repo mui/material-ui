@@ -29,7 +29,7 @@
 
 ### 自定义变量
 
-When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). 可以方便地向样式添加其他变量，以便您可以在任何地方使用它们。 例如：
+当您使用 Material-UI 的主题通过我们的[造型解决方案](/styles/basics/)或[任何其他](/guides/interoperability/#themeprovider)的时候。 可以方便地向样式添加其他变量，以便您可以在任何地方使用它们。 例如：
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
@@ -37,9 +37,9 @@ When using Material-UI's theme with our [styling solution](/styles/basics/) or [
 
 You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
 
-## Nesting the theme
+## 嵌套主题
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+[您可以嵌套](/styles/advanced/#theme-nesting)多个主题提供者。
 
 {{"demo": "pages/customization/themes/ThemeNesting.js"}}
 

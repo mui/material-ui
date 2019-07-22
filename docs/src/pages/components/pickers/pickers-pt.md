@@ -3,9 +3,9 @@ title: Componentes React para Seletor de Data e Seletor de Hora
 components: TextField
 ---
 
-# Seletores
+# Entradas de data/hora
 
-<p class="description">Seletores fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
+<p class="description">Entradas de data/hora (short: seletores) fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
 
 - Em dispositivos móveis, seletores são melhores aplicados quando mostrados em diálogos de confirmação.
 - Para exibição em linha, como em um formulário, considere usar controles compactos, como botões suspensos segmentados.

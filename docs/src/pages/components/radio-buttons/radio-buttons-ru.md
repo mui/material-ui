@@ -36,7 +36,7 @@ Use [radio buttons](https://material.io/design/components/selection-controls.htm
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' } }
+  inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
 

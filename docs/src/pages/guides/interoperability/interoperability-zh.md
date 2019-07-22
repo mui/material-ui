@@ -135,7 +135,7 @@ import { StylesProvider } from '@material-ui/styles';
 </StylesProvider>
 ```
 
-另外一个在 styled-components 中使用 `&&` 字符的方案则是通过重复类名来[增强特征](https://www.styled-components.com/docs/advanced#issues-with-specificity)。 同时您应该避免使用 `!imporant`。
+另外一个在 styled-components 中使用 `&&` 字符的方案则是通过重复类名来[增强特征](https://www.styled-components.com/docs/advanced#issues-with-specificity)。 You should avoid the usage of `!important`.
 
 ### 更深层的元素
 

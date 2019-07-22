@@ -40,6 +40,6 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 ### Tipografia
 
 - Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho de fonte do `<html>` na página de [documentação de tema](/customization/typography/#typography-html-font-size).
-- Set the `theme.typography.body2` style on the `<body>` element.
-- Set the font-weight to "bolder" for the `<b>` and `<strong>` elements. Bolder is one font weight heavier than the parent element (among the available weights of the font).
+- Defina o estilo `theme.typography.body2` no elemento `<body>`.
+- Defina o font-weight como "bolder" para os elementos `<b>` e `<strong>`. Bolder é um font-weight mais pesado que o elemento pai (entre os pesos disponíveis da fonte).
 - O antialiasing de fonte é habilitado para melhorar a exibição da fonte Roboto.

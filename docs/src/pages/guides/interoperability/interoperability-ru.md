@@ -135,7 +135,7 @@ import { StylesProvider } from '@material-ui/styles';
 </StylesProvider>
 ```
 
-Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. You should avoid the usage of `!imporant`.
+Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. You should avoid the usage of `!important`.
 
 ### Deeper elements
 

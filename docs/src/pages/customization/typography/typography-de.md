@@ -2,7 +2,7 @@
 
 <p class="description">Das Theme bietet eine Anzahl von Schriftgrößen, die gut zusammen mit dem Layoutraster funktionieren.</p>
 
-Das folgende Beispiel zeigt, wie die Standardwerte für die Typografie geändert werden können - in diesem Fall die Schriftfamilie. Wenn Sie mehr über Typografie erfahren möchten, können Sie sich über die [Typografie Komponente](/components/typography/) informieren.
+The following example demonstrates how to change the [default values](/customization/default-theme/?expend-path=$.typography) of the typography in the theme. You can learn more about how to use the [Typography component](/components/typography/) by checking out the dedicated page.
 
 {{"demo": "pages/customization/typography/TypographyTheme.js"}}
 

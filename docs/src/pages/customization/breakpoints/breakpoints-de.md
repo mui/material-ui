@@ -65,7 +65,7 @@ Weitere Informationen finden Sie auf der [ useMediaQuery](/components/use-media-
 
 ### withWidth()
 
-> ⚠️ Diese Komponente höherer Ordnung wird ist veraltet und wird durch den [useMediaQuery](/components/use-media-query/) hook ersetzt, wenn die React hooks als stabil freigegeben werden.
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/components/use-media-query/) hook.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';

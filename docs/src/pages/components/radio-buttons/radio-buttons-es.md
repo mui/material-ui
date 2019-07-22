@@ -36,10 +36,10 @@ Cuando no se puede usar una etiqueta, es necesario agregar un atributo directame
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' } }
+  inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
 
 ## Guía
 
-- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxes vs. Botones de selección](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

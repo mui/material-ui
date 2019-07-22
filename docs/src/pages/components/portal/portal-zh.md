@@ -11,7 +11,7 @@ components: Portal
 
 Portal 组件的子节点将被添加到指定的 `容器` 中。
 
-The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components. 在服务端，内容不会被渲染。 You have to wait for the client side hydratation to see the children.
+The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components. 在服务端，内容不会被渲染。 You have to wait for the client-side hydration to see the children.
 
 ## 简单的 Portal 示例
 

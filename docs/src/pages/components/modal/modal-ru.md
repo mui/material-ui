@@ -79,12 +79,12 @@ We create a lot of React elements that will never be mounted. It's wasteful
   aria-labelledby="simple-modal-title"
   aria-describedby="simple-modal-description"
 >
-  <Typography variant="h6" id="modal-title">
+  <h2 id="modal-title">
     My Title
-  </Typography>
-  <Typography variant="subtitle1" id="simple-modal-description">
+  </h2>
+  <p id="simple-modal-description">
     My Description
-  </Typography>
+  </p>
 </Modal>
 ```
 

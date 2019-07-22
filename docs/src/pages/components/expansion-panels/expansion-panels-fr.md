@@ -9,7 +9,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 [Un panneau d'extension](https://material.io/archive/guidelines/components/expansion-panels.html) est un conteneur léger pouvant être autonome ou connecté à une surface plus grande, telle qu'une carte.
 
-> **Remarque:** Les panneaux d'extension ne sont plus décrits dans la documentation Material Design.
+> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
 ## Accessibilité
 
@@ -37,6 +37,6 @@ The content of ExpansionPanels is mounted by default even if the panel is not ex
 
 ## Customized expansion panels
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet sur la [page de documentation de personnalisation](/customization/components/).
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
