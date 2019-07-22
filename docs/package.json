@@ -65,7 +65,7 @@
     "notistack": "^0.8.6",
     "postcss": "^7.0.0",
     "raw-loader": "^1.0.0",
-    "react-autosuggest": "^9.3.2",
+    "react-autosuggest": "^9.4.3",
     "react-docgen": "^5.0.0-beta.1",
     "react-dom": "^16.8.5",
     "react-draggable": "^3.0.5",
