@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { useFakeTimers } from 'sinon';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 
 const options = [
   'Show some love to Material-UI',
@@ -67,15 +67,17 @@ describe('<Menu /> integration', () => {
   function waitForExited(transitionDuration) {
     // transitions can't disappear instantly because of react-transition-group
     // exited is only reached on the next commit
-    //clock.tick(transitionDuration + 1);
+    act(() => {
+      clock.tick(transitionDuration + 1);
+    });
   }
 
   beforeEach(() => {
-    //clock = useFakeTimers();
+    clock = useFakeTimers();
   });
 
   afterEach(() => {
-    //clock.restore();
+    clock.restore();
     cleanup();
   });
 
