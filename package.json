@@ -64,7 +64,7 @@
     "argos-cli": "^0.1.1",
     "aws-sdk": "^2.471.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.0",
+    "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.0",
     "babel-plugin-istanbul": "^5.0.0",
     "babel-plugin-module-resolver": "^3.0.0",
