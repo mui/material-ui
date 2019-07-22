@@ -267,7 +267,7 @@ describe('<Menu /> integration', () => {
     });
   });
 
-  it('closes the menu when Tabbing while the list is active', () => {
+  it.skip('closes the menu when Tabbing while the list is active', () => {
     const { queryByRole, getByLabelText } = render(<SimpleMenu transitionDuration={0} />);
     const button = getByLabelText('Open menu');
 
@@ -283,7 +283,7 @@ describe('<Menu /> integration', () => {
     expect(queryByRole('menu')).to.be.null;
   });
 
-  it.skip('closes the menu when the backdrop is clicked', () => {
+  it('closes the menu when the backdrop is clicked', () => {
     const { queryByRole, getByLabelText } = render(<SimpleMenu transitionDuration={0} />);
     const button = getByLabelText('Open menu');
 
