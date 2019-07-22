@@ -99,7 +99,9 @@ module.exports = function setKarmaConfig(config) {
         'BrowserStack_Chrome',
         'BrowserStack_Firefox',
         'BrowserStack_Safari',
-        'BrowserStack_Edge',
+        // temporarily disabled.
+        // There is a regression in CircleCI or BrowserStack that prevents the tests to complete.
+        // 'BrowserStack_Edge',
       ]),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: Object.assign({}, baseConfig.customLaunchers, {
@@ -124,13 +126,13 @@ module.exports = function setKarmaConfig(config) {
           browser: 'Safari',
           browser_version: '10.1',
         },
-        BrowserStack_Edge: {
-          base: 'BrowserStack',
-          os: 'Windows',
-          os_version: '10',
-          browser: 'Edge',
-          browser_version: '14.0',
-        },
+        // BrowserStack_Edge: {
+        //   base: 'BrowserStack',
+        //   os: 'Windows',
+        //   os_version: '10',
+        //   browser: 'Edge',
+        //   browser_version: '15.0',
+        // },
       }),
     });
   }
