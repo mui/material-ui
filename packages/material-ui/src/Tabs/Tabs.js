@@ -501,7 +501,7 @@ Tabs.propTypes = {
    */
   scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'on', 'off']),
   /**
-   * Properties applied to the tab indicator element.
+   * Props applied to the tab indicator element.
    */
   TabIndicatorProps: PropTypes.object,
   /**

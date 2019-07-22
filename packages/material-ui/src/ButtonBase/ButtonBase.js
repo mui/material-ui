@@ -421,7 +421,7 @@ ButtonBase.propTypes = {
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Properties applied to the `TouchRipple` element.
+   * Props applied to the `TouchRipple` element.
    */
   TouchRippleProps: PropTypes.object,
   /**

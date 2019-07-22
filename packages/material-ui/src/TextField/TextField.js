@@ -210,7 +210,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
+   * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -227,11 +227,11 @@ TextField.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the [`InputLabel`](/api/input-label/) element.
+   * Props applied to the [`InputLabel`](/api/input-label/) element.
    */
   InputLabelProps: PropTypes.object,
   /**
-   * Properties applied to the Input element.
+   * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
    * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
    * component depending on the `variant` prop value.
@@ -298,7 +298,7 @@ TextField.propTypes = {
    */
   select: PropTypes.bool,
   /**
-   * Properties applied to the [`Select`](/api/select/) element.
+   * Props applied to the [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
   /**

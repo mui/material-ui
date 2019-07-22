@@ -218,7 +218,7 @@ Drawer.propTypes = {
    */
   elevation: PropTypes.number,
   /**
-   * Properties applied to the [`Modal`](/api/modal/) element.
+   * Props applied to the [`Modal`](/api/modal/) element.
    */
   ModalProps: PropTypes.object,
   /**
@@ -232,11 +232,11 @@ Drawer.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Properties applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
-   * Properties applied to the [`Slide`](/api/slide/) element.
+   * Props applied to the [`Slide`](/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**

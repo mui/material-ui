@@ -265,7 +265,7 @@ Modal.propTypes = {
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Properties applied to the [`Backdrop`](/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](/api/backdrop/) element.
    */
   BackdropProps: PropTypes.object,
   /**

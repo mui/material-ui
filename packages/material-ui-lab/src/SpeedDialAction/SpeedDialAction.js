@@ -127,7 +127,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
 
 SpeedDialAction.propTypes = {
   /**
-   * Properties applied to the [`Button`](/api/button/) component.
+   * Props applied to the [`Button`](/api/button/) component.
    */
   ButtonProps: PropTypes.object,
   /**

@@ -356,7 +356,7 @@ SelectInput.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -417,7 +417,7 @@ SelectInput.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * Properties applied to the clickable div element.
+   * Props applied to the clickable div element.
    */
   SelectDisplayProps: PropTypes.object,
   /**
