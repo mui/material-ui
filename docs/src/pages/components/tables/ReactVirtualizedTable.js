@@ -152,7 +152,7 @@ for (let i = 0; i < 200; i += 1) {
 
 export default function ReactVirtualizedTable() {
   return (
-    <Paper style={{ height: 400, width: '100%' }}>
+    <Paper style={{ height: 400, flexGrow: 1 }}>
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
