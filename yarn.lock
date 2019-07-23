@@ -8106,7 +8106,7 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jss-plugin-camel-case@10.0.0-alpha.23, jss-plugin-camel-case@^10.0.0-alpha.23:
+jss-plugin-camel-case@10.0.0-alpha.23:
   version "10.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/jss-plugin-camel-case/-/jss-plugin-camel-case-10.0.0-alpha.23.tgz#c4fe7c6f537acfbe617788464a69d89b1e9f10c3"
   integrity sha512-QaXi/t4Efx0BhwbVf6GCcpn/IDAP9cK/GJoWBoAIVM9BAj7RXBU0UifFojRbeDGDtpf5djDWCOMviydYiWYYWg==
@@ -8124,7 +8124,7 @@ jss-plugin-compose@10.0.0-alpha.23:
     jss "10.0.0-alpha.23"
     tiny-warning "^1.0.2"
 
-jss-plugin-default-unit@10.0.0-alpha.23, jss-plugin-default-unit@^10.0.0-alpha.23:
+jss-plugin-default-unit@10.0.0-alpha.23:
   version "10.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/jss-plugin-default-unit/-/jss-plugin-default-unit-10.0.0-alpha.23.tgz#826b8d9e7d35af86331279acd9c2d3647aaf0365"
   integrity sha512-XE4CcrQMF2rI6TL+/bJUDVlmgIqOax8uCPLZxZnqUFTbH0cM9f66OhRIe51yECfAb1nAiHalZtkUv2kfycLVjQ==
@@ -8149,7 +8149,7 @@ jss-plugin-extend@10.0.0-alpha.23:
     jss "10.0.0-alpha.23"
     tiny-warning "^1.0.2"
 
-jss-plugin-global@10.0.0-alpha.23, jss-plugin-global@^10.0.0-alpha.23:
+jss-plugin-global@10.0.0-alpha.23:
   version "10.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/jss-plugin-global/-/jss-plugin-global-10.0.0-alpha.23.tgz#b8343c313c31e4a55310a446b1ffe3f83b5dc5af"
   integrity sha512-uaoO4yp24dtvKiMd8fLzy2Of3rDSzA9e1y8mHw4vNDTPDSF39pYfpAxxnGnvRadsAVlZGgj4Ro+LveLz8ZUHgw==
@@ -8157,7 +8157,7 @@ jss-plugin-global@10.0.0-alpha.23, jss-plugin-global@^10.0.0-alpha.23:
     "@babel/runtime" "^7.3.1"
     jss "10.0.0-alpha.23"
 
-jss-plugin-nested@10.0.0-alpha.23, jss-plugin-nested@^10.0.0-alpha.23:
+jss-plugin-nested@10.0.0-alpha.23:
   version "10.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/jss-plugin-nested/-/jss-plugin-nested-10.0.0-alpha.23.tgz#43735395cabc7252398ffa9efa3c7234aea15f06"
   integrity sha512-xHoBBUz9U8INvizthl0k9u79z+ObzY0HvzPy7+BKxySQzHSTLG40iRYizJo7Antq7uH8i8uI/5RgS/7dy+YVSQ==
@@ -8166,7 +8166,7 @@ jss-plugin-nested@10.0.0-alpha.23, jss-plugin-nested@^10.0.0-alpha.23:
     jss "10.0.0-alpha.23"
     tiny-warning "^1.0.2"
 
-jss-plugin-props-sort@10.0.0-alpha.23, jss-plugin-props-sort@^10.0.0-alpha.23:
+jss-plugin-props-sort@10.0.0-alpha.23:
   version "10.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/jss-plugin-props-sort/-/jss-plugin-props-sort-10.0.0-alpha.23.tgz#8955d6f37c923e1193a9a2cbcba13a85d2428e8c"
   integrity sha512-/h6epoQ/ta61e6rG3/Pq47qPlg9YX5t2rSKJBLzaASEe/KfxjVvnbJKC8tE27lG6TjwbeWpKONuJfZxjWKLnDg==
@@ -8174,7 +8174,7 @@ jss-plugin-props-sort@10.0.0-alpha.23, jss-plugin-props-sort@^10.0.0-alpha.23:
     "@babel/runtime" "^7.3.1"
     jss "10.0.0-alpha.23"
 
-jss-plugin-rule-value-function@10.0.0-alpha.23, jss-plugin-rule-value-function@^10.0.0-alpha.23:
+jss-plugin-rule-value-function@10.0.0-alpha.23:
   version "10.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/jss-plugin-rule-value-function/-/jss-plugin-rule-value-function-10.0.0-alpha.23.tgz#3dab866811005761cbae06a2bc2bc0b1c99f3fb4"
   integrity sha512-N0g7x6RzeEj+GI5303JOUTyo5x7/F+0SRJv3R0lAUSS782mZipcvpFzHlEz3q5g+0t/bhbOLT6i0RYAhN3IW7g==
@@ -8200,7 +8200,7 @@ jss-plugin-template@10.0.0-alpha.23, jss-plugin-template@^10.0.0-alpha.23:
     jss "10.0.0-alpha.23"
     tiny-warning "^1.0.2"
 
-jss-plugin-vendor-prefixer@10.0.0-alpha.23, jss-plugin-vendor-prefixer@^10.0.0-alpha.23:
+jss-plugin-vendor-prefixer@10.0.0-alpha.23:
   version "10.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/jss-plugin-vendor-prefixer/-/jss-plugin-vendor-prefixer-10.0.0-alpha.23.tgz#93a8026f260666c679074590fd4191862fabb64d"
   integrity sha512-WtTXR+H1tGGhmEP3kqDawxnV1tbXboxtJ93A1O9p+7OLseafIaQoPkMPKEh5a+P4jzETIqmQoJJoG5KmT/Tgsg==
@@ -8236,7 +8236,7 @@ jss-rtl@^0.2.1:
   dependencies:
     rtl-css-js "^1.8.0"
 
-jss@10.0.0-alpha.23, jss@^10.0.0-alpha.23:
+jss@10.0.0-alpha.23:
   version "10.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/jss/-/jss-10.0.0-alpha.23.tgz#8a866cc49513b1558b1a2c0504a4b592079c0ff8"
   integrity sha512-r3fg6nrNdqxhaE4s3ZkyEmpVTb2UUmSu0uhKrvfSAy+N45MmlLmhgyFFaUyJOvFJzm69XYXM2Q62VhGccV6qMA==
