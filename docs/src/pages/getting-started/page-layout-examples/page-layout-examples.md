@@ -19,3 +19,13 @@ If while using these examples you make changes or enhancements that could improv
 developer experience, or you would like to contribute an additional example,
 please consider creating a [pull request on GitHub](https://github.com/mui-org/material-ui/pulls).
 
+So far we have demos for:
+
+- A dashboard
+- A Sign In page
+- A Sign Up page
+- A blog page
+- A checkout flow
+- An album page
+- A pricing page
+- A sticky footer page
