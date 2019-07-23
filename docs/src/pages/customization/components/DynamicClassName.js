@@ -22,40 +22,34 @@ const styles = {
   },
 };
 
-class DynamicClassName extends React.Component {
-  state = {
-    color: 'default',
-  };
+function DynamicClassName(props) {
+  const [color, setColor] = React.useState('default');
 
-  handleChange = event => {
-    this.setState({ color: event.target.checked ? 'blue' : 'default' });
-  };
+  const handleChange = event => setColor(event.target.checked ? 'blue' : 'default');
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <React.Fragment>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={this.state.color === 'blue'}
-              onChange={this.handleChange}
-              color="primary"
-              value="dynamic-class-name"
-            />
-          }
-          label="Blue"
-        />
-        <Button
-          className={clsx(classes.button, {
-            [classes.buttonBlue]: this.state.color === 'blue',
-          })}
-        >
-          {'Class name branch'}
-        </Button>
-      </React.Fragment>
-    );
-  }
+  const { classes } = props;
+  return (
+    <React.Fragment>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={color === 'blue'}
+            onChange={handleChange}
+            color="primary"
+            value="dynamic-class-name"
+          />
+        }
+        label="Blue"
+      />
+      <Button
+        className={clsx(classes.button, {
+          [classes.buttonBlue]: color === 'blue',
+        })}
+      >
+        {'Class name branch'}
+      </Button>
+    </React.Fragment>
+  );
 }
 
 DynamicClassName.propTypes = {

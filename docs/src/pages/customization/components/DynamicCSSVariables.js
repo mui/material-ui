@@ -17,51 +17,45 @@ const styles = {
   },
 };
 
-class DynamicCSSVariables extends React.Component {
-  state = {
-    color: 'default',
-  };
+function DynamicCSSVariables(props) {
+  const [color, setColor] = React.useState('default');
 
-  handleChange = event => {
-    this.setState({ color: event.target.checked ? 'blue' : 'default' });
-  };
+  const handleChange = event => setColor(event.target.checked ? 'blue' : 'default');
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <React.Fragment>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={this.state.color === 'blue'}
-              onChange={this.handleChange}
-              color="primary"
-              value="dynamic-class-name"
-            />
-          }
-          label="Blue"
-        />
-        <Button
-          className={classes.button}
-          style={
-            this.state.color === 'blue'
-              ? {
-                  '--background-start': '#2196F3',
-                  '--background-end': '#21CBF3',
-                  '--box-shadow': 'rgba(33, 203, 243, .3)',
-                }
-              : {
-                  '--background-start': '#FE6B8B',
-                  '--background-end': '#FF8E53',
-                  '--box-shadow': 'rgba(255, 105, 135, .3)',
-                }
-          }
-        >
-          {'CSS variables'}
-        </Button>
-      </React.Fragment>
-    );
-  }
+  const { classes } = props;
+  return (
+    <React.Fragment>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={color === 'blue'}
+            onChange={handleChange}
+            color="primary"
+            value="dynamic-class-name"
+          />
+        }
+        label="Blue"
+      />
+      <Button
+        className={classes.button}
+        style={
+          color === 'blue'
+            ? {
+                '--background-start': '#2196F3',
+                '--background-end': '#21CBF3',
+                '--box-shadow': 'rgba(33, 203, 243, .3)',
+              }
+            : {
+                '--background-start': '#FE6B8B',
+                '--background-end': '#FF8E53',
+                '--box-shadow': 'rgba(255, 105, 135, .3)',
+              }
+        }
+      >
+        {'CSS variables'}
+      </Button>
+    </React.Fragment>
+  );
 }
 
 DynamicCSSVariables.propTypes = {
