@@ -19,38 +19,34 @@ function TransitionDown(props) {
   return <Slide {...props} direction="down" />;
 }
 
-class DirectionSnackbar extends React.Component {
-  state = {
-    open: false,
-  };
+function DirectionSnackbar() {
+  const [open, setOpen] = React.useState(false);
+  const [transition, setTransition] = React.useState(undefined);
 
-  handleClick = Transition => () => {
-    this.setState({ open: true, Transition });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    return (
-      <div>
-        <Button onClick={this.handleClick(TransitionLeft)}>Right</Button>
-        <Button onClick={this.handleClick(TransitionUp)}>Up</Button>
-        <Button onClick={this.handleClick(TransitionRight)}>Left</Button>
-        <Button onClick={this.handleClick(TransitionDown)}>Down</Button>
-        <Snackbar
-          open={this.state.open}
-          onClose={this.handleClose}
-          TransitionComponent={this.state.Transition}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">I love snacks</span>}
-        />
-      </div>
-    );
+  const handleClick = Transition => () => {
+    setOpen(true);
+    setTransition(Transition);
   }
+
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <Button onClick={handleClick(TransitionLeft)}>Right</Button>
+      <Button onClick={handleClick(TransitionUp)}>Up</Button>
+      <Button onClick={handleClick(TransitionRight)}>Left</Button>
+      <Button onClick={handleClick(TransitionDown)}>Down</Button>
+      <Snackbar
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={transition}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id="message-id">I love snacks</span>}
+      />
+    </div>
+  );
 }
 
 export default DirectionSnackbar;
