@@ -88,6 +88,12 @@ jobs:
       - checkout
       - install_js
       - run:
+          name: Generate PropTypes
+          command: yarn proptypes --disable-cache
+      - run:
+          name: '`yarn proptypes` changes committed?'
+          command: git diff --exit-code
+      - run:
           name: Can we generate the documentation?
           command: yarn docs:api
       - run:
