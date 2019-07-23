@@ -95,9 +95,6 @@ export default function ButtonSizes() {
         </Fab>
       </div>
       <div>
-        <IconButton aria-label="Delete" className={classes.margin} size="small">
-          <ArrowDownwardIcon fontSize="inherit" />
-        </IconButton>
         <IconButton aria-label="Delete" className={classes.margin}>
           <DeleteIcon fontSize="small" />
         </IconButton>
