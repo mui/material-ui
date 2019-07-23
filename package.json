@@ -43,13 +43,13 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.5.4",
     "@babel/node": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.2.1",
-    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/plugin-transform-object-assign": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
+    "@babel/plugin-transform-runtime": "~7.4.4",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@testing-library/react": "^8.0.2",
@@ -133,6 +133,12 @@
     "yarn-deduplicate": "^1.1.1"
   },
   "resolutions": {
+    "**/@babel/core": "^7.5.4",
+    "**/@babel/plugin-proposal-class-properties": "^7.5.5",
+    "**/@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "**/@babel/plugin-transform-runtime": "~7.4.4",
+    "**/@babel/preset-env": "^7.5.5",
+    "**/@babel/preset-react": "^7.0.0",
     "**/hoist-non-react-statics": "^3.2.1"
   },
   "nyc": {
