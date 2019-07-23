@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = {
+export const styles = {
   /* Styles applied to the root component. */
   root: {
     padding: 0,
