@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/merceyz/typescript-to-proptypes/compare/v1.2.0...v1.2.1) (2019-07-23)
+
+### Bug Fixes
+
+- **parser:** handle single line comments ([0025d53](https://github.com/merceyz/typescript-to-proptypes/commit/0025d53))
+
 ## [1.2.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.1.0...v1.2.0) (2019-07-23)
 
 ### Bug Fixes
