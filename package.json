@@ -51,7 +51,7 @@
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^7.5.5",
     "@testing-library/react": "^8.0.5",
     "@types/chai": "^4.1.7",
     "@types/chai-dom": "^0.0.7",
