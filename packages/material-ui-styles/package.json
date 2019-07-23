@@ -38,7 +38,7 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.2.0",
+    "@babel/runtime": "^7.4.4",
     "@emotion/hash": "^0.7.1",
     "@material-ui/types": "^4.1.1",
     "@material-ui/utils": "^4.1.0",
