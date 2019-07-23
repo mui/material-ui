@@ -32,6 +32,7 @@ const blacklistSuite = [
   'docs-discover-more-languages',
 
   // Needs interaction
+  'docs-components-click-away-listener',
   'docs-components-dialogs',
   'docs-components-menus',
   'docs-components-tooltips',
@@ -62,7 +63,7 @@ const blacklistFilename = [
   'docs-components-steppers/SwipeableTextMobileStepper.png', // external img
   'docs-components-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
-  'docs-customization-themes/ResponsiveFontSizesChart.png', // Chart
+  'docs-customization-typography/ResponsiveFontSizesChart.png', // Chart
 
   // Already tested once assembled
   'docs-getting-started-page-layout-examples-dashboard/Chart.png',
