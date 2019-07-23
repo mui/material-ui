@@ -26,9 +26,30 @@ import TreeNode from '@material-ui/lab/TreeNode';
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The tree node label. |
 | <span class="prop-name required">nodeId&nbsp;*</span> | <span class="prop-type">string</span> |  | The id of the node. |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
 Any other properties supplied will be provided to the root element (native element).
+
+## CSS
+
+You can override all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">group</span> | Styles applied to the `role="group"` element.
+| <span class="prop-name">content</span> | Styles applied to the tree node content.
+| <span class="prop-name">iconContainer</span> | Styles applied to the tree node icon and collapse/expand icon.
+| <span class="prop-name">label</span> | Styles applied to the label element.
+
+Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TreeNode/TreeNode.js)
+for more detail.
+
+If using the `overrides` [key of the theme](/customization/themes/#css),
+you need to use the following style sheet name: `MuiTreeNode`.
 
 ## Notes
 
