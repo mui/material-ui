@@ -115,7 +115,7 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "rimraf": "^2.6.2",
-    "rollup": "^1.12.4",
+    "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.0.0-beta.8",
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-globals": "^1.4.0",
