@@ -55,6 +55,9 @@ const blacklistSuite = [
   'docs-versions',
   'docs-layouts',
   'docs-customization-color',
+
+  // low value
+  'docs-components-container',
 ];
 
 const blacklistFilename = [
