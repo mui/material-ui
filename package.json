@@ -82,7 +82,7 @@
     "danger": "^7.0.12",
     "dtslint": "^0.8.0",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-prettier": "^6.0.0",
