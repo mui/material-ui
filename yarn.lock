@@ -2057,10 +2057,10 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
-"@types/jsdom@^12.2.3":
-  version "12.2.3"
-  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-12.2.3.tgz#e5f037579d1bde5b6e52b9b74cbcb924eca9a4c6"
-  integrity sha512-CxYWGFsBs0VZ/lU9zxfWk7zYfOlQQuSs5yzk34KW/vQQJGE8OGOYxJnqj9kGHE1SBZGVJvhXs1TafIpZL8RvXw==
+"@types/jsdom@^12.2.4":
+  version "12.2.4"
+  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-12.2.4.tgz#845cd4d43f95b8406d9b724ec30c03edadcd9528"
+  integrity sha512-q+De3S/Ri6U9uPx89YA1XuC+QIBgndIfvBaaJG0pRT8Oqa75k4Mr7G9CRZjIvlbLGIukO/31DFGFJYlQBmXf/A==
   dependencies:
     "@types/node" "*"
     "@types/tough-cookie" "*"
