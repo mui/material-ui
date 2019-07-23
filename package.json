@@ -44,7 +44,7 @@
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
-    "@babel/node": "^7.2.2",
+    "@babel/node": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/plugin-transform-object-assign": "^7.2.0",
