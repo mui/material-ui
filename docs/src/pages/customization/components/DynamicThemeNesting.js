@@ -13,7 +13,7 @@ function DynamicThemeNesting() {
 
   const handleChange = event => {
     setColor(event.target.checked ? 'blue' : 'default');
-  }
+  };
 
   return (
     <React.Fragment>

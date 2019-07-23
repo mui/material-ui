@@ -26,7 +26,7 @@ function DirectionSnackbar() {
   const handleClick = Transition => () => {
     setOpen(true);
     setTransition(Transition);
-  }
+  };
 
   const handleClose = () => setOpen(false);
 
