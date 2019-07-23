@@ -88,7 +88,7 @@
     "redux-logger": "^3.0.6",
     "styled-components": "^4.3.2",
     "typescript-to-proptypes": "^1.1.0",
-    "url-loader": "^1.0.1",
+    "url-loader": "^2.1.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
