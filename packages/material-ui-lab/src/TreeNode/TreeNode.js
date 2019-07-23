@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
-const styles = {
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
