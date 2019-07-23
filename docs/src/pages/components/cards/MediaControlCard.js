@@ -57,7 +57,7 @@ export default function MediaControlCard() {
           <IconButton aria-label="play/pause">
             <PlayArrowIcon className={classes.playIcon} />
           </IconButton>
-          <IconButton aria-label="Next">
+          <IconButton aria-label="next">
             {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
           </IconButton>
         </div>

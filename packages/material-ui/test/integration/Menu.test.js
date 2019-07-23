@@ -80,7 +80,7 @@ describe('<Menu /> integration', () => {
 
   it('should focus the list on open', () => {
     const { getByLabelText, getByRole } = render(<SimpleMenu transitionDuration={0} keepMounted />);
-    const button = getByLabelText('Open menu');
+    const button = getByLabelText('open menu');
     const menu = getByRole('menu');
 
     expect(menu).to.not.be.focused;
@@ -94,7 +94,7 @@ describe('<Menu /> integration', () => {
     const { getAllByRole, queryByRole, getByLabelText } = render(
       <SimpleMenu transitionDuration={0} />,
     );
-    const button = getByLabelText('Open menu');
+    const button = getByLabelText('open menu');
 
     expect(queryByRole('menu')).to.be.null;
 
@@ -122,7 +122,7 @@ describe('<Menu /> integration', () => {
     const { getAllByRole, getByLabelText } = render(
       <SimpleMenu transitionDuration={0} selectedIndex={2} />,
     );
-    const button = getByLabelText('Open menu');
+    const button = getByLabelText('open menu');
 
     expect(document.body).to.be.focused;
 
@@ -262,7 +262,7 @@ describe('<Menu /> integration', () => {
 
   it('closes the menu when Tabbing while the list is active', async () => {
     const { queryByRole, getByLabelText } = render(<SimpleMenu transitionDuration={0} />);
-    const button = getByLabelText('Open menu');
+    const button = getByLabelText('open menu');
 
     expect(document.body).to.be.focused;
 
@@ -278,7 +278,7 @@ describe('<Menu /> integration', () => {
 
   it('closes the menu when the backdrop is clicked', async () => {
     const { queryByRole, getByLabelText } = render(<SimpleMenu transitionDuration={0} />);
-    const button = getByLabelText('Open menu');
+    const button = getByLabelText('open menu');
 
     expect(queryByRole('menu')).to.be.null;
 
