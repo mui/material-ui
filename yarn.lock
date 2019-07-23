@@ -6298,10 +6298,10 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-final-form@^4.11.0:
-  version "4.12.0"
-  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.12.0.tgz#1844e2a3bc9789d51115c76a94d0ea6a19e219c0"
-  integrity sha512-z1fSzDNmIBlDjRMaluM3WgDbcwCFpPm7mvopplgXGMRS49MXR+1n//lteLwPURdGQNOZhWm3GwiEJanEHCItww==
+final-form@^4.18.2:
+  version "4.18.2"
+  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.18.2.tgz#3e7447ba36049a747d4becc61eb35e65a90f22a1"
+  integrity sha512-VQx/5x9M4CiC8fG678Dm1IS3mXvBl7ZNIUx5tUZCk00lFImJzQix4KO0+eGtl49sha2bYOxuYn8jRJiq6sazXA==
   dependencies:
     "@babel/runtime" "^7.3.1"
 
