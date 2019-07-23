@@ -114,7 +114,7 @@ module.exports = {
       }),
     });
   },
-  webpackDevMiddleware: config => config,
+  exportTrailingSlash: true,
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   exportPathMap: () => {
@@ -149,11 +149,5 @@ module.exports = {
     }
 
     return map;
-  },
-  onDemandEntries: {
-    // Period (in ms) where the server will keep pages in the buffer
-    maxInactiveAge: 120 * 1e3, // default 25s
-    // Number of pages that should be kept simultaneously without being disposed
-    pagesBufferLength: 3, // default 2
   },
 };

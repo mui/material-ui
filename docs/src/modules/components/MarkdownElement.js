@@ -53,7 +53,7 @@ renderer.link = (href, title, text) => {
   const userLanguage = global.__MARKED_USER_LANGUAGE__;
   let finalHref = href;
 
-  if (userLanguage !== 'en' && finalHref.indexOf('/') === 0) {
+  if (userLanguage !== 'en' && finalHref.indexOf('/') === 0 && finalHref !== '/size-snapshot') {
     finalHref = `/${userLanguage}${finalHref}`;
   }
 
