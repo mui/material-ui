@@ -111,7 +111,7 @@
     "nyc": "^13.0.0",
     "prettier": "^1.8.2",
     "prop-types": "^15.7.2",
-    "puppeteer": "^1.5.0",
+    "puppeteer": "^1.19.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "rimraf": "^2.6.2",
