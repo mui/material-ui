@@ -1,17 +1,29 @@
 import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TreeNode from './TreeNode';
 import TreeView from '../TreeView';
 
 describe('<TreeNode />', () => {
   const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: false });
+  const classes = getClasses(<TreeNode nodeId="one" label="one" />);
 
   afterEach(() => {
     cleanup();
   });
+
+  describeConformance(<TreeNode nodeId="one" label="one" />, () => ({
+    classes,
+    inheritComponent: 'li',
+    mount,
+    refInstanceof: window.HTMLLIElement,
+    skip: ['componentProp'],
+    after: () => mount.cleanUp(),
+  }));
 
   it('should call onClick when clicked', () => {
     const handleClick = spy();
@@ -53,25 +65,6 @@ describe('<TreeNode />', () => {
     fireEvent.keyDown(getByText('test'), { key: 'Enter' });
 
     expect(handleKeyDown.callCount).to.equal(1);
-  });
-
-  describe('console errors', () => {
-    before(() => {
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('should error if not rendered inside `TreeView`', () => {
-      render(<TreeNode nodeId="node1" />);
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.args()[0][0]).to.include(
-        'Material-UI: A `TreeNode` must be rendered inside a `TreeView`.',
-      );
-    });
   });
 
   describe('Accessibility', () => {

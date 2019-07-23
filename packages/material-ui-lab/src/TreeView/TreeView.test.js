@@ -2,15 +2,28 @@ import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import TreeView from './TreeView';
 import TreeNode from '../TreeNode';
 
 describe('<TreeView />', () => {
   const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: false });
+  const classes = getClasses(<TreeView />);
 
   afterEach(() => {
     cleanup();
   });
+
+  describeConformance(<TreeView />, () => ({
+    classes,
+    inheritComponent: 'ul',
+    mount,
+    refInstanceof: window.HTMLUListElement,
+    skip: ['componentProp'],
+    after: () => mount.cleanUp(),
+  }));
 
   describe('onNodeToggle', () => {
     it('should be called when a parent node is clicked', () => {

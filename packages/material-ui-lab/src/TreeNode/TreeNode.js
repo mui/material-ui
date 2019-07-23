@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
@@ -63,7 +62,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     ...other
   } = props;
   const {
-    icons,
+    icons: contextIcons,
     toggle,
     isExpanded,
     isFocusable,
@@ -90,6 +89,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const focusable = isFocusable ? isFocusable(nodeId) : false;
+  const icons = contextIcons || {};
 
   if (icons.defaultExpandIcon && expandable && !expanded) {
     stateIcon = icons.defaultExpandIcon;
@@ -244,11 +244,6 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       nodeRef.current.focus();
     }
   }, [focused]);
-
-  if (!handleFirstChars || !handleNodeMap || !isExpanded || !isFocused || !isFocusable) {
-    warning(false, 'Material-UI: A `TreeNode` must be rendered inside a `TreeView`.');
-    return null;
-  }
 
   return (
     <li

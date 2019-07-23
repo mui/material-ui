@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
 export interface TreeViewProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TreeViewClassKey> {
+  extends StandardProps<React.HTMLAttributes<HTMLUListElement>, TreeViewClassKey> {
   defaultCollapseIcon?: React.ReactNode;
   defaultEndIcon?: React.ReactNode;
   defaultExpandIcon?: React.ReactNode;
