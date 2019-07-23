@@ -91,7 +91,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-mocha": "^6.0.0",
-    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.6.1",
     "expect-puppeteer": "^4.3.0",
     "fs-extra": "^7.0.0",

@@ -487,6 +487,7 @@ SwipeableDrawer.propTypes = {
    */
   PaperProps: PropTypes.shape({
     component: elementTypeAcceptingRef,
+    style: PropTypes.object,
   }),
   /**
    * Properties applied to the swipe area element.
