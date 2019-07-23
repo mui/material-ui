@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { createStyles, makeStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import { AutoSizer, Column, Table, TableCellRenderer, TableHeaderProps } from 'react-virtualized';
@@ -172,18 +172,9 @@ for (let i = 0; i < 200; i += 1) {
   rows.push(createData(i, ...randomSelection));
 }
 
-const useDemoStyles = makeStyles({
-  root: {
-    height: 400,
-    flexGrow: 1,
-  },
-});
-
 export default function ReactVirtualizedTable() {
-  const classes = useDemoStyles();
-
   return (
-    <Paper className={classes.root}>
+    <Paper style={{ height: 400, width: '100%' }}>
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
