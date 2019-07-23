@@ -23,6 +23,12 @@ interface ParserOptions {
     propertyCount: number;
     depth: number;
   }) => boolean | undefined;
+  /**
+   * Control if const declarations should be checked
+   * @default false
+   * @example declare const Component: React.ComponentType<Props>;
+   */
+  checkDeclarations?: boolean;
 }
 
 /**
@@ -61,6 +67,8 @@ export function parseFromProgram(
   program: ts.Program,
   parserOptions: Partial<ParserOptions> = {},
 ) {
+  const { checkDeclarations = false } = parserOptions;
+
   const shouldInclude: ParserOptions['shouldInclude'] = data => {
     if (parserOptions.shouldInclude) {
       const result = parserOptions.shouldInclude(data);
@@ -147,12 +155,18 @@ export function parseFromProgram(
         // x = function y(props: type) { return <div/> }
         // x = react.memo((props:type) { return <div/> })
 
-        if (
-          ts.isVariableDeclaration(variableNode) &&
-          variableNode.name &&
-          variableNode.initializer
-        ) {
-          if (
+        if (ts.isVariableDeclaration(variableNode) && variableNode.name) {
+          const type = checker.getTypeAtLocation(variableNode.name);
+          if (!variableNode.initializer) {
+            if (
+              checkDeclarations &&
+              type.aliasSymbol &&
+              type.aliasTypeArguments &&
+              checker.getFullyQualifiedName(type.aliasSymbol) === 'React.ComponentType'
+            ) {
+              parsePropsType(variableNode.name.getText(), type.aliasTypeArguments[0]);
+            }
+          } else if (
             (ts.isArrowFunction(variableNode.initializer) ||
               ts.isFunctionExpression(variableNode.initializer)) &&
             variableNode.initializer.parameters.length === 1
