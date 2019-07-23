@@ -40,7 +40,7 @@
     "@types/styled-components": "4.1.12",
     "address": "^1.0.3",
     "ast-types": "^0.12.4",
-    "autoprefixer": "^9.0.0",
+    "autoprefixer": "^9.6.1",
     "autosuggest-highlight": "^3.1.1",
     "clean-css": "^4.1.11",
     "clipboard-copy": "^3.0.0",
