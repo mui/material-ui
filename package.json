@@ -121,7 +121,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-size-snapshot": "^0.9.0",
-    "rollup-plugin-terser": "^5.0.0",
+    "rollup-plugin-terser": "^5.1.1",
     "sinon": "^7.0.0",
     "size-limit": "^0.21.0",
     "tslint": "5.14.0",
@@ -139,7 +139,8 @@
     "**/@babel/plugin-transform-runtime": "~7.4.4",
     "**/@babel/preset-env": "^7.5.5",
     "**/@babel/preset-react": "^7.0.0",
-    "**/hoist-non-react-statics": "^3.2.1"
+    "**/hoist-non-react-statics": "^3.2.1",
+    "**/next/terser": "^4.1.2"
   },
   "nyc": {
     "include": [
