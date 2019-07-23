@@ -438,7 +438,12 @@ export function parseFromProgram(
           let commentText = commentNode.comment ? commentNode.comment : '';
           if (commentNode.tags) {
             const tags = commentNode.tags
-              .map(tag => tag.getText().trim())
+              .map(tag =>
+                tag
+                  .getText()
+                  .replace(/\* *$/, '')
+                  .trim(),
+              )
               .reduce((prev, curr) => `${prev}\n${curr}`);
             commentText = commentText ? `${commentText}\n${tags}` : tags;
           }
