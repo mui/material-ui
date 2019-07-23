@@ -90,7 +90,7 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
       }
     }
 
-    return `${jsDoc(node)}${node.name}: ${generate(propType, options)}${
+    return `${jsDoc(node)}"${node.name}": ${generate(propType, options)}${
       isOptional ? '' : '.isRequired'
     },`;
   }
