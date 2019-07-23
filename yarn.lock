@@ -9898,14 +9898,14 @@ normalize-url@^3.0.0, normalize-url@^3.3.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
 
-notistack@^0.8.6:
-  version "0.8.6"
-  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.8.6.tgz#8c24ab5ea2bce7bf93f3e6e61fab168d23d430c7"
-  integrity sha512-WJ4Mmk/Q9oEqOtQLJGI52GL1OglWd+GPpUFFHolw4rNq5qfAtl58WAUqIJk6A0t6Jr13BYl6B+QpJhEYH7lDBA==
+notistack@^0.8.9:
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.8.9.tgz#8c6211a9260f4f1b41b0ebdc8dc43d7bcbf35b97"
+  integrity sha512-nRHQVWUfgHnvnKrjRbRX9f+YAnbyh96yRyO5bEP/FCLVLuTZcJOwUr0GZ7Xr/8wK3+hXa9JYpXUkUhSxj1K8NQ==
   dependencies:
     classnames "^2.2.6"
     hoist-non-react-statics "^3.3.0"
-    prop-types "^15.6.2"
+    prop-types "^15.7.2"
     react-is "^16.8.6"
 
 npm-bundled@^1.0.1:
