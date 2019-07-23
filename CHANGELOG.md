@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.1.0...v1.2.0) (2019-07-23)
+
+### Bug Fixes
+
+- **generator:** multiline comments ([d576597](https://github.com/merceyz/typescript-to-proptypes/commit/d576597))
+- **generator:** sort interface correctly ([f88c5fb](https://github.com/merceyz/typescript-to-proptypes/commit/f88c5fb))
+- **generator:** wrap prop name in quotes ([709a819](https://github.com/merceyz/typescript-to-proptypes/commit/709a819))
+- **parser:** don't modify comments ([95cd63e](https://github.com/merceyz/typescript-to-proptypes/commit/95cd63e))
+- **parser:** fallback to object if element is undefined ([eadaf3f](https://github.com/merceyz/typescript-to-proptypes/commit/eadaf3f))
+- **parser:** handle comments with just tags ([d0b0a82](https://github.com/merceyz/typescript-to-proptypes/commit/d0b0a82))
+- **parser:** handle comments with tags ([ad4dddd](https://github.com/merceyz/typescript-to-proptypes/commit/ad4dddd))
+- **parser:** handle optional any ([30f56ec](https://github.com/merceyz/typescript-to-proptypes/commit/30f56ec))
+- **parser:** handle optional React.ElementType ([c7a87fd](https://github.com/merceyz/typescript-to-proptypes/commit/c7a87fd))
+- **parser:** treat ComponentType as elementType ([53f1e21](https://github.com/merceyz/typescript-to-proptypes/commit/53f1e21))
+- export typescript as ts ([ba90e22](https://github.com/merceyz/typescript-to-proptypes/commit/ba90e22))
+
+### Features
+
+- **generator:** support instanceOf ([6bd563a](https://github.com/merceyz/typescript-to-proptypes/commit/6bd563a))
+- **injector:** control included props ([4f8eaa1](https://github.com/merceyz/typescript-to-proptypes/commit/4f8eaa1))
+- **injector:** remove existing proptypes ([d2a978c](https://github.com/merceyz/typescript-to-proptypes/commit/d2a978c))
+- **parser:** check const declarations of React.ComponentType ([cbd2eb6](https://github.com/merceyz/typescript-to-proptypes/commit/cbd2eb6))
+- **parser:** handle React.Component and Element instanceOf ([570d73b](https://github.com/merceyz/typescript-to-proptypes/commit/570d73b))
+- **parser:** support elementType ([448d5a6](https://github.com/merceyz/typescript-to-proptypes/commit/448d5a6))
+
 ## [1.1.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.0.4...v1.1.0) (2019-07-15)
 
 ### Bug Fixes
