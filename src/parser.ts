@@ -435,14 +435,14 @@ export function parseFromProgram(
       if (comments && comments.length === 1) {
         const commentNode = comments[0];
         if (ts.isJSDoc(commentNode)) {
-          return (
-            commentNode
-              // Full comment text
-              .getText()
-              // Remove markers (/**\n* */)
-              .replace(/(^\/\*\*.*$)|(^ *\*\/)|(^ *\* ?)/gm, '')
-              .trim()
-          );
+          let commentText = commentNode.comment ? commentNode.comment : '';
+          if (commentNode.tags) {
+            const tags = commentNode.tags
+              .map(tag => tag.getText().trim())
+              .reduce((prev, curr) => `${prev}\n${curr}`);
+            commentText = commentText ? `${commentText}\n${tags}` : tags;
+          }
+          return commentText;
         }
       }
     }
