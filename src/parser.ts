@@ -256,16 +256,18 @@ export function parseFromProgram(
       declaration &&
       ts.isPropertySignature(declaration) &&
       declaration.type &&
-      ts.isTypeReferenceNode(declaration.type) &&
-      declaration.type.typeName.getText() === 'React.ElementType'
+      ts.isTypeReferenceNode(declaration.type)
     ) {
-      return t.propTypeNode(
-        symbol.getName(),
-        getDocumentation(symbol),
-        declaration.questionToken
-          ? t.unionNode([t.undefinedNode(), t.elementNode('elementType')])
-          : t.elementNode('elementType'),
-      );
+      const name = declaration.type.typeName.getText();
+      if (name === 'React.ElementType' || name === 'React.ComponentType') {
+        return t.propTypeNode(
+          symbol.getName(),
+          getDocumentation(symbol),
+          declaration.questionToken
+            ? t.unionNode([t.undefinedNode(), t.elementNode('elementType')])
+            : t.elementNode('elementType'),
+        );
+      }
     }
 
     const type = declaration
