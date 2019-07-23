@@ -1573,10 +1573,10 @@
     inquirer "^6.2.0"
     npmlog "^4.1.2"
 
-"@lerna/publish@3.16.2":
-  version "3.16.2"
-  resolved "https://registry.yarnpkg.com/@lerna/publish/-/publish-3.16.2.tgz#c3120f962ac2803f7263355222258c24ea62e99a"
-  integrity sha512-6CZhnzO5goChQPqcBEN+6f6wA5ERBYcKB8RlBlsG38H8f8uYNZM6m34ywy1MLihZQA0z/RWrhYWAf4daF+AUkA==
+"@lerna/publish@3.16.3":
+  version "3.16.3"
+  resolved "https://registry.yarnpkg.com/@lerna/publish/-/publish-3.16.3.tgz#35f199e82cc08931f352ead6b3269d72389e0e48"
+  integrity sha512-FflnKuWG2usrnhfTY4pBg1e99ITCw4RgWCGtySvRT+BlSI6tzhImqfa4TpQsVpIXn88xyYzo9dvND1G73aRI9w==
   dependencies:
     "@evocateur/libnpmaccess" "^3.1.2"
     "@evocateur/npm-registry-fetch" "^4.0.0"
@@ -8668,10 +8668,10 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
-lerna@^3.16.2:
-  version "3.16.2"
-  resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.16.2.tgz#e1c59df2c28348d0b303da666eb36b87649560cb"
-  integrity sha512-El4BJ3/h2Dw1TIMNk/30v6CXZrX85sVANMan5wmAaEGhlKwUGPV4HZLa7trFYCUSYgT4dL4pN15Vv3L48oYX/A==
+lerna@^3.16.3:
+  version "3.16.3"
+  resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.16.3.tgz#c786951ea1e0567fa6b89988ff6283b6f8bf359f"
+  integrity sha512-ThrDjDsLAdEzn5tpD+eLdRL+zGU+A/j6IyIJXLtFA1TOnprm1+3bs2eTrNDFRQ46sFrOF0bWgOHbGN0OtTzxcA==
   dependencies:
     "@lerna/add" "3.16.2"
     "@lerna/bootstrap" "3.16.2"
@@ -8685,7 +8685,7 @@ lerna@^3.16.2:
     "@lerna/init" "3.16.0"
     "@lerna/link" "3.16.2"
     "@lerna/list" "3.16.0"
-    "@lerna/publish" "3.16.2"
+    "@lerna/publish" "3.16.3"
     "@lerna/run" "3.16.0"
     "@lerna/version" "3.16.2"
     import-local "^2.0.0"
