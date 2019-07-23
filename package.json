@@ -42,7 +42,7 @@
     "react-dom": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.0",
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.4",
     "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
