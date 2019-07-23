@@ -81,7 +81,7 @@
     "react-test-renderer": "^16.8.5",
     "react-text-mask": "^5.0.2",
     "react-virtualized": "^9.21.1",
-    "react-window": "^1.7.1",
+    "react-window": "^1.8.5",
     "recast": "^0.18.1",
     "recharts": "^1.6.2",
     "redux": "^4.0.4",
