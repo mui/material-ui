@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.4",
+    "@babel/core": "^7.5.5",
     "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
@@ -133,7 +133,7 @@
     "yarn-deduplicate": "^1.1.1"
   },
   "resolutions": {
-    "**/@babel/core": "^7.5.4",
+    "**/@babel/core": "^7.5.5",
     "**/@babel/plugin-proposal-class-properties": "^7.5.5",
     "**/@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "**/@babel/plugin-transform-runtime": "~7.4.4",
