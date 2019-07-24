@@ -56,7 +56,7 @@ function ConsecutiveSnackbars(props) {
       <Button onClick={handleClick('Message A')}>Show message A</Button>
       <Button onClick={handleClick('Message B')}>Show message B</Button>
       <Snackbar
-        key={messageInfo.key}
+        key={messageInfo ? messageInfo.key : undefined}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
@@ -68,7 +68,7 @@ function ConsecutiveSnackbars(props) {
         ContentProps={{
           'aria-describedby': 'message-id',
         }}
-        message={<span id="message-id">{messageInfo.message}</span>}
+        message={<span id="message-id">{messageInfo ? messageInfo.message : undefined}</span>}
         action={[
           <Button key="undo" color="secondary" size="small" onClick={handleClose}>
             UNDO
