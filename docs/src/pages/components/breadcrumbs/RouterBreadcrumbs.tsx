@@ -15,10 +15,6 @@ import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import { Omit } from '@material-ui/types';
 
-interface RouterBreadcrumbsState {
-  readonly open: boolean;
-}
-
 interface ListItemLinkProps extends LinkProps {
   to: string;
   open?: boolean;
@@ -71,64 +67,58 @@ interface LinkRouterProps extends LinkProps {
 
 const LinkRouter = (props: LinkRouterProps) => <Link {...props} component={RouterLink as any} />;
 
-class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBreadcrumbsState> {
-  state = {
-    open: true,
-  };
+function RouterBreadcrumbs(props: RouterBreadcrumbsProp) {
+  const [open, setOpen] = React.useState(true);
 
-  handleClick = () => {
-    this.setState(state => ({ open: !state.open }));
-  };
+  const handleClick = () => setOpen(!open);
 
-  render() {
-    const { classes } = this.props;
+  const { classes } = props;
 
-    return (
-      <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-        <div className={classes.root}>
-          <Route>
-            {({ location }) => {
-              const pathnames = location.pathname.split('/').filter(x => x);
+  return (
+    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
+      <div className={classes.root}>
+        <Route>
+          {({ location }) => {
+            const pathnames = location.pathname.split('/').filter(x => x);
 
-              return (
-                <Breadcrumbs aria-label="Breadcrumb">
-                  <LinkRouter color="inherit" to="/">
-                    Home
-                  </LinkRouter>
-                  {pathnames.map((value, index) => {
-                    const last = index === pathnames.length - 1;
-                    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+            return (
+              <Breadcrumbs aria-label="Breadcrumb">
+                <LinkRouter color="inherit" to="/">
+                  Home
+                </LinkRouter>
+                {pathnames.map((value, index) => {
+                  const last = index === pathnames.length - 1;
+                  const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
-                    return last ? (
-                      <Typography color="textPrimary" key={to}>
-                        {breadcrumbNameMap[to]}
-                      </Typography>
-                    ) : (
-                      <LinkRouter color="inherit" to={to} key={to}>
-                        {breadcrumbNameMap[to]}
-                      </LinkRouter>
-                    );
-                  })}
-                </Breadcrumbs>
-              );
-            }}
-          </Route>
-          <nav className={classes.lists} aria-label="Mailbox folders">
-            <List>
-              <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
-              <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>
-                <List disablePadding>
-                  <ListItemLink to="/inbox/important" className={classes.nested} />
-                </List>
-              </Collapse>
-              <ListItemLink to="/trash" />
-              <ListItemLink to="/spam" />
-            </List>
-          </nav>
-        </div>
-      </MemoryRouter>
-    );
-  }
+                  return last ? (
+                    <Typography color="textPrimary" key={to}>
+                      {breadcrumbNameMap[to]}
+                    </Typography>
+                  ) : (
+                    <LinkRouter color="inherit" to={to} key={to}>
+                      {breadcrumbNameMap[to]}
+                    </LinkRouter>
+                  );
+                })}
+              </Breadcrumbs>
+            );
+          }}
+        </Route>
+        <nav className={classes.lists} aria-label="Mailbox folders">
+          <List>
+            <ListItemLink to="/inbox" open={open} onClick={handleClick} />
+            <Collapse component="li" in={open} timeout="auto" unmountOnExit>
+              <List disablePadding>
+                <ListItemLink to="/inbox/important" className={classes.nested} />
+              </List>
+            </Collapse>
+            <ListItemLink to="/trash" />
+            <ListItemLink to="/spam" />
+          </List>
+        </nav>
+      </div>
+    </MemoryRouter>
+  );
 }
 
 export default withStyles(styles)(RouterBreadcrumbs);
