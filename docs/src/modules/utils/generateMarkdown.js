@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-foreign-prop-types, no-underscore-dangle */
 
 import { parse as parseDoctrine } from 'doctrine';
-import recast from 'recast';
+import * as recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
 import { Router } from 'next/router';
 import { pageToTitle } from './helpers';

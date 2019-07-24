@@ -39,7 +39,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0"
+    "react-is": "^16.8.6"
   },
   "devDependencies": {},
   "sideEffects": false,

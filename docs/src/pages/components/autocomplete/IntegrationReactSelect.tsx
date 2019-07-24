@@ -9,14 +9,14 @@ import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import CancelIcon from '@material-ui/icons/Cancel';
-import { ValueContainerProps } from 'react-select/lib/components/containers';
-import { ControlProps } from 'react-select/lib/components/Control';
-import { MenuProps, NoticeProps } from 'react-select/lib/components/Menu';
-import { MultiValueProps } from 'react-select/lib/components/MultiValue';
-import { OptionProps } from 'react-select/lib/components/Option';
-import { PlaceholderProps } from 'react-select/lib/components/Placeholder';
-import { SingleValueProps } from 'react-select/lib/components/SingleValue';
-import { ValueType } from 'react-select/lib/types';
+import { ValueContainerProps } from 'react-select/src/components/containers';
+import { ControlProps } from 'react-select/src/components/Control';
+import { MenuProps, NoticeProps } from 'react-select/src/components/Menu';
+import { MultiValueProps } from 'react-select/src/components/MultiValue';
+import { OptionProps } from 'react-select/src/components/Option';
+import { PlaceholderProps } from 'react-select/src/components/Placeholder';
+import { SingleValueProps } from 'react-select/src/components/SingleValue';
+import { ValueType } from 'react-select/src/types';
 import { Omit } from '@material-ui/types';
 
 interface OptionType {

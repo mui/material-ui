@@ -76,8 +76,9 @@ const styles = theme => ({
   },
 });
 
-// eslint-disable-next-line react/prop-types
-function renderNavItems({ pages, ...params }) {
+function renderNavItems(options) {
+  const { pages, ...params } = options;
+
   return (
     <List>
       {pages.reduce(
