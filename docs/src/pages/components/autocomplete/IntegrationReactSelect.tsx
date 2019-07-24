@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
       height: 250,
+      minWidth: 290,
     },
     input: {
       display: 'flex',

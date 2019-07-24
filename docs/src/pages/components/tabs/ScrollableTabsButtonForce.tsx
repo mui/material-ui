@@ -71,7 +71,7 @@ export default function ScrollableTabsButtonForce() {
           scrollButtons="on"
           indicatorColor="primary"
           textColor="primary"
-          aria-label="Scrollable force tabs example"
+          aria-label="scrollable force tabs example"
         >
           <Tab label="Item One" icon={<PhoneIcon />} {...a11yProps(0)} />
           <Tab label="Item Two" icon={<FavoriteIcon />} {...a11yProps(1)} />

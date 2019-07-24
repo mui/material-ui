@@ -20,17 +20,17 @@ export default function FloatingActionButtons() {
 
   return (
     <div>
-      <Fab color="primary" aria-label="Add" className={classes.fab}>
+      <Fab color="primary" aria-label="add" className={classes.fab}>
         <AddIcon />
       </Fab>
-      <Fab color="secondary" aria-label="Edit" className={classes.fab}>
+      <Fab color="secondary" aria-label="edit" className={classes.fab}>
         <Icon>edit_icon</Icon>
       </Fab>
-      <Fab variant="extended" aria-label="Delete" className={classes.fab}>
+      <Fab variant="extended" aria-label="delete" className={classes.fab}>
         <NavigationIcon className={classes.extendedIcon} />
         Extended
       </Fab>
-      <Fab disabled aria-label="Delete" className={classes.fab}>
+      <Fab disabled aria-label="delete" className={classes.fab}>
         <DeleteIcon />
       </Fab>
     </div>

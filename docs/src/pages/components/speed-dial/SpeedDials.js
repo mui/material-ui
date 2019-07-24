@@ -116,7 +116,7 @@ class SpeedDials extends React.Component {
           />
           <FormLabel component="legend">Direction</FormLabel>
           <RadioGroup
-            aria-label="Direction"
+            aria-label="direction"
             name="direction"
             className={classes.radioGroup}
             value={direction}

@@ -203,7 +203,7 @@ describe('<SwitchBase />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       // event.target.check is true
-      expect(handleChange.firstCall.returnValue).to.be.true;
+      expect(handleChange.firstCall.returnValue).to.equal(true);
     });
 
     it('should call onChange when controlled', () => {

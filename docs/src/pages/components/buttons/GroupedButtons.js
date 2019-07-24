@@ -9,14 +9,14 @@ export default function GroupedButtons() {
       <Grid item xs={12} md={6}>
         <Grid container spacing={1} direction="column" alignItems="center">
           <Grid item>
-            <ButtonGroup size="small" aria-label="Small outlined button group">
+            <ButtonGroup size="small" aria-label="small outlined button group">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
             </ButtonGroup>
           </Grid>
           <Grid item>
-            <ButtonGroup color="primary" aria-label="Outlined primary button group">
+            <ButtonGroup color="primary" aria-label="outlined primary button group">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
@@ -26,7 +26,7 @@ export default function GroupedButtons() {
             <ButtonGroup
               color="secondary"
               size="large"
-              aria-label="Large outlined secondary button group"
+              aria-label="large outlined secondary button group"
             >
               <Button>One</Button>
               <Button>Two</Button>
@@ -38,7 +38,7 @@ export default function GroupedButtons() {
       <Grid item xs={12} md={6}>
         <Grid container spacing={1} direction="column" alignItems="center">
           <Grid item>
-            <ButtonGroup variant="contained" size="small" aria-label="Small contained button group">
+            <ButtonGroup variant="contained" size="small" aria-label="small contained button group">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
@@ -48,7 +48,7 @@ export default function GroupedButtons() {
             <ButtonGroup
               variant="contained"
               color="primary"
-              aria-label="Full-width contained primary button group"
+              aria-label="full-width contained primary button group"
             >
               <Button>One</Button>
               <Button>Two</Button>
@@ -60,7 +60,7 @@ export default function GroupedButtons() {
               variant="contained"
               color="secondary"
               size="large"
-              aria-label="Large contained secondary button group"
+              aria-label="large contained secondary button group"
             >
               <Button>One</Button>
               <Button>Two</Button>
@@ -70,7 +70,7 @@ export default function GroupedButtons() {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <ButtonGroup fullWidth aria-label="Full width outlined button group">
+        <ButtonGroup fullWidth aria-label="full width outlined button group">
           <Button>Full</Button>
           <Button>width</Button>
           <Button>ButtonGroup</Button>

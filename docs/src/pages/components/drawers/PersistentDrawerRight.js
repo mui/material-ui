@@ -104,7 +104,7 @@ export default function PersistentDrawerRight() {
           </Typography>
           <IconButton
             color="inherit"
-            aria-label="Open drawer"
+            aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}

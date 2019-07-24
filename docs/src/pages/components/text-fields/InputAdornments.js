@@ -104,7 +104,7 @@ export default function InputAdornments() {
           endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
           aria-describedby="weight-helper-text"
           inputProps={{
-            'aria-label': 'Weight',
+            'aria-label': 'weight',
           }}
         />
         <FormHelperText id="weight-helper-text">Weight</FormHelperText>
@@ -118,7 +118,7 @@ export default function InputAdornments() {
           onChange={handleChange('password')}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton aria-label="Toggle password visibility" onClick={handleClickShowPassword}>
+              <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>

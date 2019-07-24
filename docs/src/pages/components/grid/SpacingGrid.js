@@ -46,7 +46,7 @@ export default function SpacingGrid() {
               <FormLabel>spacing</FormLabel>
               <RadioGroup
                 name="spacing"
-                aria-label="Spacing"
+                aria-label="spacing"
                 value={spacing.toString()}
                 onChange={handleChange}
                 row

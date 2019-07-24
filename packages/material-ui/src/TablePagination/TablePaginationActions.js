@@ -53,7 +53,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
 
 TablePaginationActions.propTypes = {
   /**
-   * Properties applied to the back arrow [`IconButton`](/api/icon-button/) element.
+   * Props applied to the back arrow [`IconButton`](/api/icon-button/) element.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -61,7 +61,7 @@ TablePaginationActions.propTypes = {
    */
   count: PropTypes.number.isRequired,
   /**
-   * Properties applied to the next arrow [`IconButton`](/api/icon-button/) element.
+   * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
   /**

@@ -486,7 +486,7 @@ Tooltip.propTypes = {
     'top',
   ]),
   /**
-   * Properties applied to the [`Popper`](/api/popper/) element.
+   * Props applied to the [`Popper`](/api/popper/) element.
    */
   PopperProps: PropTypes.object,
   /**
@@ -502,7 +502,7 @@ Tooltip.propTypes = {
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };

@@ -475,7 +475,7 @@ describe('<ButtonBase />', () => {
 
       focusVisible(getByRole('button'));
 
-      expect(onFocusVisibleSpy.calledOnce).to.be.true;
+      expect(onFocusVisibleSpy.calledOnce).to.equal(true);
       expect(onFocusVisibleSpy.firstCall.args).to.have.lengthOf(1);
     });
 
@@ -570,9 +570,9 @@ describe('<ButtonBase />', () => {
           key: ' ',
         });
 
-        expect(onClickSpy.calledOnce).to.be.true;
+        expect(onClickSpy.calledOnce).to.equal(true);
         // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.be.true;
+        expect(onClickSpy.returnValues[0]).to.equal(true);
       });
 
       it('prevents default with an anchor and empty href', () => {
@@ -587,9 +587,9 @@ describe('<ButtonBase />', () => {
         button.focus();
         fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
 
-        expect(onClickSpy.calledOnce).to.be.true;
+        expect(onClickSpy.calledOnce).to.equal(true);
         // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.be.true;
+        expect(onClickSpy.returnValues[0]).to.equal(true);
       });
 
       it('should ignore anchors with href', () => {
@@ -606,9 +606,9 @@ describe('<ButtonBase />', () => {
           key: 'Enter',
         });
 
-        expect(onClick.calledOnce).to.be.false;
+        expect(onClick.calledOnce).to.equal(false);
         // defaultPrevented
-        expect(onKeyDown.returnValues[0]).to.be.false;
+        expect(onKeyDown.returnValues[0]).to.equal(false);
       });
     });
   });

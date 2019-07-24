@@ -159,7 +159,7 @@ function Group(props) {
                     <Grid container>
                       {member.github && (
                         <IconButton
-                          aria-label="GitHub"
+                          aria-label="github"
                           component="a"
                           href={`https://github.com/${member.github}`}
                           className={classes.icon}
@@ -169,7 +169,7 @@ function Group(props) {
                       )}
                       {member.twitter && (
                         <IconButton
-                          aria-label="Twitter"
+                          aria-label="twitter"
                           component="a"
                           href={`https://twitter.com/${member.twitter}`}
                           className={classes.icon}

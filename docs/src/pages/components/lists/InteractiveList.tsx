@@ -148,7 +148,7 @@ export default function InteractiveList() {
                     secondary={secondary ? 'Secondary text' : null}
                   />
                   <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="Delete">
+                    <IconButton edge="end" aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                   </ListItemSecondaryAction>

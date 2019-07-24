@@ -20,16 +20,16 @@ export default function IconButtons() {
 
   return (
     <div>
-      <IconButton className={classes.button} aria-label="Delete">
+      <IconButton className={classes.button} aria-label="delete">
         <DeleteIcon />
       </IconButton>
-      <IconButton className={classes.button} aria-label="Delete" disabled color="primary">
+      <IconButton className={classes.button} aria-label="delete" disabled color="primary">
         <DeleteIcon />
       </IconButton>
-      <IconButton color="secondary" className={classes.button} aria-label="Add an alarm">
+      <IconButton color="secondary" className={classes.button} aria-label="add an alarm">
         <Icon>alarm</Icon>
       </IconButton>
-      <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
+      <IconButton color="primary" className={classes.button} aria-label="add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
       <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
@@ -37,7 +37,7 @@ export default function IconButtons() {
         <IconButton
           color="primary"
           className={classes.button}
-          aria-label="Upload picture"
+          aria-label="upload picture"
           component="span"
         >
           <PhotoCamera />

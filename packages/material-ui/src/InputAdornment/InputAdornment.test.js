@@ -195,4 +195,24 @@ describe('<InputAdornment />', () => {
 
     expect(adornment.firstChild).to.have.property('nodeName', 'DIV');
   });
+
+  it('applies a marginDense class inside <FormControl margin="dense" />', () => {
+    const { getByTestId } = render(
+      <FormControl margin="dense">
+        <InputAdornment data-testid="root">$</InputAdornment>
+      </FormControl>,
+    );
+
+    expect(getByTestId('root')).to.have.class(classes.marginDense);
+  });
+
+  it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {
+    const { getByTestId } = render(
+      <FormControl hiddenLabel>
+        <InputAdornment data-testid="root">$</InputAdornment>
+      </FormControl>,
+    );
+
+    expect(getByTestId('root')).to.have.class(classes.hiddenLabel);
+  });
 });
