@@ -214,6 +214,19 @@ export function parseFromProgram(
     }
   }
 
+  function isTypeJSXElementLike(type: ts.Type): boolean {
+    if (type.isUnion()) {
+      return type.types.every(
+        subType => subType.flags & ts.TypeFlags.Null || isTypeJSXElementLike(subType),
+      );
+    } else if (type.symbol) {
+      const name = checker.getFullyQualifiedName(type.symbol);
+      return name === 'global.JSX.Element' || name === 'React.ReactElement';
+    }
+
+    return false;
+  }
+
   function parseFunctionComponent(node: ts.VariableDeclaration | ts.FunctionDeclaration) {
     if (!node.name) {
       return;
@@ -228,14 +241,7 @@ export function parseFromProgram(
       .getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration)
       .getCallSignatures()[0];
 
-    const rawReturnType = signature.getReturnType();
-    if (!rawReturnType.symbol) {
-      return;
-    }
-
-    const returnType = checker.getFullyQualifiedName(rawReturnType.symbol);
-
-    if (returnType !== 'global.JSX.Element' && returnType !== 'React.ReactElement') {
+    if (!isTypeJSXElementLike(signature.getReturnType())) {
       return;
     }
 
