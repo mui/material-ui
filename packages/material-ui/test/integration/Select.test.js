@@ -5,26 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
 
-function SelectAndDialog(props) {
-  const [value, setValue] = React.useState(10);
-  function handleChange(event) {
-    setValue(Number(event.target.value));
-  }
-
-  return (
-    <Dialog open>
-      <Select {...props} value={value} onChange={handleChange}>
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
-      </Select>
-    </Dialog>
-  );
-}
-
 describe('<Select> integration', () => {
   let mount;
 
@@ -38,6 +18,26 @@ describe('<Select> integration', () => {
   });
 
   describe('with Dialog', () => {
+    function SelectAndDialog(props) {
+      const [value, setValue] = React.useState(10);
+      function handleChange(event) {
+        setValue(Number(event.target.value));
+      }
+
+      return (
+        <Dialog open>
+          <Select {...props} value={value} onChange={handleChange}>
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </Dialog>
+      );
+    }
+
     it('should focus the selected item', done => {
       const wrapper = mount(<SelectAndDialog />);
       const portalLayer = document.querySelector('[data-mui-test="Modal"]');
