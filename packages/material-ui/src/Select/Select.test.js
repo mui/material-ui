@@ -19,7 +19,7 @@ describe('<Select />', () => {
     mount = createMount({ strict: false });
   });
 
-  after(() => {
+  afterEach(() => {
     cleanup();
   });
 
@@ -95,6 +95,63 @@ describe('<Select />', () => {
       );
 
       expect(getByRole('button')).to.have.text('Twenty');
+    });
+  });
+
+  describe('accessibility', () => {
+    it('sets aria-expanded="true" when the listbox is displayed', () => {
+      const { getByRole } = render(<Select open value="none" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-expanded', 'true');
+    });
+
+    specify('aria-expanded is not present if the listbox isnt displayed', () => {
+      const { getByRole } = render(<Select value="none" />);
+
+      expect(getByRole('button')).not.to.have.attribute('aria-expanded');
+    });
+
+    it('indicates that activating the button displays a listbox', () => {
+      const { getByRole } = render(<Select value="none" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-haspopup', 'listbox');
+    });
+
+    it('renders an element with listbox behavior', () => {
+      const { getByRole } = render(<Select open value="none" />);
+
+      expect(getByRole('listbox')).to.be.visible;
+    });
+
+    specify('the listbox is focusable', () => {
+      const { getByRole } = render(<Select open value="none" />);
+
+      getByRole('listbox').focus();
+      expect(getByRole('listbox')).to.be.focused;
+    });
+
+    it('identifies each selectable element containing an option', () => {
+      const { getAllByRole } = render(
+        <Select open value="none">
+          <MenuItem value="1">First</MenuItem>
+          <MenuItem value="2">Second</MenuItem>
+        </Select>,
+      );
+
+      const options = getAllByRole('option');
+      expect(options[0]).to.have.text('First');
+      expect(options[1]).to.have.text('Second');
+    });
+
+    it('indicates the selected option', () => {
+      const { getAllByRole } = render(
+        <Select open value="2">
+          <MenuItem value="1">First</MenuItem>
+          <MenuItem value="2">Second</MenuItem>
+        </Select>,
+      );
+
+      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
     });
   });
 });
