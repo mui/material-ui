@@ -85,8 +85,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   } = props;
 
   const theme = useTheme();
-  const [exited, setExited] = React.useState(!open);
-  const [hasEnteredTransition, setEnteredTransition] = React.useState(false);
+  const [exited, setExited] = React.useState(true);
   const modal = React.useRef({});
   const mountNodeRef = React.useRef(null);
   const modalRef = React.useRef(null);
@@ -154,13 +153,12 @@ const Modal = React.forwardRef(function Modal(props, ref) {
     [manager],
   );
 
-  if (!keepMounted && !open && (!hasTransition || exited || !hasEnteredTransition)) {
+  if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
   }
 
   const handleEnter = () => {
     setExited(false);
-    setEnteredTransition(true);
   };
 
   const handleExited = () => {

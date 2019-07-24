@@ -68,7 +68,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   }, [handlePopperRef]);
   React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
 
-  const [exited, setExited] = React.useState(!open);
+  const [exited, setExited] = React.useState(true);
 
   const rtlPlacement = flipPlacement(initialPlacement);
   /**
