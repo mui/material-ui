@@ -347,7 +347,7 @@ Dialog.propTypes = {
    */
   PaperComponent: PropTypes.elementType,
   /**
-   * Properties applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
@@ -367,7 +367,7 @@ Dialog.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };

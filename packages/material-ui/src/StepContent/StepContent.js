@@ -124,7 +124,7 @@ StepContent.propTypes = {
     PropTypes.oneOf(['auto']),
   ]),
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };

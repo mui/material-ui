@@ -134,7 +134,7 @@ export default function Dashboard() {
           <IconButton
             edge="start"
             color="inherit"
-            aria-label="Open drawer"
+            aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >

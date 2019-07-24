@@ -38,7 +38,7 @@ export default function LongMenu() {
   return (
     <div>
       <IconButton
-        aria-label="More"
+        aria-label="more"
         aria-controls="long-menu"
         aria-haspopup="true"
         onClick={handleClick}

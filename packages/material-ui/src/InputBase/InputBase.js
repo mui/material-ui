@@ -122,7 +122,7 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element if `select={true}`. */
     inputSelect: {
-      paddingRight: 32,
+      paddingRight: 24,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {

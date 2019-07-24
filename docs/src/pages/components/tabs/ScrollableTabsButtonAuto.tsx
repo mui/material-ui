@@ -64,7 +64,7 @@ export default function ScrollableTabsButtonAuto() {
           textColor="primary"
           variant="scrollable"
           scrollButtons="auto"
-          aria-label="Scrollable auto tabs example"
+          aria-label="scrollable auto tabs example"
         >
           <Tab label="Item One" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />

@@ -48,7 +48,7 @@ export default function SimpleListMenu() {
           button
           aria-haspopup="true"
           aria-controls="lock-menu"
-          aria-label="When device is locked"
+          aria-label="when device is locked"
           onClick={handleClickListItem}
         >
           <ListItemText primary="When device is locked" secondary={options[selectedIndex]} />

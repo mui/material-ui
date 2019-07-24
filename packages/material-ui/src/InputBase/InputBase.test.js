@@ -104,7 +104,7 @@ describe('<InputBase />', () => {
       act(() => {
         getByRole('textbox').focus();
       });
-      expect(handleFocus.called).to.be.false;
+      expect(handleFocus.called).to.equal(false);
     });
   });
 

@@ -65,7 +65,7 @@ function HomeQuickWord(props) {
           data-ga-event-label={backer.alt}
           href={backer.href}
           target="_blank"
-          rel="noopener"
+          rel="noopener nofollow"
         >
           {backer.title}
         </Link>

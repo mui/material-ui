@@ -261,7 +261,7 @@ ListItem.propTypes = {
    */
   ContainerComponent: PropTypes.elementType,
   /**
-   * Properties applied to the container component if used.
+   * Props applied to the container component if used.
    */
   ContainerProps: PropTypes.object,
   /**

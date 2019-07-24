@@ -94,7 +94,7 @@ class ConsecutiveSnackbars extends React.Component<Props, State> {
             </Button>,
             <IconButton
               key="close"
-              aria-label="Close"
+              aria-label="close"
               color="inherit"
               className={classes.close}
               onClick={this.handleClose}

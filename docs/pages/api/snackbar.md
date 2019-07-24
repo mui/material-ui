@@ -23,8 +23,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 | <span class="prop-name">autoHideDuration</span> | <span class="prop-type">number</span> |  | The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value. |
 | <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | Replace the `SnackbarContent` component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">ClickAwayListenerProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `ClickAwayListener` element. |
-| <span class="prop-name">ContentProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element. |
+| <span class="prop-name">ClickAwayListenerProps</span> | <span class="prop-type">object</span> |  | Props applied to the `ClickAwayListener` element. |
+| <span class="prop-name">ContentProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`SnackbarContent`](/api/snackbar-content/) element. |
 | <span class="prop-name">disableWindowBlurListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the `autoHideDuration` timer will expire even if the window is not focused. |
 | <span class="prop-name">key</span> | <span class="prop-type">any</span> |  | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key prop to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | <span class="prop-name">message</span> | <span class="prop-type">node</span> |  | The message to display. |
@@ -39,7 +39,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 | <span class="prop-name">resumeHideDuration</span> | <span class="prop-type">number</span> |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` prop isn't specified, it does nothing. If `autoHideDuration` prop is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
-| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `Transition` element. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the `Transition` element. |
 
 The `ref` is forwarded to the root element.
 

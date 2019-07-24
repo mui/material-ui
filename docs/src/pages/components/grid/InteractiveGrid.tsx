@@ -80,7 +80,7 @@ export default function InteractiveGrid() {
                 <RadioGroup
                   row
                   name="direction"
-                  aria-label="Direction"
+                  aria-label="direction"
                   value={direction}
                   onChange={(e, value) => setDirection(value as GridDirection)}
                 >
@@ -101,7 +101,7 @@ export default function InteractiveGrid() {
                 <RadioGroup
                   row
                   name="justify"
-                  aria-label="Justify"
+                  aria-label="justify"
                   value={justify}
                   onChange={(e, value) => setJustify(value as GridJustification)}
                 >
@@ -124,7 +124,7 @@ export default function InteractiveGrid() {
                 <RadioGroup
                   row
                   name="alignItems"
-                  aria-label="Align items"
+                  aria-label="align items"
                   value={alignItems}
                   onChange={(e, value) => setAlignItems(value as GridItemsAlignment)}
                 >

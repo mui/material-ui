@@ -29,7 +29,7 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">BackdropComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">SimpleBackdrop</span> | A backdrop component. This prop enables custom backdrop rendering. |
-| <span class="prop-name">BackdropProps</span> | <span class="prop-type">object</span> |  | Properties applied to the [`Backdrop`](/api/backdrop/) element. |
+| <span class="prop-name">BackdropProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Backdrop`](/api/backdrop/) element. |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | A single child content element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">closeAfterTransition</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | When set to true the Modal waits until a nested Transition is completed before closing. |
 | <span class="prop-name">container</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br></span> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. |

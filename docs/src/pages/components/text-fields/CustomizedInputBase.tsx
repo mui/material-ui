@@ -36,7 +36,7 @@ export default function CustomizedInputBase() {
 
   return (
     <Paper className={classes.root}>
-      <IconButton className={classes.iconButton} aria-label="Menu">
+      <IconButton className={classes.iconButton} aria-label="menu">
         <MenuIcon />
       </IconButton>
       <InputBase
@@ -44,11 +44,11 @@ export default function CustomizedInputBase() {
         placeholder="Search Google Maps"
         inputProps={{ 'aria-label': 'Search Google Maps' }}
       />
-      <IconButton className={classes.iconButton} aria-label="Search">
+      <IconButton className={classes.iconButton} aria-label="search">
         <SearchIcon />
       </IconButton>
       <Divider className={classes.divider} />
-      <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
+      <IconButton color="primary" className={classes.iconButton} aria-label="directions">
         <DirectionsIcon />
       </IconButton>
     </Paper>
