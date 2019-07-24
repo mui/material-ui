@@ -108,7 +108,7 @@
     "karma-webpack": "^4.0.2",
     "lerna": "^3.16.4",
     "mocha": "^6.2.0",
-    "nyc": "^13.0.0",
+    "nyc": "^14.1.1",
     "prettier": "^1.8.2",
     "prop-types": "^15.7.2",
     "puppeteer": "^1.19.0",
