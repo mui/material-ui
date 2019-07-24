@@ -222,6 +222,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     return React.cloneElement(child, {
+      'aria-selected': selected ? 'true' : undefined,
       onClick: handleItemClick(child),
       role: 'option',
       selected,
@@ -264,11 +265,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         )}
         ref={displayRef}
         data-mui-test="SelectDisplay"
-        aria-pressed={open ? 'true' : 'false'}
         tabIndex={tabIndex}
         role="button"
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="listbox"
         aria-owns={open ? `menu-${name || ''}` : undefined}
-        aria-haspopup="true"
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
         onClick={disabled || readOnly ? null : handleClick}
