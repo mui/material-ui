@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
@@ -42,20 +42,21 @@ function ListItemLink(props: Omit<ListItemLinkProps, 'ref'>) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 360,
-  },
-  lists: {
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(1),
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: 360,
+    },
+    lists: {
+      backgroundColor: theme.palette.background.paper,
+      marginTop: theme.spacing(1),
+    },
+    nested: {
+      paddingLeft: theme.spacing(4),
+    },
+  }));
 
 interface LinkRouterProps extends LinkProps {
   to: string;
@@ -92,10 +93,10 @@ export default function RouterBreadcrumbs() {
                       {breadcrumbNameMap[to]}
                     </Typography>
                   ) : (
-                    <LinkRouter color="inherit" to={to} key={to}>
-                      {breadcrumbNameMap[to]}
-                    </LinkRouter>
-                  );
+                      <LinkRouter color="inherit" to={to} key={to}>
+                        {breadcrumbNameMap[to]}
+                      </LinkRouter>
+                    );
                 })}
               </Breadcrumbs>
             );
