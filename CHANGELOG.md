@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/merceyz/typescript-to-proptypes/compare/v1.2.2...v1.2.3) (2019-07-24)
+
+### Bug Fixes
+
+- **parser:** handle return type of JSX.Element | null ([cbe5564](https://github.com/merceyz/typescript-to-proptypes/commit/cbe5564))
+
 ### [1.2.2](https://github.com/merceyz/typescript-to-proptypes/compare/v1.2.1...v1.2.2) (2019-07-23)
 
 ### Bug Fixes
