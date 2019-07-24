@@ -3134,10 +3134,10 @@ babel-plugin-optimize-clsx@^2.3.0:
     lodash "^4.17.14"
     object-hash "^1.3.1"
 
-babel-plugin-preval@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-preval/-/babel-plugin-preval-2.0.1.tgz#76a552a1670bb21307f80b927b89fbeb37cf205c"
-  integrity sha512-7rTkwsuiATlwB7aE9X78LpvfOhocO8K82mAacju6K1dR2uyg83jhSwKvV5PXZnB8Rh92uzMuKIxu2IZoSAVHbQ==
+babel-plugin-preval@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-preval/-/babel-plugin-preval-3.0.1.tgz#a26f9690114a864a54a5cbdf865496ebf541a9c3"
+  integrity sha512-s8hmTlRSmzcL7cHSIi0s6WxmpOAxfIlWqSVQwBIt7V5bNBaac+8JMZ6kJXLOazMJ8gCIcb5AJgQUgPHvbSYUzw==
   dependencies:
     babel-plugin-macros "^2.2.2"
     require-from-string "^2.0.2"
