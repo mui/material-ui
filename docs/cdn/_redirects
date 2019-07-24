@@ -18,7 +18,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 
 # old code links
 # likely /style/typography#migration-to-typography-v2
-/style/typography https://v3-9-0.material-ui.com/style/typography/#migration-to-typography-v2 301
+/style/typography https://v3.material-ui.com/style/typography/#migration-to-typography-v2 301
 
 # To remove at some point (2020).
 /demos/selection-controls/ /components/radio-buttons/ 301
