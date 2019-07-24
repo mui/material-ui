@@ -47,4 +47,4 @@ export type BadgeClassKey =
   | 'invisible'
   | 'dot';
 
-export default function Badge(props: BadgeProps): JSX.Element;
+export default function Badge(props: BadgeProps): JSX.Element | null;
