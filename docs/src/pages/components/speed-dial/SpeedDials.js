@@ -56,107 +56,79 @@ const actions = [
   { icon: <DeleteIcon />, name: 'Delete' },
 ];
 
-class SpeedDials extends React.Component {
-  state = {
-    direction: 'up',
-    open: false,
-    hidden: false,
+function SpeedDials(props) {
+  const [direction, setDirection] = React.useState('up');
+  const [open, setOpen] = React.useState(false);
+  const [hidden, setHidden] = React.useState(false);
+
+  const handleClick = () => setOpen(!open);
+
+  const handleDirectionChange = (event, value) => setDirection(value);
+
+  const handleHiddenChange = (event, newHidden) => {
+    setHidden(newHidden);
+    setOpen(hidden ? false : open);
   };
 
-  handleClick = () => {
-    this.setState(state => ({
-      open: !state.open,
-    }));
-  };
+  const handleClose = () => setOpen(false);
 
-  handleDirectionChange = (event, value) => {
-    this.setState({
-      direction: value,
-    });
-  };
+  const handleOpen = () => setOpen(true);
 
-  handleHiddenChange = (event, hidden) => {
-    this.setState(state => ({
-      hidden,
-      // hidden implies !open
-      open: hidden ? false : state.open,
-    }));
-  };
+  const { classes } = props;
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+  const speedDialClassName = clsx(classes.speedDial, classes[`direction${capitalize(direction)}`]);
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { direction, hidden, open } = this.state;
-
-    const speedDialClassName = clsx(
-      classes.speedDial,
-      classes[`direction${capitalize(direction)}`],
-    );
-
-    return (
-      <div className={classes.root}>
-        <div className={classes.controls}>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={hidden}
-                onChange={this.handleHiddenChange}
-                value="hidden"
-                color="primary"
-              />
-            }
-            label="Hidden"
-          />
-          <FormLabel component="legend">Direction</FormLabel>
-          <RadioGroup
-            aria-label="Direction"
-            name="direction"
-            className={classes.radioGroup}
-            value={direction}
-            onChange={this.handleDirectionChange}
-            row
-          >
-            <FormControlLabel value="up" control={<Radio />} label="Up" />
-            <FormControlLabel value="right" control={<Radio />} label="Right" />
-            <FormControlLabel value="down" control={<Radio />} label="Down" />
-            <FormControlLabel value="left" control={<Radio />} label="Left" />
-          </RadioGroup>
-        </div>
-        <div className={classes.exampleWrapper}>
-          <SpeedDial
-            ariaLabel="SpeedDial example"
-            className={speedDialClassName}
-            hidden={hidden}
-            icon={<SpeedDialIcon />}
-            onBlur={this.handleClose}
-            onClick={this.handleClick}
-            onClose={this.handleClose}
-            onFocus={this.handleOpen}
-            onMouseEnter={this.handleOpen}
-            onMouseLeave={this.handleClose}
-            open={open}
-            direction={direction}
-          >
-            {actions.map(action => (
-              <SpeedDialAction
-                key={action.name}
-                icon={action.icon}
-                tooltipTitle={action.name}
-                onClick={this.handleClick}
-              />
-            ))}
-          </SpeedDial>
-        </div>
+  return (
+    <div className={classes.root}>
+      <div className={classes.controls}>
+        <FormControlLabel
+          control={
+            <Switch checked={hidden} onChange={handleHiddenChange} value="hidden" color="primary" />
+          }
+          label="Hidden"
+        />
+        <FormLabel component="legend">Direction</FormLabel>
+        <RadioGroup
+          aria-label="Direction"
+          name="direction"
+          className={classes.radioGroup}
+          value={direction}
+          onChange={handleDirectionChange}
+          row
+        >
+          <FormControlLabel value="up" control={<Radio />} label="Up" />
+          <FormControlLabel value="right" control={<Radio />} label="Right" />
+          <FormControlLabel value="down" control={<Radio />} label="Down" />
+          <FormControlLabel value="left" control={<Radio />} label="Left" />
+        </RadioGroup>
       </div>
-    );
-  }
+      <div className={classes.exampleWrapper}>
+        <SpeedDial
+          ariaLabel="SpeedDial example"
+          className={speedDialClassName}
+          hidden={hidden}
+          icon={<SpeedDialIcon />}
+          onBlur={handleClose}
+          onClick={handleClick}
+          onClose={handleClose}
+          onFocus={handleOpen}
+          onMouseEnter={handleOpen}
+          onMouseLeave={handleClose}
+          open={open}
+          direction={direction}
+        >
+          {actions.map(action => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={handleClick}
+            />
+          ))}
+        </SpeedDial>
+      </div>
+    </div>
+  );
 }
 
 SpeedDials.propTypes = {

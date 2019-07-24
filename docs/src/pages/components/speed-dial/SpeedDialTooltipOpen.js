@@ -30,72 +30,54 @@ const actions = [
   { icon: <DeleteIcon />, name: 'Delete' },
 ];
 
-class SpeedDialTooltipOpen extends React.Component {
-  state = {
-    open: false,
-    hidden: false,
+function SpeedDialTooltipOpen(props) {
+  const [open, setOpen] = React.useState(false);
+  const [hidden, setHidden] = React.useState(false);
+
+  const handleVisibility = () => {
+    setOpen(false);
+    setHidden(!hidden);
   };
 
-  handleVisibility = () => {
-    this.setState(state => ({
-      open: false,
-      hidden: !state.hidden,
-    }));
-  };
+  const handleClick = () => setOpen(!open);
 
-  handleClick = () => {
-    this.setState(state => ({
-      open: !state.open,
-    }));
-  };
-
-  handleOpen = () => {
-    if (!this.state.hidden) {
-      this.setState({
-        open: true,
-      });
+  const handleOpen = () => {
+    if (!hidden) {
+      setOpen(true);
     }
   };
 
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
+  const handleClose = () => setOpen(false);
 
-  render() {
-    const { classes } = this.props;
-    const { hidden, open } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <Button onClick={this.handleVisibility}>Toggle Speed Dial</Button>
-        <SpeedDial
-          ariaLabel="SpeedDial tooltip example"
-          className={classes.speedDial}
-          hidden={hidden}
-          icon={<SpeedDialIcon />}
-          onBlur={this.handleClose}
-          onClick={this.handleClick}
-          onClose={this.handleClose}
-          onFocus={this.handleOpen}
-          onMouseEnter={this.handleOpen}
-          onMouseLeave={this.handleClose}
-          open={open}
-        >
-          {actions.map(action => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              tooltipOpen
-              onClick={this.handleClick}
-            />
-          ))}
-        </SpeedDial>
-      </div>
-    );
-  }
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
+      <SpeedDial
+        ariaLabel="SpeedDial tooltip example"
+        className={classes.speedDial}
+        hidden={hidden}
+        icon={<SpeedDialIcon />}
+        onBlur={handleClose}
+        onClick={handleClick}
+        onClose={handleClose}
+        onFocus={handleOpen}
+        onMouseEnter={handleOpen}
+        onMouseLeave={handleClose}
+        open={open}
+      >
+        {actions.map(action => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            tooltipOpen
+            onClick={handleClick}
+          />
+        ))}
+      </SpeedDial>
+    </div>
+  );
 }
 
 SpeedDialTooltipOpen.propTypes = {
