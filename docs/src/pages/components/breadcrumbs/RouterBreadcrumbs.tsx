@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 
 import React from 'react';
-import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,8 +19,6 @@ interface ListItemLinkProps extends LinkProps {
   to: string;
   open?: boolean;
 }
-
-interface RouterBreadcrumbsProp extends WithStyles<typeof styles> {}
 
 const breadcrumbNameMap: { [key: string]: string } = {
   '/inbox': 'Inbox',
@@ -44,21 +42,20 @@ function ListItemLink(props: Omit<ListItemLinkProps, 'ref'>) {
   );
 }
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: 360,
-    },
-    lists: {
-      backgroundColor: theme.palette.background.paper,
-      marginTop: theme.spacing(1),
-    },
-    nested: {
-      paddingLeft: theme.spacing(4),
-    },
-  });
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 360,
+  },
+  lists: {
+    backgroundColor: theme.palette.background.paper,
+    marginTop: theme.spacing(1),
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
+}));
 
 interface LinkRouterProps extends LinkProps {
   to: string;
@@ -67,12 +64,12 @@ interface LinkRouterProps extends LinkProps {
 
 const LinkRouter = (props: LinkRouterProps) => <Link {...props} component={RouterLink as any} />;
 
-function RouterBreadcrumbs(props: RouterBreadcrumbsProp) {
+export default function RouterBreadcrumbs() {
   const [open, setOpen] = React.useState(true);
 
-  const handleClick = () => setOpen(!open);
+  const handleClick = () => setOpen(prevOpen => !prevOpen);
 
-  const { classes } = props;
+  const classes = useStyles();
 
   return (
     <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
@@ -120,5 +117,3 @@ function RouterBreadcrumbs(props: RouterBreadcrumbsProp) {
     </MemoryRouter>
   );
 }
-
-export default withStyles(styles)(RouterBreadcrumbs);

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
@@ -42,7 +42,7 @@ ListItemLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -55,16 +55,16 @@ const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
-});
+}));
 
 const LinkRouter = props => <Link {...props} component={RouterLink} />;
 
-function RouterBreadcrumbs(props) {
+export default function RouterBreadcrumbs() {
   const [open, setOpen] = React.useState(true);
 
-  const handleClick = () => setOpen(!open);
+  const handleClick = () => setOpen(prevOpen => !prevOpen);
 
-  const { classes } = props;
+  const classes = useStyles();
 
   return (
     <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
@@ -112,9 +112,3 @@ function RouterBreadcrumbs(props) {
     </MemoryRouter>
   );
 }
-
-RouterBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(RouterBreadcrumbs);
