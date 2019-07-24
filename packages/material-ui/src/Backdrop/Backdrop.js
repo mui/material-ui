@@ -76,6 +76,7 @@ Backdrop.propTypes = {
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.shape({
+      appear: PropTypes.number,
       enter: PropTypes.number,
       exit: PropTypes.number,
     }),
