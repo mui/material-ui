@@ -69,7 +69,7 @@
     "react-docgen": "^5.0.0-beta.1",
     "react-dom": "^16.8.5",
     "react-draggable": "^3.0.5",
-    "react-final-form": "^4.0.2",
+    "react-final-form": "^6.3.0",
     "react-frame-component": "^4.1.1",
     "react-inspector": "^3.0.2",
     "react-number-format": "^4.0.8",
