@@ -23,6 +23,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 # To remove at some point (2020).
 /demos/selection-controls/ /components/radio-buttons/ 301
 /page-layout-examples/* /getting-started/page-layout-examples/:splat 301
+/getting-started/page-layout-examples/* /getting-started/templates/:splat 301
 /guides/csp/ /styles/advanced/#what-is-csp-and-why-is-it-useful 301
 /utils/modals/ /components/modal/ 301
 /utils/popovers/ /components/popover/ 301

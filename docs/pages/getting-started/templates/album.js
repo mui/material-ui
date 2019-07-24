@@ -4,15 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AppTheme from 'docs/src/modules/components/AppTheme';
-import StickyFooter from 'docs/src/pages/getting-started/page-layout-examples/sticky-footer/StickyFooter';
+import Album from 'docs/src/pages/getting-started/templates/album/Album';
 
 function Page(props) {
   return (
-    <AppTheme
-      title="Sticky footer page layout example - Material-UI"
-      description={props.t('stickyFooterDescr')}
-    >
-      <StickyFooter />
+    <AppTheme title="Album page layout - Material-UI" description={props.t('albumDescr')}>
+      <Album />
     </AppTheme>
   );
 }

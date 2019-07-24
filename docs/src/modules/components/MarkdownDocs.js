@@ -102,8 +102,9 @@ function MarkdownDocs(props) {
     blog,
     classes,
     disableAd = false,
-    disableToc = false,
     disableEdit,
+    disableToc = false,
+    HeadProps,
     markdown: markdownProp,
     markdownLocation: markdownLocationProp,
     req,
@@ -170,6 +171,7 @@ function MarkdownDocs(props) {
           <Head
             title={`${headers.title || getTitle(markdown)} - Material-UI`}
             description={headers.description || getDescription(markdown)}
+            {...HeadProps}
           />
           {disableToc ? null : <AppTableOfContents contents={contents} />}
           {disableAd ? null : (

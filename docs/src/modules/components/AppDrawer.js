@@ -100,6 +100,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
     items.push(
       <AppDrawerNavItem
+        linkProps={page.linkProps}
         depth={depth}
         key={title}
         topLevel={topLevel && !page.subheader}
@@ -115,6 +116,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
     items.push(
       <AppDrawerNavItem
+        linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}

@@ -4,15 +4,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AppTheme from 'docs/src/modules/components/AppTheme';
-import Pricing from 'docs/src/pages/getting-started/page-layout-examples/pricing/Pricing';
+import SignInSide from 'docs/src/pages/getting-started/templates/sign-in-side/SignInSide';
 
 function Page(props) {
   return (
     <AppTheme
-      title="Pricing page layout example - Material-UI"
-      description={props.t('pricingDescr')}
+      title="Sign In side page layout example - Material-UI"
+      description={props.t('signInSideDescr')}
     >
-      <Pricing />
+      <SignInSide />
     </AppTheme>
   );
 }

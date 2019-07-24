@@ -38,73 +38,73 @@ function layouts(t) {
       title: t('dashboardTitle'),
       description: t('dashboardDescr'),
       src: '/static/images/layouts/dashboard.png',
-      href: '/getting-started/page-layout-examples/dashboard',
+      href: '/getting-started/templates/dashboard',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/dashboard',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/dashboard',
     },
     {
       title: t('signInTitle'),
       description: t('signInDescr'),
       src: '/static/images/layouts/sign-in.png',
-      href: '/getting-started/page-layout-examples/sign-in',
+      href: '/getting-started/templates/sign-in',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in',
     },
     {
       title: t('signInSideTitle'),
       description: t('signInSideDescr'),
       src: '/static/images/layouts/sign-in-side.png',
-      href: '/getting-started/page-layout-examples/sign-in-side',
+      href: '/getting-started/templates/sign-in-side',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in-side',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in-side',
     },
     {
       title: t('signUpTitle'),
       description: t('signUpDescr'),
       src: '/static/images/layouts/sign-up.png',
-      href: '/getting-started/page-layout-examples/sign-up',
+      href: '/getting-started/templates/sign-up',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-up',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-up',
     },
     {
       title: t('blogTitle'),
       description: t('blogDescr'),
       src: '/static/images/layouts/blog.png',
-      href: '/getting-started/page-layout-examples/blog',
+      href: '/getting-started/templates/blog',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/blog',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/blog',
     },
     {
       title: t('checkoutTitle'),
       description: t('checkoutDescr'),
       src: '/static/images/layouts/checkout.png',
-      href: '/getting-started/page-layout-examples/checkout',
+      href: '/getting-started/templates/checkout',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/checkout',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/checkout',
     },
     {
       title: t('albumTitle'),
       description: t('albumDescr'),
       src: '/static/images/layouts/album.png',
-      href: '/getting-started/page-layout-examples/album',
+      href: '/getting-started/templates/album',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/album',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/album',
     },
     {
       title: t('pricingTitle'),
       description: t('pricingDescr'),
       src: '/static/images/layouts/pricing.png',
-      href: '/getting-started/page-layout-examples/pricing',
+      href: '/getting-started/templates/pricing',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/pricing',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/pricing',
     },
     {
       title: t('stickyFooterTitle'),
       description: t('stickyFooterDescr'),
       src: '/static/images/layouts/sticky-footer.png',
-      href: '/getting-started/page-layout-examples/sticky-footer',
+      href: '/getting-started/templates/sticky-footer',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sticky-footer',
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sticky-footer',
     },
   ];
 }

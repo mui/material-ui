@@ -49,6 +49,7 @@ function AppDrawerNavItem(props) {
     openImmediately = false,
     topLevel = false,
     title,
+    linkProps,
     ...other
   } = props;
   const classes = useStyles();
@@ -74,6 +75,7 @@ function AppDrawerNavItem(props) {
           disableTouchRipple
           onClick={onClick}
           style={style}
+          {...linkProps}
         >
           {title}
         </Button>

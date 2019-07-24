@@ -4,15 +4,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AppTheme from 'docs/src/modules/components/AppTheme';
-import SignUp from 'docs/src/pages/getting-started/page-layout-examples/sign-up/SignUp';
+import Checkout from 'docs/src/pages/getting-started/templates/checkout/Checkout';
 
 function Page(props) {
   return (
     <AppTheme
-      title="Sign Up page layout example - Material-UI"
-      description={props.t('signUpDescr')}
+      title="Checkout page layout example - Material-UI"
+      description={props.t('checkoutDescr')}
     >
-      <SignUp />
+      <Checkout />
     </AppTheme>
   );
 }

@@ -4,15 +4,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AppTheme from 'docs/src/modules/components/AppTheme';
-import Dashboard from 'docs/src/pages/getting-started/page-layout-examples/dashboard/Dashboard';
+import StickyFooter from 'docs/src/pages/getting-started/templates/sticky-footer/StickyFooter';
 
 function Page(props) {
   return (
     <AppTheme
-      title="Dashboard page layout example - Material-UI"
-      description={props.t('dashboardDescr')}
+      title="Sticky footer page layout example - Material-UI"
+      description={props.t('stickyFooterDescr')}
     >
-      <Dashboard />
+      <StickyFooter />
     </AppTheme>
   );
 }
