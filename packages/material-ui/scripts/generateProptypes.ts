@@ -124,4 +124,7 @@ async function run() {
   console.log('Total: %d', results.length);
 }
 
-run();
+run().catch(error => {
+  console.error(error);
+  process.exit(1);
+});
