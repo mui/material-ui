@@ -5,14 +5,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from './checkbox.md';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      HeadProps={{
-        children: <meta name="robots" content="noindex,follow" />,
-      }}
-      markdown={markdown}
-    />
-  );
+  return <MarkdownDocs markdown={markdown} />;
 }
 
 export default Page;

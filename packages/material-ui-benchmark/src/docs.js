@@ -16,10 +16,7 @@ const suite = new Benchmark.Suite('core', {
 Benchmark.options.minSamples = 100;
 
 const markdown = fs.readFileSync(
-  path.join(
-    __dirname,
-    '../../../docs/src/pages/getting-started/templates/blog/blog-post.1.md',
-  ),
+  path.join(__dirname, '../../../docs/src/pages/getting-started/templates/blog/blog-post.1.md'),
   'UTF-8',
 );
 
