@@ -1,4 +1,4 @@
-# Checkout layout
+# Checkout template
 
 ## Usage
 

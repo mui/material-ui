@@ -1,4 +1,4 @@
-# Sticky footer layout
+# Sticky footer template
 
 ## Usage
 

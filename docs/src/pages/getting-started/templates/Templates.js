@@ -37,7 +37,7 @@ function layouts(t) {
     {
       title: t('dashboardTitle'),
       description: t('dashboardDescr'),
-      src: '/static/images/layouts/dashboard.png',
+      src: '/static/images/templates/dashboard.png',
       href: '/getting-started/templates/dashboard',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/dashboard',
@@ -45,7 +45,7 @@ function layouts(t) {
     {
       title: t('signInTitle'),
       description: t('signInDescr'),
-      src: '/static/images/layouts/sign-in.png',
+      src: '/static/images/templates/sign-in.png',
       href: '/getting-started/templates/sign-in',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in',
@@ -53,7 +53,7 @@ function layouts(t) {
     {
       title: t('signInSideTitle'),
       description: t('signInSideDescr'),
-      src: '/static/images/layouts/sign-in-side.png',
+      src: '/static/images/templates/sign-in-side.png',
       href: '/getting-started/templates/sign-in-side',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in-side',
@@ -61,7 +61,7 @@ function layouts(t) {
     {
       title: t('signUpTitle'),
       description: t('signUpDescr'),
-      src: '/static/images/layouts/sign-up.png',
+      src: '/static/images/templates/sign-up.png',
       href: '/getting-started/templates/sign-up',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-up',
@@ -69,7 +69,7 @@ function layouts(t) {
     {
       title: t('blogTitle'),
       description: t('blogDescr'),
-      src: '/static/images/layouts/blog.png',
+      src: '/static/images/templates/blog.png',
       href: '/getting-started/templates/blog',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/blog',
@@ -77,7 +77,7 @@ function layouts(t) {
     {
       title: t('checkoutTitle'),
       description: t('checkoutDescr'),
-      src: '/static/images/layouts/checkout.png',
+      src: '/static/images/templates/checkout.png',
       href: '/getting-started/templates/checkout',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/checkout',
@@ -85,7 +85,7 @@ function layouts(t) {
     {
       title: t('albumTitle'),
       description: t('albumDescr'),
-      src: '/static/images/layouts/album.png',
+      src: '/static/images/templates/album.png',
       href: '/getting-started/templates/album',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/album',
@@ -93,7 +93,7 @@ function layouts(t) {
     {
       title: t('pricingTitle'),
       description: t('pricingDescr'),
-      src: '/static/images/layouts/pricing.png',
+      src: '/static/images/templates/pricing.png',
       href: '/getting-started/templates/pricing',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/pricing',
@@ -101,7 +101,7 @@ function layouts(t) {
     {
       title: t('stickyFooterTitle'),
       description: t('stickyFooterDescr'),
-      src: '/static/images/layouts/sticky-footer.png',
+      src: '/static/images/templates/sticky-footer.png',
       href: '/getting-started/templates/sticky-footer',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sticky-footer',
@@ -109,7 +109,7 @@ function layouts(t) {
   ];
 }
 
-function PageLayoutExamples(props) {
+function Templates(props) {
   const { classes } = props;
   const { t } = useSelector(state => ({ t: state.options.t }));
 
@@ -124,6 +124,7 @@ function PageLayoutExamples(props) {
               className={classes.cardMedia}
               image={layout.src}
               title={layout.title}
+              rel="nofollow"
               target="_blank"
             />
             <CardContent className={classes.cardContent}>
@@ -144,8 +145,8 @@ function PageLayoutExamples(props) {
   );
 }
 
-PageLayoutExamples.propTypes = {
+Templates.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PageLayoutExamples);
+export default withStyles(styles)(Templates);

@@ -1,4 +1,4 @@
-# Sign-in layout
+# Sign-in template
 
 ## Usage
 

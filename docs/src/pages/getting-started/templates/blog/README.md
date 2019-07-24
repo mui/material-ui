@@ -1,4 +1,4 @@
-# Blog layout
+# Blog template
 
 ## Usage
 

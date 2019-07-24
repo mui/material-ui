@@ -1,4 +1,4 @@
-# Pricing layout
+# Pricing template
 
 ## Usage
 

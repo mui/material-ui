@@ -1,4 +1,4 @@
-# Dashboard layout
+# Dashboard template
 
 ## Usage
 

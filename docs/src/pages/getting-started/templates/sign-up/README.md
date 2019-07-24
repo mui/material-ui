@@ -1,4 +1,4 @@
-# Sign-up layout
+# Sign-up template
 
 ## Usage
 
