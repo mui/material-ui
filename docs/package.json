@@ -62,12 +62,16 @@
     "react-dom": "^16.8.2",
     "react-jss": "^8.6.1",
     "react-kawaii": "^0.12.0",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
+    "redux-form": "^8.2.4",
     "remark-slug": "^5.1.1",
     "safe-json-stringify": "^1.2.0",
     "typescript": "^3.4.4",
     "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {
+    "@types/react-redux": "^7.1.1",
     "dotenv": "^7.0.0",
     "fs-extra": "^7.0.1",
     "patreon": "^0.4.1"
