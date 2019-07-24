@@ -68,6 +68,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     disabled = false,
     error = false,
     fullWidth = false,
+    hiddenLabel = false,
     margin = 'none',
     required = false,
     variant = 'standard',
@@ -146,6 +147,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     error,
     filled,
     focused,
+    hiddenLabel,
     margin,
     onBlur: handleBlur,
     onEmpty: handleClean,
@@ -206,6 +208,12 @@ FormControl.propTypes = {
    * If `true`, the component will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
+  /**
+   * If `true`, the label will be hidden.
+   * This is used to increase density for a `FilledInput`.
+   * Be sure to add `aria-label` to the `input` element.
+   */
+  hiddenLabel: PropTypes.bool,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */

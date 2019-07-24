@@ -76,6 +76,7 @@ This prop accepts the following keys:
 | <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 | <span class="prop-name">inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
 | <span class="prop-name">inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
+| <span class="prop-name">inputHiddenLabel</span> | Styles applied to the `input` element if `hiddenLabel={true}`.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/InputBase/InputBase.js)

@@ -352,6 +352,16 @@ describe('<InputBase />', () => {
         setProps({ margin: 'dense' });
         expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
       });
+
+      it('has an inputHiddenLabel class to further reduce margin', () => {
+        const { getByRole } = render(
+          <FormControl hiddenLabel margin="dense">
+            <InputBase />
+          </FormControl>,
+        );
+
+        expect(getByRole('textbox')).to.have.class(classes.inputHiddenLabel);
+      });
     });
 
     describe('required', () => {

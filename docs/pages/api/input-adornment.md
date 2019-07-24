@@ -43,6 +43,8 @@ This prop accepts the following keys:
 | <span class="prop-name">positionStart</span> | Styles applied to the root element if `position="start"`.
 | <span class="prop-name">positionEnd</span> | Styles applied to the root element if `position="end"`.
 | <span class="prop-name">disablePointerEvents</span> | Styles applied to the root element if `disablePointerEvents=true`.
+| <span class="prop-name">hiddenLabel</span> | Styles applied if the adornment is used inside &lt;FormControl hiddenLabel />.
+| <span class="prop-name">marginDense</span> | Styles applied if the adornment is used inside &lt;FormControl margin="dense" />.
 
 Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/InputAdornment/InputAdornment.js)
