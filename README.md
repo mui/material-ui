@@ -119,6 +119,10 @@ Are you looking for an example project to get started?
 
 Check out our [documentation website](https://material-ui.com/).
 
+## Premium Themes
+
+You can find complete ready-to-go templates with multiple page layouts, in our [premium themes](https://themes.material-ui.com/) section.
+
 ## Contributing
 
 We'd greatly appreciate any [contribution](/CONTRIBUTING.md) you make. :)
