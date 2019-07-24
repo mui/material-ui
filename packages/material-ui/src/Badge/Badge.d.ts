@@ -14,7 +14,7 @@ export interface BadgeProps
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color?: PropTypes.Color | 'error';
+  color?: 'primary' | 'secondary' | 'default' | 'error';
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
