@@ -1,31 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import React, { useRef } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   close: {
     padding: theme.spacing(0.5),
   },
-});
+}));
 
-function ConsecutiveSnackbars(props) {
-  const queue = [];
+export default function ConsecutiveSnackbars() {
+  const queueRef = useRef([]);
   const [open, setOpen] = React.useState(false);
   const [messageInfo, setMessageInfo] = React.useState(undefined);
 
   const processQueue = () => {
-    if (queue.length > 0) {
-      setMessageInfo(queue.shift());
+    if (queueRef.length > 0) {
+      setMessageInfo(queueRef.shift());
       setOpen(true);
     }
   };
 
   const handleClick = message => () => {
-    queue.push({
+    queueRef.push({
       message,
       key: new Date().getTime(),
     });
@@ -50,7 +49,7 @@ function ConsecutiveSnackbars(props) {
     processQueue();
   };
 
-  const { classes } = props;
+  const classes = useStyles();
   return (
     <div>
       <Button onClick={handleClick('Message A')}>Show message A</Button>
@@ -87,9 +86,3 @@ function ConsecutiveSnackbars(props) {
     </div>
   );
 }
-
-ConsecutiveSnackbars.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ConsecutiveSnackbars);
