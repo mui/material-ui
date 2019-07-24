@@ -15,7 +15,7 @@ const styles = theme => ({
 function ConsecutiveSnackbars(props) {
   const queue = [];
   const [open, setOpen] = React.useState(false);
-  const [messageInfo, setMessageInfo] = React.useState(null);
+  const [messageInfo, setMessageInfo] = React.useState(undefined);
 
   const processQueue = () => {
     if (queue.length > 0) {
