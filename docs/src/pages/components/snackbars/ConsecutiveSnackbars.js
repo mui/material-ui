@@ -17,14 +17,14 @@ export default function ConsecutiveSnackbars() {
   const [messageInfo, setMessageInfo] = React.useState(undefined);
 
   const processQueue = () => {
-    if (queueRef.length > 0) {
-      setMessageInfo(queueRef.shift());
+    if (queueRef.current.length > 0) {
+      setMessageInfo(queueRef.current.shift());
       setOpen(true);
     }
   };
 
   const handleClick = message => () => {
-    queueRef.push({
+    queueRef.current.push({
       message,
       key: new Date().getTime(),
     });

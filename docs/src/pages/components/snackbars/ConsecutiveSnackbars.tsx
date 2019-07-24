@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import React, { useRef, SyntheticEvent } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -22,19 +22,19 @@ export interface State {
 }
 
 export default function ConsecutiveSnackbars() {
-  const queue: SnackbarMessage[] = [];
+  const queueRef = useRef<SnackbarMessage[]>([]);
   const [open, setOpen] = React.useState(false);
   const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(undefined);
 
   const processQueue = () => {
-    if (queue.length > 0) {
-      setMessageInfo(queue.shift());
+    if (queueRef.current.length > 0) {
+      setMessageInfo(queueRef.current.shift());
       setOpen(true);
     }
   };
 
   const handleClick = (message: string) => () => {
-    queue.push({
+    queueRef.current.push({
       message,
       key: new Date().getTime(),
     });
