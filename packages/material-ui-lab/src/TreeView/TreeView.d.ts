@@ -5,9 +5,9 @@ export interface TreeViewProps
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, TreeViewClassKey> {
   defaultCollapseIcon?: React.ReactNode;
   defaultEndIcon?: React.ReactNode;
+  defaultExpanded?: string[];
   defaultExpandIcon?: React.ReactNode;
   defaultParentIcon?: React.ReactNode;
-  expanded?: string[];
   onNodeToggle?: (nodeId: string, expanded: boolean) => void;
 }
 

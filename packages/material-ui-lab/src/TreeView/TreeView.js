@@ -13,7 +13,7 @@ export const styles = {
   },
 };
 
-const defaultExpanded = [];
+const defaultExpandedDefault = [];
 
 const TreeView = React.forwardRef(function TreeView(props, ref) {
   const {
@@ -24,12 +24,12 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     defaultEndIcon,
     defaultExpandIcon,
     defaultParentIcon,
-    expanded: expandedProp = defaultExpanded,
+    defaultExpanded = defaultExpandedDefault,
     onNodeToggle,
     ...other
   } = props;
-  const [expanded, setExpanded] = React.useState(expandedProp);
-  const [focusable, setFocusable] = React.useState(null);
+  const [expanded, setExpanded] = React.useState(defaultExpanded);
+  const [tabable, setTabable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
   const firstNode = React.useRef(null);
 
@@ -37,14 +37,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const firstCharMap = React.useRef({});
 
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
-  const isFocusable = id => focusable === id;
+  const isTabable = id => tabable === id;
   const isFocused = id => focused === id;
-
-  React.useEffect(() => {
-    if (expanded.every(nodeId => expandedProp.indexOf(nodeId) !== -1)) {
-      setExpanded(expandedProp);
-    }
-  }, [expandedProp, expanded]);
 
   React.useEffect(() => {
     nodeMap.current = {};
@@ -54,7 +48,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     (childIds || []).forEach((id, index) => {
       if (index === 0) {
         firstNode.current = id;
-        setFocusable(id);
+        setTabable(id);
       }
       nodeMap.current[id] = { parent: null };
     });
@@ -73,7 +67,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const focus = id => {
     if (id) {
-      setFocusable(id);
+      setTabable(id);
     }
     setFocused(id);
   };
@@ -155,12 +149,12 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
       if (prevExpanded.indexOf(value) !== -1) {
         newExpanded = prevExpanded.filter(id => id !== value);
-        setFocusable(oldFocusable => {
-          const map = nodeMap.current[oldFocusable];
-          if (oldFocusable && (map && map.parent ? map.parent.id : null) === value) {
+        setTabable(oldTabable => {
+          const map = nodeMap.current[oldTabable];
+          if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
             return value;
           }
-          return oldFocusable;
+          return oldTabable;
         });
       } else {
         newExpanded = [value, ...prevExpanded];
@@ -273,7 +267,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         toggle,
         isExpanded,
-        isFocusable,
+        isTabable,
         focus,
         focusNextNode,
         focusPreviousNode,
@@ -318,6 +312,10 @@ TreeView.propTypes = {
    */
   defaultEndIcon: PropTypes.node,
   /**
+   *  Expanded node ids.
+   */
+  defaultExpanded: PropTypes.arrayOf(PropTypes.string),
+  /**
    * The default icon used to expand the node.
    */
   defaultExpandIcon: PropTypes.node,
@@ -326,10 +324,6 @@ TreeView.propTypes = {
    * parent nodes and can be overridden by the TreeNode `icon` prop.
    */
   defaultParentIcon: PropTypes.node,
-  /**
-   *  Expanded node ids.
-   */
-  expanded: PropTypes.arrayOf(PropTypes.string),
   /**
    * Callback fired when a `TreeNode` is expanded/collapsed.
    *

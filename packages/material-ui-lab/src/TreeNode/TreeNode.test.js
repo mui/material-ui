@@ -8,6 +8,7 @@ import TreeNode from './TreeNode';
 import TreeView from '../TreeView';
 
 describe('<TreeNode />', () => {
+  // StrictModeViolation: uses Collapse
   const render = createClientRender({ strict: false });
   const mount = createMount({ strict: false });
   const classes = getClasses(<TreeNode nodeId="one" label="one" />);
@@ -39,72 +40,92 @@ describe('<TreeNode />', () => {
     expect(handleClick.callCount).to.equal(1);
   });
 
+  it('should not call onClick when children are clicked', () => {
+    const handleClick = spy();
+
+    const { getByText } = render(
+      <TreeView defaultExpanded={['one']}>
+        <TreeNode nodeId="one" label="one" onClick={handleClick}>
+          <TreeNode nodeId="two" label="two" />
+        </TreeNode>
+      </TreeView>,
+    );
+
+    fireEvent.click(getByText('two'));
+
+    expect(handleClick.callCount).to.equal(0);
+  });
+
   it('should call onFocus when focused', () => {
     const handleFocus = spy();
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <TreeView>
-        <TreeNode nodeId="test" label="test" onFocus={handleFocus} />
+        <TreeNode nodeId="test" label="test" data-testid="test" onFocus={handleFocus} />
       </TreeView>,
     );
 
-    fireEvent.focus(getByText('test'));
+    getByTestId('test').focus();
 
-    expect(handleFocus.callCount).to.equal(2);
+    expect(handleFocus.callCount).to.equal(1);
   });
 
-  it('should call onKeyDown when clicked', () => {
+  it('should call onKeyDown when a key is pressed', () => {
     const handleKeyDown = spy();
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <TreeView>
-        <TreeNode nodeId="test" label="test" onKeyDown={handleKeyDown} />
+        <TreeNode nodeId="test" label="test" data-testid="test" onKeyDown={handleKeyDown} />
       </TreeView>,
     );
 
-    fireEvent.keyDown(getByText('test'), { key: 'Enter' });
+    getByTestId('test').focus();
 
-    expect(handleKeyDown.callCount).to.equal(1);
+    fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+    fireEvent.keyDown(document.activeElement, { key: 'A' });
+    fireEvent.keyDown(document.activeElement, { key: ']' });
+
+    expect(handleKeyDown.callCount).to.equal(3);
   });
 
   describe('Accessibility', () => {
     it('should have the role `treeitem`', () => {
-      const { container } = render(
+      const { getByRole } = render(
         <TreeView>
           <TreeNode nodeId="test" label="test" />
         </TreeView>,
       );
 
-      expect(container.querySelector('[role="treeitem"]')).to.be.ok;
+      expect(getByRole('treeitem')).to.be.ok;
     });
 
-    it('should add the role `group` to a `ul` component if it has children', () => {
-      const { container } = render(
+    it('should add the role `group` to a component containing children', () => {
+      const { getByRole, getByText } = render(
         <TreeView>
           <TreeNode nodeId="test" label="test">
-            <TreeNode nodeId="test2" label="test" />
+            <TreeNode nodeId="test2" label="test2" />
           </TreeNode>
         </TreeView>,
       );
 
-      expect(container.querySelector('ul[role="group"]')).to.be.ok;
+      expect(getByRole('group')).to.contain(getByText('test2'));
     });
 
     it('should have the attribute `aria-expanded=false` if collapsed', () => {
-      const { container } = render(
+      const { getByTestId } = render(
         <TreeView>
-          <TreeNode nodeId="test" label="test">
-            <TreeNode nodeId="test2" label="test" />
+          <TreeNode nodeId="test" label="test" data-testid="test">
+            <TreeNode nodeId="test2" label="test2" />
           </TreeNode>
         </TreeView>,
       );
 
-      expect(container.querySelector('[aria-expanded=false]')).to.be.ok;
+      expect(getByTestId('test')).to.have.attribute('aria-expanded', 'false');
     });
 
     it('should have the attribute `aria-expanded=true` if expanded', () => {
       const { container } = render(
-        <TreeView expanded={['test']}>
+        <TreeView defaultExpanded={['test']}>
           <TreeNode nodeId="test" label="test">
             <TreeNode nodeId="test2" label="test" />
           </TreeNode>
@@ -126,35 +147,48 @@ describe('<TreeNode />', () => {
 
     describe('when a tree receives focus', () => {
       it('should focus the first node if none of the nodes are selected before the tree receives focus', () => {
-        const { getByTestId, getByText } = render(
-          <TreeView>
-            <TreeNode nodeId="1" label="one" data-testid="one" />
-            <TreeNode nodeId="2" label="two" />
-            <TreeNode nodeId="3" label="three" />
-          </TreeView>,
+        const { getByTestId } = render(
+          <React.Fragment>
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <div data-testid="start" tabIndex={0} />
+            <TreeView>
+              <TreeNode nodeId="1" label="one" data-testid="one" />
+              <TreeNode nodeId="2" label="two" />
+              <TreeNode nodeId="3" label="three" />
+            </TreeView>
+          </React.Fragment>,
         );
 
-        fireEvent.focus(getByText('one'));
-        fireEvent.focus(getByText('two'));
-        fireEvent.focus(getByText('three'));
+        getByTestId('start').focus();
+        expect(getByTestId('start')).to.be.focused;
+
+        fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+        getByTestId('one').focus();
 
         expect(getByTestId('one')).to.be.focused;
       });
 
       it('should focus the selected node if a node is selected before the tree receives focus', () => {
         const { getByTestId, getByText } = render(
-          <TreeView>
-            <TreeNode nodeId="1" label="one" />
-            <TreeNode nodeId="2" label="two" data-testid="two" />
-            <TreeNode nodeId="3" label="three" />
-          </TreeView>,
+          <React.Fragment>
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <div data-testid="start" tabIndex={0} />
+            <TreeView>
+              <TreeNode nodeId="1" label="one" data-testid="one" />
+              <TreeNode nodeId="2" label="two" data-testid="two" />
+              <TreeNode nodeId="3" label="three" />
+            </TreeView>
+          </React.Fragment>,
         );
 
         fireEvent.click(getByText('two'));
+        expect(getByTestId('two')).to.be.focused;
 
-        fireEvent.focus(getByText('one'));
-        fireEvent.focus(getByText('two'));
-        fireEvent.focus(getByText('three'));
+        getByTestId('start').focus();
+        expect(getByTestId('start')).to.be.focused;
+
+        fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+        getByTestId('two').focus();
 
         expect(getByTestId('two')).to.be.focused;
       });
@@ -162,7 +196,7 @@ describe('<TreeNode />', () => {
 
     describe('right arrow interaction', () => {
       it('should open the node and not move the focus if focus is on a closed node', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" />
@@ -171,15 +205,15 @@ describe('<TreeNode />', () => {
         );
 
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
-        fireEvent.focus(getByTestId('one'));
-        fireEvent.keyDown(getByText('one'), { key: 'ArrowRight' });
+        getByTestId('one').focus();
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         expect(getByTestId('one')).to.be.focused;
       });
 
       it('should move focus to the first child if focus is on an open node', () => {
-        const { getByTestId, getByText } = render(
-          <TreeView expanded={['one']}>
+        const { getByTestId } = render(
+          <TreeView defaultExpanded={['one']}>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
             </TreeNode>
@@ -187,14 +221,14 @@ describe('<TreeNode />', () => {
         );
 
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-        fireEvent.focus(getByTestId('one'));
-        fireEvent.keyDown(getByText('one'), { key: 'ArrowRight' });
+        getByTestId('one').focus();
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
         expect(getByTestId('two')).to.be.focused;
       });
 
       it('should do nothing if focus is on an end node', () => {
         const { getByTestId, getByText } = render(
-          <TreeView expanded={['one']}>
+          <TreeView defaultExpanded={['one']}>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
             </TreeNode>
@@ -203,7 +237,7 @@ describe('<TreeNode />', () => {
 
         fireEvent.click(getByText('two'));
         expect(getByTestId('two')).to.be.focused;
-        fireEvent.keyDown(getByText('two'), { key: 'ArrowRight' });
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
         expect(getByTestId('two')).to.be.focused;
       });
     });
@@ -220,15 +254,15 @@ describe('<TreeNode />', () => {
 
         fireEvent.click(getByText('one'));
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-        fireEvent.focus(getByTestId('one'));
-        fireEvent.keyDown(getByText('one'), { key: 'ArrowLeft' });
+        getByTestId('one').focus();
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
         expect(getByTestId('one')).to.be.focused;
       });
 
       it("should move focus to the node's parent node if focus is on a child node that is an end node", () => {
         const { getByTestId, getByText } = render(
-          <TreeView expanded={['one']}>
+          <TreeView defaultExpanded={['one']}>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
             </TreeNode>
@@ -236,8 +270,8 @@ describe('<TreeNode />', () => {
         );
 
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-        fireEvent.click(getByTestId('two'));
-        fireEvent.keyDown(getByText('two'), { key: 'ArrowLeft' });
+        fireEvent.click(getByText('two'));
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
         expect(getByTestId('one')).to.be.focused;
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
       });
@@ -256,16 +290,16 @@ describe('<TreeNode />', () => {
         fireEvent.click(getByText('one'));
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         // move focus to node two
-        fireEvent.click(getByTestId('two'));
-        fireEvent.click(getByTestId('two'));
+        fireEvent.click(getByText('two'));
+        fireEvent.click(getByText('two'));
         expect(getByTestId('two')).to.have.attribute('aria-expanded', 'false');
-        fireEvent.keyDown(getByText('two'), { key: 'ArrowLeft' });
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
         expect(getByTestId('one')).to.be.focused;
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
       });
 
       it('should do nothing if focus is on a root node that is closed', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" />
@@ -273,42 +307,42 @@ describe('<TreeNode />', () => {
           </TreeView>,
         );
 
-        fireEvent.focus(getByTestId('one'));
+        getByTestId('one').focus();
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
-        fireEvent.keyDown(getByText('one'), { key: 'ArrowLeft' });
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
         expect(getByTestId('one')).to.be.focused;
       });
 
       it('should do nothing if focus is on a root node that is an end node', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one" />
           </TreeView>,
         );
 
-        fireEvent.focus(getByTestId('one'));
-        fireEvent.keyDown(getByText('one'), { key: 'ArrowLeft' });
+        getByTestId('one').focus();
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
         expect(getByTestId('one')).to.be.focused;
       });
     });
 
     describe('down arrow interaction', () => {
       it('moves focus to a non-nested sibling node', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one" />
             <TreeNode nodeId="two" label="two" data-testid="two" />
           </TreeView>,
         );
 
-        fireEvent.focus(getByTestId('one'));
-        fireEvent.keyDown(getByText('one'), { key: 'ArrowDown' });
+        getByTestId('one').focus();
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
         expect(getByTestId('two')).to.be.focused;
       });
 
       it('moves focus to a nested node', () => {
-        const { getByTestId, getByText } = render(
-          <TreeView expanded={['one']}>
+        const { getByTestId } = render(
+          <TreeView defaultExpanded={['one']}>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
             </TreeNode>
@@ -316,14 +350,14 @@ describe('<TreeNode />', () => {
         );
 
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-        fireEvent.focus(getByTestId('one'));
-        fireEvent.keyDown(getByText('one'), { key: 'ArrowDown' });
+        getByTestId('one').focus();
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
         expect(getByTestId('two')).to.be.focused;
       });
 
       it("moves focus to a parent's sibling", () => {
         const { getByTestId, getByText } = render(
-          <TreeView expanded={['one']}>
+          <TreeView defaultExpanded={['one']}>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
             </TreeNode>
@@ -334,7 +368,7 @@ describe('<TreeNode />', () => {
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         fireEvent.click(getByText('two'));
         expect(getByTestId('two')).to.be.focused;
-        fireEvent.keyDown(getByText('two'), { key: 'ArrowDown' });
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
         expect(getByTestId('three')).to.be.focused;
       });
     });
@@ -350,13 +384,13 @@ describe('<TreeNode />', () => {
 
         fireEvent.click(getByText('two'));
         expect(getByTestId('two')).to.be.focused;
-        fireEvent.keyDown(getByText('two'), { key: 'ArrowUp' });
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
         expect(getByTestId('one')).to.be.focused;
       });
 
       it('moves focus to a parent', () => {
         const { getByTestId, getByText } = render(
-          <TreeView expanded={['one']}>
+          <TreeView defaultExpanded={['one']}>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
             </TreeNode>
@@ -366,13 +400,13 @@ describe('<TreeNode />', () => {
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         fireEvent.click(getByText('two'));
         expect(getByTestId('two')).to.be.focused;
-        fireEvent.keyDown(getByText('two'), { key: 'ArrowUp' });
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
         expect(getByTestId('one')).to.be.focused;
       });
 
       it("moves focus to a sibling's child", () => {
         const { getByTestId, getByText } = render(
-          <TreeView expanded={['one']}>
+          <TreeView defaultExpanded={['one']}>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
             </TreeNode>
@@ -383,7 +417,7 @@ describe('<TreeNode />', () => {
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         fireEvent.click(getByText('three'));
         expect(getByTestId('three')).to.be.focused;
-        fireEvent.keyDown(getByText('three'), { key: 'ArrowUp' });
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
         expect(getByTestId('two')).to.be.focused;
       });
     });
@@ -401,14 +435,14 @@ describe('<TreeNode />', () => {
 
         fireEvent.click(getByText('four'));
         expect(getByTestId('four')).to.be.focused;
-        fireEvent.keyDown(getByText('four'), { key: 'Home' });
+        fireEvent.keyDown(document.activeElement, { key: 'Home' });
         expect(getByTestId('one')).to.be.focused;
       });
     });
 
     describe('end key interaction', () => {
       it('moves focus to the last node in the tree without expanded items', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one" />
             <TreeNode nodeId="two" label="two" data-testid="two" />
@@ -417,15 +451,15 @@ describe('<TreeNode />', () => {
           </TreeView>,
         );
 
-        fireEvent.focus(getByText('one'));
+        getByTestId('one').focus();
         expect(getByTestId('one')).to.be.focused;
-        fireEvent.keyDown(getByText('one'), { key: 'End' });
+        fireEvent.keyDown(document.activeElement, { key: 'End' });
         expect(getByTestId('four')).to.be.focused;
       });
 
       it('moves focus to the last node in the tree with expanded items', () => {
-        const { getByTestId, getByText } = render(
-          <TreeView expanded={['four', 'five']}>
+        const { getByTestId } = render(
+          <TreeView defaultExpanded={['four', 'five']}>
             <TreeNode nodeId="one" label="one" data-testid="one" />
             <TreeNode nodeId="two" label="two" data-testid="two" />
             <TreeNode nodeId="three" label="three" data-testid="three" />
@@ -437,16 +471,16 @@ describe('<TreeNode />', () => {
           </TreeView>,
         );
 
-        fireEvent.focus(getByText('one'));
+        getByTestId('one').focus();
         expect(getByTestId('one')).to.be.focused;
-        fireEvent.keyDown(getByText('one'), { key: 'End' });
+        fireEvent.keyDown(document.activeElement, { key: 'End' });
         expect(getByTestId('six')).to.be.focused;
       });
     });
 
     describe('enter key interaction', () => {
       it('expands a node with children', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
@@ -454,9 +488,9 @@ describe('<TreeNode />', () => {
           </TreeView>,
         );
 
-        fireEvent.focus(getByText('one'));
+        getByTestId('one').focus();
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
-        fireEvent.keyDown(getByText('one'), { key: 'Enter' });
+        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
       });
 
@@ -471,14 +505,14 @@ describe('<TreeNode />', () => {
 
         fireEvent.click(getByText('one'));
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-        fireEvent.keyDown(getByText('one'), { key: 'Enter' });
+        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
       });
     });
 
     describe('type-ahead functionality', () => {
       it('moves focus to the next node with a name that starts with the typed character', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one" />
             <TreeNode nodeId="two" label="two" data-testid="two" />
@@ -487,20 +521,20 @@ describe('<TreeNode />', () => {
           </TreeView>,
         );
 
-        fireEvent.focus(getByText('one'));
+        getByTestId('one').focus();
         expect(getByTestId('one')).to.be.focused;
-        fireEvent.keyDown(getByText('one'), { key: 't' });
+        fireEvent.keyDown(document.activeElement, { key: 't' });
         expect(getByTestId('two')).to.be.focused;
 
-        fireEvent.keyDown(getByText('two'), { key: 'f' });
+        fireEvent.keyDown(document.activeElement, { key: 'f' });
         expect(getByTestId('four')).to.be.focused;
 
-        fireEvent.keyDown(getByText('four'), { key: 'o' });
+        fireEvent.keyDown(document.activeElement, { key: 'o' });
         expect(getByTestId('one')).to.be.focused;
       });
 
       it('moves focus to the next node with the same starting character', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one" />
             <TreeNode nodeId="two" label="two" data-testid="two" />
@@ -509,22 +543,22 @@ describe('<TreeNode />', () => {
           </TreeView>,
         );
 
-        fireEvent.focus(getByText('one'));
+        getByTestId('one').focus();
         expect(getByTestId('one')).to.be.focused;
-        fireEvent.keyDown(getByText('one'), { key: 't' });
+        fireEvent.keyDown(document.activeElement, { key: 't' });
         expect(getByTestId('two')).to.be.focused;
 
-        fireEvent.keyDown(getByText('two'), { key: 't' });
+        fireEvent.keyDown(document.activeElement, { key: 't' });
         expect(getByTestId('three')).to.be.focused;
 
-        fireEvent.keyDown(getByText('three'), { key: 't' });
+        fireEvent.keyDown(document.activeElement, { key: 't' });
         expect(getByTestId('two')).to.be.focused;
       });
     });
 
     describe('asterisk key interaction', () => {
       it('expands all siblings that are at the same level as the current node', () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
           <TreeView>
             <TreeNode nodeId="one" label="one" data-testid="one">
               <TreeNode nodeId="two" label="two" data-testid="two" />
@@ -540,11 +574,11 @@ describe('<TreeNode />', () => {
           </TreeView>,
         );
 
-        fireEvent.focus(getByText('one'));
+        getByTestId('one').focus();
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
         expect(getByTestId('three')).to.have.attribute('aria-expanded', 'false');
         expect(getByTestId('five')).to.have.attribute('aria-expanded', 'false');
-        fireEvent.keyDown(getByText('one'), { key: '*' });
+        fireEvent.keyDown(document.activeElement, { key: '*' });
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         expect(getByTestId('three')).to.have.attribute('aria-expanded', 'true');
         expect(getByTestId('five')).to.have.attribute('aria-expanded', 'true');

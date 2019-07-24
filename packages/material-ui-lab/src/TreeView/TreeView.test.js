@@ -47,9 +47,9 @@ describe('<TreeView />', () => {
 
   describe('Accessibility', () => {
     it('(TreeView) should have the role `tree`', () => {
-      const { container } = render(<TreeView />);
+      const { getByRole } = render(<TreeView />);
 
-      expect(container.querySelector('[role="tree"]')).to.be.ok;
+      expect(getByRole('tree')).to.be.ok;
     });
   });
 });

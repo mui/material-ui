@@ -65,7 +65,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
     icons: contextIcons,
     toggle,
     isExpanded,
-    isFocusable,
+    isTabable,
     focus,
     focusNextNode,
     focusPreviousNode,
@@ -88,7 +88,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   const expandable = Boolean(children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
-  const focusable = isFocusable ? isFocusable(nodeId) : false;
+  const tabable = isTabable ? isTabable(nodeId) : false;
   const icons = contextIcons || {};
 
   if (icons.defaultExpandIcon && expandable && !expanded) {
@@ -217,7 +217,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   };
 
   const handleFocus = event => {
-    if (!focused && focusable) {
+    if (!focused && tabable) {
       focus(nodeId);
     }
 
@@ -240,7 +240,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   }, [handleFirstChars, nodeId, label]);
 
   React.useEffect(() => {
-    if (focused && document.activeElement !== nodeRef.current) {
+    if (focused) {
       nodeRef.current.focus();
     }
   }, [focused]);
@@ -254,7 +254,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
       ref={handleRef}
-      tabIndex={focusable ? 0 : -1}
+      tabIndex={tabable ? 0 : -1}
       {...other}
     >
       <div className={classes.content} ref={contentRef}>
