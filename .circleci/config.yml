@@ -116,18 +116,6 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
-  test_production:
-    <<: *defaults
-    steps:
-      - checkout
-      - install_js
-      - run:
-          name: Can we generate the @material-ui/core umd build?
-          command: yarn workspace @material-ui/core build:umd
-      - prepare_chrome_headless
-      - run:
-          name: Test umd release
-          command: yarn test:umd
   test_browser:
     <<: *defaults
     steps:
@@ -137,6 +125,12 @@ jobs:
       - run:
           name: Tests real browsers
           command: yarn test:karma
+      - run:
+          name: Can we generate the @material-ui/core umd build?
+          command: yarn workspace @material-ui/core build:umd
+      - run:
+          name: Test umd release
+          command: yarn test:umd
   test_regressions:
     <<: *defaults
     docker:
@@ -170,13 +164,9 @@ workflows:
       - test_browser:
           requires:
             - checkout
-      - test_production:
-          requires:
-            - checkout
       - test_regressions:
           requires:
             - test_unit
             - test_static
             - test_types
             - test_browser
-            - test_production
