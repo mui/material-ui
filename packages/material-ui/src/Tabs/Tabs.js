@@ -22,9 +22,17 @@ export const styles = theme => ({
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     display: 'flex',
   },
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  vertical: {
+    flexDirection: 'column',
+  },
   /* Styles applied to the flex container element. */
   flexContainer: {
     display: 'flex',
+  },
+  /* Styles applied to the flex container element if `orientation="vertical"`. */
+  flexContainerVertical: {
+    flexDirection: 'column',
   },
   /* Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered: {
@@ -73,6 +81,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     component: Component = 'div',
     indicatorColor = 'secondary',
     onChange,
+    orientation = 'horizontal',
     ScrollButtonComponent = TabScrollButton,
     scrollButtons = 'auto',
     TabIndicatorProps = {},
@@ -84,6 +93,13 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   } = props;
   const scrollable = variant === 'scrollable';
   const isRtl = theme.direction === 'rtl';
+  const vertical = orientation === 'vertical';
+
+  const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
+  const start = vertical ? 'top' : 'left';
+  const end = vertical ? 'bottom' : 'right';
+  const clientSize = vertical ? 'clientHeight' : 'clientWidth';
+  const size = vertical ? 'height' : 'width';
 
   warning(
     !centered || !scrollable,
@@ -94,8 +110,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const [mounted, setMounted] = React.useState(false);
   const [indicatorStyle, setIndicatorStyle] = React.useState({});
   const [displayScroll, setDisplayScroll] = React.useState({
-    left: false,
-    right: false,
+    start: false,
+    end: false,
   });
   const [scrollerStyle, setScrollerStyle] = React.useState({
     overflow: 'hidden',
@@ -114,8 +130,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       tabsMeta = {
         clientWidth: tabsNode.clientWidth,
         scrollLeft: tabsNode.scrollLeft,
+        scrollTop: tabsNode.scrollTop,
         scrollLeftNormalized: getNormalizedScrollLeft(tabsNode, theme.direction),
         scrollWidth: tabsNode.scrollWidth,
+        top: rect.top,
+        bottom: rect.bottom,
         left: rect.left,
         right: rect.right,
       };
@@ -147,49 +166,59 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
   const updateIndicatorState = useEventCallback(() => {
     const { tabsMeta, tabMeta } = getTabsMeta();
-    let left = 0;
+    let startValue = 0;
 
     if (tabMeta && tabsMeta) {
-      const correction = isRtl
-        ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
-        : tabsMeta.scrollLeft;
-      left = Math.round(tabMeta.left - tabsMeta.left + correction);
+      if (vertical) {
+        startValue = Math.round(tabMeta.top - tabsMeta.top + tabsMeta.scrollTop);
+      } else {
+        const correction = isRtl
+          ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
+          : tabsMeta.scrollLeft;
+        startValue = Math.round(tabMeta.left - tabsMeta.left + correction);
+      }
     }
 
     const newIndicatorStyle = {
-      left,
+      [start]: startValue,
       // May be wrong until the font is loaded.
-      width: tabMeta ? Math.round(tabMeta.width) : 0,
+      [size]: tabMeta ? Math.round(tabMeta[size]) : 0,
     };
 
     if (
-      (newIndicatorStyle.left !== indicatorStyle.left ||
-        newIndicatorStyle.width !== indicatorStyle.width) &&
-      !isNaN(newIndicatorStyle.left) &&
-      !isNaN(newIndicatorStyle.width)
+      (newIndicatorStyle[start] !== indicatorStyle[start] ||
+        newIndicatorStyle[size] !== indicatorStyle[size]) &&
+      !isNaN(newIndicatorStyle[start]) &&
+      !isNaN(newIndicatorStyle[size])
     ) {
       setIndicatorStyle(newIndicatorStyle);
     }
   });
 
   const scroll = scrollValue => {
-    animate('scrollLeft', tabsRef.current, scrollValue);
+    animate(scrollStart, tabsRef.current, scrollValue);
   };
 
   const moveTabsScroll = delta => {
-    const multiplier = isRtl ? -1 : 1;
-    const nextScrollLeft = tabsRef.current.scrollLeft + delta * multiplier;
-    // Fix for Edge
-    const invert = isRtl && detectScrollType() === 'reverse' ? -1 : 1;
-    scroll(invert * nextScrollLeft);
+    let scrollValue = tabsRef.current[scrollStart];
+
+    if (vertical) {
+      scrollValue += delta;
+    } else {
+      scrollValue += delta * (isRtl ? -1 : 1);
+      // Fix for Edge
+      scrollValue *= isRtl && detectScrollType() === 'reverse' ? -1 : 1;
+    }
+
+    scroll(scrollValue);
   };
 
-  const handleLeftScrollClick = () => {
-    moveTabsScroll(-tabsRef.current.clientWidth);
+  const handleStartScrollClick = () => {
+    moveTabsScroll(-tabsRef.current[clientSize]);
   };
 
-  const handleRightScrollClick = () => {
-    moveTabsScroll(tabsRef.current.clientWidth);
+  const handleEndScrollClick = () => {
+    moveTabsScroll(tabsRef.current[clientSize]);
   };
 
   const handleScrollbarSizeChange = React.useCallback(scrollbarHeight => {
@@ -205,29 +234,31 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       <ScrollbarSize className={classes.scrollable} onChange={handleScrollbarSizeChange} />
     ) : null;
 
-    const scrollButtonsActive = displayScroll.left || displayScroll.right;
+    const scrollButtonsActive = displayScroll.start || displayScroll.end;
     const showScrollButtons =
       scrollable &&
       ((scrollButtons === 'auto' && scrollButtonsActive) ||
         scrollButtons === 'desktop' ||
         scrollButtons === 'on');
 
-    conditionalElements.scrollButtonLeft = showScrollButtons ? (
+    conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
+        orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
-        onClick={handleLeftScrollClick}
-        visible={displayScroll.left}
+        onClick={handleStartScrollClick}
+        visible={displayScroll.start}
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
       />
     ) : null;
 
-    conditionalElements.scrollButtonRight = showScrollButtons ? (
+    conditionalElements.scrollButtonEnd = showScrollButtons ? (
       <ScrollButtonComponent
+        orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
-        onClick={handleRightScrollClick}
-        visible={displayScroll.right}
+        onClick={handleEndScrollClick}
+        visible={displayScroll.end}
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
@@ -244,28 +275,35 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       return;
     }
 
-    if (tabMeta.left < tabsMeta.left) {
+    if (tabMeta[start] < tabsMeta[start]) {
       // left side of button is out of view
-      const nextScrollLeft = tabsMeta.scrollLeft + (tabMeta.left - tabsMeta.left);
-      scroll(nextScrollLeft);
-    } else if (tabMeta.right > tabsMeta.right) {
+      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
+      scroll(nextScrollStart);
+    } else if (tabMeta[end] > tabsMeta[end]) {
       // right side of button is out of view
-      const nextScrollLeft = tabsMeta.scrollLeft + (tabMeta.right - tabsMeta.right);
-      scroll(nextScrollLeft);
+      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
+      scroll(nextScrollStart);
     }
   });
 
   const updateScrollButtonState = useEventCallback(() => {
     if (scrollable && scrollButtons !== 'off') {
-      const { scrollWidth, clientWidth } = tabsRef.current;
-      const scrollLeft = getNormalizedScrollLeft(tabsRef.current, theme.direction);
+      const { scrollTop, scrollHeight, clientHeight, scrollWidth, clientWidth } = tabsRef.current;
+      let showStartScroll;
+      let showEndScroll;
 
-      // use 1 for the potential rounding error with browser zooms.
-      const showLeftScroll = isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
-      const showRightScroll = !isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
+      if (vertical) {
+        showStartScroll = scrollTop > 1;
+        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
+      } else {
+        const scrollLeft = getNormalizedScrollLeft(tabsRef.current, theme.direction);
+        // use 1 for the potential rounding error with browser zooms.
+        showStartScroll = isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
+        showEndScroll = !isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
+      }
 
-      if (showLeftScroll !== displayScroll.left || showRightScroll !== displayScroll.right) {
-        setDisplayScroll({ left: showLeftScroll, right: showRightScroll });
+      if (showStartScroll !== displayScroll.start || showEndScroll !== displayScroll.end) {
+        setDisplayScroll({ start: showStartScroll, end: showEndScroll });
       }
     }
   });
@@ -320,6 +358,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const indicator = (
     <TabIndicator
       className={classes.indicator}
+      orientation={orientation}
       color={indicatorColor}
       {...TabIndicatorProps}
       style={{
@@ -361,8 +400,18 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const conditionalElements = getConditionalElements();
 
   return (
-    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
-      {conditionalElements.scrollButtonLeft}
+    <Component
+      className={clsx(
+        classes.root,
+        {
+          [classes.vertical]: vertical,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
+      {conditionalElements.scrollButtonStart}
       {conditionalElements.scrollbarSizeListener}
       <div
         className={clsx(classes.scroller, {
@@ -375,6 +424,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       >
         <div
           className={clsx(classes.flexContainer, {
+            [classes.flexContainerVertical]: vertical,
             [classes.centered]: centered && !scrollable,
           })}
           ref={childrenWrapperRef}
@@ -384,7 +434,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         </div>
         {mounted && indicator}
       </div>
-      {conditionalElements.scrollButtonRight}
+      {conditionalElements.scrollButtonEnd}
     </Component>
   );
 });
@@ -434,6 +484,10 @@ Tabs.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * The tabs orientation (layout flow direction).
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * The component used to render the scroll buttons.
    */
   ScrollButtonComponent: PropTypes.elementType,
@@ -447,7 +501,7 @@ Tabs.propTypes = {
    */
   scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'on', 'off']),
   /**
-   * Properties applied to the `TabIndicator` element.
+   * Properties applied to the tab indicator element.
    */
   TabIndicatorProps: PropTypes.object,
   /**

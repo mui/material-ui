@@ -1,6 +1,5 @@
 import * as React from 'react';
 import ButtonBase from '../ButtonBase/ButtonBase';
-import { TabIndicatorProps } from './TabIndicator';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Tabs: OverridableComponent<{
@@ -10,9 +9,10 @@ declare const Tabs: OverridableComponent<{
     children?: React.ReactNode;
     indicatorColor?: 'secondary' | 'primary' | string;
     onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
+    orientation?: 'horizontal' | 'vertical';
     ScrollButtonComponent?: React.ElementType;
     scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
-    TabIndicatorProps?: Partial<TabIndicatorProps>;
+    TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
     textColor?: 'secondary' | 'primary' | 'inherit' | string;
     value: any;
     variant?: 'standard' | 'scrollable' | 'fullWidth';
