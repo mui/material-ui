@@ -65,7 +65,7 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 ## Customized tabs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例をいくつか示します。あなたは[上書きドキュメントのページ](/customization/components/)でこれについてもっと詳しく知ることができます。
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 

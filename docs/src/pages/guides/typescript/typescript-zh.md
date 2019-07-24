@@ -2,7 +2,7 @@
 
 <p class="description">借助 TypeScript，你可以为 JavaScript 添加静态类型，从而提高代码质量及开发者的工作效率。</p>
 
-请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。 此例子要求 TypeScript 版本大于 2.8。
+请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。 我们要求 TypeScript 版本必须大于 2.8。
 
 我们的定义都通过 [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json) 进行测试。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。
 
@@ -253,10 +253,10 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 但是，并不是每个组件都完全支持您传入的任何组件类型。 如果您在 TypeScript 中遇到一个不接受其 `component` 属性的组件，请新建一个 issue。 我们也一直在努力实现组件属性的通用化， 这样能够帮助我们解决这个问题。
 
-## Handling `value` and event handlers
+## 处理`值`和事件处理器
 
-Many components concerned with user input offer a `value` prop or event handlers which include the current `value`. In most situations that `value` is only handled within React which allows it be of any type, such as objects or arrays.
+很多与用户输入有关的组件会提供一个 `value` 属性或者包含当前`值`的事件处理器。 大多数情况下`值`只在 React 内被处理，这样的话它能够是任何类型，譬如 objects 或者 arrays。
 
-However, that type cannot be verified at compile time in situations where it depends on the component's children e.g. for `Select` or `RadioGroup`. This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down. We do not offer the possibility to use a generic type in those cases for the same [reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
+然而，如果是它依赖于组件子项的情况，此类型无法在编译时被验证，例如对于 `Select` 或者 `RadioGroup` 来说。 这意味着留给我们的最合适的选项是将其输入为 `unknown` 并让开发者自行决定如何来缩小该类型。 We do not offer the possibility to use a generic type in those cases for [the same reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
 
-Our demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You haven to decide for yourself if the same tradeoff is acceptable for you. We want our library types to be strict by default and loose via opt-in.
+我们的演示包含了使用类型转换的类型变体。 鉴于所有的类型都位于一个文件中，并且都是非常基本的，这样的折衷可以接受。 You have to decide for yourself if the same tradeoff is acceptable for you. 我们则希望，通过选择性加入，我们的库的类型默认为严格的。

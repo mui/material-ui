@@ -20,12 +20,12 @@ Create React AppはReactを学ぶのに良いプロジェクトです。 どの�
 
 更に高度なサンプルプロジェクトをお探しですか？
 
-If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
+もしあなたがより完璧な、実際に使う例から始めたいなら、[free themes](https://themes.material-ui.com/)や、以下を参考にしてください。
 
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
   
   - Bootstrapped with Create React App, the same tooling works out of the box
-  - Built on top of Firebase with authentication working from the start
+  - 最初から認証機能の付いたFirebase上に構築されます
   - Robust routing with React Router including error handling (404)
   - Extensive mobile support with [react-swipeable-views](https://react-swipeable-views.com) for tabs
 
@@ -35,4 +35,3 @@ If you want to start with a more complete and real world example, you could take
   - ナビゲーションのサンプルに含まれるReact Router
   - プロダクションビルド用のNginxサーバ含むdockerコンテナ
   - [Create React App](https://facebook.github.io/create-react-app/)による生成
-  - *NOTE*: This project is using *v3* of the Material lib, not yet updated for v4

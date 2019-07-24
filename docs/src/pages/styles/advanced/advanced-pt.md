@@ -243,13 +243,13 @@ A injeção de tags de estilo acontece na **mesma ordem** com as invocações de
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyleBase = makeStyles({
+const useStylesBase = makeStyles({
   root: {
     color: 'blue', // 🔵
   },
 });
 
-const useStyle = makeStyles({
+const useStyles = makeStyles({
   root: {
     color: 'red', // 🔴
   },
@@ -258,7 +258,7 @@ const useStyle = makeStyles({
 export default function MyComponent() {
   // Order doesn't matter
   const classes = useStyles();
-  const classesBase = useStyleBase();
+  const classesBase = useStylesBase();
 
   // Order doesn't matter
   const className = clsx(classes.root, classesBase.root)
@@ -486,7 +486,7 @@ const StyledTextField = styled(TextField)`
   }
   .MuiOutlinedInput-root {
     fieldset {
-      border-color: red; ❤️
+      border-color: red; 🔴
     }
     &:hover fieldset {
       border-color: yellow; 💛
@@ -559,11 +559,11 @@ Se você estiver usando renderização do lado do servidor(Server-Side Rendering
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
 />
 ```
 
-Então, você deve passar este nonce para o JSS para que ele possa adicioná-lo às tags `<style>` subsequentes. O lado do cliente obtém o nonce de um cabeçalho. Você deve incluir esse cabeçalho independentemente de o SSR ser usado ou não.
+Então, você deve passar este nonce para o JSS para que ele possa adicioná-lo às tags `<style>` subsequentes. The client-side gets the nonce from a header. Você deve incluir esse cabeçalho independentemente de o SSR ser usado ou não.
 
 ```jsx
 <meta property="csp-nonce" content={nonce} />

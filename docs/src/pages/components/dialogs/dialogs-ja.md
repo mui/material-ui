@@ -3,24 +3,24 @@ title: Dialog React component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Dialogs
+# ダイアログ
 
-<p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
+<p class="description">ダイアログは、タスクについてユーザーに通知します。重要な情報を含める、決定を求める、または複数のタスクを伴うことができます。</p>
 
-A [Dialog](https://material.io/design/components/dialogs.html) is a type of [modal](/components/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+[ダイアログ](https://material.io/design/components/dialogs.html) は、重要な情報を提供したり決定を求めたりするために、アプリのコンテンツの前に表示される [モーダル](/components/modal/) ウィンドウの一種です。 ダイアログは表示されるとアプリのすべての機能を無効にし、確認、却下、または必要な操作が行われるまで画面に表示されたままになります。
 
-Dialogs are purposefully interruptive, so they should be used sparingly.
+ダイアログは意図的に中断されるので、慎重にに使用する必要があります。
 
-## Simple Dialogs
+## 単純なダイアログ
 
-Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+単純なダイアログでは、リストアイテムに関する追加の詳細やアクションを提供できます。 たとえば、アバター、アイコン、サブテキストの明確化、または直交アクション（アカウントの追加など）を表示できます。
 
 Touch mechanics:
 
-- Choosing an option immediately commits the option and closes the menu
-- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
+- オプションを選択するとすぐにそのオプションが確定され、メニューが閉じます
+- ダイアログの外側に触れるか、戻るを押すと、操作がキャンセルされてダイアログが閉じます。
 
-{{"demo": "pages/components/dialogs/SimpleDialog.js"}}
+{{"demo":"pages/components/dialogs/SimpleDialog.js"}}
 
 ## Alerts
 
@@ -38,13 +38,13 @@ If a title is required:
 - Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
 - Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
 
-{{"demo": "pages/components/dialogs/AlertDialog.js"}}
+{{"demo":"pages/components/dialogs/AlertDialog.js"}}
 
 ## Transições
 
 You can also swap out the transition, the next example uses `Slide`.
 
-{{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
+{{"demo":"pages/components/dialogs/AlertDialogSlide.js"}}
 
 ## Form dialogs
 
@@ -58,11 +58,11 @@ Form dialogs allow users to fill out form fields within a dialog. For example, i
 
 The dialog has a close button added to aide usability.
 
-{{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
+{{"demo":"pages/components/dialogs/CustomizedDialogs.js"}}
 
 ## Full-screen dialogs
 
-{{"demo": "pages/components/dialogs/FullScreenDialog.js"}}
+{{"demo":"pages/components/dialogs/FullScreenDialog.js"}}
 
 ## Optional sizes
 
@@ -85,7 +85,7 @@ function MyComponent() {
 }
 ```
 
-{{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
+{{"demo":"pages/components/dialogs/ResponsiveDialog.js"}}
 
 ## Confirmation dialogs
 
@@ -93,7 +93,7 @@ Confirmation dialogs require users to explicitly confirm their choice before an 
 
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
-{{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
+{{"demo":"pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## アクセシビリティ
 
@@ -114,7 +114,7 @@ Try the demo below to see what we mean:
 
 You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
 
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
+{{"demo":"pages/components/dialogs/DraggableDialog.js"}}
 
 ## Performance
 

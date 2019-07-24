@@ -36,7 +36,7 @@ Quando uma label não pode ser usada, é necessário adicionar um atributo diret
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Opção A' } }
+  inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
 

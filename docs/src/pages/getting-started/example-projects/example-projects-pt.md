@@ -20,7 +20,7 @@ O código-fonte deste site de documentação também está incluído no reposit�
 
 Procurando por um projeto de exemplo mais avançado?
 
-If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
+Se você quer começar com um exemplo mais completo e do mundo real, você pode dar uma olhada nos nossos [temas gratuitos](https://themes.material-ui.com/) ou:
 
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
   
@@ -35,4 +35,3 @@ If you want to start with a more complete and real world example, you could take
   - React Router incluído com um exemplo de navegação
   - Um contêiner docker com um servidor Nginx para compilação de produção
   - Criado com o [Create React App](https://facebook.github.io/create-react-app/)
-  - *NOTE*: This project is using *v3* of the Material lib, not yet updated for v4

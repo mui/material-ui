@@ -3,28 +3,28 @@ title: Container React component
 components: Container
 ---
 
-# Container
+# Container(コンテナ)
 
-<p class="description">The container centers your content horizontally. It's the most basic layout element.</p>
+<p class="description">コンテナはコンテンツを水平方向に中央揃えにします。 それが最も基本的なレイアウト要素です。</p>
 
-While containers can be nested, most layouts do not require a nested container.
+コンテナは入れ子にすることができますが、ほとんどのレイアウトは入れ子になったコンテナを必要としません。
 
-## Fluid
+## 可変
 
-A fluid container width is bounded by that `maxWidth` property value.
+可変コンテナの幅は、その `maxWidth` プロパティ値によって制限されます。
 
 ```jsx
 <Container maxWidth="sm">
 ```
 
-{{"demo": "pages/components/container/SimpleContainer.js", "iframe": true}}
+{{"demo": "pages/layout/container/SimpleContainer.js", "iframe": true}}
 
 ## Fixed
 
-If you prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport, you can set the `fixed` property. The max-width matches the min-width of the current breakpoint.
+完全に流動的なビューポートに対応するのではなく、固定サイズのセット用に設計したい場合は、 `fixed` プロパティを設定できます。 最大幅は、現在のブレークポイントの最小幅と一致します。
 
 ```jsx
 <Container fixed>
 ```
 
-{{"demo": "pages/components/container/FixedContainer.js", "iframe": true}}
+{{"demo": "pages/layout/container/SimpleContainer.js", "iframe": true}}

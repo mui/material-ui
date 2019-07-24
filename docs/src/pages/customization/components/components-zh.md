@@ -2,7 +2,7 @@
 
 <p class="description">您可以轻松地自定义一个 Material-UI 组件的外观。</p>
 
-由于组件可以在不同的上下文环境中使用，因此有几种方法。 从最狭窄的用例到最广泛的用例，这些是：
+有多种方法可以实现在不同的上下文环境中使用组件。 从最狭窄的用例到最广泛的用例，这些是：
 
 1. [一次性使用的特定变体](#1-specific-variation-for-a-one-time-situation)
 2. [一次性使用的动态变体](#2-dynamic-variation-for-a-one-time-situation)
@@ -166,7 +166,7 @@ const styles = {
   classes={{
     root: classes.root, // class name, e.g. `root-x`
     disabled: classes.disabled, // class name, e.g. `disabled-x`
-  } }
+  }}
 >
 ```
 

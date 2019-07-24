@@ -2,7 +2,7 @@
 
 <p class="description">You can easily customize the appearance of a Material-UI component.</p>
 
-As components can be used in different contexts, the are several approaches to this. Going from the narrowest use-case to the broadest, these are:
+As components can be used in different contexts, there are several approaches to this. Going from the narrowest use-case to the broadest, these are:
 
 1. [Конкретное изменение для единичного случая](#1-specific-variation-for-a-one-time-situation)
 2. [Динамическое изменение для единичного случая](#2-dynamic-variation-for-a-one-time-situation)
@@ -166,7 +166,7 @@ const styles = {
   classes={{
     root: classes.root, // class name, e.g. `root-x`
     disabled: classes.disabled, // class name, e.g. `disabled-x`
-  } }
+  }}
 >
 ```
 

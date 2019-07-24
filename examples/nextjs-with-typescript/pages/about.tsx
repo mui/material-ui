@@ -23,7 +23,7 @@ export default function App() {
     <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Next.js v4-alpha with TypeScript example
+          Next.js with TypeScript example
         </Typography>
         <Link href="/">Go to the main page</Link>
         <ProTip />

@@ -3,9 +3,9 @@ title: Date Picker, Time Picker React компоненты
 components: TextField
 ---
 
-# Поля выбора
+# Date/Time inputs
 
-<p class="description">Поля выбора предоставляют возможность выбрать единственное значение из заранее заданного множества.</p>
+<p class="description">Date/Time inputs (short: pickers) provide a simple way to select a single value from a pre-determined set.</p>
 
 - На мобильном устройстве лучше всего отображать в модальном окне.
 - Для инлайн-отображения, например в формах стоит рассмотреть возможность использования более компактных элементов управления, таких как сегментированные выпадающие кнопки.

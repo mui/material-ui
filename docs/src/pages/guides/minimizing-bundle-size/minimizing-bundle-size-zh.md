@@ -16,7 +16,7 @@ import { Button, TextField } from '@material-ui/core';
 
 请注意 tree-shaking 通常只运用于生产环境的打包优化。 开发环境的打包则涵盖了完整的库，因此加载时间会比较慢。 在当您导入 `@material-ui/icons` 的时候，这个情况特别显著。 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
 
-如果您觉得这样不妥，您还有以下几个选择：
+If this is an issue for you, you have various options:
 
 ### 选项1
 
@@ -35,7 +35,7 @@ import TextField from '@material-ui/core/TextField';
 
 尽管这样直接导入并不会使用 [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js) 中的导出模式，但是对于那些公开的模块来说，此文件仍可以作为一个方便的参考。
 
-请注意，我们只支持第一级和第二级的导入。 以下的这些例子是私有的，它们会给你的打包文件带来重复的模块。
+Be aware that we only support first and second level imports. 以下的这些例子是私有的，它们会给你的打包文件带来重复的模块。
 
 ```js
 // 可以
@@ -89,6 +89,6 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 
 考虑到一些[支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的包是和 [Babel](https://github.com/babel/babel) 一起被**编译**的。
 
-我们同时也发布了这些组件的第二种版本。 您可以在 [`/es` 文件夹](https://unpkg.com/@material-ui/core@next/es/)下找到此版本。 所有非官方的语义都被编译成[ECMA-262 的标准](https://www.ecma-international.org/publications/standards/Ecma-262.htm)，仅此而已。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。 一些旧的浏览器需编译一些 JavaScript 的功能，这样会增加打包文件的大小。 ES2015 运行的时候的功能中不包含垫片。 IE11+ 和一些长青浏览器会支持所有必要的功能。 如果您需要支持其他浏览器，请考虑使用 [`@ babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill)。
+我们同时也发布了这些组件的第二种版本。 您可以在< [`/es` folder](https://unpkg.com/@material-ui/core/es/)下找到此版本 。 所有非官方的语义都被编译成[ECMA-262 的标准](https://www.ecma-international.org/publications/standards/Ecma-262.htm)，仅此而已。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。 一些旧的浏览器需编译一些 JavaScript 的功能，这样会增加打包文件的大小。 ES2015 运行的时候的功能中不包含垫片。 IE11+ 和一些长青浏览器会支持所有必要的功能。 如果您需要支持其他浏览器，请考虑使用 [`@ babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill)。
 
 ⚠️为了使得用户打包文件中的重复代码最小化，我们**强烈阻止**库的作者使用`/es` 文件夹。

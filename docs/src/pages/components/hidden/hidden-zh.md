@@ -33,15 +33,15 @@ mdDown      |                     hide | show
 
 如果您正在使用服务器端呈现，则可以设置 `implementation="css"` 如果您不希望浏览器在屏幕上重新流动您的内容。
 
-## 断点了
+## 断点
 
-使用任何断点 `up` 属性，给定 *孩子* 将被隐藏 *或高于* 的断点。
+使用任何断点 `up` 属性，给定 *子节点* 将被隐藏 *或高于* 的断点。
 
 {{"demo": "pages/components/hidden/BreakpointUp.js"}}
 
 ## 断点下来
 
-使用任何断点 `down` 属性，给定 *孩子* 将被隐藏 *或低于* 的断点。
+使用任何断点 `down` 属性，给定 *子节点* 将被隐藏 *或低于* 的断点。
 
 {{"demo": "pages/components/hidden/BreakpointDown.js"}}
 

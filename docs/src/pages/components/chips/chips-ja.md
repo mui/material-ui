@@ -28,22 +28,22 @@ Outlined chipsは代替スタイルを提供します。
 
 ## Chip array
 
-An example of rendering multiple Chips from an array of values. Deleting a chip removes it from the array. Note that since no `onClick` property is defined, the Chip can be focused, but does not gain depth while clicked or touched.
+値の配列から複数のチップをレンダリングする例。 チップを削除すると、それがアレイから削除されます。 何のため、ことに注意してください `のonClick` プロパティが定義されていないchipはフォーカスされないだけでなく、 クリックされたか、触られた間、gaindepthもありません。
 
-{{"demo": "pages/components/chips/ChipsArray.js"}}
+{{"demo":"pages/components/chips/ChipsArray.js"}}
 
 ## Small Chip
 
-You can use the `size` prop to define a small Chip.
+あなたは小さなチップを定義するために `サイズ` propsを使うことができます。
 
 ### Default variant
 
-{{"demo": "pages/components/chips/SmallChips.js"}}
+{{"demo":"pages/components/chips/SmallChips.js"}}
 
 ### Outlined variant
 
-{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+{{"demo":"pages/components/chips/SmallOutlinedChips.js"}}
 
 ## Chip Playground
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo":"pages/components/chips/ChipsPlayground.js","hideHeader":true}}

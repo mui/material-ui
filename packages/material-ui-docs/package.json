@@ -37,7 +37,7 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.2.0",
+    "@babel/runtime": "^7.4.4",
     "@material-ui/utils": "^4.0.1",
     "clsx": "^1.0.2",
     "marked": "^0.6.0",

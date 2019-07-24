@@ -128,7 +128,7 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-Se você não tem certeza se o componente do Material-UI em questão encaminha sua ref, você pode verificar a documentação da API em "Props" por exemplo, a API [/api/button/#props](Button API)
+Se você não tem certeza se o componente do Material-UI em questão encaminha sua ref, você pode verificar a documentação da API em "Props" por exemplo, a API [Button API](/api/button/#props)
 
 > O ref é encaminhado para o elemento raiz.
 
@@ -138,7 +138,7 @@ indicando que você pode acessar o elemento DOM como uma referência.
 
 Se você está vendo uma mensagem de aviso no console como a abaixo, você provavelmente tem várias instâncias de `@material-ui/styles` inicializadas na página.
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names and makes your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and makes your application bigger without a good reason.
 
 ### Possíveis razões
 

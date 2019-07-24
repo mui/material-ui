@@ -3,7 +3,7 @@ title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Switches
+# Interruptores
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
 
@@ -29,6 +29,12 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
+## Tamaños
+
+Fancy smaller switches? Use the `size` property.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
 ## Ubicación de Etiqueta
 
 Puede cambiar la ubicación de la etiqueta:
@@ -44,6 +50,6 @@ Cuando no se puede usar una etiqueta, es necesario agregar un atributo directame
 ```jsx
 <Switch
   value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' } }
+  inputProps={{ 'aria-label': 'Switch A' }}
 />
 ```

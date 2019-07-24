@@ -34,7 +34,7 @@ import 'typeface-roboto';
 
 Para mais informações confira o projeto [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto).
 
-⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Colocar todos os arquivos de fonte em linha pode aumentar o tamanho do seu pacote significativamente. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Colocar todos os arquivos de fonte em linha pode aumentar o tamanho do seu pacote significativamente. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
 
 ## Componente
 
@@ -50,7 +50,7 @@ Em algumas situações, talvez você não consiga usar o componente `Tipografia`
 
 O componente de Tipografia (Typography) usa a propriedade `variantMapping` para associar a variação da UI com um elemento semântico. É importante ressaltar que o estilo de uma tipografia é independente do elemento semântico por baixo dela.
 
-- Você pode alterar o elemento subjacente para uma ocasião única com a propriedade `component`:
+- You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
 {/* Já temos um h1 na página, não vamos duplicá-lo. */}

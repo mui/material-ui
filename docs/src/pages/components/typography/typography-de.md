@@ -50,7 +50,7 @@ In einigen Situationen können Sie möglicherweise die Komponente `Typography` n
 
 Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-Variante einem semantischen Element zuzuordnen. Es ist wichtig zu wissen, dass der Stil einer Typografie unabhängig von dem zugrunde liegenden semantischen Element ist.
 
-- Sie können das zugrunde liegende Element einmalig mit der Eigenschaft `component` ändern:
+- You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
 {/ * Wir haben bereits eine h1 auf der Seite, wir wollen diese nicht kopieren. * /}

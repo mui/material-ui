@@ -35,4 +35,3 @@ If you want to start with a more complete and real world example, you could take
   - React Router included with a navigation example
   - A docker container with an Nginx server for production build
   - Created with [Create React App](https://facebook.github.io/create-react-app/)
-  - *NOTE*: This project is using *v3* of the Material lib, not yet updated for v4

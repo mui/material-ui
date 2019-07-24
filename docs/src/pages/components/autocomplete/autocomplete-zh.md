@@ -15,7 +15,7 @@ Material-UI不提供任何高级 API 来解决此问题。我们鼓励大家参�
 
 在下面的示例中，我们演示了如何使用 [downshift](https://github.com/downshift-js/downshift)。
 
-最后一个演示可以清除输入并在焦点的位置上显示一系列的选项。
+The last demo allows the user to clear the input and show a number of options on focus.
 
 {{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
 

@@ -31,11 +31,11 @@ You need to update your `package.json` to use the latest version of Material-UI.
 Or run
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core
 
 or
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 ### Update React version
@@ -55,11 +55,11 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 Or run
 
 ```sh
-npm install @material-ui/styles@next
+npm install @material-ui/styles
 
 or
 
-yarn add @material-ui/styles@next
+yarn add @material-ui/styles
 ```
 
 ## Handling breaking changes
@@ -154,7 +154,7 @@ yarn add @material-ui/styles@next
 
 ### TypeScript
 
-#### `value` type 
+#### `value` type
 
 Normalized `value` prop type for input components to use `unknown`. This affects
 `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
@@ -278,6 +278,15 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [Slide] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
+### Slider
+
+- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
+  
+  ```diff
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
+  ```
+
 ### Switch
 
 - [Switch] Refactor the implementation to make it easier to override the styles. Rename the class names to match the specification wording:
@@ -343,8 +352,8 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   
   ```diff
   <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' } }
-  + classes={{ asterisk: 'bar' } }
+  - FormLabelClasses={{ asterisk: 'bar' }}
+  + classes={{ asterisk: 'bar' }}
   >
     Foo
   </InputLabel>
@@ -387,7 +396,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. Bootstrap, material.io, and even our documentation use 16px as a default font size. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. We recommend 12px as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants. The color should inherit most of the time. It's the default behavior of the web.
-- [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028. The usage of *default* should be avoided, it lakes semantic.
+- [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028. The usage of *default* should be avoided, it lacks semantic.
 
 ### Node
 

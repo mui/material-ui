@@ -7,7 +7,7 @@ components: Drawer, SwipeableDrawer
 
 <p class="description">Los cajones de navegación brindan acceso a los destinos en su aplicación. Las hojas laterales son superficies que contienen contenido complementario que están ancladas al borde izquierdo o derecho de la pantalla.</p>
 
-[Los Cajones de Navegación](https://material.io/design/components/navigation-drawer.html) proporcionan acceso a destinos y funciones de la aplicación, como cambiar de cuenta. Pueden estar permanentemente en pantalla o controlados por un ícono del menú de navegación.
+[Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. Pueden estar permanentemente en pantalla o controlados por un ícono del menú de navegación.
 
 [Las hojas laterales](https://material.io/design/components/sheets-side.html) son superficies suplementarias que se usan principalmente en tabletas y computadores de escritorio.
 

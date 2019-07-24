@@ -2,7 +2,7 @@
 
 <p class="description">You can easily customize the appearance of a Material-UI component.</p>
 
-As components can be used in different contexts, the are several approaches to this. Going from the narrowest use-case to the broadest, these are:
+As components can be used in different contexts, there are several approaches to this. Going from the narrowest use-case to the broadest, these are:
 
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
 2. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
@@ -88,7 +88,7 @@ In order to override the components special states, **you need to increase speci
 <Button disabled className="Button">
 ```
 
-Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform. Let's take the menu item component and the *selected* state as an example. Aside from accessing nested elements, the `classes` property can be used to customize the special states of Material-UI components:
+時にはこのプラットフォームではstateとして**pseudo-class**は使うことができない。 メニュー項目の構成要素と*選ばれた*例として述べる。 Aside from accessing nested elements, the `classes` property can be used to customize the special states of Material-UI components:
 
 ```css
 .MenuItem {
@@ -166,7 +166,7 @@ const styles = {
   classes={{
     root: classes.root, // class name, e.g. `root-x`
     disabled: classes.disabled, // class name, e.g. `disabled-x`
-  } }
+  }}
 >
 ```
 

@@ -23,13 +23,7 @@ const alias = {
 };
 
 module.exports = {
-  presets: [
-    // TODO figure out how to make it work with dependencies that have this repo as a
-    // peer,
-    // false causes 'Attempted import error: 'KeyboardTimePicker' is not exported from '@material-ui/pickers'.'
-    ['next/babel', { 'preset-env': { modules: 'commonjs' } }],
-    '@zeit/next-typescript/babel',
-  ],
+  presets: ['next/babel'],
   plugins: [
     'babel-plugin-optimize-clsx',
     // for IE 11 support

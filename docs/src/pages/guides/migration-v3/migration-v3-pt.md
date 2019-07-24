@@ -1,4 +1,4 @@
-# Migration from v3 to v4
+# Migrando da v3 para v4
 
 <p class="description">Sim, v4 foi lançada!</p>
 
@@ -14,7 +14,7 @@ Esta é uma referência para atualizar seu site de Material-UI v3 para v4. Embor
 
 Esta página de documentação cobre o *como* migrar da v3 para a v4. O *por que* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
-## Updating your dependencies
+## Atualizando suas dependências
 
 A primeira coisa que você precisa fazer é atualizar suas dependências.
 
@@ -31,11 +31,11 @@ Você precisa atualizar seu `package.json` para usar a versão mais recente do M
 Ou execute
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core
 
 ou
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 ### Atualize a versão do React
@@ -55,11 +55,11 @@ Se você estava usando anteriormente `@material-ui/styles` com a versão 3, prec
 Ou execute
 
 ```sh
-npm install @material-ui/styles@next
+npm install @material-ui/styles
 
 ou
 
-yarn add @material-ui/styles@next
+yarn add @material-ui/styles
 ```
 
 ## Tratamento de alterações recentes
@@ -77,8 +77,8 @@ yarn add @material-ui/styles@next
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código.
-  It helps isolating the animation logic:
+- Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código.
+  Ele ajuda a isolar a lógica da animação:
 
   ```diff
     rippleVisible: {
@@ -96,9 +96,9 @@ yarn add @material-ui/styles@next
     },
   ```
 
-### Theme
+### Tema
 
-- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
+- O método` theme.palette.augmentColor () `não produz mais um efeito colateral em sua cor de entrada.
   Para usá-lo corretamente, agora você precisa usar o valor retornado.
 
   ```diff
@@ -109,7 +109,7 @@ yarn add @material-ui/styles@next
   console.log({ background });
   ```
 
-- You can safely remove the next variant from the theme creation:
+- Você pode remover com segurança a próxima variante da criação de temas:
 
   ```diff
   typography: {
@@ -117,7 +117,7 @@ yarn add @material-ui/styles@next
   },
   ```
 
-- `theme.spacing.unit` usage is deprecated, you can use the new API:
+-` theme.spacing.unit` está com o uso obsoleto, você pode usar a nova API:
 
   ```diff
   label: {
@@ -128,24 +128,24 @@ yarn add @material-ui/styles@next
   }
   ```
 
-  *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
+ * Dica: você pode fornecer mais de 1 argumento:` theme.spacing (1, 2) // = '8px 16px'` *.
 
-  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
+  Você pode usar o [auxiliar de migração] (https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
 
-### Layout
+### Leiaute
 
-- [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
+- [Grid] Para suportar valores de espaçamento arbitrários e para remover a necessidade de contar mentalmente por 8, estamos mudando a API de espaçamento:
 
   ```diff
     /**
-     * Defines the space between the type `item` component.
+     * Define o espaço entre o tipo` componente do item.
      * Só pode ser usado em um componente do tipo 'container'.
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
-- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
+  Indo adiante, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada] (https://material-ui.com/system/spacing/#transformation).
+- [Container] Movido de `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -154,9 +154,9 @@ yarn add @material-ui/styles@next
 
 ### TypeScript
 
-#### `value` type 
+#### `value` type
 
-Normalized `value` prop type for input components to use `unknown`. This affects
+Tipo da propriedade `value` normalizado para os componentes de entrada utilizarem `unknown`. Isso afeta
 `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
 
 ```diff
@@ -170,7 +170,7 @@ function MySelect({ children }) {
 }
 ```
 
-This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+Esta alteração é explicada em mais detalhes no nosso guia [TypeScript](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Botão
 
@@ -239,7 +239,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [List] Refaça a lista de componentes para coincidir com a especificação:
   
-  - The `ListItemAvatar` component is required when using an avatar.
+  - O componente `ListItemAvatar` é necessário ao usar um avatar.
   - O componente `ListItemIcon` é necessário ao usar uma caixa de seleção à esquerda.
   - A propriedade `edge` deve ser definida para botões de ícone.
 
@@ -255,7 +255,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   
   Isso também se aplica aos componentes `Dialog` e `Popover`.
 
-- [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
+- [Modal] Remova a API de customização de classes para o componente Modal (redução do tamanho do pacote -74% quando usado de forma independente).
 
 - [Modal] event.defaultPrevented é agora ignorado. A nova lógica fecha o Modal mesmo se `event.preventDefault()` é chamado no evento down da tecla escape (Esc). `event.preventDefault()` destina-se a impedir comportamentos padrão, como clicar em uma caixa de seleção para verificá-lo, apertar um botão para enviar um formulário e pressionar a seta para a esquerda para mover o cursor em uma entrada de texto, etc. Apenas elementos HTML especiais possuem esses comportamentos padrão. Você deve usar `event.stopPropagation()` se você não quer acionar o evento `onClose` no modal.
 
@@ -277,6 +277,15 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 ### Slide
 
 - [Slide] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+
+### Slider
+
+- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
+  
+  ```diff
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
+  ```
 
 ### Seletor
 
@@ -318,7 +327,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   +<Tabs variant="scrollable" />
   ```
 
-### Tabela
+### Table
 
 - [TableCell] Remova a propriedade descontinuada `numeric`:
   
@@ -343,8 +352,8 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   
   ```diff
   <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' } }
-  + classes={{ asterisk: 'bar' } }
+  - FormLabelClasses={{ asterisk: 'bar' }}
+  + classes={{ asterisk: 'bar' }}
   >
     Foo
   </InputLabel>

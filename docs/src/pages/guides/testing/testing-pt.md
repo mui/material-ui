@@ -12,19 +12,19 @@ Embora tenhamos atingido a conquista de 100% de cobertura de teste, não incenti
 
 ## Espaço do usuário
 
-Que tal escrever testes no espaço do usuário? A infraestrutura de estilos do Material-UI usa algumas funções auxiliares construídas sobre o [enzyme](https://github.com/airbnb/enzyme) para facilitar o processo, ao qual estamos expondo. Você pode aproveitá-los, se assim preferir.
-
-### Renderização Rasa (Shallow)
-
-A renderização rasa é útil para restringir seu teste a um componente como uma unidade. Isso também garante que seus testes não estão adquirindo indiretamente o comportamento de componentes filhos. A renderização rasa foi criada para testar componentes isoladamente. Isso significa sem vazar detalhes de implementação de filhos, como o contexto.
-
-A função `createShallow()` pode ser utilizada para esta situação. Além de encapsular a API do enzyme, ela fornece uma opção `dive` e `untilSelector`.
+Que tal escrever testes no espaço do usuário? A infraestrutura de estilos do Material-UI usa algumas funções auxiliares construídas sobre o [enzyme](https://github.com/airbnb/enzyme) para facilitar o processo, ao qual estamos expondo. Você pode aproveitá-los, se assim preferir. Usamos APIs de processamento de DOM quase que totalmente completas. Nós encorajamos você a fazer o mesmo, especialmente, se seus componentes dependem de temas personalizados. Testes usando APIs de renderização rasas tornam-se mais frágeis com a quantidade de componentes que necessitam.
 
 ### Renderização completa do DOM (Full)
 
 A renderização total do DOM é ideal para casos em que você tem componentes que podem interagir com as APIs do DOM, ou podem exigir o ciclo de vida completo para testar completamente o componente (por exemplo, `componentDidMount` etc).
 
 A função `createMount ()` é fornecida para esta situação. Além de envolver enzyme API, ela fornece uma função chamada `cleanUp`.
+
+### Renderização Rasa (Shallow)
+
+A renderização rasa é útil para restringir seu teste a um componente como uma unidade. Isso também garante que seus testes não estão adquirindo indiretamente o comportamento de componentes filhos. A renderização rasa foi criada para testar componentes isoladamente. Isso significa sem vazar detalhes de implementação de filhos, como o contexto.
+
+A função `createShallow()` pode ser utilizada para esta situação. Além de encapsular a API do enzyme, ela fornece uma opção `dive` e `untilSelector`.
 
 ### Renderizar para string
 
@@ -33,6 +33,51 @@ Renderizar em uma string é útil para testar o comportamento dos componentes us
 A função `createRender()` é ideal para isso. Isso é apenas um alias para enzyme API, que é apenas exposta para consistência.
 
 ## API
+
+### `createMount([options]) => mount`
+
+Gere uma função de montagem aprimorada com o contexto necessário. Por favor, consulte [a documentação da API enzyme ](https://airbnb.io/enzyme/docs/api/mount.html) para mais detalhes sobre a função `mount`.
+
+#### Argumentos
+
+1. `options` (*Object* [opcional]) 
+    - `options.mount` (*Function* [opcional]): A função de montagem para melhorar, usa **enzyme por padrão**.
+    - As outras chaves são encaminhadas para o argumento de opções de `enzyme.mount()`.
+
+#### Retornos
+
+`mount` (*mount*): A função mount.
+
+#### Exemplos
+
+```jsx
+import { createMount } from '@material-ui/core/test-utils';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+
+describe('<MyComponent />', () => {
+  let mount;
+
+  function MySuccessButton({ children }) {
+    return (
+      <MuiThemeProvider theme={{ success: { main: '#fff' } }}>
+        {children}
+      </MuiThemeProvider>
+    );
+  }
+
+  before(() => {
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  it('should work', () => {
+    const wrapper = mount(<MockedTheme><MySuccessButton /></MockedTheme>);
+  });
+});
+```
 
 ### `createShallow([options]) => shallow`
 
@@ -64,42 +109,6 @@ describe('<MyComponent />', () => {
 
   it('deve funcionar', () => {
     const wrapper = shallow(<MyComponent />);
-  });
-});
-```
-
-### `createMount([options]) => mount`
-
-Gere uma função de montagem aprimorada com o contexto necessário. Por favor, consulte [a documentação da API enzyme ](https://airbnb.io/enzyme/docs/api/mount.html) para mais detalhes sobre a função `mount`.
-
-#### Argumentos
-
-1. `options` (*Object* [opcional]) 
-    - `options.mount` (*Function* [opcional]): A função de montagem para melhorar, usa **enzyme por padrão**.
-    - As outras chaves são encaminhadas para o argumento de opções de `enzyme.mount()`.
-
-#### Retornos
-
-`mount` (*mount*): A função mount.
-
-#### Exemplos
-
-```jsx
-import { createMount } from '@material-ui/core/test-utils';
-
-describe('<MyComponent />', () => {
-  let mount;
-
-  before(() => {
-    mount = createMount();
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
-
-  it('should work', () => {
-    const wrapper = mount(<MyComponent />);
   });
 });
 ```

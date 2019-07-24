@@ -80,7 +80,7 @@ Vincula uma folha de estilo a um componente de função usando o padrão **hook*
 
 #### Retornos
 
-`hook`: Um hook. Este hook pode ser usado em uma função que retorna o componente. The documentation often calls this returned hook `useStyles`. Aceita um argumento: as propriedades que serão usadas para "interpolação" na folha de estilo.
+`hook`: Um hook. Este hook pode ser usado em uma função que retorna o componente. A documentação geralmente chama esse hook retornado de `useStyles`. Aceita um argumento: as propriedades que serão usadas para "interpolação" na folha de estilo.
 
 #### Exemplos
 

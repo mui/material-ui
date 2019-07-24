@@ -47,21 +47,48 @@ describe('<Portal />', () => {
     });
   });
 
-  it('should have access to the mountNode', () => {
-    const refSpy1 = spy();
-    mount(
-      <Portal ref={refSpy1}>
-        <h1>Foo</h1>
-      </Portal>,
-    );
-    assert.deepEqual(refSpy1.args, [[null], [null], [document.body]]);
-    const refSpy2 = spy();
-    mount(
-      <Portal disablePortal ref={refSpy2}>
-        <h1 className="woofPortal">Foo</h1>
-      </Portal>,
-    );
-    assert.deepEqual(refSpy2.args, [[document.querySelector('.woofPortal')]]);
+  describe('ref', () => {
+    it('should have access to the mountNode when disabledPortal={false}', () => {
+      const refSpy = spy();
+      const wrapper = mount(
+        <Portal ref={refSpy}>
+          <h1>Foo</h1>
+        </Portal>,
+      );
+      assert.deepEqual(refSpy.args, [[document.body]]);
+      wrapper.unmount();
+      assert.deepEqual(refSpy.args, [[document.body], [null]]);
+    });
+
+    it('should have access to the mountNode when disabledPortal={true}', () => {
+      const refSpy = spy();
+      const wrapper = mount(
+        <Portal disablePortal ref={refSpy}>
+          <h1 className="woofPortal">Foo</h1>
+        </Portal>,
+      );
+      const mountNode = document.querySelector('.woofPortal');
+      assert.deepEqual(refSpy.args, [[mountNode]]);
+      wrapper.unmount();
+      assert.deepEqual(refSpy.args, [[mountNode], [null]]);
+    });
+
+    it('should have access to the mountNode when switching disabledPortal', () => {
+      const refSpy = spy();
+      const wrapper = mount(
+        <Portal disablePortal ref={refSpy}>
+          <h1 className="woofPortal">Foo</h1>
+        </Portal>,
+      );
+      const mountNode = document.querySelector('.woofPortal');
+      assert.deepEqual(refSpy.args, [[mountNode]]);
+      wrapper.setProps({
+        disablePortal: false,
+      });
+      assert.deepEqual(refSpy.args, [[mountNode], [null], [document.body]]);
+      wrapper.unmount();
+      assert.deepEqual(refSpy.args, [[mountNode], [null], [document.body], [null]]);
+    });
   });
 
   it('should render in a different node', () => {

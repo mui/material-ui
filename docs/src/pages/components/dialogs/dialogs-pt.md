@@ -72,7 +72,7 @@ Você pode definir uma largura máxima usando um enumerador na propriedade `maxW
 
 ## Tela cheia responsiva
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+Você pode fazer um diálogo totalmente responsivo usando [`useMediaQuery`](/components/use-media-query/#usemediaquery).
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';

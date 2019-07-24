@@ -3,38 +3,38 @@ title: Badge React component
 components: Badge
 ---
 
-# Badge
+# バッジ
 
-<p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
+<p class="description">バッジは、その子供の右上に小さなバッジを生成します。</p>
 
-## Simple Badges
+## 簡単なバッジ
 
-Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
+Primaryとsecondaryを使用した、テキストを含むバッジの例。バッジは子供に付けられます。
 
-{{"demo": "pages/components/badges/SimpleBadge.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js"}}
 
-## Maximum Value
+## 最大値
 
-You can use the `max` property to cap the value of the badge content.
+バッジコンテンツの値に上限を設定するには、 `max` プロパティを使用します。
 
-{{"demo": "pages/components/badges/BadgeMax.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js"}}
 
-## Dot Badge
+## ドットバッジ
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+`dot` プロパティはバッジを小さなドットに変更します。これは、数を数えずに何かが変わったという通知として使用できます。
 
-{{"demo": "pages/components/badges/DotBadge.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js"}}
 
-## Badge visibility
+## バッジの表示設定
 
-The visibility of badges can be controlled using the `invisible` property.
+バッジの表示/非表示は、 `invisible` プロパティを使用して制御できます。
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+BadgeContentで自動的に非表示になるバッジは0です。これは `showZero` プロパティで上書きできます。
 
-{{"demo": "pages/components/badges/BadgeVisibility.js"}}
+{{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
-## Customized badges
+## カスタマイズバッジ
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例をいくつか示します。あなたは[上書きドキュメントのページ](/customization/components/)でこれについてもっと詳しく知ることができます。
 
-{{"demo": "pages/components/badges/CustomizedBadges.js"}}
+{{"demo": "pages/components/tables/CustomizedTables.js"}}

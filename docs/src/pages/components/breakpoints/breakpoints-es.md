@@ -85,11 +85,11 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 ### `theme.breakpoints.up(key) => media query`
 
-#### Arguments
+#### Argumentos
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### Devuelve
 
 `media query`: A media query string ready to be used with JSS.
 
@@ -110,11 +110,11 @@ const styles = theme => ({
 
 ### `theme.breakpoints.down(key) => media query`
 
-#### Arguments
+#### Argumentos
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### Devuelve
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
 
@@ -136,11 +136,11 @@ const styles = theme => ({
 
 ### `theme.breakpoints.only(key) => media query`
 
-#### Arguments
+#### Argumentos
 
 1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### Devuelve
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
@@ -162,12 +162,12 @@ const styles = theme => ({
 
 ### `theme.breakpoints.between(start, end) => media query`
 
-#### Arguments
+#### Argumentos
 
 1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### Devuelve
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
@@ -199,7 +199,7 @@ Some implementation details that might be interesting to being aware of:
 
 - It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object* [optional]): 
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
@@ -220,7 +220,7 @@ const theme = createMuiTheme({
 
 - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
-#### Returns
+#### Devuelve
 
 `higher-order component`: Should be used to wrap a component.
 

@@ -5,37 +5,37 @@ components: Breadcrumbs, Link, Typography
 
 # Breadcrumbs
 
-<p class="description">Breadcrumbs allow users to make selections from a range of values.</p>
+<p class="description">ブレッドクラムを使用すると、値の範囲から選択できます。</p>
 
 ## Simple breadcrumbs
 
-{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
+{{"demo":"pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
 ## Custom separator
 
-In the following examples, we are using two string separators, and an SVG icon.
+次の例では、2つの文字列セパレータとSVGアイコンを使用しています。
 
-{{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
+{{"demo":"pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs with icons
+## アイコン付きBreadcrumbs
 
-{{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
+{{"demo":"pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Collapsed breadcrumbs
+## 折りたたみBreadcrumbs
 
-{{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
+{{"demo":"pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## カスタマイズBreadcrumbs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
-{{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
+{{"demo":"pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
 ## アクセシビリティ
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+`Breadcrumbs`コンポーネントには、必ず`aria-label`を追加してください。
 
-The accessibility of this component relies on:
+このコンポーネントのアクセシビリティは、
 
 - The set of links is structured using an ordered list (`<ol>` element).
 - To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.

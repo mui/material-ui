@@ -7,7 +7,7 @@ components: Drawer, SwipeableDrawer
 
 <p class="description">Navigationsfächer bieten Zugriff auf Ziele in Ihrer App. Seitenblätter sind Flächen, die zusätzlichen Inhalt enthalten, der am linken oder rechten Rand des Bildschirms verankert ist.</p>
 
-[Navigationsleisten ](https://material.io/design/components/navigation-drawer.html) bieten Zugriff auf Ziele und App-Funktionen, wie z.B. Benutzer wechseln. Sie können entweder permanent auf dem Bildschirm angezeigt oder durch ein Navigationsmenüsymbol gesteuert werden.
+[Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. Sie können entweder permanent auf dem Bildschirm angezeigt oder durch ein Navigationsmenüsymbol gesteuert werden.
 
 [Die Seitenblätter](https://material.io/design/components/sheets-side.html) sind Zusatzflächen, die hauptsächlich auf Tablets und Desktops verwendet werden.
 

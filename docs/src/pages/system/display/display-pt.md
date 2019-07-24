@@ -60,53 +60,53 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 
 {{"demo": "pages/system/display/Print.js"}}
 
-## Overflow
+## Estouro
 
 ```jsx
 <Box component="div" overflow="hidden">
-  Overflow Hidden
+  Estouro oculto
 </Box>
 <Box component="div" overflow="visible">
-  Overflow visible
+  Estouro visível
 </Box>
 ```
 
 {{"demo": "pages/system/display/Overflow.js"}}
 
-## Text Overflow
+## Estouro de texto
 
 ```jsx
 <Box component="div" textOverflow="clip">
-  Text Overflow Clip
+  Estouro de texto com corte
 </Box>
 <Box component="div" textOverflow="ellipsis">
-  Text Overflow Ellipsis
+  Estouro de texto com reticências
 </Box>
 ```
 
 {{"demo": "pages/system/display/TextOverflow.js"}}
 
-## Visibility
+## Visibilidade
 
 ```jsx
 <Box component="div" visibility="visible">
-  Visibility Visible
+  Visibilidade visível
 </Box>
 <Box component="div" visibility="hidden">
-  Visibility Hidden
+  Visibilidade oculta
 </Box>
 ```
 
 {{"demo": "pages/system/display/Visibility.js"}}
 
-## White Space
+## Espaço em branco
 
 ```jsx
 <Box component="div" whiteSpace="nowrap">
-  White Space Nowrap
+  Espaço em branco sem quebra
 </Box>
 <Box component="div" whiteSpace="normal">
-  White Space Normal
+  Espaço em branco normal
 </Box>
 ```
 

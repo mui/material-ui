@@ -3,7 +3,7 @@ title: Checkbox React component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Checkboxes
+# Casillas de Verificación
 
 <p class="description">Los Checkbox permiten al usuario seleccionar uno o más elementos de un conjunto.</p>
 
@@ -38,10 +38,10 @@ Cuando no se puede usar una etiqueta, es necesario agregar un atributo directame
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
+  inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
 
 ## Guía
 
-- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxes vs. Botones de selección](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

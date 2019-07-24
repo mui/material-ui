@@ -112,7 +112,13 @@ const Modal = React.forwardRef(function Modal(props, ref) {
     }
   });
 
-  const handleRendered = useEventCallback(() => {
+  const handlePortalRef = useEventCallback(node => {
+    mountNodeRef.current = node;
+
+    if (!node) {
+      return;
+    }
+
     if (onRendered) {
       onRendered();
     }
@@ -216,12 +222,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   }
 
   return (
-    <Portal
-      ref={mountNodeRef}
-      container={container}
-      disablePortal={disablePortal}
-      onRendered={handleRendered}
-    >
+    <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
       {/*
           Marking an element with the role presentation indicates to assistive technology
           that this element should be ignored; it exists to support the web application and
@@ -327,8 +328,7 @@ Modal.propTypes = {
   /**
    * @ignore
    *
-   * A modal manager used to track and manage the state of open
-   * Modals. This enables customizing how modals interact within a container.
+   * A modal manager used to track and manage the state of open Modals.
    */
   manager: PropTypes.object,
   /**
@@ -351,6 +351,8 @@ Modal.propTypes = {
   /**
    * Callback fired once the children has been mounted into the `container`.
    * It signals that the `open={true}` prop took effect.
+   *
+   * This prop will be deprecated and removed in v5, the ref can be used instead.
    */
   onRendered: PropTypes.func,
   /**
