@@ -11,7 +11,7 @@ function fixBabelGeneratorIssues(source) {
 }
 
 function fixLineEndings(source, target) {
-  return target.replace(/\r?\n/, getLineFeed(source));
+  return target.replace(/\r?\n/g, getLineFeed(source));
 }
 
 module.exports = {
