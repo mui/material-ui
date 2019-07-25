@@ -365,6 +365,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           elevation={elevation}
           ref={handlePaperRef}
           {...PaperProps}
+          // eslint-disable-next-line react/prop-types
           className={clsx(classes.paper, PaperProps.className)}
         >
           {children}
@@ -526,7 +527,7 @@ Popover.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Properties applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.shape({
     component: elementTypeAcceptingRef,
@@ -560,7 +561,7 @@ Popover.propTypes = {
     PropTypes.oneOf(['auto']),
   ]),
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };

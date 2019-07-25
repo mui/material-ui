@@ -144,6 +144,27 @@ describe('<Modal />', () => {
       backdropSpan.simulate('click');
       assert.strictEqual(onBackdropClick.callCount, 0);
     });
+
+    // Test case for https://github.com/mui-org/material-ui/issues/12831
+    it('should unmount the children when starting open and closing immediately', () => {
+      function TestCase() {
+        const [open, setOpen] = React.useState(true);
+
+        React.useEffect(() => {
+          setOpen(false);
+        }, []);
+
+        return (
+          <Modal open={open}>
+            <Fade in={open}>
+              <div id="modal-body">hello</div>
+            </Fade>
+          </Modal>
+        );
+      }
+      render(<TestCase />);
+      expect(document.querySelector('#modal-body')).to.equal(null);
+    });
   });
 
   describe('render', () => {

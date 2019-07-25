@@ -9,11 +9,16 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
 export const styles = {
-  /* Styles applied to the root element. */
   root: {
-    color: 'inherit',
     width: 40,
     flexShrink: 0,
+  },
+  vertical: {
+    width: '100%',
+    height: 40,
+    '& svg': {
+      transform: 'rotate(90deg)',
+    },
   },
 };
 
@@ -21,9 +26,15 @@ export const styles = {
  * @ignore - internal component.
  */
 const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
-  const { classes, className: classNameProp, direction, onClick, visible = true, ...other } = props;
+  const { classes, className: classNameProp, direction, orientation, visible, ...other } = props;
 
-  const className = clsx(classes.root, classNameProp);
+  const className = clsx(
+    classes.root,
+    {
+      [classes.vertical]: orientation === 'vertical',
+    },
+    classNameProp,
+  );
 
   if (!visible) {
     return <div className={className} />;
@@ -33,7 +44,6 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
     <ButtonBase
       component="div"
       className={className}
-      onClick={onClick}
       ref={ref}
       role={null}
       tabIndex={null}
@@ -61,15 +71,15 @@ TabScrollButton.propTypes = {
   /**
    * Which direction should the button indicate?
    */
-  direction: PropTypes.oneOf(['left', 'right']),
+  direction: PropTypes.oneOf(['left', 'right']).isRequired,
   /**
-   * Callback to execute for button press.
+   * The tabs orientation (layout flow direction).
    */
-  onClick: PropTypes.func,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
   /**
    * Should the button be present or just consume space.
    */
-  visible: PropTypes.bool,
+  visible: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles, { name: 'PrivateTabScrollButton' })(TabScrollButton);

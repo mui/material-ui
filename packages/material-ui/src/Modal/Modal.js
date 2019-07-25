@@ -85,7 +85,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   } = props;
 
   const theme = useTheme();
-  const [exited, setExited] = React.useState(!open);
+  const [exited, setExited] = React.useState(true);
   const modal = React.useRef({});
   const mountNodeRef = React.useRef(null);
   const modalRef = React.useRef(null);
@@ -265,7 +265,7 @@ Modal.propTypes = {
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Properties applied to the [`Backdrop`](/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](/api/backdrop/) element.
    */
   BackdropProps: PropTypes.object,
   /**

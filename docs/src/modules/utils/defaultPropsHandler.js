@@ -1,4 +1,4 @@
-import astTypes from 'ast-types';
+import * as astTypes from 'ast-types';
 import { utils as docgenUtils } from 'react-docgen';
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;

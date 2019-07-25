@@ -8,7 +8,7 @@ import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
 type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & NextLinkProps;
 
 const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>((props, ref) => {
-  const { as, href, replace, scroll, passHref, shallow, prefetch, onError, ...other } = props;
+  const { as, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
 
   return (
     <NextLink
@@ -19,7 +19,6 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>((pro
       scroll={scroll}
       shallow={shallow}
       passHref={passHref}
-      onError={onError}
     >
       <a ref={ref} {...other} />
     </NextLink>

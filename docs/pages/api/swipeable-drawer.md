@@ -26,7 +26,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 | <span class="prop-name required">onClose&nbsp;*</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name required">onOpen&nbsp;*</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be opened.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the drawer is open. |
-| <span class="prop-name">SwipeAreaProps</span> | <span class="prop-type">object</span> |  | Properties applied to the swipe area element. |
+| <span class="prop-name">SwipeAreaProps</span> | <span class="prop-type">object</span> |  | Props applied to the swipe area element. |
 | <span class="prop-name">swipeAreaWidth</span> | <span class="prop-type">number</span> | <span class="prop-default">20</span> | The width of the left most (or right most) area in pixels where the drawer can be swiped open from. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 

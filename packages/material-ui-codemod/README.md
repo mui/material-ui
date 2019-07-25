@@ -46,6 +46,34 @@ This codemod tries to perform a basic expression simplification which can be imp
 +const spacing = theme.spacing(5) * 5;
 ```
 
+#### `optimal-imports`
+
+Converts all `@material-ui/core` imports more than 1 level deep to the optimal form for tree shaking:
+
+```diff
+-import withStyles from '@material-ui/core/styles/withStyles';
+-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
++import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+```
+
+```sh
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.0/optimal-imports.js
+```
+
+#### `top-level-imports`
+
+Converts all `@material-ui/core` submodule imports to the root module:
+
+```diff
+-import List from '@material-ui/core/List';
+-import { withStyles } from '@material-ui/core/styles';
++import { List, withStyles } from '@material-ui/core';
+```
+
+```sh
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.0/top-level-imports.js
+```
+
 ### v1.0.0
 
 #### `import-path`
@@ -64,10 +92,12 @@ find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/co
 ```
 
 **Notice**: if you are migrating from pre-v1.0, and your imports use `material-ui`, you will need to manually find and replace all references to `material-ui` in your code to `@material-ui/core`. E.g.:
+
 ```diff
 -import Typography from 'material-ui/Typography';
 +import Typography from '@material-ui/core/Typography';
 ```
+
 Subsequently, you can run the above `find ...` command to flatten your imports.
 
 #### `color-imports`
@@ -87,6 +117,7 @@ find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/co
 ```
 
 **additional options**
+
 ```
 jscodeshift -t <color-imports.js> <path> --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```

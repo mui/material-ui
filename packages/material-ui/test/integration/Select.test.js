@@ -1,88 +1,80 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
-import SelectAndDialog from './fixtures/select/SelectAndDialog';
+import { expect } from 'chai';
+import { cleanup, createClientRender, wait } from 'test/utils/createClientRender';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Dialog from '@material-ui/core/Dialog';
 
 describe('<Select> integration', () => {
-  let mount;
+  // StrictModeViolation: uses Fade
+  const render = createClientRender({ strict: false });
 
-  before(() => {
-    // StrictModeViolation: unknown
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
+  afterEach(() => {
+    cleanup();
   });
 
   describe('with Dialog', () => {
-    it('should focus the selected item', done => {
-      const wrapper = mount(<SelectAndDialog />);
-      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
-      const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
+    function SelectAndDialog() {
+      const [value, setValue] = React.useState(10);
+      function handleChange(event) {
+        setValue(Number(event.target.value));
+      }
 
-      wrapper.setProps({
-        MenuProps: {
-          onExited: () => {
-            assert.strictEqual(
-              document.activeElement,
-              selectDisplay,
-              'should focus back the select input',
-            );
-            done();
-          },
-        },
-      });
+      return (
+        <Dialog open>
+          <Select
+            MenuProps={{
+              transitionDuration: 0,
+              BackdropProps: { 'data-testid': 'select-backdrop' },
+            }}
+            value={value}
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </Dialog>
+      );
+    }
+
+    it('should focus the selected item', async () => {
+      const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
       // Let's open the select component
-      selectDisplay.focus();
-      selectDisplay.click();
+      // in the browser user click also focuses
+      getByRole('button').focus();
+      getByRole('button').click();
 
-      const dialogPortalLayer = document.querySelectorAll('[data-mui-test="Modal"]')[1];
-
-      assert.strictEqual(
-        document.activeElement,
-        dialogPortalLayer.querySelectorAll('li')[1],
-        'should focus the selected menu item',
-      );
+      expect(getAllByRole('option')[1]).to.be.focused;
 
       // Now, let's close the select component
-      const backdrop = dialogPortalLayer.querySelector('[data-mui-test="Backdrop"]');
-      backdrop.click();
+      getByTestId('select-backdrop').click();
+
+      await wait(() => expect(queryByRole('listbox')).to.be.null);
+      expect(getByRole('button')).to.focused;
     });
 
-    it('should be able to change the selected item', done => {
-      const wrapper = mount(<SelectAndDialog />);
-      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
-      const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
-
-      wrapper.setProps({
-        MenuProps: {
-          onExited: () => {
-            assert.strictEqual(
-              document.activeElement,
-              selectDisplay,
-              'should focus back the select input',
-            );
-            done();
-          },
-        },
-      });
+    it('should be able to change the selected item', async () => {
+      const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
+      expect(getByRole('button')).to.have.text('Ten');
 
       // Let's open the select component
-      selectDisplay.focus();
-      selectDisplay.click();
+      // in the browser user click also focuses
+      getByRole('button').focus();
+      getByRole('button').click();
 
-      const dialogPortalLayer = document.querySelectorAll('[data-mui-test="Modal"]')[1];
-
-      assert.strictEqual(
-        document.activeElement,
-        dialogPortalLayer.querySelectorAll('li')[1],
-        'should focus the selected menu item',
-      );
+      expect(getAllByRole('option')[1]).to.be.focused;
 
       // Now, let's close the select component
-      dialogPortalLayer.querySelectorAll('li')[2].click();
+      getAllByRole('option')[2].click();
+
+      await wait(() => expect(queryByRole('listbox')).to.be.null);
+      expect(getByRole('button')).to.focused;
+      expect(getByRole('button')).to.have.text('Twenty');
     });
   });
 });

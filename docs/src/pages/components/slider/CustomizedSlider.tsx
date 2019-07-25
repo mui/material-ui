@@ -202,22 +202,22 @@ export default function CustomizedSlider() {
   return (
     <Paper className={classes.root}>
       <Typography gutterBottom>iOS</Typography>
-      <IOSSlider aria-label="iOS slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
+      <IOSSlider aria-label="ios slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
       <div className={classes.margin} />
       <Typography gutterBottom>pretto.fr</Typography>
-      <PrettoSlider valueLabelDisplay="auto" aria-label="Pretto slider" defaultValue={20} />
+      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
       <div className={classes.margin} />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
         ValueLabelComponent={ValueLabelComponent}
-        aria-label="Custom thumb label"
+        aria-label="custom thumb label"
         defaultValue={20}
       />
       <div className={classes.margin} />
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         ThumbComponent={AirbnbThumbComponent}
-        aria-label="Airbnb slider"
+        aria-label="airbnb slider"
         defaultValue={[20, 40]}
       />
     </Paper>

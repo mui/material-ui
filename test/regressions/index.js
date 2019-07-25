@@ -32,20 +32,21 @@ const blacklistSuite = [
   'docs-discover-more-languages',
 
   // Needs interaction
+  'docs-components-click-away-listener',
   'docs-components-dialogs',
   'docs-components-menus',
   'docs-components-tooltips',
   'docs-components-transitions',
 
   // Documentation extension
-  'docs-getting-started-page-layout-examples',
+  'docs-getting-started-templates',
   'docs-customization-default-theme',
 
   // Image load issue
   'docs-discover-more-team',
-  'docs-getting-started-page-layout-examples-album',
-  'docs-getting-started-page-layout-examples-blog',
-  'docs-getting-started-page-layout-examples-sign-in-side',
+  'docs-getting-started-templates-album',
+  'docs-getting-started-templates-blog',
+  'docs-getting-started-templates-sign-in-side',
 
   // Useless
   'docs-', // Home
@@ -62,16 +63,16 @@ const blacklistFilename = [
   'docs-components-steppers/SwipeableTextMobileStepper.png', // external img
   'docs-components-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
-  'docs-customization-themes/ResponsiveFontSizesChart.png', // Chart
+  'docs-customization-typography/ResponsiveFontSizesChart.png', // Chart
 
   // Already tested once assembled
-  'docs-getting-started-page-layout-examples-dashboard/Chart.png',
-  'docs-getting-started-page-layout-examples-dashboard/Deposits.png',
-  'docs-getting-started-page-layout-examples-dashboard/Orders.png',
-  'docs-getting-started-page-layout-examples-dashboard/Title.png',
-  'docs-getting-started-page-layout-examples-checkout/AddressForm.png',
-  'docs-getting-started-page-layout-examples-checkout/PaymentForm.png',
-  'docs-getting-started-page-layout-examples-checkout/Review.png',
+  'docs-getting-started-templates-dashboard/Chart.png',
+  'docs-getting-started-templates-dashboard/Deposits.png',
+  'docs-getting-started-templates-dashboard/Orders.png',
+  'docs-getting-started-templates-dashboard/Title.png',
+  'docs-getting-started-templates-checkout/AddressForm.png',
+  'docs-getting-started-templates-checkout/PaymentForm.png',
+  'docs-getting-started-templates-checkout/Review.png',
 
   // Flaky
   'docs-components-grid-list/ImageGridList.png',

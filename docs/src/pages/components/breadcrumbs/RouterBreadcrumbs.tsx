@@ -91,7 +91,7 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
               const pathnames = location.pathname.split('/').filter(x => x);
 
               return (
-                <Breadcrumbs aria-label="Breadcrumb">
+                <Breadcrumbs aria-label="breadcrumb">
                   <LinkRouter color="inherit" to="/">
                     Home
                   </LinkRouter>
@@ -113,7 +113,7 @@ class RouterBreadcrumbs extends React.Component<RouterBreadcrumbsProp, RouterBre
               );
             }}
           </Route>
-          <nav className={classes.lists} aria-label="Mailbox folders">
+          <nav className={classes.lists} aria-label="mailbox folders">
             <List>
               <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
               <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>

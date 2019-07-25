@@ -220,7 +220,7 @@ class ChipsPlayground extends React.Component {
                   <RadioGroup
                     row
                     name="onDelete"
-                    aria-label="onDelete"
+                    aria-label="on delete"
                     value={onDelete}
                     onChange={this.handleChange('onDelete')}
                   >

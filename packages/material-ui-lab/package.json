@@ -41,9 +41,9 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@material-ui/utils": "^4.1.0",
-    "clsx": "^1.0.2",
+    "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
-    "warning": "^4.0.1"
+    "warning": "^4.0.3"
   },
   "devDependencies": {},
   "sideEffects": false,

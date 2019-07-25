@@ -37,7 +37,7 @@ Modal is a lower-level construct that is leveraged by the following components:
 ## Performance
 
 The content of the modal is **lazily mounted** into the DOM.
-It ensures that having many closed modal in your React tree won't slow down your page.
+It ensures that having many closed modals in your React tree won't slow down your page.
 
 However, creating React elements has a cost too. Consider the following case:
 

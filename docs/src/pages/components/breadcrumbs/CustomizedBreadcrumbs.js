@@ -43,7 +43,7 @@ export default function CustomizedBreadcrumbs() {
 
   return (
     <Paper elevation={0} className={classes.root}>
-      <Breadcrumbs aria-label="Breadcrumb">
+      <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
           component="a"
           href="#"

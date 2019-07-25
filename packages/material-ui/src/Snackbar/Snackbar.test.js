@@ -367,12 +367,12 @@ describe('<Snackbar />', () => {
   describe('prop: open', () => {
     it('should not render anything when closed', () => {
       const wrapper = mount(<Snackbar open={false} message="Hello, World!" />);
-      assert.strictEqual(wrapper.text(), null);
+      assert.strictEqual(wrapper.text(), '');
     });
 
     it('should be able show it after mounted', () => {
       const wrapper = mount(<Snackbar open={false} message="Hello, World!" />);
-      assert.strictEqual(wrapper.text(), null);
+      assert.strictEqual(wrapper.text(), '');
       wrapper.setProps({ open: true });
       assert.strictEqual(wrapper.text(), 'Hello, World!');
     });

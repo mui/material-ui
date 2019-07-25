@@ -196,7 +196,7 @@ ExpansionPanel.propTypes = {
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };

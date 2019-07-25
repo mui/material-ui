@@ -192,7 +192,7 @@ Menu.propTypes = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Properties applied to the [`MenuList`](/api/menu-list/) element.
+   * Props applied to the [`MenuList`](/api/menu-list/) element.
    */
   MenuListProps: PropTypes.object,
   /**

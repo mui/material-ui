@@ -16,7 +16,7 @@ export const styles = {
   },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {
-    '&$positionStart': {
+    '&$positionStart:not($hiddenLabel)': {
       marginTop: 16,
     },
   },
@@ -32,25 +32,29 @@ export const styles = {
   disablePointerEvents: {
     pointerEvents: 'none',
   },
+  /* Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
+  hiddenLabel: {},
+  /* Styles applied if the adornment is used inside <FormControl margin="dense" />. */
+  marginDense: {},
 };
 
 const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
   const {
     children,
-    component: Component = 'div',
     classes,
     className,
+    component: Component = 'div',
     disablePointerEvents = false,
     disableTypography = false,
     position,
     variant: variantProp,
     ...other
   } = props;
-  const muiFormControl = useFormControl();
+  const muiFormControl = useFormControl() || {};
 
   let variant = variantProp;
 
-  if (variantProp && muiFormControl) {
+  if (variantProp && muiFormControl.variant) {
     warning(
       variantProp !== muiFormControl.variant,
       'Material-UI: The `InputAdornment` variant infers the variant prop ' +
@@ -72,6 +76,8 @@ const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
             [classes.positionStart]: position === 'start',
             [classes.positionEnd]: position === 'end',
             [classes.disablePointerEvents]: disablePointerEvents,
+            [classes.marginDense]: muiFormControl.margin === 'dense',
+            [classes.hiddenLabel]: muiFormControl.hiddenLabel,
           },
           className,
         )}

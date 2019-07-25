@@ -7,7 +7,7 @@ const pages = [
       { pathname: '/getting-started/installation' },
       { pathname: '/getting-started/usage' },
       { pathname: '/getting-started/example-projects' },
-      { pathname: '/getting-started/page-layout-examples' },
+      { pathname: '/getting-started/templates' },
       { pathname: '/getting-started/learn' },
       { pathname: '/getting-started/faq', title: 'FAQs' },
       { pathname: '/getting-started/supported-components' },
@@ -186,6 +186,11 @@ const pages = [
   {
     pathname: 'https://themes.material-ui.com/',
     title: 'Premium Themes',
+    linkProps: {
+      'data-ga-event-category': 'premium-themes',
+      'data-ga-event-action': 'click',
+      'data-ga-event-label': 'home-link',
+    },
   },
   {
     pathname: '/discover-more',

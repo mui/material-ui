@@ -122,7 +122,7 @@ export default function FilledInputAdornments() {
             <InputAdornment position="end">
               <IconButton
                 edge="end"
-                aria-label="Toggle password visibility"
+                aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
               >
@@ -130,6 +130,29 @@ export default function FilledInputAdornments() {
               </IconButton>
             </InputAdornment>
           ),
+        }}
+      />
+      <TextField
+        id="filled-adornment-dense"
+        className={clsx(classes.margin, classes.textField)}
+        variant="filled"
+        margin="dense"
+        label="Amount in Euro"
+        InputProps={{
+          startAdornment: <InputAdornment position="start">€</InputAdornment>,
+        }}
+      />
+      <TextField
+        id="filled-adornment-extra-dense"
+        className={clsx(classes.margin, classes.textField)}
+        variant="filled"
+        margin="dense"
+        hiddenLabel
+        InputProps={{
+          inputProps: {
+            'aria-label': 'amount in Euro',
+          },
+          startAdornment: <InputAdornment position="start">€</InputAdornment>,
         }}
       />
     </div>

@@ -2,16 +2,17 @@
 
 import React from 'react';
 import NextHead from 'next/head';
-import { Router, withRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-function Head(props) {
+export default function Head(props) {
+  const router = useRouter();
   const { t, userLanguage } = useSelector(state => ({
     t: state.options.t,
     userLanguage: state.options.userLanguage,
   }));
-  const { description = t('strapline'), router, title = t('headTitle') } = props;
+  const { description = t('strapline'), title = t('headTitle'), children } = props;
 
   return (
     <NextHead>
@@ -36,14 +37,13 @@ function Head(props) {
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
       <meta name="docsearch:version" content="master" />
+      {children}
     </NextHead>
   );
 }
 
 Head.propTypes = {
+  children: PropTypes.node,
   description: PropTypes.string,
-  router: PropTypes.object.isRequired,
   title: PropTypes.string,
 };
-
-export default withRouter(Head);
