@@ -20,10 +20,10 @@ function newGithubIssueUrl(options) {
 
   const searchParams = new Map();
 
-  for (const type of types) {
+  types.forEach(type => {
     let value = options[type];
     if (value === undefined) {
-      continue;
+      return;
     }
 
     if (type === 'labels' || type === 'projects') {
@@ -35,7 +35,7 @@ function newGithubIssueUrl(options) {
     }
 
     searchParams.set(type, encodeURIComponent(value));
-  }
+  });
 
   const query = Array.from(searchParams.entries())
     .map(entry => `${entry[0]}=${entry[1]}`)
