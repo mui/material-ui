@@ -1,7 +1,8 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
 import Select from './Select';
@@ -10,62 +11,45 @@ import { spy } from 'sinon';
 describe('<Select />', () => {
   let classes;
   let mount;
-  const defaultProps = {
-    input: <Input />,
-    children: [
-      <MenuItem key="1" value="1">
-        1
-      </MenuItem>,
-      <MenuItem key="2" value="2">
-        2
-      </MenuItem>,
-    ],
-    value: '1',
-  };
+  const render = createClientRender({ strict: false });
 
   before(() => {
-    classes = getClasses(<Select {...defaultProps} />);
+    classes = getClasses(<Select />);
     // StrictModeViolation: test uses MenuItem
     mount = createMount({ strict: false });
   });
 
-  after(() => {
-    mount.cleanUp();
+  afterEach(() => {
+    cleanup();
   });
 
-  describeConformance(<Select {...defaultProps} />, () => ({
+  describeConformance(<Select value="none" />, () => ({
     classes,
     inheritComponent: Input,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'rootClass'],
+    after: () => mount.cleanUp(),
   }));
-
-  it('should provide the classes to the input component', () => {
-    const wrapper = mount(<Select {...defaultProps} />);
-    assert.deepEqual(wrapper.find(Input).props().inputProps.classes, classes);
-  });
 
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
-      const wrapper = mount(
+      const { container } = render(
         <Select
-          {...defaultProps}
           inputProps={{
             classes: { root: 'root' },
           }}
+          value="none"
         />,
       );
-      assert.deepEqual(wrapper.find(Input).props().inputProps.classes, {
-        ...classes,
-        root: `${classes.root} root`,
-      });
+
+      expect(container.querySelector(`.${classes.root}`)).to.have.class('root');
     });
   });
 
   it('should be able to mount the component', () => {
-    const wrapper = mount(
-      <Select {...defaultProps} value={10}>
+    const { container } = render(
+      <Select value={10}>
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
@@ -74,28 +58,33 @@ describe('<Select />', () => {
         <MenuItem value={30}>Thirty</MenuItem>
       </Select>,
     );
-    assert.strictEqual(wrapper.find('input').props().value, 10);
+
+    expect(container.querySelector('input')).to.have.property('value', '10');
   });
 
   describe('prop: onChange', () => {
     it('should get selected element from arguments', () => {
       const onChangeHandler = spy();
-      const wrapper = mount(<Select onChange={onChangeHandler} {...defaultProps} value="1" />);
-      wrapper.find('[role="button"]').simulate('click');
-      wrapper
-        .find(MenuItem)
-        .at(1)
-        .simulate('click');
+      const { getAllByRole, getByRole } = render(
+        <Select onChange={onChangeHandler} value="1">
+          <MenuItem value="0" />
+          <MenuItem value="1" />
+          <MenuItem value="2" />
+        </Select>,
+      );
+      getByRole('button').click();
+      getAllByRole('option')[1].click();
+
       const selected = onChangeHandler.args[0][1];
-      assert.strictEqual(React.isValidElement(selected), true);
+      expect(React.isValidElement(selected)).to.equal(true);
     });
   });
 
   describe('prop: value', () => {
     it('should be able to use an object', () => {
       const value = {};
-      const wrapper = mount(
-        <Select {...defaultProps} value={value}>
+      const { getByRole } = render(
+        <Select value={value}>
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
@@ -104,7 +93,65 @@ describe('<Select />', () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>,
       );
-      assert.strictEqual(wrapper.find(`.${classes.select}`).text(), 'Twenty');
+
+      expect(getByRole('button')).to.have.text('Twenty');
+    });
+  });
+
+  describe('accessibility', () => {
+    it('sets aria-expanded="true" when the listbox is displayed', () => {
+      const { getByRole } = render(<Select open value="none" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-expanded', 'true');
+    });
+
+    specify('aria-expanded is not present if the listbox isnt displayed', () => {
+      const { getByRole } = render(<Select value="none" />);
+
+      expect(getByRole('button')).not.to.have.attribute('aria-expanded');
+    });
+
+    it('indicates that activating the button displays a listbox', () => {
+      const { getByRole } = render(<Select value="none" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-haspopup', 'listbox');
+    });
+
+    it('renders an element with listbox behavior', () => {
+      const { getByRole } = render(<Select open value="none" />);
+
+      expect(getByRole('listbox')).to.be.visible;
+    });
+
+    specify('the listbox is focusable', () => {
+      const { getByRole } = render(<Select open value="none" />);
+
+      getByRole('listbox').focus();
+      expect(getByRole('listbox')).to.be.focused;
+    });
+
+    it('identifies each selectable element containing an option', () => {
+      const { getAllByRole } = render(
+        <Select open value="none">
+          <MenuItem value="1">First</MenuItem>
+          <MenuItem value="2">Second</MenuItem>
+        </Select>,
+      );
+
+      const options = getAllByRole('option');
+      expect(options[0]).to.have.text('First');
+      expect(options[1]).to.have.text('Second');
+    });
+
+    it('indicates the selected option', () => {
+      const { getAllByRole } = render(
+        <Select open value="2">
+          <MenuItem value="1">First</MenuItem>
+          <MenuItem value="2">Second</MenuItem>
+        </Select>,
+      );
+
+      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
     });
   });
 });
