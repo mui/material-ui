@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { withStyles } from '@material-ui/core/styles';
 import { jssPreset, StylesProvider } from '@material-ui/styles';
+import Link from '@material-ui/core/Link';
 import NoSsr from '@material-ui/core/NoSsr';
+import Typography from '@material-ui/core/Typography';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
+import newGithubIssueUrl from 'new-github-issue-url';
 
 const styles = theme => ({
   root: {
@@ -80,26 +83,97 @@ DemoFrame.propTypes = {
 
 const StyledFrame = withStyles(styles, { withTheme: true })(DemoFrame);
 
+const sandboxedStyles = {
+  paragraph: {
+    width: '100%',
+  },
+};
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
  */
-function DemoSandboxed(props) {
-  const { component: Component, iframe, name, ...other } = props;
-  const Sandbox = iframe ? StyledFrame : React.Fragment;
-  const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
+class DemoSandboxed extends React.PureComponent {
+  state = {
+    hasError: false,
+  };
 
-  return (
-    <Sandbox {...sandboxProps}>
-      <Component />
-    </Sandbox>
-  );
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  }
+
+  render() {
+    const { classes, component: Component, iframe, name, ...other } = this.props;
+    const { hasError } = this.state;
+
+    if (hasError) {
+      const title = `[docs] Demo ${name} crashes`;
+      const searchQuery = encodeURIComponent(`is:issue ${title}`);
+      const issueLink = newGithubIssueUrl({
+        user: 'mui-org',
+        repo: 'material-ui',
+        title,
+        body: `
+<!-- Please make sure you have fullfilled the following items before submitting -->
+<!-- Checked checkbox should look like this: [x] -->
+- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery})
+  of this repository and believe that this is not a duplicate.
+
+## Steps to Reproduce
+1. Visit ${window.location.href}
+2. ??
+3. demo *${name}* crashes
+
+## Your Environment
+| Tech         | Version |
+|--------------|---------|
+| Material-UI  | v${process.env.LIB_VERSION}  |
+| Browser      | ${
+          typeof window !== 'undefined' && window.navigator
+            ? window.navigator.userAgent
+            : '*Unknown*'
+        } |
+`,
+      });
+
+      /* eslint-disable material-ui/no-hardcoded-labels */
+      return (
+        <div>
+          <Typography color="error" component="p" variant="h5">
+            This demo had a runtime error
+          </Typography>
+          <Typography>
+            We would appreciate it if you report this error directly to our issue tracker. By
+            clicking the <Link href={issueLink}>report issue</Link> link you will be directed to our
+            issue tracker with a prefilled description that includes valuable information about this
+            error.
+          </Typography>
+        </div>
+      );
+      /* eslint-enable material-ui/no-hardcoded-labels */
+    }
+
+    const Sandbox = iframe ? StyledFrame : React.Fragment;
+    const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
+
+    return (
+      <Sandbox {...sandboxProps}>
+        <Component />
+      </Sandbox>
+    );
+  }
 }
 
 DemoSandboxed.propTypes = {
+  classes: PropTypes.object.isRequired,
   component: PropTypes.elementType.isRequired,
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
 };
 
-export default React.memo(DemoSandboxed);
+export default withStyles(sandboxedStyles)(DemoSandboxed);
