@@ -14,6 +14,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function ContainedButtons() {
+  // we pre-render so those errors are already caught at build time
+  // moving this after the hook will unmount the whole tree because it'll
+  // also fire "fewer hooks than expected" which is broken in react 16.8.6 but fixed on master
+  if (typeof window !== 'undefined') {
+    throw new Error('DO_NOT_MERGE_ME_OR_YOU_WILL_BE_FIRED');
+  }
+
   const classes = useStyles();
 
   return (
