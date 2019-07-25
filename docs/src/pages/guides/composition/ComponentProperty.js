@@ -26,13 +26,10 @@ const useStyles = makeStyles(theme => ({
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const renderLink = React.useMemo(
-    React.forwardRef((itemProps, ref) => (
-      // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
-      <RouterLink to={to} {...itemProps} innerRef={ref} />
-    )),
-    [to],
-  );
+  const renderLink = React.forwardRef((itemProps, ref) => (
+    // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
+    <RouterLink to={to} {...itemProps} innerRef={ref} />
+  ));
 
   return (
     <li>
