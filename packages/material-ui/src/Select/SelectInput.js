@@ -14,6 +14,10 @@ function areEqualValues(a, b) {
   return String(a) === String(b);
 }
 
+function isEmptyString(val) {
+  return typeof val === 'string' && !val.match(/\S/);
+}
+
 /**
  * @ignore - internal component.
  */
@@ -278,8 +282,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         {...SelectDisplayProps}
       >
         {/* So the vertical align positioning algorithm kicks in. */}
-        {/* eslint-disable-next-line react/no-danger */}
-        {display != null ? display : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
+        {display != null && !isEmptyString(display) ? (
+          display
+        ) : (
+          // eslint-disable-next-line react/no-danger
+          <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        )}
       </div>
       <input
         value={Array.isArray(value) ? value.join(',') : value}
