@@ -6,6 +6,7 @@ import { jssPreset, StylesProvider } from '@material-ui/styles';
 import Link from '@material-ui/core/Link';
 import NoSsr from '@material-ui/core/NoSsr';
 import Typography from '@material-ui/core/Typography';
+import ErrorIcon from '@material-ui/icons/Error';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
 
@@ -116,11 +117,12 @@ DemoFrame.propTypes = {
 
 const StyledFrame = withStyles(styles, { withTheme: true })(DemoFrame);
 
-const sandboxedStyles = {
-  paragraph: {
-    width: '100%',
+const sandboxedStyles = theme => ({
+  errorIcon: {
+    margin: theme.spacing(0, 1),
+    marginBottom: -3,
   },
-};
+});
 
 /**
  * Isolates the demo component as best as possible. Additional props are spread
@@ -177,6 +179,7 @@ class DemoSandboxed extends React.PureComponent {
       return (
         <div>
           <Typography color="error" component="p" variant="h5">
+            <ErrorIcon className={classes.errorIcon} />
             This demo had a runtime error
           </Typography>
           <Typography>
