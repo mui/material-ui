@@ -98,11 +98,7 @@ function findPages(
       return;
     }
 
-    if (
-      options.front &&
-      pathname.indexOf('/components') === -1 &&
-      pathname.indexOf('/api') === -1
-    ) {
+    if (options.front && pathname.indexOf('/components-api') === -1) {
       return;
     }
 

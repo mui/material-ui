@@ -347,7 +347,7 @@ Dialog.propTypes = {
    */
   PaperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/components-api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**

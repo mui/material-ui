@@ -296,7 +296,7 @@ Snackbar.propTypes = {
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](/components-api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**

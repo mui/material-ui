@@ -357,7 +357,7 @@ SelectInput.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/components-api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

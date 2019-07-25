@@ -121,7 +121,7 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/components-api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

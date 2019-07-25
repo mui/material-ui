@@ -68,7 +68,7 @@ function getInheritance(testInfo, src) {
       break;
 
     default:
-      pathname = `/api/${kebabCase(inheritedComponentName)}`;
+      pathname = `/components-api/${kebabCase(inheritedComponentName)}`;
       break;
   }
 

@@ -285,7 +285,7 @@ SpeedDial.propTypes = {
    */
   ariaLabel: PropTypes.string.isRequired,
   /**
-   * Props applied to the [`Button`](/api/button/) element.
+   * Props applied to the [`Button`](/components-api/button/) element.
    */
   ButtonProps: PropTypes.object,
   /**

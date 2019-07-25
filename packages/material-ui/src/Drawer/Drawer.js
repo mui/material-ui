@@ -98,7 +98,7 @@ export function getAnchor(theme, anchor) {
 
 const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
- * The properties of the [Modal](/api/modal/) component are available
+ * The properties of the [Modal](/components-api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(props, ref) {
@@ -218,7 +218,7 @@ Drawer.propTypes = {
    */
   elevation: PropTypes.number,
   /**
-   * Props applied to the [`Modal`](/api/modal/) element.
+   * Props applied to the [`Modal`](/components-api/modal/) element.
    */
   ModalProps: PropTypes.object,
   /**
@@ -232,11 +232,11 @@ Drawer.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/components-api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
-   * Props applied to the [`Slide`](/api/slide/) element.
+   * Props applied to the [`Slide`](/components-api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**

@@ -32,12 +32,12 @@ export const styles = {
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * - [FormControl](/api/form-control/)
- * - [InputLabel](/api/input-label/)
- * - [FilledInput](/api/filled-input/)
- * - [OutlinedInput](/api/outlined-input/)
- * - [Input](/api/input/)
- * - [FormHelperText](/api/form-helper-text/)
+ * - [FormControl](/components-api/form-control/)
+ * - [InputLabel](/components-api/input-label/)
+ * - [FilledInput](/components-api/filled-input/)
+ * - [OutlinedInput](/components-api/outlined-input/)
+ * - [Input](/components-api/input/)
+ * - [FormHelperText](/components-api/form-helper-text/)
  *
  * If you wish to alter the properties applied to the `input` element, you can do so as follows:
  *
@@ -212,7 +212,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
+   * Props applied to the [`FormHelperText`](/components-api/form-helper-text/) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -233,13 +233,13 @@ TextField.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Props applied to the [`InputLabel`](/api/input-label/) element.
+   * Props applied to the [`InputLabel`](/components-api/input-label/) element.
    */
   InputLabelProps: PropTypes.object,
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * It will be a [`FilledInput`](/components-api/filled-input/),
+   * [`OutlinedInput`](/components-api/outlined-input/) or [`Input`](/components-api/input/)
    * component depending on the `variant` prop value.
    */
   InputProps: PropTypes.object,
@@ -299,12 +299,12 @@ TextField.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
+   * Render a [`Select`](/components-api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    */
   select: PropTypes.bool,
   /**
-   * Props applied to the [`Select`](/api/select/) element.
+   * Props applied to the [`Select`](/components-api/select/) element.
    */
   SelectProps: PropTypes.object,
   /**

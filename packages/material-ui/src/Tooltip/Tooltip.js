@@ -486,7 +486,7 @@ Tooltip.propTypes = {
     'top',
   ]),
   /**
-   * Props applied to the [`Popper`](/api/popper/) element.
+   * Props applied to the [`Popper`](/components-api/popper/) element.
    */
   PopperProps: PropTypes.object,
   /**

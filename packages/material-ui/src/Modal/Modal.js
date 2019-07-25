@@ -50,12 +50,12 @@ export const styles = theme => ({
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * - [Dialog](/api/dialog/)
- * - [Drawer](/api/drawer/)
- * - [Menu](/api/menu/)
- * - [Popover](/api/popover/)
+ * - [Dialog](/components-api/dialog/)
+ * - [Drawer](/components-api/drawer/)
+ * - [Menu](/components-api/menu/)
+ * - [Popover](/components-api/popover/)
  *
- * If you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component
+ * If you are creating a modal dialog, you probably want to use the [Dialog](/components-api/dialog/) component
  * rather than directly using Modal.
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
@@ -265,7 +265,7 @@ Modal.propTypes = {
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Backdrop`](/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](/components-api/backdrop/) element.
    */
   BackdropProps: PropTypes.object,
   /**

@@ -192,7 +192,7 @@ Menu.propTypes = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Props applied to the [`MenuList`](/api/menu-list/) element.
+   * Props applied to the [`MenuList`](/components-api/menu-list/) element.
    */
   MenuListProps: PropTypes.object,
   /**
@@ -235,7 +235,7 @@ Menu.propTypes = {
    */
   PaperProps: PropTypes.object,
   /**
-   * `classes` prop applied to the [`Popover`](/api/popover/) element.
+   * `classes` prop applied to the [`Popover`](/components-api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
   /**

@@ -127,7 +127,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
 
 SpeedDialAction.propTypes = {
   /**
-   * Props applied to the [`Button`](/api/button/) component.
+   * Props applied to the [`Button`](/components-api/button/) component.
    */
   ButtonProps: PropTypes.object,
   /**
@@ -164,7 +164,7 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Classes applied to the [`Tooltip`](/api/tooltip/) element.
+   * Classes applied to the [`Tooltip`](/components-api/tooltip/) element.
    */
   TooltipClasses: PropTypes.object,
   /**
