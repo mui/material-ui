@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -100,34 +99,32 @@ const styles = theme => ({
       borderStyle: 'solid',
     },
   },
-});
+}));
 
-function ScrollPlayground(props) {
+export default function ScrollPlayground() {
   const anchorRef = React.useRef(null);
+  const arrowRef = React.useRef(null);
 
   const [arrow, setArrow] = React.useState(false);
-  const [arrowRef, setArrowRef] = React.useState(null);
   const [disablePortal, setDisablePortal] = React.useState(false);
   const [flip, setFlip] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState('bottom');
   const [preventOverflow, setPreventOverflow] = React.useState('scrollParent');
 
-  const handleClickButton = () => setOpen(!open);
+  const handleClickButton = () => setOpen(prevOpen => !prevOpen);
 
-  const handleArrowRef = node => setArrowRef(node);
-
-  const centerScroll = ref => {
-    if (!ref) {
+  const centerScroll = element => {
+    if (!element) {
       return;
     }
 
-    const container = ref.parentElement;
-    container.scrollTop = ref.clientHeight / 4;
-    container.scrollLeft = ref.clientWidth / 4;
+    const container = element.parentElement;
+    container.scrollTop = element.clientHeight / 4;
+    container.scrollLeft = element.clientWidth / 4;
   };
 
-  const { classes } = props;
+  const classes = useStyles();
 
   const code = `
   \`\`\`jsx
@@ -196,7 +193,7 @@ function ScrollPlayground(props) {
                 },
               }}
             >
-              {arrow ? <span className={classes.arrow} ref={handleArrowRef} /> : null}
+              {arrow ? <span className={classes.arrow} ref={arrowRef} /> : null}
               <Paper className={classes.paper}>
                 <DialogTitle>{"Use Google's location service?"}</DialogTitle>
                 <DialogContent>
@@ -296,9 +293,3 @@ function ScrollPlayground(props) {
     </div>
   );
 }
-
-ScrollPlayground.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ScrollPlayground);
