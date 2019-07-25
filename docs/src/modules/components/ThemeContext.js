@@ -123,6 +123,11 @@ export function ThemeProvider(props) {
           dense: themeInitialOptions.dense,
           spacing: themeInitialOptions.spacing,
         };
+      case 'RESET_COLORS':
+        return {
+          ...state,
+          paletteColors: themeInitialOptions.paletteColors,
+        };
       case 'CHANGE':
         return {
           ...state,
