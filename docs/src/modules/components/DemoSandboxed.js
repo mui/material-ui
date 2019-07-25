@@ -14,39 +14,33 @@ import Frame from 'react-frame-component';
  * with node 8 + IE11 support i.e. not using URL (URLSearchParams.set replaced with Map.set)
  */
 function newGithubIssueUrl(options) {
-	const url = `https://github.com/${options.user}/${options.repo}/issues/new`
+  const url = `https://github.com/${options.user}/${options.repo}/issues/new`;
 
-	const types = [
-		'body',
-		'title',
-		'labels',
-		'template',
-		'milestone',
-		'assignee',
-		'projects'
-	];
+  const types = ['body', 'title', 'labels', 'template', 'milestone', 'assignee', 'projects'];
 
   const searchParams = new Map();
 
-	for (const type of types) {
-		let value = options[type];
-		if (value === undefined) {
-			continue;
-		}
+  for (const type of types) {
+    let value = options[type];
+    if (value === undefined) {
+      continue;
+    }
 
-		if (type === 'labels' || type === 'projects') {
-			if (!Array.isArray(value)) {
-				throw new TypeError(`The \`${type}\` option should be an array`);
-			}
+    if (type === 'labels' || type === 'projects') {
+      if (!Array.isArray(value)) {
+        throw new TypeError(`The \`${type}\` option should be an array`);
+      }
 
-			value = value.join(',');
-		}
+      value = value.join(',');
+    }
 
-		searchParams.set(type, encodeURIComponent(value));
-	}
+    searchParams.set(type, encodeURIComponent(value));
+  }
 
-  const query = Array.from(searchParams.entries()).map(entry => `${entry[0]}=${entry[1]}`).join('&');
-	return `${url}?${query}`;
+  const query = Array.from(searchParams.entries())
+    .map(entry => `${entry[0]}=${entry[1]}`)
+    .join('&');
+  return `${url}?${query}`;
 }
 
 const styles = theme => ({
@@ -160,8 +154,7 @@ class DemoSandboxed extends React.PureComponent {
         body: `
 <!-- Please make sure you have fullfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
-- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery})
-  of this repository and believe that this is not a duplicate.
+- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery}) of this repository and believe that this is not a duplicate.
 
 ## Steps to Reproduce
 1. Visit ${window.location.href}
