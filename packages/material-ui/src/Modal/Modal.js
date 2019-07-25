@@ -85,7 +85,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   } = props;
 
   const theme = useTheme();
-  const [exited, setExited] = React.useState(!open);
+  const [exited, setExited] = React.useState(true);
   const modal = React.useRef({});
   const mountNodeRef = React.useRef(null);
   const modalRef = React.useRef(null);
