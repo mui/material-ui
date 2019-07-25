@@ -56,7 +56,8 @@ const useStyles = makeStyles((theme: Theme) =>
     nested: {
       paddingLeft: theme.spacing(4),
     },
-  }));
+  }),
+);
 
 interface LinkRouterProps extends LinkProps {
   to: string;
@@ -93,10 +94,10 @@ export default function RouterBreadcrumbs() {
                       {breadcrumbNameMap[to]}
                     </Typography>
                   ) : (
-                      <LinkRouter color="inherit" to={to} key={to}>
-                        {breadcrumbNameMap[to]}
-                      </LinkRouter>
-                    );
+                    <LinkRouter color="inherit" to={to} key={to}>
+                      {breadcrumbNameMap[to]}
+                    </LinkRouter>
+                  );
                 })}
               </Breadcrumbs>
             );
