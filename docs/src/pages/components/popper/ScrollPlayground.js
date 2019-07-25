@@ -112,7 +112,9 @@ export default function ScrollPlayground() {
   const [placement, setPlacement] = React.useState('bottom');
   const [preventOverflow, setPreventOverflow] = React.useState('scrollParent');
 
-  const handleClickButton = () => setOpen(prevOpen => !prevOpen);
+  const handleClickButton = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
 
   const centerScroll = element => {
     if (!element) {

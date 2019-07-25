@@ -56,24 +56,31 @@ const actions = [
 ];
 
 export default function SpeedDials() {
+  const classes = useStyles();
   const [direction, setDirection] = React.useState('up');
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
-  const handleClick = () => setOpen(prevOpen => !prevOpen);
+  const handleClick = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
 
-  const handleDirectionChange = (event, value) => setDirection(value);
+  const handleDirectionChange = (event, value) => {
+    setDirection(value);
+  };
 
   const handleHiddenChange = (event, newHidden) => {
     setHidden(newHidden);
     setOpen(hidden ? false : open);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-  const handleOpen = () => setOpen(true);
-
-  const classes = useStyles();
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const speedDialClassName = clsx(classes.speedDial, classes[`direction${capitalize(direction)}`]);
 

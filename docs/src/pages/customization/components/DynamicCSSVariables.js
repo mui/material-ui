@@ -18,11 +18,13 @@ const styles = {
 };
 
 function DynamicCSSVariables(props) {
+  const { classes } = props;
   const [color, setColor] = React.useState('default');
 
-  const handleChange = event => setColor(event.target.checked ? 'blue' : 'default');
+  const handleChange = event => {
+    setColor(event.target.checked ? 'blue' : 'default');
+  };
 
-  const { classes } = props;
   return (
     <React.Fragment>
       <FormControlLabel

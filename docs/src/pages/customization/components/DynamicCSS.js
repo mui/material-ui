@@ -28,7 +28,9 @@ const StyledButton = withStyles({
 function DynamicCSS() {
   const [color, setColor] = React.useState('default');
 
-  const handleChange = event => setColor(event.target.checked ? 'blue' : 'default');
+  const handleChange = event => {
+    setColor(event.target.checked ? 'blue' : 'default');
+  };
 
   return (
     <React.Fragment>

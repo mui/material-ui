@@ -67,11 +67,12 @@ interface LinkRouterProps extends LinkProps {
 const LinkRouter = (props: LinkRouterProps) => <Link {...props} component={RouterLink as any} />;
 
 export default function RouterBreadcrumbs() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
-  const handleClick = () => setOpen(prevOpen => !prevOpen);
-
-  const classes = useStyles();
+  const handleClick = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
 
   return (
     <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>

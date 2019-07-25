@@ -60,11 +60,12 @@ const useStyles = makeStyles(theme => ({
 const LinkRouter = props => <Link {...props} component={RouterLink} />;
 
 export default function RouterBreadcrumbs() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
-  const handleClick = () => setOpen(prevOpen => !prevOpen);
-
-  const classes = useStyles();
+  const handleClick = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
 
   return (
     <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>

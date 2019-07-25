@@ -31,6 +31,7 @@ const actions = [
 ];
 
 export default function OpenIconSpeedDial() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
@@ -39,7 +40,9 @@ export default function OpenIconSpeedDial() {
     setHidden(prevHidden => !prevHidden);
   };
 
-  const handleClick = () => setOpen(prevOpen => !prevOpen);
+  const handleClick = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
 
   const handleOpen = () => {
     if (!hidden) {
@@ -47,9 +50,10 @@ export default function OpenIconSpeedDial() {
     }
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Button onClick={handleVisibility}>Toggle Speed Dial</Button>

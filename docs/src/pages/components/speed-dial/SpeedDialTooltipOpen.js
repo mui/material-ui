@@ -30,6 +30,7 @@ const actions = [
 ];
 
 export default function SpeedDialTooltipOpen() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
@@ -38,7 +39,9 @@ export default function SpeedDialTooltipOpen() {
     setHidden(!hidden);
   };
 
-  const handleClick = () => setOpen(prevOpen => !prevOpen);
+  const handleClick = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
 
   const handleOpen = () => {
     if (!hidden) {
@@ -46,9 +49,10 @@ export default function SpeedDialTooltipOpen() {
     }
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Button onClick={handleVisibility}>Toggle Speed Dial</Button>

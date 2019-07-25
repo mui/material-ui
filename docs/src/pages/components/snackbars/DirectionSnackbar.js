@@ -24,11 +24,13 @@ function DirectionSnackbar() {
   const [transition, setTransition] = React.useState(undefined);
 
   const handleClick = Transition => () => {
+    setTransition(() => Transition);
     setOpen(true);
-    setTransition(Transition);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
