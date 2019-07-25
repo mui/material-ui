@@ -54,6 +54,10 @@ export default function FilledInputAdornments() {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
   return (
     <div className={classes.root}>
       <TextField
@@ -120,6 +124,7 @@ export default function FilledInputAdornments() {
                 edge="end"
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
               >
                 {values.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>

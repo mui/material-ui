@@ -71,6 +71,10 @@ export default function InputAdornments() {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
   return (
     <div className={classes.root}>
       <TextField
@@ -128,7 +132,11 @@ export default function InputAdornments() {
           onChange={handleChange('password')}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
