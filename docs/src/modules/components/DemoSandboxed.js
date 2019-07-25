@@ -8,7 +8,46 @@ import NoSsr from '@material-ui/core/NoSsr';
 import Typography from '@material-ui/core/Typography';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
-import newGithubIssueUrl from 'new-github-issue-url';
+
+/**
+ * Based on https://github.com/sindresorhus/new-github-issue-url/blob/061fa0ddb7d51f3b96d3a0f6a6bebb196f105a7b/index.js
+ * with node 8 + IE11 support i.e. not using URL (URLSearchParams.set replaced with Map.set)
+ */
+function newGithubIssueUrl(options) {
+	const url = `https://github.com/${options.user}/${options.repo}/issues/new`
+
+	const types = [
+		'body',
+		'title',
+		'labels',
+		'template',
+		'milestone',
+		'assignee',
+		'projects'
+	];
+
+  const searchParams = new Map();
+
+	for (const type of types) {
+		let value = options[type];
+		if (value === undefined) {
+			continue;
+		}
+
+		if (type === 'labels' || type === 'projects') {
+			if (!Array.isArray(value)) {
+				throw new TypeError(`The \`${type}\` option should be an array`);
+			}
+
+			value = value.join(',');
+		}
+
+		searchParams.set(type, encodeURIComponent(value));
+	}
+
+  const query = Array.from(searchParams.entries()).map(entry => `${entry[0]}=${entry[1]}`).join('&');
+	return `${url}?${query}`;
+}
 
 const styles = theme => ({
   root: {
