@@ -204,7 +204,7 @@ The Material Design "v2" announcement caught us by surprise when we released Mat
 
 There are so many new things, we can't be exhaustive. Aside from what we have already announced, you will find:
 - A new **strapline** "*React components for faster and easier web development. Build your own design system, or start with Material Design.*" that better embodies our mission and emphasize the [customizability potential](https://techcrunch.com/2018/05/08/google-makes-its-material-design-system-easier-to-customize/).
-- New [page layout examples](/getting-started/page-layout-examples/).
+- New [templates](/getting-started/templates/).
 
 ![layout](/static/blog/material-ui-v4-is-out/layout.png)
 

@@ -6,7 +6,7 @@ import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import Markdown from 'docs/src/pages/getting-started/page-layout-examples/blog/Markdown';
+import Markdown from 'docs/src/pages/getting-started/templates/blog/Markdown';
 
 const suite = new Benchmark.Suite('core', {
   onError: event => {
@@ -16,10 +16,7 @@ const suite = new Benchmark.Suite('core', {
 Benchmark.options.minSamples = 100;
 
 const markdown = fs.readFileSync(
-  path.join(
-    __dirname,
-    '../../../docs/src/pages/getting-started/page-layout-examples/blog/blog-post.1.md',
-  ),
+  path.join(__dirname, '../../../docs/src/pages/getting-started/templates/blog/blog-post.1.md'),
   'UTF-8',
 );
 

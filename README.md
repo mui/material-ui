@@ -122,7 +122,7 @@ Check out our [documentation website](https://material-ui.com/).
 
 ## Premium Themes
 
-You can find complete ready-to-go templates with multiple page layouts, in our [premium themes](https://themes.material-ui.com/) section.
+You can find complete templates & themes in our [premium themes](https://themes.material-ui.com/) section.
 
 ## Contributing
 
@@ -141,7 +141,7 @@ The future plans and high priority features and enhancements can be found in the
 
 Material-UI is only made possible thanks to these great services that sponsor our core infrastructure:
 
-[<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="120">](https://github.com/)
+[<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="100">](https://github.com/)
 
 GitHub allows us to host the Git repository.
 

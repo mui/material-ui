@@ -14,9 +14,9 @@ Even if you don’t know anything about Material-UI yet, try changing the code a
 
 We [host some example projects](/getting-started/example-projects/) providing the infrastructure needed to develop and deploy websites in React.
 
-## Page layout examples
+## Templates
 
-We have a [selection of basic page layouts](/getting-started/page-layout-examples/) to help you get started building your app.
+We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
 
 ## Recommended resources
 
