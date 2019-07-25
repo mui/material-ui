@@ -183,7 +183,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
         role="tooltip"
         style={{
           // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
-          position: 'absolute',
+          position: 'fixed',
         }}
         {...other}
       >
