@@ -176,7 +176,7 @@ export default function ScrollPlayground() {
             <Popper
               id={id}
               open={open}
-              anchorEl={anchorRef && anchorRef.current}
+              anchorEl={anchorRef.current}
               placement={placement}
               disablePortal={disablePortal}
               className={classes.popper}
