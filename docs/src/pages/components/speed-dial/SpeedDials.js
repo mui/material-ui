@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
@@ -17,7 +16,7 @@ import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
   },
@@ -46,7 +45,7 @@ const styles = theme => ({
   directionRight: {},
   directionDown: {},
   directionLeft: {},
-});
+}));
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
@@ -56,12 +55,12 @@ const actions = [
   { icon: <DeleteIcon />, name: 'Delete' },
 ];
 
-function SpeedDials(props) {
+export default function SpeedDials() {
   const [direction, setDirection] = React.useState('up');
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
-  const handleClick = () => setOpen(!open);
+  const handleClick = () => setOpen(prevOpen => !prevOpen);
 
   const handleDirectionChange = (event, value) => setDirection(value);
 
@@ -74,7 +73,7 @@ function SpeedDials(props) {
 
   const handleOpen = () => setOpen(true);
 
-  const { classes } = props;
+  const classes = useStyles();
 
   const speedDialClassName = clsx(classes.speedDial, classes[`direction${capitalize(direction)}`]);
 
@@ -130,9 +129,3 @@ function SpeedDials(props) {
     </div>
   );
 }
-
-SpeedDials.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SpeedDials);

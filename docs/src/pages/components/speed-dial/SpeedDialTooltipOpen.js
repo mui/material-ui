@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -11,7 +10,7 @@ import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     height: 380,
   },
@@ -20,7 +19,7 @@ const styles = theme => ({
     bottom: theme.spacing(2),
     right: theme.spacing(3),
   },
-});
+}));
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
@@ -30,7 +29,7 @@ const actions = [
   { icon: <DeleteIcon />, name: 'Delete' },
 ];
 
-function SpeedDialTooltipOpen(props) {
+export default function SpeedDialTooltipOpen() {
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
@@ -39,7 +38,7 @@ function SpeedDialTooltipOpen(props) {
     setHidden(!hidden);
   };
 
-  const handleClick = () => setOpen(!open);
+  const handleClick = () => setOpen(prevOpen => !prevOpen);
 
   const handleOpen = () => {
     if (!hidden) {
@@ -49,7 +48,7 @@ function SpeedDialTooltipOpen(props) {
 
   const handleClose = () => setOpen(false);
 
-  const { classes } = props;
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
@@ -79,9 +78,3 @@ function SpeedDialTooltipOpen(props) {
     </div>
   );
 }
-
-SpeedDialTooltipOpen.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SpeedDialTooltipOpen);
