@@ -285,7 +285,7 @@ SpeedDial.propTypes = {
    */
   ariaLabel: PropTypes.string.isRequired,
   /**
-   * Properties applied to the [`Button`](/api/button/) element.
+   * Props applied to the [`Button`](/api/button/) element.
    */
   ButtonProps: PropTypes.object,
   /**
@@ -350,7 +350,7 @@ SpeedDial.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };

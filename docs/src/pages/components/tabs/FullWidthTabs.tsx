@@ -69,7 +69,7 @@ export default function FullWidthTabs() {
           indicatorColor="primary"
           textColor="primary"
           variant="fullWidth"
-          aria-label="Full width tabs example"
+          aria-label="full width tabs example"
         >
           <Tab label="Item One" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />

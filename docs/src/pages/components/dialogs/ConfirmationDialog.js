@@ -73,7 +73,7 @@ function ConfirmationDialogRaw(props) {
       <DialogContent dividers>
         <RadioGroup
           ref={radioGroupRef}
-          aria-label="Ringtone"
+          aria-label="ringtone"
           name="ringtone"
           value={value}
           onChange={handleChange}
@@ -141,7 +141,7 @@ export default function ConfirmationDialog() {
           divider
           aria-haspopup="true"
           aria-controls="ringtone-menu"
-          aria-label="Phone ringtone"
+          aria-label="phone ringtone"
           onClick={handleClickListItem}
           role="listitem"
         >

@@ -19,7 +19,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">ariaLabel&nbsp;*</span> | <span class="prop-type">string</span> |  | The aria-label of the `Button` element. Also used to provide the `id` for the `SpeedDial` element and its children. |
-| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Properties applied to the [`Button`](/api/button/) element. |
+| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Button`](/api/button/) element. |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | SpeedDialActions to display when the SpeedDial is `open`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'up'&nbsp;&#124;<br>&nbsp;'down'&nbsp;&#124;<br>&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br></span> | <span class="prop-default">'up'</span> | The direction the actions open relative to the floating action button. |
@@ -30,7 +30,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Zoom</span> | The component used for the transition. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
-| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Properties applied to the `Transition` element. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the `Transition` element. |
 
 The component cannot hold a ref.
 

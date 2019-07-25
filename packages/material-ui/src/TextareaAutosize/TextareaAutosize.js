@@ -18,7 +18,8 @@ const styles = {
     position: 'absolute',
     // Ignore the scrollbar width
     overflow: 'hidden',
-    height: '0',
+    height: 0,
+    top: 0,
   },
 };
 

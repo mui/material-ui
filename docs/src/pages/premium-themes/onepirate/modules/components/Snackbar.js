@@ -65,7 +65,7 @@ function Snackbar(props) {
       action={[
         <IconButton
           key="close"
-          aria-label="Close"
+          aria-label="close"
           color="inherit"
           className={classes.close}
           onClick={onClose}

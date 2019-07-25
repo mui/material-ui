@@ -611,4 +611,43 @@ describe('<Tabs />', () => {
       expect(style.backgroundColor).to.equal('green');
     });
   });
+
+  describe('prop: orientation', () => {
+    it('should support orientation="vertical"', () => {
+      const { setProps, container, getByRole } = render(
+        <Tabs value={1} variant="scrollable" scrollButtons="on" orientation="vertical">
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      const tablistContainer = getByRole('tablist').parentNode;
+      const tab = getByRole('tablist').children[1];
+
+      Object.defineProperty(tablistContainer, 'clientHeight', { value: 100 });
+      Object.defineProperty(tablistContainer, 'scrollHeight', { value: 100 });
+      tablistContainer.getBoundingClientRect = () => ({
+        top: 0,
+        bottom: 100,
+      });
+      tab.getBoundingClientRect = () => ({
+        top: 50,
+        height: 50,
+        bottom: 100,
+      });
+      setProps();
+      let style;
+      style = container.querySelector(`.${classes.indicator}`).style;
+      expect(style.top).to.equal('50px');
+      expect(style.height).to.equal('50px');
+      tab.getBoundingClientRect = () => ({
+        top: 60,
+        height: 50,
+        bottom: 110,
+      });
+      setProps();
+      style = container.querySelector(`.${classes.indicator}`).style;
+      expect(style.top).to.equal('60px');
+      expect(style.height).to.equal('50px');
+    });
+  });
 });

@@ -263,7 +263,7 @@ export default function Hook() {
 ⚠️ Be aware of the difference between *@material-ui/styles* and *@material-ui/core/styles*. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
 
 - A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for *@material-ui/styles*.
-- A [Cookbook](https://www.packtpub.com/application-development/react-material-ui-cookbook) published by Packt and written by Adam Boduch.
+- A [Cookbook](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380) published by Packt and written by Adam Boduch.
 
 ![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)
 

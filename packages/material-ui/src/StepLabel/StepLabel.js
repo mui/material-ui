@@ -199,7 +199,7 @@ StepLabel.propTypes = {
    */
   StepIconComponent: PropTypes.elementType,
   /**
-   * Properties applied to the [`StepIcon`](/api/step-icon/) element.
+   * Props applied to the [`StepIcon`](/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
 };

@@ -80,12 +80,12 @@ function ComponentProperty(props) {
           )}
         </Route>
         <div className={classes.lists}>
-          <List component="nav" aria-label="Main mailbox folders">
+          <List component="nav" aria-label="main mailbox folders">
             <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
             <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
           </List>
           <Divider />
-          <List component="nav" aria-label="Secondary mailbox folders">
+          <List component="nav" aria-label="secondary mailbox folders">
             <ListItemLinkShorthand to="/trash" primary="Trash" />
             <ListItemLinkShorthand to="/spam" primary="Spam" />
           </List>

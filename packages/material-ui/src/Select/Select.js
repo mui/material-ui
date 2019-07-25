@@ -121,7 +121,7 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Properties applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -168,7 +168,7 @@ Select.propTypes = {
    */
   renderValue: PropTypes.func,
   /**
-   * Properties applied to the clickable div element.
+   * Props applied to the clickable div element.
    */
   SelectDisplayProps: PropTypes.object,
   /**

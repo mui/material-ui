@@ -68,7 +68,7 @@ function ColorDemo(props) {
               edge="start"
               className={classes.menuButton}
               color="inherit"
-              aria-label="Menu"
+              aria-label="menu"
             >
               <MenuIcon />
             </IconButton>
@@ -85,7 +85,7 @@ function ColorDemo(props) {
   },
 }`}
         </pre>
-        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="Add">
+        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="add">
           <AddIcon htmlColor={secondary.contrastText} />
         </Fab>
       </div>

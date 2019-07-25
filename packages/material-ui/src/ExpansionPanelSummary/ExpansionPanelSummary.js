@@ -173,7 +173,7 @@ ExpansionPanelSummary.propTypes = {
    */
   expandIcon: PropTypes.node,
   /**
-   * Properties applied to the `IconButton` element wrapping the expand icon.
+   * Props applied to the `IconButton` element wrapping the expand icon.
    */
   IconButtonProps: PropTypes.object,
   /**

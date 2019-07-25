@@ -67,6 +67,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     FormHelperTextProps,
     fullWidth,
     helperText,
+    hiddenLabel,
     id,
     InputLabelProps,
     inputProps,
@@ -147,6 +148,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       className={clsx(classes.root, classNameProp)}
       error={error}
       fullWidth={fullWidth}
+      hiddenLabel={hiddenLabel}
       ref={ref}
       required={required}
       variant={variant}
@@ -210,7 +212,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
+   * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -222,16 +224,20 @@ TextField.propTypes = {
    */
   helperText: PropTypes.node,
   /**
+   * @ignore
+   */
+  hiddenLabel: PropTypes.bool,
+  /**
    * The id of the `input` element.
    * Use this prop to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the [`InputLabel`](/api/input-label/) element.
+   * Props applied to the [`InputLabel`](/api/input-label/) element.
    */
   InputLabelProps: PropTypes.object,
   /**
-   * Properties applied to the Input element.
+   * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
    * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
    * component depending on the `variant` prop value.
@@ -298,7 +304,7 @@ TextField.propTypes = {
    */
   select: PropTypes.bool,
   /**
-   * Properties applied to the [`Select`](/api/select/) element.
+   * Props applied to the [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
   /**

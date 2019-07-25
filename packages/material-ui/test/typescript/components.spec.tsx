@@ -91,7 +91,7 @@ const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, re
 const AppBarTest = () => (
   <AppBar position="static">
     <Toolbar>
-      <IconButton color="inherit" aria-label="Menu">
+      <IconButton color="inherit" aria-label="menu">
         <FakeIcon />
       </IconButton>
       <Typography variant="h6" color="inherit">
@@ -172,19 +172,19 @@ const BottomNavigationTest = () => {
 
 const IconButtonTest = () => (
   <div>
-    <IconButton aria-label="Delete">
+    <IconButton aria-label="delete">
       <FakeIcon />
     </IconButton>
-    <IconButton aria-label="Delete" disabled>
+    <IconButton aria-label="delete" disabled>
       <FakeIcon />
     </IconButton>
-    <IconButton color="secondary" aria-label="Add an alarm">
+    <IconButton color="secondary" aria-label="add an alarm">
       <FakeIcon />
     </IconButton>
-    <IconButton color="inherit" aria-label="Add to shopping cart">
+    <IconButton color="inherit" aria-label="add to shopping cart">
       <FakeIcon />
     </IconButton>
-    <IconButton color="primary" aria-label="Add to shopping cart">
+    <IconButton color="primary" aria-label="add to shopping cart">
       <FakeIcon />
     </IconButton>
   </div>
@@ -213,7 +213,7 @@ const CardTest = () => (
 const CardMediaTest = () => (
   <Card>
     <CardHeader
-      avatar={<Avatar aria-label="Recipe">R</Avatar>}
+      avatar={<Avatar aria-label="recipe">R</Avatar>}
       title="Shrimp and Chorizo Paella"
       subheader="September 14, 2016"
     />
@@ -227,13 +227,13 @@ const CardMediaTest = () => (
       </Typography>
     </CardContent>
     <CardActions disableSpacing>
-      <IconButton aria-label="Add to favorites">
+      <IconButton aria-label="add to favorites">
         <FakeIcon />
       </IconButton>
-      <IconButton aria-label="Share">
+      <IconButton aria-label="share">
         <FakeIcon />
       </IconButton>
-      <IconButton aria-label="Show more">
+      <IconButton aria-label="show more">
         <FakeIcon />
       </IconButton>
     </CardActions>
@@ -526,7 +526,7 @@ const ListTest = () => (
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
-          <IconButton aria-label="Comments">
+          <IconButton aria-label="comments">
             <FakeIcon />
           </IconButton>
         </ListItemSecondaryAction>
@@ -716,7 +716,7 @@ const SnackbarTest = () => (
         <Button key="undo" color="secondary" size="small" onClick={e => log(e)}>
           UNDO
         </Button>,
-        <IconButton key="close" aria-label="Close" color="inherit" onClick={e => log(e)}>
+        <IconButton key="close" aria-label="close" color="inherit" onClick={e => log(e)}>
           <FakeIcon />
         </IconButton>,
       ]}

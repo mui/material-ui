@@ -86,7 +86,7 @@ function EnhancedTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'Select all desserts' }}
+            inputProps={{ 'aria-label': 'select all desserts' }}
           />
         </TableCell>
         {headRows.map(row => (
@@ -170,13 +170,13 @@ const EnhancedTableToolbar = props => {
       <div className={classes.actions}>
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
+            <IconButton aria-label="delete">
               <DeleteIcon />
             </IconButton>
           </Tooltip>
         ) : (
           <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
+            <IconButton aria-label="filter list">
               <FilterListIcon />
             </IconButton>
           </Tooltip>
@@ -334,10 +334,10 @@ export default function EnhancedTable() {
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
-            'aria-label': 'Previous Page',
+            'aria-label': 'previous page',
           }}
           nextIconButtonProps={{
-            'aria-label': 'Next Page',
+            'aria-label': 'next page',
           }}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}

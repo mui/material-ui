@@ -69,15 +69,15 @@ export default function ScrollableTabsButtonPrevent() {
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="off"
-          aria-label="Scrollable prevent tabs example"
+          aria-label="scrollable prevent tabs example"
         >
-          <Tab icon={<PhoneIcon />} aria-label="Phone" {...a11yProps(0)} />
-          <Tab icon={<FavoriteIcon />} aria-label="Favorite" {...a11yProps(1)} />
-          <Tab icon={<PersonPinIcon />} aria-label="Person" {...a11yProps(2)} />
-          <Tab icon={<HelpIcon />} aria-label="Help" {...a11yProps(3)} />
-          <Tab icon={<ShoppingBasket />} aria-label="Shopping" {...a11yProps(4)} />
-          <Tab icon={<ThumbDown />} aria-label="Up" {...a11yProps(5)} />
-          <Tab icon={<ThumbUp />} aria-label="Down" {...a11yProps(6)} />
+          <Tab icon={<PhoneIcon />} aria-label="phone" {...a11yProps(0)} />
+          <Tab icon={<FavoriteIcon />} aria-label="favorite" {...a11yProps(1)} />
+          <Tab icon={<PersonPinIcon />} aria-label="person" {...a11yProps(2)} />
+          <Tab icon={<HelpIcon />} aria-label="help" {...a11yProps(3)} />
+          <Tab icon={<ShoppingBasket />} aria-label="shopping" {...a11yProps(4)} />
+          <Tab icon={<ThumbDown />} aria-label="up" {...a11yProps(5)} />
+          <Tab icon={<ThumbUp />} aria-label="down" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

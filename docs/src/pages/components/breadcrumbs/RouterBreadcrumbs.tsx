@@ -81,7 +81,7 @@ export default function RouterBreadcrumbs() {
             const pathnames = location.pathname.split('/').filter(x => x);
 
             return (
-              <Breadcrumbs aria-label="Breadcrumb">
+              <Breadcrumbs aria-label="breadcrumb">
                 <LinkRouter color="inherit" to="/">
                   Home
                 </LinkRouter>
@@ -103,7 +103,7 @@ export default function RouterBreadcrumbs() {
             );
           }}
         </Route>
-        <nav className={classes.lists} aria-label="Mailbox folders">
+        <nav className={classes.lists} aria-label="mailbox folders">
           <List>
             <ListItemLink to="/inbox" open={open} onClick={handleClick} />
             <Collapse component="li" in={open} timeout="auto" unmountOnExit>
