@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/StepButton/StepButton.js
 
 # StepButton API
 
-<p class="description">The API documentation of the StepButton React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the StepButton React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import StepButton from '@material-ui/core/StepButton';
@@ -25,7 +25,7 @@ import StepButton from '@material-ui/core/StepButton';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
+Any other props supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS
 
@@ -49,7 +49,7 @@ you need to use the following style sheet name: `MuiStepButton`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base/) component are also available.
+The props of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

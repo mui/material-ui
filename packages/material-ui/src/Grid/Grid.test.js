@@ -87,7 +87,7 @@ describe('<Grid />', () => {
   });
 
   describe('prop: other', () => {
-    it('should spread the other properties to the root element', () => {
+    it('should spread the other props to the root element', () => {
       const handleClick = () => {};
       const wrapper = shallow(<Grid component="span" onClick={handleClick} />);
       assert.strictEqual(wrapper.props().onClick, handleClick);

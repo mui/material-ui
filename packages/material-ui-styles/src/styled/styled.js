@@ -119,7 +119,7 @@ function styled(Component) {
        */
       clone: chainPropTypes(PropTypes.bool, props => {
         if (props.clone && props.component) {
-          return new Error('You can not use the clone and component properties at the same time.');
+          return new Error('You can not use the clone and component prop at the same time.');
         }
         return null;
       }),

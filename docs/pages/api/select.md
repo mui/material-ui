@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/Select/Select.js
 
 # Select API
 
-<p class="description">The API documentation of the Select React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Select React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import Select from '@material-ui/core/Select';
@@ -39,7 +39,7 @@ import Select from '@material-ui/core/Select';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([Input](/api/input/)).
+Any other props supplied will be provided to the root element ([Input](/api/input/)).
 
 ## CSS
 
@@ -66,7 +66,7 @@ you need to use the following style sheet name: `MuiSelect`.
 
 ## Inheritance
 
-The properties of the [Input](/api/input/) component are also available.
+The props of the [Input](/api/input/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

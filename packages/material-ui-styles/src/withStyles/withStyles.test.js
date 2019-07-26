@@ -105,7 +105,7 @@ describe('withStyles', () => {
     // });
   });
 
-  it('should forward the properties', () => {
+  it('should forward the props', () => {
     const Test = props => <div>{props.foo}</div>;
     Test.propTypes = {
       foo: PropTypes.any,

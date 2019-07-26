@@ -21,7 +21,7 @@ describe('chainPropTypes', () => {
     assert.strictEqual(typeof chainPropTypes, 'function');
   });
 
-  it('should return null for supported properties', () => {
+  it('should return null for supported props', () => {
     PropTypes.checkPropTypes(
       {
         [propName]: chainPropTypes(PropTypes.string, () => null),
@@ -33,7 +33,7 @@ describe('chainPropTypes', () => {
     assert.strictEqual(consoleErrorMock.callCount(), 0);
   });
 
-  it('should return an error for unsupported properties', () => {
+  it('should return an error for unsupported props', () => {
     PropTypes.checkPropTypes(
       {
         [propName]: chainPropTypes(PropTypes.string, () => new Error('something is wrong')),

@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/ExpansionPanelSummary/ExpansionPanelSummary.
 
 # ExpansionPanelSummary API
 
-<p class="description">The API documentation of the ExpansionPanelSummary React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the ExpansionPanelSummary React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -25,7 +25,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
+Any other props supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS
 
@@ -51,7 +51,7 @@ you need to use the following style sheet name: `MuiExpansionPanelSummary`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base/) component are also available.
+The props of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

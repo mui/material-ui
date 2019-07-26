@@ -304,7 +304,7 @@ describe('<Tooltip />', () => {
   });
 
   describe('forward', () => {
-    it('should forward properties to the child element', () => {
+    it('should forward props to the child element', () => {
       const wrapper = mount(
         <Tooltip className="foo" {...defaultProps}>
           <h1 className="bar">H1</h1>
@@ -313,7 +313,7 @@ describe('<Tooltip />', () => {
       assert.strictEqual(wrapper.find('h1').props().className, 'foo bar');
     });
 
-    it('should respect the properties priority', () => {
+    it('should respect the props priority', () => {
       const wrapper = mount(
         <Tooltip hidden {...defaultProps}>
           <h1 hidden={false}>H1</h1>

@@ -98,7 +98,7 @@ export function getAnchor(theme, anchor) {
 
 const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
- * The properties of the [Modal](/api/modal/) component are available
+ * The props of the [Modal](/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(props, ref) {

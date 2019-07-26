@@ -321,7 +321,7 @@ describe('makeStyles', () => {
       });
     });
 
-    it('should handle dynamic properties', () => {
+    it('should handle dynamic props', () => {
       const useStyles = makeStyles({
         root: props => ({ margin: 8, padding: props.padding || 8 }),
       });

@@ -39,7 +39,7 @@ export const styles = {
  * - [Input](/api/input/)
  * - [FormHelperText](/api/form-helper-text/)
  *
- * If you wish to alter the properties applied to the `input` element, you can do so as follows:
+ * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
  * ```jsx
  * const inputProps = {

@@ -16,7 +16,7 @@ describe('exactProp()', () => {
   });
 
   describe('exactPropTypes', () => {
-    it('should return null for supported properties', () => {
+    it('should return null for supported props', () => {
       const props = {
         bar: false,
       };
@@ -24,14 +24,14 @@ describe('exactProp()', () => {
       assert.strictEqual(result, null);
     });
 
-    it('should return an error for unsupported properties', () => {
+    it('should return an error for unsupported props', () => {
       const props = {
         foo: true,
       };
       const result = exactPropTypes[specialProperty](props);
       assert.match(
         result.message,
-        /The following properties are not supported: `foo`. Please remove them/,
+        /The following props are not supported: `foo`. Please remove them/,
       );
     });
   });
