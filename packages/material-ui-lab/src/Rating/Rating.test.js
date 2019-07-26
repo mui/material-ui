@@ -9,13 +9,13 @@ describe('<Rating />', () => {
   let mount;
   const render = createClientRender({ strict: true });
   let classes;
-  const props = {
+  const defaultProps = {
     value: 2,
   };
 
   before(() => {
     mount = createMount({ strict: true });
-    classes = getClasses(<Rating {...props} />);
+    classes = getClasses(<Rating {...defaultProps} />);
   });
 
   afterEach(() => {
@@ -26,7 +26,7 @@ describe('<Rating />', () => {
     mount.cleanUp();
   });
 
-  describeConformance(<Rating {...props} />, () => ({
+  describeConformance(<Rating {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
@@ -35,7 +35,7 @@ describe('<Rating />', () => {
   }));
 
   it('should render', () => {
-    const { container } = render(<Rating {...props} />);
+    const { container } = render(<Rating {...defaultProps} />);
 
     expect(container.firstChild).to.have.class(classes.root);
   });
