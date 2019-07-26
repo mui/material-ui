@@ -27,7 +27,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 | <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |  | If `true`, the helper text should use focused classes key. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br></span> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the helper text should use required classes key. |
-| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br></span> |  | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'filled'<br></span> |  | The variant to use. |
 
 The `ref` is forwarded to the root element.
 

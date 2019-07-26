@@ -206,7 +206,7 @@ function generatePropType(type) {
 
       // Display one value per line as it's better for visibility.
       if (values.length < 5) {
-        values = values.join('&nbsp;&#124;<br>&nbsp;');
+        values = values.join('<br>&#124;&nbsp;');
       } else {
         values = values.join(', ');
       }
