@@ -30,7 +30,7 @@ import Rating from '@material-ui/lab/Rating';
 | <span class="prop-name">onChangeActive</span> | <span class="prop-type">func</span> |  | Callback function that is fired when the hover state changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* The new value |
 | <span class="prop-name">precision</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The minimum increment value change allowed. |
 | <span class="prop-name">readOnly</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Removes all hover effects and pointer events. |
-| <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br></span> | <span class="prop-default">'medium'</span> | The size of the rating. |
+| <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'medium'</span> | The size of the rating. |
 | <span class="prop-name">value</span> | <span class="prop-type">number</span> | <span class="prop-default">null</span> | The rating value. |
 
 The `ref` is forwarded to the root element.

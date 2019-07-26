@@ -24,7 +24,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 | <span class="prop-name required">icon&nbsp;*</span> | <span class="prop-type">node</span> |  | The Icon to display in the SpeedDial Floating Action Button. |
 | <span class="prop-name">TooltipClasses</span> | <span class="prop-type">object</span> |  | Classes applied to the [`Tooltip`](/api/tooltip/) element. |
 | <span class="prop-name">tooltipOpen</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Make the tooltip always visible when the SpeedDial is open. |
-| <span class="prop-name">tooltipPlacement</span> | <span class="prop-type">enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br></span> | <span class="prop-default">'left'</span> | Placement of the tooltip. |
+| <span class="prop-name">tooltipPlacement</span> | <span class="prop-type">enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'</span> | <span class="prop-default">'left'</span> | Placement of the tooltip. |
 | <span class="prop-name required">tooltipTitle&nbsp;*</span> | <span class="prop-type">node</span> |  | Label to display in the tooltip. |
 
 The component cannot hold a ref.

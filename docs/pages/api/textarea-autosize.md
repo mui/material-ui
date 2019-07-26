@@ -18,8 +18,8 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">rows</span> | <span class="prop-type">union:&nbsp;string<br>&#124;&nbsp;number<br></span> |  | Minimum umber of rows to display. |
-| <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string<br>&#124;&nbsp;number<br></span> |  | Maximum number of rows to display. |
+| <span class="prop-name">rows</span> | <span class="prop-type">union:&nbsp;string<br>&#124;&nbsp;number</span> |  | Minimum umber of rows to display. |
+| <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string<br>&#124;&nbsp;number</span> |  | Maximum number of rows to display. |
 
 The `ref` is forwarded to the root element.
 

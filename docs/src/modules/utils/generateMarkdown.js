@@ -210,7 +210,7 @@ function generatePropType(type) {
       } else {
         values = values.join(', ');
       }
-      return `${type.name}:&nbsp;${values}<br>`;
+      return `${type.name}:&nbsp;${values}`;
     }
     default:
       return type.name;
