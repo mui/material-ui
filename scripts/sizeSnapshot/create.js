@@ -48,73 +48,12 @@ async function getWebpackSizes() {
   });
 }
 
-// waiting for String.prototype.matchAll in node 10
-function* matchAll(string, regex) {
-  let match = null;
-  do {
-    match = regex.exec(string);
-    if (match !== null) {
-      yield match;
-    }
-  } while (match !== null);
-}
-
-/**
- * Inverse to `pretty-bytes`
- *
- * @param {string} n
- * @param {'B', 'kB' | 'mB' | 'gB' | 'tB' | 'pB'} unit
- * @returns {number}
- */
-function prettyBytesInverse(n, unit) {
-  const metrixPrefix = unit.length < 2 ? '' : unit[0];
-  const metricPrefixes = ['', 'k', 'm', 'g', 't', 'p'];
-  const metrixPrefixIndex = metricPrefixes.indexOf(metrixPrefix);
-  if (metrixPrefixIndex === -1) {
-    throw new TypeError(
-      `unrecognized metric prefix '${metrixPrefix}' in unit '${unit}'. only '${metricPrefixes.join(
-        "', '",
-      )}' are allowed`,
-    );
-  }
-
-  const power = metrixPrefixIndex * 3;
-  return n * 10 ** power;
-}
-
-/**
- * parses output from next build to size snapshot format
- * @returns {[string, { gzip: number, files: number, packages: number }][]}
- */
-async function getNextPagesSize() {
-  const consoleOutput = await fse.readFile(path.join(__dirname, 'build/docs.next'), {
-    encoding: 'utf8',
-  });
-  const pageRegex = /^(?<treeViewPresentation>┌|├|└)\s*(?<fileType>σ|⚡|)\s*(?<pageUrl>[^\s]+)\s*(?<sizeFormatted>[0-9.]+)\s*(?<sizeUnit>\w+)\s*(?<files>\d+)\s*(?<packages>\d+)/gm;
-
-  return Array.from(matchAll(consoleOutput, pageRegex), match => {
-    const { pageUrl, sizeFormatted, sizeUnit, files, packages } = match.groups;
-
-    const snapshotId = `docs: ${pageUrl}`;
-    return [
-      snapshotId,
-      {
-        parsed: prettyBytesInverse(sizeFormatted, sizeUnit),
-        gzip: -1,
-        files: +files,
-        packages: +packages,
-      },
-    ];
-  });
-}
-
 async function run() {
   const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
 
   const bundleSizes = lodash.fromPairs([
     ...(await getWebpackSizes()),
     ...lodash.flatten(await Promise.all(rollupBundles.map(getRollupSize))),
-    ...(await getNextPagesSize()),
   ]);
 
   await fse.writeJSON(snapshotDestPath, bundleSizes, { spaces: 2 });

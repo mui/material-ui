@@ -48,11 +48,8 @@ steps:
       artifactName: 'canaries'
       targetPath: 'material-ui-core.tgz'
 
-  - bash: |
-      set -o pipefail
-      mkdir -p scripts/sizeSnapshot/build
-      yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
-      set +o pipefail
+  - script: |
+      yarn docs:build
     displayName: 'build docs'
 
   - script: |

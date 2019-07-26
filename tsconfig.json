@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
-    "jsx": "preserve",
+    "jsx": "react",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -11,7 +11,6 @@
     "experimentalDecorators": true,
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
     "noErrorTruncation": true,
     "allowJs": true,
     "paths": {
