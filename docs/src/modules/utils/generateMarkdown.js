@@ -209,6 +209,10 @@ function generatePropType(type) {
           .join('<br>&#124;&nbsp;')
       );
     }
+
+    case 'arrayOf': {
+      return `Array<${generatePropType(type.value)}>`;
+    }
     default:
       return type.name;
   }
