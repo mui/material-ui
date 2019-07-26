@@ -31,7 +31,9 @@ describe('<SpeedDialAction />', () => {
   });
 
   it('should render a Tooltip', () => {
-    const wrapper = mount(<SpeedDialAction {...defaultProps} open tooltipOpen tooltipTitle="An Action" />);
+    const wrapper = mount(
+      <SpeedDialAction {...defaultProps} open tooltipOpen tooltipTitle="An Action" />,
+    );
 
     assert.strictEqual(
       wrapper
@@ -43,7 +45,9 @@ describe('<SpeedDialAction />', () => {
   });
 
   it('should be able to change the Tooltip classes', () => {
-    const wrapper = mount(<SpeedDialAction {...defaultProps} TooltipClasses={{ tooltip: 'bar' }} />);
+    const wrapper = mount(
+      <SpeedDialAction {...defaultProps} TooltipClasses={{ tooltip: 'bar' }} />,
+    );
     assert.include(wrapper.find(Tooltip).props().classes.tooltip, 'bar');
   });
 
