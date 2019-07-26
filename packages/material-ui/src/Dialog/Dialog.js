@@ -46,6 +46,7 @@ export const styles = theme => ({
       height: 'auto',
     },
     // We disable the focus ring for mouse, touch and keyboard users.
+    pointerEvents: 'none',
     outline: 'none',
   },
   /* Styles applied to the `Paper` component. */
@@ -57,6 +58,7 @@ export const styles = theme => ({
       overflowY: 'visible',
       boxShadow: 'none',
     },
+    pointerEvents: 'auto',
   },
   /* Styles applied to the `Paper` component if `scroll="paper"`. */
   paperScrollPaper: {
@@ -172,33 +174,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     ...other
   } = props;
 
-  const mouseDownTarget = React.useRef();
-  const handleMouseDown = event => {
-    mouseDownTarget.current = event.target;
-  };
-  const handleBackdropClick = event => {
-    // Ignore the events not coming from the "backdrop"
-    // We don't want to close the dialog when clicking the dialog content.
-    if (event.target !== event.currentTarget) {
-      return;
-    }
-
-    // Make sure the event starts and ends on the same DOM element.
-    if (event.target !== mouseDownTarget.current) {
-      return;
-    }
-
-    mouseDownTarget.current = null;
-
-    if (onBackdropClick) {
-      onBackdropClick(event);
-    }
-
-    if (!disableBackdropClick && onClose) {
-      onClose(event, 'backdropClick');
-    }
-  };
-
   return (
     <Modal
       className={clsx(classes.root, className)}
@@ -231,9 +206,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
       >
         <div
           className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
-          onClick={handleBackdropClick}
-          onMouseDown={handleMouseDown}
-          role="document"
           data-mui-test="FakeBackdrop"
         >
           <PaperComponent
