@@ -98,6 +98,7 @@ const headRows: HeadRow[] = [
 ];
 
 interface EnhancedTableProps {
+  classes: ReturnType<typeof useStyles>;
   numSelected: number;
   onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
@@ -107,7 +108,7 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
   const createSortHandler = (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -136,6 +137,11 @@ function EnhancedTableHead(props: EnhancedTableProps) {
               onClick={createSortHandler(row.id)}
             >
               {row.label}
+              {orderBy === row.id ? (
+                <span className={classes.visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </span>
+              ) : null}
             </TableSortLabel>
           </TableCell>
         ))}
@@ -233,6 +239,17 @@ const useStyles = makeStyles((theme: Theme) =>
     tableWrapper: {
       overflowX: 'auto',
     },
+    visuallyHidden: {
+      border: 0,
+      clip: 'rect(0 0 0 0)',
+      height: 1,
+      margin: -1,
+      overflow: 'hidden',
+      padding: 0,
+      position: 'absolute',
+      top: 20,
+      width: 1,
+    },
   }),
 );
 
@@ -308,6 +325,7 @@ export default function EnhancedTable() {
             size={dense ? 'small' : 'medium'}
           >
             <EnhancedTableHead
+              classes={classes}
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
