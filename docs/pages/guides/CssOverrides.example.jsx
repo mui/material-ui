@@ -22,8 +22,11 @@ const materialTheme = createMuiTheme({
       day: {
         color: lightBlue.A700,
       },
-      isSelected: {
+      daySelected: {
         backgroundColor: lightBlue['400'],
+      },
+      dayDisabled: {
+        color: lightBlue['100'],
       },
       current: {
         color: lightBlue['900'],
@@ -46,6 +49,7 @@ function CssOverrides() {
         label="Light blue picker"
         value={selectedDate}
         onChange={handleDateChange}
+        shouldDisableDate={day => day.getDay() === 0}
         animateYearScrolling={false}
       />
     </ThemeProvider>
