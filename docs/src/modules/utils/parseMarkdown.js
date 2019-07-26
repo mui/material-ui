@@ -24,7 +24,10 @@ export function getHeaders(markdown) {
   }
 
   if (headers.components) {
-    headers.components = headers.components.split(', ').sort();
+    headers.components = headers.components
+      .split(',')
+      .map(x => x.trim())
+      .sort();
   } else {
     headers.components = [];
   }

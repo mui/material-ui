@@ -7,7 +7,7 @@ import { setRef } from '../utils/reactHelpers';
 /**
  * ⚠️⚠️⚠️
  * If you want the DOM element of a Material-UI component check out
- * [/getting-started/faq/#how-can-i-access-the-dom-element](FAQ: How can I access the DOM element?)
+ * [FAQ: How can I access the DOM element?](/getting-started/faq/#how-can-i-access-the-dom-element)
  * first.
  *
  * This component uses `findDOMNode` which is deprecated in React.StrictMode.

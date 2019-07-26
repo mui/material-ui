@@ -7,10 +7,13 @@ import { ThemeProvider } from '@material-ui/styles';
 const defaultTheme = createMuiTheme();
 
 export default function AppTheme(props) {
-  const { children, description, title } = props;
+  const { children } = props;
+
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Head title={title} description={description} />
+      <Head>
+        <meta name="robots" content="noindex,nofollow" />
+      </Head>
       {children}
     </ThemeProvider>
   );
@@ -18,6 +21,4 @@ export default function AppTheme(props) {
 
 AppTheme.propTypes = {
   children: PropTypes.element.isRequired,
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
 };
