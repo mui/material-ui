@@ -93,6 +93,8 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.1.0",
+    "@types/algoliasearch": "^3.30.16",
+    "algoliasearch": "^3.33.0",
     "babel-plugin-unwrap-createstyles": "^4.1.0",
     "gm": "^1.23.0"
   }

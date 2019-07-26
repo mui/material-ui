@@ -37,6 +37,7 @@ export default function Head(props) {
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
       <meta name="docsearch:version" content="master" />
+      <link rel="search" href="/osdd.xml" type="application/opensearchdescription+xml" />
       {children}
     </NextHead>
   );
