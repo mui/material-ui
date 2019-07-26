@@ -139,6 +139,7 @@
     "**/@babel/plugin-transform-runtime": "~7.5.5",
     "**/@babel/preset-env": "^7.5.5",
     "**/@babel/preset-react": "^7.0.0",
+    "**/@babel/runtime-corejs2": "^7.4.4",
     "**/@babel/runtime": "^7.4.4",
     "**/hoist-non-react-statics": "^3.2.1",
     "**/next/terser": "^4.1.2"
